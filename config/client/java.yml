@@ -1,9 +1,9 @@
-groupId: com.github.ory
+groupId: sh.ory
 artifactId: $PROJECT-client
 artifactVersion: $VERSION
-invokerPackage: com.github.ory.$PROJECT
-apiPackage: com.github.ory.$PROJECT.api
-modelPackage: com.github.ory.$PROJECT.model
+invokerPackage: sh.ory.$PROJECT
+apiPackage: sh.ory.$PROJECT.api
+modelPackage: sh.ory.$PROJECT.model
 library: okhttp-gson
 developerName: ORY
 developerOrganization: www.ory.sh

@@ -13,6 +13,20 @@ do
   envsubst < "${f}" > "${f}.proc.yml"
 done
 
+cleanup() {
+  rm "clients/${PROJECT}/java/git_push.sh" || true
+  rm "clients/${PROJECT}/php/git_push.sh" || true
+  rm "clients/${PROJECT}/python/git_push.sh" || true
+  rm "clients/${PROJECT}/ruby/git_push.sh" || true
+  rm "clients/${PROJECT}/typescript/git_push.sh" || true
+
+  rm "clients/${PROJECT}/java/.travis.yml" || true
+  rm "clients/${PROJECT}/php/.travis.yml" || true
+  rm "clients/${PROJECT}/python/.travis.yml" || true
+  rm "clients/${PROJECT}/ruby/.travis.yml" || true
+  rm "clients/${PROJECT}/typescript/.travis.yml" || true
+}
+
 ts () {
   dir="clients/${PROJECT}/typescript"
 
@@ -54,7 +68,7 @@ php() {
 
   file="${dir}/composer.json"
 
-  jq -r "repository = "'"'"https://github.com/ory/sdk"'"'" | .homepage = "'"'"https://github.com/ory/${PROJECT}-client-php"'"'" | .authors[0].name = "'"'"ORY GmbH"'"'" | .authors[0].homepage = "'"'"https://www.ory.sh"'"'" | .license = "'"'"Apache License, Version 2.0"'"' "${file}" \
+  jq -r ".repository = "'"'"https://github.com/ory/sdk"'"'" | .homepage = "'"'"https://github.com/ory/${PROJECT}-client-php"'"'" | .authors[0].name = "'"'"ORY GmbH"'"'" | .authors[0].homepage = "'"'"https://www.ory.sh"'"'" | .license = "'"'"Apache License, Version 2.0"'"' "${file}" \
      > tmp.$$.json && mv tmp.$$.json "${file}"
 }
 
@@ -87,3 +101,5 @@ java
 php
 python
 ruby
+
+cleanup

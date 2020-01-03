@@ -1,4 +1,4 @@
-# ory_.PublicApi
+# ory_hydra_client.PublicApi
 
 All URIs are relative to *http://localhost*
 
@@ -26,12 +26,12 @@ This endpoint initiates and completes user logout at ORY Hydra and initiates Ope
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.PublicApi()
+api_instance = ory_hydra_client.PublicApi()
 
 try:
     # OpenID Connect Front-Backchannel enabled Logout
@@ -75,12 +75,12 @@ The well known endpoint an be used to retrieve information for OpenID Connect cl
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.PublicApi()
+api_instance = ory_hydra_client.PublicApi()
 
 try:
     # OpenID Connect Discovery
@@ -127,12 +127,12 @@ This endpoint returns a 200 status code when the HTTP server is up running and t
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.PublicApi()
+api_instance = ory_hydra_client.PublicApi()
 
 try:
     # Check readiness status
@@ -179,21 +179,21 @@ The client makes a request to the token endpoint by sending the following parame
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
-configuration = ory_.Configuration()
+configuration = ory_hydra_client.Configuration()
 # Configure HTTP basic authorization: basic
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
-configuration = ory_.Configuration()
+configuration = ory_hydra_client.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Defining host is optional and default to http://localhost
 configuration.host = "http://localhost"
 # Create an instance of the API class
-api_instance = ory_.PublicApi(ory_.ApiClient(configuration))
+api_instance = ory_hydra_client.PublicApi(ory_hydra_client.ApiClient(configuration))
 grant_type = 'grant_type_example' # str | 
 code = 'code_example' # str |  (optional)
 refresh_token = 'refresh_token_example' # str |  (optional)
@@ -212,21 +212,21 @@ except ApiException as e:
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
-configuration = ory_.Configuration()
+configuration = ory_hydra_client.Configuration()
 # Configure HTTP basic authorization: basic
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
-configuration = ory_.Configuration()
+configuration = ory_hydra_client.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Defining host is optional and default to http://localhost
 configuration.host = "http://localhost"
 # Create an instance of the API class
-api_instance = ory_.PublicApi(ory_.ApiClient(configuration))
+api_instance = ory_hydra_client.PublicApi(ory_hydra_client.ApiClient(configuration))
 grant_type = 'grant_type_example' # str | 
 code = 'code_example' # str |  (optional)
 refresh_token = 'refresh_token_example' # str |  (optional)
@@ -285,12 +285,12 @@ This endpoint is not documented here because you should never use your own imple
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.PublicApi()
+api_instance = ory_hydra_client.PublicApi()
 
 try:
     # The OAuth 2.0 authorize endpoint
@@ -337,21 +337,21 @@ Revoking a token (both access and refresh) means that the tokens will be invalid
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
-configuration = ory_.Configuration()
+configuration = ory_hydra_client.Configuration()
 # Configure HTTP basic authorization: basic
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
-configuration = ory_.Configuration()
+configuration = ory_hydra_client.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Defining host is optional and default to http://localhost
 configuration.host = "http://localhost"
 # Create an instance of the API class
-api_instance = ory_.PublicApi(ory_.ApiClient(configuration))
+api_instance = ory_hydra_client.PublicApi(ory_hydra_client.ApiClient(configuration))
 token = 'token_example' # str | 
 
 try:
@@ -365,21 +365,21 @@ except ApiException as e:
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
-configuration = ory_.Configuration()
+configuration = ory_hydra_client.Configuration()
 # Configure HTTP basic authorization: basic
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
-configuration = ory_.Configuration()
+configuration = ory_hydra_client.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Defining host is optional and default to http://localhost
 configuration.host = "http://localhost"
 # Create an instance of the API class
-api_instance = ory_.PublicApi(ory_.ApiClient(configuration))
+api_instance = ory_hydra_client.PublicApi(ory_hydra_client.ApiClient(configuration))
 token = 'token_example' # str | 
 
 try:
@@ -430,17 +430,17 @@ This endpoint returns the payload of the ID Token, including the idTokenExtra va
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
-configuration = ory_.Configuration()
+configuration = ory_hydra_client.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Defining host is optional and default to http://localhost
 configuration.host = "http://localhost"
 # Create an instance of the API class
-api_instance = ory_.PublicApi(ory_.ApiClient(configuration))
+api_instance = ory_hydra_client.PublicApi(ory_hydra_client.ApiClient(configuration))
 
 try:
     # OpenID Connect Userinfo
@@ -487,12 +487,12 @@ This endpoint returns JSON Web Keys to be used as public keys for verifying Open
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.PublicApi()
+api_instance = ory_hydra_client.PublicApi()
 
 try:
     # JSON Web Keys Discovery

@@ -1,6 +1,6 @@
 {
   "name": "@ory/hydra-client",
-  "version": "v0.0.0",
+  "version": "v0.0.0-test.1",
   "description": "NodeJS client for @ory/hydra-client",
   "repository": "ory/sdk",
   "main": "dist/api.js",
@@ -22,8 +22,5 @@
   "devDependencies": {
     "typescript": "^2.4.2",
     "@types/node": "8.10.34"
-  },
-  "publishConfig": {
-    "registry": "https://github.com/ory/sdk.git"
   }
 }

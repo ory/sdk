@@ -20,7 +20,7 @@ php() {
 ruby() {
   dir="clients/${PROJECT}/ruby"
 
-  (cd "${dir}"; gem build ory_.gemspec)
+  (cd "${dir}"; gem build "ory-${PROJECT}-client.gemspec")
 }
 
 ts

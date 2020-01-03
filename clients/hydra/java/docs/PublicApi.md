@@ -25,11 +25,11 @@ This endpoint initiates and completes user logout at ORY Hydra and initiates Ope
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.PublicApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.PublicApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -82,11 +82,11 @@ The well known endpoint an be used to retrieve information for OpenID Connect cl
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.PublicApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.PublicApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -142,11 +142,11 @@ This endpoint returns a 200 status code when the HTTP server is up running and t
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.PublicApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.PublicApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -201,12 +201,12 @@ The client makes a request to the token endpoint by sending the following parame
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.auth.*;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.PublicApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.auth.*;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.PublicApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -283,11 +283,11 @@ This endpoint is not documented here because you should never use your own imple
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.PublicApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.PublicApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -342,12 +342,12 @@ Revoking a token (both access and refresh) means that the tokens will be invalid
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.auth.*;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.PublicApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.auth.*;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.PublicApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -415,12 +415,12 @@ This endpoint returns the payload of the ID Token, including the idTokenExtra va
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.auth.*;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.PublicApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.auth.*;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.PublicApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -480,11 +480,11 @@ This endpoint returns JSON Web Keys to be used as public keys for verifying Open
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.PublicApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.PublicApi;
 
 public class Example {
   public static void main(String[] args) {

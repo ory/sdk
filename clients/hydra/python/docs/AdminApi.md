@@ -1,4 +1,4 @@
-# ory_.AdminApi
+# ory_hydra_client.AdminApi
 
 All URIs are relative to *http://localhost*
 
@@ -47,14 +47,14 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 consent_challenge = 'consent_challenge_example' # str | 
-body = ory_.AcceptConsentRequest() # AcceptConsentRequest |  (optional)
+body = ory_hydra_client.AcceptConsentRequest() # AcceptConsentRequest |  (optional)
 
 try:
     # Accept an consent request
@@ -105,14 +105,14 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 login_challenge = 'login_challenge_example' # str | 
-body = ory_.AcceptLoginRequest() # AcceptLoginRequest |  (optional)
+body = ory_hydra_client.AcceptLoginRequest() # AcceptLoginRequest |  (optional)
 
 try:
     # Accept an login request
@@ -164,12 +164,12 @@ When a user or an application requests ORY Hydra to log out a user, this endpoin
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 logout_challenge = 'logout_challenge_example' # str | 
 
 try:
@@ -220,14 +220,14 @@ This endpoint is capable of generating JSON Web Key Sets for you. There a differ
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 set = 'set_example' # str | The set
-body = ory_.JsonWebKeySetGeneratorRequest() # JsonWebKeySetGeneratorRequest |  (optional)
+body = ory_hydra_client.JsonWebKeySetGeneratorRequest() # JsonWebKeySetGeneratorRequest |  (optional)
 
 try:
     # Generate a new JSON Web Key
@@ -279,13 +279,13 @@ Create a new OAuth 2.0 client If you pass `client_secret` the secret will be use
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
-body = ory_.OAuth2Client() # OAuth2Client | 
+api_instance = ory_hydra_client.AdminApi()
+body = ory_hydra_client.OAuth2Client() # OAuth2Client | 
 
 try:
     # Create an OAuth 2.0 client
@@ -336,12 +336,12 @@ Use this endpoint to delete a single JSON Web Key.  A JSON Web Key (JWK) is a Ja
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 kid = 'kid_example' # str | The kid of the desired key
 set = 'set_example' # str | The set
 
@@ -394,12 +394,12 @@ Use this endpoint to delete a complete JSON Web Key Set and all the keys in that
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 set = 'set_example' # str | The set
 
 try:
@@ -450,12 +450,12 @@ Delete an existing OAuth 2.0 Client by its ID.  OAuth 2.0 clients are used to pe
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 id = 'id_example' # str | The id of the OAuth 2.0 Client.
 
 try:
@@ -505,13 +505,13 @@ This endpoint flushes expired OAuth2 access tokens from the database. You can se
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
-body = ory_.FlushInactiveOAuth2TokensRequest() # FlushInactiveOAuth2TokensRequest |  (optional)
+api_instance = ory_hydra_client.AdminApi()
+body = ory_hydra_client.FlushInactiveOAuth2TokensRequest() # FlushInactiveOAuth2TokensRequest |  (optional)
 
 try:
     # Flush Expired OAuth2 Access Tokens
@@ -560,12 +560,12 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 consent_challenge = 'consent_challenge_example' # str | 
 
 try:
@@ -617,12 +617,12 @@ This endpoint returns a singular JSON Web Key, identified by the set and the spe
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 kid = 'kid_example' # str | The kid of the desired key
 set = 'set_example' # str | The set
 
@@ -675,12 +675,12 @@ This endpoint can be used to retrieve JWK Sets stored in ORY Hydra.  A JSON Web 
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 set = 'set_example' # str | The set
 
 try:
@@ -732,12 +732,12 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 login_challenge = 'login_challenge_example' # str | 
 
 try:
@@ -790,12 +790,12 @@ Use this endpoint to fetch a logout request.
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 logout_challenge = 'logout_challenge_example' # str | 
 
 try:
@@ -846,12 +846,12 @@ Get an OAUth 2.0 client by its ID. This endpoint never returns passwords.  OAuth
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 id = 'id_example' # str | The id of the OAuth 2.0 Client.
 
 try:
@@ -902,12 +902,12 @@ This endpoint returns the service version typically notated using semantic versi
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 
 try:
     # Get service version
@@ -953,21 +953,21 @@ The introspection endpoint allows to check if a token (both refresh and access) 
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
-configuration = ory_.Configuration()
+configuration = ory_hydra_client.Configuration()
 # Configure HTTP basic authorization: basic
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
-configuration = ory_.Configuration()
+configuration = ory_hydra_client.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Defining host is optional and default to http://localhost
 configuration.host = "http://localhost"
 # Create an instance of the API class
-api_instance = ory_.AdminApi(ory_.ApiClient(configuration))
+api_instance = ory_hydra_client.AdminApi(ory_hydra_client.ApiClient(configuration))
 token = 'token_example' # str | The string value of the token. For access tokens, this is the \\\"access_token\\\" value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\"refresh_token\\\" value returned.
 scope = 'scope_example' # str | An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. (optional)
 
@@ -983,21 +983,21 @@ except ApiException as e:
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
-configuration = ory_.Configuration()
+configuration = ory_hydra_client.Configuration()
 # Configure HTTP basic authorization: basic
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
-configuration = ory_.Configuration()
+configuration = ory_hydra_client.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Defining host is optional and default to http://localhost
 configuration.host = "http://localhost"
 # Create an instance of the API class
-api_instance = ory_.AdminApi(ory_.ApiClient(configuration))
+api_instance = ory_hydra_client.AdminApi(ory_hydra_client.ApiClient(configuration))
 token = 'token_example' # str | The string value of the token. For access tokens, this is the \\\"access_token\\\" value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\"refresh_token\\\" value returned.
 scope = 'scope_example' # str | An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. (optional)
 
@@ -1050,12 +1050,12 @@ This endpoint returns a 200 status code when the HTTP server is up running. This
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 
 try:
     # Check alive status
@@ -1101,12 +1101,12 @@ This endpoint lists all clients in the database, and never returns client secret
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 limit = 56 # int | The maximum amount of policies returned. (optional)
 offset = 56 # int | The offset from where to start looking. (optional)
 
@@ -1158,12 +1158,12 @@ This endpoint lists all subject's granted consent sessions, including client and
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 subject = 'subject_example' # str | 
 
 try:
@@ -1215,12 +1215,12 @@ Get snapshot metrics from the Hydra service. If you're using k8s, you can then a
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 
 try:
     # Get snapshot metrics from the Hydra service. If you're using k8s, you can then add annotations to your deployment like so:
@@ -1264,14 +1264,14 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 consent_challenge = 'consent_challenge_example' # str | 
-body = ory_.RejectRequest() # RejectRequest |  (optional)
+body = ory_hydra_client.RejectRequest() # RejectRequest |  (optional)
 
 try:
     # Reject an consent request
@@ -1322,14 +1322,14 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 login_challenge = 'login_challenge_example' # str | 
-body = ory_.RejectRequest() # RejectRequest |  (optional)
+body = ory_hydra_client.RejectRequest() # RejectRequest |  (optional)
 
 try:
     # Reject a login request
@@ -1381,14 +1381,14 @@ When a user or an application requests ORY Hydra to log out a user, this endpoin
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 logout_challenge = 'logout_challenge_example' # str | 
-body = ory_.RejectRequest() # RejectRequest |  (optional)
+body = ory_hydra_client.RejectRequest() # RejectRequest |  (optional)
 
 try:
     # Reject a logout request
@@ -1438,12 +1438,12 @@ This endpoint invalidates a subject's authentication session. After revoking the
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 subject = 'subject_example' # str | 
 
 try:
@@ -1494,12 +1494,12 @@ This endpoint revokes a subject's granted consent sessions for a specific OAuth 
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 subject = 'subject_example' # str | The subject (Subject) who's consent sessions should be deleted.
 client = 'client_example' # str | If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID (optional)
 
@@ -1552,15 +1552,15 @@ Use this method if you do not want to let Hydra generate the JWKs for you, but i
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 kid = 'kid_example' # str | The kid of the desired key
 set = 'set_example' # str | The set
-body = ory_.JSONWebKey() # JSONWebKey |  (optional)
+body = ory_hydra_client.JSONWebKey() # JSONWebKey |  (optional)
 
 try:
     # Update a JSON Web Key
@@ -1613,14 +1613,14 @@ Use this method if you do not want to let Hydra generate the JWKs for you, but i
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 set = 'set_example' # str | The set
-body = ory_.JSONWebKeySet() # JSONWebKeySet |  (optional)
+body = ory_hydra_client.JSONWebKeySet() # JSONWebKeySet |  (optional)
 
 try:
     # Update a JSON Web Key Set
@@ -1672,14 +1672,14 @@ Update an existing OAuth 2.0 Client. If you pass `client_secret` the secret will
 ```python
 from __future__ import print_function
 import time
-import ory_
-from ory_.rest import ApiException
+import ory_hydra_client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = ory_.AdminApi()
+api_instance = ory_hydra_client.AdminApi()
 id = 'id_example' # str | 
-body = ory_.OAuth2Client() # OAuth2Client | 
+body = ory_hydra_client.OAuth2Client() # OAuth2Client | 
 
 try:
     # Update an OAuth 2.0 Client

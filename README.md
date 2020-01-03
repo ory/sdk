@@ -5,9 +5,9 @@ using openapi-generator.
 
 ## Commit a new spec
 
-Place the spec in `spec/<project>/<version>.json` (e.g. `spec/hydra/v0.0.0-test.1.json`) and create a commit
+Place the spec in `spec/<project>/<version>.json` (e.g. `spec/hydra/v0.0.0-alpha.1.json`) and create a commit
 that references both the project and the version `git commit -a -m "Add spec for <project>:<version>"`
-(e.g. `git commit -a -m "Add spec for hydra:v0.0.0-test.1"`).
+(e.g. `git commit -a -m "Add spec for hydra:v0.0.0-alpha.1"`).
 
 **Do not create multiple commits adding several specs in one PR,** as only the latest commit will be checked when
 it lands on master.

@@ -46,11 +46,11 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -112,11 +112,11 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -179,11 +179,11 @@ When a user or an application requests ORY Hydra to log out a user, this endpoin
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -243,11 +243,11 @@ This endpoint is capable of generating JSON Web Key Sets for you. There a differ
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -310,11 +310,11 @@ Create a new OAuth 2.0 client If you pass &#x60;client_secret&#x60; the secret w
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -375,11 +375,11 @@ Use this endpoint to delete a single JSON Web Key.  A JSON Web Key (JWK) is a Ja
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -441,11 +441,11 @@ Use this endpoint to delete a complete JSON Web Key Set and all the keys in that
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -505,11 +505,11 @@ Delete an existing OAuth 2.0 Client by its ID.  OAuth 2.0 clients are used to pe
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -568,11 +568,11 @@ This endpoint flushes expired OAuth2 access tokens from the database. You can se
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -631,11 +631,11 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -696,11 +696,11 @@ This endpoint returns a singular JSON Web Key, identified by the set and the spe
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -762,11 +762,11 @@ This endpoint can be used to retrieve JWK Sets stored in ORY Hydra.  A JSON Web 
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -827,11 +827,11 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -893,11 +893,11 @@ Use this endpoint to fetch a logout request.
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -957,11 +957,11 @@ Get an OAUth 2.0 client by its ID. This endpoint never returns passwords.  OAuth
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1021,11 +1021,11 @@ This endpoint returns the service version typically notated using semantic versi
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1079,12 +1079,12 @@ The introspection endpoint allows to check if a token (both refresh and access) 
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.auth.*;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.auth.*;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1155,11 +1155,11 @@ This endpoint returns a 200 status code when the HTTP server is up running. This
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1214,11 +1214,11 @@ This endpoint lists all clients in the database, and never returns client secret
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1279,11 +1279,11 @@ This endpoint lists all subject&#39;s granted consent sessions, including client
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1344,11 +1344,11 @@ Get snapshot metrics from the Hydra service. If you&#39;re using k8s, you can th
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1401,11 +1401,11 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1467,11 +1467,11 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1534,11 +1534,11 @@ When a user or an application requests ORY Hydra to log out a user, this endpoin
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1599,11 +1599,11 @@ This endpoint invalidates a subject&#39;s authentication session. After revoking
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1663,11 +1663,11 @@ This endpoint revokes a subject&#39;s granted consent sessions for a specific OA
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1729,11 +1729,11 @@ Use this method if you do not want to let Hydra generate the JWKs for you, but i
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1798,11 +1798,11 @@ Use this method if you do not want to let Hydra generate the JWKs for you, but i
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1865,11 +1865,11 @@ Update an existing OAuth 2.0 Client. If you pass &#x60;client_secret&#x60; the s
 ### Example
 ```java
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {

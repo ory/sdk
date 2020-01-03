@@ -10,7 +10,7 @@
     "rest",
     "api"
   ],
-  "homepage": "https://github.com/ory/-client-php",
+  "homepage": "https://github.com/ory/hydra-client-php",
   "license": "Apache License, Version 2.0",
   "authors": [
     {
@@ -39,5 +39,6 @@
     "psr-4": {
       "Ory\\Hydra\\Client\\": "test/"
     }
-  }
+  },
+  "repository": "https://github.com/ory/sdk"
 }
