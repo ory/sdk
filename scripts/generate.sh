@@ -5,10 +5,20 @@ set -Eeuxo pipefail
 rm -rf config/client/*.proc.yml
 # rm -rf clients/*
 
-echo "Generating SDKs for $PROJECT:$VERSION"
+if [ -z "$(git log -1 --pretty=%B | grep "^Add spec")" ]; then
+      echo "This commit does not appear to be related to a spec update, skipping chain."
+      exit 0
+else
+      project=$(git log -1 --pretty=%B | grep "^Add spec")
+      version=$(git log -1 --pretty=%B | grep "^Add spec2")
+fi
+
+git log -1 --pretty=%B | sed -n 's/^Add spec for \(.+\)/\1/'
+
+echo "Generating SDKs for $project:$version"
 
 # shellcheck disable=SC2001
-export PROJECT_UCF="$(tr '[:lower:]' '[:upper:]' <<< "${PROJECT:0:1}")${PROJECT:1}"
+export project_ucf="$(tr '[:lower:]' '[:upper:]' <<< "${project:0:1}")${project:1}"
 
 for f in config/client/*
 do
@@ -16,10 +26,10 @@ do
   envsubst < "${f}" > "${f}.proc.yml"
 done
 
-cf="spec/${PROJECT}/${VERSION}.json"
+cf="spec/${project}/${version}.json"
 
 ts () {
-  dir="clients/${PROJECT}/typescript"
+  dir="clients/${project}/typescript"
 
   openapi-generator generate -i "${cf}" \
     -g typescript-node \
@@ -31,7 +41,7 @@ ts () {
 }
 
 java () {
-  dir="clients/${PROJECT}/java"
+  dir="clients/${project}/java"
 
   openapi-generator generate -i "${cf}" \
     -g java \
@@ -43,19 +53,19 @@ java () {
 }
 
 php() {
-  dir="clients/${PROJECT}/php"
+  dir="clients/${project}/php"
 
   openapi-generator generate -i "${cf}" \
     -g php \
     -o "$dir" \
     --git-user-id ory \
-    --git-repo-id "${PROJECT}-client" \
+    --git-repo-id "${project}-client" \
     --git-host github.com \
     -c ./config/client/php.yml.proc.yml
 }
 
 python () {
-  dir="clients/${PROJECT}/python"
+  dir="clients/${project}/python"
 
   openapi-generator generate -i "${cf}" \
     -g python \
@@ -67,7 +77,7 @@ python () {
 }
 
 ruby () {
-  dir="clients/${PROJECT}/ruby"
+  dir="clients/${project}/ruby"
 
   openapi-generator generate -i "${cf}" \
     -g ruby \

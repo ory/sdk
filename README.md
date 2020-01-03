@@ -3,6 +3,20 @@
 All SDKs provided in this repository are generated
 using openapi-generator.
 
+## Commit a new spec
+
+Place the spec in `spec/<project>/<version>.json` (e.g. `spec/hydra/v0.0.0-test.1.json`) and create a commit
+that references both the project and the version `git commit -a -m "Add spec for <project>:<version>"`
+(e.g. `git commit -a -m "Add spec for oathkeeper:v0.0.0-test.1"`).
+
+**Do not create multiple commits adding several specs in one PR,** as only the latest commit will be checked when
+it lands on master.
+
+Because this is an automated process, it is highly recommended to add, commit, and push the spec file directly
+to master in one go!
+
+You can create a PR if you're making changes to the build chain.
+
 ## Publish to Packagist
 
 Install PHP and [composer](https://packagist.org)
