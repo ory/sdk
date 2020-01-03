@@ -14,7 +14,7 @@
   "info": {
     "description": "Welcome to the ORY Hydra HTTP API documentation. You will find documentation for all HTTP APIs here.",
     "title": "ORY Hydra",
-    "version": "latest"
+    "version": "v0.0.0-test.1"
   },
   "basePath": "/",
   "paths": {

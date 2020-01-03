@@ -8,7 +8,7 @@ rm -rf config/client/*.proc.yml
 echo "Generating SDKs for $PROJECT:$VERSION"
 
 # shellcheck disable=SC2001
-export PROJECT_UCF="$(tr '[:lower:]' '[:upper:]' <<< ${PROJECT:0:1})${PROJECT:1}"
+export PROJECT_UCF="$(tr '[:lower:]' '[:upper:]' <<< "${PROJECT:0:1}")${PROJECT:1}"
 
 for f in config/client/*
 do
@@ -16,7 +16,7 @@ do
   envsubst < "${f}" > "${f}.proc.yml"
 done
 
-cf="${PROJECT}.${VERSION}.swagger.json"
+cf="spec/${PROJECT}/${VERSION}.json"
 
 ts () {
   dir="clients/${PROJECT}/typescript"
