@@ -15,7 +15,7 @@ limitations under the License.
 */
 package main
 
-import "github.com/ory/kratos/contrib/swagutil/cmd"
+import "github.com/ory/sdk/swagutil/cmd"
 
 func main() {
 	cmd.Execute()

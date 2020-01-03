@@ -27,4 +27,6 @@ func TestSanitize(t *testing.T) {
 	require.NotEmpty(t, expected)
 
 	assert.JSONEq(t, string(expected), string(actual))
+
+	// t.Logf("wrote to: %s",fp)
 }

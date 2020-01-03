@@ -1802,7 +1802,7 @@
       }
     }
   },
-  "definitions": {
+  "definitions": {"UUID":{"type": "string", "format": "uuid4"},
     "JSONWebKey": {
       "type": "object",
       "required": [
