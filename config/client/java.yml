@@ -4,7 +4,7 @@ artifactVersion: $VERSION
 invokerPackage: com.github.ory.$PROJECT
 apiPackage: com.github.ory.$PROJECT.api
 modelPackage: com.github.ory.$PROJECT.model
-library: native
+library: okhttp-gson
 developerName: ORY
 developerOrganization: www.ory.sh
 developerOrganizationUrl: https://www.ory.sh

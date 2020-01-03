@@ -2,14 +2,8 @@
 
 set -Eeuxo pipefail
 
-ts_node () {
-  dir="clients/${PROJECT}/typescript-node"
-
-  (cd dir; npm install; npm run build)
-}
-
-ts_fetch () {
-  dir="clients/${PROJECT}/typescript-fetch"
+ts () {
+  dir="clients/${PROJECT}/typescript"
 
   (cd dir; npm install; npm run build)
 }
@@ -26,8 +20,6 @@ ruby() {
   (cd dir; gem build ory_.gemspec)
 }
 
-# ts fetch is currently broken.
-# ts_fetch
-
-ts_node
+ts
 php
+ruby

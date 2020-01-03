@@ -18,19 +18,7 @@ done
 
 cf="${PROJECT}.${VERSION}.swagger.json"
 
-ts_fetch () {
-  dir="clients/${PROJECT}/typescript-fetch"
-
-  openapi-generator generate -i "${cf}" \
-    -g typescript-fetch \
-    -o "${dir}" \
-    --git-user-id ory \
-    --git-repo-id sdk \
-    --git-host github.com \
-    -c ./config/client/typescript-fetch.yml.proc.yml
-}
-
-ts_node () {
+ts () {
   dir="clients/${PROJECT}/typescript"
 
   openapi-generator generate -i "${cf}" \
@@ -39,7 +27,7 @@ ts_node () {
     --git-user-id ory \
     --git-repo-id sdk \
     --git-host github.com \
-    -c ./config/client/typescript-node.yml.proc.yml
+    -c ./config/client/typescript.yml.proc.yml
 }
 
 java () {
@@ -90,22 +78,7 @@ ruby () {
     -c ./config/client/ruby.yml.proc.yml
 }
 
-javascript() {
-  dir="clients/${PROJECT}/javascript"
-
-  openapi-generator generate -i "${cf}" \
-    -g ruby \
-    -o "$dir" \
-    --git-user-id ory \
-    --git-repo-id sdk \
-    --git-host github.com \
-    -c ./config/client/javascript.yml.proc.yml
-}
-
-# ts fetch is currently broken.
-# ts_fetch
-
-ts_node
+ts
 java
 php
 python
