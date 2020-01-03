@@ -1,24 +1,11 @@
 #!/bin/bash
 
 set -Eeuxo pipefail
+cd "$( dirname "${BASH_SOURCE[0]}" )/.."
+
+source scripts/prep.sh
 
 rm -rf config/client/*.proc.yml
-# rm -rf clients/*
-
-if [ -z "$(git log -1 --pretty=%B | grep "^Add spec")" ]; then
-      echo "This commit does not appear to be related to a spec update, skipping chain."
-      exit 0
-else
-      project=$(git log -1 --pretty=%B | grep "^Add spec")
-      version=$(git log -1 --pretty=%B | grep "^Add spec2")
-fi
-
-git log -1 --pretty=%B | sed -n 's/^Add spec for \(.+\)/\1/'
-
-echo "Generating SDKs for $project:$version"
-
-# shellcheck disable=SC2001
-export project_ucf="$(tr '[:lower:]' '[:upper:]' <<< "${project:0:1}")${project:1}"
 
 for f in config/client/*
 do
@@ -26,24 +13,26 @@ do
   envsubst < "${f}" > "${f}.proc.yml"
 done
 
-cf="spec/${project}/${version}.json"
-
 ts () {
-  dir="clients/${project}/typescript"
+  dir="clients/${PROJECT}/typescript"
 
-  openapi-generator generate -i "${cf}" \
+  openapi-generator generate -i "${SPEC_FILE}" \
     -g typescript-node \
     -o "$dir" \
     --git-user-id ory \
     --git-repo-id sdk \
     --git-host github.com \
     -c ./config/client/typescript.yml.proc.yml
+
+  file="${dir}/package.json"
+  jq -r ".author = "'"'"ORY GmbH"'"'" | .license = "'"'"Apache License, Version 2.0"'"' "${file}" \
+     > tmp.$$.json && mv tmp.$$.json "${file}"
 }
 
 java () {
-  dir="clients/${project}/java"
+  dir="clients/${PROJECT}/java"
 
-  openapi-generator generate -i "${cf}" \
+  openapi-generator generate -i "${SPEC_FILE}" \
     -g java \
     -o "$dir" \
     --git-user-id ory \
@@ -53,21 +42,26 @@ java () {
 }
 
 php() {
-  dir="clients/${project}/php"
+  dir="clients/${PROJECT}/php"
 
-  openapi-generator generate -i "${cf}" \
+  openapi-generator generate -i "${SPEC_FILE}" \
     -g php \
     -o "$dir" \
     --git-user-id ory \
-    --git-repo-id "${project}-client" \
+    --git-repo-id "${PROJECT}-client" \
     --git-host github.com \
     -c ./config/client/php.yml.proc.yml
+
+  file="${dir}/composer.json"
+
+  jq -r "repository = "'"'"https://github.com/ory/sdk"'"'" | .homepage = "'"'"https://github.com/ory/${PROJECT}-client-php"'"'" | .authors[0].name = "'"'"ORY GmbH"'"'" | .authors[0].homepage = "'"'"https://www.ory.sh"'"'" | .license = "'"'"Apache License, Version 2.0"'"' "${file}" \
+     > tmp.$$.json && mv tmp.$$.json "${file}"
 }
 
 python () {
-  dir="clients/${project}/python"
+  dir="clients/${PROJECT}/python"
 
-  openapi-generator generate -i "${cf}" \
+  openapi-generator generate -i "${SPEC_FILE}" \
     -g python \
     -o "$dir" \
     --git-user-id ory \
@@ -77,9 +71,9 @@ python () {
 }
 
 ruby () {
-  dir="clients/${project}/ruby"
+  dir="clients/${PROJECT}/ruby"
 
-  openapi-generator generate -i "${cf}" \
+  openapi-generator generate -i "${SPEC_FILE}" \
     -g ruby \
     -o "$dir" \
     --git-user-id ory \

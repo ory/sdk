@@ -2,3 +2,4 @@
 config/client/*.proc.yml
 node_modules/
 clients/hydra/php/.travis.yml
+tmp.*.json

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -Eeuxo pipefail
+cd "$( dirname "${BASH_SOURCE[0]}" )/.."
+
 gitdir="/tmp/${PROJECT}-client-${lang}"
 srcdir="${PROJECT}-client-${lang}"
 
