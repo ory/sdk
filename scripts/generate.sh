@@ -94,6 +94,16 @@ ruby () {
     --git-repo-id sdk \
     --git-host github.com \
     -c ./config/client/ruby.yml.proc.yml
+
+  file="${dir}/lib/ory-hydra-client/version.rb"
+
+  (cat "${file}" | sed "s/${VERSION}/$(echo "${VERSION}" | sed -E 's/v([0-9]+\.[0-9]+\.[0-9]+)-([a-z]+)\.([0-9]+)/\1.\2\3/' | sed -E 's/v([0-9]+\.[0-9]+\.[0-9]+)-([a-z]+)/\1.\2/' | sed 's/^v//')/g") > tmp.$$.rb && mv tmp.$$.rb "${file}"
+}
+
+go () {
+  dir="clients/${PROJECT}/go"
+
+  "$(go env GOPATH)/bin/swagger" generate client --allow-template-override -f ./docs/api.swagger.json -t "%{dir}" -A "Ory_{PROJECT_UCF}"
 }
 
 ts

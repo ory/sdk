@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.github.ory</groupId>
+    <groupId>sh.ory</groupId>
     <artifactId>hydra-client</artifactId>
     <packaging>jar</packaging>
     <name>hydra-client</name>
-    <version>v0.0.0</version>
+    <version>v0.0.0-alpha.1</version>
     <url>https://github.com/openapitools/openapi-generator</url>
     <description>OpenAPI Java</description>
     <scm>
@@ -25,7 +25,7 @@
     <developers>
         <developer>
             <name>ORY</name>
-            <email>office+oss@ory.sh</email>
+            <email>opensource@ory.sh</email>
             <organization>www.ory.sh</organization>
             <organizationUrl>https://www.ory.sh</organizationUrl>
         </developer>

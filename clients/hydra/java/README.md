@@ -1,8 +1,8 @@
 # hydra-client
 
 ORY Hydra
-- API version: latest
-  - Build date: 2020-01-03T12:59:32.660288+01:00[Europe/Berlin]
+- API version: v0.0.0-alpha.1
+  - Build date: 2020-01-03T16:15:50.798676+01:00[Europe/Berlin]
 
 Welcome to the ORY Hydra HTTP API documentation. You will find documentation for all HTTP APIs here.
 
@@ -38,9 +38,9 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-  <groupId>com.github.ory</groupId>
+  <groupId>sh.ory</groupId>
   <artifactId>hydra-client</artifactId>
-  <version>v0.0.0</version>
+  <version>v0.0.0-alpha.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -50,7 +50,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.github.ory:hydra-client:v0.0.0"
+compile "sh.ory:hydra-client:v0.0.0-alpha.1"
 ```
 
 ### Others
@@ -63,7 +63,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/hydra-client-v0.0.0.jar`
+* `target/hydra-client-v0.0.0-alpha.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -73,11 +73,11 @@ Please follow the [installation](#installation) instruction and execute the foll
 ```java
 
 // Import classes:
-import com.github.ory.hydra.ApiClient;
-import com.github.ory.hydra.ApiException;
-import com.github.ory.hydra.Configuration;
-import com.github.ory.hydra.models.*;
-import com.github.ory.hydra.api.AdminApi;
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
