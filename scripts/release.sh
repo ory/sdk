@@ -59,10 +59,14 @@ java() {
 
   version=$(echo "${VERSION}" | sed "s/^v//")
 
-  # THESE VALUES ARE EXAMPLES - PLEASE PICK THE APPROPRIATE `tag`, etc
-  mvn -Dtag="${PROJECT}-client-${version}" release:update-version \
-    -DreleaseVersion="${version}" -DdevelopmentVersion="${version}-SNAPSHOT" \
-    -Darguments="-Dmaven.javadoc.skip=true" -Dresume=false
+  (cd "${gitdir}"; mvn release:prepare \
+    -Dresume=false \
+    -DreleaseVersion="${version}" \
+    -Dtag="${version}" \
+    -DdevelopmentVersion="${version}-SNAPSHOT" \
+    -Darguments="-Dmaven.javadoc.skip=true")
+
+  echo "${version}"
 }
 
 php() {
