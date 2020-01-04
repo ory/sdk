@@ -12,7 +12,7 @@ to_git() {
 
   git clone "https://github.com/ory/${PROJECT}-client-${lang}.git" "${gitdir}" || true
 
-  (cd "${gitdir}"; git reset --hard HEAD || true; git pull -ff || true;  git checkout -b "release-$(date +%s)" master; git reset --hard HEAD || true)
+  (cd "${gitdir}"; git fetch origin || true; git checkout master || true; git reset --hard HEAD || true; git pull -ff || true;  git checkout -b "release-$(date +%s)" master; git reset --hard HEAD || true)
 
   cp -R "${srcdir}/" "${gitdir}"
   ls -la "${gitdir}"
@@ -31,7 +31,7 @@ EOF
         echo "not tagging"
   fi
 
-  (cd "${gitdir}"; git push origin HEAD:master || true)
+  (cd "${gitdir}"; git push origin HEAD:master; git checkout master; git pull -ff)
 }
 
 typescript () {

@@ -1,8 +1,8 @@
 # hydra-client
 
 ORY Hydra
-- API version: v0.0.0-alpha.1
-  - Build date: 2020-01-04T14:57:30.896916+01:00[Europe/Berlin]
+- API version: v0.0.0-alpha.2
+  - Build date: 2020-01-04T15:55:22.610820+01:00[Europe/Berlin]
 
 Welcome to the ORY Hydra HTTP API documentation. You will find documentation for all HTTP APIs here.
 
@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.hydra</groupId>
   <artifactId>hydra-client</artifactId>
-  <version>v0.0.0-alpha.1</version>
+  <version>v0.0.0-alpha.2</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -50,7 +50,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "sh.ory.hydra:hydra-client:v0.0.0-alpha.1"
+compile "sh.ory.hydra:hydra-client:v0.0.0-alpha.2"
 ```
 
 ### Others
@@ -63,7 +63,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/hydra-client-v0.0.0-alpha.1.jar`
+* `target/hydra-client-v0.0.0-alpha.2.jar`
 * `target/lib/*.jar`
 
 ## Getting Started

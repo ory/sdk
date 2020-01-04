@@ -43,6 +43,8 @@ typescript () {
   file="${dir}/package.json"
   jq -r ".author = "'"'"ORY GmbH"'"'" | .license = "'"'"Apache License, Version 2.0"'"' "${file}" \
      > tmp.$$.json && mv tmp.$$.json "${file}"
+
+  cat "${file}"
 }
 
 java () {
@@ -50,6 +52,9 @@ java () {
 
   dir="clients/${PROJECT}/java"
 
+  pom="clients/${PROJECT}/java/pom.xml"
+
+  rm "$(pom)" || true
   openapi-generator generate -i "${SPEC_FILE}" \
     -g java \
     -o "$dir" \
@@ -59,8 +64,6 @@ java () {
     -c ./config/client/java.yml.proc.yml
 
   # Insert correct pom values...
-  pom="clients/${PROJECT}/java/pom.xml"
-
   xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:build/p:plugins/p:plugin[last()]" -t elem -n plugin \
     -v "$(xmlstarlet sel -t -c '//plugin/*' contrib/clients/java/plugin-01.xml)" "${pom}" \
     | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
@@ -74,7 +77,7 @@ java () {
     | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
 
   xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:profiles/p:profile[last()]" -t elem -n profile \
-    -v "$(xmlstarlet sel -t -c '//plugin/*' contrib/clients/java/plugin-03.xml)" "${pom}" \
+    -v "$(xmlstarlet sel -t -c '//plugin/*' contrib/clients/java/profile-01.xml)" "${pom}" \
     | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
 
   xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:properties" -t elem -n distributionManagement \
@@ -95,6 +98,10 @@ java () {
      --update "/p:project/p:scm/p:url" \
      --value "https://github.com/ory/${PROJECT}-client-java" \
      "${pom}"
+
+  tail -n +2 < "${pom}" > tmp.$$.xml && mv tmp.$$.xml "${pom}"
+
+  cat  "${pom}"
 }
 
 php() {
@@ -114,6 +121,8 @@ php() {
 
   jq -r ".repository = "'"'"https://github.com/ory/sdk"'"'" | .homepage = "'"'"https://github.com/ory/${PROJECT}-client-php"'"'" | .authors[0].name = "'"'"ORY GmbH"'"'" | .authors[0].homepage = "'"'"https://www.ory.sh"'"'" | .license = "'"'"Apache License, Version 2.0"'"' "${file}" \
      > tmp.$$.json && mv tmp.$$.json "${file}"
+
+  cat "${file}"
 }
 
 python () {
@@ -146,6 +155,8 @@ ruby () {
   file="${dir}/lib/ory-hydra-client/version.rb"
 
   (sed "s/${VERSION}/${GEM_VERSION}/g" < "${file}") > tmp.$$.rb && mv tmp.$$.rb "${file}"
+
+  cat "${file}"
 }
 
 golang () {
