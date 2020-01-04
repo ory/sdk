@@ -13,7 +13,7 @@
 
 package sh.ory.hydra;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-01-04T16:01:02.111610+01:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-01-04T16:05:02.704385+01:00[Europe/Berlin]")
 public class Configuration {
     private static ApiClient defaultApiClient = new ApiClient();
 

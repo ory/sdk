@@ -52,8 +52,6 @@ java () {
 
   dir="clients/${PROJECT}/java"
 
-  pom="clients/${PROJECT}/java/pom.xml"
-
   openapi-generator generate -i "${SPEC_FILE}" \
     -g java \
     -o "$dir" \
@@ -62,45 +60,51 @@ java () {
     --git-host github.com \
     -c ./config/client/java.yml.proc.yml
 
-  # Insert correct pom values...
-#  xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:build/p:plugins/p:plugin[last()]" -t elem -n plugin \
-#    -v "$(xmlstarlet sel -t -c '//plugin/*' contrib/clients/java/plugin-01.xml)" "${pom}" \
-#    | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
-#
-#  xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:build/p:plugins/p:plugin[last()]" -t elem -n plugin \
-#    -v "$(xmlstarlet sel -t -c '//plugin/*' contrib/clients/java/plugin-02.xml)" "${pom}" \
-#    | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
-#
-#  xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:build/p:plugins/p:plugin[last()]" -t elem -n plugin \
-#    -v "$(xmlstarlet sel -t -c '//plugin/*' contrib/clients/java/plugin-03.xml)" "${pom}" \
-#    | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
-#
-#  xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:profiles/p:profile[last()]" -t elem -n profile \
-#    -v "$(xmlstarlet sel -t -c '//plugin/*' contrib/clients/java/profile-01.xml)" "${pom}" \
-#    | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
-#
-#  xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:properties" -t elem -n distributionManagement \
-#    -v "$(xmlstarlet sel -t -c '//distributionManagement/*' contrib/clients/java/distributionManagement.xml)" "${pom}" \
-#    | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
-#
-#  xmlstarlet ed --inplace -N "p=http://maven.apache.org/POM/4.0.0" \
-#     --update "/p:project/p:version" \
-#     --value '0.0.0-SNAPSHOT' \
-#     --update "/p:project/p:url" \
-#     --value "https://github.com/ory/${PROJECT}-client-java" \
-#     --update "/p:project/p:description" \
-#     --value "Java Client for ORY ${PROJECT}" \
-#     --update "/p:project/p:scm/p:connection" \
-#     --value "scm:git:git@github.com:ory/${PROJECT}-client-java.git" \
-#     --update "/p:project/p:scm/p:developerConnection" \
-#     --value "scm:git:git@github.com:ory/${PROJECT}-client-java.git" \
-#     --update "/p:project/p:scm/p:url" \
-#     --value "https://github.com/ory/${PROJECT}-client-java" \
-#     "${pom}"
-#
-#  tail -n +2 < "${pom}" > tmp.$$.xml && mv tmp.$$.xml "${pom}"
+  # POM modification is disabled because openapi-generator does not re-generate the POM anyways. If, for some reason,
+  # the POM file is lost, you can recover it:
+  #
+  #   $ cp contrib/clients/java/<project>/pom.xml.backup clients/<porject>/java/pom.xml
 
-  cat  "${pom}"
+  # Insert correct pom values...
+  #  pom="clients/${PROJECT}/java/pom.xml"
+  #  xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:build/p:plugins/p:plugin[last()]" -t elem -n plugin \
+  #    -v "$(xmlstarlet sel -t -c '//plugin/*' contrib/clients/java/plugin-01.xml)" "${pom}" \
+  #    | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
+  #
+  #  xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:build/p:plugins/p:plugin[last()]" -t elem -n plugin \
+  #    -v "$(xmlstarlet sel -t -c '//plugin/*' contrib/clients/java/plugin-02.xml)" "${pom}" \
+  #    | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
+  #
+  #  xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:build/p:plugins/p:plugin[last()]" -t elem -n plugin \
+  #    -v "$(xmlstarlet sel -t -c '//plugin/*' contrib/clients/java/plugin-03.xml)" "${pom}" \
+  #    | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
+  #
+  #  xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:profiles/p:profile[last()]" -t elem -n profile \
+  #    -v "$(xmlstarlet sel -t -c '//plugin/*' contrib/clients/java/profile-01.xml)" "${pom}" \
+  #    | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
+  #
+  #  xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:properties" -t elem -n distributionManagement \
+  #    -v "$(xmlstarlet sel -t -c '//distributionManagement/*' contrib/clients/java/distributionManagement.xml)" "${pom}" \
+  #    | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
+  #
+  #  xmlstarlet ed --inplace -N "p=http://maven.apache.org/POM/4.0.0" \
+  #     --update "/p:project/p:version" \
+  #     --value '0.0.0-SNAPSHOT' \
+  #     --update "/p:project/p:url" \
+  #     --value "https://github.com/ory/${PROJECT}-client-java" \
+  #     --update "/p:project/p:description" \
+  #     --value "Java Client for ORY ${PROJECT}" \
+  #     --update "/p:project/p:scm/p:connection" \
+  #     --value "scm:git:git@github.com:ory/${PROJECT}-client-java.git" \
+  #     --update "/p:project/p:scm/p:developerConnection" \
+  #     --value "scm:git:git@github.com:ory/${PROJECT}-client-java.git" \
+  #     --update "/p:project/p:scm/p:url" \
+  #     --value "https://github.com/ory/${PROJECT}-client-java" \
+  #     "${pom}"
+  #
+  #  tail -n +2 < "${pom}" > tmp.$$.xml && mv tmp.$$.xml "${pom}"
+  #
+  # cat  "${pom}"
 }
 
 php() {
