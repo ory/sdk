@@ -62,7 +62,7 @@ java() {
   (cd "${gitdir}"; mvn release:prepare \
     -Dresume=false \
     -DreleaseVersion="${version}" \
-    -Dtag="${version}" \
+    -Dtag="${VERSION}" \
     -DdevelopmentVersion="${version}-SNAPSHOT" \
     -Darguments="-Dmaven.javadoc.skip=true")
 
