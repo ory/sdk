@@ -12,7 +12,7 @@ to_git() {
 
   git clone "https://github.com/ory/${PROJECT}-client-${lang}.git" "${gitdir}" || true
 
-  (cd "${gitdir}"; git fetch origin || true; git checkout master || true; git reset --hard HEAD || true; git pull -ff || true;  git checkout -b "release-$(date +%s)" master; git reset --hard HEAD || true)
+  (cd "${gitdir}"; git fetch origin || true; git checkout master || true; git reset --hard HEAD || true; git pull -ff || true; git checkout -b "release-$(date +%s)" master)
 
   cp -R "${srcdir}/" "${gitdir}"
   ls -la "${gitdir}"
@@ -24,14 +24,14 @@ Version: ${VERSION}
 EOF
 ) || true)
 
-  if [ "${2}" == "yes" ]; then
+  if [ "${2}" = "yes" ]; then
         (cd "${gitdir}"; git tag -a "${VERSION}" -m "${VERSION}")
   else
         # empty, do nothing!
         echo "not tagging"
   fi
 
-  (cd "${gitdir}"; git push origin HEAD:master)
+  (cd "${gitdir}"; git push origin --tags HEAD:master)
 }
 
 typescript () {
@@ -97,9 +97,9 @@ python() {
 }
 
 
-#go
-java
-#php
-#python
-#ruby
-#typescript
+golang
+#java
+php
+python
+ruby
+typescript
