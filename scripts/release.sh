@@ -67,8 +67,7 @@ java() {
     -Darguments="-Dgpg.passphrase=${MVN_PGP_PASSPHRASE} -Dgpg.keyname=${MVN_PGP_KEYNAME}")
 
   (cd "${gitdir}"; mvn release:perform)
-
-  echo "${version}"
+  (cd "${gitdir}"; git push origin --tags HEAD:master)
 }
 
 php() {
@@ -98,7 +97,7 @@ python() {
 
 
 golang
-#java
+java
 php
 python
 ruby
