@@ -341,7 +341,6 @@
         <javax-annotation-version>1.0</javax-annotation-version>
         <junit-version>4.12</junit-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.javadoc.skip>true</maven.javadoc.skip>
     </properties>
     <distributionManagement>
         <snapshotRepository>
