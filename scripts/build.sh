@@ -34,9 +34,20 @@ python() {
   (cd "${dir}"; python3 setup.py sdist bdist_wheel)
 }
 
+java() {
+  pom="clients/${PROJECT}/java/pom.xml"
+
+  xmlstarlet ed -a "//project//build//plugins" -t elem -n input_clipping \
+    -v "$(xmlstarlet sel -t -c '//*' contrib/clients/java/plugin-01.xml)" "${pom}" \
+    | xmlstarlet unesc
+
+}
+
 typescript
 php
 ruby
 python
-
 golang
+java
+
+# java can not be built here because

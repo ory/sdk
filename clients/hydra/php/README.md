@@ -22,11 +22,11 @@ To install the bindings via [Composer](http://getcomposer.org/), add the followi
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/ory/hydra-client.git"
+      "url": "https://github.com/ory/hydra-client-php.git"
     }
   ],
   "require": {
-    "ory/hydra-client": "*@dev"
+    "ory/hydra-client-php": "*@dev"
   }
 }
 ```

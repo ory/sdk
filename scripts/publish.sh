@@ -13,27 +13,32 @@ typescript () {
 
 to_git() {
   lang=$1
-  gitdir="/tmp/${PROJECT}-client-${lang}"
+  gitdir="repos/${PROJECT}-client-${lang}"
   srcdir="clients/${PROJECT}/${lang}"
 
-  git clone "https://github.com/ory/${PROJECT}-client-${lang}.git" "${gitdir}"
-  cp -R "${srcdir}/*" "${gitdir}"
+  git clone "https://github.com/ory/${PROJECT}-client-${lang}.git" "${gitdir}" || true
+
+  (cd "${gitdir}"; git checkout -b "release-$(date +%s)" master; git reset --hard HEAD)
+
+  cp -R "${srcdir}/" "${gitdir}"
   ls -la "${gitdir}"
 
-  git checkout
-  git add -A
-  git commit -a -m "Update generated ${lang} code to match $(git log --pretty=format:'%h' -n 1)"
+  (cd "${gitdir}"; git add -A || true; (git commit -a  -F- <<EOF
+Update generated code to ${VERSION}
 
-  if [ -z "$VERSION" ]; then
-        # empty, do nothing!
-        echo "nothing to do"
+Version: ${VERSION}
+EOF
+) || true)
+
+  if [ "${2}" == "yes" ]; then
+        (cd "${gitdir}"; git tag -a "${VERSION}" -m "${VERSION}")
   else
-        git tag -a "${VERSION}" -m "Release generated code as ${VERSION}"
+        # empty, do nothing!
+        echo "not tagging"
   fi
 
-  git push origin HEAD:master
+  (cd "${gitdir}"; git push origin HEAD:master || true)
 }
-
 
 python() {
   dir="clients/${PROJECT}/python"
@@ -42,12 +47,26 @@ python() {
 
 ruby() {
   dir="clients/${PROJECT}/ruby"
-  (cd "${dir}"; gem push ory-${project}-client-${version}-.gem)
+  (cd "${dir}"; gem push "ory-${PROJECT}-client-${VERSION}-.gem")
 }
 
-to_git "go"
-# java
-to_git "php"
-python
-ruby
-typescript
+java() {
+  mvn clean
+
+
+
+  # THESE VALUES ARE EXAMPLES - PLEASE PICK THE APPROPRIATE `tag`, etc
+  mvn -Dtag=client-0.0.1-alpha.1 release:update-version \
+    -DreleaseVersion=0.0.1-alpha.1 -DdevelopmentVersion=0.0.1-alpha.1-SNAPSHOT \
+    -Darguments="-Dmaven.javadoc.skip=true" -Dresume=false
+}
+
+to_git "java" "no"
+java
+
+#to_git "go"
+#to_git "php"
+
+#python
+#ruby
+#typescript

@@ -54,7 +54,7 @@ java () {
     -g java \
     -o "$dir" \
     --git-user-id ory \
-    --git-repo-id sdk \
+    --git-repo-id "${PROJECT}-client-java" \
     --git-host github.com \
     -c ./config/client/java.yml.proc.yml
 }
@@ -68,7 +68,7 @@ php() {
     -g php \
     -o "$dir" \
     --git-user-id ory \
-    --git-repo-id "${PROJECT}-client" \
+    --git-repo-id "${PROJECT}-client-php" \
     --git-host github.com \
     -c ./config/client/php.yml.proc.yml
 

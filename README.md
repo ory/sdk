@@ -75,7 +75,7 @@ on one of the public key servers. For more details, see: [https://dzone.com/arti
 mvn clean
 
 # THESE VALUES ARE EXAMPLES - PLEASE PICK THE APPROPRIATE `tag`, etc
-mvn -Dtag=client-0.0.1-alpha.1 release:prepare \
+mvn -Dtag=client-0.0.1-alpha.1 release:update-version \
   -DreleaseVersion=0.0.1-alpha.1 -DdevelopmentVersion=0.0.1-alpha.1-SNAPSHOT \
   -Darguments="-Dmaven.javadoc.skip=true" -Dresume=false
 
