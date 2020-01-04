@@ -12,7 +12,7 @@ to_git() {
 
   git clone "https://github.com/ory/${PROJECT}-client-${lang}.git" "${gitdir}" || true
 
-  (cd "${gitdir}"; git checkout -b "release-$(date +%s)" master; git reset --hard HEAD)
+  (cd "${gitdir}"; git reset --hard HEAD || true; git pull -ff || true;  git checkout -b "release-$(date +%s)" master; git reset --hard HEAD || true)
 
   cp -R "${srcdir}/" "${gitdir}"
   ls -la "${gitdir}"
