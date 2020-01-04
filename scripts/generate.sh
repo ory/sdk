@@ -27,7 +27,9 @@ cleanup() {
   rm "clients/${PROJECT}/typescript/.travis.yml" || true
 }
 
-ts () {
+typescript () {
+  echo "Generating TypeScript..."
+
   dir="clients/${PROJECT}/typescript"
 
   openapi-generator generate -i "${SPEC_FILE}" \
@@ -44,6 +46,8 @@ ts () {
 }
 
 java () {
+  echo "Generating Java..."
+
   dir="clients/${PROJECT}/java"
 
   openapi-generator generate -i "${SPEC_FILE}" \
@@ -56,6 +60,8 @@ java () {
 }
 
 php() {
+  echo "Generating PHP..."
+
   dir="clients/${PROJECT}/php"
 
   openapi-generator generate -i "${SPEC_FILE}" \
@@ -73,6 +79,8 @@ php() {
 }
 
 python () {
+  echo "Generating Python..."
+
   dir="clients/${PROJECT}/python"
 
   openapi-generator generate -i "${SPEC_FILE}" \
@@ -85,6 +93,8 @@ python () {
 }
 
 ruby () {
+  echo "Generating Ruby..."
+
   dir="clients/${PROJECT}/ruby"
 
   openapi-generator generate -i "${SPEC_FILE}" \
@@ -97,16 +107,21 @@ ruby () {
 
   file="${dir}/lib/ory-hydra-client/version.rb"
 
-  (cat "${file}" | sed "s/${VERSION}/$(echo "${VERSION}" | sed -E 's/v([0-9]+\.[0-9]+\.[0-9]+)-([a-z]+)\.([0-9]+)/\1.\2\3/' | sed -E 's/v([0-9]+\.[0-9]+\.[0-9]+)-([a-z]+)/\1.\2/' | sed 's/^v//')/g") > tmp.$$.rb && mv tmp.$$.rb "${file}"
+  (cat "${file}" | sed "s/${VERSION}/${GEM_VERSION}/g") > tmp.$$.rb && mv tmp.$$.rb "${file}"
 }
 
-go () {
+golang () {
+  echo "Generating Golang..."
+
   dir="clients/${PROJECT}/go"
 
-  "$(go env GOPATH)/bin/swagger" generate client --allow-template-override -f ./docs/api.swagger.json -t "%{dir}" -A "Ory_{PROJECT_UCF}"
+  mkdir -p "${dir}"
+  (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go")
+  swagger generate client --allow-template-override -f "${SPEC_FILE}" -t "${dir}" -A "Ory_${PROJECT_UCF}"
 }
 
-ts
+golang
+typescript
 java
 php
 python

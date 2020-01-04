@@ -1,5 +1,5 @@
-groupId: sh.ory
-artifactId: $PROJECT-client
+groupId: sh.ory.$PROJECT
+artifactId: client
 artifactVersion: $VERSION
 invokerPackage: sh.ory.$PROJECT
 apiPackage: sh.ory.$PROJECT.api

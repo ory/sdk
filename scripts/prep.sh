@@ -32,7 +32,7 @@ echo "Generating SDKs for $project:$version"
 spec_file="spec/${project}/${version}.json"
 
 ## Update version string in the spec file ##
-go run ./swagutil sanitize "${spec_file}"
+(cd swagutil; go run . sanitize "../${spec_file}")
 swagger validate "${spec_file}"
 
 jq -c ".info.version = \"${version}\"" "${spec_file}" > tmp.$$.json && mv tmp.$$.json "${spec_file}"
@@ -40,11 +40,12 @@ jq -c ".info.version = \"${version}\"" "${spec_file}" > tmp.$$.json && mv tmp.$$
 
 ####################################
 
+gem_version=$(echo "${version}" | sed -E 's/v([0-9]+\.[0-9]+\.[0-9]+)-([a-z]+)\.([0-9]+)/\1.\2\3/' | sed -E 's/v([0-9]+\.[0-9]+\.[0-9]+)-([a-z]+)/\1.\2/' | sed 's/^v//')
+
 ## Set up env vars ##
 export PROJECT=${project}
 export VERSION=${version}
+export GEM_VERSION=${gem_version}
 export SPEC_FILE=${spec_file}
 # shellcheck disable=SC2155
 export PROJECT_UCF="$(tr '[:lower:]' '[:upper:]' <<< "${project:0:1}")${project:1}"
-
-

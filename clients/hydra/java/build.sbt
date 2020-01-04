@@ -1,7 +1,7 @@
 lazy val root = (project in file(".")).
   settings(
-    organization := "sh.ory",
-    name := "hydra-client",
+    organization := "sh.ory.hydra",
+    name := "client",
     version := "v0.0.0-alpha.1",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),

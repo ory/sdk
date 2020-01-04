@@ -5,7 +5,7 @@ cd "$( dirname "${BASH_SOURCE[0]}" )/.."
 
 source scripts/prep.sh
 
-ts () {
+typescript () {
   dir="clients/${PROJECT}/typescript"
 
   (cd "${dir}"; npm install; npm run build)
@@ -20,9 +20,23 @@ php() {
 ruby() {
   dir="clients/${PROJECT}/ruby"
 
-  (cd "${dir}"; gem build "ory-${PROJECT}-client.gemspec")
+  (cd "${dir}"; rm ./*.gem; gem build "ory-${PROJECT}-client.gemspec")
 }
 
-ts
+golang() {
+  dir="clients/${PROJECT}/go"
+
+  (cd "${dir}"; go mod tidy)
+}
+
+python() {
+  dir="clients/${PROJECT}/python"
+  (cd "${dir}"; python3 setup.py sdist bdist_wheel)
+}
+
+typescript
 php
 ruby
+python
+
+golang
