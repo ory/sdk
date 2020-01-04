@@ -31,7 +31,7 @@ EOF
         echo "not tagging"
   fi
 
-  (cd "${gitdir}"; git push origin HEAD:master; git checkout master; git pull -ff)
+  (cd "${gitdir}"; git push origin HEAD:master)
 }
 
 typescript () {

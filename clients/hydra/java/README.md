@@ -2,7 +2,7 @@
 
 ORY Hydra
 - API version: v0.0.0-alpha.2
-  - Build date: 2020-01-04T15:55:22.610820+01:00[Europe/Berlin]
+  - Build date: 2020-01-04T16:01:02.111610+01:00[Europe/Berlin]
 
 Welcome to the ORY Hydra HTTP API documentation. You will find documentation for all HTTP APIs here.
 
