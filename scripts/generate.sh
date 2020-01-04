@@ -57,6 +57,44 @@ java () {
     --git-repo-id "${PROJECT}-client-java" \
     --git-host github.com \
     -c ./config/client/java.yml.proc.yml
+
+  # Insert correct pom values...
+  pom="clients/${PROJECT}/java/pom.xml"
+
+  xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:build/p:plugins/p:plugin[last()]" -t elem -n plugin \
+    -v "$(xmlstarlet sel -t -c '//plugin/*' contrib/clients/java/plugin-01.xml)" "${pom}" \
+    | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
+
+  xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:build/p:plugins/p:plugin[last()]" -t elem -n plugin \
+    -v "$(xmlstarlet sel -t -c '//plugin/*' contrib/clients/java/plugin-02.xml)" "${pom}" \
+    | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
+
+  xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:build/p:plugins/p:plugin[last()]" -t elem -n plugin \
+    -v "$(xmlstarlet sel -t -c '//plugin/*' contrib/clients/java/plugin-03.xml)" "${pom}" \
+    | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
+
+  xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:profiles/p:profile[last()]" -t elem -n profile \
+    -v "$(xmlstarlet sel -t -c '//plugin/*' contrib/clients/java/plugin-03.xml)" "${pom}" \
+    | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
+
+  xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:properties" -t elem -n distributionManagement \
+    -v "$(xmlstarlet sel -t -c '//distributionManagement/*' contrib/clients/java/distributionManagement.xml)" "${pom}" \
+    | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
+
+  xmlstarlet ed --inplace -N "p=http://maven.apache.org/POM/4.0.0" \
+     --update "/p:project/p:version" \
+     --value '0.0.0-SNAPSHOT' \
+     --update "/p:project/p:url" \
+     --value "https://github.com/ory/${PROJECT}-client-java" \
+     --update "/p:project/p:description" \
+     --value "Java Client for ORY ${PROJECT}" \
+     --update "/p:project/p:scm/p:connection" \
+     --value "scm:git:git@github.com:ory/${PROJECT}-client-java.git" \
+     --update "/p:project/p:scm/p:developerConnection" \
+     --value "scm:git:git@github.com:ory/${PROJECT}-client-java.git" \
+     --update "/p:project/p:scm/p:url" \
+     --value "https://github.com/ory/${PROJECT}-client-java" \
+     "${pom}"
 }
 
 php() {
@@ -107,7 +145,7 @@ ruby () {
 
   file="${dir}/lib/ory-hydra-client/version.rb"
 
-  (cat "${file}" | sed "s/${VERSION}/${GEM_VERSION}/g") > tmp.$$.rb && mv tmp.$$.rb "${file}"
+  (sed "s/${VERSION}/${GEM_VERSION}/g" < "${file}") > tmp.$$.rb && mv tmp.$$.rb "${file}"
 }
 
 golang () {
@@ -119,6 +157,7 @@ golang () {
   (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go")
   swagger generate client --allow-template-override -f "${SPEC_FILE}" -t "${dir}" -A "Ory_${PROJECT_UCF}"
 }
+
 
 golang
 typescript

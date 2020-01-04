@@ -28,7 +28,7 @@ import java.io.IOException;
  * Error responses are sent when an error (e.g. unauthorized, bad request, ...) occurred.
  */
 @ApiModel(description = "Error responses are sent when an error (e.g. unauthorized, bad request, ...) occurred.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-01-04T14:57:30.896916+01:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-01-04T15:39:59.559860+01:00[Europe/Berlin]")
 public class GenericError {
   public static final String SERIALIZED_NAME_DEBUG = "debug";
   @SerializedName(SERIALIZED_NAME_DEBUG)
