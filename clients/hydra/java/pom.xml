@@ -145,6 +145,7 @@
                         </goals>
                         <configuration>
                             <additionalparam>-Xdoclint:none</additionalparam>
+                            <release>8</release>
                         </configuration>
                     </execution>
                 </executions>
