@@ -66,6 +66,8 @@ java() {
     -DdevelopmentVersion="${version}-SNAPSHOT" \
     -Darguments="-Dmaven.javadoc.skip=true")
 
+  (cd "${gitdir}"; mvn release:perform)
+
   echo "${version}"
 }
 
