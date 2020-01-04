@@ -66,7 +66,7 @@ java() {
     -DdevelopmentVersion="${version}-SNAPSHOT" \
     -Darguments="-Dmaven.javadoc.skip=true")
 
-  (cd "${gitdir}"; mvn release:perform)
+  (cd "${gitdir}"; mvn release:perform -Darguments=-Dgpg.passphrase="${MVN_PGP_PASSPHRASE}" -Darguments=-Dgpg.keyname="${MVN_PGP_KEY_ID}" -)
 
   echo "${version}"
 }
