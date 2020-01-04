@@ -4,14 +4,14 @@
     <artifactId>client</artifactId>
     <packaging>jar</packaging>
     <name>client</name>
-    <version>0.0.1-alpha.1-SNAPSHOT</version>
+    <version>0.0.0-alpha.1</version>
     <url>https://github.com/openapitools/openapi-generator</url>
     <description>OpenAPI Java</description>
     <scm>
         <connection>scm:git:git://github.com/ory/sdk.git</connection>
         <developerConnection>scm:git:git@github.com:ory/sdk.git</developerConnection>
         <url>https://github.com/ory/sdk</url>
-        <tag>HEAD</tag>
+        <tag>client-0.0.0-alpha.1</tag>
     </scm>
 
     <licenses>
@@ -131,6 +131,28 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.4</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <tags>
+                        <tag>
+                            <name>http.response.details</name>
+                            <placement>a</placement>
+                            <head>Http Response Details:</head>
+                        </tag>
+                    </tags>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

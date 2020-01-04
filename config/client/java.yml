@@ -1,5 +1,5 @@
 groupId: sh.ory.$PROJECT
-artifactId: client
+artifactId: hydra-client
 artifactVersion: $VERSION
 invokerPackage: sh.ory.$PROJECT
 apiPackage: sh.ory.$PROJECT.api

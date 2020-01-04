@@ -24,9 +24,9 @@ You can create a PR if you're making changes to the build chain.
 Install PHP and [composer](https://packagist.org). Then, run the install command to initialize everything:
 
 ```shell script
-$ export PROJECT=hydra
-$ cd clients/${PROJECT}/php
-$ composer install
+export PROJECT=hydra
+cd clients/${PROJECT}/php
+composer install
 ```
 
 Then, push the directory to a git remote of your choosing and also publish the tag you want to release the package
@@ -37,24 +37,24 @@ as. You can take a look at [./scripts/publish.sh](./scripts/publish.sh) to under
 First, install all the necessary tools and python3:
 
 ```shell script
-$ python3 -m pip install --user --upgrade setuptools wheel twine
+python3 -m pip install --user --upgrade setuptools wheel twine
 ```
 
 Next, create a PyPi account and [API Token](https://pypi.org/manage/account/)
 and set the env vars to:
 
 ```shell script
-$ export TWINE_USERNAME=__token__
-$ export TWINE_PASSWORD=<token>
+export TWINE_USERNAME=__token__
+export TWINE_PASSWORD=<token>
 ```
 
 Then, publish the project (and set the project name):
 
 ```shell script
-$ export PROJECT=hydra
-$ cd clients/${PROJECT}/python
-$ python3 setup.py sdist bdist_wheel
-$ python3 -m twine upload dist/*
+export PROJECT=hydra
+cd clients/${PROJECT}/python
+python3 setup.py sdist bdist_wheel
+python3 -m twine upload dist/*
 ```
 
 ## Java - Maven Central
@@ -71,7 +71,13 @@ on one of the public key servers. For more details, see: [https://dzone.com/arti
 
 
 
-```
-mvn clean release:prepare -Dmaven.javadoc.skip=true
-mvn release:perform
+```shell script
+mvn clean
+
+# THESE VALUES ARE EXAMPLES - PLEASE PICK THE APPROPRIATE `tag`, etc
+mvn -Dtag=client-0.0.1-alpha.1 release:prepare \
+  -DreleaseVersion=0.0.1-alpha.1 -DdevelopmentVersion=0.0.1-alpha.1-SNAPSHOT \
+  -Darguments="-Dmaven.javadoc.skip=true" -Dresume=false
+
+mvn release:perform -Darguments="-Dmaven.javadoc.skip=true" -Dresume=false
 ```
