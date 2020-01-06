@@ -3,10 +3,6 @@
 set -Eeuxo pipefail
 cd "$( dirname "${BASH_SOURCE[0]}" )/.."
 
-if [ -z ${GEM_HOST_API_KEY+x} ]; then echo "Variable GEM_HOST_API_KEY is not set but must be!"; exit 1; fi
-if [ -z ${TWINE_USERNAME+x} ]; then echo "Variable TWINE_USERNAME is not set but must be!"; exit 1; fi
-if [ -z ${TWINE_PASSWORD+x} ]; then echo "Variable TWINE_PASSWORD is not set but must be!"; exit 1; fi
-
 source scripts/prep.sh
 
 to_git() {
