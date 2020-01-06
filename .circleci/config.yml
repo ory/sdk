@@ -1,12 +1,9 @@
 version: 2.1
-orbs:
-  changelog: ory/changelog@0.0.3
-  sdk: ory/sdk@0.0.4
 
 jobs:
   publish:
     docker:
-      - image: oryd/sdk:v0.0.2
+      - image: oryd/sdk:v0.0.4
     working_directory: /sdk
     steps:
       - checkout

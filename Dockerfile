@@ -64,7 +64,7 @@ ENV GO111MODULE=on
 RUN go install github.com/go-swagger/go-swagger/cmd/swagger
 
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
-RUN apk add -U --no-cache ca-certificates bash nodejs npm python3 python3-dev py-pip ruby build-base gnupg git openssh curl gettext libffi libffi-dev openssl-dev
+RUN apk add -U --no-cache ca-certificates bash nodejs npm python3 python3-dev py-pip ruby build-base gnupg git openssh curl gettext libffi libffi-dev openssl-dev php composer
 
 RUN npm install @openapitools/openapi-generator-cli -g
 RUN python3 -m pip install --upgrade pip
