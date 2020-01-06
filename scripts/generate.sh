@@ -155,7 +155,7 @@ ruby () {
     --git-host github.com \
     -c ./config/client/ruby.yml.proc.yml
 
-  file="${dir}/lib/ory-hydra-client/version.rb"
+  file="${dir}/lib/ory-${PROJECT}-client/version.rb"
 
   (sed "s/${VERSION}/${GEM_VERSION}/g" < "${file}") > tmp.$$.rb && mv tmp.$$.rb "${file}"
 
