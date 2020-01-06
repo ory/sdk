@@ -80,7 +80,7 @@ php() {
 ruby() {
   dir="clients/${PROJECT}/ruby"
 
-  (cd "${dir}"; rm ./*.gem; gem build "ory-${PROJECT}-client.gemspec")
+  (cd "${dir}"; rm ./*.gem || true; gem build "ory-${PROJECT}-client.gemspec")
 }
 
 golang() {
