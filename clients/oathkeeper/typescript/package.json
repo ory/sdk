@@ -1,7 +1,7 @@
 {
-  "name": "@ory/oathkeeper-client",
-  "version": "0.0.0-alpha.4",
-  "description": "NodeJS client for @ory/oathkeeper-client",
+  "name": "@oryd/oathkeeper-client",
+  "version": "0.0.0-alpha.5",
+  "description": "NodeJS client for @oryd/oathkeeper-client",
   "repository": "ory/sdk",
   "main": "dist/api.js",
   "types": "dist/api.d.ts",

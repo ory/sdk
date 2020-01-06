@@ -39,6 +39,5 @@
     "psr-4": {
       "Ory\\Keto\\Client\\": "test/"
     }
-  },
-  "repository": "https://github.com/ory/sdk"
+  }
 }

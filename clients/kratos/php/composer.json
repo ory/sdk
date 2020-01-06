@@ -39,6 +39,5 @@
     "psr-4": {
       "Ory\\Kratos\\Client\\": "test/"
     }
-  },
-  "repository": "https://github.com/ory/sdk"
+  }
 }

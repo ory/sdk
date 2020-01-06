@@ -39,6 +39,5 @@
     "psr-4": {
       "Ory\\Oathkeeper\\Client\\": "test/"
     }
-  },
-  "repository": "https://github.com/ory/sdk"
+  }
 }

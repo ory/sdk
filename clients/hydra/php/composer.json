@@ -39,6 +39,5 @@
     "psr-4": {
       "Ory\\Hydra\\Client\\": "test/"
     }
-  },
-  "repository": "https://github.com/ory/sdk"
+  }
 }
