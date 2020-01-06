@@ -8,7 +8,7 @@
 
     <version>0.0.0-SNAPSHOT</version>
     <url>https://github.com/ory/hydra-client-java</url>
-    <description>Java Client for ORY hydra</description>
+    <description>Java Client for ORY Hydra</description>
     <scm>
         <connection>scm:git:git@github.com:ory/hydra-client-java.git</connection>
         <developerConnection>scm:git:git@github.com:ory/hydra-client-java.git</developerConnection>

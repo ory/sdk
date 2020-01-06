@@ -1,18 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>sh.ory.oathkeeper</groupId>
-    <artifactId>oathkeeper-client</artifactId>
+    <groupId>sh.ory.keto</groupId>
+    <artifactId>keto-client</artifactId>
     <packaging>jar</packaging>
-    <name>oathkeeper-client</name>
+    <name>keto-client</name>
 
     <version>0.0.0-SNAPSHOT</version>
-    <url>https://github.com/ory/oathkeeper-client-java</url>
-    <description>Java Client for ORY Oathkeeper</description>
+    <url>https://github.com/ory/keto-client-java</url>
+    <description>Java Client for ORY Keto</description>
     <scm>
-        <connection>scm:git:git@github.com:ory/oathkeeper-client-java.git</connection>
-        <developerConnection>scm:git:git@github.com:ory/oathkeeper-client-java.git</developerConnection>
-        <url>https://github.com/ory/oathkeeper-client-java</url>
+        <connection>scm:git:git@github.com:ory/keto-client-java.git</connection>
+        <developerConnection>scm:git:git@github.com:ory/keto-client-java.git</developerConnection>
+        <url>https://github.com/ory/keto-client-java</url>
     </scm>
 
     <licenses>
