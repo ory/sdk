@@ -1,6 +1,6 @@
 {
   "name": "@oryd/keto-client",
-  "version": "v0.0.0-alpha.34",
+  "version": "v0.0.0-alpha.35",
   "description": "NodeJS client for @oryd/keto-client",
   "repository": "ory/sdk",
   "main": "dist/api.js",
