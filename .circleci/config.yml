@@ -1,0 +1,17 @@
+version: 2.1
+
+jobs:
+  publish:
+    docker:
+      - image: oryd/sdk:v0.0.8
+    working_directory: /sdk
+    steps:
+      - checkout
+      - run: ./scripts/init.sh
+      - run: ./scripts/generate.sh
+      - run: ./scripts/release.sh
+
+workflows:
+  publish:
+    jobs:
+      - publish

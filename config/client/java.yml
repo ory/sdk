@@ -1,13 +1,13 @@
-groupId: com.github.ory
-artifactId: $PROJECT-client
+groupId: sh.ory.$PROJECT
+artifactId: hydra-client
 artifactVersion: $VERSION
-invokerPackage: com.github.ory.$PROJECT
-apiPackage: com.github.ory.$PROJECT.api
-modelPackage: com.github.ory.$PROJECT.model
-library: native
+invokerPackage: sh.ory.$PROJECT
+apiPackage: sh.ory.$PROJECT.api
+modelPackage: sh.ory.$PROJECT.model
+library: okhttp-gson
 developerName: ORY
 developerOrganization: www.ory.sh
 developerOrganizationUrl: https://www.ory.sh
-developerEmail: office+oss@ory.sh
+developerEmail: opensource@ory.sh
 licenseName: Apache License, Version 2.0
 licenseUrl: https://www.apache.org/licenses/LICENSE-2.0
