@@ -140,6 +140,10 @@ python () {
     --git-repo-id sdk \
     --git-host github.com \
     -c ./config/client/python.yml.proc.yml
+
+  file="${dir}/lib/ory-${PROJECT}-client/version.rb"
+
+  (sed "s/${VERSION}/${GEM_VERSION}/g" < "${file}") > tmp.$$.rb && mv tmp.$$.rb "${file}"
 }
 
 ruby () {
