@@ -96,6 +96,7 @@ golang() {
 
 python() {
   dir="clients/${PROJECT}/python"
+  rm "${dir}/dist/*"
   (cd "${dir}"; python3 setup.py sdist bdist_wheel; python3 -m twine upload "dist/*")
 }
 
