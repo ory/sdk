@@ -30,7 +30,7 @@ import java.util.List;
  * It includes links to several endpoints (e.g. /oauth2/token) and exposes information on supported signature algorithms among others.
  */
 @ApiModel(description = "It includes links to several endpoints (e.g. /oauth2/token) and exposes information on supported signature algorithms among others.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-01-06T16:14:33.125402+01:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-01-06T16:18:18.094581+01:00[Europe/Berlin]")
 public class WellKnown {
   public static final String SERIALIZED_NAME_AUTHORIZATION_ENDPOINT = "authorization_endpoint";
   @SerializedName(SERIALIZED_NAME_AUTHORIZATION_ENDPOINT)

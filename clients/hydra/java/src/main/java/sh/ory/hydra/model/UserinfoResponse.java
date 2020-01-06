@@ -28,7 +28,7 @@ import java.io.IOException;
  * The userinfo response
  */
 @ApiModel(description = "The userinfo response")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-01-06T16:14:33.125402+01:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-01-06T16:18:18.094581+01:00[Europe/Berlin]")
 public class UserinfoResponse {
   public static final String SERIALIZED_NAME_BIRTHDATE = "birthdate";
   @SerializedName(SERIALIZED_NAME_BIRTHDATE)
