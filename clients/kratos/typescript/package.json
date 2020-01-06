@@ -1,7 +1,7 @@
 {
-  "name": "@ory/kratos-client",
-  "version": "0.0.0-alpha.1",
-  "description": "NodeJS client for @ory/kratos-client",
+  "name": "@oryd/kratos-client",
+  "version": "v0.0.0-alpha.31",
+  "description": "NodeJS client for @oryd/kratos-client",
   "repository": "ory/sdk",
   "main": "dist/api.js",
   "types": "dist/api.d.ts",

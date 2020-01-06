@@ -80,7 +80,7 @@ php() {
 ruby() {
   dir="clients/${PROJECT}/ruby"
 
-  (cd "${dir}"; rm ./*.gem || true; gem build "ory-${PROJECT}-client.gemspec")
+  (cd "${dir}"; rm *.gem || true; gem build "ory-${PROJECT}-client.gemspec"; gem push "ory-${PROJECT}-client.${GEM_VERSION}.gem")
 }
 
 golang() {
@@ -92,11 +92,11 @@ golang() {
 
 python() {
   dir="clients/${PROJECT}/python"
-  (cd "${dir}"; python3 setup.py sdist bdist_wheel)
+  (cd "${dir}"; python3 setup.py sdist bdist_wheel; python3 -m twine upload dist/* )
 }
 
 golang
-java
+#java
 php
 python
 ruby

@@ -69,8 +69,6 @@ mvn <cmd> -Dmaven.javadoc.skip=true
 You will also need a PGP keypair that is associated with one of the owners of the `sh.ory` group and that is published
 on one of the public key servers. For more details, see: [https://dzone.com/articles/publish-your-artifacts-to-maven-central](https://dzone.com/articles/publish-your-artifacts-to-maven-central)
 
-
-
 ```shell script
 mvn clean
 
