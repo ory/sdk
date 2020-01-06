@@ -96,13 +96,12 @@ golang() {
 
 python() {
   dir="clients/${PROJECT}/python"
-  rm "${dir}/dist/*"
-  (cd "${dir}"; python3 setup.py sdist bdist_wheel; python3 -m twine upload "dist/*")
+  (cd "${dir}"; rm "dist/*"; python3 setup.py sdist bdist_wheel; python3 -m twine upload "dist/*")
 }
 
-golang
-#java
-php
 python
 ruby
+golang
+java
+php
 typescript
