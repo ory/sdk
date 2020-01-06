@@ -64,7 +64,8 @@ ENV GO111MODULE=on
 RUN go install github.com/go-swagger/go-swagger/cmd/swagger
 
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
-RUN apk add -U --no-cache ca-certificates bash nodejs npm python3 python3-dev py-pip ruby build-base gnupg git openssh curl gettext libffi libffi-dev openssl-dev php composer php-curl php7-tokenizer wget
+RUN apk add -U --no-cache ca-certificates bash nodejs npm python3 python3-dev py-pip ruby build-base gnupg git openssh curl gettext libffi libffi-dev openssl-dev php composer php-curl php7-tokenizer wget php-dom php-xml php-simplexml php-xmlwriter maven
+
 # RUN wget http://central.maven.org/maven2/org/openapitools/openapi-generator-cli/4.2.2/openapi-generator-cli-4.2.2.jar -O openapi-generator-cli.jar
 
 RUN npm install @openapitools/openapi-generator-cli -g
