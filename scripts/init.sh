@@ -2,7 +2,7 @@
 
 set -Eeuxo pipefail
 
-echo $MVN_GPG_ASC_BASE64 | base64 --decode | gpg --batch --no-tty --import --yes
+echo $MVN_GPG_ASC_BASE64 | base64 -d | gpg --batch --no-tty --import --yes
 
 mkdir -p ~/.gem
 mkdir -p ~/.m2
@@ -11,7 +11,7 @@ echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 
 echo "---" >> ~/.gem/credentials
 echo ":rubygems_api_key: $RUBYGEMS_TOKEN" >> ~/.gem/credentials
-chmod 0600 .gem/credentials
+chmod 0600 ~/.gem/credentials
 
 cat <<EOT >> ~/.m2/settings.xml
 <settings>
@@ -36,3 +36,6 @@ cat <<EOT >> ~/.m2/settings.xml
     </profiles>
 </settings>
 EOT
+
+git config --global user.email "aeneasr@ory.sh"
+git config --global user.name "aeneasr"

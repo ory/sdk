@@ -1,72 +1,20 @@
 version: 2.1
+orbs:
+  changelog: ory/changelog@0.0.3
+  sdk: ory/sdk@0.0.4
 
-#jobs:
-#  generate:
-#  release:
-#
-#workflows:
-#  sdk:
-#    jobs:
-#      -
-#        orb-tools/publish:
-#          orb-path: src/sdk.yml
-#          orb-ref: ory/sdk@dev:${CIRCLE_BRANCH}
-#          publish-token-variable: CIRCLECI_DEV_API_TOKEN
-#          validate: true
-#      - orb-tools/dev-promote-prod-from-git-tag:
-#          orb-name: ory/sdk
-#          add-pr-comment: false
-#          filters:
-#            tags:
-#              only: /.*/
-#            branches:
-#              ignore: /.*/
-#  changelog:
-#    jobs:
-#      - orb-tools/publish:
-#          orb-path: src/changelog.yml
-#          orb-ref: ory/changelog@dev:${CIRCLE_BRANCH}
-#          validate: true
-#          publish-token-variable: CIRCLECI_DEV_API_TOKEN
-#      - orb-tools/dev-promote-prod-from-git-tag:
-#          orb-name: ory/changelog
-#          add-pr-comment: false
-#          filters:
-#            tags:
-#              only: /.*/
-#            branches:
-#              ignore: /.*/
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#  release-sdk:
-#    docker:
-#      - image: circleci/openjdk:10-jdk-node
-#    working_directory: ~/hydra
-#    steps:
-#      - checkout
-#      - run: make sdk
-#      - run: git config --global user.email "office+ci@ory.sh"
-#      - run: git config --global user.name "ORY Continuous Integration"
-#      - run: git pull -ff
-#      - run: |
-#          git commit -a -m "sdk: Update code-generated SDKs $(git describe --tags) [ci skip]"
-#      - run: git remote rm origin
-#      - run: git remote add origin https://arekkas:$GITHUB_TOKEN@github.com/ory/hydra.git
-#      - run: git push origin HEAD:master
-#      - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-#      - run: |
-#          npm version -f --no-git-tag-version $CIRCLE_TAG
-#      - run: npm publish --access public
+jobs:
+  publish:
+    docker:
+      - image: oryd/sdk:v0.0.2
+    working_directory: /sdk
+    steps:
+      - checkout
+      - run: ./scripts/init.sh
+      - run: ./scripts/generate.sh
+      - run: ./scripts/release.sh
+
+workflows:
+  publish:
+    jobs:
+      - publish

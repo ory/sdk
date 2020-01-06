@@ -3,6 +3,14 @@
 All SDKs provided in this repository are generated
 using openapi-generator.
 
+## Publish the Docker Image
+
+```
+docker build -t oryd/sdk:latest .
+docker tag oryd/sdk:latest oryd/sdk:v0.0.x
+docker push oryd/sdk:v0.0.x
+```
+
 ## Commit a new spec
 
 Place the spec in `spec/<project>/<version>.json` (e.g. `spec/hydra/v0.0.0-alpha.1.json`) and create a commit
