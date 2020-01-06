@@ -6,12 +6,4 @@ RUN npm install @openapitools/openapi-generator-cli -g
 
 ADD . .
 
-RUN pip --version
-RUN ruby --version
-RUN python --version
-RUN npm --version
-RUN go version
-RUN node --version
-RUN java -version
-
 ENTRYPOINT /bin/bash
