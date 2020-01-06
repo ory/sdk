@@ -5,3 +5,4 @@ clients/hydra/php/.travis.yml
 tmp.*.json
 release.properties
 *.releaseBackup
+repos/

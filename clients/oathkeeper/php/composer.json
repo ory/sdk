@@ -1,0 +1,44 @@
+{
+  "name": "ory/oathkeeper-client-php",
+  "description": "ORY Oathkeeper is a reverse proxy that checks the HTTP Authorization for validity against a set of rules. This service uses Hydra to validate access tokens and policies.",
+  "keywords": [
+    "openapitools",
+    "openapi-generator",
+    "openapi",
+    "php",
+    "sdk",
+    "rest",
+    "api"
+  ],
+  "homepage": "https://github.com/ory/oathkeeper-client-php",
+  "license": "Apache License, Version 2.0",
+  "authors": [
+    {
+      "name": "ORY GmbH",
+      "homepage": "https://www.ory.sh"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-mbstring": "*",
+    "guzzlehttp/guzzle": "^6.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.4",
+    "squizlabs/php_codesniffer": "~2.6",
+    "friendsofphp/php-cs-fixer": "~2.12"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ory\\Oathkeeper\\Client\\": "lib/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Ory\\Oathkeeper\\Client\\": "test/"
+    }
+  },
+  "repository": "https://github.com/ory/sdk"
+}
