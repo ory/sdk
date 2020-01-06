@@ -49,3 +49,4 @@ export GEM_VERSION=${gem_version}
 export SPEC_FILE=${spec_file}
 # shellcheck disable=SC2155
 export PROJECT_UCF="$(tr '[:lower:]' '[:upper:]' <<< "${project:0:1}")${project:1}"
+export GPG_OPTS='--pinentry-mode loopback'

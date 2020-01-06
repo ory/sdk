@@ -34,8 +34,13 @@ cat <<EOT >> ~/.m2/settings.xml
             </properties>
         </profile>
     </profiles>
+    <activeProfiles>
+      <activeProfile>ossrh</activeProfile>
+    </activeProfiles>
 </settings>
 EOT
+
+echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
 
 git config --global user.email "aeneasr@ory.sh"
 git config --global user.name "aeneasr"

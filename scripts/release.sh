@@ -95,9 +95,9 @@ python() {
   (cd "${dir}"; rm -rf "dist" || true; python3 setup.py sdist bdist_wheel; python3 -m twine upload "dist/*")
 }
 
+java
 python
 ruby
 golang
 php
 typescript
-java
