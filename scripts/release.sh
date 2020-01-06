@@ -38,7 +38,7 @@ typescript () {
   dir="clients/${PROJECT}/typescript"
 
   (cd "${dir}"; npm install; npm run build)
-  (cd "${dir}"; npm version -f --no-git-tag-version "${VERSION}"; npm publish --access public --dry-run)
+  (cd "${dir}"; npm version -f --no-git-tag-version "${VERSION}"; npm publish --access public)
 }
 
 python() {

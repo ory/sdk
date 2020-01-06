@@ -1,7 +1,7 @@
 {
-  "name": "@ory/hydra-client",
-  "version": "0.0.0-alpha.19",
-  "description": "NodeJS client for @ory/hydra-client",
+  "name": "@oryd/hydra-client",
+  "version": "0.0.0-alpha.20",
+  "description": "NodeJS client for @oryd/hydra-client",
   "repository": "ory/sdk",
   "main": "dist/api.js",
   "types": "dist/api.d.ts",
