@@ -57,6 +57,10 @@ python3 setup.py sdist bdist_wheel
 python3 -m twine upload dist/*
 ```
 
+## Ruby
+
+YOu need to set `GEM_HOST_API_KEY`
+
 ## Java - Maven Central
 
 Due to a [bug in openapi-generator](https://github.com/OpenAPITools/openapi-generator/issues/3272)
