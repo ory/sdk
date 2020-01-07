@@ -5,10 +5,10 @@ using openapi-generator.
 
 ## Publish the Docker Image
 
-```
+```shell script
 docker build -t oryd/sdk:latest .
-docker tag oryd/sdk:latest oryd/sdk:v0.0.x
-docker push oryd/sdk:v0.0.x
+docker tag oryd/sdk:latest oryd/sdk:v0.1.x
+docker push oryd/sdk:v0.1.x
 ```
 
 ## Commit a new spec

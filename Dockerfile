@@ -61,6 +61,7 @@ ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 ENV GO111MODULE=on
 
+RUN go get github.com/go-swagger/go-swagger@1c98855b472d8782c366459428ec2a5e8339ccf2
 RUN go install github.com/go-swagger/go-swagger/cmd/swagger
 
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
