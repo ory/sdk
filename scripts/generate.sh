@@ -41,7 +41,7 @@ typescript () {
     -c ./config/client/typescript.yml.proc.yml
 
   file="${dir}/package.json"
-  jq -r ".author = "'"'"ORY GmbH"'"'" | .license = "'"'"Apache License, Version 2.0"'"' "${file}" \
+  jq -r ".author = "'"'"ORY GmbH"'"'" | .license = "'"'"Apache-2.0"'"' "${file}" \
      > tmp.$$.json && mv tmp.$$.json "${file}"
 
   cat "${file}"
@@ -122,7 +122,7 @@ php() {
 
   file="${dir}/composer.json"
 
-  jq -r ".name=\"ory/${PROJECT}-client\" | .homepage = \"https://github.com/ory/${PROJECT}-client-php\" | .authors[0].name = \"ORY GmbH\" | .authors[0].homepage = \"https://www.ory.sh\" | .license = \"Apache License, Version 2.0\"" "${file}" \
+  jq -r ".name=\"ory/${PROJECT}-client\" | .homepage = \"https://github.com/ory/${PROJECT}-client-php\" | .authors[0].name = \"ORY GmbH\" | .authors[0].homepage = \"https://www.ory.sh\" | .license = \"Apache-2.0\"" "${file}" \
      > tmp.$$.json && mv tmp.$$.json "${file}"
 
   cat "${file}"
