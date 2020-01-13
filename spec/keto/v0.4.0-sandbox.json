@@ -1,0 +1,1524 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "Ory Keto is a cloud native access control server providing best-practice patterns (RBAC, ABAC, ACL, AWS IAM Policies, Kubernetes Roles, ...) via REST APIs.",
+    "title": "ORY Keto",
+    "contact": {
+      "name": "ORY",
+      "url": "https://www.ory.sh",
+      "email": "hi@ory.sh"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://github.com/ory/keto/blob/master/LICENSE"
+    },
+    "version": "Latest"
+  },
+  "basePath": "/",
+  "paths": {
+    "/engines/acp/ory/{flavor}/allowed": {
+      "post": {
+        "description": "Use this endpoint to check if a request is allowed or not. If the request is allowed, a 200 response with\n`{\"allowed\":\"true\"}` will be sent. If the request is denied, a 403 response with `{\"allowed\":\"false\"}` will\nbe sent instead.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http",
+          "https"
+        ],
+        "tags": [
+          "engines"
+        ],
+        "summary": "Check if a request is allowed",
+        "operationId": "doOryAccessControlPoliciesAllow",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "Flavor",
+            "description": "The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".",
+            "name": "flavor",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/oryAccessControlPolicyAllowedInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "authorizationResult",
+            "schema": {
+              "$ref": "#/definitions/authorizationResult"
+            }
+          },
+          "403": {
+            "description": "authorizationResult",
+            "schema": {
+              "$ref": "#/definitions/authorizationResult"
+            }
+          },
+          "500": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/engines/acp/ory/{flavor}/policies": {
+      "get": {
+        "description": "List ORY Access Control Policies",
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http",
+          "https"
+        ],
+        "tags": [
+          "engines"
+        ],
+        "operationId": "listOryAccessControlPolicies",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "Flavor",
+            "description": "The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\"",
+            "name": "flavor",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Limit",
+            "description": "The maximum amount of policies returned.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Offset",
+            "description": "The offset from where to start looking.",
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "Subject",
+            "description": "The subject for whom the policies are to be listed.",
+            "name": "subject",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "Resource",
+            "description": "The resource for which the policies are to be listed.",
+            "name": "resource",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "Action",
+            "description": "The action for which policies are to be listed.",
+            "name": "action",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/oryAccessControlPolicies"
+          },
+          "500": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      },
+      "put": {
+        "description": "Upsert an ORY Access Control Policy",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http",
+          "https"
+        ],
+        "tags": [
+          "engines"
+        ],
+        "operationId": "upsertOryAccessControlPolicy",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "Flavor",
+            "description": "The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".",
+            "name": "flavor",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/oryAccessControlPolicy"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "oryAccessControlPolicy",
+            "schema": {
+              "$ref": "#/definitions/oryAccessControlPolicy"
+            }
+          },
+          "500": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/engines/acp/ory/{flavor}/policies/{id}": {
+      "get": {
+        "description": "Get an ORY Access Control Policy",
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http",
+          "https"
+        ],
+        "tags": [
+          "engines"
+        ],
+        "operationId": "getOryAccessControlPolicy",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "Flavor",
+            "description": "The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".",
+            "name": "flavor",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "x-go-name": "ID",
+            "description": "The ID of the ORY Access Control Policy Role.",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "oryAccessControlPolicy",
+            "schema": {
+              "$ref": "#/definitions/oryAccessControlPolicy"
+            }
+          },
+          "404": {
+            "$ref": "#/responses/genericError"
+          },
+          "500": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete an ORY Access Control Policy",
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http",
+          "https"
+        ],
+        "tags": [
+          "engines"
+        ],
+        "operationId": "deleteOryAccessControlPolicy",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "Flavor",
+            "description": "The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".",
+            "name": "flavor",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "x-go-name": "ID",
+            "description": "The ID of the ORY Access Control Policy Role.",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/responses/emptyResponse"
+          },
+          "500": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/engines/acp/ory/{flavor}/roles": {
+      "get": {
+        "description": "Roles group several subjects into one. Rules can be assigned to ORY Access Control Policy (OACP) by using the Role ID\nas subject in the OACP.",
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http",
+          "https"
+        ],
+        "tags": [
+          "engines"
+        ],
+        "summary": "List ORY Access Control Policy Roles",
+        "operationId": "listOryAccessControlPolicyRoles",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "Flavor",
+            "description": "The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\"",
+            "name": "flavor",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Limit",
+            "description": "The maximum amount of policies returned.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Offset",
+            "description": "The offset from where to start looking.",
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "Member",
+            "description": "The member for which the roles are to be listed.",
+            "name": "member",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/oryAccessControlPolicyRoles"
+          },
+          "500": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      },
+      "put": {
+        "description": "Roles group several subjects into one. Rules can be assigned to ORY Access Control Policy (OACP) by using the Role ID\nas subject in the OACP.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http",
+          "https"
+        ],
+        "tags": [
+          "engines"
+        ],
+        "summary": "Upsert an ORY Access Control Policy Role",
+        "operationId": "upsertOryAccessControlPolicyRole",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "Flavor",
+            "description": "The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".",
+            "name": "flavor",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/oryAccessControlPolicyRole"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "oryAccessControlPolicyRole",
+            "schema": {
+              "$ref": "#/definitions/oryAccessControlPolicyRole"
+            }
+          },
+          "500": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/engines/acp/ory/{flavor}/roles/{id}": {
+      "get": {
+        "description": "Roles group several subjects into one. Rules can be assigned to ORY Access Control Policy (OACP) by using the Role ID\nas subject in the OACP.",
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http",
+          "https"
+        ],
+        "tags": [
+          "engines"
+        ],
+        "summary": "Get an ORY Access Control Policy Role",
+        "operationId": "getOryAccessControlPolicyRole",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "Flavor",
+            "description": "The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".",
+            "name": "flavor",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "x-go-name": "ID",
+            "description": "The ID of the ORY Access Control Policy Role.",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "oryAccessControlPolicyRole",
+            "schema": {
+              "$ref": "#/definitions/oryAccessControlPolicyRole"
+            }
+          },
+          "404": {
+            "$ref": "#/responses/genericError"
+          },
+          "500": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      },
+      "delete": {
+        "description": "Roles group several subjects into one. Rules can be assigned to ORY Access Control Policy (OACP) by using the Role ID\nas subject in the OACP.",
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http",
+          "https"
+        ],
+        "tags": [
+          "engines"
+        ],
+        "summary": "Delete an ORY Access Control Policy Role",
+        "operationId": "deleteOryAccessControlPolicyRole",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "Flavor",
+            "description": "The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".",
+            "name": "flavor",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "x-go-name": "ID",
+            "description": "The ID of the ORY Access Control Policy Role.",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/responses/emptyResponse"
+          },
+          "500": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/engines/acp/ory/{flavor}/roles/{id}/members": {
+      "put": {
+        "description": "Roles group several subjects into one. Rules can be assigned to ORY Access Control Policy (OACP) by using the Role ID\nas subject in the OACP.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http",
+          "https"
+        ],
+        "tags": [
+          "engines"
+        ],
+        "summary": "Add a member to an ORY Access Control Policy Role",
+        "operationId": "addOryAccessControlPolicyRoleMembers",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "Flavor",
+            "description": "The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".",
+            "name": "flavor",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "x-go-name": "ID",
+            "description": "The ID of the ORY Access Control Policy Role.",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/addOryAccessControlPolicyRoleMembersBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "oryAccessControlPolicyRole",
+            "schema": {
+              "$ref": "#/definitions/oryAccessControlPolicyRole"
+            }
+          },
+          "500": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/engines/acp/ory/{flavor}/roles/{id}/members/{member}": {
+      "delete": {
+        "description": "Roles group several subjects into one. Rules can be assigned to ORY Access Control Policy (OACP) by using the Role ID\nas subject in the OACP.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http",
+          "https"
+        ],
+        "tags": [
+          "engines"
+        ],
+        "summary": "Remove a member from an ORY Access Control Policy Role",
+        "operationId": "removeOryAccessControlPolicyRoleMembers",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "Flavor",
+            "description": "The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".",
+            "name": "flavor",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "x-go-name": "ID",
+            "description": "The ID of the ORY Access Control Policy Role.",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "x-go-name": "Member",
+            "description": "The member to be removed.",
+            "name": "member",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "$ref": "#/responses/emptyResponse"
+          },
+          "500": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/health/alive": {
+      "get": {
+        "description": "This endpoint returns a 200 status code when the HTTP server is up running.\nThis status does currently not include checks whether the database connection is working.\n\nIf the service supports TLS Edge Termination, this endpoint does not require the\n`X-Forwarded-Proto` header to be set.\n\nBe aware that if you are running multiple nodes of this service, the health status will never\nrefer to the cluster state, only to a single instance.",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "health"
+        ],
+        "summary": "Check alive status",
+        "operationId": "isInstanceAlive",
+        "responses": {
+          "200": {
+            "description": "healthStatus",
+            "schema": {
+              "$ref": "#/definitions/healthStatus"
+            }
+          },
+          "500": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/health/ready": {
+      "get": {
+        "description": "This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g.\nthe database) are responsive as well.\n\nIf the service supports TLS Edge Termination, this endpoint does not require the\n`X-Forwarded-Proto` header to be set.\n\nBe aware that if you are running multiple nodes of this service, the health status will never\nrefer to the cluster state, only to a single instance.",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "health"
+        ],
+        "summary": "Check readiness status",
+        "operationId": "isInstanceReady",
+        "responses": {
+          "200": {
+            "description": "healthStatus",
+            "schema": {
+              "$ref": "#/definitions/healthStatus"
+            }
+          },
+          "503": {
+            "description": "healthNotReadyStatus",
+            "schema": {
+              "$ref": "#/definitions/healthNotReadyStatus"
+            }
+          }
+        }
+      }
+    },
+    "/version": {
+      "get": {
+        "description": "This endpoint returns the service version typically notated using semantic versioning.\n\nIf the service supports TLS Edge Termination, this endpoint does not require the\n`X-Forwarded-Proto` header to be set.\n\nBe aware that if you are running multiple nodes of this service, the health status will never\nrefer to the cluster state, only to a single instance.",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "version"
+        ],
+        "summary": "Get service version",
+        "operationId": "getVersion",
+        "responses": {
+          "200": {
+            "description": "version",
+            "schema": {
+              "$ref": "#/definitions/version"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AddOryAccessControlPolicyRoleMembersInternalServerErrorBody": {
+      "description": "AddOryAccessControlPolicyRoleMembersInternalServerErrorBody add ory access control policy role members internal server error body",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "code",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "details": {
+          "description": "details",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "x-go-name": "Details"
+        },
+        "message": {
+          "description": "message",
+          "type": "string",
+          "x-go-name": "Message"
+        },
+        "reason": {
+          "description": "reason",
+          "type": "string",
+          "x-go-name": "Reason"
+        },
+        "request": {
+          "description": "request",
+          "type": "string",
+          "x-go-name": "Request"
+        },
+        "status": {
+          "description": "status",
+          "type": "string",
+          "x-go-name": "Status"
+        }
+      },
+      "x-go-package": "github.com/ory/keto/internal/httpclient/client/engines"
+    },
+    "DeleteOryAccessControlPolicyInternalServerErrorBody": {
+      "description": "DeleteOryAccessControlPolicyInternalServerErrorBody delete ory access control policy internal server error body",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "code",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "details": {
+          "description": "details",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "x-go-name": "Details"
+        },
+        "message": {
+          "description": "message",
+          "type": "string",
+          "x-go-name": "Message"
+        },
+        "reason": {
+          "description": "reason",
+          "type": "string",
+          "x-go-name": "Reason"
+        },
+        "request": {
+          "description": "request",
+          "type": "string",
+          "x-go-name": "Request"
+        },
+        "status": {
+          "description": "status",
+          "type": "string",
+          "x-go-name": "Status"
+        }
+      },
+      "x-go-package": "github.com/ory/keto/internal/httpclient/client/engines"
+    },
+    "DeleteOryAccessControlPolicyRoleInternalServerErrorBody": {
+      "description": "DeleteOryAccessControlPolicyRoleInternalServerErrorBody delete ory access control policy role internal server error body",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "code",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "details": {
+          "description": "details",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "x-go-name": "Details"
+        },
+        "message": {
+          "description": "message",
+          "type": "string",
+          "x-go-name": "Message"
+        },
+        "reason": {
+          "description": "reason",
+          "type": "string",
+          "x-go-name": "Reason"
+        },
+        "request": {
+          "description": "request",
+          "type": "string",
+          "x-go-name": "Request"
+        },
+        "status": {
+          "description": "status",
+          "type": "string",
+          "x-go-name": "Status"
+        }
+      },
+      "x-go-package": "github.com/ory/keto/internal/httpclient/client/engines"
+    },
+    "DoOryAccessControlPoliciesAllowInternalServerErrorBody": {
+      "description": "DoOryAccessControlPoliciesAllowInternalServerErrorBody do ory access control policies allow internal server error body",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "code",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "details": {
+          "description": "details",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "x-go-name": "Details"
+        },
+        "message": {
+          "description": "message",
+          "type": "string",
+          "x-go-name": "Message"
+        },
+        "reason": {
+          "description": "reason",
+          "type": "string",
+          "x-go-name": "Reason"
+        },
+        "request": {
+          "description": "request",
+          "type": "string",
+          "x-go-name": "Request"
+        },
+        "status": {
+          "description": "status",
+          "type": "string",
+          "x-go-name": "Status"
+        }
+      },
+      "x-go-package": "github.com/ory/keto/internal/httpclient/client/engines"
+    },
+    "GetOryAccessControlPolicyInternalServerErrorBody": {
+      "description": "GetOryAccessControlPolicyInternalServerErrorBody get ory access control policy internal server error body",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "code",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "details": {
+          "description": "details",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "x-go-name": "Details"
+        },
+        "message": {
+          "description": "message",
+          "type": "string",
+          "x-go-name": "Message"
+        },
+        "reason": {
+          "description": "reason",
+          "type": "string",
+          "x-go-name": "Reason"
+        },
+        "request": {
+          "description": "request",
+          "type": "string",
+          "x-go-name": "Request"
+        },
+        "status": {
+          "description": "status",
+          "type": "string",
+          "x-go-name": "Status"
+        }
+      },
+      "x-go-package": "github.com/ory/keto/internal/httpclient/client/engines"
+    },
+    "GetOryAccessControlPolicyNotFoundBody": {
+      "description": "GetOryAccessControlPolicyNotFoundBody get ory access control policy not found body",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "code",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "details": {
+          "description": "details",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "x-go-name": "Details"
+        },
+        "message": {
+          "description": "message",
+          "type": "string",
+          "x-go-name": "Message"
+        },
+        "reason": {
+          "description": "reason",
+          "type": "string",
+          "x-go-name": "Reason"
+        },
+        "request": {
+          "description": "request",
+          "type": "string",
+          "x-go-name": "Request"
+        },
+        "status": {
+          "description": "status",
+          "type": "string",
+          "x-go-name": "Status"
+        }
+      },
+      "x-go-package": "github.com/ory/keto/internal/httpclient/client/engines"
+    },
+    "GetOryAccessControlPolicyRoleInternalServerErrorBody": {
+      "description": "GetOryAccessControlPolicyRoleInternalServerErrorBody get ory access control policy role internal server error body",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "code",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "details": {
+          "description": "details",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "x-go-name": "Details"
+        },
+        "message": {
+          "description": "message",
+          "type": "string",
+          "x-go-name": "Message"
+        },
+        "reason": {
+          "description": "reason",
+          "type": "string",
+          "x-go-name": "Reason"
+        },
+        "request": {
+          "description": "request",
+          "type": "string",
+          "x-go-name": "Request"
+        },
+        "status": {
+          "description": "status",
+          "type": "string",
+          "x-go-name": "Status"
+        }
+      },
+      "x-go-package": "github.com/ory/keto/internal/httpclient/client/engines"
+    },
+    "GetOryAccessControlPolicyRoleNotFoundBody": {
+      "description": "GetOryAccessControlPolicyRoleNotFoundBody get ory access control policy role not found body",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "code",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "details": {
+          "description": "details",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "x-go-name": "Details"
+        },
+        "message": {
+          "description": "message",
+          "type": "string",
+          "x-go-name": "Message"
+        },
+        "reason": {
+          "description": "reason",
+          "type": "string",
+          "x-go-name": "Reason"
+        },
+        "request": {
+          "description": "request",
+          "type": "string",
+          "x-go-name": "Request"
+        },
+        "status": {
+          "description": "status",
+          "type": "string",
+          "x-go-name": "Status"
+        }
+      },
+      "x-go-package": "github.com/ory/keto/internal/httpclient/client/engines"
+    },
+    "IsInstanceAliveInternalServerErrorBody": {
+      "description": "IsInstanceAliveInternalServerErrorBody is instance alive internal server error body",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "code",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "details": {
+          "description": "details",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "x-go-name": "Details"
+        },
+        "message": {
+          "description": "message",
+          "type": "string",
+          "x-go-name": "Message"
+        },
+        "reason": {
+          "description": "reason",
+          "type": "string",
+          "x-go-name": "Reason"
+        },
+        "request": {
+          "description": "request",
+          "type": "string",
+          "x-go-name": "Request"
+        },
+        "status": {
+          "description": "status",
+          "type": "string",
+          "x-go-name": "Status"
+        }
+      },
+      "x-go-package": "github.com/ory/keto/internal/httpclient/client/health"
+    },
+    "ListOryAccessControlPoliciesInternalServerErrorBody": {
+      "description": "ListOryAccessControlPoliciesInternalServerErrorBody list ory access control policies internal server error body",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "code",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "details": {
+          "description": "details",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "x-go-name": "Details"
+        },
+        "message": {
+          "description": "message",
+          "type": "string",
+          "x-go-name": "Message"
+        },
+        "reason": {
+          "description": "reason",
+          "type": "string",
+          "x-go-name": "Reason"
+        },
+        "request": {
+          "description": "request",
+          "type": "string",
+          "x-go-name": "Request"
+        },
+        "status": {
+          "description": "status",
+          "type": "string",
+          "x-go-name": "Status"
+        }
+      },
+      "x-go-package": "github.com/ory/keto/internal/httpclient/client/engines"
+    },
+    "ListOryAccessControlPolicyRolesInternalServerErrorBody": {
+      "description": "ListOryAccessControlPolicyRolesInternalServerErrorBody list ory access control policy roles internal server error body",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "code",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "details": {
+          "description": "details",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "x-go-name": "Details"
+        },
+        "message": {
+          "description": "message",
+          "type": "string",
+          "x-go-name": "Message"
+        },
+        "reason": {
+          "description": "reason",
+          "type": "string",
+          "x-go-name": "Reason"
+        },
+        "request": {
+          "description": "request",
+          "type": "string",
+          "x-go-name": "Request"
+        },
+        "status": {
+          "description": "status",
+          "type": "string",
+          "x-go-name": "Status"
+        }
+      },
+      "x-go-package": "github.com/ory/keto/internal/httpclient/client/engines"
+    },
+    "RemoveOryAccessControlPolicyRoleMembersInternalServerErrorBody": {
+      "description": "RemoveOryAccessControlPolicyRoleMembersInternalServerErrorBody remove ory access control policy role members internal server error body",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "code",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "details": {
+          "description": "details",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "x-go-name": "Details"
+        },
+        "message": {
+          "description": "message",
+          "type": "string",
+          "x-go-name": "Message"
+        },
+        "reason": {
+          "description": "reason",
+          "type": "string",
+          "x-go-name": "Reason"
+        },
+        "request": {
+          "description": "request",
+          "type": "string",
+          "x-go-name": "Request"
+        },
+        "status": {
+          "description": "status",
+          "type": "string",
+          "x-go-name": "Status"
+        }
+      },
+      "x-go-package": "github.com/ory/keto/internal/httpclient/client/engines"
+    },
+    "UpsertOryAccessControlPolicyInternalServerErrorBody": {
+      "description": "UpsertOryAccessControlPolicyInternalServerErrorBody upsert ory access control policy internal server error body",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "code",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "details": {
+          "description": "details",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "x-go-name": "Details"
+        },
+        "message": {
+          "description": "message",
+          "type": "string",
+          "x-go-name": "Message"
+        },
+        "reason": {
+          "description": "reason",
+          "type": "string",
+          "x-go-name": "Reason"
+        },
+        "request": {
+          "description": "request",
+          "type": "string",
+          "x-go-name": "Request"
+        },
+        "status": {
+          "description": "status",
+          "type": "string",
+          "x-go-name": "Status"
+        }
+      },
+      "x-go-package": "github.com/ory/keto/internal/httpclient/client/engines"
+    },
+    "UpsertOryAccessControlPolicyRoleInternalServerErrorBody": {
+      "description": "UpsertOryAccessControlPolicyRoleInternalServerErrorBody upsert ory access control policy role internal server error body",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "code",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "details": {
+          "description": "details",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "x-go-name": "Details"
+        },
+        "message": {
+          "description": "message",
+          "type": "string",
+          "x-go-name": "Message"
+        },
+        "reason": {
+          "description": "reason",
+          "type": "string",
+          "x-go-name": "Reason"
+        },
+        "request": {
+          "description": "request",
+          "type": "string",
+          "x-go-name": "Request"
+        },
+        "status": {
+          "description": "status",
+          "type": "string",
+          "x-go-name": "Status"
+        }
+      },
+      "x-go-package": "github.com/ory/keto/internal/httpclient/client/engines"
+    },
+    "addOryAccessControlPolicyRoleMembersBody": {
+      "description": "AddOryAccessControlPolicyRoleMembersBody AddOryAccessControlPolicyRoleMembersBody add ory access control policy role members body",
+      "type": "object",
+      "properties": {
+        "members": {
+          "description": "The members to be added.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "Members"
+        }
+      },
+      "x-go-name": "AddOryAccessControlPolicyRoleMembersBody",
+      "x-go-package": "github.com/ory/keto/internal/httpclient/models"
+    },
+    "authorizationResult": {
+      "type": "object",
+      "title": "AuthorizationResult is the result of an access control decision. It contains the decision outcome.",
+      "required": [
+        "allowed"
+      ],
+      "properties": {
+        "allowed": {
+          "description": "Allowed is true if the request should be allowed and false otherwise.",
+          "type": "boolean",
+          "x-go-name": "Allowed"
+        }
+      },
+      "x-go-name": "AuthorizationResult",
+      "x-go-package": "github.com/ory/keto/engine"
+    },
+    "healthNotReadyStatus": {
+      "description": "HealthNotReadyStatus health not ready status",
+      "type": "object",
+      "properties": {
+        "errors": {
+          "description": "Errors contains a list of errors that caused the not ready status.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "x-go-name": "Errors"
+        }
+      },
+      "x-go-name": "HealthNotReadyStatus",
+      "x-go-package": "github.com/ory/keto/internal/httpclient/models"
+    },
+    "healthStatus": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "Status always contains \"ok\".",
+          "type": "string",
+          "x-go-name": "Status"
+        }
+      },
+      "x-go-name": "swaggerHealthStatus",
+      "x-go-package": "github.com/ory/x/healthx"
+    },
+    "oryAccessControlPolicy": {
+      "type": "object",
+      "title": "oryAccessControlPolicy specifies an ORY Access Policy document.",
+      "properties": {
+        "actions": {
+          "description": "Actions is an array representing all the actions this ORY Access Policy applies to.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "Actions"
+        },
+        "conditions": {
+          "description": "Conditions represents a keyed object of conditions under which this ORY Access Policy is active.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          },
+          "x-go-name": "Conditions"
+        },
+        "description": {
+          "description": "Description is an optional, human-readable description.",
+          "type": "string",
+          "x-go-name": "Description"
+        },
+        "effect": {
+          "description": "Effect is the effect of this ORY Access Policy. It can be \"allow\" or \"deny\".",
+          "type": "string",
+          "x-go-name": "Effect"
+        },
+        "id": {
+          "description": "ID is the unique identifier of the ORY Access Policy. It is used to query, update, and remove the ORY Access Policy.",
+          "type": "string",
+          "x-go-name": "ID"
+        },
+        "resources": {
+          "description": "Resources is an array representing all the resources this ORY Access Policy applies to.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "Resources"
+        },
+        "subjects": {
+          "description": "Subjects is an array representing all the subjects this ORY Access Policy applies to.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "Subjects"
+        }
+      },
+      "x-go-name": "OryAccessControlPolicy",
+      "x-go-package": "github.com/ory/keto/engine/ladon"
+    },
+    "oryAccessControlPolicyAllowedInput": {
+      "type": "object",
+      "title": "OryAccessControlPolicyAllowedInput OryAccessControlPolicyAllowedInput Input for checking if a request is allowed or not.",
+      "properties": {
+        "action": {
+          "description": "Action is the action that is requested on the resource.",
+          "type": "string",
+          "x-go-name": "Action"
+        },
+        "context": {
+          "description": "Context is the request's environmental context.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          },
+          "x-go-name": "Context"
+        },
+        "resource": {
+          "description": "Resource is the resource that access is requested to.",
+          "type": "string",
+          "x-go-name": "Resource"
+        },
+        "subject": {
+          "description": "Subject is the subject that is requesting access.",
+          "type": "string",
+          "x-go-name": "Subject"
+        }
+      },
+      "x-go-name": "OryAccessControlPolicyAllowedInput",
+      "x-go-package": "github.com/ory/keto/internal/httpclient/models"
+    },
+    "oryAccessControlPolicyRole": {
+      "description": "OryAccessControlPolicyRole oryAccessControlPolicyRole represents a group of users that share the same role. A role could be an administrator, a moderator, a regular\nuser or some other sort of role.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "ID is the role's unique id.",
+          "type": "string",
+          "x-go-name": "ID"
+        },
+        "members": {
+          "description": "Members is who belongs to the role.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "Members"
+        }
+      },
+      "x-go-name": "OryAccessControlPolicyRole",
+      "x-go-package": "github.com/ory/keto/internal/httpclient/models"
+    },
+    "version": {
+      "description": "Version version",
+      "type": "object",
+      "properties": {
+        "version": {
+          "description": "Version is the service's version.",
+          "type": "string",
+          "x-go-name": "Version"
+        }
+      },
+      "x-go-name": "Version",
+      "x-go-package": "github.com/ory/keto/internal/httpclient/models"
+    }
+  },
+  "responses": {
+    "emptyResponse": {
+      "description": "An empty response"
+    },
+    "genericError": {
+      "description": "The standard error format",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Code"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            },
+            "x-go-name": "Details"
+          },
+          "message": {
+            "type": "string",
+            "x-go-name": "Message"
+          },
+          "reason": {
+            "type": "string",
+            "x-go-name": "Reason"
+          },
+          "request": {
+            "type": "string",
+            "x-go-name": "Request"
+          },
+          "status": {
+            "type": "string",
+            "x-go-name": "Status"
+          }
+        }
+      }
+    },
+    "oryAccessControlPolicies": {
+      "description": "Policies is an array of policies.",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/oryAccessControlPolicy"
+        }
+      }
+    },
+    "oryAccessControlPolicyRoles": {
+      "description": "Roles is an array of roles.",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/oryAccessControlPolicyRole"
+        }
+      }
+    }
+  }
+}
