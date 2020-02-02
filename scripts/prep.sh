@@ -3,7 +3,7 @@
 set -Eeuxo pipefail
 cd "$( dirname "${BASH_SOURCE[0]}" )/.."
 
-if [ -z "$(git log -1 --pretty=%B | grep "^Add spec")" ]; then
+if [ -z "$(git log -1 --pretty=%B | grep "Add spec for")" ]; then
       echo "This commit does not appear to be related to a spec update, skipping chain."
       exit 0
 fi
@@ -11,8 +11,8 @@ fi
 ####################################
 
 ## Extract project and version from git commit ##
-project=$(git log -1 --pretty=%B | head -n 1 | sed -E 's/^Add spec for (.+):(.+)$/\1/')
-version=$(git log -1 --pretty=%B | head -n 1 | sed -E 's/^Add spec for (.+):(.+)$/\2/')
+project=$(git log -1 --pretty=%B | head -n 1 | sed -E 's/Add spec for (.+):(.+)$/\1/')
+version=$(git log -1 --pretty=%B | head -n 1 | sed -E 's/Add spec for (.+):(.+)$/\2/')
 
 if [ -z "${project}" ]; then
   echo "Variable project can not be empty. Expected commit message to be 'Add spec for <project>:<version>' but got: $(git log -1 --pretty=%B | head -n 1 )"
