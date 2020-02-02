@@ -7,6 +7,10 @@ jobs:
     working_directory: /sdk
     steps:
       - checkout
+      - run: |
+          if [  -z "$(git log -1 --pretty=%B | grep "Add spec for")" ]; then
+              circleci-agent step halt
+          fi
       - run: ./scripts/init.sh
       - run: ./scripts/generate.sh
       - run: ./scripts/release.sh

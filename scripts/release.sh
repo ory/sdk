@@ -18,7 +18,7 @@ to_git() {
   ls -la "${gitdir}"
 
   (cd "${gitdir}"; git add -A || true; (git commit -a  -F- <<EOF
-Update generated code to ${VERSION}
+chore: Regenerate OpenAPI client ${VERSION}
 
 Version: ${VERSION}
 EOF
