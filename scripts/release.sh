@@ -34,6 +34,12 @@ EOF
   (cd "${gitdir}"; git push origin --tags HEAD:master)
 }
 
+upstream() {
+  git add -A
+  git commit --allow-empty -a -m "chore: Regenerate OpenAPI client ${VERSION}"
+  git push origin
+}
+
 typescript () {
   dir="clients/${PROJECT}/typescript"
 
@@ -101,3 +107,5 @@ ruby
 golang
 php
 typescript
+
+upstream
