@@ -4,22 +4,25 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**completeProfileManagementFlow**](PublicApi.md#completeProfileManagementFlow) | **POST** /profiles | Complete Profile Management Flow
-[**getLoginRequest**](PublicApi.md#getLoginRequest) | **GET** /auth/browser/requests/login | Get Login Request
-[**getProfileManagementRequest**](PublicApi.md#getProfileManagementRequest) | **GET** /profiles/requests | Get Profile Management Request (via cookie)
-[**getRegistrationRequest**](PublicApi.md#getRegistrationRequest) | **GET** /auth/browser/requests/registration | Get Registration Request
-[**initializeLoginFlow**](PublicApi.md#initializeLoginFlow) | **GET** /auth/browser/login | Initialize a Login Flow
-[**initializeProfileManagementFlow**](PublicApi.md#initializeProfileManagementFlow) | **GET** /profiles | Initialize Profile Management Flow
-[**initializeRegistrationFlow**](PublicApi.md#initializeRegistrationFlow) | **GET** /auth/browser/registration | Initialize a Registration Flow
+[**completeSelfServiceBrowserProfileManagementFlow**](PublicApi.md#completeSelfServiceBrowserProfileManagementFlow) | **POST** /self-service/browser/flows/profile/update | Complete the browser-based profile management flows
+[**getSelfServiceBrowserLoginRequest**](PublicApi.md#getSelfServiceBrowserLoginRequest) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
+[**getSelfServiceBrowserProfileManagementRequest**](PublicApi.md#getSelfServiceBrowserProfileManagementRequest) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
+[**getSelfServiceBrowserRegistrationRequest**](PublicApi.md#getSelfServiceBrowserRegistrationRequest) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
+[**getSelfServiceError**](PublicApi.md#getSelfServiceError) | **GET** /self-service/errors | Get user-facing self-service errors
+[**initializeSelfServiceBrowserLoginFlow**](PublicApi.md#initializeSelfServiceBrowserLoginFlow) | **GET** /self-service/browser/flows/login | Initialize browser-based login user flow
+[**initializeSelfServiceBrowserLogoutFlow**](PublicApi.md#initializeSelfServiceBrowserLogoutFlow) | **GET** /self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
+[**initializeSelfServiceBrowserRegistrationFlow**](PublicApi.md#initializeSelfServiceBrowserRegistrationFlow) | **GET** /self-service/browser/flows/registration | Initialize browser-based registration user flow
+[**initializeSelfServiceProfileManagementFlow**](PublicApi.md#initializeSelfServiceProfileManagementFlow) | **GET** /self-service/browser/flows/profile | Initialize browser-based profile management flow
+[**whoami**](PublicApi.md#whoami) | **GET** /sessions/whoami | Check who the current HTTP session belongs to
 
 
-<a name="completeProfileManagementFlow"></a>
-# **completeProfileManagementFlow**
-> completeProfileManagementFlow()
+<a name="completeSelfServiceBrowserProfileManagementFlow"></a>
+# **completeSelfServiceBrowserProfileManagementFlow**
+> completeSelfServiceBrowserProfileManagementFlow(request, body)
 
-Complete Profile Management Flow
+Complete the browser-based profile management flows
 
-This endpoint returns a login request&#39;s context with, for example, error details and other information.  For an in-depth look at ORY Krato&#39;s profile management flow, head over to: https://www.ory.sh/docs/kratos/selfservice/profile
+This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity&#39;s Traits JSON Schema, the data will be updated and the browser redirected to &#x60;url.profile_ui&#x60; for further steps.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
 
 ### Example
 ```java
@@ -36,10 +39,12 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
+    String request = "request_example"; // String | Request is the request ID.
+    CompleteSelfServiceBrowserProfileManagementFlowPayload body = new CompleteSelfServiceBrowserProfileManagementFlowPayload(); // CompleteSelfServiceBrowserProfileManagementFlowPayload | 
     try {
-      apiInstance.completeProfileManagementFlow();
+      apiInstance.completeSelfServiceBrowserProfileManagementFlow(request, body);
     } catch (ApiException e) {
-      System.err.println("Exception when calling PublicApi#completeProfileManagementFlow");
+      System.err.println("Exception when calling PublicApi#completeSelfServiceBrowserProfileManagementFlow");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -50,7 +55,11 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | **String**| Request is the request ID. |
+ **body** | [**CompleteSelfServiceBrowserProfileManagementFlowPayload**](CompleteSelfServiceBrowserProfileManagementFlowPayload.md)|  |
 
 ### Return type
 
@@ -62,7 +71,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 ### HTTP response details
@@ -71,13 +80,13 @@ No authorization required
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 **500** | genericError |  -  |
 
-<a name="getLoginRequest"></a>
-# **getLoginRequest**
-> LoginRequest getLoginRequest()
+<a name="getSelfServiceBrowserLoginRequest"></a>
+# **getSelfServiceBrowserLoginRequest**
+> LoginRequest getSelfServiceBrowserLoginRequest(request)
 
-Get Login Request
+Get the request context of browser-based login user flows
 
-This endpoint returns a login request&#39;s context with, for example, error details and other information.  For an in-depth look at ORY Krato&#39;s login flow, head over to: https://www.ory.sh/docs/kratos/selfservice/login
+This endpoint returns a login request&#39;s context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 ```java
@@ -94,11 +103,12 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
+    String request = "request_example"; // String | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
     try {
-      LoginRequest result = apiInstance.getLoginRequest();
+      LoginRequest result = apiInstance.getSelfServiceBrowserLoginRequest(request);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling PublicApi#getLoginRequest");
+      System.err.println("Exception when calling PublicApi#getSelfServiceBrowserLoginRequest");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -109,7 +119,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | **String**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). |
 
 ### Return type
 
@@ -128,16 +141,17 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | loginRequest |  -  |
-**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**403** | genericError |  -  |
+**404** | genericError |  -  |
 **500** | genericError |  -  |
 
-<a name="getProfileManagementRequest"></a>
-# **getProfileManagementRequest**
-> ProfileManagementRequest getProfileManagementRequest(request)
+<a name="getSelfServiceBrowserProfileManagementRequest"></a>
+# **getSelfServiceBrowserProfileManagementRequest**
+> ProfileManagementRequest getSelfServiceBrowserProfileManagementRequest(request)
 
-Get Profile Management Request (via cookie)
+Get the request context of browser-based profile management flows
 
-This endpoint returns a profile management request&#39;s context with, for example, error details and other information.  It can be used from a Single Page Application or other applications running on a client device. The request must be made with valid authentication cookies or it will fail!  If you wish to access this endpoint without the valid cookies (e.g. as part of a server) please call this path at the admin port.  For an in-depth look at ORY Krato&#39;s profile management flow, head over to: https://www.ory.sh/docs/kratos/selfservice/profile
+When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
 
 ### Example
 ```java
@@ -154,12 +168,12 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
-    String request = "request_example"; // String | Request should be set to the value of the `request` query parameter by the profile management UI.
+    String request = "request_example"; // String | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
     try {
-      ProfileManagementRequest result = apiInstance.getProfileManagementRequest(request);
+      ProfileManagementRequest result = apiInstance.getSelfServiceBrowserProfileManagementRequest(request);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling PublicApi#getProfileManagementRequest");
+      System.err.println("Exception when calling PublicApi#getSelfServiceBrowserProfileManagementRequest");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -173,7 +187,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request** | **String**| Request should be set to the value of the &#x60;request&#x60; query parameter by the profile management UI. |
+ **request** | **String**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). |
 
 ### Return type
 
@@ -192,16 +206,17 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | profileManagementRequest |  -  |
-**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**403** | genericError |  -  |
+**404** | genericError |  -  |
 **500** | genericError |  -  |
 
-<a name="getRegistrationRequest"></a>
-# **getRegistrationRequest**
-> RegistrationRequest getRegistrationRequest()
+<a name="getSelfServiceBrowserRegistrationRequest"></a>
+# **getSelfServiceBrowserRegistrationRequest**
+> RegistrationRequest getSelfServiceBrowserRegistrationRequest(request)
 
-Get Registration Request
+Get the request context of browser-based registration user flows
 
-This endpoint returns a registration request&#39;s context with, for example, error details and other information.  For an in-depth look at ORY Krato&#39;s registration flow, head over to: https://www.ory.sh/docs/kratos/selfservice/registration
+This endpoint returns a registration request&#39;s context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 ```java
@@ -218,11 +233,12 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
+    String request = "request_example"; // String | Request is the Registration Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/registration?request=abcde`).
     try {
-      RegistrationRequest result = apiInstance.getRegistrationRequest();
+      RegistrationRequest result = apiInstance.getSelfServiceBrowserRegistrationRequest(request);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling PublicApi#getRegistrationRequest");
+      System.err.println("Exception when calling PublicApi#getSelfServiceBrowserRegistrationRequest");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -233,7 +249,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | **String**| Request is the Registration Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?request&#x3D;abcde&#x60;). |
 
 ### Return type
 
@@ -252,74 +271,17 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | registrationRequest |  -  |
+**403** | genericError |  -  |
 **404** | genericError |  -  |
 **500** | genericError |  -  |
 
-<a name="initializeLoginFlow"></a>
-# **initializeLoginFlow**
-> initializeLoginFlow()
+<a name="getSelfServiceError"></a>
+# **getSelfServiceError**
+> ErrorContainer getSelfServiceError(id)
 
-Initialize a Login Flow
+Get user-facing self-service errors
 
-This endpoint initializes a login flow. This endpoint **should not be called from a programatic API** but instead for the, for example, browser. It will redirect the user agent (e.g. browser) to the configured login UI, appending the login challenge.  If the user-agent already has a valid authentication session, the server will respond with a 302 code redirecting to the config value of &#x60;urls.default_return_to&#x60;.  For an in-depth look at ORY Krato&#39;s login flow, head over to: https://www.ory.sh/docs/kratos/selfservice/login
-
-### Example
-```java
-// Import classes:
-import sh.ory.kratos.ApiClient;
-import sh.ory.kratos.ApiException;
-import sh.ory.kratos.Configuration;
-import sh.ory.kratos.models.*;
-import sh.ory.kratos.api.PublicApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-
-    PublicApi apiInstance = new PublicApi(defaultClient);
-    try {
-      apiInstance.initializeLoginFlow();
-    } catch (ApiException e) {
-      System.err.println("Exception when calling PublicApi#initializeLoginFlow");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**500** | genericError |  -  |
-
-<a name="initializeProfileManagementFlow"></a>
-# **initializeProfileManagementFlow**
-> initializeProfileManagementFlow()
-
-Initialize Profile Management Flow
-
-This endpoint initializes a profile update flow. This endpoint **should not be called from a programatic API** but instead for the, for example, browser. It will redirect the user agent (e.g. browser) to the configured login UI, appending the login challenge.  If the user-agent does not have a valid authentication session, a 302 code will be returned which redirects to the initializeLoginFlow endpoint, appending this page as the return_to value.  For an in-depth look at ORY Krato&#39;s profile management flow, head over to: https://www.ory.sh/docs/kratos/selfservice/profile
+This endpoint returns the error associated with a user-facing self service errors.  When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
 
 ### Example
 ```java
@@ -336,10 +298,12 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
+    String id = "id_example"; // String | 
     try {
-      apiInstance.initializeProfileManagementFlow();
+      ErrorContainer result = apiInstance.getSelfServiceError(id);
+      System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling PublicApi#initializeProfileManagementFlow");
+      System.err.println("Exception when calling PublicApi#getSelfServiceError");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -350,11 +314,14 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | [optional]
 
 ### Return type
 
-null (empty response body)
+[**ErrorContainer**](ErrorContainer.md)
 
 ### Authorization
 
@@ -368,65 +335,300 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**500** | genericError |  -  |
-
-<a name="initializeRegistrationFlow"></a>
-# **initializeRegistrationFlow**
-> initializeRegistrationFlow()
-
-Initialize a Registration Flow
-
-This endpoint initializes a registration flow. This endpoint **should not be called from a programatic API** but instead for the, for example, browser. It will redirect the user agent (e.g. browser) to the configured registration UI, appending the registration challenge.  For an in-depth look at ORY Krato&#39;s registration flow, head over to: https://www.ory.sh/docs/kratos/selfservice/registration
-
-### Example
-```java
-// Import classes:
-import sh.ory.kratos.ApiClient;
-import sh.ory.kratos.ApiException;
-import sh.ory.kratos.Configuration;
-import sh.ory.kratos.models.*;
-import sh.ory.kratos.api.PublicApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-
-    PublicApi apiInstance = new PublicApi(defaultClient);
-    try {
-      apiInstance.initializeRegistrationFlow();
-    } catch (ApiException e) {
-      System.err.println("Exception when calling PublicApi#initializeRegistrationFlow");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**200** | User-facing error response |  -  |
+**403** | genericError |  -  |
 **404** | genericError |  -  |
+**500** | genericError |  -  |
+
+<a name="initializeSelfServiceBrowserLoginFlow"></a>
+# **initializeSelfServiceBrowserLoginFlow**
+> initializeSelfServiceBrowserLoginFlow()
+
+Initialize browser-based login user flow
+
+This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to &#x60;urls.login_ui&#x60; with the request ID set as a query parameter. If a valid user session exists already, the browser will be redirected to &#x60;urls.default_redirect_url&#x60;.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.PublicApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    PublicApi apiInstance = new PublicApi(defaultClient);
+    try {
+      apiInstance.initializeSelfServiceBrowserLoginFlow();
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PublicApi#initializeSelfServiceBrowserLoginFlow");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**500** | genericError |  -  |
+
+<a name="initializeSelfServiceBrowserLogoutFlow"></a>
+# **initializeSelfServiceBrowserLogoutFlow**
+> initializeSelfServiceBrowserLogoutFlow()
+
+Initialize Browser-Based Logout User Flow
+
+This endpoint initializes a logout flow.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  On successful logout, the browser will be redirected (HTTP 302 Found) to &#x60;urls.default_return_to&#x60;.  More information can be found at [ORY Kratos User Logout Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-logout).
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.PublicApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    PublicApi apiInstance = new PublicApi(defaultClient);
+    try {
+      apiInstance.initializeSelfServiceBrowserLogoutFlow();
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PublicApi#initializeSelfServiceBrowserLogoutFlow");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**500** | genericError |  -  |
+
+<a name="initializeSelfServiceBrowserRegistrationFlow"></a>
+# **initializeSelfServiceBrowserRegistrationFlow**
+> initializeSelfServiceBrowserRegistrationFlow()
+
+Initialize browser-based registration user flow
+
+This endpoint initializes a browser-based user registration flow. Once initialized, the browser will be redirected to &#x60;urls.registration_ui&#x60; with the request ID set as a query parameter. If a valid user session exists already, the browser will be redirected to &#x60;urls.default_redirect_url&#x60;.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.PublicApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    PublicApi apiInstance = new PublicApi(defaultClient);
+    try {
+      apiInstance.initializeSelfServiceBrowserRegistrationFlow();
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PublicApi#initializeSelfServiceBrowserRegistrationFlow");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**500** | genericError |  -  |
+
+<a name="initializeSelfServiceProfileManagementFlow"></a>
+# **initializeSelfServiceProfileManagementFlow**
+> initializeSelfServiceProfileManagementFlow()
+
+Initialize browser-based profile management flow
+
+This endpoint initializes a browser-based profile management flow. Once initialized, the browser will be redirected to &#x60;urls.profile_ui&#x60; with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.PublicApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    PublicApi apiInstance = new PublicApi(defaultClient);
+    try {
+      apiInstance.initializeSelfServiceProfileManagementFlow();
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PublicApi#initializeSelfServiceProfileManagementFlow");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**500** | genericError |  -  |
+
+<a name="whoami"></a>
+# **whoami**
+> Session whoami()
+
+Check who the current HTTP session belongs to
+
+Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object or 401 if the credentials are invalid or no credentials were sent.  This endpoint is useful for reverse proxies and API Gateways.
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.PublicApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    PublicApi apiInstance = new PublicApi(defaultClient);
+    try {
+      Session result = apiInstance.whoami();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PublicApi#whoami");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**Session**](Session.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | session |  -  |
+**403** | genericError |  -  |
 **500** | genericError |  -  |
 

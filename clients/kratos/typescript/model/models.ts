@@ -1,6 +1,9 @@
+export * from './completeSelfServiceBrowserProfileManagementFlowPayload';
+export * from './errorContainer';
 export * from './form';
 export * from './formField';
 export * from './genericError';
+export * from './genericErrorPayload';
 export * from './healthNotReadyStatus';
 export * from './healthStatus';
 export * from './identity';
@@ -8,19 +11,21 @@ export * from './loginRequest';
 export * from './loginRequestMethod';
 export * from './loginRequestMethodConfig';
 export * from './modelError';
-export * from './oidcStrategyCredentialsConfig';
-export * from './oidcStrategyRequestMethod';
 export * from './profileManagementRequest';
 export * from './registrationRequest';
 export * from './registrationRequestMethod';
 export * from './registrationRequestMethodConfig';
+export * from './session';
 export * from './version';
 
 import localVarRequest = require('request');
 
+import { CompleteSelfServiceBrowserProfileManagementFlowPayload } from './completeSelfServiceBrowserProfileManagementFlowPayload';
+import { ErrorContainer } from './errorContainer';
 import { Form } from './form';
 import { FormField } from './formField';
 import { GenericError } from './genericError';
+import { GenericErrorPayload } from './genericErrorPayload';
 import { HealthNotReadyStatus } from './healthNotReadyStatus';
 import { HealthStatus } from './healthStatus';
 import { Identity } from './identity';
@@ -28,12 +33,11 @@ import { LoginRequest } from './loginRequest';
 import { LoginRequestMethod } from './loginRequestMethod';
 import { LoginRequestMethodConfig } from './loginRequestMethodConfig';
 import { ModelError } from './modelError';
-import { OidcStrategyCredentialsConfig } from './oidcStrategyCredentialsConfig';
-import { OidcStrategyRequestMethod } from './oidcStrategyRequestMethod';
 import { ProfileManagementRequest } from './profileManagementRequest';
 import { RegistrationRequest } from './registrationRequest';
 import { RegistrationRequestMethod } from './registrationRequestMethod';
 import { RegistrationRequestMethodConfig } from './registrationRequestMethodConfig';
+import { Session } from './session';
 import { Version } from './version';
 
 /* tslint:disable:no-unused-variable */
@@ -52,9 +56,12 @@ let enumsMap: {[index: string]: any} = {
 }
 
 let typeMap: {[index: string]: any} = {
+    "CompleteSelfServiceBrowserProfileManagementFlowPayload": CompleteSelfServiceBrowserProfileManagementFlowPayload,
+    "ErrorContainer": ErrorContainer,
     "Form": Form,
     "FormField": FormField,
     "GenericError": GenericError,
+    "GenericErrorPayload": GenericErrorPayload,
     "HealthNotReadyStatus": HealthNotReadyStatus,
     "HealthStatus": HealthStatus,
     "Identity": Identity,
@@ -62,12 +69,11 @@ let typeMap: {[index: string]: any} = {
     "LoginRequestMethod": LoginRequestMethod,
     "LoginRequestMethodConfig": LoginRequestMethodConfig,
     "ModelError": ModelError,
-    "OidcStrategyCredentialsConfig": OidcStrategyCredentialsConfig,
-    "OidcStrategyRequestMethod": OidcStrategyRequestMethod,
     "ProfileManagementRequest": ProfileManagementRequest,
     "RegistrationRequest": RegistrationRequest,
     "RegistrationRequestMethod": RegistrationRequestMethod,
     "RegistrationRequestMethodConfig": RegistrationRequestMethodConfig,
+    "Session": Session,
     "Version": Version,
 }
 

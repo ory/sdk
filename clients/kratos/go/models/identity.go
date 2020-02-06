@@ -26,9 +26,12 @@ type Identity struct {
 	// Required: true
 	Traits Traits `json:"traits"`
 
-	// TraitsSchemaURL is the JSON Schema to be used for validating the identity's traits.
+	// TraitsSchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
+	TraitsSchemaID string `json:"traits_schema_id,omitempty"`
+
+	// TraitsSchemaURL is the URL of the endpoint where the identity's traits schema can be fetched from.
 	//
-	// format: uri
+	// format: url
 	TraitsSchemaURL string `json:"traits_schema_url,omitempty"`
 }
 

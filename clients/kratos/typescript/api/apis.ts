@@ -1,3 +1,7 @@
+export * from './adminApi';
+import { AdminApi } from './adminApi';
+export * from './commonApi';
+import { CommonApi } from './commonApi';
 export * from './healthApi';
 import { HealthApi } from './healthApi';
 export * from './publicApi';
@@ -24,4 +28,4 @@ export interface RequestDetailedFile {
 
 export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 
-export const APIS = [HealthApi, PublicApi, VersionApi];
+export const APIS = [AdminApi, CommonApi, HealthApi, PublicApi, VersionApi];

@@ -4,23 +4,26 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**complete_profile_management_flow**](PublicApi.md#complete_profile_management_flow) | **POST** /profiles | Complete Profile Management Flow
-[**get_login_request**](PublicApi.md#get_login_request) | **GET** /auth/browser/requests/login | Get Login Request
-[**get_profile_management_request**](PublicApi.md#get_profile_management_request) | **GET** /profiles/requests | Get Profile Management Request (via cookie)
-[**get_registration_request**](PublicApi.md#get_registration_request) | **GET** /auth/browser/requests/registration | Get Registration Request
-[**initialize_login_flow**](PublicApi.md#initialize_login_flow) | **GET** /auth/browser/login | Initialize a Login Flow
-[**initialize_profile_management_flow**](PublicApi.md#initialize_profile_management_flow) | **GET** /profiles | Initialize Profile Management Flow
-[**initialize_registration_flow**](PublicApi.md#initialize_registration_flow) | **GET** /auth/browser/registration | Initialize a Registration Flow
+[**complete_self_service_browser_profile_management_flow**](PublicApi.md#complete_self_service_browser_profile_management_flow) | **POST** /self-service/browser/flows/profile/update | Complete the browser-based profile management flows
+[**get_self_service_browser_login_request**](PublicApi.md#get_self_service_browser_login_request) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
+[**get_self_service_browser_profile_management_request**](PublicApi.md#get_self_service_browser_profile_management_request) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
+[**get_self_service_browser_registration_request**](PublicApi.md#get_self_service_browser_registration_request) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
+[**get_self_service_error**](PublicApi.md#get_self_service_error) | **GET** /self-service/errors | Get user-facing self-service errors
+[**initialize_self_service_browser_login_flow**](PublicApi.md#initialize_self_service_browser_login_flow) | **GET** /self-service/browser/flows/login | Initialize browser-based login user flow
+[**initialize_self_service_browser_logout_flow**](PublicApi.md#initialize_self_service_browser_logout_flow) | **GET** /self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
+[**initialize_self_service_browser_registration_flow**](PublicApi.md#initialize_self_service_browser_registration_flow) | **GET** /self-service/browser/flows/registration | Initialize browser-based registration user flow
+[**initialize_self_service_profile_management_flow**](PublicApi.md#initialize_self_service_profile_management_flow) | **GET** /self-service/browser/flows/profile | Initialize browser-based profile management flow
+[**whoami**](PublicApi.md#whoami) | **GET** /sessions/whoami | Check who the current HTTP session belongs to
 
 
 
-## complete_profile_management_flow
+## complete_self_service_browser_profile_management_flow
 
-> complete_profile_management_flow
+> complete_self_service_browser_profile_management_flow(request, body)
 
-Complete Profile Management Flow
+Complete the browser-based profile management flows
 
-This endpoint returns a login request's context with, for example, error details and other information.  For an in-depth look at ORY Krato's profile management flow, head over to: https://www.ory.sh/docs/kratos/selfservice/profile
+This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity's Traits JSON Schema, the data will be updated and the browser redirected to `url.profile_ui` for further steps.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
 
 ### Example
 
@@ -29,18 +32,24 @@ This endpoint returns a login request's context with, for example, error details
 require 'ory-kratos-client'
 
 api_instance = OryHydraClient::PublicApi.new
+request = 'request_example' # String | Request is the request ID.
+body = OryHydraClient::CompleteSelfServiceBrowserProfileManagementFlowPayload.new # CompleteSelfServiceBrowserProfileManagementFlowPayload | 
 
 begin
-  #Complete Profile Management Flow
-  api_instance.complete_profile_management_flow
+  #Complete the browser-based profile management flows
+  api_instance.complete_self_service_browser_profile_management_flow(request, body)
 rescue OryHydraClient::ApiError => e
-  puts "Exception when calling PublicApi->complete_profile_management_flow: #{e}"
+  puts "Exception when calling PublicApi->complete_self_service_browser_profile_management_flow: #{e}"
 end
 ```
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | **String**| Request is the request ID. | 
+ **body** | [**CompleteSelfServiceBrowserProfileManagementFlowPayload**](CompleteSelfServiceBrowserProfileManagementFlowPayload.md)|  | 
 
 ### Return type
 
@@ -52,17 +61,17 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json, application/x-www-form-urlencoded
 - **Accept**: application/json
 
 
-## get_login_request
+## get_self_service_browser_login_request
 
-> LoginRequest get_login_request
+> LoginRequest get_self_service_browser_login_request(request)
 
-Get Login Request
+Get the request context of browser-based login user flows
 
-This endpoint returns a login request's context with, for example, error details and other information.  For an in-depth look at ORY Krato's login flow, head over to: https://www.ory.sh/docs/kratos/selfservice/login
+This endpoint returns a login request's context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 
@@ -71,19 +80,23 @@ This endpoint returns a login request's context with, for example, error details
 require 'ory-kratos-client'
 
 api_instance = OryHydraClient::PublicApi.new
+request = 'request_example' # String | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
 
 begin
-  #Get Login Request
-  result = api_instance.get_login_request
+  #Get the request context of browser-based login user flows
+  result = api_instance.get_self_service_browser_login_request(request)
   p result
 rescue OryHydraClient::ApiError => e
-  puts "Exception when calling PublicApi->get_login_request: #{e}"
+  puts "Exception when calling PublicApi->get_self_service_browser_login_request: #{e}"
 end
 ```
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | **String**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). | 
 
 ### Return type
 
@@ -99,13 +112,13 @@ No authorization required
 - **Accept**: application/json
 
 
-## get_profile_management_request
+## get_self_service_browser_profile_management_request
 
-> ProfileManagementRequest get_profile_management_request(request)
+> ProfileManagementRequest get_self_service_browser_profile_management_request(request)
 
-Get Profile Management Request (via cookie)
+Get the request context of browser-based profile management flows
 
-This endpoint returns a profile management request's context with, for example, error details and other information.  It can be used from a Single Page Application or other applications running on a client device. The request must be made with valid authentication cookies or it will fail!  If you wish to access this endpoint without the valid cookies (e.g. as part of a server) please call this path at the admin port.  For an in-depth look at ORY Krato's profile management flow, head over to: https://www.ory.sh/docs/kratos/selfservice/profile
+When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
 
 ### Example
 
@@ -114,14 +127,14 @@ This endpoint returns a profile management request's context with, for example, 
 require 'ory-kratos-client'
 
 api_instance = OryHydraClient::PublicApi.new
-request = 'request_example' # String | Request should be set to the value of the `request` query parameter by the profile management UI.
+request = 'request_example' # String | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
 
 begin
-  #Get Profile Management Request (via cookie)
-  result = api_instance.get_profile_management_request(request)
+  #Get the request context of browser-based profile management flows
+  result = api_instance.get_self_service_browser_profile_management_request(request)
   p result
 rescue OryHydraClient::ApiError => e
-  puts "Exception when calling PublicApi->get_profile_management_request: #{e}"
+  puts "Exception when calling PublicApi->get_self_service_browser_profile_management_request: #{e}"
 end
 ```
 
@@ -130,7 +143,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request** | **String**| Request should be set to the value of the &#x60;request&#x60; query parameter by the profile management UI. | 
+ **request** | **String**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). | 
 
 ### Return type
 
@@ -146,13 +159,13 @@ No authorization required
 - **Accept**: application/json
 
 
-## get_registration_request
+## get_self_service_browser_registration_request
 
-> RegistrationRequest get_registration_request
+> RegistrationRequest get_self_service_browser_registration_request(request)
 
-Get Registration Request
+Get the request context of browser-based registration user flows
 
-This endpoint returns a registration request's context with, for example, error details and other information.  For an in-depth look at ORY Krato's registration flow, head over to: https://www.ory.sh/docs/kratos/selfservice/registration
+This endpoint returns a registration request's context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 
@@ -161,19 +174,23 @@ This endpoint returns a registration request's context with, for example, error 
 require 'ory-kratos-client'
 
 api_instance = OryHydraClient::PublicApi.new
+request = 'request_example' # String | Request is the Registration Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/registration?request=abcde`).
 
 begin
-  #Get Registration Request
-  result = api_instance.get_registration_request
+  #Get the request context of browser-based registration user flows
+  result = api_instance.get_self_service_browser_registration_request(request)
   p result
 rescue OryHydraClient::ApiError => e
-  puts "Exception when calling PublicApi->get_registration_request: #{e}"
+  puts "Exception when calling PublicApi->get_self_service_browser_registration_request: #{e}"
 end
 ```
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | **String**| Request is the Registration Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?request&#x3D;abcde&#x60;). | 
 
 ### Return type
 
@@ -189,13 +206,62 @@ No authorization required
 - **Accept**: application/json
 
 
-## initialize_login_flow
+## get_self_service_error
 
-> initialize_login_flow
+> ErrorContainer get_self_service_error(opts)
 
-Initialize a Login Flow
+Get user-facing self-service errors
 
-This endpoint initializes a login flow. This endpoint **should not be called from a programatic API** but instead for the, for example, browser. It will redirect the user agent (e.g. browser) to the configured login UI, appending the login challenge.  If the user-agent already has a valid authentication session, the server will respond with a 302 code redirecting to the config value of `urls.default_return_to`.  For an in-depth look at ORY Krato's login flow, head over to: https://www.ory.sh/docs/kratos/selfservice/login
+This endpoint returns the error associated with a user-facing self service errors.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
+
+### Example
+
+```ruby
+# load the gem
+require 'ory-kratos-client'
+
+api_instance = OryHydraClient::PublicApi.new
+opts = {
+  id: 'id_example' # String | 
+}
+
+begin
+  #Get user-facing self-service errors
+  result = api_instance.get_self_service_error(opts)
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Exception when calling PublicApi->get_self_service_error: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | [optional] 
+
+### Return type
+
+[**ErrorContainer**](ErrorContainer.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## initialize_self_service_browser_login_flow
+
+> initialize_self_service_browser_login_flow
+
+Initialize browser-based login user flow
+
+This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to `urls.login_ui` with the request ID set as a query parameter. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url`.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 
@@ -206,10 +272,10 @@ require 'ory-kratos-client'
 api_instance = OryHydraClient::PublicApi.new
 
 begin
-  #Initialize a Login Flow
-  api_instance.initialize_login_flow
+  #Initialize browser-based login user flow
+  api_instance.initialize_self_service_browser_login_flow
 rescue OryHydraClient::ApiError => e
-  puts "Exception when calling PublicApi->initialize_login_flow: #{e}"
+  puts "Exception when calling PublicApi->initialize_self_service_browser_login_flow: #{e}"
 end
 ```
 
@@ -231,13 +297,13 @@ No authorization required
 - **Accept**: application/json
 
 
-## initialize_profile_management_flow
+## initialize_self_service_browser_logout_flow
 
-> initialize_profile_management_flow
+> initialize_self_service_browser_logout_flow
 
-Initialize Profile Management Flow
+Initialize Browser-Based Logout User Flow
 
-This endpoint initializes a profile update flow. This endpoint **should not be called from a programatic API** but instead for the, for example, browser. It will redirect the user agent (e.g. browser) to the configured login UI, appending the login challenge.  If the user-agent does not have a valid authentication session, a 302 code will be returned which redirects to the initializeLoginFlow endpoint, appending this page as the return_to value.  For an in-depth look at ORY Krato's profile management flow, head over to: https://www.ory.sh/docs/kratos/selfservice/profile
+This endpoint initializes a logout flow.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  On successful logout, the browser will be redirected (HTTP 302 Found) to `urls.default_return_to`.  More information can be found at [ORY Kratos User Logout Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-logout).
 
 ### Example
 
@@ -248,10 +314,10 @@ require 'ory-kratos-client'
 api_instance = OryHydraClient::PublicApi.new
 
 begin
-  #Initialize Profile Management Flow
-  api_instance.initialize_profile_management_flow
+  #Initialize Browser-Based Logout User Flow
+  api_instance.initialize_self_service_browser_logout_flow
 rescue OryHydraClient::ApiError => e
-  puts "Exception when calling PublicApi->initialize_profile_management_flow: #{e}"
+  puts "Exception when calling PublicApi->initialize_self_service_browser_logout_flow: #{e}"
 end
 ```
 
@@ -273,13 +339,13 @@ No authorization required
 - **Accept**: application/json
 
 
-## initialize_registration_flow
+## initialize_self_service_browser_registration_flow
 
-> initialize_registration_flow
+> initialize_self_service_browser_registration_flow
 
-Initialize a Registration Flow
+Initialize browser-based registration user flow
 
-This endpoint initializes a registration flow. This endpoint **should not be called from a programatic API** but instead for the, for example, browser. It will redirect the user agent (e.g. browser) to the configured registration UI, appending the registration challenge.  For an in-depth look at ORY Krato's registration flow, head over to: https://www.ory.sh/docs/kratos/selfservice/registration
+This endpoint initializes a browser-based user registration flow. Once initialized, the browser will be redirected to `urls.registration_ui` with the request ID set as a query parameter. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url`.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 
@@ -290,10 +356,10 @@ require 'ory-kratos-client'
 api_instance = OryHydraClient::PublicApi.new
 
 begin
-  #Initialize a Registration Flow
-  api_instance.initialize_registration_flow
+  #Initialize browser-based registration user flow
+  api_instance.initialize_self_service_browser_registration_flow
 rescue OryHydraClient::ApiError => e
-  puts "Exception when calling PublicApi->initialize_registration_flow: #{e}"
+  puts "Exception when calling PublicApi->initialize_self_service_browser_registration_flow: #{e}"
 end
 ```
 
@@ -304,6 +370,91 @@ This endpoint does not need any parameter.
 ### Return type
 
 nil (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## initialize_self_service_profile_management_flow
+
+> initialize_self_service_profile_management_flow
+
+Initialize browser-based profile management flow
+
+This endpoint initializes a browser-based profile management flow. Once initialized, the browser will be redirected to `urls.profile_ui` with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
+
+### Example
+
+```ruby
+# load the gem
+require 'ory-kratos-client'
+
+api_instance = OryHydraClient::PublicApi.new
+
+begin
+  #Initialize browser-based profile management flow
+  api_instance.initialize_self_service_profile_management_flow
+rescue OryHydraClient::ApiError => e
+  puts "Exception when calling PublicApi->initialize_self_service_profile_management_flow: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## whoami
+
+> Session whoami
+
+Check who the current HTTP session belongs to
+
+Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object or 401 if the credentials are invalid or no credentials were sent.  This endpoint is useful for reverse proxies and API Gateways.
+
+### Example
+
+```ruby
+# load the gem
+require 'ory-kratos-client'
+
+api_instance = OryHydraClient::PublicApi.new
+
+begin
+  #Check who the current HTTP session belongs to
+  result = api_instance.whoami
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Exception when calling PublicApi->whoami: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**Session**](Session.md)
 
 ### Authorization
 
