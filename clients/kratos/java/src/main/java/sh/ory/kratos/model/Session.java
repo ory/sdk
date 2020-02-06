@@ -29,7 +29,7 @@ import sh.ory.kratos.model.Identity;
 /**
  * Session
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-06T10:51:54.597567Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-06T13:59:34.604401Z[GMT]")
 public class Session {
   public static final String SERIALIZED_NAME_AUTHENTICATED_AT = "authenticated_at";
   @SerializedName(SERIALIZED_NAME_AUTHENTICATED_AT)

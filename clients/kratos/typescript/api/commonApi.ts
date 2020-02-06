@@ -86,7 +86,7 @@ export class CommonApi {
      * @summary Get the request context of browser-based login user flows
      * @param request Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;).
      */
-    public async getSelfServiceBrowserLoginRequest (request: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.ClientResponse; body: LoginRequest;  }> {
+    public async getSelfServiceBrowserLoginRequest (request: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: LoginRequest;  }> {
         const localVarPath = this.basePath + '/self-service/browser/flows/requests/login';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -137,7 +137,7 @@ export class CommonApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.ClientResponse; body: LoginRequest;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: LoginRequest;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
@@ -158,7 +158,7 @@ export class CommonApi {
      * @summary Get the request context of browser-based profile management flows
      * @param request Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;).
      */
-    public async getSelfServiceBrowserProfileManagementRequest (request: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.ClientResponse; body: ProfileManagementRequest;  }> {
+    public async getSelfServiceBrowserProfileManagementRequest (request: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ProfileManagementRequest;  }> {
         const localVarPath = this.basePath + '/self-service/browser/flows/requests/profile';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -209,7 +209,7 @@ export class CommonApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.ClientResponse; body: ProfileManagementRequest;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: ProfileManagementRequest;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
@@ -230,7 +230,7 @@ export class CommonApi {
      * @summary Get the request context of browser-based registration user flows
      * @param request Request is the Registration Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?request&#x3D;abcde&#x60;).
      */
-    public async getSelfServiceBrowserRegistrationRequest (request: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.ClientResponse; body: RegistrationRequest;  }> {
+    public async getSelfServiceBrowserRegistrationRequest (request: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: RegistrationRequest;  }> {
         const localVarPath = this.basePath + '/self-service/browser/flows/requests/registration';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -281,7 +281,7 @@ export class CommonApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.ClientResponse; body: RegistrationRequest;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: RegistrationRequest;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
@@ -302,7 +302,7 @@ export class CommonApi {
      * @summary Get user-facing self-service errors
      * @param id 
      */
-    public async getSelfServiceError (id?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.ClientResponse; body: ErrorContainer;  }> {
+    public async getSelfServiceError (id?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ErrorContainer;  }> {
         const localVarPath = this.basePath + '/self-service/errors';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -348,7 +348,7 @@ export class CommonApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.ClientResponse; body: ErrorContainer;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: ErrorContainer;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);

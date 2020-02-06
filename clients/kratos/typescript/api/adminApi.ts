@@ -87,7 +87,7 @@ export class AdminApi {
      * @summary Create an identity
      * @param body 
      */
-    public async createIdentity (body: Identity, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.ClientResponse; body: Identity;  }> {
+    public async createIdentity (body: Identity, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Identity;  }> {
         const localVarPath = this.basePath + '/identities';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -135,7 +135,7 @@ export class AdminApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.ClientResponse; body: Identity;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Identity;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
@@ -156,7 +156,7 @@ export class AdminApi {
      * @summary Delete an identity
      * @param id ID is the identity\&#39;s ID.
      */
-    public async deleteIdentity (id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public async deleteIdentity (id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/identities/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -204,7 +204,7 @@ export class AdminApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
@@ -224,7 +224,7 @@ export class AdminApi {
      * @summary Get an identity
      * @param id ID must be set to the ID of identity you want to get
      */
-    public async getIdentity (id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.ClientResponse; body: Identity;  }> {
+    public async getIdentity (id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Identity;  }> {
         const localVarPath = this.basePath + '/identities/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -272,7 +272,7 @@ export class AdminApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.ClientResponse; body: Identity;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Identity;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
@@ -293,7 +293,7 @@ export class AdminApi {
      * @summary Get the request context of browser-based login user flows
      * @param request Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;).
      */
-    public async getSelfServiceBrowserLoginRequest (request: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.ClientResponse; body: LoginRequest;  }> {
+    public async getSelfServiceBrowserLoginRequest (request: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: LoginRequest;  }> {
         const localVarPath = this.basePath + '/self-service/browser/flows/requests/login';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -344,7 +344,7 @@ export class AdminApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.ClientResponse; body: LoginRequest;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: LoginRequest;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
@@ -365,7 +365,7 @@ export class AdminApi {
      * @summary Get the request context of browser-based profile management flows
      * @param request Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;).
      */
-    public async getSelfServiceBrowserProfileManagementRequest (request: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.ClientResponse; body: ProfileManagementRequest;  }> {
+    public async getSelfServiceBrowserProfileManagementRequest (request: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ProfileManagementRequest;  }> {
         const localVarPath = this.basePath + '/self-service/browser/flows/requests/profile';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -416,7 +416,7 @@ export class AdminApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.ClientResponse; body: ProfileManagementRequest;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: ProfileManagementRequest;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
@@ -437,7 +437,7 @@ export class AdminApi {
      * @summary Get the request context of browser-based registration user flows
      * @param request Request is the Registration Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?request&#x3D;abcde&#x60;).
      */
-    public async getSelfServiceBrowserRegistrationRequest (request: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.ClientResponse; body: RegistrationRequest;  }> {
+    public async getSelfServiceBrowserRegistrationRequest (request: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: RegistrationRequest;  }> {
         const localVarPath = this.basePath + '/self-service/browser/flows/requests/registration';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -488,7 +488,7 @@ export class AdminApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.ClientResponse; body: RegistrationRequest;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: RegistrationRequest;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
@@ -509,7 +509,7 @@ export class AdminApi {
      * @summary Get user-facing self-service errors
      * @param id 
      */
-    public async getSelfServiceError (id?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.ClientResponse; body: ErrorContainer;  }> {
+    public async getSelfServiceError (id?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ErrorContainer;  }> {
         const localVarPath = this.basePath + '/self-service/errors';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -555,7 +555,7 @@ export class AdminApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.ClientResponse; body: ErrorContainer;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: ErrorContainer;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
@@ -575,7 +575,7 @@ export class AdminApi {
      * This endpoint returns a login request\'s context with, for example, error details and other information.  Learn how identities work in [ORY Kratos\' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
      * @summary List all identities in the system
      */
-    public async listIdentities (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.ClientResponse; body: Array<Identity>;  }> {
+    public async listIdentities (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<Identity>;  }> {
         const localVarPath = this.basePath + '/identities';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -617,7 +617,7 @@ export class AdminApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.ClientResponse; body: Array<Identity>;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Array<Identity>;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
@@ -639,7 +639,7 @@ export class AdminApi {
      * @param id ID must be set to the ID of identity you want to update
      * @param body 
      */
-    public async updateIdentity (id: string, body: Identity, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.ClientResponse; body: Identity;  }> {
+    public async updateIdentity (id: string, body: Identity, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Identity;  }> {
         const localVarPath = this.basePath + '/identities/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -693,7 +693,7 @@ export class AdminApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.ClientResponse; body: Identity;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Identity;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
