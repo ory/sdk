@@ -2,4 +2,4 @@ npmName: "@oryd/$PROJECT-client"
 npmVersion: $VERSION
 # typescriptThreePlus: true
 #npmRepository: https://github.com/ory/sdk.git
-# supportsES6: true
+supportsES6: true
