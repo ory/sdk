@@ -14,7 +14,7 @@ to_git() {
 
   (cd "${gitdir}"; git fetch origin || true; git checkout master || true; git reset --hard HEAD || true; git pull -ff || true; git checkout -b "release-$(date +%s)" master)
 
-  cp -R "${srcdir}/" "${gitdir}"
+  cp -R "${srcdir}/*" "${gitdir}"
   ls -la "${gitdir}"
 
   (cd "${gitdir}"; git add -A || true; (git commit -a  -F- <<EOF
