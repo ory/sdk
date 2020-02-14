@@ -148,7 +148,7 @@ ruby () {
 
   dir="clients/${PROJECT}/ruby"
 
-  rm "${dir}/lib/ory-${PROJECT}-client/version.rb"
+  rm "${dir}/lib/ory-${PROJECT}-client/version.rb" || true
 
   openapi-generator generate -i "${SPEC_FILE}" \
     -g ruby \
