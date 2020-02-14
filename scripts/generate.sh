@@ -52,8 +52,8 @@ java () {
 
   dir="clients/${PROJECT}/java"
 
-  rm -rf "${dir}/src/*" || true
-  rm -rf "${dir}/docs/*" || true
+  rm -rf "${dir}/src" || true
+  rm -rf "${dir}/docs" || true
 
   openapi-generator generate -i "${SPEC_FILE}" \
     -g java \

@@ -7,11 +7,10 @@ package models
 
 import (
 	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/swag"
 )
 
-// Upstream Upstream Upstream Upstream Upstream Upstream Upstream Upstream upstream
+// Upstream upstream
 // swagger:model Upstream
 type Upstream struct {
 

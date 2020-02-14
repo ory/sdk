@@ -6,12 +6,14 @@ package client
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
 
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	"github.com/ory/oathkeeper-client-go/client/api"
+	apiops "github.com/ory/oathkeeper-client-go/client/api"
+	"github.com/ory/oathkeeper-client-go/client/health"
+	"github.com/ory/oathkeeper-client-go/client/version"
 )
 
 // Default ory oathkeeper HTTP client.
@@ -56,9 +58,9 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *OryOathkee
 
 	cli := new(OryOathkeeper)
 	cli.Transport = transport
-
-	cli.API = api.New(transport, formats)
-
+	cli.API = apiops.New(transport, formats)
+	cli.Health = health.New(transport, formats)
+	cli.Version = version.New(transport, formats)
 	return cli
 }
 
@@ -103,7 +105,11 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // OryOathkeeper is a client for ory oathkeeper
 type OryOathkeeper struct {
-	API *api.Client
+	API apiops.ClientService
+
+	Health health.ClientService
+
+	Version version.ClientService
 
 	Transport runtime.ClientTransport
 }
@@ -111,7 +117,7 @@ type OryOathkeeper struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *OryOathkeeper) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
-
 	c.API.SetTransport(transport)
-
+	c.Health.SetTransport(transport)
+	c.Version.SetTransport(transport)
 }

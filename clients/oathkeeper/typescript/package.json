@@ -1,6 +1,6 @@
 {
   "name": "@oryd/oathkeeper-client",
-  "version": "v0.0.0-alpha.37",
+  "version": "v0.36.0-beta.3",
   "description": "NodeJS client for @oryd/oathkeeper-client",
   "repository": "ory/sdk",
   "main": "dist/api.js",
@@ -11,7 +11,7 @@
     "test": "npm run build && node dist/client.js"
   },
   "author": "ORY GmbH",
-  "license": "Apache License, Version 2.0",
+  "license": "Apache-2.0",
   "dependencies": {
     "bluebird": "^3.5.0",
     "request": "^2.81.0",

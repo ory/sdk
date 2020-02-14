@@ -14,7 +14,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/ory/oathkeeper-client-go/models"
+	"github.com/ory/oathkeeper-client-go/models"
 )
 
 // GetWellKnownJSONWebKeysReader is a Reader for the GetWellKnownJSONWebKeys structure.
