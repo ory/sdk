@@ -5,7 +5,6 @@ cd "$( dirname "${BASH_SOURCE[0]}" )/.."
 
 source scripts/prep.sh
 
-rm -rf clients/*
 rm -rf config/client/*.proc.yml
 
 for f in config/client/*
@@ -52,6 +51,9 @@ java () {
   echo "Generating Java..."
 
   dir="clients/${PROJECT}/java"
+
+  rm -rf "${dir}/src/*" || true
+  rm -rf "${dir}/docs/*" || true
 
   openapi-generator generate -i "${SPEC_FILE}" \
     -g java \
