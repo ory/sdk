@@ -1,43 +1,39 @@
 {
-  "name": "ory/keto-client",
-  "description": "A cloud native access control server providing best-practice patterns (RBAC, ABAC, ACL, AWS IAM Policies, Kubernetes Roles, ...) via REST APIs.",
-  "keywords": [
-    "openapitools",
-    "openapi-generator",
-    "openapi",
-    "php",
-    "sdk",
-    "rest",
-    "api"
-  ],
-  "homepage": "https://github.com/ory/keto-client-php",
-  "license": "Apache License, Version 2.0",
-  "authors": [
-    {
-      "name": "ORY GmbH",
-      "homepage": "https://www.ory.sh"
+    "name": "ory/keto-client-php",
+    "description": "Ory Keto is a cloud native access control server providing best-practice patterns (RBAC, ABAC, ACL, AWS IAM Policies, Kubernetes Roles, ...) via REST APIs.",
+    "keywords": [
+        "openapitools",
+        "openapi-generator",
+        "openapi",
+        "php",
+        "sdk",
+        "rest",
+        "api"
+    ],
+    "homepage": "https://openapi-generator.tech",
+    "license": "unlicense",
+    "authors": [
+        {
+            "name": "OpenAPI-Generator contributors",
+            "homepage": "https://openapi-generator.tech"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.4",
+        "squizlabs/php_codesniffer": "~2.6",
+        "friendsofphp/php-cs-fixer": "~2.12"
+    },
+    "autoload": {
+        "psr-4": { "Ory\\Keto\\Client\\" : "lib/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Ory\\Keto\\Client\\" : "test/" }
     }
-  ],
-  "require": {
-    "php": ">=7.1",
-    "ext-curl": "*",
-    "ext-json": "*",
-    "ext-mbstring": "*",
-    "guzzlehttp/guzzle": "^6.2"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "^7.4",
-    "squizlabs/php_codesniffer": "~2.6",
-    "friendsofphp/php-cs-fixer": "~2.12"
-  },
-  "autoload": {
-    "psr-4": {
-      "Ory\\Keto\\Client\\": "lib/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Ory\\Keto\\Client\\": "test/"
-    }
-  }
 }

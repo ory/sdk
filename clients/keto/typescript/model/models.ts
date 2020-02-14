@@ -1,137 +1,23 @@
-export * from './addOryAccessControlPolicyRoleMembers';
 export * from './addOryAccessControlPolicyRoleMembersBody';
-export * from './addOryAccessControlPolicyRoleMembersInternalServerError';
-export * from './addOryAccessControlPolicyRoleMembersInternalServerErrorBody';
-export * from './addOryAccessControlPolicyRoleMembersOK';
 export * from './authorizationResult';
-export * from './deleteOryAccessControlPolicy';
-export * from './deleteOryAccessControlPolicyInternalServerError';
-export * from './deleteOryAccessControlPolicyInternalServerErrorBody';
-export * from './deleteOryAccessControlPolicyRole';
-export * from './deleteOryAccessControlPolicyRoleInternalServerError';
-export * from './deleteOryAccessControlPolicyRoleInternalServerErrorBody';
-export * from './doOryAccessControlPoliciesAllow';
-export * from './doOryAccessControlPoliciesAllowForbidden';
-export * from './doOryAccessControlPoliciesAllowInternalServerError';
-export * from './doOryAccessControlPoliciesAllowInternalServerErrorBody';
-export * from './doOryAccessControlPoliciesAllowOK';
-export * from './getOryAccessControlPolicy';
-export * from './getOryAccessControlPolicyInternalServerError';
-export * from './getOryAccessControlPolicyInternalServerErrorBody';
-export * from './getOryAccessControlPolicyNotFound';
-export * from './getOryAccessControlPolicyNotFoundBody';
-export * from './getOryAccessControlPolicyOK';
-export * from './getOryAccessControlPolicyRole';
-export * from './getOryAccessControlPolicyRoleInternalServerError';
-export * from './getOryAccessControlPolicyRoleInternalServerErrorBody';
-export * from './getOryAccessControlPolicyRoleNotFound';
-export * from './getOryAccessControlPolicyRoleNotFoundBody';
-export * from './getOryAccessControlPolicyRoleOK';
 export * from './healthNotReadyStatus';
 export * from './healthStatus';
 export * from './inlineResponse500';
-export * from './input';
-export * from './isInstanceAliveInternalServerError';
-export * from './isInstanceAliveInternalServerErrorBody';
-export * from './isInstanceAliveOK';
-export * from './listOryAccessControlPolicies';
-export * from './listOryAccessControlPoliciesInternalServerError';
-export * from './listOryAccessControlPoliciesInternalServerErrorBody';
-export * from './listOryAccessControlPoliciesOK';
-export * from './listOryAccessControlPolicyRoles';
-export * from './listOryAccessControlPolicyRolesInternalServerError';
-export * from './listOryAccessControlPolicyRolesInternalServerErrorBody';
-export * from './listOryAccessControlPolicyRolesOK';
-export * from './oryAccessControlPolicies';
 export * from './oryAccessControlPolicy';
 export * from './oryAccessControlPolicyAllowedInput';
 export * from './oryAccessControlPolicyRole';
-export * from './oryAccessControlPolicyRoles';
-export * from './policy';
-export * from './removeOryAccessControlPolicyRoleMembers';
-export * from './removeOryAccessControlPolicyRoleMembersInternalServerError';
-export * from './removeOryAccessControlPolicyRoleMembersInternalServerErrorBody';
-export * from './role';
-export * from './swaggerHealthStatus';
-export * from './swaggerNotReadyStatus';
-export * from './swaggerVersion';
-export * from './upsertOryAccessControlPolicy';
-export * from './upsertOryAccessControlPolicyInternalServerError';
-export * from './upsertOryAccessControlPolicyInternalServerErrorBody';
-export * from './upsertOryAccessControlPolicyOK';
-export * from './upsertOryAccessControlPolicyRole';
-export * from './upsertOryAccessControlPolicyRoleInternalServerError';
-export * from './upsertOryAccessControlPolicyRoleInternalServerErrorBody';
-export * from './upsertOryAccessControlPolicyRoleOK';
 export * from './version';
 
 import localVarRequest = require('request');
 
-import { AddOryAccessControlPolicyRoleMembers } from './addOryAccessControlPolicyRoleMembers';
 import { AddOryAccessControlPolicyRoleMembersBody } from './addOryAccessControlPolicyRoleMembersBody';
-import { AddOryAccessControlPolicyRoleMembersInternalServerError } from './addOryAccessControlPolicyRoleMembersInternalServerError';
-import { AddOryAccessControlPolicyRoleMembersInternalServerErrorBody } from './addOryAccessControlPolicyRoleMembersInternalServerErrorBody';
-import { AddOryAccessControlPolicyRoleMembersOK } from './addOryAccessControlPolicyRoleMembersOK';
 import { AuthorizationResult } from './authorizationResult';
-import { DeleteOryAccessControlPolicy } from './deleteOryAccessControlPolicy';
-import { DeleteOryAccessControlPolicyInternalServerError } from './deleteOryAccessControlPolicyInternalServerError';
-import { DeleteOryAccessControlPolicyInternalServerErrorBody } from './deleteOryAccessControlPolicyInternalServerErrorBody';
-import { DeleteOryAccessControlPolicyRole } from './deleteOryAccessControlPolicyRole';
-import { DeleteOryAccessControlPolicyRoleInternalServerError } from './deleteOryAccessControlPolicyRoleInternalServerError';
-import { DeleteOryAccessControlPolicyRoleInternalServerErrorBody } from './deleteOryAccessControlPolicyRoleInternalServerErrorBody';
-import { DoOryAccessControlPoliciesAllow } from './doOryAccessControlPoliciesAllow';
-import { DoOryAccessControlPoliciesAllowForbidden } from './doOryAccessControlPoliciesAllowForbidden';
-import { DoOryAccessControlPoliciesAllowInternalServerError } from './doOryAccessControlPoliciesAllowInternalServerError';
-import { DoOryAccessControlPoliciesAllowInternalServerErrorBody } from './doOryAccessControlPoliciesAllowInternalServerErrorBody';
-import { DoOryAccessControlPoliciesAllowOK } from './doOryAccessControlPoliciesAllowOK';
-import { GetOryAccessControlPolicy } from './getOryAccessControlPolicy';
-import { GetOryAccessControlPolicyInternalServerError } from './getOryAccessControlPolicyInternalServerError';
-import { GetOryAccessControlPolicyInternalServerErrorBody } from './getOryAccessControlPolicyInternalServerErrorBody';
-import { GetOryAccessControlPolicyNotFound } from './getOryAccessControlPolicyNotFound';
-import { GetOryAccessControlPolicyNotFoundBody } from './getOryAccessControlPolicyNotFoundBody';
-import { GetOryAccessControlPolicyOK } from './getOryAccessControlPolicyOK';
-import { GetOryAccessControlPolicyRole } from './getOryAccessControlPolicyRole';
-import { GetOryAccessControlPolicyRoleInternalServerError } from './getOryAccessControlPolicyRoleInternalServerError';
-import { GetOryAccessControlPolicyRoleInternalServerErrorBody } from './getOryAccessControlPolicyRoleInternalServerErrorBody';
-import { GetOryAccessControlPolicyRoleNotFound } from './getOryAccessControlPolicyRoleNotFound';
-import { GetOryAccessControlPolicyRoleNotFoundBody } from './getOryAccessControlPolicyRoleNotFoundBody';
-import { GetOryAccessControlPolicyRoleOK } from './getOryAccessControlPolicyRoleOK';
 import { HealthNotReadyStatus } from './healthNotReadyStatus';
 import { HealthStatus } from './healthStatus';
 import { InlineResponse500 } from './inlineResponse500';
-import { Input } from './input';
-import { IsInstanceAliveInternalServerError } from './isInstanceAliveInternalServerError';
-import { IsInstanceAliveInternalServerErrorBody } from './isInstanceAliveInternalServerErrorBody';
-import { IsInstanceAliveOK } from './isInstanceAliveOK';
-import { ListOryAccessControlPolicies } from './listOryAccessControlPolicies';
-import { ListOryAccessControlPoliciesInternalServerError } from './listOryAccessControlPoliciesInternalServerError';
-import { ListOryAccessControlPoliciesInternalServerErrorBody } from './listOryAccessControlPoliciesInternalServerErrorBody';
-import { ListOryAccessControlPoliciesOK } from './listOryAccessControlPoliciesOK';
-import { ListOryAccessControlPolicyRoles } from './listOryAccessControlPolicyRoles';
-import { ListOryAccessControlPolicyRolesInternalServerError } from './listOryAccessControlPolicyRolesInternalServerError';
-import { ListOryAccessControlPolicyRolesInternalServerErrorBody } from './listOryAccessControlPolicyRolesInternalServerErrorBody';
-import { ListOryAccessControlPolicyRolesOK } from './listOryAccessControlPolicyRolesOK';
-import { OryAccessControlPolicies } from './oryAccessControlPolicies';
 import { OryAccessControlPolicy } from './oryAccessControlPolicy';
 import { OryAccessControlPolicyAllowedInput } from './oryAccessControlPolicyAllowedInput';
 import { OryAccessControlPolicyRole } from './oryAccessControlPolicyRole';
-import { OryAccessControlPolicyRoles } from './oryAccessControlPolicyRoles';
-import { Policy } from './policy';
-import { RemoveOryAccessControlPolicyRoleMembers } from './removeOryAccessControlPolicyRoleMembers';
-import { RemoveOryAccessControlPolicyRoleMembersInternalServerError } from './removeOryAccessControlPolicyRoleMembersInternalServerError';
-import { RemoveOryAccessControlPolicyRoleMembersInternalServerErrorBody } from './removeOryAccessControlPolicyRoleMembersInternalServerErrorBody';
-import { Role } from './role';
-import { SwaggerHealthStatus } from './swaggerHealthStatus';
-import { SwaggerNotReadyStatus } from './swaggerNotReadyStatus';
-import { SwaggerVersion } from './swaggerVersion';
-import { UpsertOryAccessControlPolicy } from './upsertOryAccessControlPolicy';
-import { UpsertOryAccessControlPolicyInternalServerError } from './upsertOryAccessControlPolicyInternalServerError';
-import { UpsertOryAccessControlPolicyInternalServerErrorBody } from './upsertOryAccessControlPolicyInternalServerErrorBody';
-import { UpsertOryAccessControlPolicyOK } from './upsertOryAccessControlPolicyOK';
-import { UpsertOryAccessControlPolicyRole } from './upsertOryAccessControlPolicyRole';
-import { UpsertOryAccessControlPolicyRoleInternalServerError } from './upsertOryAccessControlPolicyRoleInternalServerError';
-import { UpsertOryAccessControlPolicyRoleInternalServerErrorBody } from './upsertOryAccessControlPolicyRoleInternalServerErrorBody';
-import { UpsertOryAccessControlPolicyRoleOK } from './upsertOryAccessControlPolicyRoleOK';
 import { Version } from './version';
 
 /* tslint:disable:no-unused-variable */
@@ -150,71 +36,14 @@ let enumsMap: {[index: string]: any} = {
 }
 
 let typeMap: {[index: string]: any} = {
-    "AddOryAccessControlPolicyRoleMembers": AddOryAccessControlPolicyRoleMembers,
     "AddOryAccessControlPolicyRoleMembersBody": AddOryAccessControlPolicyRoleMembersBody,
-    "AddOryAccessControlPolicyRoleMembersInternalServerError": AddOryAccessControlPolicyRoleMembersInternalServerError,
-    "AddOryAccessControlPolicyRoleMembersInternalServerErrorBody": AddOryAccessControlPolicyRoleMembersInternalServerErrorBody,
-    "AddOryAccessControlPolicyRoleMembersOK": AddOryAccessControlPolicyRoleMembersOK,
     "AuthorizationResult": AuthorizationResult,
-    "DeleteOryAccessControlPolicy": DeleteOryAccessControlPolicy,
-    "DeleteOryAccessControlPolicyInternalServerError": DeleteOryAccessControlPolicyInternalServerError,
-    "DeleteOryAccessControlPolicyInternalServerErrorBody": DeleteOryAccessControlPolicyInternalServerErrorBody,
-    "DeleteOryAccessControlPolicyRole": DeleteOryAccessControlPolicyRole,
-    "DeleteOryAccessControlPolicyRoleInternalServerError": DeleteOryAccessControlPolicyRoleInternalServerError,
-    "DeleteOryAccessControlPolicyRoleInternalServerErrorBody": DeleteOryAccessControlPolicyRoleInternalServerErrorBody,
-    "DoOryAccessControlPoliciesAllow": DoOryAccessControlPoliciesAllow,
-    "DoOryAccessControlPoliciesAllowForbidden": DoOryAccessControlPoliciesAllowForbidden,
-    "DoOryAccessControlPoliciesAllowInternalServerError": DoOryAccessControlPoliciesAllowInternalServerError,
-    "DoOryAccessControlPoliciesAllowInternalServerErrorBody": DoOryAccessControlPoliciesAllowInternalServerErrorBody,
-    "DoOryAccessControlPoliciesAllowOK": DoOryAccessControlPoliciesAllowOK,
-    "GetOryAccessControlPolicy": GetOryAccessControlPolicy,
-    "GetOryAccessControlPolicyInternalServerError": GetOryAccessControlPolicyInternalServerError,
-    "GetOryAccessControlPolicyInternalServerErrorBody": GetOryAccessControlPolicyInternalServerErrorBody,
-    "GetOryAccessControlPolicyNotFound": GetOryAccessControlPolicyNotFound,
-    "GetOryAccessControlPolicyNotFoundBody": GetOryAccessControlPolicyNotFoundBody,
-    "GetOryAccessControlPolicyOK": GetOryAccessControlPolicyOK,
-    "GetOryAccessControlPolicyRole": GetOryAccessControlPolicyRole,
-    "GetOryAccessControlPolicyRoleInternalServerError": GetOryAccessControlPolicyRoleInternalServerError,
-    "GetOryAccessControlPolicyRoleInternalServerErrorBody": GetOryAccessControlPolicyRoleInternalServerErrorBody,
-    "GetOryAccessControlPolicyRoleNotFound": GetOryAccessControlPolicyRoleNotFound,
-    "GetOryAccessControlPolicyRoleNotFoundBody": GetOryAccessControlPolicyRoleNotFoundBody,
-    "GetOryAccessControlPolicyRoleOK": GetOryAccessControlPolicyRoleOK,
     "HealthNotReadyStatus": HealthNotReadyStatus,
     "HealthStatus": HealthStatus,
     "InlineResponse500": InlineResponse500,
-    "Input": Input,
-    "IsInstanceAliveInternalServerError": IsInstanceAliveInternalServerError,
-    "IsInstanceAliveInternalServerErrorBody": IsInstanceAliveInternalServerErrorBody,
-    "IsInstanceAliveOK": IsInstanceAliveOK,
-    "ListOryAccessControlPolicies": ListOryAccessControlPolicies,
-    "ListOryAccessControlPoliciesInternalServerError": ListOryAccessControlPoliciesInternalServerError,
-    "ListOryAccessControlPoliciesInternalServerErrorBody": ListOryAccessControlPoliciesInternalServerErrorBody,
-    "ListOryAccessControlPoliciesOK": ListOryAccessControlPoliciesOK,
-    "ListOryAccessControlPolicyRoles": ListOryAccessControlPolicyRoles,
-    "ListOryAccessControlPolicyRolesInternalServerError": ListOryAccessControlPolicyRolesInternalServerError,
-    "ListOryAccessControlPolicyRolesInternalServerErrorBody": ListOryAccessControlPolicyRolesInternalServerErrorBody,
-    "ListOryAccessControlPolicyRolesOK": ListOryAccessControlPolicyRolesOK,
-    "OryAccessControlPolicies": OryAccessControlPolicies,
     "OryAccessControlPolicy": OryAccessControlPolicy,
     "OryAccessControlPolicyAllowedInput": OryAccessControlPolicyAllowedInput,
     "OryAccessControlPolicyRole": OryAccessControlPolicyRole,
-    "OryAccessControlPolicyRoles": OryAccessControlPolicyRoles,
-    "Policy": Policy,
-    "RemoveOryAccessControlPolicyRoleMembers": RemoveOryAccessControlPolicyRoleMembers,
-    "RemoveOryAccessControlPolicyRoleMembersInternalServerError": RemoveOryAccessControlPolicyRoleMembersInternalServerError,
-    "RemoveOryAccessControlPolicyRoleMembersInternalServerErrorBody": RemoveOryAccessControlPolicyRoleMembersInternalServerErrorBody,
-    "Role": Role,
-    "SwaggerHealthStatus": SwaggerHealthStatus,
-    "SwaggerNotReadyStatus": SwaggerNotReadyStatus,
-    "SwaggerVersion": SwaggerVersion,
-    "UpsertOryAccessControlPolicy": UpsertOryAccessControlPolicy,
-    "UpsertOryAccessControlPolicyInternalServerError": UpsertOryAccessControlPolicyInternalServerError,
-    "UpsertOryAccessControlPolicyInternalServerErrorBody": UpsertOryAccessControlPolicyInternalServerErrorBody,
-    "UpsertOryAccessControlPolicyOK": UpsertOryAccessControlPolicyOK,
-    "UpsertOryAccessControlPolicyRole": UpsertOryAccessControlPolicyRole,
-    "UpsertOryAccessControlPolicyRoleInternalServerError": UpsertOryAccessControlPolicyRoleInternalServerError,
-    "UpsertOryAccessControlPolicyRoleInternalServerErrorBody": UpsertOryAccessControlPolicyRoleInternalServerErrorBody,
-    "UpsertOryAccessControlPolicyRoleOK": UpsertOryAccessControlPolicyRoleOK,
     "Version": Version,
 }
 

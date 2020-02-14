@@ -1,26 +1,26 @@
 {
-  "name": "@oryd/keto-client",
-  "version": "v0.0.0-alpha.37",
-  "description": "NodeJS client for @oryd/keto-client",
-  "repository": "ory/sdk",
-  "main": "dist/api.js",
-  "types": "dist/api.d.ts",
-  "scripts": {
-    "clean": "rm -Rf node_modules/ *.js",
-    "build": "tsc",
-    "test": "npm run build && node dist/client.js"
-  },
-  "author": "ORY GmbH",
-  "license": "Apache License, Version 2.0",
-  "dependencies": {
-    "bluebird": "^3.5.0",
-    "request": "^2.81.0",
-    "@types/bluebird": "*",
-    "@types/request": "*",
-    "rewire": "^3.0.2"
-  },
-  "devDependencies": {
-    "typescript": "^2.4.2",
-    "@types/node": "8.10.34"
-  }
+    "name": "@oryd/keto-client",
+    "version": "0.4.4-alpha.1",
+    "description": "NodeJS client for @oryd/keto-client",
+    "repository": "ory/sdk",
+    "main": "dist/api.js",
+    "types": "dist/api.d.ts",
+    "scripts": {
+        "clean": "rm -Rf node_modules/ *.js",
+        "build": "tsc",
+        "test": "npm run build && node dist/client.js"
+    },
+    "author": "OpenAPI-Generator Contributors",
+    "license": "Unlicense",
+    "dependencies": {
+        "bluebird": "^3.5.0",
+        "request": "^2.81.0",
+        "@types/bluebird": "*",
+        "@types/request": "*",
+        "rewire": "^3.0.2"
+    },
+    "devDependencies": {
+        "typescript": "^2.4.2",
+        "@types/node": "8.10.34"
+    }
 }
