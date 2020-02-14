@@ -14,6 +14,7 @@ to_git() {
 
   (cd "${gitdir}"; git fetch origin || true; git checkout master || true; git reset --hard HEAD || true; git pull -ff || true; git checkout -b "release-$(date +%s)" master)
 
+  rm -rf "${srcdir:?}/*"
   cp -R "${srcdir}/." "${gitdir}"
   ls -la "${gitdir}"
 
