@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/ory/hydra-client-go/models"
+	"github.com/ory/hydra-client-go/models"
 )
 
 // DeleteOAuth2ClientReader is a Reader for the DeleteOAuth2Client structure.

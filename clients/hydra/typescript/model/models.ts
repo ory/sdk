@@ -15,7 +15,6 @@ export * from './logoutRequest';
 export * from './oAuth2Client';
 export * from './oAuth2TokenIntrospection';
 export * from './oauth2TokenResponse';
-export * from './oauthTokenResponse';
 export * from './openIDConnectContext';
 export * from './previousConsentSession';
 export * from './rejectRequest';
@@ -42,7 +41,6 @@ import { LogoutRequest } from './logoutRequest';
 import { OAuth2Client } from './oAuth2Client';
 import { OAuth2TokenIntrospection } from './oAuth2TokenIntrospection';
 import { Oauth2TokenResponse } from './oauth2TokenResponse';
-import { OauthTokenResponse } from './oauthTokenResponse';
 import { OpenIDConnectContext } from './openIDConnectContext';
 import { PreviousConsentSession } from './previousConsentSession';
 import { RejectRequest } from './rejectRequest';
@@ -83,7 +81,6 @@ let typeMap: {[index: string]: any} = {
     "OAuth2Client": OAuth2Client,
     "OAuth2TokenIntrospection": OAuth2TokenIntrospection,
     "Oauth2TokenResponse": Oauth2TokenResponse,
-    "OauthTokenResponse": OauthTokenResponse,
     "OpenIDConnectContext": OpenIDConnectContext,
     "PreviousConsentSession": PreviousConsentSession,
     "RejectRequest": RejectRequest,

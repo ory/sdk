@@ -16,7 +16,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/ory/hydra-client-go/models"
+	"github.com/ory/hydra-client-go/models"
 )
 
 // NewCreateOAuth2ClientParams creates a new CreateOAuth2ClientParams object

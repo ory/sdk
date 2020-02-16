@@ -6,9 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -102,7 +101,7 @@ type OAuth2Client struct {
 	LogoURI string `json:"logo_uri,omitempty"`
 
 	// Metadata is arbitrary data.
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	Metadata interface{} `json:"metadata,omitempty"`
 
 	// Owner is a string identifying the owner of the OAuth 2.0 Client.
 	Owner string `json:"owner,omitempty"`

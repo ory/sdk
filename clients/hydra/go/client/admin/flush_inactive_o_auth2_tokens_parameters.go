@@ -16,7 +16,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/ory/hydra-client-go/models"
+	"github.com/ory/hydra-client-go/models"
 )
 
 // NewFlushInactiveOAuth2TokensParams creates a new FlushInactiveOAuth2TokensParams object

@@ -30,14 +30,16 @@ import ory_hydra_client
 from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
-# Create an instance of the API class
-api_instance = ory_hydra_client.PublicApi()
-
-try:
-    # OpenID Connect Front-Backchannel enabled Logout
-    api_instance.disconnect_user()
-except ApiException as e:
-    print("Exception when calling PublicApi->disconnect_user: %s\n" % e)
+# Enter a context with an instance of the API client
+with ory_hydra_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = ory_hydra_client.PublicApi(api_client)
+    
+    try:
+        # OpenID Connect Front-Backchannel enabled Logout
+        api_instance.disconnect_user()
+    except ApiException as e:
+        print("Exception when calling PublicApi->disconnect_user: %s\n" % e)
 ```
 
 ### Parameters
@@ -79,15 +81,17 @@ import ory_hydra_client
 from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
-# Create an instance of the API class
-api_instance = ory_hydra_client.PublicApi()
-
-try:
-    # OpenID Connect Discovery
-    api_response = api_instance.discover_open_id_configuration()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PublicApi->discover_open_id_configuration: %s\n" % e)
+# Enter a context with an instance of the API client
+with ory_hydra_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = ory_hydra_client.PublicApi(api_client)
+    
+    try:
+        # OpenID Connect Discovery
+        api_response = api_instance.discover_open_id_configuration()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling PublicApi->discover_open_id_configuration: %s\n" % e)
 ```
 
 ### Parameters
@@ -131,15 +135,17 @@ import ory_hydra_client
 from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
-# Create an instance of the API class
-api_instance = ory_hydra_client.PublicApi()
-
-try:
-    # Check readiness status
-    api_response = api_instance.is_instance_ready()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PublicApi->is_instance_ready: %s\n" % e)
+# Enter a context with an instance of the API client
+with ory_hydra_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = ory_hydra_client.PublicApi(api_client)
+    
+    try:
+        # Check readiness status
+        api_response = api_instance.is_instance_ready()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling PublicApi->is_instance_ready: %s\n" % e)
 ```
 
 ### Parameters
@@ -171,7 +177,7 @@ No authorization required
 
 The OAuth 2.0 token endpoint
 
-The client makes a request to the token endpoint by sending the following parameters using the \"application/x-www-form-urlencoded\" HTTP request entity-body.  > Do not implement a client for this endpoint yourself. Use a library. There are many libraries > available for any programming language. You can find a list of libraries here: https://oauth.net/code/ > > Do not the the Hydra SDK does not implement this endpoint properly. Use one of the libraries listed above!
+The client makes a request to the token endpoint by sending the following parameters using the \"application/x-www-form-urlencoded\" HTTP request entity-body.  > Do not implement a client for this endpoint yourself. Use a library. There are many libraries > available for any programming language. You can find a list of libraries here: https://oauth.net/code/ > > Do note that Hydra SDK does not implement this endpoint properly. Use one of the libraries listed above!
 
 ### Example
 
@@ -192,20 +198,22 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Defining host is optional and default to http://localhost
 configuration.host = "http://localhost"
-# Create an instance of the API class
-api_instance = ory_hydra_client.PublicApi(ory_hydra_client.ApiClient(configuration))
-grant_type = 'grant_type_example' # str | 
+# Enter a context with an instance of the API client
+with ory_hydra_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_hydra_client.PublicApi(api_client)
+    grant_type = 'grant_type_example' # str | 
 code = 'code_example' # str |  (optional)
 refresh_token = 'refresh_token_example' # str |  (optional)
 redirect_uri = 'redirect_uri_example' # str |  (optional)
 client_id = 'client_id_example' # str |  (optional)
 
-try:
-    # The OAuth 2.0 token endpoint
-    api_response = api_instance.oauth2_token(grant_type, code=code, refresh_token=refresh_token, redirect_uri=redirect_uri, client_id=client_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PublicApi->oauth2_token: %s\n" % e)
+    try:
+        # The OAuth 2.0 token endpoint
+        api_response = api_instance.oauth2_token(grant_type, code=code, refresh_token=refresh_token, redirect_uri=redirect_uri, client_id=client_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling PublicApi->oauth2_token: %s\n" % e)
 ```
 
 * OAuth Authentication (oauth2):
@@ -225,20 +233,22 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Defining host is optional and default to http://localhost
 configuration.host = "http://localhost"
-# Create an instance of the API class
-api_instance = ory_hydra_client.PublicApi(ory_hydra_client.ApiClient(configuration))
-grant_type = 'grant_type_example' # str | 
+# Enter a context with an instance of the API client
+with ory_hydra_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_hydra_client.PublicApi(api_client)
+    grant_type = 'grant_type_example' # str | 
 code = 'code_example' # str |  (optional)
 refresh_token = 'refresh_token_example' # str |  (optional)
 redirect_uri = 'redirect_uri_example' # str |  (optional)
 client_id = 'client_id_example' # str |  (optional)
 
-try:
-    # The OAuth 2.0 token endpoint
-    api_response = api_instance.oauth2_token(grant_type, code=code, refresh_token=refresh_token, redirect_uri=redirect_uri, client_id=client_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PublicApi->oauth2_token: %s\n" % e)
+    try:
+        # The OAuth 2.0 token endpoint
+        api_response = api_instance.oauth2_token(grant_type, code=code, refresh_token=refresh_token, redirect_uri=redirect_uri, client_id=client_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling PublicApi->oauth2_token: %s\n" % e)
 ```
 
 ### Parameters
@@ -289,14 +299,16 @@ import ory_hydra_client
 from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
-# Create an instance of the API class
-api_instance = ory_hydra_client.PublicApi()
-
-try:
-    # The OAuth 2.0 authorize endpoint
-    api_instance.oauth_auth()
-except ApiException as e:
-    print("Exception when calling PublicApi->oauth_auth: %s\n" % e)
+# Enter a context with an instance of the API client
+with ory_hydra_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = ory_hydra_client.PublicApi(api_client)
+    
+    try:
+        # The OAuth 2.0 authorize endpoint
+        api_instance.oauth_auth()
+    except ApiException as e:
+        print("Exception when calling PublicApi->oauth_auth: %s\n" % e)
 ```
 
 ### Parameters
@@ -350,15 +362,17 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Defining host is optional and default to http://localhost
 configuration.host = "http://localhost"
-# Create an instance of the API class
-api_instance = ory_hydra_client.PublicApi(ory_hydra_client.ApiClient(configuration))
-token = 'token_example' # str | 
+# Enter a context with an instance of the API client
+with ory_hydra_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_hydra_client.PublicApi(api_client)
+    token = 'token_example' # str | 
 
-try:
-    # Revoke OAuth2 tokens
-    api_instance.revoke_o_auth2_token(token)
-except ApiException as e:
-    print("Exception when calling PublicApi->revoke_o_auth2_token: %s\n" % e)
+    try:
+        # Revoke OAuth2 tokens
+        api_instance.revoke_o_auth2_token(token)
+    except ApiException as e:
+        print("Exception when calling PublicApi->revoke_o_auth2_token: %s\n" % e)
 ```
 
 * OAuth Authentication (oauth2):
@@ -378,15 +392,17 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Defining host is optional and default to http://localhost
 configuration.host = "http://localhost"
-# Create an instance of the API class
-api_instance = ory_hydra_client.PublicApi(ory_hydra_client.ApiClient(configuration))
-token = 'token_example' # str | 
+# Enter a context with an instance of the API client
+with ory_hydra_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_hydra_client.PublicApi(api_client)
+    token = 'token_example' # str | 
 
-try:
-    # Revoke OAuth2 tokens
-    api_instance.revoke_o_auth2_token(token)
-except ApiException as e:
-    print("Exception when calling PublicApi->revoke_o_auth2_token: %s\n" % e)
+    try:
+        # Revoke OAuth2 tokens
+        api_instance.revoke_o_auth2_token(token)
+    except ApiException as e:
+        print("Exception when calling PublicApi->revoke_o_auth2_token: %s\n" % e)
 ```
 
 ### Parameters
@@ -439,15 +455,17 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Defining host is optional and default to http://localhost
 configuration.host = "http://localhost"
-# Create an instance of the API class
-api_instance = ory_hydra_client.PublicApi(ory_hydra_client.ApiClient(configuration))
-
-try:
-    # OpenID Connect Userinfo
-    api_response = api_instance.userinfo()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PublicApi->userinfo: %s\n" % e)
+# Enter a context with an instance of the API client
+with ory_hydra_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_hydra_client.PublicApi(api_client)
+    
+    try:
+        # OpenID Connect Userinfo
+        api_response = api_instance.userinfo()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling PublicApi->userinfo: %s\n" % e)
 ```
 
 ### Parameters
@@ -491,15 +509,17 @@ import ory_hydra_client
 from ory_hydra_client.rest import ApiException
 from pprint import pprint
 
-# Create an instance of the API class
-api_instance = ory_hydra_client.PublicApi()
-
-try:
-    # JSON Web Keys Discovery
-    api_response = api_instance.well_known()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PublicApi->well_known: %s\n" % e)
+# Enter a context with an instance of the API client
+with ory_hydra_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = ory_hydra_client.PublicApi(api_client)
+    
+    try:
+        # JSON Web Keys Discovery
+        api_response = api_instance.well_known()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling PublicApi->well_known: %s\n" % e)
 ```
 
 ### Parameters
