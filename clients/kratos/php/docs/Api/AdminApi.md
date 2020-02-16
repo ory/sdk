@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**getSelfServiceBrowserProfileManagementRequest**](AdminApi.md#getSelfServiceBrowserProfileManagementRequest) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
 [**getSelfServiceBrowserRegistrationRequest**](AdminApi.md#getSelfServiceBrowserRegistrationRequest) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
 [**getSelfServiceError**](AdminApi.md#getSelfServiceError) | **GET** /self-service/errors | Get user-facing self-service errors
+[**getSelfServiceVerificationRequest**](AdminApi.md#getSelfServiceVerificationRequest) | **GET** /self-service/browser/flows/requests/verification | Get the request context of browser-based verification flows
 [**listIdentities**](AdminApi.md#listIdentities) | **GET** /identities | List all identities in the system
 [**updateIdentity**](AdminApi.md#updateIdentity) | **PUT** /identities/{id} | Update an identity
 
@@ -392,6 +393,62 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\Ory\Kratos\Client\Model\ErrorContainer**](../Model/ErrorContainer.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
+## getSelfServiceVerificationRequest
+
+> \Ory\Kratos\Client\Model\VerificationRequest getSelfServiceVerificationRequest($request)
+
+Get the request context of browser-based verification flows
+
+When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$apiInstance = new Ory\Kratos\Client\Api\AdminApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$request = 'request_example'; // string | Request is the Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verify?request=abcde`).
+
+try {
+    $result = $apiInstance->getSelfServiceVerificationRequest($request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AdminApi->getSelfServiceVerificationRequest: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | **string**| Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). |
+
+### Return type
+
+[**\Ory\Kratos\Client\Model\VerificationRequest**](../Model/VerificationRequest.md)
 
 ### Authorization
 

@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**authenticated_at** | **DateTime** |  | [optional] 
-**expires_at** | **DateTime** |  | [optional] 
-**identity** | [**Identity**](Identity.md) |  | [optional] 
-**issued_at** | **DateTime** |  | [optional] 
-**sid** | **String** |  | [optional] 
+**authenticated_at** | **DateTime** |  | 
+**expires_at** | **DateTime** |  | 
+**identity** | [**Identity**](Identity.md) |  | 
+**issued_at** | **DateTime** |  | 
+**sid** | **String** |  | 
 
 ## Code Sample
 

@@ -23,12 +23,19 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import sh.ory.kratos.model.VerifiableAddress;
 
 /**
  * Identity
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-06T13:59:34.604401Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-16T18:45:30.981791Z[GMT]")
 public class Identity {
+  public static final String SERIALIZED_NAME_ADDRESSES = "addresses";
+  @SerializedName(SERIALIZED_NAME_ADDRESSES)
+  private List<VerifiableAddress> addresses = null;
+
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
@@ -44,6 +51,37 @@ public class Identity {
   public static final String SERIALIZED_NAME_TRAITS_SCHEMA_URL = "traits_schema_url";
   @SerializedName(SERIALIZED_NAME_TRAITS_SCHEMA_URL)
   private String traitsSchemaUrl;
+
+
+  public Identity addresses(List<VerifiableAddress> addresses) {
+    
+    this.addresses = addresses;
+    return this;
+  }
+
+  public Identity addAddressesItem(VerifiableAddress addressesItem) {
+    if (this.addresses == null) {
+      this.addresses = new ArrayList<VerifiableAddress>();
+    }
+    this.addresses.add(addressesItem);
+    return this;
+  }
+
+   /**
+   * Get addresses
+   * @return addresses
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<VerifiableAddress> getAddresses() {
+    return addresses;
+  }
+
+
+  public void setAddresses(List<VerifiableAddress> addresses) {
+    this.addresses = addresses;
+  }
 
 
   public Identity id(String id) {
@@ -100,8 +138,7 @@ public class Identity {
    * TraitsSchemaID is the ID of the JSON Schema to be used for validating the identity&#39;s traits.
    * @return traitsSchemaId
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "TraitsSchemaID is the ID of the JSON Schema to be used for validating the identity's traits.")
+  @ApiModelProperty(required = true, value = "TraitsSchemaID is the ID of the JSON Schema to be used for validating the identity's traits.")
 
   public String getTraitsSchemaId() {
     return traitsSchemaId;
@@ -145,7 +182,8 @@ public class Identity {
       return false;
     }
     Identity identity = (Identity) o;
-    return Objects.equals(this.id, identity.id) &&
+    return Objects.equals(this.addresses, identity.addresses) &&
+        Objects.equals(this.id, identity.id) &&
         Objects.equals(this.traits, identity.traits) &&
         Objects.equals(this.traitsSchemaId, identity.traitsSchemaId) &&
         Objects.equals(this.traitsSchemaUrl, identity.traitsSchemaUrl);
@@ -153,7 +191,7 @@ public class Identity {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, traits, traitsSchemaId, traitsSchemaUrl);
+    return Objects.hash(addresses, id, traits, traitsSchemaId, traitsSchemaUrl);
   }
 
 
@@ -161,6 +199,7 @@ public class Identity {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Identity {\n");
+    sb.append("    addresses: ").append(toIndentedString(addresses)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    traits: ").append(toIndentedString(traits)).append("\n");
     sb.append("    traitsSchemaId: ").append(toIndentedString(traitsSchemaId)).append("\n");

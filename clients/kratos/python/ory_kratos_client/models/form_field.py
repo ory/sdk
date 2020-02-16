@@ -33,7 +33,7 @@ class FormField(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'disabled': 'str',
+        'disabled': 'bool',
         'errors': 'list[Error]',
         'name': 'str',
         'pattern': 'str',
@@ -71,14 +71,11 @@ class FormField(object):
             self.disabled = disabled
         if errors is not None:
             self.errors = errors
-        if name is not None:
-            self.name = name
+        self.name = name
         if pattern is not None:
             self.pattern = pattern
-        if required is not None:
-            self.required = required
-        if type is not None:
-            self.type = type
+        self.required = required
+        self.type = type
         if value is not None:
             self.value = value
 
@@ -89,7 +86,7 @@ class FormField(object):
         Disabled is the equivalent of <input disabled=\"{{.Disabled}}\">  # noqa: E501
 
         :return: The disabled of this FormField.  # noqa: E501
-        :rtype: str
+        :rtype: bool
         """
         return self._disabled
 
@@ -100,7 +97,7 @@ class FormField(object):
         Disabled is the equivalent of <input disabled=\"{{.Disabled}}\">  # noqa: E501
 
         :param disabled: The disabled of this FormField.  # noqa: E501
-        :type: str
+        :type: bool
         """
 
         self._disabled = disabled
@@ -148,6 +145,8 @@ class FormField(object):
         :param name: The name of this FormField.  # noqa: E501
         :type: str
         """
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -194,6 +193,8 @@ class FormField(object):
         :param required: The required of this FormField.  # noqa: E501
         :type: bool
         """
+        if self.local_vars_configuration.client_side_validation and required is None:  # noqa: E501
+            raise ValueError("Invalid value for `required`, must not be `None`")  # noqa: E501
 
         self._required = required
 
@@ -217,6 +218,8 @@ class FormField(object):
         :param type: The type of this FormField.  # noqa: E501
         :type: str
         """
+        if self.local_vars_configuration.client_side_validation and type is None:  # noqa: E501
+            raise ValueError("Invalid value for `type`, must not be `None`")  # noqa: E501
 
         self._type = type
 

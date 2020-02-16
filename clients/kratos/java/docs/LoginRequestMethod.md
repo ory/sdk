@@ -6,8 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**config** | [**LoginRequestMethodConfig**](LoginRequestMethodConfig.md) |  |  [optional]
-**method** | **String** | and so on. |  [optional]
+**config** | [**LoginRequestMethodConfig**](LoginRequestMethodConfig.md) |  | 
+**method** | **String** | and so on. | 
 
 
 

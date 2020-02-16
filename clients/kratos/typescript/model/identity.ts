@@ -10,14 +10,17 @@
  * Do not edit the class manually.
  */
 
+import { RequestFile } from '../api';
+import { VerifiableAddress } from './verifiableAddress';
 
 export class Identity {
+    'addresses'?: Array<VerifiableAddress>;
     'id': string;
     'traits': object;
     /**
     * TraitsSchemaID is the ID of the JSON Schema to be used for validating the identity\'s traits.
     */
-    'traitsSchemaId'?: string;
+    'traitsSchemaId': string;
     /**
     * TraitsSchemaURL is the URL of the endpoint where the identity\'s traits schema can be fetched from.  format: url
     */
@@ -26,6 +29,11 @@ export class Identity {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "addresses",
+            "baseName": "addresses",
+            "type": "Array<VerifiableAddress>"
+        },
         {
             "name": "id",
             "baseName": "id",

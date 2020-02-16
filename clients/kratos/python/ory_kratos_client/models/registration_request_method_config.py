@@ -33,17 +33,162 @@ class RegistrationRequestMethodConfig(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'action': 'str',
+        'errors': 'list[Error]',
+        'fields': 'list[FormField]',
+        'method': 'str',
+        'providers': 'list[FormField]'
     }
 
     attribute_map = {
+        'action': 'action',
+        'errors': 'errors',
+        'fields': 'fields',
+        'method': 'method',
+        'providers': 'providers'
     }
 
-    def __init__(self, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, action=None, errors=None, fields=None, method=None, providers=None, local_vars_configuration=None):  # noqa: E501
         """RegistrationRequestMethodConfig - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
+
+        self._action = None
+        self._errors = None
+        self._fields = None
+        self._method = None
+        self._providers = None
         self.discriminator = None
+
+        self.action = action
+        if errors is not None:
+            self.errors = errors
+        self.fields = fields
+        self.method = method
+        if providers is not None:
+            self.providers = providers
+
+    @property
+    def action(self):
+        """Gets the action of this RegistrationRequestMethodConfig.  # noqa: E501
+
+        Action should be used as the form action URL (<form action=\"{{ .Action }}\" method=\"post\">).  # noqa: E501
+
+        :return: The action of this RegistrationRequestMethodConfig.  # noqa: E501
+        :rtype: str
+        """
+        return self._action
+
+    @action.setter
+    def action(self, action):
+        """Sets the action of this RegistrationRequestMethodConfig.
+
+        Action should be used as the form action URL (<form action=\"{{ .Action }}\" method=\"post\">).  # noqa: E501
+
+        :param action: The action of this RegistrationRequestMethodConfig.  # noqa: E501
+        :type: str
+        """
+        if self.local_vars_configuration.client_side_validation and action is None:  # noqa: E501
+            raise ValueError("Invalid value for `action`, must not be `None`")  # noqa: E501
+
+        self._action = action
+
+    @property
+    def errors(self):
+        """Gets the errors of this RegistrationRequestMethodConfig.  # noqa: E501
+
+        Errors contains all form errors. These will be duplicates of the individual field errors.  # noqa: E501
+
+        :return: The errors of this RegistrationRequestMethodConfig.  # noqa: E501
+        :rtype: list[Error]
+        """
+        return self._errors
+
+    @errors.setter
+    def errors(self, errors):
+        """Sets the errors of this RegistrationRequestMethodConfig.
+
+        Errors contains all form errors. These will be duplicates of the individual field errors.  # noqa: E501
+
+        :param errors: The errors of this RegistrationRequestMethodConfig.  # noqa: E501
+        :type: list[Error]
+        """
+
+        self._errors = errors
+
+    @property
+    def fields(self):
+        """Gets the fields of this RegistrationRequestMethodConfig.  # noqa: E501
+
+        Fields contains multiple fields  # noqa: E501
+
+        :return: The fields of this RegistrationRequestMethodConfig.  # noqa: E501
+        :rtype: list[FormField]
+        """
+        return self._fields
+
+    @fields.setter
+    def fields(self, fields):
+        """Sets the fields of this RegistrationRequestMethodConfig.
+
+        Fields contains multiple fields  # noqa: E501
+
+        :param fields: The fields of this RegistrationRequestMethodConfig.  # noqa: E501
+        :type: list[FormField]
+        """
+        if self.local_vars_configuration.client_side_validation and fields is None:  # noqa: E501
+            raise ValueError("Invalid value for `fields`, must not be `None`")  # noqa: E501
+
+        self._fields = fields
+
+    @property
+    def method(self):
+        """Gets the method of this RegistrationRequestMethodConfig.  # noqa: E501
+
+        Method is the form method (e.g. POST)  # noqa: E501
+
+        :return: The method of this RegistrationRequestMethodConfig.  # noqa: E501
+        :rtype: str
+        """
+        return self._method
+
+    @method.setter
+    def method(self, method):
+        """Sets the method of this RegistrationRequestMethodConfig.
+
+        Method is the form method (e.g. POST)  # noqa: E501
+
+        :param method: The method of this RegistrationRequestMethodConfig.  # noqa: E501
+        :type: str
+        """
+        if self.local_vars_configuration.client_side_validation and method is None:  # noqa: E501
+            raise ValueError("Invalid value for `method`, must not be `None`")  # noqa: E501
+
+        self._method = method
+
+    @property
+    def providers(self):
+        """Gets the providers of this RegistrationRequestMethodConfig.  # noqa: E501
+
+        Providers is set for the \"oidc\" request method.  # noqa: E501
+
+        :return: The providers of this RegistrationRequestMethodConfig.  # noqa: E501
+        :rtype: list[FormField]
+        """
+        return self._providers
+
+    @providers.setter
+    def providers(self, providers):
+        """Sets the providers of this RegistrationRequestMethodConfig.
+
+        Providers is set for the \"oidc\" request method.  # noqa: E501
+
+        :param providers: The providers of this RegistrationRequestMethodConfig.  # noqa: E501
+        :type: list[FormField]
+        """
+
+        self._providers = providers
 
     def to_dict(self):
         """Returns the model properties as a dict"""

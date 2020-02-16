@@ -28,11 +28,11 @@ import sh.ory.kratos.model.LoginRequestMethodConfig;
 /**
  * LoginRequestMethod
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-06T13:59:34.604401Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-16T18:45:30.981791Z[GMT]")
 public class LoginRequestMethod {
   public static final String SERIALIZED_NAME_CONFIG = "config";
   @SerializedName(SERIALIZED_NAME_CONFIG)
-  private LoginRequestMethodConfig config = null;
+  private LoginRequestMethodConfig config;
 
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
@@ -49,8 +49,7 @@ public class LoginRequestMethod {
    * Get config
    * @return config
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
 
   public LoginRequestMethodConfig getConfig() {
     return config;
@@ -72,8 +71,7 @@ public class LoginRequestMethod {
    * and so on.
    * @return method
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "and so on.")
+  @ApiModelProperty(required = true, value = "and so on.")
 
   public String getMethod() {
     return method;

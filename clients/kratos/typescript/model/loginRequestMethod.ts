@@ -10,14 +10,15 @@
  * Do not edit the class manually.
  */
 
+import { RequestFile } from '../api';
 import { LoginRequestMethodConfig } from './loginRequestMethodConfig';
 
 export class LoginRequestMethod {
-    'config'?: LoginRequestMethodConfig;
+    'config': LoginRequestMethodConfig;
     /**
     * and so on.
     */
-    'method'?: string;
+    'method': string;
 
     static discriminator: string | undefined = undefined;
 

@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/ory/kratos-client-go/models"
+	"github.com/ory/kratos-client-go/models"
 )
 
 // InitializeSelfServiceBrowserLoginFlowReader is a Reader for the InitializeSelfServiceBrowserLoginFlow structure.

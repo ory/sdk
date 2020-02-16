@@ -23,15 +23,17 @@ import ory_kratos_client
 from ory_kratos_client.rest import ApiException
 from pprint import pprint
 
-# Create an instance of the API class
-api_instance = ory_kratos_client.VersionApi()
-
-try:
-    # Get service version
-    api_response = api_instance.get_version()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling VersionApi->get_version: %s\n" % e)
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = ory_kratos_client.VersionApi(api_client)
+    
+    try:
+        # Get service version
+        api_response = api_instance.get_version()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling VersionApi->get_version: %s\n" % e)
 ```
 
 ### Parameters

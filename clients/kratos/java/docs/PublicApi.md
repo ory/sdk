@@ -5,14 +5,18 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**completeSelfServiceBrowserProfileManagementFlow**](PublicApi.md#completeSelfServiceBrowserProfileManagementFlow) | **POST** /self-service/browser/flows/profile/update | Complete the browser-based profile management flows
+[**completeSelfServiceBrowserVerificationFlow**](PublicApi.md#completeSelfServiceBrowserVerificationFlow) | **POST** /self-service/browser/flows/verification/complete | Complete the browser-based profile management flows
 [**getSelfServiceBrowserLoginRequest**](PublicApi.md#getSelfServiceBrowserLoginRequest) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
 [**getSelfServiceBrowserProfileManagementRequest**](PublicApi.md#getSelfServiceBrowserProfileManagementRequest) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
 [**getSelfServiceBrowserRegistrationRequest**](PublicApi.md#getSelfServiceBrowserRegistrationRequest) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
 [**getSelfServiceError**](PublicApi.md#getSelfServiceError) | **GET** /self-service/errors | Get user-facing self-service errors
+[**getSelfServiceVerificationRequest**](PublicApi.md#getSelfServiceVerificationRequest) | **GET** /self-service/browser/flows/requests/verification | Get the request context of browser-based verification flows
 [**initializeSelfServiceBrowserLoginFlow**](PublicApi.md#initializeSelfServiceBrowserLoginFlow) | **GET** /self-service/browser/flows/login | Initialize browser-based login user flow
 [**initializeSelfServiceBrowserLogoutFlow**](PublicApi.md#initializeSelfServiceBrowserLogoutFlow) | **GET** /self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
 [**initializeSelfServiceBrowserRegistrationFlow**](PublicApi.md#initializeSelfServiceBrowserRegistrationFlow) | **GET** /self-service/browser/flows/registration | Initialize browser-based registration user flow
+[**initializeSelfServiceBrowserVerificationFlow**](PublicApi.md#initializeSelfServiceBrowserVerificationFlow) | **GET** /self-service/browser/flows/verification/init/{via} | Initialize browser-based verification flow
 [**initializeSelfServiceProfileManagementFlow**](PublicApi.md#initializeSelfServiceProfileManagementFlow) | **GET** /self-service/browser/flows/profile | Initialize browser-based profile management flow
+[**selfServiceBrowserVerify**](PublicApi.md#selfServiceBrowserVerify) | **GET** /self-service/browser/flows/verification/confirm/{code} | Complete the browser-based verification flows
 [**whoami**](PublicApi.md#whoami) | **GET** /sessions/whoami | Check who the current HTTP session belongs to
 
 
@@ -72,6 +76,68 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**500** | genericError |  -  |
+
+<a name="completeSelfServiceBrowserVerificationFlow"></a>
+# **completeSelfServiceBrowserVerificationFlow**
+> completeSelfServiceBrowserVerificationFlow(request)
+
+Complete the browser-based profile management flows
+
+This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity&#39;s Traits JSON Schema, the data will be updated and the browser redirected to &#x60;url.profile_ui&#x60; for further steps.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.PublicApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    PublicApi apiInstance = new PublicApi(defaultClient);
+    String request = "request_example"; // String | Request is the Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verify?request=abcde`).
+    try {
+      apiInstance.completeSelfServiceBrowserVerificationFlow(request);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PublicApi#completeSelfServiceBrowserVerificationFlow");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | **String**| Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 ### HTTP response details
@@ -340,6 +406,71 @@ No authorization required
 **404** | genericError |  -  |
 **500** | genericError |  -  |
 
+<a name="getSelfServiceVerificationRequest"></a>
+# **getSelfServiceVerificationRequest**
+> VerificationRequest getSelfServiceVerificationRequest(request)
+
+Get the request context of browser-based verification flows
+
+When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.PublicApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    PublicApi apiInstance = new PublicApi(defaultClient);
+    String request = "request_example"; // String | Request is the Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verify?request=abcde`).
+    try {
+      VerificationRequest result = apiInstance.getSelfServiceVerificationRequest(request);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PublicApi#getSelfServiceVerificationRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | **String**| Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). |
+
+### Return type
+
+[**VerificationRequest**](VerificationRequest.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | verificationRequest |  -  |
+**403** | genericError |  -  |
+**404** | genericError |  -  |
+**500** | genericError |  -  |
+
 <a name="initializeSelfServiceBrowserLoginFlow"></a>
 # **initializeSelfServiceBrowserLoginFlow**
 > initializeSelfServiceBrowserLoginFlow()
@@ -514,6 +645,68 @@ No authorization required
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 **500** | genericError |  -  |
 
+<a name="initializeSelfServiceBrowserVerificationFlow"></a>
+# **initializeSelfServiceBrowserVerificationFlow**
+> initializeSelfServiceBrowserVerificationFlow(via)
+
+Initialize browser-based verification flow
+
+This endpoint initializes a browser-based profile management flow. Once initialized, the browser will be redirected to &#x60;urls.profile_ui&#x60; with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.PublicApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    PublicApi apiInstance = new PublicApi(defaultClient);
+    String via = "via_example"; // String | What to verify  Currently only \"email\" is supported.
+    try {
+      apiInstance.initializeSelfServiceBrowserVerificationFlow(via);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PublicApi#initializeSelfServiceBrowserVerificationFlow");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **via** | **String**| What to verify  Currently only \&quot;email\&quot; is supported. |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**500** | genericError |  -  |
+
 <a name="initializeSelfServiceProfileManagementFlow"></a>
 # **initializeSelfServiceProfileManagementFlow**
 > initializeSelfServiceProfileManagementFlow()
@@ -552,6 +745,68 @@ public class Example {
 
 ### Parameters
 This endpoint does not need any parameter.
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**500** | genericError |  -  |
+
+<a name="selfServiceBrowserVerify"></a>
+# **selfServiceBrowserVerify**
+> selfServiceBrowserVerify(code)
+
+Complete the browser-based verification flows
+
+This endpoint completes a browser-based verification flow.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.PublicApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    PublicApi apiInstance = new PublicApi(defaultClient);
+    String code = "code_example"; // String | 
+    try {
+      apiInstance.selfServiceBrowserVerify(code);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PublicApi#selfServiceBrowserVerify");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **code** | **String**|  |
 
 ### Return type
 

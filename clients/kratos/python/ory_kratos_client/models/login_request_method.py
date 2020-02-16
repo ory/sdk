@@ -52,10 +52,8 @@ class LoginRequestMethod(object):
         self._method = None
         self.discriminator = None
 
-        if config is not None:
-            self.config = config
-        if method is not None:
-            self.method = method
+        self.config = config
+        self.method = method
 
     @property
     def config(self):
@@ -75,6 +73,8 @@ class LoginRequestMethod(object):
         :param config: The config of this LoginRequestMethod.  # noqa: E501
         :type: LoginRequestMethodConfig
         """
+        if self.local_vars_configuration.client_side_validation and config is None:  # noqa: E501
+            raise ValueError("Invalid value for `config`, must not be `None`")  # noqa: E501
 
         self._config = config
 
@@ -98,6 +98,8 @@ class LoginRequestMethod(object):
         :param method: The method of this LoginRequestMethod.  # noqa: E501
         :type: str
         """
+        if self.local_vars_configuration.client_side_validation and method is None:  # noqa: E501
+            raise ValueError("Invalid value for `method`, must not be `None`")  # noqa: E501
 
         self._method = method
 

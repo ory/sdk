@@ -32,7 +32,7 @@ import sh.ory.kratos.model.FormField;
  * HTMLForm represents a HTML Form. The container can work with both HTTP Form and JSON requests
  */
 @ApiModel(description = "HTMLForm represents a HTML Form. The container can work with both HTTP Form and JSON requests")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-06T13:59:34.604401Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-16T18:45:30.981791Z[GMT]")
 public class Form {
   public static final String SERIALIZED_NAME_ACTION = "action";
   @SerializedName(SERIALIZED_NAME_ACTION)
@@ -44,7 +44,7 @@ public class Form {
 
   public static final String SERIALIZED_NAME_FIELDS = "fields";
   @SerializedName(SERIALIZED_NAME_FIELDS)
-  private List<FormField> fields = null;
+  private List<FormField> fields = new ArrayList<FormField>();
 
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
@@ -61,8 +61,7 @@ public class Form {
    * Action should be used as the form action URL (&lt;form action&#x3D;\&quot;{{ .Action }}\&quot; method&#x3D;\&quot;post\&quot;&gt;).
    * @return action
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Action should be used as the form action URL (<form action=\"{{ .Action }}\" method=\"post\">).")
+  @ApiModelProperty(required = true, value = "Action should be used as the form action URL (<form action=\"{{ .Action }}\" method=\"post\">).")
 
   public String getAction() {
     return action;
@@ -112,9 +111,6 @@ public class Form {
   }
 
   public Form addFieldsItem(FormField fieldsItem) {
-    if (this.fields == null) {
-      this.fields = new ArrayList<FormField>();
-    }
     this.fields.add(fieldsItem);
     return this;
   }
@@ -123,8 +119,7 @@ public class Form {
    * Fields contains multiple fields
    * @return fields
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Fields contains multiple fields")
+  @ApiModelProperty(required = true, value = "Fields contains multiple fields")
 
   public List<FormField> getFields() {
     return fields;
@@ -146,8 +141,7 @@ public class Form {
    * Method is the form method (e.g. POST)
    * @return method
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Method is the form method (e.g. POST)")
+  @ApiModelProperty(required = true, value = "Method is the form method (e.g. POST)")
 
   public String getMethod() {
     return method;

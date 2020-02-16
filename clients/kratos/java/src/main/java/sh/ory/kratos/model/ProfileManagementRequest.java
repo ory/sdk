@@ -31,7 +31,7 @@ import sh.ory.kratos.model.Identity;
  * This request is used when an identity wants to update profile information (especially traits) in a selfservice manner.  For more information head over to: https://www.ory.sh/docs/kratos/selfservice/profile
  */
 @ApiModel(description = "This request is used when an identity wants to update profile information (especially traits) in a selfservice manner.  For more information head over to: https://www.ory.sh/docs/kratos/selfservice/profile")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-06T13:59:34.604401Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-16T18:45:30.981791Z[GMT]")
 public class ProfileManagementRequest {
   public static final String SERIALIZED_NAME_EXPIRES_AT = "expires_at";
   @SerializedName(SERIALIZED_NAME_EXPIRES_AT)
@@ -72,8 +72,7 @@ public class ProfileManagementRequest {
    * ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the profile, a new request has to be initiated.
    * @return expiresAt
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the profile, a new request has to be initiated.")
+  @ApiModelProperty(required = true, value = "ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the profile, a new request has to be initiated.")
 
   public OffsetDateTime getExpiresAt() {
     return expiresAt;
@@ -95,8 +94,7 @@ public class ProfileManagementRequest {
    * Get form
    * @return form
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
 
   public Form getForm() {
     return form;
@@ -118,8 +116,7 @@ public class ProfileManagementRequest {
    * Get id
    * @return id
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
 
   public String getId() {
     return id;
@@ -141,8 +138,7 @@ public class ProfileManagementRequest {
    * Get identity
    * @return identity
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
 
   public Identity getIdentity() {
     return identity;
@@ -164,8 +160,7 @@ public class ProfileManagementRequest {
    * IssuedAt is the time (UTC) when the request occurred.
    * @return issuedAt
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "IssuedAt is the time (UTC) when the request occurred.")
+  @ApiModelProperty(required = true, value = "IssuedAt is the time (UTC) when the request occurred.")
 
   public OffsetDateTime getIssuedAt() {
     return issuedAt;
@@ -187,8 +182,7 @@ public class ProfileManagementRequest {
    * RequestURL is the initial URL that was requested from ORY Kratos. It can be used to forward information contained in the URL&#39;s path or query for example.
    * @return requestUrl
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "RequestURL is the initial URL that was requested from ORY Kratos. It can be used to forward information contained in the URL's path or query for example.")
+  @ApiModelProperty(required = true, value = "RequestURL is the initial URL that was requested from ORY Kratos. It can be used to forward information contained in the URL's path or query for example.")
 
   public String getRequestUrl() {
     return requestUrl;
@@ -210,8 +204,7 @@ public class ProfileManagementRequest {
    * UpdateSuccessful, if true, indicates that the profile has been updated successfully with the provided data. Done will stay true when repeatedly checking. If set to true, done will revert back to false only when a request with invalid (e.g. \&quot;please use a valid phone number\&quot;) data was sent.
    * @return updateSuccessful
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "UpdateSuccessful, if true, indicates that the profile has been updated successfully with the provided data. Done will stay true when repeatedly checking. If set to true, done will revert back to false only when a request with invalid (e.g. \"please use a valid phone number\") data was sent.")
+  @ApiModelProperty(required = true, value = "UpdateSuccessful, if true, indicates that the profile has been updated successfully with the provided data. Done will stay true when repeatedly checking. If set to true, done will revert back to false only when a request with invalid (e.g. \"please use a valid phone number\") data was sent.")
 
   public Boolean getUpdateSuccessful() {
     return updateSuccessful;

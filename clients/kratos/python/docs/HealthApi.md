@@ -24,15 +24,17 @@ import ory_kratos_client
 from ory_kratos_client.rest import ApiException
 from pprint import pprint
 
-# Create an instance of the API class
-api_instance = ory_kratos_client.HealthApi()
-
-try:
-    # Check alive status
-    api_response = api_instance.is_instance_alive()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling HealthApi->is_instance_alive: %s\n" % e)
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = ory_kratos_client.HealthApi(api_client)
+    
+    try:
+        # Check alive status
+        api_response = api_instance.is_instance_alive()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling HealthApi->is_instance_alive: %s\n" % e)
 ```
 
 ### Parameters
@@ -75,15 +77,17 @@ import ory_kratos_client
 from ory_kratos_client.rest import ApiException
 from pprint import pprint
 
-# Create an instance of the API class
-api_instance = ory_kratos_client.HealthApi()
-
-try:
-    # Check readiness status
-    api_response = api_instance.is_instance_ready()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling HealthApi->is_instance_ready: %s\n" % e)
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = ory_kratos_client.HealthApi(api_client)
+    
+    try:
+        # Check readiness status
+        api_response = api_instance.is_instance_ready()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling HealthApi->is_instance_ready: %s\n" % e)
 ```
 
 ### Parameters

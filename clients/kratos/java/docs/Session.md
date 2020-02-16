@@ -6,11 +6,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**authenticatedAt** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
-**expiresAt** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
-**identity** | [**Identity**](Identity.md) |  |  [optional]
-**issuedAt** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
-**sid** | **String** |  |  [optional]
+**authenticatedAt** | [**OffsetDateTime**](OffsetDateTime.md) |  | 
+**expiresAt** | [**OffsetDateTime**](OffsetDateTime.md) |  | 
+**identity** | [**Identity**](Identity.md) |  | 
+**issuedAt** | [**OffsetDateTime**](OffsetDateTime.md) |  | 
+**sid** | **String** |  | 
 
 
 

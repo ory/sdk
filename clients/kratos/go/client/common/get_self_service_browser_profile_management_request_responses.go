@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/ory/kratos-client-go/models"
+	"github.com/ory/kratos-client-go/models"
 )
 
 // GetSelfServiceBrowserProfileManagementRequestReader is a Reader for the GetSelfServiceBrowserProfileManagementRequest structure.

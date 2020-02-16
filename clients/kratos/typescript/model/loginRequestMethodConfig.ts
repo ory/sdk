@@ -10,13 +10,59 @@
  * Do not edit the class manually.
  */
 
+import { RequestFile } from '../api';
+import { FormField } from './formField';
 
 export class LoginRequestMethodConfig {
+    /**
+    * Action should be used as the form action URL (<form action=\"{{ .Action }}\" method=\"post\">).
+    */
+    'action': string;
+    /**
+    * Errors contains all form errors. These will be duplicates of the individual field errors.
+    */
+    'errors'?: Array<Error>;
+    /**
+    * Fields contains multiple fields
+    */
+    'fields': Array<FormField>;
+    /**
+    * Method is the form method (e.g. POST)
+    */
+    'method': string;
+    /**
+    * Providers is set for the \"oidc\" request method.
+    */
+    'providers'?: Array<FormField>;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-    ];
+        {
+            "name": "action",
+            "baseName": "action",
+            "type": "string"
+        },
+        {
+            "name": "errors",
+            "baseName": "errors",
+            "type": "Array<Error>"
+        },
+        {
+            "name": "fields",
+            "baseName": "fields",
+            "type": "Array<FormField>"
+        },
+        {
+            "name": "method",
+            "baseName": "method",
+            "type": "string"
+        },
+        {
+            "name": "providers",
+            "baseName": "providers",
+            "type": "Array<FormField>"
+        }    ];
 
     static getAttributeTypeMap() {
         return LoginRequestMethodConfig.attributeTypeMap;

@@ -58,14 +58,11 @@ class Form(object):
         self._method = None
         self.discriminator = None
 
-        if action is not None:
-            self.action = action
+        self.action = action
         if errors is not None:
             self.errors = errors
-        if fields is not None:
-            self.fields = fields
-        if method is not None:
-            self.method = method
+        self.fields = fields
+        self.method = method
 
     @property
     def action(self):
@@ -87,6 +84,8 @@ class Form(object):
         :param action: The action of this Form.  # noqa: E501
         :type: str
         """
+        if self.local_vars_configuration.client_side_validation and action is None:  # noqa: E501
+            raise ValueError("Invalid value for `action`, must not be `None`")  # noqa: E501
 
         self._action = action
 
@@ -133,6 +132,8 @@ class Form(object):
         :param fields: The fields of this Form.  # noqa: E501
         :type: list[FormField]
         """
+        if self.local_vars_configuration.client_side_validation and fields is None:  # noqa: E501
+            raise ValueError("Invalid value for `fields`, must not be `None`")  # noqa: E501
 
         self._fields = fields
 
@@ -156,6 +157,8 @@ class Form(object):
         :param method: The method of this Form.  # noqa: E501
         :type: str
         """
+        if self.local_vars_configuration.client_side_validation and method is None:  # noqa: E501
+            raise ValueError("Invalid value for `method`, must not be `None`")  # noqa: E501
 
         self._method = method
 

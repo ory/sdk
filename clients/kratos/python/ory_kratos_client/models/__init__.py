@@ -32,4 +32,6 @@ from ory_kratos_client.models.registration_request import RegistrationRequest
 from ory_kratos_client.models.registration_request_method import RegistrationRequestMethod
 from ory_kratos_client.models.registration_request_method_config import RegistrationRequestMethodConfig
 from ory_kratos_client.models.session import Session
+from ory_kratos_client.models.verifiable_address import VerifiableAddress
+from ory_kratos_client.models.verification_request import VerificationRequest
 from ory_kratos_client.models.version import Version

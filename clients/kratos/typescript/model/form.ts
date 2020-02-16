@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { RequestFile } from '../api';
 import { FormField } from './formField';
 
 /**
@@ -19,7 +20,7 @@ export class Form {
     /**
     * Action should be used as the form action URL (<form action=\"{{ .Action }}\" method=\"post\">).
     */
-    'action'?: string;
+    'action': string;
     /**
     * Errors contains all form errors. These will be duplicates of the individual field errors.
     */
@@ -27,11 +28,11 @@ export class Form {
     /**
     * Fields contains multiple fields
     */
-    'fields'?: Array<FormField>;
+    'fields': Array<FormField>;
     /**
     * Method is the form method (e.g. POST)
     */
-    'method'?: string;
+    'method': string;
 
     static discriminator: string | undefined = undefined;
 

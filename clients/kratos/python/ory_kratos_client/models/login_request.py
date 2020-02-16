@@ -66,16 +66,11 @@ class LoginRequest(object):
 
         if active is not None:
             self.active = active
-        if expires_at is not None:
-            self.expires_at = expires_at
-        if id is not None:
-            self.id = id
-        if issued_at is not None:
-            self.issued_at = issued_at
-        if methods is not None:
-            self.methods = methods
-        if request_url is not None:
-            self.request_url = request_url
+        self.expires_at = expires_at
+        self.id = id
+        self.issued_at = issued_at
+        self.methods = methods
+        self.request_url = request_url
 
     @property
     def active(self):
@@ -120,6 +115,8 @@ class LoginRequest(object):
         :param expires_at: The expires_at of this LoginRequest.  # noqa: E501
         :type: datetime
         """
+        if self.local_vars_configuration.client_side_validation and expires_at is None:  # noqa: E501
+            raise ValueError("Invalid value for `expires_at`, must not be `None`")  # noqa: E501
 
         self._expires_at = expires_at
 
@@ -141,6 +138,8 @@ class LoginRequest(object):
         :param id: The id of this LoginRequest.  # noqa: E501
         :type: str
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -164,6 +163,8 @@ class LoginRequest(object):
         :param issued_at: The issued_at of this LoginRequest.  # noqa: E501
         :type: datetime
         """
+        if self.local_vars_configuration.client_side_validation and issued_at is None:  # noqa: E501
+            raise ValueError("Invalid value for `issued_at`, must not be `None`")  # noqa: E501
 
         self._issued_at = issued_at
 
@@ -187,6 +188,8 @@ class LoginRequest(object):
         :param methods: The methods of this LoginRequest.  # noqa: E501
         :type: dict(str, LoginRequestMethod)
         """
+        if self.local_vars_configuration.client_side_validation and methods is None:  # noqa: E501
+            raise ValueError("Invalid value for `methods`, must not be `None`")  # noqa: E501
 
         self._methods = methods
 
@@ -210,6 +213,8 @@ class LoginRequest(object):
         :param request_url: The request_url of this LoginRequest.  # noqa: E501
         :type: str
         """
+        if self.local_vars_configuration.client_side_validation and request_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `request_url`, must not be `None`")  # noqa: E501
 
         self._request_url = request_url
 

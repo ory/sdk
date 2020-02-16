@@ -6,9 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -18,23 +17,28 @@ import (
 type Session struct {
 
 	// authenticated at
+	// Required: true
 	// Format: date-time
-	AuthenticatedAt strfmt.DateTime `json:"authenticated_at,omitempty"`
+	AuthenticatedAt *strfmt.DateTime `json:"authenticated_at"`
 
 	// expires at
+	// Required: true
 	// Format: date-time
-	ExpiresAt strfmt.DateTime `json:"expires_at,omitempty"`
+	ExpiresAt *strfmt.DateTime `json:"expires_at"`
 
 	// identity
-	Identity *Identity `json:"identity,omitempty"`
+	// Required: true
+	Identity *Identity `json:"identity"`
 
 	// issued at
+	// Required: true
 	// Format: date-time
-	IssuedAt strfmt.DateTime `json:"issued_at,omitempty"`
+	IssuedAt *strfmt.DateTime `json:"issued_at"`
 
 	// sid
+	// Required: true
 	// Format: uuid4
-	Sid UUID `json:"sid,omitempty"`
+	Sid UUID `json:"sid"`
 }
 
 // Validate validates this session
@@ -69,8 +73,8 @@ func (m *Session) Validate(formats strfmt.Registry) error {
 
 func (m *Session) validateAuthenticatedAt(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.AuthenticatedAt) { // not required
-		return nil
+	if err := validate.Required("authenticated_at", "body", m.AuthenticatedAt); err != nil {
+		return err
 	}
 
 	if err := validate.FormatOf("authenticated_at", "body", "date-time", m.AuthenticatedAt.String(), formats); err != nil {
@@ -82,8 +86,8 @@ func (m *Session) validateAuthenticatedAt(formats strfmt.Registry) error {
 
 func (m *Session) validateExpiresAt(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.ExpiresAt) { // not required
-		return nil
+	if err := validate.Required("expires_at", "body", m.ExpiresAt); err != nil {
+		return err
 	}
 
 	if err := validate.FormatOf("expires_at", "body", "date-time", m.ExpiresAt.String(), formats); err != nil {
@@ -95,8 +99,8 @@ func (m *Session) validateExpiresAt(formats strfmt.Registry) error {
 
 func (m *Session) validateIdentity(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Identity) { // not required
-		return nil
+	if err := validate.Required("identity", "body", m.Identity); err != nil {
+		return err
 	}
 
 	if m.Identity != nil {
@@ -113,8 +117,8 @@ func (m *Session) validateIdentity(formats strfmt.Registry) error {
 
 func (m *Session) validateIssuedAt(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.IssuedAt) { // not required
-		return nil
+	if err := validate.Required("issued_at", "body", m.IssuedAt); err != nil {
+		return err
 	}
 
 	if err := validate.FormatOf("issued_at", "body", "date-time", m.IssuedAt.String(), formats); err != nil {
@@ -125,10 +129,6 @@ func (m *Session) validateIssuedAt(formats strfmt.Registry) error {
 }
 
 func (m *Session) validateSid(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Sid) { // not required
-		return nil
-	}
 
 	if err := m.Sid.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

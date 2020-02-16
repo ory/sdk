@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**getSelfServiceBrowserProfileManagementRequest**](AdminApi.md#getSelfServiceBrowserProfileManagementRequest) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
 [**getSelfServiceBrowserRegistrationRequest**](AdminApi.md#getSelfServiceBrowserRegistrationRequest) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
 [**getSelfServiceError**](AdminApi.md#getSelfServiceError) | **GET** /self-service/errors | Get user-facing self-service errors
+[**getSelfServiceVerificationRequest**](AdminApi.md#getSelfServiceVerificationRequest) | **GET** /self-service/browser/flows/requests/verification | Get the request context of browser-based verification flows
 [**listIdentities**](AdminApi.md#listIdentities) | **GET** /identities | List all identities in the system
 [**updateIdentity**](AdminApi.md#updateIdentity) | **PUT** /identities/{id} | Update an identity
 
@@ -462,6 +463,71 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | User-facing error response |  -  |
+**403** | genericError |  -  |
+**404** | genericError |  -  |
+**500** | genericError |  -  |
+
+<a name="getSelfServiceVerificationRequest"></a>
+# **getSelfServiceVerificationRequest**
+> VerificationRequest getSelfServiceVerificationRequest(request)
+
+Get the request context of browser-based verification flows
+
+When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.AdminApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    AdminApi apiInstance = new AdminApi(defaultClient);
+    String request = "request_example"; // String | Request is the Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verify?request=abcde`).
+    try {
+      VerificationRequest result = apiInstance.getSelfServiceVerificationRequest(request);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AdminApi#getSelfServiceVerificationRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | **String**| Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). |
+
+### Return type
+
+[**VerificationRequest**](VerificationRequest.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | verificationRequest |  -  |
 **403** | genericError |  -  |
 **404** | genericError |  -  |
 **500** | genericError |  -  |

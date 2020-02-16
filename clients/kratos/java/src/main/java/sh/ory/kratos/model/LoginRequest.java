@@ -32,7 +32,7 @@ import sh.ory.kratos.model.LoginRequestMethod;
 /**
  * LoginRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-06T13:59:34.604401Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-16T18:45:30.981791Z[GMT]")
 public class LoginRequest {
   public static final String SERIALIZED_NAME_ACTIVE = "active";
   @SerializedName(SERIALIZED_NAME_ACTIVE)
@@ -52,7 +52,7 @@ public class LoginRequest {
 
   public static final String SERIALIZED_NAME_METHODS = "methods";
   @SerializedName(SERIALIZED_NAME_METHODS)
-  private Map<String, LoginRequestMethod> methods = null;
+  private Map<String, LoginRequestMethod> methods = new HashMap<String, LoginRequestMethod>();
 
   public static final String SERIALIZED_NAME_REQUEST_URL = "request_url";
   @SerializedName(SERIALIZED_NAME_REQUEST_URL)
@@ -92,8 +92,7 @@ public class LoginRequest {
    * ExpiresAt is the time (UTC) when the request expires. If the user still wishes to log in, a new request has to be initiated.
    * @return expiresAt
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "ExpiresAt is the time (UTC) when the request expires. If the user still wishes to log in, a new request has to be initiated.")
+  @ApiModelProperty(required = true, value = "ExpiresAt is the time (UTC) when the request expires. If the user still wishes to log in, a new request has to be initiated.")
 
   public OffsetDateTime getExpiresAt() {
     return expiresAt;
@@ -115,8 +114,7 @@ public class LoginRequest {
    * Get id
    * @return id
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
 
   public String getId() {
     return id;
@@ -138,8 +136,7 @@ public class LoginRequest {
    * IssuedAt is the time (UTC) when the request occurred.
    * @return issuedAt
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "IssuedAt is the time (UTC) when the request occurred.")
+  @ApiModelProperty(required = true, value = "IssuedAt is the time (UTC) when the request occurred.")
 
   public OffsetDateTime getIssuedAt() {
     return issuedAt;
@@ -158,9 +155,6 @@ public class LoginRequest {
   }
 
   public LoginRequest putMethodsItem(String key, LoginRequestMethod methodsItem) {
-    if (this.methods == null) {
-      this.methods = new HashMap<String, LoginRequestMethod>();
-    }
     this.methods.put(key, methodsItem);
     return this;
   }
@@ -169,8 +163,7 @@ public class LoginRequest {
    * Methods contains context for all enabled login methods. If a login request has been processed, but for example the password is incorrect, this will contain error messages.
    * @return methods
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Methods contains context for all enabled login methods. If a login request has been processed, but for example the password is incorrect, this will contain error messages.")
+  @ApiModelProperty(required = true, value = "Methods contains context for all enabled login methods. If a login request has been processed, but for example the password is incorrect, this will contain error messages.")
 
   public Map<String, LoginRequestMethod> getMethods() {
     return methods;
@@ -192,8 +185,7 @@ public class LoginRequest {
    * RequestURL is the initial URL that was requested from ORY Kratos. It can be used to forward information contained in the URL&#39;s path or query for example.
    * @return requestUrl
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "RequestURL is the initial URL that was requested from ORY Kratos. It can be used to forward information contained in the URL's path or query for example.")
+  @ApiModelProperty(required = true, value = "RequestURL is the initial URL that was requested from ORY Kratos. It can be used to forward information contained in the URL's path or query for example.")
 
   public String getRequestUrl() {
     return requestUrl;

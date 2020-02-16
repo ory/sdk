@@ -29,7 +29,7 @@ import sh.ory.kratos.model.Identity;
 /**
  * Session
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-06T13:59:34.604401Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-16T18:45:30.981791Z[GMT]")
 public class Session {
   public static final String SERIALIZED_NAME_AUTHENTICATED_AT = "authenticated_at";
   @SerializedName(SERIALIZED_NAME_AUTHENTICATED_AT)
@@ -62,8 +62,7 @@ public class Session {
    * Get authenticatedAt
    * @return authenticatedAt
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
 
   public OffsetDateTime getAuthenticatedAt() {
     return authenticatedAt;
@@ -85,8 +84,7 @@ public class Session {
    * Get expiresAt
    * @return expiresAt
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
 
   public OffsetDateTime getExpiresAt() {
     return expiresAt;
@@ -108,8 +106,7 @@ public class Session {
    * Get identity
    * @return identity
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
 
   public Identity getIdentity() {
     return identity;
@@ -131,8 +128,7 @@ public class Session {
    * Get issuedAt
    * @return issuedAt
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
 
   public OffsetDateTime getIssuedAt() {
     return issuedAt;
@@ -154,8 +150,7 @@ public class Session {
    * Get sid
    * @return sid
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
 
   public String getSid() {
     return sid;

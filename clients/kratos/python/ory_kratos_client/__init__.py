@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "v0.1.0-alpha.5"
+__version__ = "v0.1.0-alpha.6"
 
 # import apis into sdk package
 from ory_kratos_client.api.admin_api import AdminApi
@@ -50,5 +50,7 @@ from ory_kratos_client.models.registration_request import RegistrationRequest
 from ory_kratos_client.models.registration_request_method import RegistrationRequestMethod
 from ory_kratos_client.models.registration_request_method_config import RegistrationRequestMethodConfig
 from ory_kratos_client.models.session import Session
+from ory_kratos_client.models.verifiable_address import VerifiableAddress
+from ory_kratos_client.models.verification_request import VerificationRequest
 from ory_kratos_client.models.version import Version
 

@@ -32,6 +32,7 @@ import sh.ory.kratos.model.GenericError;
 import sh.ory.kratos.model.LoginRequest;
 import sh.ory.kratos.model.ProfileManagementRequest;
 import sh.ory.kratos.model.RegistrationRequest;
+import sh.ory.kratos.model.VerificationRequest;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -554,6 +555,132 @@ public class CommonApi {
 
         okhttp3.Call localVarCall = getSelfServiceErrorValidateBeforeCall(id, _callback);
         Type localVarReturnType = new TypeToken<ErrorContainer>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for getSelfServiceVerificationRequest
+     * @param request Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> verificationRequest </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getSelfServiceVerificationRequestCall(String request, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/self-service/browser/flows/requests/verification";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (request != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("request", request));
+        }
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getSelfServiceVerificationRequestValidateBeforeCall(String request, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'request' is set
+        if (request == null) {
+            throw new ApiException("Missing the required parameter 'request' when calling getSelfServiceVerificationRequest(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = getSelfServiceVerificationRequestCall(request, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Get the request context of browser-based verification flows
+     * When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+     * @param request Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). (required)
+     * @return VerificationRequest
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> verificationRequest </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public VerificationRequest getSelfServiceVerificationRequest(String request) throws ApiException {
+        ApiResponse<VerificationRequest> localVarResp = getSelfServiceVerificationRequestWithHttpInfo(request);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get the request context of browser-based verification flows
+     * When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+     * @param request Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). (required)
+     * @return ApiResponse&lt;VerificationRequest&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> verificationRequest </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<VerificationRequest> getSelfServiceVerificationRequestWithHttpInfo(String request) throws ApiException {
+        okhttp3.Call localVarCall = getSelfServiceVerificationRequestValidateBeforeCall(request, null);
+        Type localVarReturnType = new TypeToken<VerificationRequest>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get the request context of browser-based verification flows (asynchronously)
+     * When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+     * @param request Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> verificationRequest </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getSelfServiceVerificationRequestAsync(String request, final ApiCallback<VerificationRequest> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getSelfServiceVerificationRequestValidateBeforeCall(request, _callback);
+        Type localVarReturnType = new TypeToken<VerificationRequest>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

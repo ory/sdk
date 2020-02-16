@@ -90,23 +90,29 @@ Class | Method | HTTP request | Description
 *AdminApi* | [**getSelfServiceBrowserProfileManagementRequest**](docs/Api/AdminApi.md#getselfservicebrowserprofilemanagementrequest) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
 *AdminApi* | [**getSelfServiceBrowserRegistrationRequest**](docs/Api/AdminApi.md#getselfservicebrowserregistrationrequest) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
 *AdminApi* | [**getSelfServiceError**](docs/Api/AdminApi.md#getselfserviceerror) | **GET** /self-service/errors | Get user-facing self-service errors
+*AdminApi* | [**getSelfServiceVerificationRequest**](docs/Api/AdminApi.md#getselfserviceverificationrequest) | **GET** /self-service/browser/flows/requests/verification | Get the request context of browser-based verification flows
 *AdminApi* | [**listIdentities**](docs/Api/AdminApi.md#listidentities) | **GET** /identities | List all identities in the system
 *AdminApi* | [**updateIdentity**](docs/Api/AdminApi.md#updateidentity) | **PUT** /identities/{id} | Update an identity
 *CommonApi* | [**getSelfServiceBrowserLoginRequest**](docs/Api/CommonApi.md#getselfservicebrowserloginrequest) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
 *CommonApi* | [**getSelfServiceBrowserProfileManagementRequest**](docs/Api/CommonApi.md#getselfservicebrowserprofilemanagementrequest) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
 *CommonApi* | [**getSelfServiceBrowserRegistrationRequest**](docs/Api/CommonApi.md#getselfservicebrowserregistrationrequest) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
 *CommonApi* | [**getSelfServiceError**](docs/Api/CommonApi.md#getselfserviceerror) | **GET** /self-service/errors | Get user-facing self-service errors
+*CommonApi* | [**getSelfServiceVerificationRequest**](docs/Api/CommonApi.md#getselfserviceverificationrequest) | **GET** /self-service/browser/flows/requests/verification | Get the request context of browser-based verification flows
 *HealthApi* | [**isInstanceAlive**](docs/Api/HealthApi.md#isinstancealive) | **GET** /health/alive | Check alive status
 *HealthApi* | [**isInstanceReady**](docs/Api/HealthApi.md#isinstanceready) | **GET** /health/ready | Check readiness status
 *PublicApi* | [**completeSelfServiceBrowserProfileManagementFlow**](docs/Api/PublicApi.md#completeselfservicebrowserprofilemanagementflow) | **POST** /self-service/browser/flows/profile/update | Complete the browser-based profile management flows
+*PublicApi* | [**completeSelfServiceBrowserVerificationFlow**](docs/Api/PublicApi.md#completeselfservicebrowserverificationflow) | **POST** /self-service/browser/flows/verification/complete | Complete the browser-based profile management flows
 *PublicApi* | [**getSelfServiceBrowserLoginRequest**](docs/Api/PublicApi.md#getselfservicebrowserloginrequest) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
 *PublicApi* | [**getSelfServiceBrowserProfileManagementRequest**](docs/Api/PublicApi.md#getselfservicebrowserprofilemanagementrequest) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
 *PublicApi* | [**getSelfServiceBrowserRegistrationRequest**](docs/Api/PublicApi.md#getselfservicebrowserregistrationrequest) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
 *PublicApi* | [**getSelfServiceError**](docs/Api/PublicApi.md#getselfserviceerror) | **GET** /self-service/errors | Get user-facing self-service errors
+*PublicApi* | [**getSelfServiceVerificationRequest**](docs/Api/PublicApi.md#getselfserviceverificationrequest) | **GET** /self-service/browser/flows/requests/verification | Get the request context of browser-based verification flows
 *PublicApi* | [**initializeSelfServiceBrowserLoginFlow**](docs/Api/PublicApi.md#initializeselfservicebrowserloginflow) | **GET** /self-service/browser/flows/login | Initialize browser-based login user flow
 *PublicApi* | [**initializeSelfServiceBrowserLogoutFlow**](docs/Api/PublicApi.md#initializeselfservicebrowserlogoutflow) | **GET** /self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
 *PublicApi* | [**initializeSelfServiceBrowserRegistrationFlow**](docs/Api/PublicApi.md#initializeselfservicebrowserregistrationflow) | **GET** /self-service/browser/flows/registration | Initialize browser-based registration user flow
+*PublicApi* | [**initializeSelfServiceBrowserVerificationFlow**](docs/Api/PublicApi.md#initializeselfservicebrowserverificationflow) | **GET** /self-service/browser/flows/verification/init/{via} | Initialize browser-based verification flow
 *PublicApi* | [**initializeSelfServiceProfileManagementFlow**](docs/Api/PublicApi.md#initializeselfserviceprofilemanagementflow) | **GET** /self-service/browser/flows/profile | Initialize browser-based profile management flow
+*PublicApi* | [**selfServiceBrowserVerify**](docs/Api/PublicApi.md#selfservicebrowserverify) | **GET** /self-service/browser/flows/verification/confirm/{code} | Complete the browser-based verification flows
 *PublicApi* | [**whoami**](docs/Api/PublicApi.md#whoami) | **GET** /sessions/whoami | Check who the current HTTP session belongs to
 *VersionApi* | [**getVersion**](docs/Api/VersionApi.md#getversion) | **GET** /version | Get service version
 
@@ -131,6 +137,8 @@ Class | Method | HTTP request | Description
  - [RegistrationRequestMethod](docs/Model/RegistrationRequestMethod.md)
  - [RegistrationRequestMethodConfig](docs/Model/RegistrationRequestMethodConfig.md)
  - [Session](docs/Model/Session.md)
+ - [VerifiableAddress](docs/Model/VerifiableAddress.md)
+ - [VerificationRequest](docs/Model/VerificationRequest.md)
  - [Version](docs/Model/Version.md)
 
 

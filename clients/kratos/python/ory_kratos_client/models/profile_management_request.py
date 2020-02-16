@@ -67,20 +67,13 @@ class ProfileManagementRequest(object):
         self._update_successful = None
         self.discriminator = None
 
-        if expires_at is not None:
-            self.expires_at = expires_at
-        if form is not None:
-            self.form = form
-        if id is not None:
-            self.id = id
-        if identity is not None:
-            self.identity = identity
-        if issued_at is not None:
-            self.issued_at = issued_at
-        if request_url is not None:
-            self.request_url = request_url
-        if update_successful is not None:
-            self.update_successful = update_successful
+        self.expires_at = expires_at
+        self.form = form
+        self.id = id
+        self.identity = identity
+        self.issued_at = issued_at
+        self.request_url = request_url
+        self.update_successful = update_successful
 
     @property
     def expires_at(self):
@@ -102,6 +95,8 @@ class ProfileManagementRequest(object):
         :param expires_at: The expires_at of this ProfileManagementRequest.  # noqa: E501
         :type: datetime
         """
+        if self.local_vars_configuration.client_side_validation and expires_at is None:  # noqa: E501
+            raise ValueError("Invalid value for `expires_at`, must not be `None`")  # noqa: E501
 
         self._expires_at = expires_at
 
@@ -123,6 +118,8 @@ class ProfileManagementRequest(object):
         :param form: The form of this ProfileManagementRequest.  # noqa: E501
         :type: Form
         """
+        if self.local_vars_configuration.client_side_validation and form is None:  # noqa: E501
+            raise ValueError("Invalid value for `form`, must not be `None`")  # noqa: E501
 
         self._form = form
 
@@ -144,6 +141,8 @@ class ProfileManagementRequest(object):
         :param id: The id of this ProfileManagementRequest.  # noqa: E501
         :type: str
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -165,6 +164,8 @@ class ProfileManagementRequest(object):
         :param identity: The identity of this ProfileManagementRequest.  # noqa: E501
         :type: Identity
         """
+        if self.local_vars_configuration.client_side_validation and identity is None:  # noqa: E501
+            raise ValueError("Invalid value for `identity`, must not be `None`")  # noqa: E501
 
         self._identity = identity
 
@@ -188,6 +189,8 @@ class ProfileManagementRequest(object):
         :param issued_at: The issued_at of this ProfileManagementRequest.  # noqa: E501
         :type: datetime
         """
+        if self.local_vars_configuration.client_side_validation and issued_at is None:  # noqa: E501
+            raise ValueError("Invalid value for `issued_at`, must not be `None`")  # noqa: E501
 
         self._issued_at = issued_at
 
@@ -211,6 +214,8 @@ class ProfileManagementRequest(object):
         :param request_url: The request_url of this ProfileManagementRequest.  # noqa: E501
         :type: str
         """
+        if self.local_vars_configuration.client_side_validation and request_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `request_url`, must not be `None`")  # noqa: E501
 
         self._request_url = request_url
 
@@ -234,6 +239,8 @@ class ProfileManagementRequest(object):
         :param update_successful: The update_successful of this ProfileManagementRequest.  # noqa: E501
         :type: bool
         """
+        if self.local_vars_configuration.client_side_validation and update_successful is None:  # noqa: E501
+            raise ValueError("Invalid value for `update_successful`, must not be `None`")  # noqa: E501
 
         self._update_successful = update_successful
 

@@ -20,6 +20,7 @@ import sh.ory.kratos.model.Identity;
 import sh.ory.kratos.model.LoginRequest;
 import sh.ory.kratos.model.ProfileManagementRequest;
 import sh.ory.kratos.model.RegistrationRequest;
+import sh.ory.kratos.model.VerificationRequest;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -145,6 +146,22 @@ public class AdminApiTest {
     public void getSelfServiceErrorTest() throws ApiException {
         String id = null;
         ErrorContainer response = api.getSelfServiceError(id);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get the request context of browser-based verification flows
+     *
+     * When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSelfServiceVerificationRequestTest() throws ApiException {
+        String request = null;
+        VerificationRequest response = api.getSelfServiceVerificationRequest(request);
 
         // TODO: test validations
     }

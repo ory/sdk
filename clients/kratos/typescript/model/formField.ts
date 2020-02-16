@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { RequestFile } from '../api';
 
 /**
 * Field represents a HTML Form Field
@@ -18,7 +19,7 @@ export class FormField {
     /**
     * Disabled is the equivalent of <input disabled=\"{{.Disabled}}\">
     */
-    'disabled'?: string;
+    'disabled'?: boolean;
     /**
     * Errors contains all validation errors this particular field has caused.
     */
@@ -26,7 +27,7 @@ export class FormField {
     /**
     * Name is the equivalent of <input name=\"{{.Name}}\">
     */
-    'name'?: string;
+    'name': string;
     /**
     * Pattern is the equivalent of <input pattern=\"{{.Pattern}}\">
     */
@@ -34,11 +35,11 @@ export class FormField {
     /**
     * Required is the equivalent of <input required=\"{{.Required}}\">
     */
-    'required'?: boolean;
+    'required': boolean;
     /**
     * Type is the equivalent of <input type=\"{{.Type}}\">
     */
-    'type'?: string;
+    'type': string;
     /**
     * Value is the equivalent of <input value=\"{{.Value}}\">
     */
@@ -50,7 +51,7 @@ export class FormField {
         {
             "name": "disabled",
             "baseName": "disabled",
-            "type": "string"
+            "type": "boolean"
         },
         {
             "name": "errors",

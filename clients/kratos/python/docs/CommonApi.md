@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**get_self_service_browser_profile_management_request**](CommonApi.md#get_self_service_browser_profile_management_request) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
 [**get_self_service_browser_registration_request**](CommonApi.md#get_self_service_browser_registration_request) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
 [**get_self_service_error**](CommonApi.md#get_self_service_error) | **GET** /self-service/errors | Get user-facing self-service errors
+[**get_self_service_verification_request**](CommonApi.md#get_self_service_verification_request) | **GET** /self-service/browser/flows/requests/verification | Get the request context of browser-based verification flows
 
 
 # **get_self_service_browser_login_request**
@@ -26,16 +27,18 @@ import ory_kratos_client
 from ory_kratos_client.rest import ApiException
 from pprint import pprint
 
-# Create an instance of the API class
-api_instance = ory_kratos_client.CommonApi()
-request = 'request_example' # str | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = ory_kratos_client.CommonApi(api_client)
+    request = 'request_example' # str | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
 
-try:
-    # Get the request context of browser-based login user flows
-    api_response = api_instance.get_self_service_browser_login_request(request)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling CommonApi->get_self_service_browser_login_request: %s\n" % e)
+    try:
+        # Get the request context of browser-based login user flows
+        api_response = api_instance.get_self_service_browser_login_request(request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling CommonApi->get_self_service_browser_login_request: %s\n" % e)
 ```
 
 ### Parameters
@@ -83,16 +86,18 @@ import ory_kratos_client
 from ory_kratos_client.rest import ApiException
 from pprint import pprint
 
-# Create an instance of the API class
-api_instance = ory_kratos_client.CommonApi()
-request = 'request_example' # str | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = ory_kratos_client.CommonApi(api_client)
+    request = 'request_example' # str | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
 
-try:
-    # Get the request context of browser-based profile management flows
-    api_response = api_instance.get_self_service_browser_profile_management_request(request)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling CommonApi->get_self_service_browser_profile_management_request: %s\n" % e)
+    try:
+        # Get the request context of browser-based profile management flows
+        api_response = api_instance.get_self_service_browser_profile_management_request(request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling CommonApi->get_self_service_browser_profile_management_request: %s\n" % e)
 ```
 
 ### Parameters
@@ -140,16 +145,18 @@ import ory_kratos_client
 from ory_kratos_client.rest import ApiException
 from pprint import pprint
 
-# Create an instance of the API class
-api_instance = ory_kratos_client.CommonApi()
-request = 'request_example' # str | Request is the Registration Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/registration?request=abcde`).
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = ory_kratos_client.CommonApi(api_client)
+    request = 'request_example' # str | Request is the Registration Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/registration?request=abcde`).
 
-try:
-    # Get the request context of browser-based registration user flows
-    api_response = api_instance.get_self_service_browser_registration_request(request)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling CommonApi->get_self_service_browser_registration_request: %s\n" % e)
+    try:
+        # Get the request context of browser-based registration user flows
+        api_response = api_instance.get_self_service_browser_registration_request(request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling CommonApi->get_self_service_browser_registration_request: %s\n" % e)
 ```
 
 ### Parameters
@@ -197,16 +204,18 @@ import ory_kratos_client
 from ory_kratos_client.rest import ApiException
 from pprint import pprint
 
-# Create an instance of the API class
-api_instance = ory_kratos_client.CommonApi()
-id = 'id_example' # str |  (optional)
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = ory_kratos_client.CommonApi(api_client)
+    id = 'id_example' # str |  (optional)
 
-try:
-    # Get user-facing self-service errors
-    api_response = api_instance.get_self_service_error(id=id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling CommonApi->get_self_service_error: %s\n" % e)
+    try:
+        # Get user-facing self-service errors
+        api_response = api_instance.get_self_service_error(id=id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling CommonApi->get_self_service_error: %s\n" % e)
 ```
 
 ### Parameters
@@ -232,6 +241,65 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | User-facing error response |  -  |
+**403** | genericError |  -  |
+**404** | genericError |  -  |
+**500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_self_service_verification_request**
+> VerificationRequest get_self_service_verification_request(request)
+
+Get the request context of browser-based verification flows
+
+When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import ory_kratos_client
+from ory_kratos_client.rest import ApiException
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = ory_kratos_client.CommonApi(api_client)
+    request = 'request_example' # str | Request is the Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verify?request=abcde`).
+
+    try:
+        # Get the request context of browser-based verification flows
+        api_response = api_instance.get_self_service_verification_request(request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling CommonApi->get_self_service_verification_request: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | **str**| Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). | 
+
+### Return type
+
+[**VerificationRequest**](VerificationRequest.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | verificationRequest |  -  |
 **403** | genericError |  -  |
 **404** | genericError |  -  |
 **500** | genericError |  -  |

@@ -61,16 +61,11 @@ class Session(object):
         self._sid = None
         self.discriminator = None
 
-        if authenticated_at is not None:
-            self.authenticated_at = authenticated_at
-        if expires_at is not None:
-            self.expires_at = expires_at
-        if identity is not None:
-            self.identity = identity
-        if issued_at is not None:
-            self.issued_at = issued_at
-        if sid is not None:
-            self.sid = sid
+        self.authenticated_at = authenticated_at
+        self.expires_at = expires_at
+        self.identity = identity
+        self.issued_at = issued_at
+        self.sid = sid
 
     @property
     def authenticated_at(self):
@@ -90,6 +85,8 @@ class Session(object):
         :param authenticated_at: The authenticated_at of this Session.  # noqa: E501
         :type: datetime
         """
+        if self.local_vars_configuration.client_side_validation and authenticated_at is None:  # noqa: E501
+            raise ValueError("Invalid value for `authenticated_at`, must not be `None`")  # noqa: E501
 
         self._authenticated_at = authenticated_at
 
@@ -111,6 +108,8 @@ class Session(object):
         :param expires_at: The expires_at of this Session.  # noqa: E501
         :type: datetime
         """
+        if self.local_vars_configuration.client_side_validation and expires_at is None:  # noqa: E501
+            raise ValueError("Invalid value for `expires_at`, must not be `None`")  # noqa: E501
 
         self._expires_at = expires_at
 
@@ -132,6 +131,8 @@ class Session(object):
         :param identity: The identity of this Session.  # noqa: E501
         :type: Identity
         """
+        if self.local_vars_configuration.client_side_validation and identity is None:  # noqa: E501
+            raise ValueError("Invalid value for `identity`, must not be `None`")  # noqa: E501
 
         self._identity = identity
 
@@ -153,6 +154,8 @@ class Session(object):
         :param issued_at: The issued_at of this Session.  # noqa: E501
         :type: datetime
         """
+        if self.local_vars_configuration.client_side_validation and issued_at is None:  # noqa: E501
+            raise ValueError("Invalid value for `issued_at`, must not be `None`")  # noqa: E501
 
         self._issued_at = issued_at
 
@@ -174,6 +177,8 @@ class Session(object):
         :param sid: The sid of this Session.  # noqa: E501
         :type: str
         """
+        if self.local_vars_configuration.client_side_validation and sid is None:  # noqa: E501
+            raise ValueError("Invalid value for `sid`, must not be `None`")  # noqa: E501
 
         self._sid = sid
 

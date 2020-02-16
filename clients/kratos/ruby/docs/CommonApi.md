@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**get_self_service_browser_profile_management_request**](CommonApi.md#get_self_service_browser_profile_management_request) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
 [**get_self_service_browser_registration_request**](CommonApi.md#get_self_service_browser_registration_request) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
 [**get_self_service_error**](CommonApi.md#get_self_service_error) | **GET** /self-service/errors | Get user-facing self-service errors
+[**get_self_service_verification_request**](CommonApi.md#get_self_service_verification_request) | **GET** /self-service/browser/flows/requests/verification | Get the request context of browser-based verification flows
 
 
 
@@ -190,6 +191,53 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ErrorContainer**](ErrorContainer.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_self_service_verification_request
+
+> VerificationRequest get_self_service_verification_request(request)
+
+Get the request context of browser-based verification flows
+
+When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+
+```ruby
+# load the gem
+require 'ory-kratos-client'
+
+api_instance = OryHydraClient::CommonApi.new
+request = 'request_example' # String | Request is the Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verify?request=abcde`).
+
+begin
+  #Get the request context of browser-based verification flows
+  result = api_instance.get_self_service_verification_request(request)
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Exception when calling CommonApi->get_self_service_verification_request: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | **String**| Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). | 
+
+### Return type
+
+[**VerificationRequest**](VerificationRequest.md)
 
 ### Authorization
 

@@ -5,14 +5,18 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**complete_self_service_browser_profile_management_flow**](PublicApi.md#complete_self_service_browser_profile_management_flow) | **POST** /self-service/browser/flows/profile/update | Complete the browser-based profile management flows
+[**complete_self_service_browser_verification_flow**](PublicApi.md#complete_self_service_browser_verification_flow) | **POST** /self-service/browser/flows/verification/complete | Complete the browser-based profile management flows
 [**get_self_service_browser_login_request**](PublicApi.md#get_self_service_browser_login_request) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
 [**get_self_service_browser_profile_management_request**](PublicApi.md#get_self_service_browser_profile_management_request) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
 [**get_self_service_browser_registration_request**](PublicApi.md#get_self_service_browser_registration_request) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
 [**get_self_service_error**](PublicApi.md#get_self_service_error) | **GET** /self-service/errors | Get user-facing self-service errors
+[**get_self_service_verification_request**](PublicApi.md#get_self_service_verification_request) | **GET** /self-service/browser/flows/requests/verification | Get the request context of browser-based verification flows
 [**initialize_self_service_browser_login_flow**](PublicApi.md#initialize_self_service_browser_login_flow) | **GET** /self-service/browser/flows/login | Initialize browser-based login user flow
 [**initialize_self_service_browser_logout_flow**](PublicApi.md#initialize_self_service_browser_logout_flow) | **GET** /self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
 [**initialize_self_service_browser_registration_flow**](PublicApi.md#initialize_self_service_browser_registration_flow) | **GET** /self-service/browser/flows/registration | Initialize browser-based registration user flow
+[**initialize_self_service_browser_verification_flow**](PublicApi.md#initialize_self_service_browser_verification_flow) | **GET** /self-service/browser/flows/verification/init/{via} | Initialize browser-based verification flow
 [**initialize_self_service_profile_management_flow**](PublicApi.md#initialize_self_service_profile_management_flow) | **GET** /self-service/browser/flows/profile | Initialize browser-based profile management flow
+[**self_service_browser_verify**](PublicApi.md#self_service_browser_verify) | **GET** /self-service/browser/flows/verification/confirm/{code} | Complete the browser-based verification flows
 [**whoami**](PublicApi.md#whoami) | **GET** /sessions/whoami | Check who the current HTTP session belongs to
 
 
@@ -62,6 +66,52 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Accept**: application/json
+
+
+## complete_self_service_browser_verification_flow
+
+> complete_self_service_browser_verification_flow(request)
+
+Complete the browser-based profile management flows
+
+This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity's Traits JSON Schema, the data will be updated and the browser redirected to `url.profile_ui` for further steps.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+
+```ruby
+# load the gem
+require 'ory-kratos-client'
+
+api_instance = OryHydraClient::PublicApi.new
+request = 'request_example' # String | Request is the Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verify?request=abcde`).
+
+begin
+  #Complete the browser-based profile management flows
+  api_instance.complete_self_service_browser_verification_flow(request)
+rescue OryHydraClient::ApiError => e
+  puts "Exception when calling PublicApi->complete_self_service_browser_verification_flow: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | **String**| Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). | 
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 
@@ -255,6 +305,53 @@ No authorization required
 - **Accept**: application/json
 
 
+## get_self_service_verification_request
+
+> VerificationRequest get_self_service_verification_request(request)
+
+Get the request context of browser-based verification flows
+
+When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+
+```ruby
+# load the gem
+require 'ory-kratos-client'
+
+api_instance = OryHydraClient::PublicApi.new
+request = 'request_example' # String | Request is the Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verify?request=abcde`).
+
+begin
+  #Get the request context of browser-based verification flows
+  result = api_instance.get_self_service_verification_request(request)
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Exception when calling PublicApi->get_self_service_verification_request: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | **String**| Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). | 
+
+### Return type
+
+[**VerificationRequest**](VerificationRequest.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## initialize_self_service_browser_login_flow
 
 > initialize_self_service_browser_login_flow
@@ -381,6 +478,52 @@ No authorization required
 - **Accept**: application/json
 
 
+## initialize_self_service_browser_verification_flow
+
+> initialize_self_service_browser_verification_flow(via)
+
+Initialize browser-based verification flow
+
+This endpoint initializes a browser-based profile management flow. Once initialized, the browser will be redirected to `urls.profile_ui` with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+
+```ruby
+# load the gem
+require 'ory-kratos-client'
+
+api_instance = OryHydraClient::PublicApi.new
+via = 'via_example' # String | What to verify  Currently only \"email\" is supported.
+
+begin
+  #Initialize browser-based verification flow
+  api_instance.initialize_self_service_browser_verification_flow(via)
+rescue OryHydraClient::ApiError => e
+  puts "Exception when calling PublicApi->initialize_self_service_browser_verification_flow: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **via** | **String**| What to verify  Currently only \&quot;email\&quot; is supported. | 
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## initialize_self_service_profile_management_flow
 
 > initialize_self_service_profile_management_flow
@@ -408,6 +551,52 @@ end
 ### Parameters
 
 This endpoint does not need any parameter.
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## self_service_browser_verify
+
+> self_service_browser_verify(code)
+
+Complete the browser-based verification flows
+
+This endpoint completes a browser-based verification flow.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+
+```ruby
+# load the gem
+require 'ory-kratos-client'
+
+api_instance = OryHydraClient::PublicApi.new
+code = 'code_example' # String | 
+
+begin
+  #Complete the browser-based verification flows
+  api_instance.self_service_browser_verify(code)
+rescue OryHydraClient::ApiError => e
+  puts "Exception when calling PublicApi->self_service_browser_verify: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **code** | **String**|  | 
 
 ### Return type
 

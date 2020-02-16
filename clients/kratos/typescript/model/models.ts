@@ -16,6 +16,8 @@ export * from './registrationRequest';
 export * from './registrationRequestMethod';
 export * from './registrationRequestMethodConfig';
 export * from './session';
+export * from './verifiableAddress';
+export * from './verificationRequest';
 export * from './version';
 
 import localVarRequest = require('request');
@@ -38,6 +40,8 @@ import { RegistrationRequest } from './registrationRequest';
 import { RegistrationRequestMethod } from './registrationRequestMethod';
 import { RegistrationRequestMethodConfig } from './registrationRequestMethodConfig';
 import { Session } from './session';
+import { VerifiableAddress } from './verifiableAddress';
+import { VerificationRequest } from './verificationRequest';
 import { Version } from './version';
 
 /* tslint:disable:no-unused-variable */
@@ -74,6 +78,8 @@ let typeMap: {[index: string]: any} = {
     "RegistrationRequestMethod": RegistrationRequestMethod,
     "RegistrationRequestMethodConfig": RegistrationRequestMethodConfig,
     "Session": Session,
+    "VerifiableAddress": VerifiableAddress,
+    "VerificationRequest": VerificationRequest,
     "Version": Version,
 }
 

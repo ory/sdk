@@ -9,12 +9,11 @@ import (
 	"fmt"
 
 	"github.com/go-openapi/runtime"
-
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/strfmt"
 )
 
 // New creates a new public API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -26,10 +25,33 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*
-CompleteSelfServiceBrowserProfileManagementFlow completes the browser based profile management flows
+// ClientService is the interface for Client methods
+type ClientService interface {
+	CompleteSelfServiceBrowserProfileManagementFlow(params *CompleteSelfServiceBrowserProfileManagementFlowParams) error
 
-This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this
+	CompleteSelfServiceBrowserVerificationFlow(params *CompleteSelfServiceBrowserVerificationFlowParams) error
+
+	InitializeSelfServiceBrowserLoginFlow(params *InitializeSelfServiceBrowserLoginFlowParams) error
+
+	InitializeSelfServiceBrowserLogoutFlow(params *InitializeSelfServiceBrowserLogoutFlowParams) error
+
+	InitializeSelfServiceBrowserRegistrationFlow(params *InitializeSelfServiceBrowserRegistrationFlowParams) error
+
+	InitializeSelfServiceBrowserVerificationFlow(params *InitializeSelfServiceBrowserVerificationFlowParams) error
+
+	InitializeSelfServiceProfileManagementFlow(params *InitializeSelfServiceProfileManagementFlowParams) error
+
+	SelfServiceBrowserVerify(params *SelfServiceBrowserVerifyParams) error
+
+	Whoami(params *WhoamiParams) (*WhoamiOK, error)
+
+	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+  CompleteSelfServiceBrowserProfileManagementFlow completes the browser based profile management flows
+
+  This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this
 endpoint.
 
 If the provided profile data is valid against the Identity's Traits JSON Schema, the data will be updated and
@@ -64,9 +86,46 @@ func (a *Client) CompleteSelfServiceBrowserProfileManagementFlow(params *Complet
 }
 
 /*
-InitializeSelfServiceBrowserLoginFlow initializes browser based login user flow
+  CompleteSelfServiceBrowserVerificationFlow completes the browser based profile management flows
 
-This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to
+  This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this
+endpoint.
+
+If the provided profile data is valid against the Identity's Traits JSON Schema, the data will be updated and
+the browser redirected to `url.profile_ui` for further steps.
+
+> This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.
+
+More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+*/
+func (a *Client) CompleteSelfServiceBrowserVerificationFlow(params *CompleteSelfServiceBrowserVerificationFlowParams) error {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCompleteSelfServiceBrowserVerificationFlowParams()
+	}
+
+	_, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "completeSelfServiceBrowserVerificationFlow",
+		Method:             "POST",
+		PathPattern:        "/self-service/browser/flows/verification/complete",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/x-www-form-urlencoded"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &CompleteSelfServiceBrowserVerificationFlowReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+/*
+  InitializeSelfServiceBrowserLoginFlow initializes browser based login user flow
+
+  This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to
 `urls.login_ui` with the request ID set as a query parameter. If a valid user session exists already, the browser will be
 redirected to `urls.default_redirect_url`.
 
@@ -100,9 +159,9 @@ func (a *Client) InitializeSelfServiceBrowserLoginFlow(params *InitializeSelfSer
 }
 
 /*
-InitializeSelfServiceBrowserLogoutFlow initializes browser based logout user flow
+  InitializeSelfServiceBrowserLogoutFlow initializes browser based logout user flow
 
-This endpoint initializes a logout flow.
+  This endpoint initializes a logout flow.
 
 > This endpoint is NOT INTENDED for API clients and only works
 with browsers (Chrome, Firefox, ...).
@@ -136,9 +195,9 @@ func (a *Client) InitializeSelfServiceBrowserLogoutFlow(params *InitializeSelfSe
 }
 
 /*
-InitializeSelfServiceBrowserRegistrationFlow initializes browser based registration user flow
+  InitializeSelfServiceBrowserRegistrationFlow initializes browser based registration user flow
 
-This endpoint initializes a browser-based user registration flow. Once initialized, the browser will be redirected to
+  This endpoint initializes a browser-based user registration flow. Once initialized, the browser will be redirected to
 `urls.registration_ui` with the request ID set as a query parameter. If a valid user session exists already, the browser will be
 redirected to `urls.default_redirect_url`.
 
@@ -172,9 +231,45 @@ func (a *Client) InitializeSelfServiceBrowserRegistrationFlow(params *Initialize
 }
 
 /*
-InitializeSelfServiceProfileManagementFlow initializes browser based profile management flow
+  InitializeSelfServiceBrowserVerificationFlow initializes browser based verification flow
 
-This endpoint initializes a browser-based profile management flow. Once initialized, the browser will be redirected to
+  This endpoint initializes a browser-based profile management flow. Once initialized, the browser will be redirected to
+`urls.profile_ui` with the request ID set as a query parameter. If no valid user session exists, a login
+flow will be initialized.
+
+> This endpoint is NOT INTENDED for API clients and only works
+with browsers (Chrome, Firefox, ...).
+
+More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+*/
+func (a *Client) InitializeSelfServiceBrowserVerificationFlow(params *InitializeSelfServiceBrowserVerificationFlowParams) error {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewInitializeSelfServiceBrowserVerificationFlowParams()
+	}
+
+	_, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "initializeSelfServiceBrowserVerificationFlow",
+		Method:             "GET",
+		PathPattern:        "/self-service/browser/flows/verification/init/{via}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/x-www-form-urlencoded"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &InitializeSelfServiceBrowserVerificationFlowReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+/*
+  InitializeSelfServiceProfileManagementFlow initializes browser based profile management flow
+
+  This endpoint initializes a browser-based profile management flow. Once initialized, the browser will be redirected to
 `urls.profile_ui` with the request ID set as a query parameter. If no valid user session exists, a login
 flow will be initialized.
 
@@ -208,9 +303,42 @@ func (a *Client) InitializeSelfServiceProfileManagementFlow(params *InitializeSe
 }
 
 /*
-Whoami checks who the current HTTP session belongs to
+  SelfServiceBrowserVerify completes the browser based verification flows
 
-Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated.
+  This endpoint completes a browser-based verification flow.
+
+> This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.
+
+More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+*/
+func (a *Client) SelfServiceBrowserVerify(params *SelfServiceBrowserVerifyParams) error {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSelfServiceBrowserVerifyParams()
+	}
+
+	_, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "selfServiceBrowserVerify",
+		Method:             "GET",
+		PathPattern:        "/self-service/browser/flows/verification/confirm/{code}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/x-www-form-urlencoded"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &SelfServiceBrowserVerifyReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+/*
+  Whoami checks who the current HTTP session belongs to
+
+  Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated.
 Returns a session object or 401 if the credentials are invalid or no credentials were sent.
 
 This endpoint is useful for reverse proxies and API Gateways.

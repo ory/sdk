@@ -31,11 +31,11 @@ import sh.ory.kratos.model.Error;
  * Field represents a HTML Form Field
  */
 @ApiModel(description = "Field represents a HTML Form Field")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-06T13:59:34.604401Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-16T18:45:30.981791Z[GMT]")
 public class FormField {
   public static final String SERIALIZED_NAME_DISABLED = "disabled";
   @SerializedName(SERIALIZED_NAME_DISABLED)
-  private String disabled;
+  private Boolean disabled;
 
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
@@ -62,7 +62,7 @@ public class FormField {
   private Object value;
 
 
-  public FormField disabled(String disabled) {
+  public FormField disabled(Boolean disabled) {
     
     this.disabled = disabled;
     return this;
@@ -75,12 +75,12 @@ public class FormField {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Disabled is the equivalent of <input disabled=\"{{.Disabled}}\">")
 
-  public String getDisabled() {
+  public Boolean getDisabled() {
     return disabled;
   }
 
 
-  public void setDisabled(String disabled) {
+  public void setDisabled(Boolean disabled) {
     this.disabled = disabled;
   }
 
@@ -126,8 +126,7 @@ public class FormField {
    * Name is the equivalent of &lt;input name&#x3D;\&quot;{{.Name}}\&quot;&gt;
    * @return name
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Name is the equivalent of <input name=\"{{.Name}}\">")
+  @ApiModelProperty(required = true, value = "Name is the equivalent of <input name=\"{{.Name}}\">")
 
   public String getName() {
     return name;
@@ -172,8 +171,7 @@ public class FormField {
    * Required is the equivalent of &lt;input required&#x3D;\&quot;{{.Required}}\&quot;&gt;
    * @return required
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Required is the equivalent of <input required=\"{{.Required}}\">")
+  @ApiModelProperty(required = true, value = "Required is the equivalent of <input required=\"{{.Required}}\">")
 
   public Boolean getRequired() {
     return required;
@@ -195,8 +193,7 @@ public class FormField {
    * Type is the equivalent of &lt;input type&#x3D;\&quot;{{.Type}}\&quot;&gt;
    * @return type
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Type is the equivalent of <input type=\"{{.Type}}\">")
+  @ApiModelProperty(required = true, value = "Type is the equivalent of <input type=\"{{.Type}}\">")
 
   public String getType() {
     return type;

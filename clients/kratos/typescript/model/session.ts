@@ -10,14 +10,15 @@
  * Do not edit the class manually.
  */
 
+import { RequestFile } from '../api';
 import { Identity } from './identity';
 
 export class Session {
-    'authenticatedAt'?: Date;
-    'expiresAt'?: Date;
-    'identity'?: Identity;
-    'issuedAt'?: Date;
-    'sid'?: string;
+    'authenticatedAt': Date;
+    'expiresAt': Date;
+    'identity': Identity;
+    'issuedAt': Date;
+    'sid': string;
 
     static discriminator: string | undefined = undefined;
 

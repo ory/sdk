@@ -34,6 +34,7 @@ import sh.ory.kratos.model.LoginRequest;
 import sh.ory.kratos.model.ProfileManagementRequest;
 import sh.ory.kratos.model.RegistrationRequest;
 import sh.ory.kratos.model.Session;
+import sh.ory.kratos.model.VerificationRequest;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -180,6 +181,120 @@ public class PublicApi {
     public okhttp3.Call completeSelfServiceBrowserProfileManagementFlowAsync(String request, CompleteSelfServiceBrowserProfileManagementFlowPayload body, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = completeSelfServiceBrowserProfileManagementFlowValidateBeforeCall(request, body, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for completeSelfServiceBrowserVerificationFlow
+     * @param request Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 302 </td><td> Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call completeSelfServiceBrowserVerificationFlowCall(String request, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/self-service/browser/flows/verification/complete";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (request != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("request", request));
+        }
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call completeSelfServiceBrowserVerificationFlowValidateBeforeCall(String request, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'request' is set
+        if (request == null) {
+            throw new ApiException("Missing the required parameter 'request' when calling completeSelfServiceBrowserVerificationFlow(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = completeSelfServiceBrowserVerificationFlowCall(request, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Complete the browser-based profile management flows
+     * This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity&#39;s Traits JSON Schema, the data will be updated and the browser redirected to &#x60;url.profile_ui&#x60; for further steps.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+     * @param request Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 302 </td><td> Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public void completeSelfServiceBrowserVerificationFlow(String request) throws ApiException {
+        completeSelfServiceBrowserVerificationFlowWithHttpInfo(request);
+    }
+
+    /**
+     * Complete the browser-based profile management flows
+     * This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity&#39;s Traits JSON Schema, the data will be updated and the browser redirected to &#x60;url.profile_ui&#x60; for further steps.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+     * @param request Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 302 </td><td> Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> completeSelfServiceBrowserVerificationFlowWithHttpInfo(String request) throws ApiException {
+        okhttp3.Call localVarCall = completeSelfServiceBrowserVerificationFlowValidateBeforeCall(request, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Complete the browser-based profile management flows (asynchronously)
+     * This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity&#39;s Traits JSON Schema, the data will be updated and the browser redirected to &#x60;url.profile_ui&#x60; for further steps.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+     * @param request Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 302 </td><td> Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call completeSelfServiceBrowserVerificationFlowAsync(String request, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = completeSelfServiceBrowserVerificationFlowValidateBeforeCall(request, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
@@ -683,6 +798,132 @@ public class PublicApi {
         return localVarCall;
     }
     /**
+     * Build call for getSelfServiceVerificationRequest
+     * @param request Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> verificationRequest </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getSelfServiceVerificationRequestCall(String request, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/self-service/browser/flows/requests/verification";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (request != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("request", request));
+        }
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getSelfServiceVerificationRequestValidateBeforeCall(String request, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'request' is set
+        if (request == null) {
+            throw new ApiException("Missing the required parameter 'request' when calling getSelfServiceVerificationRequest(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = getSelfServiceVerificationRequestCall(request, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Get the request context of browser-based verification flows
+     * When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+     * @param request Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). (required)
+     * @return VerificationRequest
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> verificationRequest </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public VerificationRequest getSelfServiceVerificationRequest(String request) throws ApiException {
+        ApiResponse<VerificationRequest> localVarResp = getSelfServiceVerificationRequestWithHttpInfo(request);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get the request context of browser-based verification flows
+     * When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+     * @param request Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). (required)
+     * @return ApiResponse&lt;VerificationRequest&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> verificationRequest </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<VerificationRequest> getSelfServiceVerificationRequestWithHttpInfo(String request) throws ApiException {
+        okhttp3.Call localVarCall = getSelfServiceVerificationRequestValidateBeforeCall(request, null);
+        Type localVarReturnType = new TypeToken<VerificationRequest>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get the request context of browser-based verification flows (asynchronously)
+     * When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+     * @param request Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> verificationRequest </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getSelfServiceVerificationRequestAsync(String request, final ApiCallback<VerificationRequest> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getSelfServiceVerificationRequestValidateBeforeCall(request, _callback);
+        Type localVarReturnType = new TypeToken<VerificationRequest>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for initializeSelfServiceBrowserLoginFlow
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -986,6 +1227,117 @@ public class PublicApi {
         return localVarCall;
     }
     /**
+     * Build call for initializeSelfServiceBrowserVerificationFlow
+     * @param via What to verify  Currently only \&quot;email\&quot; is supported. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 302 </td><td> Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call initializeSelfServiceBrowserVerificationFlowCall(String via, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/self-service/browser/flows/verification/init/{via}"
+            .replaceAll("\\{" + "via" + "\\}", localVarApiClient.escapeString(via.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call initializeSelfServiceBrowserVerificationFlowValidateBeforeCall(String via, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'via' is set
+        if (via == null) {
+            throw new ApiException("Missing the required parameter 'via' when calling initializeSelfServiceBrowserVerificationFlow(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = initializeSelfServiceBrowserVerificationFlowCall(via, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Initialize browser-based verification flow
+     * This endpoint initializes a browser-based profile management flow. Once initialized, the browser will be redirected to &#x60;urls.profile_ui&#x60; with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+     * @param via What to verify  Currently only \&quot;email\&quot; is supported. (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 302 </td><td> Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public void initializeSelfServiceBrowserVerificationFlow(String via) throws ApiException {
+        initializeSelfServiceBrowserVerificationFlowWithHttpInfo(via);
+    }
+
+    /**
+     * Initialize browser-based verification flow
+     * This endpoint initializes a browser-based profile management flow. Once initialized, the browser will be redirected to &#x60;urls.profile_ui&#x60; with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+     * @param via What to verify  Currently only \&quot;email\&quot; is supported. (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 302 </td><td> Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> initializeSelfServiceBrowserVerificationFlowWithHttpInfo(String via) throws ApiException {
+        okhttp3.Call localVarCall = initializeSelfServiceBrowserVerificationFlowValidateBeforeCall(via, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Initialize browser-based verification flow (asynchronously)
+     * This endpoint initializes a browser-based profile management flow. Once initialized, the browser will be redirected to &#x60;urls.profile_ui&#x60; with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+     * @param via What to verify  Currently only \&quot;email\&quot; is supported. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 302 </td><td> Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call initializeSelfServiceBrowserVerificationFlowAsync(String via, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = initializeSelfServiceBrowserVerificationFlowValidateBeforeCall(via, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for initializeSelfServiceProfileManagementFlow
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -1083,6 +1435,117 @@ public class PublicApi {
     public okhttp3.Call initializeSelfServiceProfileManagementFlowAsync(final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = initializeSelfServiceProfileManagementFlowValidateBeforeCall(_callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for selfServiceBrowserVerify
+     * @param code  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 302 </td><td> Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call selfServiceBrowserVerifyCall(String code, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/self-service/browser/flows/verification/confirm/{code}"
+            .replaceAll("\\{" + "code" + "\\}", localVarApiClient.escapeString(code.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call selfServiceBrowserVerifyValidateBeforeCall(String code, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'code' is set
+        if (code == null) {
+            throw new ApiException("Missing the required parameter 'code' when calling selfServiceBrowserVerify(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = selfServiceBrowserVerifyCall(code, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Complete the browser-based verification flows
+     * This endpoint completes a browser-based verification flow.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+     * @param code  (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 302 </td><td> Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public void selfServiceBrowserVerify(String code) throws ApiException {
+        selfServiceBrowserVerifyWithHttpInfo(code);
+    }
+
+    /**
+     * Complete the browser-based verification flows
+     * This endpoint completes a browser-based verification flow.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+     * @param code  (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 302 </td><td> Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> selfServiceBrowserVerifyWithHttpInfo(String code) throws ApiException {
+        okhttp3.Call localVarCall = selfServiceBrowserVerifyValidateBeforeCall(code, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Complete the browser-based verification flows (asynchronously)
+     * This endpoint completes a browser-based verification flow.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+     * @param code  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 302 </td><td> Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call selfServiceBrowserVerifyAsync(String code, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = selfServiceBrowserVerifyValidateBeforeCall(code, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
