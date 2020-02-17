@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * OpenIDConnectContext
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-16T13:40:17.102343Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-17T19:24:44.464124Z[GMT]")
 public class OpenIDConnectContext {
   public static final String SERIALIZED_NAME_ACR_VALUES = "acr_values";
   @SerializedName(SERIALIZED_NAME_ACR_VALUES)
