@@ -5,7 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**completeSelfServiceBrowserProfileManagementFlow**](PublicApi.md#completeSelfServiceBrowserProfileManagementFlow) | **POST** /self-service/browser/flows/profile/update | Complete the browser-based profile management flows
-[**completeSelfServiceBrowserVerificationFlow**](PublicApi.md#completeSelfServiceBrowserVerificationFlow) | **POST** /self-service/browser/flows/verification/complete | Complete the browser-based profile management flows
+[**completeSelfServiceBrowserVerificationFlow**](PublicApi.md#completeSelfServiceBrowserVerificationFlow) | **POST** /self-service/browser/flows/verification/{via}/complete | Complete the browser-based profile management flows
 [**getSelfServiceBrowserLoginRequest**](PublicApi.md#getSelfServiceBrowserLoginRequest) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
 [**getSelfServiceBrowserProfileManagementRequest**](PublicApi.md#getSelfServiceBrowserProfileManagementRequest) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
 [**getSelfServiceBrowserRegistrationRequest**](PublicApi.md#getSelfServiceBrowserRegistrationRequest) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
@@ -16,7 +16,7 @@ Method | HTTP request | Description
 [**initializeSelfServiceBrowserRegistrationFlow**](PublicApi.md#initializeSelfServiceBrowserRegistrationFlow) | **GET** /self-service/browser/flows/registration | Initialize browser-based registration user flow
 [**initializeSelfServiceBrowserVerificationFlow**](PublicApi.md#initializeSelfServiceBrowserVerificationFlow) | **GET** /self-service/browser/flows/verification/init/{via} | Initialize browser-based verification flow
 [**initializeSelfServiceProfileManagementFlow**](PublicApi.md#initializeSelfServiceProfileManagementFlow) | **GET** /self-service/browser/flows/profile | Initialize browser-based profile management flow
-[**selfServiceBrowserVerify**](PublicApi.md#selfServiceBrowserVerify) | **GET** /self-service/browser/flows/verification/confirm/{code} | Complete the browser-based verification flows
+[**selfServiceBrowserVerify**](PublicApi.md#selfServiceBrowserVerify) | **GET** /self-service/browser/flows/verification/{via}/confirm/{code} | Complete the browser-based verification flows
 [**whoami**](PublicApi.md#whoami) | **GET** /sessions/whoami | Check who the current HTTP session belongs to
 
 
@@ -86,7 +86,7 @@ No authorization required
 
 <a name="completeSelfServiceBrowserVerificationFlow"></a>
 # **completeSelfServiceBrowserVerificationFlow**
-> completeSelfServiceBrowserVerificationFlow(request)
+> completeSelfServiceBrowserVerificationFlow(request, via)
 
 Complete the browser-based profile management flows
 
@@ -108,8 +108,9 @@ public class Example {
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     String request = "request_example"; // String | Request is the Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verify?request=abcde`).
+    String via = "via_example"; // String | What to verify  Currently only \"email\" is supported.
     try {
-      apiInstance.completeSelfServiceBrowserVerificationFlow(request);
+      apiInstance.completeSelfServiceBrowserVerificationFlow(request, via);
     } catch (ApiException e) {
       System.err.println("Exception when calling PublicApi#completeSelfServiceBrowserVerificationFlow");
       System.err.println("Status code: " + e.getCode());
@@ -126,6 +127,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **request** | **String**| Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). |
+ **via** | **String**| What to verify  Currently only \&quot;email\&quot; is supported. |
 
 ### Return type
 
@@ -767,7 +769,7 @@ No authorization required
 
 <a name="selfServiceBrowserVerify"></a>
 # **selfServiceBrowserVerify**
-> selfServiceBrowserVerify(code)
+> selfServiceBrowserVerify(code, via)
 
 Complete the browser-based verification flows
 
@@ -789,8 +791,9 @@ public class Example {
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     String code = "code_example"; // String | 
+    String via = "via_example"; // String | What to verify  Currently only \"email\" is supported.
     try {
-      apiInstance.selfServiceBrowserVerify(code);
+      apiInstance.selfServiceBrowserVerify(code, via);
     } catch (ApiException e) {
       System.err.println("Exception when calling PublicApi#selfServiceBrowserVerify");
       System.err.println("Status code: " + e.getCode());
@@ -807,6 +810,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **String**|  |
+ **via** | **String**| What to verify  Currently only \&quot;email\&quot; is supported. |
 
 ### Return type
 

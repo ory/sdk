@@ -156,17 +156,18 @@ class PublicApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def complete_self_service_browser_verification_flow(self, request, **kwargs):  # noqa: E501
+    def complete_self_service_browser_verification_flow(self, request, via, **kwargs):  # noqa: E501
         """Complete the browser-based profile management flows  # noqa: E501
 
         This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity's Traits JSON Schema, the data will be updated and the browser redirected to `url.profile_ui` for further steps.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.complete_self_service_browser_verification_flow(request, async_req=True)
+        >>> thread = api.complete_self_service_browser_verification_flow(request, via, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
         :param str request: Request is the Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verify?request=abcde`). (required)
+        :param str via: What to verify  Currently only \"email\" is supported. (required)
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -179,19 +180,20 @@ class PublicApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        return self.complete_self_service_browser_verification_flow_with_http_info(request, **kwargs)  # noqa: E501
+        return self.complete_self_service_browser_verification_flow_with_http_info(request, via, **kwargs)  # noqa: E501
 
-    def complete_self_service_browser_verification_flow_with_http_info(self, request, **kwargs):  # noqa: E501
+    def complete_self_service_browser_verification_flow_with_http_info(self, request, via, **kwargs):  # noqa: E501
         """Complete the browser-based profile management flows  # noqa: E501
 
         This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity's Traits JSON Schema, the data will be updated and the browser redirected to `url.profile_ui` for further steps.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.complete_self_service_browser_verification_flow_with_http_info(request, async_req=True)
+        >>> thread = api.complete_self_service_browser_verification_flow_with_http_info(request, via, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
         :param str request: Request is the Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verify?request=abcde`). (required)
+        :param str via: What to verify  Currently only \"email\" is supported. (required)
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -208,7 +210,7 @@ class PublicApi(object):
 
         local_var_params = locals()
 
-        all_params = ['request']  # noqa: E501
+        all_params = ['request', 'via']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -226,10 +228,16 @@ class PublicApi(object):
         if self.api_client.client_side_validation and ('request' not in local_var_params or  # noqa: E501
                                                         local_var_params['request'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `request` when calling `complete_self_service_browser_verification_flow`")  # noqa: E501
+        # verify the required parameter 'via' is set
+        if self.api_client.client_side_validation and ('via' not in local_var_params or  # noqa: E501
+                                                        local_var_params['via'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `via` when calling `complete_self_service_browser_verification_flow`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
+        if 'via' in local_var_params:
+            path_params['via'] = local_var_params['via']  # noqa: E501
 
         query_params = []
         if 'request' in local_var_params and local_var_params['request'] is not None:  # noqa: E501
@@ -249,7 +257,7 @@ class PublicApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/self-service/browser/flows/verification/complete', 'POST',
+            '/self-service/browser/flows/verification/{via}/complete', 'POST',
             path_params,
             query_params,
             header_params,
@@ -1308,17 +1316,18 @@ class PublicApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def self_service_browser_verify(self, code, **kwargs):  # noqa: E501
+    def self_service_browser_verify(self, code, via, **kwargs):  # noqa: E501
         """Complete the browser-based verification flows  # noqa: E501
 
         This endpoint completes a browser-based verification flow.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.self_service_browser_verify(code, async_req=True)
+        >>> thread = api.self_service_browser_verify(code, via, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
         :param str code: (required)
+        :param str via: What to verify  Currently only \"email\" is supported. (required)
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -1331,19 +1340,20 @@ class PublicApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        return self.self_service_browser_verify_with_http_info(code, **kwargs)  # noqa: E501
+        return self.self_service_browser_verify_with_http_info(code, via, **kwargs)  # noqa: E501
 
-    def self_service_browser_verify_with_http_info(self, code, **kwargs):  # noqa: E501
+    def self_service_browser_verify_with_http_info(self, code, via, **kwargs):  # noqa: E501
         """Complete the browser-based verification flows  # noqa: E501
 
         This endpoint completes a browser-based verification flow.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.self_service_browser_verify_with_http_info(code, async_req=True)
+        >>> thread = api.self_service_browser_verify_with_http_info(code, via, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
         :param str code: (required)
+        :param str via: What to verify  Currently only \"email\" is supported. (required)
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -1360,7 +1370,7 @@ class PublicApi(object):
 
         local_var_params = locals()
 
-        all_params = ['code']  # noqa: E501
+        all_params = ['code', 'via']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1378,12 +1388,18 @@ class PublicApi(object):
         if self.api_client.client_side_validation and ('code' not in local_var_params or  # noqa: E501
                                                         local_var_params['code'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `code` when calling `self_service_browser_verify`")  # noqa: E501
+        # verify the required parameter 'via' is set
+        if self.api_client.client_side_validation and ('via' not in local_var_params or  # noqa: E501
+                                                        local_var_params['via'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `via` when calling `self_service_browser_verify`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
         if 'code' in local_var_params:
             path_params['code'] = local_var_params['code']  # noqa: E501
+        if 'via' in local_var_params:
+            path_params['via'] = local_var_params['via']  # noqa: E501
 
         query_params = []
 
@@ -1401,7 +1417,7 @@ class PublicApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/self-service/browser/flows/verification/confirm/{code}', 'GET',
+            '/self-service/browser/flows/verification/{via}/confirm/{code}', 'GET',
             path_params,
             query_params,
             header_params,

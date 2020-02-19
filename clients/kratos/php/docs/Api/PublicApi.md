@@ -5,7 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**completeSelfServiceBrowserProfileManagementFlow**](PublicApi.md#completeSelfServiceBrowserProfileManagementFlow) | **POST** /self-service/browser/flows/profile/update | Complete the browser-based profile management flows
-[**completeSelfServiceBrowserVerificationFlow**](PublicApi.md#completeSelfServiceBrowserVerificationFlow) | **POST** /self-service/browser/flows/verification/complete | Complete the browser-based profile management flows
+[**completeSelfServiceBrowserVerificationFlow**](PublicApi.md#completeSelfServiceBrowserVerificationFlow) | **POST** /self-service/browser/flows/verification/{via}/complete | Complete the browser-based profile management flows
 [**getSelfServiceBrowserLoginRequest**](PublicApi.md#getSelfServiceBrowserLoginRequest) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
 [**getSelfServiceBrowserProfileManagementRequest**](PublicApi.md#getSelfServiceBrowserProfileManagementRequest) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
 [**getSelfServiceBrowserRegistrationRequest**](PublicApi.md#getSelfServiceBrowserRegistrationRequest) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
@@ -16,7 +16,7 @@ Method | HTTP request | Description
 [**initializeSelfServiceBrowserRegistrationFlow**](PublicApi.md#initializeSelfServiceBrowserRegistrationFlow) | **GET** /self-service/browser/flows/registration | Initialize browser-based registration user flow
 [**initializeSelfServiceBrowserVerificationFlow**](PublicApi.md#initializeSelfServiceBrowserVerificationFlow) | **GET** /self-service/browser/flows/verification/init/{via} | Initialize browser-based verification flow
 [**initializeSelfServiceProfileManagementFlow**](PublicApi.md#initializeSelfServiceProfileManagementFlow) | **GET** /self-service/browser/flows/profile | Initialize browser-based profile management flow
-[**selfServiceBrowserVerify**](PublicApi.md#selfServiceBrowserVerify) | **GET** /self-service/browser/flows/verification/confirm/{code} | Complete the browser-based verification flows
+[**selfServiceBrowserVerify**](PublicApi.md#selfServiceBrowserVerify) | **GET** /self-service/browser/flows/verification/{via}/confirm/{code} | Complete the browser-based verification flows
 [**whoami**](PublicApi.md#whoami) | **GET** /sessions/whoami | Check who the current HTTP session belongs to
 
 
@@ -80,7 +80,7 @@ No authorization required
 
 ## completeSelfServiceBrowserVerificationFlow
 
-> completeSelfServiceBrowserVerificationFlow($request)
+> completeSelfServiceBrowserVerificationFlow($request, $via)
 
 Complete the browser-based profile management flows
 
@@ -99,9 +99,10 @@ $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
     new GuzzleHttp\Client()
 );
 $request = 'request_example'; // string | Request is the Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verify?request=abcde`).
+$via = 'via_example'; // string | What to verify  Currently only \"email\" is supported.
 
 try {
-    $apiInstance->completeSelfServiceBrowserVerificationFlow($request);
+    $apiInstance->completeSelfServiceBrowserVerificationFlow($request, $via);
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->completeSelfServiceBrowserVerificationFlow: ', $e->getMessage(), PHP_EOL;
 }
@@ -114,6 +115,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **request** | **string**| Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). |
+ **via** | **string**| What to verify  Currently only \&quot;email\&quot; is supported. |
 
 ### Return type
 
@@ -674,7 +676,7 @@ No authorization required
 
 ## selfServiceBrowserVerify
 
-> selfServiceBrowserVerify($code)
+> selfServiceBrowserVerify($code, $via)
 
 Complete the browser-based verification flows
 
@@ -693,9 +695,10 @@ $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
     new GuzzleHttp\Client()
 );
 $code = 'code_example'; // string | 
+$via = 'via_example'; // string | What to verify  Currently only \"email\" is supported.
 
 try {
-    $apiInstance->selfServiceBrowserVerify($code);
+    $apiInstance->selfServiceBrowserVerify($code, $via);
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->selfServiceBrowserVerify: ', $e->getMessage(), PHP_EOL;
 }
@@ -708,6 +711,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **string**|  |
+ **via** | **string**| What to verify  Currently only \&quot;email\&quot; is supported. |
 
 ### Return type
 

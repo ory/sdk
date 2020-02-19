@@ -13,7 +13,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "ory-kratos-client"
-VERSION = "v0.1.0-alpha.6"
+VERSION = "v0.1.1-alpha.1"
 # To install the library, run the following
 #
 # python setup.py install

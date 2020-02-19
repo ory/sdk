@@ -363,14 +363,15 @@ class PublicApi
      * Complete the browser-based profile management flows
      *
      * @param  string $request Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). (required)
+     * @param  string $via What to verify  Currently only \&quot;email\&quot; is supported. (required)
      *
      * @throws \Ory\Kratos\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function completeSelfServiceBrowserVerificationFlow($request)
+    public function completeSelfServiceBrowserVerificationFlow($request, $via)
     {
-        $this->completeSelfServiceBrowserVerificationFlowWithHttpInfo($request);
+        $this->completeSelfServiceBrowserVerificationFlowWithHttpInfo($request, $via);
     }
 
     /**
@@ -379,14 +380,15 @@ class PublicApi
      * Complete the browser-based profile management flows
      *
      * @param  string $request Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). (required)
+     * @param  string $via What to verify  Currently only \&quot;email\&quot; is supported. (required)
      *
      * @throws \Ory\Kratos\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function completeSelfServiceBrowserVerificationFlowWithHttpInfo($request)
+    public function completeSelfServiceBrowserVerificationFlowWithHttpInfo($request, $via)
     {
-        $request = $this->completeSelfServiceBrowserVerificationFlowRequest($request);
+        $request = $this->completeSelfServiceBrowserVerificationFlowRequest($request, $via);
 
         try {
             $options = $this->createHttpClientOption();
@@ -439,13 +441,14 @@ class PublicApi
      * Complete the browser-based profile management flows
      *
      * @param  string $request Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). (required)
+     * @param  string $via What to verify  Currently only \&quot;email\&quot; is supported. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function completeSelfServiceBrowserVerificationFlowAsync($request)
+    public function completeSelfServiceBrowserVerificationFlowAsync($request, $via)
     {
-        return $this->completeSelfServiceBrowserVerificationFlowAsyncWithHttpInfo($request)
+        return $this->completeSelfServiceBrowserVerificationFlowAsyncWithHttpInfo($request, $via)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -459,14 +462,15 @@ class PublicApi
      * Complete the browser-based profile management flows
      *
      * @param  string $request Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). (required)
+     * @param  string $via What to verify  Currently only \&quot;email\&quot; is supported. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function completeSelfServiceBrowserVerificationFlowAsyncWithHttpInfo($request)
+    public function completeSelfServiceBrowserVerificationFlowAsyncWithHttpInfo($request, $via)
     {
         $returnType = '';
-        $request = $this->completeSelfServiceBrowserVerificationFlowRequest($request);
+        $request = $this->completeSelfServiceBrowserVerificationFlowRequest($request, $via);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -495,11 +499,12 @@ class PublicApi
      * Create request for operation 'completeSelfServiceBrowserVerificationFlow'
      *
      * @param  string $request Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). (required)
+     * @param  string $via What to verify  Currently only \&quot;email\&quot; is supported. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function completeSelfServiceBrowserVerificationFlowRequest($request)
+    protected function completeSelfServiceBrowserVerificationFlowRequest($request, $via)
     {
         // verify the required parameter 'request' is set
         if ($request === null || (is_array($request) && count($request) === 0)) {
@@ -507,8 +512,14 @@ class PublicApi
                 'Missing the required parameter $request when calling completeSelfServiceBrowserVerificationFlow'
             );
         }
+        // verify the required parameter 'via' is set
+        if ($via === null || (is_array($via) && count($via) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $via when calling completeSelfServiceBrowserVerificationFlow'
+            );
+        }
 
-        $resourcePath = '/self-service/browser/flows/verification/complete';
+        $resourcePath = '/self-service/browser/flows/verification/{via}/complete';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -520,6 +531,14 @@ class PublicApi
             $queryParams['request'] = ObjectSerializer::toQueryValue($request);
         }
 
+        // path params
+        if ($via !== null) {
+            $resourcePath = str_replace(
+                '{' . 'via' . '}',
+                ObjectSerializer::toPathValue($via),
+                $resourcePath
+            );
+        }
 
         // body params
         $_tempBody = null;
@@ -3309,14 +3328,15 @@ class PublicApi
      * Complete the browser-based verification flows
      *
      * @param  string $code code (required)
+     * @param  string $via What to verify  Currently only \&quot;email\&quot; is supported. (required)
      *
      * @throws \Ory\Kratos\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function selfServiceBrowserVerify($code)
+    public function selfServiceBrowserVerify($code, $via)
     {
-        $this->selfServiceBrowserVerifyWithHttpInfo($code);
+        $this->selfServiceBrowserVerifyWithHttpInfo($code, $via);
     }
 
     /**
@@ -3325,14 +3345,15 @@ class PublicApi
      * Complete the browser-based verification flows
      *
      * @param  string $code (required)
+     * @param  string $via What to verify  Currently only \&quot;email\&quot; is supported. (required)
      *
      * @throws \Ory\Kratos\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function selfServiceBrowserVerifyWithHttpInfo($code)
+    public function selfServiceBrowserVerifyWithHttpInfo($code, $via)
     {
-        $request = $this->selfServiceBrowserVerifyRequest($code);
+        $request = $this->selfServiceBrowserVerifyRequest($code, $via);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3385,13 +3406,14 @@ class PublicApi
      * Complete the browser-based verification flows
      *
      * @param  string $code (required)
+     * @param  string $via What to verify  Currently only \&quot;email\&quot; is supported. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function selfServiceBrowserVerifyAsync($code)
+    public function selfServiceBrowserVerifyAsync($code, $via)
     {
-        return $this->selfServiceBrowserVerifyAsyncWithHttpInfo($code)
+        return $this->selfServiceBrowserVerifyAsyncWithHttpInfo($code, $via)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3405,14 +3427,15 @@ class PublicApi
      * Complete the browser-based verification flows
      *
      * @param  string $code (required)
+     * @param  string $via What to verify  Currently only \&quot;email\&quot; is supported. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function selfServiceBrowserVerifyAsyncWithHttpInfo($code)
+    public function selfServiceBrowserVerifyAsyncWithHttpInfo($code, $via)
     {
         $returnType = '';
-        $request = $this->selfServiceBrowserVerifyRequest($code);
+        $request = $this->selfServiceBrowserVerifyRequest($code, $via);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3441,11 +3464,12 @@ class PublicApi
      * Create request for operation 'selfServiceBrowserVerify'
      *
      * @param  string $code (required)
+     * @param  string $via What to verify  Currently only \&quot;email\&quot; is supported. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function selfServiceBrowserVerifyRequest($code)
+    protected function selfServiceBrowserVerifyRequest($code, $via)
     {
         // verify the required parameter 'code' is set
         if ($code === null || (is_array($code) && count($code) === 0)) {
@@ -3453,8 +3477,14 @@ class PublicApi
                 'Missing the required parameter $code when calling selfServiceBrowserVerify'
             );
         }
+        // verify the required parameter 'via' is set
+        if ($via === null || (is_array($via) && count($via) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $via when calling selfServiceBrowserVerify'
+            );
+        }
 
-        $resourcePath = '/self-service/browser/flows/verification/confirm/{code}';
+        $resourcePath = '/self-service/browser/flows/verification/{via}/confirm/{code}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -3467,6 +3497,14 @@ class PublicApi
             $resourcePath = str_replace(
                 '{' . 'code' . '}',
                 ObjectSerializer::toPathValue($code),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($via !== null) {
+            $resourcePath = str_replace(
+                '{' . 'via' . '}',
+                ObjectSerializer::toPathValue($via),
                 $resourcePath
             );
         }

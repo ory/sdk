@@ -5,7 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**complete_self_service_browser_profile_management_flow**](PublicApi.md#complete_self_service_browser_profile_management_flow) | **POST** /self-service/browser/flows/profile/update | Complete the browser-based profile management flows
-[**complete_self_service_browser_verification_flow**](PublicApi.md#complete_self_service_browser_verification_flow) | **POST** /self-service/browser/flows/verification/complete | Complete the browser-based profile management flows
+[**complete_self_service_browser_verification_flow**](PublicApi.md#complete_self_service_browser_verification_flow) | **POST** /self-service/browser/flows/verification/{via}/complete | Complete the browser-based profile management flows
 [**get_self_service_browser_login_request**](PublicApi.md#get_self_service_browser_login_request) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
 [**get_self_service_browser_profile_management_request**](PublicApi.md#get_self_service_browser_profile_management_request) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
 [**get_self_service_browser_registration_request**](PublicApi.md#get_self_service_browser_registration_request) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
@@ -16,7 +16,7 @@ Method | HTTP request | Description
 [**initialize_self_service_browser_registration_flow**](PublicApi.md#initialize_self_service_browser_registration_flow) | **GET** /self-service/browser/flows/registration | Initialize browser-based registration user flow
 [**initialize_self_service_browser_verification_flow**](PublicApi.md#initialize_self_service_browser_verification_flow) | **GET** /self-service/browser/flows/verification/init/{via} | Initialize browser-based verification flow
 [**initialize_self_service_profile_management_flow**](PublicApi.md#initialize_self_service_profile_management_flow) | **GET** /self-service/browser/flows/profile | Initialize browser-based profile management flow
-[**self_service_browser_verify**](PublicApi.md#self_service_browser_verify) | **GET** /self-service/browser/flows/verification/confirm/{code} | Complete the browser-based verification flows
+[**self_service_browser_verify**](PublicApi.md#self_service_browser_verify) | **GET** /self-service/browser/flows/verification/{via}/confirm/{code} | Complete the browser-based verification flows
 [**whoami**](PublicApi.md#whoami) | **GET** /sessions/whoami | Check who the current HTTP session belongs to
 
 
@@ -71,7 +71,7 @@ No authorization required
 
 ## complete_self_service_browser_verification_flow
 
-> complete_self_service_browser_verification_flow(request)
+> complete_self_service_browser_verification_flow(request, via)
 
 Complete the browser-based profile management flows
 
@@ -85,10 +85,11 @@ require 'ory-kratos-client'
 
 api_instance = OryHydraClient::PublicApi.new
 request = 'request_example' # String | Request is the Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verify?request=abcde`).
+via = 'via_example' # String | What to verify  Currently only \"email\" is supported.
 
 begin
   #Complete the browser-based profile management flows
-  api_instance.complete_self_service_browser_verification_flow(request)
+  api_instance.complete_self_service_browser_verification_flow(request, via)
 rescue OryHydraClient::ApiError => e
   puts "Exception when calling PublicApi->complete_self_service_browser_verification_flow: #{e}"
 end
@@ -100,6 +101,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **request** | **String**| Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). | 
+ **via** | **String**| What to verify  Currently only \&quot;email\&quot; is supported. | 
 
 ### Return type
 
@@ -568,7 +570,7 @@ No authorization required
 
 ## self_service_browser_verify
 
-> self_service_browser_verify(code)
+> self_service_browser_verify(code, via)
 
 Complete the browser-based verification flows
 
@@ -582,10 +584,11 @@ require 'ory-kratos-client'
 
 api_instance = OryHydraClient::PublicApi.new
 code = 'code_example' # String | 
+via = 'via_example' # String | What to verify  Currently only \"email\" is supported.
 
 begin
   #Complete the browser-based verification flows
-  api_instance.self_service_browser_verify(code)
+  api_instance.self_service_browser_verify(code, via)
 rescue OryHydraClient::ApiError => e
   puts "Exception when calling PublicApi->self_service_browser_verify: #{e}"
 end
@@ -597,6 +600,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **String**|  | 
+ **via** | **String**| What to verify  Currently only \&quot;email\&quot; is supported. | 
 
 ### Return type
 

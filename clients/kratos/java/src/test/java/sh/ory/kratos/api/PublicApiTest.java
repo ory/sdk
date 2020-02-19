@@ -67,7 +67,8 @@ public class PublicApiTest {
     @Test
     public void completeSelfServiceBrowserVerificationFlowTest() throws ApiException {
         String request = null;
-        api.completeSelfServiceBrowserVerificationFlow(request);
+        String via = null;
+        api.completeSelfServiceBrowserVerificationFlow(request, via);
 
         // TODO: test validations
     }
@@ -239,7 +240,8 @@ public class PublicApiTest {
     @Test
     public void selfServiceBrowserVerifyTest() throws ApiException {
         String code = null;
-        api.selfServiceBrowserVerify(code);
+        String via = null;
+        api.selfServiceBrowserVerify(code, via);
 
         // TODO: test validations
     }

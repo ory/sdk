@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "v0.1.0-alpha.6"
+__version__ = "v0.1.1-alpha.1"
 
 # import apis into sdk package
 from ory_kratos_client.api.admin_api import AdminApi

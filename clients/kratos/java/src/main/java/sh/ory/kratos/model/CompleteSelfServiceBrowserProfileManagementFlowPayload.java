@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * CompleteSelfServiceBrowserProfileManagementFlowPayload
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-16T18:45:30.981791Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-19T09:00:07.334813Z[GMT]")
 public class CompleteSelfServiceBrowserProfileManagementFlowPayload {
   public static final String SERIALIZED_NAME_TRAITS = "traits";
   @SerializedName(SERIALIZED_NAME_TRAITS)

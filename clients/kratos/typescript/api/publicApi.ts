@@ -174,9 +174,11 @@ export class PublicApi {
      * This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity\'s Traits JSON Schema, the data will be updated and the browser redirected to `url.profile_ui` for further steps.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
      * @summary Complete the browser-based profile management flows
      * @param request Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;).
+     * @param via What to verify  Currently only \&quot;email\&quot; is supported.
      */
-    public async completeSelfServiceBrowserVerificationFlow (request: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/self-service/browser/flows/verification/complete';
+    public async completeSelfServiceBrowserVerificationFlow (request: string, via: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/self-service/browser/flows/verification/{via}/complete'
+            .replace('{' + 'via' + '}', encodeURIComponent(String(via)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -191,6 +193,11 @@ export class PublicApi {
         // verify required parameter 'request' is not null or undefined
         if (request === null || request === undefined) {
             throw new Error('Required parameter request was null or undefined when calling completeSelfServiceBrowserVerificationFlow.');
+        }
+
+        // verify required parameter 'via' is not null or undefined
+        if (via === null || via === undefined) {
+            throw new Error('Required parameter via was null or undefined when calling completeSelfServiceBrowserVerificationFlow.');
         }
 
         if (request !== undefined) {
@@ -912,10 +919,12 @@ export class PublicApi {
      * This endpoint completes a browser-based verification flow.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
      * @summary Complete the browser-based verification flows
      * @param code 
+     * @param via What to verify  Currently only \&quot;email\&quot; is supported.
      */
-    public async selfServiceBrowserVerify (code: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/self-service/browser/flows/verification/confirm/{code}'
-            .replace('{' + 'code' + '}', encodeURIComponent(String(code)));
+    public async selfServiceBrowserVerify (code: string, via: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/self-service/browser/flows/verification/{via}/confirm/{code}'
+            .replace('{' + 'code' + '}', encodeURIComponent(String(code)))
+            .replace('{' + 'via' + '}', encodeURIComponent(String(via)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -930,6 +939,11 @@ export class PublicApi {
         // verify required parameter 'code' is not null or undefined
         if (code === null || code === undefined) {
             throw new Error('Required parameter code was null or undefined when calling selfServiceBrowserVerify.');
+        }
+
+        // verify required parameter 'via' is not null or undefined
+        if (via === null || via === undefined) {
+            throw new Error('Required parameter via was null or undefined when calling selfServiceBrowserVerify.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);

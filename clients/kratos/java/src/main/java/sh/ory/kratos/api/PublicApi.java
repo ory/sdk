@@ -187,6 +187,7 @@ public class PublicApi {
     /**
      * Build call for completeSelfServiceBrowserVerificationFlow
      * @param request Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). (required)
+     * @param via What to verify  Currently only \&quot;email\&quot; is supported. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -197,11 +198,12 @@ public class PublicApi {
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call completeSelfServiceBrowserVerificationFlowCall(String request, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call completeSelfServiceBrowserVerificationFlowCall(String request, String via, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/self-service/browser/flows/verification/complete";
+        String localVarPath = "/self-service/browser/flows/verification/{via}/complete"
+            .replaceAll("\\{" + "via" + "\\}", localVarApiClient.escapeString(via.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -231,15 +233,20 @@ public class PublicApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call completeSelfServiceBrowserVerificationFlowValidateBeforeCall(String request, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call completeSelfServiceBrowserVerificationFlowValidateBeforeCall(String request, String via, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'request' is set
         if (request == null) {
             throw new ApiException("Missing the required parameter 'request' when calling completeSelfServiceBrowserVerificationFlow(Async)");
         }
         
+        // verify the required parameter 'via' is set
+        if (via == null) {
+            throw new ApiException("Missing the required parameter 'via' when calling completeSelfServiceBrowserVerificationFlow(Async)");
+        }
+        
 
-        okhttp3.Call localVarCall = completeSelfServiceBrowserVerificationFlowCall(request, _callback);
+        okhttp3.Call localVarCall = completeSelfServiceBrowserVerificationFlowCall(request, via, _callback);
         return localVarCall;
 
     }
@@ -248,6 +255,7 @@ public class PublicApi {
      * Complete the browser-based profile management flows
      * This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity&#39;s Traits JSON Schema, the data will be updated and the browser redirected to &#x60;url.profile_ui&#x60; for further steps.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
      * @param request Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). (required)
+     * @param via What to verify  Currently only \&quot;email\&quot; is supported. (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -256,14 +264,15 @@ public class PublicApi {
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
-    public void completeSelfServiceBrowserVerificationFlow(String request) throws ApiException {
-        completeSelfServiceBrowserVerificationFlowWithHttpInfo(request);
+    public void completeSelfServiceBrowserVerificationFlow(String request, String via) throws ApiException {
+        completeSelfServiceBrowserVerificationFlowWithHttpInfo(request, via);
     }
 
     /**
      * Complete the browser-based profile management flows
      * This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity&#39;s Traits JSON Schema, the data will be updated and the browser redirected to &#x60;url.profile_ui&#x60; for further steps.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
      * @param request Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). (required)
+     * @param via What to verify  Currently only \&quot;email\&quot; is supported. (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -273,8 +282,8 @@ public class PublicApi {
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Void> completeSelfServiceBrowserVerificationFlowWithHttpInfo(String request) throws ApiException {
-        okhttp3.Call localVarCall = completeSelfServiceBrowserVerificationFlowValidateBeforeCall(request, null);
+    public ApiResponse<Void> completeSelfServiceBrowserVerificationFlowWithHttpInfo(String request, String via) throws ApiException {
+        okhttp3.Call localVarCall = completeSelfServiceBrowserVerificationFlowValidateBeforeCall(request, via, null);
         return localVarApiClient.execute(localVarCall);
     }
 
@@ -282,6 +291,7 @@ public class PublicApi {
      * Complete the browser-based profile management flows (asynchronously)
      * This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity&#39;s Traits JSON Schema, the data will be updated and the browser redirected to &#x60;url.profile_ui&#x60; for further steps.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
      * @param request Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). (required)
+     * @param via What to verify  Currently only \&quot;email\&quot; is supported. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -292,9 +302,9 @@ public class PublicApi {
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call completeSelfServiceBrowserVerificationFlowAsync(String request, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call completeSelfServiceBrowserVerificationFlowAsync(String request, String via, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = completeSelfServiceBrowserVerificationFlowValidateBeforeCall(request, _callback);
+        okhttp3.Call localVarCall = completeSelfServiceBrowserVerificationFlowValidateBeforeCall(request, via, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
@@ -1441,6 +1451,7 @@ public class PublicApi {
     /**
      * Build call for selfServiceBrowserVerify
      * @param code  (required)
+     * @param via What to verify  Currently only \&quot;email\&quot; is supported. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1451,12 +1462,13 @@ public class PublicApi {
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call selfServiceBrowserVerifyCall(String code, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call selfServiceBrowserVerifyCall(String code, String via, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/self-service/browser/flows/verification/confirm/{code}"
-            .replaceAll("\\{" + "code" + "\\}", localVarApiClient.escapeString(code.toString()));
+        String localVarPath = "/self-service/browser/flows/verification/{via}/confirm/{code}"
+            .replaceAll("\\{" + "code" + "\\}", localVarApiClient.escapeString(code.toString()))
+            .replaceAll("\\{" + "via" + "\\}", localVarApiClient.escapeString(via.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1482,15 +1494,20 @@ public class PublicApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call selfServiceBrowserVerifyValidateBeforeCall(String code, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call selfServiceBrowserVerifyValidateBeforeCall(String code, String via, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'code' is set
         if (code == null) {
             throw new ApiException("Missing the required parameter 'code' when calling selfServiceBrowserVerify(Async)");
         }
         
+        // verify the required parameter 'via' is set
+        if (via == null) {
+            throw new ApiException("Missing the required parameter 'via' when calling selfServiceBrowserVerify(Async)");
+        }
+        
 
-        okhttp3.Call localVarCall = selfServiceBrowserVerifyCall(code, _callback);
+        okhttp3.Call localVarCall = selfServiceBrowserVerifyCall(code, via, _callback);
         return localVarCall;
 
     }
@@ -1499,6 +1516,7 @@ public class PublicApi {
      * Complete the browser-based verification flows
      * This endpoint completes a browser-based verification flow.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
      * @param code  (required)
+     * @param via What to verify  Currently only \&quot;email\&quot; is supported. (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -1507,14 +1525,15 @@ public class PublicApi {
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
-    public void selfServiceBrowserVerify(String code) throws ApiException {
-        selfServiceBrowserVerifyWithHttpInfo(code);
+    public void selfServiceBrowserVerify(String code, String via) throws ApiException {
+        selfServiceBrowserVerifyWithHttpInfo(code, via);
     }
 
     /**
      * Complete the browser-based verification flows
      * This endpoint completes a browser-based verification flow.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
      * @param code  (required)
+     * @param via What to verify  Currently only \&quot;email\&quot; is supported. (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1524,8 +1543,8 @@ public class PublicApi {
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Void> selfServiceBrowserVerifyWithHttpInfo(String code) throws ApiException {
-        okhttp3.Call localVarCall = selfServiceBrowserVerifyValidateBeforeCall(code, null);
+    public ApiResponse<Void> selfServiceBrowserVerifyWithHttpInfo(String code, String via) throws ApiException {
+        okhttp3.Call localVarCall = selfServiceBrowserVerifyValidateBeforeCall(code, via, null);
         return localVarApiClient.execute(localVarCall);
     }
 
@@ -1533,6 +1552,7 @@ public class PublicApi {
      * Complete the browser-based verification flows (asynchronously)
      * This endpoint completes a browser-based verification flow.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
      * @param code  (required)
+     * @param via What to verify  Currently only \&quot;email\&quot; is supported. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1543,9 +1563,9 @@ public class PublicApi {
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call selfServiceBrowserVerifyAsync(String code, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call selfServiceBrowserVerifyAsync(String code, String via, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = selfServiceBrowserVerifyValidateBeforeCall(code, _callback);
+        okhttp3.Call localVarCall = selfServiceBrowserVerifyValidateBeforeCall(code, via, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }

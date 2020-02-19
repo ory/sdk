@@ -101,7 +101,7 @@ Class | Method | HTTP request | Description
 *HealthApi* | [**isInstanceAlive**](docs/Api/HealthApi.md#isinstancealive) | **GET** /health/alive | Check alive status
 *HealthApi* | [**isInstanceReady**](docs/Api/HealthApi.md#isinstanceready) | **GET** /health/ready | Check readiness status
 *PublicApi* | [**completeSelfServiceBrowserProfileManagementFlow**](docs/Api/PublicApi.md#completeselfservicebrowserprofilemanagementflow) | **POST** /self-service/browser/flows/profile/update | Complete the browser-based profile management flows
-*PublicApi* | [**completeSelfServiceBrowserVerificationFlow**](docs/Api/PublicApi.md#completeselfservicebrowserverificationflow) | **POST** /self-service/browser/flows/verification/complete | Complete the browser-based profile management flows
+*PublicApi* | [**completeSelfServiceBrowserVerificationFlow**](docs/Api/PublicApi.md#completeselfservicebrowserverificationflow) | **POST** /self-service/browser/flows/verification/{via}/complete | Complete the browser-based profile management flows
 *PublicApi* | [**getSelfServiceBrowserLoginRequest**](docs/Api/PublicApi.md#getselfservicebrowserloginrequest) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
 *PublicApi* | [**getSelfServiceBrowserProfileManagementRequest**](docs/Api/PublicApi.md#getselfservicebrowserprofilemanagementrequest) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
 *PublicApi* | [**getSelfServiceBrowserRegistrationRequest**](docs/Api/PublicApi.md#getselfservicebrowserregistrationrequest) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
@@ -112,7 +112,7 @@ Class | Method | HTTP request | Description
 *PublicApi* | [**initializeSelfServiceBrowserRegistrationFlow**](docs/Api/PublicApi.md#initializeselfservicebrowserregistrationflow) | **GET** /self-service/browser/flows/registration | Initialize browser-based registration user flow
 *PublicApi* | [**initializeSelfServiceBrowserVerificationFlow**](docs/Api/PublicApi.md#initializeselfservicebrowserverificationflow) | **GET** /self-service/browser/flows/verification/init/{via} | Initialize browser-based verification flow
 *PublicApi* | [**initializeSelfServiceProfileManagementFlow**](docs/Api/PublicApi.md#initializeselfserviceprofilemanagementflow) | **GET** /self-service/browser/flows/profile | Initialize browser-based profile management flow
-*PublicApi* | [**selfServiceBrowserVerify**](docs/Api/PublicApi.md#selfservicebrowserverify) | **GET** /self-service/browser/flows/verification/confirm/{code} | Complete the browser-based verification flows
+*PublicApi* | [**selfServiceBrowserVerify**](docs/Api/PublicApi.md#selfservicebrowserverify) | **GET** /self-service/browser/flows/verification/{via}/confirm/{code} | Complete the browser-based verification flows
 *PublicApi* | [**whoami**](docs/Api/PublicApi.md#whoami) | **GET** /sessions/whoami | Check who the current HTTP session belongs to
 *VersionApi* | [**getVersion**](docs/Api/VersionApi.md#getversion) | **GET** /version | Get service version
 

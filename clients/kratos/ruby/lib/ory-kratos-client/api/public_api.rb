@@ -93,19 +93,21 @@ module OryHydraClient
     # Complete the browser-based profile management flows
     # This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity's Traits JSON Schema, the data will be updated and the browser redirected to `url.profile_ui` for further steps.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
     # @param request [String] Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;).
+    # @param via [String] What to verify  Currently only \&quot;email\&quot; is supported.
     # @param [Hash] opts the optional parameters
     # @return [nil]
-    def complete_self_service_browser_verification_flow(request, opts = {})
-      complete_self_service_browser_verification_flow_with_http_info(request, opts)
+    def complete_self_service_browser_verification_flow(request, via, opts = {})
+      complete_self_service_browser_verification_flow_with_http_info(request, via, opts)
       nil
     end
 
     # Complete the browser-based profile management flows
     # This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity&#39;s Traits JSON Schema, the data will be updated and the browser redirected to &#x60;url.profile_ui&#x60; for further steps.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
     # @param request [String] Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;).
+    # @param via [String] What to verify  Currently only \&quot;email\&quot; is supported.
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
-    def complete_self_service_browser_verification_flow_with_http_info(request, opts = {})
+    def complete_self_service_browser_verification_flow_with_http_info(request, via, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: PublicApi.complete_self_service_browser_verification_flow ...'
       end
@@ -113,8 +115,12 @@ module OryHydraClient
       if @api_client.config.client_side_validation && request.nil?
         fail ArgumentError, "Missing the required parameter 'request' when calling PublicApi.complete_self_service_browser_verification_flow"
       end
+      # verify the required parameter 'via' is set
+      if @api_client.config.client_side_validation && via.nil?
+        fail ArgumentError, "Missing the required parameter 'via' when calling PublicApi.complete_self_service_browser_verification_flow"
+      end
       # resource path
-      local_var_path = '/self-service/browser/flows/verification/complete'
+      local_var_path = '/self-service/browser/flows/verification/{via}/complete'.sub('{' + 'via' + '}', CGI.escape(via.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -753,19 +759,21 @@ module OryHydraClient
     # Complete the browser-based verification flows
     # This endpoint completes a browser-based verification flow.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
     # @param code [String] 
+    # @param via [String] What to verify  Currently only \&quot;email\&quot; is supported.
     # @param [Hash] opts the optional parameters
     # @return [nil]
-    def self_service_browser_verify(code, opts = {})
-      self_service_browser_verify_with_http_info(code, opts)
+    def self_service_browser_verify(code, via, opts = {})
+      self_service_browser_verify_with_http_info(code, via, opts)
       nil
     end
 
     # Complete the browser-based verification flows
     # This endpoint completes a browser-based verification flow.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
     # @param code [String] 
+    # @param via [String] What to verify  Currently only \&quot;email\&quot; is supported.
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
-    def self_service_browser_verify_with_http_info(code, opts = {})
+    def self_service_browser_verify_with_http_info(code, via, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: PublicApi.self_service_browser_verify ...'
       end
@@ -773,8 +781,12 @@ module OryHydraClient
       if @api_client.config.client_side_validation && code.nil?
         fail ArgumentError, "Missing the required parameter 'code' when calling PublicApi.self_service_browser_verify"
       end
+      # verify the required parameter 'via' is set
+      if @api_client.config.client_side_validation && via.nil?
+        fail ArgumentError, "Missing the required parameter 'via' when calling PublicApi.self_service_browser_verify"
+      end
       # resource path
-      local_var_path = '/self-service/browser/flows/verification/confirm/{code}'.sub('{' + 'code' + '}', CGI.escape(code.to_s))
+      local_var_path = '/self-service/browser/flows/verification/{via}/confirm/{code}'.sub('{' + 'code' + '}', CGI.escape(code.to_s)).sub('{' + 'via' + '}', CGI.escape(via.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
