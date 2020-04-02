@@ -361,7 +361,7 @@ class LoginRequest implements ModelInterface, ArrayAccess
     /**
      * Sets requestedAccessTokenAudience
      *
-     * @param string[]|null $requestedAccessTokenAudience RequestedScope contains the access token audience as requested by the OAuth 2.0 Client.
+     * @param string[]|null $requestedAccessTokenAudience requestedAccessTokenAudience
      *
      * @return $this
      */
@@ -385,7 +385,7 @@ class LoginRequest implements ModelInterface, ArrayAccess
     /**
      * Sets requestedScope
      *
-     * @param string[]|null $requestedScope RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client.
+     * @param string[]|null $requestedScope requestedScope
      *
      * @return $this
      */

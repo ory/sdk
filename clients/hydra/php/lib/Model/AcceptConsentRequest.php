@@ -247,7 +247,7 @@ class AcceptConsentRequest implements ModelInterface, ArrayAccess
     /**
      * Sets grantAccessTokenAudience
      *
-     * @param string[]|null $grantAccessTokenAudience GrantedAudience sets the audience the user authorized the client to use. Should be a subset of `requested_access_token_audience`.
+     * @param string[]|null $grantAccessTokenAudience grantAccessTokenAudience
      *
      * @return $this
      */
@@ -271,7 +271,7 @@ class AcceptConsentRequest implements ModelInterface, ArrayAccess
     /**
      * Sets grantScope
      *
-     * @param string[]|null $grantScope GrantScope sets the scope the user authorized the client to use. Should be a subset of `requested_scope`.
+     * @param string[]|null $grantScope grantScope
      *
      * @return $this
      */
@@ -295,7 +295,7 @@ class AcceptConsentRequest implements ModelInterface, ArrayAccess
     /**
      * Sets handledAt
      *
-     * @param \DateTime|null $handledAt HandledAt contains the timestamp the consent request was handled.
+     * @param \DateTime|null $handledAt handledAt
      *
      * @return $this
      */

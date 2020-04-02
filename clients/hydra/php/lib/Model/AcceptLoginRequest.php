@@ -58,7 +58,7 @@ class AcceptLoginRequest implements ModelInterface, ArrayAccess
       */
     protected static $openAPITypes = [
         'acr' => 'string',
-        'context' => 'map[string,object]',
+        'context' => 'object',
         'forceSubjectIdentifier' => 'string',
         'remember' => 'bool',
         'rememberFor' => 'int',
@@ -264,7 +264,7 @@ class AcceptLoginRequest implements ModelInterface, ArrayAccess
     /**
      * Gets context
      *
-     * @return map[string,object]|null
+     * @return object|null
      */
     public function getContext()
     {
@@ -274,7 +274,7 @@ class AcceptLoginRequest implements ModelInterface, ArrayAccess
     /**
      * Sets context
      *
-     * @param map[string,object]|null $context Context is an optional object which can hold arbitrary data. The data will be made available when fetching the consent request under the \"context\" field. This is useful in scenarios where login and consent endpoints share data.
+     * @param object|null $context context
      *
      * @return $this
      */

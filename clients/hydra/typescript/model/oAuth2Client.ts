@@ -11,16 +11,9 @@
  */
 
 import { RequestFile } from '../api';
-import { JSONWebKeySet } from './jSONWebKeySet';
 
 export class OAuth2Client {
-    /**
-    * AllowedCORSOrigins are one or more URLs (scheme://host[:port]) which are allowed to make CORS requests to the /oauth/token endpoint. If this array is empty, the sever\'s CORS origin configuration (`CORS_ALLOWED_ORIGINS`) will be used instead. If this array is set, the allowed origins are appended to the server\'s CORS origin configuration. Be aware that environment variable `CORS_ENABLED` MUST be set to `true` for this to work.
-    */
     'allowedCorsOrigins'?: Array<string>;
-    /**
-    * Audience is a whitelist defining the audiences this client is allowed to request tokens for. An audience limits the applicability of an OAuth 2.0 Access Token to, for example, certain API endpoints. The value is a list of URLs. URLs MUST NOT contain whitespaces.
-    */
     'audience'?: Array<string>;
     /**
     * Boolean value specifying whether the RP requires that a sid (session ID) Claim be included in the Logout Token to identify the RP session with the OP when the backchannel_logout_uri is used. If omitted, the default value is false.
@@ -50,12 +43,9 @@ export class OAuth2Client {
     * ClientURI is an URL string of a web page providing information about the client. If present, the server SHOULD display this URL to the end-user in a clickable fashion.
     */
     'clientUri'?: string;
-    /**
-    * Contacts is a array of strings representing ways to contact people responsible for this client, typically email addresses.
-    */
     'contacts'?: Array<string>;
     /**
-    * CreatedAt returns the timestamp of the client\'s creation.
+    * CreatedAt returns the timestamp of the client\'s creation. Format: date-time
     */
     'createdAt'?: Date;
     /**
@@ -66,11 +56,8 @@ export class OAuth2Client {
     * RP URL that will cause the RP to log itself out when rendered in an iframe by the OP. An iss (issuer) query parameter and a sid (session ID) query parameter MAY be included by the OP to enable the RP to validate the request and to determine which of the potentially multiple sessions is to be logged out; if either is included, both MUST be.
     */
     'frontchannelLogoutUri'?: string;
-    /**
-    * GrantTypes is an array of grant types the client is allowed to use.
-    */
     'grantTypes'?: Array<string>;
-    'jwks'?: JSONWebKeySet;
+    'jwks'?: object;
     /**
     * URL for the Client\'s JSON Web Key Set [JWK] document. If the Client signs requests to the Server, it contains the signing key(s) the Server uses to validate signatures from the Client. The JWK Set MAY also contain the Client\'s encryption keys(s), which are used by the Server to encrypt responses to the Client. When both signing and encryption keys are made available, a use (Key Use) parameter value is REQUIRED for all keys in the referenced JWK Set to indicate each key\'s intended usage. Although some algorithms allow the same key to be used for both signatures and encryption, doing so is NOT RECOMMENDED, as it is less secure. The JWK x5c parameter MAY be used to provide X.509 representations of keys provided. When used, the bare key values MUST still be present and MUST match those in the certificate.
     */
@@ -79,9 +66,6 @@ export class OAuth2Client {
     * LogoURI is an URL string that references a logo for the client.
     */
     'logoUri'?: string;
-    /**
-    * Metadata is arbitrary data.
-    */
     'metadata'?: object;
     /**
     * Owner is a string identifying the owner of the OAuth 2.0 Client.
@@ -91,25 +75,13 @@ export class OAuth2Client {
     * PolicyURI is a URL string that points to a human-readable privacy policy document that describes how the deployment organization collects, uses, retains, and discloses personal data.
     */
     'policyUri'?: string;
-    /**
-    * Array of URLs supplied by the RP to which it MAY request that the End-User\'s User Agent be redirected using the post_logout_redirect_uri parameter after a logout has been performed.
-    */
     'postLogoutRedirectUris'?: Array<string>;
-    /**
-    * RedirectURIs is an array of allowed redirect urls for the client, for example http://mydomain/oauth/callback .
-    */
     'redirectUris'?: Array<string>;
     /**
     * JWS [JWS] alg algorithm [JWA] that MUST be used for signing Request Objects sent to the OP. All Request Objects from this Client MUST be rejected, if not signed with this algorithm.
     */
     'requestObjectSigningAlg'?: string;
-    /**
-    * Array of request_uri values that are pre-registered by the RP for use at the OP. Servers MAY cache the contents of the files referenced by these URIs and not retrieve them at the time they are used in a request. OPs can require that request_uri values used be pre-registered with the require_request_uri_registration discovery parameter.
-    */
     'requestUris'?: Array<string>;
-    /**
-    * ResponseTypes is an array of the OAuth 2.0 response type strings that the client can use at the authorization endpoint.
-    */
     'responseTypes'?: Array<string>;
     /**
     * Scope is a string containing a space-separated list of scope values (as described in Section 3.3 of OAuth 2.0 [RFC6749]) that the client can use when requesting access tokens.
@@ -132,7 +104,7 @@ export class OAuth2Client {
     */
     'tosUri'?: string;
     /**
-    * UpdatedAt returns the timestamp of the last update.
+    * UpdatedAt returns the timestamp of the last update. Format: date-time
     */
     'updatedAt'?: Date;
     /**
@@ -216,7 +188,7 @@ export class OAuth2Client {
         {
             "name": "jwks",
             "baseName": "jwks",
-            "type": "JSONWebKeySet"
+            "type": "object"
         },
         {
             "name": "jwksUri",

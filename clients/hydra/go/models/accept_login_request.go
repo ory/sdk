@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// AcceptLoginRequest HandledLoginRequest is the request payload used to accept a login request.
+// AcceptLoginRequest AcceptLoginRequest AcceptLoginRequest HandledLoginRequest is the request payload used to accept a login request.
 // swagger:model acceptLoginRequest
 type AcceptLoginRequest struct {
 
@@ -20,10 +20,8 @@ type AcceptLoginRequest struct {
 	// to express that, for example, a user authenticated using two factor authentication.
 	Acr string `json:"acr,omitempty"`
 
-	// Context is an optional object which can hold arbitrary data. The data will be made available when fetching the
-	// consent request under the "context" field. This is useful in scenarios where login and consent endpoints share
-	// data.
-	Context map[string]interface{} `json:"context,omitempty"`
+	// context
+	Context JSONRawMessage `json:"context,omitempty"`
 
 	// ForceSubjectIdentifier forces the "pairwise" user ID of the end-user that authenticated. The "pairwise" user ID refers to the
 	// (Pairwise Identifier Algorithm)[http://openid.net/specs/openid-connect-core-1_0.html#PairwiseAlg] of the OpenID

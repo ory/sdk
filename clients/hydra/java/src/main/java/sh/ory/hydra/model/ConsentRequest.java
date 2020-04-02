@@ -24,16 +24,14 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import sh.ory.hydra.model.OAuth2Client;
 import sh.ory.hydra.model.OpenIDConnectContext;
 
 /**
  * ConsentRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-17T19:24:44.464124Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-02T12:48:32.408042Z[GMT]")
 public class ConsentRequest {
   public static final String SERIALIZED_NAME_ACR = "acr";
   @SerializedName(SERIALIZED_NAME_ACR)
@@ -49,7 +47,7 @@ public class ConsentRequest {
 
   public static final String SERIALIZED_NAME_CONTEXT = "context";
   @SerializedName(SERIALIZED_NAME_CONTEXT)
-  private Map<String, Object> context = null;
+  private Object context;
 
   public static final String SERIALIZED_NAME_LOGIN_CHALLENGE = "login_challenge";
   @SerializedName(SERIALIZED_NAME_LOGIN_CHALLENGE)
@@ -153,33 +151,25 @@ public class ConsentRequest {
   }
 
 
-  public ConsentRequest context(Map<String, Object> context) {
+  public ConsentRequest context(Object context) {
     
     this.context = context;
     return this;
   }
 
-  public ConsentRequest putContextItem(String key, Object contextItem) {
-    if (this.context == null) {
-      this.context = new HashMap<String, Object>();
-    }
-    this.context.put(key, contextItem);
-    return this;
-  }
-
    /**
-   * Context contains arbitrary information set by the login endpoint or is empty if not set.
+   * Get context
    * @return context
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Context contains arbitrary information set by the login endpoint or is empty if not set.")
+  @ApiModelProperty(value = "")
 
-  public Map<String, Object> getContext() {
+  public Object getContext() {
     return context;
   }
 
 
-  public void setContext(Map<String, Object> context) {
+  public void setContext(Object context) {
     this.context = context;
   }
 
@@ -291,11 +281,11 @@ public class ConsentRequest {
   }
 
    /**
-   * RequestedScope contains the access token audience as requested by the OAuth 2.0 Client.
+   * Get requestedAccessTokenAudience
    * @return requestedAccessTokenAudience
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "RequestedScope contains the access token audience as requested by the OAuth 2.0 Client.")
+  @ApiModelProperty(value = "")
 
   public List<String> getRequestedAccessTokenAudience() {
     return requestedAccessTokenAudience;
@@ -322,11 +312,11 @@ public class ConsentRequest {
   }
 
    /**
-   * RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client.
+   * Get requestedScope
    * @return requestedScope
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client.")
+  @ApiModelProperty(value = "")
 
   public List<String> getRequestedScope() {
     return requestedScope;

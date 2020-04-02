@@ -14,10 +14,8 @@ require 'date'
 
 module OryHydraClient
   class OAuth2Client
-    # AllowedCORSOrigins are one or more URLs (scheme://host[:port]) which are allowed to make CORS requests to the /oauth/token endpoint. If this array is empty, the sever's CORS origin configuration (`CORS_ALLOWED_ORIGINS`) will be used instead. If this array is set, the allowed origins are appended to the server's CORS origin configuration. Be aware that environment variable `CORS_ENABLED` MUST be set to `true` for this to work.
     attr_accessor :allowed_cors_origins
 
-    # Audience is a whitelist defining the audiences this client is allowed to request tokens for. An audience limits the applicability of an OAuth 2.0 Access Token to, for example, certain API endpoints. The value is a list of URLs. URLs MUST NOT contain whitespaces.
     attr_accessor :audience
 
     # Boolean value specifying whether the RP requires that a sid (session ID) Claim be included in the Logout Token to identify the RP session with the OP when the backchannel_logout_uri is used. If omitted, the default value is false.
@@ -41,10 +39,9 @@ module OryHydraClient
     # ClientURI is an URL string of a web page providing information about the client. If present, the server SHOULD display this URL to the end-user in a clickable fashion.
     attr_accessor :client_uri
 
-    # Contacts is a array of strings representing ways to contact people responsible for this client, typically email addresses.
     attr_accessor :contacts
 
-    # CreatedAt returns the timestamp of the client's creation.
+    # CreatedAt returns the timestamp of the client's creation. Format: date-time
     attr_accessor :created_at
 
     # Boolean value specifying whether the RP requires that iss (issuer) and sid (session ID) query parameters be included to identify the RP session with the OP when the frontchannel_logout_uri is used. If omitted, the default value is false.
@@ -53,7 +50,6 @@ module OryHydraClient
     # RP URL that will cause the RP to log itself out when rendered in an iframe by the OP. An iss (issuer) query parameter and a sid (session ID) query parameter MAY be included by the OP to enable the RP to validate the request and to determine which of the potentially multiple sessions is to be logged out; if either is included, both MUST be.
     attr_accessor :frontchannel_logout_uri
 
-    # GrantTypes is an array of grant types the client is allowed to use.
     attr_accessor :grant_types
 
     attr_accessor :jwks
@@ -64,7 +60,6 @@ module OryHydraClient
     # LogoURI is an URL string that references a logo for the client.
     attr_accessor :logo_uri
 
-    # Metadata is arbitrary data.
     attr_accessor :metadata
 
     # Owner is a string identifying the owner of the OAuth 2.0 Client.
@@ -73,19 +68,15 @@ module OryHydraClient
     # PolicyURI is a URL string that points to a human-readable privacy policy document that describes how the deployment organization collects, uses, retains, and discloses personal data.
     attr_accessor :policy_uri
 
-    # Array of URLs supplied by the RP to which it MAY request that the End-User's User Agent be redirected using the post_logout_redirect_uri parameter after a logout has been performed.
     attr_accessor :post_logout_redirect_uris
 
-    # RedirectURIs is an array of allowed redirect urls for the client, for example http://mydomain/oauth/callback .
     attr_accessor :redirect_uris
 
     # JWS [JWS] alg algorithm [JWA] that MUST be used for signing Request Objects sent to the OP. All Request Objects from this Client MUST be rejected, if not signed with this algorithm.
     attr_accessor :request_object_signing_alg
 
-    # Array of request_uri values that are pre-registered by the RP for use at the OP. Servers MAY cache the contents of the files referenced by these URIs and not retrieve them at the time they are used in a request. OPs can require that request_uri values used be pre-registered with the require_request_uri_registration discovery parameter.
     attr_accessor :request_uris
 
-    # ResponseTypes is an array of the OAuth 2.0 response type strings that the client can use at the authorization endpoint.
     attr_accessor :response_types
 
     # Scope is a string containing a space-separated list of scope values (as described in Section 3.3 of OAuth 2.0 [RFC6749]) that the client can use when requesting access tokens.
@@ -103,7 +94,7 @@ module OryHydraClient
     # TermsOfServiceURI is a URL string that points to a human-readable terms of service document for the client that describes a contractual relationship between the end-user and the client that the end-user accepts when authorizing the client.
     attr_accessor :tos_uri
 
-    # UpdatedAt returns the timestamp of the last update.
+    # UpdatedAt returns the timestamp of the last update. Format: date-time
     attr_accessor :updated_at
 
     # JWS alg algorithm [JWA] REQUIRED for signing UserInfo Responses. If this is specified, the response will be JWT [JWT] serialized, and signed using JWS. The default, if omitted, is for the UserInfo Response to return the Claims as a UTF-8 encoded JSON object using the application/json content-type.
@@ -164,7 +155,7 @@ module OryHydraClient
         :'frontchannel_logout_session_required' => :'Boolean',
         :'frontchannel_logout_uri' => :'String',
         :'grant_types' => :'Array<String>',
-        :'jwks' => :'JSONWebKeySet',
+        :'jwks' => :'Object',
         :'jwks_uri' => :'String',
         :'logo_uri' => :'String',
         :'metadata' => :'Object',

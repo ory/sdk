@@ -14,13 +14,10 @@ require 'date'
 
 module OryHydraClient
   class AcceptConsentRequest
-    # GrantedAudience sets the audience the user authorized the client to use. Should be a subset of `requested_access_token_audience`.
     attr_accessor :grant_access_token_audience
 
-    # GrantScope sets the scope the user authorized the client to use. Should be a subset of `requested_scope`.
     attr_accessor :grant_scope
 
-    # HandledAt contains the timestamp the consent request was handled.
     attr_accessor :handled_at
 
     # Remember, if set to true, tells ORY Hydra to remember this consent authorization and reuse it if the same client asks the same user for the same, or a subset of, scope.

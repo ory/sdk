@@ -916,7 +916,6 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | oAuth2Client |  -  |
 **401** | genericError |  -  |
-**404** | genericError |  -  |
 **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -81,7 +81,6 @@ class AcceptConsentRequest(object):
     def grant_access_token_audience(self):
         """Gets the grant_access_token_audience of this AcceptConsentRequest.  # noqa: E501
 
-        GrantedAudience sets the audience the user authorized the client to use. Should be a subset of `requested_access_token_audience`.  # noqa: E501
 
         :return: The grant_access_token_audience of this AcceptConsentRequest.  # noqa: E501
         :rtype: list[str]
@@ -92,7 +91,6 @@ class AcceptConsentRequest(object):
     def grant_access_token_audience(self, grant_access_token_audience):
         """Sets the grant_access_token_audience of this AcceptConsentRequest.
 
-        GrantedAudience sets the audience the user authorized the client to use. Should be a subset of `requested_access_token_audience`.  # noqa: E501
 
         :param grant_access_token_audience: The grant_access_token_audience of this AcceptConsentRequest.  # noqa: E501
         :type: list[str]
@@ -104,7 +102,6 @@ class AcceptConsentRequest(object):
     def grant_scope(self):
         """Gets the grant_scope of this AcceptConsentRequest.  # noqa: E501
 
-        GrantScope sets the scope the user authorized the client to use. Should be a subset of `requested_scope`.  # noqa: E501
 
         :return: The grant_scope of this AcceptConsentRequest.  # noqa: E501
         :rtype: list[str]
@@ -115,7 +112,6 @@ class AcceptConsentRequest(object):
     def grant_scope(self, grant_scope):
         """Sets the grant_scope of this AcceptConsentRequest.
 
-        GrantScope sets the scope the user authorized the client to use. Should be a subset of `requested_scope`.  # noqa: E501
 
         :param grant_scope: The grant_scope of this AcceptConsentRequest.  # noqa: E501
         :type: list[str]
@@ -127,7 +123,6 @@ class AcceptConsentRequest(object):
     def handled_at(self):
         """Gets the handled_at of this AcceptConsentRequest.  # noqa: E501
 
-        HandledAt contains the timestamp the consent request was handled.  # noqa: E501
 
         :return: The handled_at of this AcceptConsentRequest.  # noqa: E501
         :rtype: datetime
@@ -138,7 +133,6 @@ class AcceptConsentRequest(object):
     def handled_at(self, handled_at):
         """Sets the handled_at of this AcceptConsentRequest.
 
-        HandledAt contains the timestamp the consent request was handled.  # noqa: E501
 
         :param handled_at: The handled_at of this AcceptConsentRequest.  # noqa: E501
         :type: datetime

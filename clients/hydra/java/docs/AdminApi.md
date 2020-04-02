@@ -1008,7 +1008,6 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | oAuth2Client |  -  |
 **401** | genericError |  -  |
-**404** | genericError |  -  |
 **500** | genericError |  -  |
 
 <a name="getVersion"></a>

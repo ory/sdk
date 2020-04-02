@@ -1810,7 +1810,6 @@ public class AdminApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> oAuth2Client </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> genericError </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
@@ -1869,7 +1868,6 @@ public class AdminApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> oAuth2Client </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> genericError </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
@@ -1889,7 +1887,6 @@ public class AdminApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> oAuth2Client </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> genericError </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
@@ -1911,7 +1908,6 @@ public class AdminApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> oAuth2Client </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> genericError </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */

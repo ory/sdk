@@ -71,7 +71,7 @@ class OAuth2Client implements ModelInterface, ArrayAccess
         'frontchannelLogoutSessionRequired' => 'bool',
         'frontchannelLogoutUri' => 'string',
         'grantTypes' => 'string[]',
-        'jwks' => '\Ory\Hydra\Client\Model\JSONWebKeySet',
+        'jwks' => 'object',
         'jwksUri' => 'string',
         'logoUri' => 'string',
         'metadata' => 'object',
@@ -407,7 +407,7 @@ class OAuth2Client implements ModelInterface, ArrayAccess
     /**
      * Sets allowedCorsOrigins
      *
-     * @param string[]|null $allowedCorsOrigins AllowedCORSOrigins are one or more URLs (scheme://host[:port]) which are allowed to make CORS requests to the /oauth/token endpoint. If this array is empty, the sever's CORS origin configuration (`CORS_ALLOWED_ORIGINS`) will be used instead. If this array is set, the allowed origins are appended to the server's CORS origin configuration. Be aware that environment variable `CORS_ENABLED` MUST be set to `true` for this to work.
+     * @param string[]|null $allowedCorsOrigins allowedCorsOrigins
      *
      * @return $this
      */
@@ -431,7 +431,7 @@ class OAuth2Client implements ModelInterface, ArrayAccess
     /**
      * Sets audience
      *
-     * @param string[]|null $audience Audience is a whitelist defining the audiences this client is allowed to request tokens for. An audience limits the applicability of an OAuth 2.0 Access Token to, for example, certain API endpoints. The value is a list of URLs. URLs MUST NOT contain whitespaces.
+     * @param string[]|null $audience audience
      *
      * @return $this
      */
@@ -623,7 +623,7 @@ class OAuth2Client implements ModelInterface, ArrayAccess
     /**
      * Sets contacts
      *
-     * @param string[]|null $contacts Contacts is a array of strings representing ways to contact people responsible for this client, typically email addresses.
+     * @param string[]|null $contacts contacts
      *
      * @return $this
      */
@@ -647,7 +647,7 @@ class OAuth2Client implements ModelInterface, ArrayAccess
     /**
      * Sets createdAt
      *
-     * @param \DateTime|null $createdAt CreatedAt returns the timestamp of the client's creation.
+     * @param \DateTime|null $createdAt CreatedAt returns the timestamp of the client's creation. Format: date-time
      *
      * @return $this
      */
@@ -719,7 +719,7 @@ class OAuth2Client implements ModelInterface, ArrayAccess
     /**
      * Sets grantTypes
      *
-     * @param string[]|null $grantTypes GrantTypes is an array of grant types the client is allowed to use.
+     * @param string[]|null $grantTypes grantTypes
      *
      * @return $this
      */
@@ -733,7 +733,7 @@ class OAuth2Client implements ModelInterface, ArrayAccess
     /**
      * Gets jwks
      *
-     * @return \Ory\Hydra\Client\Model\JSONWebKeySet|null
+     * @return object|null
      */
     public function getJwks()
     {
@@ -743,7 +743,7 @@ class OAuth2Client implements ModelInterface, ArrayAccess
     /**
      * Sets jwks
      *
-     * @param \Ory\Hydra\Client\Model\JSONWebKeySet|null $jwks jwks
+     * @param object|null $jwks jwks
      *
      * @return $this
      */
@@ -815,7 +815,7 @@ class OAuth2Client implements ModelInterface, ArrayAccess
     /**
      * Sets metadata
      *
-     * @param object|null $metadata Metadata is arbitrary data.
+     * @param object|null $metadata metadata
      *
      * @return $this
      */
@@ -887,7 +887,7 @@ class OAuth2Client implements ModelInterface, ArrayAccess
     /**
      * Sets postLogoutRedirectUris
      *
-     * @param string[]|null $postLogoutRedirectUris Array of URLs supplied by the RP to which it MAY request that the End-User's User Agent be redirected using the post_logout_redirect_uri parameter after a logout has been performed.
+     * @param string[]|null $postLogoutRedirectUris postLogoutRedirectUris
      *
      * @return $this
      */
@@ -911,7 +911,7 @@ class OAuth2Client implements ModelInterface, ArrayAccess
     /**
      * Sets redirectUris
      *
-     * @param string[]|null $redirectUris RedirectURIs is an array of allowed redirect urls for the client, for example http://mydomain/oauth/callback .
+     * @param string[]|null $redirectUris redirectUris
      *
      * @return $this
      */
@@ -959,7 +959,7 @@ class OAuth2Client implements ModelInterface, ArrayAccess
     /**
      * Sets requestUris
      *
-     * @param string[]|null $requestUris Array of request_uri values that are pre-registered by the RP for use at the OP. Servers MAY cache the contents of the files referenced by these URIs and not retrieve them at the time they are used in a request. OPs can require that request_uri values used be pre-registered with the require_request_uri_registration discovery parameter.
+     * @param string[]|null $requestUris requestUris
      *
      * @return $this
      */
@@ -983,7 +983,7 @@ class OAuth2Client implements ModelInterface, ArrayAccess
     /**
      * Sets responseTypes
      *
-     * @param string[]|null $responseTypes ResponseTypes is an array of the OAuth 2.0 response type strings that the client can use at the authorization endpoint.
+     * @param string[]|null $responseTypes responseTypes
      *
      * @return $this
      */
@@ -1132,7 +1132,7 @@ class OAuth2Client implements ModelInterface, ArrayAccess
     /**
      * Sets updatedAt
      *
-     * @param \DateTime|null $updatedAt UpdatedAt returns the timestamp of the last update.
+     * @param \DateTime|null $updatedAt UpdatedAt returns the timestamp of the last update. Format: date-time
      *
      * @return $this
      */

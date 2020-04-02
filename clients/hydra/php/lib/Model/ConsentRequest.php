@@ -60,7 +60,7 @@ class ConsentRequest implements ModelInterface, ArrayAccess
         'acr' => 'string',
         'challenge' => 'string',
         'client' => '\Ory\Hydra\Client\Model\OAuth2Client',
-        'context' => 'map[string,object]',
+        'context' => 'object',
         'loginChallenge' => 'string',
         'loginSessionId' => 'string',
         'oidcContext' => '\Ory\Hydra\Client\Model\OpenIDConnectContext',
@@ -345,7 +345,7 @@ class ConsentRequest implements ModelInterface, ArrayAccess
     /**
      * Gets context
      *
-     * @return map[string,object]|null
+     * @return object|null
      */
     public function getContext()
     {
@@ -355,7 +355,7 @@ class ConsentRequest implements ModelInterface, ArrayAccess
     /**
      * Sets context
      *
-     * @param map[string,object]|null $context Context contains arbitrary information set by the login endpoint or is empty if not set.
+     * @param object|null $context context
      *
      * @return $this
      */
@@ -475,7 +475,7 @@ class ConsentRequest implements ModelInterface, ArrayAccess
     /**
      * Sets requestedAccessTokenAudience
      *
-     * @param string[]|null $requestedAccessTokenAudience RequestedScope contains the access token audience as requested by the OAuth 2.0 Client.
+     * @param string[]|null $requestedAccessTokenAudience requestedAccessTokenAudience
      *
      * @return $this
      */
@@ -499,7 +499,7 @@ class ConsentRequest implements ModelInterface, ArrayAccess
     /**
      * Sets requestedScope
      *
-     * @param string[]|null $requestedScope RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client.
+     * @param string[]|null $requestedScope requestedScope
      *
      * @return $this
      */

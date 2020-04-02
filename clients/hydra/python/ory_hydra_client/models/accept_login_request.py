@@ -34,7 +34,7 @@ class AcceptLoginRequest(object):
     """
     openapi_types = {
         'acr': 'str',
-        'context': 'dict(str, object)',
+        'context': 'object',
         'force_subject_identifier': 'str',
         'remember': 'bool',
         'remember_for': 'int',
@@ -103,10 +103,9 @@ class AcceptLoginRequest(object):
     def context(self):
         """Gets the context of this AcceptLoginRequest.  # noqa: E501
 
-        Context is an optional object which can hold arbitrary data. The data will be made available when fetching the consent request under the \"context\" field. This is useful in scenarios where login and consent endpoints share data.  # noqa: E501
 
         :return: The context of this AcceptLoginRequest.  # noqa: E501
-        :rtype: dict(str, object)
+        :rtype: object
         """
         return self._context
 
@@ -114,10 +113,9 @@ class AcceptLoginRequest(object):
     def context(self, context):
         """Sets the context of this AcceptLoginRequest.
 
-        Context is an optional object which can hold arbitrary data. The data will be made available when fetching the consent request under the \"context\" field. This is useful in scenarios where login and consent endpoints share data.  # noqa: E501
 
         :param context: The context of this AcceptLoginRequest.  # noqa: E501
-        :type: dict(str, object)
+        :type: object
         """
 
         self._context = context

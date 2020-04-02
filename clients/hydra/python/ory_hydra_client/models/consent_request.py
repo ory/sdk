@@ -36,7 +36,7 @@ class ConsentRequest(object):
         'acr': 'str',
         'challenge': 'str',
         'client': 'OAuth2Client',
-        'context': 'dict(str, object)',
+        'context': 'object',
         'login_challenge': 'str',
         'login_session_id': 'str',
         'oidc_context': 'OpenIDConnectContext',
@@ -178,10 +178,9 @@ class ConsentRequest(object):
     def context(self):
         """Gets the context of this ConsentRequest.  # noqa: E501
 
-        Context contains arbitrary information set by the login endpoint or is empty if not set.  # noqa: E501
 
         :return: The context of this ConsentRequest.  # noqa: E501
-        :rtype: dict(str, object)
+        :rtype: object
         """
         return self._context
 
@@ -189,10 +188,9 @@ class ConsentRequest(object):
     def context(self, context):
         """Sets the context of this ConsentRequest.
 
-        Context contains arbitrary information set by the login endpoint or is empty if not set.  # noqa: E501
 
         :param context: The context of this ConsentRequest.  # noqa: E501
-        :type: dict(str, object)
+        :type: object
         """
 
         self._context = context
@@ -291,7 +289,6 @@ class ConsentRequest(object):
     def requested_access_token_audience(self):
         """Gets the requested_access_token_audience of this ConsentRequest.  # noqa: E501
 
-        RequestedScope contains the access token audience as requested by the OAuth 2.0 Client.  # noqa: E501
 
         :return: The requested_access_token_audience of this ConsentRequest.  # noqa: E501
         :rtype: list[str]
@@ -302,7 +299,6 @@ class ConsentRequest(object):
     def requested_access_token_audience(self, requested_access_token_audience):
         """Sets the requested_access_token_audience of this ConsentRequest.
 
-        RequestedScope contains the access token audience as requested by the OAuth 2.0 Client.  # noqa: E501
 
         :param requested_access_token_audience: The requested_access_token_audience of this ConsentRequest.  # noqa: E501
         :type: list[str]
@@ -314,7 +310,6 @@ class ConsentRequest(object):
     def requested_scope(self):
         """Gets the requested_scope of this ConsentRequest.  # noqa: E501
 
-        RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client.  # noqa: E501
 
         :return: The requested_scope of this ConsentRequest.  # noqa: E501
         :rtype: list[str]
@@ -325,7 +320,6 @@ class ConsentRequest(object):
     def requested_scope(self, requested_scope):
         """Sets the requested_scope of this ConsentRequest.
 
-        RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client.  # noqa: E501
 
         :param requested_scope: The requested_scope of this ConsentRequest.  # noqa: E501
         :type: list[str]

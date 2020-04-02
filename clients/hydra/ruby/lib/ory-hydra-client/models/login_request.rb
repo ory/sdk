@@ -24,10 +24,8 @@ module OryHydraClient
     # RequestURL is the original OAuth 2.0 Authorization URL requested by the OAuth 2.0 client. It is the URL which initiates the OAuth 2.0 Authorization Code or OAuth 2.0 Implicit flow. This URL is typically not needed, but might come in handy if you want to deal with additional request parameters.
     attr_accessor :request_url
 
-    # RequestedScope contains the access token audience as requested by the OAuth 2.0 Client.
     attr_accessor :requested_access_token_audience
 
-    # RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client.
     attr_accessor :requested_scope
 
     # SessionID is the login session ID. If the user-agent reuses a login session (via cookie / remember flag) this ID will remain the same. If the user-agent did not have an existing authentication session (e.g. remember is false) this will be a new random value. This value is used as the \"sid\" parameter in the ID Token and in OIDC Front-/Back- channel logout. It's value can generally be used to associate consecutive login requests by a certain user.

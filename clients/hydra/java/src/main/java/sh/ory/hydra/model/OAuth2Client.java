@@ -26,12 +26,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import org.threeten.bp.OffsetDateTime;
-import sh.ory.hydra.model.JSONWebKeySet;
 
 /**
  * OAuth2Client
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-17T19:24:44.464124Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-02T12:48:32.408042Z[GMT]")
 public class OAuth2Client {
   public static final String SERIALIZED_NAME_ALLOWED_CORS_ORIGINS = "allowed_cors_origins";
   @SerializedName(SERIALIZED_NAME_ALLOWED_CORS_ORIGINS)
@@ -91,7 +90,7 @@ public class OAuth2Client {
 
   public static final String SERIALIZED_NAME_JWKS = "jwks";
   @SerializedName(SERIALIZED_NAME_JWKS)
-  private JSONWebKeySet jwks;
+  private Object jwks;
 
   public static final String SERIALIZED_NAME_JWKS_URI = "jwks_uri";
   @SerializedName(SERIALIZED_NAME_JWKS_URI)
@@ -177,11 +176,11 @@ public class OAuth2Client {
   }
 
    /**
-   * AllowedCORSOrigins are one or more URLs (scheme://host[:port]) which are allowed to make CORS requests to the /oauth/token endpoint. If this array is empty, the sever&#39;s CORS origin configuration (&#x60;CORS_ALLOWED_ORIGINS&#x60;) will be used instead. If this array is set, the allowed origins are appended to the server&#39;s CORS origin configuration. Be aware that environment variable &#x60;CORS_ENABLED&#x60; MUST be set to &#x60;true&#x60; for this to work.
+   * Get allowedCorsOrigins
    * @return allowedCorsOrigins
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "AllowedCORSOrigins are one or more URLs (scheme://host[:port]) which are allowed to make CORS requests to the /oauth/token endpoint. If this array is empty, the sever's CORS origin configuration (`CORS_ALLOWED_ORIGINS`) will be used instead. If this array is set, the allowed origins are appended to the server's CORS origin configuration. Be aware that environment variable `CORS_ENABLED` MUST be set to `true` for this to work.")
+  @ApiModelProperty(value = "")
 
   public List<String> getAllowedCorsOrigins() {
     return allowedCorsOrigins;
@@ -208,11 +207,11 @@ public class OAuth2Client {
   }
 
    /**
-   * Audience is a whitelist defining the audiences this client is allowed to request tokens for. An audience limits the applicability of an OAuth 2.0 Access Token to, for example, certain API endpoints. The value is a list of URLs. URLs MUST NOT contain whitespaces.
+   * Get audience
    * @return audience
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Audience is a whitelist defining the audiences this client is allowed to request tokens for. An audience limits the applicability of an OAuth 2.0 Access Token to, for example, certain API endpoints. The value is a list of URLs. URLs MUST NOT contain whitespaces.")
+  @ApiModelProperty(value = "")
 
   public List<String> getAudience() {
     return audience;
@@ -400,11 +399,11 @@ public class OAuth2Client {
   }
 
    /**
-   * Contacts is a array of strings representing ways to contact people responsible for this client, typically email addresses.
+   * Get contacts
    * @return contacts
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Contacts is a array of strings representing ways to contact people responsible for this client, typically email addresses.")
+  @ApiModelProperty(value = "")
 
   public List<String> getContacts() {
     return contacts;
@@ -423,11 +422,11 @@ public class OAuth2Client {
   }
 
    /**
-   * CreatedAt returns the timestamp of the client&#39;s creation.
+   * CreatedAt returns the timestamp of the client&#39;s creation. Format: date-time
    * @return createdAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "CreatedAt returns the timestamp of the client's creation.")
+  @ApiModelProperty(value = "CreatedAt returns the timestamp of the client's creation. Format: date-time")
 
   public OffsetDateTime getCreatedAt() {
     return createdAt;
@@ -500,11 +499,11 @@ public class OAuth2Client {
   }
 
    /**
-   * GrantTypes is an array of grant types the client is allowed to use.
+   * Get grantTypes
    * @return grantTypes
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "GrantTypes is an array of grant types the client is allowed to use.")
+  @ApiModelProperty(value = "")
 
   public List<String> getGrantTypes() {
     return grantTypes;
@@ -516,7 +515,7 @@ public class OAuth2Client {
   }
 
 
-  public OAuth2Client jwks(JSONWebKeySet jwks) {
+  public OAuth2Client jwks(Object jwks) {
     
     this.jwks = jwks;
     return this;
@@ -529,12 +528,12 @@ public class OAuth2Client {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public JSONWebKeySet getJwks() {
+  public Object getJwks() {
     return jwks;
   }
 
 
-  public void setJwks(JSONWebKeySet jwks) {
+  public void setJwks(Object jwks) {
     this.jwks = jwks;
   }
 
@@ -592,11 +591,11 @@ public class OAuth2Client {
   }
 
    /**
-   * Metadata is arbitrary data.
+   * Get metadata
    * @return metadata
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Metadata is arbitrary data.")
+  @ApiModelProperty(value = "")
 
   public Object getMetadata() {
     return metadata;
@@ -669,11 +668,11 @@ public class OAuth2Client {
   }
 
    /**
-   * Array of URLs supplied by the RP to which it MAY request that the End-User&#39;s User Agent be redirected using the post_logout_redirect_uri parameter after a logout has been performed.
+   * Get postLogoutRedirectUris
    * @return postLogoutRedirectUris
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Array of URLs supplied by the RP to which it MAY request that the End-User's User Agent be redirected using the post_logout_redirect_uri parameter after a logout has been performed.")
+  @ApiModelProperty(value = "")
 
   public List<String> getPostLogoutRedirectUris() {
     return postLogoutRedirectUris;
@@ -700,11 +699,11 @@ public class OAuth2Client {
   }
 
    /**
-   * RedirectURIs is an array of allowed redirect urls for the client, for example http://mydomain/oauth/callback .
+   * Get redirectUris
    * @return redirectUris
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "RedirectURIs is an array of allowed redirect urls for the client, for example http://mydomain/oauth/callback .")
+  @ApiModelProperty(value = "")
 
   public List<String> getRedirectUris() {
     return redirectUris;
@@ -754,11 +753,11 @@ public class OAuth2Client {
   }
 
    /**
-   * Array of request_uri values that are pre-registered by the RP for use at the OP. Servers MAY cache the contents of the files referenced by these URIs and not retrieve them at the time they are used in a request. OPs can require that request_uri values used be pre-registered with the require_request_uri_registration discovery parameter.
+   * Get requestUris
    * @return requestUris
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Array of request_uri values that are pre-registered by the RP for use at the OP. Servers MAY cache the contents of the files referenced by these URIs and not retrieve them at the time they are used in a request. OPs can require that request_uri values used be pre-registered with the require_request_uri_registration discovery parameter.")
+  @ApiModelProperty(value = "")
 
   public List<String> getRequestUris() {
     return requestUris;
@@ -785,11 +784,11 @@ public class OAuth2Client {
   }
 
    /**
-   * ResponseTypes is an array of the OAuth 2.0 response type strings that the client can use at the authorization endpoint.
+   * Get responseTypes
    * @return responseTypes
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "ResponseTypes is an array of the OAuth 2.0 response type strings that the client can use at the authorization endpoint.")
+  @ApiModelProperty(value = "")
 
   public List<String> getResponseTypes() {
     return responseTypes;
@@ -923,11 +922,11 @@ public class OAuth2Client {
   }
 
    /**
-   * UpdatedAt returns the timestamp of the last update.
+   * UpdatedAt returns the timestamp of the last update. Format: date-time
    * @return updatedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "UpdatedAt returns the timestamp of the last update.")
+  @ApiModelProperty(value = "UpdatedAt returns the timestamp of the last update. Format: date-time")
 
   public OffsetDateTime getUpdatedAt() {
     return updatedAt;

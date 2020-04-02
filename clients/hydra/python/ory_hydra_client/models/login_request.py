@@ -184,7 +184,6 @@ class LoginRequest(object):
     def requested_access_token_audience(self):
         """Gets the requested_access_token_audience of this LoginRequest.  # noqa: E501
 
-        RequestedScope contains the access token audience as requested by the OAuth 2.0 Client.  # noqa: E501
 
         :return: The requested_access_token_audience of this LoginRequest.  # noqa: E501
         :rtype: list[str]
@@ -195,7 +194,6 @@ class LoginRequest(object):
     def requested_access_token_audience(self, requested_access_token_audience):
         """Sets the requested_access_token_audience of this LoginRequest.
 
-        RequestedScope contains the access token audience as requested by the OAuth 2.0 Client.  # noqa: E501
 
         :param requested_access_token_audience: The requested_access_token_audience of this LoginRequest.  # noqa: E501
         :type: list[str]
@@ -207,7 +205,6 @@ class LoginRequest(object):
     def requested_scope(self):
         """Gets the requested_scope of this LoginRequest.  # noqa: E501
 
-        RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client.  # noqa: E501
 
         :return: The requested_scope of this LoginRequest.  # noqa: E501
         :rtype: list[str]
@@ -218,7 +215,6 @@ class LoginRequest(object):
     def requested_scope(self, requested_scope):
         """Sets the requested_scope of this LoginRequest.
 
-        RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client.  # noqa: E501
 
         :param requested_scope: The requested_scope of this LoginRequest.  # noqa: E501
         :type: list[str]

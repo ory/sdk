@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**error** | **String** |  | [optional] 
-**error_debug** | **String** |  | [optional] 
-**error_description** | **String** |  | [optional] 
-**error_hint** | **String** |  | [optional] 
-**status_code** | **Integer** |  | [optional] 
+**error** | **String** | error | [optional] 
+**error_debug** | **String** | error debug | [optional] 
+**error_description** | **String** | error description | [optional] 
+**error_hint** | **String** | error hint | [optional] 
+**status_code** | **Integer** | status code | [optional] 
 
 ## Code Sample
 

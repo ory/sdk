@@ -22,7 +22,6 @@ module OryHydraClient
 
     attr_accessor :client
 
-    # Context contains arbitrary information set by the login endpoint or is empty if not set.
     attr_accessor :context
 
     # LoginChallenge is the login challenge this consent challenge belongs to. It can be used to associate a login and consent request in the login & consent app.
@@ -36,10 +35,8 @@ module OryHydraClient
     # RequestURL is the original OAuth 2.0 Authorization URL requested by the OAuth 2.0 client. It is the URL which initiates the OAuth 2.0 Authorization Code or OAuth 2.0 Implicit flow. This URL is typically not needed, but might come in handy if you want to deal with additional request parameters.
     attr_accessor :request_url
 
-    # RequestedScope contains the access token audience as requested by the OAuth 2.0 Client.
     attr_accessor :requested_access_token_audience
 
-    # RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client.
     attr_accessor :requested_scope
 
     # Skip, if true, implies that the client has requested the same scopes from the same user previously. If true, you must not ask the user to grant the requested scopes. You must however either allow or deny the consent request using the usual API call.
@@ -72,7 +69,7 @@ module OryHydraClient
         :'acr' => :'String',
         :'challenge' => :'String',
         :'client' => :'OAuth2Client',
-        :'context' => :'Hash<String, Object>',
+        :'context' => :'Object',
         :'login_challenge' => :'String',
         :'login_session_id' => :'String',
         :'oidc_context' => :'OpenIDConnectContext',
@@ -118,9 +115,7 @@ module OryHydraClient
       end
 
       if attributes.key?(:'context')
-        if (value = attributes[:'context']).is_a?(Hash)
-          self.context = value
-        end
+        self.context = attributes[:'context']
       end
 
       if attributes.key?(:'login_challenge')

@@ -24,10 +24,7 @@ export class ConsentRequest {
     */
     'challenge'?: string;
     'client'?: OAuth2Client;
-    /**
-    * Context contains arbitrary information set by the login endpoint or is empty if not set.
-    */
-    'context'?: { [key: string]: object; };
+    'context'?: object;
     /**
     * LoginChallenge is the login challenge this consent challenge belongs to. It can be used to associate a login and consent request in the login & consent app.
     */
@@ -41,13 +38,7 @@ export class ConsentRequest {
     * RequestURL is the original OAuth 2.0 Authorization URL requested by the OAuth 2.0 client. It is the URL which initiates the OAuth 2.0 Authorization Code or OAuth 2.0 Implicit flow. This URL is typically not needed, but might come in handy if you want to deal with additional request parameters.
     */
     'requestUrl'?: string;
-    /**
-    * RequestedScope contains the access token audience as requested by the OAuth 2.0 Client.
-    */
     'requestedAccessTokenAudience'?: Array<string>;
-    /**
-    * RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client.
-    */
     'requestedScope'?: Array<string>;
     /**
     * Skip, if true, implies that the client has requested the same scopes from the same user previously. If true, you must not ask the user to grant the requested scopes. You must however either allow or deny the consent request using the usual API call.
@@ -79,7 +70,7 @@ export class ConsentRequest {
         {
             "name": "context",
             "baseName": "context",
-            "type": "{ [key: string]: object; }"
+            "type": "object"
         },
         {
             "name": "loginChallenge",

@@ -14,17 +14,8 @@ import { RequestFile } from '../api';
 import { ConsentRequestSession } from './consentRequestSession';
 
 export class AcceptConsentRequest {
-    /**
-    * GrantedAudience sets the audience the user authorized the client to use. Should be a subset of `requested_access_token_audience`.
-    */
     'grantAccessTokenAudience'?: Array<string>;
-    /**
-    * GrantScope sets the scope the user authorized the client to use. Should be a subset of `requested_scope`.
-    */
     'grantScope'?: Array<string>;
-    /**
-    * HandledAt contains the timestamp the consent request was handled.
-    */
     'handledAt'?: Date;
     /**
     * Remember, if set to true, tells ORY Hydra to remember this consent authorization and reuse it if the same client asks the same user for the same, or a subset of, scope.

@@ -47,7 +47,7 @@ class OAuth2Client(object):
         'frontchannel_logout_session_required': 'bool',
         'frontchannel_logout_uri': 'str',
         'grant_types': 'list[str]',
-        'jwks': 'JSONWebKeySet',
+        'jwks': 'object',
         'jwks_uri': 'str',
         'logo_uri': 'str',
         'metadata': 'object',
@@ -211,7 +211,6 @@ class OAuth2Client(object):
     def allowed_cors_origins(self):
         """Gets the allowed_cors_origins of this OAuth2Client.  # noqa: E501
 
-        AllowedCORSOrigins are one or more URLs (scheme://host[:port]) which are allowed to make CORS requests to the /oauth/token endpoint. If this array is empty, the sever's CORS origin configuration (`CORS_ALLOWED_ORIGINS`) will be used instead. If this array is set, the allowed origins are appended to the server's CORS origin configuration. Be aware that environment variable `CORS_ENABLED` MUST be set to `true` for this to work.  # noqa: E501
 
         :return: The allowed_cors_origins of this OAuth2Client.  # noqa: E501
         :rtype: list[str]
@@ -222,7 +221,6 @@ class OAuth2Client(object):
     def allowed_cors_origins(self, allowed_cors_origins):
         """Sets the allowed_cors_origins of this OAuth2Client.
 
-        AllowedCORSOrigins are one or more URLs (scheme://host[:port]) which are allowed to make CORS requests to the /oauth/token endpoint. If this array is empty, the sever's CORS origin configuration (`CORS_ALLOWED_ORIGINS`) will be used instead. If this array is set, the allowed origins are appended to the server's CORS origin configuration. Be aware that environment variable `CORS_ENABLED` MUST be set to `true` for this to work.  # noqa: E501
 
         :param allowed_cors_origins: The allowed_cors_origins of this OAuth2Client.  # noqa: E501
         :type: list[str]
@@ -234,7 +232,6 @@ class OAuth2Client(object):
     def audience(self):
         """Gets the audience of this OAuth2Client.  # noqa: E501
 
-        Audience is a whitelist defining the audiences this client is allowed to request tokens for. An audience limits the applicability of an OAuth 2.0 Access Token to, for example, certain API endpoints. The value is a list of URLs. URLs MUST NOT contain whitespaces.  # noqa: E501
 
         :return: The audience of this OAuth2Client.  # noqa: E501
         :rtype: list[str]
@@ -245,7 +242,6 @@ class OAuth2Client(object):
     def audience(self, audience):
         """Sets the audience of this OAuth2Client.
 
-        Audience is a whitelist defining the audiences this client is allowed to request tokens for. An audience limits the applicability of an OAuth 2.0 Access Token to, for example, certain API endpoints. The value is a list of URLs. URLs MUST NOT contain whitespaces.  # noqa: E501
 
         :param audience: The audience of this OAuth2Client.  # noqa: E501
         :type: list[str]
@@ -418,7 +414,6 @@ class OAuth2Client(object):
     def contacts(self):
         """Gets the contacts of this OAuth2Client.  # noqa: E501
 
-        Contacts is a array of strings representing ways to contact people responsible for this client, typically email addresses.  # noqa: E501
 
         :return: The contacts of this OAuth2Client.  # noqa: E501
         :rtype: list[str]
@@ -429,7 +424,6 @@ class OAuth2Client(object):
     def contacts(self, contacts):
         """Sets the contacts of this OAuth2Client.
 
-        Contacts is a array of strings representing ways to contact people responsible for this client, typically email addresses.  # noqa: E501
 
         :param contacts: The contacts of this OAuth2Client.  # noqa: E501
         :type: list[str]
@@ -441,7 +435,7 @@ class OAuth2Client(object):
     def created_at(self):
         """Gets the created_at of this OAuth2Client.  # noqa: E501
 
-        CreatedAt returns the timestamp of the client's creation.  # noqa: E501
+        CreatedAt returns the timestamp of the client's creation. Format: date-time  # noqa: E501
 
         :return: The created_at of this OAuth2Client.  # noqa: E501
         :rtype: datetime
@@ -452,7 +446,7 @@ class OAuth2Client(object):
     def created_at(self, created_at):
         """Sets the created_at of this OAuth2Client.
 
-        CreatedAt returns the timestamp of the client's creation.  # noqa: E501
+        CreatedAt returns the timestamp of the client's creation. Format: date-time  # noqa: E501
 
         :param created_at: The created_at of this OAuth2Client.  # noqa: E501
         :type: datetime
@@ -510,7 +504,6 @@ class OAuth2Client(object):
     def grant_types(self):
         """Gets the grant_types of this OAuth2Client.  # noqa: E501
 
-        GrantTypes is an array of grant types the client is allowed to use.  # noqa: E501
 
         :return: The grant_types of this OAuth2Client.  # noqa: E501
         :rtype: list[str]
@@ -521,7 +514,6 @@ class OAuth2Client(object):
     def grant_types(self, grant_types):
         """Sets the grant_types of this OAuth2Client.
 
-        GrantTypes is an array of grant types the client is allowed to use.  # noqa: E501
 
         :param grant_types: The grant_types of this OAuth2Client.  # noqa: E501
         :type: list[str]
@@ -535,7 +527,7 @@ class OAuth2Client(object):
 
 
         :return: The jwks of this OAuth2Client.  # noqa: E501
-        :rtype: JSONWebKeySet
+        :rtype: object
         """
         return self._jwks
 
@@ -545,7 +537,7 @@ class OAuth2Client(object):
 
 
         :param jwks: The jwks of this OAuth2Client.  # noqa: E501
-        :type: JSONWebKeySet
+        :type: object
         """
 
         self._jwks = jwks
@@ -600,7 +592,6 @@ class OAuth2Client(object):
     def metadata(self):
         """Gets the metadata of this OAuth2Client.  # noqa: E501
 
-        Metadata is arbitrary data.  # noqa: E501
 
         :return: The metadata of this OAuth2Client.  # noqa: E501
         :rtype: object
@@ -611,7 +602,6 @@ class OAuth2Client(object):
     def metadata(self, metadata):
         """Sets the metadata of this OAuth2Client.
 
-        Metadata is arbitrary data.  # noqa: E501
 
         :param metadata: The metadata of this OAuth2Client.  # noqa: E501
         :type: object
@@ -669,7 +659,6 @@ class OAuth2Client(object):
     def post_logout_redirect_uris(self):
         """Gets the post_logout_redirect_uris of this OAuth2Client.  # noqa: E501
 
-        Array of URLs supplied by the RP to which it MAY request that the End-User's User Agent be redirected using the post_logout_redirect_uri parameter after a logout has been performed.  # noqa: E501
 
         :return: The post_logout_redirect_uris of this OAuth2Client.  # noqa: E501
         :rtype: list[str]
@@ -680,7 +669,6 @@ class OAuth2Client(object):
     def post_logout_redirect_uris(self, post_logout_redirect_uris):
         """Sets the post_logout_redirect_uris of this OAuth2Client.
 
-        Array of URLs supplied by the RP to which it MAY request that the End-User's User Agent be redirected using the post_logout_redirect_uri parameter after a logout has been performed.  # noqa: E501
 
         :param post_logout_redirect_uris: The post_logout_redirect_uris of this OAuth2Client.  # noqa: E501
         :type: list[str]
@@ -692,7 +680,6 @@ class OAuth2Client(object):
     def redirect_uris(self):
         """Gets the redirect_uris of this OAuth2Client.  # noqa: E501
 
-        RedirectURIs is an array of allowed redirect urls for the client, for example http://mydomain/oauth/callback .  # noqa: E501
 
         :return: The redirect_uris of this OAuth2Client.  # noqa: E501
         :rtype: list[str]
@@ -703,7 +690,6 @@ class OAuth2Client(object):
     def redirect_uris(self, redirect_uris):
         """Sets the redirect_uris of this OAuth2Client.
 
-        RedirectURIs is an array of allowed redirect urls for the client, for example http://mydomain/oauth/callback .  # noqa: E501
 
         :param redirect_uris: The redirect_uris of this OAuth2Client.  # noqa: E501
         :type: list[str]
@@ -738,7 +724,6 @@ class OAuth2Client(object):
     def request_uris(self):
         """Gets the request_uris of this OAuth2Client.  # noqa: E501
 
-        Array of request_uri values that are pre-registered by the RP for use at the OP. Servers MAY cache the contents of the files referenced by these URIs and not retrieve them at the time they are used in a request. OPs can require that request_uri values used be pre-registered with the require_request_uri_registration discovery parameter.  # noqa: E501
 
         :return: The request_uris of this OAuth2Client.  # noqa: E501
         :rtype: list[str]
@@ -749,7 +734,6 @@ class OAuth2Client(object):
     def request_uris(self, request_uris):
         """Sets the request_uris of this OAuth2Client.
 
-        Array of request_uri values that are pre-registered by the RP for use at the OP. Servers MAY cache the contents of the files referenced by these URIs and not retrieve them at the time they are used in a request. OPs can require that request_uri values used be pre-registered with the require_request_uri_registration discovery parameter.  # noqa: E501
 
         :param request_uris: The request_uris of this OAuth2Client.  # noqa: E501
         :type: list[str]
@@ -761,7 +745,6 @@ class OAuth2Client(object):
     def response_types(self):
         """Gets the response_types of this OAuth2Client.  # noqa: E501
 
-        ResponseTypes is an array of the OAuth 2.0 response type strings that the client can use at the authorization endpoint.  # noqa: E501
 
         :return: The response_types of this OAuth2Client.  # noqa: E501
         :rtype: list[str]
@@ -772,7 +755,6 @@ class OAuth2Client(object):
     def response_types(self, response_types):
         """Sets the response_types of this OAuth2Client.
 
-        ResponseTypes is an array of the OAuth 2.0 response type strings that the client can use at the authorization endpoint.  # noqa: E501
 
         :param response_types: The response_types of this OAuth2Client.  # noqa: E501
         :type: list[str]
@@ -902,7 +884,7 @@ class OAuth2Client(object):
     def updated_at(self):
         """Gets the updated_at of this OAuth2Client.  # noqa: E501
 
-        UpdatedAt returns the timestamp of the last update.  # noqa: E501
+        UpdatedAt returns the timestamp of the last update. Format: date-time  # noqa: E501
 
         :return: The updated_at of this OAuth2Client.  # noqa: E501
         :rtype: datetime
@@ -913,7 +895,7 @@ class OAuth2Client(object):
     def updated_at(self, updated_at):
         """Sets the updated_at of this OAuth2Client.
 
-        UpdatedAt returns the timestamp of the last update.  # noqa: E501
+        UpdatedAt returns the timestamp of the last update. Format: date-time  # noqa: E501
 
         :param updated_at: The updated_at of this OAuth2Client.  # noqa: E501
         :type: datetime

@@ -31,7 +31,7 @@ import sh.ory.hydra.model.ConsentRequestSession;
 /**
  * AcceptConsentRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-17T19:24:44.464124Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-02T12:48:32.408042Z[GMT]")
 public class AcceptConsentRequest {
   public static final String SERIALIZED_NAME_GRANT_ACCESS_TOKEN_AUDIENCE = "grant_access_token_audience";
   @SerializedName(SERIALIZED_NAME_GRANT_ACCESS_TOKEN_AUDIENCE)
@@ -73,11 +73,11 @@ public class AcceptConsentRequest {
   }
 
    /**
-   * GrantedAudience sets the audience the user authorized the client to use. Should be a subset of &#x60;requested_access_token_audience&#x60;.
+   * Get grantAccessTokenAudience
    * @return grantAccessTokenAudience
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "GrantedAudience sets the audience the user authorized the client to use. Should be a subset of `requested_access_token_audience`.")
+  @ApiModelProperty(value = "")
 
   public List<String> getGrantAccessTokenAudience() {
     return grantAccessTokenAudience;
@@ -104,11 +104,11 @@ public class AcceptConsentRequest {
   }
 
    /**
-   * GrantScope sets the scope the user authorized the client to use. Should be a subset of &#x60;requested_scope&#x60;.
+   * Get grantScope
    * @return grantScope
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "GrantScope sets the scope the user authorized the client to use. Should be a subset of `requested_scope`.")
+  @ApiModelProperty(value = "")
 
   public List<String> getGrantScope() {
     return grantScope;
@@ -127,11 +127,11 @@ public class AcceptConsentRequest {
   }
 
    /**
-   * HandledAt contains the timestamp the consent request was handled.
+   * Get handledAt
    * @return handledAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "HandledAt contains the timestamp the consent request was handled.")
+  @ApiModelProperty(value = "")
 
   public OffsetDateTime getHandledAt() {
     return handledAt;

@@ -13,7 +13,7 @@
 import { RequestFile } from '../api';
 
 /**
-* The userinfo response
+* UserinfoResponse UserinfoResponse The userinfo response
 */
 export class UserinfoResponse {
     /**

@@ -31,7 +31,7 @@ import sh.ory.hydra.model.OpenIDConnectContext;
 /**
  * LoginRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-17T19:24:44.464124Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-02T12:48:32.408042Z[GMT]")
 public class LoginRequest {
   public static final String SERIALIZED_NAME_CHALLENGE = "challenge";
   @SerializedName(SERIALIZED_NAME_CHALLENGE)
@@ -177,11 +177,11 @@ public class LoginRequest {
   }
 
    /**
-   * RequestedScope contains the access token audience as requested by the OAuth 2.0 Client.
+   * Get requestedAccessTokenAudience
    * @return requestedAccessTokenAudience
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "RequestedScope contains the access token audience as requested by the OAuth 2.0 Client.")
+  @ApiModelProperty(value = "")
 
   public List<String> getRequestedAccessTokenAudience() {
     return requestedAccessTokenAudience;
@@ -208,11 +208,11 @@ public class LoginRequest {
   }
 
    /**
-   * RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client.
+   * Get requestedScope
    * @return requestedScope
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client.")
+  @ApiModelProperty(value = "")
 
   public List<String> getRequestedScope() {
     return requestedScope;

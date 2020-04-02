@@ -23,14 +23,11 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * AcceptLoginRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-17T19:24:44.464124Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-02T12:48:32.408042Z[GMT]")
 public class AcceptLoginRequest {
   public static final String SERIALIZED_NAME_ACR = "acr";
   @SerializedName(SERIALIZED_NAME_ACR)
@@ -38,7 +35,7 @@ public class AcceptLoginRequest {
 
   public static final String SERIALIZED_NAME_CONTEXT = "context";
   @SerializedName(SERIALIZED_NAME_CONTEXT)
-  private Map<String, Object> context = null;
+  private Object context;
 
   public static final String SERIALIZED_NAME_FORCE_SUBJECT_IDENTIFIER = "force_subject_identifier";
   @SerializedName(SERIALIZED_NAME_FORCE_SUBJECT_IDENTIFIER)
@@ -80,33 +77,25 @@ public class AcceptLoginRequest {
   }
 
 
-  public AcceptLoginRequest context(Map<String, Object> context) {
+  public AcceptLoginRequest context(Object context) {
     
     this.context = context;
     return this;
   }
 
-  public AcceptLoginRequest putContextItem(String key, Object contextItem) {
-    if (this.context == null) {
-      this.context = new HashMap<String, Object>();
-    }
-    this.context.put(key, contextItem);
-    return this;
-  }
-
    /**
-   * Context is an optional object which can hold arbitrary data. The data will be made available when fetching the consent request under the \&quot;context\&quot; field. This is useful in scenarios where login and consent endpoints share data.
+   * Get context
    * @return context
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Context is an optional object which can hold arbitrary data. The data will be made available when fetching the consent request under the \"context\" field. This is useful in scenarios where login and consent endpoints share data.")
+  @ApiModelProperty(value = "")
 
-  public Map<String, Object> getContext() {
+  public Object getContext() {
     return context;
   }
 
 
-  public void setContext(Map<String, Object> context) {
+  public void setContext(Object context) {
     this.context = context;
   }
 

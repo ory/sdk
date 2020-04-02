@@ -15,16 +15,22 @@ require 'date'
 module OryHydraClient
   # The Access Token Response
   class Oauth2TokenResponse
+    # access token
     attr_accessor :access_token
 
+    # expires in
     attr_accessor :expires_in
 
+    # id token
     attr_accessor :id_token
 
+    # refresh token
     attr_accessor :refresh_token
 
+    # scope
     attr_accessor :scope
 
+    # token type
     attr_accessor :token_type
 
     # Attribute mapping from ruby-style variable name to JSON key.

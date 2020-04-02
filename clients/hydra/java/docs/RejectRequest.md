@@ -6,11 +6,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**error** | **String** |  |  [optional]
-**errorDebug** | **String** |  |  [optional]
-**errorDescription** | **String** |  |  [optional]
-**errorHint** | **String** |  |  [optional]
-**statusCode** | **Long** |  |  [optional]
+**error** | **String** | error |  [optional]
+**errorDebug** | **String** | error debug |  [optional]
+**errorDescription** | **String** | error description |  [optional]
+**errorHint** | **String** | error hint |  [optional]
+**statusCode** | **Long** | status code |  [optional]
 
 
 

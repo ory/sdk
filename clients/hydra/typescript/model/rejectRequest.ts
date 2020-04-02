@@ -13,10 +13,25 @@
 import { RequestFile } from '../api';
 
 export class RejectRequest {
+    /**
+    * error
+    */
     'error'?: string;
+    /**
+    * error debug
+    */
     'errorDebug'?: string;
+    /**
+    * error description
+    */
     'errorDescription'?: string;
+    /**
+    * error hint
+    */
     'errorHint'?: string;
+    /**
+    * status code
+    */
     'statusCode'?: number;
 
     static discriminator: string | undefined = undefined;

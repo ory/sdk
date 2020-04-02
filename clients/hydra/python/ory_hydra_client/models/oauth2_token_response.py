@@ -81,6 +81,7 @@ class Oauth2TokenResponse(object):
     def access_token(self):
         """Gets the access_token of this Oauth2TokenResponse.  # noqa: E501
 
+        access token  # noqa: E501
 
         :return: The access_token of this Oauth2TokenResponse.  # noqa: E501
         :rtype: str
@@ -91,6 +92,7 @@ class Oauth2TokenResponse(object):
     def access_token(self, access_token):
         """Sets the access_token of this Oauth2TokenResponse.
 
+        access token  # noqa: E501
 
         :param access_token: The access_token of this Oauth2TokenResponse.  # noqa: E501
         :type: str
@@ -102,6 +104,7 @@ class Oauth2TokenResponse(object):
     def expires_in(self):
         """Gets the expires_in of this Oauth2TokenResponse.  # noqa: E501
 
+        expires in  # noqa: E501
 
         :return: The expires_in of this Oauth2TokenResponse.  # noqa: E501
         :rtype: int
@@ -112,6 +115,7 @@ class Oauth2TokenResponse(object):
     def expires_in(self, expires_in):
         """Sets the expires_in of this Oauth2TokenResponse.
 
+        expires in  # noqa: E501
 
         :param expires_in: The expires_in of this Oauth2TokenResponse.  # noqa: E501
         :type: int
@@ -123,6 +127,7 @@ class Oauth2TokenResponse(object):
     def id_token(self):
         """Gets the id_token of this Oauth2TokenResponse.  # noqa: E501
 
+        id token  # noqa: E501
 
         :return: The id_token of this Oauth2TokenResponse.  # noqa: E501
         :rtype: str
@@ -133,6 +138,7 @@ class Oauth2TokenResponse(object):
     def id_token(self, id_token):
         """Sets the id_token of this Oauth2TokenResponse.
 
+        id token  # noqa: E501
 
         :param id_token: The id_token of this Oauth2TokenResponse.  # noqa: E501
         :type: str
@@ -144,6 +150,7 @@ class Oauth2TokenResponse(object):
     def refresh_token(self):
         """Gets the refresh_token of this Oauth2TokenResponse.  # noqa: E501
 
+        refresh token  # noqa: E501
 
         :return: The refresh_token of this Oauth2TokenResponse.  # noqa: E501
         :rtype: str
@@ -154,6 +161,7 @@ class Oauth2TokenResponse(object):
     def refresh_token(self, refresh_token):
         """Sets the refresh_token of this Oauth2TokenResponse.
 
+        refresh token  # noqa: E501
 
         :param refresh_token: The refresh_token of this Oauth2TokenResponse.  # noqa: E501
         :type: str
@@ -165,6 +173,7 @@ class Oauth2TokenResponse(object):
     def scope(self):
         """Gets the scope of this Oauth2TokenResponse.  # noqa: E501
 
+        scope  # noqa: E501
 
         :return: The scope of this Oauth2TokenResponse.  # noqa: E501
         :rtype: str
@@ -175,6 +184,7 @@ class Oauth2TokenResponse(object):
     def scope(self, scope):
         """Sets the scope of this Oauth2TokenResponse.
 
+        scope  # noqa: E501
 
         :param scope: The scope of this Oauth2TokenResponse.  # noqa: E501
         :type: str
@@ -186,6 +196,7 @@ class Oauth2TokenResponse(object):
     def token_type(self):
         """Gets the token_type of this Oauth2TokenResponse.  # noqa: E501
 
+        token type  # noqa: E501
 
         :return: The token_type of this Oauth2TokenResponse.  # noqa: E501
         :rtype: str
@@ -196,6 +207,7 @@ class Oauth2TokenResponse(object):
     def token_type(self, token_type):
         """Sets the token_type of this Oauth2TokenResponse.
 
+        token type  # noqa: E501
 
         :param token_type: The token_type of this Oauth2TokenResponse.  # noqa: E501
         :type: str

@@ -265,7 +265,7 @@ class RejectRequest implements ModelInterface, ArrayAccess
     /**
      * Sets errorDebug
      *
-     * @param string|null $errorDebug errorDebug
+     * @param string|null $errorDebug error debug
      *
      * @return $this
      */
@@ -289,7 +289,7 @@ class RejectRequest implements ModelInterface, ArrayAccess
     /**
      * Sets errorDescription
      *
-     * @param string|null $errorDescription errorDescription
+     * @param string|null $errorDescription error description
      *
      * @return $this
      */
@@ -313,7 +313,7 @@ class RejectRequest implements ModelInterface, ArrayAccess
     /**
      * Sets errorHint
      *
-     * @param string|null $errorHint errorHint
+     * @param string|null $errorHint error hint
      *
      * @return $this
      */
@@ -337,7 +337,7 @@ class RejectRequest implements ModelInterface, ArrayAccess
     /**
      * Sets statusCode
      *
-     * @param int|null $statusCode statusCode
+     * @param int|null $statusCode status code
      *
      * @return $this
      */

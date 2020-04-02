@@ -24,7 +24,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import org.threeten.bp.OffsetDateTime;
-import sh.ory.hydra.model.JSONWebKeySet;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;

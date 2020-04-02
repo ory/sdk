@@ -4382,7 +4382,7 @@ class AdminApi
      *
      * @throws \Ory\Hydra\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Ory\Hydra\Client\Model\OAuth2Client|\Ory\Hydra\Client\Model\GenericError|\Ory\Hydra\Client\Model\GenericError|\Ory\Hydra\Client\Model\GenericError
+     * @return \Ory\Hydra\Client\Model\OAuth2Client|\Ory\Hydra\Client\Model\GenericError|\Ory\Hydra\Client\Model\GenericError
      */
     public function getOAuth2Client($id)
     {
@@ -4399,7 +4399,7 @@ class AdminApi
      *
      * @throws \Ory\Hydra\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Ory\Hydra\Client\Model\OAuth2Client|\Ory\Hydra\Client\Model\GenericError|\Ory\Hydra\Client\Model\GenericError|\Ory\Hydra\Client\Model\GenericError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Ory\Hydra\Client\Model\OAuth2Client|\Ory\Hydra\Client\Model\GenericError|\Ory\Hydra\Client\Model\GenericError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getOAuth2ClientWithHttpInfo($id)
     {
@@ -4459,18 +4459,6 @@ class AdminApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 404:
-                    if ('\Ory\Hydra\Client\Model\GenericError' === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = (string) $responseBody;
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Ory\Hydra\Client\Model\GenericError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 500:
                     if ('\Ory\Hydra\Client\Model\GenericError' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
@@ -4510,14 +4498,6 @@ class AdminApi
                     $e->setResponseObject($data);
                     break;
                 case 401:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Ory\Hydra\Client\Model\GenericError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Ory\Hydra\Client\Model\GenericError',
