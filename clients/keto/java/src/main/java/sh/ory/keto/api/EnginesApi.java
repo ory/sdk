@@ -1116,7 +1116,7 @@ public class EnginesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> An empty response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> An empty response </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> The standard error format </td><td>  -  </td></tr>
      </table>
      */
@@ -1186,7 +1186,7 @@ public class EnginesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> An empty response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> An empty response </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> The standard error format </td><td>  -  </td></tr>
      </table>
      */
@@ -1205,7 +1205,7 @@ public class EnginesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> An empty response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> An empty response </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> The standard error format </td><td>  -  </td></tr>
      </table>
      */
@@ -1226,7 +1226,7 @@ public class EnginesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> An empty response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> An empty response </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> The standard error format </td><td>  -  </td></tr>
      </table>
      */

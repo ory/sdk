@@ -615,7 +615,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | An empty response |  -  |
+**200** | An empty response |  -  |
 **500** | The standard error format |  -  |
 
 <a name="upsertOryAccessControlPolicy"></a>

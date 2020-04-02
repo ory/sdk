@@ -14,7 +14,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/ory/keto-client-go/models"
+	"github.com/ory/keto-client-go/models"
 )
 
 // GetOryAccessControlPolicyRoleReader is a Reader for the GetOryAccessControlPolicyRole structure.

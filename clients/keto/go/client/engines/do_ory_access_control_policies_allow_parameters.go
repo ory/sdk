@@ -16,7 +16,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/ory/keto-client-go/models"
+	"github.com/ory/keto-client-go/models"
 )
 
 // NewDoOryAccessControlPoliciesAllowParams creates a new DoOryAccessControlPoliciesAllowParams object

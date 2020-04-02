@@ -14,7 +14,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/ory/keto-client-go/models"
+	"github.com/ory/keto-client-go/models"
 )
 
 // IsInstanceAliveReader is a Reader for the IsInstanceAlive structure.

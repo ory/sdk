@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/ory/keto-client-go/models"
+	"github.com/ory/keto-client-go/models"
 )
 
 // GetVersionReader is a Reader for the GetVersion structure.

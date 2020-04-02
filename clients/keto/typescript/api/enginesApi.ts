@@ -36,7 +36,7 @@ export enum EnginesApiApiKeys {
 
 export class EnginesApi {
     protected _basePath = defaultBasePath;
-    protected defaultHeaders : any = {};
+    protected _defaultHeaders : any = {};
     protected _useQuerystring : boolean = false;
 
     protected authentications = {
@@ -64,6 +64,14 @@ export class EnginesApi {
 
     set basePath(basePath: string) {
         this._basePath = basePath;
+    }
+
+    set defaultHeaders(defaultHeaders: any) {
+        this._defaultHeaders = defaultHeaders;
+    }
+
+    get defaultHeaders() {
+        return this._defaultHeaders;
     }
 
     get basePath() {
@@ -94,7 +102,7 @@ export class EnginesApi {
             .replace('{' + 'flavor' + '}', encodeURIComponent(String(flavor)))
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
@@ -170,7 +178,7 @@ export class EnginesApi {
             .replace('{' + 'flavor' + '}', encodeURIComponent(String(flavor)))
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
@@ -245,7 +253,7 @@ export class EnginesApi {
             .replace('{' + 'flavor' + '}', encodeURIComponent(String(flavor)))
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
@@ -319,7 +327,7 @@ export class EnginesApi {
         const localVarPath = this.basePath + '/engines/acp/ory/{flavor}/allowed'
             .replace('{' + 'flavor' + '}', encodeURIComponent(String(flavor)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
@@ -390,7 +398,7 @@ export class EnginesApi {
             .replace('{' + 'flavor' + '}', encodeURIComponent(String(flavor)))
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
@@ -466,7 +474,7 @@ export class EnginesApi {
             .replace('{' + 'flavor' + '}', encodeURIComponent(String(flavor)))
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
@@ -544,7 +552,7 @@ export class EnginesApi {
         const localVarPath = this.basePath + '/engines/acp/ory/{flavor}/policies'
             .replace('{' + 'flavor' + '}', encodeURIComponent(String(flavor)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
@@ -636,7 +644,7 @@ export class EnginesApi {
         const localVarPath = this.basePath + '/engines/acp/ory/{flavor}/roles'
             .replace('{' + 'flavor' + '}', encodeURIComponent(String(flavor)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
@@ -721,7 +729,7 @@ export class EnginesApi {
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)))
             .replace('{' + 'member' + '}', encodeURIComponent(String(member)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
@@ -799,7 +807,7 @@ export class EnginesApi {
         const localVarPath = this.basePath + '/engines/acp/ory/{flavor}/policies'
             .replace('{' + 'flavor' + '}', encodeURIComponent(String(flavor)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
@@ -870,7 +878,7 @@ export class EnginesApi {
         const localVarPath = this.basePath + '/engines/acp/ory/{flavor}/roles'
             .replace('{' + 'flavor' + '}', encodeURIComponent(String(flavor)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
