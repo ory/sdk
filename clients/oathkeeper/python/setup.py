@@ -14,7 +14,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "ory-oathkeeper-client"
-VERSION = "v0.36.0-beta.4"
+VERSION = "v0.37.0-beta.1"
 # To install the library, run the following
 #
 # python setup.py install

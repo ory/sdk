@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "v0.36.0-beta.4"
+__version__ = "v0.37.0-beta.1"
 
 # import apis into sdk package
 from ory_oathkeeper_client.api.api_api import ApiApi
