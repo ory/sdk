@@ -13,7 +13,7 @@
 
 package sh.ory.keto;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-02T14:10:53.930872Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-03T15:05:40.638915Z[GMT]")
 public class Pair {
     private String name = "";
     private String value = "";

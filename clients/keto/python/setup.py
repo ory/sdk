@@ -14,7 +14,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "ory-keto-client"
-VERSION = "v0.5.2"
+VERSION = "v0.5.3-alpha.1"
 # To install the library, run the following
 #
 # python setup.py install
