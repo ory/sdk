@@ -56,7 +56,7 @@ class FlushInactiveOAuth2TokensRequest(object):
     def not_after(self):
         """Gets the not_after of this FlushInactiveOAuth2TokensRequest.  # noqa: E501
 
-        NotAfter sets after which point tokens should not be flushed. This is useful when you want to keep a history of recently issued tokens for auditing.  # noqa: E501
+        NotAfter sets after which point tokens should not be flushed. This is useful when you want to keep a history of recently issued tokens for auditing. Format: date-time  # noqa: E501
 
         :return: The not_after of this FlushInactiveOAuth2TokensRequest.  # noqa: E501
         :rtype: datetime
@@ -67,7 +67,7 @@ class FlushInactiveOAuth2TokensRequest(object):
     def not_after(self, not_after):
         """Sets the not_after of this FlushInactiveOAuth2TokensRequest.
 
-        NotAfter sets after which point tokens should not be flushed. This is useful when you want to keep a history of recently issued tokens for auditing.  # noqa: E501
+        NotAfter sets after which point tokens should not be flushed. This is useful when you want to keep a history of recently issued tokens for auditing. Format: date-time  # noqa: E501
 
         :param not_after: The not_after of this FlushInactiveOAuth2TokensRequest.  # noqa: E501
         :type: datetime

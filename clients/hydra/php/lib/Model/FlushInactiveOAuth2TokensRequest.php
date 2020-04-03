@@ -36,6 +36,7 @@ use \Ory\Hydra\Client\ObjectSerializer;
  * FlushInactiveOAuth2TokensRequest Class Doc Comment
  *
  * @category Class
+ * @description FlushInactiveOAuth2TokensRequest flush inactive o auth2 tokens request
  * @package  Ory\Hydra\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -217,7 +218,7 @@ class FlushInactiveOAuth2TokensRequest implements ModelInterface, ArrayAccess
     /**
      * Sets notAfter
      *
-     * @param \DateTime|null $notAfter NotAfter sets after which point tokens should not be flushed. This is useful when you want to keep a history of recently issued tokens for auditing.
+     * @param \DateTime|null $notAfter NotAfter sets after which point tokens should not be flushed. This is useful when you want to keep a history of recently issued tokens for auditing. Format: date-time
      *
      * @return $this
      */

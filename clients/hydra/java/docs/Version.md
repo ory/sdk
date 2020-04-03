@@ -2,7 +2,6 @@
 
 # Version
 
-Version version
 ## Properties
 
 Name | Type | Description | Notes

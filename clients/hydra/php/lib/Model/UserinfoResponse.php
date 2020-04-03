@@ -36,7 +36,7 @@ use \Ory\Hydra\Client\ObjectSerializer;
  * UserinfoResponse Class Doc Comment
  *
  * @category Class
- * @description UserinfoResponse UserinfoResponse The userinfo response
+ * @description The userinfo response
  * @package  Ory\Hydra\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

@@ -153,7 +153,7 @@ class PreviousConsentSession(object):
     def handled_at(self):
         """Gets the handled_at of this PreviousConsentSession.  # noqa: E501
 
-        handled at Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time  # noqa: E501
+        handled at Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time  # noqa: E501
 
         :return: The handled_at of this PreviousConsentSession.  # noqa: E501
         :rtype: datetime
@@ -164,7 +164,7 @@ class PreviousConsentSession(object):
     def handled_at(self, handled_at):
         """Sets the handled_at of this PreviousConsentSession.
 
-        handled at Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time  # noqa: E501
+        handled at Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time  # noqa: E501
 
         :param handled_at: The handled_at of this PreviousConsentSession.  # noqa: E501
         :type: datetime

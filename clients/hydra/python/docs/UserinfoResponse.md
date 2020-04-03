@@ -1,6 +1,6 @@
 # UserinfoResponse
 
-UserinfoResponse UserinfoResponse The userinfo response
+The userinfo response
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

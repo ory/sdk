@@ -12,9 +12,12 @@
 
 import { RequestFile } from '../api';
 
+/**
+* FlushInactiveOAuth2TokensRequest flush inactive o auth2 tokens request
+*/
 export class FlushInactiveOAuth2TokensRequest {
     /**
-    * NotAfter sets after which point tokens should not be flushed. This is useful when you want to keep a history of recently issued tokens for auditing.
+    * NotAfter sets after which point tokens should not be flushed. This is useful when you want to keep a history of recently issued tokens for auditing. Format: date-time
     */
     'notAfter'?: Date;
 
