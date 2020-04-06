@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "v0.5.3-alpha.1"
+__version__ = "v0.5.3-alpha.2"
 
 # import apis into sdk package
 from ory_keto_client.api.engines_api import EnginesApi
