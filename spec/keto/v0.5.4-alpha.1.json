@@ -1067,7 +1067,7 @@
       }
     }
   },
-  "definitions": {
+  "definitions": {"UUID":{"type": "string", "format": "uuid4"},
     "addOryAccessControlPolicyRoleMembersBody": {
       "type": "object",
       "properties": {

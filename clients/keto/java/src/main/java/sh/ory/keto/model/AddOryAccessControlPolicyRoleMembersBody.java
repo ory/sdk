@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * AddOryAccessControlPolicyRoleMembersBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-06T16:22:16.153687Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-07T14:58:13.256805Z[GMT]")
 public class AddOryAccessControlPolicyRoleMembersBody {
   public static final String SERIALIZED_NAME_MEMBERS = "members";
   @SerializedName(SERIALIZED_NAME_MEMBERS)
