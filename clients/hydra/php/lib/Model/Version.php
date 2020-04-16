@@ -36,6 +36,7 @@ use \Ory\Hydra\Client\ObjectSerializer;
  * Version Class Doc Comment
  *
  * @category Class
+ * @description Version version
  * @package  Ory\Hydra\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

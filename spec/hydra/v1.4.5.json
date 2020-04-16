@@ -1812,7 +1812,7 @@
       }
     }
   },
-  "definitions": {
+  "definitions": {"UUID":{"type": "string", "format": "uuid4"},
     "JSONRawMessage": {
       "type": "object",
       "title": "JSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger."
