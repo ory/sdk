@@ -26,10 +26,9 @@ import java.io.IOException;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * FlushInactiveOAuth2TokensRequest flush inactive o auth2 tokens request
+ * FlushInactiveOAuth2TokensRequest
  */
-@ApiModel(description = "FlushInactiveOAuth2TokensRequest flush inactive o auth2 tokens request")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-03T15:39:33.967304Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-16T16:23:23.096454Z[GMT]")
 public class FlushInactiveOAuth2TokensRequest {
   public static final String SERIALIZED_NAME_NOT_AFTER = "notAfter";
   @SerializedName(SERIALIZED_NAME_NOT_AFTER)
@@ -43,11 +42,11 @@ public class FlushInactiveOAuth2TokensRequest {
   }
 
    /**
-   * NotAfter sets after which point tokens should not be flushed. This is useful when you want to keep a history of recently issued tokens for auditing. Format: date-time
+   * NotAfter sets after which point tokens should not be flushed. This is useful when you want to keep a history of recently issued tokens for auditing.
    * @return notAfter
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "NotAfter sets after which point tokens should not be flushed. This is useful when you want to keep a history of recently issued tokens for auditing. Format: date-time")
+  @ApiModelProperty(value = "NotAfter sets after which point tokens should not be flushed. This is useful when you want to keep a history of recently issued tokens for auditing.")
 
   public OffsetDateTime getNotAfter() {
     return notAfter;

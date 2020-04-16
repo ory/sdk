@@ -30,7 +30,7 @@ import java.util.Map;
 /**
  * ConsentRequestSession
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-03T15:39:33.967304Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-16T16:23:23.096454Z[GMT]")
 public class ConsentRequestSession {
   public static final String SERIALIZED_NAME_ACCESS_TOKEN = "access_token";
   @SerializedName(SERIALIZED_NAME_ACCESS_TOKEN)

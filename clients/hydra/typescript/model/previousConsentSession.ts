@@ -15,7 +15,7 @@ import { ConsentRequest } from './consentRequest';
 import { ConsentRequestSession } from './consentRequestSession';
 
 /**
-* PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession The response used to return used consent requests same as HandledLoginRequest, just with consent_request exposed as json
+* PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession The response used to return used consent requests same as HandledLoginRequest, just with consent_request exposed as json
 */
 export class PreviousConsentSession {
     'consentRequest'?: ConsentRequest;
@@ -28,7 +28,7 @@ export class PreviousConsentSession {
     */
     'grantScope'?: Array<string>;
     /**
-    * handled at Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time
+    * handled at Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time
     */
     'handledAt'?: Date;
     /**

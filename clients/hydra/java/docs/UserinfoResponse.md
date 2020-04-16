@@ -2,7 +2,7 @@
 
 # UserinfoResponse
 
-The userinfo response
+UserinfoResponse UserinfoResponse UserinfoResponse UserinfoResponse UserinfoResponse UserinfoResponse The userinfo response
 ## Properties
 
 Name | Type | Description | Notes

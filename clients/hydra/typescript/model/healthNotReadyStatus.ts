@@ -12,6 +12,9 @@
 
 import { RequestFile } from '../api';
 
+/**
+* HealthNotReadyStatus HealthNotReadyStatus HealthNotReadyStatus HealthNotReadyStatus HealthNotReadyStatus HealthNotReadyStatus health not ready status
+*/
 export class HealthNotReadyStatus {
     /**
     * Errors contains a list of errors that caused the not ready status.

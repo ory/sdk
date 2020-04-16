@@ -13,7 +13,7 @@
 import { RequestFile } from '../api';
 
 /**
-* JSONWebKeySetGeneratorRequest JSONWebKeySetGeneratorRequest JSONWebKeySetGeneratorRequest JSONWebKeySetGeneratorRequest JSONWebKeySetGeneratorRequest json web key set generator request
+* JSONWebKeySetGeneratorRequest json web key set generator request
 */
 export class JsonWebKeySetGeneratorRequest {
     /**

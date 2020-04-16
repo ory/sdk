@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * AcceptLoginRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-03T15:39:33.967304Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-16T16:23:23.096454Z[GMT]")
 public class AcceptLoginRequest {
   public static final String SERIALIZED_NAME_ACR = "acr";
   @SerializedName(SERIALIZED_NAME_ACR)
