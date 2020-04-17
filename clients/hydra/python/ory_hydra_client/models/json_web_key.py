@@ -157,6 +157,7 @@ class JSONWebKey(object):
     def crv(self):
         """Gets the crv of this JSONWebKey.  # noqa: E501
 
+        crv  # noqa: E501
 
         :return: The crv of this JSONWebKey.  # noqa: E501
         :rtype: str
@@ -167,6 +168,7 @@ class JSONWebKey(object):
     def crv(self, crv):
         """Sets the crv of this JSONWebKey.
 
+        crv  # noqa: E501
 
         :param crv: The crv of this JSONWebKey.  # noqa: E501
         :type: str
@@ -178,6 +180,7 @@ class JSONWebKey(object):
     def d(self):
         """Gets the d of this JSONWebKey.  # noqa: E501
 
+        d  # noqa: E501
 
         :return: The d of this JSONWebKey.  # noqa: E501
         :rtype: str
@@ -188,6 +191,7 @@ class JSONWebKey(object):
     def d(self, d):
         """Sets the d of this JSONWebKey.
 
+        d  # noqa: E501
 
         :param d: The d of this JSONWebKey.  # noqa: E501
         :type: str
@@ -199,6 +203,7 @@ class JSONWebKey(object):
     def dp(self):
         """Gets the dp of this JSONWebKey.  # noqa: E501
 
+        dp  # noqa: E501
 
         :return: The dp of this JSONWebKey.  # noqa: E501
         :rtype: str
@@ -209,6 +214,7 @@ class JSONWebKey(object):
     def dp(self, dp):
         """Sets the dp of this JSONWebKey.
 
+        dp  # noqa: E501
 
         :param dp: The dp of this JSONWebKey.  # noqa: E501
         :type: str
@@ -220,6 +226,7 @@ class JSONWebKey(object):
     def dq(self):
         """Gets the dq of this JSONWebKey.  # noqa: E501
 
+        dq  # noqa: E501
 
         :return: The dq of this JSONWebKey.  # noqa: E501
         :rtype: str
@@ -230,6 +237,7 @@ class JSONWebKey(object):
     def dq(self, dq):
         """Sets the dq of this JSONWebKey.
 
+        dq  # noqa: E501
 
         :param dq: The dq of this JSONWebKey.  # noqa: E501
         :type: str
@@ -241,6 +249,7 @@ class JSONWebKey(object):
     def e(self):
         """Gets the e of this JSONWebKey.  # noqa: E501
 
+        e  # noqa: E501
 
         :return: The e of this JSONWebKey.  # noqa: E501
         :rtype: str
@@ -251,6 +260,7 @@ class JSONWebKey(object):
     def e(self, e):
         """Sets the e of this JSONWebKey.
 
+        e  # noqa: E501
 
         :param e: The e of this JSONWebKey.  # noqa: E501
         :type: str
@@ -262,6 +272,7 @@ class JSONWebKey(object):
     def k(self):
         """Gets the k of this JSONWebKey.  # noqa: E501
 
+        k  # noqa: E501
 
         :return: The k of this JSONWebKey.  # noqa: E501
         :rtype: str
@@ -272,6 +283,7 @@ class JSONWebKey(object):
     def k(self, k):
         """Sets the k of this JSONWebKey.
 
+        k  # noqa: E501
 
         :param k: The k of this JSONWebKey.  # noqa: E501
         :type: str
@@ -333,6 +345,7 @@ class JSONWebKey(object):
     def n(self):
         """Gets the n of this JSONWebKey.  # noqa: E501
 
+        n  # noqa: E501
 
         :return: The n of this JSONWebKey.  # noqa: E501
         :rtype: str
@@ -343,6 +356,7 @@ class JSONWebKey(object):
     def n(self, n):
         """Sets the n of this JSONWebKey.
 
+        n  # noqa: E501
 
         :param n: The n of this JSONWebKey.  # noqa: E501
         :type: str
@@ -354,6 +368,7 @@ class JSONWebKey(object):
     def p(self):
         """Gets the p of this JSONWebKey.  # noqa: E501
 
+        p  # noqa: E501
 
         :return: The p of this JSONWebKey.  # noqa: E501
         :rtype: str
@@ -364,6 +379,7 @@ class JSONWebKey(object):
     def p(self, p):
         """Sets the p of this JSONWebKey.
 
+        p  # noqa: E501
 
         :param p: The p of this JSONWebKey.  # noqa: E501
         :type: str
@@ -375,6 +391,7 @@ class JSONWebKey(object):
     def q(self):
         """Gets the q of this JSONWebKey.  # noqa: E501
 
+        q  # noqa: E501
 
         :return: The q of this JSONWebKey.  # noqa: E501
         :rtype: str
@@ -385,6 +402,7 @@ class JSONWebKey(object):
     def q(self, q):
         """Sets the q of this JSONWebKey.
 
+        q  # noqa: E501
 
         :param q: The q of this JSONWebKey.  # noqa: E501
         :type: str
@@ -396,6 +414,7 @@ class JSONWebKey(object):
     def qi(self):
         """Gets the qi of this JSONWebKey.  # noqa: E501
 
+        qi  # noqa: E501
 
         :return: The qi of this JSONWebKey.  # noqa: E501
         :rtype: str
@@ -406,6 +425,7 @@ class JSONWebKey(object):
     def qi(self, qi):
         """Sets the qi of this JSONWebKey.
 
+        qi  # noqa: E501
 
         :param qi: The qi of this JSONWebKey.  # noqa: E501
         :type: str
@@ -442,6 +462,7 @@ class JSONWebKey(object):
     def x(self):
         """Gets the x of this JSONWebKey.  # noqa: E501
 
+        x  # noqa: E501
 
         :return: The x of this JSONWebKey.  # noqa: E501
         :rtype: str
@@ -452,6 +473,7 @@ class JSONWebKey(object):
     def x(self, x):
         """Sets the x of this JSONWebKey.
 
+        x  # noqa: E501
 
         :param x: The x of this JSONWebKey.  # noqa: E501
         :type: str
@@ -486,6 +508,7 @@ class JSONWebKey(object):
     def y(self):
         """Gets the y of this JSONWebKey.  # noqa: E501
 
+        y  # noqa: E501
 
         :return: The y of this JSONWebKey.  # noqa: E501
         :rtype: str
@@ -496,6 +519,7 @@ class JSONWebKey(object):
     def y(self, y):
         """Sets the y of this JSONWebKey.
 
+        y  # noqa: E501
 
         :param y: The y of this JSONWebKey.  # noqa: E501
         :type: str

@@ -13,7 +13,7 @@
 import { RequestFile } from '../api';
 
 /**
-* Version version
+* Version Version version
 */
 export class Version {
     /**

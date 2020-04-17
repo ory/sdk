@@ -13,8 +13,9 @@ OpenAPI Generator version: 4.2.3
 require 'date'
 
 module OryHydraClient
+  # FlushInactiveOAuth2TokensRequest FlushInactiveOAuth2TokensRequest FlushInactiveOAuth2TokensRequest FlushInactiveOAuth2TokensRequest FlushInactiveOAuth2TokensRequest flush inactive o auth2 tokens request
   class FlushInactiveOAuth2TokensRequest
-    # NotAfter sets after which point tokens should not be flushed. This is useful when you want to keep a history of recently issued tokens for auditing.
+    # NotAfter sets after which point tokens should not be flushed. This is useful when you want to keep a history of recently issued tokens for auditing. Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time
     attr_accessor :not_after
 
     # Attribute mapping from ruby-style variable name to JSON key.
