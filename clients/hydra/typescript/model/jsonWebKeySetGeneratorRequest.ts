@@ -12,9 +12,6 @@
 
 import { RequestFile } from '../api';
 
-/**
-* JSONWebKeySetGeneratorRequest json web key set generator request
-*/
 export class JsonWebKeySetGeneratorRequest {
     /**
     * The algorithm to be used for creating the key. Supports \"RS256\", \"ES512\", \"HS512\", and \"HS256\"

@@ -41,7 +41,7 @@ module OryHydraClient
 
     attr_accessor :contacts
 
-    # CreatedAt returns the timestamp of the client's creation.
+    # CreatedAt returns the timestamp of the client's creation. Format: date-time
     attr_accessor :created_at
 
     # Boolean value specifying whether the RP requires that iss (issuer) and sid (session ID) query parameters be included to identify the RP session with the OP when the frontchannel_logout_uri is used. If omitted, the default value is false.
@@ -94,7 +94,7 @@ module OryHydraClient
     # TermsOfServiceURI is a URL string that points to a human-readable terms of service document for the client that describes a contractual relationship between the end-user and the client that the end-user accepts when authorizing the client.
     attr_accessor :tos_uri
 
-    # UpdatedAt returns the timestamp of the last update.
+    # UpdatedAt returns the timestamp of the last update. Format: date-time
     attr_accessor :updated_at
 
     # JWS alg algorithm [JWA] REQUIRED for signing UserInfo Responses. If this is specified, the response will be JWT [JWT] serialized, and signed using JWS. The default, if omitted, is for the UserInfo Response to return the Claims as a UTF-8 encoded JSON object using the application/json content-type.

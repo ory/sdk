@@ -28,10 +28,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * HealthNotReadyStatus HealthNotReadyStatus HealthNotReadyStatus HealthNotReadyStatus HealthNotReadyStatus HealthNotReadyStatus HealthNotReadyStatus health not ready status
+ * HealthNotReadyStatus health not ready status
  */
-@ApiModel(description = "HealthNotReadyStatus HealthNotReadyStatus HealthNotReadyStatus HealthNotReadyStatus HealthNotReadyStatus HealthNotReadyStatus HealthNotReadyStatus health not ready status")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-17T16:15:12.401695Z[GMT]")
+@ApiModel(description = "HealthNotReadyStatus health not ready status")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-25T11:30:49.984261Z[GMT]")
 public class HealthNotReadyStatus {
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)

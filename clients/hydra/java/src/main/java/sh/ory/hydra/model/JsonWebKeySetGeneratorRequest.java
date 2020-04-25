@@ -25,10 +25,9 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * JSONWebKeySetGeneratorRequest json web key set generator request
+ * JsonWebKeySetGeneratorRequest
  */
-@ApiModel(description = "JSONWebKeySetGeneratorRequest json web key set generator request")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-17T16:15:12.401695Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-25T11:30:49.984261Z[GMT]")
 public class JsonWebKeySetGeneratorRequest {
   public static final String SERIALIZED_NAME_ALG = "alg";
   @SerializedName(SERIALIZED_NAME_ALG)

@@ -31,7 +31,7 @@ import sh.ory.hydra.model.ConsentRequestSession;
 /**
  * AcceptConsentRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-17T16:15:12.401695Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-25T11:30:49.984261Z[GMT]")
 public class AcceptConsentRequest {
   public static final String SERIALIZED_NAME_GRANT_ACCESS_TOKEN_AUDIENCE = "grant_access_token_audience";
   @SerializedName(SERIALIZED_NAME_GRANT_ACCESS_TOKEN_AUDIENCE)

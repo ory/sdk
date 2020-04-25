@@ -32,7 +32,7 @@ import java.util.Map;
  * https://tools.ietf.org/html/rfc7662
  */
 @ApiModel(description = "https://tools.ietf.org/html/rfc7662")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-17T16:15:12.401695Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-25T11:30:49.984261Z[GMT]")
 public class OAuth2TokenIntrospection {
   public static final String SERIALIZED_NAME_ACTIVE = "active";
   @SerializedName(SERIALIZED_NAME_ACTIVE)

@@ -30,7 +30,7 @@ import java.util.List;
  * JSONWebKey It is important that this model object is named JSONWebKey for \&quot;swagger generate spec\&quot; to generate only on definition of a JSONWebKey.
  */
 @ApiModel(description = "JSONWebKey It is important that this model object is named JSONWebKey for \"swagger generate spec\" to generate only on definition of a JSONWebKey.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-17T16:15:12.401695Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-25T11:30:49.984261Z[GMT]")
 public class JSONWebKey {
   public static final String SERIALIZED_NAME_ALG = "alg";
   @SerializedName(SERIALIZED_NAME_ALG)

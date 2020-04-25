@@ -36,7 +36,6 @@ use \Ory\Hydra\Client\ObjectSerializer;
  * JsonWebKeySetGeneratorRequest Class Doc Comment
  *
  * @category Class
- * @description JSONWebKeySetGeneratorRequest json web key set generator request
  * @package  Ory\Hydra\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
