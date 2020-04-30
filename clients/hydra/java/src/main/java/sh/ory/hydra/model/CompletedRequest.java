@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * CompletedRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-30T10:04:37.450363Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-30T11:29:47.487995Z[GMT]")
 public class CompletedRequest {
   public static final String SERIALIZED_NAME_REDIRECT_TO = "redirect_to";
   @SerializedName(SERIALIZED_NAME_REDIRECT_TO)

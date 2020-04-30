@@ -435,7 +435,7 @@ class OAuth2Client(object):
     def created_at(self):
         """Gets the created_at of this OAuth2Client.  # noqa: E501
 
-        CreatedAt returns the timestamp of the client's creation.  # noqa: E501
+        CreatedAt returns the timestamp of the client's creation. Format: date-time Format: date-time Format: date-time  # noqa: E501
 
         :return: The created_at of this OAuth2Client.  # noqa: E501
         :rtype: datetime
@@ -446,7 +446,7 @@ class OAuth2Client(object):
     def created_at(self, created_at):
         """Sets the created_at of this OAuth2Client.
 
-        CreatedAt returns the timestamp of the client's creation.  # noqa: E501
+        CreatedAt returns the timestamp of the client's creation. Format: date-time Format: date-time Format: date-time  # noqa: E501
 
         :param created_at: The created_at of this OAuth2Client.  # noqa: E501
         :type: datetime
@@ -884,7 +884,7 @@ class OAuth2Client(object):
     def updated_at(self):
         """Gets the updated_at of this OAuth2Client.  # noqa: E501
 
-        UpdatedAt returns the timestamp of the last update.  # noqa: E501
+        UpdatedAt returns the timestamp of the last update. Format: date-time Format: date-time Format: date-time  # noqa: E501
 
         :return: The updated_at of this OAuth2Client.  # noqa: E501
         :rtype: datetime
@@ -895,7 +895,7 @@ class OAuth2Client(object):
     def updated_at(self, updated_at):
         """Sets the updated_at of this OAuth2Client.
 
-        UpdatedAt returns the timestamp of the last update.  # noqa: E501
+        UpdatedAt returns the timestamp of the last update. Format: date-time Format: date-time Format: date-time  # noqa: E501
 
         :param updated_at: The updated_at of this OAuth2Client.  # noqa: E501
         :type: datetime

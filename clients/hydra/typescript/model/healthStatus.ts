@@ -12,6 +12,9 @@
 
 import { RequestFile } from '../api';
 
+/**
+* HealthStatus health status
+*/
 export class HealthStatus {
     /**
     * Status always contains \"ok\".

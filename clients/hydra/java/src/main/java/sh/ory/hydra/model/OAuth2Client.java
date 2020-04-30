@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * OAuth2Client
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-30T10:04:37.450363Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-30T11:29:47.487995Z[GMT]")
 public class OAuth2Client {
   public static final String SERIALIZED_NAME_ALLOWED_CORS_ORIGINS = "allowed_cors_origins";
   @SerializedName(SERIALIZED_NAME_ALLOWED_CORS_ORIGINS)
@@ -422,11 +422,11 @@ public class OAuth2Client {
   }
 
    /**
-   * CreatedAt returns the timestamp of the client&#39;s creation.
+   * CreatedAt returns the timestamp of the client&#39;s creation. Format: date-time Format: date-time Format: date-time
    * @return createdAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "CreatedAt returns the timestamp of the client's creation.")
+  @ApiModelProperty(value = "CreatedAt returns the timestamp of the client's creation. Format: date-time Format: date-time Format: date-time")
 
   public OffsetDateTime getCreatedAt() {
     return createdAt;
@@ -922,11 +922,11 @@ public class OAuth2Client {
   }
 
    /**
-   * UpdatedAt returns the timestamp of the last update.
+   * UpdatedAt returns the timestamp of the last update. Format: date-time Format: date-time Format: date-time
    * @return updatedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "UpdatedAt returns the timestamp of the last update.")
+  @ApiModelProperty(value = "UpdatedAt returns the timestamp of the last update. Format: date-time Format: date-time Format: date-time")
 
   public OffsetDateTime getUpdatedAt() {
     return updatedAt;

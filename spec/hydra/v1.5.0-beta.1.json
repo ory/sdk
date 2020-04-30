@@ -1812,7 +1812,7 @@
       }
     }
   },
-  "definitions": {
+  "definitions": {"UUID":{"type": "string", "format": "uuid4"},
     "ContainerWaitOKBodyError": {
       "description": "ContainerWaitOKBodyError ContainerWaitOKBodyError container waiting error, if any",
       "type": "object",

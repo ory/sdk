@@ -13,7 +13,7 @@ OpenAPI Generator version: 4.2.3
 require 'date'
 
 module OryHydraClient
-  # Oauth2TokenResponse Oauth2TokenResponse The Access Token Response
+  # The Access Token Response
   class Oauth2TokenResponse
     # access token
     attr_accessor :access_token

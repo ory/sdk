@@ -3,6 +3,7 @@ export * from './acceptLoginRequest';
 export * from './completedRequest';
 export * from './consentRequest';
 export * from './consentRequestSession';
+export * from './containerWaitOKBodyError';
 export * from './flushInactiveOAuth2TokensRequest';
 export * from './genericError';
 export * from './healthNotReadyStatus';
@@ -16,10 +17,23 @@ export * from './oAuth2Client';
 export * from './oAuth2TokenIntrospection';
 export * from './oauth2TokenResponse';
 export * from './openIDConnectContext';
+export * from './pluginConfig';
+export * from './pluginConfigArgs';
+export * from './pluginConfigInterface';
+export * from './pluginConfigLinux';
+export * from './pluginConfigNetwork';
+export * from './pluginConfigRootfs';
+export * from './pluginConfigUser';
+export * from './pluginDevice';
+export * from './pluginEnv';
+export * from './pluginInterfaceType';
+export * from './pluginMount';
+export * from './pluginSettings';
 export * from './previousConsentSession';
 export * from './rejectRequest';
 export * from './userinfoResponse';
 export * from './version';
+export * from './volumeUsageData';
 export * from './wellKnown';
 
 import localVarRequest = require('request');
@@ -29,6 +43,7 @@ import { AcceptLoginRequest } from './acceptLoginRequest';
 import { CompletedRequest } from './completedRequest';
 import { ConsentRequest } from './consentRequest';
 import { ConsentRequestSession } from './consentRequestSession';
+import { ContainerWaitOKBodyError } from './containerWaitOKBodyError';
 import { FlushInactiveOAuth2TokensRequest } from './flushInactiveOAuth2TokensRequest';
 import { GenericError } from './genericError';
 import { HealthNotReadyStatus } from './healthNotReadyStatus';
@@ -42,10 +57,23 @@ import { OAuth2Client } from './oAuth2Client';
 import { OAuth2TokenIntrospection } from './oAuth2TokenIntrospection';
 import { Oauth2TokenResponse } from './oauth2TokenResponse';
 import { OpenIDConnectContext } from './openIDConnectContext';
+import { PluginConfig } from './pluginConfig';
+import { PluginConfigArgs } from './pluginConfigArgs';
+import { PluginConfigInterface } from './pluginConfigInterface';
+import { PluginConfigLinux } from './pluginConfigLinux';
+import { PluginConfigNetwork } from './pluginConfigNetwork';
+import { PluginConfigRootfs } from './pluginConfigRootfs';
+import { PluginConfigUser } from './pluginConfigUser';
+import { PluginDevice } from './pluginDevice';
+import { PluginEnv } from './pluginEnv';
+import { PluginInterfaceType } from './pluginInterfaceType';
+import { PluginMount } from './pluginMount';
+import { PluginSettings } from './pluginSettings';
 import { PreviousConsentSession } from './previousConsentSession';
 import { RejectRequest } from './rejectRequest';
 import { UserinfoResponse } from './userinfoResponse';
 import { Version } from './version';
+import { VolumeUsageData } from './volumeUsageData';
 import { WellKnown } from './wellKnown';
 
 /* tslint:disable:no-unused-variable */
@@ -69,6 +97,7 @@ let typeMap: {[index: string]: any} = {
     "CompletedRequest": CompletedRequest,
     "ConsentRequest": ConsentRequest,
     "ConsentRequestSession": ConsentRequestSession,
+    "ContainerWaitOKBodyError": ContainerWaitOKBodyError,
     "FlushInactiveOAuth2TokensRequest": FlushInactiveOAuth2TokensRequest,
     "GenericError": GenericError,
     "HealthNotReadyStatus": HealthNotReadyStatus,
@@ -82,10 +111,23 @@ let typeMap: {[index: string]: any} = {
     "OAuth2TokenIntrospection": OAuth2TokenIntrospection,
     "Oauth2TokenResponse": Oauth2TokenResponse,
     "OpenIDConnectContext": OpenIDConnectContext,
+    "PluginConfig": PluginConfig,
+    "PluginConfigArgs": PluginConfigArgs,
+    "PluginConfigInterface": PluginConfigInterface,
+    "PluginConfigLinux": PluginConfigLinux,
+    "PluginConfigNetwork": PluginConfigNetwork,
+    "PluginConfigRootfs": PluginConfigRootfs,
+    "PluginConfigUser": PluginConfigUser,
+    "PluginDevice": PluginDevice,
+    "PluginEnv": PluginEnv,
+    "PluginInterfaceType": PluginInterfaceType,
+    "PluginMount": PluginMount,
+    "PluginSettings": PluginSettings,
     "PreviousConsentSession": PreviousConsentSession,
     "RejectRequest": RejectRequest,
     "UserinfoResponse": UserinfoResponse,
     "Version": Version,
+    "VolumeUsageData": VolumeUsageData,
     "WellKnown": WellKnown,
 }
 

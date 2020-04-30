@@ -36,6 +36,7 @@ use \Ory\Hydra\Client\ObjectSerializer;
  * HealthStatus Class Doc Comment
  *
  * @category Class
+ * @description HealthStatus health status
  * @package  Ory\Hydra\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

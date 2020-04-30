@@ -25,10 +25,10 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * UserinfoResponse UserinfoResponse UserinfoResponse UserinfoResponse The userinfo response
+ * The userinfo response
  */
-@ApiModel(description = "UserinfoResponse UserinfoResponse UserinfoResponse UserinfoResponse The userinfo response")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-30T10:04:37.450363Z[GMT]")
+@ApiModel(description = "The userinfo response")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-30T11:29:47.487995Z[GMT]")
 public class UserinfoResponse {
   public static final String SERIALIZED_NAME_BIRTHDATE = "birthdate";
   @SerializedName(SERIALIZED_NAME_BIRTHDATE)

@@ -13,6 +13,7 @@ OpenAPI Generator version: 4.2.3
 require 'date'
 
 module OryHydraClient
+  # JSONWebKeySetGeneratorRequest json web key set generator request
   class JsonWebKeySetGeneratorRequest
     # The algorithm to be used for creating the key. Supports \"RS256\", \"ES512\", \"HS512\", and \"HS256\"
     attr_accessor :alg
