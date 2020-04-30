@@ -12,6 +12,9 @@
 
 import { RequestFile } from '../api';
 
+/**
+* Version version
+*/
 export class Version {
     /**
     * Version is the service\'s version.

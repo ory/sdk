@@ -28,10 +28,10 @@ import java.util.List;
 import sh.ory.hydra.model.JSONWebKey;
 
 /**
- * It is important that this model object is named JSONWebKeySet for \&quot;swagger generate spec\&quot; to generate only on definition of a JSONWebKeySet. Since one with the same name is previously defined as client.Client.JSONWebKeys and this one is last, this one will be effectively written in the swagger spec.
+ * JSONWebKeySet JSONWebKeySet JSONWebKeySet JSONWebKeySet It is important that this model object is named JSONWebKeySet for \&quot;swagger generate spec\&quot; to generate only on definition of a JSONWebKeySet. Since one with the same name is previously defined as client.Client.JSONWebKeys and this one is last, this one will be effectively written in the swagger spec.
  */
-@ApiModel(description = "It is important that this model object is named JSONWebKeySet for \"swagger generate spec\" to generate only on definition of a JSONWebKeySet. Since one with the same name is previously defined as client.Client.JSONWebKeys and this one is last, this one will be effectively written in the swagger spec.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-25T11:30:49.984261Z[GMT]")
+@ApiModel(description = "JSONWebKeySet JSONWebKeySet JSONWebKeySet JSONWebKeySet It is important that this model object is named JSONWebKeySet for \"swagger generate spec\" to generate only on definition of a JSONWebKeySet. Since one with the same name is previously defined as client.Client.JSONWebKeys and this one is last, this one will be effectively written in the swagger spec.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-30T10:04:37.450363Z[GMT]")
 public class JSONWebKeySet {
   public static final String SERIALIZED_NAME_KEYS = "keys";
   @SerializedName(SERIALIZED_NAME_KEYS)

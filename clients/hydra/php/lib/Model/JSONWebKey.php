@@ -36,7 +36,7 @@ use \Ory\Hydra\Client\ObjectSerializer;
  * JSONWebKey Class Doc Comment
  *
  * @category Class
- * @description JSONWebKey It is important that this model object is named JSONWebKey for \&quot;swagger generate spec\&quot; to generate only on definition of a JSONWebKey.
+ * @description JSONWebKey JSONWebKey It is important that this model object is named JSONWebKey for \&quot;swagger generate spec\&quot; to generate only on definition of a JSONWebKey.
  * @package  Ory\Hydra\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

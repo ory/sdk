@@ -13,7 +13,7 @@
 import { RequestFile } from '../api';
 
 /**
-* JSONWebKey It is important that this model object is named JSONWebKey for \"swagger generate spec\" to generate only on definition of a JSONWebKey.
+* JSONWebKey JSONWebKey It is important that this model object is named JSONWebKey for \"swagger generate spec\" to generate only on definition of a JSONWebKey.
 */
 export class JSONWebKey {
     /**

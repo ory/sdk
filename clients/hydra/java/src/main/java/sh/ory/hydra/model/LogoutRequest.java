@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * LogoutRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-25T11:30:49.984261Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-30T10:04:37.450363Z[GMT]")
 public class LogoutRequest {
   public static final String SERIALIZED_NAME_REQUEST_URL = "request_url";
   @SerializedName(SERIALIZED_NAME_REQUEST_URL)

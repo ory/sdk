@@ -13,7 +13,7 @@
 import { RequestFile } from '../api';
 
 /**
-* The Access Token Response
+* Oauth2TokenResponse Oauth2TokenResponse The Access Token Response
 */
 export class Oauth2TokenResponse {
     /**
