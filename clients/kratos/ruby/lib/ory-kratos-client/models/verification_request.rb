@@ -15,7 +15,7 @@ require 'date'
 module OryHydraClient
   # This request is used when an identity wants to verify an out-of-band communication channel such as an email address or a phone number.  For more information head over to: https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation
   class VerificationRequest
-    # ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the profile, a new request has to be initiated.
+    # ExpiresAt is the time (UTC) when the request expires. If the user still wishes to verify the address, a new request has to be initiated.
     attr_accessor :expires_at
 
     attr_accessor :form

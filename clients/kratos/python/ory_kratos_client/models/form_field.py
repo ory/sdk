@@ -83,7 +83,7 @@ class FormField(object):
     def disabled(self):
         """Gets the disabled of this FormField.  # noqa: E501
 
-        Disabled is the equivalent of <input disabled=\"{{.Disabled}}\">  # noqa: E501
+        Disabled is the equivalent of `<input disabled=\"{{.Disabled}}\">`  # noqa: E501
 
         :return: The disabled of this FormField.  # noqa: E501
         :rtype: bool
@@ -94,7 +94,7 @@ class FormField(object):
     def disabled(self, disabled):
         """Sets the disabled of this FormField.
 
-        Disabled is the equivalent of <input disabled=\"{{.Disabled}}\">  # noqa: E501
+        Disabled is the equivalent of `<input disabled=\"{{.Disabled}}\">`  # noqa: E501
 
         :param disabled: The disabled of this FormField.  # noqa: E501
         :type: bool
@@ -129,7 +129,7 @@ class FormField(object):
     def name(self):
         """Gets the name of this FormField.  # noqa: E501
 
-        Name is the equivalent of <input name=\"{{.Name}}\">  # noqa: E501
+        Name is the equivalent of `<input name=\"{{.Name}}\">`  # noqa: E501
 
         :return: The name of this FormField.  # noqa: E501
         :rtype: str
@@ -140,7 +140,7 @@ class FormField(object):
     def name(self, name):
         """Sets the name of this FormField.
 
-        Name is the equivalent of <input name=\"{{.Name}}\">  # noqa: E501
+        Name is the equivalent of `<input name=\"{{.Name}}\">`  # noqa: E501
 
         :param name: The name of this FormField.  # noqa: E501
         :type: str
@@ -154,7 +154,7 @@ class FormField(object):
     def pattern(self):
         """Gets the pattern of this FormField.  # noqa: E501
 
-        Pattern is the equivalent of <input pattern=\"{{.Pattern}}\">  # noqa: E501
+        Pattern is the equivalent of `<input pattern=\"{{.Pattern}}\">`  # noqa: E501
 
         :return: The pattern of this FormField.  # noqa: E501
         :rtype: str
@@ -165,7 +165,7 @@ class FormField(object):
     def pattern(self, pattern):
         """Sets the pattern of this FormField.
 
-        Pattern is the equivalent of <input pattern=\"{{.Pattern}}\">  # noqa: E501
+        Pattern is the equivalent of `<input pattern=\"{{.Pattern}}\">`  # noqa: E501
 
         :param pattern: The pattern of this FormField.  # noqa: E501
         :type: str
@@ -177,7 +177,7 @@ class FormField(object):
     def required(self):
         """Gets the required of this FormField.  # noqa: E501
 
-        Required is the equivalent of <input required=\"{{.Required}}\">  # noqa: E501
+        Required is the equivalent of `<input required=\"{{.Required}}\">`  # noqa: E501
 
         :return: The required of this FormField.  # noqa: E501
         :rtype: bool
@@ -188,7 +188,7 @@ class FormField(object):
     def required(self, required):
         """Sets the required of this FormField.
 
-        Required is the equivalent of <input required=\"{{.Required}}\">  # noqa: E501
+        Required is the equivalent of `<input required=\"{{.Required}}\">`  # noqa: E501
 
         :param required: The required of this FormField.  # noqa: E501
         :type: bool
@@ -202,7 +202,7 @@ class FormField(object):
     def type(self):
         """Gets the type of this FormField.  # noqa: E501
 
-        Type is the equivalent of <input type=\"{{.Type}}\">  # noqa: E501
+        Type is the equivalent of `<input type=\"{{.Type}}\">`  # noqa: E501
 
         :return: The type of this FormField.  # noqa: E501
         :rtype: str
@@ -213,7 +213,7 @@ class FormField(object):
     def type(self, type):
         """Sets the type of this FormField.
 
-        Type is the equivalent of <input type=\"{{.Type}}\">  # noqa: E501
+        Type is the equivalent of `<input type=\"{{.Type}}\">`  # noqa: E501
 
         :param type: The type of this FormField.  # noqa: E501
         :type: str
@@ -227,7 +227,7 @@ class FormField(object):
     def value(self):
         """Gets the value of this FormField.  # noqa: E501
 
-        Value is the equivalent of <input value=\"{{.Value}}\">  # noqa: E501
+        Value is the equivalent of `<input value=\"{{.Value}}\">`  # noqa: E501
 
         :return: The value of this FormField.  # noqa: E501
         :rtype: object
@@ -238,7 +238,7 @@ class FormField(object):
     def value(self, value):
         """Sets the value of this FormField.
 
-        Value is the equivalent of <input value=\"{{.Value}}\">  # noqa: E501
+        Value is the equivalent of `<input value=\"{{.Value}}\">`  # noqa: E501
 
         :param value: The value of this FormField.  # noqa: E501
         :type: object

@@ -4,28 +4,82 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**complete_self_service_browser_profile_management_flow**](PublicApi.md#complete_self_service_browser_profile_management_flow) | **POST** /self-service/browser/flows/profile/update | Complete the browser-based profile management flows
-[**complete_self_service_browser_verification_flow**](PublicApi.md#complete_self_service_browser_verification_flow) | **POST** /self-service/browser/flows/verification/{via}/complete | Complete the browser-based profile management flows
+[**complete_self_service_browser_settings_password_strategy_flow**](PublicApi.md#complete_self_service_browser_settings_password_strategy_flow) | **POST** /self-service/browser/flows/settings/strategies/password | Complete the browser-based settings flow for the password strategy
+[**complete_self_service_browser_settings_profile_strategy_flow**](PublicApi.md#complete_self_service_browser_settings_profile_strategy_flow) | **POST** /self-service/browser/flows/settings/strategies/profile | Complete the browser-based settings flow for profile data
+[**complete_self_service_browser_verification_flow**](PublicApi.md#complete_self_service_browser_verification_flow) | **POST** /self-service/browser/flows/verification/{via}/complete | Complete the browser-based verification flows
+[**get_schema**](PublicApi.md#get_schema) | **GET** /schemas/{id} | 
 [**get_self_service_browser_login_request**](PublicApi.md#get_self_service_browser_login_request) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
-[**get_self_service_browser_profile_management_request**](PublicApi.md#get_self_service_browser_profile_management_request) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
 [**get_self_service_browser_registration_request**](PublicApi.md#get_self_service_browser_registration_request) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
+[**get_self_service_browser_settings_request**](PublicApi.md#get_self_service_browser_settings_request) | **GET** /self-service/browser/flows/requests/settings | Get the request context of browser-based settings flows
 [**get_self_service_error**](PublicApi.md#get_self_service_error) | **GET** /self-service/errors | Get user-facing self-service errors
 [**get_self_service_verification_request**](PublicApi.md#get_self_service_verification_request) | **GET** /self-service/browser/flows/requests/verification | Get the request context of browser-based verification flows
 [**initialize_self_service_browser_login_flow**](PublicApi.md#initialize_self_service_browser_login_flow) | **GET** /self-service/browser/flows/login | Initialize browser-based login user flow
 [**initialize_self_service_browser_logout_flow**](PublicApi.md#initialize_self_service_browser_logout_flow) | **GET** /self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
 [**initialize_self_service_browser_registration_flow**](PublicApi.md#initialize_self_service_browser_registration_flow) | **GET** /self-service/browser/flows/registration | Initialize browser-based registration user flow
 [**initialize_self_service_browser_verification_flow**](PublicApi.md#initialize_self_service_browser_verification_flow) | **GET** /self-service/browser/flows/verification/init/{via} | Initialize browser-based verification flow
-[**initialize_self_service_profile_management_flow**](PublicApi.md#initialize_self_service_profile_management_flow) | **GET** /self-service/browser/flows/profile | Initialize browser-based profile management flow
+[**initialize_self_service_settings_flow**](PublicApi.md#initialize_self_service_settings_flow) | **GET** /self-service/browser/flows/settings | Initialize browser-based settings flow
 [**self_service_browser_verify**](PublicApi.md#self_service_browser_verify) | **GET** /self-service/browser/flows/verification/{via}/confirm/{code} | Complete the browser-based verification flows
 [**whoami**](PublicApi.md#whoami) | **GET** /sessions/whoami | Check who the current HTTP session belongs to
 
 
-# **complete_self_service_browser_profile_management_flow**
-> complete_self_service_browser_profile_management_flow(request, body)
+# **complete_self_service_browser_settings_password_strategy_flow**
+> complete_self_service_browser_settings_password_strategy_flow()
 
-Complete the browser-based profile management flows
+Complete the browser-based settings flow for the password strategy
 
-This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity's Traits JSON Schema, the data will be updated and the browser redirected to `url.profile_ui` for further steps.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
+This endpoint completes a browser-based settings flow. This is usually achieved by POSTing data to this endpoint.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import ory_kratos_client
+from ory_kratos_client.rest import ApiException
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = ory_kratos_client.PublicApi(api_client)
+    
+    try:
+        # Complete the browser-based settings flow for the password strategy
+        api_instance.complete_self_service_browser_settings_password_strategy_flow()
+    except ApiException as e:
+        print("Exception when calling PublicApi->complete_self_service_browser_settings_password_strategy_flow: %s\n" % e)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **complete_self_service_browser_settings_profile_strategy_flow**
+> complete_self_service_browser_settings_profile_strategy_flow(request, body)
+
+Complete the browser-based settings flow for profile data
+
+This endpoint completes a browser-based settings flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity's Traits JSON Schema, the data will be updated and the browser redirected to `url.settings_ui` for further steps.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
 
 ### Example
 
@@ -41,13 +95,13 @@ with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = ory_kratos_client.PublicApi(api_client)
     request = 'request_example' # str | Request is the request ID.
-body = ory_kratos_client.CompleteSelfServiceBrowserProfileManagementFlowPayload() # CompleteSelfServiceBrowserProfileManagementFlowPayload | 
+body = ory_kratos_client.CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload() # CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload | 
 
     try:
-        # Complete the browser-based profile management flows
-        api_instance.complete_self_service_browser_profile_management_flow(request, body)
+        # Complete the browser-based settings flow for profile data
+        api_instance.complete_self_service_browser_settings_profile_strategy_flow(request, body)
     except ApiException as e:
-        print("Exception when calling PublicApi->complete_self_service_browser_profile_management_flow: %s\n" % e)
+        print("Exception when calling PublicApi->complete_self_service_browser_settings_profile_strategy_flow: %s\n" % e)
 ```
 
 ### Parameters
@@ -55,7 +109,7 @@ body = ory_kratos_client.CompleteSelfServiceBrowserProfileManagementFlowPayload(
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **request** | **str**| Request is the request ID. | 
- **body** | [**CompleteSelfServiceBrowserProfileManagementFlowPayload**](CompleteSelfServiceBrowserProfileManagementFlowPayload.md)|  | 
+ **body** | [**CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload**](CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload.md)|  | 
 
 ### Return type
 
@@ -81,9 +135,9 @@ No authorization required
 # **complete_self_service_browser_verification_flow**
 > complete_self_service_browser_verification_flow(request, via)
 
-Complete the browser-based profile management flows
+Complete the browser-based verification flows
 
-This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity's Traits JSON Schema, the data will be updated and the browser redirected to `url.profile_ui` for further steps.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint completes a browser-based verification flow. This is usually achieved by POSTing data to this endpoint.  If the provided data is valid against the Identity's Traits JSON Schema, the data will be updated and the browser redirected to `url.settings_ui` for further steps.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
 ### Example
 
@@ -102,7 +156,7 @@ with ory_kratos_client.ApiClient() as api_client:
 via = 'via_example' # str | What to verify  Currently only \"email\" is supported.
 
     try:
-        # Complete the browser-based profile management flows
+        # Complete the browser-based verification flows
         api_instance.complete_self_service_browser_verification_flow(request, via)
     except ApiException as e:
         print("Exception when calling PublicApi->complete_self_service_browser_verification_flow: %s\n" % e)
@@ -132,6 +186,63 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_schema**
+> object get_schema(id)
+
+
+
+Get a traits schema definition
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import ory_kratos_client
+from ory_kratos_client.rest import ApiException
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = ory_kratos_client.PublicApi(api_client)
+    id = 'id_example' # str | ID must be set to the ID of schema you want to get
+
+    try:
+        api_response = api_instance.get_schema(id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling PublicApi->get_schema: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| ID must be set to the ID of schema you want to get | 
+
+### Return type
+
+**object**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The raw identity traits schema |  -  |
+**404** | genericError |  -  |
 **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -191,65 +302,7 @@ No authorization required
 **200** | loginRequest |  -  |
 **403** | genericError |  -  |
 **404** | genericError |  -  |
-**500** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_self_service_browser_profile_management_request**
-> ProfileManagementRequest get_self_service_browser_profile_management_request(request)
-
-Get the request context of browser-based profile management flows
-
-When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
-
-### Example
-
-```python
-from __future__ import print_function
-import time
-import ory_kratos_client
-from ory_kratos_client.rest import ApiException
-from pprint import pprint
-
-# Enter a context with an instance of the API client
-with ory_kratos_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    request = 'request_example' # str | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
-
-    try:
-        # Get the request context of browser-based profile management flows
-        api_response = api_instance.get_self_service_browser_profile_management_request(request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling PublicApi->get_self_service_browser_profile_management_request: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **request** | **str**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). | 
-
-### Return type
-
-[**ProfileManagementRequest**](ProfileManagementRequest.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | profileManagementRequest |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
+**410** | genericError |  -  |
 **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -309,12 +362,73 @@ No authorization required
 **200** | registrationRequest |  -  |
 **403** | genericError |  -  |
 **404** | genericError |  -  |
+**410** | genericError |  -  |
+**500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_self_service_browser_settings_request**
+> SettingsRequest get_self_service_browser_settings_request(request)
+
+Get the request context of browser-based settings flows
+
+When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import ory_kratos_client
+from ory_kratos_client.rest import ApiException
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = ory_kratos_client.PublicApi(api_client)
+    request = 'request_example' # str | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
+
+    try:
+        # Get the request context of browser-based settings flows
+        api_response = api_instance.get_self_service_browser_settings_request(request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling PublicApi->get_self_service_browser_settings_request: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | **str**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). | 
+
+### Return type
+
+[**SettingsRequest**](SettingsRequest.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | settingsRequest |  -  |
+**403** | genericError |  -  |
+**404** | genericError |  -  |
+**410** | genericError |  -  |
 **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_self_service_error**
-> ErrorContainer get_self_service_error(id=id)
+> ErrorContainer get_self_service_error(error=error)
 
 Get user-facing self-service errors
 
@@ -333,11 +447,11 @@ from pprint import pprint
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = ory_kratos_client.PublicApi(api_client)
-    id = 'id_example' # str |  (optional)
+    error = 'error_example' # str |  (optional)
 
     try:
         # Get user-facing self-service errors
-        api_response = api_instance.get_self_service_error(id=id)
+        api_response = api_instance.get_self_service_error(error=error)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling PublicApi->get_self_service_error: %s\n" % e)
@@ -347,7 +461,7 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**|  | [optional] 
+ **error** | **str**|  | [optional] 
 
 ### Return type
 
@@ -592,7 +706,7 @@ No authorization required
 
 Initialize browser-based verification flow
 
-This endpoint initializes a browser-based profile management flow. Once initialized, the browser will be redirected to `urls.profile_ui` with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint initializes a browser-based verification flow. Once initialized, the browser will be redirected to `urls.settings_ui` with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
 ### Example
 
@@ -643,12 +757,12 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **initialize_self_service_profile_management_flow**
-> initialize_self_service_profile_management_flow()
+# **initialize_self_service_settings_flow**
+> initialize_self_service_settings_flow()
 
-Initialize browser-based profile management flow
+Initialize browser-based settings flow
 
-This endpoint initializes a browser-based profile management flow. Once initialized, the browser will be redirected to `urls.profile_ui` with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
+This endpoint initializes a browser-based settings flow. Once initialized, the browser will be redirected to `urls.settings_ui` with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
 
 ### Example
 
@@ -665,10 +779,10 @@ with ory_kratos_client.ApiClient() as api_client:
     api_instance = ory_kratos_client.PublicApi(api_client)
     
     try:
-        # Initialize browser-based profile management flow
-        api_instance.initialize_self_service_profile_management_flow()
+        # Initialize browser-based settings flow
+        api_instance.initialize_self_service_settings_flow()
     except ApiException as e:
-        print("Exception when calling PublicApi->initialize_self_service_profile_management_flow: %s\n" % e)
+        print("Exception when calling PublicApi->initialize_self_service_settings_flow: %s\n" % e)
 ```
 
 ### Parameters

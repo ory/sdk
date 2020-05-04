@@ -23,15 +23,14 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * nolint:deadcode,unused
+ * GenericErrorPayload
  */
-@ApiModel(description = "nolint:deadcode,unused")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-19T09:00:07.334813Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-04T14:27:47.887712Z[GMT]")
 public class GenericErrorPayload {
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
@@ -43,7 +42,7 @@ public class GenericErrorPayload {
 
   public static final String SERIALIZED_NAME_DETAILS = "details";
   @SerializedName(SERIALIZED_NAME_DETAILS)
-  private List<Map<String, Object>> details = null;
+  private Map<String, Object> details = null;
 
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
@@ -108,17 +107,17 @@ public class GenericErrorPayload {
   }
 
 
-  public GenericErrorPayload details(List<Map<String, Object>> details) {
+  public GenericErrorPayload details(Map<String, Object> details) {
     
     this.details = details;
     return this;
   }
 
-  public GenericErrorPayload addDetailsItem(Map<String, Object> detailsItem) {
+  public GenericErrorPayload putDetailsItem(String key, Object detailsItem) {
     if (this.details == null) {
-      this.details = new ArrayList<Map<String, Object>>();
+      this.details = new HashMap<String, Object>();
     }
-    this.details.add(detailsItem);
+    this.details.put(key, detailsItem);
     return this;
   }
 
@@ -129,12 +128,12 @@ public class GenericErrorPayload {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public List<Map<String, Object>> getDetails() {
+  public Map<String, Object> getDetails() {
     return details;
   }
 
 
-  public void setDetails(List<Map<String, Object>> details) {
+  public void setDetails(Map<String, Object> details) {
     this.details = details;
   }
 

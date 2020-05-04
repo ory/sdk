@@ -68,7 +68,8 @@ class VerifiableAddress(object):
         self.id = id
         self.value = value
         self.verified = verified
-        self.verified_at = verified_at
+        if verified_at is not None:
+            self.verified_at = verified_at
         self.via = via
 
     @property
@@ -181,8 +182,6 @@ class VerifiableAddress(object):
         :param verified_at: The verified_at of this VerifiableAddress.  # noqa: E501
         :type: datetime
         """
-        if self.local_vars_configuration.client_side_validation and verified_at is None:  # noqa: E501
-            raise ValueError("Invalid value for `verified_at`, must not be `None`")  # noqa: E501
 
         self._verified_at = verified_at
 

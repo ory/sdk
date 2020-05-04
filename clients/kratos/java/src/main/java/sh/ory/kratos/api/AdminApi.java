@@ -31,8 +31,8 @@ import sh.ory.kratos.model.ErrorContainer;
 import sh.ory.kratos.model.GenericError;
 import sh.ory.kratos.model.Identity;
 import sh.ory.kratos.model.LoginRequest;
-import sh.ory.kratos.model.ProfileManagementRequest;
 import sh.ory.kratos.model.RegistrationRequest;
+import sh.ory.kratos.model.SettingsRequest;
 import sh.ory.kratos.model.VerificationRequest;
 
 import java.lang.reflect.Type;
@@ -69,7 +69,7 @@ public class AdminApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> A single identity.  nolint:deadcode,unused </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> A single identity. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
@@ -126,7 +126,7 @@ public class AdminApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> A single identity.  nolint:deadcode,unused </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> A single identity. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
@@ -145,7 +145,7 @@ public class AdminApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> A single identity.  nolint:deadcode,unused </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> A single identity. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
@@ -166,7 +166,7 @@ public class AdminApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> A single identity.  nolint:deadcode,unused </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> A single identity. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
@@ -302,7 +302,7 @@ public class AdminApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> A single identity.  nolint:deadcode,unused </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> A single identity. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
@@ -360,7 +360,7 @@ public class AdminApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> A single identity.  nolint:deadcode,unused </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> A single identity. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
@@ -379,7 +379,7 @@ public class AdminApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> A single identity.  nolint:deadcode,unused </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> A single identity. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
@@ -400,7 +400,7 @@ public class AdminApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> A single identity.  nolint:deadcode,unused </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> A single identity. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
@@ -409,6 +409,125 @@ public class AdminApi {
 
         okhttp3.Call localVarCall = getIdentityValidateBeforeCall(id, _callback);
         Type localVarReturnType = new TypeToken<Identity>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for getSchema
+     * @param id ID must be set to the ID of schema you want to get (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The raw identity traits schema </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getSchemaCall(String id, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/schemas/{id}"
+            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getSchemaValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling getSchema(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = getSchemaCall(id, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * 
+     * Get a traits schema definition
+     * @param id ID must be set to the ID of schema you want to get (required)
+     * @return Object
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The raw identity traits schema </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public Object getSchema(String id) throws ApiException {
+        ApiResponse<Object> localVarResp = getSchemaWithHttpInfo(id);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * Get a traits schema definition
+     * @param id ID must be set to the ID of schema you want to get (required)
+     * @return ApiResponse&lt;Object&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The raw identity traits schema </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Object> getSchemaWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = getSchemaValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Get a traits schema definition
+     * @param id ID must be set to the ID of schema you want to get (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The raw identity traits schema </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getSchemaAsync(String id, final ApiCallback<Object> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getSchemaValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -424,6 +543,7 @@ public class AdminApi {
         <tr><td> 200 </td><td> loginRequest </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 410 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
@@ -486,6 +606,7 @@ public class AdminApi {
         <tr><td> 200 </td><td> loginRequest </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 410 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
@@ -506,6 +627,7 @@ public class AdminApi {
         <tr><td> 200 </td><td> loginRequest </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 410 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
@@ -528,6 +650,7 @@ public class AdminApi {
         <tr><td> 200 </td><td> loginRequest </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 410 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
@@ -535,132 +658,6 @@ public class AdminApi {
 
         okhttp3.Call localVarCall = getSelfServiceBrowserLoginRequestValidateBeforeCall(request, _callback);
         Type localVarReturnType = new TypeToken<LoginRequest>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for getSelfServiceBrowserProfileManagementRequest
-     * @param request Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> profileManagementRequest </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getSelfServiceBrowserProfileManagementRequestCall(String request, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/self-service/browser/flows/requests/profile";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (request != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("request", request));
-        }
-
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getSelfServiceBrowserProfileManagementRequestValidateBeforeCall(String request, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'request' is set
-        if (request == null) {
-            throw new ApiException("Missing the required parameter 'request' when calling getSelfServiceBrowserProfileManagementRequest(Async)");
-        }
-        
-
-        okhttp3.Call localVarCall = getSelfServiceBrowserProfileManagementRequestCall(request, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * Get the request context of browser-based profile management flows
-     * When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
-     * @param request Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). (required)
-     * @return ProfileManagementRequest
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> profileManagementRequest </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
-     </table>
-     */
-    public ProfileManagementRequest getSelfServiceBrowserProfileManagementRequest(String request) throws ApiException {
-        ApiResponse<ProfileManagementRequest> localVarResp = getSelfServiceBrowserProfileManagementRequestWithHttpInfo(request);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Get the request context of browser-based profile management flows
-     * When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
-     * @param request Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). (required)
-     * @return ApiResponse&lt;ProfileManagementRequest&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> profileManagementRequest </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<ProfileManagementRequest> getSelfServiceBrowserProfileManagementRequestWithHttpInfo(String request) throws ApiException {
-        okhttp3.Call localVarCall = getSelfServiceBrowserProfileManagementRequestValidateBeforeCall(request, null);
-        Type localVarReturnType = new TypeToken<ProfileManagementRequest>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Get the request context of browser-based profile management flows (asynchronously)
-     * When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
-     * @param request Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> profileManagementRequest </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getSelfServiceBrowserProfileManagementRequestAsync(String request, final ApiCallback<ProfileManagementRequest> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = getSelfServiceBrowserProfileManagementRequestValidateBeforeCall(request, _callback);
-        Type localVarReturnType = new TypeToken<ProfileManagementRequest>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -676,6 +673,7 @@ public class AdminApi {
         <tr><td> 200 </td><td> registrationRequest </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 410 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
@@ -738,6 +736,7 @@ public class AdminApi {
         <tr><td> 200 </td><td> registrationRequest </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 410 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
@@ -758,6 +757,7 @@ public class AdminApi {
         <tr><td> 200 </td><td> registrationRequest </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 410 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
@@ -780,6 +780,7 @@ public class AdminApi {
         <tr><td> 200 </td><td> registrationRequest </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 410 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
@@ -791,30 +792,31 @@ public class AdminApi {
         return localVarCall;
     }
     /**
-     * Build call for getSelfServiceError
-     * @param id  (optional)
+     * Build call for getSelfServiceBrowserSettingsRequest
+     * @param request Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> User-facing error response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> settingsRequest </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 410 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSelfServiceErrorCall(String id, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getSelfServiceBrowserSettingsRequestCall(String request, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/self-service/errors";
+        String localVarPath = "/self-service/browser/flows/requests/settings";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (id != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("id", id));
+        if (request != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("request", request));
         }
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
@@ -839,10 +841,139 @@ public class AdminApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getSelfServiceErrorValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getSelfServiceBrowserSettingsRequestValidateBeforeCall(String request, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'request' is set
+        if (request == null) {
+            throw new ApiException("Missing the required parameter 'request' when calling getSelfServiceBrowserSettingsRequest(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = getSelfServiceErrorCall(id, _callback);
+        okhttp3.Call localVarCall = getSelfServiceBrowserSettingsRequestCall(request, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Get the request context of browser-based settings flows
+     * When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos User Settings &amp; Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
+     * @param request Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). (required)
+     * @return SettingsRequest
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> settingsRequest </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 410 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public SettingsRequest getSelfServiceBrowserSettingsRequest(String request) throws ApiException {
+        ApiResponse<SettingsRequest> localVarResp = getSelfServiceBrowserSettingsRequestWithHttpInfo(request);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get the request context of browser-based settings flows
+     * When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos User Settings &amp; Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
+     * @param request Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). (required)
+     * @return ApiResponse&lt;SettingsRequest&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> settingsRequest </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 410 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<SettingsRequest> getSelfServiceBrowserSettingsRequestWithHttpInfo(String request) throws ApiException {
+        okhttp3.Call localVarCall = getSelfServiceBrowserSettingsRequestValidateBeforeCall(request, null);
+        Type localVarReturnType = new TypeToken<SettingsRequest>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get the request context of browser-based settings flows (asynchronously)
+     * When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos User Settings &amp; Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
+     * @param request Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> settingsRequest </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 410 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getSelfServiceBrowserSettingsRequestAsync(String request, final ApiCallback<SettingsRequest> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getSelfServiceBrowserSettingsRequestValidateBeforeCall(request, _callback);
+        Type localVarReturnType = new TypeToken<SettingsRequest>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for getSelfServiceError
+     * @param error  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> User-facing error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getSelfServiceErrorCall(String error, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/self-service/errors";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (error != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("error", error));
+        }
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getSelfServiceErrorValidateBeforeCall(String error, final ApiCallback _callback) throws ApiException {
+        
+
+        okhttp3.Call localVarCall = getSelfServiceErrorCall(error, _callback);
         return localVarCall;
 
     }
@@ -850,7 +981,7 @@ public class AdminApi {
     /**
      * Get user-facing self-service errors
      * This endpoint returns the error associated with a user-facing self service errors.  When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
-     * @param id  (optional)
+     * @param error  (optional)
      * @return ErrorContainer
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -862,15 +993,15 @@ public class AdminApi {
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
-    public ErrorContainer getSelfServiceError(String id) throws ApiException {
-        ApiResponse<ErrorContainer> localVarResp = getSelfServiceErrorWithHttpInfo(id);
+    public ErrorContainer getSelfServiceError(String error) throws ApiException {
+        ApiResponse<ErrorContainer> localVarResp = getSelfServiceErrorWithHttpInfo(error);
         return localVarResp.getData();
     }
 
     /**
      * Get user-facing self-service errors
      * This endpoint returns the error associated with a user-facing self service errors.  When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
-     * @param id  (optional)
+     * @param error  (optional)
      * @return ApiResponse&lt;ErrorContainer&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -882,8 +1013,8 @@ public class AdminApi {
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ErrorContainer> getSelfServiceErrorWithHttpInfo(String id) throws ApiException {
-        okhttp3.Call localVarCall = getSelfServiceErrorValidateBeforeCall(id, null);
+    public ApiResponse<ErrorContainer> getSelfServiceErrorWithHttpInfo(String error) throws ApiException {
+        okhttp3.Call localVarCall = getSelfServiceErrorValidateBeforeCall(error, null);
         Type localVarReturnType = new TypeToken<ErrorContainer>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -891,7 +1022,7 @@ public class AdminApi {
     /**
      * Get user-facing self-service errors (asynchronously)
      * This endpoint returns the error associated with a user-facing self service errors.  When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
-     * @param id  (optional)
+     * @param error  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -904,9 +1035,9 @@ public class AdminApi {
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSelfServiceErrorAsync(String id, final ApiCallback<ErrorContainer> _callback) throws ApiException {
+    public okhttp3.Call getSelfServiceErrorAsync(String error, final ApiCallback<ErrorContainer> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getSelfServiceErrorValidateBeforeCall(id, _callback);
+        okhttp3.Call localVarCall = getSelfServiceErrorValidateBeforeCall(error, _callback);
         Type localVarReturnType = new TypeToken<ErrorContainer>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1045,7 +1176,7 @@ public class AdminApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> A list of identities.  nolint:deadcode,unused </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> A list of identities. </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
@@ -1095,7 +1226,7 @@ public class AdminApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> A list of identities.  nolint:deadcode,unused </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> A list of identities. </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
@@ -1112,7 +1243,7 @@ public class AdminApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> A list of identities.  nolint:deadcode,unused </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> A list of identities. </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
@@ -1131,7 +1262,7 @@ public class AdminApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> A list of identities.  nolint:deadcode,unused </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> A list of identities. </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
      </table>
      */
@@ -1152,7 +1283,7 @@ public class AdminApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> A single identity.  nolint:deadcode,unused </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> A single identity. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
@@ -1217,7 +1348,7 @@ public class AdminApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> A single identity.  nolint:deadcode,unused </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> A single identity. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
@@ -1238,7 +1369,7 @@ public class AdminApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> A single identity.  nolint:deadcode,unused </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> A single identity. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>
@@ -1261,7 +1392,7 @@ public class AdminApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> A single identity.  nolint:deadcode,unused </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> A single identity. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> genericError </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> genericError </td><td>  -  </td></tr>

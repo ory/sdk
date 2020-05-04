@@ -31,7 +31,7 @@ import sh.ory.kratos.model.FormField;
 /**
  * RegistrationRequestMethodConfig
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-19T09:00:07.334813Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-04T14:27:47.887712Z[GMT]")
 public class RegistrationRequestMethodConfig {
   public static final String SERIALIZED_NAME_ACTION = "action";
   @SerializedName(SERIALIZED_NAME_ACTION)
@@ -61,10 +61,10 @@ public class RegistrationRequestMethodConfig {
   }
 
    /**
-   * Action should be used as the form action URL (&lt;form action&#x3D;\&quot;{{ .Action }}\&quot; method&#x3D;\&quot;post\&quot;&gt;).
+   * Action should be used as the form action URL &#x60;&lt;form action&#x3D;\&quot;{{ .Action }}\&quot; method&#x3D;\&quot;post\&quot;&gt;&#x60;.
    * @return action
   **/
-  @ApiModelProperty(required = true, value = "Action should be used as the form action URL (<form action=\"{{ .Action }}\" method=\"post\">).")
+  @ApiModelProperty(required = true, value = "Action should be used as the form action URL `<form action=\"{{ .Action }}\" method=\"post\">`.")
 
   public String getAction() {
     return action;

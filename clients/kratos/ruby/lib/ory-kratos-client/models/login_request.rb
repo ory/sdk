@@ -20,6 +20,9 @@ module OryHydraClient
     # ExpiresAt is the time (UTC) when the request expires. If the user still wishes to log in, a new request has to be initiated.
     attr_accessor :expires_at
 
+    # Forced stores whether this login request should enforce reauthentication.
+    attr_accessor :forced
+
     attr_accessor :id
 
     # IssuedAt is the time (UTC) when the request occurred.
@@ -36,6 +39,7 @@ module OryHydraClient
       {
         :'active' => :'active',
         :'expires_at' => :'expires_at',
+        :'forced' => :'forced',
         :'id' => :'id',
         :'issued_at' => :'issued_at',
         :'methods' => :'methods',
@@ -48,6 +52,7 @@ module OryHydraClient
       {
         :'active' => :'String',
         :'expires_at' => :'DateTime',
+        :'forced' => :'Boolean',
         :'id' => :'String',
         :'issued_at' => :'DateTime',
         :'methods' => :'Hash<String, LoginRequestMethod>',
@@ -82,6 +87,10 @@ module OryHydraClient
 
       if attributes.key?(:'expires_at')
         self.expires_at = attributes[:'expires_at']
+      end
+
+      if attributes.key?(:'forced')
+        self.forced = attributes[:'forced']
       end
 
       if attributes.key?(:'id')
@@ -148,6 +157,7 @@ module OryHydraClient
       self.class == o.class &&
           active == o.active &&
           expires_at == o.expires_at &&
+          forced == o.forced &&
           id == o.id &&
           issued_at == o.issued_at &&
           methods == o.methods &&
@@ -163,7 +173,7 @@ module OryHydraClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [active, expires_at, id, issued_at, methods, request_url].hash
+      [active, expires_at, forced, id, issued_at, methods, request_url].hash
     end
 
     # Builds the object from hash

@@ -245,7 +245,7 @@ class Form implements ModelInterface, ArrayAccess
     /**
      * Sets action
      *
-     * @param string $action Action should be used as the form action URL (<form action=\"{{ .Action }}\" method=\"post\">).
+     * @param string $action Action should be used as the form action URL `<form action=\"{{ .Action }}\" method=\"post\">`.
      *
      * @return $this
      */

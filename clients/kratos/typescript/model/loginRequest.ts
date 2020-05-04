@@ -22,6 +22,10 @@ export class LoginRequest {
     * ExpiresAt is the time (UTC) when the request expires. If the user still wishes to log in, a new request has to be initiated.
     */
     'expiresAt': Date;
+    /**
+    * Forced stores whether this login request should enforce reauthentication.
+    */
+    'forced'?: boolean;
     'id': string;
     /**
     * IssuedAt is the time (UTC) when the request occurred.
@@ -48,6 +52,11 @@ export class LoginRequest {
             "name": "expiresAt",
             "baseName": "expires_at",
             "type": "Date"
+        },
+        {
+            "name": "forced",
+            "baseName": "forced",
+            "type": "boolean"
         },
         {
             "name": "id",

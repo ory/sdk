@@ -14,7 +14,7 @@ require 'date'
 
 module OryHydraClient
   class RegistrationRequestMethodConfig
-    # Action should be used as the form action URL (<form action=\"{{ .Action }}\" method=\"post\">).
+    # Action should be used as the form action URL `<form action=\"{{ .Action }}\" method=\"post\">`.
     attr_accessor :action
 
     # Errors contains all form errors. These will be duplicates of the individual field errors.

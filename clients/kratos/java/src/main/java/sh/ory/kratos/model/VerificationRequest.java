@@ -30,7 +30,7 @@ import sh.ory.kratos.model.Form;
  * This request is used when an identity wants to verify an out-of-band communication channel such as an email address or a phone number.  For more information head over to: https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation
  */
 @ApiModel(description = "This request is used when an identity wants to verify an out-of-band communication channel such as an email address or a phone number.  For more information head over to: https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-19T09:00:07.334813Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-04T14:27:47.887712Z[GMT]")
 public class VerificationRequest {
   public static final String SERIALIZED_NAME_EXPIRES_AT = "expires_at";
   @SerializedName(SERIALIZED_NAME_EXPIRES_AT)
@@ -68,11 +68,11 @@ public class VerificationRequest {
   }
 
    /**
-   * ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the profile, a new request has to be initiated.
+   * ExpiresAt is the time (UTC) when the request expires. If the user still wishes to verify the address, a new request has to be initiated.
    * @return expiresAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the profile, a new request has to be initiated.")
+  @ApiModelProperty(value = "ExpiresAt is the time (UTC) when the request expires. If the user still wishes to verify the address, a new request has to be initiated.")
 
   public OffsetDateTime getExpiresAt() {
     return expiresAt;

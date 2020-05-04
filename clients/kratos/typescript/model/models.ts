@@ -1,4 +1,4 @@
-export * from './completeSelfServiceBrowserProfileManagementFlowPayload';
+export * from './completeSelfServiceBrowserSettingsStrategyProfileFlowPayload';
 export * from './errorContainer';
 export * from './form';
 export * from './formField';
@@ -11,18 +11,20 @@ export * from './loginRequest';
 export * from './loginRequestMethod';
 export * from './loginRequestMethodConfig';
 export * from './modelError';
-export * from './profileManagementRequest';
 export * from './registrationRequest';
 export * from './registrationRequestMethod';
 export * from './registrationRequestMethodConfig';
+export * from './requestMethodConfig';
 export * from './session';
+export * from './settingsRequest';
+export * from './settingsRequestMethod';
 export * from './verifiableAddress';
 export * from './verificationRequest';
 export * from './version';
 
 import localVarRequest = require('request');
 
-import { CompleteSelfServiceBrowserProfileManagementFlowPayload } from './completeSelfServiceBrowserProfileManagementFlowPayload';
+import { CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload } from './completeSelfServiceBrowserSettingsStrategyProfileFlowPayload';
 import { ErrorContainer } from './errorContainer';
 import { Form } from './form';
 import { FormField } from './formField';
@@ -35,11 +37,13 @@ import { LoginRequest } from './loginRequest';
 import { LoginRequestMethod } from './loginRequestMethod';
 import { LoginRequestMethodConfig } from './loginRequestMethodConfig';
 import { ModelError } from './modelError';
-import { ProfileManagementRequest } from './profileManagementRequest';
 import { RegistrationRequest } from './registrationRequest';
 import { RegistrationRequestMethod } from './registrationRequestMethod';
 import { RegistrationRequestMethodConfig } from './registrationRequestMethodConfig';
+import { RequestMethodConfig } from './requestMethodConfig';
 import { Session } from './session';
+import { SettingsRequest } from './settingsRequest';
+import { SettingsRequestMethod } from './settingsRequestMethod';
 import { VerifiableAddress } from './verifiableAddress';
 import { VerificationRequest } from './verificationRequest';
 import { Version } from './version';
@@ -60,7 +64,7 @@ let enumsMap: {[index: string]: any} = {
 }
 
 let typeMap: {[index: string]: any} = {
-    "CompleteSelfServiceBrowserProfileManagementFlowPayload": CompleteSelfServiceBrowserProfileManagementFlowPayload,
+    "CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload": CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload,
     "ErrorContainer": ErrorContainer,
     "Form": Form,
     "FormField": FormField,
@@ -73,11 +77,13 @@ let typeMap: {[index: string]: any} = {
     "LoginRequestMethod": LoginRequestMethod,
     "LoginRequestMethodConfig": LoginRequestMethodConfig,
     "ModelError": ModelError,
-    "ProfileManagementRequest": ProfileManagementRequest,
     "RegistrationRequest": RegistrationRequest,
     "RegistrationRequestMethod": RegistrationRequestMethod,
     "RegistrationRequestMethodConfig": RegistrationRequestMethodConfig,
+    "RequestMethodConfig": RequestMethodConfig,
     "Session": Session,
+    "SettingsRequest": SettingsRequest,
+    "SettingsRequestMethod": SettingsRequestMethod,
     "VerifiableAddress": VerifiableAddress,
     "VerificationRequest": VerificationRequest,
     "Version": Version,

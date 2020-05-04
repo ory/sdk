@@ -13,7 +13,6 @@ OpenAPI Generator version: 4.2.3
 require 'date'
 
 module OryHydraClient
-  # nolint:deadcode,unused
   class GenericErrorPayload
     # Code represents the error status code (404, 403, 401, ...).
     attr_accessor :code
@@ -49,7 +48,7 @@ module OryHydraClient
       {
         :'code' => :'Integer',
         :'debug' => :'String',
-        :'details' => :'Array<Hash<String, Object>>',
+        :'details' => :'Hash<String, Object>',
         :'message' => :'String',
         :'reason' => :'String',
         :'request' => :'String',
@@ -87,7 +86,7 @@ module OryHydraClient
       end
 
       if attributes.key?(:'details')
-        if (value = attributes[:'details']).is_a?(Array)
+        if (value = attributes[:'details']).is_a?(Hash)
           self.details = value
         end
       end

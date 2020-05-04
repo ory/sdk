@@ -18,7 +18,7 @@ import { Form } from './form';
 */
 export class VerificationRequest {
     /**
-    * ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the profile, a new request has to be initiated.
+    * ExpiresAt is the time (UTC) when the request expires. If the user still wishes to verify the address, a new request has to be initiated.
     */
     'expiresAt'?: Date;
     'form'?: Form;

@@ -21,31 +21,40 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import sh.ory.kratos.model.RequestMethodConfig;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for CompleteSelfServiceBrowserProfileManagementFlowPayload
+ * Model tests for SettingsRequestMethod
  */
-public class CompleteSelfServiceBrowserProfileManagementFlowPayloadTest {
-    private final CompleteSelfServiceBrowserProfileManagementFlowPayload model = new CompleteSelfServiceBrowserProfileManagementFlowPayload();
+public class SettingsRequestMethodTest {
+    private final SettingsRequestMethod model = new SettingsRequestMethod();
 
     /**
-     * Model tests for CompleteSelfServiceBrowserProfileManagementFlowPayload
+     * Model tests for SettingsRequestMethod
      */
     @Test
-    public void testCompleteSelfServiceBrowserProfileManagementFlowPayload() {
-        // TODO: test CompleteSelfServiceBrowserProfileManagementFlowPayload
+    public void testSettingsRequestMethod() {
+        // TODO: test SettingsRequestMethod
     }
 
     /**
-     * Test the property 'traits'
+     * Test the property 'config'
      */
     @Test
-    public void traitsTest() {
-        // TODO: test traits
+    public void configTest() {
+        // TODO: test config
+    }
+
+    /**
+     * Test the property 'method'
+     */
+    @Test
+    public void methodTest() {
+        // TODO: test method
     }
 
 }

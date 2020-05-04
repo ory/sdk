@@ -14,13 +14,13 @@
 package sh.ory.kratos.api;
 
 import sh.ory.kratos.ApiException;
-import sh.ory.kratos.model.CompleteSelfServiceBrowserProfileManagementFlowPayload;
+import sh.ory.kratos.model.CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload;
 import sh.ory.kratos.model.ErrorContainer;
 import sh.ory.kratos.model.GenericError;
 import sh.ory.kratos.model.LoginRequest;
-import sh.ory.kratos.model.ProfileManagementRequest;
 import sh.ory.kratos.model.RegistrationRequest;
 import sh.ory.kratos.model.Session;
+import sh.ory.kratos.model.SettingsRequest;
 import sh.ory.kratos.model.VerificationRequest;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -40,26 +40,41 @@ public class PublicApiTest {
 
     
     /**
-     * Complete the browser-based profile management flows
+     * Complete the browser-based settings flow for the password strategy
      *
-     * This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity&#39;s Traits JSON Schema, the data will be updated and the browser redirected to &#x60;url.profile_ui&#x60; for further steps.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
+     * This endpoint completes a browser-based settings flow. This is usually achieved by POSTing data to this endpoint.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos User Settings &amp; Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
      *
      * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void completeSelfServiceBrowserProfileManagementFlowTest() throws ApiException {
-        String request = null;
-        CompleteSelfServiceBrowserProfileManagementFlowPayload body = null;
-        api.completeSelfServiceBrowserProfileManagementFlow(request, body);
+    public void completeSelfServiceBrowserSettingsPasswordStrategyFlowTest() throws ApiException {
+        api.completeSelfServiceBrowserSettingsPasswordStrategyFlow();
 
         // TODO: test validations
     }
     
     /**
-     * Complete the browser-based profile management flows
+     * Complete the browser-based settings flow for profile data
      *
-     * This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity&#39;s Traits JSON Schema, the data will be updated and the browser redirected to &#x60;url.profile_ui&#x60; for further steps.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+     * This endpoint completes a browser-based settings flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity&#39;s Traits JSON Schema, the data will be updated and the browser redirected to &#x60;url.settings_ui&#x60; for further steps.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos User Settings &amp; Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void completeSelfServiceBrowserSettingsProfileStrategyFlowTest() throws ApiException {
+        String request = null;
+        CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload body = null;
+        api.completeSelfServiceBrowserSettingsProfileStrategyFlow(request, body);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Complete the browser-based verification flows
+     *
+     * This endpoint completes a browser-based verification flow. This is usually achieved by POSTing data to this endpoint.  If the provided data is valid against the Identity&#39;s Traits JSON Schema, the data will be updated and the browser redirected to &#x60;url.settings_ui&#x60; for further steps.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
      *
      * @throws ApiException
      *          if the Api call fails
@@ -69,6 +84,22 @@ public class PublicApiTest {
         String request = null;
         String via = null;
         api.completeSelfServiceBrowserVerificationFlow(request, via);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * Get a traits schema definition
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSchemaTest() throws ApiException {
+        String id = null;
+        Object response = api.getSchema(id);
 
         // TODO: test validations
     }
@@ -90,22 +121,6 @@ public class PublicApiTest {
     }
     
     /**
-     * Get the request context of browser-based profile management flows
-     *
-     * When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getSelfServiceBrowserProfileManagementRequestTest() throws ApiException {
-        String request = null;
-        ProfileManagementRequest response = api.getSelfServiceBrowserProfileManagementRequest(request);
-
-        // TODO: test validations
-    }
-    
-    /**
      * Get the request context of browser-based registration user flows
      *
      * This endpoint returns a registration request&#39;s context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
@@ -122,6 +137,22 @@ public class PublicApiTest {
     }
     
     /**
+     * Get the request context of browser-based settings flows
+     *
+     * When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos User Settings &amp; Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSelfServiceBrowserSettingsRequestTest() throws ApiException {
+        String request = null;
+        SettingsRequest response = api.getSelfServiceBrowserSettingsRequest(request);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Get user-facing self-service errors
      *
      * This endpoint returns the error associated with a user-facing self service errors.  When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
@@ -131,8 +162,8 @@ public class PublicApiTest {
      */
     @Test
     public void getSelfServiceErrorTest() throws ApiException {
-        String id = null;
-        ErrorContainer response = api.getSelfServiceError(id);
+        String error = null;
+        ErrorContainer response = api.getSelfServiceError(error);
 
         // TODO: test validations
     }
@@ -201,7 +232,7 @@ public class PublicApiTest {
     /**
      * Initialize browser-based verification flow
      *
-     * This endpoint initializes a browser-based profile management flow. Once initialized, the browser will be redirected to &#x60;urls.profile_ui&#x60; with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+     * This endpoint initializes a browser-based verification flow. Once initialized, the browser will be redirected to &#x60;urls.settings_ui&#x60; with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
      *
      * @throws ApiException
      *          if the Api call fails
@@ -215,16 +246,16 @@ public class PublicApiTest {
     }
     
     /**
-     * Initialize browser-based profile management flow
+     * Initialize browser-based settings flow
      *
-     * This endpoint initializes a browser-based profile management flow. Once initialized, the browser will be redirected to &#x60;urls.profile_ui&#x60; with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
+     * This endpoint initializes a browser-based settings flow. Once initialized, the browser will be redirected to &#x60;urls.settings_ui&#x60; with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos User Settings &amp; Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
      *
      * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void initializeSelfServiceProfileManagementFlowTest() throws ApiException {
-        api.initializeSelfServiceProfileManagementFlow();
+    public void initializeSelfServiceSettingsFlowTest() throws ApiException {
+        api.initializeSelfServiceSettingsFlow();
 
         // TODO: test validations
     }

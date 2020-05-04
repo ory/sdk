@@ -25,16 +25,43 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * CompleteSelfServiceBrowserProfileManagementFlowPayload
+ * CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-19T09:00:07.334813Z[GMT]")
-public class CompleteSelfServiceBrowserProfileManagementFlowPayload {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-04T14:27:47.887712Z[GMT]")
+public class CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload {
+  public static final String SERIALIZED_NAME_REQUEST_ID = "request_id";
+  @SerializedName(SERIALIZED_NAME_REQUEST_ID)
+  private String requestId;
+
   public static final String SERIALIZED_NAME_TRAITS = "traits";
   @SerializedName(SERIALIZED_NAME_TRAITS)
   private Object traits;
 
 
-  public CompleteSelfServiceBrowserProfileManagementFlowPayload traits(Object traits) {
+  public CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload requestId(String requestId) {
+    
+    this.requestId = requestId;
+    return this;
+  }
+
+   /**
+   * RequestID is request ID.  in: query
+   * @return requestId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "RequestID is request ID.  in: query")
+
+  public String getRequestId() {
+    return requestId;
+  }
+
+
+  public void setRequestId(String requestId) {
+    this.requestId = requestId;
+  }
+
+
+  public CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload traits(Object traits) {
     
     this.traits = traits;
     return this;
@@ -64,20 +91,22 @@ public class CompleteSelfServiceBrowserProfileManagementFlowPayload {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CompleteSelfServiceBrowserProfileManagementFlowPayload completeSelfServiceBrowserProfileManagementFlowPayload = (CompleteSelfServiceBrowserProfileManagementFlowPayload) o;
-    return Objects.equals(this.traits, completeSelfServiceBrowserProfileManagementFlowPayload.traits);
+    CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload completeSelfServiceBrowserSettingsStrategyProfileFlowPayload = (CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload) o;
+    return Objects.equals(this.requestId, completeSelfServiceBrowserSettingsStrategyProfileFlowPayload.requestId) &&
+        Objects.equals(this.traits, completeSelfServiceBrowserSettingsStrategyProfileFlowPayload.traits);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(traits);
+    return Objects.hash(requestId, traits);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CompleteSelfServiceBrowserProfileManagementFlowPayload {\n");
+    sb.append("class CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload {\n");
+    sb.append("    requestId: ").append(toIndentedString(requestId)).append("\n");
     sb.append("    traits: ").append(toIndentedString(traits)).append("\n");
     sb.append("}");
     return sb.toString();

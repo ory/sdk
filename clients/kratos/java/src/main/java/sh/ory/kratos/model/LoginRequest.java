@@ -32,7 +32,7 @@ import sh.ory.kratos.model.LoginRequestMethod;
 /**
  * LoginRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-19T09:00:07.334813Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-04T14:27:47.887712Z[GMT]")
 public class LoginRequest {
   public static final String SERIALIZED_NAME_ACTIVE = "active";
   @SerializedName(SERIALIZED_NAME_ACTIVE)
@@ -41,6 +41,10 @@ public class LoginRequest {
   public static final String SERIALIZED_NAME_EXPIRES_AT = "expires_at";
   @SerializedName(SERIALIZED_NAME_EXPIRES_AT)
   private OffsetDateTime expiresAt;
+
+  public static final String SERIALIZED_NAME_FORCED = "forced";
+  @SerializedName(SERIALIZED_NAME_FORCED)
+  private Boolean forced;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -101,6 +105,29 @@ public class LoginRequest {
 
   public void setExpiresAt(OffsetDateTime expiresAt) {
     this.expiresAt = expiresAt;
+  }
+
+
+  public LoginRequest forced(Boolean forced) {
+    
+    this.forced = forced;
+    return this;
+  }
+
+   /**
+   * Forced stores whether this login request should enforce reauthentication.
+   * @return forced
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Forced stores whether this login request should enforce reauthentication.")
+
+  public Boolean getForced() {
+    return forced;
+  }
+
+
+  public void setForced(Boolean forced) {
+    this.forced = forced;
   }
 
 
@@ -208,6 +235,7 @@ public class LoginRequest {
     LoginRequest loginRequest = (LoginRequest) o;
     return Objects.equals(this.active, loginRequest.active) &&
         Objects.equals(this.expiresAt, loginRequest.expiresAt) &&
+        Objects.equals(this.forced, loginRequest.forced) &&
         Objects.equals(this.id, loginRequest.id) &&
         Objects.equals(this.issuedAt, loginRequest.issuedAt) &&
         Objects.equals(this.methods, loginRequest.methods) &&
@@ -216,7 +244,7 @@ public class LoginRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(active, expiresAt, id, issuedAt, methods, requestUrl);
+    return Objects.hash(active, expiresAt, forced, id, issuedAt, methods, requestUrl);
   }
 
 
@@ -226,6 +254,7 @@ public class LoginRequest {
     sb.append("class LoginRequest {\n");
     sb.append("    active: ").append(toIndentedString(active)).append("\n");
     sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
+    sb.append("    forced: ").append(toIndentedString(forced)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    issuedAt: ").append(toIndentedString(issuedAt)).append("\n");
     sb.append("    methods: ").append(toIndentedString(methods)).append("\n");

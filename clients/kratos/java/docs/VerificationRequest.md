@@ -7,7 +7,7 @@ This request is used when an identity wants to verify an out-of-band communicati
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**expiresAt** | [**OffsetDateTime**](OffsetDateTime.md) | ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the profile, a new request has to be initiated. |  [optional]
+**expiresAt** | [**OffsetDateTime**](OffsetDateTime.md) | ExpiresAt is the time (UTC) when the request expires. If the user still wishes to verify the address, a new request has to be initiated. |  [optional]
 **form** | [**Form**](Form.md) |  |  [optional]
 **id** | **String** |  |  [optional]
 **issuedAt** | [**OffsetDateTime**](OffsetDateTime.md) | IssuedAt is the time (UTC) when the request occurred. |  [optional]

@@ -15,7 +15,7 @@ import { FormField } from './formField';
 
 export class LoginRequestMethodConfig {
     /**
-    * Action should be used as the form action URL (<form action=\"{{ .Action }}\" method=\"post\">).
+    * Action should be used as the form action URL `<form action=\"{{ .Action }}\" method=\"post\">`.
     */
     'action': string;
     /**

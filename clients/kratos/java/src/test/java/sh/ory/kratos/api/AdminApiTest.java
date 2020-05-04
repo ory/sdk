@@ -18,8 +18,8 @@ import sh.ory.kratos.model.ErrorContainer;
 import sh.ory.kratos.model.GenericError;
 import sh.ory.kratos.model.Identity;
 import sh.ory.kratos.model.LoginRequest;
-import sh.ory.kratos.model.ProfileManagementRequest;
 import sh.ory.kratos.model.RegistrationRequest;
+import sh.ory.kratos.model.SettingsRequest;
 import sh.ory.kratos.model.VerificationRequest;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -87,6 +87,22 @@ public class AdminApiTest {
     }
     
     /**
+     * 
+     *
+     * Get a traits schema definition
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSchemaTest() throws ApiException {
+        String id = null;
+        Object response = api.getSchema(id);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Get the request context of browser-based login user flows
      *
      * This endpoint returns a login request&#39;s context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
@@ -98,22 +114,6 @@ public class AdminApiTest {
     public void getSelfServiceBrowserLoginRequestTest() throws ApiException {
         String request = null;
         LoginRequest response = api.getSelfServiceBrowserLoginRequest(request);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Get the request context of browser-based profile management flows
-     *
-     * When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getSelfServiceBrowserProfileManagementRequestTest() throws ApiException {
-        String request = null;
-        ProfileManagementRequest response = api.getSelfServiceBrowserProfileManagementRequest(request);
 
         // TODO: test validations
     }
@@ -135,6 +135,22 @@ public class AdminApiTest {
     }
     
     /**
+     * Get the request context of browser-based settings flows
+     *
+     * When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos User Settings &amp; Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSelfServiceBrowserSettingsRequestTest() throws ApiException {
+        String request = null;
+        SettingsRequest response = api.getSelfServiceBrowserSettingsRequest(request);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Get user-facing self-service errors
      *
      * This endpoint returns the error associated with a user-facing self service errors.  When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
@@ -144,8 +160,8 @@ public class AdminApiTest {
      */
     @Test
     public void getSelfServiceErrorTest() throws ApiException {
-        String id = null;
-        ErrorContainer response = api.getSelfServiceError(id);
+        String error = null;
+        ErrorContainer response = api.getSelfServiceError(error);
 
         // TODO: test validations
     }

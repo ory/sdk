@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **id** | **String** |  | 
 **value** | **String** |  | 
 **verified** | **Boolean** |  | 
-**verifiedAt** | [**OffsetDateTime**](OffsetDateTime.md) |  | 
+**verifiedAt** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **via** | **String** |  | 
 
 

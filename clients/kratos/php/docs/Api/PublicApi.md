@@ -4,30 +4,83 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**completeSelfServiceBrowserProfileManagementFlow**](PublicApi.md#completeSelfServiceBrowserProfileManagementFlow) | **POST** /self-service/browser/flows/profile/update | Complete the browser-based profile management flows
-[**completeSelfServiceBrowserVerificationFlow**](PublicApi.md#completeSelfServiceBrowserVerificationFlow) | **POST** /self-service/browser/flows/verification/{via}/complete | Complete the browser-based profile management flows
+[**completeSelfServiceBrowserSettingsPasswordStrategyFlow**](PublicApi.md#completeSelfServiceBrowserSettingsPasswordStrategyFlow) | **POST** /self-service/browser/flows/settings/strategies/password | Complete the browser-based settings flow for the password strategy
+[**completeSelfServiceBrowserSettingsProfileStrategyFlow**](PublicApi.md#completeSelfServiceBrowserSettingsProfileStrategyFlow) | **POST** /self-service/browser/flows/settings/strategies/profile | Complete the browser-based settings flow for profile data
+[**completeSelfServiceBrowserVerificationFlow**](PublicApi.md#completeSelfServiceBrowserVerificationFlow) | **POST** /self-service/browser/flows/verification/{via}/complete | Complete the browser-based verification flows
+[**getSchema**](PublicApi.md#getSchema) | **GET** /schemas/{id} | 
 [**getSelfServiceBrowserLoginRequest**](PublicApi.md#getSelfServiceBrowserLoginRequest) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
-[**getSelfServiceBrowserProfileManagementRequest**](PublicApi.md#getSelfServiceBrowserProfileManagementRequest) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
 [**getSelfServiceBrowserRegistrationRequest**](PublicApi.md#getSelfServiceBrowserRegistrationRequest) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
+[**getSelfServiceBrowserSettingsRequest**](PublicApi.md#getSelfServiceBrowserSettingsRequest) | **GET** /self-service/browser/flows/requests/settings | Get the request context of browser-based settings flows
 [**getSelfServiceError**](PublicApi.md#getSelfServiceError) | **GET** /self-service/errors | Get user-facing self-service errors
 [**getSelfServiceVerificationRequest**](PublicApi.md#getSelfServiceVerificationRequest) | **GET** /self-service/browser/flows/requests/verification | Get the request context of browser-based verification flows
 [**initializeSelfServiceBrowserLoginFlow**](PublicApi.md#initializeSelfServiceBrowserLoginFlow) | **GET** /self-service/browser/flows/login | Initialize browser-based login user flow
 [**initializeSelfServiceBrowserLogoutFlow**](PublicApi.md#initializeSelfServiceBrowserLogoutFlow) | **GET** /self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
 [**initializeSelfServiceBrowserRegistrationFlow**](PublicApi.md#initializeSelfServiceBrowserRegistrationFlow) | **GET** /self-service/browser/flows/registration | Initialize browser-based registration user flow
 [**initializeSelfServiceBrowserVerificationFlow**](PublicApi.md#initializeSelfServiceBrowserVerificationFlow) | **GET** /self-service/browser/flows/verification/init/{via} | Initialize browser-based verification flow
-[**initializeSelfServiceProfileManagementFlow**](PublicApi.md#initializeSelfServiceProfileManagementFlow) | **GET** /self-service/browser/flows/profile | Initialize browser-based profile management flow
+[**initializeSelfServiceSettingsFlow**](PublicApi.md#initializeSelfServiceSettingsFlow) | **GET** /self-service/browser/flows/settings | Initialize browser-based settings flow
 [**selfServiceBrowserVerify**](PublicApi.md#selfServiceBrowserVerify) | **GET** /self-service/browser/flows/verification/{via}/confirm/{code} | Complete the browser-based verification flows
 [**whoami**](PublicApi.md#whoami) | **GET** /sessions/whoami | Check who the current HTTP session belongs to
 
 
 
-## completeSelfServiceBrowserProfileManagementFlow
+## completeSelfServiceBrowserSettingsPasswordStrategyFlow
 
-> completeSelfServiceBrowserProfileManagementFlow($request, $body)
+> completeSelfServiceBrowserSettingsPasswordStrategyFlow()
 
-Complete the browser-based profile management flows
+Complete the browser-based settings flow for the password strategy
 
-This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity's Traits JSON Schema, the data will be updated and the browser redirected to `url.profile_ui` for further steps.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
+This endpoint completes a browser-based settings flow. This is usually achieved by POSTing data to this endpoint.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$apiInstance = new Ory\Kratos\Client\Api\PublicApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $apiInstance->completeSelfServiceBrowserSettingsPasswordStrategyFlow();
+} catch (Exception $e) {
+    echo 'Exception when calling PublicApi->completeSelfServiceBrowserSettingsPasswordStrategyFlow: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
+## completeSelfServiceBrowserSettingsProfileStrategyFlow
+
+> completeSelfServiceBrowserSettingsProfileStrategyFlow($request, $body)
+
+Complete the browser-based settings flow for profile data
+
+This endpoint completes a browser-based settings flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity's Traits JSON Schema, the data will be updated and the browser redirected to `url.settings_ui` for further steps.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
 
 ### Example
 
@@ -42,12 +95,12 @@ $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
     new GuzzleHttp\Client()
 );
 $request = 'request_example'; // string | Request is the request ID.
-$body = new \Ory\Kratos\Client\Model\CompleteSelfServiceBrowserProfileManagementFlowPayload(); // \Ory\Kratos\Client\Model\CompleteSelfServiceBrowserProfileManagementFlowPayload | 
+$body = new \Ory\Kratos\Client\Model\CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload(); // \Ory\Kratos\Client\Model\CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload | 
 
 try {
-    $apiInstance->completeSelfServiceBrowserProfileManagementFlow($request, $body);
+    $apiInstance->completeSelfServiceBrowserSettingsProfileStrategyFlow($request, $body);
 } catch (Exception $e) {
-    echo 'Exception when calling PublicApi->completeSelfServiceBrowserProfileManagementFlow: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling PublicApi->completeSelfServiceBrowserSettingsProfileStrategyFlow: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -58,7 +111,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **request** | **string**| Request is the request ID. |
- **body** | [**\Ory\Kratos\Client\Model\CompleteSelfServiceBrowserProfileManagementFlowPayload**](../Model/CompleteSelfServiceBrowserProfileManagementFlowPayload.md)|  |
+ **body** | [**\Ory\Kratos\Client\Model\CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload**](../Model/CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload.md)|  |
 
 ### Return type
 
@@ -82,9 +135,9 @@ No authorization required
 
 > completeSelfServiceBrowserVerificationFlow($request, $via)
 
-Complete the browser-based profile management flows
+Complete the browser-based verification flows
 
-This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity's Traits JSON Schema, the data will be updated and the browser redirected to `url.profile_ui` for further steps.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint completes a browser-based verification flow. This is usually achieved by POSTing data to this endpoint.  If the provided data is valid against the Identity's Traits JSON Schema, the data will be updated and the browser redirected to `url.settings_ui` for further steps.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
 ### Example
 
@@ -120,6 +173,62 @@ Name | Type | Description  | Notes
 ### Return type
 
 void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
+## getSchema
+
+> object getSchema($id)
+
+
+
+Get a traits schema definition
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$apiInstance = new Ory\Kratos\Client\Api\PublicApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$id = 'id_example'; // string | ID must be set to the ID of schema you want to get
+
+try {
+    $result = $apiInstance->getSchema($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PublicApi->getSchema: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| ID must be set to the ID of schema you want to get |
+
+### Return type
+
+**object**
 
 ### Authorization
 
@@ -191,62 +300,6 @@ No authorization required
 [[Back to README]](../../README.md)
 
 
-## getSelfServiceBrowserProfileManagementRequest
-
-> \Ory\Kratos\Client\Model\ProfileManagementRequest getSelfServiceBrowserProfileManagementRequest($request)
-
-Get the request context of browser-based profile management flows
-
-When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-$apiInstance = new Ory\Kratos\Client\Api\PublicApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
-);
-$request = 'request_example'; // string | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
-
-try {
-    $result = $apiInstance->getSelfServiceBrowserProfileManagementRequest($request);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling PublicApi->getSelfServiceBrowserProfileManagementRequest: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **request** | **string**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). |
-
-### Return type
-
-[**\Ory\Kratos\Client\Model\ProfileManagementRequest**](../Model/ProfileManagementRequest.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
-[[Back to README]](../../README.md)
-
-
 ## getSelfServiceBrowserRegistrationRequest
 
 > \Ory\Kratos\Client\Model\RegistrationRequest getSelfServiceBrowserRegistrationRequest($request)
@@ -303,9 +356,65 @@ No authorization required
 [[Back to README]](../../README.md)
 
 
+## getSelfServiceBrowserSettingsRequest
+
+> \Ory\Kratos\Client\Model\SettingsRequest getSelfServiceBrowserSettingsRequest($request)
+
+Get the request context of browser-based settings flows
+
+When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$apiInstance = new Ory\Kratos\Client\Api\PublicApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$request = 'request_example'; // string | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
+
+try {
+    $result = $apiInstance->getSelfServiceBrowserSettingsRequest($request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PublicApi->getSelfServiceBrowserSettingsRequest: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | **string**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). |
+
+### Return type
+
+[**\Ory\Kratos\Client\Model\SettingsRequest**](../Model/SettingsRequest.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
 ## getSelfServiceError
 
-> \Ory\Kratos\Client\Model\ErrorContainer getSelfServiceError($id)
+> \Ory\Kratos\Client\Model\ErrorContainer getSelfServiceError($error)
 
 Get user-facing self-service errors
 
@@ -323,10 +432,10 @@ $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$id = 'id_example'; // string | 
+$error = 'error_example'; // string | 
 
 try {
-    $result = $apiInstance->getSelfServiceError($id);
+    $result = $apiInstance->getSelfServiceError($error);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->getSelfServiceError: ', $e->getMessage(), PHP_EOL;
@@ -339,7 +448,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string**|  | [optional]
+ **error** | **string**|  | [optional]
 
 ### Return type
 
@@ -574,7 +683,7 @@ No authorization required
 
 Initialize browser-based verification flow
 
-This endpoint initializes a browser-based profile management flow. Once initialized, the browser will be redirected to `urls.profile_ui` with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint initializes a browser-based verification flow. Once initialized, the browser will be redirected to `urls.settings_ui` with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
 ### Example
 
@@ -623,13 +732,13 @@ No authorization required
 [[Back to README]](../../README.md)
 
 
-## initializeSelfServiceProfileManagementFlow
+## initializeSelfServiceSettingsFlow
 
-> initializeSelfServiceProfileManagementFlow()
+> initializeSelfServiceSettingsFlow()
 
-Initialize browser-based profile management flow
+Initialize browser-based settings flow
 
-This endpoint initializes a browser-based profile management flow. Once initialized, the browser will be redirected to `urls.profile_ui` with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
+This endpoint initializes a browser-based settings flow. Once initialized, the browser will be redirected to `urls.settings_ui` with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
 
 ### Example
 
@@ -645,9 +754,9 @@ $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
 );
 
 try {
-    $apiInstance->initializeSelfServiceProfileManagementFlow();
+    $apiInstance->initializeSelfServiceSettingsFlow();
 } catch (Exception $e) {
-    echo 'Exception when calling PublicApi->initializeSelfServiceProfileManagementFlow: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling PublicApi->initializeSelfServiceSettingsFlow: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```

@@ -62,6 +62,14 @@ public class LoginRequestTest {
     }
 
     /**
+     * Test the property 'forced'
+     */
+    @Test
+    public void forcedTest() {
+        // TODO: test forced
+    }
+
+    /**
      * Test the property 'id'
      */
     @Test

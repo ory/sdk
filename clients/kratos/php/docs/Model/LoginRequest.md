@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active** | **string** | and so on. | [optional] 
 **expiresAt** | [**\DateTime**](\DateTime.md) | ExpiresAt is the time (UTC) when the request expires. If the user still wishes to log in, a new request has to be initiated. | 
+**forced** | **bool** | Forced stores whether this login request should enforce reauthentication. | [optional] 
 **id** | **string** |  | 
 **issuedAt** | [**\DateTime**](\DateTime.md) | IssuedAt is the time (UTC) when the request occurred. | 
 **methods** | [**map[string,\Ory\Kratos\Client\Model\LoginRequestMethod]**](LoginRequestMethod.md) | Methods contains context for all enabled login methods. If a login request has been processed, but for example the password is incorrect, this will contain error messages. | 

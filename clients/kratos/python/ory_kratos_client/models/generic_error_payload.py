@@ -35,7 +35,7 @@ class GenericErrorPayload(object):
     openapi_types = {
         'code': 'int',
         'debug': 'str',
-        'details': 'list[dict(str, object)]',
+        'details': 'dict(str, object)',
         'message': 'str',
         'reason': 'str',
         'request': 'str',
@@ -134,7 +134,7 @@ class GenericErrorPayload(object):
 
 
         :return: The details of this GenericErrorPayload.  # noqa: E501
-        :rtype: list[dict(str, object)]
+        :rtype: dict(str, object)
         """
         return self._details
 
@@ -144,7 +144,7 @@ class GenericErrorPayload(object):
 
 
         :param details: The details of this GenericErrorPayload.  # noqa: E501
-        :type: list[dict(str, object)]
+        :type: dict(str, object)
         """
 
         self._details = details

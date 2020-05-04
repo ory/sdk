@@ -50,8 +50,6 @@ func NewListIdentitiesOK() *ListIdentitiesOK {
 /*ListIdentitiesOK handles this case with default header values.
 
 A list of identities.
-
-nolint:deadcode,unused
 */
 type ListIdentitiesOK struct {
 	Payload []*models.Identity

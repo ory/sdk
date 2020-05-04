@@ -4,12 +4,59 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**get_schema**](CommonApi.md#get_schema) | **GET** /schemas/{id} | 
 [**get_self_service_browser_login_request**](CommonApi.md#get_self_service_browser_login_request) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
-[**get_self_service_browser_profile_management_request**](CommonApi.md#get_self_service_browser_profile_management_request) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
 [**get_self_service_browser_registration_request**](CommonApi.md#get_self_service_browser_registration_request) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
+[**get_self_service_browser_settings_request**](CommonApi.md#get_self_service_browser_settings_request) | **GET** /self-service/browser/flows/requests/settings | Get the request context of browser-based settings flows
 [**get_self_service_error**](CommonApi.md#get_self_service_error) | **GET** /self-service/errors | Get user-facing self-service errors
 [**get_self_service_verification_request**](CommonApi.md#get_self_service_verification_request) | **GET** /self-service/browser/flows/requests/verification | Get the request context of browser-based verification flows
 
+
+
+## get_schema
+
+> Object get_schema(id)
+
+
+
+Get a traits schema definition
+
+### Example
+
+```ruby
+# load the gem
+require 'ory-kratos-client'
+
+api_instance = OryHydraClient::CommonApi.new
+id = 'id_example' # String | ID must be set to the ID of schema you want to get
+
+begin
+  result = api_instance.get_schema(id)
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Exception when calling CommonApi->get_schema: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| ID must be set to the ID of schema you want to get | 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
 ## get_self_service_browser_login_request
@@ -48,53 +95,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**LoginRequest**](LoginRequest.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## get_self_service_browser_profile_management_request
-
-> ProfileManagementRequest get_self_service_browser_profile_management_request(request)
-
-Get the request context of browser-based profile management flows
-
-When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
-
-### Example
-
-```ruby
-# load the gem
-require 'ory-kratos-client'
-
-api_instance = OryHydraClient::CommonApi.new
-request = 'request_example' # String | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
-
-begin
-  #Get the request context of browser-based profile management flows
-  result = api_instance.get_self_service_browser_profile_management_request(request)
-  p result
-rescue OryHydraClient::ApiError => e
-  puts "Exception when calling CommonApi->get_self_service_browser_profile_management_request: #{e}"
-end
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **request** | **String**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). | 
-
-### Return type
-
-[**ProfileManagementRequest**](ProfileManagementRequest.md)
 
 ### Authorization
 
@@ -153,6 +153,53 @@ No authorization required
 - **Accept**: application/json
 
 
+## get_self_service_browser_settings_request
+
+> SettingsRequest get_self_service_browser_settings_request(request)
+
+Get the request context of browser-based settings flows
+
+When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
+
+### Example
+
+```ruby
+# load the gem
+require 'ory-kratos-client'
+
+api_instance = OryHydraClient::CommonApi.new
+request = 'request_example' # String | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
+
+begin
+  #Get the request context of browser-based settings flows
+  result = api_instance.get_self_service_browser_settings_request(request)
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Exception when calling CommonApi->get_self_service_browser_settings_request: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | **String**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). | 
+
+### Return type
+
+[**SettingsRequest**](SettingsRequest.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## get_self_service_error
 
 > ErrorContainer get_self_service_error(opts)
@@ -169,7 +216,7 @@ require 'ory-kratos-client'
 
 api_instance = OryHydraClient::CommonApi.new
 opts = {
-  id: 'id_example' # String | 
+  error: 'error_example' # String | 
 }
 
 begin
@@ -186,7 +233,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**|  | [optional] 
+ **error** | **String**|  | [optional] 
 
 ### Return type
 

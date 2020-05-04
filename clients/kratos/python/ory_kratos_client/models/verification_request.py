@@ -86,7 +86,7 @@ class VerificationRequest(object):
     def expires_at(self):
         """Gets the expires_at of this VerificationRequest.  # noqa: E501
 
-        ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the profile, a new request has to be initiated.  # noqa: E501
+        ExpiresAt is the time (UTC) when the request expires. If the user still wishes to verify the address, a new request has to be initiated.  # noqa: E501
 
         :return: The expires_at of this VerificationRequest.  # noqa: E501
         :rtype: datetime
@@ -97,7 +97,7 @@ class VerificationRequest(object):
     def expires_at(self, expires_at):
         """Sets the expires_at of this VerificationRequest.
 
-        ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the profile, a new request has to be initiated.  # noqa: E501
+        ExpiresAt is the time (UTC) when the request expires. If the user still wishes to verify the address, a new request has to be initiated.  # noqa: E501
 
         :param expires_at: The expires_at of this VerificationRequest.  # noqa: E501
         :type: datetime

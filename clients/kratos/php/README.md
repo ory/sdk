@@ -86,32 +86,36 @@ Class | Method | HTTP request | Description
 *AdminApi* | [**createIdentity**](docs/Api/AdminApi.md#createidentity) | **POST** /identities | Create an identity
 *AdminApi* | [**deleteIdentity**](docs/Api/AdminApi.md#deleteidentity) | **DELETE** /identities/{id} | Delete an identity
 *AdminApi* | [**getIdentity**](docs/Api/AdminApi.md#getidentity) | **GET** /identities/{id} | Get an identity
+*AdminApi* | [**getSchema**](docs/Api/AdminApi.md#getschema) | **GET** /schemas/{id} | 
 *AdminApi* | [**getSelfServiceBrowserLoginRequest**](docs/Api/AdminApi.md#getselfservicebrowserloginrequest) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
-*AdminApi* | [**getSelfServiceBrowserProfileManagementRequest**](docs/Api/AdminApi.md#getselfservicebrowserprofilemanagementrequest) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
 *AdminApi* | [**getSelfServiceBrowserRegistrationRequest**](docs/Api/AdminApi.md#getselfservicebrowserregistrationrequest) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
+*AdminApi* | [**getSelfServiceBrowserSettingsRequest**](docs/Api/AdminApi.md#getselfservicebrowsersettingsrequest) | **GET** /self-service/browser/flows/requests/settings | Get the request context of browser-based settings flows
 *AdminApi* | [**getSelfServiceError**](docs/Api/AdminApi.md#getselfserviceerror) | **GET** /self-service/errors | Get user-facing self-service errors
 *AdminApi* | [**getSelfServiceVerificationRequest**](docs/Api/AdminApi.md#getselfserviceverificationrequest) | **GET** /self-service/browser/flows/requests/verification | Get the request context of browser-based verification flows
 *AdminApi* | [**listIdentities**](docs/Api/AdminApi.md#listidentities) | **GET** /identities | List all identities in the system
 *AdminApi* | [**updateIdentity**](docs/Api/AdminApi.md#updateidentity) | **PUT** /identities/{id} | Update an identity
+*CommonApi* | [**getSchema**](docs/Api/CommonApi.md#getschema) | **GET** /schemas/{id} | 
 *CommonApi* | [**getSelfServiceBrowserLoginRequest**](docs/Api/CommonApi.md#getselfservicebrowserloginrequest) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
-*CommonApi* | [**getSelfServiceBrowserProfileManagementRequest**](docs/Api/CommonApi.md#getselfservicebrowserprofilemanagementrequest) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
 *CommonApi* | [**getSelfServiceBrowserRegistrationRequest**](docs/Api/CommonApi.md#getselfservicebrowserregistrationrequest) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
+*CommonApi* | [**getSelfServiceBrowserSettingsRequest**](docs/Api/CommonApi.md#getselfservicebrowsersettingsrequest) | **GET** /self-service/browser/flows/requests/settings | Get the request context of browser-based settings flows
 *CommonApi* | [**getSelfServiceError**](docs/Api/CommonApi.md#getselfserviceerror) | **GET** /self-service/errors | Get user-facing self-service errors
 *CommonApi* | [**getSelfServiceVerificationRequest**](docs/Api/CommonApi.md#getselfserviceverificationrequest) | **GET** /self-service/browser/flows/requests/verification | Get the request context of browser-based verification flows
 *HealthApi* | [**isInstanceAlive**](docs/Api/HealthApi.md#isinstancealive) | **GET** /health/alive | Check alive status
 *HealthApi* | [**isInstanceReady**](docs/Api/HealthApi.md#isinstanceready) | **GET** /health/ready | Check readiness status
-*PublicApi* | [**completeSelfServiceBrowserProfileManagementFlow**](docs/Api/PublicApi.md#completeselfservicebrowserprofilemanagementflow) | **POST** /self-service/browser/flows/profile/update | Complete the browser-based profile management flows
-*PublicApi* | [**completeSelfServiceBrowserVerificationFlow**](docs/Api/PublicApi.md#completeselfservicebrowserverificationflow) | **POST** /self-service/browser/flows/verification/{via}/complete | Complete the browser-based profile management flows
+*PublicApi* | [**completeSelfServiceBrowserSettingsPasswordStrategyFlow**](docs/Api/PublicApi.md#completeselfservicebrowsersettingspasswordstrategyflow) | **POST** /self-service/browser/flows/settings/strategies/password | Complete the browser-based settings flow for the password strategy
+*PublicApi* | [**completeSelfServiceBrowserSettingsProfileStrategyFlow**](docs/Api/PublicApi.md#completeselfservicebrowsersettingsprofilestrategyflow) | **POST** /self-service/browser/flows/settings/strategies/profile | Complete the browser-based settings flow for profile data
+*PublicApi* | [**completeSelfServiceBrowserVerificationFlow**](docs/Api/PublicApi.md#completeselfservicebrowserverificationflow) | **POST** /self-service/browser/flows/verification/{via}/complete | Complete the browser-based verification flows
+*PublicApi* | [**getSchema**](docs/Api/PublicApi.md#getschema) | **GET** /schemas/{id} | 
 *PublicApi* | [**getSelfServiceBrowserLoginRequest**](docs/Api/PublicApi.md#getselfservicebrowserloginrequest) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
-*PublicApi* | [**getSelfServiceBrowserProfileManagementRequest**](docs/Api/PublicApi.md#getselfservicebrowserprofilemanagementrequest) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
 *PublicApi* | [**getSelfServiceBrowserRegistrationRequest**](docs/Api/PublicApi.md#getselfservicebrowserregistrationrequest) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
+*PublicApi* | [**getSelfServiceBrowserSettingsRequest**](docs/Api/PublicApi.md#getselfservicebrowsersettingsrequest) | **GET** /self-service/browser/flows/requests/settings | Get the request context of browser-based settings flows
 *PublicApi* | [**getSelfServiceError**](docs/Api/PublicApi.md#getselfserviceerror) | **GET** /self-service/errors | Get user-facing self-service errors
 *PublicApi* | [**getSelfServiceVerificationRequest**](docs/Api/PublicApi.md#getselfserviceverificationrequest) | **GET** /self-service/browser/flows/requests/verification | Get the request context of browser-based verification flows
 *PublicApi* | [**initializeSelfServiceBrowserLoginFlow**](docs/Api/PublicApi.md#initializeselfservicebrowserloginflow) | **GET** /self-service/browser/flows/login | Initialize browser-based login user flow
 *PublicApi* | [**initializeSelfServiceBrowserLogoutFlow**](docs/Api/PublicApi.md#initializeselfservicebrowserlogoutflow) | **GET** /self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
 *PublicApi* | [**initializeSelfServiceBrowserRegistrationFlow**](docs/Api/PublicApi.md#initializeselfservicebrowserregistrationflow) | **GET** /self-service/browser/flows/registration | Initialize browser-based registration user flow
 *PublicApi* | [**initializeSelfServiceBrowserVerificationFlow**](docs/Api/PublicApi.md#initializeselfservicebrowserverificationflow) | **GET** /self-service/browser/flows/verification/init/{via} | Initialize browser-based verification flow
-*PublicApi* | [**initializeSelfServiceProfileManagementFlow**](docs/Api/PublicApi.md#initializeselfserviceprofilemanagementflow) | **GET** /self-service/browser/flows/profile | Initialize browser-based profile management flow
+*PublicApi* | [**initializeSelfServiceSettingsFlow**](docs/Api/PublicApi.md#initializeselfservicesettingsflow) | **GET** /self-service/browser/flows/settings | Initialize browser-based settings flow
 *PublicApi* | [**selfServiceBrowserVerify**](docs/Api/PublicApi.md#selfservicebrowserverify) | **GET** /self-service/browser/flows/verification/{via}/confirm/{code} | Complete the browser-based verification flows
 *PublicApi* | [**whoami**](docs/Api/PublicApi.md#whoami) | **GET** /sessions/whoami | Check who the current HTTP session belongs to
 *VersionApi* | [**getVersion**](docs/Api/VersionApi.md#getversion) | **GET** /version | Get service version
@@ -119,7 +123,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [CompleteSelfServiceBrowserProfileManagementFlowPayload](docs/Model/CompleteSelfServiceBrowserProfileManagementFlowPayload.md)
+ - [CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload](docs/Model/CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload.md)
  - [Error](docs/Model/Error.md)
  - [ErrorContainer](docs/Model/ErrorContainer.md)
  - [Form](docs/Model/Form.md)
@@ -132,11 +136,13 @@ Class | Method | HTTP request | Description
  - [LoginRequest](docs/Model/LoginRequest.md)
  - [LoginRequestMethod](docs/Model/LoginRequestMethod.md)
  - [LoginRequestMethodConfig](docs/Model/LoginRequestMethodConfig.md)
- - [ProfileManagementRequest](docs/Model/ProfileManagementRequest.md)
  - [RegistrationRequest](docs/Model/RegistrationRequest.md)
  - [RegistrationRequestMethod](docs/Model/RegistrationRequestMethod.md)
  - [RegistrationRequestMethodConfig](docs/Model/RegistrationRequestMethodConfig.md)
+ - [RequestMethodConfig](docs/Model/RequestMethodConfig.md)
  - [Session](docs/Model/Session.md)
+ - [SettingsRequest](docs/Model/SettingsRequest.md)
+ - [SettingsRequestMethod](docs/Model/SettingsRequestMethod.md)
  - [VerifiableAddress](docs/Model/VerifiableAddress.md)
  - [VerificationRequest](docs/Model/VerificationRequest.md)
  - [Version](docs/Model/Version.md)

@@ -35,6 +35,7 @@ class LoginRequest(object):
     openapi_types = {
         'active': 'str',
         'expires_at': 'datetime',
+        'forced': 'bool',
         'id': 'str',
         'issued_at': 'datetime',
         'methods': 'dict(str, LoginRequestMethod)',
@@ -44,13 +45,14 @@ class LoginRequest(object):
     attribute_map = {
         'active': 'active',
         'expires_at': 'expires_at',
+        'forced': 'forced',
         'id': 'id',
         'issued_at': 'issued_at',
         'methods': 'methods',
         'request_url': 'request_url'
     }
 
-    def __init__(self, active=None, expires_at=None, id=None, issued_at=None, methods=None, request_url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, active=None, expires_at=None, forced=None, id=None, issued_at=None, methods=None, request_url=None, local_vars_configuration=None):  # noqa: E501
         """LoginRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -58,6 +60,7 @@ class LoginRequest(object):
 
         self._active = None
         self._expires_at = None
+        self._forced = None
         self._id = None
         self._issued_at = None
         self._methods = None
@@ -67,6 +70,8 @@ class LoginRequest(object):
         if active is not None:
             self.active = active
         self.expires_at = expires_at
+        if forced is not None:
+            self.forced = forced
         self.id = id
         self.issued_at = issued_at
         self.methods = methods
@@ -119,6 +124,29 @@ class LoginRequest(object):
             raise ValueError("Invalid value for `expires_at`, must not be `None`")  # noqa: E501
 
         self._expires_at = expires_at
+
+    @property
+    def forced(self):
+        """Gets the forced of this LoginRequest.  # noqa: E501
+
+        Forced stores whether this login request should enforce reauthentication.  # noqa: E501
+
+        :return: The forced of this LoginRequest.  # noqa: E501
+        :rtype: bool
+        """
+        return self._forced
+
+    @forced.setter
+    def forced(self, forced):
+        """Sets the forced of this LoginRequest.
+
+        Forced stores whether this login request should enforce reauthentication.  # noqa: E501
+
+        :param forced: The forced of this LoginRequest.  # noqa: E501
+        :type: bool
+        """
+
+        self._forced = forced
 
     @property
     def id(self):

@@ -36,7 +36,6 @@ use \Ory\Kratos\Client\ObjectSerializer;
  * GenericErrorPayload Class Doc Comment
  *
  * @category Class
- * @description nolint:deadcode,unused
  * @package  Ory\Kratos\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -60,7 +59,7 @@ class GenericErrorPayload implements ModelInterface, ArrayAccess
     protected static $openAPITypes = [
         'code' => 'int',
         'debug' => 'string',
-        'details' => 'map[string,object][]',
+        'details' => 'map[string,object]',
         'message' => 'string',
         'reason' => 'string',
         'request' => 'string',
@@ -292,7 +291,7 @@ class GenericErrorPayload implements ModelInterface, ArrayAccess
     /**
      * Gets details
      *
-     * @return map[string,object][]|null
+     * @return map[string,object]|null
      */
     public function getDetails()
     {
@@ -302,7 +301,7 @@ class GenericErrorPayload implements ModelInterface, ArrayAccess
     /**
      * Sets details
      *
-     * @param map[string,object][]|null $details details
+     * @param map[string,object]|null $details details
      *
      * @return $this
      */

@@ -4,29 +4,89 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**completeSelfServiceBrowserProfileManagementFlow**](PublicApi.md#completeSelfServiceBrowserProfileManagementFlow) | **POST** /self-service/browser/flows/profile/update | Complete the browser-based profile management flows
-[**completeSelfServiceBrowserVerificationFlow**](PublicApi.md#completeSelfServiceBrowserVerificationFlow) | **POST** /self-service/browser/flows/verification/{via}/complete | Complete the browser-based profile management flows
+[**completeSelfServiceBrowserSettingsPasswordStrategyFlow**](PublicApi.md#completeSelfServiceBrowserSettingsPasswordStrategyFlow) | **POST** /self-service/browser/flows/settings/strategies/password | Complete the browser-based settings flow for the password strategy
+[**completeSelfServiceBrowserSettingsProfileStrategyFlow**](PublicApi.md#completeSelfServiceBrowserSettingsProfileStrategyFlow) | **POST** /self-service/browser/flows/settings/strategies/profile | Complete the browser-based settings flow for profile data
+[**completeSelfServiceBrowserVerificationFlow**](PublicApi.md#completeSelfServiceBrowserVerificationFlow) | **POST** /self-service/browser/flows/verification/{via}/complete | Complete the browser-based verification flows
+[**getSchema**](PublicApi.md#getSchema) | **GET** /schemas/{id} | 
 [**getSelfServiceBrowserLoginRequest**](PublicApi.md#getSelfServiceBrowserLoginRequest) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
-[**getSelfServiceBrowserProfileManagementRequest**](PublicApi.md#getSelfServiceBrowserProfileManagementRequest) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
 [**getSelfServiceBrowserRegistrationRequest**](PublicApi.md#getSelfServiceBrowserRegistrationRequest) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
+[**getSelfServiceBrowserSettingsRequest**](PublicApi.md#getSelfServiceBrowserSettingsRequest) | **GET** /self-service/browser/flows/requests/settings | Get the request context of browser-based settings flows
 [**getSelfServiceError**](PublicApi.md#getSelfServiceError) | **GET** /self-service/errors | Get user-facing self-service errors
 [**getSelfServiceVerificationRequest**](PublicApi.md#getSelfServiceVerificationRequest) | **GET** /self-service/browser/flows/requests/verification | Get the request context of browser-based verification flows
 [**initializeSelfServiceBrowserLoginFlow**](PublicApi.md#initializeSelfServiceBrowserLoginFlow) | **GET** /self-service/browser/flows/login | Initialize browser-based login user flow
 [**initializeSelfServiceBrowserLogoutFlow**](PublicApi.md#initializeSelfServiceBrowserLogoutFlow) | **GET** /self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
 [**initializeSelfServiceBrowserRegistrationFlow**](PublicApi.md#initializeSelfServiceBrowserRegistrationFlow) | **GET** /self-service/browser/flows/registration | Initialize browser-based registration user flow
 [**initializeSelfServiceBrowserVerificationFlow**](PublicApi.md#initializeSelfServiceBrowserVerificationFlow) | **GET** /self-service/browser/flows/verification/init/{via} | Initialize browser-based verification flow
-[**initializeSelfServiceProfileManagementFlow**](PublicApi.md#initializeSelfServiceProfileManagementFlow) | **GET** /self-service/browser/flows/profile | Initialize browser-based profile management flow
+[**initializeSelfServiceSettingsFlow**](PublicApi.md#initializeSelfServiceSettingsFlow) | **GET** /self-service/browser/flows/settings | Initialize browser-based settings flow
 [**selfServiceBrowserVerify**](PublicApi.md#selfServiceBrowserVerify) | **GET** /self-service/browser/flows/verification/{via}/confirm/{code} | Complete the browser-based verification flows
 [**whoami**](PublicApi.md#whoami) | **GET** /sessions/whoami | Check who the current HTTP session belongs to
 
 
-<a name="completeSelfServiceBrowserProfileManagementFlow"></a>
-# **completeSelfServiceBrowserProfileManagementFlow**
-> completeSelfServiceBrowserProfileManagementFlow(request, body)
+<a name="completeSelfServiceBrowserSettingsPasswordStrategyFlow"></a>
+# **completeSelfServiceBrowserSettingsPasswordStrategyFlow**
+> completeSelfServiceBrowserSettingsPasswordStrategyFlow()
 
-Complete the browser-based profile management flows
+Complete the browser-based settings flow for the password strategy
 
-This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity&#39;s Traits JSON Schema, the data will be updated and the browser redirected to &#x60;url.profile_ui&#x60; for further steps.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
+This endpoint completes a browser-based settings flow. This is usually achieved by POSTing data to this endpoint.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos User Settings &amp; Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.PublicApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    PublicApi apiInstance = new PublicApi(defaultClient);
+    try {
+      apiInstance.completeSelfServiceBrowserSettingsPasswordStrategyFlow();
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PublicApi#completeSelfServiceBrowserSettingsPasswordStrategyFlow");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**500** | genericError |  -  |
+
+<a name="completeSelfServiceBrowserSettingsProfileStrategyFlow"></a>
+# **completeSelfServiceBrowserSettingsProfileStrategyFlow**
+> completeSelfServiceBrowserSettingsProfileStrategyFlow(request, body)
+
+Complete the browser-based settings flow for profile data
+
+This endpoint completes a browser-based settings flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity&#39;s Traits JSON Schema, the data will be updated and the browser redirected to &#x60;url.settings_ui&#x60; for further steps.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos User Settings &amp; Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
 
 ### Example
 ```java
@@ -44,11 +104,11 @@ public class Example {
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     String request = "request_example"; // String | Request is the request ID.
-    CompleteSelfServiceBrowserProfileManagementFlowPayload body = new CompleteSelfServiceBrowserProfileManagementFlowPayload(); // CompleteSelfServiceBrowserProfileManagementFlowPayload | 
+    CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload body = new CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload(); // CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload | 
     try {
-      apiInstance.completeSelfServiceBrowserProfileManagementFlow(request, body);
+      apiInstance.completeSelfServiceBrowserSettingsProfileStrategyFlow(request, body);
     } catch (ApiException e) {
-      System.err.println("Exception when calling PublicApi#completeSelfServiceBrowserProfileManagementFlow");
+      System.err.println("Exception when calling PublicApi#completeSelfServiceBrowserSettingsProfileStrategyFlow");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -63,7 +123,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **request** | **String**| Request is the request ID. |
- **body** | [**CompleteSelfServiceBrowserProfileManagementFlowPayload**](CompleteSelfServiceBrowserProfileManagementFlowPayload.md)|  |
+ **body** | [**CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload**](CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload.md)|  |
 
 ### Return type
 
@@ -88,9 +148,9 @@ No authorization required
 # **completeSelfServiceBrowserVerificationFlow**
 > completeSelfServiceBrowserVerificationFlow(request, via)
 
-Complete the browser-based profile management flows
+Complete the browser-based verification flows
 
-This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity&#39;s Traits JSON Schema, the data will be updated and the browser redirected to &#x60;url.profile_ui&#x60; for further steps.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint completes a browser-based verification flow. This is usually achieved by POSTing data to this endpoint.  If the provided data is valid against the Identity&#39;s Traits JSON Schema, the data will be updated and the browser redirected to &#x60;url.settings_ui&#x60; for further steps.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
 ### Example
 ```java
@@ -146,6 +206,70 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**500** | genericError |  -  |
+
+<a name="getSchema"></a>
+# **getSchema**
+> Object getSchema(id)
+
+
+
+Get a traits schema definition
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.PublicApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    PublicApi apiInstance = new PublicApi(defaultClient);
+    String id = "id_example"; // String | ID must be set to the ID of schema you want to get
+    try {
+      Object result = apiInstance.getSchema(id);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PublicApi#getSchema");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| ID must be set to the ID of schema you want to get |
+
+### Return type
+
+**Object**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The raw identity traits schema |  -  |
+**404** | genericError |  -  |
 **500** | genericError |  -  |
 
 <a name="getSelfServiceBrowserLoginRequest"></a>
@@ -211,71 +335,7 @@ No authorization required
 **200** | loginRequest |  -  |
 **403** | genericError |  -  |
 **404** | genericError |  -  |
-**500** | genericError |  -  |
-
-<a name="getSelfServiceBrowserProfileManagementRequest"></a>
-# **getSelfServiceBrowserProfileManagementRequest**
-> ProfileManagementRequest getSelfServiceBrowserProfileManagementRequest(request)
-
-Get the request context of browser-based profile management flows
-
-When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
-
-### Example
-```java
-// Import classes:
-import sh.ory.kratos.ApiClient;
-import sh.ory.kratos.ApiException;
-import sh.ory.kratos.Configuration;
-import sh.ory.kratos.models.*;
-import sh.ory.kratos.api.PublicApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-
-    PublicApi apiInstance = new PublicApi(defaultClient);
-    String request = "request_example"; // String | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
-    try {
-      ProfileManagementRequest result = apiInstance.getSelfServiceBrowserProfileManagementRequest(request);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling PublicApi#getSelfServiceBrowserProfileManagementRequest");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **request** | **String**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). |
-
-### Return type
-
-[**ProfileManagementRequest**](ProfileManagementRequest.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | profileManagementRequest |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
+**410** | genericError |  -  |
 **500** | genericError |  -  |
 
 <a name="getSelfServiceBrowserRegistrationRequest"></a>
@@ -341,11 +401,78 @@ No authorization required
 **200** | registrationRequest |  -  |
 **403** | genericError |  -  |
 **404** | genericError |  -  |
+**410** | genericError |  -  |
+**500** | genericError |  -  |
+
+<a name="getSelfServiceBrowserSettingsRequest"></a>
+# **getSelfServiceBrowserSettingsRequest**
+> SettingsRequest getSelfServiceBrowserSettingsRequest(request)
+
+Get the request context of browser-based settings flows
+
+When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos User Settings &amp; Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.PublicApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    PublicApi apiInstance = new PublicApi(defaultClient);
+    String request = "request_example"; // String | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
+    try {
+      SettingsRequest result = apiInstance.getSelfServiceBrowserSettingsRequest(request);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PublicApi#getSelfServiceBrowserSettingsRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | **String**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). |
+
+### Return type
+
+[**SettingsRequest**](SettingsRequest.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | settingsRequest |  -  |
+**403** | genericError |  -  |
+**404** | genericError |  -  |
+**410** | genericError |  -  |
 **500** | genericError |  -  |
 
 <a name="getSelfServiceError"></a>
 # **getSelfServiceError**
-> ErrorContainer getSelfServiceError(id)
+> ErrorContainer getSelfServiceError(error)
 
 Get user-facing self-service errors
 
@@ -366,9 +493,9 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
-    String id = "id_example"; // String | 
+    String error = "error_example"; // String | 
     try {
-      ErrorContainer result = apiInstance.getSelfServiceError(id);
+      ErrorContainer result = apiInstance.getSelfServiceError(error);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PublicApi#getSelfServiceError");
@@ -385,7 +512,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**|  | [optional]
+ **error** | **String**|  | [optional]
 
 ### Return type
 
@@ -653,7 +780,7 @@ No authorization required
 
 Initialize browser-based verification flow
 
-This endpoint initializes a browser-based profile management flow. Once initialized, the browser will be redirected to &#x60;urls.profile_ui&#x60; with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint initializes a browser-based verification flow. Once initialized, the browser will be redirected to &#x60;urls.settings_ui&#x60; with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
 ### Example
 ```java
@@ -709,13 +836,13 @@ No authorization required
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 **500** | genericError |  -  |
 
-<a name="initializeSelfServiceProfileManagementFlow"></a>
-# **initializeSelfServiceProfileManagementFlow**
-> initializeSelfServiceProfileManagementFlow()
+<a name="initializeSelfServiceSettingsFlow"></a>
+# **initializeSelfServiceSettingsFlow**
+> initializeSelfServiceSettingsFlow()
 
-Initialize browser-based profile management flow
+Initialize browser-based settings flow
 
-This endpoint initializes a browser-based profile management flow. Once initialized, the browser will be redirected to &#x60;urls.profile_ui&#x60; with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
+This endpoint initializes a browser-based settings flow. Once initialized, the browser will be redirected to &#x60;urls.settings_ui&#x60; with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos User Settings &amp; Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
 
 ### Example
 ```java
@@ -733,9 +860,9 @@ public class Example {
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     try {
-      apiInstance.initializeSelfServiceProfileManagementFlow();
+      apiInstance.initializeSelfServiceSettingsFlow();
     } catch (ApiException e) {
-      System.err.println("Exception when calling PublicApi#initializeSelfServiceProfileManagementFlow");
+      System.err.println("Exception when calling PublicApi#initializeSelfServiceSettingsFlow");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());

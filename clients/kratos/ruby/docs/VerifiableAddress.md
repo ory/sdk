@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **id** | **String** |  | 
 **value** | **String** |  | 
 **verified** | **Boolean** |  | 
-**verified_at** | **DateTime** |  | 
+**verified_at** | **DateTime** |  | [optional] 
 **via** | **String** |  | 
 
 ## Code Sample

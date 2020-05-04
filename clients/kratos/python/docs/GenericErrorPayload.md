@@ -1,12 +1,11 @@
 # GenericErrorPayload
 
-nolint:deadcode,unused
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **int** | Code represents the error status code (404, 403, 401, ...). | [optional] 
 **debug** | **str** | Debug contains debug information. This is usually not available and has to be enabled. | [optional] 
-**details** | **list[dict(str, object)]** |  | [optional] 
+**details** | **dict(str, object)** |  | [optional] 
 **message** | **str** |  | [optional] 
 **reason** | **str** |  | [optional] 
 **request** | **str** |  | [optional] 

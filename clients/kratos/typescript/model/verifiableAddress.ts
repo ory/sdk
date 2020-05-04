@@ -17,7 +17,7 @@ export class VerifiableAddress {
     'id': string;
     'value': string;
     'verified': boolean;
-    'verifiedAt': Date;
+    'verifiedAt'?: Date;
     'via': string;
 
     static discriminator: string | undefined = undefined;

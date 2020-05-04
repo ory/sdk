@@ -59,6 +59,7 @@ class LoginRequest implements ModelInterface, ArrayAccess
     protected static $openAPITypes = [
         'active' => 'string',
         'expiresAt' => '\DateTime',
+        'forced' => 'bool',
         'id' => 'string',
         'issuedAt' => '\DateTime',
         'methods' => 'map[string,\Ory\Kratos\Client\Model\LoginRequestMethod]',
@@ -73,6 +74,7 @@ class LoginRequest implements ModelInterface, ArrayAccess
     protected static $openAPIFormats = [
         'active' => null,
         'expiresAt' => 'date-time',
+        'forced' => null,
         'id' => 'uuid4',
         'issuedAt' => 'date-time',
         'methods' => null,
@@ -108,6 +110,7 @@ class LoginRequest implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'active' => 'active',
         'expiresAt' => 'expires_at',
+        'forced' => 'forced',
         'id' => 'id',
         'issuedAt' => 'issued_at',
         'methods' => 'methods',
@@ -122,6 +125,7 @@ class LoginRequest implements ModelInterface, ArrayAccess
     protected static $setters = [
         'active' => 'setActive',
         'expiresAt' => 'setExpiresAt',
+        'forced' => 'setForced',
         'id' => 'setId',
         'issuedAt' => 'setIssuedAt',
         'methods' => 'setMethods',
@@ -136,6 +140,7 @@ class LoginRequest implements ModelInterface, ArrayAccess
     protected static $getters = [
         'active' => 'getActive',
         'expiresAt' => 'getExpiresAt',
+        'forced' => 'getForced',
         'id' => 'getId',
         'issuedAt' => 'getIssuedAt',
         'methods' => 'getMethods',
@@ -204,6 +209,7 @@ class LoginRequest implements ModelInterface, ArrayAccess
     {
         $this->container['active'] = isset($data['active']) ? $data['active'] : null;
         $this->container['expiresAt'] = isset($data['expiresAt']) ? $data['expiresAt'] : null;
+        $this->container['forced'] = isset($data['forced']) ? $data['forced'] : null;
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['issuedAt'] = isset($data['issuedAt']) ? $data['issuedAt'] : null;
         $this->container['methods'] = isset($data['methods']) ? $data['methods'] : null;
@@ -293,6 +299,30 @@ class LoginRequest implements ModelInterface, ArrayAccess
     public function setExpiresAt($expiresAt)
     {
         $this->container['expiresAt'] = $expiresAt;
+
+        return $this;
+    }
+
+    /**
+     * Gets forced
+     *
+     * @return bool|null
+     */
+    public function getForced()
+    {
+        return $this->container['forced'];
+    }
+
+    /**
+     * Sets forced
+     *
+     * @param bool|null $forced Forced stores whether this login request should enforce reauthentication.
+     *
+     * @return $this
+     */
+    public function setForced($forced)
+    {
+        $this->container['forced'] = $forced;
 
         return $this;
     }

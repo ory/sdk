@@ -21,26 +21,37 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.threeten.bp.OffsetDateTime;
-import sh.ory.kratos.model.Form;
 import sh.ory.kratos.model.Identity;
+import sh.ory.kratos.model.SettingsRequestMethod;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for ProfileManagementRequest
+ * Model tests for SettingsRequest
  */
-public class ProfileManagementRequestTest {
-    private final ProfileManagementRequest model = new ProfileManagementRequest();
+public class SettingsRequestTest {
+    private final SettingsRequest model = new SettingsRequest();
 
     /**
-     * Model tests for ProfileManagementRequest
+     * Model tests for SettingsRequest
      */
     @Test
-    public void testProfileManagementRequest() {
-        // TODO: test ProfileManagementRequest
+    public void testSettingsRequest() {
+        // TODO: test SettingsRequest
+    }
+
+    /**
+     * Test the property 'active'
+     */
+    @Test
+    public void activeTest() {
+        // TODO: test active
     }
 
     /**
@@ -49,14 +60,6 @@ public class ProfileManagementRequestTest {
     @Test
     public void expiresAtTest() {
         // TODO: test expiresAt
-    }
-
-    /**
-     * Test the property 'form'
-     */
-    @Test
-    public void formTest() {
-        // TODO: test form
     }
 
     /**
@@ -81,6 +84,14 @@ public class ProfileManagementRequestTest {
     @Test
     public void issuedAtTest() {
         // TODO: test issuedAt
+    }
+
+    /**
+     * Test the property 'methods'
+     */
+    @Test
+    public void methodsTest() {
+        // TODO: test methods
     }
 
     /**

@@ -15,25 +15,25 @@ require 'date'
 module OryHydraClient
   # Field represents a HTML Form Field
   class FormField
-    # Disabled is the equivalent of <input disabled=\"{{.Disabled}}\">
+    # Disabled is the equivalent of `<input disabled=\"{{.Disabled}}\">`
     attr_accessor :disabled
 
     # Errors contains all validation errors this particular field has caused.
     attr_accessor :errors
 
-    # Name is the equivalent of <input name=\"{{.Name}}\">
+    # Name is the equivalent of `<input name=\"{{.Name}}\">`
     attr_accessor :name
 
-    # Pattern is the equivalent of <input pattern=\"{{.Pattern}}\">
+    # Pattern is the equivalent of `<input pattern=\"{{.Pattern}}\">`
     attr_accessor :pattern
 
-    # Required is the equivalent of <input required=\"{{.Required}}\">
+    # Required is the equivalent of `<input required=\"{{.Required}}\">`
     attr_accessor :required
 
-    # Type is the equivalent of <input type=\"{{.Type}}\">
+    # Type is the equivalent of `<input type=\"{{.Type}}\">`
     attr_accessor :type
 
-    # Value is the equivalent of <input value=\"{{.Value}}\">
+    # Value is the equivalent of `<input value=\"{{.Value}}\">`
     attr_accessor :value
 
     # Attribute mapping from ruby-style variable name to JSON key.

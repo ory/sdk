@@ -116,10 +116,6 @@ module OryHydraClient
         invalid_properties.push('invalid value for "verified", verified cannot be nil.')
       end
 
-      if @verified_at.nil?
-        invalid_properties.push('invalid value for "verified_at", verified_at cannot be nil.')
-      end
-
       if @via.nil?
         invalid_properties.push('invalid value for "via", via cannot be nil.')
       end
@@ -134,7 +130,6 @@ module OryHydraClient
       return false if @id.nil?
       return false if @value.nil?
       return false if @verified.nil?
-      return false if @verified_at.nil?
       return false if @via.nil?
       true
     end

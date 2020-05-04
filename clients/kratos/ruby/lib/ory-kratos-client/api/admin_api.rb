@@ -207,6 +207,66 @@ module OryHydraClient
       return data, status_code, headers
     end
 
+    # Get a traits schema definition
+    # @param id [String] ID must be set to the ID of schema you want to get
+    # @param [Hash] opts the optional parameters
+    # @return [Object]
+    def get_schema(id, opts = {})
+      data, _status_code, _headers = get_schema_with_http_info(id, opts)
+      data
+    end
+
+    # Get a traits schema definition
+    # @param id [String] ID must be set to the ID of schema you want to get
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Object, Integer, Hash)>] Object data, response status code and response headers
+    def get_schema_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: AdminApi.get_schema ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling AdminApi.get_schema"
+      end
+      # resource path
+      local_var_path = '/schemas/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body] 
+
+      # return_type
+      return_type = opts[:return_type] || 'Object' 
+
+      # auth_names
+      auth_names = opts[:auth_names] || []
+
+      new_options = opts.merge(
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: AdminApi#get_schema\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Get the request context of browser-based login user flows
     # This endpoint returns a login request's context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
     # @param request [String] Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;).
@@ -266,69 +326,6 @@ module OryHydraClient
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: AdminApi#get_self_service_browser_login_request\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # Get the request context of browser-based profile management flows
-    # When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
-    # @param request [String] Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;).
-    # @param [Hash] opts the optional parameters
-    # @return [ProfileManagementRequest]
-    def get_self_service_browser_profile_management_request(request, opts = {})
-      data, _status_code, _headers = get_self_service_browser_profile_management_request_with_http_info(request, opts)
-      data
-    end
-
-    # Get the request context of browser-based profile management flows
-    # When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
-    # @param request [String] Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;).
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(ProfileManagementRequest, Integer, Hash)>] ProfileManagementRequest data, response status code and response headers
-    def get_self_service_browser_profile_management_request_with_http_info(request, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: AdminApi.get_self_service_browser_profile_management_request ...'
-      end
-      # verify the required parameter 'request' is set
-      if @api_client.config.client_side_validation && request.nil?
-        fail ArgumentError, "Missing the required parameter 'request' when calling AdminApi.get_self_service_browser_profile_management_request"
-      end
-      # resource path
-      local_var_path = '/self-service/browser/flows/requests/profile'
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-      query_params[:'request'] = request
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:body] 
-
-      # return_type
-      return_type = opts[:return_type] || 'ProfileManagementRequest' 
-
-      # auth_names
-      auth_names = opts[:auth_names] || []
-
-      new_options = opts.merge(
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
-
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: AdminApi#get_self_service_browser_profile_management_request\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -396,10 +393,73 @@ module OryHydraClient
       return data, status_code, headers
     end
 
+    # Get the request context of browser-based settings flows
+    # When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
+    # @param request [String] Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;).
+    # @param [Hash] opts the optional parameters
+    # @return [SettingsRequest]
+    def get_self_service_browser_settings_request(request, opts = {})
+      data, _status_code, _headers = get_self_service_browser_settings_request_with_http_info(request, opts)
+      data
+    end
+
+    # Get the request context of browser-based settings flows
+    # When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos User Settings &amp; Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
+    # @param request [String] Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;).
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(SettingsRequest, Integer, Hash)>] SettingsRequest data, response status code and response headers
+    def get_self_service_browser_settings_request_with_http_info(request, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: AdminApi.get_self_service_browser_settings_request ...'
+      end
+      # verify the required parameter 'request' is set
+      if @api_client.config.client_side_validation && request.nil?
+        fail ArgumentError, "Missing the required parameter 'request' when calling AdminApi.get_self_service_browser_settings_request"
+      end
+      # resource path
+      local_var_path = '/self-service/browser/flows/requests/settings'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'request'] = request
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body] 
+
+      # return_type
+      return_type = opts[:return_type] || 'SettingsRequest' 
+
+      # auth_names
+      auth_names = opts[:auth_names] || []
+
+      new_options = opts.merge(
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: AdminApi#get_self_service_browser_settings_request\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Get user-facing self-service errors
     # This endpoint returns the error associated with a user-facing self service errors.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :id 
+    # @option opts [String] :error 
     # @return [ErrorContainer]
     def get_self_service_error(opts = {})
       data, _status_code, _headers = get_self_service_error_with_http_info(opts)
@@ -409,7 +469,7 @@ module OryHydraClient
     # Get user-facing self-service errors
     # This endpoint returns the error associated with a user-facing self service errors.  When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :id 
+    # @option opts [String] :error 
     # @return [Array<(ErrorContainer, Integer, Hash)>] ErrorContainer data, response status code and response headers
     def get_self_service_error_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -420,7 +480,7 @@ module OryHydraClient
 
       # query parameters
       query_params = opts[:query_params] || {}
-      query_params[:'id'] = opts[:'id'] if !opts[:'id'].nil?
+      query_params[:'error'] = opts[:'error'] if !opts[:'error'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}

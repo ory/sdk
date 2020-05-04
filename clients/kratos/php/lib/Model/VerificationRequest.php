@@ -254,7 +254,7 @@ class VerificationRequest implements ModelInterface, ArrayAccess
     /**
      * Sets expiresAt
      *
-     * @param \DateTime|null $expiresAt ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the profile, a new request has to be initiated.
+     * @param \DateTime|null $expiresAt ExpiresAt is the time (UTC) when the request expires. If the user still wishes to verify the address, a new request has to be initiated.
      *
      * @return $this
      */

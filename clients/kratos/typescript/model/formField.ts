@@ -17,7 +17,7 @@ import { RequestFile } from '../api';
 */
 export class FormField {
     /**
-    * Disabled is the equivalent of <input disabled=\"{{.Disabled}}\">
+    * Disabled is the equivalent of `<input disabled=\"{{.Disabled}}\">`
     */
     'disabled'?: boolean;
     /**
@@ -25,23 +25,23 @@ export class FormField {
     */
     'errors'?: Array<Error>;
     /**
-    * Name is the equivalent of <input name=\"{{.Name}}\">
+    * Name is the equivalent of `<input name=\"{{.Name}}\">`
     */
     'name': string;
     /**
-    * Pattern is the equivalent of <input pattern=\"{{.Pattern}}\">
+    * Pattern is the equivalent of `<input pattern=\"{{.Pattern}}\">`
     */
     'pattern'?: string;
     /**
-    * Required is the equivalent of <input required=\"{{.Required}}\">
+    * Required is the equivalent of `<input required=\"{{.Required}}\">`
     */
     'required': boolean;
     /**
-    * Type is the equivalent of <input type=\"{{.Type}}\">
+    * Type is the equivalent of `<input type=\"{{.Type}}\">`
     */
     'type': string;
     /**
-    * Value is the equivalent of <input value=\"{{.Value}}\">
+    * Value is the equivalent of `<input value=\"{{.Value}}\">`
     */
     'value'?: object;
 

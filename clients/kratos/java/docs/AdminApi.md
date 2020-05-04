@@ -7,9 +7,10 @@ Method | HTTP request | Description
 [**createIdentity**](AdminApi.md#createIdentity) | **POST** /identities | Create an identity
 [**deleteIdentity**](AdminApi.md#deleteIdentity) | **DELETE** /identities/{id} | Delete an identity
 [**getIdentity**](AdminApi.md#getIdentity) | **GET** /identities/{id} | Get an identity
+[**getSchema**](AdminApi.md#getSchema) | **GET** /schemas/{id} | 
 [**getSelfServiceBrowserLoginRequest**](AdminApi.md#getSelfServiceBrowserLoginRequest) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
-[**getSelfServiceBrowserProfileManagementRequest**](AdminApi.md#getSelfServiceBrowserProfileManagementRequest) | **GET** /self-service/browser/flows/requests/profile | Get the request context of browser-based profile management flows
 [**getSelfServiceBrowserRegistrationRequest**](AdminApi.md#getSelfServiceBrowserRegistrationRequest) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
+[**getSelfServiceBrowserSettingsRequest**](AdminApi.md#getSelfServiceBrowserSettingsRequest) | **GET** /self-service/browser/flows/requests/settings | Get the request context of browser-based settings flows
 [**getSelfServiceError**](AdminApi.md#getSelfServiceError) | **GET** /self-service/errors | Get user-facing self-service errors
 [**getSelfServiceVerificationRequest**](AdminApi.md#getSelfServiceVerificationRequest) | **GET** /self-service/browser/flows/requests/verification | Get the request context of browser-based verification flows
 [**listIdentities**](AdminApi.md#listIdentities) | **GET** /identities | List all identities in the system
@@ -76,7 +77,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | A single identity.  nolint:deadcode,unused |  -  |
+**201** | A single identity. |  -  |
 **400** | genericError |  -  |
 **500** | genericError |  -  |
 
@@ -203,8 +204,72 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A single identity.  nolint:deadcode,unused |  -  |
+**200** | A single identity. |  -  |
 **400** | genericError |  -  |
+**500** | genericError |  -  |
+
+<a name="getSchema"></a>
+# **getSchema**
+> Object getSchema(id)
+
+
+
+Get a traits schema definition
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.AdminApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    AdminApi apiInstance = new AdminApi(defaultClient);
+    String id = "id_example"; // String | ID must be set to the ID of schema you want to get
+    try {
+      Object result = apiInstance.getSchema(id);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AdminApi#getSchema");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| ID must be set to the ID of schema you want to get |
+
+### Return type
+
+**Object**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The raw identity traits schema |  -  |
+**404** | genericError |  -  |
 **500** | genericError |  -  |
 
 <a name="getSelfServiceBrowserLoginRequest"></a>
@@ -270,71 +335,7 @@ No authorization required
 **200** | loginRequest |  -  |
 **403** | genericError |  -  |
 **404** | genericError |  -  |
-**500** | genericError |  -  |
-
-<a name="getSelfServiceBrowserProfileManagementRequest"></a>
-# **getSelfServiceBrowserProfileManagementRequest**
-> ProfileManagementRequest getSelfServiceBrowserProfileManagementRequest(request)
-
-Get the request context of browser-based profile management flows
-
-When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
-
-### Example
-```java
-// Import classes:
-import sh.ory.kratos.ApiClient;
-import sh.ory.kratos.ApiException;
-import sh.ory.kratos.Configuration;
-import sh.ory.kratos.models.*;
-import sh.ory.kratos.api.AdminApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-
-    AdminApi apiInstance = new AdminApi(defaultClient);
-    String request = "request_example"; // String | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
-    try {
-      ProfileManagementRequest result = apiInstance.getSelfServiceBrowserProfileManagementRequest(request);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling AdminApi#getSelfServiceBrowserProfileManagementRequest");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **request** | **String**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). |
-
-### Return type
-
-[**ProfileManagementRequest**](ProfileManagementRequest.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | profileManagementRequest |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
+**410** | genericError |  -  |
 **500** | genericError |  -  |
 
 <a name="getSelfServiceBrowserRegistrationRequest"></a>
@@ -400,11 +401,78 @@ No authorization required
 **200** | registrationRequest |  -  |
 **403** | genericError |  -  |
 **404** | genericError |  -  |
+**410** | genericError |  -  |
+**500** | genericError |  -  |
+
+<a name="getSelfServiceBrowserSettingsRequest"></a>
+# **getSelfServiceBrowserSettingsRequest**
+> SettingsRequest getSelfServiceBrowserSettingsRequest(request)
+
+Get the request context of browser-based settings flows
+
+When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos User Settings &amp; Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.AdminApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    AdminApi apiInstance = new AdminApi(defaultClient);
+    String request = "request_example"; // String | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
+    try {
+      SettingsRequest result = apiInstance.getSelfServiceBrowserSettingsRequest(request);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AdminApi#getSelfServiceBrowserSettingsRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | **String**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). |
+
+### Return type
+
+[**SettingsRequest**](SettingsRequest.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | settingsRequest |  -  |
+**403** | genericError |  -  |
+**404** | genericError |  -  |
+**410** | genericError |  -  |
 **500** | genericError |  -  |
 
 <a name="getSelfServiceError"></a>
 # **getSelfServiceError**
-> ErrorContainer getSelfServiceError(id)
+> ErrorContainer getSelfServiceError(error)
 
 Get user-facing self-service errors
 
@@ -425,9 +493,9 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
-    String id = "id_example"; // String | 
+    String error = "error_example"; // String | 
     try {
-      ErrorContainer result = apiInstance.getSelfServiceError(id);
+      ErrorContainer result = apiInstance.getSelfServiceError(error);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#getSelfServiceError");
@@ -444,7 +512,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**|  | [optional]
+ **error** | **String**|  | [optional]
 
 ### Return type
 
@@ -588,7 +656,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A list of identities.  nolint:deadcode,unused |  -  |
+**200** | A list of identities. |  -  |
 **500** | genericError |  -  |
 
 <a name="updateIdentity"></a>
@@ -653,7 +721,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A single identity.  nolint:deadcode,unused |  -  |
+**200** | A single identity. |  -  |
 **400** | genericError |  -  |
 **404** | genericError |  -  |
 **500** | genericError |  -  |

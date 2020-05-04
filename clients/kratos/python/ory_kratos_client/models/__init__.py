@@ -14,7 +14,7 @@
 from __future__ import absolute_import
 
 # import models into model package
-from ory_kratos_client.models.complete_self_service_browser_profile_management_flow_payload import CompleteSelfServiceBrowserProfileManagementFlowPayload
+from ory_kratos_client.models.complete_self_service_browser_settings_strategy_profile_flow_payload import CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload
 from ory_kratos_client.models.error import Error
 from ory_kratos_client.models.error_container import ErrorContainer
 from ory_kratos_client.models.form import Form
@@ -27,11 +27,13 @@ from ory_kratos_client.models.identity import Identity
 from ory_kratos_client.models.login_request import LoginRequest
 from ory_kratos_client.models.login_request_method import LoginRequestMethod
 from ory_kratos_client.models.login_request_method_config import LoginRequestMethodConfig
-from ory_kratos_client.models.profile_management_request import ProfileManagementRequest
 from ory_kratos_client.models.registration_request import RegistrationRequest
 from ory_kratos_client.models.registration_request_method import RegistrationRequestMethod
 from ory_kratos_client.models.registration_request_method_config import RegistrationRequestMethodConfig
+from ory_kratos_client.models.request_method_config import RequestMethodConfig
 from ory_kratos_client.models.session import Session
+from ory_kratos_client.models.settings_request import SettingsRequest
+from ory_kratos_client.models.settings_request_method import SettingsRequestMethod
 from ory_kratos_client.models.verifiable_address import VerifiableAddress
 from ory_kratos_client.models.verification_request import VerificationRequest
 from ory_kratos_client.models.version import Version

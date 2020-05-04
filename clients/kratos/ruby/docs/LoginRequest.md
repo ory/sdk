@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active** | **String** | and so on. | [optional] 
 **expires_at** | **DateTime** | ExpiresAt is the time (UTC) when the request expires. If the user still wishes to log in, a new request has to be initiated. | 
+**forced** | **Boolean** | Forced stores whether this login request should enforce reauthentication. | [optional] 
 **id** | **String** |  | 
 **issued_at** | **DateTime** | IssuedAt is the time (UTC) when the request occurred. | 
 **methods** | [**Hash&lt;String, LoginRequestMethod&gt;**](LoginRequestMethod.md) | Methods contains context for all enabled login methods. If a login request has been processed, but for example the password is incorrect, this will contain error messages. | 
@@ -18,6 +19,7 @@ require 'OryHydraClient'
 
 instance = OryHydraClient::LoginRequest.new(active: null,
                                  expires_at: null,
+                                 forced: null,
                                  id: null,
                                  issued_at: null,
                                  methods: null,

@@ -263,7 +263,7 @@ class FormField implements ModelInterface, ArrayAccess
     /**
      * Sets disabled
      *
-     * @param bool|null $disabled Disabled is the equivalent of <input disabled=\"{{.Disabled}}\">
+     * @param bool|null $disabled Disabled is the equivalent of `<input disabled=\"{{.Disabled}}\">`
      *
      * @return $this
      */
@@ -311,7 +311,7 @@ class FormField implements ModelInterface, ArrayAccess
     /**
      * Sets name
      *
-     * @param string $name Name is the equivalent of <input name=\"{{.Name}}\">
+     * @param string $name Name is the equivalent of `<input name=\"{{.Name}}\">`
      *
      * @return $this
      */
@@ -335,7 +335,7 @@ class FormField implements ModelInterface, ArrayAccess
     /**
      * Sets pattern
      *
-     * @param string|null $pattern Pattern is the equivalent of <input pattern=\"{{.Pattern}}\">
+     * @param string|null $pattern Pattern is the equivalent of `<input pattern=\"{{.Pattern}}\">`
      *
      * @return $this
      */
@@ -359,7 +359,7 @@ class FormField implements ModelInterface, ArrayAccess
     /**
      * Sets required
      *
-     * @param bool $required Required is the equivalent of <input required=\"{{.Required}}\">
+     * @param bool $required Required is the equivalent of `<input required=\"{{.Required}}\">`
      *
      * @return $this
      */
@@ -383,7 +383,7 @@ class FormField implements ModelInterface, ArrayAccess
     /**
      * Sets type
      *
-     * @param string $type Type is the equivalent of <input type=\"{{.Type}}\">
+     * @param string $type Type is the equivalent of `<input type=\"{{.Type}}\">`
      *
      * @return $this
      */
@@ -407,7 +407,7 @@ class FormField implements ModelInterface, ArrayAccess
     /**
      * Sets value
      *
-     * @param object|null $value Value is the equivalent of <input value=\"{{.Value}}\">
+     * @param object|null $value Value is the equivalent of `<input value=\"{{.Value}}\">`
      *
      * @return $this
      */

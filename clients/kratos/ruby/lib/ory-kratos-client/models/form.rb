@@ -15,7 +15,7 @@ require 'date'
 module OryHydraClient
   # HTMLForm represents a HTML Form. The container can work with both HTTP Form and JSON requests
   class Form
-    # Action should be used as the form action URL (<form action=\"{{ .Action }}\" method=\"post\">).
+    # Action should be used as the form action URL `<form action=\"{{ .Action }}\" method=\"post\">`.
     attr_accessor :action
 
     # Errors contains all form errors. These will be duplicates of the individual field errors.

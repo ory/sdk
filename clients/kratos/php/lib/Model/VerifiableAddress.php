@@ -231,9 +231,6 @@ class VerifiableAddress implements ModelInterface, ArrayAccess
         if ($this->container['verified'] === null) {
             $invalidProperties[] = "'verified' can't be null";
         }
-        if ($this->container['verifiedAt'] === null) {
-            $invalidProperties[] = "'verifiedAt' can't be null";
-        }
         if ($this->container['via'] === null) {
             $invalidProperties[] = "'via' can't be null";
         }
@@ -351,7 +348,7 @@ class VerifiableAddress implements ModelInterface, ArrayAccess
     /**
      * Gets verifiedAt
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getVerifiedAt()
     {
@@ -361,7 +358,7 @@ class VerifiableAddress implements ModelInterface, ArrayAccess
     /**
      * Sets verifiedAt
      *
-     * @param \DateTime $verifiedAt verifiedAt
+     * @param \DateTime|null $verifiedAt verifiedAt
      *
      * @return $this
      */

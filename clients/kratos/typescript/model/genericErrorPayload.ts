@@ -12,9 +12,6 @@
 
 import { RequestFile } from '../api';
 
-/**
-* nolint:deadcode,unused
-*/
 export class GenericErrorPayload {
     /**
     * Code represents the error status code (404, 403, 401, ...).
@@ -24,7 +21,7 @@ export class GenericErrorPayload {
     * Debug contains debug information. This is usually not available and has to be enabled.
     */
     'debug'?: string;
-    'details'?: Array<{ [key: string]: object; }>;
+    'details'?: { [key: string]: object; };
     'message'?: string;
     'reason'?: string;
     'request'?: string;
@@ -46,7 +43,7 @@ export class GenericErrorPayload {
         {
             "name": "details",
             "baseName": "details",
-            "type": "Array<{ [key: string]: object; }>"
+            "type": "{ [key: string]: object; }"
         },
         {
             "name": "message",

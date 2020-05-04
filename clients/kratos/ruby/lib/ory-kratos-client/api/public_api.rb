@@ -19,37 +19,93 @@ module OryHydraClient
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
-    # Complete the browser-based profile management flows
-    # This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity's Traits JSON Schema, the data will be updated and the browser redirected to `url.profile_ui` for further steps.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
-    # @param request [String] Request is the request ID.
-    # @param body [CompleteSelfServiceBrowserProfileManagementFlowPayload] 
+    # Complete the browser-based settings flow for the password strategy
+    # This endpoint completes a browser-based settings flow. This is usually achieved by POSTing data to this endpoint.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
     # @param [Hash] opts the optional parameters
     # @return [nil]
-    def complete_self_service_browser_profile_management_flow(request, body, opts = {})
-      complete_self_service_browser_profile_management_flow_with_http_info(request, body, opts)
+    def complete_self_service_browser_settings_password_strategy_flow(opts = {})
+      complete_self_service_browser_settings_password_strategy_flow_with_http_info(opts)
       nil
     end
 
-    # Complete the browser-based profile management flows
-    # This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity&#39;s Traits JSON Schema, the data will be updated and the browser redirected to &#x60;url.profile_ui&#x60; for further steps.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
-    # @param request [String] Request is the request ID.
-    # @param body [CompleteSelfServiceBrowserProfileManagementFlowPayload] 
+    # Complete the browser-based settings flow for the password strategy
+    # This endpoint completes a browser-based settings flow. This is usually achieved by POSTing data to this endpoint.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos User Settings &amp; Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
-    def complete_self_service_browser_profile_management_flow_with_http_info(request, body, opts = {})
+    def complete_self_service_browser_settings_password_strategy_flow_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: PublicApi.complete_self_service_browser_profile_management_flow ...'
+        @api_client.config.logger.debug 'Calling API: PublicApi.complete_self_service_browser_settings_password_strategy_flow ...'
+      end
+      # resource path
+      local_var_path = '/self-service/browser/flows/settings/strategies/password'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body] 
+
+      # return_type
+      return_type = opts[:return_type] 
+
+      # auth_names
+      auth_names = opts[:auth_names] || []
+
+      new_options = opts.merge(
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: PublicApi#complete_self_service_browser_settings_password_strategy_flow\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Complete the browser-based settings flow for profile data
+    # This endpoint completes a browser-based settings flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity's Traits JSON Schema, the data will be updated and the browser redirected to `url.settings_ui` for further steps.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
+    # @param request [String] Request is the request ID.
+    # @param body [CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload] 
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def complete_self_service_browser_settings_profile_strategy_flow(request, body, opts = {})
+      complete_self_service_browser_settings_profile_strategy_flow_with_http_info(request, body, opts)
+      nil
+    end
+
+    # Complete the browser-based settings flow for profile data
+    # This endpoint completes a browser-based settings flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity&#39;s Traits JSON Schema, the data will be updated and the browser redirected to &#x60;url.settings_ui&#x60; for further steps.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos User Settings &amp; Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
+    # @param request [String] Request is the request ID.
+    # @param body [CompleteSelfServiceBrowserSettingsStrategyProfileFlowPayload] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def complete_self_service_browser_settings_profile_strategy_flow_with_http_info(request, body, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: PublicApi.complete_self_service_browser_settings_profile_strategy_flow ...'
       end
       # verify the required parameter 'request' is set
       if @api_client.config.client_side_validation && request.nil?
-        fail ArgumentError, "Missing the required parameter 'request' when calling PublicApi.complete_self_service_browser_profile_management_flow"
+        fail ArgumentError, "Missing the required parameter 'request' when calling PublicApi.complete_self_service_browser_settings_profile_strategy_flow"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling PublicApi.complete_self_service_browser_profile_management_flow"
+        fail ArgumentError, "Missing the required parameter 'body' when calling PublicApi.complete_self_service_browser_settings_profile_strategy_flow"
       end
       # resource path
-      local_var_path = '/self-service/browser/flows/profile/update'
+      local_var_path = '/self-service/browser/flows/settings/strategies/profile'
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -85,13 +141,13 @@ module OryHydraClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: PublicApi#complete_self_service_browser_profile_management_flow\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: PublicApi#complete_self_service_browser_settings_profile_strategy_flow\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
-    # Complete the browser-based profile management flows
-    # This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity's Traits JSON Schema, the data will be updated and the browser redirected to `url.profile_ui` for further steps.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+    # Complete the browser-based verification flows
+    # This endpoint completes a browser-based verification flow. This is usually achieved by POSTing data to this endpoint.  If the provided data is valid against the Identity's Traits JSON Schema, the data will be updated and the browser redirected to `url.settings_ui` for further steps.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
     # @param request [String] Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;).
     # @param via [String] What to verify  Currently only \&quot;email\&quot; is supported.
     # @param [Hash] opts the optional parameters
@@ -101,8 +157,8 @@ module OryHydraClient
       nil
     end
 
-    # Complete the browser-based profile management flows
-    # This endpoint completes a browser-based profile management flow. This is usually achieved by POSTing data to this endpoint.  If the provided profile data is valid against the Identity&#39;s Traits JSON Schema, the data will be updated and the browser redirected to &#x60;url.profile_ui&#x60; for further steps.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+    # Complete the browser-based verification flows
+    # This endpoint completes a browser-based verification flow. This is usually achieved by POSTing data to this endpoint.  If the provided data is valid against the Identity&#39;s Traits JSON Schema, the data will be updated and the browser redirected to &#x60;url.settings_ui&#x60; for further steps.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
     # @param request [String] Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;).
     # @param via [String] What to verify  Currently only \&quot;email\&quot; is supported.
     # @param [Hash] opts the optional parameters
@@ -155,6 +211,66 @@ module OryHydraClient
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: PublicApi#complete_self_service_browser_verification_flow\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get a traits schema definition
+    # @param id [String] ID must be set to the ID of schema you want to get
+    # @param [Hash] opts the optional parameters
+    # @return [Object]
+    def get_schema(id, opts = {})
+      data, _status_code, _headers = get_schema_with_http_info(id, opts)
+      data
+    end
+
+    # Get a traits schema definition
+    # @param id [String] ID must be set to the ID of schema you want to get
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Object, Integer, Hash)>] Object data, response status code and response headers
+    def get_schema_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: PublicApi.get_schema ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling PublicApi.get_schema"
+      end
+      # resource path
+      local_var_path = '/schemas/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body] 
+
+      # return_type
+      return_type = opts[:return_type] || 'Object' 
+
+      # auth_names
+      auth_names = opts[:auth_names] || []
+
+      new_options = opts.merge(
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: PublicApi#get_schema\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -222,69 +338,6 @@ module OryHydraClient
       return data, status_code, headers
     end
 
-    # Get the request context of browser-based profile management flows
-    # When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
-    # @param request [String] Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;).
-    # @param [Hash] opts the optional parameters
-    # @return [ProfileManagementRequest]
-    def get_self_service_browser_profile_management_request(request, opts = {})
-      data, _status_code, _headers = get_self_service_browser_profile_management_request_with_http_info(request, opts)
-      data
-    end
-
-    # Get the request context of browser-based profile management flows
-    # When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
-    # @param request [String] Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;).
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(ProfileManagementRequest, Integer, Hash)>] ProfileManagementRequest data, response status code and response headers
-    def get_self_service_browser_profile_management_request_with_http_info(request, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: PublicApi.get_self_service_browser_profile_management_request ...'
-      end
-      # verify the required parameter 'request' is set
-      if @api_client.config.client_side_validation && request.nil?
-        fail ArgumentError, "Missing the required parameter 'request' when calling PublicApi.get_self_service_browser_profile_management_request"
-      end
-      # resource path
-      local_var_path = '/self-service/browser/flows/requests/profile'
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-      query_params[:'request'] = request
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:body] 
-
-      # return_type
-      return_type = opts[:return_type] || 'ProfileManagementRequest' 
-
-      # auth_names
-      auth_names = opts[:auth_names] || []
-
-      new_options = opts.merge(
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
-
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: PublicApi#get_self_service_browser_profile_management_request\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
     # Get the request context of browser-based registration user flows
     # This endpoint returns a registration request's context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
     # @param request [String] Request is the Registration Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?request&#x3D;abcde&#x60;).
@@ -348,10 +401,73 @@ module OryHydraClient
       return data, status_code, headers
     end
 
+    # Get the request context of browser-based settings flows
+    # When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
+    # @param request [String] Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;).
+    # @param [Hash] opts the optional parameters
+    # @return [SettingsRequest]
+    def get_self_service_browser_settings_request(request, opts = {})
+      data, _status_code, _headers = get_self_service_browser_settings_request_with_http_info(request, opts)
+      data
+    end
+
+    # Get the request context of browser-based settings flows
+    # When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos User Settings &amp; Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
+    # @param request [String] Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;).
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(SettingsRequest, Integer, Hash)>] SettingsRequest data, response status code and response headers
+    def get_self_service_browser_settings_request_with_http_info(request, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: PublicApi.get_self_service_browser_settings_request ...'
+      end
+      # verify the required parameter 'request' is set
+      if @api_client.config.client_side_validation && request.nil?
+        fail ArgumentError, "Missing the required parameter 'request' when calling PublicApi.get_self_service_browser_settings_request"
+      end
+      # resource path
+      local_var_path = '/self-service/browser/flows/requests/settings'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'request'] = request
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body] 
+
+      # return_type
+      return_type = opts[:return_type] || 'SettingsRequest' 
+
+      # auth_names
+      auth_names = opts[:auth_names] || []
+
+      new_options = opts.merge(
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: PublicApi#get_self_service_browser_settings_request\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Get user-facing self-service errors
     # This endpoint returns the error associated with a user-facing self service errors.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :id 
+    # @option opts [String] :error 
     # @return [ErrorContainer]
     def get_self_service_error(opts = {})
       data, _status_code, _headers = get_self_service_error_with_http_info(opts)
@@ -361,7 +477,7 @@ module OryHydraClient
     # Get user-facing self-service errors
     # This endpoint returns the error associated with a user-facing self service errors.  When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :id 
+    # @option opts [String] :error 
     # @return [Array<(ErrorContainer, Integer, Hash)>] ErrorContainer data, response status code and response headers
     def get_self_service_error_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -372,7 +488,7 @@ module OryHydraClient
 
       # query parameters
       query_params = opts[:query_params] || {}
-      query_params[:'id'] = opts[:'id'] if !opts[:'id'].nil?
+      query_params[:'error'] = opts[:'error'] if !opts[:'error'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -639,7 +755,7 @@ module OryHydraClient
     end
 
     # Initialize browser-based verification flow
-    # This endpoint initializes a browser-based profile management flow. Once initialized, the browser will be redirected to `urls.profile_ui` with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+    # This endpoint initializes a browser-based verification flow. Once initialized, the browser will be redirected to `urls.settings_ui` with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
     # @param via [String] What to verify  Currently only \&quot;email\&quot; is supported.
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -649,7 +765,7 @@ module OryHydraClient
     end
 
     # Initialize browser-based verification flow
-    # This endpoint initializes a browser-based profile management flow. Once initialized, the browser will be redirected to &#x60;urls.profile_ui&#x60; with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+    # This endpoint initializes a browser-based verification flow. Once initialized, the browser will be redirected to &#x60;urls.settings_ui&#x60; with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
     # @param via [String] What to verify  Currently only \&quot;email\&quot; is supported.
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -700,25 +816,25 @@ module OryHydraClient
       return data, status_code, headers
     end
 
-    # Initialize browser-based profile management flow
-    # This endpoint initializes a browser-based profile management flow. Once initialized, the browser will be redirected to `urls.profile_ui` with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
+    # Initialize browser-based settings flow
+    # This endpoint initializes a browser-based settings flow. Once initialized, the browser will be redirected to `urls.settings_ui` with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
     # @param [Hash] opts the optional parameters
     # @return [nil]
-    def initialize_self_service_profile_management_flow(opts = {})
-      initialize_self_service_profile_management_flow_with_http_info(opts)
+    def initialize_self_service_settings_flow(opts = {})
+      initialize_self_service_settings_flow_with_http_info(opts)
       nil
     end
 
-    # Initialize browser-based profile management flow
-    # This endpoint initializes a browser-based profile management flow. Once initialized, the browser will be redirected to &#x60;urls.profile_ui&#x60; with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-profile-management).
+    # Initialize browser-based settings flow
+    # This endpoint initializes a browser-based settings flow. Once initialized, the browser will be redirected to &#x60;urls.settings_ui&#x60; with the request ID set as a query parameter. If no valid user session exists, a login flow will be initialized.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos User Settings &amp; Profile Management Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-settings-profile-management).
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
-    def initialize_self_service_profile_management_flow_with_http_info(opts = {})
+    def initialize_self_service_settings_flow_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: PublicApi.initialize_self_service_profile_management_flow ...'
+        @api_client.config.logger.debug 'Calling API: PublicApi.initialize_self_service_settings_flow ...'
       end
       # resource path
-      local_var_path = '/self-service/browser/flows/profile'
+      local_var_path = '/self-service/browser/flows/settings'
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -751,7 +867,7 @@ module OryHydraClient
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: PublicApi#initialize_self_service_profile_management_flow\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: PublicApi#initialize_self_service_settings_flow\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

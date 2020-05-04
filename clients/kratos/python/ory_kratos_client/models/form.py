@@ -68,7 +68,7 @@ class Form(object):
     def action(self):
         """Gets the action of this Form.  # noqa: E501
 
-        Action should be used as the form action URL (<form action=\"{{ .Action }}\" method=\"post\">).  # noqa: E501
+        Action should be used as the form action URL `<form action=\"{{ .Action }}\" method=\"post\">`.  # noqa: E501
 
         :return: The action of this Form.  # noqa: E501
         :rtype: str
@@ -79,7 +79,7 @@ class Form(object):
     def action(self, action):
         """Sets the action of this Form.
 
-        Action should be used as the form action URL (<form action=\"{{ .Action }}\" method=\"post\">).  # noqa: E501
+        Action should be used as the form action URL `<form action=\"{{ .Action }}\" method=\"post\">`.  # noqa: E501
 
         :param action: The action of this Form.  # noqa: E501
         :type: str
