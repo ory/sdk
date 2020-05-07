@@ -1,6 +1,6 @@
 {
     "name": "@oryd/oathkeeper-client",
-    "version": "0.37.0-beta.1",
+    "version": "0.38.0-beta.2",
     "description": "NodeJS client for @oryd/oathkeeper-client",
     "repository": "ory/sdk",
     "main": "dist/api.js",

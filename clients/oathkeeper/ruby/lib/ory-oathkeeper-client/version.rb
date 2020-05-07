@@ -11,5 +11,5 @@ OpenAPI Generator version: 4.2.3
 =end
 
 module OryHydraClient
-  VERSION = '0.37.0.beta1'
+  VERSION = '0.38.0.beta2'
 end
