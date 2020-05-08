@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * Upstream
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-07T10:18:16.847866Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-08T11:01:35.385722Z[GMT]")
 public class Upstream {
   public static final String SERIALIZED_NAME_PRESERVE_HOST = "preserve_host";
   @SerializedName(SERIALIZED_NAME_PRESERVE_HOST)
