@@ -18,7 +18,6 @@ module OryHydraClient
     # Disabled is the equivalent of `<input disabled=\"{{.Disabled}}\">`
     attr_accessor :disabled
 
-    # Errors contains all validation errors this particular field has caused.
     attr_accessor :errors
 
     # Name is the equivalent of `<input name=\"{{.Name}}\">`
@@ -122,10 +121,6 @@ module OryHydraClient
         invalid_properties.push('invalid value for "name", name cannot be nil.')
       end
 
-      if @required.nil?
-        invalid_properties.push('invalid value for "required", required cannot be nil.')
-      end
-
       if @type.nil?
         invalid_properties.push('invalid value for "type", type cannot be nil.')
       end
@@ -137,7 +132,6 @@ module OryHydraClient
     # @return true if the model is valid
     def valid?
       return false if @name.nil?
-      return false if @required.nil?
       return false if @type.nil?
       true
     end

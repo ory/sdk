@@ -32,7 +32,7 @@ import sh.ory.kratos.model.RegistrationRequestMethod;
 /**
  * RegistrationRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-05T10:06:21.081401Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-15T13:37:32.110450Z[GMT]")
 public class RegistrationRequest {
   public static final String SERIALIZED_NAME_ACTIVE = "active";
   @SerializedName(SERIALIZED_NAME_ACTIVE)
@@ -69,7 +69,8 @@ public class RegistrationRequest {
    * and so on.
    * @return active
   **/
-  @ApiModelProperty(required = true, value = "and so on.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "and so on.")
 
   public String getActive() {
     return active;

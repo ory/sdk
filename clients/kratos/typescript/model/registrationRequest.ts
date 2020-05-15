@@ -17,7 +17,7 @@ export class RegistrationRequest {
     /**
     * and so on.
     */
-    'active': string;
+    'active'?: string;
     /**
     * ExpiresAt is the time (UTC) when the request expires. If the user still wishes to log in, a new request has to be initiated.
     */

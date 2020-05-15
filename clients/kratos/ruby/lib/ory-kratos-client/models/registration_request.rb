@@ -107,10 +107,6 @@ module OryHydraClient
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @active.nil?
-        invalid_properties.push('invalid value for "active", active cannot be nil.')
-      end
-
       if @expires_at.nil?
         invalid_properties.push('invalid value for "expires_at", expires_at cannot be nil.')
       end
@@ -137,7 +133,6 @@ module OryHydraClient
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @active.nil?
       return false if @expires_at.nil?
       return false if @id.nil?
       return false if @issued_at.nil?

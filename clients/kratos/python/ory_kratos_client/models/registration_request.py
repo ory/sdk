@@ -64,7 +64,8 @@ class RegistrationRequest(object):
         self._request_url = None
         self.discriminator = None
 
-        self.active = active
+        if active is not None:
+            self.active = active
         self.expires_at = expires_at
         self.id = id
         self.issued_at = issued_at
@@ -91,8 +92,6 @@ class RegistrationRequest(object):
         :param active: The active of this RegistrationRequest.  # noqa: E501
         :type: str
         """
-        if self.local_vars_configuration.client_side_validation and active is None:  # noqa: E501
-            raise ValueError("Invalid value for `active`, must not be `None`")  # noqa: E501
 
         self._active = active
 

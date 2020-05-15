@@ -20,9 +20,6 @@ export class FormField {
     * Disabled is the equivalent of `<input disabled=\"{{.Disabled}}\">`
     */
     'disabled'?: boolean;
-    /**
-    * Errors contains all validation errors this particular field has caused.
-    */
     'errors'?: Array<Error>;
     /**
     * Name is the equivalent of `<input name=\"{{.Name}}\">`
@@ -35,7 +32,7 @@ export class FormField {
     /**
     * Required is the equivalent of `<input required=\"{{.Required}}\">`
     */
-    'required': boolean;
+    'required'?: boolean;
     /**
     * Type is the equivalent of `<input type=\"{{.Type}}\">`
     */

@@ -219,9 +219,6 @@ class RegistrationRequest implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['active'] === null) {
-            $invalidProperties[] = "'active' can't be null";
-        }
         if ($this->container['expiresAt'] === null) {
             $invalidProperties[] = "'expiresAt' can't be null";
         }
@@ -255,7 +252,7 @@ class RegistrationRequest implements ModelInterface, ArrayAccess
     /**
      * Gets active
      *
-     * @return string
+     * @return string|null
      */
     public function getActive()
     {
@@ -265,7 +262,7 @@ class RegistrationRequest implements ModelInterface, ArrayAccess
     /**
      * Sets active
      *
-     * @param string $active and so on.
+     * @param string|null $active and so on.
      *
      * @return $this
      */

@@ -74,7 +74,8 @@ class FormField(object):
         self.name = name
         if pattern is not None:
             self.pattern = pattern
-        self.required = required
+        if required is not None:
+            self.required = required
         self.type = type
         if value is not None:
             self.value = value
@@ -106,7 +107,6 @@ class FormField(object):
     def errors(self):
         """Gets the errors of this FormField.  # noqa: E501
 
-        Errors contains all validation errors this particular field has caused.  # noqa: E501
 
         :return: The errors of this FormField.  # noqa: E501
         :rtype: list[Error]
@@ -117,7 +117,6 @@ class FormField(object):
     def errors(self, errors):
         """Sets the errors of this FormField.
 
-        Errors contains all validation errors this particular field has caused.  # noqa: E501
 
         :param errors: The errors of this FormField.  # noqa: E501
         :type: list[Error]
@@ -193,8 +192,6 @@ class FormField(object):
         :param required: The required of this FormField.  # noqa: E501
         :type: bool
         """
-        if self.local_vars_configuration.client_side_validation and required is None:  # noqa: E501
-            raise ValueError("Invalid value for `required`, must not be `None`")  # noqa: E501
 
         self._required = required
 

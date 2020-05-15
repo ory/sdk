@@ -11,6 +11,7 @@ export * from './loginRequest';
 export * from './loginRequestMethod';
 export * from './loginRequestMethodConfig';
 export * from './modelError';
+export * from './providerCredentialsConfig';
 export * from './registrationRequest';
 export * from './registrationRequestMethod';
 export * from './registrationRequestMethodConfig';
@@ -37,6 +38,7 @@ import { LoginRequest } from './loginRequest';
 import { LoginRequestMethod } from './loginRequestMethod';
 import { LoginRequestMethodConfig } from './loginRequestMethodConfig';
 import { ModelError } from './modelError';
+import { ProviderCredentialsConfig } from './providerCredentialsConfig';
 import { RegistrationRequest } from './registrationRequest';
 import { RegistrationRequestMethod } from './registrationRequestMethod';
 import { RegistrationRequestMethodConfig } from './registrationRequestMethodConfig';
@@ -77,6 +79,7 @@ let typeMap: {[index: string]: any} = {
     "LoginRequestMethod": LoginRequestMethod,
     "LoginRequestMethodConfig": LoginRequestMethodConfig,
     "ModelError": ModelError,
+    "ProviderCredentialsConfig": ProviderCredentialsConfig,
     "RegistrationRequest": RegistrationRequest,
     "RegistrationRequestMethod": RegistrationRequestMethod,
     "RegistrationRequestMethodConfig": RegistrationRequestMethodConfig,

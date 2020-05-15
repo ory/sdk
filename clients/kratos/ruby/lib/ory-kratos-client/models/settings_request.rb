@@ -13,7 +13,7 @@ OpenAPI Generator version: 4.2.3
 require 'date'
 
 module OryHydraClient
-  # This request is used when an identity wants to update settings (e.g. profile data, passwords, ...) in a selfservice manner.  For more information head over to: https://www.ory.sh/docs/kratos/selfservice/flows/user-settings-profile-management
+  # This request is used when an identity wants to update settings (e.g. profile data, passwords, ...) in a selfservice manner.  We recommend reading the [User Settings Documentation](../self-service/flows/user-settings)
   class SettingsRequest
     # Active, if set, contains the registration method that is being used. It is initially not set.
     attr_accessor :active

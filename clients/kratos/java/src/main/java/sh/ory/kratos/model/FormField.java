@@ -31,7 +31,7 @@ import sh.ory.kratos.model.Error;
  * Field represents a HTML Form Field
  */
 @ApiModel(description = "Field represents a HTML Form Field")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-05T10:06:21.081401Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-15T13:37:32.110450Z[GMT]")
 public class FormField {
   public static final String SERIALIZED_NAME_DISABLED = "disabled";
   @SerializedName(SERIALIZED_NAME_DISABLED)
@@ -100,11 +100,11 @@ public class FormField {
   }
 
    /**
-   * Errors contains all validation errors this particular field has caused.
+   * Get errors
    * @return errors
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Errors contains all validation errors this particular field has caused.")
+  @ApiModelProperty(value = "")
 
   public List<Error> getErrors() {
     return errors;
@@ -171,7 +171,8 @@ public class FormField {
    * Required is the equivalent of &#x60;&lt;input required&#x3D;\&quot;{{.Required}}\&quot;&gt;&#x60;
    * @return required
   **/
-  @ApiModelProperty(required = true, value = "Required is the equivalent of `<input required=\"{{.Required}}\">`")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Required is the equivalent of `<input required=\"{{.Required}}\">`")
 
   public Boolean getRequired() {
     return required;

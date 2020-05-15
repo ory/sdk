@@ -102,6 +102,7 @@ Class | Method | HTTP request | Description
 *CommonApi* | [**getSelfServiceVerificationRequest**](docs/Api/CommonApi.md#getselfserviceverificationrequest) | **GET** /self-service/browser/flows/requests/verification | Get the request context of browser-based verification flows
 *HealthApi* | [**isInstanceAlive**](docs/Api/HealthApi.md#isinstancealive) | **GET** /health/alive | Check alive status
 *HealthApi* | [**isInstanceReady**](docs/Api/HealthApi.md#isinstanceready) | **GET** /health/ready | Check readiness status
+*PublicApi* | [**completeSelfServiceBrowserSettingsOIDCSettingsFlow**](docs/Api/PublicApi.md#completeselfservicebrowsersettingsoidcsettingsflow) | **POST** /self-service/browser/flows/registration/strategies/oidc/settings/connections | Complete the browser-based settings flow for the OpenID Connect strategy
 *PublicApi* | [**completeSelfServiceBrowserSettingsPasswordStrategyFlow**](docs/Api/PublicApi.md#completeselfservicebrowsersettingspasswordstrategyflow) | **POST** /self-service/browser/flows/settings/strategies/password | Complete the browser-based settings flow for the password strategy
 *PublicApi* | [**completeSelfServiceBrowserSettingsProfileStrategyFlow**](docs/Api/PublicApi.md#completeselfservicebrowsersettingsprofilestrategyflow) | **POST** /self-service/browser/flows/settings/strategies/profile | Complete the browser-based settings flow for profile data
 *PublicApi* | [**completeSelfServiceBrowserVerificationFlow**](docs/Api/PublicApi.md#completeselfservicebrowserverificationflow) | **POST** /self-service/browser/flows/verification/{via}/complete | Complete the browser-based verification flows
@@ -136,6 +137,7 @@ Class | Method | HTTP request | Description
  - [LoginRequest](docs/Model/LoginRequest.md)
  - [LoginRequestMethod](docs/Model/LoginRequestMethod.md)
  - [LoginRequestMethodConfig](docs/Model/LoginRequestMethodConfig.md)
+ - [ProviderCredentialsConfig](docs/Model/ProviderCredentialsConfig.md)
  - [RegistrationRequest](docs/Model/RegistrationRequest.md)
  - [RegistrationRequestMethod](docs/Model/RegistrationRequestMethod.md)
  - [RegistrationRequestMethodConfig](docs/Model/RegistrationRequestMethodConfig.md)

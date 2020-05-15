@@ -31,10 +31,10 @@ import sh.ory.kratos.model.Identity;
 import sh.ory.kratos.model.SettingsRequestMethod;
 
 /**
- * This request is used when an identity wants to update settings (e.g. profile data, passwords, ...) in a selfservice manner.  For more information head over to: https://www.ory.sh/docs/kratos/selfservice/flows/user-settings-profile-management
+ * This request is used when an identity wants to update settings (e.g. profile data, passwords, ...) in a selfservice manner.  We recommend reading the [User Settings Documentation](../self-service/flows/user-settings)
  */
-@ApiModel(description = "This request is used when an identity wants to update settings (e.g. profile data, passwords, ...) in a selfservice manner.  For more information head over to: https://www.ory.sh/docs/kratos/selfservice/flows/user-settings-profile-management")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-05T10:06:21.081401Z[GMT]")
+@ApiModel(description = "This request is used when an identity wants to update settings (e.g. profile data, passwords, ...) in a selfservice manner.  We recommend reading the [User Settings Documentation](../self-service/flows/user-settings)")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-15T13:37:32.110450Z[GMT]")
 public class SettingsRequest {
   public static final String SERIALIZED_NAME_ACTIVE = "active";
   @SerializedName(SERIALIZED_NAME_ACTIVE)

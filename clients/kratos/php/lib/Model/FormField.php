@@ -229,9 +229,6 @@ class FormField implements ModelInterface, ArrayAccess
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
-        if ($this->container['required'] === null) {
-            $invalidProperties[] = "'required' can't be null";
-        }
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
         }
@@ -287,7 +284,7 @@ class FormField implements ModelInterface, ArrayAccess
     /**
      * Sets errors
      *
-     * @param \Ory\Kratos\Client\Model\Error[]|null $errors Errors contains all validation errors this particular field has caused.
+     * @param \Ory\Kratos\Client\Model\Error[]|null $errors errors
      *
      * @return $this
      */
@@ -349,7 +346,7 @@ class FormField implements ModelInterface, ArrayAccess
     /**
      * Gets required
      *
-     * @return bool
+     * @return bool|null
      */
     public function getRequired()
     {
@@ -359,7 +356,7 @@ class FormField implements ModelInterface, ArrayAccess
     /**
      * Sets required
      *
-     * @param bool $required Required is the equivalent of `<input required=\"{{.Required}}\">`
+     * @param bool|null $required Required is the equivalent of `<input required=\"{{.Required}}\">`
      *
      * @return $this
      */

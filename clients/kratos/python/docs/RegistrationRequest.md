@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**active** | **str** | and so on. | 
+**active** | **str** | and so on. | [optional] 
 **expires_at** | **datetime** | ExpiresAt is the time (UTC) when the request expires. If the user still wishes to log in, a new request has to be initiated. | 
 **id** | **str** |  | 
 **issued_at** | **datetime** | IssuedAt is the time (UTC) when the request occurred. | 

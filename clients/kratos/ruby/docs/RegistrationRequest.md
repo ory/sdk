@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**active** | **String** | and so on. | 
+**active** | **String** | and so on. | [optional] 
 **expires_at** | **DateTime** | ExpiresAt is the time (UTC) when the request expires. If the user still wishes to log in, a new request has to be initiated. | 
 **id** | **String** |  | 
 **issued_at** | **DateTime** | IssuedAt is the time (UTC) when the request occurred. | 
