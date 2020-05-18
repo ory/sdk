@@ -13,7 +13,7 @@ import (
 
 func TestSanitize(t *testing.T) {
 	fp := filepath.Join(os.TempDir(), uuid.New().String()+".json")
-	defer os.Remove(fp)
+	// defer os.Remove(fp)
 
 	require.NoError(t, sanitize("stub/in.json", fp))
 
@@ -26,7 +26,5 @@ func TestSanitize(t *testing.T) {
 	require.NotEmpty(t, actual)
 	require.NotEmpty(t, expected)
 
-	assert.JSONEq(t, string(expected), string(actual))
-
-	// t.Logf("wrote to: %s",fp)
+	assert.JSONEq(t, string(expected), string(actual), fp)
 }
