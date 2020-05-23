@@ -16,10 +16,10 @@ import (
 type AcceptConsentRequest struct {
 
 	// grant access token audience
-	GrantAccessTokenAudience []string `json:"grant_access_token_audience,omitempty"`
+	GrantAccessTokenAudience StringSlicePipeDelimiter `json:"grant_access_token_audience,omitempty"`
 
 	// grant scope
-	GrantScope []string `json:"grant_scope,omitempty"`
+	GrantScope StringSlicePipeDelimiter `json:"grant_scope,omitempty"`
 
 	// handled at
 	// Format: date-time
@@ -41,6 +41,14 @@ type AcceptConsentRequest struct {
 func (m *AcceptConsentRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateGrantAccessTokenAudience(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGrantScope(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateHandledAt(formats); err != nil {
 		res = append(res, err)
 	}
@@ -52,6 +60,38 @@ func (m *AcceptConsentRequest) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *AcceptConsentRequest) validateGrantAccessTokenAudience(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.GrantAccessTokenAudience) { // not required
+		return nil
+	}
+
+	if err := m.GrantAccessTokenAudience.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("grant_access_token_audience")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *AcceptConsentRequest) validateGrantScope(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.GrantScope) { // not required
+		return nil
+	}
+
+	if err := m.GrantScope.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("grant_scope")
+		}
+		return err
+	}
+
 	return nil
 }
 

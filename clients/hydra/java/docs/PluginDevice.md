@@ -2,7 +2,7 @@
 
 # PluginDevice
 
-PluginDevice PluginDevice PluginDevice plugin device
+PluginDevice plugin device
 ## Properties
 
 Name | Type | Description | Notes

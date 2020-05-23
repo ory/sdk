@@ -57,8 +57,8 @@ class ConsentRequestSession implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'accessToken' => 'map[string,object]',
-        'idToken' => 'map[string,object]'
+        'accessToken' => 'object',
+        'idToken' => 'object'
     ];
 
     /**
@@ -213,7 +213,7 @@ class ConsentRequestSession implements ModelInterface, ArrayAccess
     /**
      * Gets accessToken
      *
-     * @return map[string,object]|null
+     * @return object|null
      */
     public function getAccessToken()
     {
@@ -223,7 +223,7 @@ class ConsentRequestSession implements ModelInterface, ArrayAccess
     /**
      * Sets accessToken
      *
-     * @param map[string,object]|null $accessToken AccessToken sets session data for the access and refresh token, as well as any future tokens issued by the refresh grant. Keep in mind that this data will be available to anyone performing OAuth 2.0 Challenge Introspection. If only your services can perform OAuth 2.0 Challenge Introspection, this is usually fine. But if third parties can access that endpoint as well, sensitive data from the session might be exposed to them. Use with care!
+     * @param object|null $accessToken AccessToken sets session data for the access and refresh token, as well as any future tokens issued by the refresh grant. Keep in mind that this data will be available to anyone performing OAuth 2.0 Challenge Introspection. If only your services can perform OAuth 2.0 Challenge Introspection, this is usually fine. But if third parties can access that endpoint as well, sensitive data from the session might be exposed to them. Use with care!
      *
      * @return $this
      */
@@ -237,7 +237,7 @@ class ConsentRequestSession implements ModelInterface, ArrayAccess
     /**
      * Gets idToken
      *
-     * @return map[string,object]|null
+     * @return object|null
      */
     public function getIdToken()
     {
@@ -247,7 +247,7 @@ class ConsentRequestSession implements ModelInterface, ArrayAccess
     /**
      * Sets idToken
      *
-     * @param map[string,object]|null $idToken IDToken sets session data for the OpenID Connect ID token. Keep in mind that the session'id payloads are readable by anyone that has access to the ID Challenge. Use with care!
+     * @param object|null $idToken IDToken sets session data for the OpenID Connect ID token. Keep in mind that the session'id payloads are readable by anyone that has access to the ID Challenge. Use with care!
      *
      * @return $this
      */

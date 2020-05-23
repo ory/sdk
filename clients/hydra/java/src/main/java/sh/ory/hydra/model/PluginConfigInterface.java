@@ -31,7 +31,7 @@ import sh.ory.hydra.model.PluginInterfaceType;
  * PluginConfigInterface The interface between Docker and the plugin
  */
 @ApiModel(description = "PluginConfigInterface The interface between Docker and the plugin")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-30T11:29:47.487995Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-23T15:40:20.175179Z[GMT]")
 public class PluginConfigInterface {
   public static final String SERIALIZED_NAME_SOCKET = "Socket";
   @SerializedName(SERIALIZED_NAME_SOCKET)

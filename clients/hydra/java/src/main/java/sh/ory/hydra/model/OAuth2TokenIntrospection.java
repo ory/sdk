@@ -24,15 +24,13 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * https://tools.ietf.org/html/rfc7662
  */
 @ApiModel(description = "https://tools.ietf.org/html/rfc7662")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-30T11:29:47.487995Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-23T15:40:20.175179Z[GMT]")
 public class OAuth2TokenIntrospection {
   public static final String SERIALIZED_NAME_ACTIVE = "active";
   @SerializedName(SERIALIZED_NAME_ACTIVE)
@@ -52,7 +50,7 @@ public class OAuth2TokenIntrospection {
 
   public static final String SERIALIZED_NAME_EXT = "ext";
   @SerializedName(SERIALIZED_NAME_EXT)
-  private Map<String, Object> ext = null;
+  private Object ext;
 
   public static final String SERIALIZED_NAME_IAT = "iat";
   @SerializedName(SERIALIZED_NAME_IAT)
@@ -186,17 +184,9 @@ public class OAuth2TokenIntrospection {
   }
 
 
-  public OAuth2TokenIntrospection ext(Map<String, Object> ext) {
+  public OAuth2TokenIntrospection ext(Object ext) {
     
     this.ext = ext;
-    return this;
-  }
-
-  public OAuth2TokenIntrospection putExtItem(String key, Object extItem) {
-    if (this.ext == null) {
-      this.ext = new HashMap<String, Object>();
-    }
-    this.ext.put(key, extItem);
     return this;
   }
 
@@ -207,12 +197,12 @@ public class OAuth2TokenIntrospection {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Extra is arbitrary data set by the session.")
 
-  public Map<String, Object> getExt() {
+  public Object getExt() {
     return ext;
   }
 
 
-  public void setExt(Map<String, Object> ext) {
+  public void setExt(Object ext) {
     this.ext = ext;
   }
 

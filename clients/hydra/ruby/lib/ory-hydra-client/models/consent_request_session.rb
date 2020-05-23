@@ -31,8 +31,8 @@ module OryHydraClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'access_token' => :'Hash<String, Object>',
-        :'id_token' => :'Hash<String, Object>'
+        :'access_token' => :'Object',
+        :'id_token' => :'Object'
       }
     end
 
@@ -58,15 +58,11 @@ module OryHydraClient
       }
 
       if attributes.key?(:'access_token')
-        if (value = attributes[:'access_token']).is_a?(Hash)
-          self.access_token = value
-        end
+        self.access_token = attributes[:'access_token']
       end
 
       if attributes.key?(:'id_token')
-        if (value = attributes[:'id_token']).is_a?(Hash)
-          self.id_token = value
-        end
+        self.id_token = attributes[:'id_token']
       end
     end
 

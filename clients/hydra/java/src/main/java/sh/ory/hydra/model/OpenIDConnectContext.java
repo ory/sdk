@@ -24,14 +24,12 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * OpenIDConnectContext
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-30T11:29:47.487995Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-23T15:40:20.175179Z[GMT]")
 public class OpenIDConnectContext {
   public static final String SERIALIZED_NAME_ACR_VALUES = "acr_values";
   @SerializedName(SERIALIZED_NAME_ACR_VALUES)
@@ -43,7 +41,7 @@ public class OpenIDConnectContext {
 
   public static final String SERIALIZED_NAME_ID_TOKEN_HINT_CLAIMS = "id_token_hint_claims";
   @SerializedName(SERIALIZED_NAME_ID_TOKEN_HINT_CLAIMS)
-  private Map<String, Object> idTokenHintClaims = null;
+  private Object idTokenHintClaims;
 
   public static final String SERIALIZED_NAME_LOGIN_HINT = "login_hint";
   @SerializedName(SERIALIZED_NAME_LOGIN_HINT)
@@ -108,17 +106,9 @@ public class OpenIDConnectContext {
   }
 
 
-  public OpenIDConnectContext idTokenHintClaims(Map<String, Object> idTokenHintClaims) {
+  public OpenIDConnectContext idTokenHintClaims(Object idTokenHintClaims) {
     
     this.idTokenHintClaims = idTokenHintClaims;
-    return this;
-  }
-
-  public OpenIDConnectContext putIdTokenHintClaimsItem(String key, Object idTokenHintClaimsItem) {
-    if (this.idTokenHintClaims == null) {
-      this.idTokenHintClaims = new HashMap<String, Object>();
-    }
-    this.idTokenHintClaims.put(key, idTokenHintClaimsItem);
     return this;
   }
 
@@ -129,12 +119,12 @@ public class OpenIDConnectContext {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "IDTokenHintClaims are the claims of the ID Token previously issued by the Authorization Server being passed as a hint about the End-User's current or past authenticated session with the Client.")
 
-  public Map<String, Object> getIdTokenHintClaims() {
+  public Object getIdTokenHintClaims() {
     return idTokenHintClaims;
   }
 
 
-  public void setIdTokenHintClaims(Map<String, Object> idTokenHintClaims) {
+  public void setIdTokenHintClaims(Object idTokenHintClaims) {
     this.idTokenHintClaims = idTokenHintClaims;
   }
 

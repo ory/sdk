@@ -36,7 +36,7 @@ use \Ory\Hydra\Client\ObjectSerializer;
  * PluginInterfaceType Class Doc Comment
  *
  * @category Class
- * @description PluginInterfaceType PluginInterfaceType plugin interface type
+ * @description PluginInterfaceType plugin interface type
  * @package  Ory\Hydra\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

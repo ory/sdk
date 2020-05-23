@@ -13,7 +13,6 @@ OpenAPI Generator version: 4.2.3
 require 'date'
 
 module OryHydraClient
-  # Version Version Version Version version
   class Version
     # Version is the service's version.
     attr_accessor :version

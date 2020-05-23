@@ -13,7 +13,7 @@
 import { RequestFile } from '../api';
 
 /**
-* PluginInterfaceType PluginInterfaceType plugin interface type
+* PluginInterfaceType plugin interface type
 */
 export class PluginInterfaceType {
     /**

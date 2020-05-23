@@ -59,7 +59,7 @@ class OpenIDConnectContext implements ModelInterface, ArrayAccess
     protected static $openAPITypes = [
         'acrValues' => 'string[]',
         'display' => 'string',
-        'idTokenHintClaims' => 'map[string,object]',
+        'idTokenHintClaims' => 'object',
         'loginHint' => 'string',
         'uiLocales' => 'string[]'
     ];
@@ -279,7 +279,7 @@ class OpenIDConnectContext implements ModelInterface, ArrayAccess
     /**
      * Gets idTokenHintClaims
      *
-     * @return map[string,object]|null
+     * @return object|null
      */
     public function getIdTokenHintClaims()
     {
@@ -289,7 +289,7 @@ class OpenIDConnectContext implements ModelInterface, ArrayAccess
     /**
      * Sets idTokenHintClaims
      *
-     * @param map[string,object]|null $idTokenHintClaims IDTokenHintClaims are the claims of the ID Token previously issued by the Authorization Server being passed as a hint about the End-User's current or past authenticated session with the Client.
+     * @param object|null $idTokenHintClaims IDTokenHintClaims are the claims of the ID Token previously issued by the Authorization Server being passed as a hint about the End-User's current or past authenticated session with the Client.
      *
      * @return $this
      */

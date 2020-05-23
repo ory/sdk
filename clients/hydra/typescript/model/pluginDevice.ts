@@ -13,7 +13,7 @@
 import { RequestFile } from '../api';
 
 /**
-* PluginDevice PluginDevice PluginDevice plugin device
+* PluginDevice plugin device
 */
 export class PluginDevice {
     /**

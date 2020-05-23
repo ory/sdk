@@ -80,7 +80,7 @@ module OryHydraClient
         :'aud' => :'Array<String>',
         :'client_id' => :'String',
         :'exp' => :'Integer',
-        :'ext' => :'Hash<String, Object>',
+        :'ext' => :'Object',
         :'iat' => :'Integer',
         :'iss' => :'String',
         :'nbf' => :'Integer',
@@ -132,9 +132,7 @@ module OryHydraClient
       end
 
       if attributes.key?(:'ext')
-        if (value = attributes[:'ext']).is_a?(Hash)
-          self.ext = value
-        end
+        self.ext = attributes[:'ext']
       end
 
       if attributes.key?(:'iat')

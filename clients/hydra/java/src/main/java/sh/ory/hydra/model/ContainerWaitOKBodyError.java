@@ -25,10 +25,10 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * ContainerWaitOKBodyError ContainerWaitOKBodyError container waiting error, if any
+ * ContainerWaitOKBodyError container waiting error, if any
  */
-@ApiModel(description = "ContainerWaitOKBodyError ContainerWaitOKBodyError container waiting error, if any")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-30T11:29:47.487995Z[GMT]")
+@ApiModel(description = "ContainerWaitOKBodyError container waiting error, if any")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-23T15:40:20.175179Z[GMT]")
 public class ContainerWaitOKBodyError {
   public static final String SERIALIZED_NAME_MESSAGE = "Message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)

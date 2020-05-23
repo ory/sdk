@@ -7,12 +7,12 @@ The Access Token Response
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**accessToken** | **String** | access token |  [optional]
-**expiresIn** | **Long** | expires in |  [optional]
-**idToken** | **String** | id token |  [optional]
-**refreshToken** | **String** | refresh token |  [optional]
-**scope** | **String** | scope |  [optional]
-**tokenType** | **String** | token type |  [optional]
+**accessToken** | **String** |  |  [optional]
+**expiresIn** | **Long** |  |  [optional]
+**idToken** | **String** |  |  [optional]
+**refreshToken** | **String** |  |  [optional]
+**scope** | **String** |  |  [optional]
+**tokenType** | **String** |  |  [optional]
 
 
 

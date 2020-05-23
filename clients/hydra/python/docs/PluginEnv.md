@@ -1,6 +1,6 @@
 # PluginEnv
 
-PluginEnv PluginEnv PluginEnv plugin env
+PluginEnv plugin env
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

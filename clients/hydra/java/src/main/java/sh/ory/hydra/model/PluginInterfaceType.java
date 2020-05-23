@@ -25,10 +25,10 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * PluginInterfaceType PluginInterfaceType plugin interface type
+ * PluginInterfaceType plugin interface type
  */
-@ApiModel(description = "PluginInterfaceType PluginInterfaceType plugin interface type")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-30T11:29:47.487995Z[GMT]")
+@ApiModel(description = "PluginInterfaceType plugin interface type")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-23T15:40:20.175179Z[GMT]")
 public class PluginInterfaceType {
   public static final String SERIALIZED_NAME_CAPABILITY = "Capability";
   @SerializedName(SERIALIZED_NAME_CAPABILITY)

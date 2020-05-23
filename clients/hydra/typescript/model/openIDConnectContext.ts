@@ -24,7 +24,7 @@ export class OpenIDConnectContext {
     /**
     * IDTokenHintClaims are the claims of the ID Token previously issued by the Authorization Server being passed as a hint about the End-User\'s current or past authenticated session with the Client.
     */
-    'idTokenHintClaims'?: { [key: string]: object; };
+    'idTokenHintClaims'?: object;
     /**
     * LoginHint hints about the login identifier the End-User might use to log in (if necessary). This hint can be used by an RP if it first asks the End-User for their e-mail address (or other identifier) and then wants to pass that value as a hint to the discovered authorization service. This value MAY also be a phone number in the format specified for the phone_number Claim. The use of this parameter is optional.
     */
@@ -50,7 +50,7 @@ export class OpenIDConnectContext {
         {
             "name": "idTokenHintClaims",
             "baseName": "id_token_hint_claims",
-            "type": "{ [key: string]: object; }"
+            "type": "object"
         },
         {
             "name": "loginHint",

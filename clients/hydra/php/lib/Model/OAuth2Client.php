@@ -647,7 +647,7 @@ class OAuth2Client implements ModelInterface, ArrayAccess
     /**
      * Sets createdAt
      *
-     * @param \DateTime|null $createdAt CreatedAt returns the timestamp of the client's creation. Format: date-time Format: date-time Format: date-time
+     * @param \DateTime|null $createdAt CreatedAt returns the timestamp of the client's creation.
      *
      * @return $this
      */
@@ -1132,7 +1132,7 @@ class OAuth2Client implements ModelInterface, ArrayAccess
     /**
      * Sets updatedAt
      *
-     * @param \DateTime|null $updatedAt UpdatedAt returns the timestamp of the last update. Format: date-time Format: date-time Format: date-time
+     * @param \DateTime|null $updatedAt UpdatedAt returns the timestamp of the last update.
      *
      * @return $this
      */

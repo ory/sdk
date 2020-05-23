@@ -36,7 +36,7 @@ use \Ory\Hydra\Client\ObjectSerializer;
  * ContainerWaitOKBodyError Class Doc Comment
  *
  * @category Class
- * @description ContainerWaitOKBodyError ContainerWaitOKBodyError container waiting error, if any
+ * @description ContainerWaitOKBodyError container waiting error, if any
  * @package  Ory\Hydra\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

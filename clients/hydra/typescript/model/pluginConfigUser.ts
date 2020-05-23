@@ -13,7 +13,7 @@
 import { RequestFile } from '../api';
 
 /**
-* PluginConfigUser PluginConfigUser plugin config user
+* PluginConfigUser plugin config user
 */
 export class PluginConfigUser {
     /**

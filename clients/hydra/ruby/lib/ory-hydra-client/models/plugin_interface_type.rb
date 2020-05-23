@@ -13,7 +13,7 @@ OpenAPI Generator version: 4.2.3
 require 'date'
 
 module OryHydraClient
-  # PluginInterfaceType PluginInterfaceType plugin interface type
+  # PluginInterfaceType plugin interface type
   class PluginInterfaceType
     # capability
     attr_accessor :capability

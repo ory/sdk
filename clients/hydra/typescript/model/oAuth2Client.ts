@@ -45,7 +45,7 @@ export class OAuth2Client {
     'clientUri'?: string;
     'contacts'?: Array<string>;
     /**
-    * CreatedAt returns the timestamp of the client\'s creation. Format: date-time Format: date-time Format: date-time
+    * CreatedAt returns the timestamp of the client\'s creation.
     */
     'createdAt'?: Date;
     /**
@@ -104,7 +104,7 @@ export class OAuth2Client {
     */
     'tosUri'?: string;
     /**
-    * UpdatedAt returns the timestamp of the last update. Format: date-time Format: date-time Format: date-time
+    * UpdatedAt returns the timestamp of the last update.
     */
     'updatedAt'?: Date;
     /**

@@ -36,7 +36,7 @@ use \Ory\Hydra\Client\ObjectSerializer;
  * PreviousConsentSession Class Doc Comment
  *
  * @category Class
- * @description PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession The response used to return used consent requests same as HandledLoginRequest, just with consent_request exposed as json
+ * @description The response used to return used consent requests same as HandledLoginRequest, just with consent_request exposed as json
  * @package  Ory\Hydra\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -278,7 +278,7 @@ class PreviousConsentSession implements ModelInterface, ArrayAccess
     /**
      * Sets grantAccessTokenAudience
      *
-     * @param string[]|null $grantAccessTokenAudience GrantedAudience sets the audience the user authorized the client to use. Should be a subset of `requested_access_token_audience`.
+     * @param string[]|null $grantAccessTokenAudience grantAccessTokenAudience
      *
      * @return $this
      */
@@ -302,7 +302,7 @@ class PreviousConsentSession implements ModelInterface, ArrayAccess
     /**
      * Sets grantScope
      *
-     * @param string[]|null $grantScope GrantScope sets the scope the user authorized the client to use. Should be a subset of `requested_scope`
+     * @param string[]|null $grantScope grantScope
      *
      * @return $this
      */
@@ -326,7 +326,7 @@ class PreviousConsentSession implements ModelInterface, ArrayAccess
     /**
      * Sets handledAt
      *
-     * @param \DateTime|null $handledAt handled at Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time
+     * @param \DateTime|null $handledAt handledAt
      *
      * @return $this
      */

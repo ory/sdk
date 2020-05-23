@@ -13,7 +13,7 @@ OpenAPI Generator version: 4.2.3
 require 'date'
 
 module OryHydraClient
-  # ContainerWaitOKBodyError ContainerWaitOKBodyError container waiting error, if any
+  # ContainerWaitOKBodyError container waiting error, if any
   class ContainerWaitOKBodyError
     # Details of an error
     attr_accessor :message

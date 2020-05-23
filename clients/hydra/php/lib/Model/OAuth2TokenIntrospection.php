@@ -62,7 +62,7 @@ class OAuth2TokenIntrospection implements ModelInterface, ArrayAccess
         'aud' => 'string[]',
         'clientId' => 'string',
         'exp' => 'int',
-        'ext' => 'map[string,object]',
+        'ext' => 'object',
         'iat' => 'int',
         'iss' => 'string',
         'nbf' => 'int',
@@ -379,7 +379,7 @@ class OAuth2TokenIntrospection implements ModelInterface, ArrayAccess
     /**
      * Gets ext
      *
-     * @return map[string,object]|null
+     * @return object|null
      */
     public function getExt()
     {
@@ -389,7 +389,7 @@ class OAuth2TokenIntrospection implements ModelInterface, ArrayAccess
     /**
      * Sets ext
      *
-     * @param map[string,object]|null $ext Extra is arbitrary data set by the session.
+     * @param object|null $ext Extra is arbitrary data set by the session.
      *
      * @return $this
      */

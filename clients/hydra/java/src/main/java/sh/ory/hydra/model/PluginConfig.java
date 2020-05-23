@@ -37,7 +37,7 @@ import sh.ory.hydra.model.PluginMount;
 /**
  * PluginConfig
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-30T11:29:47.487995Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-23T15:40:20.175179Z[GMT]")
 public class PluginConfig {
   public static final String SERIALIZED_NAME_ARGS = "Args";
   @SerializedName(SERIALIZED_NAME_ARGS)

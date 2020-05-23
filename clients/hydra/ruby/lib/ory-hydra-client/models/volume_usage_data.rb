@@ -13,7 +13,7 @@ OpenAPI Generator version: 4.2.3
 require 'date'
 
 module OryHydraClient
-  # VolumeUsageData VolumeUsageData Usage details about the volume. This information is used by the `GET /system/df` endpoint, and omitted in other endpoints.
+  # VolumeUsageData Usage details about the volume. This information is used by the `GET /system/df` endpoint, and omitted in other endpoints.
   class VolumeUsageData
     # The number of containers referencing this volume. This field is set to `-1` if the reference-count is not available.
     attr_accessor :ref_count

@@ -35,7 +35,7 @@ export class OAuth2TokenIntrospection {
     /**
     * Extra is arbitrary data set by the session.
     */
-    'ext'?: { [key: string]: object; };
+    'ext'?: object;
     /**
     * Issued at is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token was originally issued.
     */
@@ -95,7 +95,7 @@ export class OAuth2TokenIntrospection {
         {
             "name": "ext",
             "baseName": "ext",
-            "type": "{ [key: string]: object; }"
+            "type": "object"
         },
         {
             "name": "iat",

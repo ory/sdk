@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**access_token** | **String** | access token | [optional] 
-**expires_in** | **Integer** | expires in | [optional] 
-**id_token** | **String** | id token | [optional] 
-**refresh_token** | **String** | refresh token | [optional] 
-**scope** | **String** | scope | [optional] 
-**token_type** | **String** | token type | [optional] 
+**access_token** | **String** |  | [optional] 
+**expires_in** | **Integer** |  | [optional] 
+**id_token** | **String** |  | [optional] 
+**refresh_token** | **String** |  | [optional] 
+**scope** | **String** |  | [optional] 
+**token_type** | **String** |  | [optional] 
 
 ## Code Sample
 

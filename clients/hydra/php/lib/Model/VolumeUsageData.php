@@ -36,7 +36,7 @@ use \Ory\Hydra\Client\ObjectSerializer;
  * VolumeUsageData Class Doc Comment
  *
  * @category Class
- * @description VolumeUsageData VolumeUsageData Usage details about the volume. This information is used by the &#x60;GET /system/df&#x60; endpoint, and omitted in other endpoints.
+ * @description VolumeUsageData Usage details about the volume. This information is used by the &#x60;GET /system/df&#x60; endpoint, and omitted in other endpoints.
  * @package  Ory\Hydra\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

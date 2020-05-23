@@ -16,29 +16,11 @@ import { RequestFile } from '../api';
 * The Access Token Response
 */
 export class Oauth2TokenResponse {
-    /**
-    * access token
-    */
     'accessToken'?: string;
-    /**
-    * expires in
-    */
     'expiresIn'?: number;
-    /**
-    * id token
-    */
     'idToken'?: string;
-    /**
-    * refresh token
-    */
     'refreshToken'?: string;
-    /**
-    * scope
-    */
     'scope'?: string;
-    /**
-    * token type
-    */
     'tokenType'?: string;
 
     static discriminator: string | undefined = undefined;

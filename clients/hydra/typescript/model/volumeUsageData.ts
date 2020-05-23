@@ -13,7 +13,7 @@
 import { RequestFile } from '../api';
 
 /**
-* VolumeUsageData VolumeUsageData Usage details about the volume. This information is used by the `GET /system/df` endpoint, and omitted in other endpoints.
+* VolumeUsageData Usage details about the volume. This information is used by the `GET /system/df` endpoint, and omitted in other endpoints.
 */
 export class VolumeUsageData {
     /**

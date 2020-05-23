@@ -37,7 +37,7 @@ class OAuth2TokenIntrospection(object):
         'aud': 'list[str]',
         'client_id': 'str',
         'exp': 'int',
-        'ext': 'dict(str, object)',
+        'ext': 'object',
         'iat': 'int',
         'iss': 'str',
         'nbf': 'int',
@@ -212,7 +212,7 @@ class OAuth2TokenIntrospection(object):
         Extra is arbitrary data set by the session.  # noqa: E501
 
         :return: The ext of this OAuth2TokenIntrospection.  # noqa: E501
-        :rtype: dict(str, object)
+        :rtype: object
         """
         return self._ext
 
@@ -223,7 +223,7 @@ class OAuth2TokenIntrospection(object):
         Extra is arbitrary data set by the session.  # noqa: E501
 
         :param ext: The ext of this OAuth2TokenIntrospection.  # noqa: E501
-        :type: dict(str, object)
+        :type: object
         """
 
         self._ext = ext

@@ -1,6 +1,6 @@
 # PluginConfigUser
 
-PluginConfigUser PluginConfigUser plugin config user
+PluginConfigUser plugin config user
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

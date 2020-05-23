@@ -13,7 +13,7 @@
 import { RequestFile } from '../api';
 
 /**
-* ContainerWaitOKBodyError ContainerWaitOKBodyError container waiting error, if any
+* ContainerWaitOKBodyError container waiting error, if any
 */
 export class ContainerWaitOKBodyError {
     /**

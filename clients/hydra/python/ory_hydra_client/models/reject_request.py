@@ -76,7 +76,6 @@ class RejectRequest(object):
     def error(self):
         """Gets the error of this RejectRequest.  # noqa: E501
 
-        error  # noqa: E501
 
         :return: The error of this RejectRequest.  # noqa: E501
         :rtype: str
@@ -87,7 +86,6 @@ class RejectRequest(object):
     def error(self, error):
         """Sets the error of this RejectRequest.
 
-        error  # noqa: E501
 
         :param error: The error of this RejectRequest.  # noqa: E501
         :type: str
@@ -99,7 +97,6 @@ class RejectRequest(object):
     def error_debug(self):
         """Gets the error_debug of this RejectRequest.  # noqa: E501
 
-        error debug  # noqa: E501
 
         :return: The error_debug of this RejectRequest.  # noqa: E501
         :rtype: str
@@ -110,7 +107,6 @@ class RejectRequest(object):
     def error_debug(self, error_debug):
         """Sets the error_debug of this RejectRequest.
 
-        error debug  # noqa: E501
 
         :param error_debug: The error_debug of this RejectRequest.  # noqa: E501
         :type: str
@@ -122,7 +118,6 @@ class RejectRequest(object):
     def error_description(self):
         """Gets the error_description of this RejectRequest.  # noqa: E501
 
-        error description  # noqa: E501
 
         :return: The error_description of this RejectRequest.  # noqa: E501
         :rtype: str
@@ -133,7 +128,6 @@ class RejectRequest(object):
     def error_description(self, error_description):
         """Sets the error_description of this RejectRequest.
 
-        error description  # noqa: E501
 
         :param error_description: The error_description of this RejectRequest.  # noqa: E501
         :type: str
@@ -145,7 +139,6 @@ class RejectRequest(object):
     def error_hint(self):
         """Gets the error_hint of this RejectRequest.  # noqa: E501
 
-        error hint  # noqa: E501
 
         :return: The error_hint of this RejectRequest.  # noqa: E501
         :rtype: str
@@ -156,7 +149,6 @@ class RejectRequest(object):
     def error_hint(self, error_hint):
         """Sets the error_hint of this RejectRequest.
 
-        error hint  # noqa: E501
 
         :param error_hint: The error_hint of this RejectRequest.  # noqa: E501
         :type: str
@@ -168,7 +160,6 @@ class RejectRequest(object):
     def status_code(self):
         """Gets the status_code of this RejectRequest.  # noqa: E501
 
-        status code  # noqa: E501
 
         :return: The status_code of this RejectRequest.  # noqa: E501
         :rtype: int
@@ -179,7 +170,6 @@ class RejectRequest(object):
     def status_code(self, status_code):
         """Sets the status_code of this RejectRequest.
 
-        status code  # noqa: E501
 
         :param status_code: The status_code of this RejectRequest.  # noqa: E501
         :type: int

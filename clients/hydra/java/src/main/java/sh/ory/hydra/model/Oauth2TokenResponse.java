@@ -28,7 +28,7 @@ import java.io.IOException;
  * The Access Token Response
  */
 @ApiModel(description = "The Access Token Response")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-30T11:29:47.487995Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-23T15:40:20.175179Z[GMT]")
 public class Oauth2TokenResponse {
   public static final String SERIALIZED_NAME_ACCESS_TOKEN = "access_token";
   @SerializedName(SERIALIZED_NAME_ACCESS_TOKEN)
@@ -62,11 +62,11 @@ public class Oauth2TokenResponse {
   }
 
    /**
-   * access token
+   * Get accessToken
    * @return accessToken
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "access token")
+  @ApiModelProperty(value = "")
 
   public String getAccessToken() {
     return accessToken;
@@ -85,11 +85,11 @@ public class Oauth2TokenResponse {
   }
 
    /**
-   * expires in
+   * Get expiresIn
    * @return expiresIn
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "expires in")
+  @ApiModelProperty(value = "")
 
   public Long getExpiresIn() {
     return expiresIn;
@@ -108,11 +108,11 @@ public class Oauth2TokenResponse {
   }
 
    /**
-   * id token
+   * Get idToken
    * @return idToken
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "id token")
+  @ApiModelProperty(value = "")
 
   public String getIdToken() {
     return idToken;
@@ -131,11 +131,11 @@ public class Oauth2TokenResponse {
   }
 
    /**
-   * refresh token
+   * Get refreshToken
    * @return refreshToken
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "refresh token")
+  @ApiModelProperty(value = "")
 
   public String getRefreshToken() {
     return refreshToken;
@@ -154,11 +154,11 @@ public class Oauth2TokenResponse {
   }
 
    /**
-   * scope
+   * Get scope
    * @return scope
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "scope")
+  @ApiModelProperty(value = "")
 
   public String getScope() {
     return scope;
@@ -177,11 +177,11 @@ public class Oauth2TokenResponse {
   }
 
    /**
-   * token type
+   * Get tokenType
    * @return tokenType
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "token type")
+  @ApiModelProperty(value = "")
 
   public String getTokenType() {
     return tokenType;

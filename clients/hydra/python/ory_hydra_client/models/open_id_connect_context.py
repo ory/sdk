@@ -35,7 +35,7 @@ class OpenIDConnectContext(object):
     openapi_types = {
         'acr_values': 'list[str]',
         'display': 'str',
-        'id_token_hint_claims': 'dict(str, object)',
+        'id_token_hint_claims': 'object',
         'login_hint': 'str',
         'ui_locales': 'list[str]'
     }
@@ -125,7 +125,7 @@ class OpenIDConnectContext(object):
         IDTokenHintClaims are the claims of the ID Token previously issued by the Authorization Server being passed as a hint about the End-User's current or past authenticated session with the Client.  # noqa: E501
 
         :return: The id_token_hint_claims of this OpenIDConnectContext.  # noqa: E501
-        :rtype: dict(str, object)
+        :rtype: object
         """
         return self._id_token_hint_claims
 
@@ -136,7 +136,7 @@ class OpenIDConnectContext(object):
         IDTokenHintClaims are the claims of the ID Token previously issued by the Authorization Server being passed as a hint about the End-User's current or past authenticated session with the Client.  # noqa: E501
 
         :param id_token_hint_claims: The id_token_hint_claims of this OpenIDConnectContext.  # noqa: E501
-        :type: dict(str, object)
+        :type: object
         """
 
         self._id_token_hint_claims = id_token_hint_claims

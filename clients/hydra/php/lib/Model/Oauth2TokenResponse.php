@@ -248,7 +248,7 @@ class Oauth2TokenResponse implements ModelInterface, ArrayAccess
     /**
      * Sets accessToken
      *
-     * @param string|null $accessToken access token
+     * @param string|null $accessToken accessToken
      *
      * @return $this
      */
@@ -272,7 +272,7 @@ class Oauth2TokenResponse implements ModelInterface, ArrayAccess
     /**
      * Sets expiresIn
      *
-     * @param int|null $expiresIn expires in
+     * @param int|null $expiresIn expiresIn
      *
      * @return $this
      */
@@ -296,7 +296,7 @@ class Oauth2TokenResponse implements ModelInterface, ArrayAccess
     /**
      * Sets idToken
      *
-     * @param string|null $idToken id token
+     * @param string|null $idToken idToken
      *
      * @return $this
      */
@@ -320,7 +320,7 @@ class Oauth2TokenResponse implements ModelInterface, ArrayAccess
     /**
      * Sets refreshToken
      *
-     * @param string|null $refreshToken refresh token
+     * @param string|null $refreshToken refreshToken
      *
      * @return $this
      */
@@ -368,7 +368,7 @@ class Oauth2TokenResponse implements ModelInterface, ArrayAccess
     /**
      * Sets tokenType
      *
-     * @param string|null $tokenType token type
+     * @param string|null $tokenType tokenType
      *
      * @return $this
      */

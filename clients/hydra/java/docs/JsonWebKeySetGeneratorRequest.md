@@ -2,7 +2,6 @@
 
 # JsonWebKeySetGeneratorRequest
 
-JSONWebKeySetGeneratorRequest json web key set generator request
 ## Properties
 
 Name | Type | Description | Notes

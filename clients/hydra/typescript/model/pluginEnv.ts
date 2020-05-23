@@ -13,7 +13,7 @@
 import { RequestFile } from '../api';
 
 /**
-* PluginEnv PluginEnv PluginEnv plugin env
+* PluginEnv plugin env
 */
 export class PluginEnv {
     /**

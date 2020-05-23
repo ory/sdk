@@ -1,6 +1,6 @@
 # PluginMount
 
-PluginMount PluginMount plugin mount
+PluginMount plugin mount
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

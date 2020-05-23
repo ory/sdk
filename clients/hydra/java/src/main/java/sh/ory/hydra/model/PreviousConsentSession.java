@@ -30,10 +30,10 @@ import sh.ory.hydra.model.ConsentRequest;
 import sh.ory.hydra.model.ConsentRequestSession;
 
 /**
- * PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession The response used to return used consent requests same as HandledLoginRequest, just with consent_request exposed as json
+ * The response used to return used consent requests same as HandledLoginRequest, just with consent_request exposed as json
  */
-@ApiModel(description = "PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession PreviousConsentSession The response used to return used consent requests same as HandledLoginRequest, just with consent_request exposed as json")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-30T11:29:47.487995Z[GMT]")
+@ApiModel(description = "The response used to return used consent requests same as HandledLoginRequest, just with consent_request exposed as json")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-23T15:40:20.175179Z[GMT]")
 public class PreviousConsentSession {
   public static final String SERIALIZED_NAME_CONSENT_REQUEST = "consent_request";
   @SerializedName(SERIALIZED_NAME_CONSENT_REQUEST)
@@ -102,11 +102,11 @@ public class PreviousConsentSession {
   }
 
    /**
-   * GrantedAudience sets the audience the user authorized the client to use. Should be a subset of &#x60;requested_access_token_audience&#x60;.
+   * Get grantAccessTokenAudience
    * @return grantAccessTokenAudience
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "GrantedAudience sets the audience the user authorized the client to use. Should be a subset of `requested_access_token_audience`.")
+  @ApiModelProperty(value = "")
 
   public List<String> getGrantAccessTokenAudience() {
     return grantAccessTokenAudience;
@@ -133,11 +133,11 @@ public class PreviousConsentSession {
   }
 
    /**
-   * GrantScope sets the scope the user authorized the client to use. Should be a subset of &#x60;requested_scope&#x60;
+   * Get grantScope
    * @return grantScope
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "GrantScope sets the scope the user authorized the client to use. Should be a subset of `requested_scope`")
+  @ApiModelProperty(value = "")
 
   public List<String> getGrantScope() {
     return grantScope;
@@ -156,11 +156,11 @@ public class PreviousConsentSession {
   }
 
    /**
-   * handled at Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time
+   * Get handledAt
    * @return handledAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "handled at Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time")
+  @ApiModelProperty(value = "")
 
   public OffsetDateTime getHandledAt() {
     return handledAt;

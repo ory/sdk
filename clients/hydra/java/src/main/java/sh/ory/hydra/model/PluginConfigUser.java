@@ -25,10 +25,10 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * PluginConfigUser PluginConfigUser plugin config user
+ * PluginConfigUser plugin config user
  */
-@ApiModel(description = "PluginConfigUser PluginConfigUser plugin config user")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-30T11:29:47.487995Z[GMT]")
+@ApiModel(description = "PluginConfigUser plugin config user")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-23T15:40:20.175179Z[GMT]")
 public class PluginConfigUser {
   public static final String SERIALIZED_NAME_G_I_D = "GID";
   @SerializedName(SERIALIZED_NAME_G_I_D)

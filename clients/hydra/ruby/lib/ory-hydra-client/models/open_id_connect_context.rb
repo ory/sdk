@@ -45,7 +45,7 @@ module OryHydraClient
       {
         :'acr_values' => :'Array<String>',
         :'display' => :'String',
-        :'id_token_hint_claims' => :'Hash<String, Object>',
+        :'id_token_hint_claims' => :'Object',
         :'login_hint' => :'String',
         :'ui_locales' => :'Array<String>'
       }
@@ -83,9 +83,7 @@ module OryHydraClient
       end
 
       if attributes.key?(:'id_token_hint_claims')
-        if (value = attributes[:'id_token_hint_claims']).is_a?(Hash)
-          self.id_token_hint_claims = value
-        end
+        self.id_token_hint_claims = attributes[:'id_token_hint_claims']
       end
 
       if attributes.key?(:'login_hint')

@@ -14,19 +14,14 @@ require 'date'
 
 module OryHydraClient
   class RejectRequest
-    # error
     attr_accessor :error
 
-    # error debug
     attr_accessor :error_debug
 
-    # error description
     attr_accessor :error_description
 
-    # error hint
     attr_accessor :error_hint
 
-    # status code
     attr_accessor :status_code
 
     # Attribute mapping from ruby-style variable name to JSON key.

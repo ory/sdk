@@ -13,7 +13,7 @@
 import { RequestFile } from '../api';
 
 /**
-* PluginMount PluginMount plugin mount
+* PluginMount plugin mount
 */
 export class PluginMount {
     /**

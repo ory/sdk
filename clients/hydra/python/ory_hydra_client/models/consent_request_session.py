@@ -33,8 +33,8 @@ class ConsentRequestSession(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'access_token': 'dict(str, object)',
-        'id_token': 'dict(str, object)'
+        'access_token': 'object',
+        'id_token': 'object'
     }
 
     attribute_map = {
@@ -64,7 +64,7 @@ class ConsentRequestSession(object):
         AccessToken sets session data for the access and refresh token, as well as any future tokens issued by the refresh grant. Keep in mind that this data will be available to anyone performing OAuth 2.0 Challenge Introspection. If only your services can perform OAuth 2.0 Challenge Introspection, this is usually fine. But if third parties can access that endpoint as well, sensitive data from the session might be exposed to them. Use with care!  # noqa: E501
 
         :return: The access_token of this ConsentRequestSession.  # noqa: E501
-        :rtype: dict(str, object)
+        :rtype: object
         """
         return self._access_token
 
@@ -75,7 +75,7 @@ class ConsentRequestSession(object):
         AccessToken sets session data for the access and refresh token, as well as any future tokens issued by the refresh grant. Keep in mind that this data will be available to anyone performing OAuth 2.0 Challenge Introspection. If only your services can perform OAuth 2.0 Challenge Introspection, this is usually fine. But if third parties can access that endpoint as well, sensitive data from the session might be exposed to them. Use with care!  # noqa: E501
 
         :param access_token: The access_token of this ConsentRequestSession.  # noqa: E501
-        :type: dict(str, object)
+        :type: object
         """
 
         self._access_token = access_token
@@ -87,7 +87,7 @@ class ConsentRequestSession(object):
         IDToken sets session data for the OpenID Connect ID token. Keep in mind that the session'id payloads are readable by anyone that has access to the ID Challenge. Use with care!  # noqa: E501
 
         :return: The id_token of this ConsentRequestSession.  # noqa: E501
-        :rtype: dict(str, object)
+        :rtype: object
         """
         return self._id_token
 
@@ -98,7 +98,7 @@ class ConsentRequestSession(object):
         IDToken sets session data for the OpenID Connect ID token. Keep in mind that the session'id payloads are readable by anyone that has access to the ID Challenge. Use with care!  # noqa: E501
 
         :param id_token: The id_token of this ConsentRequestSession.  # noqa: E501
-        :type: dict(str, object)
+        :type: object
         """
 
         self._id_token = id_token

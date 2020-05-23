@@ -13,7 +13,6 @@ OpenAPI Generator version: 4.2.3
 require 'date'
 
 module OryHydraClient
-  # HealthStatus health status
   class HealthStatus
     # Status always contains \"ok\".
     attr_accessor :status

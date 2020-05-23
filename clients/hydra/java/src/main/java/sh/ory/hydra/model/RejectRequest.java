@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * RejectRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-30T11:29:47.487995Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-23T15:40:20.175179Z[GMT]")
 public class RejectRequest {
   public static final String SERIALIZED_NAME_ERROR = "error";
   @SerializedName(SERIALIZED_NAME_ERROR)
@@ -57,11 +57,11 @@ public class RejectRequest {
   }
 
    /**
-   * error
+   * Get error
    * @return error
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "error")
+  @ApiModelProperty(value = "")
 
   public String getError() {
     return error;
@@ -80,11 +80,11 @@ public class RejectRequest {
   }
 
    /**
-   * error debug
+   * Get errorDebug
    * @return errorDebug
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "error debug")
+  @ApiModelProperty(value = "")
 
   public String getErrorDebug() {
     return errorDebug;
@@ -103,11 +103,11 @@ public class RejectRequest {
   }
 
    /**
-   * error description
+   * Get errorDescription
    * @return errorDescription
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "error description")
+  @ApiModelProperty(value = "")
 
   public String getErrorDescription() {
     return errorDescription;
@@ -126,11 +126,11 @@ public class RejectRequest {
   }
 
    /**
-   * error hint
+   * Get errorHint
    * @return errorHint
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "error hint")
+  @ApiModelProperty(value = "")
 
   public String getErrorHint() {
     return errorHint;
@@ -149,11 +149,11 @@ public class RejectRequest {
   }
 
    /**
-   * status code
+   * Get statusCode
    * @return statusCode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "status code")
+  @ApiModelProperty(value = "")
 
   public Long getStatusCode() {
     return statusCode;

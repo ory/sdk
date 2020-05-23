@@ -107,7 +107,6 @@ class PreviousConsentSession(object):
     def grant_access_token_audience(self):
         """Gets the grant_access_token_audience of this PreviousConsentSession.  # noqa: E501
 
-        GrantedAudience sets the audience the user authorized the client to use. Should be a subset of `requested_access_token_audience`.  # noqa: E501
 
         :return: The grant_access_token_audience of this PreviousConsentSession.  # noqa: E501
         :rtype: list[str]
@@ -118,7 +117,6 @@ class PreviousConsentSession(object):
     def grant_access_token_audience(self, grant_access_token_audience):
         """Sets the grant_access_token_audience of this PreviousConsentSession.
 
-        GrantedAudience sets the audience the user authorized the client to use. Should be a subset of `requested_access_token_audience`.  # noqa: E501
 
         :param grant_access_token_audience: The grant_access_token_audience of this PreviousConsentSession.  # noqa: E501
         :type: list[str]
@@ -130,7 +128,6 @@ class PreviousConsentSession(object):
     def grant_scope(self):
         """Gets the grant_scope of this PreviousConsentSession.  # noqa: E501
 
-        GrantScope sets the scope the user authorized the client to use. Should be a subset of `requested_scope`  # noqa: E501
 
         :return: The grant_scope of this PreviousConsentSession.  # noqa: E501
         :rtype: list[str]
@@ -141,7 +138,6 @@ class PreviousConsentSession(object):
     def grant_scope(self, grant_scope):
         """Sets the grant_scope of this PreviousConsentSession.
 
-        GrantScope sets the scope the user authorized the client to use. Should be a subset of `requested_scope`  # noqa: E501
 
         :param grant_scope: The grant_scope of this PreviousConsentSession.  # noqa: E501
         :type: list[str]
@@ -153,7 +149,6 @@ class PreviousConsentSession(object):
     def handled_at(self):
         """Gets the handled_at of this PreviousConsentSession.  # noqa: E501
 
-        handled at Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time  # noqa: E501
 
         :return: The handled_at of this PreviousConsentSession.  # noqa: E501
         :rtype: datetime
@@ -164,7 +159,6 @@ class PreviousConsentSession(object):
     def handled_at(self, handled_at):
         """Sets the handled_at of this PreviousConsentSession.
 
-        handled at Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time Format: date-time  # noqa: E501
 
         :param handled_at: The handled_at of this PreviousConsentSession.  # noqa: E501
         :type: datetime
