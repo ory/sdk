@@ -42,7 +42,7 @@ module OryHydraClient
     def self.openapi_types
       {
         :'code' => :'Integer',
-        :'details' => :'Array<Hash<String, Object>>',
+        :'details' => :'Array<Object>',
         :'message' => :'String',
         :'reason' => :'String',
         :'request' => :'String',

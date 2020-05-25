@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **int** |  | [optional] 
-**details** | [**map[string,object][]**](map.md) |  | [optional] 
+**details** | **object[]** |  | [optional] 
 **message** | **string** |  | [optional] 
 **reason** | **string** |  | [optional] 
 **request** | **string** |  | [optional] 

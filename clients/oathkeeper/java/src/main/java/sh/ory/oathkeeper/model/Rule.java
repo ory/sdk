@@ -32,7 +32,7 @@ import sh.ory.oathkeeper.model.Upstream;
 /**
  * Rule
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-08T11:01:35.385722Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-25T10:36:43.267621Z[GMT]")
 public class Rule {
   public static final String SERIALIZED_NAME_AUTHENTICATORS = "authenticators";
   @SerializedName(SERIALIZED_NAME_AUTHENTICATORS)

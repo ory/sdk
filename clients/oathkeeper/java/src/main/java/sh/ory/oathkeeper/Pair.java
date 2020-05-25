@@ -13,7 +13,7 @@
 
 package sh.ory.oathkeeper;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-08T11:01:35.385722Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-25T10:36:43.267621Z[GMT]")
 public class Pair {
     private String name = "";
     private String value = "";

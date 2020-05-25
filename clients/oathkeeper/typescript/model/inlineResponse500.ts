@@ -14,7 +14,7 @@ import { RequestFile } from '../api';
 
 export class InlineResponse500 {
     'code'?: number;
-    'details'?: Array<{ [key: string]: object; }>;
+    'details'?: Array<object>;
     'message'?: string;
     'reason'?: string;
     'request'?: string;
@@ -31,7 +31,7 @@ export class InlineResponse500 {
         {
             "name": "details",
             "baseName": "details",
-            "type": "Array<{ [key: string]: object; }>"
+            "type": "Array<object>"
         },
         {
             "name": "message",

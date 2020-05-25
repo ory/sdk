@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **Integer** |  | [optional] 
-**details** | **Array&lt;Hash&lt;String, Object&gt;&gt;** |  | [optional] 
+**details** | **Array&lt;Object&gt;** |  | [optional] 
 **message** | **String** |  | [optional] 
 **reason** | **String** |  | [optional] 
 **request** | **String** |  | [optional] 
