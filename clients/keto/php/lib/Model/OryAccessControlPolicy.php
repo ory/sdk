@@ -58,7 +58,7 @@ class OryAccessControlPolicy implements ModelInterface, ArrayAccess
       */
     protected static $openAPITypes = [
         'actions' => 'string[]',
-        'conditions' => 'map[string,object]',
+        'conditions' => 'object',
         'description' => 'string',
         'effect' => 'string',
         'id' => 'string',
@@ -267,7 +267,7 @@ class OryAccessControlPolicy implements ModelInterface, ArrayAccess
     /**
      * Gets conditions
      *
-     * @return map[string,object]|null
+     * @return object|null
      */
     public function getConditions()
     {
@@ -277,7 +277,7 @@ class OryAccessControlPolicy implements ModelInterface, ArrayAccess
     /**
      * Sets conditions
      *
-     * @param map[string,object]|null $conditions Conditions represents a keyed object of conditions under which this ORY Access Policy is active.
+     * @param object|null $conditions Conditions represents a keyed object of conditions under which this ORY Access Policy is active.
      *
      * @return $this
      */

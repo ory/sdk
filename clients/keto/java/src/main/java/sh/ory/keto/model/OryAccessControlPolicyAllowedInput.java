@@ -23,14 +23,11 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * OryAccessControlPolicyAllowedInput
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-07T14:58:13.256805Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-28T11:42:43.476474Z[GMT]")
 public class OryAccessControlPolicyAllowedInput {
   public static final String SERIALIZED_NAME_ACTION = "action";
   @SerializedName(SERIALIZED_NAME_ACTION)
@@ -38,7 +35,7 @@ public class OryAccessControlPolicyAllowedInput {
 
   public static final String SERIALIZED_NAME_CONTEXT = "context";
   @SerializedName(SERIALIZED_NAME_CONTEXT)
-  private Map<String, Object> context = null;
+  private Object context;
 
   public static final String SERIALIZED_NAME_RESOURCE = "resource";
   @SerializedName(SERIALIZED_NAME_RESOURCE)
@@ -72,17 +69,9 @@ public class OryAccessControlPolicyAllowedInput {
   }
 
 
-  public OryAccessControlPolicyAllowedInput context(Map<String, Object> context) {
+  public OryAccessControlPolicyAllowedInput context(Object context) {
     
     this.context = context;
-    return this;
-  }
-
-  public OryAccessControlPolicyAllowedInput putContextItem(String key, Object contextItem) {
-    if (this.context == null) {
-      this.context = new HashMap<String, Object>();
-    }
-    this.context.put(key, contextItem);
     return this;
   }
 
@@ -93,12 +82,12 @@ public class OryAccessControlPolicyAllowedInput {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Context is the request's environmental context.")
 
-  public Map<String, Object> getContext() {
+  public Object getContext() {
     return context;
   }
 
 
-  public void setContext(Map<String, Object> context) {
+  public void setContext(Object context) {
     this.context = context;
   }
 

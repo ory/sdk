@@ -35,7 +35,7 @@ class OryAccessControlPolicy(object):
     """
     openapi_types = {
         'actions': 'list[str]',
-        'conditions': 'dict(str, object)',
+        'conditions': 'object',
         'description': 'str',
         'effect': 'str',
         'id': 'str',
@@ -113,7 +113,7 @@ class OryAccessControlPolicy(object):
         Conditions represents a keyed object of conditions under which this ORY Access Policy is active.  # noqa: E501
 
         :return: The conditions of this OryAccessControlPolicy.  # noqa: E501
-        :rtype: dict(str, object)
+        :rtype: object
         """
         return self._conditions
 
@@ -124,7 +124,7 @@ class OryAccessControlPolicy(object):
         Conditions represents a keyed object of conditions under which this ORY Access Policy is active.  # noqa: E501
 
         :param conditions: The conditions of this OryAccessControlPolicy.  # noqa: E501
-        :type: dict(str, object)
+        :type: object
         """
 
         self._conditions = conditions

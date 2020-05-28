@@ -20,7 +20,7 @@ export class OryAccessControlPolicy {
     /**
     * Conditions represents a keyed object of conditions under which this ORY Access Policy is active.
     */
-    'conditions'?: { [key: string]: object; };
+    'conditions'?: object;
     /**
     * Description is an optional, human-readable description.
     */
@@ -53,7 +53,7 @@ export class OryAccessControlPolicy {
         {
             "name": "conditions",
             "baseName": "conditions",
-            "type": "{ [key: string]: object; }"
+            "type": "object"
         },
         {
             "name": "description",

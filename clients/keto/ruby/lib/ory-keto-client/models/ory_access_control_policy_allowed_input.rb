@@ -40,7 +40,7 @@ module OryHydraClient
     def self.openapi_types
       {
         :'action' => :'String',
-        :'context' => :'Hash<String, Object>',
+        :'context' => :'Object',
         :'resource' => :'String',
         :'subject' => :'String'
       }
@@ -72,9 +72,7 @@ module OryHydraClient
       end
 
       if attributes.key?(:'context')
-        if (value = attributes[:'context']).is_a?(Hash)
-          self.context = value
-        end
+        self.context = attributes[:'context']
       end
 
       if attributes.key?(:'resource')

@@ -58,7 +58,7 @@ class OryAccessControlPolicyAllowedInput implements ModelInterface, ArrayAccess
       */
     protected static $openAPITypes = [
         'action' => 'string',
-        'context' => 'map[string,object]',
+        'context' => 'object',
         'resource' => 'string',
         'subject' => 'string'
     ];
@@ -249,7 +249,7 @@ class OryAccessControlPolicyAllowedInput implements ModelInterface, ArrayAccess
     /**
      * Gets context
      *
-     * @return map[string,object]|null
+     * @return object|null
      */
     public function getContext()
     {
@@ -259,7 +259,7 @@ class OryAccessControlPolicyAllowedInput implements ModelInterface, ArrayAccess
     /**
      * Sets context
      *
-     * @param map[string,object]|null $context Context is the request's environmental context.
+     * @param object|null $context Context is the request's environmental context.
      *
      * @return $this
      */

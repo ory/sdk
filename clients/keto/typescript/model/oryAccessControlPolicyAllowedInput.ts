@@ -20,7 +20,7 @@ export class OryAccessControlPolicyAllowedInput {
     /**
     * Context is the request\'s environmental context.
     */
-    'context'?: { [key: string]: object; };
+    'context'?: object;
     /**
     * Resource is the resource that access is requested to.
     */
@@ -41,7 +41,7 @@ export class OryAccessControlPolicyAllowedInput {
         {
             "name": "context",
             "baseName": "context",
-            "type": "{ [key: string]: object; }"
+            "type": "object"
         },
         {
             "name": "resource",

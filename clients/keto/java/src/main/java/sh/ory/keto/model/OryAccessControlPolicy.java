@@ -24,14 +24,12 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * OryAccessControlPolicy
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-07T14:58:13.256805Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-28T11:42:43.476474Z[GMT]")
 public class OryAccessControlPolicy {
   public static final String SERIALIZED_NAME_ACTIONS = "actions";
   @SerializedName(SERIALIZED_NAME_ACTIONS)
@@ -39,7 +37,7 @@ public class OryAccessControlPolicy {
 
   public static final String SERIALIZED_NAME_CONDITIONS = "conditions";
   @SerializedName(SERIALIZED_NAME_CONDITIONS)
-  private Map<String, Object> conditions = null;
+  private Object conditions;
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
@@ -93,17 +91,9 @@ public class OryAccessControlPolicy {
   }
 
 
-  public OryAccessControlPolicy conditions(Map<String, Object> conditions) {
+  public OryAccessControlPolicy conditions(Object conditions) {
     
     this.conditions = conditions;
-    return this;
-  }
-
-  public OryAccessControlPolicy putConditionsItem(String key, Object conditionsItem) {
-    if (this.conditions == null) {
-      this.conditions = new HashMap<String, Object>();
-    }
-    this.conditions.put(key, conditionsItem);
     return this;
   }
 
@@ -114,12 +104,12 @@ public class OryAccessControlPolicy {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Conditions represents a keyed object of conditions under which this ORY Access Policy is active.")
 
-  public Map<String, Object> getConditions() {
+  public Object getConditions() {
     return conditions;
   }
 
 
-  public void setConditions(Map<String, Object> conditions) {
+  public void setConditions(Object conditions) {
     this.conditions = conditions;
   }
 

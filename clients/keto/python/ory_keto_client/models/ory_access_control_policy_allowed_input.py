@@ -35,7 +35,7 @@ class OryAccessControlPolicyAllowedInput(object):
     """
     openapi_types = {
         'action': 'str',
-        'context': 'dict(str, object)',
+        'context': 'object',
         'resource': 'str',
         'subject': 'str'
     }
@@ -98,7 +98,7 @@ class OryAccessControlPolicyAllowedInput(object):
         Context is the request's environmental context.  # noqa: E501
 
         :return: The context of this OryAccessControlPolicyAllowedInput.  # noqa: E501
-        :rtype: dict(str, object)
+        :rtype: object
         """
         return self._context
 
@@ -109,7 +109,7 @@ class OryAccessControlPolicyAllowedInput(object):
         Context is the request's environmental context.  # noqa: E501
 
         :param context: The context of this OryAccessControlPolicyAllowedInput.  # noqa: E501
-        :type: dict(str, object)
+        :type: object
         """
 
         self._context = context

@@ -35,7 +35,7 @@ class InlineResponse500(object):
     """
     openapi_types = {
         'code': 'int',
-        'details': 'list[dict(str, object)]',
+        'details': 'list[object]',
         'message': 'str',
         'reason': 'str',
         'request': 'str',
@@ -105,7 +105,7 @@ class InlineResponse500(object):
 
 
         :return: The details of this InlineResponse500.  # noqa: E501
-        :rtype: list[dict(str, object)]
+        :rtype: list[object]
         """
         return self._details
 
@@ -115,7 +115,7 @@ class InlineResponse500(object):
 
 
         :param details: The details of this InlineResponse500.  # noqa: E501
-        :type: list[dict(str, object)]
+        :type: list[object]
         """
 
         self._details = details

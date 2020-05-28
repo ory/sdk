@@ -58,7 +58,7 @@ class InlineResponse500 implements ModelInterface, ArrayAccess
       */
     protected static $openAPITypes = [
         'code' => 'int',
-        'details' => 'map[string,object][]',
+        'details' => 'object[]',
         'message' => 'string',
         'reason' => 'string',
         'request' => 'string',
@@ -261,7 +261,7 @@ class InlineResponse500 implements ModelInterface, ArrayAccess
     /**
      * Gets details
      *
-     * @return map[string,object][]|null
+     * @return object[]|null
      */
     public function getDetails()
     {
@@ -271,7 +271,7 @@ class InlineResponse500 implements ModelInterface, ArrayAccess
     /**
      * Sets details
      *
-     * @param map[string,object][]|null $details details
+     * @param object[]|null $details details
      *
      * @return $this
      */

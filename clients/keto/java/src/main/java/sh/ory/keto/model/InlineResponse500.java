@@ -25,12 +25,11 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * InlineResponse500
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-04-07T14:58:13.256805Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-05-28T11:42:43.476474Z[GMT]")
 public class InlineResponse500 {
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
@@ -38,7 +37,7 @@ public class InlineResponse500 {
 
   public static final String SERIALIZED_NAME_DETAILS = "details";
   @SerializedName(SERIALIZED_NAME_DETAILS)
-  private List<Map<String, Object>> details = null;
+  private List<Object> details = null;
 
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
@@ -80,15 +79,15 @@ public class InlineResponse500 {
   }
 
 
-  public InlineResponse500 details(List<Map<String, Object>> details) {
+  public InlineResponse500 details(List<Object> details) {
     
     this.details = details;
     return this;
   }
 
-  public InlineResponse500 addDetailsItem(Map<String, Object> detailsItem) {
+  public InlineResponse500 addDetailsItem(Object detailsItem) {
     if (this.details == null) {
-      this.details = new ArrayList<Map<String, Object>>();
+      this.details = new ArrayList<Object>();
     }
     this.details.add(detailsItem);
     return this;
@@ -101,12 +100,12 @@ public class InlineResponse500 {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public List<Map<String, Object>> getDetails() {
+  public List<Object> getDetails() {
     return details;
   }
 
 
-  public void setDetails(List<Map<String, Object>> details) {
+  public void setDetails(List<Object> details) {
     this.details = details;
   }
 
