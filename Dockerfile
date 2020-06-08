@@ -8,7 +8,7 @@ RUN apk add --no-cache \
 # - docker run --rm debian:stretch grep '^hosts:' /etc/nsswitch.conf
 RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 
-ENV GOLANG_VERSION 1.13.8
+ENV GOLANG_VERSION 1.14.4
 
 RUN set -eux; \
 	apk add --no-cache --virtual .build-deps \
@@ -60,8 +60,8 @@ ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 ENV GO111MODULE=on
 
-RUN go get github.com/go-swagger/go-swagger@1c98855b472d8782c366459428ec2a5e8339ccf2
-RUN go install github.com/go-swagger/go-swagger/cmd/swagger
+RUN go get github.com/go-swagger/go-swagger/cmd/swagger@1c98855b472d8782c366459428ec2a5e8339ccf2
+RUN go get github.com/ory/meta/tools/ory-dev@071fc17f138f9c34af5eaaf071d2b3472b27ae39
 
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 RUN apk add -U --no-cache ca-certificates bash nodejs npm python3 python3-dev py-pip ruby build-base gnupg git openssh curl gettext libffi libffi-dev openssl-dev php composer php-curl php7-tokenizer wget php-dom php-xml php-simplexml php-xmlwriter maven
