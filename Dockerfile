@@ -60,16 +60,24 @@ ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 ENV GO111MODULE=on
 
-RUN go get github.com/go-swagger/go-swagger/cmd/swagger@1c98855b472d8782c366459428ec2a5e8339ccf2
-RUN go get github.com/ory/meta/tools/ory-dev@071fc17f138f9c34af5eaaf071d2b3472b27ae39
-
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
-RUN apk add -U --no-cache ca-certificates bash nodejs npm python3 python3-dev py-pip ruby build-base gnupg git openssh curl gettext libffi libffi-dev openssl-dev php composer php-curl php7-tokenizer wget php-dom php-xml php-simplexml php-xmlwriter maven
+RUN apk add -U --no-cache ca-certificates bash nodejs npm python3 python3-dev py-pip ruby jq build-base gnupg git openssh curl gettext libffi libffi-dev openssl-dev php composer php-curl php7-tokenizer wget php-dom php-xml php-simplexml php-xmlwriter maven
 
 # RUN wget http://central.maven.org/maven2/org/openapitools/openapi-generator-cli/4.2.2/openapi-generator-cli-4.2.2.jar -O openapi-generator-cli.jar
 
 RUN npm install @openapitools/openapi-generator-cli -g
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install --user --upgrade setuptools wheel twine
+
+RUN download_url=$(curl -s https://api.github.com/repos/go-swagger/go-swagger/releases/latest | \
+      jq -r '.assets[] | select(.name | contains("'"$(uname | tr '[:upper:]' '[:lower:]')"'_amd64")) | .browser_download_url') \
+    && curl -o /usr/local/bin/swagger -L'#' "$download_url" \
+    && chmod +x /usr/local/bin/swagger
+
+RUN go get github.com/ory/cli@v0.0.19
+RUN mv $GOPATH/bin/cli $GOPATH/bin/ory
+
+RUN swagger version
+RUN ory version
 
 ENTRYPOINT /bin/bash
