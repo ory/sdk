@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **forced** | **bool** | Forced stores whether this login request should enforce reauthentication. | [optional] 
 **id** | **str** |  | 
 **issued_at** | **datetime** | IssuedAt is the time (UTC) when the request occurred. | 
+**messages** | [**list[Message]**](Message.md) |  | [optional] 
 **methods** | [**dict(str, LoginRequestMethod)**](LoginRequestMethod.md) | Methods contains context for all enabled login methods. If a login request has been processed, but for example the password is incorrect, this will contain error messages. | 
 **request_url** | **str** | RequestURL is the initial URL that was requested from ORY Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. | 
 

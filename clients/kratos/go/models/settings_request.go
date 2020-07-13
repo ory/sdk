@@ -7,7 +7,7 @@ package models
 
 import (
 	"github.com/go-openapi/errors"
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -18,6 +18,7 @@ import (
 // (e.g. profile data, passwords, ...) in a selfservice manner.
 //
 // We recommend reading the [User Settings Documentation](../self-service/flows/user-settings)
+//
 // swagger:model settingsRequest
 type SettingsRequest struct {
 
@@ -45,6 +46,9 @@ type SettingsRequest struct {
 	// Format: date-time
 	IssuedAt *strfmt.DateTime `json:"issued_at"`
 
+	// messages
+	Messages Messages `json:"messages,omitempty"`
+
 	// Methods contains context for all enabled registration methods. If a registration request has been
 	// processed, but for example the password is incorrect, this will contain error messages.
 	// Required: true
@@ -55,11 +59,9 @@ type SettingsRequest struct {
 	// Required: true
 	RequestURL *string `json:"request_url"`
 
-	// UpdateSuccessful, if true, indicates that the settings request has been updated successfully with the provided data.
-	// Done will stay true when repeatedly checking. If set to true, done will revert back to false only
-	// when a request with invalid (e.g. "please use a valid phone number") data was sent.
+	// state
 	// Required: true
-	UpdateSuccessful *bool `json:"update_successful"`
+	State State `json:"state"`
 }
 
 // Validate validates this settings request
@@ -82,6 +84,10 @@ func (m *SettingsRequest) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateMessages(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMethods(formats); err != nil {
 		res = append(res, err)
 	}
@@ -90,7 +96,7 @@ func (m *SettingsRequest) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateUpdateSuccessful(formats); err != nil {
+	if err := m.validateState(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -156,6 +162,22 @@ func (m *SettingsRequest) validateIssuedAt(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *SettingsRequest) validateMessages(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Messages) { // not required
+		return nil
+	}
+
+	if err := m.Messages.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("messages")
+		}
+		return err
+	}
+
+	return nil
+}
+
 func (m *SettingsRequest) validateMethods(formats strfmt.Registry) error {
 
 	for k := range m.Methods {
@@ -183,9 +205,12 @@ func (m *SettingsRequest) validateRequestURL(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *SettingsRequest) validateUpdateSuccessful(formats strfmt.Registry) error {
+func (m *SettingsRequest) validateState(formats strfmt.Registry) error {
 
-	if err := validate.Required("update_successful", "body", m.UpdateSuccessful); err != nil {
+	if err := m.State.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("state")
+		}
 		return err
 	}
 

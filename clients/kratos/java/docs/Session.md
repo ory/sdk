@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **expiresAt** | [**OffsetDateTime**](OffsetDateTime.md) |  | 
 **identity** | [**Identity**](Identity.md) |  | 
 **issuedAt** | [**OffsetDateTime**](OffsetDateTime.md) |  | 
-**sid** | **String** |  | 
+**sid** | [**UUID**](UUID.md) |  | 
 
 
 

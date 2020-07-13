@@ -27,6 +27,8 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	CompleteSelfServiceBrowserRecoveryLinkStrategyFlow(params *CompleteSelfServiceBrowserRecoveryLinkStrategyFlowParams) error
+
 	CompleteSelfServiceBrowserSettingsOIDCSettingsFlow(params *CompleteSelfServiceBrowserSettingsOIDCSettingsFlowParams) error
 
 	CompleteSelfServiceBrowserSettingsPasswordStrategyFlow(params *CompleteSelfServiceBrowserSettingsPasswordStrategyFlowParams) error
@@ -43,6 +45,8 @@ type ClientService interface {
 
 	InitializeSelfServiceBrowserVerificationFlow(params *InitializeSelfServiceBrowserVerificationFlowParams) error
 
+	InitializeSelfServiceRecoveryFlow(params *InitializeSelfServiceRecoveryFlowParams) error
+
 	InitializeSelfServiceSettingsFlow(params *InitializeSelfServiceSettingsFlowParams) error
 
 	SelfServiceBrowserVerify(params *SelfServiceBrowserVerifyParams) error
@@ -50,6 +54,37 @@ type ClientService interface {
 	Whoami(params *WhoamiParams) (*WhoamiOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+  CompleteSelfServiceBrowserRecoveryLinkStrategyFlow completes the browser based recovery flow using a recovery link
+
+  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.
+
+More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/password-reset-account-recovery).
+*/
+func (a *Client) CompleteSelfServiceBrowserRecoveryLinkStrategyFlow(params *CompleteSelfServiceBrowserRecoveryLinkStrategyFlowParams) error {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCompleteSelfServiceBrowserRecoveryLinkStrategyFlowParams()
+	}
+
+	_, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "completeSelfServiceBrowserRecoveryLinkStrategyFlow",
+		Method:             "POST",
+		PathPattern:        "/self-service/browser/flows/recovery/link",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/x-www-form-urlencoded"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &CompleteSelfServiceBrowserRecoveryLinkStrategyFlowReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 /*
@@ -198,7 +233,7 @@ func (a *Client) CompleteSelfServiceBrowserVerificationFlow(params *CompleteSelf
   InitializeSelfServiceBrowserLoginFlow initializes browser based login user flow
 
   This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to
-`urls.login_ui` with the request ID set as a query parameter. If a valid user session exists already, the browser will be
+`selfservice.flows.login.ui_url` with the request ID set as a query parameter. If a valid user session exists already, the browser will be
 redirected to `urls.default_redirect_url`.
 
 > This endpoint is NOT INTENDED for API clients and only works
@@ -270,7 +305,7 @@ func (a *Client) InitializeSelfServiceBrowserLogoutFlow(params *InitializeSelfSe
   InitializeSelfServiceBrowserRegistrationFlow initializes browser based registration user flow
 
   This endpoint initializes a browser-based user registration flow. Once initialized, the browser will be redirected to
-`urls.registration_ui` with the request ID set as a query parameter. If a valid user session exists already, the browser will be
+`selfservice.flows.registration.ui_url` with the request ID set as a query parameter. If a valid user session exists already, the browser will be
 redirected to `urls.default_redirect_url`.
 
 > This endpoint is NOT INTENDED for API clients and only works
@@ -306,7 +341,7 @@ func (a *Client) InitializeSelfServiceBrowserRegistrationFlow(params *Initialize
   InitializeSelfServiceBrowserVerificationFlow initializes browser based verification flow
 
   This endpoint initializes a browser-based verification flow. Once initialized, the browser will be redirected to
-`urls.settings_ui` with the request ID set as a query parameter. If no valid user session exists, a login
+`selfservice.flows.settings.ui_url` with the request ID set as a query parameter. If no valid user session exists, a login
 flow will be initialized.
 
 > This endpoint is NOT INTENDED for API clients and only works
@@ -339,10 +374,46 @@ func (a *Client) InitializeSelfServiceBrowserVerificationFlow(params *Initialize
 }
 
 /*
+  InitializeSelfServiceRecoveryFlow initializes browser based account recovery flow
+
+  This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to
+`selfservice.flows.recovery.ui_url` with the request ID set as a query parameter. If a valid user session exists, the request
+is aborted.
+
+> This endpoint is NOT INTENDED for API clients and only works
+with browsers (Chrome, Firefox, ...).
+
+More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/password-reset-account-recovery).
+*/
+func (a *Client) InitializeSelfServiceRecoveryFlow(params *InitializeSelfServiceRecoveryFlowParams) error {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewInitializeSelfServiceRecoveryFlowParams()
+	}
+
+	_, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "initializeSelfServiceRecoveryFlow",
+		Method:             "GET",
+		PathPattern:        "/self-service/browser/flows/recovery",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/x-www-form-urlencoded"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &InitializeSelfServiceRecoveryFlowReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+/*
   InitializeSelfServiceSettingsFlow initializes browser based settings flow
 
   This endpoint initializes a browser-based settings flow. Once initialized, the browser will be redirected to
-`urls.settings_ui` with the request ID set as a query parameter. If no valid user session exists, a login
+`selfservice.flows.settings.ui_url` with the request ID set as a query parameter. If no valid user session exists, a login
 flow will be initialized.
 
 > This endpoint is NOT INTENDED for API clients and only works
@@ -411,7 +482,8 @@ func (a *Client) SelfServiceBrowserVerify(params *SelfServiceBrowserVerifyParams
   Whoami checks who the current HTTP session belongs to
 
   Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated.
-Returns a session object or 401 if the credentials are invalid or no credentials were sent.
+Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent.
+Additionally when the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header in the response.
 
 This endpoint is useful for reverse proxies and API Gateways.
 */

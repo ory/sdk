@@ -9,12 +9,13 @@ import (
 	"strconv"
 
 	"github.com/go-openapi/errors"
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // LoginRequestMethodConfig login request method config
+//
 // swagger:model loginRequestMethodConfig
 type LoginRequestMethodConfig struct {
 
@@ -22,12 +23,12 @@ type LoginRequestMethodConfig struct {
 	// Required: true
 	Action *string `json:"action"`
 
-	// Errors contains all form errors. These will be duplicates of the individual field errors.
-	Errors []*Error `json:"errors"`
-
 	// fields
 	// Required: true
 	Fields FormFields `json:"fields"`
+
+	// messages
+	Messages Messages `json:"messages,omitempty"`
 
 	// Method is the form method (e.g. POST)
 	// Required: true
@@ -45,11 +46,11 @@ func (m *LoginRequestMethodConfig) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateErrors(formats); err != nil {
+	if err := m.validateFields(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateFields(formats); err != nil {
+	if err := m.validateMessages(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -76,31 +77,6 @@ func (m *LoginRequestMethodConfig) validateAction(formats strfmt.Registry) error
 	return nil
 }
 
-func (m *LoginRequestMethodConfig) validateErrors(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Errors) { // not required
-		return nil
-	}
-
-	for i := 0; i < len(m.Errors); i++ {
-		if swag.IsZero(m.Errors[i]) { // not required
-			continue
-		}
-
-		if m.Errors[i] != nil {
-			if err := m.Errors[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("errors" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
 func (m *LoginRequestMethodConfig) validateFields(formats strfmt.Registry) error {
 
 	if err := validate.Required("fields", "body", m.Fields); err != nil {
@@ -110,6 +86,22 @@ func (m *LoginRequestMethodConfig) validateFields(formats strfmt.Registry) error
 	if err := m.Fields.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("fields")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *LoginRequestMethodConfig) validateMessages(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Messages) { // not required
+		return nil
+	}
+
+	if err := m.Messages.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("messages")
 		}
 		return err
 	}

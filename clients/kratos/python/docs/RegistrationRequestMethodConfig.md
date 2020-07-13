@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **action** | **str** | Action should be used as the form action URL &#x60;&lt;form action&#x3D;\&quot;{{ .Action }}\&quot; method&#x3D;\&quot;post\&quot;&gt;&#x60;. | 
-**errors** | [**list[Error]**](Error.md) | Errors contains all form errors. These will be duplicates of the individual field errors. | [optional] 
 **fields** | [**list[FormField]**](FormField.md) | Fields contains multiple fields | 
+**messages** | [**list[Message]**](Message.md) |  | [optional] 
 **method** | **str** | Method is the form method (e.g. POST) | 
 **providers** | [**list[FormField]**](FormField.md) | Providers is set for the \&quot;oidc\&quot; request method. | [optional] 
 

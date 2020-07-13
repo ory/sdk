@@ -4,8 +4,8 @@ Field represents a HTML Form Field
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**disabled** | **bool** | Disabled is the equivalent of &#x60;&lt;input disabled&#x3D;\&quot;{{.Disabled}}\&quot;&gt;&#x60; | [optional] 
-**errors** | [**list[Error]**](Error.md) |  | [optional] 
+**disabled** | **bool** | Disabled is the equivalent of &#x60;&lt;input {{if .Disabled}}disabled{{end}}\&quot;&gt;&#x60; | [optional] 
+**messages** | [**list[Message]**](Message.md) |  | [optional] 
 **name** | **str** | Name is the equivalent of &#x60;&lt;input name&#x3D;\&quot;{{.Name}}\&quot;&gt;&#x60; | 
 **pattern** | **str** | Pattern is the equivalent of &#x60;&lt;input pattern&#x3D;\&quot;{{.Pattern}}\&quot;&gt;&#x60; | [optional] 
 **required** | **bool** | Required is the equivalent of &#x60;&lt;input required&#x3D;\&quot;{{.Required}}\&quot;&gt;&#x60; | [optional] 

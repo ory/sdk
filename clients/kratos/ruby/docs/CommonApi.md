@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_schema**](CommonApi.md#get_schema) | **GET** /schemas/{id} | 
 [**get_self_service_browser_login_request**](CommonApi.md#get_self_service_browser_login_request) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
+[**get_self_service_browser_recovery_request**](CommonApi.md#get_self_service_browser_recovery_request) | **GET** /self-service/browser/flows/requests/recovery | Get the request context of browser-based recovery flows
 [**get_self_service_browser_registration_request**](CommonApi.md#get_self_service_browser_registration_request) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
 [**get_self_service_browser_settings_request**](CommonApi.md#get_self_service_browser_settings_request) | **GET** /self-service/browser/flows/requests/settings | Get the request context of browser-based settings flows
 [**get_self_service_error**](CommonApi.md#get_self_service_error) | **GET** /self-service/errors | Get user-facing self-service errors
@@ -65,7 +66,7 @@ No authorization required
 
 Get the request context of browser-based login user flows
 
-This endpoint returns a login request's context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint returns a login request's context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 
@@ -106,13 +107,60 @@ No authorization required
 - **Accept**: application/json
 
 
+## get_self_service_browser_recovery_request
+
+> RecoveryRequest get_self_service_browser_recovery_request(request)
+
+Get the request context of browser-based recovery flows
+
+When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/password-reset-account-recovery).
+
+### Example
+
+```ruby
+# load the gem
+require 'ory-kratos-client'
+
+api_instance = OryHydraClient::CommonApi.new
+request = 'request_example' # String | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recover?request=abcde`).
+
+begin
+  #Get the request context of browser-based recovery flows
+  result = api_instance.get_self_service_browser_recovery_request(request)
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Exception when calling CommonApi->get_self_service_browser_recovery_request: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | **String**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/recover?request&#x3D;abcde&#x60;). | 
+
+### Return type
+
+[**RecoveryRequest**](RecoveryRequest.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## get_self_service_browser_registration_request
 
 > RegistrationRequest get_self_service_browser_registration_request(request)
 
 Get the request context of browser-based registration user flows
 
-This endpoint returns a registration request's context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint returns a registration request's context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 
@@ -168,7 +216,7 @@ When accessing this endpoint through ORY Kratos' Public API, ensure that cookies
 require 'ory-kratos-client'
 
 api_instance = OryHydraClient::CommonApi.new
-request = 'request_example' # String | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
+request = 'request_example' # String | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/settingss?request=abcde`).
 
 begin
   #Get the request context of browser-based settings flows
@@ -184,7 +232,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request** | **String**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). | 
+ **request** | **String**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/settingss?request&#x3D;abcde&#x60;). | 
 
 ### Return type
 
@@ -206,7 +254,7 @@ No authorization required
 
 Get user-facing self-service errors
 
-This endpoint returns the error associated with a user-facing self service errors.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
+This endpoint returns the error associated with a user-facing self service errors.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
 
 ### Example
 

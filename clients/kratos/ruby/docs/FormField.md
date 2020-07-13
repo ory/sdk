@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**disabled** | **Boolean** | Disabled is the equivalent of &#x60;&lt;input disabled&#x3D;\&quot;{{.Disabled}}\&quot;&gt;&#x60; | [optional] 
-**errors** | [**Array&lt;Error&gt;**](Error.md) |  | [optional] 
+**disabled** | **Boolean** | Disabled is the equivalent of &#x60;&lt;input {{if .Disabled}}disabled{{end}}\&quot;&gt;&#x60; | [optional] 
+**messages** | [**Array&lt;Message&gt;**](Message.md) |  | [optional] 
 **name** | **String** | Name is the equivalent of &#x60;&lt;input name&#x3D;\&quot;{{.Name}}\&quot;&gt;&#x60; | 
 **pattern** | **String** | Pattern is the equivalent of &#x60;&lt;input pattern&#x3D;\&quot;{{.Pattern}}\&quot;&gt;&#x60; | [optional] 
 **required** | **Boolean** | Required is the equivalent of &#x60;&lt;input required&#x3D;\&quot;{{.Required}}\&quot;&gt;&#x60; | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 require 'OryHydraClient'
 
 instance = OryHydraClient::FormField.new(disabled: null,
-                                 errors: null,
+                                 messages: null,
                                  name: null,
                                  pattern: null,
                                  required: null,

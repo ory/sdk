@@ -7,7 +7,7 @@ package models
 
 import (
 	"github.com/go-openapi/errors"
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -18,6 +18,7 @@ import (
 // channel such as an email address or a phone number.
 //
 // For more information head over to: https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation
+//
 // swagger:model verificationRequest
 type VerificationRequest struct {
 
@@ -36,6 +37,9 @@ type VerificationRequest struct {
 	// IssuedAt is the time (UTC) when the request occurred.
 	// Format: date-time
 	IssuedAt strfmt.DateTime `json:"issued_at,omitempty"`
+
+	// messages
+	Messages Messages `json:"messages,omitempty"`
 
 	// RequestURL is the initial URL that was requested from ORY Kratos. It can be used
 	// to forward information contained in the URL's path or query for example.
@@ -65,6 +69,10 @@ func (m *VerificationRequest) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateIssuedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMessages(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -132,6 +140,22 @@ func (m *VerificationRequest) validateIssuedAt(formats strfmt.Registry) error {
 	}
 
 	if err := validate.FormatOf("issued_at", "body", "date-time", m.IssuedAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *VerificationRequest) validateMessages(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Messages) { // not required
+		return nil
+	}
+
+	if err := m.Messages.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("messages")
+		}
 		return err
 	}
 

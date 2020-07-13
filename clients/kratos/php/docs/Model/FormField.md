@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**disabled** | **bool** | Disabled is the equivalent of &#x60;&lt;input disabled&#x3D;\&quot;{{.Disabled}}\&quot;&gt;&#x60; | [optional] 
-**errors** | [**\Ory\Kratos\Client\Model\Error[]**](Error.md) |  | [optional] 
+**disabled** | **bool** | Disabled is the equivalent of &#x60;&lt;input {{if .Disabled}}disabled{{end}}\&quot;&gt;&#x60; | [optional] 
+**messages** | [**\Ory\Kratos\Client\Model\Message[]**](Message.md) |  | [optional] 
 **name** | **string** | Name is the equivalent of &#x60;&lt;input name&#x3D;\&quot;{{.Name}}\&quot;&gt;&#x60; | 
 **pattern** | **string** | Pattern is the equivalent of &#x60;&lt;input pattern&#x3D;\&quot;{{.Pattern}}\&quot;&gt;&#x60; | [optional] 
 **required** | **bool** | Required is the equivalent of &#x60;&lt;input required&#x3D;\&quot;{{.Required}}\&quot;&gt;&#x60; | [optional] 

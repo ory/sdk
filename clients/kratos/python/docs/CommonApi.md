@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_schema**](CommonApi.md#get_schema) | **GET** /schemas/{id} | 
 [**get_self_service_browser_login_request**](CommonApi.md#get_self_service_browser_login_request) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
+[**get_self_service_browser_recovery_request**](CommonApi.md#get_self_service_browser_recovery_request) | **GET** /self-service/browser/flows/requests/recovery | Get the request context of browser-based recovery flows
 [**get_self_service_browser_registration_request**](CommonApi.md#get_self_service_browser_registration_request) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
 [**get_self_service_browser_settings_request**](CommonApi.md#get_self_service_browser_settings_request) | **GET** /self-service/browser/flows/requests/settings | Get the request context of browser-based settings flows
 [**get_self_service_error**](CommonApi.md#get_self_service_error) | **GET** /self-service/errors | Get user-facing self-service errors
@@ -27,6 +28,12 @@ import time
 import ory_kratos_client
 from ory_kratos_client.rest import ApiException
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_kratos_client.Configuration(
+    host = "http://localhost"
+)
+
 
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
@@ -74,7 +81,7 @@ No authorization required
 
 Get the request context of browser-based login user flows
 
-This endpoint returns a login request's context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint returns a login request's context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 
@@ -84,6 +91,12 @@ import time
 import ory_kratos_client
 from ory_kratos_client.rest import ApiException
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_kratos_client.Configuration(
+    host = "http://localhost"
+)
+
 
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
@@ -129,12 +142,12 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_self_service_browser_registration_request**
-> RegistrationRequest get_self_service_browser_registration_request(request)
+# **get_self_service_browser_recovery_request**
+> RecoveryRequest get_self_service_browser_recovery_request(request)
 
-Get the request context of browser-based registration user flows
+Get the request context of browser-based recovery flows
 
-This endpoint returns a registration request's context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/password-reset-account-recovery).
 
 ### Example
 
@@ -144,6 +157,78 @@ import time
 import ory_kratos_client
 from ory_kratos_client.rest import ApiException
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_kratos_client.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = ory_kratos_client.CommonApi(api_client)
+    request = 'request_example' # str | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recover?request=abcde`).
+
+    try:
+        # Get the request context of browser-based recovery flows
+        api_response = api_instance.get_self_service_browser_recovery_request(request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling CommonApi->get_self_service_browser_recovery_request: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | **str**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/recover?request&#x3D;abcde&#x60;). | 
+
+### Return type
+
+[**RecoveryRequest**](RecoveryRequest.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | recoveryRequest |  -  |
+**403** | genericError |  -  |
+**404** | genericError |  -  |
+**410** | genericError |  -  |
+**500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_self_service_browser_registration_request**
+> RegistrationRequest get_self_service_browser_registration_request(request)
+
+Get the request context of browser-based registration user flows
+
+This endpoint returns a registration request's context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import ory_kratos_client
+from ory_kratos_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_kratos_client.Configuration(
+    host = "http://localhost"
+)
+
 
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
@@ -204,12 +289,18 @@ import time
 import ory_kratos_client
 from ory_kratos_client.rest import ApiException
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_kratos_client.Configuration(
+    host = "http://localhost"
+)
+
 
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = ory_kratos_client.CommonApi(api_client)
-    request = 'request_example' # str | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
+    request = 'request_example' # str | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/settingss?request=abcde`).
 
     try:
         # Get the request context of browser-based settings flows
@@ -223,7 +314,7 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request** | **str**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). | 
+ **request** | **str**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/settingss?request&#x3D;abcde&#x60;). | 
 
 ### Return type
 
@@ -254,7 +345,7 @@ No authorization required
 
 Get user-facing self-service errors
 
-This endpoint returns the error associated with a user-facing self service errors.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes to prevent scanning attacks.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
+This endpoint returns the error associated with a user-facing self service errors.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
 
 ### Example
 
@@ -264,6 +355,12 @@ import time
 import ory_kratos_client
 from ory_kratos_client.rest import ApiException
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_kratos_client.Configuration(
+    host = "http://localhost"
+)
+
 
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
@@ -323,6 +420,12 @@ import time
 import ory_kratos_client
 from ory_kratos_client.rest import ApiException
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_kratos_client.Configuration(
+    host = "http://localhost"
+)
+
 
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:

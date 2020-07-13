@@ -9,46 +9,54 @@ import (
 	"strconv"
 
 	"github.com/go-openapi/errors"
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // Identity identity
+//
 // swagger:model Identity
 type Identity struct {
-
-	// addresses
-	Addresses []*VerifiableAddress `json:"addresses"`
 
 	// id
 	// Required: true
 	// Format: uuid4
 	ID UUID `json:"id"`
 
+	// RecoveryAddresses contains all the addresses that can be used to recover an identity.
+	RecoveryAddresses []*RecoveryAddress `json:"recovery_addresses"`
+
+	// SchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
+	// Required: true
+	SchemaID *string `json:"schema_id"`
+
+	// SchemaURL is the URL of the endpoint where the identity's traits schema can be fetched from.
+	//
+	// format: url
+	SchemaURL string `json:"schema_url,omitempty"`
+
 	// traits
 	// Required: true
 	Traits Traits `json:"traits"`
 
-	// TraitsSchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
-	// Required: true
-	TraitsSchemaID *string `json:"traits_schema_id"`
-
-	// TraitsSchemaURL is the URL of the endpoint where the identity's traits schema can be fetched from.
-	//
-	// format: url
-	TraitsSchemaURL string `json:"traits_schema_url,omitempty"`
+	// VerifiableAddresses contains all the addresses that can be verified by the user.
+	VerifiableAddresses []*VerifiableAddress `json:"verifiable_addresses"`
 }
 
 // Validate validates this identity
 func (m *Identity) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAddresses(formats); err != nil {
+	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateID(formats); err != nil {
+	if err := m.validateRecoveryAddresses(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSchemaID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -56,38 +64,13 @@ func (m *Identity) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateTraitsSchemaID(formats); err != nil {
+	if err := m.validateVerifiableAddresses(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *Identity) validateAddresses(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Addresses) { // not required
-		return nil
-	}
-
-	for i := 0; i < len(m.Addresses); i++ {
-		if swag.IsZero(m.Addresses[i]) { // not required
-			continue
-		}
-
-		if m.Addresses[i] != nil {
-			if err := m.Addresses[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("addresses" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
 	return nil
 }
 
@@ -103,6 +86,40 @@ func (m *Identity) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Identity) validateRecoveryAddresses(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.RecoveryAddresses) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.RecoveryAddresses); i++ {
+		if swag.IsZero(m.RecoveryAddresses[i]) { // not required
+			continue
+		}
+
+		if m.RecoveryAddresses[i] != nil {
+			if err := m.RecoveryAddresses[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("recovery_addresses" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Identity) validateSchemaID(formats strfmt.Registry) error {
+
+	if err := validate.Required("schema_id", "body", m.SchemaID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *Identity) validateTraits(formats strfmt.Registry) error {
 
 	if err := validate.Required("traits", "body", m.Traits); err != nil {
@@ -112,10 +129,26 @@ func (m *Identity) validateTraits(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Identity) validateTraitsSchemaID(formats strfmt.Registry) error {
+func (m *Identity) validateVerifiableAddresses(formats strfmt.Registry) error {
 
-	if err := validate.Required("traits_schema_id", "body", m.TraitsSchemaID); err != nil {
-		return err
+	if swag.IsZero(m.VerifiableAddresses) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.VerifiableAddresses); i++ {
+		if swag.IsZero(m.VerifiableAddresses[i]) { // not required
+			continue
+		}
+
+		if m.VerifiableAddresses[i] != nil {
+			if err := m.VerifiableAddresses[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("verifiable_addresses" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

@@ -7,7 +7,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **errors** | [**Object**](.md) |  |  [optional]
-**id** | **String** |  |  [optional]
+**id** | [**UUID**](UUID.md) |  |  [optional]
 
 
 

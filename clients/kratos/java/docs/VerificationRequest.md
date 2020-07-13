@@ -9,8 +9,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **expiresAt** | [**OffsetDateTime**](OffsetDateTime.md) | ExpiresAt is the time (UTC) when the request expires. If the user still wishes to verify the address, a new request has to be initiated. |  [optional]
 **form** | [**Form**](Form.md) |  |  [optional]
-**id** | **String** |  |  [optional]
+**id** | [**UUID**](UUID.md) |  |  [optional]
 **issuedAt** | [**OffsetDateTime**](OffsetDateTime.md) | IssuedAt is the time (UTC) when the request occurred. |  [optional]
+**messages** | [**List&lt;Message&gt;**](Message.md) |  |  [optional]
 **requestUrl** | **String** | RequestURL is the initial URL that was requested from ORY Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. |  [optional]
 **success** | **Boolean** | Success, if true, implies that the request was completed successfully. |  [optional]
 **via** | **String** |  |  [optional]

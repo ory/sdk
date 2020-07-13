@@ -7,7 +7,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **expiresAt** | [**OffsetDateTime**](OffsetDateTime.md) |  | 
-**id** | **String** |  | 
+**id** | [**UUID**](UUID.md) |  | 
 **value** | **String** |  | 
 **verified** | **Boolean** |  | 
 **verifiedAt** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]

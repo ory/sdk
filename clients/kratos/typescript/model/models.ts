@@ -10,8 +10,11 @@ export * from './identity';
 export * from './loginRequest';
 export * from './loginRequestMethod';
 export * from './loginRequestMethodConfig';
-export * from './modelError';
+export * from './message';
 export * from './providerCredentialsConfig';
+export * from './recoveryAddress';
+export * from './recoveryRequest';
+export * from './recoveryRequestMethod';
 export * from './registrationRequest';
 export * from './registrationRequestMethod';
 export * from './registrationRequestMethodConfig';
@@ -37,8 +40,11 @@ import { Identity } from './identity';
 import { LoginRequest } from './loginRequest';
 import { LoginRequestMethod } from './loginRequestMethod';
 import { LoginRequestMethodConfig } from './loginRequestMethodConfig';
-import { ModelError } from './modelError';
+import { Message } from './message';
 import { ProviderCredentialsConfig } from './providerCredentialsConfig';
+import { RecoveryAddress } from './recoveryAddress';
+import { RecoveryRequest } from './recoveryRequest';
+import { RecoveryRequestMethod } from './recoveryRequestMethod';
 import { RegistrationRequest } from './registrationRequest';
 import { RegistrationRequestMethod } from './registrationRequestMethod';
 import { RegistrationRequestMethodConfig } from './registrationRequestMethodConfig';
@@ -78,8 +84,11 @@ let typeMap: {[index: string]: any} = {
     "LoginRequest": LoginRequest,
     "LoginRequestMethod": LoginRequestMethod,
     "LoginRequestMethodConfig": LoginRequestMethodConfig,
-    "ModelError": ModelError,
+    "Message": Message,
     "ProviderCredentialsConfig": ProviderCredentialsConfig,
+    "RecoveryAddress": RecoveryAddress,
+    "RecoveryRequest": RecoveryRequest,
+    "RecoveryRequestMethod": RecoveryRequestMethod,
     "RegistrationRequest": RegistrationRequest,
     "RegistrationRequestMethod": RegistrationRequestMethod,
     "RegistrationRequestMethodConfig": RegistrationRequestMethodConfig,
