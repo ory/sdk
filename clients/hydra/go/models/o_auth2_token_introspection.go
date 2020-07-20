@@ -7,7 +7,7 @@ package models
 
 import (
 	"github.com/go-openapi/errors"
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -15,6 +15,7 @@ import (
 // OAuth2TokenIntrospection Introspection contains an access token's session data as specified by IETF RFC 7662, see:
 //
 // https://tools.ietf.org/html/rfc7662
+//
 // swagger:model oAuth2TokenIntrospection
 type OAuth2TokenIntrospection struct {
 
@@ -33,7 +34,7 @@ type OAuth2TokenIntrospection struct {
 	// Audience contains a list of the token's intended audiences.
 	Aud []string `json:"aud"`
 
-	// ClientID is aclient identifier for the OAuth 2.0 client that
+	// ID is aclient identifier for the OAuth 2.0 client that
 	// requested this token.
 	ClientID string `json:"client_id,omitempty"`
 

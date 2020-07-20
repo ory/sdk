@@ -29,6 +29,12 @@ import time
 import ory_hydra_client
 from ory_hydra_client.rest import ApiException
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
+
 
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
@@ -80,6 +86,12 @@ import time
 import ory_hydra_client
 from ory_hydra_client.rest import ApiException
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
+
 
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
@@ -134,6 +146,12 @@ import time
 import ory_hydra_client
 from ory_hydra_client.rest import ApiException
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
+
 
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
@@ -188,16 +206,29 @@ import time
 import ory_hydra_client
 from ory_hydra_client.rest import ApiException
 from pprint import pprint
-configuration = ory_hydra_client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure HTTP basic authorization: basic
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
-configuration = ory_hydra_client.Configuration()
+configuration = ory_hydra_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -223,16 +254,29 @@ import time
 import ory_hydra_client
 from ory_hydra_client.rest import ApiException
 from pprint import pprint
-configuration = ory_hydra_client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure HTTP basic authorization: basic
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
-configuration = ory_hydra_client.Configuration()
+configuration = ory_hydra_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -298,6 +342,12 @@ import time
 import ory_hydra_client
 from ory_hydra_client.rest import ApiException
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
+
 
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
@@ -352,16 +402,29 @@ import time
 import ory_hydra_client
 from ory_hydra_client.rest import ApiException
 from pprint import pprint
-configuration = ory_hydra_client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure HTTP basic authorization: basic
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
-configuration = ory_hydra_client.Configuration()
+configuration = ory_hydra_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -382,16 +445,29 @@ import time
 import ory_hydra_client
 from ory_hydra_client.rest import ApiException
 from pprint import pprint
-configuration = ory_hydra_client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure HTTP basic authorization: basic
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
-configuration = ory_hydra_client.Configuration()
+configuration = ory_hydra_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -449,12 +525,23 @@ import time
 import ory_hydra_client
 from ory_hydra_client.rest import ApiException
 from pprint import pprint
-configuration = ory_hydra_client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -508,6 +595,12 @@ import time
 import ory_hydra_client
 from ory_hydra_client.rest import ApiException
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
+
 
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:

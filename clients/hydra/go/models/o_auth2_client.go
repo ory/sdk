@@ -7,12 +7,13 @@ package models
 
 import (
 	"github.com/go-openapi/errors"
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // OAuth2Client Client represents an OAuth 2.0 Client.
+//
 // swagger:model oAuth2Client
 type OAuth2Client struct {
 
@@ -30,7 +31,7 @@ type OAuth2Client struct {
 	// RP URL that will cause the RP to log itself out when sent a Logout Token by the OP.
 	BackchannelLogoutURI string `json:"backchannel_logout_uri,omitempty"`
 
-	// ClientID  is the id for this client.
+	// ID  is the id for this client.
 	ClientID string `json:"client_id,omitempty"`
 
 	// Name is the human-readable string name of the client to be presented to the
@@ -137,6 +138,9 @@ type OAuth2Client struct {
 	// Requested Client Authentication method for the Token Endpoint. The options are client_secret_post,
 	// client_secret_basic, private_key_jwt, and none.
 	TokenEndpointAuthMethod string `json:"token_endpoint_auth_method,omitempty"`
+
+	// Requested Client Authentication signing algorithm for the Token Endpoint.
+	TokenEndpointAuthSigningAlg string `json:"token_endpoint_auth_signing_alg,omitempty"`
 
 	// TermsOfServiceURI is a URL string that points to a human-readable terms of service
 	// document for the client that describes a contractual relationship

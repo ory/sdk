@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **audience** | **Array&lt;String&gt;** |  | [optional] 
 **backchannel_logout_session_required** | **Boolean** | Boolean value specifying whether the RP requires that a sid (session ID) Claim be included in the Logout Token to identify the RP session with the OP when the backchannel_logout_uri is used. If omitted, the default value is false. | [optional] 
 **backchannel_logout_uri** | **String** | RP URL that will cause the RP to log itself out when sent a Logout Token by the OP. | [optional] 
-**client_id** | **String** | ClientID  is the id for this client. | [optional] 
+**client_id** | **String** | ID  is the id for this client. | [optional] 
 **client_name** | **String** | Name is the human-readable string name of the client to be presented to the end-user during authorization. | [optional] 
 **client_secret** | **String** | Secret is the client&#39;s secret. The secret will be included in the create request as cleartext, and then never again. The secret is stored using BCrypt so it is impossible to recover it. Tell your users that they need to write the secret down as it will not be made available again. | [optional] 
 **client_secret_expires_at** | **Integer** | SecretExpiresAt is an integer holding the time at which the client secret will expire or 0 if it will not expire. The time is represented as the number of seconds from 1970-01-01T00:00:00Z as measured in UTC until the date/time of expiration.  This feature is currently not supported and it&#39;s value will always be set to 0. | [optional] 
@@ -33,6 +33,7 @@ Name | Type | Description | Notes
 **sector_identifier_uri** | **String** | URL using the https scheme to be used in calculating Pseudonymous Identifiers by the OP. The URL references a file with a single JSON array of redirect_uri values. | [optional] 
 **subject_type** | **String** | SubjectType requested for responses to this Client. The subject_types_supported Discovery parameter contains a list of the supported subject_type values for this server. Valid types include &#x60;pairwise&#x60; and &#x60;public&#x60;. | [optional] 
 **token_endpoint_auth_method** | **String** | Requested Client Authentication method for the Token Endpoint. The options are client_secret_post, client_secret_basic, private_key_jwt, and none. | [optional] 
+**token_endpoint_auth_signing_alg** | **String** | Requested Client Authentication signing algorithm for the Token Endpoint. | [optional] 
 **tos_uri** | **String** | TermsOfServiceURI is a URL string that points to a human-readable terms of service document for the client that describes a contractual relationship between the end-user and the client that the end-user accepts when authorizing the client. | [optional] 
 **updated_at** | **DateTime** | UpdatedAt returns the timestamp of the last update. | [optional] 
 **userinfo_signed_response_alg** | **String** | JWS alg algorithm [JWA] REQUIRED for signing UserInfo Responses. If this is specified, the response will be JWT [JWT] serialized, and signed using JWS. The default, if omitted, is for the UserInfo Response to return the Claims as a UTF-8 encoded JSON object using the application/json content-type. | [optional] 
@@ -71,6 +72,7 @@ instance = OryHydraClient::OAuth2Client.new(allowed_cors_origins: null,
                                  sector_identifier_uri: null,
                                  subject_type: null,
                                  token_endpoint_auth_method: null,
+                                 token_endpoint_auth_signing_alg: null,
                                  tos_uri: null,
                                  updated_at: null,
                                  userinfo_signed_response_alg: null)
