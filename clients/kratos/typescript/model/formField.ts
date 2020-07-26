@@ -41,7 +41,7 @@ export class FormField {
     /**
     * Value is the equivalent of `<input value=\"{{.Value}}\">`
     */
-    'value'?: object;
+    'value'?: string;
 
     static discriminator: string | undefined = undefined;
 
