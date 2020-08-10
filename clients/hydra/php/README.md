@@ -15,23 +15,11 @@ PHP 5.5 and later
 
 ### Composer
 
-To install the bindings via [Composer](http://getcomposer.org/), add the following to `composer.json`:
+To install with [Composer](http://getcomposer.org/), run:
 
-```json
-{
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/ory/hydra-client-php.git"
-    }
-  ],
-  "require": {
-    "ory/hydra-client-php": "*@dev"
-  }
-}
+```bash
+$ composer require ory/hydra-client:*
 ```
-
-Then run `composer install`
 
 ### Manual Installation
 
