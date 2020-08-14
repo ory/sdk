@@ -1256,7 +1256,8 @@ require 'ory-hydra-client'
 api_instance = OryHydraClient::AdminApi.new
 subject = 'subject_example' # String | The subject (Subject) who's consent sessions should be deleted.
 opts = {
-  client: 'client_example' # String | If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID
+  client: 'client_example', # String | If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID
+  all: true # Boolean | If set to `?all=true`, deletes all consent sessions by the Subject that have been granted.
 }
 
 begin
@@ -1274,6 +1275,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **String**| The subject (Subject) who&#39;s consent sessions should be deleted. | 
  **client** | **String**| If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID | [optional] 
+ **all** | **Boolean**| If set to &#x60;?all&#x3D;true&#x60;, deletes all consent sessions by the Subject that have been granted. | [optional] 
 
 ### Return type
 

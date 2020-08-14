@@ -1704,7 +1704,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **revoke_consent_sessions**
-> revoke_consent_sessions(subject, client=client)
+> revoke_consent_sessions(subject, client=client, all=all)
 
 Revokes consent sessions of a subject for a specific OAuth 2.0 Client
 
@@ -1731,10 +1731,11 @@ with ory_hydra_client.ApiClient() as api_client:
     api_instance = ory_hydra_client.AdminApi(api_client)
     subject = 'subject_example' # str | The subject (Subject) who's consent sessions should be deleted.
 client = 'client_example' # str | If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID (optional)
+all = True # bool | If set to `?all=true`, deletes all consent sessions by the Subject that have been granted. (optional)
 
     try:
         # Revokes consent sessions of a subject for a specific OAuth 2.0 Client
-        api_instance.revoke_consent_sessions(subject, client=client)
+        api_instance.revoke_consent_sessions(subject, client=client, all=all)
     except ApiException as e:
         print("Exception when calling AdminApi->revoke_consent_sessions: %s\n" % e)
 ```
@@ -1745,6 +1746,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **str**| The subject (Subject) who&#39;s consent sessions should be deleted. | 
  **client** | **str**| If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID | [optional] 
+ **all** | **bool**| If set to &#x60;?all&#x3D;true&#x60;, deletes all consent sessions by the Subject that have been granted. | [optional] 
 
 ### Return type
 

@@ -1653,7 +1653,7 @@ No authorization required
 
 <a name="revokeConsentSessions"></a>
 # **revokeConsentSessions**
-> revokeConsentSessions(subject, client)
+> revokeConsentSessions(subject, client, all)
 
 Revokes consent sessions of a subject for a specific OAuth 2.0 Client
 
@@ -1676,8 +1676,9 @@ public class Example {
     AdminApi apiInstance = new AdminApi(defaultClient);
     String subject = "subject_example"; // String | The subject (Subject) who's consent sessions should be deleted.
     String client = "client_example"; // String | If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID
+    Boolean all = true; // Boolean | If set to `?all=true`, deletes all consent sessions by the Subject that have been granted.
     try {
-      apiInstance.revokeConsentSessions(subject, client);
+      apiInstance.revokeConsentSessions(subject, client, all);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#revokeConsentSessions");
       System.err.println("Status code: " + e.getCode());
@@ -1695,6 +1696,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **String**| The subject (Subject) who&#39;s consent sessions should be deleted. |
  **client** | **String**| If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID | [optional]
+ **all** | **Boolean**| If set to &#x60;?all&#x3D;true&#x60;, deletes all consent sessions by the Subject that have been granted. | [optional]
 
 ### Return type
 

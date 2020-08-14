@@ -3,7 +3,7 @@ info:
   description: Welcome to the ORY Hydra HTTP API documentation. You will find documentation
     for all HTTP APIs here.
   title: ORY Hydra
-  version: v1.6.0
+  version: v1.7.0
 servers:
 - url: /
 paths:
@@ -1164,6 +1164,12 @@ paths:
         name: client
         schema:
           type: string
+      - description: If set to `?all=true`, deletes all consent sessions by the Subject
+          that have been granted.
+        in: query
+        name: all
+        schema:
+          type: boolean
       responses:
         "204":
           content: {}
@@ -3463,12 +3469,12 @@ components:
     oauth2:
       flows:
         authorizationCode:
-          authorizationUrl: /oauth2/auth
+          authorizationUrl: https://hydra.demo.ory.sh/oauth2/auth
           scopes:
             offline: A scope required when requesting refresh tokens (alias for `offline_access`)
             offline_access: A scope required when requesting refresh tokens
             openid: Request an OpenID Connect ID Token
-          tokenUrl: /oauth2/token
+          tokenUrl: https://hydra.demo.ory.sh/oauth2/token
       type: oauth2
 x-forwarded-proto: string
 x-request-id: string

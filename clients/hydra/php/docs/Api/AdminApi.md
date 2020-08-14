@@ -1449,7 +1449,7 @@ No authorization required
 
 ## revokeConsentSessions
 
-> revokeConsentSessions($subject, $client)
+> revokeConsentSessions($subject, $client, $all)
 
 Revokes consent sessions of a subject for a specific OAuth 2.0 Client
 
@@ -1469,9 +1469,10 @@ $apiInstance = new Ory\Hydra\Client\Api\AdminApi(
 );
 $subject = 'subject_example'; // string | The subject (Subject) who's consent sessions should be deleted.
 $client = 'client_example'; // string | If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID
+$all = True; // bool | If set to `?all=true`, deletes all consent sessions by the Subject that have been granted.
 
 try {
-    $apiInstance->revokeConsentSessions($subject, $client);
+    $apiInstance->revokeConsentSessions($subject, $client, $all);
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->revokeConsentSessions: ', $e->getMessage(), PHP_EOL;
 }
@@ -1485,6 +1486,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **string**| The subject (Subject) who&#39;s consent sessions should be deleted. |
  **client** | **string**| If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID | [optional]
+ **all** | **bool**| If set to &#x60;?all&#x3D;true&#x60;, deletes all consent sessions by the Subject that have been granted. | [optional]
 
 ### Return type
 
