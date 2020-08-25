@@ -19,12 +19,14 @@ cleanup() {
   rm "clients/${PROJECT}/python/git_push.sh" || true
   rm "clients/${PROJECT}/ruby/git_push.sh" || true
   rm "clients/${PROJECT}/typescript/git_push.sh" || true
+  rm "clients/${PROJECT}/csharp/git_push.sh" || true
 
   rm "clients/${PROJECT}/java/.travis.yml" || true
   rm "clients/${PROJECT}/php/.travis.yml" || true
   rm "clients/${PROJECT}/python/.travis.yml" || true
   rm "clients/${PROJECT}/ruby/.travis.yml" || true
   rm "clients/${PROJECT}/typescript/.travis.yml" || true
+  rm "clients/${PROJECT}/csharp/.travis.yml" || true
 }
 
 typescript () {
@@ -45,6 +47,20 @@ typescript () {
      > tmp.$$.json && mv tmp.$$.json "${file}"
 
   cat "${file}"
+}
+
+csharp () {
+  echo "Generating C#..."
+
+  dir="clients/${PROJECT}/csharp"
+
+  openapi-generator generate -i "${SPEC_FILE}" \
+    -g csharp \
+    -o "$dir" \
+    --git-user-id ory \
+    --git-repo-id sdk \
+    --git-host github.com \
+    -c ./config/client/csharm.yml.proc.yml
 }
 
 java () {
@@ -184,5 +200,6 @@ java
 php
 python
 ruby
+csharp
 
 cleanup
