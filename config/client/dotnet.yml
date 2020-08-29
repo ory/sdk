@@ -1,0 +1,6 @@
+packageName: "Ory.$PROJECT_UCF.Client"
+packageVersion: $VERSION
+packageAuthors: ORY
+packageCompany: ORY GmbH
+netCoreProjectFile: true
+infoUrl: https://www.ory.sh

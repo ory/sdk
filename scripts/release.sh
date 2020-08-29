@@ -102,11 +102,27 @@ python() {
   (cd "${dir}"; rm -rf "dist" || true; python3 setup.py sdist bdist_wheel; python3 -m twine upload "dist/*")
 }
 
+dotnet() {
+  to_git "dotnet" "no"
+
+  gitdir="clients/${PROJECT}-client-dotnet"
+  version=$(echo "${VERSION}" | sed "s/^v//")
+
+  (cd "${gitdir}"; dotnet pack)
+
+  (cd "${gitdir}"; dotnet nuget push Ory.${$PROJECT_UCF}.Client.${version}.nupkg \
+  --api-key ${NUGET_API_KEY} \
+  --source https://api.nuget.org/v3/index.json)
+
+  (cd "${gitdir}"; git push origin --tags HEAD:master)
+}
+
 java
 python
 ruby
 golang
 php
 typescript
+dotnet
 
 upstream
