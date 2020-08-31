@@ -199,5 +199,6 @@ java
 php
 python
 ruby
+dart
 
 cleanup
