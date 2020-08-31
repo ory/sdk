@@ -19,6 +19,7 @@ cleanup() {
   rm "clients/${PROJECT}/python/git_push.sh" || true
   rm "clients/${PROJECT}/ruby/git_push.sh" || true
   rm "clients/${PROJECT}/typescript/git_push.sh" || true
+  rm "clients/${PROJECT}/dart/git_push.sh" || true
 
   rm "clients/${PROJECT}/java/.travis.yml" || true
   rm "clients/${PROJECT}/php/.travis.yml" || true
@@ -45,6 +46,20 @@ typescript () {
      > tmp.$$.json && mv tmp.$$.json "${file}"
 
   cat "${file}"
+}
+
+dart () {
+  echo "Generating Dart..."
+
+  dir="clients/${PROJECT}/dart"
+
+  openapi-generator generate -i "${SPEC_FILE}" \
+    -g dart \
+    -o "$dir" \
+    --git-user-id ory \
+    --git-repo-id sdk \
+    --git-host github.com \
+    -c ./config/client/dart.yml.proc.yml
 }
 
 java () {
