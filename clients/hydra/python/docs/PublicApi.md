@@ -4,12 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**disconnect_user**](PublicApi.md#disconnect_user) | **GET** /oauth2/sessions/logout | OpenID Connect Front-Backchannel enabled Logout
+[**disconnect_user**](PublicApi.md#disconnect_user) | **GET** /oauth2/sessions/logout | OpenID Connect Front-Backchannel Enabled Logout
 [**discover_open_id_configuration**](PublicApi.md#discover_open_id_configuration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
-[**is_instance_ready**](PublicApi.md#is_instance_ready) | **GET** /health/ready | Check readiness status
-[**oauth2_token**](PublicApi.md#oauth2_token) | **POST** /oauth2/token | The OAuth 2.0 token endpoint
-[**oauth_auth**](PublicApi.md#oauth_auth) | **GET** /oauth2/auth | The OAuth 2.0 authorize endpoint
-[**revoke_o_auth2_token**](PublicApi.md#revoke_o_auth2_token) | **POST** /oauth2/revoke | Revoke OAuth2 tokens
+[**is_instance_ready**](PublicApi.md#is_instance_ready) | **GET** /health/ready | Check Readiness Status
+[**oauth2_token**](PublicApi.md#oauth2_token) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
+[**oauth_auth**](PublicApi.md#oauth_auth) | **GET** /oauth2/auth | The OAuth 2.0 Authorize Endpoint
+[**revoke_o_auth2_token**](PublicApi.md#revoke_o_auth2_token) | **POST** /oauth2/revoke | Revoke OAuth2 Tokens
 [**userinfo**](PublicApi.md#userinfo) | **GET** /userinfo | OpenID Connect Userinfo
 [**well_known**](PublicApi.md#well_known) | **GET** /.well-known/jwks.json | JSON Web Keys Discovery
 
@@ -17,7 +17,7 @@ Method | HTTP request | Description
 # **disconnect_user**
 > disconnect_user()
 
-OpenID Connect Front-Backchannel enabled Logout
+OpenID Connect Front-Backchannel Enabled Logout
 
 This endpoint initiates and completes user logout at ORY Hydra and initiates OpenID Connect Front-/Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html
 
@@ -42,7 +42,7 @@ with ory_hydra_client.ApiClient() as api_client:
     api_instance = ory_hydra_client.PublicApi(api_client)
     
     try:
-        # OpenID Connect Front-Backchannel enabled Logout
+        # OpenID Connect Front-Backchannel Enabled Logout
         api_instance.disconnect_user()
     except ApiException as e:
         print("Exception when calling PublicApi->disconnect_user: %s\n" % e)
@@ -134,7 +134,7 @@ No authorization required
 # **is_instance_ready**
 > HealthStatus is_instance_ready()
 
-Check readiness status
+Check Readiness Status
 
 This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
 
@@ -159,7 +159,7 @@ with ory_hydra_client.ApiClient() as api_client:
     api_instance = ory_hydra_client.PublicApi(api_client)
     
     try:
-        # Check readiness status
+        # Check Readiness Status
         api_response = api_instance.is_instance_ready()
         pprint(api_response)
     except ApiException as e:
@@ -193,7 +193,7 @@ No authorization required
 # **oauth2_token**
 > Oauth2TokenResponse oauth2_token(grant_type, code=code, refresh_token=refresh_token, redirect_uri=redirect_uri, client_id=client_id)
 
-The OAuth 2.0 token endpoint
+The OAuth 2.0 Token Endpoint
 
 The client makes a request to the token endpoint by sending the following parameters using the \"application/x-www-form-urlencoded\" HTTP request entity-body.  > Do not implement a client for this endpoint yourself. Use a library. There are many libraries > available for any programming language. You can find a list of libraries here: https://oauth.net/code/ > > Do note that Hydra SDK does not implement this endpoint properly. Use one of the libraries listed above!
 
@@ -240,7 +240,7 @@ redirect_uri = 'redirect_uri_example' # str |  (optional)
 client_id = 'client_id_example' # str |  (optional)
 
     try:
-        # The OAuth 2.0 token endpoint
+        # The OAuth 2.0 Token Endpoint
         api_response = api_instance.oauth2_token(grant_type, code=code, refresh_token=refresh_token, redirect_uri=redirect_uri, client_id=client_id)
         pprint(api_response)
     except ApiException as e:
@@ -288,7 +288,7 @@ redirect_uri = 'redirect_uri_example' # str |  (optional)
 client_id = 'client_id_example' # str |  (optional)
 
     try:
-        # The OAuth 2.0 token endpoint
+        # The OAuth 2.0 Token Endpoint
         api_response = api_instance.oauth2_token(grant_type, code=code, refresh_token=refresh_token, redirect_uri=redirect_uri, client_id=client_id)
         pprint(api_response)
     except ApiException as e:
@@ -330,7 +330,7 @@ Name | Type | Description  | Notes
 # **oauth_auth**
 > oauth_auth()
 
-The OAuth 2.0 authorize endpoint
+The OAuth 2.0 Authorize Endpoint
 
 This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exists.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc6749
 
@@ -355,7 +355,7 @@ with ory_hydra_client.ApiClient() as api_client:
     api_instance = ory_hydra_client.PublicApi(api_client)
     
     try:
-        # The OAuth 2.0 authorize endpoint
+        # The OAuth 2.0 Authorize Endpoint
         api_instance.oauth_auth()
     except ApiException as e:
         print("Exception when calling PublicApi->oauth_auth: %s\n" % e)
@@ -389,7 +389,7 @@ No authorization required
 # **revoke_o_auth2_token**
 > revoke_o_auth2_token(token)
 
-Revoke OAuth2 tokens
+Revoke OAuth2 Tokens
 
 Revoking a token (both access and refresh) means that the tokens will be invalid. A revoked access token can no longer be used to make access requests, and a revoked refresh token can no longer be used to refresh an access token. Revoking a refresh token also invalidates the access token that was created with it. A token may only be revoked by the client the token was generated for.
 
@@ -432,7 +432,7 @@ with ory_hydra_client.ApiClient(configuration) as api_client:
     token = 'token_example' # str | 
 
     try:
-        # Revoke OAuth2 tokens
+        # Revoke OAuth2 Tokens
         api_instance.revoke_o_auth2_token(token)
     except ApiException as e:
         print("Exception when calling PublicApi->revoke_o_auth2_token: %s\n" % e)
@@ -475,7 +475,7 @@ with ory_hydra_client.ApiClient(configuration) as api_client:
     token = 'token_example' # str | 
 
     try:
-        # Revoke OAuth2 tokens
+        # Revoke OAuth2 Tokens
         api_instance.revoke_o_auth2_token(token)
     except ApiException as e:
         print("Exception when calling PublicApi->revoke_o_auth2_token: %s\n" % e)
