@@ -19,12 +19,14 @@ cleanup() {
   rm "clients/${PROJECT}/python/git_push.sh" || true
   rm "clients/${PROJECT}/ruby/git_push.sh" || true
   rm "clients/${PROJECT}/typescript/git_push.sh" || true
+  rm "clients/${PROJECT}/dotnet/git_push.sh" || true
 
   rm "clients/${PROJECT}/java/.travis.yml" || true
   rm "clients/${PROJECT}/php/.travis.yml" || true
   rm "clients/${PROJECT}/python/.travis.yml" || true
   rm "clients/${PROJECT}/ruby/.travis.yml" || true
   rm "clients/${PROJECT}/typescript/.travis.yml" || true
+  rm "clients/${PROJECT}/dotnet/.travis.yml" || true
 }
 
 typescript () {
@@ -177,6 +179,19 @@ golang () {
   swagger generate client --allow-template-override -f "${SPEC_FILE}" -t "${dir}" -A "Ory_${PROJECT_UCF}"
 }
 
+dotnet () {
+  echo "Generating dotnet..."
+
+  dir="clients/${PROJECT}/dotnet"
+
+  openapi-generator generate -i "${SPEC_FILE}" \
+    -g csharp-netcore \
+    -o "$dir" \
+    --git-user-id ory \
+    --git-repo-id sdk \
+    --git-host github.com \
+    -c ./config/client/dotnet.yml.proc.yml
+}
 
 golang
 typescript
@@ -184,5 +199,6 @@ java
 php
 python
 ruby
+dotnet
 
 cleanup
