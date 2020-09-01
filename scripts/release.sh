@@ -106,9 +106,9 @@ dotnet() {
   dir="clients/${PROJECT}/dotnet"
   version=$(echo "${VERSION}" | sed "s/^v//")
 
-  (cd "${dir}"; dotnet pack)
+  (cd "${dir}"; command dotnet pack)
 
-  (cd "${dir}"; dotnet nuget push Ory.${PROJECT_UCF}.Client.${version}.nupkg \
+  (cd "${dir}"; command dotnet nuget push Ory.${PROJECT_UCF}.Client.${version}.nupkg \
   --api-key ${NUGET_API_KEY} \
   --source https://api.nuget.org/v3/index.json)
 }
