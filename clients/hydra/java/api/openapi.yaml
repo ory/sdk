@@ -3,7 +3,7 @@ info:
   description: Welcome to the ORY Hydra HTTP API documentation. You will find documentation
     for all HTTP APIs here.
   title: ORY Hydra
-  version: v1.7.0
+  version: v1.7.4
 servers:
 - url: /
 paths:
@@ -142,7 +142,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/genericError'
           description: genericError
-      summary: Create an OAuth 2.0 client
+      summary: Create an OAuth 2.0 Client
       tags:
       - admin
       x-codegen-request-body-name: Body
@@ -282,7 +282,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/genericError'
           description: genericError
-      summary: Check alive status
+      summary: Check Alive Status
       tags:
       - admin
       x-accepts: application/json
@@ -311,7 +311,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/healthNotReadyStatus'
           description: healthNotReadyStatus
-      summary: Check readiness status
+      summary: Check Readiness Status
       tags:
       - public
       x-accepts: application/json
@@ -443,7 +443,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/genericError'
           description: genericError
-      summary: Generate a new JSON Web Key
+      summary: Generate a New JSON Web Key
       tags:
       - admin
       x-codegen-request-body-name: Body
@@ -691,7 +691,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/genericError'
           description: genericError
-      summary: The OAuth 2.0 authorize endpoint
+      summary: The OAuth 2.0 Authorize Endpoint
       tags:
       - public
       x-accepts: application/json
@@ -740,7 +740,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/genericError'
           description: genericError
-      summary: Get consent request information
+      summary: Get Consent Request Information
       tags:
       - admin
       x-accepts: application/json
@@ -795,7 +795,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/genericError'
           description: genericError
-      summary: Accept a consent request
+      summary: Accept a Consent Request
       tags:
       - admin
       x-codegen-request-body-name: Body
@@ -851,7 +851,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/genericError'
           description: genericError
-      summary: Reject a consent request
+      summary: Reject a Consent Request
       tags:
       - admin
       x-codegen-request-body-name: Body
@@ -905,7 +905,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/genericError'
           description: genericError
-      summary: Get a login request
+      summary: Get a Login Request
       tags:
       - admin
       x-accepts: application/json
@@ -963,7 +963,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/genericError'
           description: genericError
-      summary: Accept a login request
+      summary: Accept a Login Request
       tags:
       - admin
       x-codegen-request-body-name: Body
@@ -1022,7 +1022,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/genericError'
           description: genericError
-      summary: Reject a login request
+      summary: Reject a Login Request
       tags:
       - admin
       x-codegen-request-body-name: Body
@@ -1057,7 +1057,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/genericError'
           description: genericError
-      summary: Get a logout request
+      summary: Get a Logout Request
       tags:
       - admin
       x-accepts: application/json
@@ -1094,7 +1094,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/genericError'
           description: genericError
-      summary: Accept a logout request
+      summary: Accept a Logout Request
       tags:
       - admin
       x-accepts: application/json
@@ -1139,7 +1139,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/genericError'
           description: genericError
-      summary: Reject a logout request
+      summary: Reject a Logout Request
       tags:
       - admin
       x-codegen-request-body-name: Body
@@ -1194,7 +1194,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/genericError'
           description: genericError
-      summary: Revokes consent sessions of a subject for a specific OAuth 2.0 Client
+      summary: Revokes Consent Sessions of a Subject for a Specific OAuth 2.0 Client
       tags:
       - admin
       x-accepts: application/json
@@ -1235,7 +1235,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/genericError'
           description: genericError
-      summary: Lists all consent sessions of a subject
+      summary: Lists All Consent Sessions of a Subject
       tags:
       - admin
       x-accepts: application/json
@@ -1277,8 +1277,8 @@ paths:
                 $ref: '#/components/schemas/genericError'
           description: genericError
       summary: |-
-        Invalidates all login sessions of a certain user
-        Invalidates a subject's authentication session
+        Invalidates All Login Sessions of a Certain User
+        Invalidates a Subject's Authentication Session
       tags:
       - admin
       x-accepts: application/json
@@ -1367,10 +1367,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/genericError'
           description: genericError
-      security:
-      - basic: []
-      - oauth2: []
-      summary: Introspect OAuth2 tokens
+      summary: Introspect OAuth2 Tokens
       tags:
       - admin
       x-contentType: application/x-www-form-urlencoded
@@ -1414,7 +1411,7 @@ paths:
       security:
       - basic: []
       - oauth2: []
-      summary: Revoke OAuth2 tokens
+      summary: Revoke OAuth2 Tokens
       tags:
       - public
       x-contentType: application/x-www-form-urlencoded
@@ -1433,7 +1430,7 @@ paths:
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
-      summary: OpenID Connect Front-Backchannel enabled Logout
+      summary: OpenID Connect Front-Backchannel Enabled Logout
       tags:
       - public
       x-accepts: application/json
@@ -1489,7 +1486,7 @@ paths:
       security:
       - basic: []
       - oauth2: []
-      summary: The OAuth 2.0 token endpoint
+      summary: The OAuth 2.0 Token Endpoint
       tags:
       - public
       x-contentType: application/x-www-form-urlencoded
@@ -1542,7 +1539,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/version'
           description: version
-      summary: Get service version
+      summary: Get Service Version
       tags:
       - admin
       x-accepts: application/json
