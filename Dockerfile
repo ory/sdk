@@ -79,7 +79,6 @@ RUN apk add --no-cache --virtual .build-deps \
     && wget -O dotnet-install.sh https://dot.net/v1/dotnet-install.sh \
     && chmod +x dotnet-install.sh \
     && ./dotnet-install.sh --channel Current \
-    && apk del .build-deps \
     && rm dotnet-install.sh
 
 RUN download_url=$(curl -s https://api.github.com/repos/go-swagger/go-swagger/releases/latest | \
