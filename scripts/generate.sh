@@ -187,7 +187,7 @@ dotnet () {
   openapi-generator generate -i "${SPEC_FILE}" \
     -g csharp-netcore \
     -o "$dir" \
-    --model-name-prefix Ory \
+    --model-name-prefix ${PROJECT_UCF} \
     --git-user-id ory \
     --git-repo-id sdk \
     --git-host github.com \
