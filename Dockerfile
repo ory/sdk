@@ -72,7 +72,7 @@ RUN python3 -m pip install --user --upgrade setuptools wheel twine
 # dotnet
 ENV PATH "$PATH:/root/.dotnet"
 
-RUN apk add --no-cache --virtual .build-deps \
+RUN apk add --no-cache \
     lttng-ust-dev \
     icu-libs \
     zlib \
