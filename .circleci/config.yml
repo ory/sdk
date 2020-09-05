@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   publish:
     docker:
-      - image: oryd/sdk:v0.0.14
+      - image: oryd/sdk:v0.0.16
     working_directory: /sdk
     steps:
       - checkout
