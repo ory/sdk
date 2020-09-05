@@ -45,6 +45,7 @@ gem_version=$(echo "${version}" | sed -E 's/v([0-9]+\.[0-9]+\.[0-9]+)-([a-z]+)\.
 ## Set up env vars ##
 export PROJECT=${project}
 export VERSION=${version}
+export RAW_VERSION=$(echo "${VERSION}" | sed "s/^v//")
 export GEM_VERSION=${gem_version}
 export SPEC_FILE=${spec_file}
 # shellcheck disable=SC2155
