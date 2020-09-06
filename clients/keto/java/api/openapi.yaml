@@ -1,0 +1,711 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: hi@ory.sh
+    name: ORY
+    url: https://www.ory.sh
+  description: Ory Keto is a cloud native access control server providing best-practice
+    patterns (RBAC, ABAC, ACL, AWS IAM Policies, Kubernetes Roles, ...) via REST APIs.
+  license:
+    name: Apache 2.0
+    url: https://github.com/ory/keto/blob/master/LICENSE
+  title: ORY Keto
+  version: v0.0.0-alpha.46
+servers:
+- url: /
+paths:
+  /engines/acp/ory/{flavor}/allowed:
+    post:
+      description: |-
+        Use this endpoint to check if a request is allowed or not. If the request is allowed, a 200 response with
+        `{"allowed":"true"}` will be sent. If the request is denied, a 403 response with `{"allowed":"false"}` will
+        be sent instead.
+      operationId: doOryAccessControlPoliciesAllow
+      parameters:
+      - description: The ORY Access Control Policy flavor. Can be "regex", "glob",
+          and "exact".
+        in: path
+        name: flavor
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/oryAccessControlPolicyAllowedInput'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/authorizationResult'
+          description: authorizationResult
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/authorizationResult'
+          description: authorizationResult
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_500'
+          description: The standard error format
+      summary: Check if a request is allowed
+      tags:
+      - engines
+      x-codegen-request-body-name: Body
+      x-contentType: application/json
+      x-accepts: application/json
+  /engines/acp/ory/{flavor}/policies:
+    get:
+      description: List ORY Access Control Policies
+      operationId: listOryAccessControlPolicies
+      parameters:
+      - description: The ORY Access Control Policy flavor. Can be "regex", "glob",
+          and "exact"
+        in: path
+        name: flavor
+        required: true
+        schema:
+          type: string
+      - description: The maximum amount of policies returned.
+        in: query
+        name: limit
+        schema:
+          format: int64
+          type: integer
+      - description: The offset from where to start looking.
+        in: query
+        name: offset
+        schema:
+          format: int64
+          type: integer
+      - description: The subject for whom the policies are to be listed.
+        in: query
+        name: subject
+        schema:
+          type: string
+      - description: The resource for which the policies are to be listed.
+        in: query
+        name: resource
+        schema:
+          type: string
+      - description: The action for which policies are to be listed.
+        in: query
+        name: action
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/oryAccessControlPolicy'
+                type: array
+          description: Policies is an array of policies.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_500'
+          description: The standard error format
+      tags:
+      - engines
+      x-accepts: application/json
+    put:
+      description: Upsert an ORY Access Control Policy
+      operationId: upsertOryAccessControlPolicy
+      parameters:
+      - description: The ORY Access Control Policy flavor. Can be "regex", "glob",
+          and "exact".
+        in: path
+        name: flavor
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/oryAccessControlPolicy'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oryAccessControlPolicy'
+          description: oryAccessControlPolicy
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_500'
+          description: The standard error format
+      tags:
+      - engines
+      x-codegen-request-body-name: Body
+      x-contentType: application/json
+      x-accepts: application/json
+  /engines/acp/ory/{flavor}/policies/{id}:
+    delete:
+      description: Delete an ORY Access Control Policy
+      operationId: deleteOryAccessControlPolicy
+      parameters:
+      - description: The ORY Access Control Policy flavor. Can be "regex", "glob",
+          and "exact".
+        in: path
+        name: flavor
+        required: true
+        schema:
+          type: string
+      - description: The ID of the ORY Access Control Policy Role.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          content: {}
+          description: An empty response
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_500'
+          description: The standard error format
+      tags:
+      - engines
+      x-accepts: application/json
+    get:
+      description: Get an ORY Access Control Policy
+      operationId: getOryAccessControlPolicy
+      parameters:
+      - description: The ORY Access Control Policy flavor. Can be "regex", "glob",
+          and "exact".
+        in: path
+        name: flavor
+        required: true
+        schema:
+          type: string
+      - description: The ID of the ORY Access Control Policy Role.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oryAccessControlPolicy'
+          description: oryAccessControlPolicy
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_500'
+          description: The standard error format
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_500'
+          description: The standard error format
+      tags:
+      - engines
+      x-accepts: application/json
+  /engines/acp/ory/{flavor}/roles:
+    get:
+      description: |-
+        Roles group several subjects into one. Rules can be assigned to ORY Access Control Policy (OACP) by using the Role ID
+        as subject in the OACP.
+      operationId: listOryAccessControlPolicyRoles
+      parameters:
+      - description: The ORY Access Control Policy flavor. Can be "regex", "glob",
+          and "exact"
+        in: path
+        name: flavor
+        required: true
+        schema:
+          type: string
+      - description: The maximum amount of policies returned.
+        in: query
+        name: limit
+        schema:
+          format: int64
+          type: integer
+      - description: The offset from where to start looking.
+        in: query
+        name: offset
+        schema:
+          format: int64
+          type: integer
+      - description: The member for which the roles are to be listed.
+        in: query
+        name: member
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/oryAccessControlPolicyRole'
+                type: array
+          description: Roles is an array of roles.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_500'
+          description: The standard error format
+      summary: List ORY Access Control Policy Roles
+      tags:
+      - engines
+      x-accepts: application/json
+    put:
+      description: |-
+        Roles group several subjects into one. Rules can be assigned to ORY Access Control Policy (OACP) by using the Role ID
+        as subject in the OACP.
+      operationId: upsertOryAccessControlPolicyRole
+      parameters:
+      - description: The ORY Access Control Policy flavor. Can be "regex", "glob",
+          and "exact".
+        in: path
+        name: flavor
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/oryAccessControlPolicyRole'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oryAccessControlPolicyRole'
+          description: oryAccessControlPolicyRole
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_500'
+          description: The standard error format
+      summary: Upsert an ORY Access Control Policy Role
+      tags:
+      - engines
+      x-codegen-request-body-name: Body
+      x-contentType: application/json
+      x-accepts: application/json
+  /engines/acp/ory/{flavor}/roles/{id}:
+    delete:
+      description: |-
+        Roles group several subjects into one. Rules can be assigned to ORY Access Control Policy (OACP) by using the Role ID
+        as subject in the OACP.
+      operationId: deleteOryAccessControlPolicyRole
+      parameters:
+      - description: The ORY Access Control Policy flavor. Can be "regex", "glob",
+          and "exact".
+        in: path
+        name: flavor
+        required: true
+        schema:
+          type: string
+      - description: The ID of the ORY Access Control Policy Role.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          content: {}
+          description: An empty response
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_500'
+          description: The standard error format
+      summary: Delete an ORY Access Control Policy Role
+      tags:
+      - engines
+      x-accepts: application/json
+    get:
+      description: |-
+        Roles group several subjects into one. Rules can be assigned to ORY Access Control Policy (OACP) by using the Role ID
+        as subject in the OACP.
+      operationId: getOryAccessControlPolicyRole
+      parameters:
+      - description: The ORY Access Control Policy flavor. Can be "regex", "glob",
+          and "exact".
+        in: path
+        name: flavor
+        required: true
+        schema:
+          type: string
+      - description: The ID of the ORY Access Control Policy Role.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oryAccessControlPolicyRole'
+          description: oryAccessControlPolicyRole
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_500'
+          description: The standard error format
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_500'
+          description: The standard error format
+      summary: Get an ORY Access Control Policy Role
+      tags:
+      - engines
+      x-accepts: application/json
+  /engines/acp/ory/{flavor}/roles/{id}/members:
+    put:
+      description: |-
+        Roles group several subjects into one. Rules can be assigned to ORY Access Control Policy (OACP) by using the Role ID
+        as subject in the OACP.
+      operationId: addOryAccessControlPolicyRoleMembers
+      parameters:
+      - description: The ORY Access Control Policy flavor. Can be "regex", "glob",
+          and "exact".
+        in: path
+        name: flavor
+        required: true
+        schema:
+          type: string
+      - description: The ID of the ORY Access Control Policy Role.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/addOryAccessControlPolicyRoleMembersBody'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oryAccessControlPolicyRole'
+          description: oryAccessControlPolicyRole
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_500'
+          description: The standard error format
+      summary: Add a member to an ORY Access Control Policy Role
+      tags:
+      - engines
+      x-codegen-request-body-name: Body
+      x-contentType: application/json
+      x-accepts: application/json
+  /engines/acp/ory/{flavor}/roles/{id}/members/{member}:
+    delete:
+      description: |-
+        Roles group several subjects into one. Rules can be assigned to ORY Access Control Policy (OACP) by using the Role ID
+        as subject in the OACP.
+      operationId: removeOryAccessControlPolicyRoleMembers
+      parameters:
+      - description: The ORY Access Control Policy flavor. Can be "regex", "glob",
+          and "exact".
+        in: path
+        name: flavor
+        required: true
+        schema:
+          type: string
+      - description: The ID of the ORY Access Control Policy Role.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: The member to be removed.
+        in: path
+        name: member
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content: {}
+          description: An empty response
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_500'
+          description: The standard error format
+      summary: Remove a member from an ORY Access Control Policy Role
+      tags:
+      - engines
+      x-accepts: application/json
+  /health/alive:
+    get:
+      description: |-
+        This endpoint returns a 200 status code when the HTTP server is up running.
+        This status does currently not include checks whether the database connection is working.
+
+        If the service supports TLS Edge Termination, this endpoint does not require the
+        `X-Forwarded-Proto` header to be set.
+
+        Be aware that if you are running multiple nodes of this service, the health status will never
+        refer to the cluster state, only to a single instance.
+      operationId: isInstanceAlive
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/healthStatus'
+          description: healthStatus
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_500'
+          description: The standard error format
+      summary: Check alive status
+      tags:
+      - health
+      x-accepts: application/json
+  /health/ready:
+    get:
+      description: |-
+        This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g.
+        the database) are responsive as well.
+
+        If the service supports TLS Edge Termination, this endpoint does not require the
+        `X-Forwarded-Proto` header to be set.
+
+        Be aware that if you are running multiple nodes of this service, the health status will never
+        refer to the cluster state, only to a single instance.
+      operationId: isInstanceReady
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/healthStatus'
+          description: healthStatus
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/healthNotReadyStatus'
+          description: healthNotReadyStatus
+      summary: Check readiness status
+      tags:
+      - health
+      x-accepts: application/json
+  /version:
+    get:
+      description: |-
+        This endpoint returns the service version typically notated using semantic versioning.
+
+        If the service supports TLS Edge Termination, this endpoint does not require the
+        `X-Forwarded-Proto` header to be set.
+
+        Be aware that if you are running multiple nodes of this service, the health status will never
+        refer to the cluster state, only to a single instance.
+      operationId: getVersion
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/version'
+          description: version
+      summary: Get service version
+      tags:
+      - version
+      x-accepts: application/json
+components:
+  schemas:
+    UUID:
+      format: uuid4
+      type: string
+    addOryAccessControlPolicyRoleMembersBody:
+      properties:
+        members:
+          description: The members to be added.
+          items:
+            type: string
+          type: array
+      type: object
+    authorizationResult:
+      example:
+        allowed: true
+      properties:
+        allowed:
+          description: Allowed is true if the request should be allowed and false
+            otherwise.
+          type: boolean
+      required:
+      - allowed
+      title: AuthorizationResult is the result of an access control decision. It contains
+        the decision outcome.
+      type: object
+    healthNotReadyStatus:
+      properties:
+        errors:
+          additionalProperties:
+            type: string
+          description: Errors contains a list of errors that caused the not ready
+            status.
+          type: object
+      type: object
+    healthStatus:
+      example:
+        status: status
+      properties:
+        status:
+          description: Status always contains "ok".
+          type: string
+      type: object
+    oryAccessControlPolicy:
+      example:
+        effect: effect
+        subjects:
+        - subjects
+        - subjects
+        description: description
+        resources:
+        - resources
+        - resources
+        id: id
+        conditions: '{}'
+        actions:
+        - actions
+        - actions
+      properties:
+        actions:
+          description: Actions is an array representing all the actions this ORY Access
+            Policy applies to.
+          items:
+            type: string
+          type: array
+        conditions:
+          description: Conditions represents a keyed object of conditions under which
+            this ORY Access Policy is active.
+          properties: {}
+          type: object
+        description:
+          description: Description is an optional, human-readable description.
+          type: string
+        effect:
+          description: Effect is the effect of this ORY Access Policy. It can be "allow"
+            or "deny".
+          type: string
+        id:
+          description: ID is the unique identifier of the ORY Access Policy. It is
+            used to query, update, and remove the ORY Access Policy.
+          type: string
+        resources:
+          description: Resources is an array representing all the resources this ORY
+            Access Policy applies to.
+          items:
+            type: string
+          type: array
+        subjects:
+          description: Subjects is an array representing all the subjects this ORY
+            Access Policy applies to.
+          items:
+            type: string
+          type: array
+      title: oryAccessControlPolicy specifies an ORY Access Policy document.
+      type: object
+    oryAccessControlPolicyAllowedInput:
+      properties:
+        action:
+          description: Action is the action that is requested on the resource.
+          type: string
+        context:
+          description: Context is the request's environmental context.
+          properties: {}
+          type: object
+        resource:
+          description: Resource is the resource that access is requested to.
+          type: string
+        subject:
+          description: Subject is the subject that is requesting access.
+          type: string
+      title: Input for checking if a request is allowed or not.
+      type: object
+    oryAccessControlPolicyRole:
+      description: |-
+        oryAccessControlPolicyRole represents a group of users that share the same role. A role could be an administrator, a moderator, a regular
+        user or some other sort of role.
+      example:
+        members:
+        - members
+        - members
+        id: id
+      properties:
+        id:
+          description: ID is the role's unique id.
+          type: string
+        members:
+          description: Members is who belongs to the role.
+          items:
+            type: string
+          type: array
+      type: object
+    version:
+      example:
+        version: version
+      properties:
+        version:
+          description: Version is the service's version.
+          type: string
+      type: object
+    inline_response_500:
+      properties:
+        code:
+          format: int64
+          type: integer
+        details:
+          items:
+            properties: {}
+            type: object
+          type: array
+        message:
+          type: string
+        reason:
+          type: string
+        request:
+          type: string
+        status:
+          type: string
+

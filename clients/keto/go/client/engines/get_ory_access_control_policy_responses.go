@@ -10,9 +10,8 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/ory/keto-client-go/models"
 )
@@ -45,7 +44,7 @@ func (o *GetOryAccessControlPolicyReader) ReadResponse(response runtime.ClientRe
 		return nil, result
 
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
