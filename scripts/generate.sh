@@ -35,7 +35,7 @@ typescript () {
   dir="clients/${PROJECT}/typescript"
 
   openapi-generator generate -i "${SPEC_FILE}" \
-    -g typescript-fetch \
+    -g typescript-axios \
     -o "$dir" \
     --git-user-id ory \
     --git-repo-id sdk \
