@@ -8,7 +8,7 @@ RUN apk add --no-cache \
 # - docker run --rm debian:stretch grep '^hosts:' /etc/nsswitch.conf
 RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 
-ENV GOLANG_VERSION 1.15.1
+ENV GOLANG_VERSION 1.15.2
 
 RUN set -eux; \
 	apk add --no-cache --virtual .build-deps \
@@ -65,7 +65,7 @@ RUN apk add -U --no-cache ca-certificates bash nodejs npm python3 python3-dev py
 
 # RUN wget http://central.maven.org/maven2/org/openapitools/openapi-generator-cli/4.2.2/openapi-generator-cli-4.2.2.jar -O openapi-generator-cli.jar
 
-RUN npm install @openapitools/openapi-generator-cli -g
+RUN npm install @openapitools/openapi-generator-cli@cli-4.3.1 -g
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install --user --upgrade setuptools wheel twine
 
