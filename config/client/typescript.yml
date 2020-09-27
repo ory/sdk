@@ -3,3 +3,5 @@ npmVersion: $VERSION
 # typescriptThreePlus: true
 #npmRepository: https://github.com/ory/sdk.git
 supportsES6: true
+prefixParameterInterfaces: true
+typescriptThreePlus: true
