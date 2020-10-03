@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**delete_json_web_key**](AdminApi.md#delete_json_web_key) | **DELETE** /keys/{set}/{kid} | Delete a JSON Web Key
 [**delete_json_web_key_set**](AdminApi.md#delete_json_web_key_set) | **DELETE** /keys/{set} | Delete a JSON Web Key Set
 [**delete_o_auth2_client**](AdminApi.md#delete_o_auth2_client) | **DELETE** /clients/{id} | Deletes an OAuth 2.0 Client
+[**delete_o_auth2_token**](AdminApi.md#delete_o_auth2_token) | **DELETE** /oauth2/tokens | Delete OAuth2 Access Tokens from a client
 [**flush_inactive_o_auth2_tokens**](AdminApi.md#flush_inactive_o_auth2_tokens) | **POST** /oauth2/flush | Flush Expired OAuth2 Access Tokens
 [**get_consent_request**](AdminApi.md#get_consent_request) | **GET** /oauth2/auth/requests/consent | Get Consent Request Information
 [**get_json_web_key**](AdminApi.md#get_json_web_key) | **GET** /keys/{set}/{kid} | Fetch a JSON Web Key
@@ -408,6 +409,52 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| The id of the OAuth 2.0 Client. | 
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## delete_o_auth2_token
+
+> delete_o_auth2_token(client_id)
+
+Delete OAuth2 Access Tokens from a client
+
+This endpoint deletes OAuth2 access tokens issued for a client from the database
+
+### Example
+
+```ruby
+# load the gem
+require 'ory-hydra-client'
+
+api_instance = OryHydraClient::AdminApi.new
+client_id = 'client_id_example' # String | 
+
+begin
+  #Delete OAuth2 Access Tokens from a client
+  api_instance.delete_o_auth2_token(client_id)
+rescue OryHydraClient::ApiError => e
+  puts "Exception when calling AdminApi->delete_o_auth2_token: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **client_id** | **String**|  | 
 
 ### Return type
 
@@ -996,7 +1043,7 @@ No authorization required
 
 Get snapshot metrics from the Hydra service. If you're using k8s, you can then add annotations to your deployment like so:
 
-``` metadata: annotations: prometheus.io/port: \"4445\" prometheus.io/path: \"/metrics/prometheus\" ```
+``` metadata: annotations: prometheus.io/port: \"4445\" prometheus.io/path: \"/metrics/prometheus\" ```  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
 
 ### Example
 

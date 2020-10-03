@@ -3,7 +3,7 @@ info:
   description: Welcome to the ORY Hydra HTTP API documentation. You will find documentation
     for all HTTP APIs here.
   title: ORY Hydra
-  version: v1.7.4
+  version: v1.8.0-pre.1
 servers:
 - url: /
 paths:
@@ -652,6 +652,9 @@ paths:
         prometheus.io/port: "4445"
         prometheus.io/path: "/metrics/prometheus"
         ```
+
+        If the service supports TLS Edge Termination, this endpoint does not require the
+        `X-Forwarded-Proto` header to be set.
       operationId: prometheus
       responses:
         "200":
@@ -1490,6 +1493,39 @@ paths:
       tags:
       - public
       x-contentType: application/x-www-form-urlencoded
+      x-accepts: application/json
+  /oauth2/tokens:
+    delete:
+      description: This endpoint deletes OAuth2 access tokens issued for a client
+        from the database
+      operationId: deleteOAuth2Token
+      parameters:
+      - in: query
+        name: client_id
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          content: {}
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      summary: Delete OAuth2 Access Tokens from a client
+      tags:
+      - admin
       x-accepts: application/json
   /userinfo:
     get:
