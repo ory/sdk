@@ -4,4 +4,4 @@ npmVersion: $VERSION
 #npmRepository: https://github.com/ory/sdk.git
 supportsES6: true
 ensureUniqueParams: true
-modelPropertyNaming: camelCase
+modelPropertyNaming: original
