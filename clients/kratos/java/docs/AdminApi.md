@@ -4,25 +4,27 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createIdentity**](AdminApi.md#createIdentity) | **POST** /identities | Create an identity
-[**deleteIdentity**](AdminApi.md#deleteIdentity) | **DELETE** /identities/{id} | Delete an identity
-[**getIdentity**](AdminApi.md#getIdentity) | **GET** /identities/{id} | Get an identity
+[**createIdentity**](AdminApi.md#createIdentity) | **POST** /identities | Create an Identity
+[**createRecoveryLink**](AdminApi.md#createRecoveryLink) | **POST** /recovery/link | Create a Recovery Link
+[**deleteIdentity**](AdminApi.md#deleteIdentity) | **DELETE** /identities/{id} | Delete an Identity
+[**getIdentity**](AdminApi.md#getIdentity) | **GET** /identities/{id} | Get an Identity
 [**getSchema**](AdminApi.md#getSchema) | **GET** /schemas/{id} | 
-[**getSelfServiceBrowserLoginRequest**](AdminApi.md#getSelfServiceBrowserLoginRequest) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
-[**getSelfServiceBrowserRecoveryRequest**](AdminApi.md#getSelfServiceBrowserRecoveryRequest) | **GET** /self-service/browser/flows/requests/recovery | Get the request context of browser-based recovery flows
-[**getSelfServiceBrowserRegistrationRequest**](AdminApi.md#getSelfServiceBrowserRegistrationRequest) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
-[**getSelfServiceBrowserSettingsRequest**](AdminApi.md#getSelfServiceBrowserSettingsRequest) | **GET** /self-service/browser/flows/requests/settings | Get the request context of browser-based settings flows
-[**getSelfServiceError**](AdminApi.md#getSelfServiceError) | **GET** /self-service/errors | Get user-facing self-service errors
-[**getSelfServiceVerificationRequest**](AdminApi.md#getSelfServiceVerificationRequest) | **GET** /self-service/browser/flows/requests/verification | Get the request context of browser-based verification flows
-[**listIdentities**](AdminApi.md#listIdentities) | **GET** /identities | List all identities in the system
-[**updateIdentity**](AdminApi.md#updateIdentity) | **PUT** /identities/{id} | Update an identity
+[**getSelfServiceError**](AdminApi.md#getSelfServiceError) | **GET** /self-service/errors | Get User-Facing Self-Service Errors
+[**getSelfServiceLoginFlow**](AdminApi.md#getSelfServiceLoginFlow) | **GET** /self-service/login/flows | Get Login Flow
+[**getSelfServiceRecoveryFlow**](AdminApi.md#getSelfServiceRecoveryFlow) | **GET** /self-service/recovery/flows | Get information about a recovery flow
+[**getSelfServiceRegistrationFlow**](AdminApi.md#getSelfServiceRegistrationFlow) | **GET** /self-service/registration/flows | Get Registration Flow
+[**getSelfServiceSettingsFlow**](AdminApi.md#getSelfServiceSettingsFlow) | **GET** /self-service/settings/flows | Get Settings Flow
+[**getSelfServiceVerificationFlow**](AdminApi.md#getSelfServiceVerificationFlow) | **GET** /self-service/verification/flows | Get Verification Flow
+[**listIdentities**](AdminApi.md#listIdentities) | **GET** /identities | List Identities
+[**prometheus**](AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get snapshot metrics from the Hydra service. If you&#39;re using k8s, you can then add annotations to your deployment like so:
+[**updateIdentity**](AdminApi.md#updateIdentity) | **PUT** /identities/{id} | Update an Identity
 
 
 <a name="createIdentity"></a>
 # **createIdentity**
 > Identity createIdentity(body)
 
-Create an identity
+Create an Identity
 
 This endpoint creates an identity. It is NOT possible to set an identity&#39;s credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [ORY Kratos&#39; User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
@@ -41,7 +43,7 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
-    Identity body = new Identity(); // Identity | 
+    CreateIdentity body = new CreateIdentity(); // CreateIdentity | 
     try {
       Identity result = apiInstance.createIdentity(body);
       System.out.println(result);
@@ -60,7 +62,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Identity**](Identity.md)|  |
+ **body** | [**CreateIdentity**](CreateIdentity.md)|  | [optional]
 
 ### Return type
 
@@ -80,15 +82,81 @@ No authorization required
 |-------------|-------------|------------------|
 **201** | A single identity. |  -  |
 **400** | genericError |  -  |
+**409** | genericError |  -  |
+**500** | genericError |  -  |
+
+<a name="createRecoveryLink"></a>
+# **createRecoveryLink**
+> RecoveryLink createRecoveryLink(body)
+
+Create a Recovery Link
+
+This endpoint creates a recovery link which should be given to the user in order for them to recover (or activate) their account.
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.AdminApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    AdminApi apiInstance = new AdminApi(defaultClient);
+    CreateRecoveryLink body = new CreateRecoveryLink(); // CreateRecoveryLink | 
+    try {
+      RecoveryLink result = apiInstance.createRecoveryLink(body);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AdminApi#createRecoveryLink");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**CreateRecoveryLink**](CreateRecoveryLink.md)|  | [optional]
+
+### Return type
+
+[**RecoveryLink**](RecoveryLink.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | recoveryLink |  -  |
+**400** | genericError |  -  |
+**404** | genericError |  -  |
 **500** | genericError |  -  |
 
 <a name="deleteIdentity"></a>
 # **deleteIdentity**
 > deleteIdentity(id)
 
-Delete an identity
+Delete an Identity
 
-This endpoint deletes an identity. This can not be undone.  Learn how identities work in [ORY Kratos&#39; User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+Calling this endpoint irrecoverably and permanently deletes the identity given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is assumed that is has been deleted already.  Learn how identities work in [ORY Kratos&#39; User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 ```java
@@ -149,7 +217,7 @@ No authorization required
 # **getIdentity**
 > Identity getIdentity(id)
 
-Get an identity
+Get an Identity
 
 Learn how identities work in [ORY Kratos&#39; User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
@@ -215,7 +283,7 @@ No authorization required
 
 
 
-Get a traits schema definition
+Get a Traits Schema Definition
 
 ### Example
 ```java
@@ -273,277 +341,13 @@ No authorization required
 **404** | genericError |  -  |
 **500** | genericError |  -  |
 
-<a name="getSelfServiceBrowserLoginRequest"></a>
-# **getSelfServiceBrowserLoginRequest**
-> LoginRequest getSelfServiceBrowserLoginRequest(request)
-
-Get the request context of browser-based login user flows
-
-This endpoint returns a login request&#39;s context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
-
-### Example
-```java
-// Import classes:
-import sh.ory.kratos.ApiClient;
-import sh.ory.kratos.ApiException;
-import sh.ory.kratos.Configuration;
-import sh.ory.kratos.models.*;
-import sh.ory.kratos.api.AdminApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-
-    AdminApi apiInstance = new AdminApi(defaultClient);
-    String request = "request_example"; // String | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
-    try {
-      LoginRequest result = apiInstance.getSelfServiceBrowserLoginRequest(request);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling AdminApi#getSelfServiceBrowserLoginRequest");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **request** | **String**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). |
-
-### Return type
-
-[**LoginRequest**](LoginRequest.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | loginRequest |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**410** | genericError |  -  |
-**500** | genericError |  -  |
-
-<a name="getSelfServiceBrowserRecoveryRequest"></a>
-# **getSelfServiceBrowserRecoveryRequest**
-> RecoveryRequest getSelfServiceBrowserRecoveryRequest(request)
-
-Get the request context of browser-based recovery flows
-
-When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/password-reset-account-recovery).
-
-### Example
-```java
-// Import classes:
-import sh.ory.kratos.ApiClient;
-import sh.ory.kratos.ApiException;
-import sh.ory.kratos.Configuration;
-import sh.ory.kratos.models.*;
-import sh.ory.kratos.api.AdminApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-
-    AdminApi apiInstance = new AdminApi(defaultClient);
-    String request = "request_example"; // String | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recover?request=abcde`).
-    try {
-      RecoveryRequest result = apiInstance.getSelfServiceBrowserRecoveryRequest(request);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling AdminApi#getSelfServiceBrowserRecoveryRequest");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **request** | **String**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/recover?request&#x3D;abcde&#x60;). |
-
-### Return type
-
-[**RecoveryRequest**](RecoveryRequest.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | recoveryRequest |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**410** | genericError |  -  |
-**500** | genericError |  -  |
-
-<a name="getSelfServiceBrowserRegistrationRequest"></a>
-# **getSelfServiceBrowserRegistrationRequest**
-> RegistrationRequest getSelfServiceBrowserRegistrationRequest(request)
-
-Get the request context of browser-based registration user flows
-
-This endpoint returns a registration request&#39;s context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
-
-### Example
-```java
-// Import classes:
-import sh.ory.kratos.ApiClient;
-import sh.ory.kratos.ApiException;
-import sh.ory.kratos.Configuration;
-import sh.ory.kratos.models.*;
-import sh.ory.kratos.api.AdminApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-
-    AdminApi apiInstance = new AdminApi(defaultClient);
-    String request = "request_example"; // String | Request is the Registration Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/registration?request=abcde`).
-    try {
-      RegistrationRequest result = apiInstance.getSelfServiceBrowserRegistrationRequest(request);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling AdminApi#getSelfServiceBrowserRegistrationRequest");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **request** | **String**| Request is the Registration Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?request&#x3D;abcde&#x60;). |
-
-### Return type
-
-[**RegistrationRequest**](RegistrationRequest.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | registrationRequest |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**410** | genericError |  -  |
-**500** | genericError |  -  |
-
-<a name="getSelfServiceBrowserSettingsRequest"></a>
-# **getSelfServiceBrowserSettingsRequest**
-> SettingsRequest getSelfServiceBrowserSettingsRequest(request)
-
-Get the request context of browser-based settings flows
-
-When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos User Settings &amp; Profile Management Documentation](../self-service/flows/user-settings).
-
-### Example
-```java
-// Import classes:
-import sh.ory.kratos.ApiClient;
-import sh.ory.kratos.ApiException;
-import sh.ory.kratos.Configuration;
-import sh.ory.kratos.models.*;
-import sh.ory.kratos.api.AdminApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-
-    AdminApi apiInstance = new AdminApi(defaultClient);
-    String request = "request_example"; // String | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/settingss?request=abcde`).
-    try {
-      SettingsRequest result = apiInstance.getSelfServiceBrowserSettingsRequest(request);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling AdminApi#getSelfServiceBrowserSettingsRequest");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **request** | **String**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/settingss?request&#x3D;abcde&#x60;). |
-
-### Return type
-
-[**SettingsRequest**](SettingsRequest.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | settingsRequest |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**410** | genericError |  -  |
-**500** | genericError |  -  |
-
 <a name="getSelfServiceError"></a>
 # **getSelfServiceError**
 > ErrorContainer getSelfServiceError(error)
 
-Get user-facing self-service errors
+Get User-Facing Self-Service Errors
 
-This endpoint returns the error associated with a user-facing self service errors.  When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
+This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  &#x60;?error&#x3D;stub:500&#x60; - returns a stub 500 (Internal Server Error) error.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
 
 ### Example
 ```java
@@ -560,7 +364,7 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
-    String error = "error_example"; // String | 
+    String error = "error_example"; // String | Error is the container's ID
     try {
       ErrorContainer result = apiInstance.getSelfServiceError(error);
       System.out.println(result);
@@ -579,7 +383,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **error** | **String**|  | [optional]
+ **error** | **String**| Error is the container&#39;s ID |
 
 ### Return type
 
@@ -602,13 +406,13 @@ No authorization required
 **404** | genericError |  -  |
 **500** | genericError |  -  |
 
-<a name="getSelfServiceVerificationRequest"></a>
-# **getSelfServiceVerificationRequest**
-> VerificationRequest getSelfServiceVerificationRequest(request)
+<a name="getSelfServiceLoginFlow"></a>
+# **getSelfServiceLoginFlow**
+> LoginFlow getSelfServiceLoginFlow(id)
 
-Get the request context of browser-based verification flows
+Get Login Flow
 
-When accessing this endpoint through ORY Kratos&#39; Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint returns a login flow&#39;s context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 ```java
@@ -625,12 +429,12 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
-    String request = "request_example"; // String | Request is the Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verify?request=abcde`).
+    String id = "id_example"; // String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
     try {
-      VerificationRequest result = apiInstance.getSelfServiceVerificationRequest(request);
+      LoginFlow result = apiInstance.getSelfServiceLoginFlow(id);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling AdminApi#getSelfServiceVerificationRequest");
+      System.err.println("Exception when calling AdminApi#getSelfServiceLoginFlow");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -644,11 +448,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request** | **String**| Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). |
+ **id** | **String**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). |
 
 ### Return type
 
-[**VerificationRequest**](VerificationRequest.md)
+[**LoginFlow**](LoginFlow.md)
 
 ### Authorization
 
@@ -662,18 +466,19 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | verificationRequest |  -  |
+**200** | loginFlow |  -  |
 **403** | genericError |  -  |
 **404** | genericError |  -  |
+**410** | genericError |  -  |
 **500** | genericError |  -  |
 
-<a name="listIdentities"></a>
-# **listIdentities**
-> List&lt;Identity&gt; listIdentities()
+<a name="getSelfServiceRecoveryFlow"></a>
+# **getSelfServiceRecoveryFlow**
+> RecoveryFlow getSelfServiceRecoveryFlow(id)
 
-List all identities in the system
+Get information about a recovery flow
 
-This endpoint returns a login request&#39;s context with, for example, error details and other information.  Learn how identities work in [ORY Kratos&#39; User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint returns a recovery flow&#39;s context with, for example, error details and other information.  More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
 ### Example
 ```java
@@ -690,8 +495,279 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
+    String id = "id_example"; // String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
     try {
-      List<Identity> result = apiInstance.listIdentities();
+      RecoveryFlow result = apiInstance.getSelfServiceRecoveryFlow(id);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AdminApi#getSelfServiceRecoveryFlow");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). |
+
+### Return type
+
+[**RecoveryFlow**](RecoveryFlow.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | recoveryFlow |  -  |
+**404** | genericError |  -  |
+**410** | genericError |  -  |
+**500** | genericError |  -  |
+
+<a name="getSelfServiceRegistrationFlow"></a>
+# **getSelfServiceRegistrationFlow**
+> RegistrationFlow getSelfServiceRegistrationFlow(id)
+
+Get Registration Flow
+
+This endpoint returns a registration flow&#39;s context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.AdminApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    AdminApi apiInstance = new AdminApi(defaultClient);
+    String id = "id_example"; // String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
+    try {
+      RegistrationFlow result = apiInstance.getSelfServiceRegistrationFlow(id);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AdminApi#getSelfServiceRegistrationFlow");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). |
+
+### Return type
+
+[**RegistrationFlow**](RegistrationFlow.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | registrationFlow |  -  |
+**403** | genericError |  -  |
+**404** | genericError |  -  |
+**410** | genericError |  -  |
+**500** | genericError |  -  |
+
+<a name="getSelfServiceSettingsFlow"></a>
+# **getSelfServiceSettingsFlow**
+> SettingsFlow getSelfServiceSettingsFlow(id)
+
+Get Settings Flow
+
+When accessing this endpoint through ORY Kratos&#39; Public API you must ensure that either the ORY Kratos Session Cookie or the ORY Kratos Session Token are set. The public endpoint does not return 404 status codes but instead 403 or 500 to improve data privacy.  You can access this endpoint without credentials when using ORY Kratos&#39; Admin API.  More information can be found at [ORY Kratos User Settings &amp; Profile Management Documentation](../self-service/flows/user-settings).
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.auth.*;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.AdminApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure API key authorization: sessionToken
+    ApiKeyAuth sessionToken = (ApiKeyAuth) defaultClient.getAuthentication("sessionToken");
+    sessionToken.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //sessionToken.setApiKeyPrefix("Token");
+
+    AdminApi apiInstance = new AdminApi(defaultClient);
+    String id = "id_example"; // String | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+    try {
+      SettingsFlow result = apiInstance.getSelfServiceSettingsFlow(id);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AdminApi#getSelfServiceSettingsFlow");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
+
+### Return type
+
+[**SettingsFlow**](SettingsFlow.md)
+
+### Authorization
+
+[sessionToken](../README.md#sessionToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | settingsFlow |  -  |
+**403** | genericError |  -  |
+**404** | genericError |  -  |
+**410** | genericError |  -  |
+**500** | genericError |  -  |
+
+<a name="getSelfServiceVerificationFlow"></a>
+# **getSelfServiceVerificationFlow**
+> VerificationFlow getSelfServiceVerificationFlow(id)
+
+Get Verification Flow
+
+This endpoint returns a verification flow&#39;s context with, for example, error details and other information.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.AdminApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    AdminApi apiInstance = new AdminApi(defaultClient);
+    String id = "id_example"; // String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
+    try {
+      VerificationFlow result = apiInstance.getSelfServiceVerificationFlow(id);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AdminApi#getSelfServiceVerificationFlow");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verification?flow&#x3D;abcde&#x60;). |
+
+### Return type
+
+[**VerificationFlow**](VerificationFlow.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | verificationFlow |  -  |
+**403** | genericError |  -  |
+**404** | genericError |  -  |
+**500** | genericError |  -  |
+
+<a name="listIdentities"></a>
+# **listIdentities**
+> List&lt;Identity&gt; listIdentities(perPage, page)
+
+List Identities
+
+Lists all identities. Does not support search at the moment.  Learn how identities work in [ORY Kratos&#39; User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.AdminApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    AdminApi apiInstance = new AdminApi(defaultClient);
+    Long perPage = 100lL; // Long | Items per Page  This is the number of items per page.
+    Long page = 0lL; // Long | Pagination Page
+    try {
+      List<Identity> result = apiInstance.listIdentities(perPage, page);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#listIdentities");
@@ -705,7 +781,11 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **perPage** | **Long**| Items per Page  This is the number of items per page. | [optional] [default to 100l]
+ **page** | **Long**| Pagination Page | [optional] [default to 0l]
 
 ### Return type
 
@@ -726,11 +806,68 @@ No authorization required
 **200** | A list of identities. |  -  |
 **500** | genericError |  -  |
 
+<a name="prometheus"></a>
+# **prometheus**
+> prometheus()
+
+Get snapshot metrics from the Hydra service. If you&#39;re using k8s, you can then add annotations to your deployment like so:
+
+&#x60;&#x60;&#x60; metadata: annotations: prometheus.io/port: \&quot;4434\&quot; prometheus.io/path: \&quot;/metrics/prometheus\&quot; &#x60;&#x60;&#x60;
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.AdminApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    AdminApi apiInstance = new AdminApi(defaultClient);
+    try {
+      apiInstance.prometheus();
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AdminApi#prometheus");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+
 <a name="updateIdentity"></a>
 # **updateIdentity**
 > Identity updateIdentity(id, body)
 
-Update an identity
+Update an Identity
 
 This endpoint updates an identity. It is NOT possible to set an identity&#39;s credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [ORY Kratos&#39; User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
@@ -750,7 +887,7 @@ public class Example {
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String id = "id_example"; // String | ID must be set to the ID of identity you want to update
-    Identity body = new Identity(); // Identity | 
+    UpdateIdentity body = new UpdateIdentity(); // UpdateIdentity | 
     try {
       Identity result = apiInstance.updateIdentity(id, body);
       System.out.println(result);
@@ -770,7 +907,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID must be set to the ID of identity you want to update |
- **body** | [**Identity**](Identity.md)|  |
+ **body** | [**UpdateIdentity**](UpdateIdentity.md)|  | [optional]
 
 ### Return type
 

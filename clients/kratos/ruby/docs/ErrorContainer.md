@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**errors** | [**Object**](.md) |  | [optional] 
-**id** | **String** |  | [optional] 
+**errors** | [**Object**](.md) | Errors in the container | 
+**id** | **String** |  | 
 
 ## Code Sample
 

@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**expires_at** | **datetime** |  | 
 **id** | **str** |  | 
+**status** | **str** |  | 
 **value** | **str** |  | 
 **verified** | **bool** |  | 
 **verified_at** | **datetime** |  | [optional] 

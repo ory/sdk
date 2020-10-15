@@ -29,11 +29,15 @@ type Client struct {
 type ClientService interface {
 	CreateIdentity(params *CreateIdentityParams) (*CreateIdentityCreated, error)
 
+	CreateRecoveryLink(params *CreateRecoveryLinkParams) (*CreateRecoveryLinkOK, error)
+
 	DeleteIdentity(params *DeleteIdentityParams) (*DeleteIdentityNoContent, error)
 
 	GetIdentity(params *GetIdentityParams) (*GetIdentityOK, error)
 
 	ListIdentities(params *ListIdentitiesParams) (*ListIdentitiesOK, error)
+
+	Prometheus(params *PrometheusParams) (*PrometheusOK, error)
 
 	UpdateIdentity(params *UpdateIdentityParams) (*UpdateIdentityOK, error)
 
@@ -80,9 +84,48 @@ func (a *Client) CreateIdentity(params *CreateIdentityParams) (*CreateIdentityCr
 }
 
 /*
+  CreateRecoveryLink creates a recovery link
+
+  This endpoint creates a recovery link which should be given to the user in order for them to recover
+(or activate) their account.
+*/
+func (a *Client) CreateRecoveryLink(params *CreateRecoveryLinkParams) (*CreateRecoveryLinkOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateRecoveryLinkParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createRecoveryLink",
+		Method:             "POST",
+		PathPattern:        "/recovery/link",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &CreateRecoveryLinkReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateRecoveryLinkOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for createRecoveryLink: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   DeleteIdentity deletes an identity
 
-  This endpoint deletes an identity. This can not be undone.
+  Calling this endpoint irrecoverably and permanently deletes the identity given its ID. This action can not be undone.
+This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is
+assumed that is has been deleted already.
 
 Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 */
@@ -154,10 +197,9 @@ func (a *Client) GetIdentity(params *GetIdentityParams) (*GetIdentityOK, error) 
 }
 
 /*
-  ListIdentities lists all identities in the system
+  ListIdentities lists identities
 
-  This endpoint returns a login request's context with, for example, error details and
-other information.
+  Lists all identities. Does not support search at the moment.
 
 Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 */
@@ -189,6 +231,47 @@ func (a *Client) ListIdentities(params *ListIdentitiesParams) (*ListIdentitiesOK
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for listIdentities: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  Prometheus gets snapshot metrics from the hydra service if you re using k8s you can then add annotations to your deployment like so
+
+  ```
+metadata:
+annotations:
+prometheus.io/port: "4434"
+prometheus.io/path: "/metrics/prometheus"
+```
+*/
+func (a *Client) Prometheus(params *PrometheusParams) (*PrometheusOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPrometheusParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "prometheus",
+		Method:             "GET",
+		PathPattern:        "/metrics/prometheus",
+		ProducesMediaTypes: []string{"plain/text"},
+		ConsumesMediaTypes: []string{"application/json", "application/x-www-form-urlencoded"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &PrometheusReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PrometheusOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for prometheus: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

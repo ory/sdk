@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**expiresAt** | [**\DateTime**](\DateTime.md) |  | 
 **id** | **string** |  | 
+**status** | **string** |  | 
 **value** | **string** |  | 
 **verified** | **bool** |  | 
 **verifiedAt** | [**\DateTime**](\DateTime.md) |  | [optional] 

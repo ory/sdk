@@ -4,18 +4,20 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createIdentity**](AdminApi.md#createIdentity) | **POST** /identities | Create an identity
-[**deleteIdentity**](AdminApi.md#deleteIdentity) | **DELETE** /identities/{id} | Delete an identity
-[**getIdentity**](AdminApi.md#getIdentity) | **GET** /identities/{id} | Get an identity
+[**createIdentity**](AdminApi.md#createIdentity) | **POST** /identities | Create an Identity
+[**createRecoveryLink**](AdminApi.md#createRecoveryLink) | **POST** /recovery/link | Create a Recovery Link
+[**deleteIdentity**](AdminApi.md#deleteIdentity) | **DELETE** /identities/{id} | Delete an Identity
+[**getIdentity**](AdminApi.md#getIdentity) | **GET** /identities/{id} | Get an Identity
 [**getSchema**](AdminApi.md#getSchema) | **GET** /schemas/{id} | 
-[**getSelfServiceBrowserLoginRequest**](AdminApi.md#getSelfServiceBrowserLoginRequest) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
-[**getSelfServiceBrowserRecoveryRequest**](AdminApi.md#getSelfServiceBrowserRecoveryRequest) | **GET** /self-service/browser/flows/requests/recovery | Get the request context of browser-based recovery flows
-[**getSelfServiceBrowserRegistrationRequest**](AdminApi.md#getSelfServiceBrowserRegistrationRequest) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
-[**getSelfServiceBrowserSettingsRequest**](AdminApi.md#getSelfServiceBrowserSettingsRequest) | **GET** /self-service/browser/flows/requests/settings | Get the request context of browser-based settings flows
-[**getSelfServiceError**](AdminApi.md#getSelfServiceError) | **GET** /self-service/errors | Get user-facing self-service errors
-[**getSelfServiceVerificationRequest**](AdminApi.md#getSelfServiceVerificationRequest) | **GET** /self-service/browser/flows/requests/verification | Get the request context of browser-based verification flows
-[**listIdentities**](AdminApi.md#listIdentities) | **GET** /identities | List all identities in the system
-[**updateIdentity**](AdminApi.md#updateIdentity) | **PUT** /identities/{id} | Update an identity
+[**getSelfServiceError**](AdminApi.md#getSelfServiceError) | **GET** /self-service/errors | Get User-Facing Self-Service Errors
+[**getSelfServiceLoginFlow**](AdminApi.md#getSelfServiceLoginFlow) | **GET** /self-service/login/flows | Get Login Flow
+[**getSelfServiceRecoveryFlow**](AdminApi.md#getSelfServiceRecoveryFlow) | **GET** /self-service/recovery/flows | Get information about a recovery flow
+[**getSelfServiceRegistrationFlow**](AdminApi.md#getSelfServiceRegistrationFlow) | **GET** /self-service/registration/flows | Get Registration Flow
+[**getSelfServiceSettingsFlow**](AdminApi.md#getSelfServiceSettingsFlow) | **GET** /self-service/settings/flows | Get Settings Flow
+[**getSelfServiceVerificationFlow**](AdminApi.md#getSelfServiceVerificationFlow) | **GET** /self-service/verification/flows | Get Verification Flow
+[**listIdentities**](AdminApi.md#listIdentities) | **GET** /identities | List Identities
+[**prometheus**](AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get snapshot metrics from the Hydra service. If you&#39;re using k8s, you can then add annotations to your deployment like so:
+[**updateIdentity**](AdminApi.md#updateIdentity) | **PUT** /identities/{id} | Update an Identity
 
 
 
@@ -23,7 +25,7 @@ Method | HTTP request | Description
 
 > \Ory\Kratos\Client\Model\Identity createIdentity($body)
 
-Create an identity
+Create an Identity
 
 This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
@@ -39,7 +41,7 @@ $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$body = new \Ory\Kratos\Client\Model\Identity(); // \Ory\Kratos\Client\Model\Identity | 
+$body = new \Ory\Kratos\Client\Model\CreateIdentity(); // \Ory\Kratos\Client\Model\CreateIdentity | 
 
 try {
     $result = $apiInstance->createIdentity($body);
@@ -55,7 +57,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\Ory\Kratos\Client\Model\Identity**](../Model/Identity.md)|  |
+ **body** | [**\Ory\Kratos\Client\Model\CreateIdentity**](../Model/CreateIdentity.md)|  | [optional]
 
 ### Return type
 
@@ -75,13 +77,69 @@ No authorization required
 [[Back to README]](../../README.md)
 
 
+## createRecoveryLink
+
+> \Ory\Kratos\Client\Model\RecoveryLink createRecoveryLink($body)
+
+Create a Recovery Link
+
+This endpoint creates a recovery link which should be given to the user in order for them to recover (or activate) their account.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$apiInstance = new Ory\Kratos\Client\Api\AdminApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$body = new \Ory\Kratos\Client\Model\CreateRecoveryLink(); // \Ory\Kratos\Client\Model\CreateRecoveryLink | 
+
+try {
+    $result = $apiInstance->createRecoveryLink($body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AdminApi->createRecoveryLink: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**\Ory\Kratos\Client\Model\CreateRecoveryLink**](../Model/CreateRecoveryLink.md)|  | [optional]
+
+### Return type
+
+[**\Ory\Kratos\Client\Model\RecoveryLink**](../Model/RecoveryLink.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
 ## deleteIdentity
 
 > deleteIdentity($id)
 
-Delete an identity
+Delete an Identity
 
-This endpoint deletes an identity. This can not be undone.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+Calling this endpoint irrecoverably and permanently deletes the identity given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is assumed that is has been deleted already.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 
@@ -134,7 +192,7 @@ No authorization required
 
 > \Ory\Kratos\Client\Model\Identity getIdentity($id)
 
-Get an identity
+Get an Identity
 
 Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
@@ -192,7 +250,7 @@ No authorization required
 
 
 
-Get a traits schema definition
+Get a Traits Schema Definition
 
 ### Example
 
@@ -242,237 +300,13 @@ No authorization required
 [[Back to README]](../../README.md)
 
 
-## getSelfServiceBrowserLoginRequest
-
-> \Ory\Kratos\Client\Model\LoginRequest getSelfServiceBrowserLoginRequest($request)
-
-Get the request context of browser-based login user flows
-
-This endpoint returns a login request's context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-$apiInstance = new Ory\Kratos\Client\Api\AdminApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
-);
-$request = 'request_example'; // string | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
-
-try {
-    $result = $apiInstance->getSelfServiceBrowserLoginRequest($request);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling AdminApi->getSelfServiceBrowserLoginRequest: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **request** | **string**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). |
-
-### Return type
-
-[**\Ory\Kratos\Client\Model\LoginRequest**](../Model/LoginRequest.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
-[[Back to README]](../../README.md)
-
-
-## getSelfServiceBrowserRecoveryRequest
-
-> \Ory\Kratos\Client\Model\RecoveryRequest getSelfServiceBrowserRecoveryRequest($request)
-
-Get the request context of browser-based recovery flows
-
-When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/password-reset-account-recovery).
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-$apiInstance = new Ory\Kratos\Client\Api\AdminApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
-);
-$request = 'request_example'; // string | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recover?request=abcde`).
-
-try {
-    $result = $apiInstance->getSelfServiceBrowserRecoveryRequest($request);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling AdminApi->getSelfServiceBrowserRecoveryRequest: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **request** | **string**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/recover?request&#x3D;abcde&#x60;). |
-
-### Return type
-
-[**\Ory\Kratos\Client\Model\RecoveryRequest**](../Model/RecoveryRequest.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
-[[Back to README]](../../README.md)
-
-
-## getSelfServiceBrowserRegistrationRequest
-
-> \Ory\Kratos\Client\Model\RegistrationRequest getSelfServiceBrowserRegistrationRequest($request)
-
-Get the request context of browser-based registration user flows
-
-This endpoint returns a registration request's context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-$apiInstance = new Ory\Kratos\Client\Api\AdminApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
-);
-$request = 'request_example'; // string | Request is the Registration Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/registration?request=abcde`).
-
-try {
-    $result = $apiInstance->getSelfServiceBrowserRegistrationRequest($request);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling AdminApi->getSelfServiceBrowserRegistrationRequest: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **request** | **string**| Request is the Registration Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?request&#x3D;abcde&#x60;). |
-
-### Return type
-
-[**\Ory\Kratos\Client\Model\RegistrationRequest**](../Model/RegistrationRequest.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
-[[Back to README]](../../README.md)
-
-
-## getSelfServiceBrowserSettingsRequest
-
-> \Ory\Kratos\Client\Model\SettingsRequest getSelfServiceBrowserSettingsRequest($request)
-
-Get the request context of browser-based settings flows
-
-When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-$apiInstance = new Ory\Kratos\Client\Api\AdminApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
-);
-$request = 'request_example'; // string | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/settingss?request=abcde`).
-
-try {
-    $result = $apiInstance->getSelfServiceBrowserSettingsRequest($request);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling AdminApi->getSelfServiceBrowserSettingsRequest: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **request** | **string**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/settingss?request&#x3D;abcde&#x60;). |
-
-### Return type
-
-[**\Ory\Kratos\Client\Model\SettingsRequest**](../Model/SettingsRequest.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
-[[Back to README]](../../README.md)
-
-
 ## getSelfServiceError
 
 > \Ory\Kratos\Client\Model\ErrorContainer getSelfServiceError($error)
 
-Get user-facing self-service errors
+Get User-Facing Self-Service Errors
 
-This endpoint returns the error associated with a user-facing self service errors.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
+This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?error=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
 
 ### Example
 
@@ -486,7 +320,7 @@ $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$error = 'error_example'; // string | 
+$error = 'error_example'; // string | Error is the container's ID
 
 try {
     $result = $apiInstance->getSelfServiceError($error);
@@ -502,7 +336,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **error** | **string**|  | [optional]
+ **error** | **string**| Error is the container&#39;s ID |
 
 ### Return type
 
@@ -522,13 +356,13 @@ No authorization required
 [[Back to README]](../../README.md)
 
 
-## getSelfServiceVerificationRequest
+## getSelfServiceLoginFlow
 
-> \Ory\Kratos\Client\Model\VerificationRequest getSelfServiceVerificationRequest($request)
+> \Ory\Kratos\Client\Model\LoginFlow getSelfServiceLoginFlow($id)
 
-Get the request context of browser-based verification flows
+Get Login Flow
 
-When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint returns a login flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 
@@ -542,13 +376,13 @@ $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$request = 'request_example'; // string | Request is the Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verify?request=abcde`).
+$id = 'id_example'; // string | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
 
 try {
-    $result = $apiInstance->getSelfServiceVerificationRequest($request);
+    $result = $apiInstance->getSelfServiceLoginFlow($id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling AdminApi->getSelfServiceVerificationRequest: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AdminApi->getSelfServiceLoginFlow: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -558,11 +392,242 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request** | **string**| Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). |
+ **id** | **string**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). |
 
 ### Return type
 
-[**\Ory\Kratos\Client\Model\VerificationRequest**](../Model/VerificationRequest.md)
+[**\Ory\Kratos\Client\Model\LoginFlow**](../Model/LoginFlow.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
+## getSelfServiceRecoveryFlow
+
+> \Ory\Kratos\Client\Model\RecoveryFlow getSelfServiceRecoveryFlow($id)
+
+Get information about a recovery flow
+
+This endpoint returns a recovery flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$apiInstance = new Ory\Kratos\Client\Api\AdminApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$id = 'id_example'; // string | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
+
+try {
+    $result = $apiInstance->getSelfServiceRecoveryFlow($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AdminApi->getSelfServiceRecoveryFlow: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). |
+
+### Return type
+
+[**\Ory\Kratos\Client\Model\RecoveryFlow**](../Model/RecoveryFlow.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
+## getSelfServiceRegistrationFlow
+
+> \Ory\Kratos\Client\Model\RegistrationFlow getSelfServiceRegistrationFlow($id)
+
+Get Registration Flow
+
+This endpoint returns a registration flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$apiInstance = new Ory\Kratos\Client\Api\AdminApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$id = 'id_example'; // string | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
+
+try {
+    $result = $apiInstance->getSelfServiceRegistrationFlow($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AdminApi->getSelfServiceRegistrationFlow: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). |
+
+### Return type
+
+[**\Ory\Kratos\Client\Model\RegistrationFlow**](../Model/RegistrationFlow.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
+## getSelfServiceSettingsFlow
+
+> \Ory\Kratos\Client\Model\SettingsFlow getSelfServiceSettingsFlow($id)
+
+Get Settings Flow
+
+When accessing this endpoint through ORY Kratos' Public API you must ensure that either the ORY Kratos Session Cookie or the ORY Kratos Session Token are set. The public endpoint does not return 404 status codes but instead 403 or 500 to improve data privacy.  You can access this endpoint without credentials when using ORY Kratos' Admin API.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: sessionToken
+$config = Ory\Kratos\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Session-Token', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Ory\Kratos\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Session-Token', 'Bearer');
+
+
+$apiInstance = new Ory\Kratos\Client\Api\AdminApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+
+try {
+    $result = $apiInstance->getSelfServiceSettingsFlow($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AdminApi->getSelfServiceSettingsFlow: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
+
+### Return type
+
+[**\Ory\Kratos\Client\Model\SettingsFlow**](../Model/SettingsFlow.md)
+
+### Authorization
+
+[sessionToken](../../README.md#sessionToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
+## getSelfServiceVerificationFlow
+
+> \Ory\Kratos\Client\Model\VerificationFlow getSelfServiceVerificationFlow($id)
+
+Get Verification Flow
+
+This endpoint returns a verification flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$apiInstance = new Ory\Kratos\Client\Api\AdminApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$id = 'id_example'; // string | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
+
+try {
+    $result = $apiInstance->getSelfServiceVerificationFlow($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AdminApi->getSelfServiceVerificationFlow: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verification?flow&#x3D;abcde&#x60;). |
+
+### Return type
+
+[**\Ory\Kratos\Client\Model\VerificationFlow**](../Model/VerificationFlow.md)
 
 ### Authorization
 
@@ -580,11 +645,11 @@ No authorization required
 
 ## listIdentities
 
-> \Ory\Kratos\Client\Model\Identity[] listIdentities()
+> \Ory\Kratos\Client\Model\Identity[] listIdentities($perPage, $page)
 
-List all identities in the system
+List Identities
 
-This endpoint returns a login request's context with, for example, error details and other information.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+Lists all identities. Does not support search at the moment.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 
@@ -598,9 +663,11 @@ $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
+$perPage = 100; // int | Items per Page  This is the number of items per page.
+$page = 0; // int | Pagination Page
 
 try {
-    $result = $apiInstance->listIdentities();
+    $result = $apiInstance->listIdentities($perPage, $page);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->listIdentities: ', $e->getMessage(), PHP_EOL;
@@ -610,7 +677,11 @@ try {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **perPage** | **int**| Items per Page  This is the number of items per page. | [optional] [default to 100]
+ **page** | **int**| Pagination Page | [optional] [default to 0]
 
 ### Return type
 
@@ -630,11 +701,62 @@ No authorization required
 [[Back to README]](../../README.md)
 
 
+## prometheus
+
+> prometheus()
+
+Get snapshot metrics from the Hydra service. If you're using k8s, you can then add annotations to your deployment like so:
+
+``` metadata: annotations: prometheus.io/port: \"4434\" prometheus.io/path: \"/metrics/prometheus\" ```
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$apiInstance = new Ory\Kratos\Client\Api\AdminApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $apiInstance->prometheus();
+} catch (Exception $e) {
+    echo 'Exception when calling AdminApi->prometheus: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
 ## updateIdentity
 
 > \Ory\Kratos\Client\Model\Identity updateIdentity($id, $body)
 
-Update an identity
+Update an Identity
 
 This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
@@ -651,7 +773,7 @@ $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
     new GuzzleHttp\Client()
 );
 $id = 'id_example'; // string | ID must be set to the ID of identity you want to update
-$body = new \Ory\Kratos\Client\Model\Identity(); // \Ory\Kratos\Client\Model\Identity | 
+$body = new \Ory\Kratos\Client\Model\UpdateIdentity(); // \Ory\Kratos\Client\Model\UpdateIdentity | 
 
 try {
     $result = $apiInstance->updateIdentity($id, $body);
@@ -668,7 +790,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| ID must be set to the ID of identity you want to update |
- **body** | [**\Ory\Kratos\Client\Model\Identity**](../Model/Identity.md)|  |
+ **body** | [**\Ory\Kratos\Client\Model\UpdateIdentity**](../Model/UpdateIdentity.md)|  | [optional]
 
 ### Return type
 

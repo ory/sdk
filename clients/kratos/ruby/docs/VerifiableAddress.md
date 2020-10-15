@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**expires_at** | **DateTime** |  | 
 **id** | **String** |  | 
+**status** | **String** |  | 
 **value** | **String** |  | 
 **verified** | **Boolean** |  | 
 **verified_at** | **DateTime** |  | [optional] 
@@ -16,8 +16,8 @@ Name | Type | Description | Notes
 ```ruby
 require 'OryHydraClient'
 
-instance = OryHydraClient::VerifiableAddress.new(expires_at: null,
-                                 id: null,
+instance = OryHydraClient::VerifiableAddress.new(id: null,
+                                 status: null,
                                  value: null,
                                  verified: null,
                                  verified_at: null,

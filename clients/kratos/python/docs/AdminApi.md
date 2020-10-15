@@ -4,24 +4,26 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_identity**](AdminApi.md#create_identity) | **POST** /identities | Create an identity
-[**delete_identity**](AdminApi.md#delete_identity) | **DELETE** /identities/{id} | Delete an identity
-[**get_identity**](AdminApi.md#get_identity) | **GET** /identities/{id} | Get an identity
+[**create_identity**](AdminApi.md#create_identity) | **POST** /identities | Create an Identity
+[**create_recovery_link**](AdminApi.md#create_recovery_link) | **POST** /recovery/link | Create a Recovery Link
+[**delete_identity**](AdminApi.md#delete_identity) | **DELETE** /identities/{id} | Delete an Identity
+[**get_identity**](AdminApi.md#get_identity) | **GET** /identities/{id} | Get an Identity
 [**get_schema**](AdminApi.md#get_schema) | **GET** /schemas/{id} | 
-[**get_self_service_browser_login_request**](AdminApi.md#get_self_service_browser_login_request) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
-[**get_self_service_browser_recovery_request**](AdminApi.md#get_self_service_browser_recovery_request) | **GET** /self-service/browser/flows/requests/recovery | Get the request context of browser-based recovery flows
-[**get_self_service_browser_registration_request**](AdminApi.md#get_self_service_browser_registration_request) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
-[**get_self_service_browser_settings_request**](AdminApi.md#get_self_service_browser_settings_request) | **GET** /self-service/browser/flows/requests/settings | Get the request context of browser-based settings flows
-[**get_self_service_error**](AdminApi.md#get_self_service_error) | **GET** /self-service/errors | Get user-facing self-service errors
-[**get_self_service_verification_request**](AdminApi.md#get_self_service_verification_request) | **GET** /self-service/browser/flows/requests/verification | Get the request context of browser-based verification flows
-[**list_identities**](AdminApi.md#list_identities) | **GET** /identities | List all identities in the system
-[**update_identity**](AdminApi.md#update_identity) | **PUT** /identities/{id} | Update an identity
+[**get_self_service_error**](AdminApi.md#get_self_service_error) | **GET** /self-service/errors | Get User-Facing Self-Service Errors
+[**get_self_service_login_flow**](AdminApi.md#get_self_service_login_flow) | **GET** /self-service/login/flows | Get Login Flow
+[**get_self_service_recovery_flow**](AdminApi.md#get_self_service_recovery_flow) | **GET** /self-service/recovery/flows | Get information about a recovery flow
+[**get_self_service_registration_flow**](AdminApi.md#get_self_service_registration_flow) | **GET** /self-service/registration/flows | Get Registration Flow
+[**get_self_service_settings_flow**](AdminApi.md#get_self_service_settings_flow) | **GET** /self-service/settings/flows | Get Settings Flow
+[**get_self_service_verification_flow**](AdminApi.md#get_self_service_verification_flow) | **GET** /self-service/verification/flows | Get Verification Flow
+[**list_identities**](AdminApi.md#list_identities) | **GET** /identities | List Identities
+[**prometheus**](AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get snapshot metrics from the Hydra service. If you&#39;re using k8s, you can then add annotations to your deployment like so:
+[**update_identity**](AdminApi.md#update_identity) | **PUT** /identities/{id} | Update an Identity
 
 
 # **create_identity**
-> Identity create_identity(body)
+> Identity create_identity(body=body)
 
-Create an identity
+Create an Identity
 
 This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
@@ -44,11 +46,11 @@ configuration = ory_kratos_client.Configuration(
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = ory_kratos_client.AdminApi(api_client)
-    body = ory_kratos_client.Identity() # Identity | 
+    body = ory_kratos_client.CreateIdentity() # CreateIdentity |  (optional)
 
     try:
-        # Create an identity
-        api_response = api_instance.create_identity(body)
+        # Create an Identity
+        api_response = api_instance.create_identity(body=body)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AdminApi->create_identity: %s\n" % e)
@@ -58,7 +60,7 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Identity**](Identity.md)|  | 
+ **body** | [**CreateIdentity**](CreateIdentity.md)|  | [optional] 
 
 ### Return type
 
@@ -78,6 +80,72 @@ No authorization required
 |-------------|-------------|------------------|
 **201** | A single identity. |  -  |
 **400** | genericError |  -  |
+**409** | genericError |  -  |
+**500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_recovery_link**
+> RecoveryLink create_recovery_link(body=body)
+
+Create a Recovery Link
+
+This endpoint creates a recovery link which should be given to the user in order for them to recover (or activate) their account.
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import ory_kratos_client
+from ory_kratos_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_kratos_client.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = ory_kratos_client.AdminApi(api_client)
+    body = ory_kratos_client.CreateRecoveryLink() # CreateRecoveryLink |  (optional)
+
+    try:
+        # Create a Recovery Link
+        api_response = api_instance.create_recovery_link(body=body)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AdminApi->create_recovery_link: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**CreateRecoveryLink**](CreateRecoveryLink.md)|  | [optional] 
+
+### Return type
+
+[**RecoveryLink**](RecoveryLink.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | recoveryLink |  -  |
+**400** | genericError |  -  |
+**404** | genericError |  -  |
 **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -85,9 +153,9 @@ No authorization required
 # **delete_identity**
 > delete_identity(id)
 
-Delete an identity
+Delete an Identity
 
-This endpoint deletes an identity. This can not be undone.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+Calling this endpoint irrecoverably and permanently deletes the identity given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is assumed that is has been deleted already.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 
@@ -111,7 +179,7 @@ with ory_kratos_client.ApiClient() as api_client:
     id = 'id_example' # str | ID is the identity's ID.
 
     try:
-        # Delete an identity
+        # Delete an Identity
         api_instance.delete_identity(id)
     except ApiException as e:
         print("Exception when calling AdminApi->delete_identity: %s\n" % e)
@@ -148,7 +216,7 @@ No authorization required
 # **get_identity**
 > Identity get_identity(id)
 
-Get an identity
+Get an Identity
 
 Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
@@ -174,7 +242,7 @@ with ory_kratos_client.ApiClient() as api_client:
     id = 'id_example' # str | ID must be set to the ID of identity you want to get
 
     try:
-        # Get an identity
+        # Get an Identity
         api_response = api_instance.get_identity(id)
         pprint(api_response)
     except ApiException as e:
@@ -214,7 +282,7 @@ No authorization required
 
 
 
-Get a traits schema definition
+Get a Traits Schema Definition
 
 ### Example
 
@@ -272,276 +340,12 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_self_service_browser_login_request**
-> LoginRequest get_self_service_browser_login_request(request)
-
-Get the request context of browser-based login user flows
-
-This endpoint returns a login request's context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
-
-### Example
-
-```python
-from __future__ import print_function
-import time
-import ory_kratos_client
-from ory_kratos_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_kratos_client.Configuration(
-    host = "http://localhost"
-)
-
-
-# Enter a context with an instance of the API client
-with ory_kratos_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = ory_kratos_client.AdminApi(api_client)
-    request = 'request_example' # str | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
-
-    try:
-        # Get the request context of browser-based login user flows
-        api_response = api_instance.get_self_service_browser_login_request(request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling AdminApi->get_self_service_browser_login_request: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **request** | **str**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). | 
-
-### Return type
-
-[**LoginRequest**](LoginRequest.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | loginRequest |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**410** | genericError |  -  |
-**500** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_self_service_browser_recovery_request**
-> RecoveryRequest get_self_service_browser_recovery_request(request)
-
-Get the request context of browser-based recovery flows
-
-When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/password-reset-account-recovery).
-
-### Example
-
-```python
-from __future__ import print_function
-import time
-import ory_kratos_client
-from ory_kratos_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_kratos_client.Configuration(
-    host = "http://localhost"
-)
-
-
-# Enter a context with an instance of the API client
-with ory_kratos_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = ory_kratos_client.AdminApi(api_client)
-    request = 'request_example' # str | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recover?request=abcde`).
-
-    try:
-        # Get the request context of browser-based recovery flows
-        api_response = api_instance.get_self_service_browser_recovery_request(request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling AdminApi->get_self_service_browser_recovery_request: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **request** | **str**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/recover?request&#x3D;abcde&#x60;). | 
-
-### Return type
-
-[**RecoveryRequest**](RecoveryRequest.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | recoveryRequest |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**410** | genericError |  -  |
-**500** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_self_service_browser_registration_request**
-> RegistrationRequest get_self_service_browser_registration_request(request)
-
-Get the request context of browser-based registration user flows
-
-This endpoint returns a registration request's context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
-
-### Example
-
-```python
-from __future__ import print_function
-import time
-import ory_kratos_client
-from ory_kratos_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_kratos_client.Configuration(
-    host = "http://localhost"
-)
-
-
-# Enter a context with an instance of the API client
-with ory_kratos_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = ory_kratos_client.AdminApi(api_client)
-    request = 'request_example' # str | Request is the Registration Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/registration?request=abcde`).
-
-    try:
-        # Get the request context of browser-based registration user flows
-        api_response = api_instance.get_self_service_browser_registration_request(request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling AdminApi->get_self_service_browser_registration_request: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **request** | **str**| Request is the Registration Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?request&#x3D;abcde&#x60;). | 
-
-### Return type
-
-[**RegistrationRequest**](RegistrationRequest.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | registrationRequest |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**410** | genericError |  -  |
-**500** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_self_service_browser_settings_request**
-> SettingsRequest get_self_service_browser_settings_request(request)
-
-Get the request context of browser-based settings flows
-
-When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
-
-### Example
-
-```python
-from __future__ import print_function
-import time
-import ory_kratos_client
-from ory_kratos_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_kratos_client.Configuration(
-    host = "http://localhost"
-)
-
-
-# Enter a context with an instance of the API client
-with ory_kratos_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = ory_kratos_client.AdminApi(api_client)
-    request = 'request_example' # str | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/settingss?request=abcde`).
-
-    try:
-        # Get the request context of browser-based settings flows
-        api_response = api_instance.get_self_service_browser_settings_request(request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling AdminApi->get_self_service_browser_settings_request: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **request** | **str**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/settingss?request&#x3D;abcde&#x60;). | 
-
-### Return type
-
-[**SettingsRequest**](SettingsRequest.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | settingsRequest |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**410** | genericError |  -  |
-**500** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_self_service_error**
-> ErrorContainer get_self_service_error(error=error)
+> ErrorContainer get_self_service_error(error)
 
-Get user-facing self-service errors
+Get User-Facing Self-Service Errors
 
-This endpoint returns the error associated with a user-facing self service errors.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
+This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?error=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
 
 ### Example
 
@@ -562,11 +366,11 @@ configuration = ory_kratos_client.Configuration(
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = ory_kratos_client.AdminApi(api_client)
-    error = 'error_example' # str |  (optional)
+    error = 'error_example' # str | Error is the container's ID
 
     try:
-        # Get user-facing self-service errors
-        api_response = api_instance.get_self_service_error(error=error)
+        # Get User-Facing Self-Service Errors
+        api_response = api_instance.get_self_service_error(error)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AdminApi->get_self_service_error: %s\n" % e)
@@ -576,7 +380,7 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **error** | **str**|  | [optional] 
+ **error** | **str**| Error is the container&#39;s ID | 
 
 ### Return type
 
@@ -601,12 +405,12 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_self_service_verification_request**
-> VerificationRequest get_self_service_verification_request(request)
+# **get_self_service_login_flow**
+> LoginFlow get_self_service_login_flow(id)
 
-Get the request context of browser-based verification flows
+Get Login Flow
 
-When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint returns a login flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 
@@ -627,25 +431,25 @@ configuration = ory_kratos_client.Configuration(
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = ory_kratos_client.AdminApi(api_client)
-    request = 'request_example' # str | Request is the Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verify?request=abcde`).
+    id = 'id_example' # str | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
 
     try:
-        # Get the request context of browser-based verification flows
-        api_response = api_instance.get_self_service_verification_request(request)
+        # Get Login Flow
+        api_response = api_instance.get_self_service_login_flow(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling AdminApi->get_self_service_verification_request: %s\n" % e)
+        print("Exception when calling AdminApi->get_self_service_login_flow: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request** | **str**| Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). | 
+ **id** | **str**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). | 
 
 ### Return type
 
-[**VerificationRequest**](VerificationRequest.md)
+[**LoginFlow**](LoginFlow.md)
 
 ### Authorization
 
@@ -659,19 +463,20 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | verificationRequest |  -  |
+**200** | loginFlow |  -  |
 **403** | genericError |  -  |
 **404** | genericError |  -  |
+**410** | genericError |  -  |
 **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **list_identities**
-> list[Identity] list_identities()
+# **get_self_service_recovery_flow**
+> RecoveryFlow get_self_service_recovery_flow(id)
 
-List all identities in the system
+Get information about a recovery flow
 
-This endpoint returns a login request's context with, for example, error details and other information.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint returns a recovery flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
 ### Example
 
@@ -692,17 +497,300 @@ configuration = ory_kratos_client.Configuration(
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = ory_kratos_client.AdminApi(api_client)
-    
+    id = 'id_example' # str | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
+
     try:
-        # List all identities in the system
-        api_response = api_instance.list_identities()
+        # Get information about a recovery flow
+        api_response = api_instance.get_self_service_recovery_flow(id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AdminApi->get_self_service_recovery_flow: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). | 
+
+### Return type
+
+[**RecoveryFlow**](RecoveryFlow.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | recoveryFlow |  -  |
+**404** | genericError |  -  |
+**410** | genericError |  -  |
+**500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_self_service_registration_flow**
+> RegistrationFlow get_self_service_registration_flow(id)
+
+Get Registration Flow
+
+This endpoint returns a registration flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import ory_kratos_client
+from ory_kratos_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_kratos_client.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = ory_kratos_client.AdminApi(api_client)
+    id = 'id_example' # str | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
+
+    try:
+        # Get Registration Flow
+        api_response = api_instance.get_self_service_registration_flow(id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AdminApi->get_self_service_registration_flow: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). | 
+
+### Return type
+
+[**RegistrationFlow**](RegistrationFlow.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | registrationFlow |  -  |
+**403** | genericError |  -  |
+**404** | genericError |  -  |
+**410** | genericError |  -  |
+**500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_self_service_settings_flow**
+> SettingsFlow get_self_service_settings_flow(id)
+
+Get Settings Flow
+
+When accessing this endpoint through ORY Kratos' Public API you must ensure that either the ORY Kratos Session Cookie or the ORY Kratos Session Token are set. The public endpoint does not return 404 status codes but instead 403 or 500 to improve data privacy.  You can access this endpoint without credentials when using ORY Kratos' Admin API.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+
+### Example
+
+* Api Key Authentication (sessionToken):
+```python
+from __future__ import print_function
+import time
+import ory_kratos_client
+from ory_kratos_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_kratos_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: sessionToken
+configuration = ory_kratos_client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'X-Session-Token': 'YOUR_API_KEY'
+    }
+)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['X-Session-Token'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_kratos_client.AdminApi(api_client)
+    id = 'id_example' # str | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+
+    try:
+        # Get Settings Flow
+        api_response = api_instance.get_self_service_settings_flow(id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AdminApi->get_self_service_settings_flow: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). | 
+
+### Return type
+
+[**SettingsFlow**](SettingsFlow.md)
+
+### Authorization
+
+[sessionToken](../README.md#sessionToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | settingsFlow |  -  |
+**403** | genericError |  -  |
+**404** | genericError |  -  |
+**410** | genericError |  -  |
+**500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_self_service_verification_flow**
+> VerificationFlow get_self_service_verification_flow(id)
+
+Get Verification Flow
+
+This endpoint returns a verification flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import ory_kratos_client
+from ory_kratos_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_kratos_client.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = ory_kratos_client.AdminApi(api_client)
+    id = 'id_example' # str | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
+
+    try:
+        # Get Verification Flow
+        api_response = api_instance.get_self_service_verification_flow(id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AdminApi->get_self_service_verification_flow: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verification?flow&#x3D;abcde&#x60;). | 
+
+### Return type
+
+[**VerificationFlow**](VerificationFlow.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | verificationFlow |  -  |
+**403** | genericError |  -  |
+**404** | genericError |  -  |
+**500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_identities**
+> list[Identity] list_identities(per_page=per_page, page=page)
+
+List Identities
+
+Lists all identities. Does not support search at the moment.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import ory_kratos_client
+from ory_kratos_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_kratos_client.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = ory_kratos_client.AdminApi(api_client)
+    per_page = 100 # int | Items per Page  This is the number of items per page. (optional) (default to 100)
+page = 0 # int | Pagination Page (optional) (default to 0)
+
+    try:
+        # List Identities
+        api_response = api_instance.list_identities(per_page=per_page, page=page)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AdminApi->list_identities: %s\n" % e)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **per_page** | **int**| Items per Page  This is the number of items per page. | [optional] [default to 100]
+ **page** | **int**| Pagination Page | [optional] [default to 0]
 
 ### Return type
 
@@ -725,10 +813,67 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **update_identity**
-> Identity update_identity(id, body)
+# **prometheus**
+> prometheus()
 
-Update an identity
+Get snapshot metrics from the Hydra service. If you're using k8s, you can then add annotations to your deployment like so:
+
+``` metadata: annotations: prometheus.io/port: \"4434\" prometheus.io/path: \"/metrics/prometheus\" ```
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import ory_kratos_client
+from ory_kratos_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_kratos_client.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = ory_kratos_client.AdminApi(api_client)
+    
+    try:
+        # Get snapshot metrics from the Hydra service. If you're using k8s, you can then add annotations to your deployment like so:
+        api_instance.prometheus()
+    except ApiException as e:
+        print("Exception when calling AdminApi->prometheus: %s\n" % e)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_identity**
+> Identity update_identity(id, body=body)
+
+Update an Identity
 
 This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
@@ -752,11 +897,11 @@ with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = ory_kratos_client.AdminApi(api_client)
     id = 'id_example' # str | ID must be set to the ID of identity you want to update
-body = ory_kratos_client.Identity() # Identity | 
+body = ory_kratos_client.UpdateIdentity() # UpdateIdentity |  (optional)
 
     try:
-        # Update an identity
-        api_response = api_instance.update_identity(id, body)
+        # Update an Identity
+        api_response = api_instance.update_identity(id, body=body)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AdminApi->update_identity: %s\n" % e)
@@ -767,7 +912,7 @@ body = ory_kratos_client.Identity() # Identity |
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| ID must be set to the ID of identity you want to update | 
- **body** | [**Identity**](Identity.md)|  | 
+ **body** | [**UpdateIdentity**](UpdateIdentity.md)|  | [optional] 
 
 ### Return type
 

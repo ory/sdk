@@ -4,26 +4,28 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_identity**](AdminApi.md#create_identity) | **POST** /identities | Create an identity
-[**delete_identity**](AdminApi.md#delete_identity) | **DELETE** /identities/{id} | Delete an identity
-[**get_identity**](AdminApi.md#get_identity) | **GET** /identities/{id} | Get an identity
+[**create_identity**](AdminApi.md#create_identity) | **POST** /identities | Create an Identity
+[**create_recovery_link**](AdminApi.md#create_recovery_link) | **POST** /recovery/link | Create a Recovery Link
+[**delete_identity**](AdminApi.md#delete_identity) | **DELETE** /identities/{id} | Delete an Identity
+[**get_identity**](AdminApi.md#get_identity) | **GET** /identities/{id} | Get an Identity
 [**get_schema**](AdminApi.md#get_schema) | **GET** /schemas/{id} | 
-[**get_self_service_browser_login_request**](AdminApi.md#get_self_service_browser_login_request) | **GET** /self-service/browser/flows/requests/login | Get the request context of browser-based login user flows
-[**get_self_service_browser_recovery_request**](AdminApi.md#get_self_service_browser_recovery_request) | **GET** /self-service/browser/flows/requests/recovery | Get the request context of browser-based recovery flows
-[**get_self_service_browser_registration_request**](AdminApi.md#get_self_service_browser_registration_request) | **GET** /self-service/browser/flows/requests/registration | Get the request context of browser-based registration user flows
-[**get_self_service_browser_settings_request**](AdminApi.md#get_self_service_browser_settings_request) | **GET** /self-service/browser/flows/requests/settings | Get the request context of browser-based settings flows
-[**get_self_service_error**](AdminApi.md#get_self_service_error) | **GET** /self-service/errors | Get user-facing self-service errors
-[**get_self_service_verification_request**](AdminApi.md#get_self_service_verification_request) | **GET** /self-service/browser/flows/requests/verification | Get the request context of browser-based verification flows
-[**list_identities**](AdminApi.md#list_identities) | **GET** /identities | List all identities in the system
-[**update_identity**](AdminApi.md#update_identity) | **PUT** /identities/{id} | Update an identity
+[**get_self_service_error**](AdminApi.md#get_self_service_error) | **GET** /self-service/errors | Get User-Facing Self-Service Errors
+[**get_self_service_login_flow**](AdminApi.md#get_self_service_login_flow) | **GET** /self-service/login/flows | Get Login Flow
+[**get_self_service_recovery_flow**](AdminApi.md#get_self_service_recovery_flow) | **GET** /self-service/recovery/flows | Get information about a recovery flow
+[**get_self_service_registration_flow**](AdminApi.md#get_self_service_registration_flow) | **GET** /self-service/registration/flows | Get Registration Flow
+[**get_self_service_settings_flow**](AdminApi.md#get_self_service_settings_flow) | **GET** /self-service/settings/flows | Get Settings Flow
+[**get_self_service_verification_flow**](AdminApi.md#get_self_service_verification_flow) | **GET** /self-service/verification/flows | Get Verification Flow
+[**list_identities**](AdminApi.md#list_identities) | **GET** /identities | List Identities
+[**prometheus**](AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get snapshot metrics from the Hydra service. If you&#39;re using k8s, you can then add annotations to your deployment like so:
+[**update_identity**](AdminApi.md#update_identity) | **PUT** /identities/{id} | Update an Identity
 
 
 
 ## create_identity
 
-> Identity create_identity(body)
+> Identity create_identity(opts)
 
-Create an identity
+Create an Identity
 
 This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
@@ -34,11 +36,13 @@ This endpoint creates an identity. It is NOT possible to set an identity's crede
 require 'ory-kratos-client'
 
 api_instance = OryHydraClient::AdminApi.new
-body = OryHydraClient::Identity.new # Identity | 
+opts = {
+  body: OryHydraClient::CreateIdentity.new # CreateIdentity | 
+}
 
 begin
-  #Create an identity
-  result = api_instance.create_identity(body)
+  #Create an Identity
+  result = api_instance.create_identity(opts)
   p result
 rescue OryHydraClient::ApiError => e
   puts "Exception when calling AdminApi->create_identity: #{e}"
@@ -50,7 +54,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Identity**](Identity.md)|  | 
+ **body** | [**CreateIdentity**](CreateIdentity.md)|  | [optional] 
 
 ### Return type
 
@@ -66,13 +70,62 @@ No authorization required
 - **Accept**: application/json
 
 
+## create_recovery_link
+
+> RecoveryLink create_recovery_link(opts)
+
+Create a Recovery Link
+
+This endpoint creates a recovery link which should be given to the user in order for them to recover (or activate) their account.
+
+### Example
+
+```ruby
+# load the gem
+require 'ory-kratos-client'
+
+api_instance = OryHydraClient::AdminApi.new
+opts = {
+  body: OryHydraClient::CreateRecoveryLink.new # CreateRecoveryLink | 
+}
+
+begin
+  #Create a Recovery Link
+  result = api_instance.create_recovery_link(opts)
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Exception when calling AdminApi->create_recovery_link: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**CreateRecoveryLink**](CreateRecoveryLink.md)|  | [optional] 
+
+### Return type
+
+[**RecoveryLink**](RecoveryLink.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
 ## delete_identity
 
 > delete_identity(id)
 
-Delete an identity
+Delete an Identity
 
-This endpoint deletes an identity. This can not be undone.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+Calling this endpoint irrecoverably and permanently deletes the identity given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is assumed that is has been deleted already.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 
@@ -84,7 +137,7 @@ api_instance = OryHydraClient::AdminApi.new
 id = 'id_example' # String | ID is the identity's ID.
 
 begin
-  #Delete an identity
+  #Delete an Identity
   api_instance.delete_identity(id)
 rescue OryHydraClient::ApiError => e
   puts "Exception when calling AdminApi->delete_identity: #{e}"
@@ -116,7 +169,7 @@ No authorization required
 
 > Identity get_identity(id)
 
-Get an identity
+Get an Identity
 
 Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
@@ -130,7 +183,7 @@ api_instance = OryHydraClient::AdminApi.new
 id = 'id_example' # String | ID must be set to the ID of identity you want to get
 
 begin
-  #Get an identity
+  #Get an Identity
   result = api_instance.get_identity(id)
   p result
 rescue OryHydraClient::ApiError => e
@@ -165,7 +218,7 @@ No authorization required
 
 
 
-Get a traits schema definition
+Get a Traits Schema Definition
 
 ### Example
 
@@ -205,201 +258,13 @@ No authorization required
 - **Accept**: application/json
 
 
-## get_self_service_browser_login_request
-
-> LoginRequest get_self_service_browser_login_request(request)
-
-Get the request context of browser-based login user flows
-
-This endpoint returns a login request's context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
-
-### Example
-
-```ruby
-# load the gem
-require 'ory-kratos-client'
-
-api_instance = OryHydraClient::AdminApi.new
-request = 'request_example' # String | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/login?request=abcde`).
-
-begin
-  #Get the request context of browser-based login user flows
-  result = api_instance.get_self_service_browser_login_request(request)
-  p result
-rescue OryHydraClient::ApiError => e
-  puts "Exception when calling AdminApi->get_self_service_browser_login_request: #{e}"
-end
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **request** | **String**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?request&#x3D;abcde&#x60;). | 
-
-### Return type
-
-[**LoginRequest**](LoginRequest.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## get_self_service_browser_recovery_request
-
-> RecoveryRequest get_self_service_browser_recovery_request(request)
-
-Get the request context of browser-based recovery flows
-
-When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/password-reset-account-recovery).
-
-### Example
-
-```ruby
-# load the gem
-require 'ory-kratos-client'
-
-api_instance = OryHydraClient::AdminApi.new
-request = 'request_example' # String | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recover?request=abcde`).
-
-begin
-  #Get the request context of browser-based recovery flows
-  result = api_instance.get_self_service_browser_recovery_request(request)
-  p result
-rescue OryHydraClient::ApiError => e
-  puts "Exception when calling AdminApi->get_self_service_browser_recovery_request: #{e}"
-end
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **request** | **String**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/recover?request&#x3D;abcde&#x60;). | 
-
-### Return type
-
-[**RecoveryRequest**](RecoveryRequest.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## get_self_service_browser_registration_request
-
-> RegistrationRequest get_self_service_browser_registration_request(request)
-
-Get the request context of browser-based registration user flows
-
-This endpoint returns a registration request's context with, for example, error details and other information.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
-
-### Example
-
-```ruby
-# load the gem
-require 'ory-kratos-client'
-
-api_instance = OryHydraClient::AdminApi.new
-request = 'request_example' # String | Request is the Registration Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/registration?request=abcde`).
-
-begin
-  #Get the request context of browser-based registration user flows
-  result = api_instance.get_self_service_browser_registration_request(request)
-  p result
-rescue OryHydraClient::ApiError => e
-  puts "Exception when calling AdminApi->get_self_service_browser_registration_request: #{e}"
-end
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **request** | **String**| Request is the Registration Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?request&#x3D;abcde&#x60;). | 
-
-### Return type
-
-[**RegistrationRequest**](RegistrationRequest.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## get_self_service_browser_settings_request
-
-> SettingsRequest get_self_service_browser_settings_request(request)
-
-Get the request context of browser-based settings flows
-
-When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
-
-### Example
-
-```ruby
-# load the gem
-require 'ory-kratos-client'
-
-api_instance = OryHydraClient::AdminApi.new
-request = 'request_example' # String | Request is the Login Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/settingss?request=abcde`).
-
-begin
-  #Get the request context of browser-based settings flows
-  result = api_instance.get_self_service_browser_settings_request(request)
-  p result
-rescue OryHydraClient::ApiError => e
-  puts "Exception when calling AdminApi->get_self_service_browser_settings_request: #{e}"
-end
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **request** | **String**| Request is the Login Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/settingss?request&#x3D;abcde&#x60;). | 
-
-### Return type
-
-[**SettingsRequest**](SettingsRequest.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
 ## get_self_service_error
 
-> ErrorContainer get_self_service_error(opts)
+> ErrorContainer get_self_service_error(error)
 
-Get user-facing self-service errors
+Get User-Facing Self-Service Errors
 
-This endpoint returns the error associated with a user-facing self service errors.  When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for CSRF to work. To prevent token scanning attacks, the public endpoint does not return 404 status codes.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
+This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?error=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
 
 ### Example
 
@@ -408,13 +273,11 @@ This endpoint returns the error associated with a user-facing self service error
 require 'ory-kratos-client'
 
 api_instance = OryHydraClient::AdminApi.new
-opts = {
-  error: 'error_example' # String | 
-}
+error = 'error_example' # String | Error is the container's ID
 
 begin
-  #Get user-facing self-service errors
-  result = api_instance.get_self_service_error(opts)
+  #Get User-Facing Self-Service Errors
+  result = api_instance.get_self_service_error(error)
   p result
 rescue OryHydraClient::ApiError => e
   puts "Exception when calling AdminApi->get_self_service_error: #{e}"
@@ -426,7 +289,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **error** | **String**|  | [optional] 
+ **error** | **String**| Error is the container&#39;s ID | 
 
 ### Return type
 
@@ -442,13 +305,13 @@ No authorization required
 - **Accept**: application/json
 
 
-## get_self_service_verification_request
+## get_self_service_login_flow
 
-> VerificationRequest get_self_service_verification_request(request)
+> LoginFlow get_self_service_login_flow(id)
 
-Get the request context of browser-based verification flows
+Get Login Flow
 
-When accessing this endpoint through ORY Kratos' Public API, ensure that cookies are set as they are required for checking the auth session. To prevent scanning attacks, the public endpoint does not return 404 status codes but instead 403 or 500.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint returns a login flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 
@@ -457,14 +320,14 @@ When accessing this endpoint through ORY Kratos' Public API, ensure that cookies
 require 'ory-kratos-client'
 
 api_instance = OryHydraClient::AdminApi.new
-request = 'request_example' # String | Request is the Request ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verify?request=abcde`).
+id = 'id_example' # String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
 
 begin
-  #Get the request context of browser-based verification flows
-  result = api_instance.get_self_service_verification_request(request)
+  #Get Login Flow
+  result = api_instance.get_self_service_login_flow(id)
   p result
 rescue OryHydraClient::ApiError => e
-  puts "Exception when calling AdminApi->get_self_service_verification_request: #{e}"
+  puts "Exception when calling AdminApi->get_self_service_login_flow: #{e}"
 end
 ```
 
@@ -473,11 +336,206 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request** | **String**| Request is the Request ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verify?request&#x3D;abcde&#x60;). | 
+ **id** | **String**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). | 
 
 ### Return type
 
-[**VerificationRequest**](VerificationRequest.md)
+[**LoginFlow**](LoginFlow.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_self_service_recovery_flow
+
+> RecoveryFlow get_self_service_recovery_flow(id)
+
+Get information about a recovery flow
+
+This endpoint returns a recovery flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+
+### Example
+
+```ruby
+# load the gem
+require 'ory-kratos-client'
+
+api_instance = OryHydraClient::AdminApi.new
+id = 'id_example' # String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
+
+begin
+  #Get information about a recovery flow
+  result = api_instance.get_self_service_recovery_flow(id)
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Exception when calling AdminApi->get_self_service_recovery_flow: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). | 
+
+### Return type
+
+[**RecoveryFlow**](RecoveryFlow.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_self_service_registration_flow
+
+> RegistrationFlow get_self_service_registration_flow(id)
+
+Get Registration Flow
+
+This endpoint returns a registration flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+
+### Example
+
+```ruby
+# load the gem
+require 'ory-kratos-client'
+
+api_instance = OryHydraClient::AdminApi.new
+id = 'id_example' # String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
+
+begin
+  #Get Registration Flow
+  result = api_instance.get_self_service_registration_flow(id)
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Exception when calling AdminApi->get_self_service_registration_flow: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). | 
+
+### Return type
+
+[**RegistrationFlow**](RegistrationFlow.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_self_service_settings_flow
+
+> SettingsFlow get_self_service_settings_flow(id)
+
+Get Settings Flow
+
+When accessing this endpoint through ORY Kratos' Public API you must ensure that either the ORY Kratos Session Cookie or the ORY Kratos Session Token are set. The public endpoint does not return 404 status codes but instead 403 or 500 to improve data privacy.  You can access this endpoint without credentials when using ORY Kratos' Admin API.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+
+### Example
+
+```ruby
+# load the gem
+require 'ory-kratos-client'
+# setup authorization
+OryHydraClient.configure do |config|
+  # Configure API key authorization: sessionToken
+  config.api_key['X-Session-Token'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['X-Session-Token'] = 'Bearer'
+end
+
+api_instance = OryHydraClient::AdminApi.new
+id = 'id_example' # String | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+
+begin
+  #Get Settings Flow
+  result = api_instance.get_self_service_settings_flow(id)
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Exception when calling AdminApi->get_self_service_settings_flow: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). | 
+
+### Return type
+
+[**SettingsFlow**](SettingsFlow.md)
+
+### Authorization
+
+[sessionToken](../README.md#sessionToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_self_service_verification_flow
+
+> VerificationFlow get_self_service_verification_flow(id)
+
+Get Verification Flow
+
+This endpoint returns a verification flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+
+```ruby
+# load the gem
+require 'ory-kratos-client'
+
+api_instance = OryHydraClient::AdminApi.new
+id = 'id_example' # String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
+
+begin
+  #Get Verification Flow
+  result = api_instance.get_self_service_verification_flow(id)
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Exception when calling AdminApi->get_self_service_verification_flow: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verification?flow&#x3D;abcde&#x60;). | 
+
+### Return type
+
+[**VerificationFlow**](VerificationFlow.md)
 
 ### Authorization
 
@@ -491,11 +549,11 @@ No authorization required
 
 ## list_identities
 
-> Array&lt;Identity&gt; list_identities
+> Array&lt;Identity&gt; list_identities(opts)
 
-List all identities in the system
+List Identities
 
-This endpoint returns a login request's context with, for example, error details and other information.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+Lists all identities. Does not support search at the moment.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 
@@ -504,10 +562,14 @@ This endpoint returns a login request's context with, for example, error details
 require 'ory-kratos-client'
 
 api_instance = OryHydraClient::AdminApi.new
+opts = {
+  per_page: 100, # Integer | Items per Page  This is the number of items per page.
+  page: 0 # Integer | Pagination Page
+}
 
 begin
-  #List all identities in the system
-  result = api_instance.list_identities
+  #List Identities
+  result = api_instance.list_identities(opts)
   p result
 rescue OryHydraClient::ApiError => e
   puts "Exception when calling AdminApi->list_identities: #{e}"
@@ -516,7 +578,11 @@ end
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **per_page** | **Integer**| Items per Page  This is the number of items per page. | [optional] [default to 100]
+ **page** | **Integer**| Pagination Page | [optional] [default to 0]
 
 ### Return type
 
@@ -532,11 +598,53 @@ No authorization required
 - **Accept**: application/json
 
 
+## prometheus
+
+> prometheus
+
+Get snapshot metrics from the Hydra service. If you're using k8s, you can then add annotations to your deployment like so:
+
+``` metadata: annotations: prometheus.io/port: \"4434\" prometheus.io/path: \"/metrics/prometheus\" ```
+
+### Example
+
+```ruby
+# load the gem
+require 'ory-kratos-client'
+
+api_instance = OryHydraClient::AdminApi.new
+
+begin
+  #Get snapshot metrics from the Hydra service. If you're using k8s, you can then add annotations to your deployment like so:
+  api_instance.prometheus
+rescue OryHydraClient::ApiError => e
+  puts "Exception when calling AdminApi->prometheus: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+
 ## update_identity
 
-> Identity update_identity(id, body)
+> Identity update_identity(id, opts)
 
-Update an identity
+Update an Identity
 
 This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
@@ -548,11 +656,13 @@ require 'ory-kratos-client'
 
 api_instance = OryHydraClient::AdminApi.new
 id = 'id_example' # String | ID must be set to the ID of identity you want to update
-body = OryHydraClient::Identity.new # Identity | 
+opts = {
+  body: OryHydraClient::UpdateIdentity.new # UpdateIdentity | 
+}
 
 begin
-  #Update an identity
-  result = api_instance.update_identity(id, body)
+  #Update an Identity
+  result = api_instance.update_identity(id, opts)
   p result
 rescue OryHydraClient::ApiError => e
   puts "Exception when calling AdminApi->update_identity: #{e}"
@@ -565,7 +675,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID must be set to the ID of identity you want to update | 
- **body** | [**Identity**](Identity.md)|  | 
+ **body** | [**UpdateIdentity**](UpdateIdentity.md)|  | [optional] 
 
 ### Return type
 
