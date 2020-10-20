@@ -12,7 +12,7 @@ Method | HTTP request | Description
 [**DeleteJsonWebKey**](AdminApi.md#deletejsonwebkey) | **DELETE** /keys/{set}/{kid} | Delete a JSON Web Key
 [**DeleteJsonWebKeySet**](AdminApi.md#deletejsonwebkeyset) | **DELETE** /keys/{set} | Delete a JSON Web Key Set
 [**DeleteOAuth2Client**](AdminApi.md#deleteoauth2client) | **DELETE** /clients/{id} | Deletes an OAuth 2.0 Client
-[**DeleteOAuth2Token**](AdminApi.md#deleteoauth2token) | **DELETE** /oauth2/tokens | Delete OAuth2 Access Tokens from a client
+[**DeleteOAuth2Token**](AdminApi.md#deleteoauth2token) | **DELETE** /oauth2/tokens | Delete OAuth2 Access Tokens from a Client
 [**FlushInactiveOAuth2Tokens**](AdminApi.md#flushinactiveoauth2tokens) | **POST** /oauth2/flush | Flush Expired OAuth2 Access Tokens
 [**GetConsentRequest**](AdminApi.md#getconsentrequest) | **GET** /oauth2/auth/requests/consent | Get Consent Request Information
 [**GetJsonWebKey**](AdminApi.md#getjsonwebkey) | **GET** /keys/{set}/{kid} | Fetch a JSON Web Key
@@ -25,7 +25,7 @@ Method | HTTP request | Description
 [**IsInstanceAlive**](AdminApi.md#isinstancealive) | **GET** /health/alive | Check Alive Status
 [**ListOAuth2Clients**](AdminApi.md#listoauth2clients) | **GET** /clients | List OAuth 2.0 Clients
 [**ListSubjectConsentSessions**](AdminApi.md#listsubjectconsentsessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject
-[**Prometheus**](AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get snapshot metrics from the Hydra service. If you&#39;re using k8s, you can then add annotations to your deployment like so:
+[**Prometheus**](AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get Snapshot Metrics from the Hydra Service.
 [**RejectConsentRequest**](AdminApi.md#rejectconsentrequest) | **PUT** /oauth2/auth/requests/consent/reject | Reject a Consent Request
 [**RejectLoginRequest**](AdminApi.md#rejectloginrequest) | **PUT** /oauth2/auth/requests/login/reject | Reject a Login Request
 [**RejectLogoutRequest**](AdminApi.md#rejectlogoutrequest) | **PUT** /oauth2/auth/requests/logout/reject | Reject a Logout Request
@@ -626,7 +626,7 @@ No authorization required
 # **DeleteOAuth2Token**
 > void DeleteOAuth2Token (string clientId)
 
-Delete OAuth2 Access Tokens from a client
+Delete OAuth2 Access Tokens from a Client
 
 This endpoint deletes OAuth2 access tokens issued for a client from the database
 
@@ -651,7 +651,7 @@ namespace Example
 
             try
             {
-                // Delete OAuth2 Access Tokens from a client
+                // Delete OAuth2 Access Tokens from a Client
                 apiInstance.DeleteOAuth2Token(clientId);
             }
             catch (ApiException  e)
@@ -1558,9 +1558,9 @@ No authorization required
 # **Prometheus**
 > void Prometheus ()
 
-Get snapshot metrics from the Hydra service. If you're using k8s, you can then add annotations to your deployment like so:
+Get Snapshot Metrics from the Hydra Service.
 
-``` metadata: annotations: prometheus.io/port: \"4445\" prometheus.io/path: \"/metrics/prometheus\" ```  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
+If you're using k8s, you can then add annotations to your deployment like so:  ``` metadata: annotations: prometheus.io/port: \"4445\" prometheus.io/path: \"/metrics/prometheus\" ```  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
 
 ### Example
 ```csharp
@@ -1582,7 +1582,7 @@ namespace Example
 
             try
             {
-                // Get snapshot metrics from the Hydra service. If you're using k8s, you can then add annotations to your deployment like so:
+                // Get Snapshot Metrics from the Hydra Service.
                 apiInstance.Prometheus();
             }
             catch (ApiException  e)

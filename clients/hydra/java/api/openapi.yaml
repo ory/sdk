@@ -3,7 +3,7 @@ info:
   description: Welcome to the ORY Hydra HTTP API documentation. You will find documentation
     for all HTTP APIs here.
   title: ORY Hydra
-  version: v1.8.5
+  version: v1.9.0-alpha.1
 servers:
 - url: /
 paths:
@@ -646,6 +646,8 @@ paths:
   /metrics/prometheus:
     get:
       description: |-
+        If you're using k8s, you can then add annotations to your deployment like so:
+
         ```
         metadata:
         annotations:
@@ -662,9 +664,7 @@ paths:
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
-      summary: |-
-        Get snapshot metrics from the Hydra service. If you're using k8s, you can then add annotations to
-        your deployment like so:
+      summary: Get Snapshot Metrics from the Hydra Service.
       tags:
       - admin
       x-accepts: application/json
@@ -1523,7 +1523,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/genericError'
           description: genericError
-      summary: Delete OAuth2 Access Tokens from a client
+      summary: Delete OAuth2 Access Tokens from a Client
       tags:
       - admin
       x-accepts: application/json
@@ -2401,7 +2401,7 @@ components:
           type: string
         challenge:
           description: |-
-            Challenge is the identifier ("authorization challenge") of the consent authorization request. It is used to
+            ID is the identifier ("authorization challenge") of the consent authorization request. It is used to
             identify the session.
           type: string
         client:
@@ -2628,7 +2628,7 @@ components:
       properties:
         challenge:
           description: |-
-            Challenge is the identifier ("login challenge") of the login request. It is used to
+            ID is the identifier ("login challenge") of the login request. It is used to
             identify the session.
           type: string
         client:
