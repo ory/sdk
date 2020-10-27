@@ -8,7 +8,7 @@ jobs:
     steps:
       - checkout
       - run: |
-          if [  -z "$(git log -1 --pretty=%B | grep "Add spec for")" ]; then
+          if [ -z "$(git log -1 --pretty=%B | grep 'Add spec for' | grep -v '.pre.')" ]; then
               circleci-agent step halt
           fi
       - run: ./scripts/init.sh
