@@ -29,6 +29,12 @@ func (o *AcceptLoginRequestReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewAcceptLoginRequestBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewAcceptLoginRequestUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -77,6 +83,39 @@ func (o *AcceptLoginRequestOK) GetPayload() *models.CompletedRequest {
 func (o *AcceptLoginRequestOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.CompletedRequest)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAcceptLoginRequestBadRequest creates a AcceptLoginRequestBadRequest with default headers values
+func NewAcceptLoginRequestBadRequest() *AcceptLoginRequestBadRequest {
+	return &AcceptLoginRequestBadRequest{}
+}
+
+/*AcceptLoginRequestBadRequest handles this case with default header values.
+
+genericError
+*/
+type AcceptLoginRequestBadRequest struct {
+	Payload *models.GenericError
+}
+
+func (o *AcceptLoginRequestBadRequest) Error() string {
+	return fmt.Sprintf("[PUT /oauth2/auth/requests/login/accept][%d] acceptLoginRequestBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *AcceptLoginRequestBadRequest) GetPayload() *models.GenericError {
+	return o.Payload
+}
+
+func (o *AcceptLoginRequestBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.GenericError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

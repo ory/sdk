@@ -15,7 +15,8 @@ Name | Type | Description | Notes
 **obfuscated_subject** | **String** | ObfuscatedSubject is set when the subject identifier algorithm was set to \&quot;pairwise\&quot; during authorization. It is the &#x60;sub&#x60; value of the ID Token that was issued. | [optional] 
 **scope** | **String** | Scope is a JSON string containing a space-separated list of scopes associated with this token. | [optional] 
 **sub** | **String** | Subject of the token, as defined in JWT [RFC7519]. Usually a machine-readable identifier of the resource owner who authorized this token. | [optional] 
-**token_type** | **String** | TokenType is the introspected token&#39;s type, for example &#x60;access_token&#x60; or &#x60;refresh_token&#x60;. | [optional] 
+**token_type** | **String** | TokenType is the introspected token&#39;s type, typically &#x60;Bearer&#x60;. | [optional] 
+**token_use** | **String** | TokenUse is the introspected token&#39;s use, for example &#x60;access_token&#x60; or &#x60;refresh_token&#x60;. | [optional] 
 **username** | **String** | Username is a human-readable identifier for the resource owner who authorized this token. | [optional] 
 
 ## Code Sample
@@ -35,6 +36,7 @@ instance = OryHydraClient::OAuth2TokenIntrospection.new(active: null,
                                  scope: null,
                                  sub: null,
                                  token_type: null,
+                                 token_use: null,
                                  username: null)
 ```
 

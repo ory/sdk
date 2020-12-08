@@ -15,7 +15,8 @@ Name | Type | Description | Notes
 **obfuscatedSubject** | **string** | ObfuscatedSubject is set when the subject identifier algorithm was set to \&quot;pairwise\&quot; during authorization. It is the &#x60;sub&#x60; value of the ID Token that was issued. | [optional] 
 **scope** | **string** | Scope is a JSON string containing a space-separated list of scopes associated with this token. | [optional] 
 **sub** | **string** | Subject of the token, as defined in JWT [RFC7519]. Usually a machine-readable identifier of the resource owner who authorized this token. | [optional] 
-**tokenType** | **string** | TokenType is the introspected token&#39;s type, for example &#x60;access_token&#x60; or &#x60;refresh_token&#x60;. | [optional] 
+**tokenType** | **string** | TokenType is the introspected token&#39;s type, typically &#x60;Bearer&#x60;. | [optional] 
+**tokenUse** | **string** | TokenUse is the introspected token&#39;s use, for example &#x60;access_token&#x60; or &#x60;refresh_token&#x60;. | [optional] 
 **username** | **string** | Username is a human-readable identifier for the resource owner who authorized this token. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)

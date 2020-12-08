@@ -165,6 +165,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | completedRequest |  -  |
+**400** | genericError |  -  |
 **401** | genericError |  -  |
 **404** | genericError |  -  |
 **500** | genericError |  -  |
@@ -1572,6 +1573,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | completedRequest |  -  |
+**400** | genericError |  -  |
 **401** | genericError |  -  |
 **404** | genericError |  -  |
 **500** | genericError |  -  |
