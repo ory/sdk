@@ -22,6 +22,12 @@ import time
 import ory_oathkeeper_client
 from ory_oathkeeper_client.rest import ApiException
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_oathkeeper_client.Configuration(
+    host = "http://localhost"
+)
+
 
 # Enter a context with an instance of the API client
 with ory_oathkeeper_client.ApiClient() as api_client:
