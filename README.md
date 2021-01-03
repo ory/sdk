@@ -5,6 +5,10 @@ using openapi-generator.
 
 ## Publish the Docker Image
 
+To publish the SDK Builder Docker Image, create a new GitHub release with the desired version.
+
+You may also manually build and publish this image using:
+
 ```shell script
 docker build -t oryd/sdk:latest .
 docker tag oryd/sdk:latest oryd/sdk:v0.1.x
