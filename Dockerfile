@@ -8,7 +8,7 @@ RUN apk add --no-cache \
 # - docker run --rm debian:stretch grep '^hosts:' /etc/nsswitch.conf
 RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 
-ENV GOLANG_VERSION 1.15.2
+ENV GOLANG_VERSION 1.15.6
 
 RUN set -eux; \
 	apk add --no-cache --virtual .build-deps \
@@ -65,7 +65,8 @@ RUN apk add -U --no-cache ca-certificates bash nodejs npm python3 python3-dev py
 
 # RUN wget http://central.maven.org/maven2/org/openapitools/openapi-generator-cli/4.2.2/openapi-generator-cli-4.2.2.jar -O openapi-generator-cli.jar
 
-RUN npm install @openapitools/openapi-generator-cli@cli-4.3.1 -g
+RUN npm i -g @openapitools/openapi-generator-cli
+RUN openapi-generator-cli version-manager set 5.0.0
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install --user --upgrade setuptools wheel twine
 
@@ -86,8 +87,9 @@ RUN download_url=$(curl -s https://api.github.com/repos/go-swagger/go-swagger/re
     && curl -o /usr/local/bin/swagger -L'#' "$download_url" \
     && chmod +x /usr/local/bin/swagger
 
-RUN go get github.com/ory/cli@v0.0.27
-RUN mv $GOPATH/bin/cli $GOPATH/bin/ory
+ADD go.mod go.mod
+ADD go.sum go.sum
+RUN go build -o /usr/local/bin/ory github.com/ory/cli
 
 RUN swagger version
 RUN ory version
