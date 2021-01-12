@@ -1,5 +1,5 @@
 {
-  "name": "@oryd/hydra-client",
+  "name": "@ory/hydra-client",
   "version": "1.9.0-alpha.3",
   "description": "OpenAPI client for @oryd/hydra-client",
   "author": "ORY GmbH",

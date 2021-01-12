@@ -1,5 +1,5 @@
 {
-  "name": "@oryd/kratos-client",
+  "name": "@ory/kratos-client",
   "version": "0.5.4-alpha.1",
   "description": "OpenAPI client for @oryd/kratos-client",
   "author": "ORY GmbH",

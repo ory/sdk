@@ -1,4 +1,4 @@
-npmName: "@oryd/$PROJECT-client"
+npmName: "@ory/$PROJECT-client"
 npmVersion: $VERSION
 # typescriptThreePlus: true
 #npmRepository: https://github.com/ory/sdk.git

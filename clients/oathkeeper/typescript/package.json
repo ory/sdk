@@ -1,5 +1,5 @@
 {
-  "name": "@oryd/oathkeeper-client",
+  "name": "@ory/oathkeeper-client",
   "version": "0.38.5-beta.1",
   "description": "OpenAPI client for @oryd/oathkeeper-client",
   "author": "ORY GmbH",
