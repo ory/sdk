@@ -114,7 +114,6 @@ dotnet() {
   --source https://api.nuget.org/v3/index.json && break || sleep 15; done)
 }
 
-java
 python
 ruby
 golang
@@ -123,3 +122,5 @@ typescript
 dotnet
 
 upstream
+
+java
