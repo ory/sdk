@@ -1264,7 +1264,7 @@ No authorization required
 
 List OAuth 2.0 Clients
 
-This endpoint lists all clients in the database, and never returns client secrets.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components. The \&quot;Link\&quot; header is also included in successful responses, which contains one or more links for pagination, formatted like so: &#39;&lt;https://hydra-url/admin/clients?limit&#x3D;{limit}&amp;offset&#x3D;{offset}&gt;; rel&#x3D;\&quot;{page}\&quot;&#39;, where page is one of the following applicable pages: &#39;first&#39;, &#39;next&#39;, &#39;last&#39;, and &#39;previous&#39;. Multiple links can be included in this header, and will be separated by a comma.
+This endpoint lists all clients in the database, and never returns client secrets. As a default it lists the first 100 clients. The &#x60;limit&#x60; parameter can be used to retrieve more clients, but it has an upper bound at 500 objects. Pagination should be used to retrieve more than 500 objects.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components. The \&quot;Link\&quot; header is also included in successful responses, which contains one or more links for pagination, formatted like so: &#39;&lt;https://hydra-url/admin/clients?limit&#x3D;{limit}&amp;offset&#x3D;{offset}&gt;; rel&#x3D;\&quot;{page}\&quot;&#39;, where page is one of the following applicable pages: &#39;first&#39;, &#39;next&#39;, &#39;last&#39;, and &#39;previous&#39;. Multiple links can be included in this header, and will be separated by a comma.
 
 ### Example
 ```java
@@ -1281,7 +1281,7 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
-    Long limit = 56L; // Long | The maximum amount of policies returned.
+    Long limit = 56L; // Long | The maximum amount of policies returned, upper bound is 500 policies
     Long offset = 56L; // Long | The offset from where to start looking.
     try {
       List<OAuth2Client> result = apiInstance.listOAuth2Clients(limit, offset);
@@ -1301,7 +1301,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **Long**| The maximum amount of policies returned. | [optional]
+ **limit** | **Long**| The maximum amount of policies returned, upper bound is 500 policies | [optional]
  **offset** | **Long**| The offset from where to start looking. | [optional]
 
 ### Return type

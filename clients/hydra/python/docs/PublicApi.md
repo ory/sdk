@@ -322,6 +322,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | oauth2TokenResponse |  -  |
+**400** | genericError |  -  |
 **401** | genericError |  -  |
 **500** | genericError |  -  |
 
