@@ -34,7 +34,7 @@ typescript () {
 
   dir="clients/${PROJECT}/typescript"
 
-  openapi-generator generate -i "${SPEC_FILE}" \
+  openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g typescript-axios \
     -o "$dir" \
     --git-user-id ory \
@@ -57,7 +57,7 @@ java () {
   rm -rf "${dir}/src" || true
   rm -rf "${dir}/docs" || true
 
-  openapi-generator generate -i "${SPEC_FILE}" \
+  openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g java \
     -o "$dir" \
     --git-user-id ory \
@@ -117,7 +117,7 @@ php() {
 
   dir="clients/${PROJECT}/php"
 
-  openapi-generator generate -i "${SPEC_FILE}" \
+  openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g php \
     -o "$dir" \
     --git-user-id ory \
@@ -138,7 +138,7 @@ python () {
 
   dir="clients/${PROJECT}/python"
 
-  openapi-generator generate -i "${SPEC_FILE}" \
+  openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g python \
     -o "$dir" \
     --git-user-id ory \
@@ -154,7 +154,7 @@ ruby () {
 
   rm "${dir}/lib/ory-${PROJECT}-client/version.rb" || true
 
-  openapi-generator generate -i "${SPEC_FILE}" \
+  openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g ruby \
     -o "$dir" \
     --git-user-id ory \
@@ -184,7 +184,7 @@ dotnet () {
 
   dir="clients/${PROJECT}/dotnet"
 
-  openapi-generator generate -i "${SPEC_FILE}" \
+  openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g csharp-netcore \
     -o "$dir" \
     --model-name-prefix ${PROJECT_UCF} \
