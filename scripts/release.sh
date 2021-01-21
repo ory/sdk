@@ -114,12 +114,21 @@ dotnet() {
   --source https://api.nuget.org/v3/index.json && break || sleep 15; done)
 }
 
+dart() {
+  # todo: follow the instructions on https://dart.dev/tools/pub/publishing for publishing dart packages
+  
+  dir="clients/${PROJECT}/dart"
+  
+  (cd "${dir}"; VERSION=${RAW_VERSION} command dart pub publish --dry-run)
+}
+
 python
 ruby
 golang
 php
 typescript
 dotnet
+#dart
 
 upstream
 
