@@ -1,0 +1,4 @@
+packageName: ory-${PROJECT}-client
+packageVersion: $VERSION
+library: reqwest
+supportAsync: true
