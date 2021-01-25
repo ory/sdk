@@ -1,6 +1,6 @@
 FROM openjdk:16-slim-buster
 
-RUN apt-get update; apt-get install -y --no-install-recommends ca-certificates
+RUN apt-get update; apt-get install -y --no-install-recommends ca-certificates ssh
 
 ENV GOLANG_VERSION 1.15.6
 
