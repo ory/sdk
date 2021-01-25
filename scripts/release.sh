@@ -48,7 +48,7 @@ typescript () {
   (cd "${dir}"; npm install; npm run build)
 
 
-  (cd "${dir}"; npm version -f --no-git-tag-version "${VERSION}"; for i in 1 2 3 4 5; do npm publish --access public && break || sleep 15; done)
+  (cd "${dir}"; npm version -f --no-git-tag-version "${VERSION}" || true; for i in 1 2 3 4 5; do npm publish --access public && break || sleep 15; done)
 }
 
 python() {
