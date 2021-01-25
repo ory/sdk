@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**payload** | [**ListRulesInternalServerErrorBody**](ListRulesInternalServerErrorBody.md) |  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **payload** | [**ListRulesInternalServerErrorBody**](ListRulesInternalServerErrorBody.md) |  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::ListRulesInternalServerError.new(payload: null)
+instance = OryHydraClient::ListRulesInternalServerError.new(
+  payload: null
+)
 ```
-
 

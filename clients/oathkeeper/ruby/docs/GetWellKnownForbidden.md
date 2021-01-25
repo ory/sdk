@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**payload** | [**GetWellKnownForbiddenBody**](GetWellKnownForbiddenBody.md) |  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **payload** | [**GetWellKnownForbiddenBody**](GetWellKnownForbiddenBody.md) |  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::GetWellKnownForbidden.new(payload: null)
+instance = OryHydraClient::GetWellKnownForbidden.new(
+  payload: null
+)
 ```
-
 

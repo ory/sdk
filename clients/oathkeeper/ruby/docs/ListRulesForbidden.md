@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**payload** | [**ListRulesForbiddenBody**](ListRulesForbiddenBody.md) |  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **payload** | [**ListRulesForbiddenBody**](ListRulesForbiddenBody.md) |  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::ListRulesForbidden.new(payload: null)
+instance = OryHydraClient::ListRulesForbidden.new(
+  payload: null
+)
 ```
-
 

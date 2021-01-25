@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**payload** | [**JudgeNotFoundBody**](JudgeNotFoundBody.md) |  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **payload** | [**JudgeNotFoundBody**](JudgeNotFoundBody.md) |  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::JudgeNotFound.new(payload: null)
+instance = OryHydraClient::JudgeNotFound.new(
+  payload: null
+)
 ```
-
 

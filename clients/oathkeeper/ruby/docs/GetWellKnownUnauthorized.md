@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**payload** | [**GetWellKnownUnauthorizedBody**](GetWellKnownUnauthorizedBody.md) |  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **payload** | [**GetWellKnownUnauthorizedBody**](GetWellKnownUnauthorizedBody.md) |  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::GetWellKnownUnauthorized.new(payload: null)
+instance = OryHydraClient::GetWellKnownUnauthorized.new(
+  payload: null
+)
 ```
-
 

@@ -4,8 +4,8 @@ SwaggerUpdateRuleParameters SwaggerUpdateRuleParameters SwaggerUpdateRuleParamet
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**body** | [**SwaggerRule**](SwaggerRule.md) |  | [optional] 
 **id** | **str** | in: path | 
+**body** | [**SwaggerRule**](SwaggerRule.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

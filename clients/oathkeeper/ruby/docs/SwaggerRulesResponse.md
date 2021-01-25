@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**body** | [**Array&lt;SwaggerRule&gt;**](SwaggerRule.md) | in: body type: array | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **body** | [**Array&lt;SwaggerRule&gt;**](SwaggerRule.md) | in: body type: array | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::SwaggerRulesResponse.new(body: null)
+instance = OryHydraClient::SwaggerRulesResponse.new(
+  body: null
+)
 ```
-
 

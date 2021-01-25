@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**payload** | [**DecisionsNotFoundBody**](DecisionsNotFoundBody.md) |  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **payload** | [**DecisionsNotFoundBody**](DecisionsNotFoundBody.md) |  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::DecisionsNotFound.new(payload: null)
+instance = OryHydraClient::DecisionsNotFound.new(
+  payload: null
+)
 ```
-
 

@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**payload** | [**JudgeInternalServerErrorBody**](JudgeInternalServerErrorBody.md) |  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **payload** | [**JudgeInternalServerErrorBody**](JudgeInternalServerErrorBody.md) |  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::JudgeInternalServerError.new(payload: null)
+instance = OryHydraClient::JudgeInternalServerError.new(
+  payload: null
+)
 ```
-
 

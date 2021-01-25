@@ -1,0 +1,62 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.0
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: lines_longer_than_80_chars
+
+part of openapi.api;
+
+class LoginRequestMethodConfig {
+  /// Returns a new [LoginRequestMethodConfig] instance.
+  LoginRequestMethodConfig({
+  });
+
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is LoginRequestMethodConfig &&
+
+  @override
+  int get hashCode =>
+
+  @override
+  String toString() => 'LoginRequestMethodConfig[]';
+
+  Map<String, dynamic> toJson() {
+    final json = <String, dynamic>{};
+    return json;
+  }
+
+  /// Returns a new [LoginRequestMethodConfig] instance and imports its values from
+  /// [json] if it's non-null, null if [json] is null.
+  static LoginRequestMethodConfig fromJson(Map<String, dynamic> json) => json == null
+    ? null
+    : LoginRequestMethodConfig(
+    );
+
+  static List<LoginRequestMethodConfig> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
+    json == null || json.isEmpty
+      ? true == emptyIsNull ? null : <LoginRequestMethodConfig>[]
+      : json.map((v) => LoginRequestMethodConfig.fromJson(v)).toList(growable: true == growable);
+
+  static Map<String, LoginRequestMethodConfig> mapFromJson(Map<String, dynamic> json) {
+    final map = <String, LoginRequestMethodConfig>{};
+    if (json != null && json.isNotEmpty) {
+      json.forEach((String key, dynamic v) => map[key] = LoginRequestMethodConfig.fromJson(v));
+    }
+    return map;
+  }
+
+  // maps a json object with a list of LoginRequestMethodConfig-objects as value to a dart map
+  static Map<String, List<LoginRequestMethodConfig>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
+    final map = <String, List<LoginRequestMethodConfig>>{};
+    if (json != null && json.isNotEmpty) {
+      json.forEach((String key, dynamic v) {
+        map[key] = LoginRequestMethodConfig.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+      });
+    }
+    return map;
+  }
+}
+

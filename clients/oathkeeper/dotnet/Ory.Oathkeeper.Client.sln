@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ory.Oathkeeper.Client", "src\Ory.Oathkeeper.Client\Ory.Oathkeeper.Client.csproj", "{32EF330A-C5A3-427C-9875-A6F1038F72EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ory.Oathkeeper.Client", "src\Ory.Oathkeeper.Client\Ory.Oathkeeper.Client.csproj", "{51AA70AD-5BFB-4DB9-8EA2-C1912A0B2C66}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ory.Oathkeeper.Client.Test", "src\Ory.Oathkeeper.Client.Test\Ory.Oathkeeper.Client.Test.csproj", "{19F1DEBC-DE5E-4517-8062-F000CD499087}"
 EndProject
@@ -12,10 +12,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{32EF330A-C5A3-427C-9875-A6F1038F72EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{32EF330A-C5A3-427C-9875-A6F1038F72EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{32EF330A-C5A3-427C-9875-A6F1038F72EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{32EF330A-C5A3-427C-9875-A6F1038F72EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51AA70AD-5BFB-4DB9-8EA2-C1912A0B2C66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51AA70AD-5BFB-4DB9-8EA2-C1912A0B2C66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51AA70AD-5BFB-4DB9-8EA2-C1912A0B2C66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51AA70AD-5BFB-4DB9-8EA2-C1912A0B2C66}.Release|Any CPU.Build.0 = Release|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Release|Any CPU.ActiveCfg = Release|Any CPU

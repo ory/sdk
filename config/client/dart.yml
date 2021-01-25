@@ -1,0 +1,5 @@
+pubAuthor: ORY GmbH
+pubAuthorEmail: opensource@ory.sh
+pubHomepage: https://www.ory.sh
+pubName: ory_${PROJECT}_client
+pubVersion: $RAW_VERSION

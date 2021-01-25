@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**payload** | [**GetWellKnownJSONWebKeysInternalServerErrorBody**](GetWellKnownJSONWebKeysInternalServerErrorBody.md) |  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **payload** | [**GetWellKnownJSONWebKeysInternalServerErrorBody**](GetWellKnownJSONWebKeysInternalServerErrorBody.md) |  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::GetWellKnownJSONWebKeysInternalServerError.new(payload: null)
+instance = OryHydraClient::GetWellKnownJSONWebKeysInternalServerError.new(
+  payload: null
+)
 ```
-
 
