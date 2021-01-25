@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**payload** | [**DeleteRuleNotFoundBody**](DeleteRuleNotFoundBody.md) |  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **payload** | [**DeleteRuleNotFoundBody**](DeleteRuleNotFoundBody.md) |  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::DeleteRuleNotFound.new(payload: null)
+instance = OryHydraClient::DeleteRuleNotFound.new(
+  payload: null
+)
 ```
-
 

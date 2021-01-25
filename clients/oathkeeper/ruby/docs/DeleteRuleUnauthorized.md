@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**payload** | [**DeleteRuleUnauthorizedBody**](DeleteRuleUnauthorizedBody.md) |  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **payload** | [**DeleteRuleUnauthorizedBody**](DeleteRuleUnauthorizedBody.md) |  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::DeleteRuleUnauthorized.new(payload: null)
+instance = OryHydraClient::DeleteRuleUnauthorized.new(
+  payload: null
+)
 ```
-
 

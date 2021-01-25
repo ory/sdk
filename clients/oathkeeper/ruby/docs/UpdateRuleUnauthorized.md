@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**payload** | [**UpdateRuleUnauthorizedBody**](UpdateRuleUnauthorizedBody.md) |  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **payload** | [**UpdateRuleUnauthorizedBody**](UpdateRuleUnauthorizedBody.md) |  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::UpdateRuleUnauthorized.new(payload: null)
+instance = OryHydraClient::UpdateRuleUnauthorized.new(
+  payload: null
+)
 ```
-
 

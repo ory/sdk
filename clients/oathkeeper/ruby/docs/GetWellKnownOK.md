@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**payload** | [**SwaggerJSONWebKeySet**](SwaggerJSONWebKeySet.md) |  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **payload** | [**SwaggerJSONWebKeySet**](SwaggerJSONWebKeySet.md) |  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::GetWellKnownOK.new(payload: null)
+instance = OryHydraClient::GetWellKnownOK.new(
+  payload: null
+)
 ```
-
 

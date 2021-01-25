@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **int** |  | [optional] 
-**details** | **list[object]** |  | [optional] 
+**details** | **[{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]** |  | [optional] 
 **message** | **str** |  | [optional] 
 **reason** | **str** |  | [optional] 
 **request** | **str** |  | [optional] 

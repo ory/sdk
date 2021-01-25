@@ -5,7 +5,7 @@ ListRulesInternalServerErrorBody ListRulesInternalServerErrorBody list rules int
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **int** | code | [optional] 
-**details** | **list[dict(str, object)]** | details | [optional] 
+**details** | **[{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]** | details | [optional] 
 **message** | **str** | message | [optional] 
 **reason** | **str** | reason | [optional] 
 **request** | **str** | request | [optional] 

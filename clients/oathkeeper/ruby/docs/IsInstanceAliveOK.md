@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**payload** | [**SwaggerHealthStatus**](SwaggerHealthStatus.md) |  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **payload** | [**SwaggerHealthStatus**](SwaggerHealthStatus.md) |  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::IsInstanceAliveOK.new(payload: null)
+instance = OryHydraClient::IsInstanceAliveOK.new(
+  payload: null
+)
 ```
-
 

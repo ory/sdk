@@ -118,8 +118,23 @@ dart() {
   # todo: follow the instructions on https://dart.dev/tools/pub/publishing for publishing dart packages
   
   dir="clients/${PROJECT}/dart"
-  
-  (cd "${dir}"; VERSION=${RAW_VERSION} command dart pub publish --dry-run)
+
+  mkdir -p ~/.pub-cache || true
+  cat <<EOF > ~/.pub-cache/credentials.json
+{
+  "accessToken":"${DART_ACCESS_TOKEN}",
+  "refreshToken":"${DART_REFRESH_TOKEN}",
+  "tokenEndpoint": "https://accounts.google.com/o/oauth2/token",
+  "scopes": [
+    "openid",
+    "https://www.googleapis.com/auth/userinfo.email"
+  ],
+  "expiration": 1611594593613
+}
+EOF
+
+pub publish -f
+  (cd "${dir}"; VERSION=${RAW_VERSION} command dart pub publish --force)
 }
 
 python
@@ -128,7 +143,7 @@ golang
 php
 typescript
 dotnet
-#dart
+dart
 
 upstream
 

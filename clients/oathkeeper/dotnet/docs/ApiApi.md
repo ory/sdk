@@ -6,7 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**Decisions**](ApiApi.md#decisions) | **GET** /decisions | Access Control Decision API
 [**GetRule**](ApiApi.md#getrule) | **GET** /rules/{id} | Retrieve a rule
+[**GetVersion**](ApiApi.md#getversion) | **GET** /version | Get service version
 [**GetWellKnownJSONWebKeys**](ApiApi.md#getwellknownjsonwebkeys) | **GET** /.well-known/jwks.json | Lists cryptographic keys
+[**IsInstanceAlive**](ApiApi.md#isinstancealive) | **GET** /health/alive | Check alive status
+[**IsInstanceReady**](ApiApi.md#isinstanceready) | **GET** /health/ready | Check readiness status
 [**ListRules**](ApiApi.md#listrules) | **GET** /rules | List all rules
 
 
@@ -151,6 +154,72 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="getversion"></a>
+# **GetVersion**
+> OathkeeperVersion GetVersion ()
+
+Get service version
+
+This endpoint returns the service version typically notated using semantic versioning.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Oathkeeper.Client.Api;
+using Ory.Oathkeeper.Client.Client;
+using Ory.Oathkeeper.Client.Model;
+
+namespace Example
+{
+    public class GetVersionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            var apiInstance = new ApiApi(config);
+
+            try
+            {
+                // Get service version
+                OathkeeperVersion result = apiInstance.GetVersion();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ApiApi.GetVersion: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**OathkeeperVersion**](OathkeeperVersion.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | version |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="getwellknownjsonwebkeys"></a>
 # **GetWellKnownJSONWebKeys**
 > OathkeeperJsonWebKeySet GetWellKnownJSONWebKeys ()
@@ -215,6 +284,140 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | jsonWebKeySet |  -  |
 | **500** | The standard error format |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="isinstancealive"></a>
+# **IsInstanceAlive**
+> OathkeeperHealthStatus IsInstanceAlive ()
+
+Check alive status
+
+This endpoint returns a 200 status code when the HTTP server is up running. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Oathkeeper.Client.Api;
+using Ory.Oathkeeper.Client.Client;
+using Ory.Oathkeeper.Client.Model;
+
+namespace Example
+{
+    public class IsInstanceAliveExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            var apiInstance = new ApiApi(config);
+
+            try
+            {
+                // Check alive status
+                OathkeeperHealthStatus result = apiInstance.IsInstanceAlive();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ApiApi.IsInstanceAlive: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**OathkeeperHealthStatus**](OathkeeperHealthStatus.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | healthStatus |  -  |
+| **500** | The standard error format |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="isinstanceready"></a>
+# **IsInstanceReady**
+> OathkeeperHealthStatus IsInstanceReady ()
+
+Check readiness status
+
+This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Oathkeeper.Client.Api;
+using Ory.Oathkeeper.Client.Client;
+using Ory.Oathkeeper.Client.Model;
+
+namespace Example
+{
+    public class IsInstanceReadyExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            var apiInstance = new ApiApi(config);
+
+            try
+            {
+                // Check readiness status
+                OathkeeperHealthStatus result = apiInstance.IsInstanceReady();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ApiApi.IsInstanceReady: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**OathkeeperHealthStatus**](OathkeeperHealthStatus.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | healthStatus |  -  |
+| **503** | healthNotReadyStatus |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
