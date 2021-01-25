@@ -10,6 +10,7 @@ to_git() {
   gitdir="repos/${PROJECT}-client-${lang}"
   srcdir="clients/${PROJECT}/${lang}"
 
+  mkdir -p ${gitdir} || true
   git clone "git@github.com:ory/${PROJECT}-client-${lang}.git" "${gitdir}" || true
 
   (cd "${gitdir}"; git fetch origin || true; git checkout master || true; git reset --hard HEAD || true; git pull -ff || true; git checkout -b "release-$(date +%s)" master)
