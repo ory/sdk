@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**id** | **String** | ID is the role&#39;s unique id. | [optional] 
-**members** | **Array&lt;String&gt;** | Members is who belongs to the role. | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** | ID is the role&#39;s unique id. | [optional] |
+| **members** | **Array&lt;String&gt;** | Members is who belongs to the role. | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-keto-client'
 
-instance = OryHydraClient::OryAccessControlPolicyRole.new(id: null,
-                                 members: null)
+instance = OryHydraClient::OryAccessControlPolicyRole.new(
+  id: null,
+  members: null
+)
 ```
-
 

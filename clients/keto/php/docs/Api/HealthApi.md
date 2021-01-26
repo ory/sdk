@@ -1,17 +1,18 @@
 # Ory\Keto\Client\HealthApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to http://localhost.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**isInstanceAlive**](HealthApi.md#isInstanceAlive) | **GET** /health/alive | Check alive status
-[**isInstanceReady**](HealthApi.md#isInstanceReady) | **GET** /health/ready | Check readiness status
+[**isInstanceAlive()**](HealthApi.md#isInstanceAlive) | **GET** /health/alive | Check alive status
+[**isInstanceReady()**](HealthApi.md#isInstanceReady) | **GET** /health/ready | Check readiness status
 
 
+## `isInstanceAlive()`
 
-## isInstanceAlive
-
-> \Ory\Keto\Client\Model\HealthStatus isInstanceAlive()
+```php
+isInstanceAlive(): \Ory\Keto\Client\Model\HealthStatus
+```
 
 Check alive status
 
@@ -22,6 +23,7 @@ This endpoint returns a 200 status code when the HTTP server is up running. This
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Keto\Client\Api\HealthApi(
@@ -36,7 +38,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling HealthApi->isInstanceAlive: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -54,16 +55,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `isInstanceReady()`
 
-## isInstanceReady
-
-> \Ory\Keto\Client\Model\HealthStatus isInstanceReady()
+```php
+isInstanceReady(): \Ory\Keto\Client\Model\HealthStatus
+```
 
 Check readiness status
 
@@ -74,6 +76,7 @@ This endpoint returns a 200 status code when the HTTP server is up running and t
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Keto\Client\Api\HealthApi(
@@ -88,7 +91,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling HealthApi->isInstanceReady: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -106,9 +108,8 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

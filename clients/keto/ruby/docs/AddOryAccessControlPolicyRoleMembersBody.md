@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**members** | **Array&lt;String&gt;** | The members to be added. | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **members** | **Array&lt;String&gt;** | The members to be added. | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-keto-client'
 
-instance = OryHydraClient::AddOryAccessControlPolicyRoleMembersBody.new(members: null)
+instance = OryHydraClient::AddOryAccessControlPolicyRoleMembersBody.new(
+  members: null
+)
 ```
-
 

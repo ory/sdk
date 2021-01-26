@@ -5,7 +5,7 @@ oryAccessControlPolicyRole represents a group of users that share the same role.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | ID is the role&#39;s unique id. | [optional] 
-**members** | **list[str]** | Members is who belongs to the role. | [optional] 
+**members** | **[str]** | Members is who belongs to the role. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

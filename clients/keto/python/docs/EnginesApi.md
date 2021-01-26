@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 
 # **add_ory_access_control_policy_role_members**
-> OryAccessControlPolicyRole add_ory_access_control_policy_role_members(flavor, id, body=body)
+> OryAccessControlPolicyRole add_ory_access_control_policy_role_members(flavor, id)
 
 Add a member to an ORY Access Control Policy Role
 
@@ -27,10 +27,12 @@ Roles group several subjects into one. Rules can be assigned to ORY Access Contr
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_keto_client
-from ory_keto_client.rest import ApiException
+from ory_keto_client.api import engines_api
+from ory_keto_client.model.inline_response500 import InlineResponse500
+from ory_keto_client.model.add_ory_access_control_policy_role_members_body import AddOryAccessControlPolicyRoleMembersBody
+from ory_keto_client.model.ory_access_control_policy_role import OryAccessControlPolicyRole
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -42,16 +44,30 @@ configuration = ory_keto_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_keto_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_keto_client.EnginesApi(api_client)
-    flavor = 'flavor_example' # str | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".
-id = 'id_example' # str | The ID of the ORY Access Control Policy Role.
-body = ory_keto_client.AddOryAccessControlPolicyRoleMembersBody() # AddOryAccessControlPolicyRoleMembersBody |  (optional)
+    api_instance = engines_api.EnginesApi(api_client)
+    flavor = "flavor_example" # str | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".
+    id = "id_example" # str | The ID of the ORY Access Control Policy Role.
+    body = AddOryAccessControlPolicyRoleMembersBody(
+        members=[
+            "members_example",
+        ],
+    ) # AddOryAccessControlPolicyRoleMembersBody |  (optional)
 
+    # example passing only required values which don't have defaults set
+    try:
+        # Add a member to an ORY Access Control Policy Role
+        api_response = api_instance.add_ory_access_control_policy_role_members(flavor, id)
+        pprint(api_response)
+    except ory_keto_client.ApiException as e:
+        print("Exception when calling EnginesApi->add_ory_access_control_policy_role_members: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # Add a member to an ORY Access Control Policy Role
         api_response = api_instance.add_ory_access_control_policy_role_members(flavor, id, body=body)
         pprint(api_response)
-    except ApiException as e:
+    except ory_keto_client.ApiException as e:
         print("Exception when calling EnginesApi->add_ory_access_control_policy_role_members: %s\n" % e)
 ```
 
@@ -59,9 +75,9 @@ body = ory_keto_client.AddOryAccessControlPolicyRoleMembersBody() # AddOryAccess
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flavor** | **str**| The ORY Access Control Policy flavor. Can be \&quot;regex\&quot;, \&quot;glob\&quot;, and \&quot;exact\&quot;. | 
- **id** | **str**| The ID of the ORY Access Control Policy Role. | 
- **body** | [**AddOryAccessControlPolicyRoleMembersBody**](AddOryAccessControlPolicyRoleMembersBody.md)|  | [optional] 
+ **flavor** | **str**| The ORY Access Control Policy flavor. Can be \&quot;regex\&quot;, \&quot;glob\&quot;, and \&quot;exact\&quot;. |
+ **id** | **str**| The ID of the ORY Access Control Policy Role. |
+ **body** | [**AddOryAccessControlPolicyRoleMembersBody**](AddOryAccessControlPolicyRoleMembersBody.md)|  | [optional]
 
 ### Return type
 
@@ -94,10 +110,10 @@ Delete an ORY Access Control Policy
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_keto_client
-from ory_keto_client.rest import ApiException
+from ory_keto_client.api import engines_api
+from ory_keto_client.model.inline_response500 import InlineResponse500
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -109,13 +125,14 @@ configuration = ory_keto_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_keto_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_keto_client.EnginesApi(api_client)
-    flavor = 'flavor_example' # str | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".
-id = 'id_example' # str | The ID of the ORY Access Control Policy Role.
+    api_instance = engines_api.EnginesApi(api_client)
+    flavor = "flavor_example" # str | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".
+    id = "id_example" # str | The ID of the ORY Access Control Policy Role.
 
+    # example passing only required values which don't have defaults set
     try:
         api_instance.delete_ory_access_control_policy(flavor, id)
-    except ApiException as e:
+    except ory_keto_client.ApiException as e:
         print("Exception when calling EnginesApi->delete_ory_access_control_policy: %s\n" % e)
 ```
 
@@ -123,8 +140,8 @@ id = 'id_example' # str | The ID of the ORY Access Control Policy Role.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flavor** | **str**| The ORY Access Control Policy flavor. Can be \&quot;regex\&quot;, \&quot;glob\&quot;, and \&quot;exact\&quot;. | 
- **id** | **str**| The ID of the ORY Access Control Policy Role. | 
+ **flavor** | **str**| The ORY Access Control Policy flavor. Can be \&quot;regex\&quot;, \&quot;glob\&quot;, and \&quot;exact\&quot;. |
+ **id** | **str**| The ID of the ORY Access Control Policy Role. |
 
 ### Return type
 
@@ -157,10 +174,10 @@ Roles group several subjects into one. Rules can be assigned to ORY Access Contr
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_keto_client
-from ory_keto_client.rest import ApiException
+from ory_keto_client.api import engines_api
+from ory_keto_client.model.inline_response500 import InlineResponse500
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -172,14 +189,15 @@ configuration = ory_keto_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_keto_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_keto_client.EnginesApi(api_client)
-    flavor = 'flavor_example' # str | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".
-id = 'id_example' # str | The ID of the ORY Access Control Policy Role.
+    api_instance = engines_api.EnginesApi(api_client)
+    flavor = "flavor_example" # str | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".
+    id = "id_example" # str | The ID of the ORY Access Control Policy Role.
 
+    # example passing only required values which don't have defaults set
     try:
         # Delete an ORY Access Control Policy Role
         api_instance.delete_ory_access_control_policy_role(flavor, id)
-    except ApiException as e:
+    except ory_keto_client.ApiException as e:
         print("Exception when calling EnginesApi->delete_ory_access_control_policy_role: %s\n" % e)
 ```
 
@@ -187,8 +205,8 @@ id = 'id_example' # str | The ID of the ORY Access Control Policy Role.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flavor** | **str**| The ORY Access Control Policy flavor. Can be \&quot;regex\&quot;, \&quot;glob\&quot;, and \&quot;exact\&quot;. | 
- **id** | **str**| The ID of the ORY Access Control Policy Role. | 
+ **flavor** | **str**| The ORY Access Control Policy flavor. Can be \&quot;regex\&quot;, \&quot;glob\&quot;, and \&quot;exact\&quot;. |
+ **id** | **str**| The ID of the ORY Access Control Policy Role. |
 
 ### Return type
 
@@ -212,7 +230,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **do_ory_access_control_policies_allow**
-> AuthorizationResult do_ory_access_control_policies_allow(flavor, body=body)
+> AuthorizationResult do_ory_access_control_policies_allow(flavor)
 
 Check if a request is allowed
 
@@ -221,10 +239,12 @@ Use this endpoint to check if a request is allowed or not. If the request is all
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_keto_client
-from ory_keto_client.rest import ApiException
+from ory_keto_client.api import engines_api
+from ory_keto_client.model.inline_response500 import InlineResponse500
+from ory_keto_client.model.ory_access_control_policy_allowed_input import OryAccessControlPolicyAllowedInput
+from ory_keto_client.model.authorization_result import AuthorizationResult
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -236,15 +256,30 @@ configuration = ory_keto_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_keto_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_keto_client.EnginesApi(api_client)
-    flavor = 'flavor_example' # str | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".
-body = ory_keto_client.OryAccessControlPolicyAllowedInput() # OryAccessControlPolicyAllowedInput |  (optional)
+    api_instance = engines_api.EnginesApi(api_client)
+    flavor = "flavor_example" # str | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".
+    body = OryAccessControlPolicyAllowedInput(
+        action="action_example",
+        context={},
+        resource="resource_example",
+        subject="subject_example",
+    ) # OryAccessControlPolicyAllowedInput |  (optional)
 
+    # example passing only required values which don't have defaults set
+    try:
+        # Check if a request is allowed
+        api_response = api_instance.do_ory_access_control_policies_allow(flavor)
+        pprint(api_response)
+    except ory_keto_client.ApiException as e:
+        print("Exception when calling EnginesApi->do_ory_access_control_policies_allow: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # Check if a request is allowed
         api_response = api_instance.do_ory_access_control_policies_allow(flavor, body=body)
         pprint(api_response)
-    except ApiException as e:
+    except ory_keto_client.ApiException as e:
         print("Exception when calling EnginesApi->do_ory_access_control_policies_allow: %s\n" % e)
 ```
 
@@ -252,8 +287,8 @@ body = ory_keto_client.OryAccessControlPolicyAllowedInput() # OryAccessControlPo
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flavor** | **str**| The ORY Access Control Policy flavor. Can be \&quot;regex\&quot;, \&quot;glob\&quot;, and \&quot;exact\&quot;. | 
- **body** | [**OryAccessControlPolicyAllowedInput**](OryAccessControlPolicyAllowedInput.md)|  | [optional] 
+ **flavor** | **str**| The ORY Access Control Policy flavor. Can be \&quot;regex\&quot;, \&quot;glob\&quot;, and \&quot;exact\&quot;. |
+ **body** | [**OryAccessControlPolicyAllowedInput**](OryAccessControlPolicyAllowedInput.md)|  | [optional]
 
 ### Return type
 
@@ -287,10 +322,11 @@ Get an ORY Access Control Policy
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_keto_client
-from ory_keto_client.rest import ApiException
+from ory_keto_client.api import engines_api
+from ory_keto_client.model.inline_response500 import InlineResponse500
+from ory_keto_client.model.ory_access_control_policy import OryAccessControlPolicy
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -302,14 +338,15 @@ configuration = ory_keto_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_keto_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_keto_client.EnginesApi(api_client)
-    flavor = 'flavor_example' # str | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".
-id = 'id_example' # str | The ID of the ORY Access Control Policy Role.
+    api_instance = engines_api.EnginesApi(api_client)
+    flavor = "flavor_example" # str | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".
+    id = "id_example" # str | The ID of the ORY Access Control Policy Role.
 
+    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_ory_access_control_policy(flavor, id)
         pprint(api_response)
-    except ApiException as e:
+    except ory_keto_client.ApiException as e:
         print("Exception when calling EnginesApi->get_ory_access_control_policy: %s\n" % e)
 ```
 
@@ -317,8 +354,8 @@ id = 'id_example' # str | The ID of the ORY Access Control Policy Role.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flavor** | **str**| The ORY Access Control Policy flavor. Can be \&quot;regex\&quot;, \&quot;glob\&quot;, and \&quot;exact\&quot;. | 
- **id** | **str**| The ID of the ORY Access Control Policy Role. | 
+ **flavor** | **str**| The ORY Access Control Policy flavor. Can be \&quot;regex\&quot;, \&quot;glob\&quot;, and \&quot;exact\&quot;. |
+ **id** | **str**| The ID of the ORY Access Control Policy Role. |
 
 ### Return type
 
@@ -352,10 +389,11 @@ Roles group several subjects into one. Rules can be assigned to ORY Access Contr
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_keto_client
-from ory_keto_client.rest import ApiException
+from ory_keto_client.api import engines_api
+from ory_keto_client.model.inline_response500 import InlineResponse500
+from ory_keto_client.model.ory_access_control_policy_role import OryAccessControlPolicyRole
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -367,15 +405,16 @@ configuration = ory_keto_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_keto_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_keto_client.EnginesApi(api_client)
-    flavor = 'flavor_example' # str | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".
-id = 'id_example' # str | The ID of the ORY Access Control Policy Role.
+    api_instance = engines_api.EnginesApi(api_client)
+    flavor = "flavor_example" # str | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".
+    id = "id_example" # str | The ID of the ORY Access Control Policy Role.
 
+    # example passing only required values which don't have defaults set
     try:
         # Get an ORY Access Control Policy Role
         api_response = api_instance.get_ory_access_control_policy_role(flavor, id)
         pprint(api_response)
-    except ApiException as e:
+    except ory_keto_client.ApiException as e:
         print("Exception when calling EnginesApi->get_ory_access_control_policy_role: %s\n" % e)
 ```
 
@@ -383,8 +422,8 @@ id = 'id_example' # str | The ID of the ORY Access Control Policy Role.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flavor** | **str**| The ORY Access Control Policy flavor. Can be \&quot;regex\&quot;, \&quot;glob\&quot;, and \&quot;exact\&quot;. | 
- **id** | **str**| The ID of the ORY Access Control Policy Role. | 
+ **flavor** | **str**| The ORY Access Control Policy flavor. Can be \&quot;regex\&quot;, \&quot;glob\&quot;, and \&quot;exact\&quot;. |
+ **id** | **str**| The ID of the ORY Access Control Policy Role. |
 
 ### Return type
 
@@ -409,7 +448,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_ory_access_control_policies**
-> list[OryAccessControlPolicy] list_ory_access_control_policies(flavor, limit=limit, offset=offset, subject=subject, resource=resource, action=action)
+> [OryAccessControlPolicy] list_ory_access_control_policies(flavor)
 
 
 
@@ -418,10 +457,11 @@ List ORY Access Control Policies
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_keto_client
-from ory_keto_client.rest import ApiException
+from ory_keto_client.api import engines_api
+from ory_keto_client.model.inline_response500 import InlineResponse500
+from ory_keto_client.model.ory_access_control_policy import OryAccessControlPolicy
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -433,18 +473,27 @@ configuration = ory_keto_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_keto_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_keto_client.EnginesApi(api_client)
-    flavor = 'flavor_example' # str | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\"
-limit = 56 # int | The maximum amount of policies returned. (optional)
-offset = 56 # int | The offset from where to start looking. (optional)
-subject = 'subject_example' # str | The subject for whom the policies are to be listed. (optional)
-resource = 'resource_example' # str | The resource for which the policies are to be listed. (optional)
-action = 'action_example' # str | The action for which policies are to be listed. (optional)
+    api_instance = engines_api.EnginesApi(api_client)
+    flavor = "flavor_example" # str | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\"
+    limit = 1 # int | The maximum amount of policies returned. (optional)
+    offset = 1 # int | The offset from where to start looking. (optional)
+    subject = "subject_example" # str | The subject for whom the policies are to be listed. (optional)
+    resource = "resource_example" # str | The resource for which the policies are to be listed. (optional)
+    action = "action_example" # str | The action for which policies are to be listed. (optional)
 
+    # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.list_ory_access_control_policies(flavor)
+        pprint(api_response)
+    except ory_keto_client.ApiException as e:
+        print("Exception when calling EnginesApi->list_ory_access_control_policies: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         api_response = api_instance.list_ory_access_control_policies(flavor, limit=limit, offset=offset, subject=subject, resource=resource, action=action)
         pprint(api_response)
-    except ApiException as e:
+    except ory_keto_client.ApiException as e:
         print("Exception when calling EnginesApi->list_ory_access_control_policies: %s\n" % e)
 ```
 
@@ -452,16 +501,16 @@ action = 'action_example' # str | The action for which policies are to be listed
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flavor** | **str**| The ORY Access Control Policy flavor. Can be \&quot;regex\&quot;, \&quot;glob\&quot;, and \&quot;exact\&quot; | 
- **limit** | **int**| The maximum amount of policies returned. | [optional] 
- **offset** | **int**| The offset from where to start looking. | [optional] 
- **subject** | **str**| The subject for whom the policies are to be listed. | [optional] 
- **resource** | **str**| The resource for which the policies are to be listed. | [optional] 
- **action** | **str**| The action for which policies are to be listed. | [optional] 
+ **flavor** | **str**| The ORY Access Control Policy flavor. Can be \&quot;regex\&quot;, \&quot;glob\&quot;, and \&quot;exact\&quot; |
+ **limit** | **int**| The maximum amount of policies returned. | [optional]
+ **offset** | **int**| The offset from where to start looking. | [optional]
+ **subject** | **str**| The subject for whom the policies are to be listed. | [optional]
+ **resource** | **str**| The resource for which the policies are to be listed. | [optional]
+ **action** | **str**| The action for which policies are to be listed. | [optional]
 
 ### Return type
 
-[**list[OryAccessControlPolicy]**](OryAccessControlPolicy.md)
+[**[OryAccessControlPolicy]**](OryAccessControlPolicy.md)
 
 ### Authorization
 
@@ -481,7 +530,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_ory_access_control_policy_roles**
-> list[OryAccessControlPolicyRole] list_ory_access_control_policy_roles(flavor, limit=limit, offset=offset, member=member)
+> [OryAccessControlPolicyRole] list_ory_access_control_policy_roles(flavor)
 
 List ORY Access Control Policy Roles
 
@@ -490,10 +539,11 @@ Roles group several subjects into one. Rules can be assigned to ORY Access Contr
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_keto_client
-from ory_keto_client.rest import ApiException
+from ory_keto_client.api import engines_api
+from ory_keto_client.model.inline_response500 import InlineResponse500
+from ory_keto_client.model.ory_access_control_policy_role import OryAccessControlPolicyRole
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -505,17 +555,27 @@ configuration = ory_keto_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_keto_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_keto_client.EnginesApi(api_client)
-    flavor = 'flavor_example' # str | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\"
-limit = 56 # int | The maximum amount of policies returned. (optional)
-offset = 56 # int | The offset from where to start looking. (optional)
-member = 'member_example' # str | The member for which the roles are to be listed. (optional)
+    api_instance = engines_api.EnginesApi(api_client)
+    flavor = "flavor_example" # str | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\"
+    limit = 1 # int | The maximum amount of policies returned. (optional)
+    offset = 1 # int | The offset from where to start looking. (optional)
+    member = "member_example" # str | The member for which the roles are to be listed. (optional)
 
+    # example passing only required values which don't have defaults set
+    try:
+        # List ORY Access Control Policy Roles
+        api_response = api_instance.list_ory_access_control_policy_roles(flavor)
+        pprint(api_response)
+    except ory_keto_client.ApiException as e:
+        print("Exception when calling EnginesApi->list_ory_access_control_policy_roles: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # List ORY Access Control Policy Roles
         api_response = api_instance.list_ory_access_control_policy_roles(flavor, limit=limit, offset=offset, member=member)
         pprint(api_response)
-    except ApiException as e:
+    except ory_keto_client.ApiException as e:
         print("Exception when calling EnginesApi->list_ory_access_control_policy_roles: %s\n" % e)
 ```
 
@@ -523,14 +583,14 @@ member = 'member_example' # str | The member for which the roles are to be liste
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flavor** | **str**| The ORY Access Control Policy flavor. Can be \&quot;regex\&quot;, \&quot;glob\&quot;, and \&quot;exact\&quot; | 
- **limit** | **int**| The maximum amount of policies returned. | [optional] 
- **offset** | **int**| The offset from where to start looking. | [optional] 
- **member** | **str**| The member for which the roles are to be listed. | [optional] 
+ **flavor** | **str**| The ORY Access Control Policy flavor. Can be \&quot;regex\&quot;, \&quot;glob\&quot;, and \&quot;exact\&quot; |
+ **limit** | **int**| The maximum amount of policies returned. | [optional]
+ **offset** | **int**| The offset from where to start looking. | [optional]
+ **member** | **str**| The member for which the roles are to be listed. | [optional]
 
 ### Return type
 
-[**list[OryAccessControlPolicyRole]**](OryAccessControlPolicyRole.md)
+[**[OryAccessControlPolicyRole]**](OryAccessControlPolicyRole.md)
 
 ### Authorization
 
@@ -559,10 +619,10 @@ Roles group several subjects into one. Rules can be assigned to ORY Access Contr
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_keto_client
-from ory_keto_client.rest import ApiException
+from ory_keto_client.api import engines_api
+from ory_keto_client.model.inline_response500 import InlineResponse500
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -574,15 +634,16 @@ configuration = ory_keto_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_keto_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_keto_client.EnginesApi(api_client)
-    flavor = 'flavor_example' # str | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".
-id = 'id_example' # str | The ID of the ORY Access Control Policy Role.
-member = 'member_example' # str | The member to be removed.
+    api_instance = engines_api.EnginesApi(api_client)
+    flavor = "flavor_example" # str | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".
+    id = "id_example" # str | The ID of the ORY Access Control Policy Role.
+    member = "member_example" # str | The member to be removed.
 
+    # example passing only required values which don't have defaults set
     try:
         # Remove a member from an ORY Access Control Policy Role
         api_instance.remove_ory_access_control_policy_role_members(flavor, id, member)
-    except ApiException as e:
+    except ory_keto_client.ApiException as e:
         print("Exception when calling EnginesApi->remove_ory_access_control_policy_role_members: %s\n" % e)
 ```
 
@@ -590,9 +651,9 @@ member = 'member_example' # str | The member to be removed.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flavor** | **str**| The ORY Access Control Policy flavor. Can be \&quot;regex\&quot;, \&quot;glob\&quot;, and \&quot;exact\&quot;. | 
- **id** | **str**| The ID of the ORY Access Control Policy Role. | 
- **member** | **str**| The member to be removed. | 
+ **flavor** | **str**| The ORY Access Control Policy flavor. Can be \&quot;regex\&quot;, \&quot;glob\&quot;, and \&quot;exact\&quot;. |
+ **id** | **str**| The ID of the ORY Access Control Policy Role. |
+ **member** | **str**| The member to be removed. |
 
 ### Return type
 
@@ -616,7 +677,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **upsert_ory_access_control_policy**
-> OryAccessControlPolicy upsert_ory_access_control_policy(flavor, body=body)
+> OryAccessControlPolicy upsert_ory_access_control_policy(flavor)
 
 
 
@@ -625,10 +686,11 @@ Upsert an ORY Access Control Policy
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_keto_client
-from ory_keto_client.rest import ApiException
+from ory_keto_client.api import engines_api
+from ory_keto_client.model.inline_response500 import InlineResponse500
+from ory_keto_client.model.ory_access_control_policy import OryAccessControlPolicy
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -640,14 +702,37 @@ configuration = ory_keto_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_keto_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_keto_client.EnginesApi(api_client)
-    flavor = 'flavor_example' # str | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".
-body = ory_keto_client.OryAccessControlPolicy() # OryAccessControlPolicy |  (optional)
+    api_instance = engines_api.EnginesApi(api_client)
+    flavor = "flavor_example" # str | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".
+    body = OryAccessControlPolicy(
+        actions=[
+            "actions_example",
+        ],
+        conditions={},
+        description="description_example",
+        effect="effect_example",
+        id="id_example",
+        resources=[
+            "resources_example",
+        ],
+        subjects=[
+            "subjects_example",
+        ],
+    ) # OryAccessControlPolicy |  (optional)
 
+    # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.upsert_ory_access_control_policy(flavor)
+        pprint(api_response)
+    except ory_keto_client.ApiException as e:
+        print("Exception when calling EnginesApi->upsert_ory_access_control_policy: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         api_response = api_instance.upsert_ory_access_control_policy(flavor, body=body)
         pprint(api_response)
-    except ApiException as e:
+    except ory_keto_client.ApiException as e:
         print("Exception when calling EnginesApi->upsert_ory_access_control_policy: %s\n" % e)
 ```
 
@@ -655,8 +740,8 @@ body = ory_keto_client.OryAccessControlPolicy() # OryAccessControlPolicy |  (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flavor** | **str**| The ORY Access Control Policy flavor. Can be \&quot;regex\&quot;, \&quot;glob\&quot;, and \&quot;exact\&quot;. | 
- **body** | [**OryAccessControlPolicy**](OryAccessControlPolicy.md)|  | [optional] 
+ **flavor** | **str**| The ORY Access Control Policy flavor. Can be \&quot;regex\&quot;, \&quot;glob\&quot;, and \&quot;exact\&quot;. |
+ **body** | [**OryAccessControlPolicy**](OryAccessControlPolicy.md)|  | [optional]
 
 ### Return type
 
@@ -680,7 +765,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **upsert_ory_access_control_policy_role**
-> OryAccessControlPolicyRole upsert_ory_access_control_policy_role(flavor, body=body)
+> OryAccessControlPolicyRole upsert_ory_access_control_policy_role(flavor)
 
 Upsert an ORY Access Control Policy Role
 
@@ -689,10 +774,11 @@ Roles group several subjects into one. Rules can be assigned to ORY Access Contr
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_keto_client
-from ory_keto_client.rest import ApiException
+from ory_keto_client.api import engines_api
+from ory_keto_client.model.inline_response500 import InlineResponse500
+from ory_keto_client.model.ory_access_control_policy_role import OryAccessControlPolicyRole
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -704,15 +790,30 @@ configuration = ory_keto_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_keto_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_keto_client.EnginesApi(api_client)
-    flavor = 'flavor_example' # str | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".
-body = ory_keto_client.OryAccessControlPolicyRole() # OryAccessControlPolicyRole |  (optional)
+    api_instance = engines_api.EnginesApi(api_client)
+    flavor = "flavor_example" # str | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".
+    body = OryAccessControlPolicyRole(
+        id="id_example",
+        members=[
+            "members_example",
+        ],
+    ) # OryAccessControlPolicyRole |  (optional)
 
+    # example passing only required values which don't have defaults set
+    try:
+        # Upsert an ORY Access Control Policy Role
+        api_response = api_instance.upsert_ory_access_control_policy_role(flavor)
+        pprint(api_response)
+    except ory_keto_client.ApiException as e:
+        print("Exception when calling EnginesApi->upsert_ory_access_control_policy_role: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # Upsert an ORY Access Control Policy Role
         api_response = api_instance.upsert_ory_access_control_policy_role(flavor, body=body)
         pprint(api_response)
-    except ApiException as e:
+    except ory_keto_client.ApiException as e:
         print("Exception when calling EnginesApi->upsert_ory_access_control_policy_role: %s\n" % e)
 ```
 
@@ -720,8 +821,8 @@ body = ory_keto_client.OryAccessControlPolicyRole() # OryAccessControlPolicyRole
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flavor** | **str**| The ORY Access Control Policy flavor. Can be \&quot;regex\&quot;, \&quot;glob\&quot;, and \&quot;exact\&quot;. | 
- **body** | [**OryAccessControlPolicyRole**](OryAccessControlPolicyRole.md)|  | [optional] 
+ **flavor** | **str**| The ORY Access Control Policy flavor. Can be \&quot;regex\&quot;, \&quot;glob\&quot;, and \&quot;exact\&quot;. |
+ **body** | [**OryAccessControlPolicyRole**](OryAccessControlPolicyRole.md)|  | [optional]
 
 ### Return type
 

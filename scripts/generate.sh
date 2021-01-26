@@ -226,8 +226,13 @@ rust () {
     --git-repo-id sdk \
     --git-host github.com \
     -c ./config/client/rust.yml.proc.yml
+
+  file="${dir}/Cargo.toml"
+
+  (sed "s/${VERSION}/${RAW_VERSION}"'"\ndescription = "SDK Client for ORY Keto"\ndocumentation = "https:\/\/www.ory.sh\/keto\/docs\/sdk"\nhomepage = "https:\/\/www.ory.sh"\nlicense = "Apache-2.0/g' < "${file}") > tmp.$$.rb && mv tmp.$$.rb "${file}"
 }
 
+rust
 golang
 typescript
 java
@@ -235,7 +240,6 @@ php
 python
 ruby
 dotnet
-rust
 dart
 
 cleanup

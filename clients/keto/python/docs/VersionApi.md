@@ -17,10 +17,10 @@ This endpoint returns the service version typically notated using semantic versi
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_keto_client
-from ory_keto_client.rest import ApiException
+from ory_keto_client.api import version_api
+from ory_keto_client.model.version import Version
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -32,13 +32,14 @@ configuration = ory_keto_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_keto_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_keto_client.VersionApi(api_client)
-    
+    api_instance = version_api.VersionApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
     try:
         # Get service version
         api_response = api_instance.get_version()
         pprint(api_response)
-    except ApiException as e:
+    except ory_keto_client.ApiException as e:
         print("Exception when calling VersionApi->get_version: %s\n" % e)
 ```
 

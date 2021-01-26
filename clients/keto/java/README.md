@@ -1,10 +1,10 @@
-# hydra-client
+# keto-client
 
 ORY Keto
-- API version: v0.0.0-alpha.1
-  - Build date: 2020-01-06T13:23:35.750173+01:00[Europe/Berlin]
+- API version: v0.0.0-alpha.55
+  - Build date: 2021-01-26T10:39:08.711682+01:00[Europe/Berlin]
 
-A cloud native access control server providing best-practice patterns (RBAC, ABAC, ACL, AWS IAM Policies, Kubernetes Roles, ...) via REST APIs.
+Ory Keto is a cloud native access control server providing best-practice patterns (RBAC, ABAC, ACL, AWS IAM Policies, Kubernetes Roles, ...) via REST APIs.
 
   For more information, please visit [https://www.ory.sh](https://www.ory.sh)
 
@@ -40,8 +40,8 @@ Add this dependency to your project's POM:
 ```xml
 <dependency>
   <groupId>sh.ory.keto</groupId>
-  <artifactId>hydra-client</artifactId>
-  <version>v0.0.0-alpha.1</version>
+  <artifactId>keto-client</artifactId>
+  <version>v0.0.0-alpha.55</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "sh.ory.keto:hydra-client:v0.0.0-alpha.1"
+compile "sh.ory.keto:keto-client:v0.0.0-alpha.55"
 ```
 
 ### Others
@@ -64,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/hydra-client-v0.0.0-alpha.1.jar`
+* `target/keto-client-v0.0.0-alpha.55.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -128,71 +128,14 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [AddOryAccessControlPolicyRoleMembers](docs/AddOryAccessControlPolicyRoleMembers.md)
  - [AddOryAccessControlPolicyRoleMembersBody](docs/AddOryAccessControlPolicyRoleMembersBody.md)
- - [AddOryAccessControlPolicyRoleMembersInternalServerError](docs/AddOryAccessControlPolicyRoleMembersInternalServerError.md)
- - [AddOryAccessControlPolicyRoleMembersInternalServerErrorBody](docs/AddOryAccessControlPolicyRoleMembersInternalServerErrorBody.md)
- - [AddOryAccessControlPolicyRoleMembersOK](docs/AddOryAccessControlPolicyRoleMembersOK.md)
  - [AuthorizationResult](docs/AuthorizationResult.md)
- - [DeleteOryAccessControlPolicy](docs/DeleteOryAccessControlPolicy.md)
- - [DeleteOryAccessControlPolicyInternalServerError](docs/DeleteOryAccessControlPolicyInternalServerError.md)
- - [DeleteOryAccessControlPolicyInternalServerErrorBody](docs/DeleteOryAccessControlPolicyInternalServerErrorBody.md)
- - [DeleteOryAccessControlPolicyRole](docs/DeleteOryAccessControlPolicyRole.md)
- - [DeleteOryAccessControlPolicyRoleInternalServerError](docs/DeleteOryAccessControlPolicyRoleInternalServerError.md)
- - [DeleteOryAccessControlPolicyRoleInternalServerErrorBody](docs/DeleteOryAccessControlPolicyRoleInternalServerErrorBody.md)
- - [DoOryAccessControlPoliciesAllow](docs/DoOryAccessControlPoliciesAllow.md)
- - [DoOryAccessControlPoliciesAllowForbidden](docs/DoOryAccessControlPoliciesAllowForbidden.md)
- - [DoOryAccessControlPoliciesAllowInternalServerError](docs/DoOryAccessControlPoliciesAllowInternalServerError.md)
- - [DoOryAccessControlPoliciesAllowInternalServerErrorBody](docs/DoOryAccessControlPoliciesAllowInternalServerErrorBody.md)
- - [DoOryAccessControlPoliciesAllowOK](docs/DoOryAccessControlPoliciesAllowOK.md)
- - [GetOryAccessControlPolicy](docs/GetOryAccessControlPolicy.md)
- - [GetOryAccessControlPolicyInternalServerError](docs/GetOryAccessControlPolicyInternalServerError.md)
- - [GetOryAccessControlPolicyInternalServerErrorBody](docs/GetOryAccessControlPolicyInternalServerErrorBody.md)
- - [GetOryAccessControlPolicyNotFound](docs/GetOryAccessControlPolicyNotFound.md)
- - [GetOryAccessControlPolicyNotFoundBody](docs/GetOryAccessControlPolicyNotFoundBody.md)
- - [GetOryAccessControlPolicyOK](docs/GetOryAccessControlPolicyOK.md)
- - [GetOryAccessControlPolicyRole](docs/GetOryAccessControlPolicyRole.md)
- - [GetOryAccessControlPolicyRoleInternalServerError](docs/GetOryAccessControlPolicyRoleInternalServerError.md)
- - [GetOryAccessControlPolicyRoleInternalServerErrorBody](docs/GetOryAccessControlPolicyRoleInternalServerErrorBody.md)
- - [GetOryAccessControlPolicyRoleNotFound](docs/GetOryAccessControlPolicyRoleNotFound.md)
- - [GetOryAccessControlPolicyRoleNotFoundBody](docs/GetOryAccessControlPolicyRoleNotFoundBody.md)
- - [GetOryAccessControlPolicyRoleOK](docs/GetOryAccessControlPolicyRoleOK.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
  - [HealthStatus](docs/HealthStatus.md)
  - [InlineResponse500](docs/InlineResponse500.md)
- - [Input](docs/Input.md)
- - [IsInstanceAliveInternalServerError](docs/IsInstanceAliveInternalServerError.md)
- - [IsInstanceAliveInternalServerErrorBody](docs/IsInstanceAliveInternalServerErrorBody.md)
- - [IsInstanceAliveOK](docs/IsInstanceAliveOK.md)
- - [ListOryAccessControlPolicies](docs/ListOryAccessControlPolicies.md)
- - [ListOryAccessControlPoliciesInternalServerError](docs/ListOryAccessControlPoliciesInternalServerError.md)
- - [ListOryAccessControlPoliciesInternalServerErrorBody](docs/ListOryAccessControlPoliciesInternalServerErrorBody.md)
- - [ListOryAccessControlPoliciesOK](docs/ListOryAccessControlPoliciesOK.md)
- - [ListOryAccessControlPolicyRoles](docs/ListOryAccessControlPolicyRoles.md)
- - [ListOryAccessControlPolicyRolesInternalServerError](docs/ListOryAccessControlPolicyRolesInternalServerError.md)
- - [ListOryAccessControlPolicyRolesInternalServerErrorBody](docs/ListOryAccessControlPolicyRolesInternalServerErrorBody.md)
- - [ListOryAccessControlPolicyRolesOK](docs/ListOryAccessControlPolicyRolesOK.md)
- - [OryAccessControlPolicies](docs/OryAccessControlPolicies.md)
  - [OryAccessControlPolicy](docs/OryAccessControlPolicy.md)
  - [OryAccessControlPolicyAllowedInput](docs/OryAccessControlPolicyAllowedInput.md)
  - [OryAccessControlPolicyRole](docs/OryAccessControlPolicyRole.md)
- - [OryAccessControlPolicyRoles](docs/OryAccessControlPolicyRoles.md)
- - [Policy](docs/Policy.md)
- - [RemoveOryAccessControlPolicyRoleMembers](docs/RemoveOryAccessControlPolicyRoleMembers.md)
- - [RemoveOryAccessControlPolicyRoleMembersInternalServerError](docs/RemoveOryAccessControlPolicyRoleMembersInternalServerError.md)
- - [RemoveOryAccessControlPolicyRoleMembersInternalServerErrorBody](docs/RemoveOryAccessControlPolicyRoleMembersInternalServerErrorBody.md)
- - [Role](docs/Role.md)
- - [SwaggerHealthStatus](docs/SwaggerHealthStatus.md)
- - [SwaggerNotReadyStatus](docs/SwaggerNotReadyStatus.md)
- - [SwaggerVersion](docs/SwaggerVersion.md)
- - [UpsertOryAccessControlPolicy](docs/UpsertOryAccessControlPolicy.md)
- - [UpsertOryAccessControlPolicyInternalServerError](docs/UpsertOryAccessControlPolicyInternalServerError.md)
- - [UpsertOryAccessControlPolicyInternalServerErrorBody](docs/UpsertOryAccessControlPolicyInternalServerErrorBody.md)
- - [UpsertOryAccessControlPolicyOK](docs/UpsertOryAccessControlPolicyOK.md)
- - [UpsertOryAccessControlPolicyRole](docs/UpsertOryAccessControlPolicyRole.md)
- - [UpsertOryAccessControlPolicyRoleInternalServerError](docs/UpsertOryAccessControlPolicyRoleInternalServerError.md)
- - [UpsertOryAccessControlPolicyRoleInternalServerErrorBody](docs/UpsertOryAccessControlPolicyRoleInternalServerErrorBody.md)
- - [UpsertOryAccessControlPolicyRoleOK](docs/UpsertOryAccessControlPolicyRoleOK.md)
  - [Version](docs/Version.md)
 
 
