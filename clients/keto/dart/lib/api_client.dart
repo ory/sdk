@@ -158,136 +158,22 @@ class ApiClient {
           break;
         case 'double':
           return value is double ? value : double.parse('$value');
-        case 'AddOryAccessControlPolicyRoleMembers':
-          return AddOryAccessControlPolicyRoleMembers.fromJson(value);
         case 'AddOryAccessControlPolicyRoleMembersBody':
           return AddOryAccessControlPolicyRoleMembersBody.fromJson(value);
-        case 'AddOryAccessControlPolicyRoleMembersInternalServerError':
-          return AddOryAccessControlPolicyRoleMembersInternalServerError.fromJson(value);
-        case 'AddOryAccessControlPolicyRoleMembersInternalServerErrorBody':
-          return AddOryAccessControlPolicyRoleMembersInternalServerErrorBody.fromJson(value);
-        case 'AddOryAccessControlPolicyRoleMembersOK':
-          return AddOryAccessControlPolicyRoleMembersOK.fromJson(value);
         case 'AuthorizationResult':
           return AuthorizationResult.fromJson(value);
-        case 'DeleteOryAccessControlPolicy':
-          return DeleteOryAccessControlPolicy.fromJson(value);
-        case 'DeleteOryAccessControlPolicyInternalServerError':
-          return DeleteOryAccessControlPolicyInternalServerError.fromJson(value);
-        case 'DeleteOryAccessControlPolicyInternalServerErrorBody':
-          return DeleteOryAccessControlPolicyInternalServerErrorBody.fromJson(value);
-        case 'DeleteOryAccessControlPolicyRole':
-          return DeleteOryAccessControlPolicyRole.fromJson(value);
-        case 'DeleteOryAccessControlPolicyRoleInternalServerError':
-          return DeleteOryAccessControlPolicyRoleInternalServerError.fromJson(value);
-        case 'DeleteOryAccessControlPolicyRoleInternalServerErrorBody':
-          return DeleteOryAccessControlPolicyRoleInternalServerErrorBody.fromJson(value);
-        case 'DoOryAccessControlPoliciesAllow':
-          return DoOryAccessControlPoliciesAllow.fromJson(value);
-        case 'DoOryAccessControlPoliciesAllowForbidden':
-          return DoOryAccessControlPoliciesAllowForbidden.fromJson(value);
-        case 'DoOryAccessControlPoliciesAllowInternalServerError':
-          return DoOryAccessControlPoliciesAllowInternalServerError.fromJson(value);
-        case 'DoOryAccessControlPoliciesAllowInternalServerErrorBody':
-          return DoOryAccessControlPoliciesAllowInternalServerErrorBody.fromJson(value);
-        case 'DoOryAccessControlPoliciesAllowOK':
-          return DoOryAccessControlPoliciesAllowOK.fromJson(value);
-        case 'GetOryAccessControlPolicy':
-          return GetOryAccessControlPolicy.fromJson(value);
-        case 'GetOryAccessControlPolicyInternalServerError':
-          return GetOryAccessControlPolicyInternalServerError.fromJson(value);
-        case 'GetOryAccessControlPolicyInternalServerErrorBody':
-          return GetOryAccessControlPolicyInternalServerErrorBody.fromJson(value);
-        case 'GetOryAccessControlPolicyNotFound':
-          return GetOryAccessControlPolicyNotFound.fromJson(value);
-        case 'GetOryAccessControlPolicyNotFoundBody':
-          return GetOryAccessControlPolicyNotFoundBody.fromJson(value);
-        case 'GetOryAccessControlPolicyOK':
-          return GetOryAccessControlPolicyOK.fromJson(value);
-        case 'GetOryAccessControlPolicyRole':
-          return GetOryAccessControlPolicyRole.fromJson(value);
-        case 'GetOryAccessControlPolicyRoleInternalServerError':
-          return GetOryAccessControlPolicyRoleInternalServerError.fromJson(value);
-        case 'GetOryAccessControlPolicyRoleInternalServerErrorBody':
-          return GetOryAccessControlPolicyRoleInternalServerErrorBody.fromJson(value);
-        case 'GetOryAccessControlPolicyRoleNotFound':
-          return GetOryAccessControlPolicyRoleNotFound.fromJson(value);
-        case 'GetOryAccessControlPolicyRoleNotFoundBody':
-          return GetOryAccessControlPolicyRoleNotFoundBody.fromJson(value);
-        case 'GetOryAccessControlPolicyRoleOK':
-          return GetOryAccessControlPolicyRoleOK.fromJson(value);
         case 'HealthNotReadyStatus':
           return HealthNotReadyStatus.fromJson(value);
         case 'HealthStatus':
           return HealthStatus.fromJson(value);
         case 'InlineResponse500':
           return InlineResponse500.fromJson(value);
-        case 'Input':
-          return Input.fromJson(value);
-        case 'IsInstanceAliveInternalServerError':
-          return IsInstanceAliveInternalServerError.fromJson(value);
-        case 'IsInstanceAliveInternalServerErrorBody':
-          return IsInstanceAliveInternalServerErrorBody.fromJson(value);
-        case 'IsInstanceAliveOK':
-          return IsInstanceAliveOK.fromJson(value);
-        case 'ListOryAccessControlPolicies':
-          return ListOryAccessControlPolicies.fromJson(value);
-        case 'ListOryAccessControlPoliciesInternalServerError':
-          return ListOryAccessControlPoliciesInternalServerError.fromJson(value);
-        case 'ListOryAccessControlPoliciesInternalServerErrorBody':
-          return ListOryAccessControlPoliciesInternalServerErrorBody.fromJson(value);
-        case 'ListOryAccessControlPoliciesOK':
-          return ListOryAccessControlPoliciesOK.fromJson(value);
-        case 'ListOryAccessControlPolicyRoles':
-          return ListOryAccessControlPolicyRoles.fromJson(value);
-        case 'ListOryAccessControlPolicyRolesInternalServerError':
-          return ListOryAccessControlPolicyRolesInternalServerError.fromJson(value);
-        case 'ListOryAccessControlPolicyRolesInternalServerErrorBody':
-          return ListOryAccessControlPolicyRolesInternalServerErrorBody.fromJson(value);
-        case 'ListOryAccessControlPolicyRolesOK':
-          return ListOryAccessControlPolicyRolesOK.fromJson(value);
-        case 'OryAccessControlPolicies':
-          return OryAccessControlPolicies.fromJson(value);
         case 'OryAccessControlPolicy':
           return OryAccessControlPolicy.fromJson(value);
         case 'OryAccessControlPolicyAllowedInput':
           return OryAccessControlPolicyAllowedInput.fromJson(value);
         case 'OryAccessControlPolicyRole':
           return OryAccessControlPolicyRole.fromJson(value);
-        case 'OryAccessControlPolicyRoles':
-          return OryAccessControlPolicyRoles.fromJson(value);
-        case 'Policy':
-          return Policy.fromJson(value);
-        case 'RemoveOryAccessControlPolicyRoleMembers':
-          return RemoveOryAccessControlPolicyRoleMembers.fromJson(value);
-        case 'RemoveOryAccessControlPolicyRoleMembersInternalServerError':
-          return RemoveOryAccessControlPolicyRoleMembersInternalServerError.fromJson(value);
-        case 'RemoveOryAccessControlPolicyRoleMembersInternalServerErrorBody':
-          return RemoveOryAccessControlPolicyRoleMembersInternalServerErrorBody.fromJson(value);
-        case 'Role':
-          return Role.fromJson(value);
-        case 'SwaggerHealthStatus':
-          return SwaggerHealthStatus.fromJson(value);
-        case 'SwaggerNotReadyStatus':
-          return SwaggerNotReadyStatus.fromJson(value);
-        case 'SwaggerVersion':
-          return SwaggerVersion.fromJson(value);
-        case 'UpsertOryAccessControlPolicy':
-          return UpsertOryAccessControlPolicy.fromJson(value);
-        case 'UpsertOryAccessControlPolicyInternalServerError':
-          return UpsertOryAccessControlPolicyInternalServerError.fromJson(value);
-        case 'UpsertOryAccessControlPolicyInternalServerErrorBody':
-          return UpsertOryAccessControlPolicyInternalServerErrorBody.fromJson(value);
-        case 'UpsertOryAccessControlPolicyOK':
-          return UpsertOryAccessControlPolicyOK.fromJson(value);
-        case 'UpsertOryAccessControlPolicyRole':
-          return UpsertOryAccessControlPolicyRole.fromJson(value);
-        case 'UpsertOryAccessControlPolicyRoleInternalServerError':
-          return UpsertOryAccessControlPolicyRoleInternalServerError.fromJson(value);
-        case 'UpsertOryAccessControlPolicyRoleInternalServerErrorBody':
-          return UpsertOryAccessControlPolicyRoleInternalServerErrorBody.fromJson(value);
-        case 'UpsertOryAccessControlPolicyRoleOK':
-          return UpsertOryAccessControlPolicyRoleOK.fromJson(value);
         case 'Version':
           return Version.fromJson(value);
         default:

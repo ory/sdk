@@ -10,7 +10,7 @@ info:
     name: Apache 2.0
     url: https://github.com/ory/keto/blob/master/LICENSE
   title: ORY Keto
-  version: v0.0.0-alpha.46
+  version: v0.0.0-alpha.55
 servers:
 - url: /
 paths:
@@ -708,4 +708,6 @@ components:
           type: string
         status:
           type: string
+      type: object
+x-original-swagger-version: "2.0"
 

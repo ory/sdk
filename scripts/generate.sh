@@ -21,6 +21,7 @@ cleanup() {
   rm "clients/${PROJECT}/typescript/git_push.sh" || true
   rm "clients/${PROJECT}/dotnet/git_push.sh" || true
   rm "clients/${PROJECT}/dart/git_push.sh" || true
+  rm "clients/${PROJECT}/rust/git_push.sh" || true
 
   rm "clients/${PROJECT}/java/.travis.yml" || true
   rm "clients/${PROJECT}/php/.travis.yml" || true
@@ -28,6 +29,8 @@ cleanup() {
   rm "clients/${PROJECT}/ruby/.travis.yml" || true
   rm "clients/${PROJECT}/typescript/.travis.yml" || true
   rm "clients/${PROJECT}/dotnet/.travis.yml" || true
+  rm "clients/${PROJECT}/dart/.travis.yml" || true
+  rm "clients/${PROJECT}/rust/.travis.yml" || true
 }
 
 typescript () {
@@ -211,6 +214,25 @@ dart () {
   cp "LICENSE" "clients/${PROJECT}/dart"
 }
 
+rust () {
+  echo "Generating Rust..."
+
+  dir="clients/${PROJECT}/rust"
+
+  openapi-generator-cli generate -i "${SPEC_FILE}" \
+    -g rust \
+    -o "$dir" \
+    --git-user-id ory \
+    --git-repo-id sdk \
+    --git-host github.com \
+    -c ./config/client/rust.yml.proc.yml
+
+  file="${dir}/Cargo.toml"
+
+  (sed "s/${VERSION}/${RAW_VERSION}"'"\ndescription = "SDK Client for ORY Keto"\ndocumentation = "https:\/\/www.ory.sh\/keto\/docs\/sdk"\nhomepage = "https:\/\/www.ory.sh"\nlicense = "Apache-2.0/g' < "${file}") > tmp.$$.rb && mv tmp.$$.rb "${file}"
+}
+
+rust
 golang
 typescript
 java

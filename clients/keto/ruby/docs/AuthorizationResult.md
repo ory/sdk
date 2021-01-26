@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**allowed** | **Boolean** | Allowed is true if the request should be allowed and false otherwise. | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **allowed** | **Boolean** | Allowed is true if the request should be allowed and false otherwise. |  |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-keto-client'
 
-instance = OryHydraClient::AuthorizationResult.new(allowed: null)
+instance = OryHydraClient::AuthorizationResult.new(
+  allowed: null
+)
 ```
-
 

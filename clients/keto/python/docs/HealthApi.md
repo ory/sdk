@@ -18,10 +18,11 @@ This endpoint returns a 200 status code when the HTTP server is up running. This
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_keto_client
-from ory_keto_client.rest import ApiException
+from ory_keto_client.api import health_api
+from ory_keto_client.model.inline_response500 import InlineResponse500
+from ory_keto_client.model.health_status import HealthStatus
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -33,13 +34,14 @@ configuration = ory_keto_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_keto_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_keto_client.HealthApi(api_client)
-    
+    api_instance = health_api.HealthApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
     try:
         # Check alive status
         api_response = api_instance.is_instance_alive()
         pprint(api_response)
-    except ApiException as e:
+    except ory_keto_client.ApiException as e:
         print("Exception when calling HealthApi->is_instance_alive: %s\n" % e)
 ```
 
@@ -77,10 +79,11 @@ This endpoint returns a 200 status code when the HTTP server is up running and t
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_keto_client
-from ory_keto_client.rest import ApiException
+from ory_keto_client.api import health_api
+from ory_keto_client.model.health_not_ready_status import HealthNotReadyStatus
+from ory_keto_client.model.health_status import HealthStatus
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -92,13 +95,14 @@ configuration = ory_keto_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_keto_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_keto_client.HealthApi(api_client)
-    
+    api_instance = health_api.HealthApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
     try:
         # Check readiness status
         api_response = api_instance.is_instance_ready()
         pprint(api_response)
-    except ApiException as e:
+    except ory_keto_client.ApiException as e:
         print("Exception when calling HealthApi->is_instance_ready: %s\n" % e)
 ```
 

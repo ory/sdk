@@ -116,8 +116,6 @@ dotnet() {
 }
 
 dart() {
-  # todo: follow the instructions on https://dart.dev/tools/pub/publishing for publishing dart packages
-  
   dir="clients/${PROJECT}/dart"
 
   mkdir -p ~/.pub-cache || true
@@ -135,6 +133,14 @@ dart() {
 EOF
 
   (cd "${dir}"; VERSION=${RAW_VERSION} command dart pub publish --force)
+}
+
+rust() {
+  dir="clients/${PROJECT}/rust"
+
+  cargo login "${CARGO_TOKEN}"
+
+  (cd "${dir}"; VERSION=${RAW_VERSION} command cargo publish --allow-dirty)
 }
 
 python
