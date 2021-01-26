@@ -134,7 +134,6 @@ dart() {
 }
 EOF
 
-pub publish -f
   (cd "${dir}"; VERSION=${RAW_VERSION} command dart publish --force)
 }
 
