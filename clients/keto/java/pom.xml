@@ -5,7 +5,7 @@
     <artifactId>keto-client</artifactId>
     <packaging>jar</packaging>
     <name>keto-client</name>
-    <version>v0.0.0-alpha.55</version>
+    <version>v0.0.0-alpha.58</version>
     <url>https://github.com/openapitools/openapi-generator</url>
     <description>OpenAPI Java</description>
     <scm>

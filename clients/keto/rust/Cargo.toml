@@ -1,0 +1,21 @@
+[package]
+name = "ory-keto-client"
+version = "0.0.0-alpha.58"
+description = "SDK Client for ORY Keto"
+documentation = "https://www.ory.sh/keto/docs/sdk"
+homepage = "https://www.ory.sh"
+license = "Apache-2.0"
+authors = ["OpenAPI Generator team and contributors"]
+edition = "2018"
+
+[dependencies]
+serde = "^1.0"
+serde_derive = "^1.0"
+serde_json = "^1.0"
+url = "1.5"
+[dependencies.reqwest]
+version = "^0.10"
+default-features = false
+features = ["json"]
+
+[dev-dependencies]

@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ory.Keto.Client", "src\Ory.Keto.Client\Ory.Keto.Client.csproj", "{A001F0F5-6B8C-4687-A0F2-3D95B49C1DFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ory.Keto.Client", "src\Ory.Keto.Client\Ory.Keto.Client.csproj", "{ACEE8E5E-A510-46D5-98F9-BBBFD273CDBF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ory.Keto.Client.Test", "src\Ory.Keto.Client.Test\Ory.Keto.Client.Test.csproj", "{19F1DEBC-DE5E-4517-8062-F000CD499087}"
 EndProject
@@ -12,10 +12,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A001F0F5-6B8C-4687-A0F2-3D95B49C1DFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A001F0F5-6B8C-4687-A0F2-3D95B49C1DFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A001F0F5-6B8C-4687-A0F2-3D95B49C1DFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A001F0F5-6B8C-4687-A0F2-3D95B49C1DFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACEE8E5E-A510-46D5-98F9-BBBFD273CDBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACEE8E5E-A510-46D5-98F9-BBBFD273CDBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACEE8E5E-A510-46D5-98F9-BBBFD273CDBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACEE8E5E-A510-46D5-98F9-BBBFD273CDBF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -3,7 +3,7 @@
 #
 
 name: 'ory_keto_client'
-version: '0.0.0-alpha.55'
+version: '0.0.0-alpha.58'
 description: 'OpenAPI API client'
 authors:
   - 'ORY GmbH <opensource@ory.sh>'
