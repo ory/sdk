@@ -132,7 +132,7 @@ dart() {
 }
 EOF
 
-  (cd "${dir}"; VERSION=${RAW_VERSION} command dart publish --force)
+  (cd "${dir}"; VERSION=${RAW_VERSION} command dart pub publish --force)
 }
 
 rust() {
