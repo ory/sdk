@@ -15,7 +15,7 @@ class AdminApi {
 
   final ApiClient apiClient;
 
-  /// Accept an consent request
+  /// Accept a Consent Request
   ///
   /// When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.  This endpoint tells ORY Hydra that the subject has authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider includes additional information, such as session data for access and ID tokens, and if the consent request should be used as basis for future requests.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
   ///
@@ -70,7 +70,7 @@ class AdminApi {
     );
   }
 
-  /// Accept an consent request
+  /// Accept a Consent Request
   ///
   /// When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.  This endpoint tells ORY Hydra that the subject has authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider includes additional information, such as session data for access and ID tokens, and if the consent request should be used as basis for future requests.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
   ///
@@ -93,7 +93,7 @@ class AdminApi {
     return null;
   }
 
-  /// Accept an login request
+  /// Accept a Login Request
   ///
   /// When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell ORY Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells ORY Hydra that the subject has successfully authenticated and includes additional information such as the subject's ID and if ORY Hydra should remember the subject's subject agent for future authentication attempts by setting a cookie.  The response contains a redirect URL which the login provider should redirect the user-agent to.
   ///
@@ -148,7 +148,7 @@ class AdminApi {
     );
   }
 
-  /// Accept an login request
+  /// Accept a Login Request
   ///
   /// When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell ORY Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells ORY Hydra that the subject has successfully authenticated and includes additional information such as the subject's ID and if ORY Hydra should remember the subject's subject agent for future authentication attempts by setting a cookie.  The response contains a redirect URL which the login provider should redirect the user-agent to.
   ///
@@ -171,7 +171,7 @@ class AdminApi {
     return null;
   }
 
-  /// Accept a logout request
+  /// Accept a Logout Request
   ///
   /// When a user or an application requests ORY Hydra to log out a user, this endpoint is used to confirm that logout request. No body is required.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
   ///
@@ -224,7 +224,7 @@ class AdminApi {
     );
   }
 
-  /// Accept a logout request
+  /// Accept a Logout Request
   ///
   /// When a user or an application requests ORY Hydra to log out a user, this endpoint is used to confirm that logout request. No body is required.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
   ///
@@ -245,7 +245,7 @@ class AdminApi {
     return null;
   }
 
-  /// Generate a new JSON Web Key
+  /// Generate a New JSON Web Key
   ///
   /// This endpoint is capable of generating JSON Web Key Sets for you. There a different strategies available, such as symmetric cryptographic keys (HS256, HS512) and asymetric cryptographic keys (RS256, ECDSA). If the specified JSON Web Key Set does not exist, it will be created.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
   ///
@@ -300,7 +300,7 @@ class AdminApi {
     );
   }
 
-  /// Generate a new JSON Web Key
+  /// Generate a New JSON Web Key
   ///
   /// This endpoint is capable of generating JSON Web Key Sets for you. There a different strategies available, such as symmetric cryptographic keys (HS256, HS512) and asymetric cryptographic keys (RS256, ECDSA). If the specified JSON Web Key Set does not exist, it will be created.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
   ///
@@ -324,7 +324,7 @@ class AdminApi {
     return null;
   }
 
-  /// Create an OAuth 2.0 client
+  /// Create an OAuth 2.0 Client
   ///
   /// Create a new OAuth 2.0 client If you pass `client_secret` the secret will be used, otherwise a random secret will be generated. The secret will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somwhere safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
   ///
@@ -375,7 +375,7 @@ class AdminApi {
     );
   }
 
-  /// Create an OAuth 2.0 client
+  /// Create an OAuth 2.0 Client
   ///
   /// Create a new OAuth 2.0 client If you pass `client_secret` the secret will be used, otherwise a random secret will be generated. The secret will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somwhere safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
   ///
@@ -610,6 +610,73 @@ class AdminApi {
     }
   }
 
+  /// Delete OAuth2 Access Tokens from a Client
+  ///
+  /// This endpoint deletes OAuth2 access tokens issued for a client from the database
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] clientId (required):
+  Future<Response> deleteOAuth2TokenWithHttpInfo(String clientId) async {
+    // Verify required params are set.
+    if (clientId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: clientId');
+    }
+
+    final path = '/oauth2/tokens'.replaceAll('{format}', 'json');
+
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'client_id', clientId));
+
+    final contentTypes = <String>[];
+    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
+    final authNames = <String>[];
+
+    if (
+      nullableContentType != null &&
+      nullableContentType.toLowerCase().startsWith('multipart/form-data')
+    ) {
+      bool hasFields = false;
+      final mp = MultipartRequest(null, null);
+      if (hasFields) {
+        postBody = mp;
+      }
+    } else {
+    }
+
+    return await apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      nullableContentType,
+      authNames,
+    );
+  }
+
+  /// Delete OAuth2 Access Tokens from a Client
+  ///
+  /// This endpoint deletes OAuth2 access tokens issued for a client from the database
+  ///
+  /// Parameters:
+  ///
+  /// * [String] clientId (required):
+  Future<void> deleteOAuth2Token(String clientId) async {
+    final response = await deleteOAuth2TokenWithHttpInfo(clientId);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+    }
+  }
+
   /// Flush Expired OAuth2 Access Tokens
   ///
   /// This endpoint flushes expired OAuth2 access tokens from the database. You can set a time after which no tokens will be not be touched, in case you want to keep recent tokens for auditing. Refresh tokens can not be flushed as they are deleted automatically when performing the refresh flow.
@@ -672,7 +739,7 @@ class AdminApi {
     }
   }
 
-  /// Get consent request information
+  /// Get Consent Request Information
   ///
   /// When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.
   ///
@@ -725,7 +792,7 @@ class AdminApi {
     );
   }
 
-  /// Get consent request information
+  /// Get Consent Request Information
   ///
   /// When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.
   ///
@@ -906,7 +973,7 @@ class AdminApi {
     return null;
   }
 
-  /// Get an login request
+  /// Get a Login Request
   ///
   /// When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell ORY Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.
   ///
@@ -959,7 +1026,7 @@ class AdminApi {
     );
   }
 
-  /// Get an login request
+  /// Get a Login Request
   ///
   /// When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell ORY Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.
   ///
@@ -980,7 +1047,7 @@ class AdminApi {
     return null;
   }
 
-  /// Get a logout request
+  /// Get a Logout Request
   ///
   /// Use this endpoint to fetch a logout request.
   ///
@@ -1033,7 +1100,7 @@ class AdminApi {
     );
   }
 
-  /// Get a logout request
+  /// Get a Logout Request
   ///
   /// Use this endpoint to fetch a logout request.
   ///
@@ -1129,9 +1196,9 @@ class AdminApi {
     return null;
   }
 
-  /// Get service version
+  /// Get Service Version
   ///
-  /// This endpoint returns the service version typically notated using semantic versioning.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+  /// This endpoint returns the service version typically notated using semantic versioning.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> getVersionWithHttpInfo() async {
@@ -1171,9 +1238,9 @@ class AdminApi {
     );
   }
 
-  /// Get service version
+  /// Get Service Version
   ///
-  /// This endpoint returns the service version typically notated using semantic versioning.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+  /// This endpoint returns the service version typically notated using semantic versioning.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
   Future<Version> getVersion() async {
     final response = await getVersionWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -1188,7 +1255,7 @@ class AdminApi {
     return null;
   }
 
-  /// Introspect OAuth2 tokens
+  /// Introspect OAuth2 Tokens
   ///
   /// The introspection endpoint allows to check if a token (both refresh and access) is active or not. An active token is neither expired nor revoked. If a token is active, additional information on the token will be included. You can set additional data for a token by setting `accessTokenExtra` during the consent flow.  For more information [read this blog post](https://www.oauth.com/oauth2-servers/token-introspection-endpoint/).
   ///
@@ -1217,7 +1284,7 @@ class AdminApi {
 
     final contentTypes = <String>['application/x-www-form-urlencoded'];
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>['basic', 'oauth2'];
+    final authNames = <String>[];
 
     if (
       nullableContentType != null &&
@@ -1257,7 +1324,7 @@ class AdminApi {
     );
   }
 
-  /// Introspect OAuth2 tokens
+  /// Introspect OAuth2 Tokens
   ///
   /// The introspection endpoint allows to check if a token (both refresh and access) is active or not. An active token is neither expired nor revoked. If a token is active, additional information on the token will be included. You can set additional data for a token by setting `accessTokenExtra` during the consent flow.  For more information [read this blog post](https://www.oauth.com/oauth2-servers/token-introspection-endpoint/).
   ///
@@ -1282,7 +1349,7 @@ class AdminApi {
     return null;
   }
 
-  /// Check alive status
+  /// Check Alive Status
   ///
   /// This endpoint returns a 200 status code when the HTTP server is up running. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
   ///
@@ -1324,7 +1391,7 @@ class AdminApi {
     );
   }
 
-  /// Check alive status
+  /// Check Alive Status
   ///
   /// This endpoint returns a 200 status code when the HTTP server is up running. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
   Future<HealthStatus> isInstanceAlive() async {
@@ -1343,14 +1410,14 @@ class AdminApi {
 
   /// List OAuth 2.0 Clients
   ///
-  /// This endpoint lists all clients in the database, and never returns client secrets.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components. The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/clients?limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
+  /// This endpoint lists all clients in the database, and never returns client secrets. As a default it lists the first 100 clients. The `limit` parameter can be used to retrieve more clients, but it has an upper bound at 500 objects. Pagination should be used to retrieve more than 500 objects.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components. The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/clients?limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
   /// Parameters:
   ///
   /// * [int] limit:
-  ///   The maximum amount of policies returned.
+  ///   The maximum amount of policies returned, upper bound is 500 policies
   ///
   /// * [int] offset:
   ///   The offset from where to start looking.
@@ -1402,12 +1469,12 @@ class AdminApi {
 
   /// List OAuth 2.0 Clients
   ///
-  /// This endpoint lists all clients in the database, and never returns client secrets.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components. The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/clients?limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
+  /// This endpoint lists all clients in the database, and never returns client secrets. As a default it lists the first 100 clients. The `limit` parameter can be used to retrieve more clients, but it has an upper bound at 500 objects. Pagination should be used to retrieve more than 500 objects.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components. The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/clients?limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
   ///
   /// Parameters:
   ///
   /// * [int] limit:
-  ///   The maximum amount of policies returned.
+  ///   The maximum amount of policies returned, upper bound is 500 policies
   ///
   /// * [int] offset:
   ///   The offset from where to start looking.
@@ -1427,9 +1494,9 @@ class AdminApi {
     return null;
   }
 
-  /// Lists all consent sessions of a subject
+  /// Lists All Consent Sessions of a Subject
   ///
-  /// This endpoint lists all subject's granted consent sessions, including client and granted scope. The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/oauth2/auth/sessions/consent?subject={user}&limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
+  /// This endpoint lists all subject's granted consent sessions, including client and granted scope. If the subject is unknown or has not granted any consent sessions yet, the endpoint returns an empty JSON array with status code 200 OK.   The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/oauth2/auth/sessions/consent?subject={user}&limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -1480,9 +1547,9 @@ class AdminApi {
     );
   }
 
-  /// Lists all consent sessions of a subject
+  /// Lists All Consent Sessions of a Subject
   ///
-  /// This endpoint lists all subject's granted consent sessions, including client and granted scope. The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/oauth2/auth/sessions/consent?subject={user}&limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
+  /// This endpoint lists all subject's granted consent sessions, including client and granted scope. If the subject is unknown or has not granted any consent sessions yet, the endpoint returns an empty JSON array with status code 200 OK.   The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/oauth2/auth/sessions/consent?subject={user}&limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
   ///
   /// Parameters:
   ///
@@ -1503,9 +1570,9 @@ class AdminApi {
     return null;
   }
 
-  /// Get snapshot metrics from the Hydra service. If you're using k8s, you can then add annotations to your deployment like so:
+  /// Get Snapshot Metrics from the Hydra Service.
   ///
-  /// ``` metadata: annotations: prometheus.io/port: \"4445\" prometheus.io/path: \"/metrics/prometheus\" ```
+  /// If you're using k8s, you can then add annotations to your deployment like so:  ``` metadata: annotations: prometheus.io/port: \"4445\" prometheus.io/path: \"/metrics/prometheus\" ```  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> prometheusWithHttpInfo() async {
@@ -1545,9 +1612,9 @@ class AdminApi {
     );
   }
 
-  /// Get snapshot metrics from the Hydra service. If you're using k8s, you can then add annotations to your deployment like so:
+  /// Get Snapshot Metrics from the Hydra Service.
   ///
-  /// ``` metadata: annotations: prometheus.io/port: \"4445\" prometheus.io/path: \"/metrics/prometheus\" ```
+  /// If you're using k8s, you can then add annotations to your deployment like so:  ``` metadata: annotations: prometheus.io/port: \"4445\" prometheus.io/path: \"/metrics/prometheus\" ```  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
   Future<void> prometheus() async {
     final response = await prometheusWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -1555,7 +1622,7 @@ class AdminApi {
     }
   }
 
-  /// Reject an consent request
+  /// Reject a Consent Request
   ///
   /// When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.  This endpoint tells ORY Hydra that the subject has not authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider must include a reason why the consent was not granted.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
   ///
@@ -1610,7 +1677,7 @@ class AdminApi {
     );
   }
 
-  /// Reject an consent request
+  /// Reject a Consent Request
   ///
   /// When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.  This endpoint tells ORY Hydra that the subject has not authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider must include a reason why the consent was not granted.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
   ///
@@ -1633,7 +1700,7 @@ class AdminApi {
     return null;
   }
 
-  /// Reject a login request
+  /// Reject a Login Request
   ///
   /// When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell ORY Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells ORY Hydra that the subject has not authenticated and includes a reason why the authentication was be denied.  The response contains a redirect URL which the login provider should redirect the user-agent to.
   ///
@@ -1688,7 +1755,7 @@ class AdminApi {
     );
   }
 
-  /// Reject a login request
+  /// Reject a Login Request
   ///
   /// When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell ORY Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells ORY Hydra that the subject has not authenticated and includes a reason why the authentication was be denied.  The response contains a redirect URL which the login provider should redirect the user-agent to.
   ///
@@ -1711,7 +1778,7 @@ class AdminApi {
     return null;
   }
 
-  /// Reject a logout request
+  /// Reject a Logout Request
   ///
   /// When a user or an application requests ORY Hydra to log out a user, this endpoint is used to deny that logout request. No body is required.  The response is empty as the logout provider has to chose what action to perform next.
   ///
@@ -1766,7 +1833,7 @@ class AdminApi {
     );
   }
 
-  /// Reject a logout request
+  /// Reject a Logout Request
   ///
   /// When a user or an application requests ORY Hydra to log out a user, this endpoint is used to deny that logout request. No body is required.  The response is empty as the logout provider has to chose what action to perform next.
   ///
@@ -1782,7 +1849,7 @@ class AdminApi {
     }
   }
 
-  /// Invalidates all login sessions of a certain user Invalidates a subject's authentication session
+  /// Invalidates All Login Sessions of a Certain User Invalidates a Subject's Authentication Session
   ///
   /// This endpoint invalidates a subject's authentication session. After revoking the authentication session, the subject has to re-authenticate at ORY Hydra. This endpoint does not invalidate any tokens and does not work with OpenID Connect Front- or Back-channel logout.
   ///
@@ -1835,7 +1902,7 @@ class AdminApi {
     );
   }
 
-  /// Invalidates all login sessions of a certain user Invalidates a subject's authentication session
+  /// Invalidates All Login Sessions of a Certain User Invalidates a Subject's Authentication Session
   ///
   /// This endpoint invalidates a subject's authentication session. After revoking the authentication session, the subject has to re-authenticate at ORY Hydra. This endpoint does not invalidate any tokens and does not work with OpenID Connect Front- or Back-channel logout.
   ///
@@ -1849,7 +1916,7 @@ class AdminApi {
     }
   }
 
-  /// Revokes consent sessions of a subject for a specific OAuth 2.0 Client
+  /// Revokes Consent Sessions of a Subject for a Specific OAuth 2.0 Client
   ///
   /// This endpoint revokes a subject's granted consent sessions for a specific OAuth 2.0 Client and invalidates all associated OAuth 2.0 Access Tokens.
   ///
@@ -1862,7 +1929,10 @@ class AdminApi {
   ///
   /// * [String] client:
   ///   If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID
-  Future<Response> revokeConsentSessionsWithHttpInfo(String subject, { String client }) async {
+  ///
+  /// * [bool] all:
+  ///   If set to `?all=true`, deletes all consent sessions by the Subject that have been granted.
+  Future<Response> revokeConsentSessionsWithHttpInfo(String subject, { String client, bool all }) async {
     // Verify required params are set.
     if (subject == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: subject');
@@ -1879,6 +1949,9 @@ class AdminApi {
       queryParams.addAll(_convertParametersForCollectionFormat('', 'subject', subject));
     if (client != null) {
       queryParams.addAll(_convertParametersForCollectionFormat('', 'client', client));
+    }
+    if (all != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'all', all));
     }
 
     final contentTypes = <String>[];
@@ -1909,7 +1982,7 @@ class AdminApi {
     );
   }
 
-  /// Revokes consent sessions of a subject for a specific OAuth 2.0 Client
+  /// Revokes Consent Sessions of a Subject for a Specific OAuth 2.0 Client
   ///
   /// This endpoint revokes a subject's granted consent sessions for a specific OAuth 2.0 Client and invalidates all associated OAuth 2.0 Access Tokens.
   ///
@@ -1920,8 +1993,11 @@ class AdminApi {
   ///
   /// * [String] client:
   ///   If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID
-  Future<void> revokeConsentSessions(String subject, { String client }) async {
-    final response = await revokeConsentSessionsWithHttpInfo(subject,  client: client );
+  ///
+  /// * [bool] all:
+  ///   If set to `?all=true`, deletes all consent sessions by the Subject that have been granted.
+  Future<void> revokeConsentSessions(String subject, { String client, bool all }) async {
+    final response = await revokeConsentSessionsWithHttpInfo(subject,  client: client, all: all );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, _decodeBodyBytes(response));
     }

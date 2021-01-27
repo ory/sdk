@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**type** | **String** | type | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **type** | **String** | type |  |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-hydra-client'
 
-instance = OryHydraClient::PluginConfigNetwork.new(type: null)
+instance = OryHydraClient::PluginConfigNetwork.new(
+  type: null
+)
 ```
-
 

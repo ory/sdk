@@ -1,23 +1,24 @@
 # Ory\Hydra\Client\PublicApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to http://localhost.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**disconnectUser**](PublicApi.md#disconnectUser) | **GET** /oauth2/sessions/logout | OpenID Connect Front-Backchannel Enabled Logout
-[**discoverOpenIDConfiguration**](PublicApi.md#discoverOpenIDConfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
-[**isInstanceReady**](PublicApi.md#isInstanceReady) | **GET** /health/ready | Check Readiness Status
-[**oauth2Token**](PublicApi.md#oauth2Token) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
-[**oauthAuth**](PublicApi.md#oauthAuth) | **GET** /oauth2/auth | The OAuth 2.0 Authorize Endpoint
-[**revokeOAuth2Token**](PublicApi.md#revokeOAuth2Token) | **POST** /oauth2/revoke | Revoke OAuth2 Tokens
-[**userinfo**](PublicApi.md#userinfo) | **GET** /userinfo | OpenID Connect Userinfo
-[**wellKnown**](PublicApi.md#wellKnown) | **GET** /.well-known/jwks.json | JSON Web Keys Discovery
+[**disconnectUser()**](PublicApi.md#disconnectUser) | **GET** /oauth2/sessions/logout | OpenID Connect Front-Backchannel Enabled Logout
+[**discoverOpenIDConfiguration()**](PublicApi.md#discoverOpenIDConfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
+[**isInstanceReady()**](PublicApi.md#isInstanceReady) | **GET** /health/ready | Check Readiness Status
+[**oauth2Token()**](PublicApi.md#oauth2Token) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
+[**oauthAuth()**](PublicApi.md#oauthAuth) | **GET** /oauth2/auth | The OAuth 2.0 Authorize Endpoint
+[**revokeOAuth2Token()**](PublicApi.md#revokeOAuth2Token) | **POST** /oauth2/revoke | Revoke OAuth2 Tokens
+[**userinfo()**](PublicApi.md#userinfo) | **GET** /userinfo | OpenID Connect Userinfo
+[**wellKnown()**](PublicApi.md#wellKnown) | **GET** /.well-known/jwks.json | JSON Web Keys Discovery
 
 
+## `disconnectUser()`
 
-## disconnectUser
-
-> disconnectUser()
+```php
+disconnectUser()
+```
 
 OpenID Connect Front-Backchannel Enabled Logout
 
@@ -28,6 +29,7 @@ This endpoint initiates and completes user logout at ORY Hydra and initiates Ope
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Hydra\Client\Api\PublicApi(
@@ -41,7 +43,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->disconnectUser: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -61,14 +62,15 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: Not defined
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `discoverOpenIDConfiguration()`
 
-## discoverOpenIDConfiguration
-
-> \Ory\Hydra\Client\Model\WellKnown discoverOpenIDConfiguration()
+```php
+discoverOpenIDConfiguration(): \Ory\Hydra\Client\Model\WellKnown
+```
 
 OpenID Connect Discovery
 
@@ -79,6 +81,7 @@ The well known endpoint an be used to retrieve information for OpenID Connect cl
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Hydra\Client\Api\PublicApi(
@@ -93,7 +96,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->discoverOpenIDConfiguration: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -111,16 +113,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `isInstanceReady()`
 
-## isInstanceReady
-
-> \Ory\Hydra\Client\Model\HealthStatus isInstanceReady()
+```php
+isInstanceReady(): \Ory\Hydra\Client\Model\HealthStatus
+```
 
 Check Readiness Status
 
@@ -131,6 +134,7 @@ This endpoint returns a 200 status code when the HTTP server is up running and t
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Hydra\Client\Api\PublicApi(
@@ -145,7 +149,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->isInstanceReady: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -163,16 +166,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `oauth2Token()`
 
-## oauth2Token
-
-> \Ory\Hydra\Client\Model\Oauth2TokenResponse oauth2Token($grantType, $code, $refreshToken, $redirectUri, $clientId)
+```php
+oauth2Token($grantType, $code, $refreshToken, $redirectUri, $clientId): \Ory\Hydra\Client\Model\Oauth2TokenResponse
+```
 
 The OAuth 2.0 Token Endpoint
 
@@ -200,11 +204,11 @@ $apiInstance = new Ory\Hydra\Client\Api\PublicApi(
     new GuzzleHttp\Client(),
     $config
 );
-$grantType = 'grantType_example'; // string | 
-$code = 'code_example'; // string | 
-$refreshToken = 'refreshToken_example'; // string | 
-$redirectUri = 'redirectUri_example'; // string | 
-$clientId = 'clientId_example'; // string | 
+$grantType = 'grantType_example'; // string
+$code = 'code_example'; // string
+$refreshToken = 'refreshToken_example'; // string
+$redirectUri = 'redirectUri_example'; // string
+$clientId = 'clientId_example'; // string
 
 try {
     $result = $apiInstance->oauth2Token($grantType, $code, $refreshToken, $redirectUri, $clientId);
@@ -212,11 +216,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->oauth2Token: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -236,17 +238,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/x-www-form-urlencoded
-- **Accept**: application/json
+- **Content-Type**: `application/x-www-form-urlencoded`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `oauthAuth()`
 
-## oauthAuth
-
-> oauthAuth()
+```php
+oauthAuth()
+```
 
 The OAuth 2.0 Authorize Endpoint
 
@@ -257,6 +260,7 @@ This endpoint is not documented here because you should never use your own imple
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Hydra\Client\Api\PublicApi(
@@ -270,7 +274,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->oauthAuth: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -288,16 +291,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `revokeOAuth2Token()`
 
-## revokeOAuth2Token
-
-> revokeOAuth2Token($token)
+```php
+revokeOAuth2Token($token)
+```
 
 Revoke OAuth2 Tokens
 
@@ -325,18 +329,16 @@ $apiInstance = new Ory\Hydra\Client\Api\PublicApi(
     new GuzzleHttp\Client(),
     $config
 );
-$token = 'token_example'; // string | 
+$token = 'token_example'; // string
 
 try {
     $apiInstance->revokeOAuth2Token($token);
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->revokeOAuth2Token: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -352,17 +354,18 @@ void (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/x-www-form-urlencoded
-- **Accept**: application/json
+- **Content-Type**: `application/x-www-form-urlencoded`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `userinfo()`
 
-## userinfo
-
-> \Ory\Hydra\Client\Model\UserinfoResponse userinfo()
+```php
+userinfo(): \Ory\Hydra\Client\Model\UserinfoResponse
+```
 
 OpenID Connect Userinfo
 
@@ -392,7 +395,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->userinfo: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -410,16 +412,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `wellKnown()`
 
-## wellKnown
-
-> \Ory\Hydra\Client\Model\JSONWebKeySet wellKnown()
+```php
+wellKnown(): \Ory\Hydra\Client\Model\JSONWebKeySet
+```
 
 JSON Web Keys Discovery
 
@@ -430,6 +433,7 @@ This endpoint returns JSON Web Keys to be used as public keys for verifying Open
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Hydra\Client\Api\PublicApi(
@@ -444,7 +448,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->wellKnown: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -462,9 +465,8 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

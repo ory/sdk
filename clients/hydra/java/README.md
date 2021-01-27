@@ -1,8 +1,8 @@
 # hydra-client
 
 ORY Hydra
-- API version: v0.0.0-alpha.2
-  - Build date: 2020-01-04T16:01:02.111610+01:00[Europe/Berlin]
+- API version: v1.9.1
+  - Build date: 2021-01-27T10:02:09.580840730Z[Etc/UTC]
 
 Welcome to the ORY Hydra HTTP API documentation. You will find documentation for all HTTP APIs here.
 
@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.hydra</groupId>
   <artifactId>hydra-client</artifactId>
-  <version>v0.0.0-alpha.2</version>
+  <version>v1.9.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -50,7 +50,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "sh.ory.hydra:hydra-client:v0.0.0-alpha.2"
+compile "sh.ory.hydra:hydra-client:v1.9.1"
 ```
 
 ### Others
@@ -63,7 +63,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/hydra-client-v0.0.0-alpha.2.jar`
+* `target/hydra-client-v1.9.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -108,41 +108,42 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AdminApi* | [**acceptConsentRequest**](docs/AdminApi.md#acceptConsentRequest) | **PUT** /oauth2/auth/requests/consent/accept | Accept an consent request
-*AdminApi* | [**acceptLoginRequest**](docs/AdminApi.md#acceptLoginRequest) | **PUT** /oauth2/auth/requests/login/accept | Accept an login request
-*AdminApi* | [**acceptLogoutRequest**](docs/AdminApi.md#acceptLogoutRequest) | **PUT** /oauth2/auth/requests/logout/accept | Accept a logout request
-*AdminApi* | [**createJsonWebKeySet**](docs/AdminApi.md#createJsonWebKeySet) | **POST** /keys/{set} | Generate a new JSON Web Key
-*AdminApi* | [**createOAuth2Client**](docs/AdminApi.md#createOAuth2Client) | **POST** /clients | Create an OAuth 2.0 client
+*AdminApi* | [**acceptConsentRequest**](docs/AdminApi.md#acceptConsentRequest) | **PUT** /oauth2/auth/requests/consent/accept | Accept a Consent Request
+*AdminApi* | [**acceptLoginRequest**](docs/AdminApi.md#acceptLoginRequest) | **PUT** /oauth2/auth/requests/login/accept | Accept a Login Request
+*AdminApi* | [**acceptLogoutRequest**](docs/AdminApi.md#acceptLogoutRequest) | **PUT** /oauth2/auth/requests/logout/accept | Accept a Logout Request
+*AdminApi* | [**createJsonWebKeySet**](docs/AdminApi.md#createJsonWebKeySet) | **POST** /keys/{set} | Generate a New JSON Web Key
+*AdminApi* | [**createOAuth2Client**](docs/AdminApi.md#createOAuth2Client) | **POST** /clients | Create an OAuth 2.0 Client
 *AdminApi* | [**deleteJsonWebKey**](docs/AdminApi.md#deleteJsonWebKey) | **DELETE** /keys/{set}/{kid} | Delete a JSON Web Key
 *AdminApi* | [**deleteJsonWebKeySet**](docs/AdminApi.md#deleteJsonWebKeySet) | **DELETE** /keys/{set} | Delete a JSON Web Key Set
 *AdminApi* | [**deleteOAuth2Client**](docs/AdminApi.md#deleteOAuth2Client) | **DELETE** /clients/{id} | Deletes an OAuth 2.0 Client
+*AdminApi* | [**deleteOAuth2Token**](docs/AdminApi.md#deleteOAuth2Token) | **DELETE** /oauth2/tokens | Delete OAuth2 Access Tokens from a Client
 *AdminApi* | [**flushInactiveOAuth2Tokens**](docs/AdminApi.md#flushInactiveOAuth2Tokens) | **POST** /oauth2/flush | Flush Expired OAuth2 Access Tokens
-*AdminApi* | [**getConsentRequest**](docs/AdminApi.md#getConsentRequest) | **GET** /oauth2/auth/requests/consent | Get consent request information
+*AdminApi* | [**getConsentRequest**](docs/AdminApi.md#getConsentRequest) | **GET** /oauth2/auth/requests/consent | Get Consent Request Information
 *AdminApi* | [**getJsonWebKey**](docs/AdminApi.md#getJsonWebKey) | **GET** /keys/{set}/{kid} | Fetch a JSON Web Key
 *AdminApi* | [**getJsonWebKeySet**](docs/AdminApi.md#getJsonWebKeySet) | **GET** /keys/{set} | Retrieve a JSON Web Key Set
-*AdminApi* | [**getLoginRequest**](docs/AdminApi.md#getLoginRequest) | **GET** /oauth2/auth/requests/login | Get an login request
-*AdminApi* | [**getLogoutRequest**](docs/AdminApi.md#getLogoutRequest) | **GET** /oauth2/auth/requests/logout | Get a logout request
+*AdminApi* | [**getLoginRequest**](docs/AdminApi.md#getLoginRequest) | **GET** /oauth2/auth/requests/login | Get a Login Request
+*AdminApi* | [**getLogoutRequest**](docs/AdminApi.md#getLogoutRequest) | **GET** /oauth2/auth/requests/logout | Get a Logout Request
 *AdminApi* | [**getOAuth2Client**](docs/AdminApi.md#getOAuth2Client) | **GET** /clients/{id} | Get an OAuth 2.0 Client.
-*AdminApi* | [**getVersion**](docs/AdminApi.md#getVersion) | **GET** /version | Get service version
-*AdminApi* | [**introspectOAuth2Token**](docs/AdminApi.md#introspectOAuth2Token) | **POST** /oauth2/introspect | Introspect OAuth2 tokens
-*AdminApi* | [**isInstanceAlive**](docs/AdminApi.md#isInstanceAlive) | **GET** /health/alive | Check alive status
+*AdminApi* | [**getVersion**](docs/AdminApi.md#getVersion) | **GET** /version | Get Service Version
+*AdminApi* | [**introspectOAuth2Token**](docs/AdminApi.md#introspectOAuth2Token) | **POST** /oauth2/introspect | Introspect OAuth2 Tokens
+*AdminApi* | [**isInstanceAlive**](docs/AdminApi.md#isInstanceAlive) | **GET** /health/alive | Check Alive Status
 *AdminApi* | [**listOAuth2Clients**](docs/AdminApi.md#listOAuth2Clients) | **GET** /clients | List OAuth 2.0 Clients
-*AdminApi* | [**listSubjectConsentSessions**](docs/AdminApi.md#listSubjectConsentSessions) | **GET** /oauth2/auth/sessions/consent | Lists all consent sessions of a subject
-*AdminApi* | [**prometheus**](docs/AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get snapshot metrics from the Hydra service. If you&#39;re using k8s, you can then add annotations to your deployment like so:
-*AdminApi* | [**rejectConsentRequest**](docs/AdminApi.md#rejectConsentRequest) | **PUT** /oauth2/auth/requests/consent/reject | Reject an consent request
-*AdminApi* | [**rejectLoginRequest**](docs/AdminApi.md#rejectLoginRequest) | **PUT** /oauth2/auth/requests/login/reject | Reject a login request
-*AdminApi* | [**rejectLogoutRequest**](docs/AdminApi.md#rejectLogoutRequest) | **PUT** /oauth2/auth/requests/logout/reject | Reject a logout request
-*AdminApi* | [**revokeAuthenticationSession**](docs/AdminApi.md#revokeAuthenticationSession) | **DELETE** /oauth2/auth/sessions/login | Invalidates all login sessions of a certain user Invalidates a subject&#39;s authentication session
-*AdminApi* | [**revokeConsentSessions**](docs/AdminApi.md#revokeConsentSessions) | **DELETE** /oauth2/auth/sessions/consent | Revokes consent sessions of a subject for a specific OAuth 2.0 Client
+*AdminApi* | [**listSubjectConsentSessions**](docs/AdminApi.md#listSubjectConsentSessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject
+*AdminApi* | [**prometheus**](docs/AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get Snapshot Metrics from the Hydra Service.
+*AdminApi* | [**rejectConsentRequest**](docs/AdminApi.md#rejectConsentRequest) | **PUT** /oauth2/auth/requests/consent/reject | Reject a Consent Request
+*AdminApi* | [**rejectLoginRequest**](docs/AdminApi.md#rejectLoginRequest) | **PUT** /oauth2/auth/requests/login/reject | Reject a Login Request
+*AdminApi* | [**rejectLogoutRequest**](docs/AdminApi.md#rejectLogoutRequest) | **PUT** /oauth2/auth/requests/logout/reject | Reject a Logout Request
+*AdminApi* | [**revokeAuthenticationSession**](docs/AdminApi.md#revokeAuthenticationSession) | **DELETE** /oauth2/auth/sessions/login | Invalidates All Login Sessions of a Certain User Invalidates a Subject&#39;s Authentication Session
+*AdminApi* | [**revokeConsentSessions**](docs/AdminApi.md#revokeConsentSessions) | **DELETE** /oauth2/auth/sessions/consent | Revokes Consent Sessions of a Subject for a Specific OAuth 2.0 Client
 *AdminApi* | [**updateJsonWebKey**](docs/AdminApi.md#updateJsonWebKey) | **PUT** /keys/{set}/{kid} | Update a JSON Web Key
 *AdminApi* | [**updateJsonWebKeySet**](docs/AdminApi.md#updateJsonWebKeySet) | **PUT** /keys/{set} | Update a JSON Web Key Set
 *AdminApi* | [**updateOAuth2Client**](docs/AdminApi.md#updateOAuth2Client) | **PUT** /clients/{id} | Update an OAuth 2.0 Client
-*PublicApi* | [**disconnectUser**](docs/PublicApi.md#disconnectUser) | **GET** /oauth2/sessions/logout | OpenID Connect Front-Backchannel enabled Logout
+*PublicApi* | [**disconnectUser**](docs/PublicApi.md#disconnectUser) | **GET** /oauth2/sessions/logout | OpenID Connect Front-Backchannel Enabled Logout
 *PublicApi* | [**discoverOpenIDConfiguration**](docs/PublicApi.md#discoverOpenIDConfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
-*PublicApi* | [**isInstanceReady**](docs/PublicApi.md#isInstanceReady) | **GET** /health/ready | Check readiness status
-*PublicApi* | [**oauth2Token**](docs/PublicApi.md#oauth2Token) | **POST** /oauth2/token | The OAuth 2.0 token endpoint
-*PublicApi* | [**oauthAuth**](docs/PublicApi.md#oauthAuth) | **GET** /oauth2/auth | The OAuth 2.0 authorize endpoint
-*PublicApi* | [**revokeOAuth2Token**](docs/PublicApi.md#revokeOAuth2Token) | **POST** /oauth2/revoke | Revoke OAuth2 tokens
+*PublicApi* | [**isInstanceReady**](docs/PublicApi.md#isInstanceReady) | **GET** /health/ready | Check Readiness Status
+*PublicApi* | [**oauth2Token**](docs/PublicApi.md#oauth2Token) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
+*PublicApi* | [**oauthAuth**](docs/PublicApi.md#oauthAuth) | **GET** /oauth2/auth | The OAuth 2.0 Authorize Endpoint
+*PublicApi* | [**revokeOAuth2Token**](docs/PublicApi.md#revokeOAuth2Token) | **POST** /oauth2/revoke | Revoke OAuth2 Tokens
 *PublicApi* | [**userinfo**](docs/PublicApi.md#userinfo) | **GET** /userinfo | OpenID Connect Userinfo
 *PublicApi* | [**wellKnown**](docs/PublicApi.md#wellKnown) | **GET** /.well-known/jwks.json | JSON Web Keys Discovery
 
@@ -154,6 +155,7 @@ Class | Method | HTTP request | Description
  - [CompletedRequest](docs/CompletedRequest.md)
  - [ConsentRequest](docs/ConsentRequest.md)
  - [ConsentRequestSession](docs/ConsentRequestSession.md)
+ - [ContainerWaitOKBodyError](docs/ContainerWaitOKBodyError.md)
  - [FlushInactiveOAuth2TokensRequest](docs/FlushInactiveOAuth2TokensRequest.md)
  - [GenericError](docs/GenericError.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
@@ -166,12 +168,24 @@ Class | Method | HTTP request | Description
  - [OAuth2Client](docs/OAuth2Client.md)
  - [OAuth2TokenIntrospection](docs/OAuth2TokenIntrospection.md)
  - [Oauth2TokenResponse](docs/Oauth2TokenResponse.md)
- - [OauthTokenResponse](docs/OauthTokenResponse.md)
  - [OpenIDConnectContext](docs/OpenIDConnectContext.md)
+ - [PluginConfig](docs/PluginConfig.md)
+ - [PluginConfigArgs](docs/PluginConfigArgs.md)
+ - [PluginConfigInterface](docs/PluginConfigInterface.md)
+ - [PluginConfigLinux](docs/PluginConfigLinux.md)
+ - [PluginConfigNetwork](docs/PluginConfigNetwork.md)
+ - [PluginConfigRootfs](docs/PluginConfigRootfs.md)
+ - [PluginConfigUser](docs/PluginConfigUser.md)
+ - [PluginDevice](docs/PluginDevice.md)
+ - [PluginEnv](docs/PluginEnv.md)
+ - [PluginInterfaceType](docs/PluginInterfaceType.md)
+ - [PluginMount](docs/PluginMount.md)
+ - [PluginSettings](docs/PluginSettings.md)
  - [PreviousConsentSession](docs/PreviousConsentSession.md)
  - [RejectRequest](docs/RejectRequest.md)
  - [UserinfoResponse](docs/UserinfoResponse.md)
  - [Version](docs/Version.md)
+ - [VolumeUsageData](docs/VolumeUsageData.md)
  - [WellKnown](docs/WellKnown.md)
 
 
@@ -186,9 +200,9 @@ Authentication schemes defined for the API:
 
 - **Type**: OAuth
 - **Flow**: accessCode
-- **Authorization URL**: /oauth2/auth
+- **Authorization URL**: https://hydra.demo.ory.sh/oauth2/auth
 - **Scopes**: 
-  - offline: A scope required when requesting refresh tokens (alias for &#x60;offline&#x60;)
+  - offline: A scope required when requesting refresh tokens (alias for &#x60;offline_access&#x60;)
   - offline_access: A scope required when requesting refresh tokens
   - openid: Request an OpenID Connect ID Token
 

@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**message** | **String** | Details of an error | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **message** | **String** | Details of an error | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-hydra-client'
 
-instance = OryHydraClient::ContainerWaitOKBodyError.new(message: null)
+instance = OryHydraClient::ContainerWaitOKBodyError.new(
+  message: null
+)
 ```
-
 

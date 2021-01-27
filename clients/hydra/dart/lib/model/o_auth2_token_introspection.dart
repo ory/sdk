@@ -24,6 +24,7 @@ class OAuth2TokenIntrospection {
     this.scope,
     this.sub,
     this.tokenType,
+    this.tokenUse,
     this.username,
   });
 
@@ -33,7 +34,7 @@ class OAuth2TokenIntrospection {
   /// Audience contains a list of the token's intended audiences.
   List<String> aud;
 
-  /// ClientID is aclient identifier for the OAuth 2.0 client that requested this token.
+  /// ID is aclient identifier for the OAuth 2.0 client that requested this token.
   String clientId;
 
   /// Expires at is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token will expire.
@@ -60,8 +61,11 @@ class OAuth2TokenIntrospection {
   /// Subject of the token, as defined in JWT [RFC7519]. Usually a machine-readable identifier of the resource owner who authorized this token.
   String sub;
 
-  /// TokenType is the introspected token's type, for example `access_token` or `refresh_token`.
+  /// TokenType is the introspected token's type, typically `Bearer`.
   String tokenType;
+
+  /// TokenUse is the introspected token's use, for example `access_token` or `refresh_token`.
+  String tokenUse;
 
   /// Username is a human-readable identifier for the resource owner who authorized this token.
   String username;
@@ -80,6 +84,7 @@ class OAuth2TokenIntrospection {
      other.scope == scope &&
      other.sub == sub &&
      other.tokenType == tokenType &&
+     other.tokenUse == tokenUse &&
      other.username == username;
 
   @override
@@ -96,10 +101,11 @@ class OAuth2TokenIntrospection {
     (scope == null ? 0 : scope.hashCode) +
     (sub == null ? 0 : sub.hashCode) +
     (tokenType == null ? 0 : tokenType.hashCode) +
+    (tokenUse == null ? 0 : tokenUse.hashCode) +
     (username == null ? 0 : username.hashCode);
 
   @override
-  String toString() => 'OAuth2TokenIntrospection[active=$active, aud=$aud, clientId=$clientId, exp=$exp, ext=$ext, iat=$iat, iss=$iss, nbf=$nbf, obfuscatedSubject=$obfuscatedSubject, scope=$scope, sub=$sub, tokenType=$tokenType, username=$username]';
+  String toString() => 'OAuth2TokenIntrospection[active=$active, aud=$aud, clientId=$clientId, exp=$exp, ext=$ext, iat=$iat, iss=$iss, nbf=$nbf, obfuscatedSubject=$obfuscatedSubject, scope=$scope, sub=$sub, tokenType=$tokenType, tokenUse=$tokenUse, username=$username]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -139,6 +145,9 @@ class OAuth2TokenIntrospection {
     if (tokenType != null) {
       json[r'token_type'] = tokenType;
     }
+    if (tokenUse != null) {
+      json[r'token_use'] = tokenUse;
+    }
     if (username != null) {
       json[r'username'] = username;
     }
@@ -164,6 +173,7 @@ class OAuth2TokenIntrospection {
         scope: json[r'scope'],
         sub: json[r'sub'],
         tokenType: json[r'token_type'],
+        tokenUse: json[r'token_use'],
         username: json[r'username'],
     );
 

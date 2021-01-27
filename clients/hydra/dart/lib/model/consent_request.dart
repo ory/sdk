@@ -13,7 +13,7 @@ class ConsentRequest {
   /// Returns a new [ConsentRequest] instance.
   ConsentRequest({
     this.acr,
-    this.challenge,
+    @required this.challenge,
     this.client,
     this.context,
     this.loginChallenge,
@@ -29,12 +29,11 @@ class ConsentRequest {
   /// ACR represents the Authentication AuthorizationContext Class Reference value for this authentication session. You can use it to express that, for example, a user authenticated using two factor authentication.
   String acr;
 
-  /// Challenge is the identifier (\"authorization challenge\") of the consent authorization request. It is used to identify the session.
+  /// ID is the identifier (\"authorization challenge\") of the consent authorization request. It is used to identify the session.
   String challenge;
 
   OAuth2Client client;
 
-  /// Context contains arbitrary information set by the login endpoint or is empty if not set.
   Object context;
 
   /// LoginChallenge is the login challenge this consent challenge belongs to. It can be used to associate a login and consent request in the login & consent app.
@@ -48,10 +47,8 @@ class ConsentRequest {
   /// RequestURL is the original OAuth 2.0 Authorization URL requested by the OAuth 2.0 client. It is the URL which initiates the OAuth 2.0 Authorization Code or OAuth 2.0 Implicit flow. This URL is typically not needed, but might come in handy if you want to deal with additional request parameters.
   String requestUrl;
 
-  /// RequestedScope contains the access token audience as requested by the OAuth 2.0 Client.
   List<String> requestedAccessTokenAudience;
 
-  /// RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client.
   List<String> requestedScope;
 
   /// Skip, if true, implies that the client has requested the same scopes from the same user previously. If true, you must not ask the user to grant the requested scopes. You must however either allow or deny the consent request using the usual API call.

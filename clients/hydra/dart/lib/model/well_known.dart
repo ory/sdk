@@ -25,6 +25,7 @@ class WellKnown {
     @required this.issuer,
     @required this.jwksUri,
     this.registrationEndpoint,
+    this.requestObjectSigningAlgValuesSupported = const [],
     this.requestParameterSupported,
     this.requestUriParameterSupported,
     this.requireRequestUriRegistration,
@@ -78,6 +79,9 @@ class WellKnown {
   /// URL of the OP's Dynamic Client Registration Endpoint.
   String registrationEndpoint;
 
+  /// JSON array containing a list of the JWS signing algorithms (alg values) supported by the OP for Request Objects, which are described in Section 6.1 of OpenID Connect Core 1.0 [OpenID.Core]. These algorithms are used both when the Request Object is passed by value (using the request parameter) and when it is passed by reference (using the request_uri parameter).
+  List<String> requestObjectSigningAlgValuesSupported;
+
   /// Boolean value specifying whether the OP supports use of the request parameter, with true indicating support.
   bool requestParameterSupported;
 
@@ -129,6 +133,7 @@ class WellKnown {
      other.issuer == issuer &&
      other.jwksUri == jwksUri &&
      other.registrationEndpoint == registrationEndpoint &&
+     other.requestObjectSigningAlgValuesSupported == requestObjectSigningAlgValuesSupported &&
      other.requestParameterSupported == requestParameterSupported &&
      other.requestUriParameterSupported == requestUriParameterSupported &&
      other.requireRequestUriRegistration == requireRequestUriRegistration &&
@@ -157,6 +162,7 @@ class WellKnown {
     (issuer == null ? 0 : issuer.hashCode) +
     (jwksUri == null ? 0 : jwksUri.hashCode) +
     (registrationEndpoint == null ? 0 : registrationEndpoint.hashCode) +
+    (requestObjectSigningAlgValuesSupported == null ? 0 : requestObjectSigningAlgValuesSupported.hashCode) +
     (requestParameterSupported == null ? 0 : requestParameterSupported.hashCode) +
     (requestUriParameterSupported == null ? 0 : requestUriParameterSupported.hashCode) +
     (requireRequestUriRegistration == null ? 0 : requireRequestUriRegistration.hashCode) +
@@ -171,7 +177,7 @@ class WellKnown {
     (userinfoSigningAlgValuesSupported == null ? 0 : userinfoSigningAlgValuesSupported.hashCode);
 
   @override
-  String toString() => 'WellKnown[authorizationEndpoint=$authorizationEndpoint, backchannelLogoutSessionSupported=$backchannelLogoutSessionSupported, backchannelLogoutSupported=$backchannelLogoutSupported, claimsParameterSupported=$claimsParameterSupported, claimsSupported=$claimsSupported, endSessionEndpoint=$endSessionEndpoint, frontchannelLogoutSessionSupported=$frontchannelLogoutSessionSupported, frontchannelLogoutSupported=$frontchannelLogoutSupported, grantTypesSupported=$grantTypesSupported, idTokenSigningAlgValuesSupported=$idTokenSigningAlgValuesSupported, issuer=$issuer, jwksUri=$jwksUri, registrationEndpoint=$registrationEndpoint, requestParameterSupported=$requestParameterSupported, requestUriParameterSupported=$requestUriParameterSupported, requireRequestUriRegistration=$requireRequestUriRegistration, responseModesSupported=$responseModesSupported, responseTypesSupported=$responseTypesSupported, revocationEndpoint=$revocationEndpoint, scopesSupported=$scopesSupported, subjectTypesSupported=$subjectTypesSupported, tokenEndpoint=$tokenEndpoint, tokenEndpointAuthMethodsSupported=$tokenEndpointAuthMethodsSupported, userinfoEndpoint=$userinfoEndpoint, userinfoSigningAlgValuesSupported=$userinfoSigningAlgValuesSupported]';
+  String toString() => 'WellKnown[authorizationEndpoint=$authorizationEndpoint, backchannelLogoutSessionSupported=$backchannelLogoutSessionSupported, backchannelLogoutSupported=$backchannelLogoutSupported, claimsParameterSupported=$claimsParameterSupported, claimsSupported=$claimsSupported, endSessionEndpoint=$endSessionEndpoint, frontchannelLogoutSessionSupported=$frontchannelLogoutSessionSupported, frontchannelLogoutSupported=$frontchannelLogoutSupported, grantTypesSupported=$grantTypesSupported, idTokenSigningAlgValuesSupported=$idTokenSigningAlgValuesSupported, issuer=$issuer, jwksUri=$jwksUri, registrationEndpoint=$registrationEndpoint, requestObjectSigningAlgValuesSupported=$requestObjectSigningAlgValuesSupported, requestParameterSupported=$requestParameterSupported, requestUriParameterSupported=$requestUriParameterSupported, requireRequestUriRegistration=$requireRequestUriRegistration, responseModesSupported=$responseModesSupported, responseTypesSupported=$responseTypesSupported, revocationEndpoint=$revocationEndpoint, scopesSupported=$scopesSupported, subjectTypesSupported=$subjectTypesSupported, tokenEndpoint=$tokenEndpoint, tokenEndpointAuthMethodsSupported=$tokenEndpointAuthMethodsSupported, userinfoEndpoint=$userinfoEndpoint, userinfoSigningAlgValuesSupported=$userinfoSigningAlgValuesSupported]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -213,6 +219,9 @@ class WellKnown {
     }
     if (registrationEndpoint != null) {
       json[r'registration_endpoint'] = registrationEndpoint;
+    }
+    if (requestObjectSigningAlgValuesSupported != null) {
+      json[r'request_object_signing_alg_values_supported'] = requestObjectSigningAlgValuesSupported;
     }
     if (requestParameterSupported != null) {
       json[r'request_parameter_supported'] = requestParameterSupported;
@@ -277,6 +286,9 @@ class WellKnown {
         issuer: json[r'issuer'],
         jwksUri: json[r'jwks_uri'],
         registrationEndpoint: json[r'registration_endpoint'],
+        requestObjectSigningAlgValuesSupported: json[r'request_object_signing_alg_values_supported'] == null
+          ? null
+          : (json[r'request_object_signing_alg_values_supported'] as List).cast<String>(),
         requestParameterSupported: json[r'request_parameter_supported'],
         requestUriParameterSupported: json[r'request_uri_parameter_supported'],
         requireRequestUriRegistration: json[r'require_request_uri_registration'],

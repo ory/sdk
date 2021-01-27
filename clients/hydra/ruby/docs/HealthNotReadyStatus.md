@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**errors** | **Hash&lt;String, String&gt;** | Errors contains a list of errors that caused the not ready status. | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **errors** | **Hash&lt;String, String&gt;** | Errors contains a list of errors that caused the not ready status. | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-hydra-client'
 
-instance = OryHydraClient::HealthNotReadyStatus.new(errors: null)
+instance = OryHydraClient::HealthNotReadyStatus.new(
+  errors: null
+)
 ```
-
 

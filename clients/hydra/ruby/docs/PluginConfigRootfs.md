@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**diff_ids** | **Array&lt;String&gt;** | diff ids | [optional] 
-**type** | **String** | type | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **diff_ids** | **Array&lt;String&gt;** | diff ids | [optional] |
+| **type** | **String** | type | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-hydra-client'
 
-instance = OryHydraClient::PluginConfigRootfs.new(diff_ids: null,
-                                 type: null)
+instance = OryHydraClient::PluginConfigRootfs.new(
+  diff_ids: null,
+  type: null
+)
 ```
-
 

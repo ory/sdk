@@ -3,7 +3,7 @@ info:
   description: Welcome to the ORY Hydra HTTP API documentation. You will find documentation
     for all HTTP APIs here.
   title: ORY Hydra
-  version: v1.9.0
+  version: v1.9.1
 servers:
 - url: /
 paths:
@@ -3545,4 +3545,5 @@ components:
       type: oauth2
 x-forwarded-proto: string
 x-request-id: string
+x-original-swagger-version: "2.0"
 

@@ -5,14 +5,13 @@
     <artifactId>hydra-client</artifactId>
     <packaging>jar</packaging>
     <name>hydra-client</name>
-
-    <version>0.0.0-SNAPSHOT</version>
-    <url>https://github.com/ory/hydra-client-java</url>
-    <description>Java Client for ORY Hydra</description>
+    <version>v1.9.1</version>
+    <url>https://github.com/openapitools/openapi-generator</url>
+    <description>OpenAPI Java</description>
     <scm>
-        <connection>scm:git:git@github.com:ory/hydra-client-java.git</connection>
-        <developerConnection>scm:git:git@github.com:ory/hydra-client-java.git</developerConnection>
-        <url>https://github.com/ory/hydra-client-java</url>
+        <connection>scm:git:git@github.com:openapitools/openapi-generator.git</connection>
+        <developerConnection>scm:git:git@github.com:openapitools/openapi-generator.git</developerConnection>
+        <url>https://github.com/openapitools/openapi-generator</url>
     </scm>
 
     <licenses>
@@ -26,7 +25,7 @@
     <developers>
         <developer>
             <name>ORY</name>
-            <email>opensource@ory.sh</email>
+            <email>office+oss@ory.sh</email>
             <organization>www.ory.sh</organization>
             <organizationUrl>https://www.ory.sh</organizationUrl>
         </developer>
@@ -34,6 +33,20 @@
 
     <build>
         <plugins>
+           <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <fork>true</fork>
+                    <meminitial>128m</meminitial>
+                    <maxmem>512m</maxmem>
+                    <compilerArgs>
+                        <arg>-Xlint:all</arg>
+                        <arg>-J-Xss4m</arg><!-- Compiling the generated JSON.java file may require larger stack size. -->
+                    </compilerArgs>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -57,7 +70,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.12</version>
+                <version>3.0.0-M4</version>
                 <configuration>
                     <systemProperties>
                         <property>
@@ -67,7 +80,7 @@
                     </systemProperties>
                     <argLine>-Xms512m -Xmx1500m</argLine>
                     <parallel>methods</parallel>
-                    <forkMode>pertest</forkMode>
+                    <threadCount>10</threadCount>
                 </configuration>
             </plugin>
             <plugin>
@@ -136,20 +149,17 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.4</version>
+                <version>3.1.1</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
                         <goals>
                             <goal>jar</goal>
                         </goals>
-                        <configuration>
-                            <additionalparam>-Xdoclint:none</additionalparam>
-                            <source>8</source>
-                        </configuration>
                     </execution>
                 </executions>
                 <configuration>
+                    <doclint>none</doclint>
                     <tags>
                         <tag>
                             <name>http.response.details</name>
@@ -172,49 +182,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.8.2</version>
-                <executions>
-                    <execution>
-                        <id>default-deploy</id>
-                        <phase>deploy</phase>
-                        <goals>
-                            <goal>deploy</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.3</version>
-                <configuration>
-                    <localCheckout>true</localCheckout>
-                    <pushChanges>false</pushChanges>
-                    <mavenExecutorId>forked-path</mavenExecutorId>
-                    <arguments>-Dgpg.passphrase=${gpg.passphrase}</arguments>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.maven.scm</groupId>
-                        <artifactId>maven-scm-provider-gitexe</artifactId>
-                        <version>1.9.5</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.7</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <serverId>ossrh</serverId>
-                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                    <stagingProgressTimeoutMinutes>120</stagingProgressTimeoutMinutes>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
@@ -234,45 +201,6 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
-                                <configuration>
-                                    <gpgArguments>
-                                        <arg>--pinentry-mode</arg>
-                                        <arg>loopback</arg>
-                                    </gpgArguments>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>release-sign-artifacts</id>
-            <activation>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.6</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                                <configuration>
-                                    <gpgArguments>
-                                        <arg>--pinentry-mode</arg>
-                                        <arg>loopback</arg>
-                                    </gpgArguments>
-                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
@@ -330,8 +258,9 @@
         </dependency>
         <dependency>
             <groupId>javax.annotation</groupId>
-            <artifactId>jsr250-api</artifactId>
+            <artifactId>javax.annotation-api</artifactId>
             <version>${javax-annotation-version}</version>
+            <scope>provided</scope>
         </dependency>
         <!-- test dependencies -->
         <dependency>
@@ -345,26 +274,14 @@
         <java.version>1.7</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <gson-fire-version>1.8.3</gson-fire-version>
-        <swagger-core-version>1.5.22</swagger-core-version>
-        <okhttp-version>3.14.2</okhttp-version>
-        <gson-version>2.8.5</gson-version>
-        <commons-lang3-version>3.9</commons-lang3-version>
-        <threetenbp-version>1.4.0</threetenbp-version>
-        <maven-plugin-version>1.0.0</maven-plugin-version>
-        <javax-annotation-version>1.0</javax-annotation-version>
-        <junit-version>4.12</junit-version>
+        <gson-fire-version>1.8.4</gson-fire-version>
+        <swagger-core-version>1.5.24</swagger-core-version>
+        <okhttp-version>3.14.7</okhttp-version>
+        <gson-version>2.8.6</gson-version>
+        <commons-lang3-version>3.10</commons-lang3-version>
+        <threetenbp-version>1.4.3</threetenbp-version>
+        <javax-annotation-version>1.3.2</javax-annotation-version>
+        <junit-version>4.13.1</junit-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/
-            </url>
-        </repository>
-    </distributionManagement>
 </project>

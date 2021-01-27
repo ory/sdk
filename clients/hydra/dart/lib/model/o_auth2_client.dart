@@ -41,15 +41,14 @@ class OAuth2Client {
     this.sectorIdentifierUri,
     this.subjectType,
     this.tokenEndpointAuthMethod,
+    this.tokenEndpointAuthSigningAlg,
     this.tosUri,
     this.updatedAt,
     this.userinfoSignedResponseAlg,
   });
 
-  /// AllowedCORSOrigins are one or more URLs (scheme://host[:port]) which are allowed to make CORS requests to the /oauth/token endpoint. If this array is empty, the sever's CORS origin configuration (`CORS_ALLOWED_ORIGINS`) will be used instead. If this array is set, the allowed origins are appended to the server's CORS origin configuration. Be aware that environment variable `CORS_ENABLED` MUST be set to `true` for this to work.
   List<String> allowedCorsOrigins;
 
-  /// Audience is a whitelist defining the audiences this client is allowed to request tokens for. An audience limits the applicability of an OAuth 2.0 Access Token to, for example, certain API endpoints. The value is a list of URLs. URLs MUST NOT contain whitespaces.
   List<String> audience;
 
   /// Boolean value specifying whether the RP requires that a sid (session ID) Claim be included in the Logout Token to identify the RP session with the OP when the backchannel_logout_uri is used. If omitted, the default value is false.
@@ -58,7 +57,7 @@ class OAuth2Client {
   /// RP URL that will cause the RP to log itself out when sent a Logout Token by the OP.
   String backchannelLogoutUri;
 
-  /// ClientID  is the id for this client.
+  /// ID  is the id for this client.
   String clientId;
 
   /// Name is the human-readable string name of the client to be presented to the end-user during authorization.
@@ -73,7 +72,6 @@ class OAuth2Client {
   /// ClientURI is an URL string of a web page providing information about the client. If present, the server SHOULD display this URL to the end-user in a clickable fashion.
   String clientUri;
 
-  /// Contacts is a array of strings representing ways to contact people responsible for this client, typically email addresses.
   List<String> contacts;
 
   /// CreatedAt returns the timestamp of the client's creation.
@@ -85,10 +83,9 @@ class OAuth2Client {
   /// RP URL that will cause the RP to log itself out when rendered in an iframe by the OP. An iss (issuer) query parameter and a sid (session ID) query parameter MAY be included by the OP to enable the RP to validate the request and to determine which of the potentially multiple sessions is to be logged out; if either is included, both MUST be.
   String frontchannelLogoutUri;
 
-  /// GrantTypes is an array of grant types the client is allowed to use.
   List<String> grantTypes;
 
-  JSONWebKeySet jwks;
+  Object jwks;
 
   /// URL for the Client's JSON Web Key Set [JWK] document. If the Client signs requests to the Server, it contains the signing key(s) the Server uses to validate signatures from the Client. The JWK Set MAY also contain the Client's encryption keys(s), which are used by the Server to encrypt responses to the Client. When both signing and encryption keys are made available, a use (Key Use) parameter value is REQUIRED for all keys in the referenced JWK Set to indicate each key's intended usage. Although some algorithms allow the same key to be used for both signatures and encryption, doing so is NOT RECOMMENDED, as it is less secure. The JWK x5c parameter MAY be used to provide X.509 representations of keys provided. When used, the bare key values MUST still be present and MUST match those in the certificate.
   String jwksUri;
@@ -96,7 +93,6 @@ class OAuth2Client {
   /// LogoURI is an URL string that references a logo for the client.
   String logoUri;
 
-  /// Metadata is arbitrary data.
   Object metadata;
 
   /// Owner is a string identifying the owner of the OAuth 2.0 Client.
@@ -105,19 +101,15 @@ class OAuth2Client {
   /// PolicyURI is a URL string that points to a human-readable privacy policy document that describes how the deployment organization collects, uses, retains, and discloses personal data.
   String policyUri;
 
-  /// Array of URLs supplied by the RP to which it MAY request that the End-User's User Agent be redirected using the post_logout_redirect_uri parameter after a logout has been performed.
   List<String> postLogoutRedirectUris;
 
-  /// RedirectURIs is an array of allowed redirect urls for the client, for example http://mydomain/oauth/callback .
   List<String> redirectUris;
 
   /// JWS [JWS] alg algorithm [JWA] that MUST be used for signing Request Objects sent to the OP. All Request Objects from this Client MUST be rejected, if not signed with this algorithm.
   String requestObjectSigningAlg;
 
-  /// Array of request_uri values that are pre-registered by the RP for use at the OP. Servers MAY cache the contents of the files referenced by these URIs and not retrieve them at the time they are used in a request. OPs can require that request_uri values used be pre-registered with the require_request_uri_registration discovery parameter.
   List<String> requestUris;
 
-  /// ResponseTypes is an array of the OAuth 2.0 response type strings that the client can use at the authorization endpoint.
   List<String> responseTypes;
 
   /// Scope is a string containing a space-separated list of scope values (as described in Section 3.3 of OAuth 2.0 [RFC6749]) that the client can use when requesting access tokens.
@@ -131,6 +123,9 @@ class OAuth2Client {
 
   /// Requested Client Authentication method for the Token Endpoint. The options are client_secret_post, client_secret_basic, private_key_jwt, and none.
   String tokenEndpointAuthMethod;
+
+  /// Requested Client Authentication signing algorithm for the Token Endpoint.
+  String tokenEndpointAuthSigningAlg;
 
   /// TermsOfServiceURI is a URL string that points to a human-readable terms of service document for the client that describes a contractual relationship between the end-user and the client that the end-user accepts when authorizing the client.
   String tosUri;
@@ -172,6 +167,7 @@ class OAuth2Client {
      other.sectorIdentifierUri == sectorIdentifierUri &&
      other.subjectType == subjectType &&
      other.tokenEndpointAuthMethod == tokenEndpointAuthMethod &&
+     other.tokenEndpointAuthSigningAlg == tokenEndpointAuthSigningAlg &&
      other.tosUri == tosUri &&
      other.updatedAt == updatedAt &&
      other.userinfoSignedResponseAlg == userinfoSignedResponseAlg;
@@ -207,12 +203,13 @@ class OAuth2Client {
     (sectorIdentifierUri == null ? 0 : sectorIdentifierUri.hashCode) +
     (subjectType == null ? 0 : subjectType.hashCode) +
     (tokenEndpointAuthMethod == null ? 0 : tokenEndpointAuthMethod.hashCode) +
+    (tokenEndpointAuthSigningAlg == null ? 0 : tokenEndpointAuthSigningAlg.hashCode) +
     (tosUri == null ? 0 : tosUri.hashCode) +
     (updatedAt == null ? 0 : updatedAt.hashCode) +
     (userinfoSignedResponseAlg == null ? 0 : userinfoSignedResponseAlg.hashCode);
 
   @override
-  String toString() => 'OAuth2Client[allowedCorsOrigins=$allowedCorsOrigins, audience=$audience, backchannelLogoutSessionRequired=$backchannelLogoutSessionRequired, backchannelLogoutUri=$backchannelLogoutUri, clientId=$clientId, clientName=$clientName, clientSecret=$clientSecret, clientSecretExpiresAt=$clientSecretExpiresAt, clientUri=$clientUri, contacts=$contacts, createdAt=$createdAt, frontchannelLogoutSessionRequired=$frontchannelLogoutSessionRequired, frontchannelLogoutUri=$frontchannelLogoutUri, grantTypes=$grantTypes, jwks=$jwks, jwksUri=$jwksUri, logoUri=$logoUri, metadata=$metadata, owner=$owner, policyUri=$policyUri, postLogoutRedirectUris=$postLogoutRedirectUris, redirectUris=$redirectUris, requestObjectSigningAlg=$requestObjectSigningAlg, requestUris=$requestUris, responseTypes=$responseTypes, scope=$scope, sectorIdentifierUri=$sectorIdentifierUri, subjectType=$subjectType, tokenEndpointAuthMethod=$tokenEndpointAuthMethod, tosUri=$tosUri, updatedAt=$updatedAt, userinfoSignedResponseAlg=$userinfoSignedResponseAlg]';
+  String toString() => 'OAuth2Client[allowedCorsOrigins=$allowedCorsOrigins, audience=$audience, backchannelLogoutSessionRequired=$backchannelLogoutSessionRequired, backchannelLogoutUri=$backchannelLogoutUri, clientId=$clientId, clientName=$clientName, clientSecret=$clientSecret, clientSecretExpiresAt=$clientSecretExpiresAt, clientUri=$clientUri, contacts=$contacts, createdAt=$createdAt, frontchannelLogoutSessionRequired=$frontchannelLogoutSessionRequired, frontchannelLogoutUri=$frontchannelLogoutUri, grantTypes=$grantTypes, jwks=$jwks, jwksUri=$jwksUri, logoUri=$logoUri, metadata=$metadata, owner=$owner, policyUri=$policyUri, postLogoutRedirectUris=$postLogoutRedirectUris, redirectUris=$redirectUris, requestObjectSigningAlg=$requestObjectSigningAlg, requestUris=$requestUris, responseTypes=$responseTypes, scope=$scope, sectorIdentifierUri=$sectorIdentifierUri, subjectType=$subjectType, tokenEndpointAuthMethod=$tokenEndpointAuthMethod, tokenEndpointAuthSigningAlg=$tokenEndpointAuthSigningAlg, tosUri=$tosUri, updatedAt=$updatedAt, userinfoSignedResponseAlg=$userinfoSignedResponseAlg]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -303,6 +300,9 @@ class OAuth2Client {
     if (tokenEndpointAuthMethod != null) {
       json[r'token_endpoint_auth_method'] = tokenEndpointAuthMethod;
     }
+    if (tokenEndpointAuthSigningAlg != null) {
+      json[r'token_endpoint_auth_signing_alg'] = tokenEndpointAuthSigningAlg;
+    }
     if (tosUri != null) {
       json[r'tos_uri'] = tosUri;
     }
@@ -344,7 +344,7 @@ class OAuth2Client {
         grantTypes: json[r'grant_types'] == null
           ? null
           : (json[r'grant_types'] as List).cast<String>(),
-        jwks: JSONWebKeySet.fromJson(json[r'jwks']),
+        jwks: json[r'jwks'],
         jwksUri: json[r'jwks_uri'],
         logoUri: json[r'logo_uri'],
         metadata: json[r'metadata'],
@@ -367,6 +367,7 @@ class OAuth2Client {
         sectorIdentifierUri: json[r'sector_identifier_uri'],
         subjectType: json[r'subject_type'],
         tokenEndpointAuthMethod: json[r'token_endpoint_auth_method'],
+        tokenEndpointAuthSigningAlg: json[r'token_endpoint_auth_signing_alg'],
         tosUri: json[r'tos_uri'],
         updatedAt: json[r'updated_at'] == null
           ? null

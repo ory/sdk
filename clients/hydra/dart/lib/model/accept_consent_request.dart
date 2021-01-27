@@ -14,16 +14,17 @@ class AcceptConsentRequest {
   AcceptConsentRequest({
     this.grantAccessTokenAudience = const [],
     this.grantScope = const [],
+    this.handledAt,
     this.remember,
     this.rememberFor,
     this.session,
   });
 
-  /// GrantedAudience sets the audience the user authorized the client to use. Should be a subset of `requested_access_token_audience`.
   List<String> grantAccessTokenAudience;
 
-  /// GrantScope sets the scope the user authorized the client to use. Should be a subset of `requested_scope`.
   List<String> grantScope;
+
+  DateTime handledAt;
 
   /// Remember, if set to true, tells ORY Hydra to remember this consent authorization and reuse it if the same client asks the same user for the same, or a subset of, scope.
   bool remember;
@@ -37,6 +38,7 @@ class AcceptConsentRequest {
   bool operator ==(Object other) => identical(this, other) || other is AcceptConsentRequest &&
      other.grantAccessTokenAudience == grantAccessTokenAudience &&
      other.grantScope == grantScope &&
+     other.handledAt == handledAt &&
      other.remember == remember &&
      other.rememberFor == rememberFor &&
      other.session == session;
@@ -45,12 +47,13 @@ class AcceptConsentRequest {
   int get hashCode =>
     (grantAccessTokenAudience == null ? 0 : grantAccessTokenAudience.hashCode) +
     (grantScope == null ? 0 : grantScope.hashCode) +
+    (handledAt == null ? 0 : handledAt.hashCode) +
     (remember == null ? 0 : remember.hashCode) +
     (rememberFor == null ? 0 : rememberFor.hashCode) +
     (session == null ? 0 : session.hashCode);
 
   @override
-  String toString() => 'AcceptConsentRequest[grantAccessTokenAudience=$grantAccessTokenAudience, grantScope=$grantScope, remember=$remember, rememberFor=$rememberFor, session=$session]';
+  String toString() => 'AcceptConsentRequest[grantAccessTokenAudience=$grantAccessTokenAudience, grantScope=$grantScope, handledAt=$handledAt, remember=$remember, rememberFor=$rememberFor, session=$session]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -59,6 +62,9 @@ class AcceptConsentRequest {
     }
     if (grantScope != null) {
       json[r'grant_scope'] = grantScope;
+    }
+    if (handledAt != null) {
+      json[r'handled_at'] = handledAt.toUtc().toIso8601String();
     }
     if (remember != null) {
       json[r'remember'] = remember;
@@ -83,6 +89,9 @@ class AcceptConsentRequest {
         grantScope: json[r'grant_scope'] == null
           ? null
           : (json[r'grant_scope'] as List).cast<String>(),
+        handledAt: json[r'handled_at'] == null
+          ? null
+          : DateTime.parse(json[r'handled_at']),
         remember: json[r'remember'],
         rememberFor: json[r'remember_for'],
         session: ConsentRequestSession.fromJson(json[r'session']),

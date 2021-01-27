@@ -9,12 +9,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**disconnectUser**](PublicApi.md#disconnectUser) | **GET** /oauth2/sessions/logout | OpenID Connect Front-Backchannel enabled Logout
+[**disconnectUser**](PublicApi.md#disconnectUser) | **GET** /oauth2/sessions/logout | OpenID Connect Front-Backchannel Enabled Logout
 [**discoverOpenIDConfiguration**](PublicApi.md#discoverOpenIDConfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
-[**isInstanceReady**](PublicApi.md#isInstanceReady) | **GET** /health/ready | Check readiness status
-[**oauth2Token**](PublicApi.md#oauth2Token) | **POST** /oauth2/token | The OAuth 2.0 token endpoint
-[**oauthAuth**](PublicApi.md#oauthAuth) | **GET** /oauth2/auth | The OAuth 2.0 authorize endpoint
-[**revokeOAuth2Token**](PublicApi.md#revokeOAuth2Token) | **POST** /oauth2/revoke | Revoke OAuth2 tokens
+[**isInstanceReady**](PublicApi.md#isInstanceReady) | **GET** /health/ready | Check Readiness Status
+[**oauth2Token**](PublicApi.md#oauth2Token) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
+[**oauthAuth**](PublicApi.md#oauthAuth) | **GET** /oauth2/auth | The OAuth 2.0 Authorize Endpoint
+[**revokeOAuth2Token**](PublicApi.md#revokeOAuth2Token) | **POST** /oauth2/revoke | Revoke OAuth2 Tokens
 [**userinfo**](PublicApi.md#userinfo) | **GET** /userinfo | OpenID Connect Userinfo
 [**wellKnown**](PublicApi.md#wellKnown) | **GET** /.well-known/jwks.json | JSON Web Keys Discovery
 
@@ -22,7 +22,7 @@ Method | HTTP request | Description
 # **disconnectUser**
 > disconnectUser()
 
-OpenID Connect Front-Backchannel enabled Logout
+OpenID Connect Front-Backchannel Enabled Logout
 
 This endpoint initiates and completes user logout at ORY Hydra and initiates OpenID Connect Front-/Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html
 
@@ -99,7 +99,7 @@ No authorization required
 # **isInstanceReady**
 > HealthStatus isInstanceReady()
 
-Check readiness status
+Check Readiness Status
 
 This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
 
@@ -138,9 +138,9 @@ No authorization required
 # **oauth2Token**
 > Oauth2TokenResponse oauth2Token(grantType, code, refreshToken, redirectUri, clientId)
 
-The OAuth 2.0 token endpoint
+The OAuth 2.0 Token Endpoint
 
-The client makes a request to the token endpoint by sending the following parameters using the \"application/x-www-form-urlencoded\" HTTP request entity-body.  > Do not implement a client for this endpoint yourself. Use a library. There are many libraries > available for any programming language. You can find a list of libraries here: https://oauth.net/code/ > > Do not the the Hydra SDK does not implement this endpoint properly. Use one of the libraries listed above!
+The client makes a request to the token endpoint by sending the following parameters using the \"application/x-www-form-urlencoded\" HTTP request entity-body.  > Do not implement a client for this endpoint yourself. Use a library. There are many libraries > available for any programming language. You can find a list of libraries here: https://oauth.net/code/ > > Do note that Hydra SDK does not implement this endpoint properly. Use one of the libraries listed above!
 
 ### Example 
 ```dart
@@ -194,7 +194,7 @@ Name | Type | Description  | Notes
 # **oauthAuth**
 > oauthAuth()
 
-The OAuth 2.0 authorize endpoint
+The OAuth 2.0 Authorize Endpoint
 
 This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exists.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc6749
 
@@ -232,7 +232,7 @@ No authorization required
 # **revokeOAuth2Token**
 > revokeOAuth2Token(token)
 
-Revoke OAuth2 tokens
+Revoke OAuth2 Tokens
 
 Revoking a token (both access and refresh) means that the tokens will be invalid. A revoked access token can no longer be used to make access requests, and a revoked refresh token can no longer be used to refresh an access token. Revoking a refresh token also invalidates the access token that was created with it. A token may only be revoked by the client the token was generated for.
 

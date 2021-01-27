@@ -2,20 +2,21 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**capability** | **String** | capability | 
-**prefix** | **String** | prefix | 
-**version** | **String** | version | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **capability** | **String** | capability |  |
+| **prefix** | **String** | prefix |  |
+| **version** | **String** | version |  |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-hydra-client'
 
-instance = OryHydraClient::PluginInterfaceType.new(capability: null,
-                                 prefix: null,
-                                 version: null)
+instance = OryHydraClient::PluginInterfaceType.new(
+  capability: null,
+  prefix: null,
+  version: null
+)
 ```
-
 

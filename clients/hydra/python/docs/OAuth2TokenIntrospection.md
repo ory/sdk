@@ -5,10 +5,10 @@ https://tools.ietf.org/html/rfc7662
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active** | **bool** | Active is a boolean indicator of whether or not the presented token is currently active.  The specifics of a token&#39;s \&quot;active\&quot; state will vary depending on the implementation of the authorization server and the information it keeps about its tokens, but a \&quot;true\&quot; value return for the \&quot;active\&quot; property will generally indicate that a given token has been issued by this authorization server, has not been revoked by the resource owner, and is within its given time window of validity (e.g., after its issuance time and before its expiration time). | 
-**aud** | **list[str]** | Audience contains a list of the token&#39;s intended audiences. | [optional] 
+**aud** | **[str]** | Audience contains a list of the token&#39;s intended audiences. | [optional] 
 **client_id** | **str** | ID is aclient identifier for the OAuth 2.0 client that requested this token. | [optional] 
 **exp** | **int** | Expires at is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token will expire. | [optional] 
-**ext** | [**object**](.md) | Extra is arbitrary data set by the session. | [optional] 
+**ext** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Extra is arbitrary data set by the session. | [optional] 
 **iat** | **int** | Issued at is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token was originally issued. | [optional] 
 **iss** | **str** | IssuerURL is a string representing the issuer of this token | [optional] 
 **nbf** | **int** | NotBefore is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token is not to be used before. | [optional] 

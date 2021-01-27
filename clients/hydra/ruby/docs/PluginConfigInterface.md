@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**socket** | **String** | socket | 
-**types** | [**Array&lt;PluginInterfaceType&gt;**](PluginInterfaceType.md) | types | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **socket** | **String** | socket |  |
+| **types** | [**Array&lt;PluginInterfaceType&gt;**](PluginInterfaceType.md) | types |  |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-hydra-client'
 
-instance = OryHydraClient::PluginConfigInterface.new(socket: null,
-                                 types: null)
+instance = OryHydraClient::PluginConfigInterface.new(
+  socket: null,
+  types: null
+)
 ```
-
 

@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**gid** | **Integer** | g ID | [optional] 
-**uid** | **Integer** | UID | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **gid** | **Integer** | g ID | [optional] |
+| **uid** | **Integer** | UID | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-hydra-client'
 
-instance = OryHydraClient::PluginConfigUser.new(gid: null,
-                                 uid: null)
+instance = OryHydraClient::PluginConfigUser.new(
+  gid: null,
+  uid: null
+)
 ```
-
 

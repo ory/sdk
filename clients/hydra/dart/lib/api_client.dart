@@ -171,6 +171,8 @@ class ApiClient {
           return ConsentRequest.fromJson(value);
         case 'ConsentRequestSession':
           return ConsentRequestSession.fromJson(value);
+        case 'ContainerWaitOKBodyError':
+          return ContainerWaitOKBodyError.fromJson(value);
         case 'FlushInactiveOAuth2TokensRequest':
           return FlushInactiveOAuth2TokensRequest.fromJson(value);
         case 'GenericError':
@@ -195,10 +197,32 @@ class ApiClient {
           return OAuth2TokenIntrospection.fromJson(value);
         case 'Oauth2TokenResponse':
           return Oauth2TokenResponse.fromJson(value);
-        case 'OauthTokenResponse':
-          return OauthTokenResponse.fromJson(value);
         case 'OpenIDConnectContext':
           return OpenIDConnectContext.fromJson(value);
+        case 'PluginConfig':
+          return PluginConfig.fromJson(value);
+        case 'PluginConfigArgs':
+          return PluginConfigArgs.fromJson(value);
+        case 'PluginConfigInterface':
+          return PluginConfigInterface.fromJson(value);
+        case 'PluginConfigLinux':
+          return PluginConfigLinux.fromJson(value);
+        case 'PluginConfigNetwork':
+          return PluginConfigNetwork.fromJson(value);
+        case 'PluginConfigRootfs':
+          return PluginConfigRootfs.fromJson(value);
+        case 'PluginConfigUser':
+          return PluginConfigUser.fromJson(value);
+        case 'PluginDevice':
+          return PluginDevice.fromJson(value);
+        case 'PluginEnv':
+          return PluginEnv.fromJson(value);
+        case 'PluginInterfaceType':
+          return PluginInterfaceType.fromJson(value);
+        case 'PluginMount':
+          return PluginMount.fromJson(value);
+        case 'PluginSettings':
+          return PluginSettings.fromJson(value);
         case 'PreviousConsentSession':
           return PreviousConsentSession.fromJson(value);
         case 'RejectRequest':
@@ -207,6 +231,8 @@ class ApiClient {
           return UserinfoResponse.fromJson(value);
         case 'Version':
           return Version.fromJson(value);
+        case 'VolumeUsageData':
+          return VolumeUsageData.fromJson(value);
         case 'WellKnown':
           return WellKnown.fromJson(value);
         default:

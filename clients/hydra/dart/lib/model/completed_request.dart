@@ -12,7 +12,7 @@ part of openapi.api;
 class CompletedRequest {
   /// Returns a new [CompletedRequest] instance.
   CompletedRequest({
-    this.redirectTo,
+    @required this.redirectTo,
   });
 
   /// RedirectURL is the URL which you should redirect the user to once the authentication process is completed.

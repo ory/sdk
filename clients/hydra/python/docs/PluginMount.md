@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **description** | **str** | description | 
 **destination** | **str** | destination | 
 **name** | **str** | name | 
-**options** | **list[str]** | options | 
-**settable** | **list[str]** | settable | 
+**options** | **[str]** | options | 
+**settable** | **[str]** | settable | 
 **source** | **str** | source | 
 **type** | **str** | type | 
 
