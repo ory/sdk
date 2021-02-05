@@ -5,6 +5,7 @@ invokerPackage: sh.ory.$PROJECT
 apiPackage: sh.ory.$PROJECT.api
 modelPackage: sh.ory.$PROJECT.model
 library: okhttp-gson
+dateLibrary: java8
 developerName: ORY
 developerOrganization: www.ory.sh
 developerOrganizationUrl: https://www.ory.sh
