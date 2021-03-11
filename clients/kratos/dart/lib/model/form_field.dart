@@ -12,54 +12,71 @@ part of openapi.api;
 class FormField {
   /// Returns a new [FormField] instance.
   FormField({
-    this.errors = const [],
-    this.name,
+    this.disabled,
+    this.messages = const [],
+    @required this.name,
+    this.pattern,
     this.required_,
-    this.type,
+    @required this.type,
     this.value,
   });
 
-  /// Errors contains all validation errors this particular field has caused.
-  List<Error> errors;
+  /// Disabled is the equivalent of `<input {{if .Disabled}}disabled{{end}}\">`
+  bool disabled;
 
-  /// Name is the equivalent of <input name=\"{{.Name}}\">
+  List<Message> messages;
+
+  /// Name is the equivalent of `<input name=\"{{.Name}}\">`
   String name;
 
-  /// Name is the equivalent of <input required=\"{{.Required}}\">
+  /// Pattern is the equivalent of `<input pattern=\"{{.Pattern}}\">`
+  String pattern;
+
+  /// Required is the equivalent of `<input required=\"{{.Required}}\">`
   bool required_;
 
-  /// Name is the equivalent of <input type=\"{{.Type}}\">
+  /// Type is the equivalent of `<input type=\"{{.Type}}\">`
   String type;
 
-  /// Name is the equivalent of <input value=\"{{.Value}}\">
+  /// Value is the equivalent of `<input value=\"{{.Value}}\">`
   Object value;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is FormField &&
-     other.errors == errors &&
+     other.disabled == disabled &&
+     other.messages == messages &&
      other.name == name &&
+     other.pattern == pattern &&
      other.required_ == required_ &&
      other.type == type &&
      other.value == value;
 
   @override
   int get hashCode =>
-    (errors == null ? 0 : errors.hashCode) +
+    (disabled == null ? 0 : disabled.hashCode) +
+    (messages == null ? 0 : messages.hashCode) +
     (name == null ? 0 : name.hashCode) +
+    (pattern == null ? 0 : pattern.hashCode) +
     (required_ == null ? 0 : required_.hashCode) +
     (type == null ? 0 : type.hashCode) +
     (value == null ? 0 : value.hashCode);
 
   @override
-  String toString() => 'FormField[errors=$errors, name=$name, required_=$required_, type=$type, value=$value]';
+  String toString() => 'FormField[disabled=$disabled, messages=$messages, name=$name, pattern=$pattern, required_=$required_, type=$type, value=$value]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (errors != null) {
-      json[r'errors'] = errors;
+    if (disabled != null) {
+      json[r'disabled'] = disabled;
+    }
+    if (messages != null) {
+      json[r'messages'] = messages;
     }
     if (name != null) {
       json[r'name'] = name;
+    }
+    if (pattern != null) {
+      json[r'pattern'] = pattern;
     }
     if (required_ != null) {
       json[r'required'] = required_;
@@ -78,8 +95,10 @@ class FormField {
   static FormField fromJson(Map<String, dynamic> json) => json == null
     ? null
     : FormField(
-        errors: Error.listFromJson(json[r'errors']),
+        disabled: json[r'disabled'],
+        messages: Message.listFromJson(json[r'messages']),
         name: json[r'name'],
+        pattern: json[r'pattern'],
         required_: json[r'required'],
         type: json[r'type'],
         value: json[r'value'],
