@@ -1,4 +1,4 @@
-FROM openjdk:16-slim-buster
+FROM openjdk:17-slim-buster
 
 RUN apt-get update; apt-get install -y --no-install-recommends ca-certificates ssh
 
