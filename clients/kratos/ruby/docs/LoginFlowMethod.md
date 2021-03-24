@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**config** | [**LoginFlowMethodConfig**](LoginFlowMethodConfig.md) |  | 
-**method** | **String** | and so on. | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **config** | [**LoginFlowMethodConfig**](LoginFlowMethodConfig.md) |  |  |
+| **method** | **String** | and so on. |  |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-kratos-client'
 
-instance = OryHydraClient::LoginFlowMethod.new(config: null,
-                                 method: null)
+instance = OryHydraClient::LoginFlowMethod.new(
+  config: null,
+  method: null
+)
 ```
-
 

@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 )
 
@@ -16,5 +18,10 @@ type VerifiableAddressStatus string
 
 // Validate validates this verifiable address status
 func (m VerifiableAddressStatus) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this verifiable address status based on context it is used
+func (m VerifiableAddressStatus) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }

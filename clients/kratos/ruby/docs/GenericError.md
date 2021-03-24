@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**error** | [**GenericErrorPayload**](GenericErrorPayload.md) |  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **error** | [**GenericErrorPayload**](GenericErrorPayload.md) |  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-kratos-client'
 
-instance = OryHydraClient::GenericError.new(error: null)
+instance = OryHydraClient::GenericError.new(
+  error: null
+)
 ```
-
 

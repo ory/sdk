@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**config** | [**RecoveryFlowMethodConfig**](RecoveryFlowMethodConfig.md) |  | 
-**method** | **String** | Method contains the request credentials type. | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **config** | [**RecoveryFlowMethodConfig**](RecoveryFlowMethodConfig.md) |  |  |
+| **method** | **String** | Method contains the request credentials type. |  |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-kratos-client'
 
-instance = OryHydraClient::RecoveryFlowMethod.new(config: null,
-                                 method: null)
+instance = OryHydraClient::RecoveryFlowMethod.new(
+  config: null,
+  method: null
+)
 ```
-
 

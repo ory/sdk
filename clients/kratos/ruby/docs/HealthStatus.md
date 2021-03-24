@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**status** | **String** | Status always contains \&quot;ok\&quot;. | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **status** | **String** | Status always contains \&quot;ok\&quot;. | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-kratos-client'
 
-instance = OryHydraClient::HealthStatus.new(status: null)
+instance = OryHydraClient::HealthStatus.new(
+  status: null
+)
 ```
-
 

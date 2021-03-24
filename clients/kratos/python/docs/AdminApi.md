@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 
 # **create_identity**
-> Identity create_identity(body=body)
+> Identity create_identity()
 
 Create an Identity
 
@@ -30,10 +30,12 @@ This endpoint creates an identity. It is NOT possible to set an identity's crede
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import admin_api
+from ory_kratos_client.model.create_identity import CreateIdentity
+from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.identity import Identity
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -45,14 +47,19 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.AdminApi(api_client)
-    body = ory_kratos_client.CreateIdentity() # CreateIdentity |  (optional)
+    api_instance = admin_api.AdminApi(api_client)
+    body = CreateIdentity(
+        schema_id="schema_id_example",
+        traits={},
+    ) # CreateIdentity |  (optional)
 
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # Create an Identity
         api_response = api_instance.create_identity(body=body)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling AdminApi->create_identity: %s\n" % e)
 ```
 
@@ -60,7 +67,7 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateIdentity**](CreateIdentity.md)|  | [optional] 
+ **body** | [**CreateIdentity**](CreateIdentity.md)|  | [optional]
 
 ### Return type
 
@@ -86,7 +93,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_recovery_link**
-> RecoveryLink create_recovery_link(body=body)
+> RecoveryLink create_recovery_link()
 
 Create a Recovery Link
 
@@ -95,10 +102,12 @@ This endpoint creates a recovery link which should be given to the user in order
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import admin_api
+from ory_kratos_client.model.create_recovery_link import CreateRecoveryLink
+from ory_kratos_client.model.recovery_link import RecoveryLink
+from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -110,14 +119,19 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.AdminApi(api_client)
-    body = ory_kratos_client.CreateRecoveryLink() # CreateRecoveryLink |  (optional)
+    api_instance = admin_api.AdminApi(api_client)
+    body = CreateRecoveryLink(
+        expires_in="4m",
+        identity_id="identity_id_example",
+    ) # CreateRecoveryLink |  (optional)
 
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # Create a Recovery Link
         api_response = api_instance.create_recovery_link(body=body)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling AdminApi->create_recovery_link: %s\n" % e)
 ```
 
@@ -125,7 +139,7 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateRecoveryLink**](CreateRecoveryLink.md)|  | [optional] 
+ **body** | [**CreateRecoveryLink**](CreateRecoveryLink.md)|  | [optional]
 
 ### Return type
 
@@ -160,10 +174,10 @@ Calling this endpoint irrecoverably and permanently deletes the identity given i
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import admin_api
+from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -175,13 +189,14 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.AdminApi(api_client)
-    id = 'id_example' # str | ID is the identity's ID.
+    api_instance = admin_api.AdminApi(api_client)
+    id = "id_example" # str | ID is the identity's ID.
 
+    # example passing only required values which don't have defaults set
     try:
         # Delete an Identity
         api_instance.delete_identity(id)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling AdminApi->delete_identity: %s\n" % e)
 ```
 
@@ -189,7 +204,7 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| ID is the identity&#39;s ID. | 
+ **id** | **str**| ID is the identity&#39;s ID. |
 
 ### Return type
 
@@ -223,10 +238,11 @@ Learn how identities work in [ORY Kratos' User And Identity Model Documentation]
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import admin_api
+from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.identity import Identity
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -238,14 +254,15 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.AdminApi(api_client)
-    id = 'id_example' # str | ID must be set to the ID of identity you want to get
+    api_instance = admin_api.AdminApi(api_client)
+    id = "id_example" # str | ID must be set to the ID of identity you want to get
 
+    # example passing only required values which don't have defaults set
     try:
         # Get an Identity
         api_response = api_instance.get_identity(id)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling AdminApi->get_identity: %s\n" % e)
 ```
 
@@ -253,7 +270,7 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| ID must be set to the ID of identity you want to get | 
+ **id** | **str**| ID must be set to the ID of identity you want to get |
 
 ### Return type
 
@@ -278,7 +295,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_schema**
-> object get_schema(id)
+> {str: (bool, date, datetime, dict, float, int, list, str, none_type)} get_schema(id)
 
 
 
@@ -287,10 +304,10 @@ Get a Traits Schema Definition
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import admin_api
+from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -302,13 +319,14 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.AdminApi(api_client)
-    id = 'id_example' # str | ID must be set to the ID of schema you want to get
+    api_instance = admin_api.AdminApi(api_client)
+    id = "id_example" # str | ID must be set to the ID of schema you want to get
 
+    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_schema(id)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling AdminApi->get_schema: %s\n" % e)
 ```
 
@@ -316,11 +334,11 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| ID must be set to the ID of schema you want to get | 
+ **id** | **str**| ID must be set to the ID of schema you want to get |
 
 ### Return type
 
-**object**
+**{str: (bool, date, datetime, dict, float, int, list, str, none_type)}**
 
 ### Authorization
 
@@ -350,10 +368,11 @@ This endpoint returns the error associated with a user-facing self service error
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import admin_api
+from ory_kratos_client.model.error_container import ErrorContainer
+from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -365,14 +384,15 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.AdminApi(api_client)
-    error = 'error_example' # str | Error is the container's ID
+    api_instance = admin_api.AdminApi(api_client)
+    error = "error_example" # str | Error is the container's ID
 
+    # example passing only required values which don't have defaults set
     try:
         # Get User-Facing Self-Service Errors
         api_response = api_instance.get_self_service_error(error)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling AdminApi->get_self_service_error: %s\n" % e)
 ```
 
@@ -380,7 +400,7 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **error** | **str**| Error is the container&#39;s ID | 
+ **error** | **str**| Error is the container&#39;s ID |
 
 ### Return type
 
@@ -415,10 +435,11 @@ This endpoint returns a login flow's context with, for example, error details an
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import admin_api
+from ory_kratos_client.model.login_flow import LoginFlow
+from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -430,14 +451,15 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.AdminApi(api_client)
-    id = 'id_example' # str | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
+    api_instance = admin_api.AdminApi(api_client)
+    id = "id_example" # str | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
 
+    # example passing only required values which don't have defaults set
     try:
         # Get Login Flow
         api_response = api_instance.get_self_service_login_flow(id)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling AdminApi->get_self_service_login_flow: %s\n" % e)
 ```
 
@@ -445,7 +467,7 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). | 
+ **id** | **str**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). |
 
 ### Return type
 
@@ -481,10 +503,11 @@ This endpoint returns a recovery flow's context with, for example, error details
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import admin_api
+from ory_kratos_client.model.recovery_flow import RecoveryFlow
+from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -496,14 +519,15 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.AdminApi(api_client)
-    id = 'id_example' # str | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
+    api_instance = admin_api.AdminApi(api_client)
+    id = "id_example" # str | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
 
+    # example passing only required values which don't have defaults set
     try:
         # Get information about a recovery flow
         api_response = api_instance.get_self_service_recovery_flow(id)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling AdminApi->get_self_service_recovery_flow: %s\n" % e)
 ```
 
@@ -511,7 +535,7 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). | 
+ **id** | **str**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). |
 
 ### Return type
 
@@ -546,10 +570,11 @@ This endpoint returns a registration flow's context with, for example, error det
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import admin_api
+from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.registration_flow import RegistrationFlow
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -561,14 +586,15 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.AdminApi(api_client)
-    id = 'id_example' # str | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
+    api_instance = admin_api.AdminApi(api_client)
+    id = "id_example" # str | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
 
+    # example passing only required values which don't have defaults set
     try:
         # Get Registration Flow
         api_response = api_instance.get_self_service_registration_flow(id)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling AdminApi->get_self_service_registration_flow: %s\n" % e)
 ```
 
@@ -576,7 +602,7 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). | 
+ **id** | **str**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). |
 
 ### Return type
 
@@ -613,10 +639,11 @@ When accessing this endpoint through ORY Kratos' Public API you must ensure that
 
 * Api Key Authentication (sessionToken):
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import admin_api
+from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.settings_flow import SettingsFlow
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -630,26 +657,23 @@ configuration = ory_kratos_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: sessionToken
-configuration = ory_kratos_client.Configuration(
-    host = "http://localhost",
-    api_key = {
-        'X-Session-Token': 'YOUR_API_KEY'
-    }
-)
+configuration.api_key['sessionToken'] = 'YOUR_API_KEY'
+
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['X-Session-Token'] = 'Bearer'
+# configuration.api_key_prefix['sessionToken'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.AdminApi(api_client)
-    id = 'id_example' # str | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+    api_instance = admin_api.AdminApi(api_client)
+    id = "id_example" # str | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
 
+    # example passing only required values which don't have defaults set
     try:
         # Get Settings Flow
         api_response = api_instance.get_self_service_settings_flow(id)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling AdminApi->get_self_service_settings_flow: %s\n" % e)
 ```
 
@@ -657,7 +681,7 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). | 
+ **id** | **str**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
 
 ### Return type
 
@@ -693,10 +717,11 @@ This endpoint returns a verification flow's context with, for example, error det
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import admin_api
+from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.verification_flow import VerificationFlow
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -708,14 +733,15 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.AdminApi(api_client)
-    id = 'id_example' # str | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
+    api_instance = admin_api.AdminApi(api_client)
+    id = "id_example" # str | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
 
+    # example passing only required values which don't have defaults set
     try:
         # Get Verification Flow
         api_response = api_instance.get_self_service_verification_flow(id)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling AdminApi->get_self_service_verification_flow: %s\n" % e)
 ```
 
@@ -723,7 +749,7 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verification?flow&#x3D;abcde&#x60;). | 
+ **id** | **str**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verification?flow&#x3D;abcde&#x60;). |
 
 ### Return type
 
@@ -749,7 +775,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_identities**
-> list[Identity] list_identities(per_page=per_page, page=page)
+> [Identity] list_identities()
 
 List Identities
 
@@ -758,10 +784,11 @@ Lists all identities. Does not support search at the moment.  Learn how identiti
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import admin_api
+from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.identity import Identity
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -773,15 +800,17 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.AdminApi(api_client)
-    per_page = 100 # int | Items per Page  This is the number of items per page. (optional) (default to 100)
-page = 0 # int | Pagination Page (optional) (default to 0)
+    api_instance = admin_api.AdminApi(api_client)
+    per_page = 100 # int | Items per Page  This is the number of items per page. (optional) if omitted the server will use the default value of 100
+    page = 0 # int | Pagination Page (optional) if omitted the server will use the default value of 0
 
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # List Identities
         api_response = api_instance.list_identities(per_page=per_page, page=page)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling AdminApi->list_identities: %s\n" % e)
 ```
 
@@ -789,12 +818,12 @@ page = 0 # int | Pagination Page (optional) (default to 0)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **per_page** | **int**| Items per Page  This is the number of items per page. | [optional] [default to 100]
- **page** | **int**| Pagination Page | [optional] [default to 0]
+ **per_page** | **int**| Items per Page  This is the number of items per page. | [optional] if omitted the server will use the default value of 100
+ **page** | **int**| Pagination Page | [optional] if omitted the server will use the default value of 0
 
 ### Return type
 
-[**list[Identity]**](Identity.md)
+[**[Identity]**](Identity.md)
 
 ### Authorization
 
@@ -823,10 +852,9 @@ Get snapshot metrics from the Hydra service. If you're using k8s, you can then a
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import admin_api
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -838,12 +866,13 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.AdminApi(api_client)
-    
+    api_instance = admin_api.AdminApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
     try:
         # Get snapshot metrics from the Hydra service. If you're using k8s, you can then add annotations to your deployment like so:
         api_instance.prometheus()
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling AdminApi->prometheus: %s\n" % e)
 ```
 
@@ -871,7 +900,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_identity**
-> Identity update_identity(id, body=body)
+> Identity update_identity(id)
 
 Update an Identity
 
@@ -880,10 +909,12 @@ This endpoint updates an identity. It is NOT possible to set an identity's crede
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import admin_api
+from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.update_identity import UpdateIdentity
+from ory_kratos_client.model.identity import Identity
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -895,15 +926,28 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.AdminApi(api_client)
-    id = 'id_example' # str | ID must be set to the ID of identity you want to update
-body = ory_kratos_client.UpdateIdentity() # UpdateIdentity |  (optional)
+    api_instance = admin_api.AdminApi(api_client)
+    id = "id_example" # str | ID must be set to the ID of identity you want to update
+    body = UpdateIdentity(
+        schema_id="schema_id_example",
+        traits={},
+    ) # UpdateIdentity |  (optional)
 
+    # example passing only required values which don't have defaults set
+    try:
+        # Update an Identity
+        api_response = api_instance.update_identity(id)
+        pprint(api_response)
+    except ory_kratos_client.ApiException as e:
+        print("Exception when calling AdminApi->update_identity: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # Update an Identity
         api_response = api_instance.update_identity(id, body=body)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling AdminApi->update_identity: %s\n" % e)
 ```
 
@@ -911,8 +955,8 @@ body = ory_kratos_client.UpdateIdentity() # UpdateIdentity |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| ID must be set to the ID of identity you want to update | 
- **body** | [**UpdateIdentity**](UpdateIdentity.md)|  | [optional] 
+ **id** | **str**| ID must be set to the ID of identity you want to update |
+ **body** | [**UpdateIdentity**](UpdateIdentity.md)|  | [optional]
 
 ### Return type
 

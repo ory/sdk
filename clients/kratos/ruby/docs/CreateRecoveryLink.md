@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**expires_in** | **String** | Link Expires In  The recovery link will expire at that point in time. Defaults to the configuration value of &#x60;selfservice.flows.recovery.request_lifespan&#x60;. | [optional] 
-**identity_id** | **String** |  | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **expires_in** | **String** | Link Expires In  The recovery link will expire at that point in time. Defaults to the configuration value of &#x60;selfservice.flows.recovery.request_lifespan&#x60;. | [optional] |
+| **identity_id** | **String** |  |  |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-kratos-client'
 
-instance = OryHydraClient::CreateRecoveryLink.new(expires_in: null,
-                                 identity_id: null)
+instance = OryHydraClient::CreateRecoveryLink.new(
+  expires_in: null,
+  identity_id: null
+)
 ```
-
 

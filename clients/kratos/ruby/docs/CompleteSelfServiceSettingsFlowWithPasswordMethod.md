@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**csrf_token** | **String** | CSRFToken is the anti-CSRF token  type: string | [optional] 
-**password** | **String** | Password is the updated password  type: string | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **csrf_token** | **String** | CSRFToken is the anti-CSRF token  type: string | [optional] |
+| **password** | **String** | Password is the updated password  type: string |  |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-kratos-client'
 
-instance = OryHydraClient::CompleteSelfServiceSettingsFlowWithPasswordMethod.new(csrf_token: null,
-                                 password: null)
+instance = OryHydraClient::CompleteSelfServiceSettingsFlowWithPasswordMethod.new(
+  csrf_token: null,
+  password: null
+)
 ```
-
 

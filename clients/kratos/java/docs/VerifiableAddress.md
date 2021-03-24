@@ -6,11 +6,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | [**UUID**](UUID.md) |  | 
+**id** | **UUID** |  | 
 **status** | **String** |  | 
 **value** | **String** |  | 
 **verified** | **Boolean** |  | 
-**verifiedAt** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
+**verifiedAt** | **OffsetDateTime** |  |  [optional]
 **via** | **String** |  | 
 
 

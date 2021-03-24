@@ -11,6 +11,8 @@ part of openapi.api;
 
 class ApiClient {
   ApiClient({this.basePath = 'http://localhost'}) {
+    // Setup authentications (key: authentication name, value: authentication).
+    _authentications[r'sessionToken'] = ApiKeyAuth('header', 'X-Session-Token');
   }
 
   final String basePath;
@@ -158,38 +160,82 @@ class ApiClient {
           break;
         case 'double':
           return value is double ? value : double.parse('$value');
-        case 'Error':
-          return Error.fromJson(value);
-        case 'Form':
-          return Form.fromJson(value);
+        case 'CompleteSelfServiceLoginFlowWithPasswordMethod':
+          return CompleteSelfServiceLoginFlowWithPasswordMethod.fromJson(value);
+        case 'CompleteSelfServiceRecoveryFlowWithLinkMethod':
+          return CompleteSelfServiceRecoveryFlowWithLinkMethod.fromJson(value);
+        case 'CompleteSelfServiceSettingsFlowWithPasswordMethod':
+          return CompleteSelfServiceSettingsFlowWithPasswordMethod.fromJson(value);
+        case 'CompleteSelfServiceVerificationFlowWithLinkMethod':
+          return CompleteSelfServiceVerificationFlowWithLinkMethod.fromJson(value);
+        case 'CreateIdentity':
+          return CreateIdentity.fromJson(value);
+        case 'CreateRecoveryLink':
+          return CreateRecoveryLink.fromJson(value);
+        case 'ErrorContainer':
+          return ErrorContainer.fromJson(value);
         case 'FormField':
           return FormField.fromJson(value);
         case 'GenericError':
           return GenericError.fromJson(value);
+        case 'GenericErrorPayload':
+          return GenericErrorPayload.fromJson(value);
         case 'HealthNotReadyStatus':
           return HealthNotReadyStatus.fromJson(value);
         case 'HealthStatus':
           return HealthStatus.fromJson(value);
         case 'Identity':
           return Identity.fromJson(value);
-        case 'LoginRequest':
-          return LoginRequest.fromJson(value);
-        case 'LoginRequestMethod':
-          return LoginRequestMethod.fromJson(value);
-        case 'LoginRequestMethodConfig':
-          return LoginRequestMethodConfig.fromJson(value);
-        case 'OidcStrategyCredentialsConfig':
-          return OidcStrategyCredentialsConfig.fromJson(value);
-        case 'OidcStrategyRequestMethod':
-          return OidcStrategyRequestMethod.fromJson(value);
-        case 'ProfileManagementRequest':
-          return ProfileManagementRequest.fromJson(value);
-        case 'RegistrationRequest':
-          return RegistrationRequest.fromJson(value);
-        case 'RegistrationRequestMethod':
-          return RegistrationRequestMethod.fromJson(value);
-        case 'RegistrationRequestMethodConfig':
-          return RegistrationRequestMethodConfig.fromJson(value);
+        case 'LoginFlow':
+          return LoginFlow.fromJson(value);
+        case 'LoginFlowMethod':
+          return LoginFlowMethod.fromJson(value);
+        case 'LoginFlowMethodConfig':
+          return LoginFlowMethodConfig.fromJson(value);
+        case 'LoginViaApiResponse':
+          return LoginViaApiResponse.fromJson(value);
+        case 'Message':
+          return Message.fromJson(value);
+        case 'RecoveryAddress':
+          return RecoveryAddress.fromJson(value);
+        case 'RecoveryFlow':
+          return RecoveryFlow.fromJson(value);
+        case 'RecoveryFlowMethod':
+          return RecoveryFlowMethod.fromJson(value);
+        case 'RecoveryFlowMethodConfig':
+          return RecoveryFlowMethodConfig.fromJson(value);
+        case 'RecoveryLink':
+          return RecoveryLink.fromJson(value);
+        case 'RegistrationFlow':
+          return RegistrationFlow.fromJson(value);
+        case 'RegistrationFlowMethod':
+          return RegistrationFlowMethod.fromJson(value);
+        case 'RegistrationFlowMethodConfig':
+          return RegistrationFlowMethodConfig.fromJson(value);
+        case 'RegistrationViaApiResponse':
+          return RegistrationViaApiResponse.fromJson(value);
+        case 'RevokeSession':
+          return RevokeSession.fromJson(value);
+        case 'Session':
+          return Session.fromJson(value);
+        case 'SettingsFlow':
+          return SettingsFlow.fromJson(value);
+        case 'SettingsFlowMethod':
+          return SettingsFlowMethod.fromJson(value);
+        case 'SettingsFlowMethodConfig':
+          return SettingsFlowMethodConfig.fromJson(value);
+        case 'SettingsViaApiResponse':
+          return SettingsViaApiResponse.fromJson(value);
+        case 'UpdateIdentity':
+          return UpdateIdentity.fromJson(value);
+        case 'VerifiableAddress':
+          return VerifiableAddress.fromJson(value);
+        case 'VerificationFlow':
+          return VerificationFlow.fromJson(value);
+        case 'VerificationFlowMethod':
+          return VerificationFlowMethod.fromJson(value);
+        case 'VerificationFlowMethodConfig':
+          return VerificationFlowMethodConfig.fromJson(value);
         case 'Version':
           return Version.fromJson(value);
         default:

@@ -2,20 +2,21 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**id** | **String** |  | 
-**value** | **String** |  | 
-**via** | **String** |  | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** |  |  |
+| **value** | **String** |  |  |
+| **via** | **String** |  |  |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-kratos-client'
 
-instance = OryHydraClient::RecoveryAddress.new(id: null,
-                                 value: null,
-                                 via: null)
+instance = OryHydraClient::RecoveryAddress.new(
+  id: null,
+  value: null,
+  via: null
+)
 ```
-
 

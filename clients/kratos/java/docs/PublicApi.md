@@ -26,7 +26,7 @@ Method | HTTP request | Description
 [**initializeSelfServiceRegistrationViaAPIFlow**](PublicApi.md#initializeSelfServiceRegistrationViaAPIFlow) | **GET** /self-service/registration/api | Initialize Registration Flow for API clients
 [**initializeSelfServiceRegistrationViaBrowserFlow**](PublicApi.md#initializeSelfServiceRegistrationViaBrowserFlow) | **GET** /self-service/registration/browser | Initialize Registration Flow for browsers
 [**initializeSelfServiceSettingsViaAPIFlow**](PublicApi.md#initializeSelfServiceSettingsViaAPIFlow) | **GET** /self-service/settings/api | Initialize Settings Flow for API Clients
-[**initializeSelfServiceSettingsViaBrowserFlow**](PublicApi.md#initializeSelfServiceSettingsViaBrowserFlow) | **GET** /self-service/settings/browser/flows | Initialize Settings Flow for Browsers
+[**initializeSelfServiceSettingsViaBrowserFlow**](PublicApi.md#initializeSelfServiceSettingsViaBrowserFlow) | **GET** /self-service/settings/browser | Initialize Settings Flow for Browsers
 [**initializeSelfServiceVerificationViaAPIFlow**](PublicApi.md#initializeSelfServiceVerificationViaAPIFlow) | **GET** /self-service/verification/api | Initialize Verification Flow for API Clients
 [**initializeSelfServiceVerificationViaBrowserFlow**](PublicApi.md#initializeSelfServiceVerificationViaBrowserFlow) | **GET** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
 [**revokeSession**](PublicApi.md#revokeSession) | **DELETE** /sessions | Revoke and Invalidate a Session
@@ -981,7 +981,7 @@ No authorization required
 
 Initialize Browser-Based Logout User Flow
 
-This endpoint initializes a logout flow.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  On successful logout, the browser will be redirected (HTTP 302 Found) to &#x60;urls.default_return_to&#x60;.  More information can be found at [ORY Kratos User Logout Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-logout).
+This endpoint initializes a logout flow.  &gt; This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  On successful logout, the browser will be redirected (HTTP 302 Found) to the &#x60;return_to&#x60; parameter of the initial request or fall back to &#x60;urls.default_return_to&#x60;.  More information can be found at [ORY Kratos User Logout Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-logout).
 
 ### Example
 ```java

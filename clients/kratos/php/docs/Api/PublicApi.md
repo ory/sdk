@@ -1,42 +1,43 @@
 # Ory\Kratos\Client\PublicApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to http://localhost.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**completeSelfServiceBrowserSettingsOIDCSettingsFlow**](PublicApi.md#completeSelfServiceBrowserSettingsOIDCSettingsFlow) | **POST** /self-service/browser/flows/registration/strategies/oidc/settings/connections | Complete the Browser-Based Settings Flow for the OpenID Connect Strategy
-[**completeSelfServiceLoginFlowWithPasswordMethod**](PublicApi.md#completeSelfServiceLoginFlowWithPasswordMethod) | **POST** /self-service/login/methods/password | Complete Login Flow with Username/Email Password Method
-[**completeSelfServiceRecoveryFlowWithLinkMethod**](PublicApi.md#completeSelfServiceRecoveryFlowWithLinkMethod) | **POST** /self-service/recovery/methods/link | Complete Recovery Flow with Link Method
-[**completeSelfServiceRegistrationFlowWithPasswordMethod**](PublicApi.md#completeSelfServiceRegistrationFlowWithPasswordMethod) | **POST** /self-service/registration/methods/password | Complete Registration Flow with Username/Email Password Method
-[**completeSelfServiceSettingsFlowWithPasswordMethod**](PublicApi.md#completeSelfServiceSettingsFlowWithPasswordMethod) | **POST** /self-service/settings/methods/password | Complete Settings Flow with Username/Email Password Method
-[**completeSelfServiceSettingsFlowWithProfileMethod**](PublicApi.md#completeSelfServiceSettingsFlowWithProfileMethod) | **POST** /self-service/settings/methods/profile | Complete Settings Flow with Profile Method
-[**completeSelfServiceVerificationFlowWithLinkMethod**](PublicApi.md#completeSelfServiceVerificationFlowWithLinkMethod) | **POST** /self-service/verification/methods/link | Complete Verification Flow with Link Method
-[**getSchema**](PublicApi.md#getSchema) | **GET** /schemas/{id} | 
-[**getSelfServiceError**](PublicApi.md#getSelfServiceError) | **GET** /self-service/errors | Get User-Facing Self-Service Errors
-[**getSelfServiceLoginFlow**](PublicApi.md#getSelfServiceLoginFlow) | **GET** /self-service/login/flows | Get Login Flow
-[**getSelfServiceRecoveryFlow**](PublicApi.md#getSelfServiceRecoveryFlow) | **GET** /self-service/recovery/flows | Get information about a recovery flow
-[**getSelfServiceRegistrationFlow**](PublicApi.md#getSelfServiceRegistrationFlow) | **GET** /self-service/registration/flows | Get Registration Flow
-[**getSelfServiceSettingsFlow**](PublicApi.md#getSelfServiceSettingsFlow) | **GET** /self-service/settings/flows | Get Settings Flow
-[**getSelfServiceVerificationFlow**](PublicApi.md#getSelfServiceVerificationFlow) | **GET** /self-service/verification/flows | Get Verification Flow
-[**initializeSelfServiceBrowserLogoutFlow**](PublicApi.md#initializeSelfServiceBrowserLogoutFlow) | **GET** /self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
-[**initializeSelfServiceLoginViaAPIFlow**](PublicApi.md#initializeSelfServiceLoginViaAPIFlow) | **GET** /self-service/login/api | Initialize Login Flow for API clients
-[**initializeSelfServiceLoginViaBrowserFlow**](PublicApi.md#initializeSelfServiceLoginViaBrowserFlow) | **GET** /self-service/login/browser | Initialize Login Flow for browsers
-[**initializeSelfServiceRecoveryViaAPIFlow**](PublicApi.md#initializeSelfServiceRecoveryViaAPIFlow) | **GET** /self-service/recovery/api | Initialize Recovery Flow for API Clients
-[**initializeSelfServiceRecoveryViaBrowserFlow**](PublicApi.md#initializeSelfServiceRecoveryViaBrowserFlow) | **GET** /self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
-[**initializeSelfServiceRegistrationViaAPIFlow**](PublicApi.md#initializeSelfServiceRegistrationViaAPIFlow) | **GET** /self-service/registration/api | Initialize Registration Flow for API clients
-[**initializeSelfServiceRegistrationViaBrowserFlow**](PublicApi.md#initializeSelfServiceRegistrationViaBrowserFlow) | **GET** /self-service/registration/browser | Initialize Registration Flow for browsers
-[**initializeSelfServiceSettingsViaAPIFlow**](PublicApi.md#initializeSelfServiceSettingsViaAPIFlow) | **GET** /self-service/settings/api | Initialize Settings Flow for API Clients
-[**initializeSelfServiceSettingsViaBrowserFlow**](PublicApi.md#initializeSelfServiceSettingsViaBrowserFlow) | **GET** /self-service/settings/browser/flows | Initialize Settings Flow for Browsers
-[**initializeSelfServiceVerificationViaAPIFlow**](PublicApi.md#initializeSelfServiceVerificationViaAPIFlow) | **GET** /self-service/verification/api | Initialize Verification Flow for API Clients
-[**initializeSelfServiceVerificationViaBrowserFlow**](PublicApi.md#initializeSelfServiceVerificationViaBrowserFlow) | **GET** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
-[**revokeSession**](PublicApi.md#revokeSession) | **DELETE** /sessions | Revoke and Invalidate a Session
-[**whoami**](PublicApi.md#whoami) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
+[**completeSelfServiceBrowserSettingsOIDCSettingsFlow()**](PublicApi.md#completeSelfServiceBrowserSettingsOIDCSettingsFlow) | **POST** /self-service/browser/flows/registration/strategies/oidc/settings/connections | Complete the Browser-Based Settings Flow for the OpenID Connect Strategy
+[**completeSelfServiceLoginFlowWithPasswordMethod()**](PublicApi.md#completeSelfServiceLoginFlowWithPasswordMethod) | **POST** /self-service/login/methods/password | Complete Login Flow with Username/Email Password Method
+[**completeSelfServiceRecoveryFlowWithLinkMethod()**](PublicApi.md#completeSelfServiceRecoveryFlowWithLinkMethod) | **POST** /self-service/recovery/methods/link | Complete Recovery Flow with Link Method
+[**completeSelfServiceRegistrationFlowWithPasswordMethod()**](PublicApi.md#completeSelfServiceRegistrationFlowWithPasswordMethod) | **POST** /self-service/registration/methods/password | Complete Registration Flow with Username/Email Password Method
+[**completeSelfServiceSettingsFlowWithPasswordMethod()**](PublicApi.md#completeSelfServiceSettingsFlowWithPasswordMethod) | **POST** /self-service/settings/methods/password | Complete Settings Flow with Username/Email Password Method
+[**completeSelfServiceSettingsFlowWithProfileMethod()**](PublicApi.md#completeSelfServiceSettingsFlowWithProfileMethod) | **POST** /self-service/settings/methods/profile | Complete Settings Flow with Profile Method
+[**completeSelfServiceVerificationFlowWithLinkMethod()**](PublicApi.md#completeSelfServiceVerificationFlowWithLinkMethod) | **POST** /self-service/verification/methods/link | Complete Verification Flow with Link Method
+[**getSchema()**](PublicApi.md#getSchema) | **GET** /schemas/{id} | 
+[**getSelfServiceError()**](PublicApi.md#getSelfServiceError) | **GET** /self-service/errors | Get User-Facing Self-Service Errors
+[**getSelfServiceLoginFlow()**](PublicApi.md#getSelfServiceLoginFlow) | **GET** /self-service/login/flows | Get Login Flow
+[**getSelfServiceRecoveryFlow()**](PublicApi.md#getSelfServiceRecoveryFlow) | **GET** /self-service/recovery/flows | Get information about a recovery flow
+[**getSelfServiceRegistrationFlow()**](PublicApi.md#getSelfServiceRegistrationFlow) | **GET** /self-service/registration/flows | Get Registration Flow
+[**getSelfServiceSettingsFlow()**](PublicApi.md#getSelfServiceSettingsFlow) | **GET** /self-service/settings/flows | Get Settings Flow
+[**getSelfServiceVerificationFlow()**](PublicApi.md#getSelfServiceVerificationFlow) | **GET** /self-service/verification/flows | Get Verification Flow
+[**initializeSelfServiceBrowserLogoutFlow()**](PublicApi.md#initializeSelfServiceBrowserLogoutFlow) | **GET** /self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
+[**initializeSelfServiceLoginViaAPIFlow()**](PublicApi.md#initializeSelfServiceLoginViaAPIFlow) | **GET** /self-service/login/api | Initialize Login Flow for API clients
+[**initializeSelfServiceLoginViaBrowserFlow()**](PublicApi.md#initializeSelfServiceLoginViaBrowserFlow) | **GET** /self-service/login/browser | Initialize Login Flow for browsers
+[**initializeSelfServiceRecoveryViaAPIFlow()**](PublicApi.md#initializeSelfServiceRecoveryViaAPIFlow) | **GET** /self-service/recovery/api | Initialize Recovery Flow for API Clients
+[**initializeSelfServiceRecoveryViaBrowserFlow()**](PublicApi.md#initializeSelfServiceRecoveryViaBrowserFlow) | **GET** /self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
+[**initializeSelfServiceRegistrationViaAPIFlow()**](PublicApi.md#initializeSelfServiceRegistrationViaAPIFlow) | **GET** /self-service/registration/api | Initialize Registration Flow for API clients
+[**initializeSelfServiceRegistrationViaBrowserFlow()**](PublicApi.md#initializeSelfServiceRegistrationViaBrowserFlow) | **GET** /self-service/registration/browser | Initialize Registration Flow for browsers
+[**initializeSelfServiceSettingsViaAPIFlow()**](PublicApi.md#initializeSelfServiceSettingsViaAPIFlow) | **GET** /self-service/settings/api | Initialize Settings Flow for API Clients
+[**initializeSelfServiceSettingsViaBrowserFlow()**](PublicApi.md#initializeSelfServiceSettingsViaBrowserFlow) | **GET** /self-service/settings/browser | Initialize Settings Flow for Browsers
+[**initializeSelfServiceVerificationViaAPIFlow()**](PublicApi.md#initializeSelfServiceVerificationViaAPIFlow) | **GET** /self-service/verification/api | Initialize Verification Flow for API Clients
+[**initializeSelfServiceVerificationViaBrowserFlow()**](PublicApi.md#initializeSelfServiceVerificationViaBrowserFlow) | **GET** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
+[**revokeSession()**](PublicApi.md#revokeSession) | **DELETE** /sessions | Revoke and Invalidate a Session
+[**whoami()**](PublicApi.md#whoami) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 
 
+## `completeSelfServiceBrowserSettingsOIDCSettingsFlow()`
 
-## completeSelfServiceBrowserSettingsOIDCSettingsFlow
-
-> completeSelfServiceBrowserSettingsOIDCSettingsFlow()
+```php
+completeSelfServiceBrowserSettingsOIDCSettingsFlow()
+```
 
 Complete the Browser-Based Settings Flow for the OpenID Connect Strategy
 
@@ -47,6 +48,7 @@ This endpoint completes a browser-based settings flow. This is usually achieved 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
@@ -60,7 +62,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->completeSelfServiceBrowserSettingsOIDCSettingsFlow: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -78,16 +79,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `completeSelfServiceLoginFlowWithPasswordMethod()`
 
-## completeSelfServiceLoginFlowWithPasswordMethod
-
-> \Ory\Kratos\Client\Model\LoginViaApiResponse completeSelfServiceLoginFlowWithPasswordMethod($flow, $body)
+```php
+completeSelfServiceLoginFlowWithPasswordMethod($flow, $body): \Ory\Kratos\Client\Model\LoginViaApiResponse
+```
 
 Complete Login Flow with Username/Email Password Method
 
@@ -100,13 +102,14 @@ Use this endpoint to complete a login flow by sending an identity's identifier a
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+
 $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $flow = 'flow_example'; // string | The Flow ID
-$body = new \Ory\Kratos\Client\Model\CompleteSelfServiceLoginFlowWithPasswordMethod(); // \Ory\Kratos\Client\Model\CompleteSelfServiceLoginFlowWithPasswordMethod | 
+$body = new \Ory\Kratos\Client\Model\CompleteSelfServiceLoginFlowWithPasswordMethod(); // \Ory\Kratos\Client\Model\CompleteSelfServiceLoginFlowWithPasswordMethod
 
 try {
     $result = $apiInstance->completeSelfServiceLoginFlowWithPasswordMethod($flow, $body);
@@ -114,11 +117,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->completeSelfServiceLoginFlowWithPasswordMethod: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -135,17 +136,18 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
-- **Accept**: application/json
+- **Content-Type**: `application/json`, `application/x-www-form-urlencoded`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `completeSelfServiceRecoveryFlowWithLinkMethod()`
 
-## completeSelfServiceRecoveryFlowWithLinkMethod
-
-> completeSelfServiceRecoveryFlowWithLinkMethod($token, $flow, $body)
+```php
+completeSelfServiceRecoveryFlowWithLinkMethod($token, $flow, $body)
+```
 
 Complete Recovery Flow with Link Method
 
@@ -158,6 +160,7 @@ Use this endpoint to complete a recovery flow using the link method. This endpoi
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+
 $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -165,18 +168,16 @@ $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
 );
 $token = 'token_example'; // string | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.
 $flow = 'flow_example'; // string | The Flow ID  format: uuid
-$body = new \Ory\Kratos\Client\Model\CompleteSelfServiceRecoveryFlowWithLinkMethod(); // \Ory\Kratos\Client\Model\CompleteSelfServiceRecoveryFlowWithLinkMethod | 
+$body = new \Ory\Kratos\Client\Model\CompleteSelfServiceRecoveryFlowWithLinkMethod(); // \Ory\Kratos\Client\Model\CompleteSelfServiceRecoveryFlowWithLinkMethod
 
 try {
     $apiInstance->completeSelfServiceRecoveryFlowWithLinkMethod($token, $flow, $body);
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->completeSelfServiceRecoveryFlowWithLinkMethod: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -194,17 +195,18 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
-- **Accept**: application/json
+- **Content-Type**: `application/json`, `application/x-www-form-urlencoded`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `completeSelfServiceRegistrationFlowWithPasswordMethod()`
 
-## completeSelfServiceRegistrationFlowWithPasswordMethod
-
-> \Ory\Kratos\Client\Model\RegistrationViaApiResponse completeSelfServiceRegistrationFlowWithPasswordMethod($flow, $payload)
+```php
+completeSelfServiceRegistrationFlowWithPasswordMethod($flow, $payload): \Ory\Kratos\Client\Model\RegistrationViaApiResponse
+```
 
 Complete Registration Flow with Username/Email Password Method
 
@@ -217,13 +219,14 @@ Use this endpoint to complete a registration flow by sending an identity's trait
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+
 $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $flow = 'flow_example'; // string | Flow is flow ID.
-$payload = new \stdClass; // object | 
+$payload = new \stdClass; // object
 
 try {
     $result = $apiInstance->completeSelfServiceRegistrationFlowWithPasswordMethod($flow, $payload);
@@ -231,11 +234,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->completeSelfServiceRegistrationFlowWithPasswordMethod: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -252,17 +253,18 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
-- **Accept**: application/json
+- **Content-Type**: `application/json`, `application/x-www-form-urlencoded`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `completeSelfServiceSettingsFlowWithPasswordMethod()`
 
-## completeSelfServiceSettingsFlowWithPasswordMethod
-
-> \Ory\Kratos\Client\Model\SettingsViaApiResponse completeSelfServiceSettingsFlowWithPasswordMethod($flow, $body)
+```php
+completeSelfServiceSettingsFlowWithPasswordMethod($flow, $body): \Ory\Kratos\Client\Model\SettingsViaApiResponse
+```
 
 Complete Settings Flow with Username/Email Password Method
 
@@ -288,7 +290,7 @@ $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
     $config
 );
 $flow = 'flow_example'; // string | Flow is flow ID.
-$body = new \Ory\Kratos\Client\Model\CompleteSelfServiceSettingsFlowWithPasswordMethod(); // \Ory\Kratos\Client\Model\CompleteSelfServiceSettingsFlowWithPasswordMethod | 
+$body = new \Ory\Kratos\Client\Model\CompleteSelfServiceSettingsFlowWithPasswordMethod(); // \Ory\Kratos\Client\Model\CompleteSelfServiceSettingsFlowWithPasswordMethod
 
 try {
     $result = $apiInstance->completeSelfServiceSettingsFlowWithPasswordMethod($flow, $body);
@@ -296,11 +298,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->completeSelfServiceSettingsFlowWithPasswordMethod: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -317,17 +317,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
-- **Accept**: application/json
+- **Content-Type**: `application/json`, `application/x-www-form-urlencoded`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `completeSelfServiceSettingsFlowWithProfileMethod()`
 
-## completeSelfServiceSettingsFlowWithProfileMethod
-
-> \Ory\Kratos\Client\Model\SettingsFlow completeSelfServiceSettingsFlowWithProfileMethod($flow, $payload)
+```php
+completeSelfServiceSettingsFlowWithProfileMethod($flow, $payload): \Ory\Kratos\Client\Model\SettingsFlow
+```
 
 Complete Settings Flow with Profile Method
 
@@ -353,7 +354,7 @@ $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
     $config
 );
 $flow = 'flow_example'; // string | Flow is flow ID.
-$payload = new \stdClass; // object | 
+$payload = new \stdClass; // object
 
 try {
     $result = $apiInstance->completeSelfServiceSettingsFlowWithProfileMethod($flow, $payload);
@@ -361,11 +362,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->completeSelfServiceSettingsFlowWithProfileMethod: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -382,17 +381,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
-- **Accept**: application/json
+- **Content-Type**: `application/json`, `application/x-www-form-urlencoded`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `completeSelfServiceVerificationFlowWithLinkMethod()`
 
-## completeSelfServiceVerificationFlowWithLinkMethod
-
-> completeSelfServiceVerificationFlowWithLinkMethod($token, $flow, $body)
+```php
+completeSelfServiceVerificationFlowWithLinkMethod($token, $flow, $body)
+```
 
 Complete Verification Flow with Link Method
 
@@ -405,6 +405,7 @@ Use this endpoint to complete a verification flow using the link method. This en
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+
 $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -412,18 +413,16 @@ $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
 );
 $token = 'token_example'; // string | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.
 $flow = 'flow_example'; // string | The Flow ID  format: uuid
-$body = new \Ory\Kratos\Client\Model\CompleteSelfServiceVerificationFlowWithLinkMethod(); // \Ory\Kratos\Client\Model\CompleteSelfServiceVerificationFlowWithLinkMethod | 
+$body = new \Ory\Kratos\Client\Model\CompleteSelfServiceVerificationFlowWithLinkMethod(); // \Ory\Kratos\Client\Model\CompleteSelfServiceVerificationFlowWithLinkMethod
 
 try {
     $apiInstance->completeSelfServiceVerificationFlowWithLinkMethod($token, $flow, $body);
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->completeSelfServiceVerificationFlowWithLinkMethod: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -441,17 +440,18 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
-- **Accept**: application/json
+- **Content-Type**: `application/json`, `application/x-www-form-urlencoded`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getSchema()`
 
-## getSchema
-
-> object getSchema($id)
+```php
+getSchema($id): object
+```
 
 
 
@@ -462,6 +462,7 @@ Get a Traits Schema Definition
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
@@ -477,11 +478,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->getSchema: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -498,16 +497,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getSelfServiceError()`
 
-## getSelfServiceError
-
-> \Ory\Kratos\Client\Model\ErrorContainer getSelfServiceError($error)
+```php
+getSelfServiceError($error): \Ory\Kratos\Client\Model\ErrorContainer
+```
 
 Get User-Facing Self-Service Errors
 
@@ -518,6 +518,7 @@ This endpoint returns the error associated with a user-facing self service error
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
@@ -533,11 +534,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->getSelfServiceError: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -554,16 +553,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getSelfServiceLoginFlow()`
 
-## getSelfServiceLoginFlow
-
-> \Ory\Kratos\Client\Model\LoginFlow getSelfServiceLoginFlow($id)
+```php
+getSelfServiceLoginFlow($id): \Ory\Kratos\Client\Model\LoginFlow
+```
 
 Get Login Flow
 
@@ -574,6 +574,7 @@ This endpoint returns a login flow's context with, for example, error details an
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
@@ -589,11 +590,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->getSelfServiceLoginFlow: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -610,16 +609,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getSelfServiceRecoveryFlow()`
 
-## getSelfServiceRecoveryFlow
-
-> \Ory\Kratos\Client\Model\RecoveryFlow getSelfServiceRecoveryFlow($id)
+```php
+getSelfServiceRecoveryFlow($id): \Ory\Kratos\Client\Model\RecoveryFlow
+```
 
 Get information about a recovery flow
 
@@ -630,6 +630,7 @@ This endpoint returns a recovery flow's context with, for example, error details
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
@@ -645,11 +646,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->getSelfServiceRecoveryFlow: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -666,16 +665,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getSelfServiceRegistrationFlow()`
 
-## getSelfServiceRegistrationFlow
-
-> \Ory\Kratos\Client\Model\RegistrationFlow getSelfServiceRegistrationFlow($id)
+```php
+getSelfServiceRegistrationFlow($id): \Ory\Kratos\Client\Model\RegistrationFlow
+```
 
 Get Registration Flow
 
@@ -686,6 +686,7 @@ This endpoint returns a registration flow's context with, for example, error det
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
@@ -701,11 +702,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->getSelfServiceRegistrationFlow: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -722,16 +721,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getSelfServiceSettingsFlow()`
 
-## getSelfServiceSettingsFlow
-
-> \Ory\Kratos\Client\Model\SettingsFlow getSelfServiceSettingsFlow($id)
+```php
+getSelfServiceSettingsFlow($id): \Ory\Kratos\Client\Model\SettingsFlow
+```
 
 Get Settings Flow
 
@@ -764,11 +764,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->getSelfServiceSettingsFlow: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -785,16 +783,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getSelfServiceVerificationFlow()`
 
-## getSelfServiceVerificationFlow
-
-> \Ory\Kratos\Client\Model\VerificationFlow getSelfServiceVerificationFlow($id)
+```php
+getSelfServiceVerificationFlow($id): \Ory\Kratos\Client\Model\VerificationFlow
+```
 
 Get Verification Flow
 
@@ -805,6 +804,7 @@ This endpoint returns a verification flow's context with, for example, error det
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
@@ -820,11 +820,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->getSelfServiceVerificationFlow: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -841,26 +839,28 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `initializeSelfServiceBrowserLogoutFlow()`
 
-## initializeSelfServiceBrowserLogoutFlow
-
-> initializeSelfServiceBrowserLogoutFlow()
+```php
+initializeSelfServiceBrowserLogoutFlow()
+```
 
 Initialize Browser-Based Logout User Flow
 
-This endpoint initializes a logout flow.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  On successful logout, the browser will be redirected (HTTP 302 Found) to `urls.default_return_to`.  More information can be found at [ORY Kratos User Logout Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-logout).
+This endpoint initializes a logout flow.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  On successful logout, the browser will be redirected (HTTP 302 Found) to the `return_to` parameter of the initial request or fall back to `urls.default_return_to`.  More information can be found at [ORY Kratos User Logout Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-logout).
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
@@ -874,7 +874,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->initializeSelfServiceBrowserLogoutFlow: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -892,16 +891,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `initializeSelfServiceLoginViaAPIFlow()`
 
-## initializeSelfServiceLoginViaAPIFlow
-
-> \Ory\Kratos\Client\Model\LoginFlow initializeSelfServiceLoginViaAPIFlow($refresh)
+```php
+initializeSelfServiceLoginViaAPIFlow($refresh): \Ory\Kratos\Client\Model\LoginFlow
+```
 
 Initialize Login Flow for API clients
 
@@ -912,6 +912,7 @@ This endpoint initiates a login flow for API clients such as mobile devices, sma
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
@@ -927,11 +928,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->initializeSelfServiceLoginViaAPIFlow: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -948,16 +947,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `initializeSelfServiceLoginViaBrowserFlow()`
 
-## initializeSelfServiceLoginViaBrowserFlow
-
-> initializeSelfServiceLoginViaBrowserFlow()
+```php
+initializeSelfServiceLoginViaBrowserFlow()
+```
 
 Initialize Login Flow for browsers
 
@@ -968,6 +968,7 @@ This endpoint initializes a browser-based user login flow. Once initialized, the
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
@@ -981,7 +982,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->initializeSelfServiceLoginViaBrowserFlow: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -999,16 +999,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `initializeSelfServiceRecoveryViaAPIFlow()`
 
-## initializeSelfServiceRecoveryViaAPIFlow
-
-> \Ory\Kratos\Client\Model\RecoveryFlow initializeSelfServiceRecoveryViaAPIFlow()
+```php
+initializeSelfServiceRecoveryViaAPIFlow(): \Ory\Kratos\Client\Model\RecoveryFlow
+```
 
 Initialize Recovery Flow for API Clients
 
@@ -1019,6 +1020,7 @@ This endpoint initiates a recovery flow for API clients such as mobile devices, 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
@@ -1033,7 +1035,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->initializeSelfServiceRecoveryViaAPIFlow: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1051,16 +1052,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `initializeSelfServiceRecoveryViaBrowserFlow()`
 
-## initializeSelfServiceRecoveryViaBrowserFlow
-
-> initializeSelfServiceRecoveryViaBrowserFlow()
+```php
+initializeSelfServiceRecoveryViaBrowserFlow()
+```
 
 Initialize Recovery Flow for Browser Clients
 
@@ -1071,6 +1073,7 @@ This endpoint initializes a browser-based account recovery flow. Once initialize
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
@@ -1084,7 +1087,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->initializeSelfServiceRecoveryViaBrowserFlow: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1102,16 +1104,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `initializeSelfServiceRegistrationViaAPIFlow()`
 
-## initializeSelfServiceRegistrationViaAPIFlow
-
-> \Ory\Kratos\Client\Model\RegistrationFlow initializeSelfServiceRegistrationViaAPIFlow()
+```php
+initializeSelfServiceRegistrationViaAPIFlow(): \Ory\Kratos\Client\Model\RegistrationFlow
+```
 
 Initialize Registration Flow for API clients
 
@@ -1122,6 +1125,7 @@ This endpoint initiates a registration flow for API clients such as mobile devic
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
@@ -1136,7 +1140,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->initializeSelfServiceRegistrationViaAPIFlow: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1154,16 +1157,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `initializeSelfServiceRegistrationViaBrowserFlow()`
 
-## initializeSelfServiceRegistrationViaBrowserFlow
-
-> initializeSelfServiceRegistrationViaBrowserFlow()
+```php
+initializeSelfServiceRegistrationViaBrowserFlow()
+```
 
 Initialize Registration Flow for browsers
 
@@ -1174,6 +1178,7 @@ This endpoint initializes a browser-based user registration flow. Once initializ
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
@@ -1187,7 +1192,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->initializeSelfServiceRegistrationViaBrowserFlow: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1205,16 +1209,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `initializeSelfServiceSettingsViaAPIFlow()`
 
-## initializeSelfServiceSettingsViaAPIFlow
-
-> \Ory\Kratos\Client\Model\SettingsFlow initializeSelfServiceSettingsViaAPIFlow()
+```php
+initializeSelfServiceSettingsViaAPIFlow(): \Ory\Kratos\Client\Model\SettingsFlow
+```
 
 Initialize Settings Flow for API Clients
 
@@ -1246,7 +1251,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->initializeSelfServiceSettingsViaAPIFlow: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1264,16 +1268,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `initializeSelfServiceSettingsViaBrowserFlow()`
 
-## initializeSelfServiceSettingsViaBrowserFlow
-
-> initializeSelfServiceSettingsViaBrowserFlow()
+```php
+initializeSelfServiceSettingsViaBrowserFlow()
+```
 
 Initialize Settings Flow for Browsers
 
@@ -1304,7 +1309,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->initializeSelfServiceSettingsViaBrowserFlow: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1322,16 +1326,17 @@ void (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `initializeSelfServiceVerificationViaAPIFlow()`
 
-## initializeSelfServiceVerificationViaAPIFlow
-
-> \Ory\Kratos\Client\Model\VerificationFlow initializeSelfServiceVerificationViaAPIFlow()
+```php
+initializeSelfServiceVerificationViaAPIFlow(): \Ory\Kratos\Client\Model\VerificationFlow
+```
 
 Initialize Verification Flow for API Clients
 
@@ -1342,6 +1347,7 @@ This endpoint initiates a verification flow for API clients such as mobile devic
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
@@ -1356,7 +1362,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->initializeSelfServiceVerificationViaAPIFlow: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1374,16 +1379,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `initializeSelfServiceVerificationViaBrowserFlow()`
 
-## initializeSelfServiceVerificationViaBrowserFlow
-
-> initializeSelfServiceVerificationViaBrowserFlow()
+```php
+initializeSelfServiceVerificationViaBrowserFlow()
+```
 
 Initialize Verification Flow for Browser Clients
 
@@ -1394,6 +1400,7 @@ This endpoint initializes a browser-based account verification flow. Once initia
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
@@ -1407,7 +1414,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->initializeSelfServiceVerificationViaBrowserFlow: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1425,16 +1431,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `revokeSession()`
 
-## revokeSession
-
-> revokeSession($body)
+```php
+revokeSession($body)
+```
 
 Revoke and Invalidate a Session
 
@@ -1447,23 +1454,22 @@ Use this endpoint to revoke a session using its token. This endpoint is particul
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+
 $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$body = new \Ory\Kratos\Client\Model\RevokeSession(); // \Ory\Kratos\Client\Model\RevokeSession | 
+$body = new \Ory\Kratos\Client\Model\RevokeSession(); // \Ory\Kratos\Client\Model\RevokeSession
 
 try {
     $apiInstance->revokeSession($body);
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->revokeSession: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1479,17 +1485,18 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `whoami()`
 
-## whoami
-
-> \Ory\Kratos\Client\Model\Session whoami($cookie, $authorization)
+```php
+whoami($cookie, $authorization): \Ory\Kratos\Client\Model\Session
+```
 
 Check Who the Current HTTP Session Belongs To
 
@@ -1514,7 +1521,7 @@ $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
     new GuzzleHttp\Client(),
     $config
 );
-$cookie = 'cookie_example'; // string | 
+$cookie = 'cookie_example'; // string
 $authorization = 'authorization_example'; // string | in: authorization
 
 try {
@@ -1523,11 +1530,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->whoami: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1545,9 +1550,8 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

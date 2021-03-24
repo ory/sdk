@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Pattern** | **string** | Pattern is the equivalent of &#x60;&lt;input pattern&#x3D;\&quot;{{.Pattern}}\&quot;&gt;&#x60; | [optional] 
 **Required** | **bool** | Required is the equivalent of &#x60;&lt;input required&#x3D;\&quot;{{.Required}}\&quot;&gt;&#x60; | [optional] 
 **Type** | **string** | Type is the equivalent of &#x60;&lt;input type&#x3D;\&quot;{{.Type}}\&quot;&gt;&#x60; | 
-**Value** | [**Object**](.md) | Value is the equivalent of &#x60;&lt;input value&#x3D;\&quot;{{.Value}}\&quot;&gt;&#x60; | [optional] 
+**Value** | **Object** | Value is the equivalent of &#x60;&lt;input value&#x3D;\&quot;{{.Value}}\&quot;&gt;&#x60; | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

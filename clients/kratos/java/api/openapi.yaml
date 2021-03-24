@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   description: Welcome to the ORY Kratos HTTP API documentation!
   title: Ory Kratos
-  version: v0.5.4-alpha.1
+  version: v0.5.5-alpha.4
 servers:
 - url: /
 paths:
@@ -387,7 +387,8 @@ paths:
         > This endpoint is NOT INTENDED for API clients and only works
         with browsers (Chrome, Firefox, ...).
 
-        On successful logout, the browser will be redirected (HTTP 302 Found) to `urls.default_return_to`.
+        On successful logout, the browser will be redirected (HTTP 302 Found) to the `return_to` parameter of the initial request
+        or fall back to `urls.default_return_to`.
 
         More information can be found at [ORY Kratos User Logout Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-logout).
       operationId: initializeSelfServiceBrowserLogoutFlow
@@ -1111,7 +1112,7 @@ paths:
       tags:
       - public
       x-accepts: application/json
-  /self-service/settings/browser/flows:
+  /self-service/settings/browser:
     get:
       description: |-
         This endpoint initializes a browser-based user settings flow. Once initialized, the browser will be redirected to
@@ -3789,4 +3790,5 @@ components:
       type: apiKey
 x-forwarded-proto: string
 x-request-id: string
+x-original-swagger-version: "2.0"
 

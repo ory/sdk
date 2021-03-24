@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -57,10 +59,15 @@ func (m *CreateIdentity) validateSchemaID(formats strfmt.Registry) error {
 
 func (m *CreateIdentity) validateTraits(formats strfmt.Registry) error {
 
-	if err := validate.Required("traits", "body", m.Traits); err != nil {
-		return err
+	if m.Traits == nil {
+		return errors.Required("traits", "body", nil)
 	}
 
+	return nil
+}
+
+// ContextValidate validates this create identity based on context it is used
+func (m *CreateIdentity) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

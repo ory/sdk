@@ -8,11 +8,13 @@ import 'package:ory_kratos_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**errors** | [**List<Error>**](Error.md) | Errors contains all validation errors this particular field has caused. | [optional] [default to const []]
-**name** | **String** | Name is the equivalent of <input name=\"{{.Name}}\"> | [optional] 
-**required_** | **bool** | Name is the equivalent of <input required=\"{{.Required}}\"> | [optional] 
-**type** | **String** | Name is the equivalent of <input type=\"{{.Type}}\"> | [optional] 
-**value** | [**Object**](.md) | Name is the equivalent of <input value=\"{{.Value}}\"> | [optional] 
+**disabled** | **bool** | Disabled is the equivalent of `<input {{if .Disabled}}disabled{{end}}\">` | [optional] 
+**messages** | [**List<Message>**](Message.md) |  | [optional] [default to const []]
+**name** | **String** | Name is the equivalent of `<input name=\"{{.Name}}\">` | 
+**pattern** | **String** | Pattern is the equivalent of `<input pattern=\"{{.Pattern}}\">` | [optional] 
+**required_** | **bool** | Required is the equivalent of `<input required=\"{{.Required}}\">` | [optional] 
+**type** | **String** | Type is the equivalent of `<input type=\"{{.Type}}\">` | 
+**value** | [**Object**](.md) | Value is the equivalent of `<input value=\"{{.Value}}\">` | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

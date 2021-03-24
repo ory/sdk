@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **pattern** | **String** | Pattern is the equivalent of &#x60;&lt;input pattern&#x3D;\&quot;{{.Pattern}}\&quot;&gt;&#x60; |  [optional]
 **required** | **Boolean** | Required is the equivalent of &#x60;&lt;input required&#x3D;\&quot;{{.Required}}\&quot;&gt;&#x60; |  [optional]
 **type** | **String** | Type is the equivalent of &#x60;&lt;input type&#x3D;\&quot;{{.Type}}\&quot;&gt;&#x60; | 
-**value** | [**Object**](.md) | Value is the equivalent of &#x60;&lt;input value&#x3D;\&quot;{{.Value}}\&quot;&gt;&#x60; |  [optional]
+**value** | **Object** | Value is the equivalent of &#x60;&lt;input value&#x3D;\&quot;{{.Value}}\&quot;&gt;&#x60; |  [optional]
 
 
 

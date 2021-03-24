@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**config** | [**VerificationFlowMethodConfig**](VerificationFlowMethodConfig.md) |  | 
-**method** | **String** | Method contains the request credentials type. | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **config** | [**VerificationFlowMethodConfig**](VerificationFlowMethodConfig.md) |  |  |
+| **method** | **String** | Method contains the request credentials type. |  |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-kratos-client'
 
-instance = OryHydraClient::VerificationFlowMethod.new(config: null,
-                                 method: null)
+instance = OryHydraClient::VerificationFlowMethod.new(
+  config: null,
+  method: null
+)
 ```
-
 

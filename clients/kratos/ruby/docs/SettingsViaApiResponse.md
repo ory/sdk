@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**flow** | [**SettingsFlow**](SettingsFlow.md) |  | 
-**identity** | [**Identity**](Identity.md) |  | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **flow** | [**SettingsFlow**](SettingsFlow.md) |  |  |
+| **identity** | [**Identity**](Identity.md) |  |  |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-kratos-client'
 
-instance = OryHydraClient::SettingsViaApiResponse.new(flow: null,
-                                 identity: null)
+instance = OryHydraClient::SettingsViaApiResponse.new(
+  flow: null,
+  identity: null
+)
 ```
-
 

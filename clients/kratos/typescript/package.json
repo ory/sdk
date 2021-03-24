@@ -1,14 +1,14 @@
 {
   "name": "@ory/kratos-client",
-  "version": "0.5.4-alpha.1",
-  "description": "OpenAPI client for @oryd/kratos-client",
+  "version": "v0.5.5-alpha.4",
+  "description": "OpenAPI client for @ory/kratos-client",
   "author": "ORY GmbH",
   "keywords": [
     "axios",
     "typescript",
     "openapi-client",
     "openapi-generator",
-    "@oryd/kratos-client"
+    "@ory/kratos-client"
   ],
   "license": "Apache-2.0",
   "main": "./dist/index.js",

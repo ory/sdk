@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**session_token** | **String** | The Session Token  Invalidate this session token. | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **session_token** | **String** | The Session Token  Invalidate this session token. |  |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-kratos-client'
 
-instance = OryHydraClient::RevokeSession.new(session_token: null)
+instance = OryHydraClient::RevokeSession.new(
+  session_token: null
+)
 ```
-
 

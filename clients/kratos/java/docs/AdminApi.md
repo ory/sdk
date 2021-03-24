@@ -764,8 +764,8 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
-    Long perPage = 100lL; // Long | Items per Page  This is the number of items per page.
-    Long page = 0lL; // Long | Pagination Page
+    Long perPage = 100l; // Long | Items per Page  This is the number of items per page.
+    Long page = 0l; // Long | Pagination Page
     try {
       List<Identity> result = apiInstance.listIdentities(perPage, page);
       System.out.println(result);

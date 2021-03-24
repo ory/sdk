@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**config** | [**SettingsFlowMethodConfig**](SettingsFlowMethodConfig.md) |  | 
-**method** | **String** | Method is the name of this flow method. | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **config** | [**SettingsFlowMethodConfig**](SettingsFlowMethodConfig.md) |  |  |
+| **method** | **String** | Method is the name of this flow method. |  |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-kratos-client'
 
-instance = OryHydraClient::SettingsFlowMethod.new(config: null,
-                                 method: null)
+instance = OryHydraClient::SettingsFlowMethod.new(
+  config: null,
+  method: null
+)
 ```
-
 

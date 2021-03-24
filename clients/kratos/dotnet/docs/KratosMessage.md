@@ -3,7 +3,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Context** | [**Object**](.md) |  | [optional] 
+**Context** | **Object** |  | [optional] 
 **Id** | **long** |  | [optional] 
 **Text** | **string** |  | [optional] 
 **Type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | [optional] 

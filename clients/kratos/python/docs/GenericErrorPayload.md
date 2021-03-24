@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **int** | Code represents the error status code (404, 403, 401, ...). | [optional] 
 **debug** | **str** | Debug contains debug information. This is usually not available and has to be enabled. | [optional] 
-**details** | [**object**](.md) |  | [optional] 
+**details** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
 **message** | **str** |  | [optional] 
 **reason** | **str** |  | [optional] 
 **request** | **str** |  | [optional] 

@@ -1,29 +1,30 @@
 # Ory\Kratos\Client\AdminApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to http://localhost.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createIdentity**](AdminApi.md#createIdentity) | **POST** /identities | Create an Identity
-[**createRecoveryLink**](AdminApi.md#createRecoveryLink) | **POST** /recovery/link | Create a Recovery Link
-[**deleteIdentity**](AdminApi.md#deleteIdentity) | **DELETE** /identities/{id} | Delete an Identity
-[**getIdentity**](AdminApi.md#getIdentity) | **GET** /identities/{id} | Get an Identity
-[**getSchema**](AdminApi.md#getSchema) | **GET** /schemas/{id} | 
-[**getSelfServiceError**](AdminApi.md#getSelfServiceError) | **GET** /self-service/errors | Get User-Facing Self-Service Errors
-[**getSelfServiceLoginFlow**](AdminApi.md#getSelfServiceLoginFlow) | **GET** /self-service/login/flows | Get Login Flow
-[**getSelfServiceRecoveryFlow**](AdminApi.md#getSelfServiceRecoveryFlow) | **GET** /self-service/recovery/flows | Get information about a recovery flow
-[**getSelfServiceRegistrationFlow**](AdminApi.md#getSelfServiceRegistrationFlow) | **GET** /self-service/registration/flows | Get Registration Flow
-[**getSelfServiceSettingsFlow**](AdminApi.md#getSelfServiceSettingsFlow) | **GET** /self-service/settings/flows | Get Settings Flow
-[**getSelfServiceVerificationFlow**](AdminApi.md#getSelfServiceVerificationFlow) | **GET** /self-service/verification/flows | Get Verification Flow
-[**listIdentities**](AdminApi.md#listIdentities) | **GET** /identities | List Identities
-[**prometheus**](AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get snapshot metrics from the Hydra service. If you&#39;re using k8s, you can then add annotations to your deployment like so:
-[**updateIdentity**](AdminApi.md#updateIdentity) | **PUT** /identities/{id} | Update an Identity
+[**createIdentity()**](AdminApi.md#createIdentity) | **POST** /identities | Create an Identity
+[**createRecoveryLink()**](AdminApi.md#createRecoveryLink) | **POST** /recovery/link | Create a Recovery Link
+[**deleteIdentity()**](AdminApi.md#deleteIdentity) | **DELETE** /identities/{id} | Delete an Identity
+[**getIdentity()**](AdminApi.md#getIdentity) | **GET** /identities/{id} | Get an Identity
+[**getSchema()**](AdminApi.md#getSchema) | **GET** /schemas/{id} | 
+[**getSelfServiceError()**](AdminApi.md#getSelfServiceError) | **GET** /self-service/errors | Get User-Facing Self-Service Errors
+[**getSelfServiceLoginFlow()**](AdminApi.md#getSelfServiceLoginFlow) | **GET** /self-service/login/flows | Get Login Flow
+[**getSelfServiceRecoveryFlow()**](AdminApi.md#getSelfServiceRecoveryFlow) | **GET** /self-service/recovery/flows | Get information about a recovery flow
+[**getSelfServiceRegistrationFlow()**](AdminApi.md#getSelfServiceRegistrationFlow) | **GET** /self-service/registration/flows | Get Registration Flow
+[**getSelfServiceSettingsFlow()**](AdminApi.md#getSelfServiceSettingsFlow) | **GET** /self-service/settings/flows | Get Settings Flow
+[**getSelfServiceVerificationFlow()**](AdminApi.md#getSelfServiceVerificationFlow) | **GET** /self-service/verification/flows | Get Verification Flow
+[**listIdentities()**](AdminApi.md#listIdentities) | **GET** /identities | List Identities
+[**prometheus()**](AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get snapshot metrics from the Hydra service. If you&#39;re using k8s, you can then add annotations to your deployment like so:
+[**updateIdentity()**](AdminApi.md#updateIdentity) | **PUT** /identities/{id} | Update an Identity
 
 
+## `createIdentity()`
 
-## createIdentity
-
-> \Ory\Kratos\Client\Model\Identity createIdentity($body)
+```php
+createIdentity($body): \Ory\Kratos\Client\Model\Identity
+```
 
 Create an Identity
 
@@ -36,12 +37,13 @@ This endpoint creates an identity. It is NOT possible to set an identity's crede
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+
 $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$body = new \Ory\Kratos\Client\Model\CreateIdentity(); // \Ory\Kratos\Client\Model\CreateIdentity | 
+$body = new \Ory\Kratos\Client\Model\CreateIdentity(); // \Ory\Kratos\Client\Model\CreateIdentity
 
 try {
     $result = $apiInstance->createIdentity($body);
@@ -49,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->createIdentity: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -69,17 +69,18 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `createRecoveryLink()`
 
-## createRecoveryLink
-
-> \Ory\Kratos\Client\Model\RecoveryLink createRecoveryLink($body)
+```php
+createRecoveryLink($body): \Ory\Kratos\Client\Model\RecoveryLink
+```
 
 Create a Recovery Link
 
@@ -92,12 +93,13 @@ This endpoint creates a recovery link which should be given to the user in order
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+
 $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$body = new \Ory\Kratos\Client\Model\CreateRecoveryLink(); // \Ory\Kratos\Client\Model\CreateRecoveryLink | 
+$body = new \Ory\Kratos\Client\Model\CreateRecoveryLink(); // \Ory\Kratos\Client\Model\CreateRecoveryLink
 
 try {
     $result = $apiInstance->createRecoveryLink($body);
@@ -105,11 +107,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->createRecoveryLink: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -125,17 +125,18 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `deleteIdentity()`
 
-## deleteIdentity
-
-> deleteIdentity($id)
+```php
+deleteIdentity($id)
+```
 
 Delete an Identity
 
@@ -146,6 +147,7 @@ Calling this endpoint irrecoverably and permanently deletes the identity given i
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
@@ -160,11 +162,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->deleteIdentity: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -181,16 +181,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getIdentity()`
 
-## getIdentity
-
-> \Ory\Kratos\Client\Model\Identity getIdentity($id)
+```php
+getIdentity($id): \Ory\Kratos\Client\Model\Identity
+```
 
 Get an Identity
 
@@ -201,6 +202,7 @@ Learn how identities work in [ORY Kratos' User And Identity Model Documentation]
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
@@ -216,11 +218,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->getIdentity: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -237,16 +237,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getSchema()`
 
-## getSchema
-
-> object getSchema($id)
+```php
+getSchema($id): object
+```
 
 
 
@@ -257,6 +258,7 @@ Get a Traits Schema Definition
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
@@ -272,11 +274,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->getSchema: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -293,16 +293,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getSelfServiceError()`
 
-## getSelfServiceError
-
-> \Ory\Kratos\Client\Model\ErrorContainer getSelfServiceError($error)
+```php
+getSelfServiceError($error): \Ory\Kratos\Client\Model\ErrorContainer
+```
 
 Get User-Facing Self-Service Errors
 
@@ -313,6 +314,7 @@ This endpoint returns the error associated with a user-facing self service error
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
@@ -328,11 +330,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->getSelfServiceError: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -349,16 +349,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getSelfServiceLoginFlow()`
 
-## getSelfServiceLoginFlow
-
-> \Ory\Kratos\Client\Model\LoginFlow getSelfServiceLoginFlow($id)
+```php
+getSelfServiceLoginFlow($id): \Ory\Kratos\Client\Model\LoginFlow
+```
 
 Get Login Flow
 
@@ -369,6 +370,7 @@ This endpoint returns a login flow's context with, for example, error details an
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
@@ -384,11 +386,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->getSelfServiceLoginFlow: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -405,16 +405,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getSelfServiceRecoveryFlow()`
 
-## getSelfServiceRecoveryFlow
-
-> \Ory\Kratos\Client\Model\RecoveryFlow getSelfServiceRecoveryFlow($id)
+```php
+getSelfServiceRecoveryFlow($id): \Ory\Kratos\Client\Model\RecoveryFlow
+```
 
 Get information about a recovery flow
 
@@ -425,6 +426,7 @@ This endpoint returns a recovery flow's context with, for example, error details
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
@@ -440,11 +442,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->getSelfServiceRecoveryFlow: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -461,16 +461,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getSelfServiceRegistrationFlow()`
 
-## getSelfServiceRegistrationFlow
-
-> \Ory\Kratos\Client\Model\RegistrationFlow getSelfServiceRegistrationFlow($id)
+```php
+getSelfServiceRegistrationFlow($id): \Ory\Kratos\Client\Model\RegistrationFlow
+```
 
 Get Registration Flow
 
@@ -481,6 +482,7 @@ This endpoint returns a registration flow's context with, for example, error det
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
@@ -496,11 +498,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->getSelfServiceRegistrationFlow: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -517,16 +517,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getSelfServiceSettingsFlow()`
 
-## getSelfServiceSettingsFlow
-
-> \Ory\Kratos\Client\Model\SettingsFlow getSelfServiceSettingsFlow($id)
+```php
+getSelfServiceSettingsFlow($id): \Ory\Kratos\Client\Model\SettingsFlow
+```
 
 Get Settings Flow
 
@@ -559,11 +560,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->getSelfServiceSettingsFlow: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -580,16 +579,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getSelfServiceVerificationFlow()`
 
-## getSelfServiceVerificationFlow
-
-> \Ory\Kratos\Client\Model\VerificationFlow getSelfServiceVerificationFlow($id)
+```php
+getSelfServiceVerificationFlow($id): \Ory\Kratos\Client\Model\VerificationFlow
+```
 
 Get Verification Flow
 
@@ -600,6 +600,7 @@ This endpoint returns a verification flow's context with, for example, error det
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
@@ -615,11 +616,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->getSelfServiceVerificationFlow: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -636,16 +635,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `listIdentities()`
 
-## listIdentities
-
-> \Ory\Kratos\Client\Model\Identity[] listIdentities($perPage, $page)
+```php
+listIdentities($perPage, $page): \Ory\Kratos\Client\Model\Identity[]
+```
 
 List Identities
 
@@ -656,6 +656,7 @@ Lists all identities. Does not support search at the moment.  Learn how identiti
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
@@ -672,11 +673,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->listIdentities: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -694,16 +693,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `prometheus()`
 
-## prometheus
-
-> prometheus()
+```php
+prometheus()
+```
 
 Get snapshot metrics from the Hydra service. If you're using k8s, you can then add annotations to your deployment like so:
 
@@ -714,6 +714,7 @@ Get snapshot metrics from the Hydra service. If you're using k8s, you can then a
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
@@ -727,7 +728,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->prometheus: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -747,14 +747,15 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: Not defined
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `updateIdentity()`
 
-## updateIdentity
-
-> \Ory\Kratos\Client\Model\Identity updateIdentity($id, $body)
+```php
+updateIdentity($id, $body): \Ory\Kratos\Client\Model\Identity
+```
 
 Update an Identity
 
@@ -767,13 +768,14 @@ This endpoint updates an identity. It is NOT possible to set an identity's crede
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+
 $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 'id_example'; // string | ID must be set to the ID of identity you want to update
-$body = new \Ory\Kratos\Client\Model\UpdateIdentity(); // \Ory\Kratos\Client\Model\UpdateIdentity | 
+$body = new \Ory\Kratos\Client\Model\UpdateIdentity(); // \Ory\Kratos\Client\Model\UpdateIdentity
 
 try {
     $result = $apiInstance->updateIdentity($id, $body);
@@ -781,11 +783,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->updateIdentity: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -802,10 +802,9 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

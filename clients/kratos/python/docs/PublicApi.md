@@ -26,7 +26,7 @@ Method | HTTP request | Description
 [**initialize_self_service_registration_via_api_flow**](PublicApi.md#initialize_self_service_registration_via_api_flow) | **GET** /self-service/registration/api | Initialize Registration Flow for API clients
 [**initialize_self_service_registration_via_browser_flow**](PublicApi.md#initialize_self_service_registration_via_browser_flow) | **GET** /self-service/registration/browser | Initialize Registration Flow for browsers
 [**initialize_self_service_settings_via_api_flow**](PublicApi.md#initialize_self_service_settings_via_api_flow) | **GET** /self-service/settings/api | Initialize Settings Flow for API Clients
-[**initialize_self_service_settings_via_browser_flow**](PublicApi.md#initialize_self_service_settings_via_browser_flow) | **GET** /self-service/settings/browser/flows | Initialize Settings Flow for Browsers
+[**initialize_self_service_settings_via_browser_flow**](PublicApi.md#initialize_self_service_settings_via_browser_flow) | **GET** /self-service/settings/browser | Initialize Settings Flow for Browsers
 [**initialize_self_service_verification_via_api_flow**](PublicApi.md#initialize_self_service_verification_via_api_flow) | **GET** /self-service/verification/api | Initialize Verification Flow for API Clients
 [**initialize_self_service_verification_via_browser_flow**](PublicApi.md#initialize_self_service_verification_via_browser_flow) | **GET** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
 [**revoke_session**](PublicApi.md#revoke_session) | **DELETE** /sessions | Revoke and Invalidate a Session
@@ -43,10 +43,10 @@ This endpoint completes a browser-based settings flow. This is usually achieved 
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -58,12 +58,13 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    
+    api_instance = public_api.PublicApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
     try:
         # Complete the Browser-Based Settings Flow for the OpenID Connect Strategy
         api_instance.complete_self_service_browser_settings_oidc_settings_flow()
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->complete_self_service_browser_settings_oidc_settings_flow: %s\n" % e)
 ```
 
@@ -92,7 +93,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **complete_self_service_login_flow_with_password_method**
-> LoginViaApiResponse complete_self_service_login_flow_with_password_method(flow, body=body)
+> LoginViaApiResponse complete_self_service_login_flow_with_password_method(flow)
 
 Complete Login Flow with Username/Email Password Method
 
@@ -101,10 +102,13 @@ Use this endpoint to complete a login flow by sending an identity's identifier a
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.login_flow import LoginFlow
+from ory_kratos_client.model.login_via_api_response import LoginViaApiResponse
+from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.complete_self_service_login_flow_with_password_method import CompleteSelfServiceLoginFlowWithPasswordMethod
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -116,15 +120,29 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    flow = 'flow_example' # str | The Flow ID
-body = ory_kratos_client.CompleteSelfServiceLoginFlowWithPasswordMethod() # CompleteSelfServiceLoginFlowWithPasswordMethod |  (optional)
+    api_instance = public_api.PublicApi(api_client)
+    flow = "flow_example" # str | The Flow ID
+    body = CompleteSelfServiceLoginFlowWithPasswordMethod(
+        csrf_token="csrf_token_example",
+        identifier="identifier_example",
+        password="password_example",
+    ) # CompleteSelfServiceLoginFlowWithPasswordMethod |  (optional)
 
+    # example passing only required values which don't have defaults set
+    try:
+        # Complete Login Flow with Username/Email Password Method
+        api_response = api_instance.complete_self_service_login_flow_with_password_method(flow)
+        pprint(api_response)
+    except ory_kratos_client.ApiException as e:
+        print("Exception when calling PublicApi->complete_self_service_login_flow_with_password_method: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # Complete Login Flow with Username/Email Password Method
         api_response = api_instance.complete_self_service_login_flow_with_password_method(flow, body=body)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->complete_self_service_login_flow_with_password_method: %s\n" % e)
 ```
 
@@ -132,8 +150,8 @@ body = ory_kratos_client.CompleteSelfServiceLoginFlowWithPasswordMethod() # Comp
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flow** | **str**| The Flow ID | 
- **body** | [**CompleteSelfServiceLoginFlowWithPasswordMethod**](CompleteSelfServiceLoginFlowWithPasswordMethod.md)|  | [optional] 
+ **flow** | **str**| The Flow ID |
+ **body** | [**CompleteSelfServiceLoginFlowWithPasswordMethod**](CompleteSelfServiceLoginFlowWithPasswordMethod.md)|  | [optional]
 
 ### Return type
 
@@ -159,7 +177,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **complete_self_service_recovery_flow_with_link_method**
-> complete_self_service_recovery_flow_with_link_method(token=token, flow=flow, body=body)
+> complete_self_service_recovery_flow_with_link_method()
 
 Complete Recovery Flow with Link Method
 
@@ -168,10 +186,12 @@ Use this endpoint to complete a recovery flow using the link method. This endpoi
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.recovery_flow import RecoveryFlow
+from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.complete_self_service_recovery_flow_with_link_method import CompleteSelfServiceRecoveryFlowWithLinkMethod
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -183,15 +203,20 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    token = 'token_example' # str | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user. (optional)
-flow = 'flow_example' # str | The Flow ID  format: uuid (optional)
-body = ory_kratos_client.CompleteSelfServiceRecoveryFlowWithLinkMethod() # CompleteSelfServiceRecoveryFlowWithLinkMethod |  (optional)
+    api_instance = public_api.PublicApi(api_client)
+    token = "token_example" # str | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user. (optional)
+    flow = "flow_example" # str | The Flow ID  format: uuid (optional)
+    body = CompleteSelfServiceRecoveryFlowWithLinkMethod(
+        csrf_token="csrf_token_example",
+        email="email_example",
+    ) # CompleteSelfServiceRecoveryFlowWithLinkMethod |  (optional)
 
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # Complete Recovery Flow with Link Method
         api_instance.complete_self_service_recovery_flow_with_link_method(token=token, flow=flow, body=body)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->complete_self_service_recovery_flow_with_link_method: %s\n" % e)
 ```
 
@@ -199,9 +224,9 @@ body = ory_kratos_client.CompleteSelfServiceRecoveryFlowWithLinkMethod() # Compl
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **token** | **str**| Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user. | [optional] 
- **flow** | **str**| The Flow ID  format: uuid | [optional] 
- **body** | [**CompleteSelfServiceRecoveryFlowWithLinkMethod**](CompleteSelfServiceRecoveryFlowWithLinkMethod.md)|  | [optional] 
+ **token** | **str**| Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user. | [optional]
+ **flow** | **str**| The Flow ID  format: uuid | [optional]
+ **body** | [**CompleteSelfServiceRecoveryFlowWithLinkMethod**](CompleteSelfServiceRecoveryFlowWithLinkMethod.md)|  | [optional]
 
 ### Return type
 
@@ -226,7 +251,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **complete_self_service_registration_flow_with_password_method**
-> RegistrationViaApiResponse complete_self_service_registration_flow_with_password_method(flow=flow, payload=payload)
+> RegistrationViaApiResponse complete_self_service_registration_flow_with_password_method()
 
 Complete Registration Flow with Username/Email Password Method
 
@@ -235,10 +260,12 @@ Use this endpoint to complete a registration flow by sending an identity's trait
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.registration_flow import RegistrationFlow
+from ory_kratos_client.model.registration_via_api_response import RegistrationViaApiResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -250,15 +277,17 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    flow = 'flow_example' # str | Flow is flow ID. (optional)
-payload = None # object |  (optional)
+    api_instance = public_api.PublicApi(api_client)
+    flow = "flow_example" # str | Flow is flow ID. (optional)
+    payload = {} # {str: (bool, date, datetime, dict, float, int, list, str, none_type)} |  (optional)
 
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # Complete Registration Flow with Username/Email Password Method
         api_response = api_instance.complete_self_service_registration_flow_with_password_method(flow=flow, payload=payload)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->complete_self_service_registration_flow_with_password_method: %s\n" % e)
 ```
 
@@ -266,8 +295,8 @@ payload = None # object |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flow** | **str**| Flow is flow ID. | [optional] 
- **payload** | **object**|  | [optional] 
+ **flow** | **str**| Flow is flow ID. | [optional]
+ **payload** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}**|  | [optional]
 
 ### Return type
 
@@ -293,7 +322,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **complete_self_service_settings_flow_with_password_method**
-> SettingsViaApiResponse complete_self_service_settings_flow_with_password_method(flow=flow, body=body)
+> SettingsViaApiResponse complete_self_service_settings_flow_with_password_method()
 
 Complete Settings Flow with Username/Email Password Method
 
@@ -303,10 +332,13 @@ Use this endpoint to complete a settings flow by sending an identity's updated p
 
 * Api Key Authentication (sessionToken):
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.settings_via_api_response import SettingsViaApiResponse
+from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.complete_self_service_settings_flow_with_password_method import CompleteSelfServiceSettingsFlowWithPasswordMethod
+from ory_kratos_client.model.settings_flow import SettingsFlow
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -320,27 +352,28 @@ configuration = ory_kratos_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: sessionToken
-configuration = ory_kratos_client.Configuration(
-    host = "http://localhost",
-    api_key = {
-        'X-Session-Token': 'YOUR_API_KEY'
-    }
-)
+configuration.api_key['sessionToken'] = 'YOUR_API_KEY'
+
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['X-Session-Token'] = 'Bearer'
+# configuration.api_key_prefix['sessionToken'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    flow = 'flow_example' # str | Flow is flow ID. (optional)
-body = ory_kratos_client.CompleteSelfServiceSettingsFlowWithPasswordMethod() # CompleteSelfServiceSettingsFlowWithPasswordMethod |  (optional)
+    api_instance = public_api.PublicApi(api_client)
+    flow = "flow_example" # str | Flow is flow ID. (optional)
+    body = CompleteSelfServiceSettingsFlowWithPasswordMethod(
+        csrf_token="csrf_token_example",
+        password="password_example",
+    ) # CompleteSelfServiceSettingsFlowWithPasswordMethod |  (optional)
 
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # Complete Settings Flow with Username/Email Password Method
         api_response = api_instance.complete_self_service_settings_flow_with_password_method(flow=flow, body=body)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->complete_self_service_settings_flow_with_password_method: %s\n" % e)
 ```
 
@@ -348,8 +381,8 @@ body = ory_kratos_client.CompleteSelfServiceSettingsFlowWithPasswordMethod() # C
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flow** | **str**| Flow is flow ID. | [optional] 
- **body** | [**CompleteSelfServiceSettingsFlowWithPasswordMethod**](CompleteSelfServiceSettingsFlowWithPasswordMethod.md)|  | [optional] 
+ **flow** | **str**| Flow is flow ID. | [optional]
+ **body** | [**CompleteSelfServiceSettingsFlowWithPasswordMethod**](CompleteSelfServiceSettingsFlowWithPasswordMethod.md)|  | [optional]
 
 ### Return type
 
@@ -377,7 +410,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **complete_self_service_settings_flow_with_profile_method**
-> SettingsFlow complete_self_service_settings_flow_with_profile_method(flow=flow, payload=payload)
+> SettingsFlow complete_self_service_settings_flow_with_profile_method()
 
 Complete Settings Flow with Profile Method
 
@@ -387,10 +420,11 @@ Use this endpoint to complete a settings flow by sending an identity's updated t
 
 * Api Key Authentication (sessionToken):
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.settings_flow import SettingsFlow
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -404,27 +438,25 @@ configuration = ory_kratos_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: sessionToken
-configuration = ory_kratos_client.Configuration(
-    host = "http://localhost",
-    api_key = {
-        'X-Session-Token': 'YOUR_API_KEY'
-    }
-)
+configuration.api_key['sessionToken'] = 'YOUR_API_KEY'
+
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['X-Session-Token'] = 'Bearer'
+# configuration.api_key_prefix['sessionToken'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    flow = 'flow_example' # str | Flow is flow ID. (optional)
-payload = None # object |  (optional)
+    api_instance = public_api.PublicApi(api_client)
+    flow = "flow_example" # str | Flow is flow ID. (optional)
+    payload = {} # {str: (bool, date, datetime, dict, float, int, list, str, none_type)} |  (optional)
 
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # Complete Settings Flow with Profile Method
         api_response = api_instance.complete_self_service_settings_flow_with_profile_method(flow=flow, payload=payload)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->complete_self_service_settings_flow_with_profile_method: %s\n" % e)
 ```
 
@@ -432,8 +464,8 @@ payload = None # object |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flow** | **str**| Flow is flow ID. | [optional] 
- **payload** | **object**|  | [optional] 
+ **flow** | **str**| Flow is flow ID. | [optional]
+ **payload** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}**|  | [optional]
 
 ### Return type
 
@@ -461,7 +493,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **complete_self_service_verification_flow_with_link_method**
-> complete_self_service_verification_flow_with_link_method(token=token, flow=flow, body=body)
+> complete_self_service_verification_flow_with_link_method()
 
 Complete Verification Flow with Link Method
 
@@ -470,10 +502,12 @@ Use this endpoint to complete a verification flow using the link method. This en
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.complete_self_service_verification_flow_with_link_method import CompleteSelfServiceVerificationFlowWithLinkMethod
+from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.verification_flow import VerificationFlow
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -485,15 +519,20 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    token = 'token_example' # str | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user. (optional)
-flow = 'flow_example' # str | The Flow ID  format: uuid (optional)
-body = ory_kratos_client.CompleteSelfServiceVerificationFlowWithLinkMethod() # CompleteSelfServiceVerificationFlowWithLinkMethod |  (optional)
+    api_instance = public_api.PublicApi(api_client)
+    token = "token_example" # str | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user. (optional)
+    flow = "flow_example" # str | The Flow ID  format: uuid (optional)
+    body = CompleteSelfServiceVerificationFlowWithLinkMethod(
+        csrf_token="csrf_token_example",
+        email="email_example",
+    ) # CompleteSelfServiceVerificationFlowWithLinkMethod |  (optional)
 
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # Complete Verification Flow with Link Method
         api_instance.complete_self_service_verification_flow_with_link_method(token=token, flow=flow, body=body)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->complete_self_service_verification_flow_with_link_method: %s\n" % e)
 ```
 
@@ -501,9 +540,9 @@ body = ory_kratos_client.CompleteSelfServiceVerificationFlowWithLinkMethod() # C
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **token** | **str**| Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user. | [optional] 
- **flow** | **str**| The Flow ID  format: uuid | [optional] 
- **body** | [**CompleteSelfServiceVerificationFlowWithLinkMethod**](CompleteSelfServiceVerificationFlowWithLinkMethod.md)|  | [optional] 
+ **token** | **str**| Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user. | [optional]
+ **flow** | **str**| The Flow ID  format: uuid | [optional]
+ **body** | [**CompleteSelfServiceVerificationFlowWithLinkMethod**](CompleteSelfServiceVerificationFlowWithLinkMethod.md)|  | [optional]
 
 ### Return type
 
@@ -528,7 +567,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_schema**
-> object get_schema(id)
+> {str: (bool, date, datetime, dict, float, int, list, str, none_type)} get_schema(id)
 
 
 
@@ -537,10 +576,10 @@ Get a Traits Schema Definition
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -552,13 +591,14 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    id = 'id_example' # str | ID must be set to the ID of schema you want to get
+    api_instance = public_api.PublicApi(api_client)
+    id = "id_example" # str | ID must be set to the ID of schema you want to get
 
+    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_schema(id)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->get_schema: %s\n" % e)
 ```
 
@@ -566,11 +606,11 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| ID must be set to the ID of schema you want to get | 
+ **id** | **str**| ID must be set to the ID of schema you want to get |
 
 ### Return type
 
-**object**
+**{str: (bool, date, datetime, dict, float, int, list, str, none_type)}**
 
 ### Authorization
 
@@ -600,10 +640,11 @@ This endpoint returns the error associated with a user-facing self service error
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.error_container import ErrorContainer
+from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -615,14 +656,15 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    error = 'error_example' # str | Error is the container's ID
+    api_instance = public_api.PublicApi(api_client)
+    error = "error_example" # str | Error is the container's ID
 
+    # example passing only required values which don't have defaults set
     try:
         # Get User-Facing Self-Service Errors
         api_response = api_instance.get_self_service_error(error)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->get_self_service_error: %s\n" % e)
 ```
 
@@ -630,7 +672,7 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **error** | **str**| Error is the container&#39;s ID | 
+ **error** | **str**| Error is the container&#39;s ID |
 
 ### Return type
 
@@ -665,10 +707,11 @@ This endpoint returns a login flow's context with, for example, error details an
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.login_flow import LoginFlow
+from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -680,14 +723,15 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    id = 'id_example' # str | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
+    api_instance = public_api.PublicApi(api_client)
+    id = "id_example" # str | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
 
+    # example passing only required values which don't have defaults set
     try:
         # Get Login Flow
         api_response = api_instance.get_self_service_login_flow(id)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->get_self_service_login_flow: %s\n" % e)
 ```
 
@@ -695,7 +739,7 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). | 
+ **id** | **str**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). |
 
 ### Return type
 
@@ -731,10 +775,11 @@ This endpoint returns a recovery flow's context with, for example, error details
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.recovery_flow import RecoveryFlow
+from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -746,14 +791,15 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    id = 'id_example' # str | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
+    api_instance = public_api.PublicApi(api_client)
+    id = "id_example" # str | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
 
+    # example passing only required values which don't have defaults set
     try:
         # Get information about a recovery flow
         api_response = api_instance.get_self_service_recovery_flow(id)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->get_self_service_recovery_flow: %s\n" % e)
 ```
 
@@ -761,7 +807,7 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). | 
+ **id** | **str**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). |
 
 ### Return type
 
@@ -796,10 +842,11 @@ This endpoint returns a registration flow's context with, for example, error det
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.registration_flow import RegistrationFlow
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -811,14 +858,15 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    id = 'id_example' # str | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
+    api_instance = public_api.PublicApi(api_client)
+    id = "id_example" # str | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
 
+    # example passing only required values which don't have defaults set
     try:
         # Get Registration Flow
         api_response = api_instance.get_self_service_registration_flow(id)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->get_self_service_registration_flow: %s\n" % e)
 ```
 
@@ -826,7 +874,7 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). | 
+ **id** | **str**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). |
 
 ### Return type
 
@@ -863,10 +911,11 @@ When accessing this endpoint through ORY Kratos' Public API you must ensure that
 
 * Api Key Authentication (sessionToken):
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.settings_flow import SettingsFlow
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -880,26 +929,23 @@ configuration = ory_kratos_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: sessionToken
-configuration = ory_kratos_client.Configuration(
-    host = "http://localhost",
-    api_key = {
-        'X-Session-Token': 'YOUR_API_KEY'
-    }
-)
+configuration.api_key['sessionToken'] = 'YOUR_API_KEY'
+
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['X-Session-Token'] = 'Bearer'
+# configuration.api_key_prefix['sessionToken'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    id = 'id_example' # str | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+    api_instance = public_api.PublicApi(api_client)
+    id = "id_example" # str | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
 
+    # example passing only required values which don't have defaults set
     try:
         # Get Settings Flow
         api_response = api_instance.get_self_service_settings_flow(id)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->get_self_service_settings_flow: %s\n" % e)
 ```
 
@@ -907,7 +953,7 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). | 
+ **id** | **str**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
 
 ### Return type
 
@@ -943,10 +989,11 @@ This endpoint returns a verification flow's context with, for example, error det
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.verification_flow import VerificationFlow
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -958,14 +1005,15 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    id = 'id_example' # str | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
+    api_instance = public_api.PublicApi(api_client)
+    id = "id_example" # str | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
 
+    # example passing only required values which don't have defaults set
     try:
         # Get Verification Flow
         api_response = api_instance.get_self_service_verification_flow(id)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->get_self_service_verification_flow: %s\n" % e)
 ```
 
@@ -973,7 +1021,7 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verification?flow&#x3D;abcde&#x60;). | 
+ **id** | **str**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verification?flow&#x3D;abcde&#x60;). |
 
 ### Return type
 
@@ -1003,15 +1051,15 @@ No authorization required
 
 Initialize Browser-Based Logout User Flow
 
-This endpoint initializes a logout flow.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  On successful logout, the browser will be redirected (HTTP 302 Found) to `urls.default_return_to`.  More information can be found at [ORY Kratos User Logout Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-logout).
+This endpoint initializes a logout flow.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  On successful logout, the browser will be redirected (HTTP 302 Found) to the `return_to` parameter of the initial request or fall back to `urls.default_return_to`.  More information can be found at [ORY Kratos User Logout Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-logout).
 
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1023,12 +1071,13 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    
+    api_instance = public_api.PublicApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
     try:
         # Initialize Browser-Based Logout User Flow
         api_instance.initialize_self_service_browser_logout_flow()
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->initialize_self_service_browser_logout_flow: %s\n" % e)
 ```
 
@@ -1057,7 +1106,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **initialize_self_service_login_via_api_flow**
-> LoginFlow initialize_self_service_login_via_api_flow(refresh=refresh)
+> LoginFlow initialize_self_service_login_via_api_flow()
 
 Initialize Login Flow for API clients
 
@@ -1066,10 +1115,11 @@ This endpoint initiates a login flow for API clients such as mobile devices, sma
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.login_flow import LoginFlow
+from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1081,14 +1131,16 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
+    api_instance = public_api.PublicApi(api_client)
     refresh = True # bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. (optional)
 
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # Initialize Login Flow for API clients
         api_response = api_instance.initialize_self_service_login_via_api_flow(refresh=refresh)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->initialize_self_service_login_via_api_flow: %s\n" % e)
 ```
 
@@ -1096,7 +1148,7 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **refresh** | **bool**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional] 
+ **refresh** | **bool**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional]
 
 ### Return type
 
@@ -1130,10 +1182,10 @@ This endpoint initializes a browser-based user login flow. Once initialized, the
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1145,12 +1197,13 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    
+    api_instance = public_api.PublicApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
     try:
         # Initialize Login Flow for browsers
         api_instance.initialize_self_service_login_via_browser_flow()
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->initialize_self_service_login_via_browser_flow: %s\n" % e)
 ```
 
@@ -1188,10 +1241,11 @@ This endpoint initiates a recovery flow for API clients such as mobile devices, 
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.recovery_flow import RecoveryFlow
+from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1203,13 +1257,14 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    
+    api_instance = public_api.PublicApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
     try:
         # Initialize Recovery Flow for API Clients
         api_response = api_instance.initialize_self_service_recovery_via_api_flow()
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->initialize_self_service_recovery_via_api_flow: %s\n" % e)
 ```
 
@@ -1248,10 +1303,10 @@ This endpoint initializes a browser-based account recovery flow. Once initialize
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1263,12 +1318,13 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    
+    api_instance = public_api.PublicApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
     try:
         # Initialize Recovery Flow for Browser Clients
         api_instance.initialize_self_service_recovery_via_browser_flow()
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->initialize_self_service_recovery_via_browser_flow: %s\n" % e)
 ```
 
@@ -1306,10 +1362,11 @@ This endpoint initiates a registration flow for API clients such as mobile devic
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.registration_flow import RegistrationFlow
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1321,13 +1378,14 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    
+    api_instance = public_api.PublicApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
     try:
         # Initialize Registration Flow for API clients
         api_response = api_instance.initialize_self_service_registration_via_api_flow()
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->initialize_self_service_registration_via_api_flow: %s\n" % e)
 ```
 
@@ -1366,10 +1424,10 @@ This endpoint initializes a browser-based user registration flow. Once initializ
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1381,12 +1439,13 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    
+    api_instance = public_api.PublicApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
     try:
         # Initialize Registration Flow for browsers
         api_instance.initialize_self_service_registration_via_browser_flow()
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->initialize_self_service_registration_via_browser_flow: %s\n" % e)
 ```
 
@@ -1425,10 +1484,11 @@ This endpoint initiates a settings flow for API clients such as mobile devices, 
 
 * Api Key Authentication (sessionToken):
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.settings_flow import SettingsFlow
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1442,25 +1502,22 @@ configuration = ory_kratos_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: sessionToken
-configuration = ory_kratos_client.Configuration(
-    host = "http://localhost",
-    api_key = {
-        'X-Session-Token': 'YOUR_API_KEY'
-    }
-)
+configuration.api_key['sessionToken'] = 'YOUR_API_KEY'
+
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['X-Session-Token'] = 'Bearer'
+# configuration.api_key_prefix['sessionToken'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    
+    api_instance = public_api.PublicApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
     try:
         # Initialize Settings Flow for API Clients
         api_response = api_instance.initialize_self_service_settings_via_api_flow()
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->initialize_self_service_settings_via_api_flow: %s\n" % e)
 ```
 
@@ -1500,10 +1557,10 @@ This endpoint initializes a browser-based user settings flow. Once initialized, 
 
 * Api Key Authentication (sessionToken):
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1517,24 +1574,21 @@ configuration = ory_kratos_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: sessionToken
-configuration = ory_kratos_client.Configuration(
-    host = "http://localhost",
-    api_key = {
-        'X-Session-Token': 'YOUR_API_KEY'
-    }
-)
+configuration.api_key['sessionToken'] = 'YOUR_API_KEY'
+
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['X-Session-Token'] = 'Bearer'
+# configuration.api_key_prefix['sessionToken'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    
+    api_instance = public_api.PublicApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
     try:
         # Initialize Settings Flow for Browsers
         api_instance.initialize_self_service_settings_via_browser_flow()
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->initialize_self_service_settings_via_browser_flow: %s\n" % e)
 ```
 
@@ -1572,10 +1626,11 @@ This endpoint initiates a verification flow for API clients such as mobile devic
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.verification_flow import VerificationFlow
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1587,13 +1642,14 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    
+    api_instance = public_api.PublicApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
     try:
         # Initialize Verification Flow for API Clients
         api_response = api_instance.initialize_self_service_verification_via_api_flow()
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->initialize_self_service_verification_via_api_flow: %s\n" % e)
 ```
 
@@ -1632,10 +1688,10 @@ This endpoint initializes a browser-based account verification flow. Once initia
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1647,12 +1703,13 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    
+    api_instance = public_api.PublicApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
     try:
         # Initialize Verification Flow for Browser Clients
         api_instance.initialize_self_service_verification_via_browser_flow()
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->initialize_self_service_verification_via_browser_flow: %s\n" % e)
 ```
 
@@ -1690,10 +1747,11 @@ Use this endpoint to revoke a session using its token. This endpoint is particul
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.revoke_session import RevokeSession
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1705,13 +1763,16 @@ configuration = ory_kratos_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    body = ory_kratos_client.RevokeSession() # RevokeSession | 
+    api_instance = public_api.PublicApi(api_client)
+    body = RevokeSession(
+        session_token="session_token_example",
+    ) # RevokeSession | 
 
+    # example passing only required values which don't have defaults set
     try:
         # Revoke and Invalidate a Session
         api_instance.revoke_session(body)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->revoke_session: %s\n" % e)
 ```
 
@@ -1719,7 +1780,7 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**RevokeSession**](RevokeSession.md)|  | 
+ **body** | [**RevokeSession**](RevokeSession.md)|  |
 
 ### Return type
 
@@ -1744,7 +1805,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **whoami**
-> Session whoami(cookie=cookie, authorization=authorization)
+> Session whoami()
 
 Check Who the Current HTTP Session Belongs To
 
@@ -1754,10 +1815,11 @@ Uses the HTTP Headers in the GET request to determine (e.g. by using checking th
 
 * Api Key Authentication (sessionToken):
 ```python
-from __future__ import print_function
 import time
 import ory_kratos_client
-from ory_kratos_client.rest import ApiException
+from ory_kratos_client.api import public_api
+from ory_kratos_client.model.session import Session
+from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1771,27 +1833,25 @@ configuration = ory_kratos_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: sessionToken
-configuration = ory_kratos_client.Configuration(
-    host = "http://localhost",
-    api_key = {
-        'X-Session-Token': 'YOUR_API_KEY'
-    }
-)
+configuration.api_key['sessionToken'] = 'YOUR_API_KEY'
+
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['X-Session-Token'] = 'Bearer'
+# configuration.api_key_prefix['sessionToken'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = ory_kratos_client.PublicApi(api_client)
-    cookie = 'cookie_example' # str |  (optional)
-authorization = 'authorization_example' # str | in: authorization (optional)
+    api_instance = public_api.PublicApi(api_client)
+    cookie = "Cookie_example" # str |  (optional)
+    authorization = "Authorization_example" # str | in: authorization (optional)
 
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # Check Who the Current HTTP Session Belongs To
         api_response = api_instance.whoami(cookie=cookie, authorization=authorization)
         pprint(api_response)
-    except ApiException as e:
+    except ory_kratos_client.ApiException as e:
         print("Exception when calling PublicApi->whoami: %s\n" % e)
 ```
 
@@ -1799,8 +1859,8 @@ authorization = 'authorization_example' # str | in: authorization (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cookie** | **str**|  | [optional] 
- **authorization** | **str**| in: authorization | [optional] 
+ **cookie** | **str**|  | [optional]
+ **authorization** | **str**| in: authorization | [optional]
 
 ### Return type
 

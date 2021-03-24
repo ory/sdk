@@ -1,8 +1,8 @@
-# hydra-client
+# kratos-client
 
 Ory Kratos
-- API version: v0.0.0-alpha.1
-  - Build date: 2020-01-06T13:38:36.268669+01:00[Europe/Berlin]
+- API version: v0.5.5-alpha.4
+  - Build date: 2021-03-24T22:43:30.696930295Z[Etc/UTC]
 
 Welcome to the ORY Kratos HTTP API documentation!
 
@@ -13,7 +13,7 @@ Welcome to the ORY Kratos HTTP API documentation!
 ## Requirements
 
 Building the API client library requires:
-1. Java 1.7+
+1. Java 1.8+
 2. Maven/Gradle
 
 ## Installation
@@ -39,8 +39,8 @@ Add this dependency to your project's POM:
 ```xml
 <dependency>
   <groupId>sh.ory.kratos</groupId>
-  <artifactId>hydra-client</artifactId>
-  <version>v0.0.0-alpha.1</version>
+  <artifactId>kratos-client</artifactId>
+  <version>v0.5.5-alpha.4</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -50,7 +50,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "sh.ory.kratos:hydra-client:v0.0.0-alpha.1"
+compile "sh.ory.kratos:kratos-client:v0.5.5-alpha.4"
 ```
 
 ### Others
@@ -63,7 +63,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/hydra-client-v0.0.0-alpha.1.jar`
+* `target/kratos-client-v0.5.5-alpha.4.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -77,19 +77,20 @@ import sh.ory.kratos.ApiClient;
 import sh.ory.kratos.ApiException;
 import sh.ory.kratos.Configuration;
 import sh.ory.kratos.models.*;
-import sh.ory.kratos.api.HealthApi;
+import sh.ory.kratos.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
 
-    HealthApi apiInstance = new HealthApi(defaultClient);
+    AdminApi apiInstance = new AdminApi(defaultClient);
+    CreateIdentity body = new CreateIdentity(); // CreateIdentity | 
     try {
-      HealthStatus result = apiInstance.isInstanceAlive();
+      Identity result = apiInstance.createIdentity(body);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling HealthApi#isInstanceAlive");
+      System.err.println("Exception when calling AdminApi#createIdentity");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -106,43 +107,104 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AdminApi* | [**createIdentity**](docs/AdminApi.md#createIdentity) | **POST** /identities | Create an Identity
+*AdminApi* | [**createRecoveryLink**](docs/AdminApi.md#createRecoveryLink) | **POST** /recovery/link | Create a Recovery Link
+*AdminApi* | [**deleteIdentity**](docs/AdminApi.md#deleteIdentity) | **DELETE** /identities/{id} | Delete an Identity
+*AdminApi* | [**getIdentity**](docs/AdminApi.md#getIdentity) | **GET** /identities/{id} | Get an Identity
+*AdminApi* | [**getSchema**](docs/AdminApi.md#getSchema) | **GET** /schemas/{id} | 
+*AdminApi* | [**getSelfServiceError**](docs/AdminApi.md#getSelfServiceError) | **GET** /self-service/errors | Get User-Facing Self-Service Errors
+*AdminApi* | [**getSelfServiceLoginFlow**](docs/AdminApi.md#getSelfServiceLoginFlow) | **GET** /self-service/login/flows | Get Login Flow
+*AdminApi* | [**getSelfServiceRecoveryFlow**](docs/AdminApi.md#getSelfServiceRecoveryFlow) | **GET** /self-service/recovery/flows | Get information about a recovery flow
+*AdminApi* | [**getSelfServiceRegistrationFlow**](docs/AdminApi.md#getSelfServiceRegistrationFlow) | **GET** /self-service/registration/flows | Get Registration Flow
+*AdminApi* | [**getSelfServiceSettingsFlow**](docs/AdminApi.md#getSelfServiceSettingsFlow) | **GET** /self-service/settings/flows | Get Settings Flow
+*AdminApi* | [**getSelfServiceVerificationFlow**](docs/AdminApi.md#getSelfServiceVerificationFlow) | **GET** /self-service/verification/flows | Get Verification Flow
+*AdminApi* | [**listIdentities**](docs/AdminApi.md#listIdentities) | **GET** /identities | List Identities
+*AdminApi* | [**prometheus**](docs/AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get snapshot metrics from the Hydra service. If you&#39;re using k8s, you can then add annotations to your deployment like so:
+*AdminApi* | [**updateIdentity**](docs/AdminApi.md#updateIdentity) | **PUT** /identities/{id} | Update an Identity
 *HealthApi* | [**isInstanceAlive**](docs/HealthApi.md#isInstanceAlive) | **GET** /health/alive | Check alive status
 *HealthApi* | [**isInstanceReady**](docs/HealthApi.md#isInstanceReady) | **GET** /health/ready | Check readiness status
-*PublicApi* | [**completeProfileManagementFlow**](docs/PublicApi.md#completeProfileManagementFlow) | **POST** /profiles | Complete Profile Management Flow
-*PublicApi* | [**getLoginRequest**](docs/PublicApi.md#getLoginRequest) | **GET** /auth/browser/requests/login | Get Login Request
-*PublicApi* | [**getProfileManagementRequest**](docs/PublicApi.md#getProfileManagementRequest) | **GET** /profiles/requests | Get Profile Management Request (via cookie)
-*PublicApi* | [**getRegistrationRequest**](docs/PublicApi.md#getRegistrationRequest) | **GET** /auth/browser/requests/registration | Get Registration Request
-*PublicApi* | [**initializeLoginFlow**](docs/PublicApi.md#initializeLoginFlow) | **GET** /auth/browser/login | Initialize a Login Flow
-*PublicApi* | [**initializeProfileManagementFlow**](docs/PublicApi.md#initializeProfileManagementFlow) | **GET** /profiles | Initialize Profile Management Flow
-*PublicApi* | [**initializeRegistrationFlow**](docs/PublicApi.md#initializeRegistrationFlow) | **GET** /auth/browser/registration | Initialize a Registration Flow
+*PublicApi* | [**completeSelfServiceBrowserSettingsOIDCSettingsFlow**](docs/PublicApi.md#completeSelfServiceBrowserSettingsOIDCSettingsFlow) | **POST** /self-service/browser/flows/registration/strategies/oidc/settings/connections | Complete the Browser-Based Settings Flow for the OpenID Connect Strategy
+*PublicApi* | [**completeSelfServiceLoginFlowWithPasswordMethod**](docs/PublicApi.md#completeSelfServiceLoginFlowWithPasswordMethod) | **POST** /self-service/login/methods/password | Complete Login Flow with Username/Email Password Method
+*PublicApi* | [**completeSelfServiceRecoveryFlowWithLinkMethod**](docs/PublicApi.md#completeSelfServiceRecoveryFlowWithLinkMethod) | **POST** /self-service/recovery/methods/link | Complete Recovery Flow with Link Method
+*PublicApi* | [**completeSelfServiceRegistrationFlowWithPasswordMethod**](docs/PublicApi.md#completeSelfServiceRegistrationFlowWithPasswordMethod) | **POST** /self-service/registration/methods/password | Complete Registration Flow with Username/Email Password Method
+*PublicApi* | [**completeSelfServiceSettingsFlowWithPasswordMethod**](docs/PublicApi.md#completeSelfServiceSettingsFlowWithPasswordMethod) | **POST** /self-service/settings/methods/password | Complete Settings Flow with Username/Email Password Method
+*PublicApi* | [**completeSelfServiceSettingsFlowWithProfileMethod**](docs/PublicApi.md#completeSelfServiceSettingsFlowWithProfileMethod) | **POST** /self-service/settings/methods/profile | Complete Settings Flow with Profile Method
+*PublicApi* | [**completeSelfServiceVerificationFlowWithLinkMethod**](docs/PublicApi.md#completeSelfServiceVerificationFlowWithLinkMethod) | **POST** /self-service/verification/methods/link | Complete Verification Flow with Link Method
+*PublicApi* | [**getSchema**](docs/PublicApi.md#getSchema) | **GET** /schemas/{id} | 
+*PublicApi* | [**getSelfServiceError**](docs/PublicApi.md#getSelfServiceError) | **GET** /self-service/errors | Get User-Facing Self-Service Errors
+*PublicApi* | [**getSelfServiceLoginFlow**](docs/PublicApi.md#getSelfServiceLoginFlow) | **GET** /self-service/login/flows | Get Login Flow
+*PublicApi* | [**getSelfServiceRecoveryFlow**](docs/PublicApi.md#getSelfServiceRecoveryFlow) | **GET** /self-service/recovery/flows | Get information about a recovery flow
+*PublicApi* | [**getSelfServiceRegistrationFlow**](docs/PublicApi.md#getSelfServiceRegistrationFlow) | **GET** /self-service/registration/flows | Get Registration Flow
+*PublicApi* | [**getSelfServiceSettingsFlow**](docs/PublicApi.md#getSelfServiceSettingsFlow) | **GET** /self-service/settings/flows | Get Settings Flow
+*PublicApi* | [**getSelfServiceVerificationFlow**](docs/PublicApi.md#getSelfServiceVerificationFlow) | **GET** /self-service/verification/flows | Get Verification Flow
+*PublicApi* | [**initializeSelfServiceBrowserLogoutFlow**](docs/PublicApi.md#initializeSelfServiceBrowserLogoutFlow) | **GET** /self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
+*PublicApi* | [**initializeSelfServiceLoginViaAPIFlow**](docs/PublicApi.md#initializeSelfServiceLoginViaAPIFlow) | **GET** /self-service/login/api | Initialize Login Flow for API clients
+*PublicApi* | [**initializeSelfServiceLoginViaBrowserFlow**](docs/PublicApi.md#initializeSelfServiceLoginViaBrowserFlow) | **GET** /self-service/login/browser | Initialize Login Flow for browsers
+*PublicApi* | [**initializeSelfServiceRecoveryViaAPIFlow**](docs/PublicApi.md#initializeSelfServiceRecoveryViaAPIFlow) | **GET** /self-service/recovery/api | Initialize Recovery Flow for API Clients
+*PublicApi* | [**initializeSelfServiceRecoveryViaBrowserFlow**](docs/PublicApi.md#initializeSelfServiceRecoveryViaBrowserFlow) | **GET** /self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
+*PublicApi* | [**initializeSelfServiceRegistrationViaAPIFlow**](docs/PublicApi.md#initializeSelfServiceRegistrationViaAPIFlow) | **GET** /self-service/registration/api | Initialize Registration Flow for API clients
+*PublicApi* | [**initializeSelfServiceRegistrationViaBrowserFlow**](docs/PublicApi.md#initializeSelfServiceRegistrationViaBrowserFlow) | **GET** /self-service/registration/browser | Initialize Registration Flow for browsers
+*PublicApi* | [**initializeSelfServiceSettingsViaAPIFlow**](docs/PublicApi.md#initializeSelfServiceSettingsViaAPIFlow) | **GET** /self-service/settings/api | Initialize Settings Flow for API Clients
+*PublicApi* | [**initializeSelfServiceSettingsViaBrowserFlow**](docs/PublicApi.md#initializeSelfServiceSettingsViaBrowserFlow) | **GET** /self-service/settings/browser | Initialize Settings Flow for Browsers
+*PublicApi* | [**initializeSelfServiceVerificationViaAPIFlow**](docs/PublicApi.md#initializeSelfServiceVerificationViaAPIFlow) | **GET** /self-service/verification/api | Initialize Verification Flow for API Clients
+*PublicApi* | [**initializeSelfServiceVerificationViaBrowserFlow**](docs/PublicApi.md#initializeSelfServiceVerificationViaBrowserFlow) | **GET** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
+*PublicApi* | [**revokeSession**](docs/PublicApi.md#revokeSession) | **DELETE** /sessions | Revoke and Invalidate a Session
+*PublicApi* | [**whoami**](docs/PublicApi.md#whoami) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 *VersionApi* | [**getVersion**](docs/VersionApi.md#getVersion) | **GET** /version | Get service version
 
 
 ## Documentation for Models
 
- - [Error](docs/Error.md)
- - [Form](docs/Form.md)
+ - [CompleteSelfServiceLoginFlowWithPasswordMethod](docs/CompleteSelfServiceLoginFlowWithPasswordMethod.md)
+ - [CompleteSelfServiceRecoveryFlowWithLinkMethod](docs/CompleteSelfServiceRecoveryFlowWithLinkMethod.md)
+ - [CompleteSelfServiceSettingsFlowWithPasswordMethod](docs/CompleteSelfServiceSettingsFlowWithPasswordMethod.md)
+ - [CompleteSelfServiceVerificationFlowWithLinkMethod](docs/CompleteSelfServiceVerificationFlowWithLinkMethod.md)
+ - [CreateIdentity](docs/CreateIdentity.md)
+ - [CreateRecoveryLink](docs/CreateRecoveryLink.md)
+ - [ErrorContainer](docs/ErrorContainer.md)
  - [FormField](docs/FormField.md)
  - [GenericError](docs/GenericError.md)
+ - [GenericErrorPayload](docs/GenericErrorPayload.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
  - [HealthStatus](docs/HealthStatus.md)
  - [Identity](docs/Identity.md)
- - [LoginRequest](docs/LoginRequest.md)
- - [LoginRequestMethod](docs/LoginRequestMethod.md)
- - [LoginRequestMethodConfig](docs/LoginRequestMethodConfig.md)
- - [OidcStrategyCredentialsConfig](docs/OidcStrategyCredentialsConfig.md)
- - [OidcStrategyRequestMethod](docs/OidcStrategyRequestMethod.md)
- - [ProfileManagementRequest](docs/ProfileManagementRequest.md)
- - [RegistrationRequest](docs/RegistrationRequest.md)
- - [RegistrationRequestMethod](docs/RegistrationRequestMethod.md)
- - [RegistrationRequestMethodConfig](docs/RegistrationRequestMethodConfig.md)
+ - [LoginFlow](docs/LoginFlow.md)
+ - [LoginFlowMethod](docs/LoginFlowMethod.md)
+ - [LoginFlowMethodConfig](docs/LoginFlowMethodConfig.md)
+ - [LoginViaApiResponse](docs/LoginViaApiResponse.md)
+ - [Message](docs/Message.md)
+ - [RecoveryAddress](docs/RecoveryAddress.md)
+ - [RecoveryFlow](docs/RecoveryFlow.md)
+ - [RecoveryFlowMethod](docs/RecoveryFlowMethod.md)
+ - [RecoveryFlowMethodConfig](docs/RecoveryFlowMethodConfig.md)
+ - [RecoveryLink](docs/RecoveryLink.md)
+ - [RegistrationFlow](docs/RegistrationFlow.md)
+ - [RegistrationFlowMethod](docs/RegistrationFlowMethod.md)
+ - [RegistrationFlowMethodConfig](docs/RegistrationFlowMethodConfig.md)
+ - [RegistrationViaApiResponse](docs/RegistrationViaApiResponse.md)
+ - [RevokeSession](docs/RevokeSession.md)
+ - [Session](docs/Session.md)
+ - [SettingsFlow](docs/SettingsFlow.md)
+ - [SettingsFlowMethod](docs/SettingsFlowMethod.md)
+ - [SettingsFlowMethodConfig](docs/SettingsFlowMethodConfig.md)
+ - [SettingsViaApiResponse](docs/SettingsViaApiResponse.md)
+ - [UpdateIdentity](docs/UpdateIdentity.md)
+ - [VerifiableAddress](docs/VerifiableAddress.md)
+ - [VerificationFlow](docs/VerificationFlow.md)
+ - [VerificationFlowMethod](docs/VerificationFlowMethod.md)
+ - [VerificationFlowMethodConfig](docs/VerificationFlowMethodConfig.md)
  - [Version](docs/Version.md)
 
 
 ## Documentation for Authorization
 
-All endpoints do not require authorization.
 Authentication schemes defined for the API:
+### sessionToken
+
+- **Type**: API key
+- **API key parameter name**: X-Session-Token
+- **Location**: HTTP header
+
 
 ## Recommendation
 

@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Code** | **long** | Code represents the error status code (404, 403, 401, ...). | [optional] 
 **Debug** | **string** | Debug contains debug information. This is usually not available and has to be enabled. | [optional] 
-**Details** | [**Object**](.md) |  | [optional] 
+**Details** | **Object** |  | [optional] 
 **Message** | **string** |  | [optional] 
 **Reason** | **string** |  | [optional] 
 **Request** | **string** |  | [optional] 

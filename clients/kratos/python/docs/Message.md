@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**context** | [**object**](.md) |  | [optional] 
+**context** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
 **id** | **int** |  | [optional] 
 **text** | **str** |  | [optional] 
 **type** | **str** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | [optional] 

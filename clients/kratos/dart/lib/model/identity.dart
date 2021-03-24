@@ -13,42 +13,69 @@ class Identity {
   /// Returns a new [Identity] instance.
   Identity({
     @required this.id,
+    this.recoveryAddresses = const [],
+    @required this.schemaId,
+    @required this.schemaUrl,
     @required this.traits,
-    this.traitsSchemaUrl,
+    this.verifiableAddresses = const [],
   });
 
   String id;
 
+  /// RecoveryAddresses contains all the addresses that can be used to recover an identity.
+  List<RecoveryAddress> recoveryAddresses;
+
+  /// SchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
+  String schemaId;
+
+  /// SchemaURL is the URL of the endpoint where the identity's traits schema can be fetched from.  format: url
+  String schemaUrl;
+
   Object traits;
 
-  /// TraitsSchemaURL is the JSON Schema to be used for validating the identity's traits.  format: uri
-  String traitsSchemaUrl;
+  /// VerifiableAddresses contains all the addresses that can be verified by the user.
+  List<VerifiableAddress> verifiableAddresses;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Identity &&
      other.id == id &&
+     other.recoveryAddresses == recoveryAddresses &&
+     other.schemaId == schemaId &&
+     other.schemaUrl == schemaUrl &&
      other.traits == traits &&
-     other.traitsSchemaUrl == traitsSchemaUrl;
+     other.verifiableAddresses == verifiableAddresses;
 
   @override
   int get hashCode =>
     (id == null ? 0 : id.hashCode) +
+    (recoveryAddresses == null ? 0 : recoveryAddresses.hashCode) +
+    (schemaId == null ? 0 : schemaId.hashCode) +
+    (schemaUrl == null ? 0 : schemaUrl.hashCode) +
     (traits == null ? 0 : traits.hashCode) +
-    (traitsSchemaUrl == null ? 0 : traitsSchemaUrl.hashCode);
+    (verifiableAddresses == null ? 0 : verifiableAddresses.hashCode);
 
   @override
-  String toString() => 'Identity[id=$id, traits=$traits, traitsSchemaUrl=$traitsSchemaUrl]';
+  String toString() => 'Identity[id=$id, recoveryAddresses=$recoveryAddresses, schemaId=$schemaId, schemaUrl=$schemaUrl, traits=$traits, verifiableAddresses=$verifiableAddresses]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
       json[r'id'] = id;
     }
+    if (recoveryAddresses != null) {
+      json[r'recovery_addresses'] = recoveryAddresses;
+    }
+    if (schemaId != null) {
+      json[r'schema_id'] = schemaId;
+    }
+    if (schemaUrl != null) {
+      json[r'schema_url'] = schemaUrl;
+    }
     if (traits != null) {
       json[r'traits'] = traits;
     }
-    if (traitsSchemaUrl != null) {
-      json[r'traits_schema_url'] = traitsSchemaUrl;
+    if (verifiableAddresses != null) {
+      json[r'verifiable_addresses'] = verifiableAddresses;
     }
     return json;
   }
@@ -59,8 +86,11 @@ class Identity {
     ? null
     : Identity(
         id: json[r'id'],
+        recoveryAddresses: RecoveryAddress.listFromJson(json[r'recovery_addresses']),
+        schemaId: json[r'schema_id'],
+        schemaUrl: json[r'schema_url'],
         traits: json[r'traits'],
-        traitsSchemaUrl: json[r'traits_schema_url'],
+        verifiableAddresses: VerifiableAddress.listFromJson(json[r'verifiable_addresses']),
     );
 
   static List<Identity> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>

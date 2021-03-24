@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**errors** | [**Object**](.md) | Errors in the container | 
-**id** | **String** |  | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **errors** | **Object** | Errors in the container |  |
+| **id** | **String** |  |  |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OryHydraClient'
+require 'ory-kratos-client'
 
-instance = OryHydraClient::ErrorContainer.new(errors: null,
-                                 id: null)
+instance = OryHydraClient::ErrorContainer.new(
+  errors: null,
+  id: null
+)
 ```
-
 

@@ -7,11 +7,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active** | **Boolean** |  |  [optional]
-**authenticatedAt** | [**OffsetDateTime**](OffsetDateTime.md) |  | 
-**expiresAt** | [**OffsetDateTime**](OffsetDateTime.md) |  | 
-**id** | [**UUID**](UUID.md) |  | 
+**authenticatedAt** | **OffsetDateTime** |  | 
+**expiresAt** | **OffsetDateTime** |  | 
+**id** | **UUID** |  | 
 **identity** | [**Identity**](Identity.md) |  | 
-**issuedAt** | [**OffsetDateTime**](OffsetDateTime.md) |  | 
+**issuedAt** | **OffsetDateTime** |  | 
 
 
 
