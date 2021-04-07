@@ -1,0 +1,20 @@
+# OryHydraClient::PatchDelta
+
+## Properties
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **action** | **String** |  | [optional] |
+| **relation_tuple** | [**InternalRelationTuple**](InternalRelationTuple.md) |  | [optional] |
+
+## Example
+
+```ruby
+require 'ory-keto-client'
+
+instance = OryHydraClient::PatchDelta.new(
+  action: null,
+  relation_tuple: null
+)
+```
+

@@ -1,8 +1,8 @@
 # keto-client
 
 ORY Keto
-- API version: v0.0.0-alpha.58
-  - Build date: 2021-01-26T10:29:31.477010682Z[Etc/UTC]
+- API version: v0.6.0-alpha.1
+  - Build date: 2021-04-07T17:52:09.440238193Z[Etc/UTC]
 
 Ory Keto is a cloud native access control server providing best-practice patterns (RBAC, ABAC, ACL, AWS IAM Policies, Kubernetes Roles, ...) via REST APIs.
 
@@ -14,7 +14,7 @@ Ory Keto is a cloud native access control server providing best-practice pattern
 ## Requirements
 
 Building the API client library requires:
-1. Java 1.7+
+1. Java 1.8+
 2. Maven/Gradle
 
 ## Installation
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.keto</groupId>
   <artifactId>keto-client</artifactId>
-  <version>v0.0.0-alpha.58</version>
+  <version>v0.6.0-alpha.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "sh.ory.keto:keto-client:v0.0.0-alpha.58"
+compile "sh.ory.keto:keto-client:v0.6.0-alpha.1"
 ```
 
 ### Others
@@ -64,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/keto-client-v0.0.0-alpha.58.jar`
+* `target/keto-client-v0.6.0-alpha.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -78,22 +78,19 @@ import sh.ory.keto.ApiClient;
 import sh.ory.keto.ApiException;
 import sh.ory.keto.Configuration;
 import sh.ory.keto.models.*;
-import sh.ory.keto.api.EnginesApi;
+import sh.ory.keto.api.HealthApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
 
-    EnginesApi apiInstance = new EnginesApi(defaultClient);
-    String flavor = "flavor_example"; // String | The ORY Access Control Policy flavor. Can be \"regex\", \"glob\", and \"exact\".
-    String id = "id_example"; // String | The ID of the ORY Access Control Policy Role.
-    AddOryAccessControlPolicyRoleMembersBody body = new AddOryAccessControlPolicyRoleMembersBody(); // AddOryAccessControlPolicyRoleMembersBody | 
+    HealthApi apiInstance = new HealthApi(defaultClient);
     try {
-      OryAccessControlPolicyRole result = apiInstance.addOryAccessControlPolicyRoleMembers(flavor, id, body);
+      HealthStatus result = apiInstance.isInstanceAlive();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling EnginesApi#addOryAccessControlPolicyRoleMembers");
+      System.err.println("Exception when calling HealthApi#isInstanceAlive");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -110,32 +107,28 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*EnginesApi* | [**addOryAccessControlPolicyRoleMembers**](docs/EnginesApi.md#addOryAccessControlPolicyRoleMembers) | **PUT** /engines/acp/ory/{flavor}/roles/{id}/members | Add a member to an ORY Access Control Policy Role
-*EnginesApi* | [**deleteOryAccessControlPolicy**](docs/EnginesApi.md#deleteOryAccessControlPolicy) | **DELETE** /engines/acp/ory/{flavor}/policies/{id} | 
-*EnginesApi* | [**deleteOryAccessControlPolicyRole**](docs/EnginesApi.md#deleteOryAccessControlPolicyRole) | **DELETE** /engines/acp/ory/{flavor}/roles/{id} | Delete an ORY Access Control Policy Role
-*EnginesApi* | [**doOryAccessControlPoliciesAllow**](docs/EnginesApi.md#doOryAccessControlPoliciesAllow) | **POST** /engines/acp/ory/{flavor}/allowed | Check if a request is allowed
-*EnginesApi* | [**getOryAccessControlPolicy**](docs/EnginesApi.md#getOryAccessControlPolicy) | **GET** /engines/acp/ory/{flavor}/policies/{id} | 
-*EnginesApi* | [**getOryAccessControlPolicyRole**](docs/EnginesApi.md#getOryAccessControlPolicyRole) | **GET** /engines/acp/ory/{flavor}/roles/{id} | Get an ORY Access Control Policy Role
-*EnginesApi* | [**listOryAccessControlPolicies**](docs/EnginesApi.md#listOryAccessControlPolicies) | **GET** /engines/acp/ory/{flavor}/policies | 
-*EnginesApi* | [**listOryAccessControlPolicyRoles**](docs/EnginesApi.md#listOryAccessControlPolicyRoles) | **GET** /engines/acp/ory/{flavor}/roles | List ORY Access Control Policy Roles
-*EnginesApi* | [**removeOryAccessControlPolicyRoleMembers**](docs/EnginesApi.md#removeOryAccessControlPolicyRoleMembers) | **DELETE** /engines/acp/ory/{flavor}/roles/{id}/members/{member} | Remove a member from an ORY Access Control Policy Role
-*EnginesApi* | [**upsertOryAccessControlPolicy**](docs/EnginesApi.md#upsertOryAccessControlPolicy) | **PUT** /engines/acp/ory/{flavor}/policies | 
-*EnginesApi* | [**upsertOryAccessControlPolicyRole**](docs/EnginesApi.md#upsertOryAccessControlPolicyRole) | **PUT** /engines/acp/ory/{flavor}/roles | Upsert an ORY Access Control Policy Role
 *HealthApi* | [**isInstanceAlive**](docs/HealthApi.md#isInstanceAlive) | **GET** /health/alive | Check alive status
 *HealthApi* | [**isInstanceReady**](docs/HealthApi.md#isInstanceReady) | **GET** /health/ready | Check readiness status
+*ReadApi* | [**getCheck**](docs/ReadApi.md#getCheck) | **GET** /check | Check a relation tuple
+*ReadApi* | [**getExpand**](docs/ReadApi.md#getExpand) | **GET** /expand | Expand a Relation Tuple
+*ReadApi* | [**getRelationTuples**](docs/ReadApi.md#getRelationTuples) | **GET** /relation-tuples | Query relation tuples
+*ReadApi* | [**postCheck**](docs/ReadApi.md#postCheck) | **POST** /check | Check a relation tuple
 *VersionApi* | [**getVersion**](docs/VersionApi.md#getVersion) | **GET** /version | Get service version
+*WriteApi* | [**createRelationTuple**](docs/WriteApi.md#createRelationTuple) | **PUT** /relation-tuples | Create a Relation Tuple
+*WriteApi* | [**deleteRelationTuple**](docs/WriteApi.md#deleteRelationTuple) | **DELETE** /relation-tuples | Delete a Relation Tuple
+*WriteApi* | [**patchRelationTuples**](docs/WriteApi.md#patchRelationTuples) | **PATCH** /relation-tuples | Patch Multiple Relation Tuples
 
 
 ## Documentation for Models
 
- - [AddOryAccessControlPolicyRoleMembersBody](docs/AddOryAccessControlPolicyRoleMembersBody.md)
- - [AuthorizationResult](docs/AuthorizationResult.md)
+ - [ExpandTree](docs/ExpandTree.md)
+ - [GetCheckResponse](docs/GetCheckResponse.md)
+ - [GetRelationTuplesResponse](docs/GetRelationTuplesResponse.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
  - [HealthStatus](docs/HealthStatus.md)
- - [InlineResponse500](docs/InlineResponse500.md)
- - [OryAccessControlPolicy](docs/OryAccessControlPolicy.md)
- - [OryAccessControlPolicyAllowedInput](docs/OryAccessControlPolicyAllowedInput.md)
- - [OryAccessControlPolicyRole](docs/OryAccessControlPolicyRole.md)
+ - [InlineResponse400](docs/InlineResponse400.md)
+ - [InternalRelationTuple](docs/InternalRelationTuple.md)
+ - [PatchDelta](docs/PatchDelta.md)
  - [Version](docs/Version.md)
 
 

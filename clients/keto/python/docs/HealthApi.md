@@ -21,7 +21,7 @@ This endpoint returns a 200 status code when the HTTP server is up running. This
 import time
 import ory_keto_client
 from ory_keto_client.api import health_api
-from ory_keto_client.model.inline_response500 import InlineResponse500
+from ory_keto_client.model.inline_response400 import InlineResponse400
 from ory_keto_client.model.health_status import HealthStatus
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost

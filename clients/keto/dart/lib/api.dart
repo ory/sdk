@@ -26,18 +26,19 @@ part 'auth/oauth.dart';
 part 'auth/http_basic_auth.dart';
 part 'auth/http_bearer_auth.dart';
 
-part 'api/engines_api.dart';
 part 'api/health_api.dart';
+part 'api/read_api.dart';
 part 'api/version_api.dart';
+part 'api/write_api.dart';
 
-part 'model/add_ory_access_control_policy_role_members_body.dart';
-part 'model/authorization_result.dart';
+part 'model/expand_tree.dart';
+part 'model/get_check_response.dart';
+part 'model/get_relation_tuples_response.dart';
 part 'model/health_not_ready_status.dart';
 part 'model/health_status.dart';
-part 'model/inline_response500.dart';
-part 'model/ory_access_control_policy.dart';
-part 'model/ory_access_control_policy_allowed_input.dart';
-part 'model/ory_access_control_policy_role.dart';
+part 'model/inline_response400.dart';
+part 'model/internal_relation_tuple.dart';
+part 'model/patch_delta.dart';
 part 'model/version.dart';
 
 const _delimiters = {'csv': ',', 'ssv': ' ', 'tsv': '\t', 'pipes': '|'};

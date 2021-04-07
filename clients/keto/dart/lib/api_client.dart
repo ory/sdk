@@ -158,22 +158,22 @@ class ApiClient {
           break;
         case 'double':
           return value is double ? value : double.parse('$value');
-        case 'AddOryAccessControlPolicyRoleMembersBody':
-          return AddOryAccessControlPolicyRoleMembersBody.fromJson(value);
-        case 'AuthorizationResult':
-          return AuthorizationResult.fromJson(value);
+        case 'ExpandTree':
+          return ExpandTree.fromJson(value);
+        case 'GetCheckResponse':
+          return GetCheckResponse.fromJson(value);
+        case 'GetRelationTuplesResponse':
+          return GetRelationTuplesResponse.fromJson(value);
         case 'HealthNotReadyStatus':
           return HealthNotReadyStatus.fromJson(value);
         case 'HealthStatus':
           return HealthStatus.fromJson(value);
-        case 'InlineResponse500':
-          return InlineResponse500.fromJson(value);
-        case 'OryAccessControlPolicy':
-          return OryAccessControlPolicy.fromJson(value);
-        case 'OryAccessControlPolicyAllowedInput':
-          return OryAccessControlPolicyAllowedInput.fromJson(value);
-        case 'OryAccessControlPolicyRole':
-          return OryAccessControlPolicyRole.fromJson(value);
+        case 'InlineResponse400':
+          return InlineResponse400.fromJson(value);
+        case 'InternalRelationTuple':
+          return InternalRelationTuple.fromJson(value);
+        case 'PatchDelta':
+          return PatchDelta.fromJson(value);
         case 'Version':
           return Version.fromJson(value);
         default:

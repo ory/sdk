@@ -2,7 +2,7 @@ lazy val root = (project in file(".")).
   settings(
     organization := "sh.ory.keto",
     name := "keto-client",
-    version := "v0.0.0-alpha.58",
+    version := "v0.6.0-alpha.1",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),
     javacOptions in compile ++= Seq("-Xlint:deprecation"),
@@ -14,7 +14,6 @@ lazy val root = (project in file(".")).
       "com.squareup.okhttp3" % "logging-interceptor" % "3.14.7",
       "com.google.code.gson" % "gson" % "2.8.6",
       "org.apache.commons" % "commons-lang3" % "3.10",
-      "org.threeten" % "threetenbp" % "1.4.3" % "compile",
       "io.gsonfire" % "gson-fire" % "1.8.3" % "compile",
       "javax.annotation" % "javax.annotation-api" % "1.3.2" % "compile",
       "com.google.code.findbugs" % "jsr305" % "3.0.2" % "compile",
