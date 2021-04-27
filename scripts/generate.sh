@@ -180,7 +180,14 @@ golang () {
 
   mkdir -p "${dir}"
   (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go")
-  swagger generate client --allow-template-override -f "${SPEC_FILE}" -t "${dir}" -A "Ory_${PROJECT_UCF}"
+
+  openapi-generator generate -i "${SPEC_FILE}" \
+    -g go \
+    -o "$dir" \
+    --git-user-id ory \
+    --git-repo-id sdk \
+    --git-host github.com \
+    -c ./config/client/go.yml.proc.yml
 }
 
 dotnet () {
