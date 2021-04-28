@@ -16,10 +16,9 @@ class RegistrationFlow {
     @required this.expiresAt,
     @required this.id,
     @required this.issuedAt,
-    this.messages = const [],
-    this.methods = const {},
     @required this.requestUrl,
     this.type,
+    @required this.ui,
   });
 
   /// and so on.
@@ -33,16 +32,13 @@ class RegistrationFlow {
   /// IssuedAt is the time (UTC) when the flow occurred.
   DateTime issuedAt;
 
-  List<Message> messages;
-
-  /// Methods contains context for all enabled registration methods. If a registration flow has been processed, but for example the password is incorrect, this will contain error messages.
-  Map<String, RegistrationFlowMethod> methods;
-
-  /// RequestURL is the initial URL that was requested from ORY Kratos. It can be used to forward information contained in the URL's path or query for example.
+  /// RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
   String requestUrl;
 
   /// The flow type can either be `api` or `browser`.
   String type;
+
+  UiContainer ui;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is RegistrationFlow &&
@@ -50,10 +46,9 @@ class RegistrationFlow {
      other.expiresAt == expiresAt &&
      other.id == id &&
      other.issuedAt == issuedAt &&
-     other.messages == messages &&
-     other.methods == methods &&
      other.requestUrl == requestUrl &&
-     other.type == type;
+     other.type == type &&
+     other.ui == ui;
 
   @override
   int get hashCode =>
@@ -61,40 +56,26 @@ class RegistrationFlow {
     (expiresAt == null ? 0 : expiresAt.hashCode) +
     (id == null ? 0 : id.hashCode) +
     (issuedAt == null ? 0 : issuedAt.hashCode) +
-    (messages == null ? 0 : messages.hashCode) +
-    (methods == null ? 0 : methods.hashCode) +
     (requestUrl == null ? 0 : requestUrl.hashCode) +
-    (type == null ? 0 : type.hashCode);
+    (type == null ? 0 : type.hashCode) +
+    (ui == null ? 0 : ui.hashCode);
 
   @override
-  String toString() => 'RegistrationFlow[active=$active, expiresAt=$expiresAt, id=$id, issuedAt=$issuedAt, messages=$messages, methods=$methods, requestUrl=$requestUrl, type=$type]';
+  String toString() => 'RegistrationFlow[active=$active, expiresAt=$expiresAt, id=$id, issuedAt=$issuedAt, requestUrl=$requestUrl, type=$type, ui=$ui]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (active != null) {
       json[r'active'] = active;
     }
-    if (expiresAt != null) {
       json[r'expires_at'] = expiresAt.toUtc().toIso8601String();
-    }
-    if (id != null) {
       json[r'id'] = id;
-    }
-    if (issuedAt != null) {
       json[r'issued_at'] = issuedAt.toUtc().toIso8601String();
-    }
-    if (messages != null) {
-      json[r'messages'] = messages;
-    }
-    if (methods != null) {
-      json[r'methods'] = methods;
-    }
-    if (requestUrl != null) {
       json[r'request_url'] = requestUrl;
-    }
     if (type != null) {
       json[r'type'] = type;
     }
+      json[r'ui'] = ui;
     return json;
   }
 
@@ -111,12 +92,9 @@ class RegistrationFlow {
         issuedAt: json[r'issued_at'] == null
           ? null
           : DateTime.parse(json[r'issued_at']),
-        messages: Message.listFromJson(json[r'messages']),
-        methods: json[r'methods'] == null
-          ? null
-          : RegistrationFlowMethod.mapFromJson(json[r'methods']),
         requestUrl: json[r'request_url'],
         type: json[r'type'],
+        ui: UiContainer.fromJson(json[r'ui']),
     );
 
   static List<RegistrationFlow> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>

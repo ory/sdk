@@ -37,12 +37,8 @@ class CreateIdentity {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (schemaId != null) {
       json[r'schema_id'] = schemaId;
-    }
-    if (traits != null) {
       json[r'traits'] = traits;
-    }
     return json;
   }
 

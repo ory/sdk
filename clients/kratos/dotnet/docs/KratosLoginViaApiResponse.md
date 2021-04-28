@@ -1,5 +1,6 @@
 # Ory.Kratos.Client.Model.KratosLoginViaApiResponse
 The Response for Login Flows via API
+
 ## Properties
 
 Name | Type | Description | Notes

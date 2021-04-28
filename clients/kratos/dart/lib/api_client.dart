@@ -10,8 +10,9 @@
 part of openapi.api;
 
 class ApiClient {
-  ApiClient({this.basePath = 'http://localhost'}) {
+  ApiClient({this.basePath = 'https://demo.tenants.oryapis.com/api/kratos/public'}) {
     // Setup authentications (key: authentication name, value: authentication).
+    _authentications[r'sessionCookie'] = ApiKeyAuth('cookie', 'ory_kratos_session');
     _authentications[r'sessionToken'] = ApiKeyAuth('header', 'X-Session-Token');
   }
 
@@ -41,16 +42,12 @@ class ApiClient {
      _defaultHeaderMap[key] = value;
   }
 
-  dynamic deserialize(String json, String targetType, {bool growable}) {
-    // Remove all spaces.  Necessary for reg expressions as well.
-    targetType = targetType.replaceAll(' ', '');
+  Map<String,String> get defaultHeaderMap => _defaultHeaderMap;
 
-    return targetType == 'String'
-      ? json
-      : _deserialize(jsonDecode(json), targetType, growable: true == growable);
-  }
-
-  String serialize(Object obj) => obj == null ? '' : json.encode(obj);
+  /// returns an unmodifiable view of the authentications, since none should be added
+  /// nor deleted
+  Map<String, Authentication> get authentications =>
+      Map.unmodifiable(_authentications);
 
   T getAuthentication<T extends Authentication>(String name) {
     final authentication = _authentications[name];
@@ -160,84 +157,160 @@ class ApiClient {
           break;
         case 'double':
           return value is double ? value : double.parse('$value');
-        case 'CompleteSelfServiceLoginFlowWithPasswordMethod':
-          return CompleteSelfServiceLoginFlowWithPasswordMethod.fromJson(value);
-        case 'CompleteSelfServiceRecoveryFlowWithLinkMethod':
-          return CompleteSelfServiceRecoveryFlowWithLinkMethod.fromJson(value);
-        case 'CompleteSelfServiceSettingsFlowWithPasswordMethod':
-          return CompleteSelfServiceSettingsFlowWithPasswordMethod.fromJson(value);
-        case 'CompleteSelfServiceVerificationFlowWithLinkMethod':
-          return CompleteSelfServiceVerificationFlowWithLinkMethod.fromJson(value);
+        case 'AuthenticateOKBody':
+          return AuthenticateOKBody.fromJson(value);
+        case 'ContainerChangeResponseItem':
+          return ContainerChangeResponseItem.fromJson(value);
+        case 'ContainerCreateCreatedBody':
+          return ContainerCreateCreatedBody.fromJson(value);
+        case 'ContainerTopOKBody':
+          return ContainerTopOKBody.fromJson(value);
+        case 'ContainerUpdateOKBody':
+          return ContainerUpdateOKBody.fromJson(value);
+        case 'ContainerWaitOKBody':
+          return ContainerWaitOKBody.fromJson(value);
+        case 'ContainerWaitOKBodyError':
+          return ContainerWaitOKBodyError.fromJson(value);
         case 'CreateIdentity':
           return CreateIdentity.fromJson(value);
         case 'CreateRecoveryLink':
           return CreateRecoveryLink.fromJson(value);
         case 'ErrorContainer':
           return ErrorContainer.fromJson(value);
-        case 'FormField':
-          return FormField.fromJson(value);
+        case 'ErrorResponse':
+          return ErrorResponse.fromJson(value);
         case 'GenericError':
           return GenericError.fromJson(value);
         case 'GenericErrorPayload':
           return GenericErrorPayload.fromJson(value);
+        case 'GraphDriverData':
+          return GraphDriverData.fromJson(value);
         case 'HealthNotReadyStatus':
           return HealthNotReadyStatus.fromJson(value);
         case 'HealthStatus':
           return HealthStatus.fromJson(value);
+        case 'IdResponse':
+          return IdResponse.fromJson(value);
         case 'Identity':
           return Identity.fromJson(value);
+        case 'IdentityCredentials':
+          return IdentityCredentials.fromJson(value);
+        case 'ImageDeleteResponseItem':
+          return ImageDeleteResponseItem.fromJson(value);
+        case 'ImageSummary':
+          return ImageSummary.fromJson(value);
+        case 'InlineResponse200':
+          return InlineResponse200.fromJson(value);
+        case 'InlineResponse2001':
+          return InlineResponse2001.fromJson(value);
+        case 'InlineResponse503':
+          return InlineResponse503.fromJson(value);
         case 'LoginFlow':
           return LoginFlow.fromJson(value);
-        case 'LoginFlowMethod':
-          return LoginFlowMethod.fromJson(value);
-        case 'LoginFlowMethodConfig':
-          return LoginFlowMethodConfig.fromJson(value);
         case 'LoginViaApiResponse':
           return LoginViaApiResponse.fromJson(value);
-        case 'Message':
-          return Message.fromJson(value);
+        case 'Meta':
+          return Meta.fromJson(value);
+        case 'Plugin':
+          return Plugin.fromJson(value);
+        case 'PluginConfig':
+          return PluginConfig.fromJson(value);
+        case 'PluginConfigArgs':
+          return PluginConfigArgs.fromJson(value);
+        case 'PluginConfigInterface':
+          return PluginConfigInterface.fromJson(value);
+        case 'PluginConfigLinux':
+          return PluginConfigLinux.fromJson(value);
+        case 'PluginConfigNetwork':
+          return PluginConfigNetwork.fromJson(value);
+        case 'PluginConfigRootfs':
+          return PluginConfigRootfs.fromJson(value);
+        case 'PluginConfigUser':
+          return PluginConfigUser.fromJson(value);
+        case 'PluginDevice':
+          return PluginDevice.fromJson(value);
+        case 'PluginEnv':
+          return PluginEnv.fromJson(value);
+        case 'PluginInterfaceType':
+          return PluginInterfaceType.fromJson(value);
+        case 'PluginMount':
+          return PluginMount.fromJson(value);
+        case 'PluginSettings':
+          return PluginSettings.fromJson(value);
+        case 'Port':
+          return Port.fromJson(value);
         case 'RecoveryAddress':
           return RecoveryAddress.fromJson(value);
         case 'RecoveryFlow':
           return RecoveryFlow.fromJson(value);
-        case 'RecoveryFlowMethod':
-          return RecoveryFlowMethod.fromJson(value);
-        case 'RecoveryFlowMethodConfig':
-          return RecoveryFlowMethodConfig.fromJson(value);
         case 'RecoveryLink':
           return RecoveryLink.fromJson(value);
         case 'RegistrationFlow':
           return RegistrationFlow.fromJson(value);
-        case 'RegistrationFlowMethod':
-          return RegistrationFlowMethod.fromJson(value);
-        case 'RegistrationFlowMethodConfig':
-          return RegistrationFlowMethodConfig.fromJson(value);
         case 'RegistrationViaApiResponse':
           return RegistrationViaApiResponse.fromJson(value);
         case 'RevokeSession':
           return RevokeSession.fromJson(value);
+        case 'ServiceUpdateResponse':
+          return ServiceUpdateResponse.fromJson(value);
         case 'Session':
           return Session.fromJson(value);
         case 'SettingsFlow':
           return SettingsFlow.fromJson(value);
-        case 'SettingsFlowMethod':
-          return SettingsFlowMethod.fromJson(value);
-        case 'SettingsFlowMethodConfig':
-          return SettingsFlowMethodConfig.fromJson(value);
+        case 'SettingsProfileFormConfig':
+          return SettingsProfileFormConfig.fromJson(value);
         case 'SettingsViaApiResponse':
           return SettingsViaApiResponse.fromJson(value);
+        case 'SubmitSelfServiceBrowserSettingsOIDCFlowPayload':
+          return SubmitSelfServiceBrowserSettingsOIDCFlowPayload.fromJson(value);
+        case 'SubmitSelfServiceLoginFlow':
+          return SubmitSelfServiceLoginFlow.fromJson(value);
+        case 'SubmitSelfServiceLoginFlowWithPasswordMethod':
+          return SubmitSelfServiceLoginFlowWithPasswordMethod.fromJson(value);
+        case 'SubmitSelfServiceRecoveryFlowWithLinkMethod':
+          return SubmitSelfServiceRecoveryFlowWithLinkMethod.fromJson(value);
+        case 'SubmitSelfServiceRegistrationFlow':
+          return SubmitSelfServiceRegistrationFlow.fromJson(value);
+        case 'SubmitSelfServiceRegistrationFlowWithPasswordMethod':
+          return SubmitSelfServiceRegistrationFlowWithPasswordMethod.fromJson(value);
+        case 'SubmitSelfServiceSettingsFlow':
+          return SubmitSelfServiceSettingsFlow.fromJson(value);
+        case 'SubmitSelfServiceSettingsFlowWithPasswordMethod':
+          return SubmitSelfServiceSettingsFlowWithPasswordMethod.fromJson(value);
+        case 'SubmitSelfServiceSettingsFlowWithProfileMethod':
+          return SubmitSelfServiceSettingsFlowWithProfileMethod.fromJson(value);
+        case 'SubmitSelfServiceVerificationFlowWithLinkMethod':
+          return SubmitSelfServiceVerificationFlowWithLinkMethod.fromJson(value);
+        case 'UiContainer':
+          return UiContainer.fromJson(value);
+        case 'UiNode':
+          return UiNode.fromJson(value);
+        case 'UiNodeAnchorAttributes':
+          return UiNodeAnchorAttributes.fromJson(value);
+        case 'UiNodeAttributes':
+          return UiNodeAttributes.fromJson(value);
+        case 'UiNodeImageAttributes':
+          return UiNodeImageAttributes.fromJson(value);
+        case 'UiNodeInputAttributes':
+          return UiNodeInputAttributes.fromJson(value);
+        case 'UiNodeInputAttributesValue':
+          return UiNodeInputAttributesValue.fromJson(value);
+        case 'UiNodeTextAttributes':
+          return UiNodeTextAttributes.fromJson(value);
+        case 'UiText':
+          return UiText.fromJson(value);
         case 'UpdateIdentity':
           return UpdateIdentity.fromJson(value);
         case 'VerifiableAddress':
           return VerifiableAddress.fromJson(value);
         case 'VerificationFlow':
           return VerificationFlow.fromJson(value);
-        case 'VerificationFlowMethod':
-          return VerificationFlowMethod.fromJson(value);
-        case 'VerificationFlowMethodConfig':
-          return VerificationFlowMethodConfig.fromJson(value);
         case 'Version':
           return Version.fromJson(value);
+        case 'Volume':
+          return Volume.fromJson(value);
+        case 'VolumeUsageData':
+          return VolumeUsageData.fromJson(value);
         default:
           Match match;
           if (value is List && (match = _regList.firstMatch(targetType)) != null) {
@@ -245,6 +318,12 @@ class ApiClient {
             return value
               .map((v) => _deserialize(v, newTargetType, growable: growable))
               .toList(growable: true == growable);
+          }
+          if (value is Set && (match = _regSet.firstMatch(targetType)) != null) {
+            final newTargetType = match[1];
+            return value
+              .map((v) => _deserialize(v, newTargetType, growable: growable))
+              .toSet();
           }
           if (value is Map && (match = _regMap.firstMatch(targetType)) != null) {
             final newTargetType = match[1];
@@ -260,6 +339,17 @@ class ApiClient {
     }
     throw ApiException(HttpStatus.internalServerError, 'Could not find a suitable class for deserialization',);
   }
+
+  dynamic deserialize(String json, String targetType, {bool growable}) {
+    // Remove all spaces.  Necessary for reg expressions as well.
+    targetType = targetType.replaceAll(' ', '');
+
+  return targetType == 'String'
+    ? json
+    : _deserialize(jsonDecode(json), targetType, growable: true == growable);
+  }
+
+  String serialize(Object obj) => obj == null ? '' : json.encode(obj);
 
   /// Update query and header parameters based on authentication settings.
   /// @param authNames The authentications to apply

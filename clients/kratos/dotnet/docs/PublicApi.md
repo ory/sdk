@@ -1,16 +1,9 @@
 # Ory.Kratos.Client.Api.PublicApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://demo.tenants.oryapis.com/api/kratos/public*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CompleteSelfServiceBrowserSettingsOIDCSettingsFlow**](PublicApi.md#completeselfservicebrowsersettingsoidcsettingsflow) | **POST** /self-service/browser/flows/registration/strategies/oidc/settings/connections | Complete the Browser-Based Settings Flow for the OpenID Connect Strategy
-[**CompleteSelfServiceLoginFlowWithPasswordMethod**](PublicApi.md#completeselfserviceloginflowwithpasswordmethod) | **POST** /self-service/login/methods/password | Complete Login Flow with Username/Email Password Method
-[**CompleteSelfServiceRecoveryFlowWithLinkMethod**](PublicApi.md#completeselfservicerecoveryflowwithlinkmethod) | **POST** /self-service/recovery/methods/link | Complete Recovery Flow with Link Method
-[**CompleteSelfServiceRegistrationFlowWithPasswordMethod**](PublicApi.md#completeselfserviceregistrationflowwithpasswordmethod) | **POST** /self-service/registration/methods/password | Complete Registration Flow with Username/Email Password Method
-[**CompleteSelfServiceSettingsFlowWithPasswordMethod**](PublicApi.md#completeselfservicesettingsflowwithpasswordmethod) | **POST** /self-service/settings/methods/password | Complete Settings Flow with Username/Email Password Method
-[**CompleteSelfServiceSettingsFlowWithProfileMethod**](PublicApi.md#completeselfservicesettingsflowwithprofilemethod) | **POST** /self-service/settings/methods/profile | Complete Settings Flow with Profile Method
-[**CompleteSelfServiceVerificationFlowWithLinkMethod**](PublicApi.md#completeselfserviceverificationflowwithlinkmethod) | **POST** /self-service/verification/methods/link | Complete Verification Flow with Link Method
 [**GetSchema**](PublicApi.md#getschema) | **GET** /schemas/{id} | 
 [**GetSelfServiceError**](PublicApi.md#getselfserviceerror) | **GET** /self-service/errors | Get User-Facing Self-Service Errors
 [**GetSelfServiceLoginFlow**](PublicApi.md#getselfserviceloginflow) | **GET** /self-service/login/flows | Get Login Flow
@@ -29,539 +22,15 @@ Method | HTTP request | Description
 [**InitializeSelfServiceSettingsViaBrowserFlow**](PublicApi.md#initializeselfservicesettingsviabrowserflow) | **GET** /self-service/settings/browser | Initialize Settings Flow for Browsers
 [**InitializeSelfServiceVerificationViaAPIFlow**](PublicApi.md#initializeselfserviceverificationviaapiflow) | **GET** /self-service/verification/api | Initialize Verification Flow for API Clients
 [**InitializeSelfServiceVerificationViaBrowserFlow**](PublicApi.md#initializeselfserviceverificationviabrowserflow) | **GET** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
-[**RevokeSession**](PublicApi.md#revokesession) | **DELETE** /sessions | Revoke and Invalidate a Session
+[**RevokeSession**](PublicApi.md#revokesession) | **DELETE** /sessions | Initialize Logout Flow for API Clients - Revoke a Session
+[**SubmitSelfServiceLoginFlow**](PublicApi.md#submitselfserviceloginflow) | **POST** /self-service/login | Submit a Login Flow
+[**SubmitSelfServiceRecoveryFlow**](PublicApi.md#submitselfservicerecoveryflow) | **POST** /self-service/recovery | Complete Recovery Flow
+[**SubmitSelfServiceRecoveryFlowWithLinkMethod**](PublicApi.md#submitselfservicerecoveryflowwithlinkmethod) | **POST** /self-service/recovery/methods/link | Complete Recovery Flow with Link Method
+[**SubmitSelfServiceRegistrationFlow**](PublicApi.md#submitselfserviceregistrationflow) | **POST** /self-service/registration | Submit a Registration Flow
+[**SubmitSelfServiceSettingsFlow**](PublicApi.md#submitselfservicesettingsflow) | **POST** /self-service/settings | Complete Settings Flow
+[**SubmitSelfServiceVerificationFlow**](PublicApi.md#submitselfserviceverificationflow) | **POST** /self-service/verification/methods/link | Complete Verification Flow
 [**Whoami**](PublicApi.md#whoami) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 
-
-<a name="completeselfservicebrowsersettingsoidcsettingsflow"></a>
-# **CompleteSelfServiceBrowserSettingsOIDCSettingsFlow**
-> void CompleteSelfServiceBrowserSettingsOIDCSettingsFlow ()
-
-Complete the Browser-Based Settings Flow for the OpenID Connect Strategy
-
-This endpoint completes a browser-based settings flow. This is usually achieved by POSTing data to this endpoint.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...) and HTML Forms.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Ory.Kratos.Client.Api;
-using Ory.Kratos.Client.Client;
-using Ory.Kratos.Client.Model;
-
-namespace Example
-{
-    public class CompleteSelfServiceBrowserSettingsOIDCSettingsFlowExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            var apiInstance = new PublicApi(config);
-
-            try
-            {
-                // Complete the Browser-Based Settings Flow for the OpenID Connect Strategy
-                apiInstance.CompleteSelfServiceBrowserSettingsOIDCSettingsFlow();
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling PublicApi.CompleteSelfServiceBrowserSettingsOIDCSettingsFlow: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **500** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="completeselfserviceloginflowwithpasswordmethod"></a>
-# **CompleteSelfServiceLoginFlowWithPasswordMethod**
-> KratosLoginViaApiResponse CompleteSelfServiceLoginFlowWithPasswordMethod (string flow, KratosCompleteSelfServiceLoginFlowWithPasswordMethod body = null)
-
-Complete Login Flow with Username/Email Password Method
-
-Use this endpoint to complete a login flow by sending an identity's identifier and password. This endpoint behaves differently for API and browser flows.  API flows expect `application/json` to be sent in the body and responds with HTTP 200 and a application/json body with the session token on success; HTTP 302 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  Browser flows expect `application/x-www-form-urlencoded` to be sent in the body and responds with a HTTP 302 redirect to the post/after login URL or the `return_to` value if it was set and if the login succeeded; a HTTP 302 redirect to the login UI URL with the flow ID containing the validation errors otherwise.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Ory.Kratos.Client.Api;
-using Ory.Kratos.Client.Client;
-using Ory.Kratos.Client.Model;
-
-namespace Example
-{
-    public class CompleteSelfServiceLoginFlowWithPasswordMethodExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            var apiInstance = new PublicApi(config);
-            var flow = flow_example;  // string | The Flow ID
-            var body = new KratosCompleteSelfServiceLoginFlowWithPasswordMethod(); // KratosCompleteSelfServiceLoginFlowWithPasswordMethod |  (optional) 
-
-            try
-            {
-                // Complete Login Flow with Username/Email Password Method
-                KratosLoginViaApiResponse result = apiInstance.CompleteSelfServiceLoginFlowWithPasswordMethod(flow, body);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling PublicApi.CompleteSelfServiceLoginFlowWithPasswordMethod: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **flow** | **string**| The Flow ID | 
- **body** | [**KratosCompleteSelfServiceLoginFlowWithPasswordMethod**](KratosCompleteSelfServiceLoginFlowWithPasswordMethod.md)|  | [optional] 
-
-### Return type
-
-[**KratosLoginViaApiResponse**](KratosLoginViaApiResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | loginViaApiResponse |  -  |
-| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | loginFlow |  -  |
-| **500** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="completeselfservicerecoveryflowwithlinkmethod"></a>
-# **CompleteSelfServiceRecoveryFlowWithLinkMethod**
-> void CompleteSelfServiceRecoveryFlowWithLinkMethod (string token = null, string flow = null, KratosCompleteSelfServiceRecoveryFlowWithLinkMethod body = null)
-
-Complete Recovery Flow with Link Method
-
-Use this endpoint to complete a recovery flow using the link method. This endpoint behaves differently for API and browser flows and has several states:  `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent and works with API- and Browser-initiated flows. For API clients it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid and a HTTP 302 Found redirect with a fresh recovery flow if the flow was otherwise invalid (e.g. expired). For Browser clients it returns a HTTP 302 Found redirect to the Recovery UI URL with the Recovery Flow ID appended. `sent_email` is the success state after `choose_method` and allows the user to request another recovery email. It works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state. `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow (\"sending a recovery link\") does not have any API capabilities. The server responds with a HTTP 302 Found redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Recover UI URL with a new Recovery Flow ID which contains an error message that the recovery link was invalid.  More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Ory.Kratos.Client.Api;
-using Ory.Kratos.Client.Client;
-using Ory.Kratos.Client.Model;
-
-namespace Example
-{
-    public class CompleteSelfServiceRecoveryFlowWithLinkMethodExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            var apiInstance = new PublicApi(config);
-            var token = token_example;  // string | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user. (optional) 
-            var flow = flow_example;  // string | The Flow ID  format: uuid (optional) 
-            var body = new KratosCompleteSelfServiceRecoveryFlowWithLinkMethod(); // KratosCompleteSelfServiceRecoveryFlowWithLinkMethod |  (optional) 
-
-            try
-            {
-                // Complete Recovery Flow with Link Method
-                apiInstance.CompleteSelfServiceRecoveryFlowWithLinkMethod(token, flow, body);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling PublicApi.CompleteSelfServiceRecoveryFlowWithLinkMethod: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **string**| Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user. | [optional] 
- **flow** | **string**| The Flow ID  format: uuid | [optional] 
- **body** | [**KratosCompleteSelfServiceRecoveryFlowWithLinkMethod**](KratosCompleteSelfServiceRecoveryFlowWithLinkMethod.md)|  | [optional] 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | recoveryFlow |  -  |
-| **500** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="completeselfserviceregistrationflowwithpasswordmethod"></a>
-# **CompleteSelfServiceRegistrationFlowWithPasswordMethod**
-> KratosRegistrationViaApiResponse CompleteSelfServiceRegistrationFlowWithPasswordMethod (string flow = null, Object payload = null)
-
-Complete Registration Flow with Username/Email Password Method
-
-Use this endpoint to complete a registration flow by sending an identity's traits and password. This endpoint behaves differently for API and browser flows.  API flows expect `application/json` to be sent in the body and respond with HTTP 200 and a application/json body with the created identity success - if the session hook is configured the `session` and `session_token` will also be included; HTTP 302 redirect to a fresh registration flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  Browser flows expect `application/x-www-form-urlencoded` to be sent in the body and responds with a HTTP 302 redirect to the post/after registration URL or the `return_to` value if it was set and if the registration succeeded; a HTTP 302 redirect to the registration UI URL with the flow ID containing the validation errors otherwise.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Ory.Kratos.Client.Api;
-using Ory.Kratos.Client.Client;
-using Ory.Kratos.Client.Model;
-
-namespace Example
-{
-    public class CompleteSelfServiceRegistrationFlowWithPasswordMethodExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            var apiInstance = new PublicApi(config);
-            var flow = flow_example;  // string | Flow is flow ID. (optional) 
-            var payload = ;  // Object |  (optional) 
-
-            try
-            {
-                // Complete Registration Flow with Username/Email Password Method
-                KratosRegistrationViaApiResponse result = apiInstance.CompleteSelfServiceRegistrationFlowWithPasswordMethod(flow, payload);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling PublicApi.CompleteSelfServiceRegistrationFlowWithPasswordMethod: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **flow** | **string**| Flow is flow ID. | [optional] 
- **payload** | **Object**|  | [optional] 
-
-### Return type
-
-[**KratosRegistrationViaApiResponse**](KratosRegistrationViaApiResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | registrationViaApiResponse |  -  |
-| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | registrationFlow |  -  |
-| **500** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="completeselfservicesettingsflowwithpasswordmethod"></a>
-# **CompleteSelfServiceSettingsFlowWithPasswordMethod**
-> KratosSettingsViaApiResponse CompleteSelfServiceSettingsFlowWithPasswordMethod (string flow = null, KratosCompleteSelfServiceSettingsFlowWithPasswordMethod body = null)
-
-Complete Settings Flow with Username/Email Password Method
-
-Use this endpoint to complete a settings flow by sending an identity's updated password. This endpoint behaves differently for API and browser flows.  API-initiated flows expect `application/json` to be sent in the body and respond with HTTP 200 and an application/json body with the session token on success; HTTP 302 redirect to a fresh settings flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors. HTTP 401 when the endpoint is called without a valid session token. HTTP 403 when `selfservice.flows.settings.privileged_session_max_age` was reached. Implies that the user needs to re-authenticate.  Browser flows expect `application/x-www-form-urlencoded` to be sent in the body and responds with a HTTP 302 redirect to the post/after settings URL or the `return_to` value if it was set and if the flow succeeded; a HTTP 302 redirect to the Settings UI URL with the flow ID containing the validation errors otherwise. a HTTP 302 redirect to the login endpoint when `selfservice.flows.settings.privileged_session_max_age` was reached.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Ory.Kratos.Client.Api;
-using Ory.Kratos.Client.Client;
-using Ory.Kratos.Client.Model;
-
-namespace Example
-{
-    public class CompleteSelfServiceSettingsFlowWithPasswordMethodExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure API key authorization: sessionToken
-            config.AddApiKey("X-Session-Token", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("X-Session-Token", "Bearer");
-
-            var apiInstance = new PublicApi(config);
-            var flow = flow_example;  // string | Flow is flow ID. (optional) 
-            var body = new KratosCompleteSelfServiceSettingsFlowWithPasswordMethod(); // KratosCompleteSelfServiceSettingsFlowWithPasswordMethod |  (optional) 
-
-            try
-            {
-                // Complete Settings Flow with Username/Email Password Method
-                KratosSettingsViaApiResponse result = apiInstance.CompleteSelfServiceSettingsFlowWithPasswordMethod(flow, body);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling PublicApi.CompleteSelfServiceSettingsFlowWithPasswordMethod: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **flow** | **string**| Flow is flow ID. | [optional] 
- **body** | [**KratosCompleteSelfServiceSettingsFlowWithPasswordMethod**](KratosCompleteSelfServiceSettingsFlowWithPasswordMethod.md)|  | [optional] 
-
-### Return type
-
-[**KratosSettingsViaApiResponse**](KratosSettingsViaApiResponse.md)
-
-### Authorization
-
-[sessionToken](../README.md#sessionToken)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | settingsViaApiResponse |  -  |
-| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | settingsFlow |  -  |
-| **401** | genericError |  -  |
-| **403** | genericError |  -  |
-| **500** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="completeselfservicesettingsflowwithprofilemethod"></a>
-# **CompleteSelfServiceSettingsFlowWithProfileMethod**
-> KratosSettingsFlow CompleteSelfServiceSettingsFlowWithProfileMethod (string flow = null, Object payload = null)
-
-Complete Settings Flow with Profile Method
-
-Use this endpoint to complete a settings flow by sending an identity's updated traits. This endpoint behaves differently for API and browser flows.  API-initiated flows expect `application/json` to be sent in the body and respond with HTTP 200 and an application/json body with the session token on success; HTTP 302 redirect to a fresh settings flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors. HTTP 401 when the endpoint is called without a valid session token. HTTP 403 when `selfservice.flows.settings.privileged_session_max_age` was reached and a sensitive field was updated (e.g. recovery email). Implies that the user needs to re-authenticate.  Browser flows expect `application/x-www-form-urlencoded` to be sent in the body and responds with a HTTP 302 redirect to the post/after settings URL or the `return_to` value if it was set and if the flow succeeded; a HTTP 302 redirect to the settings UI URL with the flow ID containing the validation errors otherwise. a HTTP 302 redirect to the login endpoint when `selfservice.flows.settings.privileged_session_max_age` was reached.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Ory.Kratos.Client.Api;
-using Ory.Kratos.Client.Client;
-using Ory.Kratos.Client.Model;
-
-namespace Example
-{
-    public class CompleteSelfServiceSettingsFlowWithProfileMethodExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure API key authorization: sessionToken
-            config.AddApiKey("X-Session-Token", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("X-Session-Token", "Bearer");
-
-            var apiInstance = new PublicApi(config);
-            var flow = flow_example;  // string | Flow is flow ID. (optional) 
-            var payload = ;  // Object |  (optional) 
-
-            try
-            {
-                // Complete Settings Flow with Profile Method
-                KratosSettingsFlow result = apiInstance.CompleteSelfServiceSettingsFlowWithProfileMethod(flow, payload);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling PublicApi.CompleteSelfServiceSettingsFlowWithProfileMethod: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **flow** | **string**| Flow is flow ID. | [optional] 
- **payload** | **Object**|  | [optional] 
-
-### Return type
-
-[**KratosSettingsFlow**](KratosSettingsFlow.md)
-
-### Authorization
-
-[sessionToken](../README.md#sessionToken)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | settingsFlow |  -  |
-| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | settingsFlow |  -  |
-| **401** | genericError |  -  |
-| **403** | genericError |  -  |
-| **500** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="completeselfserviceverificationflowwithlinkmethod"></a>
-# **CompleteSelfServiceVerificationFlowWithLinkMethod**
-> void CompleteSelfServiceVerificationFlowWithLinkMethod (string token = null, string flow = null, KratosCompleteSelfServiceVerificationFlowWithLinkMethod body = null)
-
-Complete Verification Flow with Link Method
-
-Use this endpoint to complete a verification flow using the link method. This endpoint behaves differently for API and browser flows and has several states:  `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent and works with API- and Browser-initiated flows. For API clients it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid and a HTTP 302 Found redirect with a fresh verification flow if the flow was otherwise invalid (e.g. expired). For Browser clients it returns a HTTP 302 Found redirect to the Verification UI URL with the Verification Flow ID appended. `sent_email` is the success state after `choose_method` and allows the user to request another verification email. It works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state. `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow (\"sending a verification link\") does not have any API capabilities. The server responds with a HTTP 302 Found redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Verification UI URL with a new Verification Flow ID which contains an error message that the verification link was invalid.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Ory.Kratos.Client.Api;
-using Ory.Kratos.Client.Client;
-using Ory.Kratos.Client.Model;
-
-namespace Example
-{
-    public class CompleteSelfServiceVerificationFlowWithLinkMethodExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            var apiInstance = new PublicApi(config);
-            var token = token_example;  // string | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user. (optional) 
-            var flow = flow_example;  // string | The Flow ID  format: uuid (optional) 
-            var body = new KratosCompleteSelfServiceVerificationFlowWithLinkMethod(); // KratosCompleteSelfServiceVerificationFlowWithLinkMethod |  (optional) 
-
-            try
-            {
-                // Complete Verification Flow with Link Method
-                apiInstance.CompleteSelfServiceVerificationFlowWithLinkMethod(token, flow, body);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling PublicApi.CompleteSelfServiceVerificationFlowWithLinkMethod: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **string**| Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user. | [optional] 
- **flow** | **string**| The Flow ID  format: uuid | [optional] 
- **body** | [**KratosCompleteSelfServiceVerificationFlowWithLinkMethod**](KratosCompleteSelfServiceVerificationFlowWithLinkMethod.md)|  | [optional] 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | verificationFlow |  -  |
-| **500** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="getschema"></a>
 # **GetSchema**
@@ -586,7 +55,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new PublicApi(config);
             var id = id_example;  // string | ID must be set to the ID of schema you want to get
 
@@ -625,10 +94,11 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The raw identity traits schema |  -  |
+| **200** | jsonSchema |  -  |
 | **404** | genericError |  -  |
 | **500** | genericError |  -  |
 
@@ -640,7 +110,7 @@ No authorization required
 
 Get User-Facing Self-Service Errors
 
-This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?error=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
+This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?error=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
 
 ### Example
 ```csharp
@@ -657,7 +127,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new PublicApi(config);
             var error = error_example;  // string | Error is the container's ID
 
@@ -697,6 +167,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -713,7 +184,7 @@ No authorization required
 
 Get Login Flow
 
-This endpoint returns a login flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint returns a login flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 ```csharp
@@ -730,7 +201,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new PublicApi(config);
             var id = id_example;  // string | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
 
@@ -770,6 +241,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -787,7 +259,7 @@ No authorization required
 
 Get information about a recovery flow
 
-This endpoint returns a recovery flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+This endpoint returns a recovery flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
 ### Example
 ```csharp
@@ -804,7 +276,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new PublicApi(config);
             var id = id_example;  // string | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
 
@@ -844,6 +316,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -860,7 +333,7 @@ No authorization required
 
 Get Registration Flow
 
-This endpoint returns a registration flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint returns a registration flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 ```csharp
@@ -877,7 +350,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new PublicApi(config);
             var id = id_example;  // string | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
 
@@ -917,6 +390,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -934,7 +408,7 @@ No authorization required
 
 Get Settings Flow
 
-When accessing this endpoint through ORY Kratos' Public API you must ensure that either the ORY Kratos Session Cookie or the ORY Kratos Session Token are set. The public endpoint does not return 404 status codes but instead 403 or 500 to improve data privacy.  You can access this endpoint without credentials when using ORY Kratos' Admin API.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+When accessing this endpoint through Ory Kratos' Public API you must ensure that either the Ory Kratos Session Cookie or the Ory Kratos Session Token are set. The public endpoint does not return 404 status codes but instead 403 or 500 to improve data privacy.  You can access this endpoint without credentials when using Ory Kratos' Admin API.  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
 
 ### Example
 ```csharp
@@ -951,7 +425,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             // Configure API key authorization: sessionToken
             config.AddApiKey("X-Session-Token", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -996,6 +470,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -1013,7 +488,7 @@ Name | Type | Description  | Notes
 
 Get Verification Flow
 
-This endpoint returns a verification flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint returns a verification flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
 ### Example
 ```csharp
@@ -1030,7 +505,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new PublicApi(config);
             var id = id_example;  // string | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
 
@@ -1070,6 +545,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -1086,7 +562,7 @@ No authorization required
 
 Initialize Browser-Based Logout User Flow
 
-This endpoint initializes a logout flow.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  On successful logout, the browser will be redirected (HTTP 302 Found) to the `return_to` parameter of the initial request or fall back to `urls.default_return_to`.  More information can be found at [ORY Kratos User Logout Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-logout).
+This endpoint initializes a logout flow.  > This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  On successful logout, the browser will be redirected (HTTP 302 Found) to the `return_to` parameter of the initial request or fall back to `urls.default_return_to`.  More information can be found at [Ory Kratos User Logout Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-logout).
 
 ### Example
 ```csharp
@@ -1103,7 +579,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new PublicApi(config);
 
             try
@@ -1138,6 +614,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -1152,7 +629,7 @@ No authorization required
 
 Initialize Login Flow for API clients
 
-This endpoint initiates a login flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initiates a login flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 ```csharp
@@ -1169,7 +646,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new PublicApi(config);
             var refresh = true;  // bool? | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. (optional) 
 
@@ -1209,6 +686,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -1224,7 +702,7 @@ No authorization required
 
 Initialize Login Flow for browsers
 
-This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 ```csharp
@@ -1241,7 +719,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new PublicApi(config);
 
             try
@@ -1276,6 +754,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -1290,7 +769,7 @@ No authorization required
 
 Initialize Recovery Flow for API Clients
 
-This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
 ### Example
 ```csharp
@@ -1307,7 +786,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new PublicApi(config);
 
             try
@@ -1343,6 +822,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -1358,7 +838,7 @@ No authorization required
 
 Initialize Recovery Flow for Browser Clients
 
-This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to `selfservice.flows.recovery.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists, the browser is returned to the configured return URL.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to `selfservice.flows.recovery.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists, the browser is returned to the configured return URL.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
 ### Example
 ```csharp
@@ -1375,7 +855,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new PublicApi(config);
 
             try
@@ -1410,6 +890,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -1424,7 +905,7 @@ No authorization required
 
 Initialize Registration Flow for API clients
 
-This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing registration flow call `/self-service/registration/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing registration flow call `/self-service/registration/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 ```csharp
@@ -1441,7 +922,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new PublicApi(config);
 
             try
@@ -1477,6 +958,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -1492,7 +974,7 @@ No authorization required
 
 Initialize Registration Flow for browsers
 
-This endpoint initializes a browser-based user registration flow. Once initialized, the browser will be redirected to `selfservice.flows.registration.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  :::note  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  :::  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initializes a browser-based user registration flow. Once initialized, the browser will be redirected to `selfservice.flows.registration.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  :::note  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 ```csharp
@@ -1509,7 +991,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new PublicApi(config);
 
             try
@@ -1544,6 +1026,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -1558,7 +1041,7 @@ No authorization required
 
 Initialize Settings Flow for API Clients
 
-This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid ORY Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call `/self-service/settings/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid Ory Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call `/self-service/settings/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
 
 ### Example
 ```csharp
@@ -1575,7 +1058,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             // Configure API key authorization: sessionToken
             config.AddApiKey("X-Session-Token", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -1616,6 +1099,7 @@ This endpoint does not need any parameter.
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -1631,7 +1115,7 @@ This endpoint does not need any parameter.
 
 Initialize Settings Flow for Browsers
 
-This endpoint initializes a browser-based user settings flow. Once initialized, the browser will be redirected to `selfservice.flows.settings.ui_url` with the flow ID set as the query parameter `?flow=`. If no valid ORY Kratos Session Cookie is included in the request, a login flow will be initialized.  :::note  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  :::  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+This endpoint initializes a browser-based user settings flow. Once initialized, the browser will be redirected to `selfservice.flows.settings.ui_url` with the flow ID set as the query parameter `?flow=`. If no valid Ory Kratos Session Cookie is included in the request, a login flow will be initialized.  :::note  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
 
 ### Example
 ```csharp
@@ -1648,7 +1132,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             // Configure API key authorization: sessionToken
             config.AddApiKey("X-Session-Token", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -1688,6 +1172,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -1702,7 +1187,7 @@ void (empty response body)
 
 Initialize Verification Flow for API Clients
 
-This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
 ### Example
 ```csharp
@@ -1719,7 +1204,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new PublicApi(config);
 
             try
@@ -1755,6 +1240,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -1770,7 +1256,7 @@ No authorization required
 
 Initialize Verification Flow for Browser Clients
 
-This endpoint initializes a browser-based account verification flow. Once initialized, the browser will be redirected to `selfservice.flows.verification.ui_url` with the flow ID set as the query parameter `?flow=`.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint initializes a browser-based account verification flow. Once initialized, the browser will be redirected to `selfservice.flows.verification.ui_url` with the flow ID set as the query parameter `?flow=`.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
 ### Example
 ```csharp
@@ -1787,7 +1273,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new PublicApi(config);
 
             try
@@ -1822,6 +1308,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -1832,11 +1319,11 @@ No authorization required
 
 <a name="revokesession"></a>
 # **RevokeSession**
-> void RevokeSession (KratosRevokeSession body)
+> void RevokeSession (KratosRevokeSession kratosRevokeSession)
 
-Revoke and Invalidate a Session
+Initialize Logout Flow for API Clients - Revoke a Session
 
-Use this endpoint to revoke a session using its token. This endpoint is particularly useful for API clients such as mobile apps to log the user out of the system and invalidate the session.  This endpoint does not remove any HTTP Cookies - use the Self-Service Logout Flow instead.
+Use this endpoint to revoke a session using its token. This endpoint is particularly useful for API clients such as mobile apps to log the user out of the system and invalidate the session.  This endpoint does not remove any HTTP Cookies - use the Browser-Based Self-Service Logout Flow instead.
 
 ### Example
 ```csharp
@@ -1853,14 +1340,14 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new PublicApi(config);
-            var body = new KratosRevokeSession(); // KratosRevokeSession | 
+            var kratosRevokeSession = new KratosRevokeSession(); // KratosRevokeSession | 
 
             try
             {
-                // Revoke and Invalidate a Session
-                apiInstance.RevokeSession(body);
+                // Initialize Logout Flow for API Clients - Revoke a Session
+                apiInstance.RevokeSession(kratosRevokeSession);
             }
             catch (ApiException  e)
             {
@@ -1877,7 +1364,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**KratosRevokeSession**](KratosRevokeSession.md)|  | 
+ **kratosRevokeSession** | [**KratosRevokeSession**](KratosRevokeSession.md)|  | 
 
 ### Return type
 
@@ -1892,11 +1379,471 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **400** | genericError |  -  |
+| **500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="submitselfserviceloginflow"></a>
+# **SubmitSelfServiceLoginFlow**
+> KratosLoginViaApiResponse SubmitSelfServiceLoginFlow (string flow, KratosSubmitSelfServiceLoginFlow kratosSubmitSelfServiceLoginFlow = null)
+
+Submit a Login Flow
+
+Use this endpoint to complete a login flow. This endpoint behaves differently for API and browser flows.  API flows expect `application/json` to be sent in the body and responds with HTTP 200 and a application/json body with the session token on success; HTTP 302 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  Browser flows expect `application/x-www-form-urlencoded` to be sent in the body and responds with a HTTP 302 redirect to the post/after login URL or the `return_to` value if it was set and if the login succeeded; a HTTP 302 redirect to the login UI URL with the flow ID containing the validation errors otherwise.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Kratos.Client.Api;
+using Ory.Kratos.Client.Client;
+using Ory.Kratos.Client.Model;
+
+namespace Example
+{
+    public class SubmitSelfServiceLoginFlowExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            var apiInstance = new PublicApi(config);
+            var flow = flow_example;  // string | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
+            var kratosSubmitSelfServiceLoginFlow = new KratosSubmitSelfServiceLoginFlow(); // KratosSubmitSelfServiceLoginFlow |  (optional) 
+
+            try
+            {
+                // Submit a Login Flow
+                KratosLoginViaApiResponse result = apiInstance.SubmitSelfServiceLoginFlow(flow, kratosSubmitSelfServiceLoginFlow);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PublicApi.SubmitSelfServiceLoginFlow: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **flow** | **string**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). | 
+ **kratosSubmitSelfServiceLoginFlow** | [**KratosSubmitSelfServiceLoginFlow**](KratosSubmitSelfServiceLoginFlow.md)|  | [optional] 
+
+### Return type
+
+[**KratosLoginViaApiResponse**](KratosLoginViaApiResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | loginViaApiResponse |  -  |
+| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | loginFlow |  -  |
+| **500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="submitselfservicerecoveryflow"></a>
+# **SubmitSelfServiceRecoveryFlow**
+> void SubmitSelfServiceRecoveryFlow (string flow, Object body = null)
+
+Complete Recovery Flow
+
+Use this endpoint to complete a recovery flow. This endpoint behaves differently for API and browser flows and has several states:  `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent and works with API- and Browser-initiated flows. For API clients it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid and a HTTP 302 Found redirect with a fresh recovery flow if the flow was otherwise invalid (e.g. expired). For Browser clients it returns a HTTP 302 Found redirect to the Recovery UI URL with the Recovery Flow ID appended. `sent_email` is the success state after `choose_method` for the `link` method and allows the user to request another recovery email. It works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state. `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow (\"sending a recovery link\") does not have any API capabilities. The server responds with a HTTP 302 Found redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Recover UI URL with a new Recovery Flow ID which contains an error message that the recovery link was invalid.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Kratos.Client.Api;
+using Ory.Kratos.Client.Client;
+using Ory.Kratos.Client.Model;
+
+namespace Example
+{
+    public class SubmitSelfServiceRecoveryFlowExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            var apiInstance = new PublicApi(config);
+            var flow = flow_example;  // string | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
+            var body = ;  // Object |  (optional) 
+
+            try
+            {
+                // Complete Recovery Flow
+                apiInstance.SubmitSelfServiceRecoveryFlow(flow, body);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PublicApi.SubmitSelfServiceRecoveryFlow: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **flow** | **string**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). | 
+ **body** | **Object**|  | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | recoveryFlow |  -  |
+| **500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="submitselfservicerecoveryflowwithlinkmethod"></a>
+# **SubmitSelfServiceRecoveryFlowWithLinkMethod**
+> void SubmitSelfServiceRecoveryFlowWithLinkMethod (string token = null, string flow = null, KratosSubmitSelfServiceRecoveryFlowWithLinkMethod kratosSubmitSelfServiceRecoveryFlowWithLinkMethod = null)
+
+Complete Recovery Flow with Link Method
+
+Use this endpoint to complete a recovery flow using the link method. This endpoint behaves differently for API and browser flows and has several states:  `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent and works with API- and Browser-initiated flows. For API clients it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid and a HTTP 302 Found redirect with a fresh recovery flow if the flow was otherwise invalid (e.g. expired). For Browser clients it returns a HTTP 302 Found redirect to the Recovery UI URL with the Recovery Flow ID appended. `sent_email` is the success state after `choose_method` and allows the user to request another recovery email. It works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state. `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow (\"sending a recovery link\") does not have any API capabilities. The server responds with a HTTP 302 Found redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Recover UI URL with a new Recovery Flow ID which contains an error message that the recovery link was invalid.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Kratos.Client.Api;
+using Ory.Kratos.Client.Client;
+using Ory.Kratos.Client.Model;
+
+namespace Example
+{
+    public class SubmitSelfServiceRecoveryFlowWithLinkMethodExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            var apiInstance = new PublicApi(config);
+            var token = token_example;  // string | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user. (optional) 
+            var flow = flow_example;  // string | The Flow ID  format: uuid (optional) 
+            var kratosSubmitSelfServiceRecoveryFlowWithLinkMethod = new KratosSubmitSelfServiceRecoveryFlowWithLinkMethod(); // KratosSubmitSelfServiceRecoveryFlowWithLinkMethod |  (optional) 
+
+            try
+            {
+                // Complete Recovery Flow with Link Method
+                apiInstance.SubmitSelfServiceRecoveryFlowWithLinkMethod(token, flow, kratosSubmitSelfServiceRecoveryFlowWithLinkMethod);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PublicApi.SubmitSelfServiceRecoveryFlowWithLinkMethod: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token** | **string**| Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user. | [optional] 
+ **flow** | **string**| The Flow ID  format: uuid | [optional] 
+ **kratosSubmitSelfServiceRecoveryFlowWithLinkMethod** | [**KratosSubmitSelfServiceRecoveryFlowWithLinkMethod**](KratosSubmitSelfServiceRecoveryFlowWithLinkMethod.md)|  | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | recoveryFlow |  -  |
+| **500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="submitselfserviceregistrationflow"></a>
+# **SubmitSelfServiceRegistrationFlow**
+> KratosRegistrationViaApiResponse SubmitSelfServiceRegistrationFlow (string flow, KratosSubmitSelfServiceRegistrationFlow kratosSubmitSelfServiceRegistrationFlow = null)
+
+Submit a Registration Flow
+
+Use this endpoint to complete a registration flow by sending an identity's traits and password. This endpoint behaves differently for API and browser flows.  API flows expect `application/json` to be sent in the body and respond with HTTP 200 and a application/json body with the created identity success - if the session hook is configured the `session` and `session_token` will also be included; HTTP 302 redirect to a fresh registration flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  Browser flows expect `application/x-www-form-urlencoded` to be sent in the body and responds with a HTTP 302 redirect to the post/after registration URL or the `return_to` value if it was set and if the registration succeeded; a HTTP 302 redirect to the registration UI URL with the flow ID containing the validation errors otherwise.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Kratos.Client.Api;
+using Ory.Kratos.Client.Client;
+using Ory.Kratos.Client.Model;
+
+namespace Example
+{
+    public class SubmitSelfServiceRegistrationFlowExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            var apiInstance = new PublicApi(config);
+            var flow = flow_example;  // string | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
+            var kratosSubmitSelfServiceRegistrationFlow = new KratosSubmitSelfServiceRegistrationFlow(); // KratosSubmitSelfServiceRegistrationFlow |  (optional) 
+
+            try
+            {
+                // Submit a Registration Flow
+                KratosRegistrationViaApiResponse result = apiInstance.SubmitSelfServiceRegistrationFlow(flow, kratosSubmitSelfServiceRegistrationFlow);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PublicApi.SubmitSelfServiceRegistrationFlow: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **flow** | **string**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). | 
+ **kratosSubmitSelfServiceRegistrationFlow** | [**KratosSubmitSelfServiceRegistrationFlow**](KratosSubmitSelfServiceRegistrationFlow.md)|  | [optional] 
+
+### Return type
+
+[**KratosRegistrationViaApiResponse**](KratosRegistrationViaApiResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | registrationViaApiResponse |  -  |
+| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | registrationFlow |  -  |
+| **500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="submitselfservicesettingsflow"></a>
+# **SubmitSelfServiceSettingsFlow**
+> KratosSettingsViaApiResponse SubmitSelfServiceSettingsFlow (string flow, KratosSubmitSelfServiceSettingsFlow kratosSubmitSelfServiceSettingsFlow = null)
+
+Complete Settings Flow
+
+Use this endpoint to complete a settings flow by sending an identity's updated password. This endpoint behaves differently for API and browser flows.  API-initiated flows expect `application/json` to be sent in the body and respond with HTTP 200 and an application/json body with the session token on success; HTTP 302 redirect to a fresh settings flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors. HTTP 401 when the endpoint is called without a valid session token. HTTP 403 when `selfservice.flows.settings.privileged_session_max_age` was reached. Implies that the user needs to re-authenticate.  Browser flows expect `application/x-www-form-urlencoded` to be sent in the body and responds with a HTTP 302 redirect to the post/after settings URL or the `return_to` value if it was set and if the flow succeeded; a HTTP 302 redirect to the Settings UI URL with the flow ID containing the validation errors otherwise. a HTTP 302 redirect to the login endpoint when `selfservice.flows.settings.privileged_session_max_age` was reached.  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Kratos.Client.Api;
+using Ory.Kratos.Client.Client;
+using Ory.Kratos.Client.Model;
+
+namespace Example
+{
+    public class SubmitSelfServiceSettingsFlowExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            // Configure API key authorization: sessionToken
+            config.AddApiKey("X-Session-Token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-Session-Token", "Bearer");
+
+            var apiInstance = new PublicApi(config);
+            var flow = flow_example;  // string | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+            var kratosSubmitSelfServiceSettingsFlow = new KratosSubmitSelfServiceSettingsFlow(); // KratosSubmitSelfServiceSettingsFlow |  (optional) 
+
+            try
+            {
+                // Complete Settings Flow
+                KratosSettingsViaApiResponse result = apiInstance.SubmitSelfServiceSettingsFlow(flow, kratosSubmitSelfServiceSettingsFlow);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PublicApi.SubmitSelfServiceSettingsFlow: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **flow** | **string**| The Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). | 
+ **kratosSubmitSelfServiceSettingsFlow** | [**KratosSubmitSelfServiceSettingsFlow**](KratosSubmitSelfServiceSettingsFlow.md)|  | [optional] 
+
+### Return type
+
+[**KratosSettingsViaApiResponse**](KratosSettingsViaApiResponse.md)
+
+### Authorization
+
+[sessionToken](../README.md#sessionToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | settingsViaApiResponse |  -  |
+| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | settingsFlow |  -  |
+| **401** | genericError |  -  |
+| **403** | genericError |  -  |
+| **500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="submitselfserviceverificationflow"></a>
+# **SubmitSelfServiceVerificationFlow**
+> void SubmitSelfServiceVerificationFlow (string flow, Object body = null)
+
+Complete Verification Flow
+
+Use this endpoint to complete a verification flow. This endpoint behaves differently for API and browser flows and has several states:  `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent and works with API- and Browser-initiated flows. For API clients it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid and a HTTP 302 Found redirect with a fresh verification flow if the flow was otherwise invalid (e.g. expired). For Browser clients it returns a HTTP 302 Found redirect to the Verification UI URL with the Verification Flow ID appended. `sent_email` is the success state after `choose_method` when using the `link` method and allows the user to request another verification email. It works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state. `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow (\"sending a verification link\") does not have any API capabilities. The server responds with a HTTP 302 Found redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Verification UI URL with a new Verification Flow ID which contains an error message that the verification link was invalid.  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Kratos.Client.Api;
+using Ory.Kratos.Client.Client;
+using Ory.Kratos.Client.Model;
+
+namespace Example
+{
+    public class SubmitSelfServiceVerificationFlowExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            var apiInstance = new PublicApi(config);
+            var flow = flow_example;  // string | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
+            var body = ;  // Object |  (optional) 
+
+            try
+            {
+                // Complete Verification Flow
+                apiInstance.SubmitSelfServiceVerificationFlow(flow, body);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PublicApi.SubmitSelfServiceVerificationFlow: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **flow** | **string**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). | 
+ **body** | **Object**|  | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | verificationFlow |  -  |
 | **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1924,7 +1871,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             // Configure API key authorization: sessionToken
             config.AddApiKey("X-Session-Token", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -1970,6 +1917,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

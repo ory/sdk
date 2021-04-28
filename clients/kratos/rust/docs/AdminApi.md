@@ -1,6 +1,6 @@
 # \AdminApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://demo.tenants.oryapis.com/api/kratos/public*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -15,6 +15,9 @@ Method | HTTP request | Description
 [**get_self_service_registration_flow**](AdminApi.md#get_self_service_registration_flow) | **get** /self-service/registration/flows | Get Registration Flow
 [**get_self_service_settings_flow**](AdminApi.md#get_self_service_settings_flow) | **get** /self-service/settings/flows | Get Settings Flow
 [**get_self_service_verification_flow**](AdminApi.md#get_self_service_verification_flow) | **get** /self-service/verification/flows | Get Verification Flow
+[**get_version**](AdminApi.md#get_version) | **get** /version | Return Running Software Version.
+[**is_alive**](AdminApi.md#is_alive) | **get** /health/alive | Check HTTP Server Status
+[**is_ready**](AdminApi.md#is_ready) | **get** /health/ready | Check HTTP Server and Database Status
 [**list_identities**](AdminApi.md#list_identities) | **get** /identities | List Identities
 [**prometheus**](AdminApi.md#prometheus) | **get** /metrics/prometheus | Get snapshot metrics from the Hydra service. If you're using k8s, you can then add annotations to your deployment like so:
 [**update_identity**](AdminApi.md#update_identity) | **put** /identities/{id} | Update an Identity
@@ -23,17 +26,17 @@ Method | HTTP request | Description
 
 ## create_identity
 
-> crate::models::Identity create_identity(body)
+> crate::models::Identity create_identity(create_identity)
 Create an Identity
 
-This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**body** | Option<[**CreateIdentity**](CreateIdentity.md)> |  |  |
+**create_identity** | Option<[**CreateIdentity**](CreateIdentity.md)> |  |  |
 
 ### Return type
 
@@ -53,7 +56,7 @@ No authorization required
 
 ## create_recovery_link
 
-> crate::models::RecoveryLink create_recovery_link(body)
+> crate::models::RecoveryLink create_recovery_link(create_recovery_link)
 Create a Recovery Link
 
 This endpoint creates a recovery link which should be given to the user in order for them to recover (or activate) their account.
@@ -63,7 +66,7 @@ This endpoint creates a recovery link which should be given to the user in order
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**body** | Option<[**CreateRecoveryLink**](CreateRecoveryLink.md)> |  |  |
+**create_recovery_link** | Option<[**CreateRecoveryLink**](CreateRecoveryLink.md)> |  |  |
 
 ### Return type
 
@@ -86,7 +89,7 @@ No authorization required
 > delete_identity(id)
 Delete an Identity
 
-Calling this endpoint irrecoverably and permanently deletes the identity given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is assumed that is has been deleted already.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+Calling this endpoint irrecoverably and permanently deletes the identity given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is assumed that is has been deleted already.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Parameters
 
@@ -116,7 +119,7 @@ No authorization required
 > crate::models::Identity get_identity(id)
 Get an Identity
 
-Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Parameters
 
@@ -176,7 +179,7 @@ No authorization required
 > crate::models::ErrorContainer get_self_service_error(error)
 Get User-Facing Self-Service Errors
 
-This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?error=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
+This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?error=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
 
 ### Parameters
 
@@ -206,7 +209,7 @@ No authorization required
 > crate::models::LoginFlow get_self_service_login_flow(id)
 Get Login Flow
 
-This endpoint returns a login flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint returns a login flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Parameters
 
@@ -236,7 +239,7 @@ No authorization required
 > crate::models::RecoveryFlow get_self_service_recovery_flow(id)
 Get information about a recovery flow
 
-This endpoint returns a recovery flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+This endpoint returns a recovery flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
 ### Parameters
 
@@ -266,7 +269,7 @@ No authorization required
 > crate::models::RegistrationFlow get_self_service_registration_flow(id)
 Get Registration Flow
 
-This endpoint returns a registration flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint returns a registration flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Parameters
 
@@ -296,7 +299,7 @@ No authorization required
 > crate::models::SettingsFlow get_self_service_settings_flow(id)
 Get Settings Flow
 
-When accessing this endpoint through ORY Kratos' Public API you must ensure that either the ORY Kratos Session Cookie or the ORY Kratos Session Token are set. The public endpoint does not return 404 status codes but instead 403 or 500 to improve data privacy.  You can access this endpoint without credentials when using ORY Kratos' Admin API.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+When accessing this endpoint through Ory Kratos' Public API you must ensure that either the Ory Kratos Session Cookie or the Ory Kratos Session Token are set. The public endpoint does not return 404 status codes but instead 403 or 500 to improve data privacy.  You can access this endpoint without credentials when using Ory Kratos' Admin API.  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
 
 ### Parameters
 
@@ -326,7 +329,7 @@ Name | Type | Description  | Required | Notes
 > crate::models::VerificationFlow get_self_service_verification_flow(id)
 Get Verification Flow
 
-This endpoint returns a verification flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint returns a verification flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
 ### Parameters
 
@@ -351,12 +354,93 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_version
+
+> crate::models::InlineResponse2001 get_version()
+Return Running Software Version.
+
+This endpoint returns the version of Ory Kratos.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the version will never refer to the cluster state, only to a single instance.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**crate::models::InlineResponse2001**](inline_response_200_1.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## is_alive
+
+> crate::models::InlineResponse200 is_alive()
+Check HTTP Server Status
+
+This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incoming HTTP requests. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**crate::models::InlineResponse200**](inline_response_200.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## is_ready
+
+> crate::models::InlineResponse200 is_ready()
+Check HTTP Server and Database Status
+
+This endpoint returns a HTTP 200 status code when Ory Kratos is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of Ory Kratos, the health status will never refer to the cluster state, only to a single instance.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**crate::models::InlineResponse200**](inline_response_200.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## list_identities
 
 > Vec<crate::models::Identity> list_identities(per_page, page)
 List Identities
 
-Lists all identities. Does not support search at the moment.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+Lists all identities. Does not support search at the moment.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Parameters
 
@@ -411,10 +495,10 @@ No authorization required
 
 ## update_identity
 
-> crate::models::Identity update_identity(id, body)
+> crate::models::Identity update_identity(id, update_identity)
 Update an Identity
 
-This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Parameters
 
@@ -422,7 +506,7 @@ This endpoint updates an identity. It is NOT possible to set an identity's crede
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | ID must be set to the ID of identity you want to update | [required] |
-**body** | Option<[**UpdateIdentity**](UpdateIdentity.md)> |  |  |
+**update_identity** | Option<[**UpdateIdentity**](UpdateIdentity.md)> |  |  |
 
 ### Return type
 

@@ -1,5 +1,6 @@
 # Ory.Kratos.Client.Model.KratosGenericError
 Error responses are sent when an error (e.g. unauthorized, bad request, ...) occurred.
+
 ## Properties
 
 Name | Type | Description | Notes

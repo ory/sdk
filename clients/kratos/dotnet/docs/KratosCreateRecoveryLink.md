@@ -1,4 +1,5 @@
 # Ory.Kratos.Client.Model.KratosCreateRecoveryLink
+
 ## Properties
 
 Name | Type | Description | Notes

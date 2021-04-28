@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **int** | Code represents the error status code (404, 403, 401, ...). | [optional]
 **debug** | **string** | Debug contains debug information. This is usually not available and has to be enabled. | [optional]
-**details** | **object** |  | [optional]
+**details** | **array<string,object>** |  | [optional]
 **message** | **string** |  | [optional]
 **reason** | **string** |  | [optional]
 **request** | **string** |  | [optional]

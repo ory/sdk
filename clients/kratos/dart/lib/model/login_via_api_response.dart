@@ -36,12 +36,8 @@ class LoginViaApiResponse {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (session != null) {
       json[r'session'] = session;
-    }
-    if (sessionToken != null) {
       json[r'session_token'] = sessionToken;
-    }
     return json;
   }
 

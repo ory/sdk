@@ -5,42 +5,45 @@
 import 'package:ory_kratos_client/api.dart';
 ```
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://demo.tenants.oryapis.com/api/kratos/public*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createIdentity**](AdminApi.md#createIdentity) | **POST** /identities | Create an Identity
-[**createRecoveryLink**](AdminApi.md#createRecoveryLink) | **POST** /recovery/link | Create a Recovery Link
-[**deleteIdentity**](AdminApi.md#deleteIdentity) | **DELETE** /identities/{id} | Delete an Identity
-[**getIdentity**](AdminApi.md#getIdentity) | **GET** /identities/{id} | Get an Identity
-[**getSchema**](AdminApi.md#getSchema) | **GET** /schemas/{id} | 
-[**getSelfServiceError**](AdminApi.md#getSelfServiceError) | **GET** /self-service/errors | Get User-Facing Self-Service Errors
-[**getSelfServiceLoginFlow**](AdminApi.md#getSelfServiceLoginFlow) | **GET** /self-service/login/flows | Get Login Flow
-[**getSelfServiceRecoveryFlow**](AdminApi.md#getSelfServiceRecoveryFlow) | **GET** /self-service/recovery/flows | Get information about a recovery flow
-[**getSelfServiceRegistrationFlow**](AdminApi.md#getSelfServiceRegistrationFlow) | **GET** /self-service/registration/flows | Get Registration Flow
-[**getSelfServiceSettingsFlow**](AdminApi.md#getSelfServiceSettingsFlow) | **GET** /self-service/settings/flows | Get Settings Flow
-[**getSelfServiceVerificationFlow**](AdminApi.md#getSelfServiceVerificationFlow) | **GET** /self-service/verification/flows | Get Verification Flow
-[**listIdentities**](AdminApi.md#listIdentities) | **GET** /identities | List Identities
+[**createIdentity**](AdminApi.md#createidentity) | **POST** /identities | Create an Identity
+[**createRecoveryLink**](AdminApi.md#createrecoverylink) | **POST** /recovery/link | Create a Recovery Link
+[**deleteIdentity**](AdminApi.md#deleteidentity) | **DELETE** /identities/{id} | Delete an Identity
+[**getIdentity**](AdminApi.md#getidentity) | **GET** /identities/{id} | Get an Identity
+[**getSchema**](AdminApi.md#getschema) | **GET** /schemas/{id} | 
+[**getSelfServiceError**](AdminApi.md#getselfserviceerror) | **GET** /self-service/errors | Get User-Facing Self-Service Errors
+[**getSelfServiceLoginFlow**](AdminApi.md#getselfserviceloginflow) | **GET** /self-service/login/flows | Get Login Flow
+[**getSelfServiceRecoveryFlow**](AdminApi.md#getselfservicerecoveryflow) | **GET** /self-service/recovery/flows | Get information about a recovery flow
+[**getSelfServiceRegistrationFlow**](AdminApi.md#getselfserviceregistrationflow) | **GET** /self-service/registration/flows | Get Registration Flow
+[**getSelfServiceSettingsFlow**](AdminApi.md#getselfservicesettingsflow) | **GET** /self-service/settings/flows | Get Settings Flow
+[**getSelfServiceVerificationFlow**](AdminApi.md#getselfserviceverificationflow) | **GET** /self-service/verification/flows | Get Verification Flow
+[**getVersion**](AdminApi.md#getversion) | **GET** /version | Return Running Software Version.
+[**isAlive**](AdminApi.md#isalive) | **GET** /health/alive | Check HTTP Server Status
+[**isReady**](AdminApi.md#isready) | **GET** /health/ready | Check HTTP Server and Database Status
+[**listIdentities**](AdminApi.md#listidentities) | **GET** /identities | List Identities
 [**prometheus**](AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get snapshot metrics from the Hydra service. If you're using k8s, you can then add annotations to your deployment like so:
-[**updateIdentity**](AdminApi.md#updateIdentity) | **PUT** /identities/{id} | Update an Identity
+[**updateIdentity**](AdminApi.md#updateidentity) | **PUT** /identities/{id} | Update an Identity
 
 
 # **createIdentity**
-> Identity createIdentity(body)
+> Identity createIdentity(createIdentity)
 
 Create an Identity
 
-This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example 
 ```dart
 import 'package:ory_kratos_client/api.dart';
 
 final api_instance = AdminApi();
-final body = CreateIdentity(); // CreateIdentity | 
+final createIdentity = CreateIdentity(); // CreateIdentity | 
 
 try { 
-    final result = api_instance.createIdentity(body);
+    final result = api_instance.createIdentity(createIdentity);
     print(result);
 } catch (e) {
     print('Exception when calling AdminApi->createIdentity: $e\n');
@@ -51,7 +54,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateIdentity**](CreateIdentity.md)|  | [optional] 
+ **createIdentity** | [**CreateIdentity**](CreateIdentity.md)|  | [optional] 
 
 ### Return type
 
@@ -69,7 +72,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createRecoveryLink**
-> RecoveryLink createRecoveryLink(body)
+> RecoveryLink createRecoveryLink(createRecoveryLink)
 
 Create a Recovery Link
 
@@ -80,10 +83,10 @@ This endpoint creates a recovery link which should be given to the user in order
 import 'package:ory_kratos_client/api.dart';
 
 final api_instance = AdminApi();
-final body = CreateRecoveryLink(); // CreateRecoveryLink | 
+final createRecoveryLink = CreateRecoveryLink(); // CreateRecoveryLink | 
 
 try { 
-    final result = api_instance.createRecoveryLink(body);
+    final result = api_instance.createRecoveryLink(createRecoveryLink);
     print(result);
 } catch (e) {
     print('Exception when calling AdminApi->createRecoveryLink: $e\n');
@@ -94,7 +97,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateRecoveryLink**](CreateRecoveryLink.md)|  | [optional] 
+ **createRecoveryLink** | [**CreateRecoveryLink**](CreateRecoveryLink.md)|  | [optional] 
 
 ### Return type
 
@@ -116,7 +119,7 @@ No authorization required
 
 Delete an Identity
 
-Calling this endpoint irrecoverably and permanently deletes the identity given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is assumed that is has been deleted already.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+Calling this endpoint irrecoverably and permanently deletes the identity given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is assumed that is has been deleted already.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example 
 ```dart
@@ -158,7 +161,7 @@ No authorization required
 
 Get an Identity
 
-Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example 
 ```dart
@@ -244,7 +247,7 @@ No authorization required
 
 Get User-Facing Self-Service Errors
 
-This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?error=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
+This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?error=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
 
 ### Example 
 ```dart
@@ -287,7 +290,7 @@ No authorization required
 
 Get Login Flow
 
-This endpoint returns a login flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint returns a login flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example 
 ```dart
@@ -330,7 +333,7 @@ No authorization required
 
 Get information about a recovery flow
 
-This endpoint returns a recovery flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+This endpoint returns a recovery flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
 ### Example 
 ```dart
@@ -373,7 +376,7 @@ No authorization required
 
 Get Registration Flow
 
-This endpoint returns a registration flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint returns a registration flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example 
 ```dart
@@ -416,7 +419,7 @@ No authorization required
 
 Get Settings Flow
 
-When accessing this endpoint through ORY Kratos' Public API you must ensure that either the ORY Kratos Session Cookie or the ORY Kratos Session Token are set. The public endpoint does not return 404 status codes but instead 403 or 500 to improve data privacy.  You can access this endpoint without credentials when using ORY Kratos' Admin API.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+When accessing this endpoint through Ory Kratos' Public API you must ensure that either the Ory Kratos Session Cookie or the Ory Kratos Session Token are set. The public endpoint does not return 404 status codes but instead 403 or 500 to improve data privacy.  You can access this endpoint without credentials when using Ory Kratos' Admin API.  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
 
 ### Example 
 ```dart
@@ -463,7 +466,7 @@ Name | Type | Description  | Notes
 
 Get Verification Flow
 
-This endpoint returns a verification flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint returns a verification flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
 ### Example 
 ```dart
@@ -501,12 +504,129 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getVersion**
+> InlineResponse2001 getVersion()
+
+Return Running Software Version.
+
+This endpoint returns the version of Ory Kratos.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the version will never refer to the cluster state, only to a single instance.
+
+### Example 
+```dart
+import 'package:ory_kratos_client/api.dart';
+
+final api_instance = AdminApi();
+
+try { 
+    final result = api_instance.getVersion();
+    print(result);
+} catch (e) {
+    print('Exception when calling AdminApi->getVersion: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**InlineResponse2001**](InlineResponse2001.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **isAlive**
+> InlineResponse200 isAlive()
+
+Check HTTP Server Status
+
+This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incoming HTTP requests. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+
+### Example 
+```dart
+import 'package:ory_kratos_client/api.dart';
+
+final api_instance = AdminApi();
+
+try { 
+    final result = api_instance.isAlive();
+    print(result);
+} catch (e) {
+    print('Exception when calling AdminApi->isAlive: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**InlineResponse200**](InlineResponse200.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **isReady**
+> InlineResponse200 isReady()
+
+Check HTTP Server and Database Status
+
+This endpoint returns a HTTP 200 status code when Ory Kratos is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of Ory Kratos, the health status will never refer to the cluster state, only to a single instance.
+
+### Example 
+```dart
+import 'package:ory_kratos_client/api.dart';
+
+final api_instance = AdminApi();
+
+try { 
+    final result = api_instance.isReady();
+    print(result);
+} catch (e) {
+    print('Exception when calling AdminApi->isReady: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**InlineResponse200**](InlineResponse200.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **listIdentities**
 > List<Identity> listIdentities(perPage, page)
 
 List Identities
 
-Lists all identities. Does not support search at the moment.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+Lists all identities. Does not support search at the moment.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example 
 ```dart
@@ -585,11 +705,11 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateIdentity**
-> Identity updateIdentity(id, body)
+> Identity updateIdentity(id, updateIdentity)
 
 Update an Identity
 
-This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example 
 ```dart
@@ -597,10 +717,10 @@ import 'package:ory_kratos_client/api.dart';
 
 final api_instance = AdminApi();
 final id = id_example; // String | ID must be set to the ID of identity you want to update
-final body = UpdateIdentity(); // UpdateIdentity | 
+final updateIdentity = UpdateIdentity(); // UpdateIdentity | 
 
 try { 
-    final result = api_instance.updateIdentity(id, body);
+    final result = api_instance.updateIdentity(id, updateIdentity);
     print(result);
 } catch (e) {
     print('Exception when calling AdminApi->updateIdentity: $e\n');
@@ -612,7 +732,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID must be set to the ID of identity you want to update | 
- **body** | [**UpdateIdentity**](UpdateIdentity.md)|  | [optional] 
+ **updateIdentity** | [**UpdateIdentity**](UpdateIdentity.md)|  | [optional] 
 
 ### Return type
 

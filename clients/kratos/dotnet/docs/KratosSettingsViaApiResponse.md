@@ -1,5 +1,6 @@
 # Ory.Kratos.Client.Model.KratosSettingsViaApiResponse
 The Response for Settings Flows via API
+
 ## Properties
 
 Name | Type | Description | Notes

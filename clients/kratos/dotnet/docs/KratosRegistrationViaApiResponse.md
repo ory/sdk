@@ -1,5 +1,6 @@
 # Ory.Kratos.Client.Model.KratosRegistrationViaApiResponse
 The Response for Registration Flows via API
+
 ## Properties
 
 Name | Type | Description | Notes

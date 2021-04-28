@@ -1,5 +1,6 @@
 # Ory.Kratos.Client.Model.KratosRecoveryFlow
 This request is used when an identity wants to recover their account.  We recommend reading the [Account Recovery Documentation](../self-service/flows/password-reset-account-recovery)
+
 ## Properties
 
 Name | Type | Description | Notes
@@ -8,11 +9,10 @@ Name | Type | Description | Notes
 **ExpiresAt** | **DateTime** | ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the setting, a new request has to be initiated. | 
 **Id** | **string** |  | 
 **IssuedAt** | **DateTime** | IssuedAt is the time (UTC) when the request occurred. | 
-**Messages** | [**List&lt;KratosMessage&gt;**](KratosMessage.md) |  | [optional] 
-**Methods** | [**Dictionary&lt;string, KratosRecoveryFlowMethod&gt;**](KratosRecoveryFlowMethod.md) | Methods contains context for all account recovery methods. If a registration request has been processed, but for example the password is incorrect, this will contain error messages. | 
-**RequestUrl** | **string** | RequestURL is the initial URL that was requested from ORY Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. | 
+**RequestUrl** | **string** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. | 
 **State** | **string** |  | 
 **Type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | [optional] 
+**Ui** | [**KratosUiContainer**](KratosUiContainer.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

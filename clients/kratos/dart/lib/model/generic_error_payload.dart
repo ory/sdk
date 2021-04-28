@@ -14,7 +14,7 @@ class GenericErrorPayload {
   GenericErrorPayload({
     this.code,
     this.debug,
-    this.details,
+    this.details = const {},
     this.message,
     this.reason,
     this.request,
@@ -27,7 +27,7 @@ class GenericErrorPayload {
   /// Debug contains debug information. This is usually not available and has to be enabled.
   String debug;
 
-  Object details;
+  Map<String, Object> details;
 
   String message;
 
@@ -93,7 +93,9 @@ class GenericErrorPayload {
     : GenericErrorPayload(
         code: json[r'code'],
         debug: json[r'debug'],
-        details: json[r'details'],
+        details: json[r'details'] == null
+          ? null
+          : Object.mapFromJson(json[r'details']),
         message: json[r'message'],
         reason: json[r'reason'],
         request: json[r'request'],

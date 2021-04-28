@@ -59,21 +59,13 @@ class Identity {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
       json[r'id'] = id;
-    }
     if (recoveryAddresses != null) {
       json[r'recovery_addresses'] = recoveryAddresses;
     }
-    if (schemaId != null) {
       json[r'schema_id'] = schemaId;
-    }
-    if (schemaUrl != null) {
       json[r'schema_url'] = schemaUrl;
-    }
-    if (traits != null) {
       json[r'traits'] = traits;
-    }
     if (verifiableAddresses != null) {
       json[r'verifiable_addresses'] = verifiableAddresses;
     }

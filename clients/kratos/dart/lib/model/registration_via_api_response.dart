@@ -41,15 +41,11 @@ class RegistrationViaApiResponse {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (identity != null) {
       json[r'identity'] = identity;
-    }
     if (session != null) {
       json[r'session'] = session;
     }
-    if (sessionToken != null) {
       json[r'session_token'] = sessionToken;
-    }
     return json;
   }
 

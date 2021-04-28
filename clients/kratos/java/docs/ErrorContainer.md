@@ -2,11 +2,12 @@
 
 # ErrorContainer
 
+
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**errors** | **Object** | Errors in the container | 
+**errors** | **List&lt;Object&gt;** | Errors in the container | 
 **id** | **UUID** |  | 
 
 

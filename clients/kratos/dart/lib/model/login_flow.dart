@@ -17,10 +17,9 @@ class LoginFlow {
     this.forced,
     @required this.id,
     @required this.issuedAt,
-    this.messages = const [],
-    this.methods = const {},
     @required this.requestUrl,
-    this.type,
+    @required this.type,
+    @required this.ui,
   });
 
   /// and so on.
@@ -37,16 +36,13 @@ class LoginFlow {
   /// IssuedAt is the time (UTC) when the flow started.
   DateTime issuedAt;
 
-  List<Message> messages;
-
-  /// List of login methods  This is the list of available login methods with their required form fields, such as `identifier` and `password` for the password login method. This will also contain error messages such as \"password can not be empty\".
-  Map<String, LoginFlowMethod> methods;
-
-  /// RequestURL is the initial URL that was requested from ORY Kratos. It can be used to forward information contained in the URL's path or query for example.
+  /// RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
   String requestUrl;
 
   /// The flow type can either be `api` or `browser`.
   String type;
+
+  UiContainer ui;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is LoginFlow &&
@@ -55,10 +51,9 @@ class LoginFlow {
      other.forced == forced &&
      other.id == id &&
      other.issuedAt == issuedAt &&
-     other.messages == messages &&
-     other.methods == methods &&
      other.requestUrl == requestUrl &&
-     other.type == type;
+     other.type == type &&
+     other.ui == ui;
 
   @override
   int get hashCode =>
@@ -67,43 +62,27 @@ class LoginFlow {
     (forced == null ? 0 : forced.hashCode) +
     (id == null ? 0 : id.hashCode) +
     (issuedAt == null ? 0 : issuedAt.hashCode) +
-    (messages == null ? 0 : messages.hashCode) +
-    (methods == null ? 0 : methods.hashCode) +
     (requestUrl == null ? 0 : requestUrl.hashCode) +
-    (type == null ? 0 : type.hashCode);
+    (type == null ? 0 : type.hashCode) +
+    (ui == null ? 0 : ui.hashCode);
 
   @override
-  String toString() => 'LoginFlow[active=$active, expiresAt=$expiresAt, forced=$forced, id=$id, issuedAt=$issuedAt, messages=$messages, methods=$methods, requestUrl=$requestUrl, type=$type]';
+  String toString() => 'LoginFlow[active=$active, expiresAt=$expiresAt, forced=$forced, id=$id, issuedAt=$issuedAt, requestUrl=$requestUrl, type=$type, ui=$ui]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (active != null) {
       json[r'active'] = active;
     }
-    if (expiresAt != null) {
       json[r'expires_at'] = expiresAt.toUtc().toIso8601String();
-    }
     if (forced != null) {
       json[r'forced'] = forced;
     }
-    if (id != null) {
       json[r'id'] = id;
-    }
-    if (issuedAt != null) {
       json[r'issued_at'] = issuedAt.toUtc().toIso8601String();
-    }
-    if (messages != null) {
-      json[r'messages'] = messages;
-    }
-    if (methods != null) {
-      json[r'methods'] = methods;
-    }
-    if (requestUrl != null) {
       json[r'request_url'] = requestUrl;
-    }
-    if (type != null) {
       json[r'type'] = type;
-    }
+      json[r'ui'] = ui;
     return json;
   }
 
@@ -121,12 +100,9 @@ class LoginFlow {
         issuedAt: json[r'issued_at'] == null
           ? null
           : DateTime.parse(json[r'issued_at']),
-        messages: Message.listFromJson(json[r'messages']),
-        methods: json[r'methods'] == null
-          ? null
-          : LoginFlowMethod.mapFromJson(json[r'methods']),
         requestUrl: json[r'request_url'],
         type: json[r'type'],
+        ui: UiContainer.fromJson(json[r'ui']),
     );
 
   static List<LoginFlow> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>

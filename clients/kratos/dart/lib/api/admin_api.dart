@@ -17,19 +17,19 @@ class AdminApi {
 
   /// Create an Identity
   ///
-  /// This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+  /// This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
   ///
   /// Note: This method returns the HTTP [Response].
   ///
   /// Parameters:
   ///
-  /// * [CreateIdentity] body:
-  Future<Response> createIdentityWithHttpInfo({ CreateIdentity body }) async {
+  /// * [CreateIdentity] createIdentity:
+  Future<Response> createIdentityWithHttpInfo({ CreateIdentity createIdentity }) async {
     // Verify required params are set.
 
-    final path = '/identities'.replaceAll('{format}', 'json');
+    final path = r'/identities';
 
-    Object postBody = body;
+    Object postBody = createIdentity;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -65,13 +65,13 @@ class AdminApi {
 
   /// Create an Identity
   ///
-  /// This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+  /// This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
   ///
   /// Parameters:
   ///
-  /// * [CreateIdentity] body:
-  Future<Identity> createIdentity({ CreateIdentity body }) async {
-    final response = await createIdentityWithHttpInfo( body: body );
+  /// * [CreateIdentity] createIdentity:
+  Future<Identity> createIdentity({ CreateIdentity createIdentity }) async {
+    final response = await createIdentityWithHttpInfo( createIdentity: createIdentity );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, _decodeBodyBytes(response));
     }
@@ -80,8 +80,8 @@ class AdminApi {
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
       return apiClient.deserialize(_decodeBodyBytes(response), 'Identity') as Identity;
-    }
-    return null;
+        }
+    return Future<Identity>.value(null);
   }
 
   /// Create a Recovery Link
@@ -92,13 +92,13 @@ class AdminApi {
   ///
   /// Parameters:
   ///
-  /// * [CreateRecoveryLink] body:
-  Future<Response> createRecoveryLinkWithHttpInfo({ CreateRecoveryLink body }) async {
+  /// * [CreateRecoveryLink] createRecoveryLink:
+  Future<Response> createRecoveryLinkWithHttpInfo({ CreateRecoveryLink createRecoveryLink }) async {
     // Verify required params are set.
 
-    final path = '/recovery/link'.replaceAll('{format}', 'json');
+    final path = r'/recovery/link';
 
-    Object postBody = body;
+    Object postBody = createRecoveryLink;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -138,9 +138,9 @@ class AdminApi {
   ///
   /// Parameters:
   ///
-  /// * [CreateRecoveryLink] body:
-  Future<RecoveryLink> createRecoveryLink({ CreateRecoveryLink body }) async {
-    final response = await createRecoveryLinkWithHttpInfo( body: body );
+  /// * [CreateRecoveryLink] createRecoveryLink:
+  Future<RecoveryLink> createRecoveryLink({ CreateRecoveryLink createRecoveryLink }) async {
+    final response = await createRecoveryLinkWithHttpInfo( createRecoveryLink: createRecoveryLink );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, _decodeBodyBytes(response));
     }
@@ -149,13 +149,13 @@ class AdminApi {
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
       return apiClient.deserialize(_decodeBodyBytes(response), 'RecoveryLink') as RecoveryLink;
-    }
-    return null;
+        }
+    return Future<RecoveryLink>.value(null);
   }
 
   /// Delete an Identity
   ///
-  /// Calling this endpoint irrecoverably and permanently deletes the identity given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is assumed that is has been deleted already.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+  /// Calling this endpoint irrecoverably and permanently deletes the identity given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is assumed that is has been deleted already.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -169,7 +169,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
     }
 
-    final path = '/identities/{id}'.replaceAll('{format}', 'json')
+    final path = r'/identities/{id}'
       .replaceAll('{' + 'id' + '}', id.toString());
 
     Object postBody;
@@ -208,7 +208,7 @@ class AdminApi {
 
   /// Delete an Identity
   ///
-  /// Calling this endpoint irrecoverably and permanently deletes the identity given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is assumed that is has been deleted already.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+  /// Calling this endpoint irrecoverably and permanently deletes the identity given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is assumed that is has been deleted already.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
   ///
   /// Parameters:
   ///
@@ -223,7 +223,7 @@ class AdminApi {
 
   /// Get an Identity
   ///
-  /// Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+  /// Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -237,7 +237,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
     }
 
-    final path = '/identities/{id}'.replaceAll('{format}', 'json')
+    final path = r'/identities/{id}'
       .replaceAll('{' + 'id' + '}', id.toString());
 
     Object postBody;
@@ -276,7 +276,7 @@ class AdminApi {
 
   /// Get an Identity
   ///
-  /// Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+  /// Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
   ///
   /// Parameters:
   ///
@@ -292,8 +292,8 @@ class AdminApi {
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
       return apiClient.deserialize(_decodeBodyBytes(response), 'Identity') as Identity;
-    }
-    return null;
+        }
+    return Future<Identity>.value(null);
   }
 
   /// Get a Traits Schema Definition
@@ -310,7 +310,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
     }
 
-    final path = '/schemas/{id}'.replaceAll('{format}', 'json')
+    final path = r'/schemas/{id}'
       .replaceAll('{' + 'id' + '}', id.toString());
 
     Object postBody;
@@ -363,13 +363,13 @@ class AdminApi {
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
       return apiClient.deserialize(_decodeBodyBytes(response), 'Object') as Object;
-    }
-    return null;
+        }
+    return Future<Object>.value(null);
   }
 
   /// Get User-Facing Self-Service Errors
   ///
-  /// This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?error=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
+  /// This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?error=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -383,7 +383,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: error');
     }
 
-    final path = '/self-service/errors'.replaceAll('{format}', 'json');
+    final path = r'/self-service/errors';
 
     Object postBody;
 
@@ -423,7 +423,7 @@ class AdminApi {
 
   /// Get User-Facing Self-Service Errors
   ///
-  /// This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?error=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
+  /// This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?error=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
   ///
   /// Parameters:
   ///
@@ -439,13 +439,13 @@ class AdminApi {
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
       return apiClient.deserialize(_decodeBodyBytes(response), 'ErrorContainer') as ErrorContainer;
-    }
-    return null;
+        }
+    return Future<ErrorContainer>.value(null);
   }
 
   /// Get Login Flow
   ///
-  /// This endpoint returns a login flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+  /// This endpoint returns a login flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -459,7 +459,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
     }
 
-    final path = '/self-service/login/flows'.replaceAll('{format}', 'json');
+    final path = r'/self-service/login/flows';
 
     Object postBody;
 
@@ -499,7 +499,7 @@ class AdminApi {
 
   /// Get Login Flow
   ///
-  /// This endpoint returns a login flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+  /// This endpoint returns a login flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
   ///
   /// Parameters:
   ///
@@ -515,13 +515,13 @@ class AdminApi {
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
       return apiClient.deserialize(_decodeBodyBytes(response), 'LoginFlow') as LoginFlow;
-    }
-    return null;
+        }
+    return Future<LoginFlow>.value(null);
   }
 
   /// Get information about a recovery flow
   ///
-  /// This endpoint returns a recovery flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+  /// This endpoint returns a recovery flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -535,7 +535,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
     }
 
-    final path = '/self-service/recovery/flows'.replaceAll('{format}', 'json');
+    final path = r'/self-service/recovery/flows';
 
     Object postBody;
 
@@ -575,7 +575,7 @@ class AdminApi {
 
   /// Get information about a recovery flow
   ///
-  /// This endpoint returns a recovery flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+  /// This endpoint returns a recovery flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
   ///
   /// Parameters:
   ///
@@ -591,13 +591,13 @@ class AdminApi {
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
       return apiClient.deserialize(_decodeBodyBytes(response), 'RecoveryFlow') as RecoveryFlow;
-    }
-    return null;
+        }
+    return Future<RecoveryFlow>.value(null);
   }
 
   /// Get Registration Flow
   ///
-  /// This endpoint returns a registration flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+  /// This endpoint returns a registration flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -611,7 +611,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
     }
 
-    final path = '/self-service/registration/flows'.replaceAll('{format}', 'json');
+    final path = r'/self-service/registration/flows';
 
     Object postBody;
 
@@ -651,7 +651,7 @@ class AdminApi {
 
   /// Get Registration Flow
   ///
-  /// This endpoint returns a registration flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+  /// This endpoint returns a registration flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
   ///
   /// Parameters:
   ///
@@ -667,13 +667,13 @@ class AdminApi {
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
       return apiClient.deserialize(_decodeBodyBytes(response), 'RegistrationFlow') as RegistrationFlow;
-    }
-    return null;
+        }
+    return Future<RegistrationFlow>.value(null);
   }
 
   /// Get Settings Flow
   ///
-  /// When accessing this endpoint through ORY Kratos' Public API you must ensure that either the ORY Kratos Session Cookie or the ORY Kratos Session Token are set. The public endpoint does not return 404 status codes but instead 403 or 500 to improve data privacy.  You can access this endpoint without credentials when using ORY Kratos' Admin API.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+  /// When accessing this endpoint through Ory Kratos' Public API you must ensure that either the Ory Kratos Session Cookie or the Ory Kratos Session Token are set. The public endpoint does not return 404 status codes but instead 403 or 500 to improve data privacy.  You can access this endpoint without credentials when using Ory Kratos' Admin API.  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -687,7 +687,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
     }
 
-    final path = '/self-service/settings/flows'.replaceAll('{format}', 'json');
+    final path = r'/self-service/settings/flows';
 
     Object postBody;
 
@@ -727,7 +727,7 @@ class AdminApi {
 
   /// Get Settings Flow
   ///
-  /// When accessing this endpoint through ORY Kratos' Public API you must ensure that either the ORY Kratos Session Cookie or the ORY Kratos Session Token are set. The public endpoint does not return 404 status codes but instead 403 or 500 to improve data privacy.  You can access this endpoint without credentials when using ORY Kratos' Admin API.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+  /// When accessing this endpoint through Ory Kratos' Public API you must ensure that either the Ory Kratos Session Cookie or the Ory Kratos Session Token are set. The public endpoint does not return 404 status codes but instead 403 or 500 to improve data privacy.  You can access this endpoint without credentials when using Ory Kratos' Admin API.  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
   ///
   /// Parameters:
   ///
@@ -743,13 +743,13 @@ class AdminApi {
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
       return apiClient.deserialize(_decodeBodyBytes(response), 'SettingsFlow') as SettingsFlow;
-    }
-    return null;
+        }
+    return Future<SettingsFlow>.value(null);
   }
 
   /// Get Verification Flow
   ///
-  /// This endpoint returns a verification flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+  /// This endpoint returns a verification flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -763,7 +763,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
     }
 
-    final path = '/self-service/verification/flows'.replaceAll('{format}', 'json');
+    final path = r'/self-service/verification/flows';
 
     Object postBody;
 
@@ -803,7 +803,7 @@ class AdminApi {
 
   /// Get Verification Flow
   ///
-  /// This endpoint returns a verification flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+  /// This endpoint returns a verification flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
   ///
   /// Parameters:
   ///
@@ -819,13 +819,190 @@ class AdminApi {
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
       return apiClient.deserialize(_decodeBodyBytes(response), 'VerificationFlow') as VerificationFlow;
+        }
+    return Future<VerificationFlow>.value(null);
+  }
+
+  /// Return Running Software Version.
+  ///
+  /// This endpoint returns the version of Ory Kratos.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the version will never refer to the cluster state, only to a single instance.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVersionWithHttpInfo() async {
+    final path = r'/version';
+
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    final contentTypes = <String>[];
+    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
+    final authNames = <String>[];
+
+    if (
+      nullableContentType != null &&
+      nullableContentType.toLowerCase().startsWith('multipart/form-data')
+    ) {
+      bool hasFields = false;
+      final mp = MultipartRequest(null, null);
+      if (hasFields) {
+        postBody = mp;
+      }
+    } else {
     }
-    return null;
+
+    return await apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      nullableContentType,
+      authNames,
+    );
+  }
+
+  /// Return Running Software Version.
+  ///
+  /// This endpoint returns the version of Ory Kratos.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the version will never refer to the cluster state, only to a single instance.
+  Future<InlineResponse2001> getVersion() async {
+    final response = await getVersionWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return apiClient.deserialize(_decodeBodyBytes(response), 'InlineResponse2001') as InlineResponse2001;
+        }
+    return Future<InlineResponse2001>.value(null);
+  }
+
+  /// Check HTTP Server Status
+  ///
+  /// This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incoming HTTP requests. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> isAliveWithHttpInfo() async {
+    final path = r'/health/alive';
+
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    final contentTypes = <String>[];
+    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
+    final authNames = <String>[];
+
+    if (
+      nullableContentType != null &&
+      nullableContentType.toLowerCase().startsWith('multipart/form-data')
+    ) {
+      bool hasFields = false;
+      final mp = MultipartRequest(null, null);
+      if (hasFields) {
+        postBody = mp;
+      }
+    } else {
+    }
+
+    return await apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      nullableContentType,
+      authNames,
+    );
+  }
+
+  /// Check HTTP Server Status
+  ///
+  /// This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incoming HTTP requests. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+  Future<InlineResponse200> isAlive() async {
+    final response = await isAliveWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return apiClient.deserialize(_decodeBodyBytes(response), 'InlineResponse200') as InlineResponse200;
+        }
+    return Future<InlineResponse200>.value(null);
+  }
+
+  /// Check HTTP Server and Database Status
+  ///
+  /// This endpoint returns a HTTP 200 status code when Ory Kratos is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of Ory Kratos, the health status will never refer to the cluster state, only to a single instance.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> isReadyWithHttpInfo() async {
+    final path = r'/health/ready';
+
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    final contentTypes = <String>[];
+    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
+    final authNames = <String>[];
+
+    if (
+      nullableContentType != null &&
+      nullableContentType.toLowerCase().startsWith('multipart/form-data')
+    ) {
+      bool hasFields = false;
+      final mp = MultipartRequest(null, null);
+      if (hasFields) {
+        postBody = mp;
+      }
+    } else {
+    }
+
+    return await apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      nullableContentType,
+      authNames,
+    );
+  }
+
+  /// Check HTTP Server and Database Status
+  ///
+  /// This endpoint returns a HTTP 200 status code when Ory Kratos is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of Ory Kratos, the health status will never refer to the cluster state, only to a single instance.
+  Future<InlineResponse200> isReady() async {
+    final response = await isReadyWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return apiClient.deserialize(_decodeBodyBytes(response), 'InlineResponse200') as InlineResponse200;
+        }
+    return Future<InlineResponse200>.value(null);
   }
 
   /// List Identities
   ///
-  /// Lists all identities. Does not support search at the moment.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+  /// Lists all identities. Does not support search at the moment.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -839,7 +1016,7 @@ class AdminApi {
   Future<Response> listIdentitiesWithHttpInfo({ int perPage, int page }) async {
     // Verify required params are set.
 
-    final path = '/identities'.replaceAll('{format}', 'json');
+    final path = r'/identities';
 
     Object postBody;
 
@@ -884,7 +1061,7 @@ class AdminApi {
 
   /// List Identities
   ///
-  /// Lists all identities. Does not support search at the moment.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+  /// Lists all identities. Does not support search at the moment.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
   ///
   /// Parameters:
   ///
@@ -903,10 +1080,10 @@ class AdminApi {
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
       return (apiClient.deserialize(_decodeBodyBytes(response), 'List<Identity>') as List)
-        .map((item) => item as Identity)
+        .cast<Identity>()
         .toList(growable: false);
     }
-    return null;
+    return Future<List<Identity>>.value(null);
   }
 
   /// Get snapshot metrics from the Hydra service. If you're using k8s, you can then add annotations to your deployment like so:
@@ -915,7 +1092,7 @@ class AdminApi {
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> prometheusWithHttpInfo() async {
-    final path = '/metrics/prometheus'.replaceAll('{format}', 'json');
+    final path = r'/metrics/prometheus';
 
     Object postBody;
 
@@ -963,7 +1140,7 @@ class AdminApi {
 
   /// Update an Identity
   ///
-  /// This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+  /// This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -972,17 +1149,17 @@ class AdminApi {
   /// * [String] id (required):
   ///   ID must be set to the ID of identity you want to update
   ///
-  /// * [UpdateIdentity] body:
-  Future<Response> updateIdentityWithHttpInfo(String id, { UpdateIdentity body }) async {
+  /// * [UpdateIdentity] updateIdentity:
+  Future<Response> updateIdentityWithHttpInfo(String id, { UpdateIdentity updateIdentity }) async {
     // Verify required params are set.
     if (id == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
     }
 
-    final path = '/identities/{id}'.replaceAll('{format}', 'json')
+    final path = r'/identities/{id}'
       .replaceAll('{' + 'id' + '}', id.toString());
 
-    Object postBody = body;
+    Object postBody = updateIdentity;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -1018,16 +1195,16 @@ class AdminApi {
 
   /// Update an Identity
   ///
-  /// This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+  /// This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
   ///
   /// Parameters:
   ///
   /// * [String] id (required):
   ///   ID must be set to the ID of identity you want to update
   ///
-  /// * [UpdateIdentity] body:
-  Future<Identity> updateIdentity(String id, { UpdateIdentity body }) async {
-    final response = await updateIdentityWithHttpInfo(id,  body: body );
+  /// * [UpdateIdentity] updateIdentity:
+  Future<Identity> updateIdentity(String id, { UpdateIdentity updateIdentity }) async {
+    final response = await updateIdentityWithHttpInfo(id,  updateIdentity: updateIdentity );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, _decodeBodyBytes(response));
     }
@@ -1036,7 +1213,7 @@ class AdminApi {
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
       return apiClient.deserialize(_decodeBodyBytes(response), 'Identity') as Identity;
-    }
-    return null;
+        }
+    return Future<Identity>.value(null);
   }
 }

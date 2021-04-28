@@ -31,9 +31,7 @@ class RevokeSession {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (sessionToken != null) {
       json[r'session_token'] = sessionToken;
-    }
     return json;
   }
 

@@ -1,5 +1,6 @@
 # RecoveryAddress
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

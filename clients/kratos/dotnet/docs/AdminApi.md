@@ -1,6 +1,6 @@
 # Ory.Kratos.Client.Api.AdminApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://demo.tenants.oryapis.com/api/kratos/public*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -15,6 +15,9 @@ Method | HTTP request | Description
 [**GetSelfServiceRegistrationFlow**](AdminApi.md#getselfserviceregistrationflow) | **GET** /self-service/registration/flows | Get Registration Flow
 [**GetSelfServiceSettingsFlow**](AdminApi.md#getselfservicesettingsflow) | **GET** /self-service/settings/flows | Get Settings Flow
 [**GetSelfServiceVerificationFlow**](AdminApi.md#getselfserviceverificationflow) | **GET** /self-service/verification/flows | Get Verification Flow
+[**GetVersion**](AdminApi.md#getversion) | **GET** /version | Return Running Software Version.
+[**IsAlive**](AdminApi.md#isalive) | **GET** /health/alive | Check HTTP Server Status
+[**IsReady**](AdminApi.md#isready) | **GET** /health/ready | Check HTTP Server and Database Status
 [**ListIdentities**](AdminApi.md#listidentities) | **GET** /identities | List Identities
 [**Prometheus**](AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get snapshot metrics from the Hydra service. If you&#39;re using k8s, you can then add annotations to your deployment like so:
 [**UpdateIdentity**](AdminApi.md#updateidentity) | **PUT** /identities/{id} | Update an Identity
@@ -22,11 +25,11 @@ Method | HTTP request | Description
 
 <a name="createidentity"></a>
 # **CreateIdentity**
-> KratosIdentity CreateIdentity (KratosCreateIdentity body = null)
+> KratosIdentity CreateIdentity (KratosCreateIdentity kratosCreateIdentity = null)
 
 Create an Identity
 
-This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 ```csharp
@@ -43,14 +46,14 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new AdminApi(config);
-            var body = new KratosCreateIdentity(); // KratosCreateIdentity |  (optional) 
+            var kratosCreateIdentity = new KratosCreateIdentity(); // KratosCreateIdentity |  (optional) 
 
             try
             {
                 // Create an Identity
-                KratosIdentity result = apiInstance.CreateIdentity(body);
+                KratosIdentity result = apiInstance.CreateIdentity(kratosCreateIdentity);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -68,7 +71,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**KratosCreateIdentity**](KratosCreateIdentity.md)|  | [optional] 
+ **kratosCreateIdentity** | [**KratosCreateIdentity**](KratosCreateIdentity.md)|  | [optional] 
 
 ### Return type
 
@@ -83,6 +86,7 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -95,7 +99,7 @@ No authorization required
 
 <a name="createrecoverylink"></a>
 # **CreateRecoveryLink**
-> KratosRecoveryLink CreateRecoveryLink (KratosCreateRecoveryLink body = null)
+> KratosRecoveryLink CreateRecoveryLink (KratosCreateRecoveryLink kratosCreateRecoveryLink = null)
 
 Create a Recovery Link
 
@@ -116,14 +120,14 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new AdminApi(config);
-            var body = new KratosCreateRecoveryLink(); // KratosCreateRecoveryLink |  (optional) 
+            var kratosCreateRecoveryLink = new KratosCreateRecoveryLink(); // KratosCreateRecoveryLink |  (optional) 
 
             try
             {
                 // Create a Recovery Link
-                KratosRecoveryLink result = apiInstance.CreateRecoveryLink(body);
+                KratosRecoveryLink result = apiInstance.CreateRecoveryLink(kratosCreateRecoveryLink);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -141,7 +145,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**KratosCreateRecoveryLink**](KratosCreateRecoveryLink.md)|  | [optional] 
+ **kratosCreateRecoveryLink** | [**KratosCreateRecoveryLink**](KratosCreateRecoveryLink.md)|  | [optional] 
 
 ### Return type
 
@@ -155,6 +159,7 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -172,7 +177,7 @@ No authorization required
 
 Delete an Identity
 
-Calling this endpoint irrecoverably and permanently deletes the identity given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is assumed that is has been deleted already.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+Calling this endpoint irrecoverably and permanently deletes the identity given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is assumed that is has been deleted already.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 ```csharp
@@ -189,7 +194,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new AdminApi(config);
             var id = id_example;  // string | ID is the identity's ID.
 
@@ -228,6 +233,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -243,7 +249,7 @@ No authorization required
 
 Get an Identity
 
-Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 ```csharp
@@ -260,7 +266,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new AdminApi(config);
             var id = id_example;  // string | ID must be set to the ID of identity you want to get
 
@@ -300,11 +306,13 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A single identity. |  -  |
 | **400** | genericError |  -  |
+| **404** | genericError |  -  |
 | **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -332,7 +340,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new AdminApi(config);
             var id = id_example;  // string | ID must be set to the ID of schema you want to get
 
@@ -371,10 +379,11 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The raw identity traits schema |  -  |
+| **200** | jsonSchema |  -  |
 | **404** | genericError |  -  |
 | **500** | genericError |  -  |
 
@@ -386,7 +395,7 @@ No authorization required
 
 Get User-Facing Self-Service Errors
 
-This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?error=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
+This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?error=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
 
 ### Example
 ```csharp
@@ -403,7 +412,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new AdminApi(config);
             var error = error_example;  // string | Error is the container's ID
 
@@ -443,6 +452,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -459,7 +469,7 @@ No authorization required
 
 Get Login Flow
 
-This endpoint returns a login flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint returns a login flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 ```csharp
@@ -476,7 +486,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new AdminApi(config);
             var id = id_example;  // string | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
 
@@ -516,6 +526,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -533,7 +544,7 @@ No authorization required
 
 Get information about a recovery flow
 
-This endpoint returns a recovery flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+This endpoint returns a recovery flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
 ### Example
 ```csharp
@@ -550,7 +561,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new AdminApi(config);
             var id = id_example;  // string | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
 
@@ -590,6 +601,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -606,7 +618,7 @@ No authorization required
 
 Get Registration Flow
 
-This endpoint returns a registration flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint returns a registration flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 ```csharp
@@ -623,7 +635,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new AdminApi(config);
             var id = id_example;  // string | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
 
@@ -663,6 +675,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -680,7 +693,7 @@ No authorization required
 
 Get Settings Flow
 
-When accessing this endpoint through ORY Kratos' Public API you must ensure that either the ORY Kratos Session Cookie or the ORY Kratos Session Token are set. The public endpoint does not return 404 status codes but instead 403 or 500 to improve data privacy.  You can access this endpoint without credentials when using ORY Kratos' Admin API.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+When accessing this endpoint through Ory Kratos' Public API you must ensure that either the Ory Kratos Session Cookie or the Ory Kratos Session Token are set. The public endpoint does not return 404 status codes but instead 403 or 500 to improve data privacy.  You can access this endpoint without credentials when using Ory Kratos' Admin API.  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
 
 ### Example
 ```csharp
@@ -697,7 +710,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             // Configure API key authorization: sessionToken
             config.AddApiKey("X-Session-Token", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -742,6 +755,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -759,7 +773,7 @@ Name | Type | Description  | Notes
 
 Get Verification Flow
 
-This endpoint returns a verification flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint returns a verification flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
 ### Example
 ```csharp
@@ -776,7 +790,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new AdminApi(config);
             var id = id_example;  // string | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
 
@@ -816,6 +830,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -826,13 +841,216 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="getversion"></a>
+# **GetVersion**
+> KratosInlineResponse2001 GetVersion ()
+
+Return Running Software Version.
+
+This endpoint returns the version of Ory Kratos.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the version will never refer to the cluster state, only to a single instance.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Kratos.Client.Api;
+using Ory.Kratos.Client.Client;
+using Ory.Kratos.Client.Model;
+
+namespace Example
+{
+    public class GetVersionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            var apiInstance = new AdminApi(config);
+
+            try
+            {
+                // Return Running Software Version.
+                KratosInlineResponse2001 result = apiInstance.GetVersion();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdminApi.GetVersion: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**KratosInlineResponse2001**](KratosInlineResponse2001.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Returns the Ory Kratos version. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="isalive"></a>
+# **IsAlive**
+> KratosInlineResponse200 IsAlive ()
+
+Check HTTP Server Status
+
+This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incoming HTTP requests. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Kratos.Client.Api;
+using Ory.Kratos.Client.Client;
+using Ory.Kratos.Client.Model;
+
+namespace Example
+{
+    public class IsAliveExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            var apiInstance = new AdminApi(config);
+
+            try
+            {
+                // Check HTTP Server Status
+                KratosInlineResponse200 result = apiInstance.IsAlive();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdminApi.IsAlive: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**KratosInlineResponse200**](KratosInlineResponse200.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ory Kratos is ready to accept connections. |  -  |
+| **500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="isready"></a>
+# **IsReady**
+> KratosInlineResponse200 IsReady ()
+
+Check HTTP Server and Database Status
+
+This endpoint returns a HTTP 200 status code when Ory Kratos is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of Ory Kratos, the health status will never refer to the cluster state, only to a single instance.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Kratos.Client.Api;
+using Ory.Kratos.Client.Client;
+using Ory.Kratos.Client.Model;
+
+namespace Example
+{
+    public class IsReadyExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            var apiInstance = new AdminApi(config);
+
+            try
+            {
+                // Check HTTP Server and Database Status
+                KratosInlineResponse200 result = apiInstance.IsReady();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdminApi.IsReady: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**KratosInlineResponse200**](KratosInlineResponse200.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ory Kratos is ready to accept requests. |  -  |
+| **503** | Ory Kratos is not yet ready to accept requests. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="listidentities"></a>
 # **ListIdentities**
 > List&lt;KratosIdentity&gt; ListIdentities (long? perPage = null, long? page = null)
 
 List Identities
 
-Lists all identities. Does not support search at the moment.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+Lists all identities. Does not support search at the moment.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 ```csharp
@@ -849,7 +1067,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new AdminApi(config);
             var perPage = 789;  // long? | Items per Page  This is the number of items per page. (optional)  (default to 100)
             var page = 789;  // long? | Pagination Page (optional)  (default to 0)
@@ -891,6 +1109,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -922,7 +1141,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new AdminApi(config);
 
             try
@@ -957,6 +1176,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -966,11 +1186,11 @@ No authorization required
 
 <a name="updateidentity"></a>
 # **UpdateIdentity**
-> KratosIdentity UpdateIdentity (string id, KratosUpdateIdentity body = null)
+> KratosIdentity UpdateIdentity (string id, KratosUpdateIdentity kratosUpdateIdentity = null)
 
 Update an Identity
 
-This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 ```csharp
@@ -987,15 +1207,15 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
+            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
             var apiInstance = new AdminApi(config);
             var id = id_example;  // string | ID must be set to the ID of identity you want to update
-            var body = new KratosUpdateIdentity(); // KratosUpdateIdentity |  (optional) 
+            var kratosUpdateIdentity = new KratosUpdateIdentity(); // KratosUpdateIdentity |  (optional) 
 
             try
             {
                 // Update an Identity
-                KratosIdentity result = apiInstance.UpdateIdentity(id, body);
+                KratosIdentity result = apiInstance.UpdateIdentity(id, kratosUpdateIdentity);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1014,7 +1234,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| ID must be set to the ID of identity you want to update | 
- **body** | [**KratosUpdateIdentity**](KratosUpdateIdentity.md)|  | [optional] 
+ **kratosUpdateIdentity** | [**KratosUpdateIdentity**](KratosUpdateIdentity.md)|  | [optional] 
 
 ### Return type
 
@@ -1028,6 +1248,7 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

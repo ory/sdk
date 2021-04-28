@@ -39,9 +39,7 @@ class CreateRecoveryLink {
     if (expiresIn != null) {
       json[r'expires_in'] = expiresIn;
     }
-    if (identityId != null) {
       json[r'identity_id'] = identityId;
-    }
     return json;
   }
 
