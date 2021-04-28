@@ -182,7 +182,7 @@ golang () {
   (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go")
 
   if [ $PROJECT = "kratos" ]; then
-    openapi-generator generate -i "${SPEC_FILE}" \
+    openapi-generator-cli generate -i "${SPEC_FILE}" \
       -g go \
       -o "$dir" \
       --git-user-id ory \
@@ -244,9 +244,9 @@ rust () {
   (sed "s/${VERSION}/${RAW_VERSION}"'"\ndescription = "SDK Client for ORY Keto"\ndocumentation = "https:\/\/www.ory.sh\/keto\/docs\/sdk"\nhomepage = "https:\/\/www.ory.sh"\nlicense = "Apache-2.0/g' < "${file}") > tmp.$$.rb && mv tmp.$$.rb "${file}"
 }
 
+typescript
 rust
 golang
-typescript
 java
 php
 python
