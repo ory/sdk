@@ -1,3 +1,12 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.0
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:ory_kratos_client/api.dart';
 import 'package:test/test.dart';
 
@@ -29,18 +38,7 @@ void main() {
       // TODO
     });
 
-    // List<Message> messages (default value: const [])
-    test('to test the property `messages`', () async {
-      // TODO
-    });
-
-    // Methods contains context for all account verification methods. If a registration request has been processed, but for example the password is incorrect, this will contain error messages.
-    // Map<String, VerificationFlowMethod> methods (default value: const {})
-    test('to test the property `methods`', () async {
-      // TODO
-    });
-
-    // RequestURL is the initial URL that was requested from ORY Kratos. It can be used to forward information contained in the URL's path or query for example.
+    // RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
     // String requestUrl
     test('to test the property `requestUrl`', () async {
       // TODO
@@ -54,6 +52,11 @@ void main() {
     // The flow type can either be `api` or `browser`.
     // String type
     test('to test the property `type`', () async {
+      // TODO
+    });
+
+    // UiContainer ui
+    test('to test the property `ui`', () async {
       // TODO
     });
 

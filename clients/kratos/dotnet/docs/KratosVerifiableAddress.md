@@ -1,4 +1,5 @@
 # Ory.Kratos.Client.Model.KratosVerifiableAddress
+
 ## Properties
 
 Name | Type | Description | Notes

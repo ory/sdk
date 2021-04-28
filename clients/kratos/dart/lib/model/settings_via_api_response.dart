@@ -35,12 +35,8 @@ class SettingsViaApiResponse {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (flow != null) {
       json[r'flow'] = flow;
-    }
-    if (identity != null) {
       json[r'identity'] = identity;
-    }
     return json;
   }
 

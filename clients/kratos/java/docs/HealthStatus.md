@@ -2,6 +2,7 @@
 
 # HealthStatus
 
+
 ## Properties
 
 Name | Type | Description | Notes

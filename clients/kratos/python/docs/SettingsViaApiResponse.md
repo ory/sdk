@@ -1,6 +1,7 @@
 # SettingsViaApiResponse
 
 The Response for Settings Flows via API
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

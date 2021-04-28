@@ -2,6 +2,7 @@
 
 # RecoveryLink
 
+
 ## Properties
 
 Name | Type | Description | Notes

@@ -40,15 +40,9 @@ class RecoveryAddress {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
       json[r'id'] = id;
-    }
-    if (value != null) {
       json[r'value'] = value;
-    }
-    if (via != null) {
       json[r'via'] = via;
-    }
     return json;
   }
 

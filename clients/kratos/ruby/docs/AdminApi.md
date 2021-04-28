@@ -1,6 +1,6 @@
 # OryHydraClient::AdminApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://demo.tenants.oryapis.com/api/kratos/public*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
@@ -15,6 +15,9 @@ All URIs are relative to *http://localhost*
 | [**get_self_service_registration_flow**](AdminApi.md#get_self_service_registration_flow) | **GET** /self-service/registration/flows | Get Registration Flow |
 | [**get_self_service_settings_flow**](AdminApi.md#get_self_service_settings_flow) | **GET** /self-service/settings/flows | Get Settings Flow |
 | [**get_self_service_verification_flow**](AdminApi.md#get_self_service_verification_flow) | **GET** /self-service/verification/flows | Get Verification Flow |
+| [**get_version**](AdminApi.md#get_version) | **GET** /version | Return Running Software Version. |
+| [**is_alive**](AdminApi.md#is_alive) | **GET** /health/alive | Check HTTP Server Status |
+| [**is_ready**](AdminApi.md#is_ready) | **GET** /health/ready | Check HTTP Server and Database Status |
 | [**list_identities**](AdminApi.md#list_identities) | **GET** /identities | List Identities |
 | [**prometheus**](AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get snapshot metrics from the Hydra service. If you&#39;re using k8s, you can then add annotations to your deployment like so: |
 | [**update_identity**](AdminApi.md#update_identity) | **PUT** /identities/{id} | Update an Identity |
@@ -26,7 +29,7 @@ All URIs are relative to *http://localhost*
 
 Create an Identity
 
-This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Examples
 
@@ -36,7 +39,7 @@ require 'ory-kratos-client'
 
 api_instance = OryHydraClient::AdminApi.new
 opts = {
-  body: OryHydraClient::CreateIdentity.new({schema_id: 'schema_id_example', traits: 3.56}) # CreateIdentity | 
+  create_identity: OryHydraClient::CreateIdentity.new({schema_id: 'schema_id_example', traits: 3.56}) # CreateIdentity | 
 }
 
 begin
@@ -70,7 +73,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **body** | [**CreateIdentity**](CreateIdentity.md) |  | [optional] |
+| **create_identity** | [**CreateIdentity**](CreateIdentity.md) |  | [optional] |
 
 ### Return type
 
@@ -102,7 +105,7 @@ require 'ory-kratos-client'
 
 api_instance = OryHydraClient::AdminApi.new
 opts = {
-  body: OryHydraClient::CreateRecoveryLink.new({identity_id: 'identity_id_example'}) # CreateRecoveryLink | 
+  create_recovery_link: OryHydraClient::CreateRecoveryLink.new({identity_id: 'identity_id_example'}) # CreateRecoveryLink | 
 }
 
 begin
@@ -136,7 +139,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **body** | [**CreateRecoveryLink**](CreateRecoveryLink.md) |  | [optional] |
+| **create_recovery_link** | [**CreateRecoveryLink**](CreateRecoveryLink.md) |  | [optional] |
 
 ### Return type
 
@@ -158,7 +161,7 @@ No authorization required
 
 Delete an Identity
 
-Calling this endpoint irrecoverably and permanently deletes the identity given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is assumed that is has been deleted already.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+Calling this endpoint irrecoverably and permanently deletes the identity given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is assumed that is has been deleted already.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Examples
 
@@ -221,7 +224,7 @@ No authorization required
 
 Get an Identity
 
-Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Examples
 
@@ -349,7 +352,7 @@ No authorization required
 
 Get User-Facing Self-Service Errors
 
-This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?error=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
+This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?error=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
 
 ### Examples
 
@@ -413,7 +416,7 @@ No authorization required
 
 Get Login Flow
 
-This endpoint returns a login flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint returns a login flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Examples
 
@@ -477,7 +480,7 @@ No authorization required
 
 Get information about a recovery flow
 
-This endpoint returns a recovery flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+This endpoint returns a recovery flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
 ### Examples
 
@@ -541,7 +544,7 @@ No authorization required
 
 Get Registration Flow
 
-This endpoint returns a registration flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint returns a registration flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Examples
 
@@ -605,7 +608,7 @@ No authorization required
 
 Get Settings Flow
 
-When accessing this endpoint through ORY Kratos' Public API you must ensure that either the ORY Kratos Session Cookie or the ORY Kratos Session Token are set. The public endpoint does not return 404 status codes but instead 403 or 500 to improve data privacy.  You can access this endpoint without credentials when using ORY Kratos' Admin API.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+When accessing this endpoint through Ory Kratos' Public API you must ensure that either the Ory Kratos Session Cookie or the Ory Kratos Session Token are set. The public endpoint does not return 404 status codes but instead 403 or 500 to improve data privacy.  You can access this endpoint without credentials when using Ory Kratos' Admin API.  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
 
 ### Examples
 
@@ -615,9 +618,9 @@ require 'ory-kratos-client'
 # setup authorization
 OryHydraClient.configure do |config|
   # Configure API key authorization: sessionToken
-  config.api_key['X-Session-Token'] = 'YOUR API KEY'
+  config.api_key['sessionToken'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['X-Session-Token'] = 'Bearer'
+  # config.api_key_prefix['sessionToken'] = 'Bearer'
 end
 
 api_instance = OryHydraClient::AdminApi.new
@@ -676,7 +679,7 @@ end
 
 Get Verification Flow
 
-This endpoint returns a verification flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint returns a verification flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
 ### Examples
 
@@ -734,13 +737,196 @@ No authorization required
 - **Accept**: application/json
 
 
+## get_version
+
+> <InlineResponse2001> get_version
+
+Return Running Software Version.
+
+This endpoint returns the version of Ory Kratos.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the version will never refer to the cluster state, only to a single instance.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-kratos-client'
+
+api_instance = OryHydraClient::AdminApi.new
+
+begin
+  # Return Running Software Version.
+  result = api_instance.get_version
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling AdminApi->get_version: #{e}"
+end
+```
+
+#### Using the get_version_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<InlineResponse2001>, Integer, Hash)> get_version_with_http_info
+
+```ruby
+begin
+  # Return Running Software Version.
+  data, status_code, headers = api_instance.get_version_with_http_info
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <InlineResponse2001>
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling AdminApi->get_version_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**InlineResponse2001**](InlineResponse2001.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## is_alive
+
+> <InlineResponse200> is_alive
+
+Check HTTP Server Status
+
+This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incoming HTTP requests. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-kratos-client'
+
+api_instance = OryHydraClient::AdminApi.new
+
+begin
+  # Check HTTP Server Status
+  result = api_instance.is_alive
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling AdminApi->is_alive: #{e}"
+end
+```
+
+#### Using the is_alive_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<InlineResponse200>, Integer, Hash)> is_alive_with_http_info
+
+```ruby
+begin
+  # Check HTTP Server Status
+  data, status_code, headers = api_instance.is_alive_with_http_info
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <InlineResponse200>
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling AdminApi->is_alive_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**InlineResponse200**](InlineResponse200.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## is_ready
+
+> <InlineResponse200> is_ready
+
+Check HTTP Server and Database Status
+
+This endpoint returns a HTTP 200 status code when Ory Kratos is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of Ory Kratos, the health status will never refer to the cluster state, only to a single instance.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-kratos-client'
+
+api_instance = OryHydraClient::AdminApi.new
+
+begin
+  # Check HTTP Server and Database Status
+  result = api_instance.is_ready
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling AdminApi->is_ready: #{e}"
+end
+```
+
+#### Using the is_ready_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<InlineResponse200>, Integer, Hash)> is_ready_with_http_info
+
+```ruby
+begin
+  # Check HTTP Server and Database Status
+  data, status_code, headers = api_instance.is_ready_with_http_info
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <InlineResponse200>
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling AdminApi->is_ready_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**InlineResponse200**](InlineResponse200.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## list_identities
 
 > <Array<Identity>> list_identities(opts)
 
 List Identities
 
-Lists all identities. Does not support search at the moment.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+Lists all identities. Does not support search at the moment.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Examples
 
@@ -868,7 +1054,7 @@ No authorization required
 
 Update an Identity
 
-This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Examples
 
@@ -879,7 +1065,7 @@ require 'ory-kratos-client'
 api_instance = OryHydraClient::AdminApi.new
 id = 'id_example' # String | ID must be set to the ID of identity you want to update
 opts = {
-  body: OryHydraClient::UpdateIdentity.new({traits: 3.56}) # UpdateIdentity | 
+  update_identity: OryHydraClient::UpdateIdentity.new({traits: 3.56}) # UpdateIdentity | 
 }
 
 begin
@@ -914,7 +1100,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | ID must be set to the ID of identity you want to update |  |
-| **body** | [**UpdateIdentity**](UpdateIdentity.md) |  | [optional] |
+| **update_identity** | [**UpdateIdentity**](UpdateIdentity.md) |  | [optional] |
 
 ### Return type
 

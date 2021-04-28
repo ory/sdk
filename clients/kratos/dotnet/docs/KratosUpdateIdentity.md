@@ -1,4 +1,5 @@
 # Ory.Kratos.Client.Model.KratosUpdateIdentity
+
 ## Properties
 
 Name | Type | Description | Notes

@@ -12,12 +12,12 @@ part of openapi.api;
 class ErrorContainer {
   /// Returns a new [ErrorContainer] instance.
   ErrorContainer({
-    @required this.errors,
+    this.errors = const [],
     @required this.id,
   });
 
   /// Errors in the container
-  Object errors;
+  List<Object> errors;
 
   String id;
 
@@ -36,12 +36,8 @@ class ErrorContainer {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (errors != null) {
       json[r'errors'] = errors;
-    }
-    if (id != null) {
       json[r'id'] = id;
-    }
     return json;
   }
 
@@ -50,7 +46,7 @@ class ErrorContainer {
   static ErrorContainer fromJson(Map<String, dynamic> json) => json == null
     ? null
     : ErrorContainer(
-        errors: json[r'errors'],
+        errors: Object.listFromJson(json[r'errors']),
         id: json[r'id'],
     );
 

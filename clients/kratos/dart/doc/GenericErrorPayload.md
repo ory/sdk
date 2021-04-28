@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **int** | Code represents the error status code (404, 403, 401, ...). | [optional] 
 **debug** | **String** | Debug contains debug information. This is usually not available and has to be enabled. | [optional] 
-**details** | [**Object**](.md) |  | [optional] 
+**details** | [**Map<String, Object>**](Object.md) |  | [optional] [default to const {}]
 **message** | **String** |  | [optional] 
 **reason** | **String** |  | [optional] 
 **request** | **String** |  | [optional] 

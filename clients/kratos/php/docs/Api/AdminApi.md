@@ -1,6 +1,6 @@
 # Ory\Kratos\Client\AdminApi
 
-All URIs are relative to http://localhost.
+All URIs are relative to https://demo.tenants.oryapis.com/api/kratos/public.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -15,6 +15,9 @@ Method | HTTP request | Description
 [**getSelfServiceRegistrationFlow()**](AdminApi.md#getSelfServiceRegistrationFlow) | **GET** /self-service/registration/flows | Get Registration Flow
 [**getSelfServiceSettingsFlow()**](AdminApi.md#getSelfServiceSettingsFlow) | **GET** /self-service/settings/flows | Get Settings Flow
 [**getSelfServiceVerificationFlow()**](AdminApi.md#getSelfServiceVerificationFlow) | **GET** /self-service/verification/flows | Get Verification Flow
+[**getVersion()**](AdminApi.md#getVersion) | **GET** /version | Return Running Software Version.
+[**isAlive()**](AdminApi.md#isAlive) | **GET** /health/alive | Check HTTP Server Status
+[**isReady()**](AdminApi.md#isReady) | **GET** /health/ready | Check HTTP Server and Database Status
 [**listIdentities()**](AdminApi.md#listIdentities) | **GET** /identities | List Identities
 [**prometheus()**](AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get snapshot metrics from the Hydra service. If you&#39;re using k8s, you can then add annotations to your deployment like so:
 [**updateIdentity()**](AdminApi.md#updateIdentity) | **PUT** /identities/{id} | Update an Identity
@@ -23,12 +26,12 @@ Method | HTTP request | Description
 ## `createIdentity()`
 
 ```php
-createIdentity($body): \Ory\Kratos\Client\Model\Identity
+createIdentity($createIdentity): \Ory\Kratos\Client\Model\Identity
 ```
 
 Create an Identity
 
-This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 
@@ -43,10 +46,10 @@ $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$body = new \Ory\Kratos\Client\Model\CreateIdentity(); // \Ory\Kratos\Client\Model\CreateIdentity
+$createIdentity = new \Ory\Kratos\Client\Model\CreateIdentity(); // \Ory\Kratos\Client\Model\CreateIdentity
 
 try {
-    $result = $apiInstance->createIdentity($body);
+    $result = $apiInstance->createIdentity($createIdentity);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->createIdentity: ', $e->getMessage(), PHP_EOL;
@@ -57,7 +60,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\Ory\Kratos\Client\Model\CreateIdentity**](../Model/CreateIdentity.md)|  | [optional]
+ **createIdentity** | [**\Ory\Kratos\Client\Model\CreateIdentity**](../Model/CreateIdentity.md)|  | [optional]
 
 ### Return type
 
@@ -79,7 +82,7 @@ No authorization required
 ## `createRecoveryLink()`
 
 ```php
-createRecoveryLink($body): \Ory\Kratos\Client\Model\RecoveryLink
+createRecoveryLink($createRecoveryLink): \Ory\Kratos\Client\Model\RecoveryLink
 ```
 
 Create a Recovery Link
@@ -99,10 +102,10 @@ $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$body = new \Ory\Kratos\Client\Model\CreateRecoveryLink(); // \Ory\Kratos\Client\Model\CreateRecoveryLink
+$createRecoveryLink = new \Ory\Kratos\Client\Model\CreateRecoveryLink(); // \Ory\Kratos\Client\Model\CreateRecoveryLink
 
 try {
-    $result = $apiInstance->createRecoveryLink($body);
+    $result = $apiInstance->createRecoveryLink($createRecoveryLink);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->createRecoveryLink: ', $e->getMessage(), PHP_EOL;
@@ -113,7 +116,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\Ory\Kratos\Client\Model\CreateRecoveryLink**](../Model/CreateRecoveryLink.md)|  | [optional]
+ **createRecoveryLink** | [**\Ory\Kratos\Client\Model\CreateRecoveryLink**](../Model/CreateRecoveryLink.md)|  | [optional]
 
 ### Return type
 
@@ -140,7 +143,7 @@ deleteIdentity($id)
 
 Delete an Identity
 
-Calling this endpoint irrecoverably and permanently deletes the identity given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is assumed that is has been deleted already.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+Calling this endpoint irrecoverably and permanently deletes the identity given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is assumed that is has been deleted already.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 
@@ -195,7 +198,7 @@ getIdentity($id): \Ory\Kratos\Client\Model\Identity
 
 Get an Identity
 
-Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 
@@ -307,7 +310,7 @@ getSelfServiceError($error): \Ory\Kratos\Client\Model\ErrorContainer
 
 Get User-Facing Self-Service Errors
 
-This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?error=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [ORY Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
+This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?error=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
 
 ### Example
 
@@ -363,7 +366,7 @@ getSelfServiceLoginFlow($id): \Ory\Kratos\Client\Model\LoginFlow
 
 Get Login Flow
 
-This endpoint returns a login flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint returns a login flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 
@@ -419,7 +422,7 @@ getSelfServiceRecoveryFlow($id): \Ory\Kratos\Client\Model\RecoveryFlow
 
 Get information about a recovery flow
 
-This endpoint returns a recovery flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+This endpoint returns a recovery flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
 ### Example
 
@@ -475,7 +478,7 @@ getSelfServiceRegistrationFlow($id): \Ory\Kratos\Client\Model\RegistrationFlow
 
 Get Registration Flow
 
-This endpoint returns a registration flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint returns a registration flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 
@@ -531,7 +534,7 @@ getSelfServiceSettingsFlow($id): \Ory\Kratos\Client\Model\SettingsFlow
 
 Get Settings Flow
 
-When accessing this endpoint through ORY Kratos' Public API you must ensure that either the ORY Kratos Session Cookie or the ORY Kratos Session Token are set. The public endpoint does not return 404 status codes but instead 403 or 500 to improve data privacy.  You can access this endpoint without credentials when using ORY Kratos' Admin API.  More information can be found at [ORY Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+When accessing this endpoint through Ory Kratos' Public API you must ensure that either the Ory Kratos Session Cookie or the Ory Kratos Session Token are set. The public endpoint does not return 404 status codes but instead 403 or 500 to improve data privacy.  You can access this endpoint without credentials when using Ory Kratos' Admin API.  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
 
 ### Example
 
@@ -593,7 +596,7 @@ getSelfServiceVerificationFlow($id): \Ory\Kratos\Client\Model\VerificationFlow
 
 Get Verification Flow
 
-This endpoint returns a verification flow's context with, for example, error details and other information.  More information can be found at [ORY Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint returns a verification flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
 ### Example
 
@@ -641,6 +644,165 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getVersion()`
+
+```php
+getVersion(): \Ory\Kratos\Client\Model\InlineResponse2001
+```
+
+Return Running Software Version.
+
+This endpoint returns the version of Ory Kratos.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the version will never refer to the cluster state, only to a single instance.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Kratos\Client\Api\AdminApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $result = $apiInstance->getVersion();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AdminApi->getVersion: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Ory\Kratos\Client\Model\InlineResponse2001**](../Model/InlineResponse2001.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `isAlive()`
+
+```php
+isAlive(): \Ory\Kratos\Client\Model\InlineResponse200
+```
+
+Check HTTP Server Status
+
+This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incoming HTTP requests. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Kratos\Client\Api\AdminApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $result = $apiInstance->isAlive();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AdminApi->isAlive: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Ory\Kratos\Client\Model\InlineResponse200**](../Model/InlineResponse200.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `isReady()`
+
+```php
+isReady(): \Ory\Kratos\Client\Model\InlineResponse200
+```
+
+Check HTTP Server and Database Status
+
+This endpoint returns a HTTP 200 status code when Ory Kratos is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of Ory Kratos, the health status will never refer to the cluster state, only to a single instance.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Kratos\Client\Api\AdminApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $result = $apiInstance->isReady();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AdminApi->isReady: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Ory\Kratos\Client\Model\InlineResponse200**](../Model/InlineResponse200.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `listIdentities()`
 
 ```php
@@ -649,7 +811,7 @@ listIdentities($perPage, $page): \Ory\Kratos\Client\Model\Identity[]
 
 List Identities
 
-Lists all identities. Does not support search at the moment.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+Lists all identities. Does not support search at the moment.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 
@@ -754,12 +916,12 @@ No authorization required
 ## `updateIdentity()`
 
 ```php
-updateIdentity($id, $body): \Ory\Kratos\Client\Model\Identity
+updateIdentity($id, $updateIdentity): \Ory\Kratos\Client\Model\Identity
 ```
 
 Update an Identity
 
-This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [ORY Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 
@@ -775,10 +937,10 @@ $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
     new GuzzleHttp\Client()
 );
 $id = 'id_example'; // string | ID must be set to the ID of identity you want to update
-$body = new \Ory\Kratos\Client\Model\UpdateIdentity(); // \Ory\Kratos\Client\Model\UpdateIdentity
+$updateIdentity = new \Ory\Kratos\Client\Model\UpdateIdentity(); // \Ory\Kratos\Client\Model\UpdateIdentity
 
 try {
-    $result = $apiInstance->updateIdentity($id, $body);
+    $result = $apiInstance->updateIdentity($id, $updateIdentity);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->updateIdentity: ', $e->getMessage(), PHP_EOL;
@@ -790,7 +952,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| ID must be set to the ID of identity you want to update |
- **body** | [**\Ory\Kratos\Client\Model\UpdateIdentity**](../Model/UpdateIdentity.md)|  | [optional]
+ **updateIdentity** | [**\Ory\Kratos\Client\Model\UpdateIdentity**](../Model/UpdateIdentity.md)|  | [optional]
 
 ### Return type
 

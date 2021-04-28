@@ -40,9 +40,7 @@ class RecoveryLink {
     if (expiresAt != null) {
       json[r'expires_at'] = expiresAt.toUtc().toIso8601String();
     }
-    if (recoveryLink != null) {
       json[r'recovery_link'] = recoveryLink;
-    }
     return json;
   }
 

@@ -3,6 +3,7 @@
 # RegistrationViaApiResponse
 
 The Response for Registration Flows via API
+
 ## Properties
 
 Name | Type | Description | Notes

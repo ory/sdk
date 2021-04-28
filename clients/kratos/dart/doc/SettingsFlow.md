@@ -13,11 +13,10 @@ Name | Type | Description | Notes
 **id** | **String** |  | 
 **identity** | [**Identity**](Identity.md) |  | 
 **issuedAt** | [**DateTime**](DateTime.md) | IssuedAt is the time (UTC) when the flow occurred. | 
-**messages** | [**List<Message>**](Message.md) |  | [optional] [default to const []]
-**methods** | [**Map<String, SettingsFlowMethod>**](SettingsFlowMethod.md) | Methods contains context for all enabled registration methods. If a settings flow has been processed, but for example the first name is empty, this will contain error messages. | [default to const {}]
-**requestUrl** | **String** | RequestURL is the initial URL that was requested from ORY Kratos. It can be used to forward information contained in the URL's path or query for example. | 
+**requestUrl** | **String** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example. | 
 **state** | **String** |  | 
 **type** | **String** | The flow type can either be `api` or `browser`. | [optional] 
+**ui** | [**UiContainer**](UiContainer.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

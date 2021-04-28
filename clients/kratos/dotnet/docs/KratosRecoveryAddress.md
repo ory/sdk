@@ -1,4 +1,5 @@
 # Ory.Kratos.Client.Model.KratosRecoveryAddress
+
 ## Properties
 
 Name | Type | Description | Notes

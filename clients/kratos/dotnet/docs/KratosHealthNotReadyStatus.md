@@ -1,4 +1,5 @@
 # Ory.Kratos.Client.Model.KratosHealthNotReadyStatus
+
 ## Properties
 
 Name | Type | Description | Notes

@@ -1,4 +1,5 @@
 # Ory.Kratos.Client.Model.KratosRevokeSession
+
 ## Properties
 
 Name | Type | Description | Notes

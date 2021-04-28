@@ -1,6 +1,6 @@
 {
   "name": "@ory/kratos-client",
-  "version": "v0.5.5-alpha.4",
+  "version": "v0.0.0-alpha.38",
   "description": "OpenAPI client for @ory/kratos-client",
   "author": "ORY GmbH",
   "keywords": [
@@ -18,7 +18,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.21.1"
   },
   "devDependencies": {
     "@types/node": "^12.11.5",

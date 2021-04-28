@@ -1,3 +1,12 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.0
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:ory_kratos_client/api.dart';
 import 'package:test/test.dart';
 
@@ -6,27 +15,8 @@ void main() {
   final instance = GenericError();
 
   group('test GenericError', () {
-    // Name is the error name.
-    // String error
+    // GenericErrorPayload error
     test('to test the property `error`', () async {
-      // TODO
-    });
-
-    // Code represents the error status code (404, 403, 401, ...).
-    // int errorCode
-    test('to test the property `errorCode`', () async {
-      // TODO
-    });
-
-    // Debug contains debug information. This is usually not available and has to be enabled.
-    // String errorDebug
-    test('to test the property `errorDebug`', () async {
-      // TODO
-    });
-
-    // Hint contains further information on the nature of the error.
-    // String errorHint
-    test('to test the property `errorHint`', () async {
       // TODO
     });
 

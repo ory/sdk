@@ -55,24 +55,14 @@ class VerifiableAddress {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
       json[r'id'] = id;
-    }
-    if (status != null) {
       json[r'status'] = status;
-    }
-    if (value != null) {
       json[r'value'] = value;
-    }
-    if (verified != null) {
       json[r'verified'] = verified;
-    }
     if (verifiedAt != null) {
       json[r'verified_at'] = verifiedAt.toUtc().toIso8601String();
     }
-    if (via != null) {
       json[r'via'] = via;
-    }
     return json;
   }
 

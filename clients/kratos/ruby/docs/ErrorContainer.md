@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **errors** | **Object** | Errors in the container |  |
+| **errors** | **Array&lt;Object&gt;** | Errors in the container |  |
 | **id** | **String** |  |  |
 
 ## Example

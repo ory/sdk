@@ -58,21 +58,11 @@ class Session {
     if (active != null) {
       json[r'active'] = active;
     }
-    if (authenticatedAt != null) {
       json[r'authenticated_at'] = authenticatedAt.toUtc().toIso8601String();
-    }
-    if (expiresAt != null) {
       json[r'expires_at'] = expiresAt.toUtc().toIso8601String();
-    }
-    if (id != null) {
       json[r'id'] = id;
-    }
-    if (identity != null) {
       json[r'identity'] = identity;
-    }
-    if (issuedAt != null) {
       json[r'issued_at'] = issuedAt.toUtc().toIso8601String();
-    }
     return json;
   }
 
