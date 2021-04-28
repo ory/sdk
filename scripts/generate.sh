@@ -181,14 +181,18 @@ golang () {
   mkdir -p "${dir}"
   (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go")
 
-  openapi-generator generate -i "${SPEC_FILE}" \
-    -g go \
-    -o "$dir" \
-    --git-user-id ory \
-    --git-repo-id sdk \
-    --git-host github.com \
-    -t openapi/templates/go \
-    -c ./config/client/go.yml.proc.yml
+  if [ $PROJECT = "kratos" ]; then
+    openapi-generator generate -i "${SPEC_FILE}" \
+      -g go \
+      -o "$dir" \
+      --git-user-id ory \
+      --git-repo-id sdk \
+      --git-host github.com \
+      -t openapi/templates/go \
+      -c ./config/client/go.yml.proc.yml
+  else
+    swagger generate client --allow-template-override -f "${SPEC_FILE}" -t "${dir}" -A "Ory_${PROJECT_UCF}"
+  fi
 }
 
 dotnet () {
