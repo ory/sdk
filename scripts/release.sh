@@ -150,6 +150,7 @@ php
 typescript
 dotnet
 dart
+rust
 
 upstream
 
