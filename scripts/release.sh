@@ -143,15 +143,14 @@ rust() {
   (cd "${dir}"; VERSION=${RAW_VERSION} command cargo publish --allow-dirty)
 }
 
-python
-ruby
-golang
-php
-typescript
-dotnet
-dart
-rust
+python || true
+ruby || true
+golang || true
+php || true
+typescript || true
+dart || true
+rust || true
+java || true
+dotnet || true
 
-upstream
-
-java
+upstream || true
