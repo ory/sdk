@@ -1460,7 +1460,7 @@ $apiInstance = new Ory\Kratos\Client\Api\PublicApi(
     $config
 );
 $cookie = 'cookie_example'; // string
-$authorization = 'authorization_example'; // string | in: authorization
+$authorization = 'authorization_example'; // string
 
 try {
     $result = $apiInstance->whoami($cookie, $authorization);
@@ -1475,7 +1475,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cookie** | **string**|  | [optional]
- **authorization** | **string**| in: authorization | [optional]
+ **authorization** | **string**|  | [optional]
 
 ### Return type
 

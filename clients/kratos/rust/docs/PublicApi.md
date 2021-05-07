@@ -773,7 +773,7 @@ Uses the HTTP Headers in the GET request to determine (e.g. by using checking th
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **cookie** | Option<**String**> |  |  |
-**authorization** | Option<**String**> | in: authorization |  |
+**authorization** | Option<**String**> |  |  |
 
 ### Return type
 

@@ -11,7 +11,7 @@ info:
   license:
     name: Apache 2.0
   title: Ory Kratos API
-  version: v0.0.0-alpha.38
+  version: v0.6.0-alpha.2
 servers:
 - url: https://{tenant}.tenants.oryapis.com/api/kratos/{api}
   variables:
@@ -1612,14 +1612,13 @@ paths:
         schema:
           type: string
         style: simple
-      - description: 'in: authorization'
-        explode: true
-        in: query
+      - explode: false
+        in: header
         name: Authorization
         required: false
         schema:
           type: string
-        style: form
+        style: simple
       responses:
         "200":
           content:
@@ -3408,14 +3407,27 @@ components:
       oneOf:
       - $ref: '#/components/schemas/submitSelfServiceRegistrationFlowWithPasswordMethod'
     submitSelfServiceRegistrationFlowWithPasswordMethod:
+      description: |-
+        SubmitSelfServiceRegistrationFlowWithPasswordMethod is used to decode the registration form payload
+        when using the password method.
       properties:
         csrf_token:
+          description: The CSRF Token
+          type: string
+        method:
+          description: |-
+            Method to use
+
+            This field must be set to `password` when using the password method.
           type: string
         password:
+          description: Password to sign the user up with
           type: string
         traits:
+          description: The identity's traits
           type: object
-      title: RegistrationFormPayload is used to decode the registration form payload.
+      required:
+      - method
       type: object
     submitSelfServiceSettingsFlow:
       oneOf:

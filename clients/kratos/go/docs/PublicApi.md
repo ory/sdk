@@ -1451,7 +1451,7 @@ import (
 
 func main() {
     flow := "flow_example" // string | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
-    submitSelfServiceRegistrationFlow := openapiclient.submitSelfServiceRegistrationFlow{SubmitSelfServiceRegistrationFlowWithPasswordMethod: openapiclient.NewSubmitSelfServiceRegistrationFlowWithPasswordMethod()} // SubmitSelfServiceRegistrationFlow |  (optional)
+    submitSelfServiceRegistrationFlow := openapiclient.submitSelfServiceRegistrationFlow{SubmitSelfServiceRegistrationFlowWithPasswordMethod: openapiclient.NewSubmitSelfServiceRegistrationFlowWithPasswordMethod("Method_example")} // SubmitSelfServiceRegistrationFlow |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -1653,7 +1653,7 @@ import (
 
 func main() {
     cookie := "cookie_example" // string |  (optional)
-    authorization := "authorization_example" // string | in: authorization (optional)
+    authorization := "authorization_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -1679,7 +1679,7 @@ Other parameters are passed through a pointer to a apiWhoamiRequest struct via t
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cookie** | **string** |  | 
- **authorization** | **string** | in: authorization | 
+ **authorization** | **string** |  | 
 
 ### Return type
 

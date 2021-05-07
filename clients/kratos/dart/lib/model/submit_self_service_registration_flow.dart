@@ -13,36 +13,46 @@ class SubmitSelfServiceRegistrationFlow {
   /// Returns a new [SubmitSelfServiceRegistrationFlow] instance.
   SubmitSelfServiceRegistrationFlow({
     this.csrfToken,
+    @required this.method,
     this.password,
     this.traits,
   });
 
+  /// The CSRF Token
   String csrfToken;
 
+  /// Method to use  This field must be set to `password` when using the password method.
+  String method;
+
+  /// Password to sign the user up with
   String password;
 
+  /// The identity's traits
   Object traits;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is SubmitSelfServiceRegistrationFlow &&
      other.csrfToken == csrfToken &&
+     other.method == method &&
      other.password == password &&
      other.traits == traits;
 
   @override
   int get hashCode =>
     (csrfToken == null ? 0 : csrfToken.hashCode) +
+    (method == null ? 0 : method.hashCode) +
     (password == null ? 0 : password.hashCode) +
     (traits == null ? 0 : traits.hashCode);
 
   @override
-  String toString() => 'SubmitSelfServiceRegistrationFlow[csrfToken=$csrfToken, password=$password, traits=$traits]';
+  String toString() => 'SubmitSelfServiceRegistrationFlow[csrfToken=$csrfToken, method=$method, password=$password, traits=$traits]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (csrfToken != null) {
       json[r'csrf_token'] = csrfToken;
     }
+      json[r'method'] = method;
     if (password != null) {
       json[r'password'] = password;
     }
@@ -58,6 +68,7 @@ class SubmitSelfServiceRegistrationFlow {
     ? null
     : SubmitSelfServiceRegistrationFlow(
         csrfToken: json[r'csrf_token'],
+        method: json[r'method'],
         password: json[r'password'],
         traits: json[r'traits'],
     );

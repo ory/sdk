@@ -1455,7 +1455,7 @@ require 'ory-kratos-client'
 api_instance = OryHydraClient::PublicApi.new
 flow = 'flow_example' # String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
 opts = {
-  submit_self_service_registration_flow: OryHydraClient::SubmitSelfServiceRegistrationFlowWithPasswordMethod.new # SubmitSelfServiceRegistrationFlow | 
+  submit_self_service_registration_flow: OryHydraClient::SubmitSelfServiceRegistrationFlowWithPasswordMethod.new({method: 'method_example'}) # SubmitSelfServiceRegistrationFlow | 
 }
 
 begin
@@ -1672,7 +1672,7 @@ end
 api_instance = OryHydraClient::PublicApi.new
 opts = {
   cookie: 'cookie_example', # String | 
-  authorization: 'authorization_example' # String | in: authorization
+  authorization: 'authorization_example' # String | 
 }
 
 begin
@@ -1707,7 +1707,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **cookie** | **String** |  | [optional] |
-| **authorization** | **String** | in: authorization | [optional] |
+| **authorization** | **String** |  | [optional] |
 
 ### Return type
 

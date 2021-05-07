@@ -1109,7 +1109,7 @@ import 'package:ory_kratos_client/api.dart';
 
 final api_instance = PublicApi();
 final cookie = cookie_example; // String | 
-final authorization = authorization_example; // String | in: authorization
+final authorization = authorization_example; // String | 
 
 try { 
     final result = api_instance.whoami(cookie, authorization);
@@ -1124,7 +1124,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cookie** | **String**|  | [optional] 
- **authorization** | **String**| in: authorization | [optional] 
+ **authorization** | **String**|  | [optional] 
 
 ### Return type
 

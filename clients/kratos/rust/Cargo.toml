@@ -1,6 +1,6 @@
 [package]
 name = "ory-kratos-client"
-version = "0.0.0-alpha.38"
+version = "0.6.0-alpha.2"
 description = "SDK Client for ORY Keto"
 documentation = "https://www.ory.sh/keto/docs/sdk"
 homepage = "https://www.ory.sh"

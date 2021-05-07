@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory Kratos APIs. Public and administrative APIs are exposed on different ports. Public APIs can face the public internet without any protection while administrative APIs should never be exposed without prior authorization. To protect the administative API port you should use something like Nginx, Ory Oathkeeper, or any other technology capable of authorizing incoming requests. 
  *
- * API version: v0.0.0-alpha.38
+ * API version: v0.6.0-alpha.2
  * Contact: hi@ory.sh
  */
 
@@ -3525,9 +3525,6 @@ func (a *PublicApiService) WhoamiExecute(r ApiWhoamiRequest) (*Session, *http.Re
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.authorization != nil {
-		localVarQueryParams.Add("Authorization", parameterToString(*r.authorization, ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -3547,6 +3544,9 @@ func (a *PublicApiService) WhoamiExecute(r ApiWhoamiRequest) (*Session, *http.Re
 	}
 	if r.cookie != nil {
 		localVarHeaderParams["Cookie"] = parameterToString(*r.cookie, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
 	}
 	if r.ctx != nil {
 		// API Key Authentication

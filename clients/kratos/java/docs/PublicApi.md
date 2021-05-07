@@ -1663,7 +1663,7 @@ public class Example {
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     String cookie = "cookie_example"; // String | 
-    String authorization = "authorization_example"; // String | in: authorization
+    String authorization = "authorization_example"; // String | 
     try {
       Session result = apiInstance.whoami(cookie, authorization);
       System.out.println(result);
@@ -1683,7 +1683,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cookie** | **String**|  | [optional]
- **authorization** | **String**| in: authorization | [optional]
+ **authorization** | **String**|  | [optional]
 
 ### Return type
 

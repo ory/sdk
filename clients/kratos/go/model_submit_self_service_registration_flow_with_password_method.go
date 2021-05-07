@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory Kratos APIs. Public and administrative APIs are exposed on different ports. Public APIs can face the public internet without any protection while administrative APIs should never be exposed without prior authorization. To protect the administative API port you should use something like Nginx, Ory Oathkeeper, or any other technology capable of authorizing incoming requests. 
  *
- * API version: v0.0.0-alpha.38
+ * API version: v0.6.0-alpha.2
  * Contact: hi@ory.sh
  */
 
@@ -15,10 +15,15 @@ import (
 	"encoding/json"
 )
 
-// SubmitSelfServiceRegistrationFlowWithPasswordMethod struct for SubmitSelfServiceRegistrationFlowWithPasswordMethod
+// SubmitSelfServiceRegistrationFlowWithPasswordMethod SubmitSelfServiceRegistrationFlowWithPasswordMethod is used to decode the registration form payload when using the password method.
 type SubmitSelfServiceRegistrationFlowWithPasswordMethod struct {
+	// The CSRF Token
 	CsrfToken *string `json:"csrf_token,omitempty"`
+	// Method to use  This field must be set to `password` when using the password method.
+	Method string `json:"method"`
+	// Password to sign the user up with
 	Password *string `json:"password,omitempty"`
+	// The identity's traits
 	Traits map[string]interface{} `json:"traits,omitempty"`
 }
 
@@ -26,8 +31,9 @@ type SubmitSelfServiceRegistrationFlowWithPasswordMethod struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubmitSelfServiceRegistrationFlowWithPasswordMethod() *SubmitSelfServiceRegistrationFlowWithPasswordMethod {
+func NewSubmitSelfServiceRegistrationFlowWithPasswordMethod(method string) *SubmitSelfServiceRegistrationFlowWithPasswordMethod {
 	this := SubmitSelfServiceRegistrationFlowWithPasswordMethod{}
+	this.Method = method
 	return &this
 }
 
@@ -69,6 +75,30 @@ func (o *SubmitSelfServiceRegistrationFlowWithPasswordMethod) HasCsrfToken() boo
 // SetCsrfToken gets a reference to the given string and assigns it to the CsrfToken field.
 func (o *SubmitSelfServiceRegistrationFlowWithPasswordMethod) SetCsrfToken(v string) {
 	o.CsrfToken = &v
+}
+
+// GetMethod returns the Method field value
+func (o *SubmitSelfServiceRegistrationFlowWithPasswordMethod) GetMethod() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Method
+}
+
+// GetMethodOk returns a tuple with the Method field value
+// and a boolean to check if the value has been set.
+func (o *SubmitSelfServiceRegistrationFlowWithPasswordMethod) GetMethodOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Method, true
+}
+
+// SetMethod sets field value
+func (o *SubmitSelfServiceRegistrationFlowWithPasswordMethod) SetMethod(v string) {
+	o.Method = v
 }
 
 // GetPassword returns the Password field value if set, zero value otherwise.
@@ -139,6 +169,9 @@ func (o SubmitSelfServiceRegistrationFlowWithPasswordMethod) MarshalJSON() ([]by
 	toSerialize := map[string]interface{}{}
 	if o.CsrfToken != nil {
 		toSerialize["csrf_token"] = o.CsrfToken
+	}
+	if true {
+		toSerialize["method"] = o.Method
 	}
 	if o.Password != nil {
 		toSerialize["password"] = o.Password

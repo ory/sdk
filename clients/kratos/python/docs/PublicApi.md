@@ -1836,7 +1836,7 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = public_api.PublicApi(api_client)
     cookie = "Cookie_example" # str |  (optional)
-    authorization = "Authorization_example" # str | in: authorization (optional)
+    authorization = "Authorization_example" # str |  (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
@@ -1854,7 +1854,7 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cookie** | **str**|  | [optional]
- **authorization** | **str**| in: authorization | [optional]
+ **authorization** | **str**|  | [optional]
 
 ### Return type
 

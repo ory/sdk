@@ -1708,7 +1708,6 @@ class PublicApi {
   /// * [String] cookie:
   ///
   /// * [String] authorization:
-  ///   in: authorization
   Future<Response> whoamiWithHttpInfo({ String cookie, String authorization }) async {
     // Verify required params are set.
 
@@ -1720,12 +1719,11 @@ class PublicApi {
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-    if (authorization != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'Authorization', authorization));
-    }
-
     if (cookie != null) {
       headerParams[r'Cookie'] = parameterToString(cookie);
+    }
+    if (authorization != null) {
+      headerParams[r'Authorization'] = parameterToString(authorization);
     }
 
     final contentTypes = <String>[];
@@ -1765,7 +1763,6 @@ class PublicApi {
   /// * [String] cookie:
   ///
   /// * [String] authorization:
-  ///   in: authorization
   Future<Session> whoami({ String cookie, String authorization }) async {
     final response = await whoamiWithHttpInfo( cookie: cookie, authorization: authorization );
     if (response.statusCode >= HttpStatus.badRequest) {

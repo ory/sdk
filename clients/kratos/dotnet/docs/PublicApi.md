@@ -1879,7 +1879,7 @@ namespace Example
 
             var apiInstance = new PublicApi(config);
             var cookie = cookie_example;  // string |  (optional) 
-            var authorization = authorization_example;  // string | in: authorization (optional) 
+            var authorization = authorization_example;  // string |  (optional) 
 
             try
             {
@@ -1903,7 +1903,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cookie** | **string**|  | [optional] 
- **authorization** | **string**| in: authorization | [optional] 
+ **authorization** | **string**|  | [optional] 
 
 ### Return type
 
