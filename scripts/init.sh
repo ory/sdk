@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -Eeuxo pipefail
+set -Eeuo pipefail
 
 echo $MVN_GPG_ASC_BASE64 | base64 -d | gpg --batch --no-tty --import --yes
 

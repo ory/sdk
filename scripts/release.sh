@@ -42,23 +42,13 @@ upstream() {
   git push origin
 }
 
-typescript () {
+typescript() {
   dir="clients/${PROJECT}/typescript"
 
   (cd "${dir}"; npm install; npm run build)
 
 
   (cd "${dir}"; npm version -f --no-git-tag-version "${VERSION}" || true; for i in 1 2 3 4 5; do npm publish --access public && break || sleep 15; done)
-}
-
-python() {
-  dir="clients/${PROJECT}/python"
-  (cd "${dir}"; for i in 1 2 3 4 5; do python3 -m twine upload dist/* && break || sleep 15; done)
-}
-
-ruby() {
-  dir="clients/${PROJECT}/ruby"
-  (cd "${dir}"; for i in 1 2 3 4 5; do gem push "ory-${PROJECT}-client-${VERSION}-.gem" && break || sleep 15; done)
 }
 
 java() {
