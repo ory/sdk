@@ -69,6 +69,8 @@ java () {
     --git-host github.com \
     -c ./config/client/java.yml.proc.yml
 
+  cp "contrib/poms/${PROJECT}/pom.xml" "clients/${PROJECT}/java/pom.xml"
+
   # POM modification is disabled because openapi-generator does not re-generate the POM anyways. If, for some reason,
   # the POM file is lost, you can recover it:
   #
