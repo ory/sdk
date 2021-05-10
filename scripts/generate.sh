@@ -186,7 +186,7 @@ golang () {
       -g go \
       -o "$dir" \
       --git-user-id ory \
-      --git-repo-id sdk \
+      --git-repo-id "${PROJECT}-client-go" \
       --git-host github.com \
       -t openapi/templates/go \
       -c ./config/client/go.yml.proc.yml
