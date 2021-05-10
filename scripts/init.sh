@@ -3,7 +3,7 @@
 set -Eeuo pipefail
 
 # Do not accidentally echo keys
-set -x
+set +x
 
 echo $MVN_GPG_ASC_BASE64 | base64 -d | gpg --batch --no-tty --import --yes
 
