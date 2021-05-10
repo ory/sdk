@@ -18,70 +18,56 @@ import (
 	"github.com/ory/keto-client-go/models"
 )
 
-// NewPostCheckParams creates a new PostCheckParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewPostCheckParams creates a new PostCheckParams object
+// with the default values initialized.
 func NewPostCheckParams() *PostCheckParams {
+	var ()
 	return &PostCheckParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPostCheckParamsWithTimeout creates a new PostCheckParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewPostCheckParamsWithTimeout(timeout time.Duration) *PostCheckParams {
+	var ()
 	return &PostCheckParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewPostCheckParamsWithContext creates a new PostCheckParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewPostCheckParamsWithContext(ctx context.Context) *PostCheckParams {
+	var ()
 	return &PostCheckParams{
+
 		Context: ctx,
 	}
 }
 
 // NewPostCheckParamsWithHTTPClient creates a new PostCheckParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewPostCheckParamsWithHTTPClient(client *http.Client) *PostCheckParams {
+	var ()
 	return &PostCheckParams{
 		HTTPClient: client,
 	}
 }
 
-/* PostCheckParams contains all the parameters to send to the API endpoint
-   for the post check operation.
-
-   Typically these are written to a http.Request.
+/*PostCheckParams contains all the parameters to send to the API endpoint
+for the post check operation typically these are written to a http.Request
 */
 type PostCheckParams struct {
 
-	// Payload.
+	/*Payload*/
 	Payload *models.InternalRelationTuple
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the post check params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *PostCheckParams) WithDefaults() *PostCheckParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the post check params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *PostCheckParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the post check params
@@ -135,6 +121,7 @@ func (o *PostCheckParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		return err
 	}
 	var res []error
+
 	if o.Payload != nil {
 		if err := r.SetBodyParam(o.Payload); err != nil {
 			return err

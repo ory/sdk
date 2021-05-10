@@ -1,0 +1,599 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: hi@ory.sh
+    name: ORY
+    url: https://www.ory.sh
+  description: Ory Keto is a cloud native access control server providing best-practice
+    patterns (RBAC, ABAC, ACL, AWS IAM Policies, Kubernetes Roles, ...) via REST APIs.
+  license:
+    name: Apache 2.0
+    url: https://github.com/ory/keto/blob/master/LICENSE
+  title: ORY Keto
+  version: v0.6.0-alpha.5
+servers:
+- url: /
+paths:
+  /check:
+    get:
+      description: To learn how relation tuples and the check works, head over to
+        [the documentation](../concepts/relation-tuples.mdx).
+      operationId: getCheck
+      parameters:
+      - description: Namespace of the Relation Tuple
+        in: query
+        name: namespace
+        required: true
+        schema:
+          type: string
+      - description: Object of the Relation Tuple
+        in: query
+        name: object
+        required: true
+        schema:
+          type: string
+      - description: Relation of the Relation Tuple
+        in: query
+        name: relation
+        required: true
+        schema:
+          type: string
+      - description: |-
+          Subject of the Relation Tuple
+
+          The subject follows the subject string encoding format.
+        in: query
+        name: subject
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getCheckResponse'
+          description: getCheckResponse
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: The standard error format
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getCheckResponse'
+          description: getCheckResponse
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: The standard error format
+      summary: Check a relation tuple
+      tags:
+      - read
+      x-accepts: application/json
+    post:
+      description: To learn how relation tuples and the check works, head over to
+        [the documentation](../concepts/relation-tuples.mdx).
+      operationId: postCheck
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InternalRelationTuple'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getCheckResponse'
+          description: getCheckResponse
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: The standard error format
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getCheckResponse'
+          description: getCheckResponse
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: The standard error format
+      summary: Check a relation tuple
+      tags:
+      - read
+      x-codegen-request-body-name: Payload
+      x-contentType: application/json
+      x-accepts: application/json
+  /expand:
+    get:
+      description: Use this endpoint to expand a relation tuple.
+      operationId: getExpand
+      parameters:
+      - description: Namespace of the Relation Tuple
+        in: query
+        name: namespace
+        required: true
+        schema:
+          type: string
+      - description: Object of the Relation Tuple
+        in: query
+        name: object
+        required: true
+        schema:
+          type: string
+      - description: Relation of the Relation Tuple
+        in: query
+        name: relation
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: max-depth
+        schema:
+          format: int64
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/expandTree'
+          description: expandTree
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: The standard error format
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: The standard error format
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: The standard error format
+      summary: Expand a Relation Tuple
+      tags:
+      - read
+      x-accepts: application/json
+  /health/alive:
+    get:
+      description: |-
+        This endpoint returns a 200 status code when the HTTP server is up running.
+        This status does currently not include checks whether the database connection is working.
+
+        If the service supports TLS Edge Termination, this endpoint does not require the
+        `X-Forwarded-Proto` header to be set.
+
+        Be aware that if you are running multiple nodes of this service, the health status will never
+        refer to the cluster state, only to a single instance.
+      operationId: isInstanceAlive
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/healthStatus'
+          description: healthStatus
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: The standard error format
+      summary: Check alive status
+      tags:
+      - health
+      x-accepts: application/json
+  /health/ready:
+    get:
+      description: |-
+        This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g.
+        the database) are responsive as well.
+
+        If the service supports TLS Edge Termination, this endpoint does not require the
+        `X-Forwarded-Proto` header to be set.
+
+        Be aware that if you are running multiple nodes of this service, the health status will never
+        refer to the cluster state, only to a single instance.
+      operationId: isInstanceReady
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/healthStatus'
+          description: healthStatus
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/healthNotReadyStatus'
+          description: healthNotReadyStatus
+      summary: Check readiness status
+      tags:
+      - health
+      x-accepts: application/json
+  /relation-tuples:
+    delete:
+      description: Use this endpoint to delete a relation tuple.
+      operationId: deleteRelationTuple
+      parameters:
+      - description: Namespace of the Relation Tuple
+        in: query
+        name: namespace
+        required: true
+        schema:
+          type: string
+      - description: Object of the Relation Tuple
+        in: query
+        name: object
+        required: true
+        schema:
+          type: string
+      - description: Relation of the Relation Tuple
+        in: query
+        name: relation
+        required: true
+        schema:
+          type: string
+      - description: |-
+          Subject of the Relation Tuple
+
+          The subject follows the subject string encoding format.
+        in: query
+        name: subject
+        schema:
+          type: string
+      responses:
+        "204":
+          content: {}
+          description: Empty responses are sent when, for example, resources are deleted.
+            The HTTP status code for empty responses is typically 201.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: The standard error format
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: The standard error format
+      summary: Delete a Relation Tuple
+      tags:
+      - write
+      x-accepts: application/json
+    get:
+      description: Get all relation tuples that match the query. Only the namespace
+        field is required.
+      operationId: getRelationTuples
+      parameters:
+      - in: query
+        name: namespace
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: object
+        schema:
+          type: string
+      - in: query
+        name: relation
+        schema:
+          type: string
+      - in: query
+        name: subject
+        schema:
+          type: string
+      - in: query
+        name: page_token
+        schema:
+          type: string
+      - in: query
+        name: page_size
+        schema:
+          format: int64
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getRelationTuplesResponse'
+          description: getRelationTuplesResponse
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: The standard error format
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: The standard error format
+      summary: Query relation tuples
+      tags:
+      - read
+      x-accepts: application/json
+    patch:
+      description: Use this endpoint to patch one or more relation tuples.
+      operationId: patchRelationTuples
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/PatchDelta'
+              type: array
+        required: false
+      responses:
+        "204":
+          content: {}
+          description: Empty responses are sent when, for example, resources are deleted.
+            The HTTP status code for empty responses is typically 201.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: The standard error format
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: The standard error format
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: The standard error format
+      summary: Patch Multiple Relation Tuples
+      tags:
+      - write
+      x-codegen-request-body-name: Payload
+      x-contentType: application/json
+      x-accepts: application/json
+    put:
+      description: Use this endpoint to create a relation tuple.
+      operationId: createRelationTuple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InternalRelationTuple'
+        required: false
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalRelationTuple'
+          description: InternalRelationTuple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: The standard error format
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: The standard error format
+      summary: Create a Relation Tuple
+      tags:
+      - write
+      x-codegen-request-body-name: Payload
+      x-contentType: application/json
+      x-accepts: application/json
+  /version:
+    get:
+      description: |-
+        This endpoint returns the service version typically notated using semantic versioning.
+
+        If the service supports TLS Edge Termination, this endpoint does not require the
+        `X-Forwarded-Proto` header to be set.
+
+        Be aware that if you are running multiple nodes of this service, the health status will never
+        refer to the cluster state, only to a single instance.
+      operationId: getVersion
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/version'
+          description: version
+      summary: Get service version
+      tags:
+      - version
+      x-accepts: application/json
+components:
+  schemas:
+    InternalRelationTuple:
+      example:
+        subject: subject
+        namespace: namespace
+        object: object
+        relation: relation
+      properties:
+        namespace:
+          description: |-
+            Namespace of the Relation Tuple
+
+            in: query
+          type: string
+        object:
+          description: |-
+            Object of the Relation Tuple
+
+            in: query
+          type: string
+        relation:
+          description: |-
+            Relation of the Relation Tuple
+
+            in: query
+          type: string
+        subject:
+          type: string
+      required:
+      - namespace
+      - object
+      - relation
+      - subject
+      type: object
+    PatchDelta:
+      example:
+        relation_tuple:
+          subject: subject
+          namespace: namespace
+          object: object
+          relation: relation
+        action: action
+      properties:
+        action:
+          type: string
+        relation_tuple:
+          $ref: '#/components/schemas/InternalRelationTuple'
+      type: object
+    expandTree:
+      example:
+        children:
+        - null
+        - null
+        subject: subject
+        type: union
+      properties:
+        children:
+          items:
+            $ref: '#/components/schemas/expandTree'
+          type: array
+        subject:
+          type: string
+        type:
+          enum:
+          - union
+          - exclusion
+          - intersection
+          - leaf
+          type: string
+      required:
+      - subject
+      - type
+      type: object
+    getCheckResponse:
+      description: The content of the allowed field is mirrored in the HTTP status
+        code.
+      example:
+        allowed: true
+      properties:
+        allowed:
+          description: whether the relation tuple is allowed
+          type: boolean
+      required:
+      - allowed
+      title: Represents the response for a check request.
+      type: object
+    getRelationTuplesResponse:
+      example:
+        next_page_token: next_page_token
+        relation_tuples:
+        - subject: subject
+          namespace: namespace
+          object: object
+          relation: relation
+        - subject: subject
+          namespace: namespace
+          object: object
+          relation: relation
+      properties:
+        next_page_token:
+          description: |-
+            The opaque token to provide in a subsequent request
+            to get the next page. It is the empty string iff this is
+            the last page.
+          type: string
+        relation_tuples:
+          items:
+            $ref: '#/components/schemas/InternalRelationTuple'
+          type: array
+      type: object
+    healthNotReadyStatus:
+      properties:
+        errors:
+          additionalProperties:
+            type: string
+          description: Errors contains a list of errors that caused the not ready
+            status.
+          type: object
+      type: object
+    healthStatus:
+      example:
+        status: status
+      properties:
+        status:
+          description: Status always contains "ok".
+          type: string
+      type: object
+    patchAction:
+      type: string
+    subject:
+      type: string
+    version:
+      example:
+        version: version
+      properties:
+        version:
+          description: Version is the service's version.
+          type: string
+      type: object
+    UUID:
+      format: uuid4
+      type: string
+    inline_response_400:
+      properties:
+        code:
+          format: int64
+          type: integer
+        details:
+          items:
+            properties: {}
+            type: object
+          type: array
+        message:
+          type: string
+        reason:
+          type: string
+        request:
+          type: string
+        status:
+          type: string
+      type: object
+x-original-swagger-version: "2.0"
+

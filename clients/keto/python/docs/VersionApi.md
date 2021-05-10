@@ -43,6 +43,7 @@ with ory_keto_client.ApiClient() as api_client:
         print("Exception when calling VersionApi->get_version: %s\n" % e)
 ```
 
+
 ### Parameters
 This endpoint does not need any parameter.
 
@@ -58,6 +59,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

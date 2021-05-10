@@ -6,7 +6,6 @@ package read
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
 	"fmt"
 	"io"
 
@@ -49,8 +48,9 @@ func (o *GetCheckReader) ReadResponse(response runtime.ClientResponse, consumer 
 			return nil, err
 		}
 		return nil, result
+
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -59,7 +59,7 @@ func NewGetCheckOK() *GetCheckOK {
 	return &GetCheckOK{}
 }
 
-/* GetCheckOK describes a response with status code 200, with default header values.
+/*GetCheckOK handles this case with default header values.
 
 getCheckResponse
 */
@@ -70,6 +70,7 @@ type GetCheckOK struct {
 func (o *GetCheckOK) Error() string {
 	return fmt.Sprintf("[GET /check][%d] getCheckOK  %+v", 200, o.Payload)
 }
+
 func (o *GetCheckOK) GetPayload() *models.GetCheckResponse {
 	return o.Payload
 }
@@ -91,7 +92,7 @@ func NewGetCheckBadRequest() *GetCheckBadRequest {
 	return &GetCheckBadRequest{}
 }
 
-/* GetCheckBadRequest describes a response with status code 400, with default header values.
+/*GetCheckBadRequest handles this case with default header values.
 
 The standard error format
 */
@@ -102,6 +103,7 @@ type GetCheckBadRequest struct {
 func (o *GetCheckBadRequest) Error() string {
 	return fmt.Sprintf("[GET /check][%d] getCheckBadRequest  %+v", 400, o.Payload)
 }
+
 func (o *GetCheckBadRequest) GetPayload() *GetCheckBadRequestBody {
 	return o.Payload
 }
@@ -123,7 +125,7 @@ func NewGetCheckForbidden() *GetCheckForbidden {
 	return &GetCheckForbidden{}
 }
 
-/* GetCheckForbidden describes a response with status code 403, with default header values.
+/*GetCheckForbidden handles this case with default header values.
 
 getCheckResponse
 */
@@ -134,6 +136,7 @@ type GetCheckForbidden struct {
 func (o *GetCheckForbidden) Error() string {
 	return fmt.Sprintf("[GET /check][%d] getCheckForbidden  %+v", 403, o.Payload)
 }
+
 func (o *GetCheckForbidden) GetPayload() *models.GetCheckResponse {
 	return o.Payload
 }
@@ -155,7 +158,7 @@ func NewGetCheckInternalServerError() *GetCheckInternalServerError {
 	return &GetCheckInternalServerError{}
 }
 
-/* GetCheckInternalServerError describes a response with status code 500, with default header values.
+/*GetCheckInternalServerError handles this case with default header values.
 
 The standard error format
 */
@@ -166,6 +169,7 @@ type GetCheckInternalServerError struct {
 func (o *GetCheckInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /check][%d] getCheckInternalServerError  %+v", 500, o.Payload)
 }
+
 func (o *GetCheckInternalServerError) GetPayload() *GetCheckInternalServerErrorBody {
 	return o.Payload
 }
@@ -208,11 +212,6 @@ type GetCheckBadRequestBody struct {
 
 // Validate validates this get check bad request body
 func (o *GetCheckBadRequestBody) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this get check bad request body based on context it is used
-func (o *GetCheckBadRequestBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
@@ -260,11 +259,6 @@ type GetCheckInternalServerErrorBody struct {
 
 // Validate validates this get check internal server error body
 func (o *GetCheckInternalServerErrorBody) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this get check internal server error body based on context it is used
-func (o *GetCheckInternalServerErrorBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

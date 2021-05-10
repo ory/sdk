@@ -17,90 +17,71 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewGetExpandParams creates a new GetExpandParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewGetExpandParams creates a new GetExpandParams object
+// with the default values initialized.
 func NewGetExpandParams() *GetExpandParams {
+	var ()
 	return &GetExpandParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetExpandParamsWithTimeout creates a new GetExpandParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewGetExpandParamsWithTimeout(timeout time.Duration) *GetExpandParams {
+	var ()
 	return &GetExpandParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewGetExpandParamsWithContext creates a new GetExpandParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewGetExpandParamsWithContext(ctx context.Context) *GetExpandParams {
+	var ()
 	return &GetExpandParams{
+
 		Context: ctx,
 	}
 }
 
 // NewGetExpandParamsWithHTTPClient creates a new GetExpandParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetExpandParamsWithHTTPClient(client *http.Client) *GetExpandParams {
+	var ()
 	return &GetExpandParams{
 		HTTPClient: client,
 	}
 }
 
-/* GetExpandParams contains all the parameters to send to the API endpoint
-   for the get expand operation.
-
-   Typically these are written to a http.Request.
+/*GetExpandParams contains all the parameters to send to the API endpoint
+for the get expand operation typically these are written to a http.Request
 */
 type GetExpandParams struct {
 
-	// MaxDepth.
-	//
-	// Format: int64
+	/*MaxDepth*/
 	MaxDepth *int64
+	/*Namespace
+	  Namespace of the Relation Tuple
 
-	/* Namespace.
-
-	   Namespace of the Relation Tuple
 	*/
 	Namespace string
+	/*Object
+	  Object of the Relation Tuple
 
-	/* Object.
-
-	   Object of the Relation Tuple
 	*/
 	Object string
+	/*Relation
+	  Relation of the Relation Tuple
 
-	/* Relation.
-
-	   Relation of the Relation Tuple
 	*/
 	Relation string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the get expand params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *GetExpandParams) WithDefaults() *GetExpandParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the get expand params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *GetExpandParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get expand params
@@ -192,24 +173,22 @@ func (o *GetExpandParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 
 		// query param max-depth
 		var qrMaxDepth int64
-
 		if o.MaxDepth != nil {
 			qrMaxDepth = *o.MaxDepth
 		}
 		qMaxDepth := swag.FormatInt64(qrMaxDepth)
 		if qMaxDepth != "" {
-
 			if err := r.SetQueryParam("max-depth", qMaxDepth); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	// query param namespace
 	qrNamespace := o.Namespace
 	qNamespace := qrNamespace
 	if qNamespace != "" {
-
 		if err := r.SetQueryParam("namespace", qNamespace); err != nil {
 			return err
 		}
@@ -219,7 +198,6 @@ func (o *GetExpandParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 	qrObject := o.Object
 	qObject := qrObject
 	if qObject != "" {
-
 		if err := r.SetQueryParam("object", qObject); err != nil {
 			return err
 		}
@@ -229,7 +207,6 @@ func (o *GetExpandParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 	qrRelation := o.Relation
 	qRelation := qrRelation
 	if qRelation != "" {
-
 		if err := r.SetQueryParam("relation", qRelation); err != nil {
 			return err
 		}

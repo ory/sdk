@@ -41,10 +41,12 @@ part 'model/internal_relation_tuple.dart';
 part 'model/patch_delta.dart';
 part 'model/version.dart';
 
+
 const _delimiters = {'csv': ',', 'ssv': ' ', 'tsv': '\t', 'pipes': '|'};
 const _dateEpochMarker = 'epoch';
 final _dateFormatter = DateFormat('yyyy-MM-dd');
 final _regList = RegExp(r'^List<(.*)>$');
+final _regSet = RegExp(r'^Set<(.*)>$');
 final _regMap = RegExp(r'^Map<String,(.*)>$');
 
 ApiClient defaultApiClient = ApiClient();

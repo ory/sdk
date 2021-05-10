@@ -21,7 +21,7 @@ class VersionApi {
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> getVersionWithHttpInfo() async {
-    final path = '/version'.replaceAll('{format}', 'json');
+    final path = r'/version';
 
     Object postBody;
 
@@ -63,14 +63,14 @@ class VersionApi {
   Future<Version> getVersion() async {
     final response = await getVersionWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'Version') as Version;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Version',) as Version;
+        }
+    return Future<Version>.value(null);
   }
 }

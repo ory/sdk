@@ -43,12 +43,8 @@ class ExpandTree {
     if (children != null) {
       json[r'children'] = children;
     }
-    if (subject != null) {
       json[r'subject'] = subject;
-    }
-    if (type != null) {
       json[r'type'] = type;
-    }
     return json;
   }
 
@@ -94,13 +90,6 @@ class ExpandTreeTypeEnum {
 
   /// The underlying value of this enum member.
   final String value;
-
-  @override
-  bool operator ==(Object other) => identical(this, other) ||
-      other is ExpandTreeTypeEnum && other.value == value;
-
-  @override
-  int get hashCode => toString().hashCode;
 
   @override
   String toString() => value;

@@ -6,8 +6,6 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
-
 	"github.com/go-openapi/strfmt"
 )
 
@@ -18,10 +16,5 @@ type Subject string
 
 // Validate validates this subject
 func (m Subject) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this subject based on context it is used
-func (m Subject) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }

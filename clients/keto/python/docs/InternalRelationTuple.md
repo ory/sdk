@@ -1,5 +1,6 @@
 # InternalRelationTuple
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

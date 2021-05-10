@@ -9,7 +9,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getVersion**](VersionApi.md#getVersion) | **GET** /version | Get service version
+[**getVersion**](VersionApi.md#getversion) | **GET** /version | Get service version
 
 
 # **getVersion**

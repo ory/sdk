@@ -45,6 +45,7 @@ with ory_keto_client.ApiClient() as api_client:
         print("Exception when calling HealthApi->is_instance_alive: %s\n" % e)
 ```
 
+
 ### Parameters
 This endpoint does not need any parameter.
 
@@ -60,6 +61,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -106,6 +108,7 @@ with ory_keto_client.ApiClient() as api_client:
         print("Exception when calling HealthApi->is_instance_ready: %s\n" % e)
 ```
 
+
 ### Parameters
 This endpoint does not need any parameter.
 
@@ -121,6 +124,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

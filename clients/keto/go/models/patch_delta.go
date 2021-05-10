@@ -6,8 +6,6 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -44,6 +42,7 @@ func (m *PatchDelta) Validate(formats strfmt.Registry) error {
 }
 
 func (m *PatchDelta) validateAction(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Action) { // not required
 		return nil
 	}
@@ -59,56 +58,13 @@ func (m *PatchDelta) validateAction(formats strfmt.Registry) error {
 }
 
 func (m *PatchDelta) validateRelationTuple(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.RelationTuple) { // not required
 		return nil
 	}
 
 	if m.RelationTuple != nil {
 		if err := m.RelationTuple.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("relation_tuple")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// ContextValidate validate this patch delta based on the context it is used
-func (m *PatchDelta) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateAction(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateRelationTuple(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *PatchDelta) contextValidateAction(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := m.Action.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("action")
-		}
-		return err
-	}
-
-	return nil
-}
-
-func (m *PatchDelta) contextValidateRelationTuple(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.RelationTuple != nil {
-		if err := m.RelationTuple.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("relation_tuple")
 			}

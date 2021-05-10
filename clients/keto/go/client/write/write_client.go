@@ -25,16 +25,13 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-// ClientOption is the option for Client methods
-type ClientOption func(*runtime.ClientOperation)
-
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateRelationTuple(params *CreateRelationTupleParams, opts ...ClientOption) (*CreateRelationTupleCreated, error)
+	CreateRelationTuple(params *CreateRelationTupleParams) (*CreateRelationTupleCreated, error)
 
-	DeleteRelationTuple(params *DeleteRelationTupleParams, opts ...ClientOption) (*DeleteRelationTupleNoContent, error)
+	DeleteRelationTuple(params *DeleteRelationTupleParams) (*DeleteRelationTupleNoContent, error)
 
-	PatchRelationTuples(params *PatchRelationTuplesParams, opts ...ClientOption) (*PatchRelationTuplesNoContent, error)
+	PatchRelationTuples(params *PatchRelationTuplesParams) (*PatchRelationTuplesNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -44,12 +41,13 @@ type ClientService interface {
 
   Use this endpoint to create a relation tuple.
 */
-func (a *Client) CreateRelationTuple(params *CreateRelationTupleParams, opts ...ClientOption) (*CreateRelationTupleCreated, error) {
+func (a *Client) CreateRelationTuple(params *CreateRelationTupleParams) (*CreateRelationTupleCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateRelationTupleParams()
 	}
-	op := &runtime.ClientOperation{
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createRelationTuple",
 		Method:             "PUT",
 		PathPattern:        "/relation-tuples",
@@ -60,12 +58,7 @@ func (a *Client) CreateRelationTuple(params *CreateRelationTupleParams, opts ...
 		Reader:             &CreateRelationTupleReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -84,12 +77,13 @@ func (a *Client) CreateRelationTuple(params *CreateRelationTupleParams, opts ...
 
   Use this endpoint to delete a relation tuple.
 */
-func (a *Client) DeleteRelationTuple(params *DeleteRelationTupleParams, opts ...ClientOption) (*DeleteRelationTupleNoContent, error) {
+func (a *Client) DeleteRelationTuple(params *DeleteRelationTupleParams) (*DeleteRelationTupleNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteRelationTupleParams()
 	}
-	op := &runtime.ClientOperation{
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteRelationTuple",
 		Method:             "DELETE",
 		PathPattern:        "/relation-tuples",
@@ -100,12 +94,7 @@ func (a *Client) DeleteRelationTuple(params *DeleteRelationTupleParams, opts ...
 		Reader:             &DeleteRelationTupleReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -124,12 +113,13 @@ func (a *Client) DeleteRelationTuple(params *DeleteRelationTupleParams, opts ...
 
   Use this endpoint to patch one or more relation tuples.
 */
-func (a *Client) PatchRelationTuples(params *PatchRelationTuplesParams, opts ...ClientOption) (*PatchRelationTuplesNoContent, error) {
+func (a *Client) PatchRelationTuples(params *PatchRelationTuplesParams) (*PatchRelationTuplesNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPatchRelationTuplesParams()
 	}
-	op := &runtime.ClientOperation{
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchRelationTuples",
 		Method:             "PATCH",
 		PathPattern:        "/relation-tuples",
@@ -140,12 +130,7 @@ func (a *Client) PatchRelationTuples(params *PatchRelationTuplesParams, opts ...
 		Reader:             &PatchRelationTuplesReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
+	})
 	if err != nil {
 		return nil, err
 	}

@@ -60,6 +60,7 @@ with ory_keto_client.ApiClient() as api_client:
         print("Exception when calling ReadApi->get_check: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -81,6 +82,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -142,6 +144,7 @@ with ory_keto_client.ApiClient() as api_client:
         print("Exception when calling ReadApi->get_expand: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -163,6 +166,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -226,6 +230,7 @@ with ory_keto_client.ApiClient() as api_client:
         print("Exception when calling ReadApi->get_relation_tuples: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -249,6 +254,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -304,6 +310,7 @@ with ory_keto_client.ApiClient() as api_client:
         print("Exception when calling ReadApi->post_check: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -322,6 +329,7 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

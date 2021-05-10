@@ -35,11 +35,3 @@ lib/Model/PatchDelta.php
 lib/Model/Version.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
-test/Api/ReadApiTest.php
-test/Api/WriteApiTest.php
-test/Model/ExpandTreeTest.php
-test/Model/GetCheckResponseTest.php
-test/Model/GetRelationTuplesResponseTest.php
-test/Model/InlineResponse400Test.php
-test/Model/InternalRelationTupleTest.php
-test/Model/PatchDeltaTest.php

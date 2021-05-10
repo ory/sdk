@@ -25,18 +25,15 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-// ClientOption is the option for Client methods
-type ClientOption func(*runtime.ClientOperation)
-
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetCheck(params *GetCheckParams, opts ...ClientOption) (*GetCheckOK, error)
+	GetCheck(params *GetCheckParams) (*GetCheckOK, error)
 
-	GetExpand(params *GetExpandParams, opts ...ClientOption) (*GetExpandOK, error)
+	GetExpand(params *GetExpandParams) (*GetExpandOK, error)
 
-	GetRelationTuples(params *GetRelationTuplesParams, opts ...ClientOption) (*GetRelationTuplesOK, error)
+	GetRelationTuples(params *GetRelationTuplesParams) (*GetRelationTuplesOK, error)
 
-	PostCheck(params *PostCheckParams, opts ...ClientOption) (*PostCheckOK, error)
+	PostCheck(params *PostCheckParams) (*PostCheckOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -46,12 +43,13 @@ type ClientService interface {
 
   To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 */
-func (a *Client) GetCheck(params *GetCheckParams, opts ...ClientOption) (*GetCheckOK, error) {
+func (a *Client) GetCheck(params *GetCheckParams) (*GetCheckOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetCheckParams()
 	}
-	op := &runtime.ClientOperation{
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCheck",
 		Method:             "GET",
 		PathPattern:        "/check",
@@ -62,12 +60,7 @@ func (a *Client) GetCheck(params *GetCheckParams, opts ...ClientOption) (*GetChe
 		Reader:             &GetCheckReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -86,12 +79,13 @@ func (a *Client) GetCheck(params *GetCheckParams, opts ...ClientOption) (*GetChe
 
   Use this endpoint to expand a relation tuple.
 */
-func (a *Client) GetExpand(params *GetExpandParams, opts ...ClientOption) (*GetExpandOK, error) {
+func (a *Client) GetExpand(params *GetExpandParams) (*GetExpandOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetExpandParams()
 	}
-	op := &runtime.ClientOperation{
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getExpand",
 		Method:             "GET",
 		PathPattern:        "/expand",
@@ -102,12 +96,7 @@ func (a *Client) GetExpand(params *GetExpandParams, opts ...ClientOption) (*GetE
 		Reader:             &GetExpandReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -126,12 +115,13 @@ func (a *Client) GetExpand(params *GetExpandParams, opts ...ClientOption) (*GetE
 
   Get all relation tuples that match the query. Only the namespace field is required.
 */
-func (a *Client) GetRelationTuples(params *GetRelationTuplesParams, opts ...ClientOption) (*GetRelationTuplesOK, error) {
+func (a *Client) GetRelationTuples(params *GetRelationTuplesParams) (*GetRelationTuplesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetRelationTuplesParams()
 	}
-	op := &runtime.ClientOperation{
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getRelationTuples",
 		Method:             "GET",
 		PathPattern:        "/relation-tuples",
@@ -142,12 +132,7 @@ func (a *Client) GetRelationTuples(params *GetRelationTuplesParams, opts ...Clie
 		Reader:             &GetRelationTuplesReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -166,12 +151,13 @@ func (a *Client) GetRelationTuples(params *GetRelationTuplesParams, opts ...Clie
 
   To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 */
-func (a *Client) PostCheck(params *PostCheckParams, opts ...ClientOption) (*PostCheckOK, error) {
+func (a *Client) PostCheck(params *PostCheckParams) (*PostCheckOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostCheckParams()
 	}
-	op := &runtime.ClientOperation{
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "postCheck",
 		Method:             "POST",
 		PathPattern:        "/check",
@@ -182,12 +168,7 @@ func (a *Client) PostCheck(params *PostCheckParams, opts ...ClientOption) (*Post
 		Reader:             &PostCheckReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
+	})
 	if err != nil {
 		return nil, err
 	}

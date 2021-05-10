@@ -31,9 +31,7 @@ class GetCheckResponse {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (allowed != null) {
       json[r'allowed'] = allowed;
-    }
     return json;
   }
 

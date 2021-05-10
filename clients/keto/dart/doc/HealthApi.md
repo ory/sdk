@@ -9,8 +9,8 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**isInstanceAlive**](HealthApi.md#isInstanceAlive) | **GET** /health/alive | Check alive status
-[**isInstanceReady**](HealthApi.md#isInstanceReady) | **GET** /health/ready | Check readiness status
+[**isInstanceAlive**](HealthApi.md#isinstancealive) | **GET** /health/alive | Check alive status
+[**isInstanceReady**](HealthApi.md#isinstanceready) | **GET** /health/ready | Check readiness status
 
 
 # **isInstanceAlive**

@@ -46,7 +46,7 @@ class ReadApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: relation');
     }
 
-    final path = '/check'.replaceAll('{format}', 'json');
+    final path = r'/check';
 
     Object postBody;
 
@@ -109,15 +109,15 @@ class ReadApi {
   Future<GetCheckResponse> getCheck(String namespace, String object, String relation, { String subject }) async {
     final response = await getCheckWithHttpInfo(namespace, object, relation,  subject: subject );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'GetCheckResponse') as GetCheckResponse;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetCheckResponse',) as GetCheckResponse;
+        }
+    return Future<GetCheckResponse>.value(null);
   }
 
   /// Expand a Relation Tuple
@@ -150,7 +150,7 @@ class ReadApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: relation');
     }
 
-    final path = '/expand'.replaceAll('{format}', 'json');
+    final path = r'/expand';
 
     Object postBody;
 
@@ -212,15 +212,15 @@ class ReadApi {
   Future<ExpandTree> getExpand(String namespace, String object, String relation, { int maxDepth }) async {
     final response = await getExpandWithHttpInfo(namespace, object, relation,  maxDepth: maxDepth );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'ExpandTree') as ExpandTree;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ExpandTree',) as ExpandTree;
+        }
+    return Future<ExpandTree>.value(null);
   }
 
   /// Query relation tuples
@@ -248,7 +248,7 @@ class ReadApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: namespace');
     }
 
-    final path = '/relation-tuples'.replaceAll('{format}', 'json');
+    final path = r'/relation-tuples';
 
     Object postBody;
 
@@ -321,15 +321,15 @@ class ReadApi {
   Future<GetRelationTuplesResponse> getRelationTuples(String namespace, { String object, String relation, String subject, String pageToken, int pageSize }) async {
     final response = await getRelationTuplesWithHttpInfo(namespace,  object: object, relation: relation, subject: subject, pageToken: pageToken, pageSize: pageSize );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'GetRelationTuplesResponse') as GetRelationTuplesResponse;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetRelationTuplesResponse',) as GetRelationTuplesResponse;
+        }
+    return Future<GetRelationTuplesResponse>.value(null);
   }
 
   /// Check a relation tuple
@@ -344,7 +344,7 @@ class ReadApi {
   Future<Response> postCheckWithHttpInfo({ InternalRelationTuple payload }) async {
     // Verify required params are set.
 
-    final path = '/check'.replaceAll('{format}', 'json');
+    final path = r'/check';
 
     Object postBody = payload;
 
@@ -390,14 +390,14 @@ class ReadApi {
   Future<GetCheckResponse> postCheck({ InternalRelationTuple payload }) async {
     final response = await postCheckWithHttpInfo( payload: payload );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'GetCheckResponse') as GetCheckResponse;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetCheckResponse',) as GetCheckResponse;
+        }
+    return Future<GetCheckResponse>.value(null);
   }
 }

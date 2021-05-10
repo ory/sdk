@@ -27,7 +27,7 @@ class WriteApi {
   Future<Response> createRelationTupleWithHttpInfo({ InternalRelationTuple payload }) async {
     // Verify required params are set.
 
-    final path = '/relation-tuples'.replaceAll('{format}', 'json');
+    final path = r'/relation-tuples';
 
     Object postBody = payload;
 
@@ -73,15 +73,15 @@ class WriteApi {
   Future<InternalRelationTuple> createRelationTuple({ InternalRelationTuple payload }) async {
     final response = await createRelationTupleWithHttpInfo( payload: payload );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'InternalRelationTuple') as InternalRelationTuple;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'InternalRelationTuple',) as InternalRelationTuple;
+        }
+    return Future<InternalRelationTuple>.value(null);
   }
 
   /// Delete a Relation Tuple
@@ -115,7 +115,7 @@ class WriteApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: relation');
     }
 
-    final path = '/relation-tuples'.replaceAll('{format}', 'json');
+    final path = r'/relation-tuples';
 
     Object postBody;
 
@@ -178,7 +178,7 @@ class WriteApi {
   Future<void> deleteRelationTuple(String namespace, String object, String relation, { String subject }) async {
     final response = await deleteRelationTupleWithHttpInfo(namespace, object, relation,  subject: subject );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
@@ -194,7 +194,7 @@ class WriteApi {
   Future<Response> patchRelationTuplesWithHttpInfo({ List<PatchDelta> payload }) async {
     // Verify required params are set.
 
-    final path = '/relation-tuples'.replaceAll('{format}', 'json');
+    final path = r'/relation-tuples';
 
     Object postBody = payload;
 
@@ -240,7 +240,7 @@ class WriteApi {
   Future<void> patchRelationTuples({ List<PatchDelta> payload }) async {
     final response = await patchRelationTuplesWithHttpInfo( payload: payload );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 }

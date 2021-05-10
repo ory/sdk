@@ -48,18 +48,10 @@ class InternalRelationTuple {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (namespace != null) {
       json[r'namespace'] = namespace;
-    }
-    if (object != null) {
       json[r'object'] = object;
-    }
-    if (relation != null) {
       json[r'relation'] = relation;
-    }
-    if (subject != null) {
       json[r'subject'] = subject;
-    }
     return json;
   }
 

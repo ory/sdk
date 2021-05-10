@@ -6,7 +6,6 @@ package read
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
 	"fmt"
 	"io"
 
@@ -49,8 +48,9 @@ func (o *PostCheckReader) ReadResponse(response runtime.ClientResponse, consumer
 			return nil, err
 		}
 		return nil, result
+
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -59,7 +59,7 @@ func NewPostCheckOK() *PostCheckOK {
 	return &PostCheckOK{}
 }
 
-/* PostCheckOK describes a response with status code 200, with default header values.
+/*PostCheckOK handles this case with default header values.
 
 getCheckResponse
 */
@@ -70,6 +70,7 @@ type PostCheckOK struct {
 func (o *PostCheckOK) Error() string {
 	return fmt.Sprintf("[POST /check][%d] postCheckOK  %+v", 200, o.Payload)
 }
+
 func (o *PostCheckOK) GetPayload() *models.GetCheckResponse {
 	return o.Payload
 }
@@ -91,7 +92,7 @@ func NewPostCheckBadRequest() *PostCheckBadRequest {
 	return &PostCheckBadRequest{}
 }
 
-/* PostCheckBadRequest describes a response with status code 400, with default header values.
+/*PostCheckBadRequest handles this case with default header values.
 
 The standard error format
 */
@@ -102,6 +103,7 @@ type PostCheckBadRequest struct {
 func (o *PostCheckBadRequest) Error() string {
 	return fmt.Sprintf("[POST /check][%d] postCheckBadRequest  %+v", 400, o.Payload)
 }
+
 func (o *PostCheckBadRequest) GetPayload() *PostCheckBadRequestBody {
 	return o.Payload
 }
@@ -123,7 +125,7 @@ func NewPostCheckForbidden() *PostCheckForbidden {
 	return &PostCheckForbidden{}
 }
 
-/* PostCheckForbidden describes a response with status code 403, with default header values.
+/*PostCheckForbidden handles this case with default header values.
 
 getCheckResponse
 */
@@ -134,6 +136,7 @@ type PostCheckForbidden struct {
 func (o *PostCheckForbidden) Error() string {
 	return fmt.Sprintf("[POST /check][%d] postCheckForbidden  %+v", 403, o.Payload)
 }
+
 func (o *PostCheckForbidden) GetPayload() *models.GetCheckResponse {
 	return o.Payload
 }
@@ -155,7 +158,7 @@ func NewPostCheckInternalServerError() *PostCheckInternalServerError {
 	return &PostCheckInternalServerError{}
 }
 
-/* PostCheckInternalServerError describes a response with status code 500, with default header values.
+/*PostCheckInternalServerError handles this case with default header values.
 
 The standard error format
 */
@@ -166,6 +169,7 @@ type PostCheckInternalServerError struct {
 func (o *PostCheckInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /check][%d] postCheckInternalServerError  %+v", 500, o.Payload)
 }
+
 func (o *PostCheckInternalServerError) GetPayload() *PostCheckInternalServerErrorBody {
 	return o.Payload
 }
@@ -208,11 +212,6 @@ type PostCheckBadRequestBody struct {
 
 // Validate validates this post check bad request body
 func (o *PostCheckBadRequestBody) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this post check bad request body based on context it is used
-func (o *PostCheckBadRequestBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
@@ -260,11 +259,6 @@ type PostCheckInternalServerErrorBody struct {
 
 // Validate validates this post check internal server error body
 func (o *PostCheckInternalServerErrorBody) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this post check internal server error body based on context it is used
-func (o *PostCheckInternalServerErrorBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

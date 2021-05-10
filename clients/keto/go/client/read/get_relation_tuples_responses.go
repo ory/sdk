@@ -6,7 +6,6 @@ package read
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
 	"fmt"
 	"io"
 
@@ -43,8 +42,9 @@ func (o *GetRelationTuplesReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return nil, result
+
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -53,7 +53,7 @@ func NewGetRelationTuplesOK() *GetRelationTuplesOK {
 	return &GetRelationTuplesOK{}
 }
 
-/* GetRelationTuplesOK describes a response with status code 200, with default header values.
+/*GetRelationTuplesOK handles this case with default header values.
 
 getRelationTuplesResponse
 */
@@ -64,6 +64,7 @@ type GetRelationTuplesOK struct {
 func (o *GetRelationTuplesOK) Error() string {
 	return fmt.Sprintf("[GET /relation-tuples][%d] getRelationTuplesOK  %+v", 200, o.Payload)
 }
+
 func (o *GetRelationTuplesOK) GetPayload() *models.GetRelationTuplesResponse {
 	return o.Payload
 }
@@ -85,7 +86,7 @@ func NewGetRelationTuplesNotFound() *GetRelationTuplesNotFound {
 	return &GetRelationTuplesNotFound{}
 }
 
-/* GetRelationTuplesNotFound describes a response with status code 404, with default header values.
+/*GetRelationTuplesNotFound handles this case with default header values.
 
 The standard error format
 */
@@ -96,6 +97,7 @@ type GetRelationTuplesNotFound struct {
 func (o *GetRelationTuplesNotFound) Error() string {
 	return fmt.Sprintf("[GET /relation-tuples][%d] getRelationTuplesNotFound  %+v", 404, o.Payload)
 }
+
 func (o *GetRelationTuplesNotFound) GetPayload() *GetRelationTuplesNotFoundBody {
 	return o.Payload
 }
@@ -117,7 +119,7 @@ func NewGetRelationTuplesInternalServerError() *GetRelationTuplesInternalServerE
 	return &GetRelationTuplesInternalServerError{}
 }
 
-/* GetRelationTuplesInternalServerError describes a response with status code 500, with default header values.
+/*GetRelationTuplesInternalServerError handles this case with default header values.
 
 The standard error format
 */
@@ -128,6 +130,7 @@ type GetRelationTuplesInternalServerError struct {
 func (o *GetRelationTuplesInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /relation-tuples][%d] getRelationTuplesInternalServerError  %+v", 500, o.Payload)
 }
+
 func (o *GetRelationTuplesInternalServerError) GetPayload() *GetRelationTuplesInternalServerErrorBody {
 	return o.Payload
 }
@@ -170,11 +173,6 @@ type GetRelationTuplesInternalServerErrorBody struct {
 
 // Validate validates this get relation tuples internal server error body
 func (o *GetRelationTuplesInternalServerErrorBody) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this get relation tuples internal server error body based on context it is used
-func (o *GetRelationTuplesInternalServerErrorBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
@@ -222,11 +220,6 @@ type GetRelationTuplesNotFoundBody struct {
 
 // Validate validates this get relation tuples not found body
 func (o *GetRelationTuplesNotFoundBody) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this get relation tuples not found body based on context it is used
-func (o *GetRelationTuplesNotFoundBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

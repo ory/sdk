@@ -6,7 +6,6 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
 	"encoding/json"
 	"strconv"
 
@@ -26,7 +25,7 @@ type ExpandTree struct {
 
 	// subject
 	// Required: true
-	Subject *Subject `json:"subject"`
+	Subject Subject `json:"subject"`
 
 	// type
 	// Required: true
@@ -57,6 +56,7 @@ func (m *ExpandTree) Validate(formats strfmt.Registry) error {
 }
 
 func (m *ExpandTree) validateChildren(formats strfmt.Registry) error {
+
 	if swag.IsZero(m.Children) { // not required
 		return nil
 	}
@@ -82,21 +82,11 @@ func (m *ExpandTree) validateChildren(formats strfmt.Registry) error {
 
 func (m *ExpandTree) validateSubject(formats strfmt.Registry) error {
 
-	if err := validate.Required("subject", "body", m.Subject); err != nil {
-		return err
-	}
-
-	if err := validate.Required("subject", "body", m.Subject); err != nil {
-		return err
-	}
-
-	if m.Subject != nil {
-		if err := m.Subject.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("subject")
-			}
-			return err
+	if err := m.Subject.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("subject")
 		}
+		return err
 	}
 
 	return nil
@@ -146,56 +136,6 @@ func (m *ExpandTree) validateType(formats strfmt.Registry) error {
 	// value enum
 	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validate this expand tree based on the context it is used
-func (m *ExpandTree) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateChildren(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateSubject(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ExpandTree) contextValidateChildren(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Children); i++ {
-
-		if m.Children[i] != nil {
-			if err := m.Children[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("children" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *ExpandTree) contextValidateSubject(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Subject != nil {
-		if err := m.Subject.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("subject")
-			}
-			return err
-		}
 	}
 
 	return nil

@@ -38,11 +38,3 @@ lib/model/internal_relation_tuple.dart
 lib/model/patch_delta.dart
 lib/model/version.dart
 pubspec.yaml
-test/expand_tree_test.dart
-test/get_check_response_test.dart
-test/get_relation_tuples_response_test.dart
-test/inline_response400_test.dart
-test/internal_relation_tuple_test.dart
-test/patch_delta_test.dart
-test/read_api_test.dart
-test/write_api_test.dart

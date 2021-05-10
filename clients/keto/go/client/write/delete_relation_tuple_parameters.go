@@ -16,93 +16,76 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewDeleteRelationTupleParams creates a new DeleteRelationTupleParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewDeleteRelationTupleParams creates a new DeleteRelationTupleParams object
+// with the default values initialized.
 func NewDeleteRelationTupleParams() *DeleteRelationTupleParams {
+	var ()
 	return &DeleteRelationTupleParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteRelationTupleParamsWithTimeout creates a new DeleteRelationTupleParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewDeleteRelationTupleParamsWithTimeout(timeout time.Duration) *DeleteRelationTupleParams {
+	var ()
 	return &DeleteRelationTupleParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewDeleteRelationTupleParamsWithContext creates a new DeleteRelationTupleParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewDeleteRelationTupleParamsWithContext(ctx context.Context) *DeleteRelationTupleParams {
+	var ()
 	return &DeleteRelationTupleParams{
+
 		Context: ctx,
 	}
 }
 
 // NewDeleteRelationTupleParamsWithHTTPClient creates a new DeleteRelationTupleParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewDeleteRelationTupleParamsWithHTTPClient(client *http.Client) *DeleteRelationTupleParams {
+	var ()
 	return &DeleteRelationTupleParams{
 		HTTPClient: client,
 	}
 }
 
-/* DeleteRelationTupleParams contains all the parameters to send to the API endpoint
-   for the delete relation tuple operation.
-
-   Typically these are written to a http.Request.
+/*DeleteRelationTupleParams contains all the parameters to send to the API endpoint
+for the delete relation tuple operation typically these are written to a http.Request
 */
 type DeleteRelationTupleParams struct {
 
-	/* Namespace.
+	/*Namespace
+	  Namespace of the Relation Tuple
 
-	   Namespace of the Relation Tuple
 	*/
 	Namespace string
+	/*Object
+	  Object of the Relation Tuple
 
-	/* Object.
-
-	   Object of the Relation Tuple
 	*/
 	Object string
+	/*Relation
+	  Relation of the Relation Tuple
 
-	/* Relation.
-
-	   Relation of the Relation Tuple
 	*/
 	Relation string
-
-	/* Subject.
-
-	     Subject of the Relation Tuple
+	/*Subject
+	  Subject of the Relation Tuple
 
 	The subject follows the subject string encoding format.
+
 	*/
 	Subject *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the delete relation tuple params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *DeleteRelationTupleParams) WithDefaults() *DeleteRelationTupleParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the delete relation tuple params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *DeleteRelationTupleParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete relation tuple params
@@ -194,7 +177,6 @@ func (o *DeleteRelationTupleParams) WriteToRequest(r runtime.ClientRequest, reg 
 	qrNamespace := o.Namespace
 	qNamespace := qrNamespace
 	if qNamespace != "" {
-
 		if err := r.SetQueryParam("namespace", qNamespace); err != nil {
 			return err
 		}
@@ -204,7 +186,6 @@ func (o *DeleteRelationTupleParams) WriteToRequest(r runtime.ClientRequest, reg 
 	qrObject := o.Object
 	qObject := qrObject
 	if qObject != "" {
-
 		if err := r.SetQueryParam("object", qObject); err != nil {
 			return err
 		}
@@ -214,7 +195,6 @@ func (o *DeleteRelationTupleParams) WriteToRequest(r runtime.ClientRequest, reg 
 	qrRelation := o.Relation
 	qRelation := qrRelation
 	if qRelation != "" {
-
 		if err := r.SetQueryParam("relation", qRelation); err != nil {
 			return err
 		}
@@ -224,17 +204,16 @@ func (o *DeleteRelationTupleParams) WriteToRequest(r runtime.ClientRequest, reg 
 
 		// query param subject
 		var qrSubject string
-
 		if o.Subject != nil {
 			qrSubject = *o.Subject
 		}
 		qSubject := qrSubject
 		if qSubject != "" {
-
 			if err := r.SetQueryParam("subject", qSubject); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if len(res) > 0 {

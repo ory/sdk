@@ -9,10 +9,10 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getCheck**](ReadApi.md#getCheck) | **GET** /check | Check a relation tuple
-[**getExpand**](ReadApi.md#getExpand) | **GET** /expand | Expand a Relation Tuple
-[**getRelationTuples**](ReadApi.md#getRelationTuples) | **GET** /relation-tuples | Query relation tuples
-[**postCheck**](ReadApi.md#postCheck) | **POST** /check | Check a relation tuple
+[**getCheck**](ReadApi.md#getcheck) | **GET** /check | Check a relation tuple
+[**getExpand**](ReadApi.md#getexpand) | **GET** /expand | Expand a Relation Tuple
+[**getRelationTuples**](ReadApi.md#getrelationtuples) | **GET** /relation-tuples | Query relation tuples
+[**postCheck**](ReadApi.md#postcheck) | **POST** /check | Check a relation tuple
 
 
 # **getCheck**

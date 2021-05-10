@@ -17,87 +17,66 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewGetRelationTuplesParams creates a new GetRelationTuplesParams object,
-// with the default timeout for this client.
-//
-// Default values are not hydrated, since defaults are normally applied by the API server side.
-//
-// To enforce default values in parameter, use SetDefaults or WithDefaults.
+// NewGetRelationTuplesParams creates a new GetRelationTuplesParams object
+// with the default values initialized.
 func NewGetRelationTuplesParams() *GetRelationTuplesParams {
+	var ()
 	return &GetRelationTuplesParams{
+
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetRelationTuplesParamsWithTimeout creates a new GetRelationTuplesParams object
-// with the ability to set a timeout on a request.
+// with the default values initialized, and the ability to set a timeout on a request
 func NewGetRelationTuplesParamsWithTimeout(timeout time.Duration) *GetRelationTuplesParams {
+	var ()
 	return &GetRelationTuplesParams{
+
 		timeout: timeout,
 	}
 }
 
 // NewGetRelationTuplesParamsWithContext creates a new GetRelationTuplesParams object
-// with the ability to set a context for a request.
+// with the default values initialized, and the ability to set a context for a request
 func NewGetRelationTuplesParamsWithContext(ctx context.Context) *GetRelationTuplesParams {
+	var ()
 	return &GetRelationTuplesParams{
+
 		Context: ctx,
 	}
 }
 
 // NewGetRelationTuplesParamsWithHTTPClient creates a new GetRelationTuplesParams object
-// with the ability to set a custom HTTPClient for a request.
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetRelationTuplesParamsWithHTTPClient(client *http.Client) *GetRelationTuplesParams {
+	var ()
 	return &GetRelationTuplesParams{
 		HTTPClient: client,
 	}
 }
 
-/* GetRelationTuplesParams contains all the parameters to send to the API endpoint
-   for the get relation tuples operation.
-
-   Typically these are written to a http.Request.
+/*GetRelationTuplesParams contains all the parameters to send to the API endpoint
+for the get relation tuples operation typically these are written to a http.Request
 */
 type GetRelationTuplesParams struct {
 
-	// Namespace.
+	/*Namespace*/
 	Namespace string
-
-	// Object.
+	/*Object*/
 	Object *string
-
-	// PageSize.
-	//
-	// Format: int64
+	/*PageSize*/
 	PageSize *int64
-
-	// PageToken.
+	/*PageToken*/
 	PageToken *string
-
-	// Relation.
+	/*Relation*/
 	Relation *string
-
-	// Subject.
+	/*Subject*/
 	Subject *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
-}
-
-// WithDefaults hydrates default values in the get relation tuples params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *GetRelationTuplesParams) WithDefaults() *GetRelationTuplesParams {
-	o.SetDefaults()
-	return o
-}
-
-// SetDefaults hydrates default values in the get relation tuples params (not the query body).
-//
-// All values with no default are reset to their zero value.
-func (o *GetRelationTuplesParams) SetDefaults() {
-	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get relation tuples params
@@ -211,7 +190,6 @@ func (o *GetRelationTuplesParams) WriteToRequest(r runtime.ClientRequest, reg st
 	qrNamespace := o.Namespace
 	qNamespace := qrNamespace
 	if qNamespace != "" {
-
 		if err := r.SetQueryParam("namespace", qNamespace); err != nil {
 			return err
 		}
@@ -221,85 +199,80 @@ func (o *GetRelationTuplesParams) WriteToRequest(r runtime.ClientRequest, reg st
 
 		// query param object
 		var qrObject string
-
 		if o.Object != nil {
 			qrObject = *o.Object
 		}
 		qObject := qrObject
 		if qObject != "" {
-
 			if err := r.SetQueryParam("object", qObject); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if o.PageSize != nil {
 
 		// query param page_size
 		var qrPageSize int64
-
 		if o.PageSize != nil {
 			qrPageSize = *o.PageSize
 		}
 		qPageSize := swag.FormatInt64(qrPageSize)
 		if qPageSize != "" {
-
 			if err := r.SetQueryParam("page_size", qPageSize); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if o.PageToken != nil {
 
 		// query param page_token
 		var qrPageToken string
-
 		if o.PageToken != nil {
 			qrPageToken = *o.PageToken
 		}
 		qPageToken := qrPageToken
 		if qPageToken != "" {
-
 			if err := r.SetQueryParam("page_token", qPageToken); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if o.Relation != nil {
 
 		// query param relation
 		var qrRelation string
-
 		if o.Relation != nil {
 			qrRelation = *o.Relation
 		}
 		qRelation := qrRelation
 		if qRelation != "" {
-
 			if err := r.SetQueryParam("relation", qRelation); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if o.Subject != nil {
 
 		// query param subject
 		var qrSubject string
-
 		if o.Subject != nil {
 			qrSubject = *o.Subject
 		}
 		qSubject := qrSubject
 		if qSubject != "" {
-
 			if err := r.SetQueryParam("subject", qSubject); err != nil {
 				return err
 			}
 		}
+
 	}
 
 	if len(res) > 0 {
