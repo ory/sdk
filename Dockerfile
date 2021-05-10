@@ -1,4 +1,4 @@
-FROM openjdk:17-slim-buster
+FROM openjdk:15-slim-buster
 
 RUN apt-get update; apt-get install -y --no-install-recommends ca-certificates ssh
 
@@ -57,7 +57,7 @@ RUN apt-get install -y --no-install-recommends python3 python3-dev python3-pip r
 # RUN wget http://central.maven.org/maven2/org/openapitools/openapi-generator-cli/4.2.2/openapi-generator-cli-4.2.2.jar -O openapi-generator-cli.jar
 
 RUN npm i -g @openapitools/openapi-generator-cli
-RUN openapi-generator-cli version-manager set 5.1.0
+RUN openapi-generator-cli version-manager set 5.1.1
 RUN pip3 install --upgrade pip
 RUN pip3 install --user --upgrade setuptools wheel twine
 
