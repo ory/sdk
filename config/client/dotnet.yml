@@ -5,3 +5,4 @@ packageAuthors: ORY
 packageCompany: ORY GmbH
 netCoreProjectFile: true
 infoUrl: https://www.ory.sh
+targetFramework: net5.0
