@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 VisualStudioVersion = 12.0.0.0
 MinimumVisualStudioVersion = 10.0.0.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ory.Kratos.Client", "src\Ory.Kratos.Client\Ory.Kratos.Client.csproj", "{1D9F27A6-7502-4005-B26D-C9ECA77EFBEB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ory.Kratos.Client", "src\Ory.Kratos.Client\Ory.Kratos.Client.csproj", "{E5C740B4-5C70-4D09-BC45-BF44D0343E59}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ory.Kratos.Client.Test", "src\Ory.Kratos.Client.Test\Ory.Kratos.Client.Test.csproj", "{19F1DEBC-DE5E-4517-8062-F000CD499087}"
 EndProject
@@ -12,10 +12,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1D9F27A6-7502-4005-B26D-C9ECA77EFBEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D9F27A6-7502-4005-B26D-C9ECA77EFBEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D9F27A6-7502-4005-B26D-C9ECA77EFBEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D9F27A6-7502-4005-B26D-C9ECA77EFBEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5C740B4-5C70-4D09-BC45-BF44D0343E59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5C740B4-5C70-4D09-BC45-BF44D0343E59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5C740B4-5C70-4D09-BC45-BF44D0343E59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5C740B4-5C70-4D09-BC45-BF44D0343E59}.Release|Any CPU.Build.0 = Release|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Release|Any CPU.ActiveCfg = Release|Any CPU
