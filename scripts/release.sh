@@ -108,9 +108,9 @@ python() {
 dotnet() {
   dir="clients/${PROJECT}/dotnet"
 
-  (cd "${dir}"; VERSION=${RAW_VERSION} command dotnet pack -o .)
+  (cd "${dir}"; VERSION=${RAW_VERSION} dotnet pack -o .)
 
-  (cd "${dir}"; for i in 1 2 3 4 5; do command dotnet nuget push Ory.${PROJECT_UCF}.Client.${RAW_VERSION}.nupkg \
+  (cd "${dir}"; for i in 1 2 3 4 5; do dotnet nuget push Ory.${PROJECT_UCF}.Client.${RAW_VERSION}.nupkg \
   --api-key ${NUGET_API_KEY} \
   --source https://api.nuget.org/v3/index.json && break || sleep 15; done)
 }
