@@ -126,7 +126,7 @@ with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = admin_api.AdminApi(api_client)
     create_recovery_link = CreateRecoveryLink(
-        expires_in="4m",
+        expires_in="4ms",
         identity_id="identity_id_example",
     ) # CreateRecoveryLink |  (optional)
 

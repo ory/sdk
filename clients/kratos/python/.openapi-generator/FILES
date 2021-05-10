@@ -174,7 +174,6 @@ ory_kratos_client/model/volume.py
 ory_kratos_client/model/volume_usage_data.py
 ory_kratos_client/model_utils.py
 ory_kratos_client/models/__init__.py
-ory_kratos_client/models/__init__.py
 ory_kratos_client/rest.py
 requirements.txt
 setup.cfg

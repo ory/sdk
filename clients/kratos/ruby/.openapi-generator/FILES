@@ -91,7 +91,6 @@ lib/ory-kratos-client/api/public_api.rb
 lib/ory-kratos-client/api_client.rb
 lib/ory-kratos-client/api_error.rb
 lib/ory-kratos-client/configuration.rb
-lib/ory-kratos-client/configuration.rb
 lib/ory-kratos-client/models/authenticate_ok_body.rb
 lib/ory-kratos-client/models/container_change_response_item.rb
 lib/ory-kratos-client/models/container_create_created_body.rb

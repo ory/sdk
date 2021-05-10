@@ -73,13 +73,13 @@ class AdminApi {
   Future<Identity> createIdentity({ CreateIdentity createIdentity }) async {
     final response = await createIdentityWithHttpInfo( createIdentity: createIdentity );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'Identity') as Identity;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Identity',) as Identity;
         }
     return Future<Identity>.value(null);
   }
@@ -142,13 +142,13 @@ class AdminApi {
   Future<RecoveryLink> createRecoveryLink({ CreateRecoveryLink createRecoveryLink }) async {
     final response = await createRecoveryLinkWithHttpInfo( createRecoveryLink: createRecoveryLink );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'RecoveryLink') as RecoveryLink;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'RecoveryLink',) as RecoveryLink;
         }
     return Future<RecoveryLink>.value(null);
   }
@@ -217,7 +217,7 @@ class AdminApi {
   Future<void> deleteIdentity(String id) async {
     final response = await deleteIdentityWithHttpInfo(id);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
@@ -285,13 +285,13 @@ class AdminApi {
   Future<Identity> getIdentity(String id) async {
     final response = await getIdentityWithHttpInfo(id);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'Identity') as Identity;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Identity',) as Identity;
         }
     return Future<Identity>.value(null);
   }
@@ -356,13 +356,13 @@ class AdminApi {
   Future<Object> getSchema(String id) async {
     final response = await getSchemaWithHttpInfo(id);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'Object') as Object;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
         }
     return Future<Object>.value(null);
   }
@@ -432,13 +432,13 @@ class AdminApi {
   Future<ErrorContainer> getSelfServiceError(String error) async {
     final response = await getSelfServiceErrorWithHttpInfo(error);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'ErrorContainer') as ErrorContainer;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ErrorContainer',) as ErrorContainer;
         }
     return Future<ErrorContainer>.value(null);
   }
@@ -508,13 +508,13 @@ class AdminApi {
   Future<LoginFlow> getSelfServiceLoginFlow(String id) async {
     final response = await getSelfServiceLoginFlowWithHttpInfo(id);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'LoginFlow') as LoginFlow;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'LoginFlow',) as LoginFlow;
         }
     return Future<LoginFlow>.value(null);
   }
@@ -584,13 +584,13 @@ class AdminApi {
   Future<RecoveryFlow> getSelfServiceRecoveryFlow(String id) async {
     final response = await getSelfServiceRecoveryFlowWithHttpInfo(id);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'RecoveryFlow') as RecoveryFlow;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'RecoveryFlow',) as RecoveryFlow;
         }
     return Future<RecoveryFlow>.value(null);
   }
@@ -660,13 +660,13 @@ class AdminApi {
   Future<RegistrationFlow> getSelfServiceRegistrationFlow(String id) async {
     final response = await getSelfServiceRegistrationFlowWithHttpInfo(id);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'RegistrationFlow') as RegistrationFlow;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'RegistrationFlow',) as RegistrationFlow;
         }
     return Future<RegistrationFlow>.value(null);
   }
@@ -736,13 +736,13 @@ class AdminApi {
   Future<SettingsFlow> getSelfServiceSettingsFlow(String id) async {
     final response = await getSelfServiceSettingsFlowWithHttpInfo(id);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'SettingsFlow') as SettingsFlow;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SettingsFlow',) as SettingsFlow;
         }
     return Future<SettingsFlow>.value(null);
   }
@@ -812,13 +812,13 @@ class AdminApi {
   Future<VerificationFlow> getSelfServiceVerificationFlow(String id) async {
     final response = await getSelfServiceVerificationFlowWithHttpInfo(id);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'VerificationFlow') as VerificationFlow;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'VerificationFlow',) as VerificationFlow;
         }
     return Future<VerificationFlow>.value(null);
   }
@@ -871,13 +871,13 @@ class AdminApi {
   Future<InlineResponse2001> getVersion() async {
     final response = await getVersionWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'InlineResponse2001') as InlineResponse2001;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'InlineResponse2001',) as InlineResponse2001;
         }
     return Future<InlineResponse2001>.value(null);
   }
@@ -930,13 +930,13 @@ class AdminApi {
   Future<InlineResponse200> isAlive() async {
     final response = await isAliveWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'InlineResponse200') as InlineResponse200;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'InlineResponse200',) as InlineResponse200;
         }
     return Future<InlineResponse200>.value(null);
   }
@@ -989,13 +989,13 @@ class AdminApi {
   Future<InlineResponse200> isReady() async {
     final response = await isReadyWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'InlineResponse200') as InlineResponse200;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'InlineResponse200',) as InlineResponse200;
         }
     return Future<InlineResponse200>.value(null);
   }
@@ -1073,13 +1073,13 @@ class AdminApi {
   Future<List<Identity>> listIdentities({ int perPage, int page }) async {
     final response = await listIdentitiesWithHttpInfo( perPage: perPage, page: page );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return (apiClient.deserialize(_decodeBodyBytes(response), 'List<Identity>') as List)
+      return (await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'List<Identity>') as List)
         .cast<Identity>()
         .toList(growable: false);
     }
@@ -1134,7 +1134,7 @@ class AdminApi {
   Future<void> prometheus() async {
     final response = await prometheusWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
@@ -1206,13 +1206,13 @@ class AdminApi {
   Future<Identity> updateIdentity(String id, { UpdateIdentity updateIdentity }) async {
     final response = await updateIdentityWithHttpInfo(id,  updateIdentity: updateIdentity );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'Identity') as Identity;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Identity',) as Identity;
         }
     return Future<Identity>.value(null);
   }

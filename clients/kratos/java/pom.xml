@@ -5,7 +5,7 @@
     <artifactId>kratos-client</artifactId>
     <packaging>jar</packaging>
     <name>kratos-client</name>
-    <version>v0.6.0-alpha.2</version>
+    <version>v0.6.0-alpha.4</version>
     <url>https://github.com/openapitools/openapi-generator</url>
     <description>OpenAPI Java</description>
     <scm>
