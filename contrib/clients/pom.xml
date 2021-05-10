@@ -1,18 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>sh.ory.oathkeeper</groupId>
-    <artifactId>oathkeeper-client</artifactId>
+    <groupId>sh.ory.hydra</groupId>
+    <artifactId>hydra-client</artifactId>
     <packaging>jar</packaging>
-    <name>oathkeeper-client</name>
+    <name>hydra-client</name>
 
     <version>0.0.0-SNAPSHOT</version>
-    <url>https://github.com/ory/oathkeeper-client-java</url>
-    <description>Java Client for Ory Oathkeeper</description>
+    <url>https://github.com/ory/hydra-client-java</url>
+    <description>Java Client for ORY hydra</description>
     <scm>
-        <connection>scm:git:git@github.com:ory/oathkeeper-client-java.git</connection>
-        <developerConnection>scm:git:git@github.com:ory/oathkeeper-client-java.git</developerConnection>
-        <url>https://github.com/ory/oathkeeper-client-java</url>
+        <connection>scm:git:git@github.com:ory/hydra-client-java.git</connection>
+        <developerConnection>scm:git:git@github.com:ory/hydra-client-java.git</developerConnection>
+        <url>https://github.com/ory/hydra-client-java</url>
     </scm>
 
     <licenses>
@@ -25,8 +25,8 @@
 
     <developers>
         <developer>
-            <name>Ory</name>
-            <email>office+oss@ory.sh</email>
+            <name>ORY</name>
+            <email>opensource@ory.sh</email>
             <organization>www.ory.sh</organization>
             <organizationUrl>https://www.ory.sh</organizationUrl>
         </developer>
@@ -143,10 +143,6 @@
                         <goals>
                             <goal>jar</goal>
                         </goals>
-                        <configuration>
-                            <additionalparam>-Xdoclint:none</additionalparam>
-                            <source>8</source>
-                        </configuration>
                     </execution>
                 </executions>
                 <configuration>
@@ -212,7 +208,6 @@
                     <serverId>ossrh</serverId>
                     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                    <stagingProgressTimeoutMinutes>120</stagingProgressTimeoutMinutes>
                 </configuration>
             </plugin>
         </plugins>
@@ -234,12 +229,6 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
-                                <configuration>
-                                    <gpgArguments>
-                                        <arg>--pinentry-mode</arg>
-                                        <arg>loopback</arg>
-                                    </gpgArguments>
-                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
@@ -267,12 +256,6 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
-                                <configuration>
-                                    <gpgArguments>
-                                        <arg>--pinentry-mode</arg>
-                                        <arg>loopback</arg>
-                                    </gpgArguments>
-                                </configuration>
                             </execution>
                         </executions>
                     </plugin>

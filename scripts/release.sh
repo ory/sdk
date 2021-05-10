@@ -15,7 +15,8 @@ to_git() {
 
   (cd "${gitdir}"; git fetch origin || true; git checkout master || true; git reset --hard HEAD || true; git pull -ff || true; git checkout -b "release-$(date +%s)" master)
 
-  rm -rf "${srcdir:?}/*"
+  # rm -rf "${srcdir:?}/*"
+  rm -rf "${gitdir:?}/*"
   cp -R "${srcdir}/." "${gitdir}"
   ls -la "${gitdir}"
 
@@ -140,7 +141,7 @@ for i in {1..10}; do php && break || sleep 15; done
 for i in {1..10}; do typescript && break || sleep 15; done
 for i in {1..10}; do dart && break || sleep 15; done
 for i in {1..10}; do rust && break || sleep 15; done
-for i in {1..10}; do dotnet && break || sleep 15; done
 for i in {1..10}; do java && break || sleep 15; done
+for i in {1..10}; do dotnet && break || sleep 15; done
 
 upstream || true
