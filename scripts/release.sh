@@ -46,9 +46,7 @@ typescript() {
   dir="clients/${PROJECT}/typescript"
 
   (cd "${dir}"; npm install; npm run build)
-
-
-  (cd "${dir}"; npm version -f --no-git-tag-version "${VERSION}" || true; for i in 1 2 3 4 5; do npm publish --access public && break || sleep 15; done)
+  (cd "${dir}"; npm version -f --no-git-tag-version "${VERSION}" || true; npm publish --access public)
 }
 
 java() {
@@ -66,7 +64,7 @@ java() {
     -DdevelopmentVersion="${version}-SNAPSHOT" \
     -Darguments="-Dgpg.passphrase=${MVN_PGP_PASSPHRASE} -Dgpg.keyname=${MVN_PGP_KEYNAME}")
 
-  (cd "${gitdir}"; for i in 1 2 3 4 5; do mvn release:perform && break || sleep 15; done)
+  (cd "${gitdir}"; mvn release:perform)
   (cd "${gitdir}"; git push origin --tags HEAD:master)
 }
 
@@ -80,7 +78,7 @@ php() {
 ruby() {
   dir="clients/${PROJECT}/ruby"
 
-  (cd "${dir}"; rm *.gem || true; for i in 1 2 3 4 5; do gem build "ory-${PROJECT}-client.gemspec"; gem push "ory-${PROJECT}-client-${GEM_VERSION}.gem" && break || sleep 15; done)
+  (cd "${dir}"; rm *.gem || true; gem build "ory-${PROJECT}-client.gemspec"; gem push "ory-${PROJECT}-client-${GEM_VERSION}.gem")
 }
 
 golang() {
@@ -92,7 +90,7 @@ golang() {
 
 python() {
   dir="clients/${PROJECT}/python"
-  (cd "${dir}"; rm -rf "dist" || true; python3 setup.py sdist bdist_wheel; for i in 1 2 3 4 5; do python3 -m twine upload "dist/*" && break || sleep 15; done)
+  (cd "${dir}"; rm -rf "dist" || true; python3 setup.py sdist bdist_wheel; python3 -m twine upload "dist/*")
 }
 
 dotnet() {
@@ -100,15 +98,16 @@ dotnet() {
 
   (cd "${dir}"; VERSION=${RAW_VERSION} dotnet pack -o .)
 
-  (cd "${dir}"; for i in 1 2 3 4 5; do dotnet nuget push Ory.${PROJECT_UCF}.Client.${RAW_VERSION}.nupkg \
+  (cd "${dir}"; dotnet nuget push Ory.${PROJECT_UCF}.Client.${RAW_VERSION}.nupkg \
   --api-key ${NUGET_API_KEY} \
-  --source https://api.nuget.org/v3/index.json && break || sleep 15; done)
+  --source https://api.nuget.org/v3/index.json)
 }
 
 dart() {
   dir="clients/${PROJECT}/dart"
 
   mkdir -p ~/.pub-cache || true
+  set -x
   cat <<EOF > ~/.pub-cache/credentials.json
 {
   "accessToken":"${DART_ACCESS_TOKEN}",
@@ -121,6 +120,7 @@ dart() {
   "expiration": 1611594593613
 }
 EOF
+  set +x
 
   (cd "${dir}"; VERSION=${RAW_VERSION} command dart pub publish --force)
 }
@@ -133,14 +133,14 @@ rust() {
   (cd "${dir}"; VERSION=${RAW_VERSION} command cargo publish --allow-dirty)
 }
 
-python || true
-ruby || true
-golang || true
-php || true
-typescript || true
-dart || true
-rust || true
+for i in {1..10}; do python && break || sleep 15; done
+for i in {1..10}; do ruby && break || sleep 15; done
+for i in {1..10}; do golang && break || sleep 15; done
+for i in {1..10}; do php && break || sleep 15; done
+for i in {1..10}; do typescript && break || sleep 15; done
+for i in {1..10}; do dart && break || sleep 15; done
+for i in {1..10}; do rust && break || sleep 15; done
+for i in {1..10}; do dotnet && break || sleep 15; done
 java || true
-dotnet || true
 
 upstream || true
