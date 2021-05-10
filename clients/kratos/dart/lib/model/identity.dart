@@ -17,6 +17,7 @@ class Identity {
     @required this.schemaId,
     @required this.schemaUrl,
     @required this.traits,
+    this.test,
     this.verifiableAddresses = const [],
   });
 
@@ -33,6 +34,8 @@ class Identity {
 
   Object traits;
 
+  String test;
+
   /// VerifiableAddresses contains all the addresses that can be verified by the user.
   List<VerifiableAddress> verifiableAddresses;
 
@@ -43,6 +46,7 @@ class Identity {
      other.schemaId == schemaId &&
      other.schemaUrl == schemaUrl &&
      other.traits == traits &&
+     other.test == test &&
      other.verifiableAddresses == verifiableAddresses;
 
   @override
@@ -52,10 +56,11 @@ class Identity {
     (schemaId == null ? 0 : schemaId.hashCode) +
     (schemaUrl == null ? 0 : schemaUrl.hashCode) +
     (traits == null ? 0 : traits.hashCode) +
+    (test == null ? 0 : test.hashCode) +
     (verifiableAddresses == null ? 0 : verifiableAddresses.hashCode);
 
   @override
-  String toString() => 'Identity[id=$id, recoveryAddresses=$recoveryAddresses, schemaId=$schemaId, schemaUrl=$schemaUrl, traits=$traits, verifiableAddresses=$verifiableAddresses]';
+  String toString() => 'Identity[id=$id, recoveryAddresses=$recoveryAddresses, schemaId=$schemaId, schemaUrl=$schemaUrl, traits=$traits, test=$test, verifiableAddresses=$verifiableAddresses]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -66,6 +71,9 @@ class Identity {
       json[r'schema_id'] = schemaId;
       json[r'schema_url'] = schemaUrl;
       json[r'traits'] = traits;
+    if (test != null) {
+      json[r'test'] = test;
+    }
     if (verifiableAddresses != null) {
       json[r'verifiable_addresses'] = verifiableAddresses;
     }
@@ -82,6 +90,7 @@ class Identity {
         schemaId: json[r'schema_id'],
         schemaUrl: json[r'schema_url'],
         traits: json[r'traits'],
+        test: json[r'test'],
         verifiableAddresses: VerifiableAddress.listFromJson(json[r'verifiable_addresses']),
     );
 

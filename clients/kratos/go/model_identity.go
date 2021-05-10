@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory Kratos APIs. Public and administrative APIs are exposed on different ports. Public APIs can face the public internet without any protection while administrative APIs should never be exposed without prior authorization. To protect the administative API port you should use something like Nginx, Ory Oathkeeper, or any other technology capable of authorizing incoming requests. 
  *
- * API version: v0.6.0-alpha.4
+ * API version: v0.6.0-alpha.15
  * Contact: hi@ory.sh
  */
 
@@ -25,6 +25,7 @@ type Identity struct {
 	// SchemaURL is the URL of the endpoint where the identity's traits schema can be fetched from.  format: url
 	SchemaUrl string `json:"schema_url"`
 	Traits map[string]interface{} `json:"traits"`
+	Test *string `json:"test,omitempty"`
 	// VerifiableAddresses contains all the addresses that can be verified by the user.
 	VerifiableAddresses []VerifiableAddress `json:"verifiable_addresses,omitempty"`
 }
@@ -178,6 +179,38 @@ func (o *Identity) SetTraits(v map[string]interface{}) {
 	o.Traits = v
 }
 
+// GetTest returns the Test field value if set, zero value otherwise.
+func (o *Identity) GetTest() string {
+	if o == nil || o.Test == nil {
+		var ret string
+		return ret
+	}
+	return *o.Test
+}
+
+// GetTestOk returns a tuple with the Test field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Identity) GetTestOk() (*string, bool) {
+	if o == nil || o.Test == nil {
+		return nil, false
+	}
+	return o.Test, true
+}
+
+// HasTest returns a boolean if a field has been set.
+func (o *Identity) HasTest() bool {
+	if o != nil && o.Test != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTest gets a reference to the given string and assigns it to the Test field.
+func (o *Identity) SetTest(v string) {
+	o.Test = &v
+}
+
 // GetVerifiableAddresses returns the VerifiableAddresses field value if set, zero value otherwise.
 func (o *Identity) GetVerifiableAddresses() []VerifiableAddress {
 	if o == nil || o.VerifiableAddresses == nil {
@@ -226,6 +259,9 @@ func (o Identity) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["traits"] = o.Traits
+	}
+	if o.Test != nil {
+		toSerialize["test"] = o.Test
 	}
 	if o.VerifiableAddresses != nil {
 		toSerialize["verifiable_addresses"] = o.VerifiableAddresses
