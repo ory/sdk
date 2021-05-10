@@ -1,14 +1,14 @@
 {
   "name": "@ory/oathkeeper-client",
-  "version": "0.38.5-beta.1",
-  "description": "OpenAPI client for @oryd/oathkeeper-client",
+  "version": "v0.38.10-beta.4",
+  "description": "OpenAPI client for @ory/oathkeeper-client",
   "author": "ORY GmbH",
   "keywords": [
     "axios",
     "typescript",
     "openapi-client",
     "openapi-generator",
-    "@oryd/oathkeeper-client"
+    "@ory/oathkeeper-client"
   ],
   "license": "Apache-2.0",
   "main": "./dist/index.js",
@@ -18,7 +18,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.21.1"
   },
   "devDependencies": {
     "@types/node": "^12.11.5",

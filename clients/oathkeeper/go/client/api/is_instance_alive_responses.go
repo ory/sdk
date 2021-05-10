@@ -10,11 +10,10 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/ory/oathkeeper-client-go/models"
+	"github.com/ory/oathkeeper-client-go/models"
 )
 
 // IsInstanceAliveReader is a Reader for the IsInstanceAlive structure.
@@ -118,7 +117,7 @@ type IsInstanceAliveInternalServerErrorBody struct {
 	Code int64 `json:"code,omitempty"`
 
 	// details
-	Details []map[string]interface{} `json:"details"`
+	Details []interface{} `json:"details"`
 
 	// message
 	Message string `json:"message,omitempty"`

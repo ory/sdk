@@ -21,7 +21,7 @@ class ApiApi {
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> decisionsWithHttpInfo() async {
-    final path = '/decisions'.replaceAll('{format}', 'json');
+    final path = r'/decisions';
 
     Object postBody;
 
@@ -63,7 +63,7 @@ class ApiApi {
   Future<void> decisions() async {
     final response = await decisionsWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
@@ -82,7 +82,7 @@ class ApiApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
     }
 
-    final path = '/rules/{id}'.replaceAll('{format}', 'json')
+    final path = r'/rules/{id}'
       .replaceAll('{' + 'id' + '}', id.toString());
 
     Object postBody;
@@ -129,15 +129,15 @@ class ApiApi {
   Future<Rule> getRule(String id) async {
     final response = await getRuleWithHttpInfo(id);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'Rule') as Rule;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Rule',) as Rule;
+        }
+    return Future<Rule>.value(null);
   }
 
   /// Get service version
@@ -146,7 +146,7 @@ class ApiApi {
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> getVersionWithHttpInfo() async {
-    final path = '/version'.replaceAll('{format}', 'json');
+    final path = r'/version';
 
     Object postBody;
 
@@ -188,15 +188,15 @@ class ApiApi {
   Future<Version> getVersion() async {
     final response = await getVersionWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'Version') as Version;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Version',) as Version;
+        }
+    return Future<Version>.value(null);
   }
 
   /// Lists cryptographic keys
@@ -205,7 +205,7 @@ class ApiApi {
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> getWellKnownJSONWebKeysWithHttpInfo() async {
-    final path = '/.well-known/jwks.json'.replaceAll('{format}', 'json');
+    final path = r'/.well-known/jwks.json';
 
     Object postBody;
 
@@ -247,15 +247,15 @@ class ApiApi {
   Future<JsonWebKeySet> getWellKnownJSONWebKeys() async {
     final response = await getWellKnownJSONWebKeysWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'JsonWebKeySet') as JsonWebKeySet;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'JsonWebKeySet',) as JsonWebKeySet;
+        }
+    return Future<JsonWebKeySet>.value(null);
   }
 
   /// Check alive status
@@ -264,7 +264,7 @@ class ApiApi {
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> isInstanceAliveWithHttpInfo() async {
-    final path = '/health/alive'.replaceAll('{format}', 'json');
+    final path = r'/health/alive';
 
     Object postBody;
 
@@ -306,15 +306,15 @@ class ApiApi {
   Future<HealthStatus> isInstanceAlive() async {
     final response = await isInstanceAliveWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'HealthStatus') as HealthStatus;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'HealthStatus',) as HealthStatus;
+        }
+    return Future<HealthStatus>.value(null);
   }
 
   /// Check readiness status
@@ -323,7 +323,7 @@ class ApiApi {
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> isInstanceReadyWithHttpInfo() async {
-    final path = '/health/ready'.replaceAll('{format}', 'json');
+    final path = r'/health/ready';
 
     Object postBody;
 
@@ -365,15 +365,15 @@ class ApiApi {
   Future<HealthStatus> isInstanceReady() async {
     final response = await isInstanceReadyWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'HealthStatus') as HealthStatus;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'HealthStatus',) as HealthStatus;
+        }
+    return Future<HealthStatus>.value(null);
   }
 
   /// List all rules
@@ -392,7 +392,7 @@ class ApiApi {
   Future<Response> listRulesWithHttpInfo({ int limit, int offset }) async {
     // Verify required params are set.
 
-    final path = '/rules'.replaceAll('{format}', 'json');
+    final path = r'/rules';
 
     Object postBody;
 
@@ -449,16 +449,16 @@ class ApiApi {
   Future<List<Rule>> listRules({ int limit, int offset }) async {
     final response = await listRulesWithHttpInfo( limit: limit, offset: offset );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return (apiClient.deserialize(_decodeBodyBytes(response), 'List<Rule>') as List)
-        .map((item) => item as Rule)
+      return (await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'List<Rule>') as List)
+        .cast<Rule>()
         .toList(growable: false);
     }
-    return null;
+    return Future<List<Rule>>.value(null);
   }
 }

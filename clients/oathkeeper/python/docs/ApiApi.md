@@ -48,6 +48,7 @@ with ory_oathkeeper_client.ApiClient() as api_client:
         print("Exception when calling ApiApi->decisions: %s\n" % e)
 ```
 
+
 ### Parameters
 This endpoint does not need any parameter.
 
@@ -63,6 +64,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -113,6 +115,7 @@ with ory_oathkeeper_client.ApiClient() as api_client:
         print("Exception when calling ApiApi->get_rule: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -131,6 +134,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -177,6 +181,7 @@ with ory_oathkeeper_client.ApiClient() as api_client:
         print("Exception when calling ApiApi->get_version: %s\n" % e)
 ```
 
+
 ### Parameters
 This endpoint does not need any parameter.
 
@@ -192,6 +197,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -237,6 +243,7 @@ with ory_oathkeeper_client.ApiClient() as api_client:
         print("Exception when calling ApiApi->get_well_known_json_web_keys: %s\n" % e)
 ```
 
+
 ### Parameters
 This endpoint does not need any parameter.
 
@@ -252,6 +259,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -298,6 +306,7 @@ with ory_oathkeeper_client.ApiClient() as api_client:
         print("Exception when calling ApiApi->is_instance_alive: %s\n" % e)
 ```
 
+
 ### Parameters
 This endpoint does not need any parameter.
 
@@ -313,6 +322,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -359,6 +369,7 @@ with ory_oathkeeper_client.ApiClient() as api_client:
         print("Exception when calling ApiApi->is_instance_ready: %s\n" % e)
 ```
 
+
 ### Parameters
 This endpoint does not need any parameter.
 
@@ -374,6 +385,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -423,6 +435,7 @@ with ory_oathkeeper_client.ApiClient() as api_client:
         print("Exception when calling ApiApi->list_rules: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -442,6 +455,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

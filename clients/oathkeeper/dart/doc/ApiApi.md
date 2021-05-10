@@ -10,12 +10,12 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**decisions**](ApiApi.md#decisions) | **GET** /decisions | Access Control Decision API
-[**getRule**](ApiApi.md#getRule) | **GET** /rules/{id} | Retrieve a rule
-[**getVersion**](ApiApi.md#getVersion) | **GET** /version | Get service version
-[**getWellKnownJSONWebKeys**](ApiApi.md#getWellKnownJSONWebKeys) | **GET** /.well-known/jwks.json | Lists cryptographic keys
-[**isInstanceAlive**](ApiApi.md#isInstanceAlive) | **GET** /health/alive | Check alive status
-[**isInstanceReady**](ApiApi.md#isInstanceReady) | **GET** /health/ready | Check readiness status
-[**listRules**](ApiApi.md#listRules) | **GET** /rules | List all rules
+[**getRule**](ApiApi.md#getrule) | **GET** /rules/{id} | Retrieve a rule
+[**getVersion**](ApiApi.md#getversion) | **GET** /version | Get service version
+[**getWellKnownJSONWebKeys**](ApiApi.md#getwellknownjsonwebkeys) | **GET** /.well-known/jwks.json | Lists cryptographic keys
+[**isInstanceAlive**](ApiApi.md#isinstancealive) | **GET** /health/alive | Check alive status
+[**isInstanceReady**](ApiApi.md#isinstanceready) | **GET** /health/ready | Check readiness status
+[**listRules**](ApiApi.md#listrules) | **GET** /rules | List all rules
 
 
 # **decisions**
