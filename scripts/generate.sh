@@ -72,7 +72,7 @@ java () {
   # POM modification is disabled because openapi-generator does not re-generate the POM anyways. If, for some reason,
   # the POM file is lost, you can recover it:
   #
-  #   $ cp contrib/clients/java/<project>/pom.xml.backup clients/<porject>/java/pom.xml
+  #   $ cp contrib/clients/java/<project>/pom.xml.backup clients/<project>/java/pom.xml
 
   # Insert correct pom values...
   #  pom="clients/${PROJECT}/java/pom.xml"

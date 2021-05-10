@@ -141,6 +141,6 @@ for i in {1..10}; do typescript && break || sleep 15; done
 for i in {1..10}; do dart && break || sleep 15; done
 for i in {1..10}; do rust && break || sleep 15; done
 for i in {1..10}; do dotnet && break || sleep 15; done
-java || true
+for i in {1..10}; do java && break || sleep 15; done
 
 upstream || true
