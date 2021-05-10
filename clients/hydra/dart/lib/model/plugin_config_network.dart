@@ -31,9 +31,7 @@ class PluginConfigNetwork {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (type != null) {
       json[r'Type'] = type;
-    }
     return json;
   }
 

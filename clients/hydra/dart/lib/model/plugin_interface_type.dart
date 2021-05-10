@@ -43,15 +43,9 @@ class PluginInterfaceType {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (capability != null) {
       json[r'Capability'] = capability;
-    }
-    if (prefix != null) {
       json[r'Prefix'] = prefix;
-    }
-    if (version != null) {
       json[r'Version'] = version;
-    }
     return json;
   }
 

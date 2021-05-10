@@ -49,18 +49,10 @@ class PluginDevice {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (description != null) {
       json[r'Description'] = description;
-    }
-    if (name != null) {
       json[r'Name'] = name;
-    }
-    if (path != null) {
       json[r'Path'] = path;
-    }
-    if (settable != null) {
       json[r'Settable'] = settable;
-    }
     return json;
   }
 

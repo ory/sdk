@@ -25,6 +25,7 @@ All URIs are relative to *http://localhost*
 | [**is_instance_alive**](AdminApi.md#is_instance_alive) | **GET** /health/alive | Check Alive Status |
 | [**list_o_auth2_clients**](AdminApi.md#list_o_auth2_clients) | **GET** /clients | List OAuth 2.0 Clients |
 | [**list_subject_consent_sessions**](AdminApi.md#list_subject_consent_sessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject |
+| [**patch_o_auth2_client**](AdminApi.md#patch_o_auth2_client) | **PATCH** /clients/{id} | Patch an OAuth 2.0 Client |
 | [**prometheus**](AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get Snapshot Metrics from the Hydra Service. |
 | [**reject_consent_request**](AdminApi.md#reject_consent_request) | **PUT** /oauth2/auth/requests/consent/reject | Reject a Consent Request |
 | [**reject_login_request**](AdminApi.md#reject_login_request) | **PUT** /oauth2/auth/requests/login/reject | Reject a Login Request |
@@ -1392,6 +1393,72 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## patch_o_auth2_client
+
+> <OAuth2Client> patch_o_auth2_client(id, body)
+
+Patch an OAuth 2.0 Client
+
+Patch an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-hydra-client'
+
+api_instance = OryHydraClient::AdminApi.new
+id = 'id_example' # String | 
+body = [OryHydraClient::PatchDocument.new({op: '"replace"', path: '"/name"'})] # Array<PatchDocument> | 
+
+begin
+  # Patch an OAuth 2.0 Client
+  result = api_instance.patch_o_auth2_client(id, body)
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling AdminApi->patch_o_auth2_client: #{e}"
+end
+```
+
+#### Using the patch_o_auth2_client_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<OAuth2Client>, Integer, Hash)> patch_o_auth2_client_with_http_info(id, body)
+
+```ruby
+begin
+  # Patch an OAuth 2.0 Client
+  data, status_code, headers = api_instance.patch_o_auth2_client_with_http_info(id, body)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <OAuth2Client>
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling AdminApi->patch_o_auth2_client_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** |  |  |
+| **body** | [**Array&lt;PatchDocument&gt;**](PatchDocument.md) |  |  |
+
+### Return type
+
+[**OAuth2Client**](OAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 

@@ -31,9 +31,7 @@ class CompletedRequest {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (redirectTo != null) {
       json[r'redirect_to'] = redirectTo;
-    }
     return json;
   }
 

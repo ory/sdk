@@ -115,9 +115,7 @@ class JSONWebKey {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (alg != null) {
       json[r'alg'] = alg;
-    }
     if (crv != null) {
       json[r'crv'] = crv;
     }
@@ -136,12 +134,8 @@ class JSONWebKey {
     if (k != null) {
       json[r'k'] = k;
     }
-    if (kid != null) {
       json[r'kid'] = kid;
-    }
-    if (kty != null) {
       json[r'kty'] = kty;
-    }
     if (n != null) {
       json[r'n'] = n;
     }
@@ -154,9 +148,7 @@ class JSONWebKey {
     if (qi != null) {
       json[r'qi'] = qi;
     }
-    if (use != null) {
       json[r'use'] = use;
-    }
     if (x != null) {
       json[r'x'] = x;
     }

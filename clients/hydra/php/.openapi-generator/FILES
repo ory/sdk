@@ -23,6 +23,7 @@ docs/Model/OAuth2Client.md
 docs/Model/OAuth2TokenIntrospection.md
 docs/Model/Oauth2TokenResponse.md
 docs/Model/OpenIDConnectContext.md
+docs/Model/PatchDocument.md
 docs/Model/PluginConfig.md
 docs/Model/PluginConfigArgs.md
 docs/Model/PluginConfigInterface.md
@@ -37,8 +38,10 @@ docs/Model/PluginMount.md
 docs/Model/PluginSettings.md
 docs/Model/PreviousConsentSession.md
 docs/Model/RejectRequest.md
+docs/Model/RequestWasHandledResponse.md
 docs/Model/UserinfoResponse.md
 docs/Model/Version.md
+docs/Model/Volume.md
 docs/Model/VolumeUsageData.md
 docs/Model/WellKnown.md
 git_push.sh
@@ -67,6 +70,7 @@ lib/Model/OAuth2Client.php
 lib/Model/OAuth2TokenIntrospection.php
 lib/Model/Oauth2TokenResponse.php
 lib/Model/OpenIDConnectContext.php
+lib/Model/PatchDocument.php
 lib/Model/PluginConfig.php
 lib/Model/PluginConfigArgs.php
 lib/Model/PluginConfigInterface.php
@@ -81,9 +85,14 @@ lib/Model/PluginMount.php
 lib/Model/PluginSettings.php
 lib/Model/PreviousConsentSession.php
 lib/Model/RejectRequest.php
+lib/Model/RequestWasHandledResponse.php
 lib/Model/UserinfoResponse.php
 lib/Model/Version.php
+lib/Model/Volume.php
 lib/Model/VolumeUsageData.php
 lib/Model/WellKnown.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
+test/Model/PatchDocumentTest.php
+test/Model/RequestWasHandledResponseTest.php
+test/Model/VolumeTest.php

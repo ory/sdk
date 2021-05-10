@@ -37,12 +37,8 @@ class PluginConfigInterface {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (socket != null) {
       json[r'Socket'] = socket;
-    }
-    if (types != null) {
       json[r'Types'] = types;
-    }
     return json;
   }
 

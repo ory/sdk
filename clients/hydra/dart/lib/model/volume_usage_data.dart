@@ -37,12 +37,8 @@ class VolumeUsageData {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (refCount != null) {
       json[r'RefCount'] = refCount;
-    }
-    if (size != null) {
       json[r'Size'] = size;
-    }
     return json;
   }
 

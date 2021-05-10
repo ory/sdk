@@ -1,6 +1,7 @@
 # OAuth2TokenIntrospection
 
 https://tools.ietf.org/html/rfc7662
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

@@ -22,6 +22,8 @@ docs/OAuth2Client.md
 docs/OAuth2TokenIntrospection.md
 docs/Oauth2TokenResponse.md
 docs/OpenIDConnectContext.md
+docs/PatchDocument.md
+docs/PatchRequest.md
 docs/PluginConfig.md
 docs/PluginConfigArgs.md
 docs/PluginConfigInterface.md
@@ -37,9 +39,11 @@ docs/PluginSettings.md
 docs/PreviousConsentSession.md
 docs/PublicApi.md
 docs/RejectRequest.md
+docs/RequestWasHandledResponse.md
 docs/StringSlicePipeDelimiter.md
 docs/UserinfoResponse.md
 docs/Version.md
+docs/Volume.md
 docs/VolumeUsageData.md
 docs/WellKnown.md
 git_push.sh
@@ -71,6 +75,8 @@ ory_hydra_client/model/o_auth2_client.py
 ory_hydra_client/model/o_auth2_token_introspection.py
 ory_hydra_client/model/oauth2_token_response.py
 ory_hydra_client/model/open_id_connect_context.py
+ory_hydra_client/model/patch_document.py
+ory_hydra_client/model/patch_request.py
 ory_hydra_client/model/plugin_config.py
 ory_hydra_client/model/plugin_config_args.py
 ory_hydra_client/model/plugin_config_interface.py
@@ -85,13 +91,14 @@ ory_hydra_client/model/plugin_mount.py
 ory_hydra_client/model/plugin_settings.py
 ory_hydra_client/model/previous_consent_session.py
 ory_hydra_client/model/reject_request.py
+ory_hydra_client/model/request_was_handled_response.py
 ory_hydra_client/model/string_slice_pipe_delimiter.py
 ory_hydra_client/model/userinfo_response.py
 ory_hydra_client/model/version.py
+ory_hydra_client/model/volume.py
 ory_hydra_client/model/volume_usage_data.py
 ory_hydra_client/model/well_known.py
 ory_hydra_client/model_utils.py
-ory_hydra_client/models/__init__.py
 ory_hydra_client/models/__init__.py
 ory_hydra_client/rest.py
 requirements.txt
@@ -99,5 +106,8 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_string_slice_pipe_delimiter.py
+test/test_patch_document.py
+test/test_patch_request.py
+test/test_request_was_handled_response.py
+test/test_volume.py
 tox.ini

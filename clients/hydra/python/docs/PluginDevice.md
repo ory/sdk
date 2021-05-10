@@ -1,6 +1,7 @@
 # PluginDevice
 
 PluginDevice plugin device
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

@@ -1,6 +1,7 @@
 # PluginConfigRootfs
 
 PluginConfigRootfs plugin config rootfs
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

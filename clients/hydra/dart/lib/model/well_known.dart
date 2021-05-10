@@ -181,9 +181,7 @@ class WellKnown {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (authorizationEndpoint != null) {
       json[r'authorization_endpoint'] = authorizationEndpoint;
-    }
     if (backchannelLogoutSessionSupported != null) {
       json[r'backchannel_logout_session_supported'] = backchannelLogoutSessionSupported;
     }
@@ -208,15 +206,9 @@ class WellKnown {
     if (grantTypesSupported != null) {
       json[r'grant_types_supported'] = grantTypesSupported;
     }
-    if (idTokenSigningAlgValuesSupported != null) {
       json[r'id_token_signing_alg_values_supported'] = idTokenSigningAlgValuesSupported;
-    }
-    if (issuer != null) {
       json[r'issuer'] = issuer;
-    }
-    if (jwksUri != null) {
       json[r'jwks_uri'] = jwksUri;
-    }
     if (registrationEndpoint != null) {
       json[r'registration_endpoint'] = registrationEndpoint;
     }
@@ -235,21 +227,15 @@ class WellKnown {
     if (responseModesSupported != null) {
       json[r'response_modes_supported'] = responseModesSupported;
     }
-    if (responseTypesSupported != null) {
       json[r'response_types_supported'] = responseTypesSupported;
-    }
     if (revocationEndpoint != null) {
       json[r'revocation_endpoint'] = revocationEndpoint;
     }
     if (scopesSupported != null) {
       json[r'scopes_supported'] = scopesSupported;
     }
-    if (subjectTypesSupported != null) {
       json[r'subject_types_supported'] = subjectTypesSupported;
-    }
-    if (tokenEndpoint != null) {
       json[r'token_endpoint'] = tokenEndpoint;
-    }
     if (tokenEndpointAuthMethodsSupported != null) {
       json[r'token_endpoint_auth_methods_supported'] = tokenEndpointAuthMethodsSupported;
     }

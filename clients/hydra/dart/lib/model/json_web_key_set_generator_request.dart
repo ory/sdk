@@ -43,15 +43,9 @@ class JsonWebKeySetGeneratorRequest {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (alg != null) {
       json[r'alg'] = alg;
-    }
-    if (kid != null) {
       json[r'kid'] = kid;
-    }
-    if (use != null) {
       json[r'use'] = use;
-    }
     return json;
   }
 

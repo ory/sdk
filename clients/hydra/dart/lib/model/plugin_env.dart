@@ -49,18 +49,10 @@ class PluginEnv {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (description != null) {
       json[r'Description'] = description;
-    }
-    if (name != null) {
       json[r'Name'] = name;
-    }
-    if (settable != null) {
       json[r'Settable'] = settable;
-    }
-    if (value != null) {
       json[r'Value'] = value;
-    }
     return json;
   }
 

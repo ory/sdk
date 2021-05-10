@@ -1,6 +1,7 @@
 # PluginInterfaceType
 
 PluginInterfaceType plugin interface type
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 Cargo.toml
 README.md
@@ -23,6 +22,7 @@ docs/OAuth2Client.md
 docs/OAuth2TokenIntrospection.md
 docs/Oauth2TokenResponse.md
 docs/OpenIdConnectContext.md
+docs/PatchDocument.md
 docs/PluginConfig.md
 docs/PluginConfigArgs.md
 docs/PluginConfigInterface.md
@@ -38,8 +38,10 @@ docs/PluginSettings.md
 docs/PreviousConsentSession.md
 docs/PublicApi.md
 docs/RejectRequest.md
+docs/RequestWasHandledResponse.md
 docs/UserinfoResponse.md
 docs/Version.md
+docs/Volume.md
 docs/VolumeUsageData.md
 docs/WellKnown.md
 git_push.sh
@@ -68,6 +70,7 @@ src/models/o_auth2_client.rs
 src/models/o_auth2_token_introspection.rs
 src/models/oauth2_token_response.rs
 src/models/open_id_connect_context.rs
+src/models/patch_document.rs
 src/models/plugin_config.rs
 src/models/plugin_config_args.rs
 src/models/plugin_config_interface.rs
@@ -82,7 +85,9 @@ src/models/plugin_mount.rs
 src/models/plugin_settings.rs
 src/models/previous_consent_session.rs
 src/models/reject_request.rs
+src/models/request_was_handled_response.rs
 src/models/userinfo_response.rs
 src/models/version.rs
+src/models/volume.rs
 src/models/volume_usage_data.rs
 src/models/well_known.rs

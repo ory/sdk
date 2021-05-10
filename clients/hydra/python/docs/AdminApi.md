@@ -25,6 +25,7 @@ Method | HTTP request | Description
 [**is_instance_alive**](AdminApi.md#is_instance_alive) | **GET** /health/alive | Check Alive Status
 [**list_o_auth2_clients**](AdminApi.md#list_o_auth2_clients) | **GET** /clients | List OAuth 2.0 Clients
 [**list_subject_consent_sessions**](AdminApi.md#list_subject_consent_sessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject
+[**patch_o_auth2_client**](AdminApi.md#patch_o_auth2_client) | **PATCH** /clients/{id} | Patch an OAuth 2.0 Client
 [**prometheus**](AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get Snapshot Metrics from the Hydra Service.
 [**reject_consent_request**](AdminApi.md#reject_consent_request) | **PUT** /oauth2/auth/requests/consent/reject | Reject a Consent Request
 [**reject_login_request**](AdminApi.md#reject_login_request) | **PUT** /oauth2/auth/requests/login/reject | Reject a Login Request
@@ -99,6 +100,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->accept_consent_request: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -118,6 +120,7 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -184,6 +187,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->accept_login_request: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -203,6 +207,7 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -253,6 +258,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->accept_logout_request: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -271,6 +277,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -334,6 +341,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->create_json_web_key_set: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -353,6 +361,7 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -433,7 +442,7 @@ with ory_hydra_client.ApiClient() as api_client:
         response_types=StringSlicePipeDelimiter([
             "response_types_example",
         ]),
-        scope="A9LC",
+        scope="z",
         sector_identifier_uri="sector_identifier_uri_example",
         subject_type="subject_type_example",
         token_endpoint_auth_method="token_endpoint_auth_method_example",
@@ -451,6 +460,7 @@ with ory_hydra_client.ApiClient() as api_client:
     except ory_hydra_client.ApiException as e:
         print("Exception when calling AdminApi->create_o_auth2_client: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -470,6 +480,7 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -518,6 +529,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->delete_json_web_key: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -537,6 +549,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -584,6 +597,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->delete_json_web_key_set: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -602,6 +616,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -649,6 +664,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->delete_o_auth2_client: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -667,6 +683,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -713,6 +730,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->delete_o_auth2_token: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -731,6 +749,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -781,6 +800,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->flush_inactive_o_auth2_tokens: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -799,6 +819,7 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -823,6 +844,7 @@ import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
 from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.request_was_handled_response import RequestWasHandledResponse
 from ory_hydra_client.model.consent_request import ConsentRequest
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
@@ -847,6 +869,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->get_consent_request: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -866,12 +889,13 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | consentRequest |  -  |
 **404** | genericError |  -  |
-**409** | genericError |  -  |
+**410** | requestWasHandledResponse |  -  |
 **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -915,6 +939,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->get_json_web_key: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -934,6 +959,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -982,6 +1008,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->get_json_web_key_set: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -1000,6 +1027,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1026,6 +1054,7 @@ import ory_hydra_client
 from ory_hydra_client.api import admin_api
 from ory_hydra_client.model.generic_error import GenericError
 from ory_hydra_client.model.login_request import LoginRequest
+from ory_hydra_client.model.request_was_handled_response import RequestWasHandledResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1049,6 +1078,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->get_login_request: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -1068,13 +1098,14 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | loginRequest |  -  |
 **400** | genericError |  -  |
 **404** | genericError |  -  |
-**409** | genericError |  -  |
+**410** | requestWasHandledResponse |  -  |
 **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1094,6 +1125,7 @@ import ory_hydra_client
 from ory_hydra_client.api import admin_api
 from ory_hydra_client.model.logout_request import LogoutRequest
 from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.request_was_handled_response import RequestWasHandledResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1117,6 +1149,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->get_logout_request: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -1136,11 +1169,13 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | logoutRequest |  -  |
 **404** | genericError |  -  |
+**410** | requestWasHandledResponse |  -  |
 **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1183,6 +1218,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->get_o_auth2_client: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -1201,6 +1237,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1247,6 +1284,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->get_version: %s\n" % e)
 ```
 
+
 ### Parameters
 This endpoint does not need any parameter.
 
@@ -1262,6 +1300,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1318,6 +1357,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->introspect_o_auth2_token: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -1337,6 +1377,7 @@ No authorization required
 
  - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1384,6 +1425,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->is_instance_alive: %s\n" % e)
 ```
 
+
 ### Parameters
 This endpoint does not need any parameter.
 
@@ -1399,6 +1441,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1448,6 +1491,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->list_o_auth2_clients: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -1467,6 +1511,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1514,6 +1559,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->list_subject_consent_sessions: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -1533,11 +1579,89 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A list of used consent requests. |  -  |
 **400** | genericError |  -  |
+**500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **patch_o_auth2_client**
+> OAuth2Client patch_o_auth2_client(id, body)
+
+Patch an OAuth 2.0 Client
+
+Patch an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+
+### Example
+
+```python
+import time
+import ory_hydra_client
+from ory_hydra_client.api import admin_api
+from ory_hydra_client.model.o_auth2_client import OAuth2Client
+from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.patch_request import PatchRequest
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_hydra_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = admin_api.AdminApi(api_client)
+    id = "id_example" # str | 
+    body = PatchRequest([
+        PatchDocument(
+            _from="_from_example",
+            op="replace",
+            path="/name",
+            value={},
+        ),
+    ]) # PatchRequest | 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Patch an OAuth 2.0 Client
+        api_response = api_instance.patch_o_auth2_client(id, body)
+        pprint(api_response)
+    except ory_hydra_client.ApiException as e:
+        print("Exception when calling AdminApi->patch_o_auth2_client: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**|  |
+ **body** | [**PatchRequest**](PatchRequest.md)|  |
+
+### Return type
+
+[**OAuth2Client**](OAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | oAuth2Client |  -  |
 **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1576,6 +1700,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->prometheus: %s\n" % e)
 ```
 
+
 ### Parameters
 This endpoint does not need any parameter.
 
@@ -1591,6 +1716,7 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1654,6 +1780,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->reject_consent_request: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -1673,6 +1800,7 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1738,6 +1866,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->reject_login_request: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -1757,6 +1886,7 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1821,6 +1951,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->reject_logout_request: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -1840,6 +1971,7 @@ No authorization required
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1886,6 +2018,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->revoke_authentication_session: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -1905,12 +2038,12 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 **400** | genericError |  -  |
-**404** | genericError |  -  |
 **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1961,6 +2094,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->revoke_consent_sessions: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -1982,12 +2116,12 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 **400** | genericError |  -  |
-**404** | genericError |  -  |
 **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2061,6 +2195,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->update_json_web_key: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -2081,6 +2216,7 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -2164,6 +2300,7 @@ with ory_hydra_client.ApiClient() as api_client:
         print("Exception when calling AdminApi->update_json_web_key_set: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -2183,6 +2320,7 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -2264,7 +2402,7 @@ with ory_hydra_client.ApiClient() as api_client:
         response_types=StringSlicePipeDelimiter([
             "response_types_example",
         ]),
-        scope="A9LC",
+        scope="z",
         sector_identifier_uri="sector_identifier_uri_example",
         subject_type="subject_type_example",
         token_endpoint_auth_method="token_endpoint_auth_method_example",
@@ -2282,6 +2420,7 @@ with ory_hydra_client.ApiClient() as api_client:
     except ory_hydra_client.ApiException as e:
         print("Exception when calling AdminApi->update_o_auth2_client: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -2302,6 +2441,7 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

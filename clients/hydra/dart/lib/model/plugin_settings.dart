@@ -49,18 +49,10 @@ class PluginSettings {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (args != null) {
       json[r'Args'] = args;
-    }
-    if (devices != null) {
       json[r'Devices'] = devices;
-    }
-    if (env != null) {
       json[r'Env'] = env;
-    }
-    if (mounts != null) {
       json[r'Mounts'] = mounts;
-    }
     return json;
   }
 

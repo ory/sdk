@@ -75,33 +75,19 @@ class LoginRequest {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (challenge != null) {
       json[r'challenge'] = challenge;
-    }
-    if (client != null) {
       json[r'client'] = client;
-    }
     if (oidcContext != null) {
       json[r'oidc_context'] = oidcContext;
     }
-    if (requestUrl != null) {
       json[r'request_url'] = requestUrl;
-    }
-    if (requestedAccessTokenAudience != null) {
       json[r'requested_access_token_audience'] = requestedAccessTokenAudience;
-    }
-    if (requestedScope != null) {
       json[r'requested_scope'] = requestedScope;
-    }
     if (sessionId != null) {
       json[r'session_id'] = sessionId;
     }
-    if (skip != null) {
       json[r'skip'] = skip;
-    }
-    if (subject != null) {
       json[r'subject'] = subject;
-    }
     return json;
   }
 

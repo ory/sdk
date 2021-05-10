@@ -43,15 +43,9 @@ class PluginConfigLinux {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (allowAllDevices != null) {
       json[r'AllowAllDevices'] = allowAllDevices;
-    }
-    if (capabilities != null) {
       json[r'Capabilities'] = capabilities;
-    }
-    if (devices != null) {
       json[r'Devices'] = devices;
-    }
     return json;
   }
 

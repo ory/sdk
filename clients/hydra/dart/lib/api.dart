@@ -48,6 +48,7 @@ part 'model/o_auth2_client.dart';
 part 'model/o_auth2_token_introspection.dart';
 part 'model/oauth2_token_response.dart';
 part 'model/open_id_connect_context.dart';
+part 'model/patch_document.dart';
 part 'model/plugin_config.dart';
 part 'model/plugin_config_args.dart';
 part 'model/plugin_config_interface.dart';
@@ -62,15 +63,19 @@ part 'model/plugin_mount.dart';
 part 'model/plugin_settings.dart';
 part 'model/previous_consent_session.dart';
 part 'model/reject_request.dart';
+part 'model/request_was_handled_response.dart';
 part 'model/userinfo_response.dart';
 part 'model/version.dart';
+part 'model/volume.dart';
 part 'model/volume_usage_data.dart';
 part 'model/well_known.dart';
+
 
 const _delimiters = {'csv': ',', 'ssv': ' ', 'tsv': '\t', 'pipes': '|'};
 const _dateEpochMarker = 'epoch';
 final _dateFormatter = DateFormat('yyyy-MM-dd');
 final _regList = RegExp(r'^List<(.*)>$');
+final _regSet = RegExp(r'^Set<(.*)>$');
 final _regMap = RegExp(r'^Map<String,(.*)>$');
 
 ApiClient defaultApiClient = ApiClient();

@@ -21,7 +21,7 @@ class PublicApi {
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> disconnectUserWithHttpInfo() async {
-    final path = '/oauth2/sessions/logout'.replaceAll('{format}', 'json');
+    final path = r'/oauth2/sessions/logout';
 
     Object postBody;
 
@@ -63,7 +63,7 @@ class PublicApi {
   Future<void> disconnectUser() async {
     final response = await disconnectUserWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
@@ -73,7 +73,7 @@ class PublicApi {
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> discoverOpenIDConfigurationWithHttpInfo() async {
-    final path = '/.well-known/openid-configuration'.replaceAll('{format}', 'json');
+    final path = r'/.well-known/openid-configuration';
 
     Object postBody;
 
@@ -115,15 +115,15 @@ class PublicApi {
   Future<WellKnown> discoverOpenIDConfiguration() async {
     final response = await discoverOpenIDConfigurationWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'WellKnown') as WellKnown;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WellKnown',) as WellKnown;
+        }
+    return Future<WellKnown>.value(null);
   }
 
   /// Check Readiness Status
@@ -132,7 +132,7 @@ class PublicApi {
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> isInstanceReadyWithHttpInfo() async {
-    final path = '/health/ready'.replaceAll('{format}', 'json');
+    final path = r'/health/ready';
 
     Object postBody;
 
@@ -174,15 +174,15 @@ class PublicApi {
   Future<HealthStatus> isInstanceReady() async {
     final response = await isInstanceReadyWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'HealthStatus') as HealthStatus;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'HealthStatus',) as HealthStatus;
+        }
+    return Future<HealthStatus>.value(null);
   }
 
   /// The OAuth 2.0 Token Endpoint
@@ -208,7 +208,7 @@ class PublicApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: grantType');
     }
 
-    final path = '/oauth2/token'.replaceAll('{format}', 'json');
+    final path = r'/oauth2/token';
 
     Object postBody;
 
@@ -297,15 +297,15 @@ class PublicApi {
   Future<Oauth2TokenResponse> oauth2Token(String grantType, { String code, String refreshToken, String redirectUri, String clientId }) async {
     final response = await oauth2TokenWithHttpInfo(grantType,  code: code, refreshToken: refreshToken, redirectUri: redirectUri, clientId: clientId );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'Oauth2TokenResponse') as Oauth2TokenResponse;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Oauth2TokenResponse',) as Oauth2TokenResponse;
+        }
+    return Future<Oauth2TokenResponse>.value(null);
   }
 
   /// The OAuth 2.0 Authorize Endpoint
@@ -314,7 +314,7 @@ class PublicApi {
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> oauthAuthWithHttpInfo() async {
-    final path = '/oauth2/auth'.replaceAll('{format}', 'json');
+    final path = r'/oauth2/auth';
 
     Object postBody;
 
@@ -356,7 +356,7 @@ class PublicApi {
   Future<void> oauthAuth() async {
     final response = await oauthAuthWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
@@ -375,7 +375,7 @@ class PublicApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: token');
     }
 
-    final path = '/oauth2/revoke'.replaceAll('{format}', 'json');
+    final path = r'/oauth2/revoke';
 
     Object postBody;
 
@@ -428,7 +428,7 @@ class PublicApi {
   Future<void> revokeOAuth2Token(String token) async {
     final response = await revokeOAuth2TokenWithHttpInfo(token);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
@@ -438,7 +438,7 @@ class PublicApi {
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> userinfoWithHttpInfo() async {
-    final path = '/userinfo'.replaceAll('{format}', 'json');
+    final path = r'/userinfo';
 
     Object postBody;
 
@@ -480,15 +480,15 @@ class PublicApi {
   Future<UserinfoResponse> userinfo() async {
     final response = await userinfoWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'UserinfoResponse') as UserinfoResponse;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UserinfoResponse',) as UserinfoResponse;
+        }
+    return Future<UserinfoResponse>.value(null);
   }
 
   /// JSON Web Keys Discovery
@@ -497,7 +497,7 @@ class PublicApi {
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> wellKnownWithHttpInfo() async {
-    final path = '/.well-known/jwks.json'.replaceAll('{format}', 'json');
+    final path = r'/.well-known/jwks.json';
 
     Object postBody;
 
@@ -539,14 +539,14 @@ class PublicApi {
   Future<JSONWebKeySet> wellKnown() async {
     final response = await wellKnownWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'JSONWebKeySet') as JSONWebKeySet;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'JSONWebKeySet',) as JSONWebKeySet;
+        }
+    return Future<JSONWebKeySet>.value(null);
   }
 }

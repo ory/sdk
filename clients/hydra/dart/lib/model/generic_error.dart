@@ -52,9 +52,7 @@ class GenericError {
     if (debug != null) {
       json[r'debug'] = debug;
     }
-    if (error != null) {
       json[r'error'] = error;
-    }
     if (errorDescription != null) {
       json[r'error_description'] = errorDescription;
     }

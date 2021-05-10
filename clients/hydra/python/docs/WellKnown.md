@@ -1,6 +1,7 @@
 # WellKnown
 
 It includes links to several endpoints (e.g. /oauth2/token) and exposes information on supported signature algorithms among others.
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

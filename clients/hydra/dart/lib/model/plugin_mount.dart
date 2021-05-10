@@ -67,27 +67,13 @@ class PluginMount {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (description != null) {
       json[r'Description'] = description;
-    }
-    if (destination != null) {
       json[r'Destination'] = destination;
-    }
-    if (name != null) {
       json[r'Name'] = name;
-    }
-    if (options != null) {
       json[r'Options'] = options;
-    }
-    if (settable != null) {
       json[r'Settable'] = settable;
-    }
-    if (source_ != null) {
       json[r'Source'] = source_;
-    }
-    if (type != null) {
       json[r'Type'] = type;
-    }
     return json;
   }
 

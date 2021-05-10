@@ -25,6 +25,7 @@ Method | HTTP request | Description
 [**is_instance_alive**](AdminApi.md#is_instance_alive) | **get** /health/alive | Check Alive Status
 [**list_o_auth2_clients**](AdminApi.md#list_o_auth2_clients) | **get** /clients | List OAuth 2.0 Clients
 [**list_subject_consent_sessions**](AdminApi.md#list_subject_consent_sessions) | **get** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject
+[**patch_o_auth2_client**](AdminApi.md#patch_o_auth2_client) | **patch** /clients/{id} | Patch an OAuth 2.0 Client
 [**prometheus**](AdminApi.md#prometheus) | **get** /metrics/prometheus | Get Snapshot Metrics from the Hydra Service.
 [**reject_consent_request**](AdminApi.md#reject_consent_request) | **put** /oauth2/auth/requests/consent/reject | Reject a Consent Request
 [**reject_login_request**](AdminApi.md#reject_login_request) | **put** /oauth2/auth/requests/login/reject | Reject a Login Request
@@ -663,6 +664,37 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## patch_o_auth2_client
+
+> crate::models::OAuth2Client patch_o_auth2_client(id, body)
+Patch an OAuth 2.0 Client
+
+Patch an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **String** |  | [required] |
+**body** | [**Vec<crate::models::PatchDocument>**](patchDocument.md) |  | [required] |
+
+### Return type
+
+[**crate::models::OAuth2Client**](oAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

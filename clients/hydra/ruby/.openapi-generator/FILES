@@ -25,6 +25,7 @@ docs/OAuth2Client.md
 docs/OAuth2TokenIntrospection.md
 docs/Oauth2TokenResponse.md
 docs/OpenIDConnectContext.md
+docs/PatchDocument.md
 docs/PluginConfig.md
 docs/PluginConfigArgs.md
 docs/PluginConfigInterface.md
@@ -40,8 +41,10 @@ docs/PluginSettings.md
 docs/PreviousConsentSession.md
 docs/PublicApi.md
 docs/RejectRequest.md
+docs/RequestWasHandledResponse.md
 docs/UserinfoResponse.md
 docs/Version.md
+docs/Volume.md
 docs/VolumeUsageData.md
 docs/WellKnown.md
 git_push.sh
@@ -50,7 +53,6 @@ lib/ory-hydra-client/api/admin_api.rb
 lib/ory-hydra-client/api/public_api.rb
 lib/ory-hydra-client/api_client.rb
 lib/ory-hydra-client/api_error.rb
-lib/ory-hydra-client/configuration.rb
 lib/ory-hydra-client/configuration.rb
 lib/ory-hydra-client/models/accept_consent_request.rb
 lib/ory-hydra-client/models/accept_login_request.rb
@@ -71,6 +73,7 @@ lib/ory-hydra-client/models/o_auth2_client.rb
 lib/ory-hydra-client/models/o_auth2_token_introspection.rb
 lib/ory-hydra-client/models/oauth2_token_response.rb
 lib/ory-hydra-client/models/open_id_connect_context.rb
+lib/ory-hydra-client/models/patch_document.rb
 lib/ory-hydra-client/models/plugin_config.rb
 lib/ory-hydra-client/models/plugin_config_args.rb
 lib/ory-hydra-client/models/plugin_config_interface.rb
@@ -85,12 +88,17 @@ lib/ory-hydra-client/models/plugin_mount.rb
 lib/ory-hydra-client/models/plugin_settings.rb
 lib/ory-hydra-client/models/previous_consent_session.rb
 lib/ory-hydra-client/models/reject_request.rb
+lib/ory-hydra-client/models/request_was_handled_response.rb
 lib/ory-hydra-client/models/userinfo_response.rb
 lib/ory-hydra-client/models/version.rb
+lib/ory-hydra-client/models/volume.rb
 lib/ory-hydra-client/models/volume_usage_data.rb
 lib/ory-hydra-client/models/well_known.rb
 lib/ory-hydra-client/version.rb
 ory-hydra-client.gemspec
 spec/api_client_spec.rb
 spec/configuration_spec.rb
+spec/models/patch_document_spec.rb
+spec/models/request_was_handled_response_spec.rb
+spec/models/volume_spec.rb
 spec/spec_helper.rb

@@ -32,7 +32,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: consentChallenge');
     }
 
-    final path = '/oauth2/auth/requests/consent/accept'.replaceAll('{format}', 'json');
+    final path = r'/oauth2/auth/requests/consent/accept';
 
     Object postBody = body;
 
@@ -82,15 +82,15 @@ class AdminApi {
   Future<CompletedRequest> acceptConsentRequest(String consentChallenge, { AcceptConsentRequest body }) async {
     final response = await acceptConsentRequestWithHttpInfo(consentChallenge,  body: body );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'CompletedRequest') as CompletedRequest;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CompletedRequest',) as CompletedRequest;
+        }
+    return Future<CompletedRequest>.value(null);
   }
 
   /// Accept a Login Request
@@ -110,7 +110,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: loginChallenge');
     }
 
-    final path = '/oauth2/auth/requests/login/accept'.replaceAll('{format}', 'json');
+    final path = r'/oauth2/auth/requests/login/accept';
 
     Object postBody = body;
 
@@ -160,15 +160,15 @@ class AdminApi {
   Future<CompletedRequest> acceptLoginRequest(String loginChallenge, { AcceptLoginRequest body }) async {
     final response = await acceptLoginRequestWithHttpInfo(loginChallenge,  body: body );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'CompletedRequest') as CompletedRequest;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CompletedRequest',) as CompletedRequest;
+        }
+    return Future<CompletedRequest>.value(null);
   }
 
   /// Accept a Logout Request
@@ -186,7 +186,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: logoutChallenge');
     }
 
-    final path = '/oauth2/auth/requests/logout/accept'.replaceAll('{format}', 'json');
+    final path = r'/oauth2/auth/requests/logout/accept';
 
     Object postBody;
 
@@ -234,15 +234,15 @@ class AdminApi {
   Future<CompletedRequest> acceptLogoutRequest(String logoutChallenge) async {
     final response = await acceptLogoutRequestWithHttpInfo(logoutChallenge);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'CompletedRequest') as CompletedRequest;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CompletedRequest',) as CompletedRequest;
+        }
+    return Future<CompletedRequest>.value(null);
   }
 
   /// Generate a New JSON Web Key
@@ -263,7 +263,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: set_');
     }
 
-    final path = '/keys/{set}'.replaceAll('{format}', 'json')
+    final path = r'/keys/{set}'
       .replaceAll('{' + 'set' + '}', set_.toString());
 
     Object postBody = body;
@@ -313,15 +313,15 @@ class AdminApi {
   Future<JSONWebKeySet> createJsonWebKeySet(String set_, { JsonWebKeySetGeneratorRequest body }) async {
     final response = await createJsonWebKeySetWithHttpInfo(set_,  body: body );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'JSONWebKeySet') as JSONWebKeySet;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'JSONWebKeySet',) as JSONWebKeySet;
+        }
+    return Future<JSONWebKeySet>.value(null);
   }
 
   /// Create an OAuth 2.0 Client
@@ -339,7 +339,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: body');
     }
 
-    final path = '/clients'.replaceAll('{format}', 'json');
+    final path = r'/clients';
 
     Object postBody = body;
 
@@ -385,15 +385,15 @@ class AdminApi {
   Future<OAuth2Client> createOAuth2Client(OAuth2Client body) async {
     final response = await createOAuth2ClientWithHttpInfo(body);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'OAuth2Client') as OAuth2Client;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'OAuth2Client',) as OAuth2Client;
+        }
+    return Future<OAuth2Client>.value(null);
   }
 
   /// Delete a JSON Web Key
@@ -418,7 +418,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: set_');
     }
 
-    final path = '/keys/{set}/{kid}'.replaceAll('{format}', 'json')
+    final path = r'/keys/{set}/{kid}'
       .replaceAll('{' + 'kid' + '}', kid.toString())
       .replaceAll('{' + 'set' + '}', set_.toString());
 
@@ -470,7 +470,7 @@ class AdminApi {
   Future<void> deleteJsonWebKey(String kid, String set_) async {
     final response = await deleteJsonWebKeyWithHttpInfo(kid, set_);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
@@ -490,7 +490,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: set_');
     }
 
-    final path = '/keys/{set}'.replaceAll('{format}', 'json')
+    final path = r'/keys/{set}'
       .replaceAll('{' + 'set' + '}', set_.toString());
 
     Object postBody;
@@ -538,7 +538,7 @@ class AdminApi {
   Future<void> deleteJsonWebKeySet(String set_) async {
     final response = await deleteJsonWebKeySetWithHttpInfo(set_);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
@@ -558,7 +558,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
     }
 
-    final path = '/clients/{id}'.replaceAll('{format}', 'json')
+    final path = r'/clients/{id}'
       .replaceAll('{' + 'id' + '}', id.toString());
 
     Object postBody;
@@ -606,7 +606,7 @@ class AdminApi {
   Future<void> deleteOAuth2Client(String id) async {
     final response = await deleteOAuth2ClientWithHttpInfo(id);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
@@ -625,7 +625,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: clientId');
     }
 
-    final path = '/oauth2/tokens'.replaceAll('{format}', 'json');
+    final path = r'/oauth2/tokens';
 
     Object postBody;
 
@@ -673,7 +673,7 @@ class AdminApi {
   Future<void> deleteOAuth2Token(String clientId) async {
     final response = await deleteOAuth2TokenWithHttpInfo(clientId);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
@@ -689,7 +689,7 @@ class AdminApi {
   Future<Response> flushInactiveOAuth2TokensWithHttpInfo({ FlushInactiveOAuth2TokensRequest body }) async {
     // Verify required params are set.
 
-    final path = '/oauth2/flush'.replaceAll('{format}', 'json');
+    final path = r'/oauth2/flush';
 
     Object postBody = body;
 
@@ -735,7 +735,7 @@ class AdminApi {
   Future<void> flushInactiveOAuth2Tokens({ FlushInactiveOAuth2TokensRequest body }) async {
     final response = await flushInactiveOAuth2TokensWithHttpInfo( body: body );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
@@ -754,7 +754,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: consentChallenge');
     }
 
-    final path = '/oauth2/auth/requests/consent'.replaceAll('{format}', 'json');
+    final path = r'/oauth2/auth/requests/consent';
 
     Object postBody;
 
@@ -802,15 +802,15 @@ class AdminApi {
   Future<ConsentRequest> getConsentRequest(String consentChallenge) async {
     final response = await getConsentRequestWithHttpInfo(consentChallenge);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'ConsentRequest') as ConsentRequest;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ConsentRequest',) as ConsentRequest;
+        }
+    return Future<ConsentRequest>.value(null);
   }
 
   /// Fetch a JSON Web Key
@@ -835,7 +835,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: set_');
     }
 
-    final path = '/keys/{set}/{kid}'.replaceAll('{format}', 'json')
+    final path = r'/keys/{set}/{kid}'
       .replaceAll('{' + 'kid' + '}', kid.toString())
       .replaceAll('{' + 'set' + '}', set_.toString());
 
@@ -887,15 +887,15 @@ class AdminApi {
   Future<JSONWebKeySet> getJsonWebKey(String kid, String set_) async {
     final response = await getJsonWebKeyWithHttpInfo(kid, set_);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'JSONWebKeySet') as JSONWebKeySet;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'JSONWebKeySet',) as JSONWebKeySet;
+        }
+    return Future<JSONWebKeySet>.value(null);
   }
 
   /// Retrieve a JSON Web Key Set
@@ -914,7 +914,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: set_');
     }
 
-    final path = '/keys/{set}'.replaceAll('{format}', 'json')
+    final path = r'/keys/{set}'
       .replaceAll('{' + 'set' + '}', set_.toString());
 
     Object postBody;
@@ -962,15 +962,15 @@ class AdminApi {
   Future<JSONWebKeySet> getJsonWebKeySet(String set_) async {
     final response = await getJsonWebKeySetWithHttpInfo(set_);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'JSONWebKeySet') as JSONWebKeySet;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'JSONWebKeySet',) as JSONWebKeySet;
+        }
+    return Future<JSONWebKeySet>.value(null);
   }
 
   /// Get a Login Request
@@ -988,7 +988,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: loginChallenge');
     }
 
-    final path = '/oauth2/auth/requests/login'.replaceAll('{format}', 'json');
+    final path = r'/oauth2/auth/requests/login';
 
     Object postBody;
 
@@ -1036,15 +1036,15 @@ class AdminApi {
   Future<LoginRequest> getLoginRequest(String loginChallenge) async {
     final response = await getLoginRequestWithHttpInfo(loginChallenge);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'LoginRequest') as LoginRequest;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'LoginRequest',) as LoginRequest;
+        }
+    return Future<LoginRequest>.value(null);
   }
 
   /// Get a Logout Request
@@ -1062,7 +1062,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: logoutChallenge');
     }
 
-    final path = '/oauth2/auth/requests/logout'.replaceAll('{format}', 'json');
+    final path = r'/oauth2/auth/requests/logout';
 
     Object postBody;
 
@@ -1110,15 +1110,15 @@ class AdminApi {
   Future<LogoutRequest> getLogoutRequest(String logoutChallenge) async {
     final response = await getLogoutRequestWithHttpInfo(logoutChallenge);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'LogoutRequest') as LogoutRequest;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'LogoutRequest',) as LogoutRequest;
+        }
+    return Future<LogoutRequest>.value(null);
   }
 
   /// Get an OAuth 2.0 Client.
@@ -1137,7 +1137,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
     }
 
-    final path = '/clients/{id}'.replaceAll('{format}', 'json')
+    final path = r'/clients/{id}'
       .replaceAll('{' + 'id' + '}', id.toString());
 
     Object postBody;
@@ -1185,15 +1185,15 @@ class AdminApi {
   Future<OAuth2Client> getOAuth2Client(String id) async {
     final response = await getOAuth2ClientWithHttpInfo(id);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'OAuth2Client') as OAuth2Client;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'OAuth2Client',) as OAuth2Client;
+        }
+    return Future<OAuth2Client>.value(null);
   }
 
   /// Get Service Version
@@ -1202,7 +1202,7 @@ class AdminApi {
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> getVersionWithHttpInfo() async {
-    final path = '/version'.replaceAll('{format}', 'json');
+    final path = r'/version';
 
     Object postBody;
 
@@ -1244,15 +1244,15 @@ class AdminApi {
   Future<Version> getVersion() async {
     final response = await getVersionWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'Version') as Version;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Version',) as Version;
+        }
+    return Future<Version>.value(null);
   }
 
   /// Introspect OAuth2 Tokens
@@ -1274,7 +1274,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: token');
     }
 
-    final path = '/oauth2/introspect'.replaceAll('{format}', 'json');
+    final path = r'/oauth2/introspect';
 
     Object postBody;
 
@@ -1338,15 +1338,15 @@ class AdminApi {
   Future<OAuth2TokenIntrospection> introspectOAuth2Token(String token, { String scope }) async {
     final response = await introspectOAuth2TokenWithHttpInfo(token,  scope: scope );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'OAuth2TokenIntrospection') as OAuth2TokenIntrospection;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'OAuth2TokenIntrospection',) as OAuth2TokenIntrospection;
+        }
+    return Future<OAuth2TokenIntrospection>.value(null);
   }
 
   /// Check Alive Status
@@ -1355,7 +1355,7 @@ class AdminApi {
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> isInstanceAliveWithHttpInfo() async {
-    final path = '/health/alive'.replaceAll('{format}', 'json');
+    final path = r'/health/alive';
 
     Object postBody;
 
@@ -1397,15 +1397,15 @@ class AdminApi {
   Future<HealthStatus> isInstanceAlive() async {
     final response = await isInstanceAliveWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'HealthStatus') as HealthStatus;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'HealthStatus',) as HealthStatus;
+        }
+    return Future<HealthStatus>.value(null);
   }
 
   /// List OAuth 2.0 Clients
@@ -1424,7 +1424,7 @@ class AdminApi {
   Future<Response> listOAuth2ClientsWithHttpInfo({ int limit, int offset }) async {
     // Verify required params are set.
 
-    final path = '/clients'.replaceAll('{format}', 'json');
+    final path = r'/clients';
 
     Object postBody;
 
@@ -1481,17 +1481,17 @@ class AdminApi {
   Future<List<OAuth2Client>> listOAuth2Clients({ int limit, int offset }) async {
     final response = await listOAuth2ClientsWithHttpInfo( limit: limit, offset: offset );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return (apiClient.deserialize(_decodeBodyBytes(response), 'List<OAuth2Client>') as List)
-        .map((item) => item as OAuth2Client)
+      return (await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'List<OAuth2Client>') as List)
+        .cast<OAuth2Client>()
         .toList(growable: false);
     }
-    return null;
+    return Future<List<OAuth2Client>>.value(null);
   }
 
   /// Lists All Consent Sessions of a Subject
@@ -1509,7 +1509,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: subject');
     }
 
-    final path = '/oauth2/auth/sessions/consent'.replaceAll('{format}', 'json');
+    final path = r'/oauth2/auth/sessions/consent';
 
     Object postBody;
 
@@ -1557,17 +1557,97 @@ class AdminApi {
   Future<List<PreviousConsentSession>> listSubjectConsentSessions(String subject) async {
     final response = await listSubjectConsentSessionsWithHttpInfo(subject);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return (apiClient.deserialize(_decodeBodyBytes(response), 'List<PreviousConsentSession>') as List)
-        .map((item) => item as PreviousConsentSession)
+      return (await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'List<PreviousConsentSession>') as List)
+        .cast<PreviousConsentSession>()
         .toList(growable: false);
     }
-    return null;
+    return Future<List<PreviousConsentSession>>.value(null);
+  }
+
+  /// Patch an OAuth 2.0 Client
+  ///
+  /// Patch an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [List<PatchDocument>] body (required):
+  Future<Response> patchOAuth2ClientWithHttpInfo(String id, List<PatchDocument> body) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+    if (body == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: body');
+    }
+
+    final path = r'/clients/{id}'
+      .replaceAll('{' + 'id' + '}', id.toString());
+
+    Object postBody = body;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    final contentTypes = <String>['application/json'];
+    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
+    final authNames = <String>[];
+
+    if (
+      nullableContentType != null &&
+      nullableContentType.toLowerCase().startsWith('multipart/form-data')
+    ) {
+      bool hasFields = false;
+      final mp = MultipartRequest(null, null);
+      if (hasFields) {
+        postBody = mp;
+      }
+    } else {
+    }
+
+    return await apiClient.invokeAPI(
+      path,
+      'PATCH',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      nullableContentType,
+      authNames,
+    );
+  }
+
+  /// Patch an OAuth 2.0 Client
+  ///
+  /// Patch an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [List<PatchDocument>] body (required):
+  Future<OAuth2Client> patchOAuth2Client(String id, List<PatchDocument> body) async {
+    final response = await patchOAuth2ClientWithHttpInfo(id, body);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'OAuth2Client',) as OAuth2Client;
+        }
+    return Future<OAuth2Client>.value(null);
   }
 
   /// Get Snapshot Metrics from the Hydra Service.
@@ -1576,7 +1656,7 @@ class AdminApi {
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> prometheusWithHttpInfo() async {
-    final path = '/metrics/prometheus'.replaceAll('{format}', 'json');
+    final path = r'/metrics/prometheus';
 
     Object postBody;
 
@@ -1618,7 +1698,7 @@ class AdminApi {
   Future<void> prometheus() async {
     final response = await prometheusWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
@@ -1639,7 +1719,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: consentChallenge');
     }
 
-    final path = '/oauth2/auth/requests/consent/reject'.replaceAll('{format}', 'json');
+    final path = r'/oauth2/auth/requests/consent/reject';
 
     Object postBody = body;
 
@@ -1689,15 +1769,15 @@ class AdminApi {
   Future<CompletedRequest> rejectConsentRequest(String consentChallenge, { RejectRequest body }) async {
     final response = await rejectConsentRequestWithHttpInfo(consentChallenge,  body: body );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'CompletedRequest') as CompletedRequest;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CompletedRequest',) as CompletedRequest;
+        }
+    return Future<CompletedRequest>.value(null);
   }
 
   /// Reject a Login Request
@@ -1717,7 +1797,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: loginChallenge');
     }
 
-    final path = '/oauth2/auth/requests/login/reject'.replaceAll('{format}', 'json');
+    final path = r'/oauth2/auth/requests/login/reject';
 
     Object postBody = body;
 
@@ -1767,15 +1847,15 @@ class AdminApi {
   Future<CompletedRequest> rejectLoginRequest(String loginChallenge, { RejectRequest body }) async {
     final response = await rejectLoginRequestWithHttpInfo(loginChallenge,  body: body );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'CompletedRequest') as CompletedRequest;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CompletedRequest',) as CompletedRequest;
+        }
+    return Future<CompletedRequest>.value(null);
   }
 
   /// Reject a Logout Request
@@ -1795,7 +1875,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: logoutChallenge');
     }
 
-    final path = '/oauth2/auth/requests/logout/reject'.replaceAll('{format}', 'json');
+    final path = r'/oauth2/auth/requests/logout/reject';
 
     Object postBody = body;
 
@@ -1845,7 +1925,7 @@ class AdminApi {
   Future<void> rejectLogoutRequest(String logoutChallenge, { RejectRequest body }) async {
     final response = await rejectLogoutRequestWithHttpInfo(logoutChallenge,  body: body );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
@@ -1864,7 +1944,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: subject');
     }
 
-    final path = '/oauth2/auth/sessions/login'.replaceAll('{format}', 'json');
+    final path = r'/oauth2/auth/sessions/login';
 
     Object postBody;
 
@@ -1912,7 +1992,7 @@ class AdminApi {
   Future<void> revokeAuthenticationSession(String subject) async {
     final response = await revokeAuthenticationSessionWithHttpInfo(subject);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
@@ -1938,7 +2018,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: subject');
     }
 
-    final path = '/oauth2/auth/sessions/consent'.replaceAll('{format}', 'json');
+    final path = r'/oauth2/auth/sessions/consent';
 
     Object postBody;
 
@@ -1999,7 +2079,7 @@ class AdminApi {
   Future<void> revokeConsentSessions(String subject, { String client, bool all }) async {
     final response = await revokeConsentSessionsWithHttpInfo(subject,  client: client, all: all );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
@@ -2027,7 +2107,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: set_');
     }
 
-    final path = '/keys/{set}/{kid}'.replaceAll('{format}', 'json')
+    final path = r'/keys/{set}/{kid}'
       .replaceAll('{' + 'kid' + '}', kid.toString())
       .replaceAll('{' + 'set' + '}', set_.toString());
 
@@ -2081,15 +2161,15 @@ class AdminApi {
   Future<JSONWebKey> updateJsonWebKey(String kid, String set_, { JSONWebKey body }) async {
     final response = await updateJsonWebKeyWithHttpInfo(kid, set_,  body: body );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'JSONWebKey') as JSONWebKey;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'JSONWebKey',) as JSONWebKey;
+        }
+    return Future<JSONWebKey>.value(null);
   }
 
   /// Update a JSON Web Key Set
@@ -2110,7 +2190,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: set_');
     }
 
-    final path = '/keys/{set}'.replaceAll('{format}', 'json')
+    final path = r'/keys/{set}'
       .replaceAll('{' + 'set' + '}', set_.toString());
 
     Object postBody = body;
@@ -2160,15 +2240,15 @@ class AdminApi {
   Future<JSONWebKeySet> updateJsonWebKeySet(String set_, { JSONWebKeySet body }) async {
     final response = await updateJsonWebKeySetWithHttpInfo(set_,  body: body );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'JSONWebKeySet') as JSONWebKeySet;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'JSONWebKeySet',) as JSONWebKeySet;
+        }
+    return Future<JSONWebKeySet>.value(null);
   }
 
   /// Update an OAuth 2.0 Client
@@ -2191,7 +2271,7 @@ class AdminApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: body');
     }
 
-    final path = '/clients/{id}'.replaceAll('{format}', 'json')
+    final path = r'/clients/{id}'
       .replaceAll('{' + 'id' + '}', id.toString());
 
     Object postBody = body;
@@ -2240,14 +2320,14 @@ class AdminApi {
   Future<OAuth2Client> updateOAuth2Client(String id, OAuth2Client body) async {
     final response = await updateOAuth2ClientWithHttpInfo(id, body);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'OAuth2Client') as OAuth2Client;
-    }
-    return null;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'OAuth2Client',) as OAuth2Client;
+        }
+    return Future<OAuth2Client>.value(null);
   }
 }

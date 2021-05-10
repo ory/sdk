@@ -28,6 +28,8 @@ from ory_hydra_client.model.o_auth2_client import OAuth2Client
 from ory_hydra_client.model.o_auth2_token_introspection import OAuth2TokenIntrospection
 from ory_hydra_client.model.oauth2_token_response import Oauth2TokenResponse
 from ory_hydra_client.model.open_id_connect_context import OpenIDConnectContext
+from ory_hydra_client.model.patch_document import PatchDocument
+from ory_hydra_client.model.patch_request import PatchRequest
 from ory_hydra_client.model.plugin_config import PluginConfig
 from ory_hydra_client.model.plugin_config_args import PluginConfigArgs
 from ory_hydra_client.model.plugin_config_interface import PluginConfigInterface
@@ -42,8 +44,10 @@ from ory_hydra_client.model.plugin_mount import PluginMount
 from ory_hydra_client.model.plugin_settings import PluginSettings
 from ory_hydra_client.model.previous_consent_session import PreviousConsentSession
 from ory_hydra_client.model.reject_request import RejectRequest
+from ory_hydra_client.model.request_was_handled_response import RequestWasHandledResponse
 from ory_hydra_client.model.string_slice_pipe_delimiter import StringSlicePipeDelimiter
 from ory_hydra_client.model.userinfo_response import UserinfoResponse
 from ory_hydra_client.model.version import Version
+from ory_hydra_client.model.volume import Volume
 from ory_hydra_client.model.volume_usage_data import VolumeUsageData
 from ory_hydra_client.model.well_known import WellKnown

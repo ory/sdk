@@ -109,9 +109,7 @@ class OAuth2TokenIntrospection {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (active != null) {
       json[r'active'] = active;
-    }
     if (aud != null) {
       json[r'aud'] = aud;
     }

@@ -75,9 +75,7 @@ class AcceptLoginRequest {
     if (rememberFor != null) {
       json[r'remember_for'] = rememberFor;
     }
-    if (subject != null) {
       json[r'subject'] = subject;
-    }
     return json;
   }
 

@@ -95,9 +95,7 @@ class ConsentRequest {
     if (acr != null) {
       json[r'acr'] = acr;
     }
-    if (challenge != null) {
       json[r'challenge'] = challenge;
-    }
     if (client != null) {
       json[r'client'] = client;
     }

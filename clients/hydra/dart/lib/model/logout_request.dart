@@ -12,11 +12,15 @@ part of openapi.api;
 class LogoutRequest {
   /// Returns a new [LogoutRequest] instance.
   LogoutRequest({
+    this.challenge,
     this.requestUrl,
     this.rpInitiated,
     this.sid,
     this.subject,
   });
+
+  /// Challenge is the identifier (\"logout challenge\") of the logout authentication request. It is used to identify the session.
+  String challenge;
 
   /// RequestURL is the original Logout URL requested.
   String requestUrl;
@@ -32,6 +36,7 @@ class LogoutRequest {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is LogoutRequest &&
+     other.challenge == challenge &&
      other.requestUrl == requestUrl &&
      other.rpInitiated == rpInitiated &&
      other.sid == sid &&
@@ -39,16 +44,20 @@ class LogoutRequest {
 
   @override
   int get hashCode =>
+    (challenge == null ? 0 : challenge.hashCode) +
     (requestUrl == null ? 0 : requestUrl.hashCode) +
     (rpInitiated == null ? 0 : rpInitiated.hashCode) +
     (sid == null ? 0 : sid.hashCode) +
     (subject == null ? 0 : subject.hashCode);
 
   @override
-  String toString() => 'LogoutRequest[requestUrl=$requestUrl, rpInitiated=$rpInitiated, sid=$sid, subject=$subject]';
+  String toString() => 'LogoutRequest[challenge=$challenge, requestUrl=$requestUrl, rpInitiated=$rpInitiated, sid=$sid, subject=$subject]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    if (challenge != null) {
+      json[r'challenge'] = challenge;
+    }
     if (requestUrl != null) {
       json[r'request_url'] = requestUrl;
     }
@@ -69,6 +78,7 @@ class LogoutRequest {
   static LogoutRequest fromJson(Map<String, dynamic> json) => json == null
     ? null
     : LogoutRequest(
+        challenge: json[r'challenge'],
         requestUrl: json[r'request_url'],
         rpInitiated: json[r'rp_initiated'],
         sid: json[r'sid'],

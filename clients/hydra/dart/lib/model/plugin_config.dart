@@ -115,51 +115,25 @@ class PluginConfig {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (args != null) {
       json[r'Args'] = args;
-    }
-    if (description != null) {
       json[r'Description'] = description;
-    }
     if (dockerVersion != null) {
       json[r'DockerVersion'] = dockerVersion;
     }
-    if (documentation != null) {
       json[r'Documentation'] = documentation;
-    }
-    if (entrypoint != null) {
       json[r'Entrypoint'] = entrypoint;
-    }
-    if (env != null) {
       json[r'Env'] = env;
-    }
-    if (interface_ != null) {
       json[r'Interface'] = interface_;
-    }
-    if (ipcHost != null) {
       json[r'IpcHost'] = ipcHost;
-    }
-    if (linux != null) {
       json[r'Linux'] = linux;
-    }
-    if (mounts != null) {
       json[r'Mounts'] = mounts;
-    }
-    if (network != null) {
       json[r'Network'] = network;
-    }
-    if (pidHost != null) {
       json[r'PidHost'] = pidHost;
-    }
-    if (propagatedMount != null) {
       json[r'PropagatedMount'] = propagatedMount;
-    }
     if (user != null) {
       json[r'User'] = user;
     }
-    if (workDir != null) {
       json[r'WorkDir'] = workDir;
-    }
     if (rootfs != null) {
       json[r'rootfs'] = rootfs;
     }

@@ -6,8 +6,6 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"context"
-
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,6 +14,10 @@ import (
 //
 // swagger:model logoutRequest
 type LogoutRequest struct {
+
+	// Challenge is the identifier ("logout challenge") of the logout authentication request. It is used to
+	// identify the session.
+	Challenge string `json:"challenge,omitempty"`
 
 	// RequestURL is the original Logout URL requested.
 	RequestURL string `json:"request_url,omitempty"`
@@ -32,11 +34,6 @@ type LogoutRequest struct {
 
 // Validate validates this logout request
 func (m *LogoutRequest) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this logout request based on context it is used
-func (m *LogoutRequest) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

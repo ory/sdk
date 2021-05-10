@@ -1,6 +1,6 @@
 {
   "name": "@ory/hydra-client",
-  "version": "v1.9.1",
+  "version": "v1.10.4-alpha.1",
   "description": "OpenAPI client for @ory/hydra-client",
   "author": "ORY GmbH",
   "keywords": [
@@ -18,7 +18,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.21.1"
   },
   "devDependencies": {
     "@types/node": "^12.11.5",
