@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **SchemaId** | **string** | SchemaID is the ID of the JSON Schema to be used for validating the identity&#39;s traits. | 
 **SchemaUrl** | **string** | SchemaURL is the URL of the endpoint where the identity&#39;s traits schema can be fetched from.  format: url | 
 **Traits** | **map[string]interface{}** |  | 
-**Test** | Pointer to **string** |  | [optional] 
 **VerifiableAddresses** | Pointer to [**[]VerifiableAddress**](VerifiableAddress.md) | VerifiableAddresses contains all the addresses that can be verified by the user. | [optional] 
 
 ## Methods
@@ -135,31 +134,6 @@ and a boolean to check if the value has been set.
 
 SetTraits sets Traits field to given value.
 
-
-### GetTest
-
-`func (o *Identity) GetTest() string`
-
-GetTest returns the Test field if non-nil, zero value otherwise.
-
-### GetTestOk
-
-`func (o *Identity) GetTestOk() (*string, bool)`
-
-GetTestOk returns a tuple with the Test field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTest
-
-`func (o *Identity) SetTest(v string)`
-
-SetTest sets Test field to given value.
-
-### HasTest
-
-`func (o *Identity) HasTest() bool`
-
-HasTest returns a boolean if a field has been set.
 
 ### GetVerifiableAddresses
 

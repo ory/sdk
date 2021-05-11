@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **SchemaId** | **string** | SchemaID is the ID of the JSON Schema to be used for validating the identity&#39;s traits. | 
 **SchemaUrl** | **string** | SchemaURL is the URL of the endpoint where the identity&#39;s traits schema can be fetched from.  format: url | 
 **Traits** | **Object** |  | 
-**Test** | **string** |  | [optional] 
 **VerifiableAddresses** | [**List&lt;KratosVerifiableAddress&gt;**](KratosVerifiableAddress.md) | VerifiableAddresses contains all the addresses that can be verified by the user. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

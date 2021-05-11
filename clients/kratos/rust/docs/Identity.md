@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **schema_id** | **String** | SchemaID is the ID of the JSON Schema to be used for validating the identity's traits. | 
 **schema_url** | **String** | SchemaURL is the URL of the endpoint where the identity's traits schema can be fetched from.  format: url | 
 **traits** | [**serde_json::Value**](.md) |  | 
-**test** | Option<**String**> |  | [optional]
 **verifiable_addresses** | Option<[**Vec<crate::models::VerifiableAddress>**](VerifiableAddress.md)> | VerifiableAddresses contains all the addresses that can be verified by the user. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
