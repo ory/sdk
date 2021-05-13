@@ -1,6 +1,6 @@
 [package]
 name = "ory-oathkeeper-client"
-version = "0.38.10-beta.4"
+version = "0.38.11-beta.1"
 description = "SDK Client for ORY Keto"
 documentation = "https://www.ory.sh/keto/docs/sdk"
 homepage = "https://www.ory.sh"

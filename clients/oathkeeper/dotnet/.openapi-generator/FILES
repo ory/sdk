@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 Ory.Oathkeeper.Client.sln
 README.md
 appveyor.yml
@@ -15,17 +14,6 @@ docs/OathkeeperRuleMatch.md
 docs/OathkeeperUpstream.md
 docs/OathkeeperVersion.md
 git_push.sh
-src/Ory.Oathkeeper.Client.Test/Api/ApiApiTests.cs
-src/Ory.Oathkeeper.Client.Test/Model/OathkeeperHealthNotReadyStatusTests.cs
-src/Ory.Oathkeeper.Client.Test/Model/OathkeeperHealthStatusTests.cs
-src/Ory.Oathkeeper.Client.Test/Model/OathkeeperInlineResponse500Tests.cs
-src/Ory.Oathkeeper.Client.Test/Model/OathkeeperJsonWebKeySetTests.cs
-src/Ory.Oathkeeper.Client.Test/Model/OathkeeperJsonWebKeyTests.cs
-src/Ory.Oathkeeper.Client.Test/Model/OathkeeperRuleHandlerTests.cs
-src/Ory.Oathkeeper.Client.Test/Model/OathkeeperRuleMatchTests.cs
-src/Ory.Oathkeeper.Client.Test/Model/OathkeeperRuleTests.cs
-src/Ory.Oathkeeper.Client.Test/Model/OathkeeperUpstreamTests.cs
-src/Ory.Oathkeeper.Client.Test/Model/OathkeeperVersionTests.cs
 src/Ory.Oathkeeper.Client.Test/Ory.Oathkeeper.Client.Test.csproj
 src/Ory.Oathkeeper.Client/Api/ApiApi.cs
 src/Ory.Oathkeeper.Client/Client/ApiClient.cs

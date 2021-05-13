@@ -8,7 +8,7 @@ info:
     for validity against a set of rules. This service uses Hydra to validate access
     tokens and policies.
   title: ORY Oathkeeper
-  version: v0.38.10-beta.4
+  version: v0.38.11-beta.1
 servers:
 - url: /
 paths:
@@ -229,6 +229,9 @@ paths:
       x-accepts: application/json
 components:
   schemas:
+    UUID:
+      format: uuid4
+      type: string
     Upstream:
       example:
         preserve_host: true
@@ -528,9 +531,6 @@ components:
           description: Version is the service's version.
           type: string
       type: object
-    UUID:
-      format: uuid4
-      type: string
     inline_response_500:
       properties:
         code:
