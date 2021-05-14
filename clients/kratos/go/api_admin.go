@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory Kratos APIs. Public and administrative APIs are exposed on different ports. Public APIs can face the public internet without any protection while administrative APIs should never be exposed without prior authorization. To protect the administative API port you should use something like Nginx, Ory Oathkeeper, or any other technology capable of authorizing incoming requests. 
  *
- * API version: v0.6.1-alpha.1
+ * API version: v0.6.2-alpha.1
  * Contact: hi@ory.sh
  */
 
@@ -28,18 +28,18 @@ var (
 // AdminApiService AdminApi service
 type AdminApiService service
 
-type ApiCreateIdentityRequest struct {
+type AdminApiApiCreateIdentityRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
 	createIdentity *CreateIdentity
 }
 
-func (r ApiCreateIdentityRequest) CreateIdentity(createIdentity CreateIdentity) ApiCreateIdentityRequest {
+func (r AdminApiApiCreateIdentityRequest) CreateIdentity(createIdentity CreateIdentity) AdminApiApiCreateIdentityRequest {
 	r.createIdentity = &createIdentity
 	return r
 }
 
-func (r ApiCreateIdentityRequest) Execute() (*Identity, *http.Response, error) {
+func (r AdminApiApiCreateIdentityRequest) Execute() (*Identity, *http.Response, error) {
 	return r.ApiService.CreateIdentityExecute(r)
 }
 
@@ -50,10 +50,10 @@ using this method! A way to achieve that will be introduced in the future.
 
 Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateIdentityRequest
+ * @return AdminApiApiCreateIdentityRequest
  */
-func (a *AdminApiService) CreateIdentity(ctx context.Context) ApiCreateIdentityRequest {
-	return ApiCreateIdentityRequest{
+func (a *AdminApiService) CreateIdentity(ctx context.Context) AdminApiApiCreateIdentityRequest {
+	return AdminApiApiCreateIdentityRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -63,7 +63,7 @@ func (a *AdminApiService) CreateIdentity(ctx context.Context) ApiCreateIdentityR
  * Execute executes the request
  * @return Identity
  */
-func (a *AdminApiService) CreateIdentityExecute(r ApiCreateIdentityRequest) (*Identity, *http.Response, error) {
+func (a *AdminApiService) CreateIdentityExecute(r AdminApiApiCreateIdentityRequest) (*Identity, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -169,18 +169,18 @@ func (a *AdminApiService) CreateIdentityExecute(r ApiCreateIdentityRequest) (*Id
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCreateRecoveryLinkRequest struct {
+type AdminApiApiCreateRecoveryLinkRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
 	createRecoveryLink *CreateRecoveryLink
 }
 
-func (r ApiCreateRecoveryLinkRequest) CreateRecoveryLink(createRecoveryLink CreateRecoveryLink) ApiCreateRecoveryLinkRequest {
+func (r AdminApiApiCreateRecoveryLinkRequest) CreateRecoveryLink(createRecoveryLink CreateRecoveryLink) AdminApiApiCreateRecoveryLinkRequest {
 	r.createRecoveryLink = &createRecoveryLink
 	return r
 }
 
-func (r ApiCreateRecoveryLinkRequest) Execute() (*RecoveryLink, *http.Response, error) {
+func (r AdminApiApiCreateRecoveryLinkRequest) Execute() (*RecoveryLink, *http.Response, error) {
 	return r.ApiService.CreateRecoveryLinkExecute(r)
 }
 
@@ -189,10 +189,10 @@ func (r ApiCreateRecoveryLinkRequest) Execute() (*RecoveryLink, *http.Response, 
  * This endpoint creates a recovery link which should be given to the user in order for them to recover
 (or activate) their account.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateRecoveryLinkRequest
+ * @return AdminApiApiCreateRecoveryLinkRequest
  */
-func (a *AdminApiService) CreateRecoveryLink(ctx context.Context) ApiCreateRecoveryLinkRequest {
-	return ApiCreateRecoveryLinkRequest{
+func (a *AdminApiService) CreateRecoveryLink(ctx context.Context) AdminApiApiCreateRecoveryLinkRequest {
+	return AdminApiApiCreateRecoveryLinkRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -202,7 +202,7 @@ func (a *AdminApiService) CreateRecoveryLink(ctx context.Context) ApiCreateRecov
  * Execute executes the request
  * @return RecoveryLink
  */
-func (a *AdminApiService) CreateRecoveryLinkExecute(r ApiCreateRecoveryLinkRequest) (*RecoveryLink, *http.Response, error) {
+func (a *AdminApiService) CreateRecoveryLinkExecute(r AdminApiApiCreateRecoveryLinkRequest) (*RecoveryLink, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -308,14 +308,14 @@ func (a *AdminApiService) CreateRecoveryLinkExecute(r ApiCreateRecoveryLinkReque
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteIdentityRequest struct {
+type AdminApiApiDeleteIdentityRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
 	id string
 }
 
 
-func (r ApiDeleteIdentityRequest) Execute() (*http.Response, error) {
+func (r AdminApiApiDeleteIdentityRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteIdentityExecute(r)
 }
 
@@ -328,10 +328,10 @@ assumed that is has been deleted already.
 Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id ID is the identity's ID.
- * @return ApiDeleteIdentityRequest
+ * @return AdminApiApiDeleteIdentityRequest
  */
-func (a *AdminApiService) DeleteIdentity(ctx context.Context, id string) ApiDeleteIdentityRequest {
-	return ApiDeleteIdentityRequest{
+func (a *AdminApiService) DeleteIdentity(ctx context.Context, id string) AdminApiApiDeleteIdentityRequest {
+	return AdminApiApiDeleteIdentityRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -341,7 +341,7 @@ func (a *AdminApiService) DeleteIdentity(ctx context.Context, id string) ApiDele
 /*
  * Execute executes the request
  */
-func (a *AdminApiService) DeleteIdentityExecute(r ApiDeleteIdentityRequest) (*http.Response, error) {
+func (a *AdminApiService) DeleteIdentityExecute(r AdminApiApiDeleteIdentityRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -426,14 +426,14 @@ func (a *AdminApiService) DeleteIdentityExecute(r ApiDeleteIdentityRequest) (*ht
 	return localVarHTTPResponse, nil
 }
 
-type ApiGetIdentityRequest struct {
+type AdminApiApiGetIdentityRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
 	id string
 }
 
 
-func (r ApiGetIdentityRequest) Execute() (*Identity, *http.Response, error) {
+func (r AdminApiApiGetIdentityRequest) Execute() (*Identity, *http.Response, error) {
 	return r.ApiService.GetIdentityExecute(r)
 }
 
@@ -442,10 +442,10 @@ func (r ApiGetIdentityRequest) Execute() (*Identity, *http.Response, error) {
  * Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id ID must be set to the ID of identity you want to get
- * @return ApiGetIdentityRequest
+ * @return AdminApiApiGetIdentityRequest
  */
-func (a *AdminApiService) GetIdentity(ctx context.Context, id string) ApiGetIdentityRequest {
-	return ApiGetIdentityRequest{
+func (a *AdminApiService) GetIdentity(ctx context.Context, id string) AdminApiApiGetIdentityRequest {
+	return AdminApiApiGetIdentityRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -456,7 +456,7 @@ func (a *AdminApiService) GetIdentity(ctx context.Context, id string) ApiGetIden
  * Execute executes the request
  * @return Identity
  */
-func (a *AdminApiService) GetIdentityExecute(r ApiGetIdentityRequest) (*Identity, *http.Response, error) {
+func (a *AdminApiService) GetIdentityExecute(r AdminApiApiGetIdentityRequest) (*Identity, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -561,14 +561,14 @@ func (a *AdminApiService) GetIdentityExecute(r ApiGetIdentityRequest) (*Identity
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetSchemaRequest struct {
+type AdminApiApiGetSchemaRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
 	id string
 }
 
 
-func (r ApiGetSchemaRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r AdminApiApiGetSchemaRequest) Execute() (map[string]interface{}, *http.Response, error) {
 	return r.ApiService.GetSchemaExecute(r)
 }
 
@@ -577,10 +577,10 @@ func (r ApiGetSchemaRequest) Execute() (map[string]interface{}, *http.Response, 
  * Get a Traits Schema Definition
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id ID must be set to the ID of schema you want to get
- * @return ApiGetSchemaRequest
+ * @return AdminApiApiGetSchemaRequest
  */
-func (a *AdminApiService) GetSchema(ctx context.Context, id string) ApiGetSchemaRequest {
-	return ApiGetSchemaRequest{
+func (a *AdminApiService) GetSchema(ctx context.Context, id string) AdminApiApiGetSchemaRequest {
+	return AdminApiApiGetSchemaRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -591,7 +591,7 @@ func (a *AdminApiService) GetSchema(ctx context.Context, id string) ApiGetSchema
  * Execute executes the request
  * @return map[string]interface{}
  */
-func (a *AdminApiService) GetSchemaExecute(r ApiGetSchemaRequest) (map[string]interface{}, *http.Response, error) {
+func (a *AdminApiService) GetSchemaExecute(r AdminApiApiGetSchemaRequest) (map[string]interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -686,18 +686,18 @@ func (a *AdminApiService) GetSchemaExecute(r ApiGetSchemaRequest) (map[string]in
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetSelfServiceErrorRequest struct {
+type AdminApiApiGetSelfServiceErrorRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
 	error_ *string
 }
 
-func (r ApiGetSelfServiceErrorRequest) Error_(error_ string) ApiGetSelfServiceErrorRequest {
+func (r AdminApiApiGetSelfServiceErrorRequest) Error_(error_ string) AdminApiApiGetSelfServiceErrorRequest {
 	r.error_ = &error_
 	return r
 }
 
-func (r ApiGetSelfServiceErrorRequest) Execute() (*ErrorContainer, *http.Response, error) {
+func (r AdminApiApiGetSelfServiceErrorRequest) Execute() (*ErrorContainer, *http.Response, error) {
 	return r.ApiService.GetSelfServiceErrorExecute(r)
 }
 
@@ -711,10 +711,10 @@ This endpoint supports stub values to help you implement the error UI:
 
 More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetSelfServiceErrorRequest
+ * @return AdminApiApiGetSelfServiceErrorRequest
  */
-func (a *AdminApiService) GetSelfServiceError(ctx context.Context) ApiGetSelfServiceErrorRequest {
-	return ApiGetSelfServiceErrorRequest{
+func (a *AdminApiService) GetSelfServiceError(ctx context.Context) AdminApiApiGetSelfServiceErrorRequest {
+	return AdminApiApiGetSelfServiceErrorRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -724,7 +724,7 @@ func (a *AdminApiService) GetSelfServiceError(ctx context.Context) ApiGetSelfSer
  * Execute executes the request
  * @return ErrorContainer
  */
-func (a *AdminApiService) GetSelfServiceErrorExecute(r ApiGetSelfServiceErrorRequest) (*ErrorContainer, *http.Response, error) {
+func (a *AdminApiService) GetSelfServiceErrorExecute(r AdminApiApiGetSelfServiceErrorRequest) (*ErrorContainer, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -832,18 +832,18 @@ func (a *AdminApiService) GetSelfServiceErrorExecute(r ApiGetSelfServiceErrorReq
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetSelfServiceLoginFlowRequest struct {
+type AdminApiApiGetSelfServiceLoginFlowRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
 	id *string
 }
 
-func (r ApiGetSelfServiceLoginFlowRequest) Id(id string) ApiGetSelfServiceLoginFlowRequest {
+func (r AdminApiApiGetSelfServiceLoginFlowRequest) Id(id string) AdminApiApiGetSelfServiceLoginFlowRequest {
 	r.id = &id
 	return r
 }
 
-func (r ApiGetSelfServiceLoginFlowRequest) Execute() (*LoginFlow, *http.Response, error) {
+func (r AdminApiApiGetSelfServiceLoginFlowRequest) Execute() (*LoginFlow, *http.Response, error) {
 	return r.ApiService.GetSelfServiceLoginFlowExecute(r)
 }
 
@@ -853,10 +853,10 @@ func (r ApiGetSelfServiceLoginFlowRequest) Execute() (*LoginFlow, *http.Response
 
 More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetSelfServiceLoginFlowRequest
+ * @return AdminApiApiGetSelfServiceLoginFlowRequest
  */
-func (a *AdminApiService) GetSelfServiceLoginFlow(ctx context.Context) ApiGetSelfServiceLoginFlowRequest {
-	return ApiGetSelfServiceLoginFlowRequest{
+func (a *AdminApiService) GetSelfServiceLoginFlow(ctx context.Context) AdminApiApiGetSelfServiceLoginFlowRequest {
+	return AdminApiApiGetSelfServiceLoginFlowRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -866,7 +866,7 @@ func (a *AdminApiService) GetSelfServiceLoginFlow(ctx context.Context) ApiGetSel
  * Execute executes the request
  * @return LoginFlow
  */
-func (a *AdminApiService) GetSelfServiceLoginFlowExecute(r ApiGetSelfServiceLoginFlowRequest) (*LoginFlow, *http.Response, error) {
+func (a *AdminApiService) GetSelfServiceLoginFlowExecute(r AdminApiApiGetSelfServiceLoginFlowRequest) (*LoginFlow, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -984,18 +984,18 @@ func (a *AdminApiService) GetSelfServiceLoginFlowExecute(r ApiGetSelfServiceLogi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetSelfServiceRecoveryFlowRequest struct {
+type AdminApiApiGetSelfServiceRecoveryFlowRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
 	id *string
 }
 
-func (r ApiGetSelfServiceRecoveryFlowRequest) Id(id string) ApiGetSelfServiceRecoveryFlowRequest {
+func (r AdminApiApiGetSelfServiceRecoveryFlowRequest) Id(id string) AdminApiApiGetSelfServiceRecoveryFlowRequest {
 	r.id = &id
 	return r
 }
 
-func (r ApiGetSelfServiceRecoveryFlowRequest) Execute() (*RecoveryFlow, *http.Response, error) {
+func (r AdminApiApiGetSelfServiceRecoveryFlowRequest) Execute() (*RecoveryFlow, *http.Response, error) {
 	return r.ApiService.GetSelfServiceRecoveryFlowExecute(r)
 }
 
@@ -1005,10 +1005,10 @@ func (r ApiGetSelfServiceRecoveryFlowRequest) Execute() (*RecoveryFlow, *http.Re
 
 More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetSelfServiceRecoveryFlowRequest
+ * @return AdminApiApiGetSelfServiceRecoveryFlowRequest
  */
-func (a *AdminApiService) GetSelfServiceRecoveryFlow(ctx context.Context) ApiGetSelfServiceRecoveryFlowRequest {
-	return ApiGetSelfServiceRecoveryFlowRequest{
+func (a *AdminApiService) GetSelfServiceRecoveryFlow(ctx context.Context) AdminApiApiGetSelfServiceRecoveryFlowRequest {
+	return AdminApiApiGetSelfServiceRecoveryFlowRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1018,7 +1018,7 @@ func (a *AdminApiService) GetSelfServiceRecoveryFlow(ctx context.Context) ApiGet
  * Execute executes the request
  * @return RecoveryFlow
  */
-func (a *AdminApiService) GetSelfServiceRecoveryFlowExecute(r ApiGetSelfServiceRecoveryFlowRequest) (*RecoveryFlow, *http.Response, error) {
+func (a *AdminApiService) GetSelfServiceRecoveryFlowExecute(r AdminApiApiGetSelfServiceRecoveryFlowRequest) (*RecoveryFlow, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1126,18 +1126,18 @@ func (a *AdminApiService) GetSelfServiceRecoveryFlowExecute(r ApiGetSelfServiceR
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetSelfServiceRegistrationFlowRequest struct {
+type AdminApiApiGetSelfServiceRegistrationFlowRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
 	id *string
 }
 
-func (r ApiGetSelfServiceRegistrationFlowRequest) Id(id string) ApiGetSelfServiceRegistrationFlowRequest {
+func (r AdminApiApiGetSelfServiceRegistrationFlowRequest) Id(id string) AdminApiApiGetSelfServiceRegistrationFlowRequest {
 	r.id = &id
 	return r
 }
 
-func (r ApiGetSelfServiceRegistrationFlowRequest) Execute() (*RegistrationFlow, *http.Response, error) {
+func (r AdminApiApiGetSelfServiceRegistrationFlowRequest) Execute() (*RegistrationFlow, *http.Response, error) {
 	return r.ApiService.GetSelfServiceRegistrationFlowExecute(r)
 }
 
@@ -1147,10 +1147,10 @@ func (r ApiGetSelfServiceRegistrationFlowRequest) Execute() (*RegistrationFlow, 
 
 More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetSelfServiceRegistrationFlowRequest
+ * @return AdminApiApiGetSelfServiceRegistrationFlowRequest
  */
-func (a *AdminApiService) GetSelfServiceRegistrationFlow(ctx context.Context) ApiGetSelfServiceRegistrationFlowRequest {
-	return ApiGetSelfServiceRegistrationFlowRequest{
+func (a *AdminApiService) GetSelfServiceRegistrationFlow(ctx context.Context) AdminApiApiGetSelfServiceRegistrationFlowRequest {
+	return AdminApiApiGetSelfServiceRegistrationFlowRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1160,7 +1160,7 @@ func (a *AdminApiService) GetSelfServiceRegistrationFlow(ctx context.Context) Ap
  * Execute executes the request
  * @return RegistrationFlow
  */
-func (a *AdminApiService) GetSelfServiceRegistrationFlowExecute(r ApiGetSelfServiceRegistrationFlowRequest) (*RegistrationFlow, *http.Response, error) {
+func (a *AdminApiService) GetSelfServiceRegistrationFlowExecute(r AdminApiApiGetSelfServiceRegistrationFlowRequest) (*RegistrationFlow, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1278,18 +1278,18 @@ func (a *AdminApiService) GetSelfServiceRegistrationFlowExecute(r ApiGetSelfServ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetSelfServiceSettingsFlowRequest struct {
+type AdminApiApiGetSelfServiceSettingsFlowRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
 	id *string
 }
 
-func (r ApiGetSelfServiceSettingsFlowRequest) Id(id string) ApiGetSelfServiceSettingsFlowRequest {
+func (r AdminApiApiGetSelfServiceSettingsFlowRequest) Id(id string) AdminApiApiGetSelfServiceSettingsFlowRequest {
 	r.id = &id
 	return r
 }
 
-func (r ApiGetSelfServiceSettingsFlowRequest) Execute() (*SettingsFlow, *http.Response, error) {
+func (r AdminApiApiGetSelfServiceSettingsFlowRequest) Execute() (*SettingsFlow, *http.Response, error) {
 	return r.ApiService.GetSelfServiceSettingsFlowExecute(r)
 }
 
@@ -1303,10 +1303,10 @@ You can access this endpoint without credentials when using Ory Kratos' Admin AP
 
 More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetSelfServiceSettingsFlowRequest
+ * @return AdminApiApiGetSelfServiceSettingsFlowRequest
  */
-func (a *AdminApiService) GetSelfServiceSettingsFlow(ctx context.Context) ApiGetSelfServiceSettingsFlowRequest {
-	return ApiGetSelfServiceSettingsFlowRequest{
+func (a *AdminApiService) GetSelfServiceSettingsFlow(ctx context.Context) AdminApiApiGetSelfServiceSettingsFlowRequest {
+	return AdminApiApiGetSelfServiceSettingsFlowRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1316,7 +1316,7 @@ func (a *AdminApiService) GetSelfServiceSettingsFlow(ctx context.Context) ApiGet
  * Execute executes the request
  * @return SettingsFlow
  */
-func (a *AdminApiService) GetSelfServiceSettingsFlowExecute(r ApiGetSelfServiceSettingsFlowRequest) (*SettingsFlow, *http.Response, error) {
+func (a *AdminApiService) GetSelfServiceSettingsFlowExecute(r AdminApiApiGetSelfServiceSettingsFlowRequest) (*SettingsFlow, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1448,18 +1448,18 @@ func (a *AdminApiService) GetSelfServiceSettingsFlowExecute(r ApiGetSelfServiceS
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetSelfServiceVerificationFlowRequest struct {
+type AdminApiApiGetSelfServiceVerificationFlowRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
 	id *string
 }
 
-func (r ApiGetSelfServiceVerificationFlowRequest) Id(id string) ApiGetSelfServiceVerificationFlowRequest {
+func (r AdminApiApiGetSelfServiceVerificationFlowRequest) Id(id string) AdminApiApiGetSelfServiceVerificationFlowRequest {
 	r.id = &id
 	return r
 }
 
-func (r ApiGetSelfServiceVerificationFlowRequest) Execute() (*VerificationFlow, *http.Response, error) {
+func (r AdminApiApiGetSelfServiceVerificationFlowRequest) Execute() (*VerificationFlow, *http.Response, error) {
 	return r.ApiService.GetSelfServiceVerificationFlowExecute(r)
 }
 
@@ -1469,10 +1469,10 @@ func (r ApiGetSelfServiceVerificationFlowRequest) Execute() (*VerificationFlow, 
 
 More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetSelfServiceVerificationFlowRequest
+ * @return AdminApiApiGetSelfServiceVerificationFlowRequest
  */
-func (a *AdminApiService) GetSelfServiceVerificationFlow(ctx context.Context) ApiGetSelfServiceVerificationFlowRequest {
-	return ApiGetSelfServiceVerificationFlowRequest{
+func (a *AdminApiService) GetSelfServiceVerificationFlow(ctx context.Context) AdminApiApiGetSelfServiceVerificationFlowRequest {
+	return AdminApiApiGetSelfServiceVerificationFlowRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1482,7 +1482,7 @@ func (a *AdminApiService) GetSelfServiceVerificationFlow(ctx context.Context) Ap
  * Execute executes the request
  * @return VerificationFlow
  */
-func (a *AdminApiService) GetSelfServiceVerificationFlowExecute(r ApiGetSelfServiceVerificationFlowRequest) (*VerificationFlow, *http.Response, error) {
+func (a *AdminApiService) GetSelfServiceVerificationFlowExecute(r AdminApiApiGetSelfServiceVerificationFlowRequest) (*VerificationFlow, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1590,13 +1590,13 @@ func (a *AdminApiService) GetSelfServiceVerificationFlowExecute(r ApiGetSelfServ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetVersionRequest struct {
+type AdminApiApiGetVersionRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
 }
 
 
-func (r ApiGetVersionRequest) Execute() (*InlineResponse2001, *http.Response, error) {
+func (r AdminApiApiGetVersionRequest) Execute() (*InlineResponse2001, *http.Response, error) {
 	return r.ApiService.GetVersionExecute(r)
 }
 
@@ -1610,10 +1610,10 @@ If the service supports TLS Edge Termination, this endpoint does not require the
 Be aware that if you are running multiple nodes of this service, the version will never
 refer to the cluster state, only to a single instance.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetVersionRequest
+ * @return AdminApiApiGetVersionRequest
  */
-func (a *AdminApiService) GetVersion(ctx context.Context) ApiGetVersionRequest {
-	return ApiGetVersionRequest{
+func (a *AdminApiService) GetVersion(ctx context.Context) AdminApiApiGetVersionRequest {
+	return AdminApiApiGetVersionRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1623,7 +1623,7 @@ func (a *AdminApiService) GetVersion(ctx context.Context) ApiGetVersionRequest {
  * Execute executes the request
  * @return InlineResponse2001
  */
-func (a *AdminApiService) GetVersionExecute(r ApiGetVersionRequest) (*InlineResponse2001, *http.Response, error) {
+func (a *AdminApiService) GetVersionExecute(r AdminApiApiGetVersionRequest) (*InlineResponse2001, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1698,13 +1698,13 @@ func (a *AdminApiService) GetVersionExecute(r ApiGetVersionRequest) (*InlineResp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiIsAliveRequest struct {
+type AdminApiApiIsAliveRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
 }
 
 
-func (r ApiIsAliveRequest) Execute() (*InlineResponse200, *http.Response, error) {
+func (r AdminApiApiIsAliveRequest) Execute() (*InlineResponse200, *http.Response, error) {
 	return r.ApiService.IsAliveExecute(r)
 }
 
@@ -1719,10 +1719,10 @@ If the service supports TLS Edge Termination, this endpoint does not require the
 Be aware that if you are running multiple nodes of this service, the health status will never
 refer to the cluster state, only to a single instance.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiIsAliveRequest
+ * @return AdminApiApiIsAliveRequest
  */
-func (a *AdminApiService) IsAlive(ctx context.Context) ApiIsAliveRequest {
-	return ApiIsAliveRequest{
+func (a *AdminApiService) IsAlive(ctx context.Context) AdminApiApiIsAliveRequest {
+	return AdminApiApiIsAliveRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1732,7 +1732,7 @@ func (a *AdminApiService) IsAlive(ctx context.Context) ApiIsAliveRequest {
  * Execute executes the request
  * @return InlineResponse200
  */
-func (a *AdminApiService) IsAliveExecute(r ApiIsAliveRequest) (*InlineResponse200, *http.Response, error) {
+func (a *AdminApiService) IsAliveExecute(r AdminApiApiIsAliveRequest) (*InlineResponse200, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1816,13 +1816,13 @@ func (a *AdminApiService) IsAliveExecute(r ApiIsAliveRequest) (*InlineResponse20
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiIsReadyRequest struct {
+type AdminApiApiIsReadyRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
 }
 
 
-func (r ApiIsReadyRequest) Execute() (*InlineResponse200, *http.Response, error) {
+func (r AdminApiApiIsReadyRequest) Execute() (*InlineResponse200, *http.Response, error) {
 	return r.ApiService.IsReadyExecute(r)
 }
 
@@ -1837,10 +1837,10 @@ If the service supports TLS Edge Termination, this endpoint does not require the
 Be aware that if you are running multiple nodes of Ory Kratos, the health status will never
 refer to the cluster state, only to a single instance.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiIsReadyRequest
+ * @return AdminApiApiIsReadyRequest
  */
-func (a *AdminApiService) IsReady(ctx context.Context) ApiIsReadyRequest {
-	return ApiIsReadyRequest{
+func (a *AdminApiService) IsReady(ctx context.Context) AdminApiApiIsReadyRequest {
+	return AdminApiApiIsReadyRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1850,7 +1850,7 @@ func (a *AdminApiService) IsReady(ctx context.Context) ApiIsReadyRequest {
  * Execute executes the request
  * @return InlineResponse200
  */
-func (a *AdminApiService) IsReadyExecute(r ApiIsReadyRequest) (*InlineResponse200, *http.Response, error) {
+func (a *AdminApiService) IsReadyExecute(r AdminApiApiIsReadyRequest) (*InlineResponse200, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1934,23 +1934,23 @@ func (a *AdminApiService) IsReadyExecute(r ApiIsReadyRequest) (*InlineResponse20
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListIdentitiesRequest struct {
+type AdminApiApiListIdentitiesRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
 	perPage *int64
 	page *int64
 }
 
-func (r ApiListIdentitiesRequest) PerPage(perPage int64) ApiListIdentitiesRequest {
+func (r AdminApiApiListIdentitiesRequest) PerPage(perPage int64) AdminApiApiListIdentitiesRequest {
 	r.perPage = &perPage
 	return r
 }
-func (r ApiListIdentitiesRequest) Page(page int64) ApiListIdentitiesRequest {
+func (r AdminApiApiListIdentitiesRequest) Page(page int64) AdminApiApiListIdentitiesRequest {
 	r.page = &page
 	return r
 }
 
-func (r ApiListIdentitiesRequest) Execute() ([]Identity, *http.Response, error) {
+func (r AdminApiApiListIdentitiesRequest) Execute() ([]Identity, *http.Response, error) {
 	return r.ApiService.ListIdentitiesExecute(r)
 }
 
@@ -1960,10 +1960,10 @@ func (r ApiListIdentitiesRequest) Execute() ([]Identity, *http.Response, error) 
 
 Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListIdentitiesRequest
+ * @return AdminApiApiListIdentitiesRequest
  */
-func (a *AdminApiService) ListIdentities(ctx context.Context) ApiListIdentitiesRequest {
-	return ApiListIdentitiesRequest{
+func (a *AdminApiService) ListIdentities(ctx context.Context) AdminApiApiListIdentitiesRequest {
+	return AdminApiApiListIdentitiesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1973,7 +1973,7 @@ func (a *AdminApiService) ListIdentities(ctx context.Context) ApiListIdentitiesR
  * Execute executes the request
  * @return []Identity
  */
-func (a *AdminApiService) ListIdentitiesExecute(r ApiListIdentitiesRequest) ([]Identity, *http.Response, error) {
+func (a *AdminApiService) ListIdentitiesExecute(r AdminApiApiListIdentitiesRequest) ([]Identity, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2063,13 +2063,13 @@ func (a *AdminApiService) ListIdentitiesExecute(r ApiListIdentitiesRequest) ([]I
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPrometheusRequest struct {
+type AdminApiApiPrometheusRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
 }
 
 
-func (r ApiPrometheusRequest) Execute() (*http.Response, error) {
+func (r AdminApiApiPrometheusRequest) Execute() (*http.Response, error) {
 	return r.ApiService.PrometheusExecute(r)
 }
 
@@ -2082,10 +2082,10 @@ prometheus.io/port: "4434"
 prometheus.io/path: "/metrics/prometheus"
 ```
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiPrometheusRequest
+ * @return AdminApiApiPrometheusRequest
  */
-func (a *AdminApiService) Prometheus(ctx context.Context) ApiPrometheusRequest {
-	return ApiPrometheusRequest{
+func (a *AdminApiService) Prometheus(ctx context.Context) AdminApiApiPrometheusRequest {
+	return AdminApiApiPrometheusRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -2094,7 +2094,7 @@ func (a *AdminApiService) Prometheus(ctx context.Context) ApiPrometheusRequest {
 /*
  * Execute executes the request
  */
-func (a *AdminApiService) PrometheusExecute(r ApiPrometheusRequest) (*http.Response, error) {
+func (a *AdminApiService) PrometheusExecute(r AdminApiApiPrometheusRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2159,19 +2159,19 @@ func (a *AdminApiService) PrometheusExecute(r ApiPrometheusRequest) (*http.Respo
 	return localVarHTTPResponse, nil
 }
 
-type ApiUpdateIdentityRequest struct {
+type AdminApiApiUpdateIdentityRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
 	id string
 	updateIdentity *UpdateIdentity
 }
 
-func (r ApiUpdateIdentityRequest) UpdateIdentity(updateIdentity UpdateIdentity) ApiUpdateIdentityRequest {
+func (r AdminApiApiUpdateIdentityRequest) UpdateIdentity(updateIdentity UpdateIdentity) AdminApiApiUpdateIdentityRequest {
 	r.updateIdentity = &updateIdentity
 	return r
 }
 
-func (r ApiUpdateIdentityRequest) Execute() (*Identity, *http.Response, error) {
+func (r AdminApiApiUpdateIdentityRequest) Execute() (*Identity, *http.Response, error) {
 	return r.ApiService.UpdateIdentityExecute(r)
 }
 
@@ -2185,10 +2185,10 @@ The full identity payload (except credentials) is expected. This endpoint does n
 Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id ID must be set to the ID of identity you want to update
- * @return ApiUpdateIdentityRequest
+ * @return AdminApiApiUpdateIdentityRequest
  */
-func (a *AdminApiService) UpdateIdentity(ctx context.Context, id string) ApiUpdateIdentityRequest {
-	return ApiUpdateIdentityRequest{
+func (a *AdminApiService) UpdateIdentity(ctx context.Context, id string) AdminApiApiUpdateIdentityRequest {
+	return AdminApiApiUpdateIdentityRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -2199,7 +2199,7 @@ func (a *AdminApiService) UpdateIdentity(ctx context.Context, id string) ApiUpda
  * Execute executes the request
  * @return Identity
  */
-func (a *AdminApiService) UpdateIdentityExecute(r ApiUpdateIdentityRequest) (*Identity, *http.Response, error) {
+func (a *AdminApiService) UpdateIdentityExecute(r AdminApiApiUpdateIdentityRequest) (*Identity, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
