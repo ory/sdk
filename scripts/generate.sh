@@ -184,7 +184,7 @@ golang () {
   mkdir -p "${dir}"
   (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go")
 
-  if [ $PROJECT = "kratos" ]; then
+  if [ $project != "kratos" ]  && [ $project != "client" ]; then
     openapi-generator-cli generate -i "${SPEC_FILE}" \
       -g go \
       -o "$dir" \
