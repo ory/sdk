@@ -159,7 +159,7 @@ ruby () {
 
   dir="clients/${PROJECT}/ruby"
 
-  rm "${dir}/lib/ory-${PROJECT}-client/version.rb" || true
+  rm "${dir}/lib/${RUBY_PROJECT_NAME}/version.rb" || true
 
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g ruby \
@@ -169,7 +169,7 @@ ruby () {
     --git-host github.com \
     -c ./config/client/ruby.yml.proc.yml
 
-  file="${dir}/lib/ory-${PROJECT}-client/version.rb"
+  file="${dir}/lib/${RUBY_PROJECT_NAME}/version.rb"
 
   (sed "s/${VERSION}/${GEM_VERSION}/g" < "${file}") > tmp.$$.rb && mv tmp.$$.rb "${file}"
 

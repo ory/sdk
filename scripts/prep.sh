@@ -3,8 +3,8 @@
 set -Eeuxo pipefail
 cd "$( dirname "${BASH_SOURCE[0]}" )/.."
 
-source "$HOME/.bashrc"
-source "$HOME/.cargo/env"
+#source "$HOME/.bashrc"
+#source "$HOME/.cargo/env"
 
 if [ -z "$(git log -1 --pretty=%B | grep "Add spec for")" ]; then
       echo "This commit does not appear to be related to a spec update, skipping chain."
@@ -35,7 +35,7 @@ echo "Generating SDKs for $project:$version"
 spec_file="spec/${project}/${version}.json"
 
 ## Update version string in the spec file ##
-if [ $project != "kratos" ]  && [ $project != "ory" ]; then
+if [ $project != "kratos" ] && [ $project != "client" ]; then
   ory dev swagger sanitize "${spec_file}"
   swagger validate "${spec_file}"
 fi

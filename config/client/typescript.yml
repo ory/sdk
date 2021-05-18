@@ -1,7 +1,8 @@
-npmName: ${NPM_NAME}
+npmName: "${NPM_NAME}"
 npmVersion: $VERSION
 # typescriptThreePlus: true
 #npmRepository: https://github.com/ory/sdk.git
 supportsES6: true
 ensureUniqueParams: true
 modelPropertyNaming: original
+disallowAdditionalPropertiesIfNotPresent: false
