@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientPluginConfigLinux
+# Ory.Client.Model.ClientPluginConfigLinux
 PluginConfigLinux plugin config linux
 
 ## Properties

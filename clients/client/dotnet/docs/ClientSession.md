@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientSession
+# Ory.Client.Model.ClientSession
 
 ## Properties
 

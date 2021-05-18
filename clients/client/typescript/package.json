@@ -1,14 +1,14 @@
 {
-  "name": "@ory/client-client",
-  "version": "v0.0.1-alpha.1",
-  "description": "OpenAPI client for @ory/client-client",
+  "name": "@ory/client",
+  "version": "v0.0.1-alpha.3",
+  "description": "OpenAPI client for @ory/client",
   "author": "ORY GmbH",
   "keywords": [
     "axios",
     "typescript",
     "openapi-client",
     "openapi-generator",
-    "@ory/client-client"
+    "@ory/client"
   ],
   "license": "Apache-2.0",
   "main": "./dist/index.js",

@@ -1,4 +1,4 @@
-# Ory.Client.Client.Api.DefaultApi
+# Ory.Client.Api.DefaultApi
 
 All URIs are relative to *https://playground.projects.oryapis.com*
 
@@ -24,16 +24,16 @@ Method | HTTP request | Description
 [**GetSelfServiceVerificationFlowAdmin**](DefaultApi.md#getselfserviceverificationflowadmin) | **GET** /api/kratos/admin/self-service/verification/flows | Get Verification Flow
 [**GetVersionAdmin**](DefaultApi.md#getversionadmin) | **GET** /api/kratos/admin/version | Return Running Software Version.
 [**InitializeSelfServiceBrowserLogoutFlow**](DefaultApi.md#initializeselfservicebrowserlogoutflow) | **GET** /api/kratos/public/self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
-[**InitializeSelfServiceLoginViaAPIFlow**](DefaultApi.md#initializeselfserviceloginviaapiflow) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for API clients
-[**InitializeSelfServiceLoginViaBrowserFlow**](DefaultApi.md#initializeselfserviceloginviabrowserflow) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for browsers
-[**InitializeSelfServiceRecoveryViaAPIFlow**](DefaultApi.md#initializeselfservicerecoveryviaapiflow) | **GET** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for API Clients
-[**InitializeSelfServiceRecoveryViaBrowserFlow**](DefaultApi.md#initializeselfservicerecoveryviabrowserflow) | **GET** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
-[**InitializeSelfServiceRegistration**](DefaultApi.md#initializeselfserviceregistration) | **GET** /api/kratos/public/self-service/registration/api | Initialize Registration Flow for API clients
+[**InitializeSelfServiceLoginForBrowsers**](DefaultApi.md#initializeselfserviceloginforbrowsers) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for browsers
+[**InitializeSelfServiceLoginForNativeApps**](DefaultApi.md#initializeselfserviceloginfornativeapps) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for Native Apps and API clients
+[**InitializeSelfServiceRecoveryForBrowsers**](DefaultApi.md#initializeselfservicerecoveryforbrowsers) | **GET** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
+[**InitializeSelfServiceRecoveryForNativeApps**](DefaultApi.md#initializeselfservicerecoveryfornativeapps) | **GET** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for Native Apps and API clients
 [**InitializeSelfServiceRegistrationForBrowsers**](DefaultApi.md#initializeselfserviceregistrationforbrowsers) | **GET** /api/kratos/public/self-service/registration/browser | Initialize Registration Flow for browsers
-[**InitializeSelfServiceSettingsViaAPIFlow**](DefaultApi.md#initializeselfservicesettingsviaapiflow) | **GET** /api/kratos/public/self-service/settings/api | Initialize Settings Flow for API Clients
-[**InitializeSelfServiceSettingsViaBrowserFlow**](DefaultApi.md#initializeselfservicesettingsviabrowserflow) | **GET** /api/kratos/public/self-service/settings/browser | Initialize Settings Flow for Browsers
-[**InitializeSelfServiceVerificationViaAPIFlow**](DefaultApi.md#initializeselfserviceverificationviaapiflow) | **GET** /api/kratos/public/self-service/verification/api | Initialize Verification Flow for API Clients
-[**InitializeSelfServiceVerificationViaBrowserFlow**](DefaultApi.md#initializeselfserviceverificationviabrowserflow) | **GET** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients
+[**InitializeSelfServiceRegistrationForNativeApps**](DefaultApi.md#initializeselfserviceregistrationfornativeapps) | **GET** /api/kratos/public/self-service/registration/api | Initialize Registration Flow for Native Apps and API clients
+[**InitializeSelfServiceSettingsForBrowsers**](DefaultApi.md#initializeselfservicesettingsforbrowsers) | **GET** /api/kratos/public/self-service/settings/browser | Initialize Settings Flow for Browsers
+[**InitializeSelfServiceSettingsForNativeApps**](DefaultApi.md#initializeselfservicesettingsfornativeapps) | **GET** /api/kratos/public/self-service/settings/api | Initialize Settings Flow for Native Apps and API clients
+[**InitializeSelfServiceVerificationForBrowsers**](DefaultApi.md#initializeselfserviceverificationforbrowsers) | **GET** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients
+[**InitializeSelfServiceVerificationForNativeApps**](DefaultApi.md#initializeselfserviceverificationfornativeapps) | **GET** /api/kratos/public/self-service/verification/api | Initialize Verification Flow for Native Apps and API clients
 [**IsAliveAdmin**](DefaultApi.md#isaliveadmin) | **GET** /api/kratos/admin/health/alive | Check HTTP Server Status
 [**IsReadyAdmin**](DefaultApi.md#isreadyadmin) | **GET** /api/kratos/admin/health/ready | Check HTTP Server and Database Status
 [**ListIdentitiesAdmin**](DefaultApi.md#listidentitiesadmin) | **GET** /api/kratos/admin/identities | List Identities
@@ -61,9 +61,9 @@ This endpoint creates an identity. It is NOT possible to set an identity's crede
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -121,8 +121,6 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **201** | A single identity. |  -  |
 | **400** | jsonError |  -  |
-| **401** | jsonError |  -  |
-| **403** | jsonError |  -  |
 | **409** | jsonError |  -  |
 | **500** | jsonError |  -  |
 
@@ -140,9 +138,9 @@ This endpoint creates a recovery link which should be given to the user in order
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -217,9 +215,9 @@ Calling this endpoint irrecoverably and permanently deletes the identity given i
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -275,8 +273,6 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **401** | jsonError |  -  |
-| **403** | jsonError |  -  |
 | **404** | jsonError |  -  |
 | **500** | jsonError |  -  |
 
@@ -294,9 +290,9 @@ Learn how identities work in [Ory Kratos' User And Identity Model Documentation]
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -353,9 +349,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A single identity. |  -  |
-| **400** | jsonError |  -  |
-| **401** | jsonError |  -  |
-| **403** | jsonError |  -  |
 | **404** | jsonError |  -  |
 | **500** | jsonError |  -  |
 
@@ -373,9 +366,9 @@ Get a Traits Schema Definition
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -445,9 +438,9 @@ Get a Traits Schema Definition
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -510,7 +503,7 @@ Name | Type | Description  | Notes
 
 <a name="getselfserviceerror"></a>
 # **GetSelfServiceError**
-> ClientErrorContainer GetSelfServiceError (string error)
+> ClientSelfServiceErrorContainer GetSelfServiceError (string error)
 
 Get User-Facing Self-Service Errors
 
@@ -520,9 +513,9 @@ This endpoint returns the error associated with a user-facing self service error
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -538,7 +531,7 @@ namespace Example
             try
             {
                 // Get User-Facing Self-Service Errors
-                ClientErrorContainer result = apiInstance.GetSelfServiceError(error);
+                ClientSelfServiceErrorContainer result = apiInstance.GetSelfServiceError(error);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -560,7 +553,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ClientErrorContainer**](ClientErrorContainer.md)
+[**ClientSelfServiceErrorContainer**](ClientSelfServiceErrorContainer.md)
 
 ### Authorization
 
@@ -584,7 +577,7 @@ No authorization required
 
 <a name="getselfserviceerroradmin"></a>
 # **GetSelfServiceErrorAdmin**
-> ClientErrorContainer GetSelfServiceErrorAdmin (string error)
+> ClientSelfServiceErrorContainer GetSelfServiceErrorAdmin (string error)
 
 Get User-Facing Self-Service Errors
 
@@ -594,9 +587,9 @@ This endpoint returns the error associated with a user-facing self service error
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -615,7 +608,7 @@ namespace Example
             try
             {
                 // Get User-Facing Self-Service Errors
-                ClientErrorContainer result = apiInstance.GetSelfServiceErrorAdmin(error);
+                ClientSelfServiceErrorContainer result = apiInstance.GetSelfServiceErrorAdmin(error);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -637,7 +630,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ClientErrorContainer**](ClientErrorContainer.md)
+[**ClientSelfServiceErrorContainer**](ClientSelfServiceErrorContainer.md)
 
 ### Authorization
 
@@ -671,9 +664,9 @@ This endpoint returns a login flow's context with, for example, error details an
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -746,9 +739,9 @@ This endpoint returns a login flow's context with, for example, error details an
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -824,9 +817,9 @@ This endpoint returns a recovery flow's context with, for example, error details
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -898,9 +891,9 @@ This endpoint returns a recovery flow's context with, for example, error details
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -975,9 +968,9 @@ This endpoint returns a registration flow's context with, for example, error det
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -1050,9 +1043,9 @@ This endpoint returns a registration flow's context with, for example, error det
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -1118,7 +1111,7 @@ Name | Type | Description  | Notes
 
 <a name="getselfservicesettingsflow"></a>
 # **GetSelfServiceSettingsFlow**
-> ClientSettingsFlow GetSelfServiceSettingsFlow (string id)
+> ClientSettingsFlow GetSelfServiceSettingsFlow (string id, string xSessionToken = null)
 
 Get Settings Flow
 
@@ -1128,9 +1121,9 @@ When accessing this endpoint through Ory Kratos' Public API you must ensure that
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -1145,11 +1138,12 @@ namespace Example
 
             var apiInstance = new DefaultApi(config);
             var id = id_example;  // string | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+            var xSessionToken = xSessionToken_example;  // string | The Session Token of the Identity performing the settings flow. (optional) 
 
             try
             {
                 // Get Settings Flow
-                ClientSettingsFlow result = apiInstance.GetSelfServiceSettingsFlow(id);
+                ClientSettingsFlow result = apiInstance.GetSelfServiceSettingsFlow(id, xSessionToken);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1168,6 +1162,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). | 
+ **xSessionToken** | **string**| The Session Token of the Identity performing the settings flow. | [optional] 
 
 ### Return type
 
@@ -1196,7 +1191,7 @@ Name | Type | Description  | Notes
 
 <a name="getselfservicesettingsflowadmin"></a>
 # **GetSelfServiceSettingsFlowAdmin**
-> ClientSettingsFlow GetSelfServiceSettingsFlowAdmin (string id)
+> ClientSettingsFlow GetSelfServiceSettingsFlowAdmin (string id, string xSessionToken = null)
 
 Get Settings Flow
 
@@ -1206,9 +1201,9 @@ When accessing this endpoint through Ory Kratos' Public API you must ensure that
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -1223,11 +1218,12 @@ namespace Example
 
             var apiInstance = new DefaultApi(config);
             var id = id_example;  // string | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+            var xSessionToken = xSessionToken_example;  // string | The Session Token of the Identity performing the settings flow. (optional) 
 
             try
             {
                 // Get Settings Flow
-                ClientSettingsFlow result = apiInstance.GetSelfServiceSettingsFlowAdmin(id);
+                ClientSettingsFlow result = apiInstance.GetSelfServiceSettingsFlowAdmin(id, xSessionToken);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1246,6 +1242,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). | 
+ **xSessionToken** | **string**| The Session Token of the Identity performing the settings flow. | [optional] 
 
 ### Return type
 
@@ -1284,9 +1281,9 @@ This endpoint returns a verification flow's context with, for example, error det
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -1358,9 +1355,9 @@ This endpoint returns a verification flow's context with, for example, error det
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -1435,9 +1432,9 @@ This endpoint returns the version of Ory Kratos.  If the service supports TLS Ed
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -1505,9 +1502,9 @@ This endpoint initializes a logout flow.  > This endpoint is NOT INTENDED for AP
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -1560,25 +1557,25 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="initializeselfserviceloginviaapiflow"></a>
-# **InitializeSelfServiceLoginViaAPIFlow**
-> ClientLoginFlow InitializeSelfServiceLoginViaAPIFlow (bool? refresh = null)
+<a name="initializeselfserviceloginforbrowsers"></a>
+# **InitializeSelfServiceLoginForBrowsers**
+> void InitializeSelfServiceLoginForBrowsers (bool? refresh = null)
 
-Initialize Login Flow for API clients
+Initialize Login Flow for browsers
 
-This endpoint initiates a login flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
-    public class InitializeSelfServiceLoginViaAPIFlowExample
+    public class InitializeSelfServiceLoginForBrowsersExample
     {
         public static void Main()
         {
@@ -1589,13 +1586,84 @@ namespace Example
 
             try
             {
-                // Initialize Login Flow for API clients
-                ClientLoginFlow result = apiInstance.InitializeSelfServiceLoginViaAPIFlow(refresh);
+                // Initialize Login Flow for browsers
+                apiInstance.InitializeSelfServiceLoginForBrowsers(refresh);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DefaultApi.InitializeSelfServiceLoginForBrowsers: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **refresh** | **bool?**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **500** | jsonError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="initializeselfserviceloginfornativeapps"></a>
+# **InitializeSelfServiceLoginForNativeApps**
+> ClientLoginFlow InitializeSelfServiceLoginForNativeApps (bool? refresh = null)
+
+Initialize Login Flow for Native Apps and API clients
+
+This endpoint initiates a login flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class InitializeSelfServiceLoginForNativeAppsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://playground.projects.oryapis.com";
+            var apiInstance = new DefaultApi(config);
+            var refresh = true;  // bool? | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. (optional) 
+
+            try
+            {
+                // Initialize Login Flow for Native Apps and API clients
+                ClientLoginFlow result = apiInstance.InitializeSelfServiceLoginForNativeApps(refresh);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling DefaultApi.InitializeSelfServiceLoginViaAPIFlow: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.InitializeSelfServiceLoginForNativeApps: " + e.Message );
                 Debug.Print("Status Code: "+ e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -1633,25 +1701,25 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="initializeselfserviceloginviabrowserflow"></a>
-# **InitializeSelfServiceLoginViaBrowserFlow**
-> void InitializeSelfServiceLoginViaBrowserFlow ()
+<a name="initializeselfservicerecoveryforbrowsers"></a>
+# **InitializeSelfServiceRecoveryForBrowsers**
+> void InitializeSelfServiceRecoveryForBrowsers ()
 
-Initialize Login Flow for browsers
+Initialize Recovery Flow for Browser Clients
 
-This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to `selfservice.flows.recovery.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists, the browser is returned to the configured return URL.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
 ### Example
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
-    public class InitializeSelfServiceLoginViaBrowserFlowExample
+    public class InitializeSelfServiceRecoveryForBrowsersExample
     {
         public static void Main()
         {
@@ -1661,12 +1729,12 @@ namespace Example
 
             try
             {
-                // Initialize Login Flow for browsers
-                apiInstance.InitializeSelfServiceLoginViaBrowserFlow();
+                // Initialize Recovery Flow for Browser Clients
+                apiInstance.InitializeSelfServiceRecoveryForBrowsers();
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling DefaultApi.InitializeSelfServiceLoginViaBrowserFlow: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.InitializeSelfServiceRecoveryForBrowsers: " + e.Message );
                 Debug.Print("Status Code: "+ e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -1700,11 +1768,11 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="initializeselfservicerecoveryviaapiflow"></a>
-# **InitializeSelfServiceRecoveryViaAPIFlow**
-> ClientRecoveryFlow InitializeSelfServiceRecoveryViaAPIFlow ()
+<a name="initializeselfservicerecoveryfornativeapps"></a>
+# **InitializeSelfServiceRecoveryForNativeApps**
+> ClientRecoveryFlow InitializeSelfServiceRecoveryForNativeApps ()
 
-Initialize Recovery Flow for API Clients
+Initialize Recovery Flow for Native Apps and API clients
 
 This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
@@ -1712,13 +1780,13 @@ This endpoint initiates a recovery flow for API clients such as mobile devices, 
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
-    public class InitializeSelfServiceRecoveryViaAPIFlowExample
+    public class InitializeSelfServiceRecoveryForNativeAppsExample
     {
         public static void Main()
         {
@@ -1728,13 +1796,13 @@ namespace Example
 
             try
             {
-                // Initialize Recovery Flow for API Clients
-                ClientRecoveryFlow result = apiInstance.InitializeSelfServiceRecoveryViaAPIFlow();
+                // Initialize Recovery Flow for Native Apps and API clients
+                ClientRecoveryFlow result = apiInstance.InitializeSelfServiceRecoveryForNativeApps();
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling DefaultApi.InitializeSelfServiceRecoveryViaAPIFlow: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.InitializeSelfServiceRecoveryForNativeApps: " + e.Message );
                 Debug.Print("Status Code: "+ e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -1769,142 +1837,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="initializeselfservicerecoveryviabrowserflow"></a>
-# **InitializeSelfServiceRecoveryViaBrowserFlow**
-> void InitializeSelfServiceRecoveryViaBrowserFlow ()
-
-Initialize Recovery Flow for Browser Clients
-
-This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to `selfservice.flows.recovery.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists, the browser is returned to the configured return URL.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
-
-namespace Example
-{
-    public class InitializeSelfServiceRecoveryViaBrowserFlowExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
-            var apiInstance = new DefaultApi(config);
-
-            try
-            {
-                // Initialize Recovery Flow for Browser Clients
-                apiInstance.InitializeSelfServiceRecoveryViaBrowserFlow();
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling DefaultApi.InitializeSelfServiceRecoveryViaBrowserFlow: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **500** | jsonError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="initializeselfserviceregistration"></a>
-# **InitializeSelfServiceRegistration**
-> ClientRegistrationFlow InitializeSelfServiceRegistration ()
-
-Initialize Registration Flow for API clients
-
-This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing registration flow call `/self-service/registration/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
-
-namespace Example
-{
-    public class InitializeSelfServiceRegistrationExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
-            var apiInstance = new DefaultApi(config);
-
-            try
-            {
-                // Initialize Registration Flow for API clients
-                ClientRegistrationFlow result = apiInstance.InitializeSelfServiceRegistration();
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling DefaultApi.InitializeSelfServiceRegistration: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**ClientRegistrationFlow**](ClientRegistrationFlow.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | registrationFlow |  -  |
-| **400** | jsonError |  -  |
-| **500** | jsonError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 <a name="initializeselfserviceregistrationforbrowsers"></a>
 # **InitializeSelfServiceRegistrationForBrowsers**
 > void InitializeSelfServiceRegistrationForBrowsers ()
@@ -1917,9 +1849,9 @@ This endpoint initializes a browser-based user registration flow. Once initializ
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -1972,44 +1904,41 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="initializeselfservicesettingsviaapiflow"></a>
-# **InitializeSelfServiceSettingsViaAPIFlow**
-> ClientSettingsFlow InitializeSelfServiceSettingsViaAPIFlow ()
+<a name="initializeselfserviceregistrationfornativeapps"></a>
+# **InitializeSelfServiceRegistrationForNativeApps**
+> ClientRegistrationFlow InitializeSelfServiceRegistrationForNativeApps ()
 
-Initialize Settings Flow for API Clients
+Initialize Registration Flow for Native Apps and API clients
 
-This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid Ory Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call `/self-service/settings/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing registration flow call `/self-service/registration/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
-    public class InitializeSelfServiceSettingsViaAPIFlowExample
+    public class InitializeSelfServiceRegistrationForNativeAppsExample
     {
         public static void Main()
         {
             Configuration config = new Configuration();
             config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: sessionToken
-            config.AccessToken = "YOUR_BEARER_TOKEN";
-
             var apiInstance = new DefaultApi(config);
 
             try
             {
-                // Initialize Settings Flow for API Clients
-                ClientSettingsFlow result = apiInstance.InitializeSelfServiceSettingsViaAPIFlow();
+                // Initialize Registration Flow for Native Apps and API clients
+                ClientRegistrationFlow result = apiInstance.InitializeSelfServiceRegistrationForNativeApps();
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling DefaultApi.InitializeSelfServiceSettingsViaAPIFlow: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.InitializeSelfServiceRegistrationForNativeApps: " + e.Message );
                 Debug.Print("Status Code: "+ e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -2023,11 +1952,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClientSettingsFlow**](ClientSettingsFlow.md)
+[**ClientRegistrationFlow**](ClientRegistrationFlow.md)
 
 ### Authorization
 
-[sessionToken](../README.md#sessionToken)
+No authorization required
 
 ### HTTP request headers
 
@@ -2038,15 +1967,15 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | settingsFlow |  -  |
+| **200** | registrationFlow |  -  |
 | **400** | jsonError |  -  |
 | **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="initializeselfservicesettingsviabrowserflow"></a>
-# **InitializeSelfServiceSettingsViaBrowserFlow**
-> void InitializeSelfServiceSettingsViaBrowserFlow ()
+<a name="initializeselfservicesettingsforbrowsers"></a>
+# **InitializeSelfServiceSettingsForBrowsers**
+> void InitializeSelfServiceSettingsForBrowsers ()
 
 Initialize Settings Flow for Browsers
 
@@ -2056,13 +1985,13 @@ This endpoint initializes a browser-based user settings flow. Once initialized, 
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
-    public class InitializeSelfServiceSettingsViaBrowserFlowExample
+    public class InitializeSelfServiceSettingsForBrowsersExample
     {
         public static void Main()
         {
@@ -2076,11 +2005,11 @@ namespace Example
             try
             {
                 // Initialize Settings Flow for Browsers
-                apiInstance.InitializeSelfServiceSettingsViaBrowserFlow();
+                apiInstance.InitializeSelfServiceSettingsForBrowsers();
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling DefaultApi.InitializeSelfServiceSettingsViaBrowserFlow: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.InitializeSelfServiceSettingsForBrowsers: " + e.Message );
                 Debug.Print("Status Code: "+ e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -2114,25 +2043,101 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="initializeselfserviceverificationviaapiflow"></a>
-# **InitializeSelfServiceVerificationViaAPIFlow**
-> ClientVerificationFlow InitializeSelfServiceVerificationViaAPIFlow ()
+<a name="initializeselfservicesettingsfornativeapps"></a>
+# **InitializeSelfServiceSettingsForNativeApps**
+> ClientSettingsFlow InitializeSelfServiceSettingsForNativeApps (string xSessionToken = null)
 
-Initialize Verification Flow for API Clients
+Initialize Settings Flow for Native Apps and API clients
 
-This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid Ory Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call `/self-service/settings/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
 
 ### Example
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
-    public class InitializeSelfServiceVerificationViaAPIFlowExample
+    public class InitializeSelfServiceSettingsForNativeAppsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://playground.projects.oryapis.com";
+            // Configure Bearer token for authorization: sessionToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new DefaultApi(config);
+            var xSessionToken = xSessionToken_example;  // string | The Session Token of the Identity performing the settings flow. (optional) 
+
+            try
+            {
+                // Initialize Settings Flow for Native Apps and API clients
+                ClientSettingsFlow result = apiInstance.InitializeSelfServiceSettingsForNativeApps(xSessionToken);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DefaultApi.InitializeSelfServiceSettingsForNativeApps: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xSessionToken** | **string**| The Session Token of the Identity performing the settings flow. | [optional] 
+
+### Return type
+
+[**ClientSettingsFlow**](ClientSettingsFlow.md)
+
+### Authorization
+
+[sessionToken](../README.md#sessionToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | settingsFlow |  -  |
+| **400** | jsonError |  -  |
+| **500** | jsonError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="initializeselfserviceverificationforbrowsers"></a>
+# **InitializeSelfServiceVerificationForBrowsers**
+> void InitializeSelfServiceVerificationForBrowsers ()
+
+Initialize Verification Flow for Browser Clients
+
+This endpoint initializes a browser-based account verification flow. Once initialized, the browser will be redirected to `selfservice.flows.verification.ui_url` with the flow ID set as the query parameter `?flow=`.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class InitializeSelfServiceVerificationForBrowsersExample
     {
         public static void Main()
         {
@@ -2142,13 +2147,80 @@ namespace Example
 
             try
             {
-                // Initialize Verification Flow for API Clients
-                ClientVerificationFlow result = apiInstance.InitializeSelfServiceVerificationViaAPIFlow();
+                // Initialize Verification Flow for Browser Clients
+                apiInstance.InitializeSelfServiceVerificationForBrowsers();
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DefaultApi.InitializeSelfServiceVerificationForBrowsers: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **500** | jsonError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="initializeselfserviceverificationfornativeapps"></a>
+# **InitializeSelfServiceVerificationForNativeApps**
+> ClientVerificationFlow InitializeSelfServiceVerificationForNativeApps ()
+
+Initialize Verification Flow for Native Apps and API clients
+
+This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class InitializeSelfServiceVerificationForNativeAppsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://playground.projects.oryapis.com";
+            var apiInstance = new DefaultApi(config);
+
+            try
+            {
+                // Initialize Verification Flow for Native Apps and API clients
+                ClientVerificationFlow result = apiInstance.InitializeSelfServiceVerificationForNativeApps();
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling DefaultApi.InitializeSelfServiceVerificationViaAPIFlow: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.InitializeSelfServiceVerificationForNativeApps: " + e.Message );
                 Debug.Print("Status Code: "+ e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -2183,73 +2255,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="initializeselfserviceverificationviabrowserflow"></a>
-# **InitializeSelfServiceVerificationViaBrowserFlow**
-> void InitializeSelfServiceVerificationViaBrowserFlow ()
-
-Initialize Verification Flow for Browser Clients
-
-This endpoint initializes a browser-based account verification flow. Once initialized, the browser will be redirected to `selfservice.flows.verification.ui_url` with the flow ID set as the query parameter `?flow=`.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
-
-namespace Example
-{
-    public class InitializeSelfServiceVerificationViaBrowserFlowExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
-            var apiInstance = new DefaultApi(config);
-
-            try
-            {
-                // Initialize Verification Flow for Browser Clients
-                apiInstance.InitializeSelfServiceVerificationViaBrowserFlow();
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling DefaultApi.InitializeSelfServiceVerificationViaBrowserFlow: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **500** | jsonError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 <a name="isaliveadmin"></a>
 # **IsAliveAdmin**
 > ClientInlineResponse200 IsAliveAdmin ()
@@ -2262,9 +2267,9 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incomi
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -2333,9 +2338,9 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is up running and t
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -2404,9 +2409,9 @@ Lists all identities. Does not support search at the moment.  Learn how identiti
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -2465,8 +2470,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of identities. |  -  |
-| **401** | jsonError |  -  |
-| **403** | jsonError |  -  |
 | **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2483,9 +2486,9 @@ Get snapshot metrics from the Hydra service. If you're using k8s, you can then a
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -2552,9 +2555,9 @@ Use this endpoint to revoke a session using its token. This endpoint is particul
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -2624,9 +2627,9 @@ Use this endpoint to complete a login flow. This endpoint behaves differently fo
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -2700,9 +2703,9 @@ Use this endpoint to complete a recovery flow. This endpoint behaves differently
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -2774,9 +2777,9 @@ Use this endpoint to complete a recovery flow using the link method. This endpoi
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -2850,9 +2853,9 @@ Use this endpoint to complete a registration flow by sending an identity's trait
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -2916,7 +2919,7 @@ No authorization required
 
 <a name="submitselfservicesettingsflow"></a>
 # **SubmitSelfServiceSettingsFlow**
-> ClientSettingsViaApiResponse SubmitSelfServiceSettingsFlow (string flow, ClientSubmitSelfServiceSettingsFlow clientSubmitSelfServiceSettingsFlow = null)
+> ClientSettingsViaApiResponse SubmitSelfServiceSettingsFlow (string flow, string xSessionToken = null, ClientSubmitSelfServiceSettingsFlow clientSubmitSelfServiceSettingsFlow = null)
 
 Complete Settings Flow
 
@@ -2926,9 +2929,9 @@ Use this endpoint to complete a settings flow by sending an identity's updated p
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -2943,12 +2946,13 @@ namespace Example
 
             var apiInstance = new DefaultApi(config);
             var flow = flow_example;  // string | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+            var xSessionToken = xSessionToken_example;  // string | The Session Token of the Identity performing the settings flow. (optional) 
             var clientSubmitSelfServiceSettingsFlow = new ClientSubmitSelfServiceSettingsFlow(); // ClientSubmitSelfServiceSettingsFlow |  (optional) 
 
             try
             {
                 // Complete Settings Flow
-                ClientSettingsViaApiResponse result = apiInstance.SubmitSelfServiceSettingsFlow(flow, clientSubmitSelfServiceSettingsFlow);
+                ClientSettingsViaApiResponse result = apiInstance.SubmitSelfServiceSettingsFlow(flow, xSessionToken, clientSubmitSelfServiceSettingsFlow);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2967,6 +2971,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **string**| The Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). | 
+ **xSessionToken** | **string**| The Session Token of the Identity performing the settings flow. | [optional] 
  **clientSubmitSelfServiceSettingsFlow** | [**ClientSubmitSelfServiceSettingsFlow**](ClientSubmitSelfServiceSettingsFlow.md)|  | [optional] 
 
 ### Return type
@@ -3007,9 +3012,9 @@ Use this endpoint to complete a verification flow. This endpoint behaves differe
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -3081,9 +3086,9 @@ Uses the HTTP Headers in the GET request to determine (e.g. by using checking th
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -3159,9 +3164,9 @@ This endpoint updates an identity. It is NOT possible to set an identity's crede
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ory.Client.Client.Api;
-using Ory.Client.Client.Client;
-using Ory.Client.Client.Model;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
 
 namespace Example
 {
@@ -3221,9 +3226,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | identity |  -  |
 | **400** | jsonError |  -  |
-| **401** | jsonError |  -  |
-| **403** | jsonError |  -  |
 | **404** | jsonError |  -  |
+| **409** | jsonError |  -  |
 | **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

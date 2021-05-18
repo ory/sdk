@@ -12,7 +12,9 @@ Name | Type | Description | Notes
 **type** | **str** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | 
 **ui** | [**UiContainer**](UiContainer.md) |  | 
 **active** | **str** | and so on. | [optional] 
+**created_at** | **datetime** | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **forced** | **bool** | Forced stores whether this login flow should enforce re-authentication. | [optional] 
+**updated_at** | **datetime** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientUiText
+# Ory.Client.Model.ClientUiText
 
 ## Properties
 

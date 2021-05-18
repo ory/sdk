@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientJsonError
+# Ory.Client.Model.ClientJsonError
 The standard Ory JSON API error format.
 
 ## Properties

@@ -16,7 +16,7 @@
 ## Example
 
 ```ruby
-require 'ory-client-client'
+require 'ory-client'
 
 instance = OryHydraClient::VerifiableIdentityAddress.new(
   created_at: 2014-01-01T23:28:56.782Z,

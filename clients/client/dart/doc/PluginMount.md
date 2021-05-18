@@ -1,8 +1,8 @@
-# ory_client_client.model.PluginMount
+# ory_client.model.PluginMount
 
 ## Load the model package
 ```dart
-import 'package:ory_client_client/api.dart';
+import 'package:ory_client/api.dart';
 ```
 
 ## Properties

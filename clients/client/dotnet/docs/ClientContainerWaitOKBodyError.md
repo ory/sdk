@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientContainerWaitOKBodyError
+# Ory.Client.Model.ClientContainerWaitOKBodyError
 ContainerWaitOKBodyError container waiting error, if any
 
 ## Properties

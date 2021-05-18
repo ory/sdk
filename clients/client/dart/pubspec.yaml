@@ -2,8 +2,8 @@
 # AUTO-GENERATED FILE, DO NOT MODIFY!
 #
 
-name: 'ory_client_client'
-version: '0.0.1-alpha.1'
+name: 'ory_client'
+version: '0.0.1-alpha.3'
 description: 'OpenAPI API client'
 authors:
   - 'ORY GmbH <opensource@ory.sh>'

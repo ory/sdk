@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientVersion
+# Ory.Client.Model.ClientVersion
 
 ## Properties
 

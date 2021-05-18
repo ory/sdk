@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientUiContainer
+# Ory.Client.Model.ClientUiContainer
 Container represents a HTML Form. The container can work with both HTTP Form and JSON requests
 
 ## Properties

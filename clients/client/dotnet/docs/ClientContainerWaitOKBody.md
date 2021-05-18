@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientContainerWaitOKBody
+# Ory.Client.Model.ClientContainerWaitOKBody
 ContainerWaitOKBody OK response to ContainerWait operation
 
 ## Properties

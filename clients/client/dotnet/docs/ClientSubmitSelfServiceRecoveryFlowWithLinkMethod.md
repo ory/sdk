@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientSubmitSelfServiceRecoveryFlowWithLinkMethod
+# Ory.Client.Model.ClientSubmitSelfServiceRecoveryFlowWithLinkMethod
 
 ## Properties
 

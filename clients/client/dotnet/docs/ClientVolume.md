@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientVolume
+# Ory.Client.Model.ClientVolume
 Volume volume
 
 ## Properties

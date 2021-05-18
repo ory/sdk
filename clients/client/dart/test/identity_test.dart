@@ -7,7 +7,7 @@
 // ignore_for_file: always_put_required_named_parameters_first
 // ignore_for_file: lines_longer_than_80_chars
 
-import 'package:ory_client_client/api.dart';
+import 'package:ory_client/api.dart';
 import 'package:test/test.dart';
 
 // tests for Identity
@@ -15,6 +15,12 @@ void main() {
   final instance = Identity();
 
   group('test Identity', () {
+    // CreatedAt is a helper struct field for gobuffalo.pop.
+    // DateTime createdAt
+    test('to test the property `createdAt`', () async {
+      // TODO
+    });
+
     // String id
     test('to test the property `id`', () async {
       // TODO
@@ -41,6 +47,12 @@ void main() {
     // Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_url`.
     // Object traits
     test('to test the property `traits`', () async {
+      // TODO
+    });
+
+    // UpdatedAt is a helper struct field for gobuffalo.pop.
+    // DateTime updatedAt
+    test('to test the property `updatedAt`', () async {
       // TODO
     });
 

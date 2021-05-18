@@ -14,7 +14,7 @@
 ## Example
 
 ```ruby
-require 'ory-client-client'
+require 'ory-client'
 
 instance = OryHydraClient::Plugin.new(
   config: null,

@@ -13,7 +13,7 @@
 ## Example
 
 ```ruby
-require 'ory-client-client'
+require 'ory-client'
 
 instance = OryHydraClient::UiNode.new(
   attributes: null,

@@ -9,7 +9,7 @@
 ## Example
 
 ```ruby
-require 'ory-client-client'
+require 'ory-client'
 
 instance = OryHydraClient::ServiceUpdateResponse.new(
   warnings: null

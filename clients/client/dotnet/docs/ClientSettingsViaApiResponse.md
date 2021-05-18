@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientSettingsViaApiResponse
+# Ory.Client.Model.ClientSettingsViaApiResponse
 The Response for Settings Flows via API
 
 ## Properties

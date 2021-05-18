@@ -1,14 +1,16 @@
-# ory_client_client.model.RecoveryAddress
+# ory_client.model.RecoveryAddress
 
 ## Load the model package
 ```dart
-import 'package:ory_client_client/api.dart';
+import 'package:ory_client/api.dart';
 ```
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**createdAt** | [**DateTime**](DateTime.md) | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **id** | **String** |  | 
+**updatedAt** | [**DateTime**](DateTime.md) | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **value** | **String** |  | 
 **via** | **String** |  | 
 

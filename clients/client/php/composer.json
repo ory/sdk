@@ -14,7 +14,7 @@
   "license": "Apache-2.0",
   "authors": [
     {
-      "name": "ORY GmbH",
+      "name": "Ory GmbH",
       "homepage": "https://www.ory.sh"
     }
   ],
@@ -31,12 +31,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Ory\\Client\\Client\\": "lib/"
+      "Ory\\Client\\": "lib/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Ory\\Client\\Client\\Test\\": "test/"
+      "Ory\\Client\\Test\\": "test/"
     }
   }
 }

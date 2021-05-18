@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientSubmitSelfServiceLoginFlow
+# Ory.Client.Model.ClientSubmitSelfServiceLoginFlow
 
 ## Properties
 

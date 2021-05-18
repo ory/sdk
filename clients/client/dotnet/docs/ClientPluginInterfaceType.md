@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientPluginInterfaceType
+# Ory.Client.Model.ClientPluginInterfaceType
 PluginInterfaceType plugin interface type
 
 ## Properties

@@ -11,7 +11,7 @@
 ## Example
 
 ```ruby
-require 'ory-client-client'
+require 'ory-client'
 
 instance = OryHydraClient::RegistrationViaApiResponse.new(
   identity: null,

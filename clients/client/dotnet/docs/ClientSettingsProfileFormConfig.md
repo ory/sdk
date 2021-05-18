@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientSettingsProfileFormConfig
+# Ory.Client.Model.ClientSettingsProfileFormConfig
 
 ## Properties
 

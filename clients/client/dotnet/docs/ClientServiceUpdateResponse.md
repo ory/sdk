@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientServiceUpdateResponse
+# Ory.Client.Model.ClientServiceUpdateResponse
 ServiceUpdateResponse service update response
 
 ## Properties

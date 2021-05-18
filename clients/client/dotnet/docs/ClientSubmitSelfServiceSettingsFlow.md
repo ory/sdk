@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientSubmitSelfServiceSettingsFlow
+# Ory.Client.Model.ClientSubmitSelfServiceSettingsFlow
 
 ## Properties
 

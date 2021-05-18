@@ -1,8 +1,8 @@
-# ory_client_client.model.CreateIdentity
+# ory_client.model.CreateIdentity
 
 ## Load the model package
 ```dart
-import 'package:ory_client_client/api.dart';
+import 'package:ory_client/api.dart';
 ```
 
 ## Properties

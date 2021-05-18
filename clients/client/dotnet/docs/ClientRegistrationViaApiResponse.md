@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientRegistrationViaApiResponse
+# Ory.Client.Model.ClientRegistrationViaApiResponse
 The Response for Registration Flows via API
 
 ## Properties

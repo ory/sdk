@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientGenericError
+# Ory.Client.Model.ClientGenericError
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientRecoveryLink
+# Ory.Client.Model.ClientRecoveryLink
 
 ## Properties
 

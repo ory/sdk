@@ -12,7 +12,7 @@
 ## Example
 
 ```ruby
-require 'ory-client-client'
+require 'ory-client'
 
 instance = OryHydraClient::SubmitSelfServiceRegistrationFlowWithPasswordMethod.new(
   csrf_token: null,

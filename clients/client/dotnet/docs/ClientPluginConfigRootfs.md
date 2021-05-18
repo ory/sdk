@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientPluginConfigRootfs
+# Ory.Client.Model.ClientPluginConfigRootfs
 PluginConfigRootfs plugin config rootfs
 
 ## Properties

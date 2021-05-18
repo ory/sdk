@@ -7,7 +7,7 @@
 // ignore_for_file: always_put_required_named_parameters_first
 // ignore_for_file: lines_longer_than_80_chars
 
-import 'package:ory_client_client/api.dart';
+import 'package:ory_client/api.dart';
 import 'package:test/test.dart';
 
 // tests for InlineResponse503

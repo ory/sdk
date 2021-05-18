@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientRecoveryFlow
+# Ory.Client.Model.ClientRecoveryFlow
 This request is used when an identity wants to recover their account.  We recommend reading the [Account Recovery Documentation](../self-service/flows/password-reset-account-recovery)
 
 ## Properties

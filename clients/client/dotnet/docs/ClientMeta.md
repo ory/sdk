@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientMeta
+# Ory.Client.Model.ClientMeta
 This might include a label and other information that can optionally be used to render UIs.
 
 ## Properties

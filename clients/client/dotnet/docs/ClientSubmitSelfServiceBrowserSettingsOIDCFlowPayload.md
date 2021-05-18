@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientSubmitSelfServiceBrowserSettingsOIDCFlowPayload
+# Ory.Client.Model.ClientSubmitSelfServiceBrowserSettingsOIDCFlowPayload
 
 ## Properties
 

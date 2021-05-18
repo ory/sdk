@@ -1,10 +1,12 @@
-# Ory.Client.Client.Model.ClientRecoveryAddress
+# Ory.Client.Model.ClientRecoveryAddress
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CreatedAt** | **DateTime** | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **Id** | **string** |  | 
+**UpdatedAt** | **DateTime** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **Value** | **string** |  | 
 **Via** | **string** |  | 
 

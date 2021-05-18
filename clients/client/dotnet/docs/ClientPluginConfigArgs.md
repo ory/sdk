@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientPluginConfigArgs
+# Ory.Client.Model.ClientPluginConfigArgs
 PluginConfigArgs plugin config args
 
 ## Properties

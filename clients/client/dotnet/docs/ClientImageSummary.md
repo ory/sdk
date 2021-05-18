@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientImageSummary
+# Ory.Client.Model.ClientImageSummary
 ImageSummary image summary
 
 ## Properties

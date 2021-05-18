@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientHealthStatus
+# Ory.Client.Model.ClientHealthStatus
 
 ## Properties
 

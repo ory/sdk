@@ -1,8 +1,8 @@
-# ory_client_client.model.ErrorResponse
+# ory_client.model.ErrorResponse
 
 ## Load the model package
 ```dart
-import 'package:ory_client_client/api.dart';
+import 'package:ory_client/api.dart';
 ```
 
 ## Properties

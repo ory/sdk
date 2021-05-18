@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientUiNodeImageAttributes
+# Ory.Client.Model.ClientUiNodeImageAttributes
 
 ## Properties
 

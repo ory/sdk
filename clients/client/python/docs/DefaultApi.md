@@ -1,4 +1,4 @@
-# ory_client_client.DefaultApi
+# ory_client.DefaultApi
 
 All URIs are relative to *https://playground.projects.oryapis.com*
 
@@ -24,16 +24,16 @@ Method | HTTP request | Description
 [**get_self_service_verification_flow_admin**](DefaultApi.md#get_self_service_verification_flow_admin) | **GET** /api/kratos/admin/self-service/verification/flows | Get Verification Flow
 [**get_version_admin**](DefaultApi.md#get_version_admin) | **GET** /api/kratos/admin/version | Return Running Software Version.
 [**initialize_self_service_browser_logout_flow**](DefaultApi.md#initialize_self_service_browser_logout_flow) | **GET** /api/kratos/public/self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
-[**initialize_self_service_login_via_api_flow**](DefaultApi.md#initialize_self_service_login_via_api_flow) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for API clients
-[**initialize_self_service_login_via_browser_flow**](DefaultApi.md#initialize_self_service_login_via_browser_flow) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for browsers
-[**initialize_self_service_recovery_via_api_flow**](DefaultApi.md#initialize_self_service_recovery_via_api_flow) | **GET** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for API Clients
-[**initialize_self_service_recovery_via_browser_flow**](DefaultApi.md#initialize_self_service_recovery_via_browser_flow) | **GET** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
-[**initialize_self_service_registration**](DefaultApi.md#initialize_self_service_registration) | **GET** /api/kratos/public/self-service/registration/api | Initialize Registration Flow for API clients
+[**initialize_self_service_login_for_browsers**](DefaultApi.md#initialize_self_service_login_for_browsers) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for browsers
+[**initialize_self_service_login_for_native_apps**](DefaultApi.md#initialize_self_service_login_for_native_apps) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for Native Apps and API clients
+[**initialize_self_service_recovery_for_browsers**](DefaultApi.md#initialize_self_service_recovery_for_browsers) | **GET** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
+[**initialize_self_service_recovery_for_native_apps**](DefaultApi.md#initialize_self_service_recovery_for_native_apps) | **GET** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for Native Apps and API clients
 [**initialize_self_service_registration_for_browsers**](DefaultApi.md#initialize_self_service_registration_for_browsers) | **GET** /api/kratos/public/self-service/registration/browser | Initialize Registration Flow for browsers
-[**initialize_self_service_settings_via_api_flow**](DefaultApi.md#initialize_self_service_settings_via_api_flow) | **GET** /api/kratos/public/self-service/settings/api | Initialize Settings Flow for API Clients
-[**initialize_self_service_settings_via_browser_flow**](DefaultApi.md#initialize_self_service_settings_via_browser_flow) | **GET** /api/kratos/public/self-service/settings/browser | Initialize Settings Flow for Browsers
-[**initialize_self_service_verification_via_api_flow**](DefaultApi.md#initialize_self_service_verification_via_api_flow) | **GET** /api/kratos/public/self-service/verification/api | Initialize Verification Flow for API Clients
-[**initialize_self_service_verification_via_browser_flow**](DefaultApi.md#initialize_self_service_verification_via_browser_flow) | **GET** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients
+[**initialize_self_service_registration_for_native_apps**](DefaultApi.md#initialize_self_service_registration_for_native_apps) | **GET** /api/kratos/public/self-service/registration/api | Initialize Registration Flow for Native Apps and API clients
+[**initialize_self_service_settings_for_browsers**](DefaultApi.md#initialize_self_service_settings_for_browsers) | **GET** /api/kratos/public/self-service/settings/browser | Initialize Settings Flow for Browsers
+[**initialize_self_service_settings_for_native_apps**](DefaultApi.md#initialize_self_service_settings_for_native_apps) | **GET** /api/kratos/public/self-service/settings/api | Initialize Settings Flow for Native Apps and API clients
+[**initialize_self_service_verification_for_browsers**](DefaultApi.md#initialize_self_service_verification_for_browsers) | **GET** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients
+[**initialize_self_service_verification_for_native_apps**](DefaultApi.md#initialize_self_service_verification_for_native_apps) | **GET** /api/kratos/public/self-service/verification/api | Initialize Verification Flow for Native Apps and API clients
 [**is_alive_admin**](DefaultApi.md#is_alive_admin) | **GET** /api/kratos/admin/health/alive | Check HTTP Server Status
 [**is_ready_admin**](DefaultApi.md#is_ready_admin) | **GET** /api/kratos/admin/health/ready | Check HTTP Server and Database Status
 [**list_identities_admin**](DefaultApi.md#list_identities_admin) | **GET** /api/kratos/admin/identities | List Identities
@@ -61,15 +61,15 @@ This endpoint creates an identity. It is NOT possible to set an identity's crede
 * Bearer Authentication (oryToken):
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.create_identity import CreateIdentity
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.identity import Identity
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.create_identity import CreateIdentity
+from ory_client.model.identity import Identity
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
@@ -79,12 +79,12 @@ configuration = ory_client_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: oryToken
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient(configuration) as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     create_identity = CreateIdentity(
@@ -98,7 +98,7 @@ with ory_client_client.ApiClient(configuration) as api_client:
         # Create an Identity
         api_response = api_instance.create_identity_admin(create_identity=create_identity)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->create_identity_admin: %s\n" % e)
 ```
 
@@ -128,8 +128,6 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **201** | A single identity. |  -  |
 **400** | jsonError |  -  |
-**401** | jsonError |  -  |
-**403** | jsonError |  -  |
 **409** | jsonError |  -  |
 **500** | jsonError |  -  |
 
@@ -147,15 +145,15 @@ This endpoint creates a recovery link which should be given to the user in order
 * Bearer Authentication (oryToken):
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.recovery_link import RecoveryLink
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.create_recovery_link import CreateRecoveryLink
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.recovery_link import RecoveryLink
+from ory_client.model.create_recovery_link import CreateRecoveryLink
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
@@ -165,12 +163,12 @@ configuration = ory_client_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: oryToken
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient(configuration) as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     create_recovery_link = CreateRecoveryLink(
@@ -184,7 +182,7 @@ with ory_client_client.ApiClient(configuration) as api_client:
         # Create a Recovery Link
         api_response = api_instance.create_recovery_link_admin(create_recovery_link=create_recovery_link)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->create_recovery_link_admin: %s\n" % e)
 ```
 
@@ -231,13 +229,13 @@ Calling this endpoint irrecoverably and permanently deletes the identity given i
 * Bearer Authentication (oryToken):
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
@@ -247,12 +245,12 @@ configuration = ory_client_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: oryToken
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient(configuration) as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     id = "id_example" # str | ID is the identity's ID.
@@ -261,7 +259,7 @@ with ory_client_client.ApiClient(configuration) as api_client:
     try:
         # Delete an Identity
         api_instance.delete_identity_admin(id)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->delete_identity_admin: %s\n" % e)
 ```
 
@@ -290,8 +288,6 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**401** | jsonError |  -  |
-**403** | jsonError |  -  |
 **404** | jsonError |  -  |
 **500** | jsonError |  -  |
 
@@ -309,14 +305,14 @@ Learn how identities work in [Ory Kratos' User And Identity Model Documentation]
 * Bearer Authentication (oryToken):
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.identity import Identity
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.identity import Identity
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
@@ -326,12 +322,12 @@ configuration = ory_client_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: oryToken
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient(configuration) as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     id = "id_example" # str | ID must be set to the ID of identity you want to get
@@ -341,7 +337,7 @@ with ory_client_client.ApiClient(configuration) as api_client:
         # Get an Identity
         api_response = api_instance.get_identity_admin(id)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->get_identity_admin: %s\n" % e)
 ```
 
@@ -370,9 +366,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A single identity. |  -  |
-**400** | jsonError |  -  |
-**401** | jsonError |  -  |
-**403** | jsonError |  -  |
 **404** | jsonError |  -  |
 **500** | jsonError |  -  |
 
@@ -389,19 +382,19 @@ Get a Traits Schema Definition
 
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient() as api_client:
+with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     id = "id_example" # str | ID must be set to the ID of schema you want to get
@@ -410,7 +403,7 @@ with ory_client_client.ApiClient() as api_client:
     try:
         api_response = api_instance.get_schema(id)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->get_schema: %s\n" % e)
 ```
 
@@ -456,13 +449,13 @@ Get a Traits Schema Definition
 * Bearer Authentication (oryToken):
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
@@ -472,12 +465,12 @@ configuration = ory_client_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: oryToken
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient(configuration) as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     id = "id_example" # str | ID must be set to the ID of schema you want to get
@@ -486,7 +479,7 @@ with ory_client_client.ApiClient(configuration) as api_client:
     try:
         api_response = api_instance.get_schema_admin(id)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->get_schema_admin: %s\n" % e)
 ```
 
@@ -521,7 +514,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_self_service_error**
-> ErrorContainer get_self_service_error(error)
+> SelfServiceErrorContainer get_self_service_error(error)
 
 Get User-Facing Self-Service Errors
 
@@ -531,20 +524,20 @@ This endpoint returns the error associated with a user-facing self service error
 
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.error_container import ErrorContainer
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.self_service_error_container import SelfServiceErrorContainer
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient() as api_client:
+with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     error = "error_example" # str | Error is the container's ID
@@ -554,7 +547,7 @@ with ory_client_client.ApiClient() as api_client:
         # Get User-Facing Self-Service Errors
         api_response = api_instance.get_self_service_error(error)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->get_self_service_error: %s\n" % e)
 ```
 
@@ -567,7 +560,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ErrorContainer**](ErrorContainer.md)
+[**SelfServiceErrorContainer**](SelfServiceErrorContainer.md)
 
 ### Authorization
 
@@ -590,7 +583,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_self_service_error_admin**
-> ErrorContainer get_self_service_error_admin(error)
+> SelfServiceErrorContainer get_self_service_error_admin(error)
 
 Get User-Facing Self-Service Errors
 
@@ -601,14 +594,14 @@ This endpoint returns the error associated with a user-facing self service error
 * Bearer Authentication (oryToken):
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.error_container import ErrorContainer
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.self_service_error_container import SelfServiceErrorContainer
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
@@ -618,12 +611,12 @@ configuration = ory_client_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: oryToken
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient(configuration) as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     error = "error_example" # str | Error is the container's ID
@@ -633,7 +626,7 @@ with ory_client_client.ApiClient(configuration) as api_client:
         # Get User-Facing Self-Service Errors
         api_response = api_instance.get_self_service_error_admin(error)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->get_self_service_error_admin: %s\n" % e)
 ```
 
@@ -646,7 +639,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ErrorContainer**](ErrorContainer.md)
+[**SelfServiceErrorContainer**](SelfServiceErrorContainer.md)
 
 ### Authorization
 
@@ -679,20 +672,20 @@ This endpoint returns a login flow's context with, for example, error details an
 
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.login_flow import LoginFlow
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.login_flow import LoginFlow
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient() as api_client:
+with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     id = "id_example" # str | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
@@ -702,7 +695,7 @@ with ory_client_client.ApiClient() as api_client:
         # Get Login Flow
         api_response = api_instance.get_self_service_login_flow(id)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->get_self_service_login_flow: %s\n" % e)
 ```
 
@@ -750,14 +743,14 @@ This endpoint returns a login flow's context with, for example, error details an
 * Bearer Authentication (oryToken):
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.login_flow import LoginFlow
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.login_flow import LoginFlow
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
@@ -767,12 +760,12 @@ configuration = ory_client_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: oryToken
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient(configuration) as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     id = "id_example" # str | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
@@ -782,7 +775,7 @@ with ory_client_client.ApiClient(configuration) as api_client:
         # Get Login Flow
         api_response = api_instance.get_self_service_login_flow_admin(id)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->get_self_service_login_flow_admin: %s\n" % e)
 ```
 
@@ -829,20 +822,20 @@ This endpoint returns a recovery flow's context with, for example, error details
 
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.recovery_flow import RecoveryFlow
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.recovery_flow import RecoveryFlow
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient() as api_client:
+with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     id = "id_example" # str | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
@@ -852,7 +845,7 @@ with ory_client_client.ApiClient() as api_client:
         # Get information about a recovery flow
         api_response = api_instance.get_self_service_recovery_flow(id)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->get_self_service_recovery_flow: %s\n" % e)
 ```
 
@@ -899,14 +892,14 @@ This endpoint returns a recovery flow's context with, for example, error details
 * Bearer Authentication (oryToken):
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.recovery_flow import RecoveryFlow
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.recovery_flow import RecoveryFlow
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
@@ -916,12 +909,12 @@ configuration = ory_client_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: oryToken
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient(configuration) as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     id = "id_example" # str | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
@@ -931,7 +924,7 @@ with ory_client_client.ApiClient(configuration) as api_client:
         # Get information about a recovery flow
         api_response = api_instance.get_self_service_recovery_flow_admin(id)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->get_self_service_recovery_flow_admin: %s\n" % e)
 ```
 
@@ -977,20 +970,20 @@ This endpoint returns a registration flow's context with, for example, error det
 
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.registration_flow import RegistrationFlow
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.registration_flow import RegistrationFlow
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient() as api_client:
+with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     id = "id_example" # str | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
@@ -1000,7 +993,7 @@ with ory_client_client.ApiClient() as api_client:
         # Get Registration Flow
         api_response = api_instance.get_self_service_registration_flow(id)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->get_self_service_registration_flow: %s\n" % e)
 ```
 
@@ -1048,14 +1041,14 @@ This endpoint returns a registration flow's context with, for example, error det
 * Bearer Authentication (oryToken):
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.registration_flow import RegistrationFlow
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.registration_flow import RegistrationFlow
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
@@ -1065,12 +1058,12 @@ configuration = ory_client_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: oryToken
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient(configuration) as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     id = "id_example" # str | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
@@ -1080,7 +1073,7 @@ with ory_client_client.ApiClient(configuration) as api_client:
         # Get Registration Flow
         api_response = api_instance.get_self_service_registration_flow_admin(id)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->get_self_service_registration_flow_admin: %s\n" % e)
 ```
 
@@ -1128,14 +1121,14 @@ When accessing this endpoint through Ory Kratos' Public API you must ensure that
 * Bearer Authentication (sessionToken):
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.settings_flow import SettingsFlow
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.settings_flow import SettingsFlow
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
@@ -1145,22 +1138,32 @@ configuration = ory_client_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: sessionToken
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient(configuration) as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     id = "id_example" # str | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+    x_session_token = "X-Session-Token_example" # str | The Session Token of the Identity performing the settings flow. (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Get Settings Flow
         api_response = api_instance.get_self_service_settings_flow(id)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
+        print("Exception when calling DefaultApi->get_self_service_settings_flow: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Get Settings Flow
+        api_response = api_instance.get_self_service_settings_flow(id, x_session_token=x_session_token)
+        pprint(api_response)
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->get_self_service_settings_flow: %s\n" % e)
 ```
 
@@ -1170,6 +1173,7 @@ with ory_client_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
+ **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional]
 
 ### Return type
 
@@ -1208,14 +1212,14 @@ When accessing this endpoint through Ory Kratos' Public API you must ensure that
 * Bearer Authentication (oryToken):
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.settings_flow import SettingsFlow
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.settings_flow import SettingsFlow
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
@@ -1225,22 +1229,32 @@ configuration = ory_client_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: oryToken
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient(configuration) as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     id = "id_example" # str | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+    x_session_token = "X-Session-Token_example" # str | The Session Token of the Identity performing the settings flow. (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Get Settings Flow
         api_response = api_instance.get_self_service_settings_flow_admin(id)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
+        print("Exception when calling DefaultApi->get_self_service_settings_flow_admin: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Get Settings Flow
+        api_response = api_instance.get_self_service_settings_flow_admin(id, x_session_token=x_session_token)
+        pprint(api_response)
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->get_self_service_settings_flow_admin: %s\n" % e)
 ```
 
@@ -1250,6 +1264,7 @@ with ory_client_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
+ **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional]
 
 ### Return type
 
@@ -1287,20 +1302,20 @@ This endpoint returns a verification flow's context with, for example, error det
 
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.verification_flow import VerificationFlow
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.verification_flow import VerificationFlow
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient() as api_client:
+with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     id = "id_example" # str | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
@@ -1310,7 +1325,7 @@ with ory_client_client.ApiClient() as api_client:
         # Get Verification Flow
         api_response = api_instance.get_self_service_verification_flow(id)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->get_self_service_verification_flow: %s\n" % e)
 ```
 
@@ -1357,14 +1372,14 @@ This endpoint returns a verification flow's context with, for example, error det
 * Bearer Authentication (oryToken):
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.verification_flow import VerificationFlow
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.verification_flow import VerificationFlow
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
@@ -1374,12 +1389,12 @@ configuration = ory_client_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: oryToken
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient(configuration) as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     id = "id_example" # str | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
@@ -1389,7 +1404,7 @@ with ory_client_client.ApiClient(configuration) as api_client:
         # Get Verification Flow
         api_response = api_instance.get_self_service_verification_flow_admin(id)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->get_self_service_verification_flow_admin: %s\n" % e)
 ```
 
@@ -1436,13 +1451,13 @@ This endpoint returns the version of Ory Kratos.  If the service supports TLS Ed
 * Bearer Authentication (oryToken):
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.inline_response2001 import InlineResponse2001
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.inline_response2001 import InlineResponse2001
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
@@ -1452,12 +1467,12 @@ configuration = ory_client_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: oryToken
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient(configuration) as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
 
@@ -1466,7 +1481,7 @@ with ory_client_client.ApiClient(configuration) as api_client:
         # Return Running Software Version.
         api_response = api_instance.get_version_admin()
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->get_version_admin: %s\n" % e)
 ```
 
@@ -1506,19 +1521,19 @@ This endpoint initializes a logout flow.  > This endpoint is NOT INTENDED for AP
 
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient() as api_client:
+with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
 
@@ -1526,7 +1541,7 @@ with ory_client_client.ApiClient() as api_client:
     try:
         # Initialize Browser-Based Logout User Flow
         api_instance.initialize_self_service_browser_logout_flow()
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->initialize_self_service_browser_logout_flow: %s\n" % e)
 ```
 
@@ -1556,31 +1571,30 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **initialize_self_service_login_via_api_flow**
-> LoginFlow initialize_self_service_login_via_api_flow()
+# **initialize_self_service_login_for_browsers**
+> initialize_self_service_login_for_browsers()
 
-Initialize Login Flow for API clients
+Initialize Login Flow for browsers
 
-This endpoint initiates a login flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.login_flow import LoginFlow
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient() as api_client:
+with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     refresh = True # bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. (optional)
@@ -1588,11 +1602,78 @@ with ory_client_client.ApiClient() as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # Initialize Login Flow for API clients
-        api_response = api_instance.initialize_self_service_login_via_api_flow(refresh=refresh)
+        # Initialize Login Flow for browsers
+        api_instance.initialize_self_service_login_for_browsers(refresh=refresh)
+    except ory_client.ApiException as e:
+        print("Exception when calling DefaultApi->initialize_self_service_login_for_browsers: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **refresh** | **bool**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**500** | jsonError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **initialize_self_service_login_for_native_apps**
+> LoginFlow initialize_self_service_login_for_native_apps()
+
+Initialize Login Flow for Native Apps and API clients
+
+This endpoint initiates a login flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+
+### Example
+
+```python
+import time
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.login_flow import LoginFlow
+from pprint import pprint
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    refresh = True # bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. (optional)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Initialize Login Flow for Native Apps and API clients
+        api_response = api_instance.initialize_self_service_login_for_native_apps(refresh=refresh)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
-        print("Exception when calling DefaultApi->initialize_self_service_login_via_api_flow: %s\n" % e)
+    except ory_client.ApiException as e:
+        print("Exception when calling DefaultApi->initialize_self_service_login_for_native_apps: %s\n" % e)
 ```
 
 
@@ -1625,39 +1706,39 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **initialize_self_service_login_via_browser_flow**
-> initialize_self_service_login_via_browser_flow()
+# **initialize_self_service_recovery_for_browsers**
+> initialize_self_service_recovery_for_browsers()
 
-Initialize Login Flow for browsers
+Initialize Recovery Flow for Browser Clients
 
-This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to `selfservice.flows.recovery.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists, the browser is returned to the configured return URL.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
 ### Example
 
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient() as api_client:
+with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
 
     # example, this endpoint has no required or optional parameters
     try:
-        # Initialize Login Flow for browsers
-        api_instance.initialize_self_service_login_via_browser_flow()
-    except ory_client_client.ApiException as e:
-        print("Exception when calling DefaultApi->initialize_self_service_login_via_browser_flow: %s\n" % e)
+        # Initialize Recovery Flow for Browser Clients
+        api_instance.initialize_self_service_recovery_for_browsers()
+    except ory_client.ApiException as e:
+        print("Exception when calling DefaultApi->initialize_self_service_recovery_for_browsers: %s\n" % e)
 ```
 
 
@@ -1686,10 +1767,10 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **initialize_self_service_recovery_via_api_flow**
-> RecoveryFlow initialize_self_service_recovery_via_api_flow()
+# **initialize_self_service_recovery_for_native_apps**
+> RecoveryFlow initialize_self_service_recovery_for_native_apps()
 
-Initialize Recovery Flow for API Clients
+Initialize Recovery Flow for Native Apps and API clients
 
 This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
@@ -1697,30 +1778,30 @@ This endpoint initiates a recovery flow for API clients such as mobile devices, 
 
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.recovery_flow import RecoveryFlow
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.recovery_flow import RecoveryFlow
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient() as api_client:
+with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
 
     # example, this endpoint has no required or optional parameters
     try:
-        # Initialize Recovery Flow for API Clients
-        api_response = api_instance.initialize_self_service_recovery_via_api_flow()
+        # Initialize Recovery Flow for Native Apps and API clients
+        api_response = api_instance.initialize_self_service_recovery_for_native_apps()
         pprint(api_response)
-    except ory_client_client.ApiException as e:
-        print("Exception when calling DefaultApi->initialize_self_service_recovery_via_api_flow: %s\n" % e)
+    except ory_client.ApiException as e:
+        print("Exception when calling DefaultApi->initialize_self_service_recovery_for_native_apps: %s\n" % e)
 ```
 
 
@@ -1750,131 +1831,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **initialize_self_service_recovery_via_browser_flow**
-> initialize_self_service_recovery_via_browser_flow()
-
-Initialize Recovery Flow for Browser Clients
-
-This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to `selfservice.flows.recovery.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists, the browser is returned to the configured return URL.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
-
-### Example
-
-```python
-import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-
-# Enter a context with an instance of the API client
-with ory_client_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        # Initialize Recovery Flow for Browser Clients
-        api_instance.initialize_self_service_recovery_via_browser_flow()
-    except ory_client_client.ApiException as e:
-        print("Exception when calling DefaultApi->initialize_self_service_recovery_via_browser_flow: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**500** | jsonError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **initialize_self_service_registration**
-> RegistrationFlow initialize_self_service_registration()
-
-Initialize Registration Flow for API clients
-
-This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing registration flow call `/self-service/registration/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
-
-### Example
-
-```python
-import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.registration_flow import RegistrationFlow
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-
-# Enter a context with an instance of the API client
-with ory_client_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        # Initialize Registration Flow for API clients
-        api_response = api_instance.initialize_self_service_registration()
-        pprint(api_response)
-    except ory_client_client.ApiException as e:
-        print("Exception when calling DefaultApi->initialize_self_service_registration: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**RegistrationFlow**](RegistrationFlow.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | registrationFlow |  -  |
-**400** | jsonError |  -  |
-**500** | jsonError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **initialize_self_service_registration_for_browsers**
 > initialize_self_service_registration_for_browsers()
 
@@ -1886,19 +1842,19 @@ This endpoint initializes a browser-based user registration flow. Once initializ
 
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient() as api_client:
+with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
 
@@ -1906,7 +1862,7 @@ with ory_client_client.ApiClient() as api_client:
     try:
         # Initialize Registration Flow for browsers
         api_instance.initialize_self_service_registration_for_browsers()
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->initialize_self_service_registration_for_browsers: %s\n" % e)
 ```
 
@@ -1936,51 +1892,41 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **initialize_self_service_settings_via_api_flow**
-> SettingsFlow initialize_self_service_settings_via_api_flow()
+# **initialize_self_service_registration_for_native_apps**
+> RegistrationFlow initialize_self_service_registration_for_native_apps()
 
-Initialize Settings Flow for API Clients
+Initialize Registration Flow for Native Apps and API clients
 
-This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid Ory Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call `/self-service/settings/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing registration flow call `/self-service/registration/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 
-* Bearer Authentication (sessionToken):
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.settings_flow import SettingsFlow
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.registration_flow import RegistrationFlow
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: sessionToken
-configuration = ory_client_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient(configuration) as api_client:
+with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
 
     # example, this endpoint has no required or optional parameters
     try:
-        # Initialize Settings Flow for API Clients
-        api_response = api_instance.initialize_self_service_settings_via_api_flow()
+        # Initialize Registration Flow for Native Apps and API clients
+        api_response = api_instance.initialize_self_service_registration_for_native_apps()
         pprint(api_response)
-    except ory_client_client.ApiException as e:
-        print("Exception when calling DefaultApi->initialize_self_service_settings_via_api_flow: %s\n" % e)
+    except ory_client.ApiException as e:
+        print("Exception when calling DefaultApi->initialize_self_service_registration_for_native_apps: %s\n" % e)
 ```
 
 
@@ -1989,11 +1935,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SettingsFlow**](SettingsFlow.md)
+[**RegistrationFlow**](RegistrationFlow.md)
 
 ### Authorization
 
-[sessionToken](../README.md#sessionToken)
+No authorization required
 
 ### HTTP request headers
 
@@ -2004,14 +1950,14 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | settingsFlow |  -  |
+**200** | registrationFlow |  -  |
 **400** | jsonError |  -  |
 **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **initialize_self_service_settings_via_browser_flow**
-> initialize_self_service_settings_via_browser_flow()
+# **initialize_self_service_settings_for_browsers**
+> initialize_self_service_settings_for_browsers()
 
 Initialize Settings Flow for Browsers
 
@@ -2022,13 +1968,13 @@ This endpoint initializes a browser-based user settings flow. Once initialized, 
 * Bearer Authentication (sessionToken):
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
@@ -2038,21 +1984,21 @@ configuration = ory_client_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: sessionToken
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient(configuration) as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
 
     # example, this endpoint has no required or optional parameters
     try:
         # Initialize Settings Flow for Browsers
-        api_instance.initialize_self_service_settings_via_browser_flow()
-    except ory_client_client.ApiException as e:
-        print("Exception when calling DefaultApi->initialize_self_service_settings_via_browser_flow: %s\n" % e)
+        api_instance.initialize_self_service_settings_for_browsers()
+    except ory_client.ApiException as e:
+        print("Exception when calling DefaultApi->initialize_self_service_settings_for_browsers: %s\n" % e)
 ```
 
 
@@ -2081,10 +2027,150 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **initialize_self_service_verification_via_api_flow**
-> VerificationFlow initialize_self_service_verification_via_api_flow()
+# **initialize_self_service_settings_for_native_apps**
+> SettingsFlow initialize_self_service_settings_for_native_apps()
 
-Initialize Verification Flow for API Clients
+Initialize Settings Flow for Native Apps and API clients
+
+This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid Ory Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call `/self-service/settings/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+
+### Example
+
+* Bearer Authentication (sessionToken):
+```python
+import time
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.settings_flow import SettingsFlow
+from pprint import pprint
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: sessionToken
+configuration = ory_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    x_session_token = "X-Session-Token_example" # str | The Session Token of the Identity performing the settings flow. (optional)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Initialize Settings Flow for Native Apps and API clients
+        api_response = api_instance.initialize_self_service_settings_for_native_apps(x_session_token=x_session_token)
+        pprint(api_response)
+    except ory_client.ApiException as e:
+        print("Exception when calling DefaultApi->initialize_self_service_settings_for_native_apps: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional]
+
+### Return type
+
+[**SettingsFlow**](SettingsFlow.md)
+
+### Authorization
+
+[sessionToken](../README.md#sessionToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | settingsFlow |  -  |
+**400** | jsonError |  -  |
+**500** | jsonError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **initialize_self_service_verification_for_browsers**
+> initialize_self_service_verification_for_browsers()
+
+Initialize Verification Flow for Browser Clients
+
+This endpoint initializes a browser-based account verification flow. Once initialized, the browser will be redirected to `selfservice.flows.verification.ui_url` with the flow ID set as the query parameter `?flow=`.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+
+```python
+import time
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from pprint import pprint
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        # Initialize Verification Flow for Browser Clients
+        api_instance.initialize_self_service_verification_for_browsers()
+    except ory_client.ApiException as e:
+        print("Exception when calling DefaultApi->initialize_self_service_verification_for_browsers: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**500** | jsonError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **initialize_self_service_verification_for_native_apps**
+> VerificationFlow initialize_self_service_verification_for_native_apps()
+
+Initialize Verification Flow for Native Apps and API clients
 
 This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
@@ -2092,30 +2178,30 @@ This endpoint initiates a verification flow for API clients such as mobile devic
 
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.verification_flow import VerificationFlow
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.verification_flow import VerificationFlow
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient() as api_client:
+with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
 
     # example, this endpoint has no required or optional parameters
     try:
-        # Initialize Verification Flow for API Clients
-        api_response = api_instance.initialize_self_service_verification_via_api_flow()
+        # Initialize Verification Flow for Native Apps and API clients
+        api_response = api_instance.initialize_self_service_verification_for_native_apps()
         pprint(api_response)
-    except ory_client_client.ApiException as e:
-        print("Exception when calling DefaultApi->initialize_self_service_verification_via_api_flow: %s\n" % e)
+    except ory_client.ApiException as e:
+        print("Exception when calling DefaultApi->initialize_self_service_verification_for_native_apps: %s\n" % e)
 ```
 
 
@@ -2145,67 +2231,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **initialize_self_service_verification_via_browser_flow**
-> initialize_self_service_verification_via_browser_flow()
-
-Initialize Verification Flow for Browser Clients
-
-This endpoint initializes a browser-based account verification flow. Once initialized, the browser will be redirected to `selfservice.flows.verification.ui_url` with the flow ID set as the query parameter `?flow=`.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
-
-### Example
-
-```python
-import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-
-# Enter a context with an instance of the API client
-with ory_client_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        # Initialize Verification Flow for Browser Clients
-        api_instance.initialize_self_service_verification_via_browser_flow()
-    except ory_client_client.ApiException as e:
-        print("Exception when calling DefaultApi->initialize_self_service_verification_via_browser_flow: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**500** | jsonError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **is_alive_admin**
 > InlineResponse200 is_alive_admin()
 
@@ -2218,14 +2243,14 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incomi
 * Bearer Authentication (oryToken):
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.generic_error import GenericError
-from ory_client_client.model.inline_response200 import InlineResponse200
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.inline_response200 import InlineResponse200
+from ory_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
@@ -2235,12 +2260,12 @@ configuration = ory_client_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: oryToken
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient(configuration) as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
 
@@ -2249,7 +2274,7 @@ with ory_client_client.ApiClient(configuration) as api_client:
         # Check HTTP Server Status
         api_response = api_instance.is_alive_admin()
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->is_alive_admin: %s\n" % e)
 ```
 
@@ -2291,14 +2316,14 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is up running and t
 * Bearer Authentication (oryToken):
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.inline_response200 import InlineResponse200
-from ory_client_client.model.inline_response503 import InlineResponse503
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.inline_response200 import InlineResponse200
+from ory_client.model.inline_response503 import InlineResponse503
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
@@ -2308,12 +2333,12 @@ configuration = ory_client_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: oryToken
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient(configuration) as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
 
@@ -2322,7 +2347,7 @@ with ory_client_client.ApiClient(configuration) as api_client:
         # Check HTTP Server and Database Status
         api_response = api_instance.is_ready_admin()
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->is_ready_admin: %s\n" % e)
 ```
 
@@ -2364,14 +2389,14 @@ Lists all identities. Does not support search at the moment.  Learn how identiti
 * Bearer Authentication (oryToken):
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.identity import Identity
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.identity import Identity
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
@@ -2381,12 +2406,12 @@ configuration = ory_client_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: oryToken
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient(configuration) as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     per_page = 100 # int | Items per Page  This is the number of items per page. (optional) if omitted the server will use the default value of 100
@@ -2398,7 +2423,7 @@ with ory_client_client.ApiClient(configuration) as api_client:
         # List Identities
         api_response = api_instance.list_identities_admin(per_page=per_page, page=page)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->list_identities_admin: %s\n" % e)
 ```
 
@@ -2428,8 +2453,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A list of identities. |  -  |
-**401** | jsonError |  -  |
-**403** | jsonError |  -  |
 **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2446,12 +2469,12 @@ Get snapshot metrics from the Hydra service. If you're using k8s, you can then a
 * Bearer Authentication (oryToken):
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
+import ory_client
+from ory_client.api import default_api
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
@@ -2461,12 +2484,12 @@ configuration = ory_client_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: oryToken
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient(configuration) as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
 
@@ -2474,7 +2497,7 @@ with ory_client_client.ApiClient(configuration) as api_client:
     try:
         # Get snapshot metrics from the Hydra service. If you're using k8s, you can then add annotations to your deployment like so:
         api_instance.prometheus_admin()
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->prometheus_admin: %s\n" % e)
 ```
 
@@ -2514,20 +2537,20 @@ Use this endpoint to revoke a session using its token. This endpoint is particul
 
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.revoke_session import RevokeSession
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.revoke_session import RevokeSession
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient() as api_client:
+with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     revoke_session = RevokeSession(
@@ -2538,7 +2561,7 @@ with ory_client_client.ApiClient() as api_client:
     try:
         # Initialize Logout Flow for API Clients - Revoke a Session
         api_instance.revoke_session(revoke_session)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->revoke_session: %s\n" % e)
 ```
 
@@ -2583,22 +2606,22 @@ Use this endpoint to complete a login flow. This endpoint behaves differently fo
 
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.submit_self_service_login_flow import SubmitSelfServiceLoginFlow
-from ory_client_client.model.login_flow import LoginFlow
-from ory_client_client.model.login_via_api_response import LoginViaApiResponse
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.login_flow import LoginFlow
+from ory_client.model.submit_self_service_login_flow import SubmitSelfServiceLoginFlow
+from ory_client.model.login_via_api_response import LoginViaApiResponse
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient() as api_client:
+with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     flow = "flow_example" # str | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
@@ -2609,7 +2632,7 @@ with ory_client_client.ApiClient() as api_client:
         # Submit a Login Flow
         api_response = api_instance.submit_self_service_login_flow(flow)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->submit_self_service_login_flow: %s\n" % e)
 
     # example passing only required values which don't have defaults set
@@ -2618,7 +2641,7 @@ with ory_client_client.ApiClient() as api_client:
         # Submit a Login Flow
         api_response = api_instance.submit_self_service_login_flow(flow, submit_self_service_login_flow=submit_self_service_login_flow)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->submit_self_service_login_flow: %s\n" % e)
 ```
 
@@ -2665,20 +2688,20 @@ Use this endpoint to complete a recovery flow. This endpoint behaves differently
 
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.recovery_flow import RecoveryFlow
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.recovery_flow import RecoveryFlow
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient() as api_client:
+with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     flow = "flow_example" # str | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
@@ -2688,7 +2711,7 @@ with ory_client_client.ApiClient() as api_client:
     try:
         # Complete Recovery Flow
         api_instance.submit_self_service_recovery_flow(flow)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->submit_self_service_recovery_flow: %s\n" % e)
 
     # example passing only required values which don't have defaults set
@@ -2696,7 +2719,7 @@ with ory_client_client.ApiClient() as api_client:
     try:
         # Complete Recovery Flow
         api_instance.submit_self_service_recovery_flow(flow, body=body)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->submit_self_service_recovery_flow: %s\n" % e)
 ```
 
@@ -2742,21 +2765,21 @@ Use this endpoint to complete a recovery flow using the link method. This endpoi
 
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.submit_self_service_recovery_flow_with_link_method import SubmitSelfServiceRecoveryFlowWithLinkMethod
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.recovery_flow import RecoveryFlow
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.submit_self_service_recovery_flow_with_link_method import SubmitSelfServiceRecoveryFlowWithLinkMethod
+from ory_client.model.recovery_flow import RecoveryFlow
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient() as api_client:
+with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     token = "token_example" # str | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user. (optional)
@@ -2771,7 +2794,7 @@ with ory_client_client.ApiClient() as api_client:
     try:
         # Complete Recovery Flow with Link Method
         api_instance.submit_self_service_recovery_flow_with_link_method(token=token, flow=flow, submit_self_service_recovery_flow_with_link_method=submit_self_service_recovery_flow_with_link_method)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->submit_self_service_recovery_flow_with_link_method: %s\n" % e)
 ```
 
@@ -2818,22 +2841,22 @@ Use this endpoint to complete a registration flow by sending an identity's trait
 
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.registration_flow import RegistrationFlow
-from ory_client_client.model.registration_via_api_response import RegistrationViaApiResponse
-from ory_client_client.model.submit_self_service_registration_flow import SubmitSelfServiceRegistrationFlow
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.registration_flow import RegistrationFlow
+from ory_client.model.submit_self_service_registration_flow import SubmitSelfServiceRegistrationFlow
+from ory_client.model.registration_via_api_response import RegistrationViaApiResponse
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient() as api_client:
+with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     flow = "flow_example" # str | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
@@ -2844,7 +2867,7 @@ with ory_client_client.ApiClient() as api_client:
         # Submit a Registration Flow
         api_response = api_instance.submit_self_service_registration_flow(flow)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->submit_self_service_registration_flow: %s\n" % e)
 
     # example passing only required values which don't have defaults set
@@ -2853,7 +2876,7 @@ with ory_client_client.ApiClient() as api_client:
         # Submit a Registration Flow
         api_response = api_instance.submit_self_service_registration_flow(flow, submit_self_service_registration_flow=submit_self_service_registration_flow)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->submit_self_service_registration_flow: %s\n" % e)
 ```
 
@@ -2901,16 +2924,16 @@ Use this endpoint to complete a settings flow by sending an identity's updated p
 * Bearer Authentication (sessionToken):
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.submit_self_service_settings_flow import SubmitSelfServiceSettingsFlow
-from ory_client_client.model.settings_flow import SettingsFlow
-from ory_client_client.model.settings_via_api_response import SettingsViaApiResponse
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.settings_flow import SettingsFlow
+from ory_client.model.submit_self_service_settings_flow import SubmitSelfServiceSettingsFlow
+from ory_client.model.settings_via_api_response import SettingsViaApiResponse
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
@@ -2920,15 +2943,16 @@ configuration = ory_client_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: sessionToken
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient(configuration) as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     flow = "flow_example" # str | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+    x_session_token = "X-Session-Token_example" # str | The Session Token of the Identity performing the settings flow. (optional)
     submit_self_service_settings_flow = SubmitSelfServiceSettingsFlow() # SubmitSelfServiceSettingsFlow |  (optional)
 
     # example passing only required values which don't have defaults set
@@ -2936,16 +2960,16 @@ with ory_client_client.ApiClient(configuration) as api_client:
         # Complete Settings Flow
         api_response = api_instance.submit_self_service_settings_flow(flow)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->submit_self_service_settings_flow: %s\n" % e)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
         # Complete Settings Flow
-        api_response = api_instance.submit_self_service_settings_flow(flow, submit_self_service_settings_flow=submit_self_service_settings_flow)
+        api_response = api_instance.submit_self_service_settings_flow(flow, x_session_token=x_session_token, submit_self_service_settings_flow=submit_self_service_settings_flow)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->submit_self_service_settings_flow: %s\n" % e)
 ```
 
@@ -2955,6 +2979,7 @@ with ory_client_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **str**| The Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
+ **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional]
  **submit_self_service_settings_flow** | [**SubmitSelfServiceSettingsFlow**](SubmitSelfServiceSettingsFlow.md)|  | [optional]
 
 ### Return type
@@ -2994,20 +3019,20 @@ Use this endpoint to complete a verification flow. This endpoint behaves differe
 
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.verification_flow import VerificationFlow
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.verification_flow import VerificationFlow
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient() as api_client:
+with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     flow = "flow_example" # str | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
@@ -3017,7 +3042,7 @@ with ory_client_client.ApiClient() as api_client:
     try:
         # Complete Verification Flow
         api_instance.submit_self_service_verification_flow(flow)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->submit_self_service_verification_flow: %s\n" % e)
 
     # example passing only required values which don't have defaults set
@@ -3025,7 +3050,7 @@ with ory_client_client.ApiClient() as api_client:
     try:
         # Complete Verification Flow
         api_instance.submit_self_service_verification_flow(flow, body=body)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->submit_self_service_verification_flow: %s\n" % e)
 ```
 
@@ -3072,14 +3097,14 @@ Uses the HTTP Headers in the GET request to determine (e.g. by using checking th
 * Api Key Authentication (sessionCookie):
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.session import Session
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.session import Session
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
@@ -3095,7 +3120,7 @@ configuration.api_key['sessionCookie'] = 'YOUR_API_KEY'
 # configuration.api_key_prefix['sessionCookie'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient(configuration) as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     x_session_token = "X-Session-Token_example" # str |  (optional)
@@ -3106,7 +3131,7 @@ with ory_client_client.ApiClient(configuration) as api_client:
         # Check Who the Current HTTP Session Belongs To
         api_response = api_instance.to_session(x_session_token=x_session_token)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->to_session: %s\n" % e)
 ```
 
@@ -3152,15 +3177,15 @@ This endpoint updates an identity. It is NOT possible to set an identity's crede
 * Bearer Authentication (oryToken):
 ```python
 import time
-import ory_client_client
-from ory_client_client.api import default_api
-from ory_client_client.model.json_error import JsonError
-from ory_client_client.model.identity import Identity
-from ory_client_client.model.update_identity import UpdateIdentity
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.update_identity import UpdateIdentity
+from ory_client.model.identity import Identity
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
@@ -3170,12 +3195,12 @@ configuration = ory_client_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization: oryToken
-configuration = ory_client_client.Configuration(
+configuration = ory_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
-with ory_client_client.ApiClient(configuration) as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     id = "id_example" # str | ID must be set to the ID of identity you want to update
@@ -3189,7 +3214,7 @@ with ory_client_client.ApiClient(configuration) as api_client:
         # Update an Identity
         api_response = api_instance.update_identity_admin(id)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->update_identity_admin: %s\n" % e)
 
     # example passing only required values which don't have defaults set
@@ -3198,7 +3223,7 @@ with ory_client_client.ApiClient(configuration) as api_client:
         # Update an Identity
         api_response = api_instance.update_identity_admin(id, update_identity=update_identity)
         pprint(api_response)
-    except ory_client_client.ApiException as e:
+    except ory_client.ApiException as e:
         print("Exception when calling DefaultApi->update_identity_admin: %s\n" % e)
 ```
 
@@ -3229,9 +3254,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | identity |  -  |
 **400** | jsonError |  -  |
-**401** | jsonError |  -  |
-**403** | jsonError |  -  |
 **404** | jsonError |  -  |
+**409** | jsonError |  -  |
 **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

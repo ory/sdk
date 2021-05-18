@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientVerifiableIdentityAddress
+# Ory.Client.Model.ClientVerifiableIdentityAddress
 VerifiableAddress is an identity's verifiable address
 
 ## Properties

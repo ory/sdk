@@ -212,8 +212,6 @@ class ApiClient {
           return CreateIdentity.fromJson(value);
         case 'CreateRecoveryLink':
           return CreateRecoveryLink.fromJson(value);
-        case 'ErrorContainer':
-          return ErrorContainer.fromJson(value);
         case 'ErrorResponse':
           return ErrorResponse.fromJson(value);
         case 'GenericError':
@@ -288,6 +286,8 @@ class ApiClient {
           return RegistrationViaApiResponse.fromJson(value);
         case 'RevokeSession':
           return RevokeSession.fromJson(value);
+        case 'SelfServiceErrorContainer':
+          return SelfServiceErrorContainer.fromJson(value);
         case 'ServiceUpdateResponse':
           return ServiceUpdateResponse.fromJson(value);
         case 'Session':

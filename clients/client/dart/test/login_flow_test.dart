@@ -7,7 +7,7 @@
 // ignore_for_file: always_put_required_named_parameters_first
 // ignore_for_file: lines_longer_than_80_chars
 
-import 'package:ory_client_client/api.dart';
+import 'package:ory_client/api.dart';
 import 'package:test/test.dart';
 
 // tests for LoginFlow
@@ -18,6 +18,12 @@ void main() {
     // and so on.
     // String active
     test('to test the property `active`', () async {
+      // TODO
+    });
+
+    // CreatedAt is a helper struct field for gobuffalo.pop.
+    // DateTime createdAt
+    test('to test the property `createdAt`', () async {
       // TODO
     });
 
@@ -58,6 +64,12 @@ void main() {
 
     // UiContainer ui
     test('to test the property `ui`', () async {
+      // TODO
+    });
+
+    // UpdatedAt is a helper struct field for gobuffalo.pop.
+    // DateTime updatedAt
+    test('to test the property `updatedAt`', () async {
       // TODO
     });
 

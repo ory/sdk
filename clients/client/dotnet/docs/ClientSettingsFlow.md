@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientSettingsFlow
+# Ory.Client.Model.ClientSettingsFlow
 This flow is used when an identity wants to update settings (e.g. profile data, passwords, ...) in a selfservice manner.  We recommend reading the [User Settings Documentation](../self-service/flows/user-settings)
 
 ## Properties

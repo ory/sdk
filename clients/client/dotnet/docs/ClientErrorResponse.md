@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientErrorResponse
+# Ory.Client.Model.ClientErrorResponse
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientLoginViaApiResponse
+# Ory.Client.Model.ClientLoginViaApiResponse
 The Response for Login Flows via API
 
 ## Properties

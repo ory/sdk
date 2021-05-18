@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientAuthenticateOKBody
+# Ory.Client.Model.ClientAuthenticateOKBody
 AuthenticateOKBody authenticate o k body
 
 ## Properties

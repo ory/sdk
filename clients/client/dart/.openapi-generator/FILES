@@ -12,7 +12,6 @@ doc/ContainerWaitOKBodyError.md
 doc/CreateIdentity.md
 doc/CreateRecoveryLink.md
 doc/DefaultApi.md
-doc/ErrorContainer.md
 doc/ErrorResponse.md
 doc/GenericError.md
 doc/GraphDriverData.md
@@ -50,6 +49,7 @@ doc/RecoveryLink.md
 doc/RegistrationFlow.md
 doc/RegistrationViaApiResponse.md
 doc/RevokeSession.md
+doc/SelfServiceErrorContainer.md
 doc/ServiceUpdateResponse.md
 doc/Session.md
 doc/SettingsFlow.md
@@ -100,7 +100,6 @@ lib/model/container_wait_ok_body.dart
 lib/model/container_wait_ok_body_error.dart
 lib/model/create_identity.dart
 lib/model/create_recovery_link.dart
-lib/model/error_container.dart
 lib/model/error_response.dart
 lib/model/generic_error.dart
 lib/model/graph_driver_data.dart
@@ -138,6 +137,7 @@ lib/model/recovery_link.dart
 lib/model/registration_flow.dart
 lib/model/registration_via_api_response.dart
 lib/model/revoke_session.dart
+lib/model/self_service_error_container.dart
 lib/model/service_update_response.dart
 lib/model/session.dart
 lib/model/settings_flow.dart
@@ -179,7 +179,6 @@ test/container_wait_ok_body_test.dart
 test/create_identity_test.dart
 test/create_recovery_link_test.dart
 test/default_api_test.dart
-test/error_container_test.dart
 test/error_response_test.dart
 test/generic_error_test.dart
 test/graph_driver_data_test.dart
@@ -217,6 +216,7 @@ test/recovery_link_test.dart
 test/registration_flow_test.dart
 test/registration_via_api_response_test.dart
 test/revoke_session_test.dart
+test/self_service_error_container_test.dart
 test/service_update_response_test.dart
 test/session_test.dart
 test/settings_flow_test.dart

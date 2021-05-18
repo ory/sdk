@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientCreateIdentity
+# Ory.Client.Model.ClientCreateIdentity
 
 ## Properties
 

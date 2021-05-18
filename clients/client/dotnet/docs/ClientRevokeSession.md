@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientRevokeSession
+# Ory.Client.Model.ClientRevokeSession
 
 ## Properties
 

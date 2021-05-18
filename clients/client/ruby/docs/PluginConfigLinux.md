@@ -11,7 +11,7 @@
 ## Example
 
 ```ruby
-require 'ory-client-client'
+require 'ory-client'
 
 instance = OryHydraClient::PluginConfigLinux.new(
   allow_all_devices: null,

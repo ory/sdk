@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientContainerUpdateOKBody
+# Ory.Client.Model.ClientContainerUpdateOKBody
 ContainerUpdateOKBody OK response to ContainerUpdate operation
 
 ## Properties

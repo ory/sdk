@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientImageDeleteResponseItem
+# Ory.Client.Model.ClientImageDeleteResponseItem
 ImageDeleteResponseItem image delete response item
 
 ## Properties

@@ -13,6 +13,7 @@ class LoginFlow {
   /// Returns a new [LoginFlow] instance.
   LoginFlow({
     this.active,
+    this.createdAt,
     @required this.expiresAt,
     this.forced,
     @required this.id,
@@ -20,10 +21,14 @@ class LoginFlow {
     @required this.requestUrl,
     @required this.type,
     @required this.ui,
+    this.updatedAt,
   });
 
   /// and so on.
   String active;
+
+  /// CreatedAt is a helper struct field for gobuffalo.pop.
+  DateTime createdAt;
 
   /// ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated.
   DateTime expiresAt;
@@ -44,35 +49,45 @@ class LoginFlow {
 
   UiContainer ui;
 
+  /// UpdatedAt is a helper struct field for gobuffalo.pop.
+  DateTime updatedAt;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is LoginFlow &&
      other.active == active &&
+     other.createdAt == createdAt &&
      other.expiresAt == expiresAt &&
      other.forced == forced &&
      other.id == id &&
      other.issuedAt == issuedAt &&
      other.requestUrl == requestUrl &&
      other.type == type &&
-     other.ui == ui;
+     other.ui == ui &&
+     other.updatedAt == updatedAt;
 
   @override
   int get hashCode =>
     (active == null ? 0 : active.hashCode) +
+    (createdAt == null ? 0 : createdAt.hashCode) +
     (expiresAt == null ? 0 : expiresAt.hashCode) +
     (forced == null ? 0 : forced.hashCode) +
     (id == null ? 0 : id.hashCode) +
     (issuedAt == null ? 0 : issuedAt.hashCode) +
     (requestUrl == null ? 0 : requestUrl.hashCode) +
     (type == null ? 0 : type.hashCode) +
-    (ui == null ? 0 : ui.hashCode);
+    (ui == null ? 0 : ui.hashCode) +
+    (updatedAt == null ? 0 : updatedAt.hashCode);
 
   @override
-  String toString() => 'LoginFlow[active=$active, expiresAt=$expiresAt, forced=$forced, id=$id, issuedAt=$issuedAt, requestUrl=$requestUrl, type=$type, ui=$ui]';
+  String toString() => 'LoginFlow[active=$active, createdAt=$createdAt, expiresAt=$expiresAt, forced=$forced, id=$id, issuedAt=$issuedAt, requestUrl=$requestUrl, type=$type, ui=$ui, updatedAt=$updatedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (active != null) {
       json[r'active'] = active;
+    }
+    if (createdAt != null) {
+      json[r'created_at'] = createdAt.toUtc().toIso8601String();
     }
       json[r'expires_at'] = expiresAt.toUtc().toIso8601String();
     if (forced != null) {
@@ -83,6 +98,9 @@ class LoginFlow {
       json[r'request_url'] = requestUrl;
       json[r'type'] = type;
       json[r'ui'] = ui;
+    if (updatedAt != null) {
+      json[r'updated_at'] = updatedAt.toUtc().toIso8601String();
+    }
     return json;
   }
 
@@ -92,6 +110,9 @@ class LoginFlow {
     ? null
     : LoginFlow(
         active: json[r'active'],
+        createdAt: json[r'created_at'] == null
+          ? null
+          : DateTime.parse(json[r'created_at']),
         expiresAt: json[r'expires_at'] == null
           ? null
           : DateTime.parse(json[r'expires_at']),
@@ -103,6 +124,9 @@ class LoginFlow {
         requestUrl: json[r'request_url'],
         type: json[r'type'],
         ui: UiContainer.fromJson(json[r'ui']),
+        updatedAt: json[r'updated_at'] == null
+          ? null
+          : DateTime.parse(json[r'updated_at']),
     );
 
   static List<LoginFlow> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>

@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientPluginConfigUser
+# Ory.Client.Model.ClientPluginConfigUser
 PluginConfigUser plugin config user
 
 ## Properties

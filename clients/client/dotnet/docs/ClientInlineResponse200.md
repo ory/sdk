@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientInlineResponse200
+# Ory.Client.Model.ClientInlineResponse200
 
 ## Properties
 

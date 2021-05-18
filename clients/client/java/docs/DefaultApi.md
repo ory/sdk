@@ -24,16 +24,16 @@ Method | HTTP request | Description
 [**getSelfServiceVerificationFlowAdmin**](DefaultApi.md#getSelfServiceVerificationFlowAdmin) | **GET** /api/kratos/admin/self-service/verification/flows | Get Verification Flow
 [**getVersionAdmin**](DefaultApi.md#getVersionAdmin) | **GET** /api/kratos/admin/version | Return Running Software Version.
 [**initializeSelfServiceBrowserLogoutFlow**](DefaultApi.md#initializeSelfServiceBrowserLogoutFlow) | **GET** /api/kratos/public/self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
-[**initializeSelfServiceLoginViaAPIFlow**](DefaultApi.md#initializeSelfServiceLoginViaAPIFlow) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for API clients
-[**initializeSelfServiceLoginViaBrowserFlow**](DefaultApi.md#initializeSelfServiceLoginViaBrowserFlow) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for browsers
-[**initializeSelfServiceRecoveryViaAPIFlow**](DefaultApi.md#initializeSelfServiceRecoveryViaAPIFlow) | **GET** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for API Clients
-[**initializeSelfServiceRecoveryViaBrowserFlow**](DefaultApi.md#initializeSelfServiceRecoveryViaBrowserFlow) | **GET** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
-[**initializeSelfServiceRegistration**](DefaultApi.md#initializeSelfServiceRegistration) | **GET** /api/kratos/public/self-service/registration/api | Initialize Registration Flow for API clients
+[**initializeSelfServiceLoginForBrowsers**](DefaultApi.md#initializeSelfServiceLoginForBrowsers) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for browsers
+[**initializeSelfServiceLoginForNativeApps**](DefaultApi.md#initializeSelfServiceLoginForNativeApps) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for Native Apps and API clients
+[**initializeSelfServiceRecoveryForBrowsers**](DefaultApi.md#initializeSelfServiceRecoveryForBrowsers) | **GET** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
+[**initializeSelfServiceRecoveryForNativeApps**](DefaultApi.md#initializeSelfServiceRecoveryForNativeApps) | **GET** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for Native Apps and API clients
 [**initializeSelfServiceRegistrationForBrowsers**](DefaultApi.md#initializeSelfServiceRegistrationForBrowsers) | **GET** /api/kratos/public/self-service/registration/browser | Initialize Registration Flow for browsers
-[**initializeSelfServiceSettingsViaAPIFlow**](DefaultApi.md#initializeSelfServiceSettingsViaAPIFlow) | **GET** /api/kratos/public/self-service/settings/api | Initialize Settings Flow for API Clients
-[**initializeSelfServiceSettingsViaBrowserFlow**](DefaultApi.md#initializeSelfServiceSettingsViaBrowserFlow) | **GET** /api/kratos/public/self-service/settings/browser | Initialize Settings Flow for Browsers
-[**initializeSelfServiceVerificationViaAPIFlow**](DefaultApi.md#initializeSelfServiceVerificationViaAPIFlow) | **GET** /api/kratos/public/self-service/verification/api | Initialize Verification Flow for API Clients
-[**initializeSelfServiceVerificationViaBrowserFlow**](DefaultApi.md#initializeSelfServiceVerificationViaBrowserFlow) | **GET** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients
+[**initializeSelfServiceRegistrationForNativeApps**](DefaultApi.md#initializeSelfServiceRegistrationForNativeApps) | **GET** /api/kratos/public/self-service/registration/api | Initialize Registration Flow for Native Apps and API clients
+[**initializeSelfServiceSettingsForBrowsers**](DefaultApi.md#initializeSelfServiceSettingsForBrowsers) | **GET** /api/kratos/public/self-service/settings/browser | Initialize Settings Flow for Browsers
+[**initializeSelfServiceSettingsForNativeApps**](DefaultApi.md#initializeSelfServiceSettingsForNativeApps) | **GET** /api/kratos/public/self-service/settings/api | Initialize Settings Flow for Native Apps and API clients
+[**initializeSelfServiceVerificationForBrowsers**](DefaultApi.md#initializeSelfServiceVerificationForBrowsers) | **GET** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients
+[**initializeSelfServiceVerificationForNativeApps**](DefaultApi.md#initializeSelfServiceVerificationForNativeApps) | **GET** /api/kratos/public/self-service/verification/api | Initialize Verification Flow for Native Apps and API clients
 [**isAliveAdmin**](DefaultApi.md#isAliveAdmin) | **GET** /api/kratos/admin/health/alive | Check HTTP Server Status
 [**isReadyAdmin**](DefaultApi.md#isReadyAdmin) | **GET** /api/kratos/admin/health/ready | Check HTTP Server and Database Status
 [**listIdentitiesAdmin**](DefaultApi.md#listIdentitiesAdmin) | **GET** /api/kratos/admin/identities | List Identities
@@ -60,12 +60,12 @@ This endpoint creates an identity. It is NOT possible to set an identity&#39;s c
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -116,8 +116,6 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **201** | A single identity. |  -  |
 **400** | jsonError |  -  |
-**401** | jsonError |  -  |
-**403** | jsonError |  -  |
 **409** | jsonError |  -  |
 **500** | jsonError |  -  |
 
@@ -132,12 +130,12 @@ This endpoint creates a recovery link which should be given to the user in order
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -202,12 +200,12 @@ Calling this endpoint irrecoverably and permanently deletes the identity given i
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -256,8 +254,6 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**401** | jsonError |  -  |
-**403** | jsonError |  -  |
 **404** | jsonError |  -  |
 **500** | jsonError |  -  |
 
@@ -272,12 +268,12 @@ Learn how identities work in [Ory Kratos&#39; User And Identity Model Documentat
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -327,9 +323,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A single identity. |  -  |
-**400** | jsonError |  -  |
-**401** | jsonError |  -  |
-**403** | jsonError |  -  |
 **404** | jsonError |  -  |
 **500** | jsonError |  -  |
 
@@ -344,11 +337,11 @@ Get a Traits Schema Definition
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -408,12 +401,12 @@ Get a Traits Schema Definition
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -468,7 +461,7 @@ Name | Type | Description  | Notes
 
 <a name="getSelfServiceError"></a>
 # **getSelfServiceError**
-> ErrorContainer getSelfServiceError(error)
+> SelfServiceErrorContainer getSelfServiceError(error)
 
 Get User-Facing Self-Service Errors
 
@@ -477,11 +470,11 @@ This endpoint returns the error associated with a user-facing self service error
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -491,7 +484,7 @@ public class Example {
     DefaultApi apiInstance = new DefaultApi(defaultClient);
     String error = "error_example"; // String | Error is the container's ID
     try {
-      ErrorContainer result = apiInstance.getSelfServiceError(error);
+      SelfServiceErrorContainer result = apiInstance.getSelfServiceError(error);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DefaultApi#getSelfServiceError");
@@ -512,7 +505,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ErrorContainer**](ErrorContainer.md)
+[**SelfServiceErrorContainer**](SelfServiceErrorContainer.md)
 
 ### Authorization
 
@@ -533,7 +526,7 @@ No authorization required
 
 <a name="getSelfServiceErrorAdmin"></a>
 # **getSelfServiceErrorAdmin**
-> ErrorContainer getSelfServiceErrorAdmin(error)
+> SelfServiceErrorContainer getSelfServiceErrorAdmin(error)
 
 Get User-Facing Self-Service Errors
 
@@ -542,12 +535,12 @@ This endpoint returns the error associated with a user-facing self service error
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -561,7 +554,7 @@ public class Example {
     DefaultApi apiInstance = new DefaultApi(defaultClient);
     String error = "error_example"; // String | Error is the container's ID
     try {
-      ErrorContainer result = apiInstance.getSelfServiceErrorAdmin(error);
+      SelfServiceErrorContainer result = apiInstance.getSelfServiceErrorAdmin(error);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DefaultApi#getSelfServiceErrorAdmin");
@@ -582,7 +575,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ErrorContainer**](ErrorContainer.md)
+[**SelfServiceErrorContainer**](SelfServiceErrorContainer.md)
 
 ### Authorization
 
@@ -612,11 +605,11 @@ This endpoint returns a login flow&#39;s context with, for example, error detail
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -678,12 +671,12 @@ This endpoint returns a login flow&#39;s context with, for example, error detail
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -749,11 +742,11 @@ This endpoint returns a recovery flow&#39;s context with, for example, error det
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -814,12 +807,12 @@ This endpoint returns a recovery flow&#39;s context with, for example, error det
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -884,11 +877,11 @@ This endpoint returns a registration flow&#39;s context with, for example, error
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -950,12 +943,12 @@ This endpoint returns a registration flow&#39;s context with, for example, error
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1012,7 +1005,7 @@ Name | Type | Description  | Notes
 
 <a name="getSelfServiceSettingsFlow"></a>
 # **getSelfServiceSettingsFlow**
-> SettingsFlow getSelfServiceSettingsFlow(id)
+> SettingsFlow getSelfServiceSettingsFlow(id, xSessionToken)
 
 Get Settings Flow
 
@@ -1021,12 +1014,12 @@ When accessing this endpoint through Ory Kratos&#39; Public API you must ensure 
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1039,8 +1032,9 @@ public class Example {
 
     DefaultApi apiInstance = new DefaultApi(defaultClient);
     String id = "id_example"; // String | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+    String xSessionToken = "xSessionToken_example"; // String | The Session Token of the Identity performing the settings flow.
     try {
-      SettingsFlow result = apiInstance.getSelfServiceSettingsFlow(id);
+      SettingsFlow result = apiInstance.getSelfServiceSettingsFlow(id, xSessionToken);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DefaultApi#getSelfServiceSettingsFlow");
@@ -1058,6 +1052,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
+ **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional]
 
 ### Return type
 
@@ -1083,7 +1078,7 @@ Name | Type | Description  | Notes
 
 <a name="getSelfServiceSettingsFlowAdmin"></a>
 # **getSelfServiceSettingsFlowAdmin**
-> SettingsFlow getSelfServiceSettingsFlowAdmin(id)
+> SettingsFlow getSelfServiceSettingsFlowAdmin(id, xSessionToken)
 
 Get Settings Flow
 
@@ -1092,12 +1087,12 @@ When accessing this endpoint through Ory Kratos&#39; Public API you must ensure 
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1110,8 +1105,9 @@ public class Example {
 
     DefaultApi apiInstance = new DefaultApi(defaultClient);
     String id = "id_example"; // String | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+    String xSessionToken = "xSessionToken_example"; // String | The Session Token of the Identity performing the settings flow.
     try {
-      SettingsFlow result = apiInstance.getSelfServiceSettingsFlowAdmin(id);
+      SettingsFlow result = apiInstance.getSelfServiceSettingsFlowAdmin(id, xSessionToken);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DefaultApi#getSelfServiceSettingsFlowAdmin");
@@ -1129,6 +1125,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
+ **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional]
 
 ### Return type
 
@@ -1163,11 +1160,11 @@ This endpoint returns a verification flow&#39;s context with, for example, error
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1228,12 +1225,12 @@ This endpoint returns a verification flow&#39;s context with, for example, error
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1298,12 +1295,12 @@ This endpoint returns the version of Ory Kratos.  If the service supports TLS Ed
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1361,11 +1358,11 @@ This endpoint initializes a logout flow.  &gt; This endpoint is NOT INTENDED for
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1408,22 +1405,22 @@ No authorization required
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 **500** | jsonError |  -  |
 
-<a name="initializeSelfServiceLoginViaAPIFlow"></a>
-# **initializeSelfServiceLoginViaAPIFlow**
-> LoginFlow initializeSelfServiceLoginViaAPIFlow(refresh)
+<a name="initializeSelfServiceLoginForBrowsers"></a>
+# **initializeSelfServiceLoginForBrowsers**
+> initializeSelfServiceLoginForBrowsers(refresh)
 
-Initialize Login Flow for API clients
+Initialize Login Flow for browsers
 
-This endpoint initiates a login flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter &#x60;?refresh&#x3D;true&#x60; is set.  To fetch an existing login flow call &#x60;/self-service/login/flows?flow&#x3D;&lt;flow_id&gt;&#x60;.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to &#x60;selfservice.flows.login.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;. If a valid user session exists already, the browser will be redirected to &#x60;urls.default_redirect_url&#x60; unless the query parameter &#x60;?refresh&#x3D;true&#x60; was set.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1433,10 +1430,72 @@ public class Example {
     DefaultApi apiInstance = new DefaultApi(defaultClient);
     Boolean refresh = true; // Boolean | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
     try {
-      LoginFlow result = apiInstance.initializeSelfServiceLoginViaAPIFlow(refresh);
+      apiInstance.initializeSelfServiceLoginForBrowsers(refresh);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DefaultApi#initializeSelfServiceLoginForBrowsers");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **refresh** | **Boolean**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional]
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**500** | jsonError |  -  |
+
+<a name="initializeSelfServiceLoginForNativeApps"></a>
+# **initializeSelfServiceLoginForNativeApps**
+> LoginFlow initializeSelfServiceLoginForNativeApps(refresh)
+
+Initialize Login Flow for Native Apps and API clients
+
+This endpoint initiates a login flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter &#x60;?refresh&#x3D;true&#x60; is set.  To fetch an existing login flow call &#x60;/self-service/login/flows?flow&#x3D;&lt;flow_id&gt;&#x60;.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+
+    DefaultApi apiInstance = new DefaultApi(defaultClient);
+    Boolean refresh = true; // Boolean | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
+    try {
+      LoginFlow result = apiInstance.initializeSelfServiceLoginForNativeApps(refresh);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#initializeSelfServiceLoginViaAPIFlow");
+      System.err.println("Exception when calling DefaultApi#initializeSelfServiceLoginForNativeApps");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1472,22 +1531,22 @@ No authorization required
 **400** | jsonError |  -  |
 **500** | jsonError |  -  |
 
-<a name="initializeSelfServiceLoginViaBrowserFlow"></a>
-# **initializeSelfServiceLoginViaBrowserFlow**
-> initializeSelfServiceLoginViaBrowserFlow()
+<a name="initializeSelfServiceRecoveryForBrowsers"></a>
+# **initializeSelfServiceRecoveryForBrowsers**
+> initializeSelfServiceRecoveryForBrowsers()
 
-Initialize Login Flow for browsers
+Initialize Recovery Flow for Browser Clients
 
-This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to &#x60;selfservice.flows.login.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;. If a valid user session exists already, the browser will be redirected to &#x60;urls.default_redirect_url&#x60; unless the query parameter &#x60;?refresh&#x3D;true&#x60; was set.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to &#x60;selfservice.flows.recovery.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;. If a valid user session exists, the browser is returned to the configured return URL.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1496,9 +1555,9 @@ public class Example {
 
     DefaultApi apiInstance = new DefaultApi(defaultClient);
     try {
-      apiInstance.initializeSelfServiceLoginViaBrowserFlow();
+      apiInstance.initializeSelfServiceRecoveryForBrowsers();
     } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#initializeSelfServiceLoginViaBrowserFlow");
+      System.err.println("Exception when calling DefaultApi#initializeSelfServiceRecoveryForBrowsers");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1530,22 +1589,22 @@ No authorization required
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 **500** | jsonError |  -  |
 
-<a name="initializeSelfServiceRecoveryViaAPIFlow"></a>
-# **initializeSelfServiceRecoveryViaAPIFlow**
-> RecoveryFlow initializeSelfServiceRecoveryViaAPIFlow()
+<a name="initializeSelfServiceRecoveryForNativeApps"></a>
+# **initializeSelfServiceRecoveryForNativeApps**
+> RecoveryFlow initializeSelfServiceRecoveryForNativeApps()
 
-Initialize Recovery Flow for API Clients
+Initialize Recovery Flow for Native Apps and API clients
 
 This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  To fetch an existing recovery flow call &#x60;/self-service/recovery/flows?flow&#x3D;&lt;flow_id&gt;&#x60;.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1554,10 +1613,10 @@ public class Example {
 
     DefaultApi apiInstance = new DefaultApi(defaultClient);
     try {
-      RecoveryFlow result = apiInstance.initializeSelfServiceRecoveryViaAPIFlow();
+      RecoveryFlow result = apiInstance.initializeSelfServiceRecoveryForNativeApps();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#initializeSelfServiceRecoveryViaAPIFlow");
+      System.err.println("Exception when calling DefaultApi#initializeSelfServiceRecoveryForNativeApps");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1590,124 +1649,6 @@ No authorization required
 **400** | jsonError |  -  |
 **500** | jsonError |  -  |
 
-<a name="initializeSelfServiceRecoveryViaBrowserFlow"></a>
-# **initializeSelfServiceRecoveryViaBrowserFlow**
-> initializeSelfServiceRecoveryViaBrowserFlow()
-
-Initialize Recovery Flow for Browser Clients
-
-This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to &#x60;selfservice.flows.recovery.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;. If a valid user session exists, the browser is returned to the configured return URL.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
-
-### Example
-```java
-// Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
-
-    DefaultApi apiInstance = new DefaultApi(defaultClient);
-    try {
-      apiInstance.initializeSelfServiceRecoveryViaBrowserFlow();
-    } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#initializeSelfServiceRecoveryViaBrowserFlow");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**500** | jsonError |  -  |
-
-<a name="initializeSelfServiceRegistration"></a>
-# **initializeSelfServiceRegistration**
-> RegistrationFlow initializeSelfServiceRegistration()
-
-Initialize Registration Flow for API clients
-
-This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter &#x60;?refresh&#x3D;true&#x60; is set.  To fetch an existing registration flow call &#x60;/self-service/registration/flows?flow&#x3D;&lt;flow_id&gt;&#x60;.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
-
-### Example
-```java
-// Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
-
-    DefaultApi apiInstance = new DefaultApi(defaultClient);
-    try {
-      RegistrationFlow result = apiInstance.initializeSelfServiceRegistration();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#initializeSelfServiceRegistration");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**RegistrationFlow**](RegistrationFlow.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | registrationFlow |  -  |
-**400** | jsonError |  -  |
-**500** | jsonError |  -  |
-
 <a name="initializeSelfServiceRegistrationForBrowsers"></a>
 # **initializeSelfServiceRegistrationForBrowsers**
 > initializeSelfServiceRegistrationForBrowsers()
@@ -1719,11 +1660,11 @@ This endpoint initializes a browser-based user registration flow. Once initializ
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1766,39 +1707,34 @@ No authorization required
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 **500** | jsonError |  -  |
 
-<a name="initializeSelfServiceSettingsViaAPIFlow"></a>
-# **initializeSelfServiceSettingsViaAPIFlow**
-> SettingsFlow initializeSelfServiceSettingsViaAPIFlow()
+<a name="initializeSelfServiceRegistrationForNativeApps"></a>
+# **initializeSelfServiceRegistrationForNativeApps**
+> RegistrationFlow initializeSelfServiceRegistrationForNativeApps()
 
-Initialize Settings Flow for API Clients
+Initialize Registration Flow for Native Apps and API clients
 
-This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid Ory Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call &#x60;/self-service/settings/flows?flow&#x3D;&lt;flow_id&gt;&#x60;.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Settings &amp; Profile Management Documentation](../self-service/flows/user-settings).
+This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter &#x60;?refresh&#x3D;true&#x60; is set.  To fetch an existing registration flow call &#x60;/self-service/registration/flows?flow&#x3D;&lt;flow_id&gt;&#x60;.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://playground.projects.oryapis.com");
-    
-    // Configure HTTP bearer authorization: sessionToken
-    HttpBearerAuth sessionToken = (HttpBearerAuth) defaultClient.getAuthentication("sessionToken");
-    sessionToken.setBearerToken("BEARER TOKEN");
 
     DefaultApi apiInstance = new DefaultApi(defaultClient);
     try {
-      SettingsFlow result = apiInstance.initializeSelfServiceSettingsViaAPIFlow();
+      RegistrationFlow result = apiInstance.initializeSelfServiceRegistrationForNativeApps();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#initializeSelfServiceSettingsViaAPIFlow");
+      System.err.println("Exception when calling DefaultApi#initializeSelfServiceRegistrationForNativeApps");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1813,11 +1749,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SettingsFlow**](SettingsFlow.md)
+[**RegistrationFlow**](RegistrationFlow.md)
 
 ### Authorization
 
-[sessionToken](../README.md#sessionToken)
+No authorization required
 
 ### HTTP request headers
 
@@ -1827,13 +1763,13 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | settingsFlow |  -  |
+**200** | registrationFlow |  -  |
 **400** | jsonError |  -  |
 **500** | jsonError |  -  |
 
-<a name="initializeSelfServiceSettingsViaBrowserFlow"></a>
-# **initializeSelfServiceSettingsViaBrowserFlow**
-> initializeSelfServiceSettingsViaBrowserFlow()
+<a name="initializeSelfServiceSettingsForBrowsers"></a>
+# **initializeSelfServiceSettingsForBrowsers**
+> initializeSelfServiceSettingsForBrowsers()
 
 Initialize Settings Flow for Browsers
 
@@ -1842,12 +1778,12 @@ This endpoint initializes a browser-based user settings flow. Once initialized, 
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1860,9 +1796,9 @@ public class Example {
 
     DefaultApi apiInstance = new DefaultApi(defaultClient);
     try {
-      apiInstance.initializeSelfServiceSettingsViaBrowserFlow();
+      apiInstance.initializeSelfServiceSettingsForBrowsers();
     } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#initializeSelfServiceSettingsViaBrowserFlow");
+      System.err.println("Exception when calling DefaultApi#initializeSelfServiceSettingsForBrowsers");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1894,22 +1830,91 @@ null (empty response body)
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 **500** | jsonError |  -  |
 
-<a name="initializeSelfServiceVerificationViaAPIFlow"></a>
-# **initializeSelfServiceVerificationViaAPIFlow**
-> VerificationFlow initializeSelfServiceVerificationViaAPIFlow()
+<a name="initializeSelfServiceSettingsForNativeApps"></a>
+# **initializeSelfServiceSettingsForNativeApps**
+> SettingsFlow initializeSelfServiceSettingsForNativeApps(xSessionToken)
 
-Initialize Verification Flow for API Clients
+Initialize Settings Flow for Native Apps and API clients
 
-This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call &#x60;/self-service/verification/flows?flow&#x3D;&lt;flow_id&gt;&#x60;.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid Ory Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call &#x60;/self-service/settings/flows?flow&#x3D;&lt;flow_id&gt;&#x60;.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Settings &amp; Profile Management Documentation](../self-service/flows/user-settings).
 
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: sessionToken
+    HttpBearerAuth sessionToken = (HttpBearerAuth) defaultClient.getAuthentication("sessionToken");
+    sessionToken.setBearerToken("BEARER TOKEN");
+
+    DefaultApi apiInstance = new DefaultApi(defaultClient);
+    String xSessionToken = "xSessionToken_example"; // String | The Session Token of the Identity performing the settings flow.
+    try {
+      SettingsFlow result = apiInstance.initializeSelfServiceSettingsForNativeApps(xSessionToken);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DefaultApi#initializeSelfServiceSettingsForNativeApps");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional]
+
+### Return type
+
+[**SettingsFlow**](SettingsFlow.md)
+
+### Authorization
+
+[sessionToken](../README.md#sessionToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | settingsFlow |  -  |
+**400** | jsonError |  -  |
+**500** | jsonError |  -  |
+
+<a name="initializeSelfServiceVerificationForBrowsers"></a>
+# **initializeSelfServiceVerificationForBrowsers**
+> initializeSelfServiceVerificationForBrowsers()
+
+Initialize Verification Flow for Browser Clients
+
+This endpoint initializes a browser-based account verification flow. Once initialized, the browser will be redirected to &#x60;selfservice.flows.verification.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1918,10 +1923,68 @@ public class Example {
 
     DefaultApi apiInstance = new DefaultApi(defaultClient);
     try {
-      VerificationFlow result = apiInstance.initializeSelfServiceVerificationViaAPIFlow();
+      apiInstance.initializeSelfServiceVerificationForBrowsers();
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DefaultApi#initializeSelfServiceVerificationForBrowsers");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**500** | jsonError |  -  |
+
+<a name="initializeSelfServiceVerificationForNativeApps"></a>
+# **initializeSelfServiceVerificationForNativeApps**
+> VerificationFlow initializeSelfServiceVerificationForNativeApps()
+
+Initialize Verification Flow for Native Apps and API clients
+
+This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call &#x60;/self-service/verification/flows?flow&#x3D;&lt;flow_id&gt;&#x60;.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+
+    DefaultApi apiInstance = new DefaultApi(defaultClient);
+    try {
+      VerificationFlow result = apiInstance.initializeSelfServiceVerificationForNativeApps();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#initializeSelfServiceVerificationViaAPIFlow");
+      System.err.println("Exception when calling DefaultApi#initializeSelfServiceVerificationForNativeApps");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1954,64 +2017,6 @@ No authorization required
 **400** | jsonError |  -  |
 **500** | jsonError |  -  |
 
-<a name="initializeSelfServiceVerificationViaBrowserFlow"></a>
-# **initializeSelfServiceVerificationViaBrowserFlow**
-> initializeSelfServiceVerificationViaBrowserFlow()
-
-Initialize Verification Flow for Browser Clients
-
-This endpoint initializes a browser-based account verification flow. Once initialized, the browser will be redirected to &#x60;selfservice.flows.verification.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
-
-### Example
-```java
-// Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
-
-    DefaultApi apiInstance = new DefaultApi(defaultClient);
-    try {
-      apiInstance.initializeSelfServiceVerificationViaBrowserFlow();
-    } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#initializeSelfServiceVerificationViaBrowserFlow");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**500** | jsonError |  -  |
-
 <a name="isAliveAdmin"></a>
 # **isAliveAdmin**
 > InlineResponse200 isAliveAdmin()
@@ -2023,12 +2028,12 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incomi
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2087,12 +2092,12 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is up running and t
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2151,12 +2156,12 @@ Lists all identities. Does not support search at the moment.  Learn how identiti
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2208,8 +2213,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A list of identities. |  -  |
-**401** | jsonError |  -  |
-**403** | jsonError |  -  |
 **500** | jsonError |  -  |
 
 <a name="prometheusAdmin"></a>
@@ -2223,12 +2226,12 @@ Get snapshot metrics from the Hydra service. If you&#39;re using k8s, you can th
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2285,11 +2288,11 @@ Use this endpoint to revoke a session using its token. This endpoint is particul
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2348,11 +2351,11 @@ Use this endpoint to complete a login flow. This endpoint behaves differently fo
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2415,11 +2418,11 @@ Use this endpoint to complete a recovery flow. This endpoint behaves differently
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2480,11 +2483,11 @@ Use this endpoint to complete a recovery flow using the link method. This endpoi
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2547,11 +2550,11 @@ Use this endpoint to complete a registration flow by sending an identity&#39;s t
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2605,7 +2608,7 @@ No authorization required
 
 <a name="submitSelfServiceSettingsFlow"></a>
 # **submitSelfServiceSettingsFlow**
-> SettingsViaApiResponse submitSelfServiceSettingsFlow(flow, submitSelfServiceSettingsFlow)
+> SettingsViaApiResponse submitSelfServiceSettingsFlow(flow, xSessionToken, submitSelfServiceSettingsFlow)
 
 Complete Settings Flow
 
@@ -2614,12 +2617,12 @@ Use this endpoint to complete a settings flow by sending an identity&#39;s updat
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2632,9 +2635,10 @@ public class Example {
 
     DefaultApi apiInstance = new DefaultApi(defaultClient);
     String flow = "flow_example"; // String | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+    String xSessionToken = "xSessionToken_example"; // String | The Session Token of the Identity performing the settings flow.
     SubmitSelfServiceSettingsFlow submitSelfServiceSettingsFlow = new SubmitSelfServiceSettingsFlow(); // SubmitSelfServiceSettingsFlow | 
     try {
-      SettingsViaApiResponse result = apiInstance.submitSelfServiceSettingsFlow(flow, submitSelfServiceSettingsFlow);
+      SettingsViaApiResponse result = apiInstance.submitSelfServiceSettingsFlow(flow, xSessionToken, submitSelfServiceSettingsFlow);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DefaultApi#submitSelfServiceSettingsFlow");
@@ -2652,6 +2656,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **String**| The Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
+ **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional]
  **submitSelfServiceSettingsFlow** | [**SubmitSelfServiceSettingsFlow**](SubmitSelfServiceSettingsFlow.md)|  | [optional]
 
 ### Return type
@@ -2688,11 +2693,11 @@ Use this endpoint to complete a verification flow. This endpoint behaves differe
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2753,12 +2758,12 @@ Uses the HTTP Headers in the GET request to determine (e.g. by using checking th
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2824,12 +2829,12 @@ This endpoint updates an identity. It is NOT possible to set an identity&#39;s c
 ### Example
 ```java
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2882,8 +2887,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | identity |  -  |
 **400** | jsonError |  -  |
-**401** | jsonError |  -  |
-**403** | jsonError |  -  |
 **404** | jsonError |  -  |
+**409** | jsonError |  -  |
 **500** | jsonError |  -  |
 

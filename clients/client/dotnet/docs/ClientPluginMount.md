@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientPluginMount
+# Ory.Client.Model.ClientPluginMount
 PluginMount plugin mount
 
 ## Properties

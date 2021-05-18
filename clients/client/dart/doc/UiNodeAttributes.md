@@ -1,8 +1,8 @@
-# ory_client_client.model.UiNodeAttributes
+# ory_client.model.UiNodeAttributes
 
 ## Load the model package
 ```dart
-import 'package:ory_client_client/api.dart';
+import 'package:ory_client/api.dart';
 ```
 
 ## Properties

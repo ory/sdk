@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientPluginConfigNetwork
+# Ory.Client.Model.ClientPluginConfigNetwork
 PluginConfigNetwork plugin config network
 
 ## Properties

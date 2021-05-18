@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientSubmitSelfServiceSettingsFlowWithProfileMethod
+# Ory.Client.Model.ClientSubmitSelfServiceSettingsFlowWithProfileMethod
 nolint:deadcode,unused
 
 ## Properties

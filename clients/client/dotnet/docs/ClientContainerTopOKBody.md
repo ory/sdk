@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientContainerTopOKBody
+# Ory.Client.Model.ClientContainerTopOKBody
 ContainerTopOKBody OK response to ContainerTop operation
 
 ## Properties

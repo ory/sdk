@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientVolumeUsageData
+# Ory.Client.Model.ClientVolumeUsageData
 VolumeUsageData Usage details about the volume. This information is used by the `GET /system/df` endpoint, and omitted in other endpoints.
 
 ## Properties

@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientSubmitSelfServiceRegistrationFlowWithPasswordMethod
+# Ory.Client.Model.ClientSubmitSelfServiceRegistrationFlowWithPasswordMethod
 SubmitSelfServiceRegistrationFlowWithPasswordMethod is used to decode the registration form payload when using the password method.
 
 ## Properties

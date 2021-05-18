@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.1
+ * API version: v0.0.1-alpha.3
  * Contact: support@ory.sh
  */
 
@@ -13,10 +13,13 @@ package client
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // Identity An identity can be a real human, a service, an IoT device - everything that can be described as an \"actor\" in a system.
 type Identity struct {
+	// CreatedAt is a helper struct field for gobuffalo.pop.
+	CreatedAt *time.Time `json:"created_at,omitempty"`
 	Id string `json:"id"`
 	// RecoveryAddresses contains all the addresses that can be used to recover an identity.
 	RecoveryAddresses []RecoveryAddress `json:"recovery_addresses,omitempty"`
@@ -26,6 +29,8 @@ type Identity struct {
 	SchemaUrl string `json:"schema_url"`
 	// Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_url`.
 	Traits interface{} `json:"traits"`
+	// UpdatedAt is a helper struct field for gobuffalo.pop.
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// VerifiableAddresses contains all the addresses that can be verified by the user.
 	VerifiableAddresses []VerifiableIdentityAddress `json:"verifiable_addresses,omitempty"`
 }
@@ -49,6 +54,38 @@ func NewIdentity(id string, schemaId string, schemaUrl string, traits interface{
 func NewIdentityWithDefaults() *Identity {
 	this := Identity{}
 	return &this
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *Identity) GetCreatedAt() time.Time {
+	if o == nil || o.CreatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Identity) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || o.CreatedAt == nil {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *Identity) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *Identity) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
 }
 
 // GetId returns the Id field value
@@ -181,6 +218,38 @@ func (o *Identity) SetTraits(v interface{}) {
 	o.Traits = v
 }
 
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *Identity) GetUpdatedAt() time.Time {
+	if o == nil || o.UpdatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Identity) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || o.UpdatedAt == nil {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *Identity) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *Identity) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
+}
+
 // GetVerifiableAddresses returns the VerifiableAddresses field value if set, zero value otherwise.
 func (o *Identity) GetVerifiableAddresses() []VerifiableIdentityAddress {
 	if o == nil || o.VerifiableAddresses == nil {
@@ -215,6 +284,9 @@ func (o *Identity) SetVerifiableAddresses(v []VerifiableIdentityAddress) {
 
 func (o Identity) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
+	}
 	if true {
 		toSerialize["id"] = o.Id
 	}
@@ -229,6 +301,9 @@ func (o Identity) MarshalJSON() ([]byte, error) {
 	}
 	if o.Traits != nil {
 		toSerialize["traits"] = o.Traits
+	}
+	if o.UpdatedAt != nil {
+		toSerialize["updated_at"] = o.UpdatedAt
 	}
 	if o.VerifiableAddresses != nil {
 		toSerialize["verifiable_addresses"] = o.VerifiableAddresses

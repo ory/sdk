@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientContainerCreateCreatedBody
+# Ory.Client.Model.ClientContainerCreateCreatedBody
 ContainerCreateCreatedBody OK response to ContainerCreate operation
 
 ## Properties

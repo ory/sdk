@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientUiNodeAnchorAttributes
+# Ory.Client.Model.ClientUiNodeAnchorAttributes
 
 ## Properties
 

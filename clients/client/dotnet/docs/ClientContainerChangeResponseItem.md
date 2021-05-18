@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientContainerChangeResponseItem
+# Ory.Client.Model.ClientContainerChangeResponseItem
 ContainerChangeResponseItem change item in response to ContainerChanges operation
 
 ## Properties

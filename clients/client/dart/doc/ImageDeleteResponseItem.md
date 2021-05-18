@@ -1,8 +1,8 @@
-# ory_client_client.model.ImageDeleteResponseItem
+# ory_client.model.ImageDeleteResponseItem
 
 ## Load the model package
 ```dart
-import 'package:ory_client_client/api.dart';
+import 'package:ory_client/api.dart';
 ```
 
 ## Properties

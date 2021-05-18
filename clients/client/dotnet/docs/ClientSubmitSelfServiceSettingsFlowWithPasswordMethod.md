@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientSubmitSelfServiceSettingsFlowWithPasswordMethod
+# Ory.Client.Model.ClientSubmitSelfServiceSettingsFlowWithPasswordMethod
 
 ## Properties
 

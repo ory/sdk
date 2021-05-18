@@ -1,8 +1,8 @@
-# ory_client_client.model.SubmitSelfServiceRegistrationFlow
+# ory_client.model.SubmitSelfServiceRegistrationFlow
 
 ## Load the model package
 ```dart
-import 'package:ory_client_client/api.dart';
+import 'package:ory_client/api.dart';
 ```
 
 ## Properties

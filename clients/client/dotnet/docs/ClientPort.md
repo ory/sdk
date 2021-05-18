@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientPort
+# Ory.Client.Model.ClientPort
 Port An open port on a container
 
 ## Properties

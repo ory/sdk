@@ -24,16 +24,16 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**get_self_service_verification_flow_admin**](DefaultApi.md#get_self_service_verification_flow_admin) | **GET** /api/kratos/admin/self-service/verification/flows | Get Verification Flow |
 | [**get_version_admin**](DefaultApi.md#get_version_admin) | **GET** /api/kratos/admin/version | Return Running Software Version. |
 | [**initialize_self_service_browser_logout_flow**](DefaultApi.md#initialize_self_service_browser_logout_flow) | **GET** /api/kratos/public/self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow |
-| [**initialize_self_service_login_via_api_flow**](DefaultApi.md#initialize_self_service_login_via_api_flow) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for API clients |
-| [**initialize_self_service_login_via_browser_flow**](DefaultApi.md#initialize_self_service_login_via_browser_flow) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for browsers |
-| [**initialize_self_service_recovery_via_api_flow**](DefaultApi.md#initialize_self_service_recovery_via_api_flow) | **GET** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for API Clients |
-| [**initialize_self_service_recovery_via_browser_flow**](DefaultApi.md#initialize_self_service_recovery_via_browser_flow) | **GET** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browser Clients |
-| [**initialize_self_service_registration**](DefaultApi.md#initialize_self_service_registration) | **GET** /api/kratos/public/self-service/registration/api | Initialize Registration Flow for API clients |
+| [**initialize_self_service_login_for_browsers**](DefaultApi.md#initialize_self_service_login_for_browsers) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for browsers |
+| [**initialize_self_service_login_for_native_apps**](DefaultApi.md#initialize_self_service_login_for_native_apps) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for Native Apps and API clients |
+| [**initialize_self_service_recovery_for_browsers**](DefaultApi.md#initialize_self_service_recovery_for_browsers) | **GET** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browser Clients |
+| [**initialize_self_service_recovery_for_native_apps**](DefaultApi.md#initialize_self_service_recovery_for_native_apps) | **GET** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for Native Apps and API clients |
 | [**initialize_self_service_registration_for_browsers**](DefaultApi.md#initialize_self_service_registration_for_browsers) | **GET** /api/kratos/public/self-service/registration/browser | Initialize Registration Flow for browsers |
-| [**initialize_self_service_settings_via_api_flow**](DefaultApi.md#initialize_self_service_settings_via_api_flow) | **GET** /api/kratos/public/self-service/settings/api | Initialize Settings Flow for API Clients |
-| [**initialize_self_service_settings_via_browser_flow**](DefaultApi.md#initialize_self_service_settings_via_browser_flow) | **GET** /api/kratos/public/self-service/settings/browser | Initialize Settings Flow for Browsers |
-| [**initialize_self_service_verification_via_api_flow**](DefaultApi.md#initialize_self_service_verification_via_api_flow) | **GET** /api/kratos/public/self-service/verification/api | Initialize Verification Flow for API Clients |
-| [**initialize_self_service_verification_via_browser_flow**](DefaultApi.md#initialize_self_service_verification_via_browser_flow) | **GET** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients |
+| [**initialize_self_service_registration_for_native_apps**](DefaultApi.md#initialize_self_service_registration_for_native_apps) | **GET** /api/kratos/public/self-service/registration/api | Initialize Registration Flow for Native Apps and API clients |
+| [**initialize_self_service_settings_for_browsers**](DefaultApi.md#initialize_self_service_settings_for_browsers) | **GET** /api/kratos/public/self-service/settings/browser | Initialize Settings Flow for Browsers |
+| [**initialize_self_service_settings_for_native_apps**](DefaultApi.md#initialize_self_service_settings_for_native_apps) | **GET** /api/kratos/public/self-service/settings/api | Initialize Settings Flow for Native Apps and API clients |
+| [**initialize_self_service_verification_for_browsers**](DefaultApi.md#initialize_self_service_verification_for_browsers) | **GET** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients |
+| [**initialize_self_service_verification_for_native_apps**](DefaultApi.md#initialize_self_service_verification_for_native_apps) | **GET** /api/kratos/public/self-service/verification/api | Initialize Verification Flow for Native Apps and API clients |
 | [**is_alive_admin**](DefaultApi.md#is_alive_admin) | **GET** /api/kratos/admin/health/alive | Check HTTP Server Status |
 | [**is_ready_admin**](DefaultApi.md#is_ready_admin) | **GET** /api/kratos/admin/health/ready | Check HTTP Server and Database Status |
 | [**list_identities_admin**](DefaultApi.md#list_identities_admin) | **GET** /api/kratos/admin/identities | List Identities |
@@ -61,7 +61,7 @@ This endpoint creates an identity. It is NOT possible to set an identity's crede
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 # setup authorization
 OryHydraClient.configure do |config|
   # Configure Bearer authorization: oryToken
@@ -132,7 +132,7 @@ This endpoint creates a recovery link which should be given to the user in order
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 # setup authorization
 OryHydraClient.configure do |config|
   # Configure Bearer authorization: oryToken
@@ -203,7 +203,7 @@ Calling this endpoint irrecoverably and permanently deletes the identity given i
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 # setup authorization
 OryHydraClient.configure do |config|
   # Configure Bearer authorization: oryToken
@@ -271,7 +271,7 @@ Learn how identities work in [Ory Kratos' User And Identity Model Documentation]
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 # setup authorization
 OryHydraClient.configure do |config|
   # Configure Bearer authorization: oryToken
@@ -340,7 +340,7 @@ Get a Traits Schema Definition
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 
 api_instance = OryHydraClient::DefaultApi.new
 id = 'id_example' # String | ID must be set to the ID of schema you want to get
@@ -404,7 +404,7 @@ Get a Traits Schema Definition
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 # setup authorization
 OryHydraClient.configure do |config|
   # Configure Bearer authorization: oryToken
@@ -463,7 +463,7 @@ end
 
 ## get_self_service_error
 
-> <ErrorContainer> get_self_service_error(error)
+> <SelfServiceErrorContainer> get_self_service_error(error)
 
 Get User-Facing Self-Service Errors
 
@@ -473,7 +473,7 @@ This endpoint returns the error associated with a user-facing self service error
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 
 api_instance = OryHydraClient::DefaultApi.new
 error = 'error_example' # String | Error is the container's ID
@@ -491,7 +491,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<ErrorContainer>, Integer, Hash)> get_self_service_error_with_http_info(error)
+> <Array(<SelfServiceErrorContainer>, Integer, Hash)> get_self_service_error_with_http_info(error)
 
 ```ruby
 begin
@@ -499,7 +499,7 @@ begin
   data, status_code, headers = api_instance.get_self_service_error_with_http_info(error)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <ErrorContainer>
+  p data # => <SelfServiceErrorContainer>
 rescue OryHydraClient::ApiError => e
   puts "Error when calling DefaultApi->get_self_service_error_with_http_info: #{e}"
 end
@@ -513,7 +513,7 @@ end
 
 ### Return type
 
-[**ErrorContainer**](ErrorContainer.md)
+[**SelfServiceErrorContainer**](SelfServiceErrorContainer.md)
 
 ### Authorization
 
@@ -527,7 +527,7 @@ No authorization required
 
 ## get_self_service_error_admin
 
-> <ErrorContainer> get_self_service_error_admin(error)
+> <SelfServiceErrorContainer> get_self_service_error_admin(error)
 
 Get User-Facing Self-Service Errors
 
@@ -537,7 +537,7 @@ This endpoint returns the error associated with a user-facing self service error
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 # setup authorization
 OryHydraClient.configure do |config|
   # Configure Bearer authorization: oryToken
@@ -560,7 +560,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<ErrorContainer>, Integer, Hash)> get_self_service_error_admin_with_http_info(error)
+> <Array(<SelfServiceErrorContainer>, Integer, Hash)> get_self_service_error_admin_with_http_info(error)
 
 ```ruby
 begin
@@ -568,7 +568,7 @@ begin
   data, status_code, headers = api_instance.get_self_service_error_admin_with_http_info(error)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <ErrorContainer>
+  p data # => <SelfServiceErrorContainer>
 rescue OryHydraClient::ApiError => e
   puts "Error when calling DefaultApi->get_self_service_error_admin_with_http_info: #{e}"
 end
@@ -582,7 +582,7 @@ end
 
 ### Return type
 
-[**ErrorContainer**](ErrorContainer.md)
+[**SelfServiceErrorContainer**](SelfServiceErrorContainer.md)
 
 ### Authorization
 
@@ -606,7 +606,7 @@ This endpoint returns a login flow's context with, for example, error details an
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 
 api_instance = OryHydraClient::DefaultApi.new
 id = 'id_example' # String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
@@ -670,7 +670,7 @@ This endpoint returns a login flow's context with, for example, error details an
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 # setup authorization
 OryHydraClient.configure do |config|
   # Configure Bearer authorization: oryToken
@@ -739,7 +739,7 @@ This endpoint returns a recovery flow's context with, for example, error details
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 
 api_instance = OryHydraClient::DefaultApi.new
 id = 'id_example' # String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
@@ -803,7 +803,7 @@ This endpoint returns a recovery flow's context with, for example, error details
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 # setup authorization
 OryHydraClient.configure do |config|
   # Configure Bearer authorization: oryToken
@@ -872,7 +872,7 @@ This endpoint returns a registration flow's context with, for example, error det
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 
 api_instance = OryHydraClient::DefaultApi.new
 id = 'id_example' # String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
@@ -936,7 +936,7 @@ This endpoint returns a registration flow's context with, for example, error det
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 # setup authorization
 OryHydraClient.configure do |config|
   # Configure Bearer authorization: oryToken
@@ -995,7 +995,7 @@ end
 
 ## get_self_service_settings_flow
 
-> <SettingsFlow> get_self_service_settings_flow(id)
+> <SettingsFlow> get_self_service_settings_flow(id, opts)
 
 Get Settings Flow
 
@@ -1005,7 +1005,7 @@ When accessing this endpoint through Ory Kratos' Public API you must ensure that
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 # setup authorization
 OryHydraClient.configure do |config|
   # Configure Bearer authorization: sessionToken
@@ -1014,10 +1014,13 @@ end
 
 api_instance = OryHydraClient::DefaultApi.new
 id = 'id_example' # String | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+opts = {
+  x_session_token: 'x_session_token_example' # String | The Session Token of the Identity performing the settings flow.
+}
 
 begin
   # Get Settings Flow
-  result = api_instance.get_self_service_settings_flow(id)
+  result = api_instance.get_self_service_settings_flow(id, opts)
   p result
 rescue OryHydraClient::ApiError => e
   puts "Error when calling DefaultApi->get_self_service_settings_flow: #{e}"
@@ -1028,12 +1031,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<SettingsFlow>, Integer, Hash)> get_self_service_settings_flow_with_http_info(id)
+> <Array(<SettingsFlow>, Integer, Hash)> get_self_service_settings_flow_with_http_info(id, opts)
 
 ```ruby
 begin
   # Get Settings Flow
-  data, status_code, headers = api_instance.get_self_service_settings_flow_with_http_info(id)
+  data, status_code, headers = api_instance.get_self_service_settings_flow_with_http_info(id, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SettingsFlow>
@@ -1047,6 +1050,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |  |
+| **x_session_token** | **String** | The Session Token of the Identity performing the settings flow. | [optional] |
 
 ### Return type
 
@@ -1064,7 +1068,7 @@ end
 
 ## get_self_service_settings_flow_admin
 
-> <SettingsFlow> get_self_service_settings_flow_admin(id)
+> <SettingsFlow> get_self_service_settings_flow_admin(id, opts)
 
 Get Settings Flow
 
@@ -1074,7 +1078,7 @@ When accessing this endpoint through Ory Kratos' Public API you must ensure that
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 # setup authorization
 OryHydraClient.configure do |config|
   # Configure Bearer authorization: oryToken
@@ -1083,10 +1087,13 @@ end
 
 api_instance = OryHydraClient::DefaultApi.new
 id = 'id_example' # String | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+opts = {
+  x_session_token: 'x_session_token_example' # String | The Session Token of the Identity performing the settings flow.
+}
 
 begin
   # Get Settings Flow
-  result = api_instance.get_self_service_settings_flow_admin(id)
+  result = api_instance.get_self_service_settings_flow_admin(id, opts)
   p result
 rescue OryHydraClient::ApiError => e
   puts "Error when calling DefaultApi->get_self_service_settings_flow_admin: #{e}"
@@ -1097,12 +1104,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<SettingsFlow>, Integer, Hash)> get_self_service_settings_flow_admin_with_http_info(id)
+> <Array(<SettingsFlow>, Integer, Hash)> get_self_service_settings_flow_admin_with_http_info(id, opts)
 
 ```ruby
 begin
   # Get Settings Flow
-  data, status_code, headers = api_instance.get_self_service_settings_flow_admin_with_http_info(id)
+  data, status_code, headers = api_instance.get_self_service_settings_flow_admin_with_http_info(id, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SettingsFlow>
@@ -1116,6 +1123,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |  |
+| **x_session_token** | **String** | The Session Token of the Identity performing the settings flow. | [optional] |
 
 ### Return type
 
@@ -1143,7 +1151,7 @@ This endpoint returns a verification flow's context with, for example, error det
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 
 api_instance = OryHydraClient::DefaultApi.new
 id = 'id_example' # String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
@@ -1207,7 +1215,7 @@ This endpoint returns a verification flow's context with, for example, error det
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 # setup authorization
 OryHydraClient.configure do |config|
   # Configure Bearer authorization: oryToken
@@ -1276,7 +1284,7 @@ This endpoint returns the version of Ory Kratos.  If the service supports TLS Ed
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 # setup authorization
 OryHydraClient.configure do |config|
   # Configure Bearer authorization: oryToken
@@ -1342,7 +1350,7 @@ This endpoint initializes a logout flow.  > This endpoint is NOT INTENDED for AP
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 
 api_instance = OryHydraClient::DefaultApi.new
 
@@ -1390,19 +1398,19 @@ No authorization required
 - **Accept**: application/json
 
 
-## initialize_self_service_login_via_api_flow
+## initialize_self_service_login_for_browsers
 
-> <LoginFlow> initialize_self_service_login_via_api_flow(opts)
+> initialize_self_service_login_for_browsers(opts)
 
-Initialize Login Flow for API clients
+Initialize Login Flow for browsers
 
-This endpoint initiates a login flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Examples
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 
 api_instance = OryHydraClient::DefaultApi.new
 opts = {
@@ -1410,29 +1418,94 @@ opts = {
 }
 
 begin
-  # Initialize Login Flow for API clients
-  result = api_instance.initialize_self_service_login_via_api_flow(opts)
-  p result
+  # Initialize Login Flow for browsers
+  api_instance.initialize_self_service_login_for_browsers(opts)
 rescue OryHydraClient::ApiError => e
-  puts "Error when calling DefaultApi->initialize_self_service_login_via_api_flow: #{e}"
+  puts "Error when calling DefaultApi->initialize_self_service_login_for_browsers: #{e}"
 end
 ```
 
-#### Using the initialize_self_service_login_via_api_flow_with_http_info variant
+#### Using the initialize_self_service_login_for_browsers_with_http_info variant
 
-This returns an Array which contains the response data, status code and headers.
+This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(<LoginFlow>, Integer, Hash)> initialize_self_service_login_via_api_flow_with_http_info(opts)
+> <Array(nil, Integer, Hash)> initialize_self_service_login_for_browsers_with_http_info(opts)
 
 ```ruby
 begin
-  # Initialize Login Flow for API clients
-  data, status_code, headers = api_instance.initialize_self_service_login_via_api_flow_with_http_info(opts)
+  # Initialize Login Flow for browsers
+  data, status_code, headers = api_instance.initialize_self_service_login_for_browsers_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => nil
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling DefaultApi->initialize_self_service_login_for_browsers_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **refresh** | **Boolean** | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional] |
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## initialize_self_service_login_for_native_apps
+
+> <LoginFlow> initialize_self_service_login_for_native_apps(opts)
+
+Initialize Login Flow for Native Apps and API clients
+
+This endpoint initiates a login flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+
+api_instance = OryHydraClient::DefaultApi.new
+opts = {
+  refresh: true # Boolean | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
+}
+
+begin
+  # Initialize Login Flow for Native Apps and API clients
+  result = api_instance.initialize_self_service_login_for_native_apps(opts)
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling DefaultApi->initialize_self_service_login_for_native_apps: #{e}"
+end
+```
+
+#### Using the initialize_self_service_login_for_native_apps_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<LoginFlow>, Integer, Hash)> initialize_self_service_login_for_native_apps_with_http_info(opts)
+
+```ruby
+begin
+  # Initialize Login Flow for Native Apps and API clients
+  data, status_code, headers = api_instance.initialize_self_service_login_for_native_apps_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <LoginFlow>
 rescue OryHydraClient::ApiError => e
-  puts "Error when calling DefaultApi->initialize_self_service_login_via_api_flow_with_http_info: #{e}"
+  puts "Error when calling DefaultApi->initialize_self_service_login_for_native_apps_with_http_info: #{e}"
 end
 ```
 
@@ -1456,45 +1529,45 @@ No authorization required
 - **Accept**: application/json
 
 
-## initialize_self_service_login_via_browser_flow
+## initialize_self_service_recovery_for_browsers
 
-> initialize_self_service_login_via_browser_flow
+> initialize_self_service_recovery_for_browsers
 
-Initialize Login Flow for browsers
+Initialize Recovery Flow for Browser Clients
 
-This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to `selfservice.flows.recovery.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists, the browser is returned to the configured return URL.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
 ### Examples
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 
 api_instance = OryHydraClient::DefaultApi.new
 
 begin
-  # Initialize Login Flow for browsers
-  api_instance.initialize_self_service_login_via_browser_flow
+  # Initialize Recovery Flow for Browser Clients
+  api_instance.initialize_self_service_recovery_for_browsers
 rescue OryHydraClient::ApiError => e
-  puts "Error when calling DefaultApi->initialize_self_service_login_via_browser_flow: #{e}"
+  puts "Error when calling DefaultApi->initialize_self_service_recovery_for_browsers: #{e}"
 end
 ```
 
-#### Using the initialize_self_service_login_via_browser_flow_with_http_info variant
+#### Using the initialize_self_service_recovery_for_browsers_with_http_info variant
 
 This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(nil, Integer, Hash)> initialize_self_service_login_via_browser_flow_with_http_info
+> <Array(nil, Integer, Hash)> initialize_self_service_recovery_for_browsers_with_http_info
 
 ```ruby
 begin
-  # Initialize Login Flow for browsers
-  data, status_code, headers = api_instance.initialize_self_service_login_via_browser_flow_with_http_info
+  # Initialize Recovery Flow for Browser Clients
+  data, status_code, headers = api_instance.initialize_self_service_recovery_for_browsers_with_http_info
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
 rescue OryHydraClient::ApiError => e
-  puts "Error when calling DefaultApi->initialize_self_service_login_via_browser_flow_with_http_info: #{e}"
+  puts "Error when calling DefaultApi->initialize_self_service_recovery_for_browsers_with_http_info: #{e}"
 end
 ```
 
@@ -1516,11 +1589,11 @@ No authorization required
 - **Accept**: application/json
 
 
-## initialize_self_service_recovery_via_api_flow
+## initialize_self_service_recovery_for_native_apps
 
-> <RecoveryFlow> initialize_self_service_recovery_via_api_flow
+> <RecoveryFlow> initialize_self_service_recovery_for_native_apps
 
-Initialize Recovery Flow for API Clients
+Initialize Recovery Flow for Native Apps and API clients
 
 This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
@@ -1528,34 +1601,34 @@ This endpoint initiates a recovery flow for API clients such as mobile devices, 
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 
 api_instance = OryHydraClient::DefaultApi.new
 
 begin
-  # Initialize Recovery Flow for API Clients
-  result = api_instance.initialize_self_service_recovery_via_api_flow
+  # Initialize Recovery Flow for Native Apps and API clients
+  result = api_instance.initialize_self_service_recovery_for_native_apps
   p result
 rescue OryHydraClient::ApiError => e
-  puts "Error when calling DefaultApi->initialize_self_service_recovery_via_api_flow: #{e}"
+  puts "Error when calling DefaultApi->initialize_self_service_recovery_for_native_apps: #{e}"
 end
 ```
 
-#### Using the initialize_self_service_recovery_via_api_flow_with_http_info variant
+#### Using the initialize_self_service_recovery_for_native_apps_with_http_info variant
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<RecoveryFlow>, Integer, Hash)> initialize_self_service_recovery_via_api_flow_with_http_info
+> <Array(<RecoveryFlow>, Integer, Hash)> initialize_self_service_recovery_for_native_apps_with_http_info
 
 ```ruby
 begin
-  # Initialize Recovery Flow for API Clients
-  data, status_code, headers = api_instance.initialize_self_service_recovery_via_api_flow_with_http_info
+  # Initialize Recovery Flow for Native Apps and API clients
+  data, status_code, headers = api_instance.initialize_self_service_recovery_for_native_apps_with_http_info
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <RecoveryFlow>
 rescue OryHydraClient::ApiError => e
-  puts "Error when calling DefaultApi->initialize_self_service_recovery_via_api_flow_with_http_info: #{e}"
+  puts "Error when calling DefaultApi->initialize_self_service_recovery_for_native_apps_with_http_info: #{e}"
 end
 ```
 
@@ -1566,127 +1639,6 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**RecoveryFlow**](RecoveryFlow.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## initialize_self_service_recovery_via_browser_flow
-
-> initialize_self_service_recovery_via_browser_flow
-
-Initialize Recovery Flow for Browser Clients
-
-This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to `selfservice.flows.recovery.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists, the browser is returned to the configured return URL.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
-
-### Examples
-
-```ruby
-require 'time'
-require 'ory-client-client'
-
-api_instance = OryHydraClient::DefaultApi.new
-
-begin
-  # Initialize Recovery Flow for Browser Clients
-  api_instance.initialize_self_service_recovery_via_browser_flow
-rescue OryHydraClient::ApiError => e
-  puts "Error when calling DefaultApi->initialize_self_service_recovery_via_browser_flow: #{e}"
-end
-```
-
-#### Using the initialize_self_service_recovery_via_browser_flow_with_http_info variant
-
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
-
-> <Array(nil, Integer, Hash)> initialize_self_service_recovery_via_browser_flow_with_http_info
-
-```ruby
-begin
-  # Initialize Recovery Flow for Browser Clients
-  data, status_code, headers = api_instance.initialize_self_service_recovery_via_browser_flow_with_http_info
-  p status_code # => 2xx
-  p headers # => { ... }
-  p data # => nil
-rescue OryHydraClient::ApiError => e
-  puts "Error when calling DefaultApi->initialize_self_service_recovery_via_browser_flow_with_http_info: #{e}"
-end
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-nil (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## initialize_self_service_registration
-
-> <RegistrationFlow> initialize_self_service_registration
-
-Initialize Registration Flow for API clients
-
-This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing registration flow call `/self-service/registration/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
-
-### Examples
-
-```ruby
-require 'time'
-require 'ory-client-client'
-
-api_instance = OryHydraClient::DefaultApi.new
-
-begin
-  # Initialize Registration Flow for API clients
-  result = api_instance.initialize_self_service_registration
-  p result
-rescue OryHydraClient::ApiError => e
-  puts "Error when calling DefaultApi->initialize_self_service_registration: #{e}"
-end
-```
-
-#### Using the initialize_self_service_registration_with_http_info variant
-
-This returns an Array which contains the response data, status code and headers.
-
-> <Array(<RegistrationFlow>, Integer, Hash)> initialize_self_service_registration_with_http_info
-
-```ruby
-begin
-  # Initialize Registration Flow for API clients
-  data, status_code, headers = api_instance.initialize_self_service_registration_with_http_info
-  p status_code # => 2xx
-  p headers # => { ... }
-  p data # => <RegistrationFlow>
-rescue OryHydraClient::ApiError => e
-  puts "Error when calling DefaultApi->initialize_self_service_registration_with_http_info: #{e}"
-end
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**RegistrationFlow**](RegistrationFlow.md)
 
 ### Authorization
 
@@ -1710,7 +1662,7 @@ This endpoint initializes a browser-based user registration flow. Once initializ
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 
 api_instance = OryHydraClient::DefaultApi.new
 
@@ -1758,19 +1710,80 @@ No authorization required
 - **Accept**: application/json
 
 
-## initialize_self_service_settings_via_api_flow
+## initialize_self_service_registration_for_native_apps
 
-> <SettingsFlow> initialize_self_service_settings_via_api_flow
+> <RegistrationFlow> initialize_self_service_registration_for_native_apps
 
-Initialize Settings Flow for API Clients
+Initialize Registration Flow for Native Apps and API clients
 
-This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid Ory Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call `/self-service/settings/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing registration flow call `/self-service/registration/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Examples
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
+
+api_instance = OryHydraClient::DefaultApi.new
+
+begin
+  # Initialize Registration Flow for Native Apps and API clients
+  result = api_instance.initialize_self_service_registration_for_native_apps
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling DefaultApi->initialize_self_service_registration_for_native_apps: #{e}"
+end
+```
+
+#### Using the initialize_self_service_registration_for_native_apps_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<RegistrationFlow>, Integer, Hash)> initialize_self_service_registration_for_native_apps_with_http_info
+
+```ruby
+begin
+  # Initialize Registration Flow for Native Apps and API clients
+  data, status_code, headers = api_instance.initialize_self_service_registration_for_native_apps_with_http_info
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <RegistrationFlow>
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling DefaultApi->initialize_self_service_registration_for_native_apps_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**RegistrationFlow**](RegistrationFlow.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## initialize_self_service_settings_for_browsers
+
+> initialize_self_service_settings_for_browsers
+
+Initialize Settings Flow for Browsers
+
+This endpoint initializes a browser-based user settings flow. Once initialized, the browser will be redirected to `selfservice.flows.settings.ui_url` with the flow ID set as the query parameter `?flow=`. If no valid Ory Kratos Session Cookie is included in the request, a login flow will be initialized.  :::note  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
 # setup authorization
 OryHydraClient.configure do |config|
   # Configure Bearer authorization: sessionToken
@@ -1780,35 +1793,105 @@ end
 api_instance = OryHydraClient::DefaultApi.new
 
 begin
-  # Initialize Settings Flow for API Clients
-  result = api_instance.initialize_self_service_settings_via_api_flow
-  p result
+  # Initialize Settings Flow for Browsers
+  api_instance.initialize_self_service_settings_for_browsers
 rescue OryHydraClient::ApiError => e
-  puts "Error when calling DefaultApi->initialize_self_service_settings_via_api_flow: #{e}"
+  puts "Error when calling DefaultApi->initialize_self_service_settings_for_browsers: #{e}"
 end
 ```
 
-#### Using the initialize_self_service_settings_via_api_flow_with_http_info variant
+#### Using the initialize_self_service_settings_for_browsers_with_http_info variant
 
-This returns an Array which contains the response data, status code and headers.
+This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(<SettingsFlow>, Integer, Hash)> initialize_self_service_settings_via_api_flow_with_http_info
+> <Array(nil, Integer, Hash)> initialize_self_service_settings_for_browsers_with_http_info
 
 ```ruby
 begin
-  # Initialize Settings Flow for API Clients
-  data, status_code, headers = api_instance.initialize_self_service_settings_via_api_flow_with_http_info
+  # Initialize Settings Flow for Browsers
+  data, status_code, headers = api_instance.initialize_self_service_settings_for_browsers_with_http_info
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <SettingsFlow>
+  p data # => nil
 rescue OryHydraClient::ApiError => e
-  puts "Error when calling DefaultApi->initialize_self_service_settings_via_api_flow_with_http_info: #{e}"
+  puts "Error when calling DefaultApi->initialize_self_service_settings_for_browsers_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
 This endpoint does not need any parameter.
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+[sessionToken](../README.md#sessionToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## initialize_self_service_settings_for_native_apps
+
+> <SettingsFlow> initialize_self_service_settings_for_native_apps(opts)
+
+Initialize Settings Flow for Native Apps and API clients
+
+This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid Ory Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call `/self-service/settings/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryHydraClient.configure do |config|
+  # Configure Bearer authorization: sessionToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryHydraClient::DefaultApi.new
+opts = {
+  x_session_token: 'x_session_token_example' # String | The Session Token of the Identity performing the settings flow.
+}
+
+begin
+  # Initialize Settings Flow for Native Apps and API clients
+  result = api_instance.initialize_self_service_settings_for_native_apps(opts)
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling DefaultApi->initialize_self_service_settings_for_native_apps: #{e}"
+end
+```
+
+#### Using the initialize_self_service_settings_for_native_apps_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<SettingsFlow>, Integer, Hash)> initialize_self_service_settings_for_native_apps_with_http_info(opts)
+
+```ruby
+begin
+  # Initialize Settings Flow for Native Apps and API clients
+  data, status_code, headers = api_instance.initialize_self_service_settings_for_native_apps_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <SettingsFlow>
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling DefaultApi->initialize_self_service_settings_for_native_apps_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **x_session_token** | **String** | The Session Token of the Identity performing the settings flow. | [optional] |
 
 ### Return type
 
@@ -1824,50 +1907,45 @@ This endpoint does not need any parameter.
 - **Accept**: application/json
 
 
-## initialize_self_service_settings_via_browser_flow
+## initialize_self_service_verification_for_browsers
 
-> initialize_self_service_settings_via_browser_flow
+> initialize_self_service_verification_for_browsers
 
-Initialize Settings Flow for Browsers
+Initialize Verification Flow for Browser Clients
 
-This endpoint initializes a browser-based user settings flow. Once initialized, the browser will be redirected to `selfservice.flows.settings.ui_url` with the flow ID set as the query parameter `?flow=`. If no valid Ory Kratos Session Cookie is included in the request, a login flow will be initialized.  :::note  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+This endpoint initializes a browser-based account verification flow. Once initialized, the browser will be redirected to `selfservice.flows.verification.ui_url` with the flow ID set as the query parameter `?flow=`.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
 ### Examples
 
 ```ruby
 require 'time'
-require 'ory-client-client'
-# setup authorization
-OryHydraClient.configure do |config|
-  # Configure Bearer authorization: sessionToken
-  config.access_token = 'YOUR_BEARER_TOKEN'
-end
+require 'ory-client'
 
 api_instance = OryHydraClient::DefaultApi.new
 
 begin
-  # Initialize Settings Flow for Browsers
-  api_instance.initialize_self_service_settings_via_browser_flow
+  # Initialize Verification Flow for Browser Clients
+  api_instance.initialize_self_service_verification_for_browsers
 rescue OryHydraClient::ApiError => e
-  puts "Error when calling DefaultApi->initialize_self_service_settings_via_browser_flow: #{e}"
+  puts "Error when calling DefaultApi->initialize_self_service_verification_for_browsers: #{e}"
 end
 ```
 
-#### Using the initialize_self_service_settings_via_browser_flow_with_http_info variant
+#### Using the initialize_self_service_verification_for_browsers_with_http_info variant
 
 This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(nil, Integer, Hash)> initialize_self_service_settings_via_browser_flow_with_http_info
+> <Array(nil, Integer, Hash)> initialize_self_service_verification_for_browsers_with_http_info
 
 ```ruby
 begin
-  # Initialize Settings Flow for Browsers
-  data, status_code, headers = api_instance.initialize_self_service_settings_via_browser_flow_with_http_info
+  # Initialize Verification Flow for Browser Clients
+  data, status_code, headers = api_instance.initialize_self_service_verification_for_browsers_with_http_info
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
 rescue OryHydraClient::ApiError => e
-  puts "Error when calling DefaultApi->initialize_self_service_settings_via_browser_flow_with_http_info: #{e}"
+  puts "Error when calling DefaultApi->initialize_self_service_verification_for_browsers_with_http_info: #{e}"
 end
 ```
 
@@ -1878,67 +1956,6 @@ This endpoint does not need any parameter.
 ### Return type
 
 nil (empty response body)
-
-### Authorization
-
-[sessionToken](../README.md#sessionToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## initialize_self_service_verification_via_api_flow
-
-> <VerificationFlow> initialize_self_service_verification_via_api_flow
-
-Initialize Verification Flow for API Clients
-
-This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
-
-### Examples
-
-```ruby
-require 'time'
-require 'ory-client-client'
-
-api_instance = OryHydraClient::DefaultApi.new
-
-begin
-  # Initialize Verification Flow for API Clients
-  result = api_instance.initialize_self_service_verification_via_api_flow
-  p result
-rescue OryHydraClient::ApiError => e
-  puts "Error when calling DefaultApi->initialize_self_service_verification_via_api_flow: #{e}"
-end
-```
-
-#### Using the initialize_self_service_verification_via_api_flow_with_http_info variant
-
-This returns an Array which contains the response data, status code and headers.
-
-> <Array(<VerificationFlow>, Integer, Hash)> initialize_self_service_verification_via_api_flow_with_http_info
-
-```ruby
-begin
-  # Initialize Verification Flow for API Clients
-  data, status_code, headers = api_instance.initialize_self_service_verification_via_api_flow_with_http_info
-  p status_code # => 2xx
-  p headers # => { ... }
-  p data # => <VerificationFlow>
-rescue OryHydraClient::ApiError => e
-  puts "Error when calling DefaultApi->initialize_self_service_verification_via_api_flow_with_http_info: #{e}"
-end
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**VerificationFlow**](VerificationFlow.md)
 
 ### Authorization
 
@@ -1950,45 +1967,46 @@ No authorization required
 - **Accept**: application/json
 
 
-## initialize_self_service_verification_via_browser_flow
+## initialize_self_service_verification_for_native_apps
 
-> initialize_self_service_verification_via_browser_flow
+> <VerificationFlow> initialize_self_service_verification_for_native_apps
 
-Initialize Verification Flow for Browser Clients
+Initialize Verification Flow for Native Apps and API clients
 
-This endpoint initializes a browser-based account verification flow. Once initialized, the browser will be redirected to `selfservice.flows.verification.ui_url` with the flow ID set as the query parameter `?flow=`.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
 ### Examples
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 
 api_instance = OryHydraClient::DefaultApi.new
 
 begin
-  # Initialize Verification Flow for Browser Clients
-  api_instance.initialize_self_service_verification_via_browser_flow
+  # Initialize Verification Flow for Native Apps and API clients
+  result = api_instance.initialize_self_service_verification_for_native_apps
+  p result
 rescue OryHydraClient::ApiError => e
-  puts "Error when calling DefaultApi->initialize_self_service_verification_via_browser_flow: #{e}"
+  puts "Error when calling DefaultApi->initialize_self_service_verification_for_native_apps: #{e}"
 end
 ```
 
-#### Using the initialize_self_service_verification_via_browser_flow_with_http_info variant
+#### Using the initialize_self_service_verification_for_native_apps_with_http_info variant
 
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
+This returns an Array which contains the response data, status code and headers.
 
-> <Array(nil, Integer, Hash)> initialize_self_service_verification_via_browser_flow_with_http_info
+> <Array(<VerificationFlow>, Integer, Hash)> initialize_self_service_verification_for_native_apps_with_http_info
 
 ```ruby
 begin
-  # Initialize Verification Flow for Browser Clients
-  data, status_code, headers = api_instance.initialize_self_service_verification_via_browser_flow_with_http_info
+  # Initialize Verification Flow for Native Apps and API clients
+  data, status_code, headers = api_instance.initialize_self_service_verification_for_native_apps_with_http_info
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => nil
+  p data # => <VerificationFlow>
 rescue OryHydraClient::ApiError => e
-  puts "Error when calling DefaultApi->initialize_self_service_verification_via_browser_flow_with_http_info: #{e}"
+  puts "Error when calling DefaultApi->initialize_self_service_verification_for_native_apps_with_http_info: #{e}"
 end
 ```
 
@@ -1998,7 +2016,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-nil (empty response body)
+[**VerificationFlow**](VerificationFlow.md)
 
 ### Authorization
 
@@ -2022,7 +2040,7 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incomi
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 # setup authorization
 OryHydraClient.configure do |config|
   # Configure Bearer authorization: oryToken
@@ -2088,7 +2106,7 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is up running and t
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 # setup authorization
 OryHydraClient.configure do |config|
   # Configure Bearer authorization: oryToken
@@ -2154,7 +2172,7 @@ Lists all identities. Does not support search at the moment.  Learn how identiti
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 # setup authorization
 OryHydraClient.configure do |config|
   # Configure Bearer authorization: oryToken
@@ -2227,7 +2245,7 @@ Get snapshot metrics from the Hydra service. If you're using k8s, you can then a
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 # setup authorization
 OryHydraClient.configure do |config|
   # Configure Bearer authorization: oryToken
@@ -2292,7 +2310,7 @@ Use this endpoint to revoke a session using its token. This endpoint is particul
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 
 api_instance = OryHydraClient::DefaultApi.new
 revoke_session = OryHydraClient::RevokeSession.new({session_token: 'session_token_example'}) # RevokeSession | 
@@ -2355,7 +2373,7 @@ Use this endpoint to complete a login flow. This endpoint behaves differently fo
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 
 api_instance = OryHydraClient::DefaultApi.new
 flow = 'flow_example' # String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
@@ -2423,7 +2441,7 @@ Use this endpoint to complete a recovery flow. This endpoint behaves differently
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 
 api_instance = OryHydraClient::DefaultApi.new
 flow = 'flow_example' # String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
@@ -2490,7 +2508,7 @@ Use this endpoint to complete a recovery flow using the link method. This endpoi
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 
 api_instance = OryHydraClient::DefaultApi.new
 opts = {
@@ -2559,7 +2577,7 @@ Use this endpoint to complete a registration flow by sending an identity's trait
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 
 api_instance = OryHydraClient::DefaultApi.new
 flow = 'flow_example' # String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
@@ -2627,7 +2645,7 @@ Use this endpoint to complete a settings flow by sending an identity's updated p
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 # setup authorization
 OryHydraClient.configure do |config|
   # Configure Bearer authorization: sessionToken
@@ -2637,6 +2655,7 @@ end
 api_instance = OryHydraClient::DefaultApi.new
 flow = 'flow_example' # String | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
 opts = {
+  x_session_token: 'x_session_token_example', # String | The Session Token of the Identity performing the settings flow.
   submit_self_service_settings_flow: OryHydraClient::SubmitSelfServiceSettingsFlowWithPasswordMethod.new({password: 'password_example'}) # SubmitSelfServiceSettingsFlow | 
 }
 
@@ -2672,6 +2691,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **flow** | **String** | The Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |  |
+| **x_session_token** | **String** | The Session Token of the Identity performing the settings flow. | [optional] |
 | **submit_self_service_settings_flow** | [**SubmitSelfServiceSettingsFlow**](SubmitSelfServiceSettingsFlow.md) |  | [optional] |
 
 ### Return type
@@ -2700,7 +2720,7 @@ Use this endpoint to complete a verification flow. This endpoint behaves differe
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 
 api_instance = OryHydraClient::DefaultApi.new
 flow = 'flow_example' # String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
@@ -2767,7 +2787,7 @@ Uses the HTTP Headers in the GET request to determine (e.g. by using checking th
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 # setup authorization
 OryHydraClient.configure do |config|
   # Configure API key authorization: sessionCookie
@@ -2840,7 +2860,7 @@ This endpoint updates an identity. It is NOT possible to set an identity's crede
 
 ```ruby
 require 'time'
-require 'ory-client-client'
+require 'ory-client'
 # setup authorization
 OryHydraClient.configure do |config|
   # Configure Bearer authorization: oryToken

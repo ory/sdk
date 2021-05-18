@@ -10,7 +10,7 @@
 ## Example
 
 ```ruby
-require 'ory-client-client'
+require 'ory-client'
 
 instance = OryHydraClient::ContainerTopOKBody.new(
   processes: null,

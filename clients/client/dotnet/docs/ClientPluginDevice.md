@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientPluginDevice
+# Ory.Client.Model.ClientPluginDevice
 PluginDevice plugin device
 
 ## Properties

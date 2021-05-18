@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientUiNodeInputAttributes
+# Ory.Client.Model.ClientUiNodeInputAttributes
 InputAttributes represents the attributes of an input node
 
 ## Properties

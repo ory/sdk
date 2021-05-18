@@ -14,7 +14,6 @@ docs/Model/ContainerWaitOKBody.md
 docs/Model/ContainerWaitOKBodyError.md
 docs/Model/CreateIdentity.md
 docs/Model/CreateRecoveryLink.md
-docs/Model/ErrorContainer.md
 docs/Model/ErrorResponse.md
 docs/Model/GenericError.md
 docs/Model/GraphDriverData.md
@@ -52,6 +51,7 @@ docs/Model/RecoveryLink.md
 docs/Model/RegistrationFlow.md
 docs/Model/RegistrationViaApiResponse.md
 docs/Model/RevokeSession.md
+docs/Model/SelfServiceErrorContainer.md
 docs/Model/ServiceUpdateResponse.md
 docs/Model/Session.md
 docs/Model/SettingsFlow.md
@@ -96,7 +96,6 @@ lib/Model/ContainerWaitOKBody.php
 lib/Model/ContainerWaitOKBodyError.php
 lib/Model/CreateIdentity.php
 lib/Model/CreateRecoveryLink.php
-lib/Model/ErrorContainer.php
 lib/Model/ErrorResponse.php
 lib/Model/GenericError.php
 lib/Model/GraphDriverData.php
@@ -135,6 +134,7 @@ lib/Model/RecoveryLink.php
 lib/Model/RegistrationFlow.php
 lib/Model/RegistrationViaApiResponse.php
 lib/Model/RevokeSession.php
+lib/Model/SelfServiceErrorContainer.php
 lib/Model/ServiceUpdateResponse.php
 lib/Model/Session.php
 lib/Model/SettingsFlow.php
@@ -177,7 +177,6 @@ test/Model/ContainerWaitOKBodyErrorTest.php
 test/Model/ContainerWaitOKBodyTest.php
 test/Model/CreateIdentityTest.php
 test/Model/CreateRecoveryLinkTest.php
-test/Model/ErrorContainerTest.php
 test/Model/ErrorResponseTest.php
 test/Model/GenericErrorTest.php
 test/Model/GraphDriverDataTest.php
@@ -215,6 +214,7 @@ test/Model/RecoveryLinkTest.php
 test/Model/RegistrationFlowTest.php
 test/Model/RegistrationViaApiResponseTest.php
 test/Model/RevokeSessionTest.php
+test/Model/SelfServiceErrorContainerTest.php
 test/Model/ServiceUpdateResponseTest.php
 test/Model/SessionTest.php
 test/Model/SettingsFlowTest.php

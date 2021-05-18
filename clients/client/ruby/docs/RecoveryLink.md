@@ -10,7 +10,7 @@
 ## Example
 
 ```ruby
-require 'ory-client-client'
+require 'ory-client'
 
 instance = OryHydraClient::RecoveryLink.new(
   expires_at: null,

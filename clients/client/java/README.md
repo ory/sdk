@@ -1,8 +1,8 @@
-# client-client
+# client
 
 Ory APIs
-- API version: v0.0.1-alpha.1
-  - Build date: 2021-05-18T08:38:35.481384898Z[Etc/UTC]
+- API version: v0.0.1-alpha.3
+  - Build date: 2021-05-18T11:31:18.124668+02:00[Europe/Berlin]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -40,9 +40,9 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-  <groupId>sh.ory.client</groupId>
-  <artifactId>client-client</artifactId>
-  <version>v0.0.1-alpha.1</version>
+  <groupId>sh.ory</groupId>
+  <artifactId>client</artifactId>
+  <version>v0.0.1-alpha.3</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -52,7 +52,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "sh.ory.client:client-client:v0.0.1-alpha.1"
+compile "sh.ory:client:v0.0.1-alpha.3"
 ```
 
 ### Others
@@ -65,7 +65,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-client-v0.0.1-alpha.1.jar`
+* `target/client-v0.0.1-alpha.3.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -75,12 +75,12 @@ Please follow the [installation](#installation) instruction and execute the foll
 ```java
 
 // Import classes:
-import sh.ory.client.ApiClient;
-import sh.ory.client.ApiException;
-import sh.ory.client.Configuration;
-import sh.ory.client.auth.*;
-import sh.ory.client.models.*;
-import sh.ory.client.api.DefaultApi;
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.DefaultApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -134,16 +134,16 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**getSelfServiceVerificationFlowAdmin**](docs/DefaultApi.md#getSelfServiceVerificationFlowAdmin) | **GET** /api/kratos/admin/self-service/verification/flows | Get Verification Flow
 *DefaultApi* | [**getVersionAdmin**](docs/DefaultApi.md#getVersionAdmin) | **GET** /api/kratos/admin/version | Return Running Software Version.
 *DefaultApi* | [**initializeSelfServiceBrowserLogoutFlow**](docs/DefaultApi.md#initializeSelfServiceBrowserLogoutFlow) | **GET** /api/kratos/public/self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
-*DefaultApi* | [**initializeSelfServiceLoginViaAPIFlow**](docs/DefaultApi.md#initializeSelfServiceLoginViaAPIFlow) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for API clients
-*DefaultApi* | [**initializeSelfServiceLoginViaBrowserFlow**](docs/DefaultApi.md#initializeSelfServiceLoginViaBrowserFlow) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for browsers
-*DefaultApi* | [**initializeSelfServiceRecoveryViaAPIFlow**](docs/DefaultApi.md#initializeSelfServiceRecoveryViaAPIFlow) | **GET** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for API Clients
-*DefaultApi* | [**initializeSelfServiceRecoveryViaBrowserFlow**](docs/DefaultApi.md#initializeSelfServiceRecoveryViaBrowserFlow) | **GET** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
-*DefaultApi* | [**initializeSelfServiceRegistration**](docs/DefaultApi.md#initializeSelfServiceRegistration) | **GET** /api/kratos/public/self-service/registration/api | Initialize Registration Flow for API clients
+*DefaultApi* | [**initializeSelfServiceLoginForBrowsers**](docs/DefaultApi.md#initializeSelfServiceLoginForBrowsers) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for browsers
+*DefaultApi* | [**initializeSelfServiceLoginForNativeApps**](docs/DefaultApi.md#initializeSelfServiceLoginForNativeApps) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for Native Apps and API clients
+*DefaultApi* | [**initializeSelfServiceRecoveryForBrowsers**](docs/DefaultApi.md#initializeSelfServiceRecoveryForBrowsers) | **GET** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
+*DefaultApi* | [**initializeSelfServiceRecoveryForNativeApps**](docs/DefaultApi.md#initializeSelfServiceRecoveryForNativeApps) | **GET** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for Native Apps and API clients
 *DefaultApi* | [**initializeSelfServiceRegistrationForBrowsers**](docs/DefaultApi.md#initializeSelfServiceRegistrationForBrowsers) | **GET** /api/kratos/public/self-service/registration/browser | Initialize Registration Flow for browsers
-*DefaultApi* | [**initializeSelfServiceSettingsViaAPIFlow**](docs/DefaultApi.md#initializeSelfServiceSettingsViaAPIFlow) | **GET** /api/kratos/public/self-service/settings/api | Initialize Settings Flow for API Clients
-*DefaultApi* | [**initializeSelfServiceSettingsViaBrowserFlow**](docs/DefaultApi.md#initializeSelfServiceSettingsViaBrowserFlow) | **GET** /api/kratos/public/self-service/settings/browser | Initialize Settings Flow for Browsers
-*DefaultApi* | [**initializeSelfServiceVerificationViaAPIFlow**](docs/DefaultApi.md#initializeSelfServiceVerificationViaAPIFlow) | **GET** /api/kratos/public/self-service/verification/api | Initialize Verification Flow for API Clients
-*DefaultApi* | [**initializeSelfServiceVerificationViaBrowserFlow**](docs/DefaultApi.md#initializeSelfServiceVerificationViaBrowserFlow) | **GET** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients
+*DefaultApi* | [**initializeSelfServiceRegistrationForNativeApps**](docs/DefaultApi.md#initializeSelfServiceRegistrationForNativeApps) | **GET** /api/kratos/public/self-service/registration/api | Initialize Registration Flow for Native Apps and API clients
+*DefaultApi* | [**initializeSelfServiceSettingsForBrowsers**](docs/DefaultApi.md#initializeSelfServiceSettingsForBrowsers) | **GET** /api/kratos/public/self-service/settings/browser | Initialize Settings Flow for Browsers
+*DefaultApi* | [**initializeSelfServiceSettingsForNativeApps**](docs/DefaultApi.md#initializeSelfServiceSettingsForNativeApps) | **GET** /api/kratos/public/self-service/settings/api | Initialize Settings Flow for Native Apps and API clients
+*DefaultApi* | [**initializeSelfServiceVerificationForBrowsers**](docs/DefaultApi.md#initializeSelfServiceVerificationForBrowsers) | **GET** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients
+*DefaultApi* | [**initializeSelfServiceVerificationForNativeApps**](docs/DefaultApi.md#initializeSelfServiceVerificationForNativeApps) | **GET** /api/kratos/public/self-service/verification/api | Initialize Verification Flow for Native Apps and API clients
 *DefaultApi* | [**isAliveAdmin**](docs/DefaultApi.md#isAliveAdmin) | **GET** /api/kratos/admin/health/alive | Check HTTP Server Status
 *DefaultApi* | [**isReadyAdmin**](docs/DefaultApi.md#isReadyAdmin) | **GET** /api/kratos/admin/health/ready | Check HTTP Server and Database Status
 *DefaultApi* | [**listIdentitiesAdmin**](docs/DefaultApi.md#listIdentitiesAdmin) | **GET** /api/kratos/admin/identities | List Identities
@@ -170,7 +170,6 @@ Class | Method | HTTP request | Description
  - [ContainerWaitOKBodyError](docs/ContainerWaitOKBodyError.md)
  - [CreateIdentity](docs/CreateIdentity.md)
  - [CreateRecoveryLink](docs/CreateRecoveryLink.md)
- - [ErrorContainer](docs/ErrorContainer.md)
  - [ErrorResponse](docs/ErrorResponse.md)
  - [GenericError](docs/GenericError.md)
  - [GraphDriverData](docs/GraphDriverData.md)
@@ -208,6 +207,7 @@ Class | Method | HTTP request | Description
  - [RegistrationFlow](docs/RegistrationFlow.md)
  - [RegistrationViaApiResponse](docs/RegistrationViaApiResponse.md)
  - [RevokeSession](docs/RevokeSession.md)
+ - [SelfServiceErrorContainer](docs/SelfServiceErrorContainer.md)
  - [ServiceUpdateResponse](docs/ServiceUpdateResponse.md)
  - [Session](docs/Session.md)
  - [SettingsFlow](docs/SettingsFlow.md)

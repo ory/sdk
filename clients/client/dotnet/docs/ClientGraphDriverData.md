@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientGraphDriverData
+# Ory.Client.Model.ClientGraphDriverData
 
 ## Properties
 

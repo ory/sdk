@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientPluginConfigInterface
+# Ory.Client.Model.ClientPluginConfigInterface
 PluginConfigInterface The interface between Docker and the plugin
 
 ## Properties

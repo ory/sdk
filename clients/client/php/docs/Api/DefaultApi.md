@@ -1,4 +1,4 @@
-# Ory\Client\Client\DefaultApi
+# Ory\Client\DefaultApi
 
 All URIs are relative to https://playground.projects.oryapis.com.
 
@@ -24,16 +24,16 @@ Method | HTTP request | Description
 [**getSelfServiceVerificationFlowAdmin()**](DefaultApi.md#getSelfServiceVerificationFlowAdmin) | **GET** /api/kratos/admin/self-service/verification/flows | Get Verification Flow
 [**getVersionAdmin()**](DefaultApi.md#getVersionAdmin) | **GET** /api/kratos/admin/version | Return Running Software Version.
 [**initializeSelfServiceBrowserLogoutFlow()**](DefaultApi.md#initializeSelfServiceBrowserLogoutFlow) | **GET** /api/kratos/public/self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
-[**initializeSelfServiceLoginViaAPIFlow()**](DefaultApi.md#initializeSelfServiceLoginViaAPIFlow) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for API clients
-[**initializeSelfServiceLoginViaBrowserFlow()**](DefaultApi.md#initializeSelfServiceLoginViaBrowserFlow) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for browsers
-[**initializeSelfServiceRecoveryViaAPIFlow()**](DefaultApi.md#initializeSelfServiceRecoveryViaAPIFlow) | **GET** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for API Clients
-[**initializeSelfServiceRecoveryViaBrowserFlow()**](DefaultApi.md#initializeSelfServiceRecoveryViaBrowserFlow) | **GET** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
-[**initializeSelfServiceRegistration()**](DefaultApi.md#initializeSelfServiceRegistration) | **GET** /api/kratos/public/self-service/registration/api | Initialize Registration Flow for API clients
+[**initializeSelfServiceLoginForBrowsers()**](DefaultApi.md#initializeSelfServiceLoginForBrowsers) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for browsers
+[**initializeSelfServiceLoginForNativeApps()**](DefaultApi.md#initializeSelfServiceLoginForNativeApps) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for Native Apps and API clients
+[**initializeSelfServiceRecoveryForBrowsers()**](DefaultApi.md#initializeSelfServiceRecoveryForBrowsers) | **GET** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
+[**initializeSelfServiceRecoveryForNativeApps()**](DefaultApi.md#initializeSelfServiceRecoveryForNativeApps) | **GET** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for Native Apps and API clients
 [**initializeSelfServiceRegistrationForBrowsers()**](DefaultApi.md#initializeSelfServiceRegistrationForBrowsers) | **GET** /api/kratos/public/self-service/registration/browser | Initialize Registration Flow for browsers
-[**initializeSelfServiceSettingsViaAPIFlow()**](DefaultApi.md#initializeSelfServiceSettingsViaAPIFlow) | **GET** /api/kratos/public/self-service/settings/api | Initialize Settings Flow for API Clients
-[**initializeSelfServiceSettingsViaBrowserFlow()**](DefaultApi.md#initializeSelfServiceSettingsViaBrowserFlow) | **GET** /api/kratos/public/self-service/settings/browser | Initialize Settings Flow for Browsers
-[**initializeSelfServiceVerificationViaAPIFlow()**](DefaultApi.md#initializeSelfServiceVerificationViaAPIFlow) | **GET** /api/kratos/public/self-service/verification/api | Initialize Verification Flow for API Clients
-[**initializeSelfServiceVerificationViaBrowserFlow()**](DefaultApi.md#initializeSelfServiceVerificationViaBrowserFlow) | **GET** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients
+[**initializeSelfServiceRegistrationForNativeApps()**](DefaultApi.md#initializeSelfServiceRegistrationForNativeApps) | **GET** /api/kratos/public/self-service/registration/api | Initialize Registration Flow for Native Apps and API clients
+[**initializeSelfServiceSettingsForBrowsers()**](DefaultApi.md#initializeSelfServiceSettingsForBrowsers) | **GET** /api/kratos/public/self-service/settings/browser | Initialize Settings Flow for Browsers
+[**initializeSelfServiceSettingsForNativeApps()**](DefaultApi.md#initializeSelfServiceSettingsForNativeApps) | **GET** /api/kratos/public/self-service/settings/api | Initialize Settings Flow for Native Apps and API clients
+[**initializeSelfServiceVerificationForBrowsers()**](DefaultApi.md#initializeSelfServiceVerificationForBrowsers) | **GET** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients
+[**initializeSelfServiceVerificationForNativeApps()**](DefaultApi.md#initializeSelfServiceVerificationForNativeApps) | **GET** /api/kratos/public/self-service/verification/api | Initialize Verification Flow for Native Apps and API clients
 [**isAliveAdmin()**](DefaultApi.md#isAliveAdmin) | **GET** /api/kratos/admin/health/alive | Check HTTP Server Status
 [**isReadyAdmin()**](DefaultApi.md#isReadyAdmin) | **GET** /api/kratos/admin/health/ready | Check HTTP Server and Database Status
 [**listIdentitiesAdmin()**](DefaultApi.md#listIdentitiesAdmin) | **GET** /api/kratos/admin/identities | List Identities
@@ -52,7 +52,7 @@ Method | HTTP request | Description
 ## `createIdentityAdmin()`
 
 ```php
-createIdentityAdmin($createIdentity): \Ory\Client\Client\Model\Identity
+createIdentityAdmin($createIdentity): \Ory\Client\Model\Identity
 ```
 
 Create an Identity
@@ -67,16 +67,16 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: oryToken
-$config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$createIdentity = new \Ory\Client\Client\Model\CreateIdentity(); // \Ory\Client\Client\Model\CreateIdentity
+$createIdentity = new \Ory\Client\Model\CreateIdentity(); // \Ory\Client\Model\CreateIdentity
 
 try {
     $result = $apiInstance->createIdentityAdmin($createIdentity);
@@ -90,11 +90,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createIdentity** | [**\Ory\Client\Client\Model\CreateIdentity**](../Model/CreateIdentity.md)|  | [optional]
+ **createIdentity** | [**\Ory\Client\Model\CreateIdentity**](../Model/CreateIdentity.md)|  | [optional]
 
 ### Return type
 
-[**\Ory\Client\Client\Model\Identity**](../Model/Identity.md)
+[**\Ory\Client\Model\Identity**](../Model/Identity.md)
 
 ### Authorization
 
@@ -112,7 +112,7 @@ Name | Type | Description  | Notes
 ## `createRecoveryLinkAdmin()`
 
 ```php
-createRecoveryLinkAdmin($createRecoveryLink): \Ory\Client\Client\Model\RecoveryLink
+createRecoveryLinkAdmin($createRecoveryLink): \Ory\Client\Model\RecoveryLink
 ```
 
 Create a Recovery Link
@@ -127,16 +127,16 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: oryToken
-$config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$createRecoveryLink = new \Ory\Client\Client\Model\CreateRecoveryLink(); // \Ory\Client\Client\Model\CreateRecoveryLink
+$createRecoveryLink = new \Ory\Client\Model\CreateRecoveryLink(); // \Ory\Client\Model\CreateRecoveryLink
 
 try {
     $result = $apiInstance->createRecoveryLinkAdmin($createRecoveryLink);
@@ -150,11 +150,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createRecoveryLink** | [**\Ory\Client\Client\Model\CreateRecoveryLink**](../Model/CreateRecoveryLink.md)|  | [optional]
+ **createRecoveryLink** | [**\Ory\Client\Model\CreateRecoveryLink**](../Model/CreateRecoveryLink.md)|  | [optional]
 
 ### Return type
 
-[**\Ory\Client\Client\Model\RecoveryLink**](../Model/RecoveryLink.md)
+[**\Ory\Client\Model\RecoveryLink**](../Model/RecoveryLink.md)
 
 ### Authorization
 
@@ -187,10 +187,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: oryToken
-$config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -231,7 +231,7 @@ void (empty response body)
 ## `getIdentityAdmin()`
 
 ```php
-getIdentityAdmin($id): \Ory\Client\Client\Model\Identity
+getIdentityAdmin($id): \Ory\Client\Model\Identity
 ```
 
 Get an Identity
@@ -246,10 +246,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: oryToken
-$config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -273,7 +273,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Client\Client\Model\Identity**](../Model/Identity.md)
+[**\Ory\Client\Model\Identity**](../Model/Identity.md)
 
 ### Authorization
 
@@ -306,7 +306,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -362,10 +362,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: oryToken
-$config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -407,7 +407,7 @@ Name | Type | Description  | Notes
 ## `getSelfServiceError()`
 
 ```php
-getSelfServiceError($error): \Ory\Client\Client\Model\ErrorContainer
+getSelfServiceError($error): \Ory\Client\Model\SelfServiceErrorContainer
 ```
 
 Get User-Facing Self-Service Errors
@@ -422,7 +422,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -445,7 +445,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Client\Client\Model\ErrorContainer**](../Model/ErrorContainer.md)
+[**\Ory\Client\Model\SelfServiceErrorContainer**](../Model/SelfServiceErrorContainer.md)
 
 ### Authorization
 
@@ -463,7 +463,7 @@ No authorization required
 ## `getSelfServiceErrorAdmin()`
 
 ```php
-getSelfServiceErrorAdmin($error): \Ory\Client\Client\Model\ErrorContainer
+getSelfServiceErrorAdmin($error): \Ory\Client\Model\SelfServiceErrorContainer
 ```
 
 Get User-Facing Self-Service Errors
@@ -478,10 +478,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: oryToken
-$config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -505,7 +505,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Client\Client\Model\ErrorContainer**](../Model/ErrorContainer.md)
+[**\Ory\Client\Model\SelfServiceErrorContainer**](../Model/SelfServiceErrorContainer.md)
 
 ### Authorization
 
@@ -523,7 +523,7 @@ Name | Type | Description  | Notes
 ## `getSelfServiceLoginFlow()`
 
 ```php
-getSelfServiceLoginFlow($id): \Ory\Client\Client\Model\LoginFlow
+getSelfServiceLoginFlow($id): \Ory\Client\Model\LoginFlow
 ```
 
 Get Login Flow
@@ -538,7 +538,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -561,7 +561,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Client\Client\Model\LoginFlow**](../Model/LoginFlow.md)
+[**\Ory\Client\Model\LoginFlow**](../Model/LoginFlow.md)
 
 ### Authorization
 
@@ -579,7 +579,7 @@ No authorization required
 ## `getSelfServiceLoginFlowAdmin()`
 
 ```php
-getSelfServiceLoginFlowAdmin($id): \Ory\Client\Client\Model\LoginFlow
+getSelfServiceLoginFlowAdmin($id): \Ory\Client\Model\LoginFlow
 ```
 
 Get Login Flow
@@ -594,10 +594,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: oryToken
-$config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -621,7 +621,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Client\Client\Model\LoginFlow**](../Model/LoginFlow.md)
+[**\Ory\Client\Model\LoginFlow**](../Model/LoginFlow.md)
 
 ### Authorization
 
@@ -639,7 +639,7 @@ Name | Type | Description  | Notes
 ## `getSelfServiceRecoveryFlow()`
 
 ```php
-getSelfServiceRecoveryFlow($id): \Ory\Client\Client\Model\RecoveryFlow
+getSelfServiceRecoveryFlow($id): \Ory\Client\Model\RecoveryFlow
 ```
 
 Get information about a recovery flow
@@ -654,7 +654,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -677,7 +677,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Client\Client\Model\RecoveryFlow**](../Model/RecoveryFlow.md)
+[**\Ory\Client\Model\RecoveryFlow**](../Model/RecoveryFlow.md)
 
 ### Authorization
 
@@ -695,7 +695,7 @@ No authorization required
 ## `getSelfServiceRecoveryFlowAdmin()`
 
 ```php
-getSelfServiceRecoveryFlowAdmin($id): \Ory\Client\Client\Model\RecoveryFlow
+getSelfServiceRecoveryFlowAdmin($id): \Ory\Client\Model\RecoveryFlow
 ```
 
 Get information about a recovery flow
@@ -710,10 +710,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: oryToken
-$config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -737,7 +737,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Client\Client\Model\RecoveryFlow**](../Model/RecoveryFlow.md)
+[**\Ory\Client\Model\RecoveryFlow**](../Model/RecoveryFlow.md)
 
 ### Authorization
 
@@ -755,7 +755,7 @@ Name | Type | Description  | Notes
 ## `getSelfServiceRegistrationFlow()`
 
 ```php
-getSelfServiceRegistrationFlow($id): \Ory\Client\Client\Model\RegistrationFlow
+getSelfServiceRegistrationFlow($id): \Ory\Client\Model\RegistrationFlow
 ```
 
 Get Registration Flow
@@ -770,7 +770,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -793,7 +793,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Client\Client\Model\RegistrationFlow**](../Model/RegistrationFlow.md)
+[**\Ory\Client\Model\RegistrationFlow**](../Model/RegistrationFlow.md)
 
 ### Authorization
 
@@ -811,7 +811,7 @@ No authorization required
 ## `getSelfServiceRegistrationFlowAdmin()`
 
 ```php
-getSelfServiceRegistrationFlowAdmin($id): \Ory\Client\Client\Model\RegistrationFlow
+getSelfServiceRegistrationFlowAdmin($id): \Ory\Client\Model\RegistrationFlow
 ```
 
 Get Registration Flow
@@ -826,10 +826,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: oryToken
-$config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -853,7 +853,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Client\Client\Model\RegistrationFlow**](../Model/RegistrationFlow.md)
+[**\Ory\Client\Model\RegistrationFlow**](../Model/RegistrationFlow.md)
 
 ### Authorization
 
@@ -871,7 +871,7 @@ Name | Type | Description  | Notes
 ## `getSelfServiceSettingsFlow()`
 
 ```php
-getSelfServiceSettingsFlow($id): \Ory\Client\Client\Model\SettingsFlow
+getSelfServiceSettingsFlow($id, $xSessionToken): \Ory\Client\Model\SettingsFlow
 ```
 
 Get Settings Flow
@@ -886,19 +886,20 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: sessionToken
-$config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $id = 'id_example'; // string | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+$xSessionToken = 'xSessionToken_example'; // string | The Session Token of the Identity performing the settings flow.
 
 try {
-    $result = $apiInstance->getSelfServiceSettingsFlow($id);
+    $result = $apiInstance->getSelfServiceSettingsFlow($id, $xSessionToken);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->getSelfServiceSettingsFlow: ', $e->getMessage(), PHP_EOL;
@@ -910,10 +911,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
+ **xSessionToken** | **string**| The Session Token of the Identity performing the settings flow. | [optional]
 
 ### Return type
 
-[**\Ory\Client\Client\Model\SettingsFlow**](../Model/SettingsFlow.md)
+[**\Ory\Client\Model\SettingsFlow**](../Model/SettingsFlow.md)
 
 ### Authorization
 
@@ -931,7 +933,7 @@ Name | Type | Description  | Notes
 ## `getSelfServiceSettingsFlowAdmin()`
 
 ```php
-getSelfServiceSettingsFlowAdmin($id): \Ory\Client\Client\Model\SettingsFlow
+getSelfServiceSettingsFlowAdmin($id, $xSessionToken): \Ory\Client\Model\SettingsFlow
 ```
 
 Get Settings Flow
@@ -946,19 +948,20 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: oryToken
-$config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $id = 'id_example'; // string | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+$xSessionToken = 'xSessionToken_example'; // string | The Session Token of the Identity performing the settings flow.
 
 try {
-    $result = $apiInstance->getSelfServiceSettingsFlowAdmin($id);
+    $result = $apiInstance->getSelfServiceSettingsFlowAdmin($id, $xSessionToken);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->getSelfServiceSettingsFlowAdmin: ', $e->getMessage(), PHP_EOL;
@@ -970,10 +973,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
+ **xSessionToken** | **string**| The Session Token of the Identity performing the settings flow. | [optional]
 
 ### Return type
 
-[**\Ory\Client\Client\Model\SettingsFlow**](../Model/SettingsFlow.md)
+[**\Ory\Client\Model\SettingsFlow**](../Model/SettingsFlow.md)
 
 ### Authorization
 
@@ -991,7 +995,7 @@ Name | Type | Description  | Notes
 ## `getSelfServiceVerificationFlow()`
 
 ```php
-getSelfServiceVerificationFlow($id): \Ory\Client\Client\Model\VerificationFlow
+getSelfServiceVerificationFlow($id): \Ory\Client\Model\VerificationFlow
 ```
 
 Get Verification Flow
@@ -1006,7 +1010,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1029,7 +1033,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Client\Client\Model\VerificationFlow**](../Model/VerificationFlow.md)
+[**\Ory\Client\Model\VerificationFlow**](../Model/VerificationFlow.md)
 
 ### Authorization
 
@@ -1047,7 +1051,7 @@ No authorization required
 ## `getSelfServiceVerificationFlowAdmin()`
 
 ```php
-getSelfServiceVerificationFlowAdmin($id): \Ory\Client\Client\Model\VerificationFlow
+getSelfServiceVerificationFlowAdmin($id): \Ory\Client\Model\VerificationFlow
 ```
 
 Get Verification Flow
@@ -1062,10 +1066,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: oryToken
-$config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -1089,7 +1093,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Client\Client\Model\VerificationFlow**](../Model/VerificationFlow.md)
+[**\Ory\Client\Model\VerificationFlow**](../Model/VerificationFlow.md)
 
 ### Authorization
 
@@ -1107,7 +1111,7 @@ Name | Type | Description  | Notes
 ## `getVersionAdmin()`
 
 ```php
-getVersionAdmin(): \Ory\Client\Client\Model\InlineResponse2001
+getVersionAdmin(): \Ory\Client\Model\InlineResponse2001
 ```
 
 Return Running Software Version.
@@ -1122,10 +1126,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: oryToken
-$config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -1146,7 +1150,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Ory\Client\Client\Model\InlineResponse2001**](../Model/InlineResponse2001.md)
+[**\Ory\Client\Model\InlineResponse2001**](../Model/InlineResponse2001.md)
 
 ### Authorization
 
@@ -1179,7 +1183,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1213,66 +1217,10 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `initializeSelfServiceLoginViaAPIFlow()`
+## `initializeSelfServiceLoginForBrowsers()`
 
 ```php
-initializeSelfServiceLoginViaAPIFlow($refresh): \Ory\Client\Client\Model\LoginFlow
-```
-
-Initialize Login Flow for API clients
-
-This endpoint initiates a login flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
-);
-$refresh = True; // bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
-
-try {
-    $result = $apiInstance->initializeSelfServiceLoginViaAPIFlow($refresh);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->initializeSelfServiceLoginViaAPIFlow: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **refresh** | **bool**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional]
-
-### Return type
-
-[**\Ory\Client\Client\Model\LoginFlow**](../Model/LoginFlow.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `initializeSelfServiceLoginViaBrowserFlow()`
-
-```php
-initializeSelfServiceLoginViaBrowserFlow()
+initializeSelfServiceLoginForBrowsers($refresh)
 ```
 
 Initialize Login Flow for browsers
@@ -1287,22 +1235,25 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
+$refresh = True; // bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
 
 try {
-    $apiInstance->initializeSelfServiceLoginViaBrowserFlow();
+    $apiInstance->initializeSelfServiceLoginForBrowsers($refresh);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->initializeSelfServiceLoginViaBrowserFlow: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->initializeSelfServiceLoginForBrowsers: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
 ### Parameters
 
-This endpoint does not need any parameter.
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **refresh** | **bool**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional]
 
 ### Return type
 
@@ -1321,15 +1272,15 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `initializeSelfServiceRecoveryViaAPIFlow()`
+## `initializeSelfServiceLoginForNativeApps()`
 
 ```php
-initializeSelfServiceRecoveryViaAPIFlow(): \Ory\Client\Client\Model\RecoveryFlow
+initializeSelfServiceLoginForNativeApps($refresh): \Ory\Client\Model\LoginFlow
 ```
 
-Initialize Recovery Flow for API Clients
+Initialize Login Flow for Native Apps and API clients
 
-This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+This endpoint initiates a login flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 
@@ -1339,27 +1290,30 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
+$refresh = True; // bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
 
 try {
-    $result = $apiInstance->initializeSelfServiceRecoveryViaAPIFlow();
+    $result = $apiInstance->initializeSelfServiceLoginForNativeApps($refresh);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->initializeSelfServiceRecoveryViaAPIFlow: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->initializeSelfServiceLoginForNativeApps: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
 ### Parameters
 
-This endpoint does not need any parameter.
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **refresh** | **bool**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional]
 
 ### Return type
 
-[**\Ory\Client\Client\Model\RecoveryFlow**](../Model/RecoveryFlow.md)
+[**\Ory\Client\Model\LoginFlow**](../Model/LoginFlow.md)
 
 ### Authorization
 
@@ -1374,10 +1328,10 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `initializeSelfServiceRecoveryViaBrowserFlow()`
+## `initializeSelfServiceRecoveryForBrowsers()`
 
 ```php
-initializeSelfServiceRecoveryViaBrowserFlow()
+initializeSelfServiceRecoveryForBrowsers()
 ```
 
 Initialize Recovery Flow for Browser Clients
@@ -1392,16 +1346,16 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 
 try {
-    $apiInstance->initializeSelfServiceRecoveryViaBrowserFlow();
+    $apiInstance->initializeSelfServiceRecoveryForBrowsers();
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->initializeSelfServiceRecoveryViaBrowserFlow: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->initializeSelfServiceRecoveryForBrowsers: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -1426,15 +1380,15 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `initializeSelfServiceRegistration()`
+## `initializeSelfServiceRecoveryForNativeApps()`
 
 ```php
-initializeSelfServiceRegistration(): \Ory\Client\Client\Model\RegistrationFlow
+initializeSelfServiceRecoveryForNativeApps(): \Ory\Client\Model\RecoveryFlow
 ```
 
-Initialize Registration Flow for API clients
+Initialize Recovery Flow for Native Apps and API clients
 
-This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing registration flow call `/self-service/registration/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
 ### Example
 
@@ -1444,17 +1398,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 
 try {
-    $result = $apiInstance->initializeSelfServiceRegistration();
+    $result = $apiInstance->initializeSelfServiceRecoveryForNativeApps();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->initializeSelfServiceRegistration: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->initializeSelfServiceRecoveryForNativeApps: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -1464,7 +1418,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Ory\Client\Client\Model\RegistrationFlow**](../Model/RegistrationFlow.md)
+[**\Ory\Client\Model\RecoveryFlow**](../Model/RecoveryFlow.md)
 
 ### Authorization
 
@@ -1497,7 +1451,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1531,128 +1485,15 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `initializeSelfServiceSettingsViaAPIFlow()`
+## `initializeSelfServiceRegistrationForNativeApps()`
 
 ```php
-initializeSelfServiceSettingsViaAPIFlow(): \Ory\Client\Client\Model\SettingsFlow
+initializeSelfServiceRegistrationForNativeApps(): \Ory\Client\Model\RegistrationFlow
 ```
 
-Initialize Settings Flow for API Clients
+Initialize Registration Flow for Native Apps and API clients
 
-This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid Ory Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call `/self-service/settings/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure Bearer authorization: sessionToken
-$config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-
-try {
-    $result = $apiInstance->initializeSelfServiceSettingsViaAPIFlow();
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->initializeSelfServiceSettingsViaAPIFlow: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**\Ory\Client\Client\Model\SettingsFlow**](../Model/SettingsFlow.md)
-
-### Authorization
-
-[sessionToken](../../README.md#sessionToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `initializeSelfServiceSettingsViaBrowserFlow()`
-
-```php
-initializeSelfServiceSettingsViaBrowserFlow()
-```
-
-Initialize Settings Flow for Browsers
-
-This endpoint initializes a browser-based user settings flow. Once initialized, the browser will be redirected to `selfservice.flows.settings.ui_url` with the flow ID set as the query parameter `?flow=`. If no valid Ory Kratos Session Cookie is included in the request, a login flow will be initialized.  :::note  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure Bearer authorization: sessionToken
-$config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-
-try {
-    $apiInstance->initializeSelfServiceSettingsViaBrowserFlow();
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->initializeSelfServiceSettingsViaBrowserFlow: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[sessionToken](../../README.md#sessionToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `initializeSelfServiceVerificationViaAPIFlow()`
-
-```php
-initializeSelfServiceVerificationViaAPIFlow(): \Ory\Client\Client\Model\VerificationFlow
-```
-
-Initialize Verification Flow for API Clients
-
-This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing registration flow call `/self-service/registration/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 
@@ -1662,17 +1503,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 
 try {
-    $result = $apiInstance->initializeSelfServiceVerificationViaAPIFlow();
+    $result = $apiInstance->initializeSelfServiceRegistrationForNativeApps();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->initializeSelfServiceVerificationViaAPIFlow: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->initializeSelfServiceRegistrationForNativeApps: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -1682,7 +1523,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Ory\Client\Client\Model\VerificationFlow**](../Model/VerificationFlow.md)
+[**\Ory\Client\Model\RegistrationFlow**](../Model/RegistrationFlow.md)
 
 ### Authorization
 
@@ -1697,10 +1538,126 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `initializeSelfServiceVerificationViaBrowserFlow()`
+## `initializeSelfServiceSettingsForBrowsers()`
 
 ```php
-initializeSelfServiceVerificationViaBrowserFlow()
+initializeSelfServiceSettingsForBrowsers()
+```
+
+Initialize Settings Flow for Browsers
+
+This endpoint initializes a browser-based user settings flow. Once initialized, the browser will be redirected to `selfservice.flows.settings.ui_url` with the flow ID set as the query parameter `?flow=`. If no valid Ory Kratos Session Cookie is included in the request, a login flow will be initialized.  :::note  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: sessionToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+try {
+    $apiInstance->initializeSelfServiceSettingsForBrowsers();
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->initializeSelfServiceSettingsForBrowsers: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[sessionToken](../../README.md#sessionToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `initializeSelfServiceSettingsForNativeApps()`
+
+```php
+initializeSelfServiceSettingsForNativeApps($xSessionToken): \Ory\Client\Model\SettingsFlow
+```
+
+Initialize Settings Flow for Native Apps and API clients
+
+This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid Ory Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call `/self-service/settings/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: sessionToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$xSessionToken = 'xSessionToken_example'; // string | The Session Token of the Identity performing the settings flow.
+
+try {
+    $result = $apiInstance->initializeSelfServiceSettingsForNativeApps($xSessionToken);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->initializeSelfServiceSettingsForNativeApps: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xSessionToken** | **string**| The Session Token of the Identity performing the settings flow. | [optional]
+
+### Return type
+
+[**\Ory\Client\Model\SettingsFlow**](../Model/SettingsFlow.md)
+
+### Authorization
+
+[sessionToken](../../README.md#sessionToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `initializeSelfServiceVerificationForBrowsers()`
+
+```php
+initializeSelfServiceVerificationForBrowsers()
 ```
 
 Initialize Verification Flow for Browser Clients
@@ -1715,16 +1672,16 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 
 try {
-    $apiInstance->initializeSelfServiceVerificationViaBrowserFlow();
+    $apiInstance->initializeSelfServiceVerificationForBrowsers();
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->initializeSelfServiceVerificationViaBrowserFlow: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->initializeSelfServiceVerificationForBrowsers: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -1735,6 +1692,59 @@ This endpoint does not need any parameter.
 ### Return type
 
 void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `initializeSelfServiceVerificationForNativeApps()`
+
+```php
+initializeSelfServiceVerificationForNativeApps(): \Ory\Client\Model\VerificationFlow
+```
+
+Initialize Verification Flow for Native Apps and API clients
+
+This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Client\Api\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $result = $apiInstance->initializeSelfServiceVerificationForNativeApps();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->initializeSelfServiceVerificationForNativeApps: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Ory\Client\Model\VerificationFlow**](../Model/VerificationFlow.md)
 
 ### Authorization
 
@@ -1752,7 +1762,7 @@ No authorization required
 ## `isAliveAdmin()`
 
 ```php
-isAliveAdmin(): \Ory\Client\Client\Model\InlineResponse200
+isAliveAdmin(): \Ory\Client\Model\InlineResponse200
 ```
 
 Check HTTP Server Status
@@ -1767,10 +1777,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: oryToken
-$config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -1791,7 +1801,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Ory\Client\Client\Model\InlineResponse200**](../Model/InlineResponse200.md)
+[**\Ory\Client\Model\InlineResponse200**](../Model/InlineResponse200.md)
 
 ### Authorization
 
@@ -1809,7 +1819,7 @@ This endpoint does not need any parameter.
 ## `isReadyAdmin()`
 
 ```php
-isReadyAdmin(): \Ory\Client\Client\Model\InlineResponse200
+isReadyAdmin(): \Ory\Client\Model\InlineResponse200
 ```
 
 Check HTTP Server and Database Status
@@ -1824,10 +1834,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: oryToken
-$config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -1848,7 +1858,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Ory\Client\Client\Model\InlineResponse200**](../Model/InlineResponse200.md)
+[**\Ory\Client\Model\InlineResponse200**](../Model/InlineResponse200.md)
 
 ### Authorization
 
@@ -1866,7 +1876,7 @@ This endpoint does not need any parameter.
 ## `listIdentitiesAdmin()`
 
 ```php
-listIdentitiesAdmin($perPage, $page): \Ory\Client\Client\Model\Identity[]
+listIdentitiesAdmin($perPage, $page): \Ory\Client\Model\Identity[]
 ```
 
 List Identities
@@ -1881,10 +1891,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: oryToken
-$config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -1910,7 +1920,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Client\Client\Model\Identity[]**](../Model/Identity.md)
+[**\Ory\Client\Model\Identity[]**](../Model/Identity.md)
 
 ### Authorization
 
@@ -1943,10 +1953,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: oryToken
-$config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -1999,12 +2009,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$revokeSession = new \Ory\Client\Client\Model\RevokeSession(); // \Ory\Client\Client\Model\RevokeSession
+$revokeSession = new \Ory\Client\Model\RevokeSession(); // \Ory\Client\Model\RevokeSession
 
 try {
     $apiInstance->revokeSession($revokeSession);
@@ -2017,7 +2027,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **revokeSession** | [**\Ory\Client\Client\Model\RevokeSession**](../Model/RevokeSession.md)|  |
+ **revokeSession** | [**\Ory\Client\Model\RevokeSession**](../Model/RevokeSession.md)|  |
 
 ### Return type
 
@@ -2039,7 +2049,7 @@ No authorization required
 ## `submitSelfServiceLoginFlow()`
 
 ```php
-submitSelfServiceLoginFlow($flow, $submitSelfServiceLoginFlow): \Ory\Client\Client\Model\LoginViaApiResponse
+submitSelfServiceLoginFlow($flow, $submitSelfServiceLoginFlow): \Ory\Client\Model\LoginViaApiResponse
 ```
 
 Submit a Login Flow
@@ -2054,13 +2064,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $flow = 'flow_example'; // string | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
-$submitSelfServiceLoginFlow = new \Ory\Client\Client\Model\SubmitSelfServiceLoginFlow(); // \Ory\Client\Client\Model\SubmitSelfServiceLoginFlow
+$submitSelfServiceLoginFlow = new \Ory\Client\Model\SubmitSelfServiceLoginFlow(); // \Ory\Client\Model\SubmitSelfServiceLoginFlow
 
 try {
     $result = $apiInstance->submitSelfServiceLoginFlow($flow, $submitSelfServiceLoginFlow);
@@ -2075,11 +2085,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **string**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). |
- **submitSelfServiceLoginFlow** | [**\Ory\Client\Client\Model\SubmitSelfServiceLoginFlow**](../Model/SubmitSelfServiceLoginFlow.md)|  | [optional]
+ **submitSelfServiceLoginFlow** | [**\Ory\Client\Model\SubmitSelfServiceLoginFlow**](../Model/SubmitSelfServiceLoginFlow.md)|  | [optional]
 
 ### Return type
 
-[**\Ory\Client\Client\Model\LoginViaApiResponse**](../Model/LoginViaApiResponse.md)
+[**\Ory\Client\Model\LoginViaApiResponse**](../Model/LoginViaApiResponse.md)
 
 ### Authorization
 
@@ -2112,7 +2122,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -2169,14 +2179,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $token = 'token_example'; // string | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.
 $flow = 'flow_example'; // string | The Flow ID  format: uuid
-$submitSelfServiceRecoveryFlowWithLinkMethod = new \Ory\Client\Client\Model\SubmitSelfServiceRecoveryFlowWithLinkMethod(); // \Ory\Client\Client\Model\SubmitSelfServiceRecoveryFlowWithLinkMethod
+$submitSelfServiceRecoveryFlowWithLinkMethod = new \Ory\Client\Model\SubmitSelfServiceRecoveryFlowWithLinkMethod(); // \Ory\Client\Model\SubmitSelfServiceRecoveryFlowWithLinkMethod
 
 try {
     $apiInstance->submitSelfServiceRecoveryFlowWithLinkMethod($token, $flow, $submitSelfServiceRecoveryFlowWithLinkMethod);
@@ -2191,7 +2201,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **string**| Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user. | [optional]
  **flow** | **string**| The Flow ID  format: uuid | [optional]
- **submitSelfServiceRecoveryFlowWithLinkMethod** | [**\Ory\Client\Client\Model\SubmitSelfServiceRecoveryFlowWithLinkMethod**](../Model/SubmitSelfServiceRecoveryFlowWithLinkMethod.md)|  | [optional]
+ **submitSelfServiceRecoveryFlowWithLinkMethod** | [**\Ory\Client\Model\SubmitSelfServiceRecoveryFlowWithLinkMethod**](../Model/SubmitSelfServiceRecoveryFlowWithLinkMethod.md)|  | [optional]
 
 ### Return type
 
@@ -2213,7 +2223,7 @@ No authorization required
 ## `submitSelfServiceRegistrationFlow()`
 
 ```php
-submitSelfServiceRegistrationFlow($flow, $submitSelfServiceRegistrationFlow): \Ory\Client\Client\Model\RegistrationViaApiResponse
+submitSelfServiceRegistrationFlow($flow, $submitSelfServiceRegistrationFlow): \Ory\Client\Model\RegistrationViaApiResponse
 ```
 
 Submit a Registration Flow
@@ -2228,13 +2238,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $flow = 'flow_example'; // string | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
-$submitSelfServiceRegistrationFlow = new \Ory\Client\Client\Model\SubmitSelfServiceRegistrationFlow(); // \Ory\Client\Client\Model\SubmitSelfServiceRegistrationFlow
+$submitSelfServiceRegistrationFlow = new \Ory\Client\Model\SubmitSelfServiceRegistrationFlow(); // \Ory\Client\Model\SubmitSelfServiceRegistrationFlow
 
 try {
     $result = $apiInstance->submitSelfServiceRegistrationFlow($flow, $submitSelfServiceRegistrationFlow);
@@ -2249,11 +2259,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **string**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). |
- **submitSelfServiceRegistrationFlow** | [**\Ory\Client\Client\Model\SubmitSelfServiceRegistrationFlow**](../Model/SubmitSelfServiceRegistrationFlow.md)|  | [optional]
+ **submitSelfServiceRegistrationFlow** | [**\Ory\Client\Model\SubmitSelfServiceRegistrationFlow**](../Model/SubmitSelfServiceRegistrationFlow.md)|  | [optional]
 
 ### Return type
 
-[**\Ory\Client\Client\Model\RegistrationViaApiResponse**](../Model/RegistrationViaApiResponse.md)
+[**\Ory\Client\Model\RegistrationViaApiResponse**](../Model/RegistrationViaApiResponse.md)
 
 ### Authorization
 
@@ -2271,7 +2281,7 @@ No authorization required
 ## `submitSelfServiceSettingsFlow()`
 
 ```php
-submitSelfServiceSettingsFlow($flow, $submitSelfServiceSettingsFlow): \Ory\Client\Client\Model\SettingsViaApiResponse
+submitSelfServiceSettingsFlow($flow, $xSessionToken, $submitSelfServiceSettingsFlow): \Ory\Client\Model\SettingsViaApiResponse
 ```
 
 Complete Settings Flow
@@ -2286,20 +2296,21 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: sessionToken
-$config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $flow = 'flow_example'; // string | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
-$submitSelfServiceSettingsFlow = new \Ory\Client\Client\Model\SubmitSelfServiceSettingsFlow(); // \Ory\Client\Client\Model\SubmitSelfServiceSettingsFlow
+$xSessionToken = 'xSessionToken_example'; // string | The Session Token of the Identity performing the settings flow.
+$submitSelfServiceSettingsFlow = new \Ory\Client\Model\SubmitSelfServiceSettingsFlow(); // \Ory\Client\Model\SubmitSelfServiceSettingsFlow
 
 try {
-    $result = $apiInstance->submitSelfServiceSettingsFlow($flow, $submitSelfServiceSettingsFlow);
+    $result = $apiInstance->submitSelfServiceSettingsFlow($flow, $xSessionToken, $submitSelfServiceSettingsFlow);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->submitSelfServiceSettingsFlow: ', $e->getMessage(), PHP_EOL;
@@ -2311,11 +2322,12 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **string**| The Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
- **submitSelfServiceSettingsFlow** | [**\Ory\Client\Client\Model\SubmitSelfServiceSettingsFlow**](../Model/SubmitSelfServiceSettingsFlow.md)|  | [optional]
+ **xSessionToken** | **string**| The Session Token of the Identity performing the settings flow. | [optional]
+ **submitSelfServiceSettingsFlow** | [**\Ory\Client\Model\SubmitSelfServiceSettingsFlow**](../Model/SubmitSelfServiceSettingsFlow.md)|  | [optional]
 
 ### Return type
 
-[**\Ory\Client\Client\Model\SettingsViaApiResponse**](../Model/SettingsViaApiResponse.md)
+[**\Ory\Client\Model\SettingsViaApiResponse**](../Model/SettingsViaApiResponse.md)
 
 ### Authorization
 
@@ -2348,7 +2360,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -2390,7 +2402,7 @@ No authorization required
 ## `toSession()`
 
 ```php
-toSession($xSessionToken): \Ory\Client\Client\Model\Session
+toSession($xSessionToken): \Ory\Client\Model\Session
 ```
 
 Check Who the Current HTTP Session Belongs To
@@ -2405,12 +2417,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: sessionCookie
-$config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setApiKey('ory_kratos_session', 'YOUR_API_KEY');
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setApiKey('ory_kratos_session', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('ory_kratos_session', 'Bearer');
+// $config = Ory\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('ory_kratos_session', 'Bearer');
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -2434,7 +2446,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Client\Client\Model\Session**](../Model/Session.md)
+[**\Ory\Client\Model\Session**](../Model/Session.md)
 
 ### Authorization
 
@@ -2452,7 +2464,7 @@ Name | Type | Description  | Notes
 ## `updateIdentityAdmin()`
 
 ```php
-updateIdentityAdmin($id, $updateIdentity): \Ory\Client\Client\Model\Identity
+updateIdentityAdmin($id, $updateIdentity): \Ory\Client\Model\Identity
 ```
 
 Update an Identity
@@ -2467,17 +2479,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure Bearer authorization: oryToken
-$config = Ory\Client\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Ory\Client\Client\Api\DefaultApi(
+$apiInstance = new Ory\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $id = 'id_example'; // string | ID must be set to the ID of identity you want to update
-$updateIdentity = new \Ory\Client\Client\Model\UpdateIdentity(); // \Ory\Client\Client\Model\UpdateIdentity
+$updateIdentity = new \Ory\Client\Model\UpdateIdentity(); // \Ory\Client\Model\UpdateIdentity
 
 try {
     $result = $apiInstance->updateIdentityAdmin($id, $updateIdentity);
@@ -2492,11 +2504,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| ID must be set to the ID of identity you want to update |
- **updateIdentity** | [**\Ory\Client\Client\Model\UpdateIdentity**](../Model/UpdateIdentity.md)|  | [optional]
+ **updateIdentity** | [**\Ory\Client\Model\UpdateIdentity**](../Model/UpdateIdentity.md)|  | [optional]
 
 ### Return type
 
-[**\Ory\Client\Client\Model\Identity**](../Model/Identity.md)
+[**\Ory\Client\Model\Identity**](../Model/Identity.md)
 
 ### Authorization
 

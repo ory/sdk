@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientPluginEnv
+# Ory.Client.Model.ClientPluginEnv
 PluginEnv plugin env
 
 ## Properties

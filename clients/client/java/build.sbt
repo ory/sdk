@@ -1,8 +1,8 @@
 lazy val root = (project in file(".")).
   settings(
-    organization := "sh.ory.client",
-    name := "client-client",
-    version := "v0.0.1-alpha.1",
+    organization := "sh.ory",
+    name := "client",
+    version := "v0.0.1-alpha.3",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),
     javacOptions in compile ++= Seq("-Xlint:deprecation"),

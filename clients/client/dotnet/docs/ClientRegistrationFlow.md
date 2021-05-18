@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientRegistrationFlow
+# Ory.Client.Model.ClientRegistrationFlow
 
 ## Properties
 

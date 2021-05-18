@@ -9,7 +9,7 @@ Returns the list of classes defined in oneOf.
 #### Example
 
 ```ruby
-require 'ory-client-client'
+require 'ory-client'
 
 OryHydraClient::UiNodeInputAttributesValue.openapi_one_of
 # =>
@@ -27,7 +27,7 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 #### Example
 
 ```ruby
-require 'ory-client-client'
+require 'ory-client'
 
 OryHydraClient::UiNodeInputAttributesValue.build(data)
 # => #<Boolean:0x00007fdd4aab02a0>

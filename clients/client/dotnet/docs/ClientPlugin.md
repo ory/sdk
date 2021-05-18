@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientPlugin
+# Ory.Client.Model.ClientPlugin
 Plugin A plugin for the Engine API
 
 ## Properties

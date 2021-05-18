@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientUpdateIdentity
+# Ory.Client.Model.ClientUpdateIdentity
 
 ## Properties
 

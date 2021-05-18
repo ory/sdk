@@ -13,7 +13,6 @@ docs/ContainerWaitOkBodyError.md
 docs/CreateIdentity.md
 docs/CreateRecoveryLink.md
 docs/DefaultApi.md
-docs/ErrorContainer.md
 docs/ErrorResponse.md
 docs/GenericError.md
 docs/GraphDriverData.md
@@ -51,6 +50,7 @@ docs/RecoveryLink.md
 docs/RegistrationFlow.md
 docs/RegistrationViaApiResponse.md
 docs/RevokeSession.md
+docs/SelfServiceErrorContainer.md
 docs/ServiceUpdateResponse.md
 docs/Session.md
 docs/SettingsFlow.md
@@ -95,7 +95,6 @@ src/models/container_wait_ok_body.rs
 src/models/container_wait_ok_body_error.rs
 src/models/create_identity.rs
 src/models/create_recovery_link.rs
-src/models/error_container.rs
 src/models/error_response.rs
 src/models/generic_error.rs
 src/models/graph_driver_data.rs
@@ -134,6 +133,7 @@ src/models/recovery_link.rs
 src/models/registration_flow.rs
 src/models/registration_via_api_response.rs
 src/models/revoke_session.rs
+src/models/self_service_error_container.rs
 src/models/service_update_response.rs
 src/models/session.rs
 src/models/settings_flow.rs

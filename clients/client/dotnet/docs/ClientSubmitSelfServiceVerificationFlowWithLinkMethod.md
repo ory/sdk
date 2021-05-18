@@ -1,4 +1,4 @@
-# Ory.Client.Client.Model.ClientSubmitSelfServiceVerificationFlowWithLinkMethod
+# Ory.Client.Model.ClientSubmitSelfServiceVerificationFlowWithLinkMethod
 nolint:deadcode,unused
 
 ## Properties

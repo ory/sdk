@@ -9,7 +9,7 @@
 ## Example
 
 ```ruby
-require 'ory-client-client'
+require 'ory-client'
 
 instance = OryHydraClient::InlineResponse200.new(
   status: null
