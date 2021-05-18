@@ -185,6 +185,8 @@ golang () {
   (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go")
 
   if [ $project != "kratos" ]  && [ $project != "client" ]; then
+    swagger generate client --allow-template-override -f "${SPEC_FILE}" -t "${dir}" -A "Ory_${PROJECT_UCF}"
+  else
     openapi-generator-cli generate -i "${SPEC_FILE}" \
       -g go \
       -o "$dir" \
@@ -193,8 +195,6 @@ golang () {
       --git-host github.com \
       -t openapi/templates/go \
       -c ./config/client/go.yml.proc.yml
-  else
-    swagger generate client --allow-template-override -f "${SPEC_FILE}" -t "${dir}" -A "Ory_${PROJECT_UCF}"
   fi
 }
 
