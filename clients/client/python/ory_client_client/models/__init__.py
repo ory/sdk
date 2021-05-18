@@ -1,0 +1,90 @@
+# flake8: noqa
+
+# import all models into this package
+# if you have many models here with many references from one model to another this may
+# raise a RecursionError
+# to avoid this, import only the models that you directly need like:
+# from from ory_client_client.model.pet import Pet
+# or import this package, but before doing it, use:
+# import sys
+# sys.setrecursionlimit(n)
+
+from ory_client_client.model.authenticate_ok_body import AuthenticateOKBody
+from ory_client_client.model.container_change_response_item import ContainerChangeResponseItem
+from ory_client_client.model.container_create_created_body import ContainerCreateCreatedBody
+from ory_client_client.model.container_top_ok_body import ContainerTopOKBody
+from ory_client_client.model.container_update_ok_body import ContainerUpdateOKBody
+from ory_client_client.model.container_wait_ok_body import ContainerWaitOKBody
+from ory_client_client.model.container_wait_ok_body_error import ContainerWaitOKBodyError
+from ory_client_client.model.create_identity import CreateIdentity
+from ory_client_client.model.create_recovery_link import CreateRecoveryLink
+from ory_client_client.model.error_container import ErrorContainer
+from ory_client_client.model.error_response import ErrorResponse
+from ory_client_client.model.generic_error import GenericError
+from ory_client_client.model.graph_driver_data import GraphDriverData
+from ory_client_client.model.health_not_ready_status import HealthNotReadyStatus
+from ory_client_client.model.health_status import HealthStatus
+from ory_client_client.model.id_response import IdResponse
+from ory_client_client.model.identity import Identity
+from ory_client_client.model.identity_credentials import IdentityCredentials
+from ory_client_client.model.image_delete_response_item import ImageDeleteResponseItem
+from ory_client_client.model.image_summary import ImageSummary
+from ory_client_client.model.inline_response200 import InlineResponse200
+from ory_client_client.model.inline_response2001 import InlineResponse2001
+from ory_client_client.model.inline_response503 import InlineResponse503
+from ory_client_client.model.json_error import JsonError
+from ory_client_client.model.login_flow import LoginFlow
+from ory_client_client.model.login_via_api_response import LoginViaApiResponse
+from ory_client_client.model.meta import Meta
+from ory_client_client.model.plugin import Plugin
+from ory_client_client.model.plugin_config import PluginConfig
+from ory_client_client.model.plugin_config_args import PluginConfigArgs
+from ory_client_client.model.plugin_config_interface import PluginConfigInterface
+from ory_client_client.model.plugin_config_linux import PluginConfigLinux
+from ory_client_client.model.plugin_config_network import PluginConfigNetwork
+from ory_client_client.model.plugin_config_rootfs import PluginConfigRootfs
+from ory_client_client.model.plugin_config_user import PluginConfigUser
+from ory_client_client.model.plugin_device import PluginDevice
+from ory_client_client.model.plugin_env import PluginEnv
+from ory_client_client.model.plugin_interface_type import PluginInterfaceType
+from ory_client_client.model.plugin_mount import PluginMount
+from ory_client_client.model.plugin_settings import PluginSettings
+from ory_client_client.model.port import Port
+from ory_client_client.model.recovery_address import RecoveryAddress
+from ory_client_client.model.recovery_flow import RecoveryFlow
+from ory_client_client.model.recovery_link import RecoveryLink
+from ory_client_client.model.registration_flow import RegistrationFlow
+from ory_client_client.model.registration_via_api_response import RegistrationViaApiResponse
+from ory_client_client.model.revoke_session import RevokeSession
+from ory_client_client.model.service_update_response import ServiceUpdateResponse
+from ory_client_client.model.session import Session
+from ory_client_client.model.settings_flow import SettingsFlow
+from ory_client_client.model.settings_profile_form_config import SettingsProfileFormConfig
+from ory_client_client.model.settings_via_api_response import SettingsViaApiResponse
+from ory_client_client.model.submit_self_service_browser_settings_oidc_flow_payload import SubmitSelfServiceBrowserSettingsOIDCFlowPayload
+from ory_client_client.model.submit_self_service_login_flow import SubmitSelfServiceLoginFlow
+from ory_client_client.model.submit_self_service_login_flow_with_password_method import SubmitSelfServiceLoginFlowWithPasswordMethod
+from ory_client_client.model.submit_self_service_recovery_flow_with_link_method import SubmitSelfServiceRecoveryFlowWithLinkMethod
+from ory_client_client.model.submit_self_service_registration_flow import SubmitSelfServiceRegistrationFlow
+from ory_client_client.model.submit_self_service_registration_flow_with_password_method import SubmitSelfServiceRegistrationFlowWithPasswordMethod
+from ory_client_client.model.submit_self_service_settings_flow import SubmitSelfServiceSettingsFlow
+from ory_client_client.model.submit_self_service_settings_flow_with_password_method import SubmitSelfServiceSettingsFlowWithPasswordMethod
+from ory_client_client.model.submit_self_service_settings_flow_with_profile_method import SubmitSelfServiceSettingsFlowWithProfileMethod
+from ory_client_client.model.submit_self_service_verification_flow_with_link_method import SubmitSelfServiceVerificationFlowWithLinkMethod
+from ory_client_client.model.ui_container import UiContainer
+from ory_client_client.model.ui_node import UiNode
+from ory_client_client.model.ui_node_anchor_attributes import UiNodeAnchorAttributes
+from ory_client_client.model.ui_node_attributes import UiNodeAttributes
+from ory_client_client.model.ui_node_image_attributes import UiNodeImageAttributes
+from ory_client_client.model.ui_node_input_attributes import UiNodeInputAttributes
+from ory_client_client.model.ui_node_input_attributes_value import UiNodeInputAttributesValue
+from ory_client_client.model.ui_node_text_attributes import UiNodeTextAttributes
+from ory_client_client.model.ui_nodes import UiNodes
+from ory_client_client.model.ui_text import UiText
+from ory_client_client.model.ui_texts import UiTexts
+from ory_client_client.model.update_identity import UpdateIdentity
+from ory_client_client.model.verifiable_identity_address import VerifiableIdentityAddress
+from ory_client_client.model.verification_flow import VerificationFlow
+from ory_client_client.model.version import Version
+from ory_client_client.model.volume import Volume
+from ory_client_client.model.volume_usage_data import VolumeUsageData
