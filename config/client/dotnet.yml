@@ -1,5 +1,5 @@
 licenseId: Apache-2.0
-packageName: "Ory.$PROJECT_UCF.Client"
+packageName: "${DOTNET_PACKAGE_NAME}"
 packageVersion: $RAW_VERSION
 packageAuthors: ORY
 packageCompany: ORY GmbH

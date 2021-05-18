@@ -35,7 +35,7 @@ echo "Generating SDKs for $project:$version"
 spec_file="spec/${project}/${version}.json"
 
 ## Update version string in the spec file ##
-if [ $project != "kratos" ]  && [ $project != "client" ]; then
+if [ $project != "kratos" ]  && [ $project != "ory" ]; then
   ory dev swagger sanitize "${spec_file}"
   swagger validate "${spec_file}"
 fi
@@ -56,3 +56,46 @@ export SPEC_FILE=${spec_file}
 # shellcheck disable=SC2155
 export PROJECT_UCF="$(tr '[:lower:]' '[:upper:]' <<< "${project:0:1}")${project:1}"
 export GPG_OPTS='--pinentry-mode loopback'
+
+export DOTNET_PACKAGE_NAME="Ory.$PROJECT_UCF.Client"
+export DART_PUB_NAME="ory_${PROJECT}_client"
+
+export JAVA_GROUP_ID=sh.ory.$PROJECT
+export JAVA_ARTIFACT_ID=$PROJECT-client
+
+export PHP_PACKAGE_NAME="ory/${PROJECT}-client"
+export PHP_INVOKER_PACKAGE="Ory\\${PROJECT_UCF}\\Client"
+
+export PYTHON_PROJECT_NAME="ory-${PROJECT}-client"
+export PYTHON_PACKAGE_NAME="ory_${PROJECT}_client"
+
+export RUBY_PROJECT_NAME="ory-${PROJECT}-client"
+
+export RUST_PACKAGE_NAME="ory-${PROJECT}-client"
+
+export NPM_NAME="@ory/$PROJECT-client"
+
+export GIT_REPO="${PROJECT}-client"
+
+if [ $project == "client" ]; then
+  export DART_PUB_NAME=ory_client
+  export DOTNET_PACKAGE_NAME="Ory.Client"
+
+  export JAVA_GROUP_ID=sh.ory
+  export JAVA_ARTIFACT_ID=client
+
+  export PHP_PACKAGE_NAME="ory/client"
+  export PHP_INVOKER_PACKAGE="Ory\\Client"
+
+  export PYTHON_PROJECT_NAME="ory-client"
+  export PYTHON_PACKAGE_NAME="ory_client"
+
+  export RUBY_PROJECT_NAME="ory-client"
+  export RUBY_PROJECT_NAME="ory-client"
+
+  export RUST_PACKAGE_NAME="ory-client"
+
+  export NPM_NAME="@ory/client"
+
+  export GIT_REPO="client"
+fi

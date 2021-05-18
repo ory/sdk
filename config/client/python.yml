@@ -1,5 +1,5 @@
-projectName: ory-${PROJECT}-client
-packageName: ory_${PROJECT}_client
+projectName: ${PYTHON_PROJECT_NAME}
+packageName: ${PYTHON_PACKAGE_NAME}
 packageVersion: $VERSION
 library: urllib3
 packageUrl: https://github.com/ory/sdk

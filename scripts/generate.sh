@@ -134,7 +134,7 @@ php() {
 
   file="${dir}/composer.json"
 
-  jq -r ".name=\"ory/${PROJECT}-client\" | .homepage = \"https://github.com/ory/${PROJECT}-client-php\" | .authors[0].name = \"ORY GmbH\" | .authors[0].homepage = \"https://www.ory.sh\" | .license = \"Apache-2.0\"" "${file}" \
+  jq -r ".name=\"ory/${PROJECT}-client\" | .homepage = \"https://github.com/ory/${PROJECT}-client-php\" | .authors[0].name = \"Ory GmbH\" | .authors[0].homepage = \"https://www.ory.sh\" | .license = \"Apache-2.0\"" "${file}" \
      > tmp.$$.json && mv tmp.$$.json "${file}"
 
   cat "${file}"
@@ -191,7 +191,7 @@ golang () {
       -g go \
       -o "$dir" \
       --git-user-id ory \
-      --git-repo-id "${PROJECT}-client-go" \
+      --git-repo-id "${GIT_REPO}-go" \
       --git-host github.com \
       -t openapi/templates/go \
       -c ./config/client/go.yml.proc.yml
@@ -206,7 +206,7 @@ dotnet () {
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g csharp-netcore \
     -o "$dir" \
-    --model-name-prefix ${PROJECT_UCF} \
+    --model-name-prefix "${PROJECT_UCF}" \
     --git-user-id ory \
     --git-repo-id sdk \
     --git-host github.com \
@@ -244,7 +244,7 @@ rust () {
 
   file="${dir}/Cargo.toml"
 
-  (sed "s/${VERSION}/${RAW_VERSION}"'"\ndescription = "SDK Client for ORY Keto"\ndocumentation = "https:\/\/www.ory.sh\/keto\/docs\/sdk"\nhomepage = "https:\/\/www.ory.sh"\nlicense = "Apache-2.0/g' < "${file}") > tmp.$$.rb && mv tmp.$$.rb "${file}"
+  (sed "s/${VERSION}/${RAW_VERSION}"'"\ndescription = "SDK Client for Ory ${PROJECT_UCF}"\ndocumentation = "https:\/\/www.ory.sh\/${PROJECT}\/docs\/sdk"\nhomepage = "https:\/\/www.ory.sh"\nlicense = "Apache-2.0/g' < "${file}") > tmp.$$.rb && mv tmp.$$.rb "${file}"
 }
 
 typescript

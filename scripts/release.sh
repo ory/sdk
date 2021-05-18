@@ -7,11 +7,11 @@ source scripts/prep.sh
 
 to_git() {
   lang=$1
-  gitdir="repos/${PROJECT}-client-${lang}"
+  gitdir="repos/${GIT_REPO}-${lang}"
   srcdir="clients/${PROJECT}/${lang}"
 
   mkdir -p ${gitdir} || true
-  git clone "git@github.com:ory/${PROJECT}-client-${lang}.git" "${gitdir}" || true
+  git clone "git@github.com:ory/${GIT_REPO}-${lang}.git" "${gitdir}" || true
 
   (cd "${gitdir}"; git fetch origin || true; git checkout master || true; git reset --hard HEAD || true; git pull -ff || true; git checkout -b "release-$(date +%s)" master)
 
@@ -39,7 +39,7 @@ EOF
 
 upstream() {
   git add -A
-  git commit --allow-empty -a -m "chore: Regenerate OpenAPI client ${VERSION}"
+  git commit --allow-empty -a -m "chore: regenerate OpenAPI client ${VERSION}"
   git push origin
 }
 
@@ -53,7 +53,7 @@ typescript() {
 java() {
   to_git "java" "no"
 
-  gitdir="repos/${PROJECT}-client-java"
+  gitdir="repos/${GIT_REPO}-java"
   (cd "${gitdir}"; mvn clean)
 
   version=$(echo "${VERSION}" | sed "s/^v//")
@@ -79,6 +79,13 @@ php() {
 ruby() {
   dir="clients/${PROJECT}/ruby"
 
+  gemspec="ory-${PROJECT}-client.gemspec"
+  gemfile="ory-${PROJECT}-client-${GEM_VERSION}.gem"
+  if [ ${PROJECT} == "client" ]; then
+    gemspec="ory-client.gemspec"
+    gemfile="ory-client-${GEM_VERSION}.gem"
+  fi
+
   (cd "${dir}"; rm *.gem || true; gem build "ory-${PROJECT}-client.gemspec"; gem push "ory-${PROJECT}-client-${GEM_VERSION}.gem")
 }
 
@@ -99,8 +106,13 @@ dotnet() {
 
   (cd "${dir}"; VERSION=${RAW_VERSION} command dotnet pack -o .)
 
-  (cd "${dir}"; command dotnet nuget push Ory.${PROJECT_UCF}.Client.${RAW_VERSION}.nupkg \
-  --api-key ${NUGET_API_KEY} \
+  nupkg_name="Ory.${PROJECT_UCF}.Client.${RAW_VERSION}.nupkg"
+  if [ ${PROJECT} == "client" ]; then
+    nupkg_name="Ory.Client.${RAW_VERSION}.nupkg"
+  fi
+
+  (cd "${dir}"; command dotnet nuget push "${nupkg_name}" \
+  --api-key "${NUGET_API_KEY}" \
   --source https://api.nuget.org/v3/index.json)
 }
 

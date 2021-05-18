@@ -1,12 +1,13 @@
-groupId: sh.ory.$PROJECT
-artifactId: $PROJECT-client
+groupId: ${JAVA_GROUP_ID}
+invokerPackage: ${JAVA_GROUP_ID}
+apiPackage: ${JAVA_GROUP_ID}.api
+modelPackage: ${JAVA_GROUP_ID}.model
+
+artifactId: ${JAVA_ARTIFACT_ID}
 artifactVersion: $VERSION
-invokerPackage: sh.ory.$PROJECT
-apiPackage: sh.ory.$PROJECT.api
-modelPackage: sh.ory.$PROJECT.model
 library: okhttp-gson
 dateLibrary: java8
-developerName: ORY
+developerName: Ory
 developerOrganization: www.ory.sh
 developerOrganizationUrl: https://www.ory.sh
 developerEmail: office+oss@ory.sh

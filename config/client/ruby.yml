@@ -1,7 +1,7 @@
-projectName: ory-${PROJECT}-client
+projectName: ${RUBY_PROJECT_NAME}
+gemName: ${RUBY_PROJECT_NAME}
 
 gemVersion: $VERSION
-gemName: ory-${PROJECT}-client
 library: typhoeus
 gemAuthorEmail: opensource@ory.sh
 gemAuthor: ORY GmbH
