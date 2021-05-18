@@ -12,10 +12,8 @@ docs/ContainerWaitOkBody.md
 docs/ContainerWaitOkBodyError.md
 docs/CreateIdentity.md
 docs/CreateRecoveryLink.md
-docs/ErrorContainer.md
 docs/ErrorResponse.md
 docs/GenericError.md
-docs/GenericErrorPayload.md
 docs/GraphDriverData.md
 docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
@@ -27,6 +25,7 @@ docs/ImageSummary.md
 docs/InlineResponse200.md
 docs/InlineResponse2001.md
 docs/InlineResponse503.md
+docs/JsonError.md
 docs/LoginFlow.md
 docs/LoginViaApiResponse.md
 docs/Meta.md
@@ -51,6 +50,7 @@ docs/RecoveryLink.md
 docs/RegistrationFlow.md
 docs/RegistrationViaApiResponse.md
 docs/RevokeSession.md
+docs/SelfServiceErrorContainer.md
 docs/ServiceUpdateResponse.md
 docs/Session.md
 docs/SettingsFlow.md
@@ -76,7 +76,7 @@ docs/UiNodeInputAttributesValue.md
 docs/UiNodeTextAttributes.md
 docs/UiText.md
 docs/UpdateIdentity.md
-docs/VerifiableAddress.md
+docs/VerifiableIdentityAddress.md
 docs/VerificationFlow.md
 docs/Version.md
 docs/Volume.md
@@ -96,10 +96,8 @@ src/models/container_wait_ok_body.rs
 src/models/container_wait_ok_body_error.rs
 src/models/create_identity.rs
 src/models/create_recovery_link.rs
-src/models/error_container.rs
 src/models/error_response.rs
 src/models/generic_error.rs
-src/models/generic_error_payload.rs
 src/models/graph_driver_data.rs
 src/models/health_not_ready_status.rs
 src/models/health_status.rs
@@ -111,6 +109,7 @@ src/models/image_summary.rs
 src/models/inline_response_200.rs
 src/models/inline_response_200_1.rs
 src/models/inline_response_503.rs
+src/models/json_error.rs
 src/models/login_flow.rs
 src/models/login_via_api_response.rs
 src/models/meta.rs
@@ -135,6 +134,7 @@ src/models/recovery_link.rs
 src/models/registration_flow.rs
 src/models/registration_via_api_response.rs
 src/models/revoke_session.rs
+src/models/self_service_error_container.rs
 src/models/service_update_response.rs
 src/models/session.rs
 src/models/settings_flow.rs
@@ -160,7 +160,7 @@ src/models/ui_node_input_attributes_value.rs
 src/models/ui_node_text_attributes.rs
 src/models/ui_text.rs
 src/models/update_identity.rs
-src/models/verifiable_address.rs
+src/models/verifiable_identity_address.rs
 src/models/verification_flow.rs
 src/models/version.rs
 src/models/volume.rs

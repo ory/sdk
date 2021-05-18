@@ -5,7 +5,7 @@
 import 'package:ory_kratos_client/api.dart';
 ```
 
-All URIs are relative to *https://demo.tenants.oryapis.com/api/kratos/public*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -243,7 +243,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getSelfServiceError**
-> ErrorContainer getSelfServiceError(error)
+> SelfServiceErrorContainer getSelfServiceError(error)
 
 Get User-Facing Self-Service Errors
 
@@ -272,7 +272,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ErrorContainer**](ErrorContainer.md)
+[**SelfServiceErrorContainer**](SelfServiceErrorContainer.md)
 
 ### Authorization
 
@@ -415,7 +415,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getSelfServiceSettingsFlow**
-> SettingsFlow getSelfServiceSettingsFlow(id)
+> SettingsFlow getSelfServiceSettingsFlow(id, xSessionToken)
 
 Get Settings Flow
 
@@ -424,16 +424,19 @@ When accessing this endpoint through Ory Kratos' Public API you must ensure that
 ### Example 
 ```dart
 import 'package:ory_kratos_client/api.dart';
-// TODO Configure API key authorization: sessionToken
-//defaultApiClient.getAuthentication<ApiKeyAuth>('sessionToken').apiKey = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//defaultApiClient.getAuthentication<ApiKeyAuth>('sessionToken').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: sessionToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('sessionToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('sessionToken').setAccessToken(yourTokenGeneratorFunction);
 
 final api_instance = AdminApi();
 final id = id_example; // String | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+final xSessionToken = xSessionToken_example; // String | The Session Token of the Identity performing the settings flow.
 
 try { 
-    final result = api_instance.getSelfServiceSettingsFlow(id);
+    final result = api_instance.getSelfServiceSettingsFlow(id, xSessionToken);
     print(result);
 } catch (e) {
     print('Exception when calling AdminApi->getSelfServiceSettingsFlow: $e\n');
@@ -445,6 +448,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`). | 
+ **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional] 
 
 ### Return type
 

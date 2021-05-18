@@ -10,10 +10,11 @@
 part of openapi.api;
 
 class ApiClient {
-  ApiClient({this.basePath = 'https://demo.tenants.oryapis.com/api/kratos/public'}) {
+  ApiClient({this.basePath = 'http://localhost'}) {
     // Setup authentications (key: authentication name, value: authentication).
+    _authentications[r'oryToken'] = HttpBearerAuth();
     _authentications[r'sessionCookie'] = ApiKeyAuth('cookie', 'ory_kratos_session');
-    _authentications[r'sessionToken'] = ApiKeyAuth('header', 'X-Session-Token');
+    _authentications[r'sessionToken'] = HttpBearerAuth();
   }
 
   final String basePath;
@@ -211,14 +212,10 @@ class ApiClient {
           return CreateIdentity.fromJson(value);
         case 'CreateRecoveryLink':
           return CreateRecoveryLink.fromJson(value);
-        case 'ErrorContainer':
-          return ErrorContainer.fromJson(value);
         case 'ErrorResponse':
           return ErrorResponse.fromJson(value);
         case 'GenericError':
           return GenericError.fromJson(value);
-        case 'GenericErrorPayload':
-          return GenericErrorPayload.fromJson(value);
         case 'GraphDriverData':
           return GraphDriverData.fromJson(value);
         case 'HealthNotReadyStatus':
@@ -241,6 +238,8 @@ class ApiClient {
           return InlineResponse2001.fromJson(value);
         case 'InlineResponse503':
           return InlineResponse503.fromJson(value);
+        case 'JsonError':
+          return JsonError.fromJson(value);
         case 'LoginFlow':
           return LoginFlow.fromJson(value);
         case 'LoginViaApiResponse':
@@ -287,6 +286,8 @@ class ApiClient {
           return RegistrationViaApiResponse.fromJson(value);
         case 'RevokeSession':
           return RevokeSession.fromJson(value);
+        case 'SelfServiceErrorContainer':
+          return SelfServiceErrorContainer.fromJson(value);
         case 'ServiceUpdateResponse':
           return ServiceUpdateResponse.fromJson(value);
         case 'Session':
@@ -337,8 +338,8 @@ class ApiClient {
           return UiText.fromJson(value);
         case 'UpdateIdentity':
           return UpdateIdentity.fromJson(value);
-        case 'VerifiableAddress':
-          return VerifiableAddress.fromJson(value);
+        case 'VerifiableIdentityAddress':
+          return VerifiableIdentityAddress.fromJson(value);
         case 'VerificationFlow':
           return VerificationFlow.fromJson(value);
         case 'Version':

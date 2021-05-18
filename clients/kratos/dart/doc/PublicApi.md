@@ -5,7 +5,7 @@
 import 'package:ory_kratos_client/api.dart';
 ```
 
-All URIs are relative to *https://demo.tenants.oryapis.com/api/kratos/public*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -17,16 +17,16 @@ Method | HTTP request | Description
 [**getSelfServiceSettingsFlow**](PublicApi.md#getselfservicesettingsflow) | **GET** /self-service/settings/flows | Get Settings Flow
 [**getSelfServiceVerificationFlow**](PublicApi.md#getselfserviceverificationflow) | **GET** /self-service/verification/flows | Get Verification Flow
 [**initializeSelfServiceBrowserLogoutFlow**](PublicApi.md#initializeselfservicebrowserlogoutflow) | **GET** /self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
-[**initializeSelfServiceLoginViaAPIFlow**](PublicApi.md#initializeselfserviceloginviaapiflow) | **GET** /self-service/login/api | Initialize Login Flow for API clients
-[**initializeSelfServiceLoginViaBrowserFlow**](PublicApi.md#initializeselfserviceloginviabrowserflow) | **GET** /self-service/login/browser | Initialize Login Flow for browsers
-[**initializeSelfServiceRecoveryViaAPIFlow**](PublicApi.md#initializeselfservicerecoveryviaapiflow) | **GET** /self-service/recovery/api | Initialize Recovery Flow for API Clients
-[**initializeSelfServiceRecoveryViaBrowserFlow**](PublicApi.md#initializeselfservicerecoveryviabrowserflow) | **GET** /self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
-[**initializeSelfServiceRegistrationViaAPIFlow**](PublicApi.md#initializeselfserviceregistrationviaapiflow) | **GET** /self-service/registration/api | Initialize Registration Flow for API clients
-[**initializeSelfServiceRegistrationViaBrowserFlow**](PublicApi.md#initializeselfserviceregistrationviabrowserflow) | **GET** /self-service/registration/browser | Initialize Registration Flow for browsers
-[**initializeSelfServiceSettingsViaAPIFlow**](PublicApi.md#initializeselfservicesettingsviaapiflow) | **GET** /self-service/settings/api | Initialize Settings Flow for API Clients
-[**initializeSelfServiceSettingsViaBrowserFlow**](PublicApi.md#initializeselfservicesettingsviabrowserflow) | **GET** /self-service/settings/browser | Initialize Settings Flow for Browsers
-[**initializeSelfServiceVerificationViaAPIFlow**](PublicApi.md#initializeselfserviceverificationviaapiflow) | **GET** /self-service/verification/api | Initialize Verification Flow for API Clients
-[**initializeSelfServiceVerificationViaBrowserFlow**](PublicApi.md#initializeselfserviceverificationviabrowserflow) | **GET** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
+[**initializeSelfServiceLoginForBrowsers**](PublicApi.md#initializeselfserviceloginforbrowsers) | **GET** /self-service/login/browser | Initialize Login Flow for browsers
+[**initializeSelfServiceLoginForNativeApps**](PublicApi.md#initializeselfserviceloginfornativeapps) | **GET** /self-service/login/api | Initialize Login Flow for Native Apps and API clients
+[**initializeSelfServiceRecoveryForBrowsers**](PublicApi.md#initializeselfservicerecoveryforbrowsers) | **GET** /self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
+[**initializeSelfServiceRecoveryForNativeApps**](PublicApi.md#initializeselfservicerecoveryfornativeapps) | **GET** /self-service/recovery/api | Initialize Recovery Flow for Native Apps and API clients
+[**initializeSelfServiceRegistrationForBrowsers**](PublicApi.md#initializeselfserviceregistrationforbrowsers) | **GET** /self-service/registration/browser | Initialize Registration Flow for browsers
+[**initializeSelfServiceRegistrationForNativeApps**](PublicApi.md#initializeselfserviceregistrationfornativeapps) | **GET** /self-service/registration/api | Initialize Registration Flow for Native Apps and API clients
+[**initializeSelfServiceSettingsForBrowsers**](PublicApi.md#initializeselfservicesettingsforbrowsers) | **GET** /self-service/settings/browser | Initialize Settings Flow for Browsers
+[**initializeSelfServiceSettingsForNativeApps**](PublicApi.md#initializeselfservicesettingsfornativeapps) | **GET** /self-service/settings/api | Initialize Settings Flow for Native Apps and API clients
+[**initializeSelfServiceVerificationForBrowsers**](PublicApi.md#initializeselfserviceverificationforbrowsers) | **GET** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
+[**initializeSelfServiceVerificationForNativeApps**](PublicApi.md#initializeselfserviceverificationfornativeapps) | **GET** /self-service/verification/api | Initialize Verification Flow for Native Apps and API clients
 [**revokeSession**](PublicApi.md#revokesession) | **DELETE** /sessions | Initialize Logout Flow for API Clients - Revoke a Session
 [**submitSelfServiceLoginFlow**](PublicApi.md#submitselfserviceloginflow) | **POST** /self-service/login | Submit a Login Flow
 [**submitSelfServiceRecoveryFlow**](PublicApi.md#submitselfservicerecoveryflow) | **POST** /self-service/recovery | Complete Recovery Flow
@@ -34,7 +34,7 @@ Method | HTTP request | Description
 [**submitSelfServiceRegistrationFlow**](PublicApi.md#submitselfserviceregistrationflow) | **POST** /self-service/registration | Submit a Registration Flow
 [**submitSelfServiceSettingsFlow**](PublicApi.md#submitselfservicesettingsflow) | **POST** /self-service/settings | Complete Settings Flow
 [**submitSelfServiceVerificationFlow**](PublicApi.md#submitselfserviceverificationflow) | **POST** /self-service/verification/methods/link | Complete Verification Flow
-[**whoami**](PublicApi.md#whoami) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
+[**toSession**](PublicApi.md#tosession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 
 
 # **getSchema**
@@ -81,7 +81,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getSelfServiceError**
-> ErrorContainer getSelfServiceError(error)
+> SelfServiceErrorContainer getSelfServiceError(error)
 
 Get User-Facing Self-Service Errors
 
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ErrorContainer**](ErrorContainer.md)
+[**SelfServiceErrorContainer**](SelfServiceErrorContainer.md)
 
 ### Authorization
 
@@ -253,7 +253,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getSelfServiceSettingsFlow**
-> SettingsFlow getSelfServiceSettingsFlow(id)
+> SettingsFlow getSelfServiceSettingsFlow(id, xSessionToken)
 
 Get Settings Flow
 
@@ -262,16 +262,19 @@ When accessing this endpoint through Ory Kratos' Public API you must ensure that
 ### Example 
 ```dart
 import 'package:ory_kratos_client/api.dart';
-// TODO Configure API key authorization: sessionToken
-//defaultApiClient.getAuthentication<ApiKeyAuth>('sessionToken').apiKey = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//defaultApiClient.getAuthentication<ApiKeyAuth>('sessionToken').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: sessionToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('sessionToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('sessionToken').setAccessToken(yourTokenGeneratorFunction);
 
 final api_instance = PublicApi();
 final id = id_example; // String | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+final xSessionToken = xSessionToken_example; // String | The Session Token of the Identity performing the settings flow.
 
 try { 
-    final result = api_instance.getSelfServiceSettingsFlow(id);
+    final result = api_instance.getSelfServiceSettingsFlow(id, xSessionToken);
     print(result);
 } catch (e) {
     print('Exception when calling PublicApi->getSelfServiceSettingsFlow: $e\n');
@@ -283,6 +286,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`). | 
+ **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional] 
 
 ### Return type
 
@@ -380,10 +384,52 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **initializeSelfServiceLoginViaAPIFlow**
-> LoginFlow initializeSelfServiceLoginViaAPIFlow(refresh)
+# **initializeSelfServiceLoginForBrowsers**
+> initializeSelfServiceLoginForBrowsers(refresh)
 
-Initialize Login Flow for API clients
+Initialize Login Flow for browsers
+
+This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+
+### Example 
+```dart
+import 'package:ory_kratos_client/api.dart';
+
+final api_instance = PublicApi();
+final refresh = true; // bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
+
+try { 
+    api_instance.initializeSelfServiceLoginForBrowsers(refresh);
+} catch (e) {
+    print('Exception when calling PublicApi->initializeSelfServiceLoginForBrowsers: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **refresh** | **bool**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **initializeSelfServiceLoginForNativeApps**
+> LoginFlow initializeSelfServiceLoginForNativeApps(refresh)
+
+Initialize Login Flow for Native Apps and API clients
 
 This endpoint initiates a login flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
@@ -395,10 +441,10 @@ final api_instance = PublicApi();
 final refresh = true; // bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
 
 try { 
-    final result = api_instance.initializeSelfServiceLoginViaAPIFlow(refresh);
+    final result = api_instance.initializeSelfServiceLoginForNativeApps(refresh);
     print(result);
 } catch (e) {
-    print('Exception when calling PublicApi->initializeSelfServiceLoginViaAPIFlow: $e\n');
+    print('Exception when calling PublicApi->initializeSelfServiceLoginForNativeApps: $e\n');
 }
 ```
 
@@ -423,12 +469,12 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **initializeSelfServiceLoginViaBrowserFlow**
-> initializeSelfServiceLoginViaBrowserFlow()
+# **initializeSelfServiceRecoveryForBrowsers**
+> initializeSelfServiceRecoveryForBrowsers()
 
-Initialize Login Flow for browsers
+Initialize Recovery Flow for Browser Clients
 
-This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to `selfservice.flows.recovery.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists, the browser is returned to the configured return URL.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
 ### Example 
 ```dart
@@ -437,9 +483,9 @@ import 'package:ory_kratos_client/api.dart';
 final api_instance = PublicApi();
 
 try { 
-    api_instance.initializeSelfServiceLoginViaBrowserFlow();
+    api_instance.initializeSelfServiceRecoveryForBrowsers();
 } catch (e) {
-    print('Exception when calling PublicApi->initializeSelfServiceLoginViaBrowserFlow: $e\n');
+    print('Exception when calling PublicApi->initializeSelfServiceRecoveryForBrowsers: $e\n');
 }
 ```
 
@@ -461,10 +507,10 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **initializeSelfServiceRecoveryViaAPIFlow**
-> RecoveryFlow initializeSelfServiceRecoveryViaAPIFlow()
+# **initializeSelfServiceRecoveryForNativeApps**
+> RecoveryFlow initializeSelfServiceRecoveryForNativeApps()
 
-Initialize Recovery Flow for API Clients
+Initialize Recovery Flow for Native Apps and API clients
 
 This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
@@ -475,10 +521,10 @@ import 'package:ory_kratos_client/api.dart';
 final api_instance = PublicApi();
 
 try { 
-    final result = api_instance.initializeSelfServiceRecoveryViaAPIFlow();
+    final result = api_instance.initializeSelfServiceRecoveryForNativeApps();
     print(result);
 } catch (e) {
-    print('Exception when calling PublicApi->initializeSelfServiceRecoveryViaAPIFlow: $e\n');
+    print('Exception when calling PublicApi->initializeSelfServiceRecoveryForNativeApps: $e\n');
 }
 ```
 
@@ -500,12 +546,12 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **initializeSelfServiceRecoveryViaBrowserFlow**
-> initializeSelfServiceRecoveryViaBrowserFlow()
+# **initializeSelfServiceRegistrationForBrowsers**
+> initializeSelfServiceRegistrationForBrowsers()
 
-Initialize Recovery Flow for Browser Clients
+Initialize Registration Flow for browsers
 
-This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to `selfservice.flows.recovery.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists, the browser is returned to the configured return URL.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+This endpoint initializes a browser-based user registration flow. Once initialized, the browser will be redirected to `selfservice.flows.registration.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  :::note  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example 
 ```dart
@@ -514,9 +560,9 @@ import 'package:ory_kratos_client/api.dart';
 final api_instance = PublicApi();
 
 try { 
-    api_instance.initializeSelfServiceRecoveryViaBrowserFlow();
+    api_instance.initializeSelfServiceRegistrationForBrowsers();
 } catch (e) {
-    print('Exception when calling PublicApi->initializeSelfServiceRecoveryViaBrowserFlow: $e\n');
+    print('Exception when calling PublicApi->initializeSelfServiceRegistrationForBrowsers: $e\n');
 }
 ```
 
@@ -538,10 +584,10 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **initializeSelfServiceRegistrationViaAPIFlow**
-> RegistrationFlow initializeSelfServiceRegistrationViaAPIFlow()
+# **initializeSelfServiceRegistrationForNativeApps**
+> RegistrationFlow initializeSelfServiceRegistrationForNativeApps()
 
-Initialize Registration Flow for API clients
+Initialize Registration Flow for Native Apps and API clients
 
 This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing registration flow call `/self-service/registration/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
@@ -552,10 +598,10 @@ import 'package:ory_kratos_client/api.dart';
 final api_instance = PublicApi();
 
 try { 
-    final result = api_instance.initializeSelfServiceRegistrationViaAPIFlow();
+    final result = api_instance.initializeSelfServiceRegistrationForNativeApps();
     print(result);
 } catch (e) {
-    print('Exception when calling PublicApi->initializeSelfServiceRegistrationViaAPIFlow: $e\n');
+    print('Exception when calling PublicApi->initializeSelfServiceRegistrationForNativeApps: $e\n');
 }
 ```
 
@@ -577,23 +623,29 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **initializeSelfServiceRegistrationViaBrowserFlow**
-> initializeSelfServiceRegistrationViaBrowserFlow()
+# **initializeSelfServiceSettingsForBrowsers**
+> initializeSelfServiceSettingsForBrowsers()
 
-Initialize Registration Flow for browsers
+Initialize Settings Flow for Browsers
 
-This endpoint initializes a browser-based user registration flow. Once initialized, the browser will be redirected to `selfservice.flows.registration.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  :::note  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initializes a browser-based user settings flow. Once initialized, the browser will be redirected to `selfservice.flows.settings.ui_url` with the flow ID set as the query parameter `?flow=`. If no valid Ory Kratos Session Cookie is included in the request, a login flow will be initialized.  :::note  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
 
 ### Example 
 ```dart
 import 'package:ory_kratos_client/api.dart';
+// TODO Configure HTTP Bearer authorization: sessionToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('sessionToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('sessionToken').setAccessToken(yourTokenGeneratorFunction);
 
 final api_instance = PublicApi();
 
 try { 
-    api_instance.initializeSelfServiceRegistrationViaBrowserFlow();
+    api_instance.initializeSelfServiceSettingsForBrowsers();
 } catch (e) {
-    print('Exception when calling PublicApi->initializeSelfServiceRegistrationViaBrowserFlow: $e\n');
+    print('Exception when calling PublicApi->initializeSelfServiceSettingsForBrowsers: $e\n');
 }
 ```
 
@@ -606,7 +658,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[sessionToken](../README.md#sessionToken)
 
 ### HTTP request headers
 
@@ -615,33 +667,39 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **initializeSelfServiceSettingsViaAPIFlow**
-> SettingsFlow initializeSelfServiceSettingsViaAPIFlow()
+# **initializeSelfServiceSettingsForNativeApps**
+> SettingsFlow initializeSelfServiceSettingsForNativeApps(xSessionToken)
 
-Initialize Settings Flow for API Clients
+Initialize Settings Flow for Native Apps and API clients
 
 This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid Ory Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call `/self-service/settings/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
 
 ### Example 
 ```dart
 import 'package:ory_kratos_client/api.dart';
-// TODO Configure API key authorization: sessionToken
-//defaultApiClient.getAuthentication<ApiKeyAuth>('sessionToken').apiKey = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//defaultApiClient.getAuthentication<ApiKeyAuth>('sessionToken').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: sessionToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('sessionToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('sessionToken').setAccessToken(yourTokenGeneratorFunction);
 
 final api_instance = PublicApi();
+final xSessionToken = xSessionToken_example; // String | The Session Token of the Identity performing the settings flow.
 
 try { 
-    final result = api_instance.initializeSelfServiceSettingsViaAPIFlow();
+    final result = api_instance.initializeSelfServiceSettingsForNativeApps(xSessionToken);
     print(result);
 } catch (e) {
-    print('Exception when calling PublicApi->initializeSelfServiceSettingsViaAPIFlow: $e\n');
+    print('Exception when calling PublicApi->initializeSelfServiceSettingsForNativeApps: $e\n');
 }
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional] 
 
 ### Return type
 
@@ -658,89 +716,8 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **initializeSelfServiceSettingsViaBrowserFlow**
-> initializeSelfServiceSettingsViaBrowserFlow()
-
-Initialize Settings Flow for Browsers
-
-This endpoint initializes a browser-based user settings flow. Once initialized, the browser will be redirected to `selfservice.flows.settings.ui_url` with the flow ID set as the query parameter `?flow=`. If no valid Ory Kratos Session Cookie is included in the request, a login flow will be initialized.  :::note  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
-
-### Example 
-```dart
-import 'package:ory_kratos_client/api.dart';
-// TODO Configure API key authorization: sessionToken
-//defaultApiClient.getAuthentication<ApiKeyAuth>('sessionToken').apiKey = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//defaultApiClient.getAuthentication<ApiKeyAuth>('sessionToken').apiKeyPrefix = 'Bearer';
-
-final api_instance = PublicApi();
-
-try { 
-    api_instance.initializeSelfServiceSettingsViaBrowserFlow();
-} catch (e) {
-    print('Exception when calling PublicApi->initializeSelfServiceSettingsViaBrowserFlow: $e\n');
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[sessionToken](../README.md#sessionToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **initializeSelfServiceVerificationViaAPIFlow**
-> VerificationFlow initializeSelfServiceVerificationViaAPIFlow()
-
-Initialize Verification Flow for API Clients
-
-This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
-
-### Example 
-```dart
-import 'package:ory_kratos_client/api.dart';
-
-final api_instance = PublicApi();
-
-try { 
-    final result = api_instance.initializeSelfServiceVerificationViaAPIFlow();
-    print(result);
-} catch (e) {
-    print('Exception when calling PublicApi->initializeSelfServiceVerificationViaAPIFlow: $e\n');
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**VerificationFlow**](VerificationFlow.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **initializeSelfServiceVerificationViaBrowserFlow**
-> initializeSelfServiceVerificationViaBrowserFlow()
+# **initializeSelfServiceVerificationForBrowsers**
+> initializeSelfServiceVerificationForBrowsers()
 
 Initialize Verification Flow for Browser Clients
 
@@ -753,9 +730,9 @@ import 'package:ory_kratos_client/api.dart';
 final api_instance = PublicApi();
 
 try { 
-    api_instance.initializeSelfServiceVerificationViaBrowserFlow();
+    api_instance.initializeSelfServiceVerificationForBrowsers();
 } catch (e) {
-    print('Exception when calling PublicApi->initializeSelfServiceVerificationViaBrowserFlow: $e\n');
+    print('Exception when calling PublicApi->initializeSelfServiceVerificationForBrowsers: $e\n');
 }
 ```
 
@@ -765,6 +742,45 @@ This endpoint does not need any parameter.
 ### Return type
 
 void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **initializeSelfServiceVerificationForNativeApps**
+> VerificationFlow initializeSelfServiceVerificationForNativeApps()
+
+Initialize Verification Flow for Native Apps and API clients
+
+This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+
+### Example 
+```dart
+import 'package:ory_kratos_client/api.dart';
+
+final api_instance = PublicApi();
+
+try { 
+    final result = api_instance.initializeSelfServiceVerificationForNativeApps();
+    print(result);
+} catch (e) {
+    print('Exception when calling PublicApi->initializeSelfServiceVerificationForNativeApps: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**VerificationFlow**](VerificationFlow.md)
 
 ### Authorization
 
@@ -1000,7 +1016,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **submitSelfServiceSettingsFlow**
-> SettingsViaApiResponse submitSelfServiceSettingsFlow(flow, submitSelfServiceSettingsFlow)
+> SettingsViaApiResponse submitSelfServiceSettingsFlow(flow, xSessionToken, submitSelfServiceSettingsFlow)
 
 Complete Settings Flow
 
@@ -1009,17 +1025,20 @@ Use this endpoint to complete a settings flow by sending an identity's updated p
 ### Example 
 ```dart
 import 'package:ory_kratos_client/api.dart';
-// TODO Configure API key authorization: sessionToken
-//defaultApiClient.getAuthentication<ApiKeyAuth>('sessionToken').apiKey = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//defaultApiClient.getAuthentication<ApiKeyAuth>('sessionToken').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: sessionToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('sessionToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('sessionToken').setAccessToken(yourTokenGeneratorFunction);
 
 final api_instance = PublicApi();
 final flow = flow_example; // String | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+final xSessionToken = xSessionToken_example; // String | The Session Token of the Identity performing the settings flow.
 final submitSelfServiceSettingsFlow = SubmitSelfServiceSettingsFlow(); // SubmitSelfServiceSettingsFlow | 
 
 try { 
-    final result = api_instance.submitSelfServiceSettingsFlow(flow, submitSelfServiceSettingsFlow);
+    final result = api_instance.submitSelfServiceSettingsFlow(flow, xSessionToken, submitSelfServiceSettingsFlow);
     print(result);
 } catch (e) {
     print('Exception when calling PublicApi->submitSelfServiceSettingsFlow: $e\n');
@@ -1031,6 +1050,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **String**| The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`). | 
+ **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional] 
  **submitSelfServiceSettingsFlow** | [**SubmitSelfServiceSettingsFlow**](SubmitSelfServiceSettingsFlow.md)|  | [optional] 
 
 ### Return type
@@ -1092,30 +1112,29 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **whoami**
-> Session whoami(cookie, authorization)
+# **toSession**
+> Session toSession(xSessionToken)
 
 Check Who the Current HTTP Session Belongs To
 
-Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. Additionally when the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header in the response.  This endpoint is useful for reverse proxies and API Gateways.
+Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. Additionally when the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header in the response.  This endpoint is useful for:  AJAX calls. Remember to send credentials and set up CORS correctly! Reverse proxies and API Gateways Server-side calls - use the `X-Session-Token` header!
 
 ### Example 
 ```dart
 import 'package:ory_kratos_client/api.dart';
-// TODO Configure API key authorization: sessionToken
-//defaultApiClient.getAuthentication<ApiKeyAuth>('sessionToken').apiKey = 'YOUR_API_KEY';
+// TODO Configure API key authorization: sessionCookie
+//defaultApiClient.getAuthentication<ApiKeyAuth>('sessionCookie').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//defaultApiClient.getAuthentication<ApiKeyAuth>('sessionToken').apiKeyPrefix = 'Bearer';
+//defaultApiClient.getAuthentication<ApiKeyAuth>('sessionCookie').apiKeyPrefix = 'Bearer';
 
 final api_instance = PublicApi();
-final cookie = cookie_example; // String | 
-final authorization = authorization_example; // String | 
+final xSessionToken = xSessionToken_example; // String | 
 
 try { 
-    final result = api_instance.whoami(cookie, authorization);
+    final result = api_instance.toSession(xSessionToken);
     print(result);
 } catch (e) {
-    print('Exception when calling PublicApi->whoami: $e\n');
+    print('Exception when calling PublicApi->toSession: $e\n');
 }
 ```
 
@@ -1123,8 +1142,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cookie** | **String**|  | [optional] 
- **authorization** | **String**|  | [optional] 
+ **xSessionToken** | **String**|  | [optional] 
 
 ### Return type
 
@@ -1132,7 +1150,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[sessionToken](../README.md#sessionToken)
+[sessionCookie](../README.md#sessionCookie)
 
 ### HTTP request headers
 

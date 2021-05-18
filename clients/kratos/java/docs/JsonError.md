@@ -1,14 +1,14 @@
 
 
-# ErrorContainer
+# JsonError
 
+The standard Ory JSON API error format.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**errors** | **List&lt;Object&gt;** | Errors in the container | 
-**id** | **UUID** |  | 
+**error** | [**GenericError**](GenericError.md) |  | 
 
 
 

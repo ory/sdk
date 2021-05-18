@@ -1,8 +1,8 @@
 # kratos-client
 
 Ory Kratos API
-- API version: v0.6.2-alpha.1
-  - Build date: 2021-05-14T16:52:43.576209975Z[Etc/UTC]
+- API version: v0.6.3-alpha.1
+  - Build date: 2021-05-18T08:08:30.275157701Z[Etc/UTC]
 
 Documentation for all public and administrative Ory Kratos APIs. Public and administrative APIs
 are exposed on different ports. Public APIs can face the public internet without any protection
@@ -45,7 +45,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.kratos</groupId>
   <artifactId>kratos-client</artifactId>
-  <version>v0.6.2-alpha.1</version>
+  <version>v0.6.3-alpha.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -55,7 +55,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "sh.ory.kratos:kratos-client:v0.6.2-alpha.1"
+compile "sh.ory.kratos:kratos-client:v0.6.3-alpha.1"
 ```
 
 ### Others
@@ -68,7 +68,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/kratos-client-v0.6.2-alpha.1.jar`
+* `target/kratos-client-v0.6.3-alpha.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -87,7 +87,7 @@ import sh.ory.kratos.api.AdminApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     CreateIdentity createIdentity = new CreateIdentity(); // CreateIdentity | 
@@ -108,7 +108,7 @@ public class Example {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://demo.tenants.oryapis.com/api/kratos/public*
+All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -137,16 +137,16 @@ Class | Method | HTTP request | Description
 *PublicApi* | [**getSelfServiceSettingsFlow**](docs/PublicApi.md#getSelfServiceSettingsFlow) | **GET** /self-service/settings/flows | Get Settings Flow
 *PublicApi* | [**getSelfServiceVerificationFlow**](docs/PublicApi.md#getSelfServiceVerificationFlow) | **GET** /self-service/verification/flows | Get Verification Flow
 *PublicApi* | [**initializeSelfServiceBrowserLogoutFlow**](docs/PublicApi.md#initializeSelfServiceBrowserLogoutFlow) | **GET** /self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
-*PublicApi* | [**initializeSelfServiceLoginViaAPIFlow**](docs/PublicApi.md#initializeSelfServiceLoginViaAPIFlow) | **GET** /self-service/login/api | Initialize Login Flow for API clients
-*PublicApi* | [**initializeSelfServiceLoginViaBrowserFlow**](docs/PublicApi.md#initializeSelfServiceLoginViaBrowserFlow) | **GET** /self-service/login/browser | Initialize Login Flow for browsers
-*PublicApi* | [**initializeSelfServiceRecoveryViaAPIFlow**](docs/PublicApi.md#initializeSelfServiceRecoveryViaAPIFlow) | **GET** /self-service/recovery/api | Initialize Recovery Flow for API Clients
-*PublicApi* | [**initializeSelfServiceRecoveryViaBrowserFlow**](docs/PublicApi.md#initializeSelfServiceRecoveryViaBrowserFlow) | **GET** /self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
-*PublicApi* | [**initializeSelfServiceRegistrationViaAPIFlow**](docs/PublicApi.md#initializeSelfServiceRegistrationViaAPIFlow) | **GET** /self-service/registration/api | Initialize Registration Flow for API clients
-*PublicApi* | [**initializeSelfServiceRegistrationViaBrowserFlow**](docs/PublicApi.md#initializeSelfServiceRegistrationViaBrowserFlow) | **GET** /self-service/registration/browser | Initialize Registration Flow for browsers
-*PublicApi* | [**initializeSelfServiceSettingsViaAPIFlow**](docs/PublicApi.md#initializeSelfServiceSettingsViaAPIFlow) | **GET** /self-service/settings/api | Initialize Settings Flow for API Clients
-*PublicApi* | [**initializeSelfServiceSettingsViaBrowserFlow**](docs/PublicApi.md#initializeSelfServiceSettingsViaBrowserFlow) | **GET** /self-service/settings/browser | Initialize Settings Flow for Browsers
-*PublicApi* | [**initializeSelfServiceVerificationViaAPIFlow**](docs/PublicApi.md#initializeSelfServiceVerificationViaAPIFlow) | **GET** /self-service/verification/api | Initialize Verification Flow for API Clients
-*PublicApi* | [**initializeSelfServiceVerificationViaBrowserFlow**](docs/PublicApi.md#initializeSelfServiceVerificationViaBrowserFlow) | **GET** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
+*PublicApi* | [**initializeSelfServiceLoginForBrowsers**](docs/PublicApi.md#initializeSelfServiceLoginForBrowsers) | **GET** /self-service/login/browser | Initialize Login Flow for browsers
+*PublicApi* | [**initializeSelfServiceLoginForNativeApps**](docs/PublicApi.md#initializeSelfServiceLoginForNativeApps) | **GET** /self-service/login/api | Initialize Login Flow for Native Apps and API clients
+*PublicApi* | [**initializeSelfServiceRecoveryForBrowsers**](docs/PublicApi.md#initializeSelfServiceRecoveryForBrowsers) | **GET** /self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
+*PublicApi* | [**initializeSelfServiceRecoveryForNativeApps**](docs/PublicApi.md#initializeSelfServiceRecoveryForNativeApps) | **GET** /self-service/recovery/api | Initialize Recovery Flow for Native Apps and API clients
+*PublicApi* | [**initializeSelfServiceRegistrationForBrowsers**](docs/PublicApi.md#initializeSelfServiceRegistrationForBrowsers) | **GET** /self-service/registration/browser | Initialize Registration Flow for browsers
+*PublicApi* | [**initializeSelfServiceRegistrationForNativeApps**](docs/PublicApi.md#initializeSelfServiceRegistrationForNativeApps) | **GET** /self-service/registration/api | Initialize Registration Flow for Native Apps and API clients
+*PublicApi* | [**initializeSelfServiceSettingsForBrowsers**](docs/PublicApi.md#initializeSelfServiceSettingsForBrowsers) | **GET** /self-service/settings/browser | Initialize Settings Flow for Browsers
+*PublicApi* | [**initializeSelfServiceSettingsForNativeApps**](docs/PublicApi.md#initializeSelfServiceSettingsForNativeApps) | **GET** /self-service/settings/api | Initialize Settings Flow for Native Apps and API clients
+*PublicApi* | [**initializeSelfServiceVerificationForBrowsers**](docs/PublicApi.md#initializeSelfServiceVerificationForBrowsers) | **GET** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
+*PublicApi* | [**initializeSelfServiceVerificationForNativeApps**](docs/PublicApi.md#initializeSelfServiceVerificationForNativeApps) | **GET** /self-service/verification/api | Initialize Verification Flow for Native Apps and API clients
 *PublicApi* | [**revokeSession**](docs/PublicApi.md#revokeSession) | **DELETE** /sessions | Initialize Logout Flow for API Clients - Revoke a Session
 *PublicApi* | [**submitSelfServiceLoginFlow**](docs/PublicApi.md#submitSelfServiceLoginFlow) | **POST** /self-service/login | Submit a Login Flow
 *PublicApi* | [**submitSelfServiceRecoveryFlow**](docs/PublicApi.md#submitSelfServiceRecoveryFlow) | **POST** /self-service/recovery | Complete Recovery Flow
@@ -154,7 +154,7 @@ Class | Method | HTTP request | Description
 *PublicApi* | [**submitSelfServiceRegistrationFlow**](docs/PublicApi.md#submitSelfServiceRegistrationFlow) | **POST** /self-service/registration | Submit a Registration Flow
 *PublicApi* | [**submitSelfServiceSettingsFlow**](docs/PublicApi.md#submitSelfServiceSettingsFlow) | **POST** /self-service/settings | Complete Settings Flow
 *PublicApi* | [**submitSelfServiceVerificationFlow**](docs/PublicApi.md#submitSelfServiceVerificationFlow) | **POST** /self-service/verification/methods/link | Complete Verification Flow
-*PublicApi* | [**whoami**](docs/PublicApi.md#whoami) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
+*PublicApi* | [**toSession**](docs/PublicApi.md#toSession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 
 
 ## Documentation for Models
@@ -168,10 +168,8 @@ Class | Method | HTTP request | Description
  - [ContainerWaitOKBodyError](docs/ContainerWaitOKBodyError.md)
  - [CreateIdentity](docs/CreateIdentity.md)
  - [CreateRecoveryLink](docs/CreateRecoveryLink.md)
- - [ErrorContainer](docs/ErrorContainer.md)
  - [ErrorResponse](docs/ErrorResponse.md)
  - [GenericError](docs/GenericError.md)
- - [GenericErrorPayload](docs/GenericErrorPayload.md)
  - [GraphDriverData](docs/GraphDriverData.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
  - [HealthStatus](docs/HealthStatus.md)
@@ -183,6 +181,7 @@ Class | Method | HTTP request | Description
  - [InlineResponse200](docs/InlineResponse200.md)
  - [InlineResponse2001](docs/InlineResponse2001.md)
  - [InlineResponse503](docs/InlineResponse503.md)
+ - [JsonError](docs/JsonError.md)
  - [LoginFlow](docs/LoginFlow.md)
  - [LoginViaApiResponse](docs/LoginViaApiResponse.md)
  - [Meta](docs/Meta.md)
@@ -206,6 +205,7 @@ Class | Method | HTTP request | Description
  - [RegistrationFlow](docs/RegistrationFlow.md)
  - [RegistrationViaApiResponse](docs/RegistrationViaApiResponse.md)
  - [RevokeSession](docs/RevokeSession.md)
+ - [SelfServiceErrorContainer](docs/SelfServiceErrorContainer.md)
  - [ServiceUpdateResponse](docs/ServiceUpdateResponse.md)
  - [Session](docs/Session.md)
  - [SettingsFlow](docs/SettingsFlow.md)
@@ -231,7 +231,7 @@ Class | Method | HTTP request | Description
  - [UiNodeTextAttributes](docs/UiNodeTextAttributes.md)
  - [UiText](docs/UiText.md)
  - [UpdateIdentity](docs/UpdateIdentity.md)
- - [VerifiableAddress](docs/VerifiableAddress.md)
+ - [VerifiableIdentityAddress](docs/VerifiableIdentityAddress.md)
  - [VerificationFlow](docs/VerificationFlow.md)
  - [Version](docs/Version.md)
  - [Volume](docs/Volume.md)
@@ -241,6 +241,10 @@ Class | Method | HTTP request | Description
 ## Documentation for Authorization
 
 Authentication schemes defined for the API:
+### oryToken
+
+- **Type**: HTTP basic authentication
+
 ### sessionCookie
 
 - **Type**: API key
@@ -249,9 +253,7 @@ Authentication schemes defined for the API:
 
 ### sessionToken
 
-- **Type**: API key
-- **API key parameter name**: X-Session-Token
-- **Location**: HTTP header
+- **Type**: HTTP basic authentication
 
 
 ## Recommendation

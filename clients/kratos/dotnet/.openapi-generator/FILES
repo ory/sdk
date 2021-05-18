@@ -12,10 +12,8 @@ docs/KratosContainerWaitOKBody.md
 docs/KratosContainerWaitOKBodyError.md
 docs/KratosCreateIdentity.md
 docs/KratosCreateRecoveryLink.md
-docs/KratosErrorContainer.md
 docs/KratosErrorResponse.md
 docs/KratosGenericError.md
-docs/KratosGenericErrorPayload.md
 docs/KratosGraphDriverData.md
 docs/KratosHealthNotReadyStatus.md
 docs/KratosHealthStatus.md
@@ -27,6 +25,7 @@ docs/KratosImageSummary.md
 docs/KratosInlineResponse200.md
 docs/KratosInlineResponse2001.md
 docs/KratosInlineResponse503.md
+docs/KratosJsonError.md
 docs/KratosLoginFlow.md
 docs/KratosLoginViaApiResponse.md
 docs/KratosMeta.md
@@ -50,6 +49,7 @@ docs/KratosRecoveryLink.md
 docs/KratosRegistrationFlow.md
 docs/KratosRegistrationViaApiResponse.md
 docs/KratosRevokeSession.md
+docs/KratosSelfServiceErrorContainer.md
 docs/KratosServiceUpdateResponse.md
 docs/KratosSession.md
 docs/KratosSettingsFlow.md
@@ -75,13 +75,16 @@ docs/KratosUiNodeInputAttributesValue.md
 docs/KratosUiNodeTextAttributes.md
 docs/KratosUiText.md
 docs/KratosUpdateIdentity.md
-docs/KratosVerifiableAddress.md
+docs/KratosVerifiableIdentityAddress.md
 docs/KratosVerificationFlow.md
 docs/KratosVersion.md
 docs/KratosVolume.md
 docs/KratosVolumeUsageData.md
 docs/PublicApi.md
 git_push.sh
+src/Ory.Kratos.Client.Test/Model/KratosJsonErrorTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosSelfServiceErrorContainerTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosVerifiableIdentityAddressTests.cs
 src/Ory.Kratos.Client.Test/Ory.Kratos.Client.Test.csproj
 src/Ory.Kratos.Client/Api/AdminApi.cs
 src/Ory.Kratos.Client/Api/PublicApi.cs
@@ -111,10 +114,8 @@ src/Ory.Kratos.Client/Model/KratosContainerWaitOKBody.cs
 src/Ory.Kratos.Client/Model/KratosContainerWaitOKBodyError.cs
 src/Ory.Kratos.Client/Model/KratosCreateIdentity.cs
 src/Ory.Kratos.Client/Model/KratosCreateRecoveryLink.cs
-src/Ory.Kratos.Client/Model/KratosErrorContainer.cs
 src/Ory.Kratos.Client/Model/KratosErrorResponse.cs
 src/Ory.Kratos.Client/Model/KratosGenericError.cs
-src/Ory.Kratos.Client/Model/KratosGenericErrorPayload.cs
 src/Ory.Kratos.Client/Model/KratosGraphDriverData.cs
 src/Ory.Kratos.Client/Model/KratosHealthNotReadyStatus.cs
 src/Ory.Kratos.Client/Model/KratosHealthStatus.cs
@@ -126,6 +127,7 @@ src/Ory.Kratos.Client/Model/KratosImageSummary.cs
 src/Ory.Kratos.Client/Model/KratosInlineResponse200.cs
 src/Ory.Kratos.Client/Model/KratosInlineResponse2001.cs
 src/Ory.Kratos.Client/Model/KratosInlineResponse503.cs
+src/Ory.Kratos.Client/Model/KratosJsonError.cs
 src/Ory.Kratos.Client/Model/KratosLoginFlow.cs
 src/Ory.Kratos.Client/Model/KratosLoginViaApiResponse.cs
 src/Ory.Kratos.Client/Model/KratosMeta.cs
@@ -149,6 +151,7 @@ src/Ory.Kratos.Client/Model/KratosRecoveryLink.cs
 src/Ory.Kratos.Client/Model/KratosRegistrationFlow.cs
 src/Ory.Kratos.Client/Model/KratosRegistrationViaApiResponse.cs
 src/Ory.Kratos.Client/Model/KratosRevokeSession.cs
+src/Ory.Kratos.Client/Model/KratosSelfServiceErrorContainer.cs
 src/Ory.Kratos.Client/Model/KratosServiceUpdateResponse.cs
 src/Ory.Kratos.Client/Model/KratosSession.cs
 src/Ory.Kratos.Client/Model/KratosSettingsFlow.cs
@@ -174,7 +177,7 @@ src/Ory.Kratos.Client/Model/KratosUiNodeInputAttributesValue.cs
 src/Ory.Kratos.Client/Model/KratosUiNodeTextAttributes.cs
 src/Ory.Kratos.Client/Model/KratosUiText.cs
 src/Ory.Kratos.Client/Model/KratosUpdateIdentity.cs
-src/Ory.Kratos.Client/Model/KratosVerifiableAddress.cs
+src/Ory.Kratos.Client/Model/KratosVerifiableIdentityAddress.cs
 src/Ory.Kratos.Client/Model/KratosVerificationFlow.cs
 src/Ory.Kratos.Client/Model/KratosVersion.cs
 src/Ory.Kratos.Client/Model/KratosVolume.cs

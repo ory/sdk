@@ -1,6 +1,6 @@
 # Ory.Kratos.Client.Api.AdminApi
 
-All URIs are relative to *https://demo.tenants.oryapis.com/api/kratos/public*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -46,7 +46,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var kratosCreateIdentity = new KratosCreateIdentity(); // KratosCreateIdentity |  (optional) 
 
@@ -91,9 +91,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | A single identity. |  -  |
-| **400** | genericError |  -  |
-| **409** | genericError |  -  |
-| **500** | genericError |  -  |
+| **400** | jsonError |  -  |
+| **409** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -120,7 +120,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var kratosCreateRecoveryLink = new KratosCreateRecoveryLink(); // KratosCreateRecoveryLink |  (optional) 
 
@@ -165,9 +165,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | recoveryLink |  -  |
-| **400** | genericError |  -  |
-| **404** | genericError |  -  |
-| **500** | genericError |  -  |
+| **400** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -194,7 +194,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var id = id_example;  // string | ID is the identity's ID.
 
@@ -238,8 +238,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **404** | genericError |  -  |
-| **500** | genericError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -266,7 +266,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var id = id_example;  // string | ID must be set to the ID of identity you want to get
 
@@ -311,9 +311,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A single identity. |  -  |
-| **400** | genericError |  -  |
-| **404** | genericError |  -  |
-| **500** | genericError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -340,7 +339,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var id = id_example;  // string | ID must be set to the ID of schema you want to get
 
@@ -384,14 +383,14 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | jsonSchema |  -  |
-| **404** | genericError |  -  |
-| **500** | genericError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="getselfserviceerror"></a>
 # **GetSelfServiceError**
-> KratosErrorContainer GetSelfServiceError (string error)
+> KratosSelfServiceErrorContainer GetSelfServiceError (string error)
 
 Get User-Facing Self-Service Errors
 
@@ -412,14 +411,14 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var error = error_example;  // string | Error is the container's ID
 
             try
             {
                 // Get User-Facing Self-Service Errors
-                KratosErrorContainer result = apiInstance.GetSelfServiceError(error);
+                KratosSelfServiceErrorContainer result = apiInstance.GetSelfServiceError(error);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -441,7 +440,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**KratosErrorContainer**](KratosErrorContainer.md)
+[**KratosSelfServiceErrorContainer**](KratosSelfServiceErrorContainer.md)
 
 ### Authorization
 
@@ -457,9 +456,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | User-facing error response |  -  |
-| **403** | genericError |  -  |
-| **404** | genericError |  -  |
-| **500** | genericError |  -  |
+| **403** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -486,7 +485,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var id = id_example;  // string | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
 
@@ -531,10 +530,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | loginFlow |  -  |
-| **403** | genericError |  -  |
-| **404** | genericError |  -  |
-| **410** | genericError |  -  |
-| **500** | genericError |  -  |
+| **403** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **410** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -561,7 +560,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var id = id_example;  // string | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
 
@@ -606,9 +605,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | recoveryFlow |  -  |
-| **404** | genericError |  -  |
-| **410** | genericError |  -  |
-| **500** | genericError |  -  |
+| **404** | jsonError |  -  |
+| **410** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -635,7 +634,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var id = id_example;  // string | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
 
@@ -680,16 +679,16 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | registrationFlow |  -  |
-| **403** | genericError |  -  |
-| **404** | genericError |  -  |
-| **410** | genericError |  -  |
-| **500** | genericError |  -  |
+| **403** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **410** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="getselfservicesettingsflow"></a>
 # **GetSelfServiceSettingsFlow**
-> KratosSettingsFlow GetSelfServiceSettingsFlow (string id)
+> KratosSettingsFlow GetSelfServiceSettingsFlow (string id, string xSessionToken = null)
 
 Get Settings Flow
 
@@ -710,19 +709,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
-            // Configure API key authorization: sessionToken
-            config.AddApiKey("X-Session-Token", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("X-Session-Token", "Bearer");
+            config.BasePath = "http://localhost";
+            // Configure Bearer token for authorization: sessionToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AdminApi(config);
             var id = id_example;  // string | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+            var xSessionToken = xSessionToken_example;  // string | The Session Token of the Identity performing the settings flow. (optional) 
 
             try
             {
                 // Get Settings Flow
-                KratosSettingsFlow result = apiInstance.GetSelfServiceSettingsFlow(id);
+                KratosSettingsFlow result = apiInstance.GetSelfServiceSettingsFlow(id, xSessionToken);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -741,6 +739,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). | 
+ **xSessionToken** | **string**| The Session Token of the Identity performing the settings flow. | [optional] 
 
 ### Return type
 
@@ -760,10 +759,10 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | settingsFlow |  -  |
-| **403** | genericError |  -  |
-| **404** | genericError |  -  |
-| **410** | genericError |  -  |
-| **500** | genericError |  -  |
+| **403** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **410** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -790,7 +789,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var id = id_example;  // string | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
 
@@ -835,9 +834,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | verificationFlow |  -  |
-| **403** | genericError |  -  |
-| **404** | genericError |  -  |
-| **500** | genericError |  -  |
+| **403** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -864,7 +863,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
 
             try
@@ -931,7 +930,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
 
             try
@@ -999,7 +998,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
 
             try
@@ -1067,7 +1066,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var perPage = 789;  // long? | Items per Page  This is the number of items per page. (optional)  (default to 100)
             var page = 789;  // long? | Pagination Page (optional)  (default to 0)
@@ -1114,7 +1113,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of identities. |  -  |
-| **500** | genericError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1141,7 +1140,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
 
             try
@@ -1207,7 +1206,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.tenants.oryapis.com/api/kratos/public";
+            config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var id = id_example;  // string | ID must be set to the ID of identity you want to update
             var kratosUpdateIdentity = new KratosUpdateIdentity(); // KratosUpdateIdentity |  (optional) 
@@ -1253,10 +1252,11 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | A single identity. |  -  |
-| **400** | genericError |  -  |
-| **404** | genericError |  -  |
-| **500** | genericError |  -  |
+| **200** | identity |  -  |
+| **400** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **409** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

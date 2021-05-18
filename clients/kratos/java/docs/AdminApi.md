@@ -1,6 +1,6 @@
 # AdminApi
 
-All URIs are relative to *https://demo.tenants.oryapis.com/api/kratos/public*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -43,7 +43,7 @@ import sh.ory.kratos.api.AdminApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     CreateIdentity createIdentity = new CreateIdentity(); // CreateIdentity | 
@@ -84,9 +84,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | A single identity. |  -  |
-**400** | genericError |  -  |
-**409** | genericError |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**409** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="createRecoveryLink"></a>
 # **createRecoveryLink**
@@ -108,7 +108,7 @@ import sh.ory.kratos.api.AdminApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     CreateRecoveryLink createRecoveryLink = new CreateRecoveryLink(); // CreateRecoveryLink | 
@@ -149,9 +149,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | recoveryLink |  -  |
-**400** | genericError |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="deleteIdentity"></a>
 # **deleteIdentity**
@@ -173,7 +173,7 @@ import sh.ory.kratos.api.AdminApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String id = "id_example"; // String | ID is the identity's ID.
@@ -213,8 +213,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="getIdentity"></a>
 # **getIdentity**
@@ -236,7 +236,7 @@ import sh.ory.kratos.api.AdminApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String id = "id_example"; // String | ID must be set to the ID of identity you want to get
@@ -277,9 +277,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A single identity. |  -  |
-**400** | genericError |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="getSchema"></a>
 # **getSchema**
@@ -301,7 +300,7 @@ import sh.ory.kratos.api.AdminApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String id = "id_example"; // String | ID must be set to the ID of schema you want to get
@@ -342,12 +341,12 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | jsonSchema |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="getSelfServiceError"></a>
 # **getSelfServiceError**
-> ErrorContainer getSelfServiceError(error)
+> SelfServiceErrorContainer getSelfServiceError(error)
 
 Get User-Facing Self-Service Errors
 
@@ -365,12 +364,12 @@ import sh.ory.kratos.api.AdminApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String error = "error_example"; // String | Error is the container's ID
     try {
-      ErrorContainer result = apiInstance.getSelfServiceError(error);
+      SelfServiceErrorContainer result = apiInstance.getSelfServiceError(error);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#getSelfServiceError");
@@ -391,7 +390,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ErrorContainer**](ErrorContainer.md)
+[**SelfServiceErrorContainer**](SelfServiceErrorContainer.md)
 
 ### Authorization
 
@@ -406,9 +405,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | User-facing error response |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**403** | jsonError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="getSelfServiceLoginFlow"></a>
 # **getSelfServiceLoginFlow**
@@ -430,7 +429,7 @@ import sh.ory.kratos.api.AdminApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String id = "id_example"; // String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
@@ -471,10 +470,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | loginFlow |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**410** | genericError |  -  |
-**500** | genericError |  -  |
+**403** | jsonError |  -  |
+**404** | jsonError |  -  |
+**410** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="getSelfServiceRecoveryFlow"></a>
 # **getSelfServiceRecoveryFlow**
@@ -496,7 +495,7 @@ import sh.ory.kratos.api.AdminApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String id = "id_example"; // String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
@@ -537,9 +536,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | recoveryFlow |  -  |
-**404** | genericError |  -  |
-**410** | genericError |  -  |
-**500** | genericError |  -  |
+**404** | jsonError |  -  |
+**410** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="getSelfServiceRegistrationFlow"></a>
 # **getSelfServiceRegistrationFlow**
@@ -561,7 +560,7 @@ import sh.ory.kratos.api.AdminApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String id = "id_example"; // String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
@@ -602,14 +601,14 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | registrationFlow |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**410** | genericError |  -  |
-**500** | genericError |  -  |
+**403** | jsonError |  -  |
+**404** | jsonError |  -  |
+**410** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="getSelfServiceSettingsFlow"></a>
 # **getSelfServiceSettingsFlow**
-> SettingsFlow getSelfServiceSettingsFlow(id)
+> SettingsFlow getSelfServiceSettingsFlow(id, xSessionToken)
 
 Get Settings Flow
 
@@ -628,18 +627,17 @@ import sh.ory.kratos.api.AdminApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
     
-    // Configure API key authorization: sessionToken
-    ApiKeyAuth sessionToken = (ApiKeyAuth) defaultClient.getAuthentication("sessionToken");
-    sessionToken.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //sessionToken.setApiKeyPrefix("Token");
+    // Configure HTTP bearer authorization: sessionToken
+    HttpBearerAuth sessionToken = (HttpBearerAuth) defaultClient.getAuthentication("sessionToken");
+    sessionToken.setBearerToken("BEARER TOKEN");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String id = "id_example"; // String | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+    String xSessionToken = "xSessionToken_example"; // String | The Session Token of the Identity performing the settings flow.
     try {
-      SettingsFlow result = apiInstance.getSelfServiceSettingsFlow(id);
+      SettingsFlow result = apiInstance.getSelfServiceSettingsFlow(id, xSessionToken);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#getSelfServiceSettingsFlow");
@@ -657,6 +655,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
+ **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional]
 
 ### Return type
 
@@ -675,10 +674,10 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | settingsFlow |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**410** | genericError |  -  |
-**500** | genericError |  -  |
+**403** | jsonError |  -  |
+**404** | jsonError |  -  |
+**410** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="getSelfServiceVerificationFlow"></a>
 # **getSelfServiceVerificationFlow**
@@ -700,7 +699,7 @@ import sh.ory.kratos.api.AdminApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String id = "id_example"; // String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
@@ -741,9 +740,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | verificationFlow |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**403** | jsonError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="getVersion"></a>
 # **getVersion**
@@ -765,7 +764,7 @@ import sh.ory.kratos.api.AdminApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     try {
@@ -823,7 +822,7 @@ import sh.ory.kratos.api.AdminApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     try {
@@ -882,7 +881,7 @@ import sh.ory.kratos.api.AdminApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     try {
@@ -941,7 +940,7 @@ import sh.ory.kratos.api.AdminApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     Long perPage = 100L; // Long | Items per Page  This is the number of items per page.
@@ -984,7 +983,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A list of identities. |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
 <a name="prometheus"></a>
 # **prometheus**
@@ -1006,7 +1005,7 @@ import sh.ory.kratos.api.AdminApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     try {
@@ -1063,7 +1062,7 @@ import sh.ory.kratos.api.AdminApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String id = "id_example"; // String | ID must be set to the ID of identity you want to update
@@ -1105,8 +1104,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A single identity. |  -  |
-**400** | genericError |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**200** | identity |  -  |
+**400** | jsonError |  -  |
+**404** | jsonError |  -  |
+**409** | jsonError |  -  |
+**500** | jsonError |  -  |
 

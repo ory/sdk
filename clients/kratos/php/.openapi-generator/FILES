@@ -14,10 +14,8 @@ docs/Model/ContainerWaitOKBody.md
 docs/Model/ContainerWaitOKBodyError.md
 docs/Model/CreateIdentity.md
 docs/Model/CreateRecoveryLink.md
-docs/Model/ErrorContainer.md
 docs/Model/ErrorResponse.md
 docs/Model/GenericError.md
-docs/Model/GenericErrorPayload.md
 docs/Model/GraphDriverData.md
 docs/Model/HealthNotReadyStatus.md
 docs/Model/HealthStatus.md
@@ -29,6 +27,7 @@ docs/Model/ImageSummary.md
 docs/Model/InlineResponse200.md
 docs/Model/InlineResponse2001.md
 docs/Model/InlineResponse503.md
+docs/Model/JsonError.md
 docs/Model/LoginFlow.md
 docs/Model/LoginViaApiResponse.md
 docs/Model/Meta.md
@@ -52,6 +51,7 @@ docs/Model/RecoveryLink.md
 docs/Model/RegistrationFlow.md
 docs/Model/RegistrationViaApiResponse.md
 docs/Model/RevokeSession.md
+docs/Model/SelfServiceErrorContainer.md
 docs/Model/ServiceUpdateResponse.md
 docs/Model/Session.md
 docs/Model/SettingsFlow.md
@@ -77,7 +77,7 @@ docs/Model/UiNodeInputAttributesValue.md
 docs/Model/UiNodeTextAttributes.md
 docs/Model/UiText.md
 docs/Model/UpdateIdentity.md
-docs/Model/VerifiableAddress.md
+docs/Model/VerifiableIdentityAddress.md
 docs/Model/VerificationFlow.md
 docs/Model/Version.md
 docs/Model/Volume.md
@@ -97,10 +97,8 @@ lib/Model/ContainerWaitOKBody.php
 lib/Model/ContainerWaitOKBodyError.php
 lib/Model/CreateIdentity.php
 lib/Model/CreateRecoveryLink.php
-lib/Model/ErrorContainer.php
 lib/Model/ErrorResponse.php
 lib/Model/GenericError.php
-lib/Model/GenericErrorPayload.php
 lib/Model/GraphDriverData.php
 lib/Model/HealthNotReadyStatus.php
 lib/Model/HealthStatus.php
@@ -112,6 +110,7 @@ lib/Model/ImageSummary.php
 lib/Model/InlineResponse200.php
 lib/Model/InlineResponse2001.php
 lib/Model/InlineResponse503.php
+lib/Model/JsonError.php
 lib/Model/LoginFlow.php
 lib/Model/LoginViaApiResponse.php
 lib/Model/Meta.php
@@ -136,6 +135,7 @@ lib/Model/RecoveryLink.php
 lib/Model/RegistrationFlow.php
 lib/Model/RegistrationViaApiResponse.php
 lib/Model/RevokeSession.php
+lib/Model/SelfServiceErrorContainer.php
 lib/Model/ServiceUpdateResponse.php
 lib/Model/Session.php
 lib/Model/SettingsFlow.php
@@ -161,10 +161,13 @@ lib/Model/UiNodeInputAttributesValue.php
 lib/Model/UiNodeTextAttributes.php
 lib/Model/UiText.php
 lib/Model/UpdateIdentity.php
-lib/Model/VerifiableAddress.php
+lib/Model/VerifiableIdentityAddress.php
 lib/Model/VerificationFlow.php
 lib/Model/Version.php
 lib/Model/Volume.php
 lib/Model/VolumeUsageData.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
+test/Model/JsonErrorTest.php
+test/Model/SelfServiceErrorContainerTest.php
+test/Model/VerifiableIdentityAddressTest.php

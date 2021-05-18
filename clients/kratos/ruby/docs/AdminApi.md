@@ -1,6 +1,6 @@
 # OryHydraClient::AdminApi
 
-All URIs are relative to *https://demo.tenants.oryapis.com/api/kratos/public*
+All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
@@ -348,7 +348,7 @@ No authorization required
 
 ## get_self_service_error
 
-> <ErrorContainer> get_self_service_error(error)
+> <SelfServiceErrorContainer> get_self_service_error(error)
 
 Get User-Facing Self-Service Errors
 
@@ -376,7 +376,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<ErrorContainer>, Integer, Hash)> get_self_service_error_with_http_info(error)
+> <Array(<SelfServiceErrorContainer>, Integer, Hash)> get_self_service_error_with_http_info(error)
 
 ```ruby
 begin
@@ -384,7 +384,7 @@ begin
   data, status_code, headers = api_instance.get_self_service_error_with_http_info(error)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <ErrorContainer>
+  p data # => <SelfServiceErrorContainer>
 rescue OryHydraClient::ApiError => e
   puts "Error when calling AdminApi->get_self_service_error_with_http_info: #{e}"
 end
@@ -398,7 +398,7 @@ end
 
 ### Return type
 
-[**ErrorContainer**](ErrorContainer.md)
+[**SelfServiceErrorContainer**](SelfServiceErrorContainer.md)
 
 ### Authorization
 
@@ -604,7 +604,7 @@ No authorization required
 
 ## get_self_service_settings_flow
 
-> <SettingsFlow> get_self_service_settings_flow(id)
+> <SettingsFlow> get_self_service_settings_flow(id, opts)
 
 Get Settings Flow
 
@@ -617,18 +617,19 @@ require 'time'
 require 'ory-kratos-client'
 # setup authorization
 OryHydraClient.configure do |config|
-  # Configure API key authorization: sessionToken
-  config.api_key['sessionToken'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['sessionToken'] = 'Bearer'
+  # Configure Bearer authorization: sessionToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = OryHydraClient::AdminApi.new
 id = 'id_example' # String | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+opts = {
+  x_session_token: 'x_session_token_example' # String | The Session Token of the Identity performing the settings flow.
+}
 
 begin
   # Get Settings Flow
-  result = api_instance.get_self_service_settings_flow(id)
+  result = api_instance.get_self_service_settings_flow(id, opts)
   p result
 rescue OryHydraClient::ApiError => e
   puts "Error when calling AdminApi->get_self_service_settings_flow: #{e}"
@@ -639,12 +640,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<SettingsFlow>, Integer, Hash)> get_self_service_settings_flow_with_http_info(id)
+> <Array(<SettingsFlow>, Integer, Hash)> get_self_service_settings_flow_with_http_info(id, opts)
 
 ```ruby
 begin
   # Get Settings Flow
-  data, status_code, headers = api_instance.get_self_service_settings_flow_with_http_info(id)
+  data, status_code, headers = api_instance.get_self_service_settings_flow_with_http_info(id, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SettingsFlow>
@@ -658,6 +659,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |  |
+| **x_session_token** | **String** | The Session Token of the Identity performing the settings flow. | [optional] |
 
 ### Return type
 

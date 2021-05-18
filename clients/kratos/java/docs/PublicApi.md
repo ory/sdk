@@ -1,6 +1,6 @@
 # PublicApi
 
-All URIs are relative to *https://demo.tenants.oryapis.com/api/kratos/public*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -12,16 +12,16 @@ Method | HTTP request | Description
 [**getSelfServiceSettingsFlow**](PublicApi.md#getSelfServiceSettingsFlow) | **GET** /self-service/settings/flows | Get Settings Flow
 [**getSelfServiceVerificationFlow**](PublicApi.md#getSelfServiceVerificationFlow) | **GET** /self-service/verification/flows | Get Verification Flow
 [**initializeSelfServiceBrowserLogoutFlow**](PublicApi.md#initializeSelfServiceBrowserLogoutFlow) | **GET** /self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
-[**initializeSelfServiceLoginViaAPIFlow**](PublicApi.md#initializeSelfServiceLoginViaAPIFlow) | **GET** /self-service/login/api | Initialize Login Flow for API clients
-[**initializeSelfServiceLoginViaBrowserFlow**](PublicApi.md#initializeSelfServiceLoginViaBrowserFlow) | **GET** /self-service/login/browser | Initialize Login Flow for browsers
-[**initializeSelfServiceRecoveryViaAPIFlow**](PublicApi.md#initializeSelfServiceRecoveryViaAPIFlow) | **GET** /self-service/recovery/api | Initialize Recovery Flow for API Clients
-[**initializeSelfServiceRecoveryViaBrowserFlow**](PublicApi.md#initializeSelfServiceRecoveryViaBrowserFlow) | **GET** /self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
-[**initializeSelfServiceRegistrationViaAPIFlow**](PublicApi.md#initializeSelfServiceRegistrationViaAPIFlow) | **GET** /self-service/registration/api | Initialize Registration Flow for API clients
-[**initializeSelfServiceRegistrationViaBrowserFlow**](PublicApi.md#initializeSelfServiceRegistrationViaBrowserFlow) | **GET** /self-service/registration/browser | Initialize Registration Flow for browsers
-[**initializeSelfServiceSettingsViaAPIFlow**](PublicApi.md#initializeSelfServiceSettingsViaAPIFlow) | **GET** /self-service/settings/api | Initialize Settings Flow for API Clients
-[**initializeSelfServiceSettingsViaBrowserFlow**](PublicApi.md#initializeSelfServiceSettingsViaBrowserFlow) | **GET** /self-service/settings/browser | Initialize Settings Flow for Browsers
-[**initializeSelfServiceVerificationViaAPIFlow**](PublicApi.md#initializeSelfServiceVerificationViaAPIFlow) | **GET** /self-service/verification/api | Initialize Verification Flow for API Clients
-[**initializeSelfServiceVerificationViaBrowserFlow**](PublicApi.md#initializeSelfServiceVerificationViaBrowserFlow) | **GET** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
+[**initializeSelfServiceLoginForBrowsers**](PublicApi.md#initializeSelfServiceLoginForBrowsers) | **GET** /self-service/login/browser | Initialize Login Flow for browsers
+[**initializeSelfServiceLoginForNativeApps**](PublicApi.md#initializeSelfServiceLoginForNativeApps) | **GET** /self-service/login/api | Initialize Login Flow for Native Apps and API clients
+[**initializeSelfServiceRecoveryForBrowsers**](PublicApi.md#initializeSelfServiceRecoveryForBrowsers) | **GET** /self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
+[**initializeSelfServiceRecoveryForNativeApps**](PublicApi.md#initializeSelfServiceRecoveryForNativeApps) | **GET** /self-service/recovery/api | Initialize Recovery Flow for Native Apps and API clients
+[**initializeSelfServiceRegistrationForBrowsers**](PublicApi.md#initializeSelfServiceRegistrationForBrowsers) | **GET** /self-service/registration/browser | Initialize Registration Flow for browsers
+[**initializeSelfServiceRegistrationForNativeApps**](PublicApi.md#initializeSelfServiceRegistrationForNativeApps) | **GET** /self-service/registration/api | Initialize Registration Flow for Native Apps and API clients
+[**initializeSelfServiceSettingsForBrowsers**](PublicApi.md#initializeSelfServiceSettingsForBrowsers) | **GET** /self-service/settings/browser | Initialize Settings Flow for Browsers
+[**initializeSelfServiceSettingsForNativeApps**](PublicApi.md#initializeSelfServiceSettingsForNativeApps) | **GET** /self-service/settings/api | Initialize Settings Flow for Native Apps and API clients
+[**initializeSelfServiceVerificationForBrowsers**](PublicApi.md#initializeSelfServiceVerificationForBrowsers) | **GET** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
+[**initializeSelfServiceVerificationForNativeApps**](PublicApi.md#initializeSelfServiceVerificationForNativeApps) | **GET** /self-service/verification/api | Initialize Verification Flow for Native Apps and API clients
 [**revokeSession**](PublicApi.md#revokeSession) | **DELETE** /sessions | Initialize Logout Flow for API Clients - Revoke a Session
 [**submitSelfServiceLoginFlow**](PublicApi.md#submitSelfServiceLoginFlow) | **POST** /self-service/login | Submit a Login Flow
 [**submitSelfServiceRecoveryFlow**](PublicApi.md#submitSelfServiceRecoveryFlow) | **POST** /self-service/recovery | Complete Recovery Flow
@@ -29,7 +29,7 @@ Method | HTTP request | Description
 [**submitSelfServiceRegistrationFlow**](PublicApi.md#submitSelfServiceRegistrationFlow) | **POST** /self-service/registration | Submit a Registration Flow
 [**submitSelfServiceSettingsFlow**](PublicApi.md#submitSelfServiceSettingsFlow) | **POST** /self-service/settings | Complete Settings Flow
 [**submitSelfServiceVerificationFlow**](PublicApi.md#submitSelfServiceVerificationFlow) | **POST** /self-service/verification/methods/link | Complete Verification Flow
-[**whoami**](PublicApi.md#whoami) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
+[**toSession**](PublicApi.md#toSession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 
 
 <a name="getSchema"></a>
@@ -52,7 +52,7 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     String id = "id_example"; // String | ID must be set to the ID of schema you want to get
@@ -93,12 +93,12 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | jsonSchema |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="getSelfServiceError"></a>
 # **getSelfServiceError**
-> ErrorContainer getSelfServiceError(error)
+> SelfServiceErrorContainer getSelfServiceError(error)
 
 Get User-Facing Self-Service Errors
 
@@ -116,12 +116,12 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     String error = "error_example"; // String | Error is the container's ID
     try {
-      ErrorContainer result = apiInstance.getSelfServiceError(error);
+      SelfServiceErrorContainer result = apiInstance.getSelfServiceError(error);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PublicApi#getSelfServiceError");
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ErrorContainer**](ErrorContainer.md)
+[**SelfServiceErrorContainer**](SelfServiceErrorContainer.md)
 
 ### Authorization
 
@@ -157,9 +157,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | User-facing error response |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**403** | jsonError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="getSelfServiceLoginFlow"></a>
 # **getSelfServiceLoginFlow**
@@ -181,7 +181,7 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     String id = "id_example"; // String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
@@ -222,10 +222,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | loginFlow |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**410** | genericError |  -  |
-**500** | genericError |  -  |
+**403** | jsonError |  -  |
+**404** | jsonError |  -  |
+**410** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="getSelfServiceRecoveryFlow"></a>
 # **getSelfServiceRecoveryFlow**
@@ -247,7 +247,7 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     String id = "id_example"; // String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
@@ -288,9 +288,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | recoveryFlow |  -  |
-**404** | genericError |  -  |
-**410** | genericError |  -  |
-**500** | genericError |  -  |
+**404** | jsonError |  -  |
+**410** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="getSelfServiceRegistrationFlow"></a>
 # **getSelfServiceRegistrationFlow**
@@ -312,7 +312,7 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     String id = "id_example"; // String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
@@ -353,14 +353,14 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | registrationFlow |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**410** | genericError |  -  |
-**500** | genericError |  -  |
+**403** | jsonError |  -  |
+**404** | jsonError |  -  |
+**410** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="getSelfServiceSettingsFlow"></a>
 # **getSelfServiceSettingsFlow**
-> SettingsFlow getSelfServiceSettingsFlow(id)
+> SettingsFlow getSelfServiceSettingsFlow(id, xSessionToken)
 
 Get Settings Flow
 
@@ -379,18 +379,17 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
     
-    // Configure API key authorization: sessionToken
-    ApiKeyAuth sessionToken = (ApiKeyAuth) defaultClient.getAuthentication("sessionToken");
-    sessionToken.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //sessionToken.setApiKeyPrefix("Token");
+    // Configure HTTP bearer authorization: sessionToken
+    HttpBearerAuth sessionToken = (HttpBearerAuth) defaultClient.getAuthentication("sessionToken");
+    sessionToken.setBearerToken("BEARER TOKEN");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     String id = "id_example"; // String | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+    String xSessionToken = "xSessionToken_example"; // String | The Session Token of the Identity performing the settings flow.
     try {
-      SettingsFlow result = apiInstance.getSelfServiceSettingsFlow(id);
+      SettingsFlow result = apiInstance.getSelfServiceSettingsFlow(id, xSessionToken);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PublicApi#getSelfServiceSettingsFlow");
@@ -408,6 +407,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
+ **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional]
 
 ### Return type
 
@@ -426,10 +426,10 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | settingsFlow |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**410** | genericError |  -  |
-**500** | genericError |  -  |
+**403** | jsonError |  -  |
+**404** | jsonError |  -  |
+**410** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="getSelfServiceVerificationFlow"></a>
 # **getSelfServiceVerificationFlow**
@@ -451,7 +451,7 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     String id = "id_example"; // String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
@@ -492,9 +492,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | verificationFlow |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**403** | jsonError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="initializeSelfServiceBrowserLogoutFlow"></a>
 # **initializeSelfServiceBrowserLogoutFlow**
@@ -516,7 +516,7 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     try {
@@ -552,13 +552,75 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
-<a name="initializeSelfServiceLoginViaAPIFlow"></a>
-# **initializeSelfServiceLoginViaAPIFlow**
-> LoginFlow initializeSelfServiceLoginViaAPIFlow(refresh)
+<a name="initializeSelfServiceLoginForBrowsers"></a>
+# **initializeSelfServiceLoginForBrowsers**
+> initializeSelfServiceLoginForBrowsers(refresh)
 
-Initialize Login Flow for API clients
+Initialize Login Flow for browsers
+
+This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to &#x60;selfservice.flows.login.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;. If a valid user session exists already, the browser will be redirected to &#x60;urls.default_redirect_url&#x60; unless the query parameter &#x60;?refresh&#x3D;true&#x60; was set.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.PublicApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    PublicApi apiInstance = new PublicApi(defaultClient);
+    Boolean refresh = true; // Boolean | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
+    try {
+      apiInstance.initializeSelfServiceLoginForBrowsers(refresh);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PublicApi#initializeSelfServiceLoginForBrowsers");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **refresh** | **Boolean**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional]
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**500** | jsonError |  -  |
+
+<a name="initializeSelfServiceLoginForNativeApps"></a>
+# **initializeSelfServiceLoginForNativeApps**
+> LoginFlow initializeSelfServiceLoginForNativeApps(refresh)
+
+Initialize Login Flow for Native Apps and API clients
 
 This endpoint initiates a login flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter &#x60;?refresh&#x3D;true&#x60; is set.  To fetch an existing login flow call &#x60;/self-service/login/flows?flow&#x3D;&lt;flow_id&gt;&#x60;.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
@@ -574,15 +636,15 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     Boolean refresh = true; // Boolean | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
     try {
-      LoginFlow result = apiInstance.initializeSelfServiceLoginViaAPIFlow(refresh);
+      LoginFlow result = apiInstance.initializeSelfServiceLoginForNativeApps(refresh);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling PublicApi#initializeSelfServiceLoginViaAPIFlow");
+      System.err.println("Exception when calling PublicApi#initializeSelfServiceLoginForNativeApps");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -615,16 +677,16 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | loginFlow |  -  |
-**400** | genericError |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**500** | jsonError |  -  |
 
-<a name="initializeSelfServiceLoginViaBrowserFlow"></a>
-# **initializeSelfServiceLoginViaBrowserFlow**
-> initializeSelfServiceLoginViaBrowserFlow()
+<a name="initializeSelfServiceRecoveryForBrowsers"></a>
+# **initializeSelfServiceRecoveryForBrowsers**
+> initializeSelfServiceRecoveryForBrowsers()
 
-Initialize Login Flow for browsers
+Initialize Recovery Flow for Browser Clients
 
-This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to &#x60;selfservice.flows.login.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;. If a valid user session exists already, the browser will be redirected to &#x60;urls.default_redirect_url&#x60; unless the query parameter &#x60;?refresh&#x3D;true&#x60; was set.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to &#x60;selfservice.flows.recovery.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;. If a valid user session exists, the browser is returned to the configured return URL.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
 ### Example
 ```java
@@ -638,13 +700,13 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     try {
-      apiInstance.initializeSelfServiceLoginViaBrowserFlow();
+      apiInstance.initializeSelfServiceRecoveryForBrowsers();
     } catch (ApiException e) {
-      System.err.println("Exception when calling PublicApi#initializeSelfServiceLoginViaBrowserFlow");
+      System.err.println("Exception when calling PublicApi#initializeSelfServiceRecoveryForBrowsers");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -674,13 +736,13 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
-<a name="initializeSelfServiceRecoveryViaAPIFlow"></a>
-# **initializeSelfServiceRecoveryViaAPIFlow**
-> RecoveryFlow initializeSelfServiceRecoveryViaAPIFlow()
+<a name="initializeSelfServiceRecoveryForNativeApps"></a>
+# **initializeSelfServiceRecoveryForNativeApps**
+> RecoveryFlow initializeSelfServiceRecoveryForNativeApps()
 
-Initialize Recovery Flow for API Clients
+Initialize Recovery Flow for Native Apps and API clients
 
 This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  To fetch an existing recovery flow call &#x60;/self-service/recovery/flows?flow&#x3D;&lt;flow_id&gt;&#x60;.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
@@ -696,14 +758,14 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     try {
-      RecoveryFlow result = apiInstance.initializeSelfServiceRecoveryViaAPIFlow();
+      RecoveryFlow result = apiInstance.initializeSelfServiceRecoveryForNativeApps();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling PublicApi#initializeSelfServiceRecoveryViaAPIFlow");
+      System.err.println("Exception when calling PublicApi#initializeSelfServiceRecoveryForNativeApps");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -733,16 +795,16 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | recoveryFlow |  -  |
-**400** | genericError |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**500** | jsonError |  -  |
 
-<a name="initializeSelfServiceRecoveryViaBrowserFlow"></a>
-# **initializeSelfServiceRecoveryViaBrowserFlow**
-> initializeSelfServiceRecoveryViaBrowserFlow()
+<a name="initializeSelfServiceRegistrationForBrowsers"></a>
+# **initializeSelfServiceRegistrationForBrowsers**
+> initializeSelfServiceRegistrationForBrowsers()
 
-Initialize Recovery Flow for Browser Clients
+Initialize Registration Flow for browsers
 
-This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to &#x60;selfservice.flows.recovery.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;. If a valid user session exists, the browser is returned to the configured return URL.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+This endpoint initializes a browser-based user registration flow. Once initialized, the browser will be redirected to &#x60;selfservice.flows.registration.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;. If a valid user session exists already, the browser will be redirected to &#x60;urls.default_redirect_url&#x60; unless the query parameter &#x60;?refresh&#x3D;true&#x60; was set.  :::note  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 ```java
@@ -756,13 +818,13 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     try {
-      apiInstance.initializeSelfServiceRecoveryViaBrowserFlow();
+      apiInstance.initializeSelfServiceRegistrationForBrowsers();
     } catch (ApiException e) {
-      System.err.println("Exception when calling PublicApi#initializeSelfServiceRecoveryViaBrowserFlow");
+      System.err.println("Exception when calling PublicApi#initializeSelfServiceRegistrationForBrowsers");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -792,13 +854,13 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
-<a name="initializeSelfServiceRegistrationViaAPIFlow"></a>
-# **initializeSelfServiceRegistrationViaAPIFlow**
-> RegistrationFlow initializeSelfServiceRegistrationViaAPIFlow()
+<a name="initializeSelfServiceRegistrationForNativeApps"></a>
+# **initializeSelfServiceRegistrationForNativeApps**
+> RegistrationFlow initializeSelfServiceRegistrationForNativeApps()
 
-Initialize Registration Flow for API clients
+Initialize Registration Flow for Native Apps and API clients
 
 This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter &#x60;?refresh&#x3D;true&#x60; is set.  To fetch an existing registration flow call &#x60;/self-service/registration/flows?flow&#x3D;&lt;flow_id&gt;&#x60;.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
@@ -814,14 +876,14 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     try {
-      RegistrationFlow result = apiInstance.initializeSelfServiceRegistrationViaAPIFlow();
+      RegistrationFlow result = apiInstance.initializeSelfServiceRegistrationForNativeApps();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling PublicApi#initializeSelfServiceRegistrationViaAPIFlow");
+      System.err.println("Exception when calling PublicApi#initializeSelfServiceRegistrationForNativeApps");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -851,16 +913,148 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | registrationFlow |  -  |
-**400** | genericError |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**500** | jsonError |  -  |
 
-<a name="initializeSelfServiceRegistrationViaBrowserFlow"></a>
-# **initializeSelfServiceRegistrationViaBrowserFlow**
-> initializeSelfServiceRegistrationViaBrowserFlow()
+<a name="initializeSelfServiceSettingsForBrowsers"></a>
+# **initializeSelfServiceSettingsForBrowsers**
+> initializeSelfServiceSettingsForBrowsers()
 
-Initialize Registration Flow for browsers
+Initialize Settings Flow for Browsers
 
-This endpoint initializes a browser-based user registration flow. Once initialized, the browser will be redirected to &#x60;selfservice.flows.registration.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;. If a valid user session exists already, the browser will be redirected to &#x60;urls.default_redirect_url&#x60; unless the query parameter &#x60;?refresh&#x3D;true&#x60; was set.  :::note  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initializes a browser-based user settings flow. Once initialized, the browser will be redirected to &#x60;selfservice.flows.settings.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;. If no valid Ory Kratos Session Cookie is included in the request, a login flow will be initialized.  :::note  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  :::  More information can be found at [Ory Kratos User Settings &amp; Profile Management Documentation](../self-service/flows/user-settings).
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.auth.*;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.PublicApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP bearer authorization: sessionToken
+    HttpBearerAuth sessionToken = (HttpBearerAuth) defaultClient.getAuthentication("sessionToken");
+    sessionToken.setBearerToken("BEARER TOKEN");
+
+    PublicApi apiInstance = new PublicApi(defaultClient);
+    try {
+      apiInstance.initializeSelfServiceSettingsForBrowsers();
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PublicApi#initializeSelfServiceSettingsForBrowsers");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[sessionToken](../README.md#sessionToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**500** | jsonError |  -  |
+
+<a name="initializeSelfServiceSettingsForNativeApps"></a>
+# **initializeSelfServiceSettingsForNativeApps**
+> SettingsFlow initializeSelfServiceSettingsForNativeApps(xSessionToken)
+
+Initialize Settings Flow for Native Apps and API clients
+
+This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid Ory Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call &#x60;/self-service/settings/flows?flow&#x3D;&lt;flow_id&gt;&#x60;.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Settings &amp; Profile Management Documentation](../self-service/flows/user-settings).
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.auth.*;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.PublicApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP bearer authorization: sessionToken
+    HttpBearerAuth sessionToken = (HttpBearerAuth) defaultClient.getAuthentication("sessionToken");
+    sessionToken.setBearerToken("BEARER TOKEN");
+
+    PublicApi apiInstance = new PublicApi(defaultClient);
+    String xSessionToken = "xSessionToken_example"; // String | The Session Token of the Identity performing the settings flow.
+    try {
+      SettingsFlow result = apiInstance.initializeSelfServiceSettingsForNativeApps(xSessionToken);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PublicApi#initializeSelfServiceSettingsForNativeApps");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional]
+
+### Return type
+
+[**SettingsFlow**](SettingsFlow.md)
+
+### Authorization
+
+[sessionToken](../README.md#sessionToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | settingsFlow |  -  |
+**400** | jsonError |  -  |
+**500** | jsonError |  -  |
+
+<a name="initializeSelfServiceVerificationForBrowsers"></a>
+# **initializeSelfServiceVerificationForBrowsers**
+> initializeSelfServiceVerificationForBrowsers()
+
+Initialize Verification Flow for Browser Clients
+
+This endpoint initializes a browser-based account verification flow. Once initialized, the browser will be redirected to &#x60;selfservice.flows.verification.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
 ### Example
 ```java
@@ -874,13 +1068,13 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     try {
-      apiInstance.initializeSelfServiceRegistrationViaBrowserFlow();
+      apiInstance.initializeSelfServiceVerificationForBrowsers();
     } catch (ApiException e) {
-      System.err.println("Exception when calling PublicApi#initializeSelfServiceRegistrationViaBrowserFlow");
+      System.err.println("Exception when calling PublicApi#initializeSelfServiceVerificationForBrowsers");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -910,145 +1104,13 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
-<a name="initializeSelfServiceSettingsViaAPIFlow"></a>
-# **initializeSelfServiceSettingsViaAPIFlow**
-> SettingsFlow initializeSelfServiceSettingsViaAPIFlow()
+<a name="initializeSelfServiceVerificationForNativeApps"></a>
+# **initializeSelfServiceVerificationForNativeApps**
+> VerificationFlow initializeSelfServiceVerificationForNativeApps()
 
-Initialize Settings Flow for API Clients
-
-This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid Ory Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call &#x60;/self-service/settings/flows?flow&#x3D;&lt;flow_id&gt;&#x60;.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Settings &amp; Profile Management Documentation](../self-service/flows/user-settings).
-
-### Example
-```java
-// Import classes:
-import sh.ory.kratos.ApiClient;
-import sh.ory.kratos.ApiException;
-import sh.ory.kratos.Configuration;
-import sh.ory.kratos.auth.*;
-import sh.ory.kratos.models.*;
-import sh.ory.kratos.api.PublicApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
-    
-    // Configure API key authorization: sessionToken
-    ApiKeyAuth sessionToken = (ApiKeyAuth) defaultClient.getAuthentication("sessionToken");
-    sessionToken.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //sessionToken.setApiKeyPrefix("Token");
-
-    PublicApi apiInstance = new PublicApi(defaultClient);
-    try {
-      SettingsFlow result = apiInstance.initializeSelfServiceSettingsViaAPIFlow();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling PublicApi#initializeSelfServiceSettingsViaAPIFlow");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**SettingsFlow**](SettingsFlow.md)
-
-### Authorization
-
-[sessionToken](../README.md#sessionToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | settingsFlow |  -  |
-**400** | genericError |  -  |
-**500** | genericError |  -  |
-
-<a name="initializeSelfServiceSettingsViaBrowserFlow"></a>
-# **initializeSelfServiceSettingsViaBrowserFlow**
-> initializeSelfServiceSettingsViaBrowserFlow()
-
-Initialize Settings Flow for Browsers
-
-This endpoint initializes a browser-based user settings flow. Once initialized, the browser will be redirected to &#x60;selfservice.flows.settings.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;. If no valid Ory Kratos Session Cookie is included in the request, a login flow will be initialized.  :::note  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  :::  More information can be found at [Ory Kratos User Settings &amp; Profile Management Documentation](../self-service/flows/user-settings).
-
-### Example
-```java
-// Import classes:
-import sh.ory.kratos.ApiClient;
-import sh.ory.kratos.ApiException;
-import sh.ory.kratos.Configuration;
-import sh.ory.kratos.auth.*;
-import sh.ory.kratos.models.*;
-import sh.ory.kratos.api.PublicApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
-    
-    // Configure API key authorization: sessionToken
-    ApiKeyAuth sessionToken = (ApiKeyAuth) defaultClient.getAuthentication("sessionToken");
-    sessionToken.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //sessionToken.setApiKeyPrefix("Token");
-
-    PublicApi apiInstance = new PublicApi(defaultClient);
-    try {
-      apiInstance.initializeSelfServiceSettingsViaBrowserFlow();
-    } catch (ApiException e) {
-      System.err.println("Exception when calling PublicApi#initializeSelfServiceSettingsViaBrowserFlow");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-[sessionToken](../README.md#sessionToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**500** | genericError |  -  |
-
-<a name="initializeSelfServiceVerificationViaAPIFlow"></a>
-# **initializeSelfServiceVerificationViaAPIFlow**
-> VerificationFlow initializeSelfServiceVerificationViaAPIFlow()
-
-Initialize Verification Flow for API Clients
+Initialize Verification Flow for Native Apps and API clients
 
 This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call &#x60;/self-service/verification/flows?flow&#x3D;&lt;flow_id&gt;&#x60;.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
@@ -1064,14 +1126,14 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     try {
-      VerificationFlow result = apiInstance.initializeSelfServiceVerificationViaAPIFlow();
+      VerificationFlow result = apiInstance.initializeSelfServiceVerificationForNativeApps();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling PublicApi#initializeSelfServiceVerificationViaAPIFlow");
+      System.err.println("Exception when calling PublicApi#initializeSelfServiceVerificationForNativeApps");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1101,66 +1163,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | verificationFlow |  -  |
-**400** | genericError |  -  |
-**500** | genericError |  -  |
-
-<a name="initializeSelfServiceVerificationViaBrowserFlow"></a>
-# **initializeSelfServiceVerificationViaBrowserFlow**
-> initializeSelfServiceVerificationViaBrowserFlow()
-
-Initialize Verification Flow for Browser Clients
-
-This endpoint initializes a browser-based account verification flow. Once initialized, the browser will be redirected to &#x60;selfservice.flows.verification.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
-
-### Example
-```java
-// Import classes:
-import sh.ory.kratos.ApiClient;
-import sh.ory.kratos.ApiException;
-import sh.ory.kratos.Configuration;
-import sh.ory.kratos.models.*;
-import sh.ory.kratos.api.PublicApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
-
-    PublicApi apiInstance = new PublicApi(defaultClient);
-    try {
-      apiInstance.initializeSelfServiceVerificationViaBrowserFlow();
-    } catch (ApiException e) {
-      System.err.println("Exception when calling PublicApi#initializeSelfServiceVerificationViaBrowserFlow");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="revokeSession"></a>
 # **revokeSession**
@@ -1182,7 +1186,7 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     RevokeSession revokeSession = new RevokeSession(); // RevokeSession | 
@@ -1222,8 +1226,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | genericError |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="submitSelfServiceLoginFlow"></a>
 # **submitSelfServiceLoginFlow**
@@ -1245,7 +1249,7 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     String flow = "flow_example"; // String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
@@ -1290,7 +1294,7 @@ No authorization required
 **200** | loginViaApiResponse |  -  |
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 **400** | loginFlow |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
 <a name="submitSelfServiceRecoveryFlow"></a>
 # **submitSelfServiceRecoveryFlow**
@@ -1312,7 +1316,7 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     String flow = "flow_example"; // String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
@@ -1355,7 +1359,7 @@ No authorization required
 |-------------|-------------|------------------|
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 **400** | recoveryFlow |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
 <a name="submitSelfServiceRecoveryFlowWithLinkMethod"></a>
 # **submitSelfServiceRecoveryFlowWithLinkMethod**
@@ -1377,7 +1381,7 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     String token = "token_example"; // String | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.
@@ -1422,7 +1426,7 @@ No authorization required
 |-------------|-------------|------------------|
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 **400** | recoveryFlow |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
 <a name="submitSelfServiceRegistrationFlow"></a>
 # **submitSelfServiceRegistrationFlow**
@@ -1444,7 +1448,7 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     String flow = "flow_example"; // String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
@@ -1489,11 +1493,11 @@ No authorization required
 **200** | registrationViaApiResponse |  -  |
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 **400** | registrationFlow |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
 <a name="submitSelfServiceSettingsFlow"></a>
 # **submitSelfServiceSettingsFlow**
-> SettingsViaApiResponse submitSelfServiceSettingsFlow(flow, submitSelfServiceSettingsFlow)
+> SettingsViaApiResponse submitSelfServiceSettingsFlow(flow, xSessionToken, submitSelfServiceSettingsFlow)
 
 Complete Settings Flow
 
@@ -1512,19 +1516,18 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
     
-    // Configure API key authorization: sessionToken
-    ApiKeyAuth sessionToken = (ApiKeyAuth) defaultClient.getAuthentication("sessionToken");
-    sessionToken.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //sessionToken.setApiKeyPrefix("Token");
+    // Configure HTTP bearer authorization: sessionToken
+    HttpBearerAuth sessionToken = (HttpBearerAuth) defaultClient.getAuthentication("sessionToken");
+    sessionToken.setBearerToken("BEARER TOKEN");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     String flow = "flow_example"; // String | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+    String xSessionToken = "xSessionToken_example"; // String | The Session Token of the Identity performing the settings flow.
     SubmitSelfServiceSettingsFlow submitSelfServiceSettingsFlow = new SubmitSelfServiceSettingsFlow(); // SubmitSelfServiceSettingsFlow | 
     try {
-      SettingsViaApiResponse result = apiInstance.submitSelfServiceSettingsFlow(flow, submitSelfServiceSettingsFlow);
+      SettingsViaApiResponse result = apiInstance.submitSelfServiceSettingsFlow(flow, xSessionToken, submitSelfServiceSettingsFlow);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PublicApi#submitSelfServiceSettingsFlow");
@@ -1542,6 +1545,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **String**| The Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
+ **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional]
  **submitSelfServiceSettingsFlow** | [**SubmitSelfServiceSettingsFlow**](SubmitSelfServiceSettingsFlow.md)|  | [optional]
 
 ### Return type
@@ -1563,9 +1567,9 @@ Name | Type | Description  | Notes
 **200** | settingsViaApiResponse |  -  |
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 **400** | settingsFlow |  -  |
-**401** | genericError |  -  |
-**403** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**403** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="submitSelfServiceVerificationFlow"></a>
 # **submitSelfServiceVerificationFlow**
@@ -1587,7 +1591,7 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     String flow = "flow_example"; // String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
@@ -1630,15 +1634,15 @@ No authorization required
 |-------------|-------------|------------------|
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 **400** | verificationFlow |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
-<a name="whoami"></a>
-# **whoami**
-> Session whoami(cookie, authorization)
+<a name="toSession"></a>
+# **toSession**
+> Session toSession(xSessionToken)
 
 Check Who the Current HTTP Session Belongs To
 
-Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. Additionally when the request it successful it adds the user ID to the &#39;X-Kratos-Authenticated-Identity-Id&#39; header in the response.  This endpoint is useful for reverse proxies and API Gateways.
+Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. Additionally when the request it successful it adds the user ID to the &#39;X-Kratos-Authenticated-Identity-Id&#39; header in the response.  This endpoint is useful for:  AJAX calls. Remember to send credentials and set up CORS correctly! Reverse proxies and API Gateways Server-side calls - use the &#x60;X-Session-Token&#x60; header!
 
 ### Example
 ```java
@@ -1653,22 +1657,21 @@ import sh.ory.kratos.api.PublicApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://demo.tenants.oryapis.com/api/kratos/public");
+    defaultClient.setBasePath("http://localhost");
     
-    // Configure API key authorization: sessionToken
-    ApiKeyAuth sessionToken = (ApiKeyAuth) defaultClient.getAuthentication("sessionToken");
-    sessionToken.setApiKey("YOUR API KEY");
+    // Configure API key authorization: sessionCookie
+    ApiKeyAuth sessionCookie = (ApiKeyAuth) defaultClient.getAuthentication("sessionCookie");
+    sessionCookie.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //sessionToken.setApiKeyPrefix("Token");
+    //sessionCookie.setApiKeyPrefix("Token");
 
     PublicApi apiInstance = new PublicApi(defaultClient);
-    String cookie = "cookie_example"; // String | 
-    String authorization = "authorization_example"; // String | 
+    String xSessionToken = "xSessionToken_example"; // String | 
     try {
-      Session result = apiInstance.whoami(cookie, authorization);
+      Session result = apiInstance.toSession(xSessionToken);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling PublicApi#whoami");
+      System.err.println("Exception when calling PublicApi#toSession");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1682,8 +1685,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cookie** | **String**|  | [optional]
- **authorization** | **String**|  | [optional]
+ **xSessionToken** | **String**|  | [optional]
 
 ### Return type
 
@@ -1691,7 +1693,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[sessionToken](../README.md#sessionToken)
+[sessionCookie](../README.md#sessionCookie)
 
 ### HTTP request headers
 
@@ -1702,6 +1704,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | session |  -  |
-**401** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**500** | jsonError |  -  |
 

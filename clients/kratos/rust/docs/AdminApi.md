@@ -1,6 +1,6 @@
 # \AdminApi
 
-All URIs are relative to *https://demo.tenants.oryapis.com/api/kratos/public*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -40,7 +40,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Identity**](Identity.md)
+[**crate::models::Identity**](identity.md)
 
 ### Authorization
 
@@ -130,7 +130,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Identity**](Identity.md)
+[**crate::models::Identity**](identity.md)
 
 ### Authorization
 
@@ -176,7 +176,7 @@ No authorization required
 
 ## get_self_service_error
 
-> crate::models::ErrorContainer get_self_service_error(error)
+> crate::models::SelfServiceErrorContainer get_self_service_error(error)
 Get User-Facing Self-Service Errors
 
 This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?error=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
@@ -190,7 +190,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::ErrorContainer**](errorContainer.md)
+[**crate::models::SelfServiceErrorContainer**](selfServiceErrorContainer.md)
 
 ### Authorization
 
@@ -296,7 +296,7 @@ No authorization required
 
 ## get_self_service_settings_flow
 
-> crate::models::SettingsFlow get_self_service_settings_flow(id)
+> crate::models::SettingsFlow get_self_service_settings_flow(id, x_session_token)
 Get Settings Flow
 
 When accessing this endpoint through Ory Kratos' Public API you must ensure that either the Ory Kratos Session Cookie or the Ory Kratos Session Token are set. The public endpoint does not return 404 status codes but instead 403 or 500 to improve data privacy.  You can access this endpoint without credentials when using Ory Kratos' Admin API.  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
@@ -307,6 +307,7 @@ When accessing this endpoint through Ory Kratos' Public API you must ensure that
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`). | [required] |
+**x_session_token** | Option<**String**> | The Session Token of the Identity performing the settings flow. |  |
 
 ### Return type
 
@@ -452,7 +453,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::Identity>**](Identity.md)
+[**Vec<crate::models::Identity>**](identity.md)
 
 ### Authorization
 
@@ -510,7 +511,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Identity**](Identity.md)
+[**crate::models::Identity**](identity.md)
 
 ### Authorization
 

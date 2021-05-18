@@ -15,10 +15,8 @@ docs/ContainerWaitOKBody.md
 docs/ContainerWaitOKBodyError.md
 docs/CreateIdentity.md
 docs/CreateRecoveryLink.md
-docs/ErrorContainer.md
 docs/ErrorResponse.md
 docs/GenericError.md
-docs/GenericErrorPayload.md
 docs/GraphDriverData.md
 docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
@@ -30,6 +28,7 @@ docs/ImageSummary.md
 docs/InlineResponse200.md
 docs/InlineResponse2001.md
 docs/InlineResponse503.md
+docs/JsonError.md
 docs/LoginFlow.md
 docs/LoginViaApiResponse.md
 docs/Meta.md
@@ -54,6 +53,7 @@ docs/RecoveryLink.md
 docs/RegistrationFlow.md
 docs/RegistrationViaApiResponse.md
 docs/RevokeSession.md
+docs/SelfServiceErrorContainer.md
 docs/ServiceUpdateResponse.md
 docs/Session.md
 docs/SettingsFlow.md
@@ -79,7 +79,7 @@ docs/UiNodeInputAttributesValue.md
 docs/UiNodeTextAttributes.md
 docs/UiText.md
 docs/UpdateIdentity.md
-docs/VerifiableAddress.md
+docs/VerifiableIdentityAddress.md
 docs/VerificationFlow.md
 docs/Version.md
 docs/Volume.md
@@ -100,10 +100,8 @@ lib/ory-kratos-client/models/container_wait_ok_body.rb
 lib/ory-kratos-client/models/container_wait_ok_body_error.rb
 lib/ory-kratos-client/models/create_identity.rb
 lib/ory-kratos-client/models/create_recovery_link.rb
-lib/ory-kratos-client/models/error_container.rb
 lib/ory-kratos-client/models/error_response.rb
 lib/ory-kratos-client/models/generic_error.rb
-lib/ory-kratos-client/models/generic_error_payload.rb
 lib/ory-kratos-client/models/graph_driver_data.rb
 lib/ory-kratos-client/models/health_not_ready_status.rb
 lib/ory-kratos-client/models/health_status.rb
@@ -115,6 +113,7 @@ lib/ory-kratos-client/models/image_summary.rb
 lib/ory-kratos-client/models/inline_response200.rb
 lib/ory-kratos-client/models/inline_response2001.rb
 lib/ory-kratos-client/models/inline_response503.rb
+lib/ory-kratos-client/models/json_error.rb
 lib/ory-kratos-client/models/login_flow.rb
 lib/ory-kratos-client/models/login_via_api_response.rb
 lib/ory-kratos-client/models/meta.rb
@@ -138,6 +137,7 @@ lib/ory-kratos-client/models/recovery_link.rb
 lib/ory-kratos-client/models/registration_flow.rb
 lib/ory-kratos-client/models/registration_via_api_response.rb
 lib/ory-kratos-client/models/revoke_session.rb
+lib/ory-kratos-client/models/self_service_error_container.rb
 lib/ory-kratos-client/models/service_update_response.rb
 lib/ory-kratos-client/models/session.rb
 lib/ory-kratos-client/models/settings_flow.rb
@@ -163,7 +163,7 @@ lib/ory-kratos-client/models/ui_node_input_attributes_value.rb
 lib/ory-kratos-client/models/ui_node_text_attributes.rb
 lib/ory-kratos-client/models/ui_text.rb
 lib/ory-kratos-client/models/update_identity.rb
-lib/ory-kratos-client/models/verifiable_address.rb
+lib/ory-kratos-client/models/verifiable_identity_address.rb
 lib/ory-kratos-client/models/verification_flow.rb
 lib/ory-kratos-client/models/version.rb
 lib/ory-kratos-client/models/volume.rb
@@ -172,4 +172,7 @@ lib/ory-kratos-client/version.rb
 ory-kratos-client.gemspec
 spec/api_client_spec.rb
 spec/configuration_spec.rb
+spec/models/json_error_spec.rb
+spec/models/self_service_error_container_spec.rb
+spec/models/verifiable_identity_address_spec.rb
 spec/spec_helper.rb

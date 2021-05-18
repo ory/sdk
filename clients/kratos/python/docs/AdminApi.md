@@ -1,6 +1,6 @@
 # ory_kratos_client.AdminApi
 
-All URIs are relative to *https://demo.tenants.oryapis.com/api/kratos/public*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -36,14 +36,14 @@ This endpoint creates an identity. It is NOT possible to set an identity's crede
 import time
 import ory_kratos_client
 from ory_kratos_client.api import admin_api
+from ory_kratos_client.model.json_error import JsonError
 from ory_kratos_client.model.create_identity import CreateIdentity
-from ory_kratos_client.model.generic_error import GenericError
 from ory_kratos_client.model.identity import Identity
 from pprint import pprint
-# Defining the host is optional and defaults to https://demo.tenants.oryapis.com/api/kratos/public
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_kratos_client.Configuration(
-    host = "https://demo.tenants.oryapis.com/api/kratos/public"
+    host = "http://localhost"
 )
 
 
@@ -91,9 +91,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | A single identity. |  -  |
-**400** | genericError |  -  |
-**409** | genericError |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**409** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -110,14 +110,14 @@ This endpoint creates a recovery link which should be given to the user in order
 import time
 import ory_kratos_client
 from ory_kratos_client.api import admin_api
+from ory_kratos_client.model.json_error import JsonError
 from ory_kratos_client.model.create_recovery_link import CreateRecoveryLink
 from ory_kratos_client.model.recovery_link import RecoveryLink
-from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
-# Defining the host is optional and defaults to https://demo.tenants.oryapis.com/api/kratos/public
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_kratos_client.Configuration(
-    host = "https://demo.tenants.oryapis.com/api/kratos/public"
+    host = "http://localhost"
 )
 
 
@@ -165,9 +165,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | recoveryLink |  -  |
-**400** | genericError |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -184,12 +184,12 @@ Calling this endpoint irrecoverably and permanently deletes the identity given i
 import time
 import ory_kratos_client
 from ory_kratos_client.api import admin_api
-from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.json_error import JsonError
 from pprint import pprint
-# Defining the host is optional and defaults to https://demo.tenants.oryapis.com/api/kratos/public
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_kratos_client.Configuration(
-    host = "https://demo.tenants.oryapis.com/api/kratos/public"
+    host = "http://localhost"
 )
 
 
@@ -232,8 +232,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -250,13 +250,13 @@ Learn how identities work in [Ory Kratos' User And Identity Model Documentation]
 import time
 import ory_kratos_client
 from ory_kratos_client.api import admin_api
-from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.json_error import JsonError
 from ory_kratos_client.model.identity import Identity
 from pprint import pprint
-# Defining the host is optional and defaults to https://demo.tenants.oryapis.com/api/kratos/public
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_kratos_client.Configuration(
-    host = "https://demo.tenants.oryapis.com/api/kratos/public"
+    host = "http://localhost"
 )
 
 
@@ -300,9 +300,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A single identity. |  -  |
-**400** | genericError |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -319,12 +318,12 @@ Get a Traits Schema Definition
 import time
 import ory_kratos_client
 from ory_kratos_client.api import admin_api
-from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.json_error import JsonError
 from pprint import pprint
-# Defining the host is optional and defaults to https://demo.tenants.oryapis.com/api/kratos/public
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_kratos_client.Configuration(
-    host = "https://demo.tenants.oryapis.com/api/kratos/public"
+    host = "http://localhost"
 )
 
 
@@ -367,13 +366,13 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | jsonSchema |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_self_service_error**
-> ErrorContainer get_self_service_error(error)
+> SelfServiceErrorContainer get_self_service_error(error)
 
 Get User-Facing Self-Service Errors
 
@@ -385,13 +384,13 @@ This endpoint returns the error associated with a user-facing self service error
 import time
 import ory_kratos_client
 from ory_kratos_client.api import admin_api
-from ory_kratos_client.model.error_container import ErrorContainer
-from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.json_error import JsonError
+from ory_kratos_client.model.self_service_error_container import SelfServiceErrorContainer
 from pprint import pprint
-# Defining the host is optional and defaults to https://demo.tenants.oryapis.com/api/kratos/public
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_kratos_client.Configuration(
-    host = "https://demo.tenants.oryapis.com/api/kratos/public"
+    host = "http://localhost"
 )
 
 
@@ -419,7 +418,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ErrorContainer**](ErrorContainer.md)
+[**SelfServiceErrorContainer**](SelfServiceErrorContainer.md)
 
 ### Authorization
 
@@ -435,9 +434,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | User-facing error response |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**403** | jsonError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -454,13 +453,13 @@ This endpoint returns a login flow's context with, for example, error details an
 import time
 import ory_kratos_client
 from ory_kratos_client.api import admin_api
+from ory_kratos_client.model.json_error import JsonError
 from ory_kratos_client.model.login_flow import LoginFlow
-from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
-# Defining the host is optional and defaults to https://demo.tenants.oryapis.com/api/kratos/public
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_kratos_client.Configuration(
-    host = "https://demo.tenants.oryapis.com/api/kratos/public"
+    host = "http://localhost"
 )
 
 
@@ -504,10 +503,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | loginFlow |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**410** | genericError |  -  |
-**500** | genericError |  -  |
+**403** | jsonError |  -  |
+**404** | jsonError |  -  |
+**410** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -524,13 +523,13 @@ This endpoint returns a recovery flow's context with, for example, error details
 import time
 import ory_kratos_client
 from ory_kratos_client.api import admin_api
+from ory_kratos_client.model.json_error import JsonError
 from ory_kratos_client.model.recovery_flow import RecoveryFlow
-from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
-# Defining the host is optional and defaults to https://demo.tenants.oryapis.com/api/kratos/public
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_kratos_client.Configuration(
-    host = "https://demo.tenants.oryapis.com/api/kratos/public"
+    host = "http://localhost"
 )
 
 
@@ -574,9 +573,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | recoveryFlow |  -  |
-**404** | genericError |  -  |
-**410** | genericError |  -  |
-**500** | genericError |  -  |
+**404** | jsonError |  -  |
+**410** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -593,13 +592,13 @@ This endpoint returns a registration flow's context with, for example, error det
 import time
 import ory_kratos_client
 from ory_kratos_client.api import admin_api
-from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.json_error import JsonError
 from ory_kratos_client.model.registration_flow import RegistrationFlow
 from pprint import pprint
-# Defining the host is optional and defaults to https://demo.tenants.oryapis.com/api/kratos/public
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_kratos_client.Configuration(
-    host = "https://demo.tenants.oryapis.com/api/kratos/public"
+    host = "http://localhost"
 )
 
 
@@ -643,10 +642,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | registrationFlow |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**410** | genericError |  -  |
-**500** | genericError |  -  |
+**403** | jsonError |  -  |
+**404** | jsonError |  -  |
+**410** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -659,18 +658,18 @@ When accessing this endpoint through Ory Kratos' Public API you must ensure that
 
 ### Example
 
-* Api Key Authentication (sessionToken):
+* Bearer Authentication (sessionToken):
 ```python
 import time
 import ory_kratos_client
 from ory_kratos_client.api import admin_api
-from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.json_error import JsonError
 from ory_kratos_client.model.settings_flow import SettingsFlow
 from pprint import pprint
-# Defining the host is optional and defaults to https://demo.tenants.oryapis.com/api/kratos/public
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_kratos_client.Configuration(
-    host = "https://demo.tenants.oryapis.com/api/kratos/public"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -678,22 +677,31 @@ configuration = ory_kratos_client.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: sessionToken
-configuration.api_key['sessionToken'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['sessionToken'] = 'Bearer'
+# Configure Bearer authorization: sessionToken
+configuration = ory_kratos_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
 with ory_kratos_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = admin_api.AdminApi(api_client)
     id = "id_example" # str | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+    x_session_token = "X-Session-Token_example" # str | The Session Token of the Identity performing the settings flow. (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Get Settings Flow
         api_response = api_instance.get_self_service_settings_flow(id)
+        pprint(api_response)
+    except ory_kratos_client.ApiException as e:
+        print("Exception when calling AdminApi->get_self_service_settings_flow: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Get Settings Flow
+        api_response = api_instance.get_self_service_settings_flow(id, x_session_token=x_session_token)
         pprint(api_response)
     except ory_kratos_client.ApiException as e:
         print("Exception when calling AdminApi->get_self_service_settings_flow: %s\n" % e)
@@ -705,6 +713,7 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
+ **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional]
 
 ### Return type
 
@@ -724,10 +733,10 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | settingsFlow |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**410** | genericError |  -  |
-**500** | genericError |  -  |
+**403** | jsonError |  -  |
+**404** | jsonError |  -  |
+**410** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -744,13 +753,13 @@ This endpoint returns a verification flow's context with, for example, error det
 import time
 import ory_kratos_client
 from ory_kratos_client.api import admin_api
-from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.json_error import JsonError
 from ory_kratos_client.model.verification_flow import VerificationFlow
 from pprint import pprint
-# Defining the host is optional and defaults to https://demo.tenants.oryapis.com/api/kratos/public
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_kratos_client.Configuration(
-    host = "https://demo.tenants.oryapis.com/api/kratos/public"
+    host = "http://localhost"
 )
 
 
@@ -794,9 +803,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | verificationFlow |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**403** | jsonError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -815,10 +824,10 @@ import ory_kratos_client
 from ory_kratos_client.api import admin_api
 from ory_kratos_client.model.inline_response2001 import InlineResponse2001
 from pprint import pprint
-# Defining the host is optional and defaults to https://demo.tenants.oryapis.com/api/kratos/public
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_kratos_client.Configuration(
-    host = "https://demo.tenants.oryapis.com/api/kratos/public"
+    host = "http://localhost"
 )
 
 
@@ -877,10 +886,10 @@ from ory_kratos_client.api import admin_api
 from ory_kratos_client.model.inline_response200 import InlineResponse200
 from ory_kratos_client.model.generic_error import GenericError
 from pprint import pprint
-# Defining the host is optional and defaults to https://demo.tenants.oryapis.com/api/kratos/public
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_kratos_client.Configuration(
-    host = "https://demo.tenants.oryapis.com/api/kratos/public"
+    host = "http://localhost"
 )
 
 
@@ -940,10 +949,10 @@ from ory_kratos_client.api import admin_api
 from ory_kratos_client.model.inline_response503 import InlineResponse503
 from ory_kratos_client.model.inline_response200 import InlineResponse200
 from pprint import pprint
-# Defining the host is optional and defaults to https://demo.tenants.oryapis.com/api/kratos/public
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_kratos_client.Configuration(
-    host = "https://demo.tenants.oryapis.com/api/kratos/public"
+    host = "http://localhost"
 )
 
 
@@ -1000,13 +1009,13 @@ Lists all identities. Does not support search at the moment.  Learn how identiti
 import time
 import ory_kratos_client
 from ory_kratos_client.api import admin_api
-from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.json_error import JsonError
 from ory_kratos_client.model.identity import Identity
 from pprint import pprint
-# Defining the host is optional and defaults to https://demo.tenants.oryapis.com/api/kratos/public
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_kratos_client.Configuration(
-    host = "https://demo.tenants.oryapis.com/api/kratos/public"
+    host = "http://localhost"
 )
 
 
@@ -1053,7 +1062,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A list of identities. |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1071,10 +1080,10 @@ import time
 import ory_kratos_client
 from ory_kratos_client.api import admin_api
 from pprint import pprint
-# Defining the host is optional and defaults to https://demo.tenants.oryapis.com/api/kratos/public
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_kratos_client.Configuration(
-    host = "https://demo.tenants.oryapis.com/api/kratos/public"
+    host = "http://localhost"
 )
 
 
@@ -1129,14 +1138,14 @@ This endpoint updates an identity. It is NOT possible to set an identity's crede
 import time
 import ory_kratos_client
 from ory_kratos_client.api import admin_api
-from ory_kratos_client.model.generic_error import GenericError
+from ory_kratos_client.model.json_error import JsonError
 from ory_kratos_client.model.update_identity import UpdateIdentity
 from ory_kratos_client.model.identity import Identity
 from pprint import pprint
-# Defining the host is optional and defaults to https://demo.tenants.oryapis.com/api/kratos/public
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_kratos_client.Configuration(
-    host = "https://demo.tenants.oryapis.com/api/kratos/public"
+    host = "http://localhost"
 )
 
 
@@ -1193,10 +1202,11 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A single identity. |  -  |
-**400** | genericError |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**200** | identity |  -  |
+**400** | jsonError |  -  |
+**404** | jsonError |  -  |
+**409** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

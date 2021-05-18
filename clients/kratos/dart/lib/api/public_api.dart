@@ -148,7 +148,7 @@ class PublicApi {
   ///
   /// * [String] error (required):
   ///   Error is the container's ID
-  Future<ErrorContainer> getSelfServiceError(String error) async {
+  Future<SelfServiceErrorContainer> getSelfServiceError(String error) async {
     final response = await getSelfServiceErrorWithHttpInfo(error);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -157,9 +157,9 @@ class PublicApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ErrorContainer',) as ErrorContainer;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SelfServiceErrorContainer',) as SelfServiceErrorContainer;
         }
-    return Future<ErrorContainer>.value(null);
+    return Future<SelfServiceErrorContainer>.value(null);
   }
 
   /// Get Login Flow
@@ -400,7 +400,10 @@ class PublicApi {
   ///
   /// * [String] id (required):
   ///   ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
-  Future<Response> getSelfServiceSettingsFlowWithHttpInfo(String id) async {
+  ///
+  /// * [String] xSessionToken:
+  ///   The Session Token of the Identity performing the settings flow.
+  Future<Response> getSelfServiceSettingsFlowWithHttpInfo(String id, { String xSessionToken }) async {
     // Verify required params are set.
     if (id == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
@@ -415,6 +418,10 @@ class PublicApi {
     final formParams = <String, String>{};
 
       queryParams.addAll(_convertParametersForCollectionFormat('', 'id', id));
+
+    if (xSessionToken != null) {
+      headerParams[r'X-Session-Token'] = parameterToString(xSessionToken);
+    }
 
     final contentTypes = <String>[];
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
@@ -452,8 +459,11 @@ class PublicApi {
   ///
   /// * [String] id (required):
   ///   ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
-  Future<SettingsFlow> getSelfServiceSettingsFlow(String id) async {
-    final response = await getSelfServiceSettingsFlowWithHttpInfo(id);
+  ///
+  /// * [String] xSessionToken:
+  ///   The Session Token of the Identity performing the settings flow.
+  Future<SettingsFlow> getSelfServiceSettingsFlow(String id, { String xSessionToken }) async {
+    final response = await getSelfServiceSettingsFlowWithHttpInfo(id,  xSessionToken: xSessionToken );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -594,7 +604,75 @@ class PublicApi {
     }
   }
 
-  /// Initialize Login Flow for API clients
+  /// Initialize Login Flow for browsers
+  ///
+  /// This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [bool] refresh:
+  ///   Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
+  Future<Response> initializeSelfServiceLoginForBrowsersWithHttpInfo({ bool refresh }) async {
+    // Verify required params are set.
+
+    final path = r'/self-service/login/browser';
+
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (refresh != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'refresh', refresh));
+    }
+
+    final contentTypes = <String>[];
+    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
+    final authNames = <String>[];
+
+    if (
+      nullableContentType != null &&
+      nullableContentType.toLowerCase().startsWith('multipart/form-data')
+    ) {
+      bool hasFields = false;
+      final mp = MultipartRequest(null, null);
+      if (hasFields) {
+        postBody = mp;
+      }
+    } else {
+    }
+
+    return await apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      nullableContentType,
+      authNames,
+    );
+  }
+
+  /// Initialize Login Flow for browsers
+  ///
+  /// This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+  ///
+  /// Parameters:
+  ///
+  /// * [bool] refresh:
+  ///   Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
+  Future<void> initializeSelfServiceLoginForBrowsers({ bool refresh }) async {
+    final response = await initializeSelfServiceLoginForBrowsersWithHttpInfo( refresh: refresh );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+  }
+
+  /// Initialize Login Flow for Native Apps and API clients
   ///
   /// This endpoint initiates a login flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
   ///
@@ -604,7 +682,7 @@ class PublicApi {
   ///
   /// * [bool] refresh:
   ///   Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
-  Future<Response> initializeSelfServiceLoginViaAPIFlowWithHttpInfo({ bool refresh }) async {
+  Future<Response> initializeSelfServiceLoginForNativeAppsWithHttpInfo({ bool refresh }) async {
     // Verify required params are set.
 
     final path = r'/self-service/login/api';
@@ -647,7 +725,7 @@ class PublicApi {
     );
   }
 
-  /// Initialize Login Flow for API clients
+  /// Initialize Login Flow for Native Apps and API clients
   ///
   /// This endpoint initiates a login flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
   ///
@@ -655,8 +733,8 @@ class PublicApi {
   ///
   /// * [bool] refresh:
   ///   Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
-  Future<LoginFlow> initializeSelfServiceLoginViaAPIFlow({ bool refresh }) async {
-    final response = await initializeSelfServiceLoginViaAPIFlowWithHttpInfo( refresh: refresh );
+  Future<LoginFlow> initializeSelfServiceLoginForNativeApps({ bool refresh }) async {
+    final response = await initializeSelfServiceLoginForNativeAppsWithHttpInfo( refresh: refresh );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -669,123 +747,12 @@ class PublicApi {
     return Future<LoginFlow>.value(null);
   }
 
-  /// Initialize Login Flow for browsers
-  ///
-  /// This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
-  ///
-  /// Note: This method returns the HTTP [Response].
-  Future<Response> initializeSelfServiceLoginViaBrowserFlowWithHttpInfo() async {
-    final path = r'/self-service/login/browser';
-
-    Object postBody;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    final contentTypes = <String>[];
-    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>[];
-
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-    }
-
-    return await apiClient.invokeAPI(
-      path,
-      'GET',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      nullableContentType,
-      authNames,
-    );
-  }
-
-  /// Initialize Login Flow for browsers
-  ///
-  /// This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
-  Future<void> initializeSelfServiceLoginViaBrowserFlow() async {
-    final response = await initializeSelfServiceLoginViaBrowserFlowWithHttpInfo();
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-  }
-
-  /// Initialize Recovery Flow for API Clients
-  ///
-  /// This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
-  ///
-  /// Note: This method returns the HTTP [Response].
-  Future<Response> initializeSelfServiceRecoveryViaAPIFlowWithHttpInfo() async {
-    final path = r'/self-service/recovery/api';
-
-    Object postBody;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    final contentTypes = <String>[];
-    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>[];
-
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-    }
-
-    return await apiClient.invokeAPI(
-      path,
-      'GET',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      nullableContentType,
-      authNames,
-    );
-  }
-
-  /// Initialize Recovery Flow for API Clients
-  ///
-  /// This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
-  Future<RecoveryFlow> initializeSelfServiceRecoveryViaAPIFlow() async {
-    final response = await initializeSelfServiceRecoveryViaAPIFlowWithHttpInfo();
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-    // When a remote server returns no body with a status of 204, we shall not decode it.
-    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
-    // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'RecoveryFlow',) as RecoveryFlow;
-        }
-    return Future<RecoveryFlow>.value(null);
-  }
-
   /// Initialize Recovery Flow for Browser Clients
   ///
   /// This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to `selfservice.flows.recovery.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists, the browser is returned to the configured return URL.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> initializeSelfServiceRecoveryViaBrowserFlowWithHttpInfo() async {
+  Future<Response> initializeSelfServiceRecoveryForBrowsersWithHttpInfo() async {
     final path = r'/self-service/recovery/browser';
 
     Object postBody;
@@ -825,20 +792,20 @@ class PublicApi {
   /// Initialize Recovery Flow for Browser Clients
   ///
   /// This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to `selfservice.flows.recovery.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists, the browser is returned to the configured return URL.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
-  Future<void> initializeSelfServiceRecoveryViaBrowserFlow() async {
-    final response = await initializeSelfServiceRecoveryViaBrowserFlowWithHttpInfo();
+  Future<void> initializeSelfServiceRecoveryForBrowsers() async {
+    final response = await initializeSelfServiceRecoveryForBrowsersWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
-  /// Initialize Registration Flow for API clients
+  /// Initialize Recovery Flow for Native Apps and API clients
   ///
-  /// This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing registration flow call `/self-service/registration/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+  /// This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> initializeSelfServiceRegistrationViaAPIFlowWithHttpInfo() async {
-    final path = r'/self-service/registration/api';
+  Future<Response> initializeSelfServiceRecoveryForNativeAppsWithHttpInfo() async {
+    final path = r'/self-service/recovery/api';
 
     Object postBody;
 
@@ -874,11 +841,11 @@ class PublicApi {
     );
   }
 
-  /// Initialize Registration Flow for API clients
+  /// Initialize Recovery Flow for Native Apps and API clients
   ///
-  /// This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing registration flow call `/self-service/registration/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
-  Future<RegistrationFlow> initializeSelfServiceRegistrationViaAPIFlow() async {
-    final response = await initializeSelfServiceRegistrationViaAPIFlowWithHttpInfo();
+  /// This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+  Future<RecoveryFlow> initializeSelfServiceRecoveryForNativeApps() async {
+    final response = await initializeSelfServiceRecoveryForNativeAppsWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -886,9 +853,9 @@ class PublicApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'RegistrationFlow',) as RegistrationFlow;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'RecoveryFlow',) as RecoveryFlow;
         }
-    return Future<RegistrationFlow>.value(null);
+    return Future<RecoveryFlow>.value(null);
   }
 
   /// Initialize Registration Flow for browsers
@@ -896,7 +863,7 @@ class PublicApi {
   /// This endpoint initializes a browser-based user registration flow. Once initialized, the browser will be redirected to `selfservice.flows.registration.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  :::note  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> initializeSelfServiceRegistrationViaBrowserFlowWithHttpInfo() async {
+  Future<Response> initializeSelfServiceRegistrationForBrowsersWithHttpInfo() async {
     final path = r'/self-service/registration/browser';
 
     Object postBody;
@@ -936,20 +903,20 @@ class PublicApi {
   /// Initialize Registration Flow for browsers
   ///
   /// This endpoint initializes a browser-based user registration flow. Once initialized, the browser will be redirected to `selfservice.flows.registration.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  :::note  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
-  Future<void> initializeSelfServiceRegistrationViaBrowserFlow() async {
-    final response = await initializeSelfServiceRegistrationViaBrowserFlowWithHttpInfo();
+  Future<void> initializeSelfServiceRegistrationForBrowsers() async {
+    final response = await initializeSelfServiceRegistrationForBrowsersWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
-  /// Initialize Settings Flow for API Clients
+  /// Initialize Registration Flow for Native Apps and API clients
   ///
-  /// This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid Ory Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call `/self-service/settings/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+  /// This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing registration flow call `/self-service/registration/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> initializeSelfServiceSettingsViaAPIFlowWithHttpInfo() async {
-    final path = r'/self-service/settings/api';
+  Future<Response> initializeSelfServiceRegistrationForNativeAppsWithHttpInfo() async {
+    final path = r'/self-service/registration/api';
 
     Object postBody;
 
@@ -959,7 +926,7 @@ class PublicApi {
 
     final contentTypes = <String>[];
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>['sessionToken'];
+    final authNames = <String>[];
 
     if (
       nullableContentType != null &&
@@ -985,11 +952,11 @@ class PublicApi {
     );
   }
 
-  /// Initialize Settings Flow for API Clients
+  /// Initialize Registration Flow for Native Apps and API clients
   ///
-  /// This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid Ory Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call `/self-service/settings/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
-  Future<SettingsFlow> initializeSelfServiceSettingsViaAPIFlow() async {
-    final response = await initializeSelfServiceSettingsViaAPIFlowWithHttpInfo();
+  /// This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing registration flow call `/self-service/registration/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+  Future<RegistrationFlow> initializeSelfServiceRegistrationForNativeApps() async {
+    final response = await initializeSelfServiceRegistrationForNativeAppsWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -997,9 +964,9 @@ class PublicApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SettingsFlow',) as SettingsFlow;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'RegistrationFlow',) as RegistrationFlow;
         }
-    return Future<SettingsFlow>.value(null);
+    return Future<RegistrationFlow>.value(null);
   }
 
   /// Initialize Settings Flow for Browsers
@@ -1007,7 +974,7 @@ class PublicApi {
   /// This endpoint initializes a browser-based user settings flow. Once initialized, the browser will be redirected to `selfservice.flows.settings.ui_url` with the flow ID set as the query parameter `?flow=`. If no valid Ory Kratos Session Cookie is included in the request, a login flow will be initialized.  :::note  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> initializeSelfServiceSettingsViaBrowserFlowWithHttpInfo() async {
+  Future<Response> initializeSelfServiceSettingsForBrowsersWithHttpInfo() async {
     final path = r'/self-service/settings/browser';
 
     Object postBody;
@@ -1047,20 +1014,27 @@ class PublicApi {
   /// Initialize Settings Flow for Browsers
   ///
   /// This endpoint initializes a browser-based user settings flow. Once initialized, the browser will be redirected to `selfservice.flows.settings.ui_url` with the flow ID set as the query parameter `?flow=`. If no valid Ory Kratos Session Cookie is included in the request, a login flow will be initialized.  :::note  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
-  Future<void> initializeSelfServiceSettingsViaBrowserFlow() async {
-    final response = await initializeSelfServiceSettingsViaBrowserFlowWithHttpInfo();
+  Future<void> initializeSelfServiceSettingsForBrowsers() async {
+    final response = await initializeSelfServiceSettingsForBrowsersWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
-  /// Initialize Verification Flow for API Clients
+  /// Initialize Settings Flow for Native Apps and API clients
   ///
-  /// This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+  /// This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid Ory Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call `/self-service/settings/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> initializeSelfServiceVerificationViaAPIFlowWithHttpInfo() async {
-    final path = r'/self-service/verification/api';
+  ///
+  /// Parameters:
+  ///
+  /// * [String] xSessionToken:
+  ///   The Session Token of the Identity performing the settings flow.
+  Future<Response> initializeSelfServiceSettingsForNativeAppsWithHttpInfo({ String xSessionToken }) async {
+    // Verify required params are set.
+
+    final path = r'/self-service/settings/api';
 
     Object postBody;
 
@@ -1068,9 +1042,13 @@ class PublicApi {
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
+    if (xSessionToken != null) {
+      headerParams[r'X-Session-Token'] = parameterToString(xSessionToken);
+    }
+
     final contentTypes = <String>[];
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>[];
+    final authNames = <String>['sessionToken'];
 
     if (
       nullableContentType != null &&
@@ -1096,11 +1074,16 @@ class PublicApi {
     );
   }
 
-  /// Initialize Verification Flow for API Clients
+  /// Initialize Settings Flow for Native Apps and API clients
   ///
-  /// This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
-  Future<VerificationFlow> initializeSelfServiceVerificationViaAPIFlow() async {
-    final response = await initializeSelfServiceVerificationViaAPIFlowWithHttpInfo();
+  /// This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid Ory Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call `/self-service/settings/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] xSessionToken:
+  ///   The Session Token of the Identity performing the settings flow.
+  Future<SettingsFlow> initializeSelfServiceSettingsForNativeApps({ String xSessionToken }) async {
+    final response = await initializeSelfServiceSettingsForNativeAppsWithHttpInfo( xSessionToken: xSessionToken );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1108,9 +1091,9 @@ class PublicApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'VerificationFlow',) as VerificationFlow;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SettingsFlow',) as SettingsFlow;
         }
-    return Future<VerificationFlow>.value(null);
+    return Future<SettingsFlow>.value(null);
   }
 
   /// Initialize Verification Flow for Browser Clients
@@ -1118,7 +1101,7 @@ class PublicApi {
   /// This endpoint initializes a browser-based account verification flow. Once initialized, the browser will be redirected to `selfservice.flows.verification.ui_url` with the flow ID set as the query parameter `?flow=`.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> initializeSelfServiceVerificationViaBrowserFlowWithHttpInfo() async {
+  Future<Response> initializeSelfServiceVerificationForBrowsersWithHttpInfo() async {
     final path = r'/self-service/verification/browser';
 
     Object postBody;
@@ -1158,11 +1141,70 @@ class PublicApi {
   /// Initialize Verification Flow for Browser Clients
   ///
   /// This endpoint initializes a browser-based account verification flow. Once initialized, the browser will be redirected to `selfservice.flows.verification.ui_url` with the flow ID set as the query parameter `?flow=`.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
-  Future<void> initializeSelfServiceVerificationViaBrowserFlow() async {
-    final response = await initializeSelfServiceVerificationViaBrowserFlowWithHttpInfo();
+  Future<void> initializeSelfServiceVerificationForBrowsers() async {
+    final response = await initializeSelfServiceVerificationForBrowsersWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
+  }
+
+  /// Initialize Verification Flow for Native Apps and API clients
+  ///
+  /// This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> initializeSelfServiceVerificationForNativeAppsWithHttpInfo() async {
+    final path = r'/self-service/verification/api';
+
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    final contentTypes = <String>[];
+    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
+    final authNames = <String>[];
+
+    if (
+      nullableContentType != null &&
+      nullableContentType.toLowerCase().startsWith('multipart/form-data')
+    ) {
+      bool hasFields = false;
+      final mp = MultipartRequest(null, null);
+      if (hasFields) {
+        postBody = mp;
+      }
+    } else {
+    }
+
+    return await apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      nullableContentType,
+      authNames,
+    );
+  }
+
+  /// Initialize Verification Flow for Native Apps and API clients
+  ///
+  /// This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+  Future<VerificationFlow> initializeSelfServiceVerificationForNativeApps() async {
+    final response = await initializeSelfServiceVerificationForNativeAppsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'VerificationFlow',) as VerificationFlow;
+        }
+    return Future<VerificationFlow>.value(null);
   }
 
   /// Initialize Logout Flow for API Clients - Revoke a Session
@@ -1555,8 +1597,11 @@ class PublicApi {
   /// * [String] flow (required):
   ///   The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
   ///
+  /// * [String] xSessionToken:
+  ///   The Session Token of the Identity performing the settings flow.
+  ///
   /// * [SubmitSelfServiceSettingsFlow] submitSelfServiceSettingsFlow:
-  Future<Response> submitSelfServiceSettingsFlowWithHttpInfo(String flow, { SubmitSelfServiceSettingsFlow submitSelfServiceSettingsFlow }) async {
+  Future<Response> submitSelfServiceSettingsFlowWithHttpInfo(String flow, { String xSessionToken, SubmitSelfServiceSettingsFlow submitSelfServiceSettingsFlow }) async {
     // Verify required params are set.
     if (flow == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: flow');
@@ -1571,6 +1616,10 @@ class PublicApi {
     final formParams = <String, String>{};
 
       queryParams.addAll(_convertParametersForCollectionFormat('', 'flow', flow));
+
+    if (xSessionToken != null) {
+      headerParams[r'X-Session-Token'] = parameterToString(xSessionToken);
+    }
 
     final contentTypes = <String>['application/json', 'application/x-www-form-urlencoded'];
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
@@ -1609,9 +1658,12 @@ class PublicApi {
   /// * [String] flow (required):
   ///   The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
   ///
+  /// * [String] xSessionToken:
+  ///   The Session Token of the Identity performing the settings flow.
+  ///
   /// * [SubmitSelfServiceSettingsFlow] submitSelfServiceSettingsFlow:
-  Future<SettingsViaApiResponse> submitSelfServiceSettingsFlow(String flow, { SubmitSelfServiceSettingsFlow submitSelfServiceSettingsFlow }) async {
-    final response = await submitSelfServiceSettingsFlowWithHttpInfo(flow,  submitSelfServiceSettingsFlow: submitSelfServiceSettingsFlow );
+  Future<SettingsViaApiResponse> submitSelfServiceSettingsFlow(String flow, { String xSessionToken, SubmitSelfServiceSettingsFlow submitSelfServiceSettingsFlow }) async {
+    final response = await submitSelfServiceSettingsFlowWithHttpInfo(flow,  xSessionToken: xSessionToken, submitSelfServiceSettingsFlow: submitSelfServiceSettingsFlow );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1699,16 +1751,14 @@ class PublicApi {
 
   /// Check Who the Current HTTP Session Belongs To
   ///
-  /// Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. Additionally when the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header in the response.  This endpoint is useful for reverse proxies and API Gateways.
+  /// Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. Additionally when the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header in the response.  This endpoint is useful for:  AJAX calls. Remember to send credentials and set up CORS correctly! Reverse proxies and API Gateways Server-side calls - use the `X-Session-Token` header!
   ///
   /// Note: This method returns the HTTP [Response].
   ///
   /// Parameters:
   ///
-  /// * [String] cookie:
-  ///
-  /// * [String] authorization:
-  Future<Response> whoamiWithHttpInfo({ String cookie, String authorization }) async {
+  /// * [String] xSessionToken:
+  Future<Response> toSessionWithHttpInfo({ String xSessionToken }) async {
     // Verify required params are set.
 
     final path = r'/sessions/whoami';
@@ -1719,16 +1769,13 @@ class PublicApi {
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-    if (cookie != null) {
-      headerParams[r'Cookie'] = parameterToString(cookie);
-    }
-    if (authorization != null) {
-      headerParams[r'Authorization'] = parameterToString(authorization);
+    if (xSessionToken != null) {
+      headerParams[r'X-Session-Token'] = parameterToString(xSessionToken);
     }
 
     final contentTypes = <String>[];
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>['sessionToken'];
+    final authNames = <String>['sessionCookie'];
 
     if (
       nullableContentType != null &&
@@ -1756,15 +1803,13 @@ class PublicApi {
 
   /// Check Who the Current HTTP Session Belongs To
   ///
-  /// Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. Additionally when the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header in the response.  This endpoint is useful for reverse proxies and API Gateways.
+  /// Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. Additionally when the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header in the response.  This endpoint is useful for:  AJAX calls. Remember to send credentials and set up CORS correctly! Reverse proxies and API Gateways Server-side calls - use the `X-Session-Token` header!
   ///
   /// Parameters:
   ///
-  /// * [String] cookie:
-  ///
-  /// * [String] authorization:
-  Future<Session> whoami({ String cookie, String authorization }) async {
-    final response = await whoamiWithHttpInfo( cookie: cookie, authorization: authorization );
+  /// * [String] xSessionToken:
+  Future<Session> toSession({ String xSessionToken }) async {
+    final response = await toSessionWithHttpInfo( xSessionToken: xSessionToken );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

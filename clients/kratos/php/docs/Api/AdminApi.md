@@ -1,6 +1,6 @@
 # Ory\Kratos\Client\AdminApi
 
-All URIs are relative to https://demo.tenants.oryapis.com/api/kratos/public.
+All URIs are relative to http://localhost.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -305,7 +305,7 @@ No authorization required
 ## `getSelfServiceError()`
 
 ```php
-getSelfServiceError($error): \Ory\Kratos\Client\Model\ErrorContainer
+getSelfServiceError($error): \Ory\Kratos\Client\Model\SelfServiceErrorContainer
 ```
 
 Get User-Facing Self-Service Errors
@@ -343,7 +343,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Kratos\Client\Model\ErrorContainer**](../Model/ErrorContainer.md)
+[**\Ory\Kratos\Client\Model\SelfServiceErrorContainer**](../Model/SelfServiceErrorContainer.md)
 
 ### Authorization
 
@@ -529,7 +529,7 @@ No authorization required
 ## `getSelfServiceSettingsFlow()`
 
 ```php
-getSelfServiceSettingsFlow($id): \Ory\Kratos\Client\Model\SettingsFlow
+getSelfServiceSettingsFlow($id, $xSessionToken): \Ory\Kratos\Client\Model\SettingsFlow
 ```
 
 Get Settings Flow
@@ -543,10 +543,8 @@ When accessing this endpoint through Ory Kratos' Public API you must ensure that
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: sessionToken
-$config = Ory\Kratos\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Session-Token', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Ory\Kratos\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Session-Token', 'Bearer');
+// Configure Bearer authorization: sessionToken
+$config = Ory\Kratos\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
@@ -556,9 +554,10 @@ $apiInstance = new Ory\Kratos\Client\Api\AdminApi(
     $config
 );
 $id = 'id_example'; // string | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+$xSessionToken = 'xSessionToken_example'; // string | The Session Token of the Identity performing the settings flow.
 
 try {
-    $result = $apiInstance->getSelfServiceSettingsFlow($id);
+    $result = $apiInstance->getSelfServiceSettingsFlow($id, $xSessionToken);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->getSelfServiceSettingsFlow: ', $e->getMessage(), PHP_EOL;
@@ -570,6 +569,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
+ **xSessionToken** | **string**| The Session Token of the Identity performing the settings flow. | [optional]
 
 ### Return type
 

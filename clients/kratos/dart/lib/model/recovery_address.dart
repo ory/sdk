@@ -12,12 +12,20 @@ part of openapi.api;
 class RecoveryAddress {
   /// Returns a new [RecoveryAddress] instance.
   RecoveryAddress({
+    this.createdAt,
     @required this.id,
+    this.updatedAt,
     @required this.value,
     @required this.via,
   });
 
+  /// CreatedAt is a helper struct field for gobuffalo.pop.
+  DateTime createdAt;
+
   String id;
+
+  /// UpdatedAt is a helper struct field for gobuffalo.pop.
+  DateTime updatedAt;
 
   String value;
 
@@ -25,22 +33,32 @@ class RecoveryAddress {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is RecoveryAddress &&
+     other.createdAt == createdAt &&
      other.id == id &&
+     other.updatedAt == updatedAt &&
      other.value == value &&
      other.via == via;
 
   @override
   int get hashCode =>
+    (createdAt == null ? 0 : createdAt.hashCode) +
     (id == null ? 0 : id.hashCode) +
+    (updatedAt == null ? 0 : updatedAt.hashCode) +
     (value == null ? 0 : value.hashCode) +
     (via == null ? 0 : via.hashCode);
 
   @override
-  String toString() => 'RecoveryAddress[id=$id, value=$value, via=$via]';
+  String toString() => 'RecoveryAddress[createdAt=$createdAt, id=$id, updatedAt=$updatedAt, value=$value, via=$via]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    if (createdAt != null) {
+      json[r'created_at'] = createdAt.toUtc().toIso8601String();
+    }
       json[r'id'] = id;
+    if (updatedAt != null) {
+      json[r'updated_at'] = updatedAt.toUtc().toIso8601String();
+    }
       json[r'value'] = value;
       json[r'via'] = via;
     return json;
@@ -51,7 +69,13 @@ class RecoveryAddress {
   static RecoveryAddress fromJson(Map<String, dynamic> json) => json == null
     ? null
     : RecoveryAddress(
+        createdAt: json[r'created_at'] == null
+          ? null
+          : DateTime.parse(json[r'created_at']),
         id: json[r'id'],
+        updatedAt: json[r'updated_at'] == null
+          ? null
+          : DateTime.parse(json[r'updated_at']),
         value: json[r'value'],
         via: json[r'via'],
     );

@@ -3,7 +3,7 @@
 #
 
 name: 'ory_kratos_client'
-version: '0.6.2-alpha.1'
+version: '0.6.3-alpha.1'
 description: 'OpenAPI API client'
 authors:
   - 'ORY GmbH <opensource@ory.sh>'

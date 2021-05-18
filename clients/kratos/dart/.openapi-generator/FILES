@@ -11,10 +11,8 @@ doc/ContainerWaitOKBody.md
 doc/ContainerWaitOKBodyError.md
 doc/CreateIdentity.md
 doc/CreateRecoveryLink.md
-doc/ErrorContainer.md
 doc/ErrorResponse.md
 doc/GenericError.md
-doc/GenericErrorPayload.md
 doc/GraphDriverData.md
 doc/HealthNotReadyStatus.md
 doc/HealthStatus.md
@@ -26,6 +24,7 @@ doc/ImageSummary.md
 doc/InlineResponse200.md
 doc/InlineResponse2001.md
 doc/InlineResponse503.md
+doc/JsonError.md
 doc/LoginFlow.md
 doc/LoginViaApiResponse.md
 doc/Meta.md
@@ -50,6 +49,7 @@ doc/RecoveryLink.md
 doc/RegistrationFlow.md
 doc/RegistrationViaApiResponse.md
 doc/RevokeSession.md
+doc/SelfServiceErrorContainer.md
 doc/ServiceUpdateResponse.md
 doc/Session.md
 doc/SettingsFlow.md
@@ -75,7 +75,7 @@ doc/UiNodeInputAttributesValue.md
 doc/UiNodeTextAttributes.md
 doc/UiText.md
 doc/UpdateIdentity.md
-doc/VerifiableAddress.md
+doc/VerifiableIdentityAddress.md
 doc/VerificationFlow.md
 doc/Version.md
 doc/Volume.md
@@ -101,10 +101,8 @@ lib/model/container_wait_ok_body.dart
 lib/model/container_wait_ok_body_error.dart
 lib/model/create_identity.dart
 lib/model/create_recovery_link.dart
-lib/model/error_container.dart
 lib/model/error_response.dart
 lib/model/generic_error.dart
-lib/model/generic_error_payload.dart
 lib/model/graph_driver_data.dart
 lib/model/health_not_ready_status.dart
 lib/model/health_status.dart
@@ -116,6 +114,7 @@ lib/model/image_summary.dart
 lib/model/inline_response200.dart
 lib/model/inline_response2001.dart
 lib/model/inline_response503.dart
+lib/model/json_error.dart
 lib/model/login_flow.dart
 lib/model/login_via_api_response.dart
 lib/model/meta.dart
@@ -139,6 +138,7 @@ lib/model/recovery_link.dart
 lib/model/registration_flow.dart
 lib/model/registration_via_api_response.dart
 lib/model/revoke_session.dart
+lib/model/self_service_error_container.dart
 lib/model/service_update_response.dart
 lib/model/session.dart
 lib/model/settings_flow.dart
@@ -164,9 +164,12 @@ lib/model/ui_node_input_attributes_value.dart
 lib/model/ui_node_text_attributes.dart
 lib/model/ui_text.dart
 lib/model/update_identity.dart
-lib/model/verifiable_address.dart
+lib/model/verifiable_identity_address.dart
 lib/model/verification_flow.dart
 lib/model/version.dart
 lib/model/volume.dart
 lib/model/volume_usage_data.dart
 pubspec.yaml
+test/json_error_test.dart
+test/self_service_error_container_test.dart
+test/verifiable_identity_address_test.dart

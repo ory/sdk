@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory Kratos APIs. Public and administrative APIs are exposed on different ports. Public APIs can face the public internet without any protection while administrative APIs should never be exposed without prior authorization. To protect the administative API port you should use something like Nginx, Ory Oathkeeper, or any other technology capable of authorizing incoming requests. 
  *
- * API version: v0.6.2-alpha.1
+ * API version: v0.6.3-alpha.1
  * Contact: hi@ory.sh
  */
 
@@ -106,22 +106,8 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "https://{tenant}.tenants.oryapis.com/api/kratos/{api}",
+				URL: "",
 				Description: "No description provided",
-				Variables: map[string]ServerVariable{
-					"api": ServerVariable{
-						Description: "Target the public or administrative API.",
-						DefaultValue: "public",
-						EnumValues: []string{
-							"public",
-							"admin",
-						},
-					},
-					"tenant": ServerVariable{
-						Description: "Tenant ID as provided by Ory Cloud.",
-						DefaultValue: "demo",
-					},
-				},
 			},
 		},
 		OperationServers: map[string]ServerConfigurations{

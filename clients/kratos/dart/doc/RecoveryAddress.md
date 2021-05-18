@@ -8,7 +8,9 @@ import 'package:ory_kratos_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**createdAt** | [**DateTime**](DateTime.md) | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **id** | **String** |  | 
+**updatedAt** | [**DateTime**](DateTime.md) | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **value** | **String** |  | 
 **via** | **String** |  | 
 

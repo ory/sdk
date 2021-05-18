@@ -429,7 +429,7 @@ class AdminApi {
   ///
   /// * [String] error (required):
   ///   Error is the container's ID
-  Future<ErrorContainer> getSelfServiceError(String error) async {
+  Future<SelfServiceErrorContainer> getSelfServiceError(String error) async {
     final response = await getSelfServiceErrorWithHttpInfo(error);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -438,9 +438,9 @@ class AdminApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ErrorContainer',) as ErrorContainer;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SelfServiceErrorContainer',) as SelfServiceErrorContainer;
         }
-    return Future<ErrorContainer>.value(null);
+    return Future<SelfServiceErrorContainer>.value(null);
   }
 
   /// Get Login Flow
@@ -681,7 +681,10 @@ class AdminApi {
   ///
   /// * [String] id (required):
   ///   ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
-  Future<Response> getSelfServiceSettingsFlowWithHttpInfo(String id) async {
+  ///
+  /// * [String] xSessionToken:
+  ///   The Session Token of the Identity performing the settings flow.
+  Future<Response> getSelfServiceSettingsFlowWithHttpInfo(String id, { String xSessionToken }) async {
     // Verify required params are set.
     if (id == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
@@ -696,6 +699,10 @@ class AdminApi {
     final formParams = <String, String>{};
 
       queryParams.addAll(_convertParametersForCollectionFormat('', 'id', id));
+
+    if (xSessionToken != null) {
+      headerParams[r'X-Session-Token'] = parameterToString(xSessionToken);
+    }
 
     final contentTypes = <String>[];
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
@@ -733,8 +740,11 @@ class AdminApi {
   ///
   /// * [String] id (required):
   ///   ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
-  Future<SettingsFlow> getSelfServiceSettingsFlow(String id) async {
-    final response = await getSelfServiceSettingsFlowWithHttpInfo(id);
+  ///
+  /// * [String] xSessionToken:
+  ///   The Session Token of the Identity performing the settings flow.
+  Future<SettingsFlow> getSelfServiceSettingsFlow(String id, { String xSessionToken }) async {
+    final response = await getSelfServiceSettingsFlowWithHttpInfo(id,  xSessionToken: xSessionToken );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

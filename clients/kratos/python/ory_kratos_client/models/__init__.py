@@ -18,10 +18,8 @@ from ory_kratos_client.model.container_wait_ok_body import ContainerWaitOKBody
 from ory_kratos_client.model.container_wait_ok_body_error import ContainerWaitOKBodyError
 from ory_kratos_client.model.create_identity import CreateIdentity
 from ory_kratos_client.model.create_recovery_link import CreateRecoveryLink
-from ory_kratos_client.model.error_container import ErrorContainer
 from ory_kratos_client.model.error_response import ErrorResponse
 from ory_kratos_client.model.generic_error import GenericError
-from ory_kratos_client.model.generic_error_payload import GenericErrorPayload
 from ory_kratos_client.model.graph_driver_data import GraphDriverData
 from ory_kratos_client.model.health_not_ready_status import HealthNotReadyStatus
 from ory_kratos_client.model.health_status import HealthStatus
@@ -33,6 +31,7 @@ from ory_kratos_client.model.image_summary import ImageSummary
 from ory_kratos_client.model.inline_response200 import InlineResponse200
 from ory_kratos_client.model.inline_response2001 import InlineResponse2001
 from ory_kratos_client.model.inline_response503 import InlineResponse503
+from ory_kratos_client.model.json_error import JsonError
 from ory_kratos_client.model.login_flow import LoginFlow
 from ory_kratos_client.model.login_via_api_response import LoginViaApiResponse
 from ory_kratos_client.model.meta import Meta
@@ -56,6 +55,7 @@ from ory_kratos_client.model.recovery_link import RecoveryLink
 from ory_kratos_client.model.registration_flow import RegistrationFlow
 from ory_kratos_client.model.registration_via_api_response import RegistrationViaApiResponse
 from ory_kratos_client.model.revoke_session import RevokeSession
+from ory_kratos_client.model.self_service_error_container import SelfServiceErrorContainer
 from ory_kratos_client.model.service_update_response import ServiceUpdateResponse
 from ory_kratos_client.model.session import Session
 from ory_kratos_client.model.settings_flow import SettingsFlow
@@ -83,7 +83,7 @@ from ory_kratos_client.model.ui_nodes import UiNodes
 from ory_kratos_client.model.ui_text import UiText
 from ory_kratos_client.model.ui_texts import UiTexts
 from ory_kratos_client.model.update_identity import UpdateIdentity
-from ory_kratos_client.model.verifiable_address import VerifiableAddress
+from ory_kratos_client.model.verifiable_identity_address import VerifiableIdentityAddress
 from ory_kratos_client.model.verification_flow import VerificationFlow
 from ory_kratos_client.model.version import Version
 from ory_kratos_client.model.volume import Volume

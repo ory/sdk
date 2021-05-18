@@ -12,26 +12,79 @@ part of openapi.api;
 class GenericError {
   /// Returns a new [GenericError] instance.
   GenericError({
-    this.error,
+    this.code,
+    this.debug,
+    this.details = const {},
+    @required this.message,
+    this.reason,
+    this.request,
+    this.status,
   });
 
-  GenericErrorPayload error;
+  /// The status code
+  int code;
+
+  /// Debug information  This field is often not exposed to protect against leaking sensitive information.
+  String debug;
+
+  /// Further error details
+  Map<String, Object> details;
+
+  /// Error message  The error's message.
+  String message;
+
+  /// A human-readable reason for the error
+  String reason;
+
+  /// The request ID  The request ID is often exposed internally in order to trace errors across service architectures. This is often a UUID.
+  String request;
+
+  /// The status description
+  String status;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GenericError &&
-     other.error == error;
+     other.code == code &&
+     other.debug == debug &&
+     other.details == details &&
+     other.message == message &&
+     other.reason == reason &&
+     other.request == request &&
+     other.status == status;
 
   @override
   int get hashCode =>
-    (error == null ? 0 : error.hashCode);
+    (code == null ? 0 : code.hashCode) +
+    (debug == null ? 0 : debug.hashCode) +
+    (details == null ? 0 : details.hashCode) +
+    (message == null ? 0 : message.hashCode) +
+    (reason == null ? 0 : reason.hashCode) +
+    (request == null ? 0 : request.hashCode) +
+    (status == null ? 0 : status.hashCode);
 
   @override
-  String toString() => 'GenericError[error=$error]';
+  String toString() => 'GenericError[code=$code, debug=$debug, details=$details, message=$message, reason=$reason, request=$request, status=$status]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (error != null) {
-      json[r'error'] = error;
+    if (code != null) {
+      json[r'code'] = code;
+    }
+    if (debug != null) {
+      json[r'debug'] = debug;
+    }
+    if (details != null) {
+      json[r'details'] = details;
+    }
+      json[r'message'] = message;
+    if (reason != null) {
+      json[r'reason'] = reason;
+    }
+    if (request != null) {
+      json[r'request'] = request;
+    }
+    if (status != null) {
+      json[r'status'] = status;
     }
     return json;
   }
@@ -41,7 +94,15 @@ class GenericError {
   static GenericError fromJson(Map<String, dynamic> json) => json == null
     ? null
     : GenericError(
-        error: GenericErrorPayload.fromJson(json[r'error']),
+        code: json[r'code'],
+        debug: json[r'debug'],
+        details: json[r'details'] == null
+          ? null
+          : Object.mapFromJson(json[r'details']),
+        message: json[r'message'],
+        reason: json[r'reason'],
+        request: json[r'request'],
+        status: json[r'status'],
     );
 
   static List<GenericError> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
