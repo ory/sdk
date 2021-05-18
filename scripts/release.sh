@@ -86,7 +86,7 @@ ruby() {
     gemfile="ory-client-${GEM_VERSION}.gem"
   fi
 
-  (cd "${dir}"; rm *.gem || true; gem build "ory-${PROJECT}-client.gemspec"; gem push "ory-${PROJECT}-client-${GEM_VERSION}.gem")
+  (cd "${dir}"; rm *.gem || true; gem build "${gemspec}"; gem push "${gemfile}")
 }
 
 golang() {
