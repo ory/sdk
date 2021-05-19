@@ -180,7 +180,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_json_error.py
-test/test_self_service_error_container.py
-test/test_verifiable_identity_address.py
 tox.ini

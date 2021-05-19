@@ -14,4 +14,8 @@ Name | Type | Description | Notes
 **traits** | **Object** | The identity&#39;s traits |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -15,4 +15,8 @@ Name | Type | Description | Notes
 **issuedAt** | **OffsetDateTime** |  | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

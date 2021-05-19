@@ -82,9 +82,6 @@ docs/KratosVolume.md
 docs/KratosVolumeUsageData.md
 docs/PublicApi.md
 git_push.sh
-src/Ory.Kratos.Client.Test/Model/KratosJsonErrorTests.cs
-src/Ory.Kratos.Client.Test/Model/KratosSelfServiceErrorContainerTests.cs
-src/Ory.Kratos.Client.Test/Model/KratosVerifiableIdentityAddressTests.cs
 src/Ory.Kratos.Client.Test/Ory.Kratos.Client.Test.csproj
 src/Ory.Kratos.Client/Api/AdminApi.cs
 src/Ory.Kratos.Client/Api/PublicApi.cs

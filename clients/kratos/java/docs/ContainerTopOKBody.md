@@ -12,4 +12,8 @@ Name | Type | Description | Notes
 **titles** | **List&lt;String&gt;** | The ps column titles | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

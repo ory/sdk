@@ -20,4 +20,8 @@ Name | Type | Description | Notes
 **virtualSize** | **Long** | virtual size | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

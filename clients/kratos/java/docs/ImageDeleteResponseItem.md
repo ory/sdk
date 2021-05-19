@@ -12,4 +12,8 @@ Name | Type | Description | Notes
 **untagged** | **String** | The image ID of an image that was untagged |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

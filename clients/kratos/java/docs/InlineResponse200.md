@@ -10,4 +10,8 @@ Name | Type | Description | Notes
 **status** | **String** | Always \&quot;ok\&quot;. | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

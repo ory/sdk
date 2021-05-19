@@ -13,4 +13,8 @@ Name | Type | Description | Notes
 **nodes** | [**List&lt;UiNode&gt;**](UiNode.md) |  | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

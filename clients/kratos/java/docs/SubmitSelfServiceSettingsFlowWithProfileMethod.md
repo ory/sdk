@@ -13,4 +13,8 @@ Name | Type | Description | Notes
 **traits** | **Object** | Traits contains all of the identity&#39;s traits. | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

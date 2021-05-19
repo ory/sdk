@@ -12,4 +12,8 @@ Name | Type | Description | Notes
 **unlink** | **String** | Unlink this provider  Either this or &#x60;link&#x60; must be set.  type: string in: body |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

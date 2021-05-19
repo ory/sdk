@@ -18,4 +18,8 @@ Name | Type | Description | Notes
 **via** | **String** | VerifiableAddressType must not exceed 16 characters as that is the limitation in the SQL Schema | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

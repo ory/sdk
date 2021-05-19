@@ -12,4 +12,8 @@ Name | Type | Description | Notes
 **size** | **Long** | Amount of disk space used by the volume (in bytes). This information is only available for volumes created with the &#x60;\&quot;local\&quot;&#x60; volume driver. For volumes created with other volume drivers, this field is set to &#x60;-1&#x60; (\&quot;not available\&quot;) | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

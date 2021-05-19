@@ -16,4 +16,8 @@ Name | Type | Description | Notes
 **status** | **String** | The status description |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

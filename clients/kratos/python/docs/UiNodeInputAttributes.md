@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **label** | [**UiText**](UiText.md) |  | [optional] 
 **pattern** | **str** | The input&#39;s pattern. | [optional] 
 **required** | **bool** | Mark this input field as required. | [optional] 
-**value** | [**UiNodeInputAttributesValue**](UiNodeInputAttributesValue.md) |  | [optional] 
+**value** | **bool, date, datetime, dict, float, int, list, str, none_type** | The input&#39;s value. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

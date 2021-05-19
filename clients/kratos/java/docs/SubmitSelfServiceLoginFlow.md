@@ -13,4 +13,8 @@ Name | Type | Description | Notes
 **passwordIdentifier** | **String** | Identifier is the email or username of the user trying to log in. |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

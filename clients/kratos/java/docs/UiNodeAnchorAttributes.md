@@ -11,4 +11,8 @@ Name | Type | Description | Notes
 **title** | [**UiText**](UiText.md) |  | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

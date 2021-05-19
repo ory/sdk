@@ -19,4 +19,8 @@ Name | Type | Description | Notes
 **ui** | [**UiContainer**](UiContainer.md) |  | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

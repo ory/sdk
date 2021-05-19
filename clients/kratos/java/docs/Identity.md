@@ -18,4 +18,8 @@ Name | Type | Description | Notes
 **verifiableAddresses** | [**List&lt;VerifiableIdentityAddress&gt;**](VerifiableIdentityAddress.md) | VerifiableAddresses contains all the addresses that can be verified by the user. |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

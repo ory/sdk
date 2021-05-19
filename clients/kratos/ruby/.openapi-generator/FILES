@@ -172,7 +172,4 @@ lib/ory-kratos-client/version.rb
 ory-kratos-client.gemspec
 spec/api_client_spec.rb
 spec/configuration_spec.rb
-spec/models/json_error_spec.rb
-spec/models/self_service_error_container_spec.rb
-spec/models/verifiable_identity_address_spec.rb
 spec/spec_helper.rb

@@ -16,4 +16,8 @@ Name | Type | Description | Notes
 **settings** | [**PluginSettings**](PluginSettings.md) |  | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -14,4 +14,8 @@ Name | Type | Description | Notes
 **via** | **String** |  | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

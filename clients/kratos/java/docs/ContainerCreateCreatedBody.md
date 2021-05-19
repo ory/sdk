@@ -12,4 +12,8 @@ Name | Type | Description | Notes
 **warnings** | **List&lt;String&gt;** | Warnings encountered when creating the container | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -12,4 +12,8 @@ Name | Type | Description | Notes
 **identity** | [**Identity**](Identity.md) |  | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

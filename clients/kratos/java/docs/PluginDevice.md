@@ -14,4 +14,8 @@ Name | Type | Description | Notes
 **settable** | **List&lt;String&gt;** | settable | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

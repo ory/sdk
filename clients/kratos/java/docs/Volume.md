@@ -19,4 +19,8 @@ Name | Type | Description | Notes
 **usageData** | [**VolumeUsageData**](VolumeUsageData.md) |  |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

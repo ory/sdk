@@ -1591,7 +1591,12 @@ with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = public_api.PublicApi(api_client)
     flow = "flow_example" # str | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
-    submit_self_service_registration_flow = SubmitSelfServiceRegistrationFlow() # SubmitSelfServiceRegistrationFlow |  (optional)
+    submit_self_service_registration_flow = SubmitSelfServiceRegistrationFlow(
+        csrf_token="csrf_token_example",
+        method="password",
+        password="password_example",
+        traits={},
+    ) # SubmitSelfServiceRegistrationFlow |  (optional)
 
     # example passing only required values which don't have defaults set
     try:

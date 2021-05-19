@@ -11,4 +11,8 @@ Name | Type | Description | Notes
 **warnings** | **List&lt;String&gt;** | warnings | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

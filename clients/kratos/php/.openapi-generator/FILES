@@ -168,6 +168,3 @@ lib/Model/Volume.php
 lib/Model/VolumeUsageData.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
-test/Model/JsonErrorTest.php
-test/Model/SelfServiceErrorContainerTest.php
-test/Model/VerifiableIdentityAddressTest.php

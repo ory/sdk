@@ -15,4 +15,8 @@ Name | Type | Description | Notes
 **updatedAt** | **OffsetDateTime** | UpdatedAt is a helper struct field for gobuffalo.pop. |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

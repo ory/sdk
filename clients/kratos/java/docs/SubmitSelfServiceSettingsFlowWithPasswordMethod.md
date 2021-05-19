@@ -12,4 +12,8 @@ Name | Type | Description | Notes
 **password** | **String** | Password is the updated password  type: string | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

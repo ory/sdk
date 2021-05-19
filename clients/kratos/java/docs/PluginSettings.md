@@ -13,4 +13,8 @@ Name | Type | Description | Notes
 **mounts** | [**List&lt;PluginMount&gt;**](PluginMount.md) | mounts | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

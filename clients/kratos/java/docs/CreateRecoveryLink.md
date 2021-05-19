@@ -11,4 +11,8 @@ Name | Type | Description | Notes
 **identityId** | **UUID** |  | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

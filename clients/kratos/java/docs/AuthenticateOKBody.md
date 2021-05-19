@@ -12,4 +12,8 @@ Name | Type | Description | Notes
 **status** | **String** | The status of the authentication | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

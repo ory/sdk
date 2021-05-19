@@ -13,4 +13,8 @@ Name | Type | Description | Notes
 **devices** | [**List&lt;PluginDevice&gt;**](PluginDevice.md) | devices | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

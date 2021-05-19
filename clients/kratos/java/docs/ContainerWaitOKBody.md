@@ -12,4 +12,8 @@ Name | Type | Description | Notes
 **statusCode** | **Long** | Exit code of the container | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

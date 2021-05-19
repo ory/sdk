@@ -12,4 +12,8 @@ Name | Type | Description | Notes
 **UID** | **Integer** | UID |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

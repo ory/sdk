@@ -25,4 +25,8 @@ Name | Type | Description | Notes
 **rootfs** | [**PluginConfigRootfs**](PluginConfigRootfs.md) |  |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

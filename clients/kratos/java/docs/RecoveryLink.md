@@ -11,4 +11,8 @@ Name | Type | Description | Notes
 **recoveryLink** | **String** | Recovery Link  This link can be used to recover the account. | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

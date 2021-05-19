@@ -12,4 +12,8 @@ Name | Type | Description | Notes
 **types** | [**List&lt;PluginInterfaceType&gt;**](PluginInterfaceType.md) | types | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -13,3 +13,5 @@ developerOrganizationUrl: https://www.ory.sh
 developerEmail: office+oss@ory.sh
 licenseName: Apache License, Version 2.0
 licenseUrl: https://www.apache.org/licenses/LICENSE-2.0
+legacyDiscriminatorBehavior: false
+serializableModel: true
