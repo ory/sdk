@@ -24,8 +24,8 @@ Method | HTTP request | Description
 [**get_self_service_verification_flow_admin**](DefaultApi.md#get_self_service_verification_flow_admin) | **GET** /api/kratos/admin/self-service/verification/flows | Get Verification Flow
 [**get_version_admin**](DefaultApi.md#get_version_admin) | **GET** /api/kratos/admin/version | Return Running Software Version.
 [**initialize_self_service_browser_logout_flow**](DefaultApi.md#initialize_self_service_browser_logout_flow) | **GET** /api/kratos/public/self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
-[**initialize_self_service_login_for_browsers**](DefaultApi.md#initialize_self_service_login_for_browsers) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for browsers
-[**initialize_self_service_login_for_native_apps**](DefaultApi.md#initialize_self_service_login_for_native_apps) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for Native Apps and API clients
+[**initialize_self_service_login_for_browsers**](DefaultApi.md#initialize_self_service_login_for_browsers) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for Browsers
+[**initialize_self_service_login_without_browser**](DefaultApi.md#initialize_self_service_login_without_browser) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ...
 [**initialize_self_service_recovery_for_browsers**](DefaultApi.md#initialize_self_service_recovery_for_browsers) | **GET** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
 [**initialize_self_service_recovery_for_native_apps**](DefaultApi.md#initialize_self_service_recovery_for_native_apps) | **GET** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for Native Apps and API clients
 [**initialize_self_service_registration_for_browsers**](DefaultApi.md#initialize_self_service_registration_for_browsers) | **GET** /api/kratos/public/self-service/registration/browser | Initialize Registration Flow for browsers
@@ -1572,77 +1572,11 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **initialize_self_service_login_for_browsers**
-> initialize_self_service_login_for_browsers()
+> LoginFlow initialize_self_service_login_for_browsers()
 
-Initialize Login Flow for browsers
+Initialize Login Flow for Browsers
 
-This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
-
-### Example
-
-```python
-import time
-import ory_client
-from ory_client.api import default_api
-from ory_client.model.json_error import JsonError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    refresh = True # bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. (optional)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Initialize Login Flow for browsers
-        api_instance.initialize_self_service_login_for_browsers(refresh=refresh)
-    except ory_client.ApiException as e:
-        print("Exception when calling DefaultApi->initialize_self_service_login_for_browsers: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **refresh** | **bool**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional]
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**500** | jsonError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **initialize_self_service_login_for_native_apps**
-> LoginFlow initialize_self_service_login_for_native_apps()
-
-Initialize Login Flow for Native Apps and API clients
-
-This endpoint initiates a login flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initializes a browser-based user login flow. This endpoint will set the appropriate cookies and anti-CSRF measures required for browser-based flows.  If this endpoint is opened as a link in the browser, it will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  If this endpoint is called via an AJAX request, the response contains the login flow without a redirect.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 
@@ -1669,11 +1603,80 @@ with ory_client.ApiClient() as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # Initialize Login Flow for Native Apps and API clients
-        api_response = api_instance.initialize_self_service_login_for_native_apps(refresh=refresh)
+        # Initialize Login Flow for Browsers
+        api_response = api_instance.initialize_self_service_login_for_browsers(refresh=refresh)
         pprint(api_response)
     except ory_client.ApiException as e:
-        print("Exception when calling DefaultApi->initialize_self_service_login_for_native_apps: %s\n" % e)
+        print("Exception when calling DefaultApi->initialize_self_service_login_for_browsers: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **refresh** | **bool**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional]
+
+### Return type
+
+[**LoginFlow**](LoginFlow.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | loginFlow |  -  |
+**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**500** | jsonError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **initialize_self_service_login_without_browser**
+> LoginFlow initialize_self_service_login_without_browser()
+
+Initialize Login Flow for APIs, Services, Apps, ...
+
+This endpoint initiates a login flow for API clients that do not use a browser, such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+
+### Example
+
+```python
+import time
+import ory_client
+from ory_client.api import default_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.login_flow import LoginFlow
+from pprint import pprint
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    refresh = True # bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. (optional)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Initialize Login Flow for APIs, Services, Apps, ...
+        api_response = api_instance.initialize_self_service_login_without_browser(refresh=refresh)
+        pprint(api_response)
+    except ory_client.ApiException as e:
+        print("Exception when calling DefaultApi->initialize_self_service_login_without_browser: %s\n" % e)
 ```
 
 

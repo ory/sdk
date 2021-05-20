@@ -2,7 +2,7 @@ lazy val root = (project in file(".")).
   settings(
     organization := "sh.ory",
     name := "client",
-    version := "v0.0.1-alpha.5",
+    version := "v0.0.1-alpha.6",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),
     javacOptions in compile ++= Seq("-Xlint:deprecation"),

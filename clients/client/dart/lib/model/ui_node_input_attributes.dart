@@ -37,7 +37,8 @@ class UiNodeInputAttributes {
 
   String type;
 
-  UiNodeInputAttributesValue value;
+  /// The input's value.
+  Object value;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is UiNodeInputAttributes &&
@@ -93,7 +94,7 @@ class UiNodeInputAttributes {
         pattern: json[r'pattern'],
         required_: json[r'required'],
         type: json[r'type'],
-        value: UiNodeInputAttributesValue.fromJson(json[r'value']),
+        value: json[r'value'],
     );
 
   static List<UiNodeInputAttributes> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
