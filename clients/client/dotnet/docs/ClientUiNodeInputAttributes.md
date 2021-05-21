@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Pattern** | **string** | The input&#39;s pattern. | [optional] 
 **Required** | **bool** | Mark this input field as required. | [optional] 
 **Type** | **string** |  | 
-**Value** | **Object** | The input&#39;s value. | [optional] 
+**Value** | [**ClientUiNodeInputAttributesValue**](ClientUiNodeInputAttributesValue.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

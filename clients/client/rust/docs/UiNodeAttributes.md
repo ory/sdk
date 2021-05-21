@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **pattern** | Option<**String**> | The input's pattern. | [optional]
 **required** | Option<**bool**> | Mark this input field as required. | [optional]
 **_type** | **String** |  | 
-**value** | Option<[**serde_json::Value**](.md)> | The input's value. | [optional]
+**value** | Option<[**crate::models::UiNodeInputAttributesValue**](uiNodeInputAttributesValue.md)> |  | [optional]
 **text** | [**crate::models::UiText**](uiText.md) |  | 
 **src** | **String** | The image's source URL.  format: uri | 
 **href** | **String** | The link's href (destination) URL.  format: uri | 

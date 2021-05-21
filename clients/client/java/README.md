@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v0.0.1-alpha.6
-  - Build date: 2021-05-20T15:09:15.936946064Z[Etc/UTC]
+- API version: v0.0.1-alpha.7
+  - Build date: 2021-05-21T10:07:25.636701255Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v0.0.1-alpha.6</version>
+  <version>v0.0.1-alpha.7</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -52,7 +52,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "sh.ory:client:v0.0.1-alpha.6"
+compile "sh.ory:client:v0.0.1-alpha.7"
 ```
 
 ### Others
@@ -65,7 +65,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v0.0.1-alpha.6.jar`
+* `target/client-v0.0.1-alpha.7.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -134,8 +134,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**getSelfServiceVerificationFlowAdmin**](docs/DefaultApi.md#getSelfServiceVerificationFlowAdmin) | **GET** /api/kratos/admin/self-service/verification/flows | Get Verification Flow
 *DefaultApi* | [**getVersionAdmin**](docs/DefaultApi.md#getVersionAdmin) | **GET** /api/kratos/admin/version | Return Running Software Version.
 *DefaultApi* | [**initializeSelfServiceBrowserLogoutFlow**](docs/DefaultApi.md#initializeSelfServiceBrowserLogoutFlow) | **GET** /api/kratos/public/self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
-*DefaultApi* | [**initializeSelfServiceLoginForBrowsers**](docs/DefaultApi.md#initializeSelfServiceLoginForBrowsers) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for Browsers
-*DefaultApi* | [**initializeSelfServiceLoginWithoutBrowser**](docs/DefaultApi.md#initializeSelfServiceLoginWithoutBrowser) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ...
+*DefaultApi* | [**initializeSelfServiceLoginForBrowsers**](docs/DefaultApi.md#initializeSelfServiceLoginForBrowsers) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for browsers
+*DefaultApi* | [**initializeSelfServiceLoginForNativeApps**](docs/DefaultApi.md#initializeSelfServiceLoginForNativeApps) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for Native Apps and API clients
 *DefaultApi* | [**initializeSelfServiceRecoveryForBrowsers**](docs/DefaultApi.md#initializeSelfServiceRecoveryForBrowsers) | **GET** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
 *DefaultApi* | [**initializeSelfServiceRecoveryForNativeApps**](docs/DefaultApi.md#initializeSelfServiceRecoveryForNativeApps) | **GET** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for Native Apps and API clients
 *DefaultApi* | [**initializeSelfServiceRegistrationForBrowsers**](docs/DefaultApi.md#initializeSelfServiceRegistrationForBrowsers) | **GET** /api/kratos/public/self-service/registration/browser | Initialize Registration Flow for browsers
@@ -154,7 +154,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**submitSelfServiceRecoveryFlowWithLinkMethod**](docs/DefaultApi.md#submitSelfServiceRecoveryFlowWithLinkMethod) | **POST** /api/kratos/public/self-service/recovery/methods/link | Complete Recovery Flow with Link Method
 *DefaultApi* | [**submitSelfServiceRegistrationFlow**](docs/DefaultApi.md#submitSelfServiceRegistrationFlow) | **POST** /api/kratos/public/self-service/registration | Submit a Registration Flow
 *DefaultApi* | [**submitSelfServiceSettingsFlow**](docs/DefaultApi.md#submitSelfServiceSettingsFlow) | **POST** /api/kratos/public/self-service/settings | Complete Settings Flow
-*DefaultApi* | [**submitSelfServiceVerificationFlow**](docs/DefaultApi.md#submitSelfServiceVerificationFlow) | **POST** /api/kratos/public/self-service/verification/methods/link | Complete Verification Flow
+*DefaultApi* | [**submitSelfServiceVerificationFlow**](docs/DefaultApi.md#submitSelfServiceVerificationFlow) | **POST** /api/kratos/public/self-service/verification | Complete Verification Flow
 *DefaultApi* | [**toSession**](docs/DefaultApi.md#toSession) | **GET** /api/kratos/public/sessions/whoami | Check Who the Current HTTP Session Belongs To
 *DefaultApi* | [**updateIdentityAdmin**](docs/DefaultApi.md#updateIdentityAdmin) | **PUT** /api/kratos/admin/identities/{id} | Update an Identity
 
@@ -229,6 +229,7 @@ Class | Method | HTTP request | Description
  - [UiNodeAttributes](docs/UiNodeAttributes.md)
  - [UiNodeImageAttributes](docs/UiNodeImageAttributes.md)
  - [UiNodeInputAttributes](docs/UiNodeInputAttributes.md)
+ - [UiNodeInputAttributesValue](docs/UiNodeInputAttributesValue.md)
  - [UiNodeTextAttributes](docs/UiNodeTextAttributes.md)
  - [UiText](docs/UiText.md)
  - [UpdateIdentity](docs/UpdateIdentity.md)

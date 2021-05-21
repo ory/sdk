@@ -41,8 +41,7 @@ class UiNodeAttributes {
 
   String type;
 
-  /// The input's value.
-  Object value;
+  UiNodeInputAttributesValue value;
 
   UiText text;
 
@@ -120,7 +119,7 @@ class UiNodeAttributes {
         pattern: json[r'pattern'],
         required_: json[r'required'],
         type: json[r'type'],
-        value: json[r'value'],
+        value: UiNodeInputAttributesValue.fromJson(json[r'value']),
         text: UiText.fromJson(json[r'text']),
         src: json[r'src'],
         href: json[r'href'],

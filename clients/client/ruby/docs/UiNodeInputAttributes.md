@@ -10,7 +10,7 @@
 | **pattern** | **String** | The input&#39;s pattern. | [optional] |
 | **required** | **Boolean** | Mark this input field as required. | [optional] |
 | **type** | **String** |  |  |
-| **value** | [**AnyType**](.md) | The input&#39;s value. | [optional] |
+| **value** | [**UiNodeInputAttributesValue**](UiNodeInputAttributesValue.md) |  | [optional] |
 
 ## Example
 

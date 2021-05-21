@@ -24,8 +24,8 @@ Method | HTTP request | Description
 [**GetSelfServiceVerificationFlowAdmin**](DefaultApi.md#GetSelfServiceVerificationFlowAdmin) | **Get** /api/kratos/admin/self-service/verification/flows | Get Verification Flow
 [**GetVersionAdmin**](DefaultApi.md#GetVersionAdmin) | **Get** /api/kratos/admin/version | Return Running Software Version.
 [**InitializeSelfServiceBrowserLogoutFlow**](DefaultApi.md#InitializeSelfServiceBrowserLogoutFlow) | **Get** /api/kratos/public/self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
-[**InitializeSelfServiceLoginForBrowsers**](DefaultApi.md#InitializeSelfServiceLoginForBrowsers) | **Get** /api/kratos/public/self-service/login/browser | Initialize Login Flow for Browsers
-[**InitializeSelfServiceLoginWithoutBrowser**](DefaultApi.md#InitializeSelfServiceLoginWithoutBrowser) | **Get** /api/kratos/public/self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ...
+[**InitializeSelfServiceLoginForBrowsers**](DefaultApi.md#InitializeSelfServiceLoginForBrowsers) | **Get** /api/kratos/public/self-service/login/browser | Initialize Login Flow for browsers
+[**InitializeSelfServiceLoginForNativeApps**](DefaultApi.md#InitializeSelfServiceLoginForNativeApps) | **Get** /api/kratos/public/self-service/login/api | Initialize Login Flow for Native Apps and API clients
 [**InitializeSelfServiceRecoveryForBrowsers**](DefaultApi.md#InitializeSelfServiceRecoveryForBrowsers) | **Get** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
 [**InitializeSelfServiceRecoveryForNativeApps**](DefaultApi.md#InitializeSelfServiceRecoveryForNativeApps) | **Get** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for Native Apps and API clients
 [**InitializeSelfServiceRegistrationForBrowsers**](DefaultApi.md#InitializeSelfServiceRegistrationForBrowsers) | **Get** /api/kratos/public/self-service/registration/browser | Initialize Registration Flow for browsers
@@ -44,7 +44,7 @@ Method | HTTP request | Description
 [**SubmitSelfServiceRecoveryFlowWithLinkMethod**](DefaultApi.md#SubmitSelfServiceRecoveryFlowWithLinkMethod) | **Post** /api/kratos/public/self-service/recovery/methods/link | Complete Recovery Flow with Link Method
 [**SubmitSelfServiceRegistrationFlow**](DefaultApi.md#SubmitSelfServiceRegistrationFlow) | **Post** /api/kratos/public/self-service/registration | Submit a Registration Flow
 [**SubmitSelfServiceSettingsFlow**](DefaultApi.md#SubmitSelfServiceSettingsFlow) | **Post** /api/kratos/public/self-service/settings | Complete Settings Flow
-[**SubmitSelfServiceVerificationFlow**](DefaultApi.md#SubmitSelfServiceVerificationFlow) | **Post** /api/kratos/public/self-service/verification/methods/link | Complete Verification Flow
+[**SubmitSelfServiceVerificationFlow**](DefaultApi.md#SubmitSelfServiceVerificationFlow) | **Post** /api/kratos/public/self-service/verification | Complete Verification Flow
 [**ToSession**](DefaultApi.md#ToSession) | **Get** /api/kratos/public/sessions/whoami | Check Who the Current HTTP Session Belongs To
 [**UpdateIdentityAdmin**](DefaultApi.md#UpdateIdentityAdmin) | **Put** /api/kratos/admin/identities/{id} | Update an Identity
 
@@ -1378,9 +1378,9 @@ No authorization required
 
 ## InitializeSelfServiceLoginForBrowsers
 
-> LoginFlow InitializeSelfServiceLoginForBrowsers(ctx).Refresh(refresh).Execute()
+> InitializeSelfServiceLoginForBrowsers(ctx).Refresh(refresh).Execute()
 
-Initialize Login Flow for Browsers
+Initialize Login Flow for browsers
 
 
 
@@ -1406,8 +1406,6 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.InitializeSelfServiceLoginForBrowsers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `InitializeSelfServiceLoginForBrowsers`: LoginFlow
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.InitializeSelfServiceLoginForBrowsers`: %v\n", resp)
 }
 ```
 
@@ -1426,7 +1424,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LoginFlow**](LoginFlow.md)
+ (empty response body)
 
 ### Authorization
 
@@ -1442,11 +1440,11 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## InitializeSelfServiceLoginWithoutBrowser
+## InitializeSelfServiceLoginForNativeApps
 
-> LoginFlow InitializeSelfServiceLoginWithoutBrowser(ctx).Refresh(refresh).Execute()
+> LoginFlow InitializeSelfServiceLoginForNativeApps(ctx).Refresh(refresh).Execute()
 
-Initialize Login Flow for APIs, Services, Apps, ...
+Initialize Login Flow for Native Apps and API clients
 
 
 
@@ -1467,13 +1465,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.InitializeSelfServiceLoginWithoutBrowser(context.Background()).Refresh(refresh).Execute()
+    resp, r, err := apiClient.DefaultApi.InitializeSelfServiceLoginForNativeApps(context.Background()).Refresh(refresh).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.InitializeSelfServiceLoginWithoutBrowser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.InitializeSelfServiceLoginForNativeApps``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `InitializeSelfServiceLoginWithoutBrowser`: LoginFlow
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.InitializeSelfServiceLoginWithoutBrowser`: %v\n", resp)
+    // response from `InitializeSelfServiceLoginForNativeApps`: LoginFlow
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.InitializeSelfServiceLoginForNativeApps`: %v\n", resp)
 }
 ```
 
@@ -1483,7 +1481,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiInitializeSelfServiceLoginWithoutBrowserRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiInitializeSelfServiceLoginForNativeAppsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

@@ -71,6 +71,7 @@ docs/UiNodeAnchorAttributes.md
 docs/UiNodeAttributes.md
 docs/UiNodeImageAttributes.md
 docs/UiNodeInputAttributes.md
+docs/UiNodeInputAttributesValue.md
 docs/UiNodeTextAttributes.md
 docs/UiNodes.md
 docs/UiText.md
@@ -158,6 +159,7 @@ ory_client/model/ui_node_anchor_attributes.py
 ory_client/model/ui_node_attributes.py
 ory_client/model/ui_node_image_attributes.py
 ory_client/model/ui_node_input_attributes.py
+ory_client/model/ui_node_input_attributes_value.py
 ory_client/model/ui_node_text_attributes.py
 ory_client/model/ui_nodes.py
 ory_client/model/ui_text.py

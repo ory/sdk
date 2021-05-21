@@ -3,7 +3,7 @@
 #
 
 name: 'ory_client'
-version: '0.0.1-alpha.6'
+version: '0.0.1-alpha.7'
 description: 'OpenAPI API client'
 authors:
   - 'ORY GmbH <opensource@ory.sh>'

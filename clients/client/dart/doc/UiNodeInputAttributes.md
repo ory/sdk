@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **pattern** | **String** | The input's pattern. | [optional] 
 **required_** | **bool** | Mark this input field as required. | [optional] 
 **type** | **String** |  | 
-**value** | [**Object**](.md) | The input's value. | [optional] 
+**value** | [**UiNodeInputAttributesValue**](UiNodeInputAttributesValue.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **pattern** | **string** | The input&#39;s pattern. | [optional]
 **required** | **bool** | Mark this input field as required. | [optional]
 **type** | **string** |  |
-**value** | **mixed** | The input&#39;s value. | [optional]
+**value** | [**\Ory\Client\Model\UiNodeInputAttributesValue**](UiNodeInputAttributesValue.md) |  | [optional]
 **text** | [**\Ory\Client\Model\UiText**](UiText.md) |  |
 **src** | **string** | The image&#39;s source URL.  format: uri |
 **href** | **string** | The link&#39;s href (destination) URL.  format: uri |

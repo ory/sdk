@@ -73,6 +73,7 @@ docs/UiNodeAnchorAttributes.md
 docs/UiNodeAttributes.md
 docs/UiNodeImageAttributes.md
 docs/UiNodeInputAttributes.md
+docs/UiNodeInputAttributesValue.md
 docs/UiNodeTextAttributes.md
 docs/UiText.md
 docs/UpdateIdentity.md
@@ -176,6 +177,7 @@ src/main/java/sh/ory/model/UiNodeAnchorAttributes.java
 src/main/java/sh/ory/model/UiNodeAttributes.java
 src/main/java/sh/ory/model/UiNodeImageAttributes.java
 src/main/java/sh/ory/model/UiNodeInputAttributes.java
+src/main/java/sh/ory/model/UiNodeInputAttributesValue.java
 src/main/java/sh/ory/model/UiNodeTextAttributes.java
 src/main/java/sh/ory/model/UiText.java
 src/main/java/sh/ory/model/UpdateIdentity.java
@@ -252,6 +254,7 @@ src/test/java/sh/ory/model/UiNodeAnchorAttributesTest.java
 src/test/java/sh/ory/model/UiNodeAttributesTest.java
 src/test/java/sh/ory/model/UiNodeImageAttributesTest.java
 src/test/java/sh/ory/model/UiNodeInputAttributesTest.java
+src/test/java/sh/ory/model/UiNodeInputAttributesValueTest.java
 src/test/java/sh/ory/model/UiNodeTest.java
 src/test/java/sh/ory/model/UiNodeTextAttributesTest.java
 src/test/java/sh/ory/model/UiTextTest.java

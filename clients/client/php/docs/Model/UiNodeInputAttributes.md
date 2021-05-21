@@ -10,6 +10,6 @@ Name | Type | Description | Notes
 **pattern** | **string** | The input&#39;s pattern. | [optional]
 **required** | **bool** | Mark this input field as required. | [optional]
 **type** | **string** |  |
-**value** | **mixed** | The input&#39;s value. | [optional]
+**value** | [**\Ory\Client\Model\UiNodeInputAttributesValue**](UiNodeInputAttributesValue.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **pattern** | **String** | The input&#39;s pattern. |  [optional]
 **required** | **Boolean** | Mark this input field as required. |  [optional]
 **type** | **String** |  | 
-**value** | **Object** | The input&#39;s value. |  [optional]
+**value** | [**UiNodeInputAttributesValue**](UiNodeInputAttributesValue.md) |  |  [optional]
 **text** | [**UiText**](UiText.md) |  | 
 **src** | **String** | The image&#39;s source URL.  format: uri | 
 **href** | **String** | The link&#39;s href (destination) URL.  format: uri | 

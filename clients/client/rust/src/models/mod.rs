@@ -134,6 +134,8 @@ pub mod ui_node_image_attributes;
 pub use self::ui_node_image_attributes::UiNodeImageAttributes;
 pub mod ui_node_input_attributes;
 pub use self::ui_node_input_attributes::UiNodeInputAttributes;
+pub mod ui_node_input_attributes_value;
+pub use self::ui_node_input_attributes_value::UiNodeInputAttributesValue;
 pub mod ui_node_text_attributes;
 pub use self::ui_node_text_attributes::UiNodeTextAttributes;
 pub mod ui_text;

@@ -77,6 +77,7 @@ from ory_client.model.ui_node_anchor_attributes import UiNodeAnchorAttributes
 from ory_client.model.ui_node_attributes import UiNodeAttributes
 from ory_client.model.ui_node_image_attributes import UiNodeImageAttributes
 from ory_client.model.ui_node_input_attributes import UiNodeInputAttributes
+from ory_client.model.ui_node_input_attributes_value import UiNodeInputAttributesValue
 from ory_client.model.ui_node_text_attributes import UiNodeTextAttributes
 from ory_client.model.ui_nodes import UiNodes
 from ory_client.model.ui_text import UiText

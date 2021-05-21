@@ -24,8 +24,8 @@ Method | HTTP request | Description
 [**GetSelfServiceVerificationFlowAdmin**](DefaultApi.md#getselfserviceverificationflowadmin) | **GET** /api/kratos/admin/self-service/verification/flows | Get Verification Flow
 [**GetVersionAdmin**](DefaultApi.md#getversionadmin) | **GET** /api/kratos/admin/version | Return Running Software Version.
 [**InitializeSelfServiceBrowserLogoutFlow**](DefaultApi.md#initializeselfservicebrowserlogoutflow) | **GET** /api/kratos/public/self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
-[**InitializeSelfServiceLoginForBrowsers**](DefaultApi.md#initializeselfserviceloginforbrowsers) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for Browsers
-[**InitializeSelfServiceLoginWithoutBrowser**](DefaultApi.md#initializeselfserviceloginwithoutbrowser) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ...
+[**InitializeSelfServiceLoginForBrowsers**](DefaultApi.md#initializeselfserviceloginforbrowsers) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for browsers
+[**InitializeSelfServiceLoginForNativeApps**](DefaultApi.md#initializeselfserviceloginfornativeapps) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for Native Apps and API clients
 [**InitializeSelfServiceRecoveryForBrowsers**](DefaultApi.md#initializeselfservicerecoveryforbrowsers) | **GET** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
 [**InitializeSelfServiceRecoveryForNativeApps**](DefaultApi.md#initializeselfservicerecoveryfornativeapps) | **GET** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for Native Apps and API clients
 [**InitializeSelfServiceRegistrationForBrowsers**](DefaultApi.md#initializeselfserviceregistrationforbrowsers) | **GET** /api/kratos/public/self-service/registration/browser | Initialize Registration Flow for browsers
@@ -44,7 +44,7 @@ Method | HTTP request | Description
 [**SubmitSelfServiceRecoveryFlowWithLinkMethod**](DefaultApi.md#submitselfservicerecoveryflowwithlinkmethod) | **POST** /api/kratos/public/self-service/recovery/methods/link | Complete Recovery Flow with Link Method
 [**SubmitSelfServiceRegistrationFlow**](DefaultApi.md#submitselfserviceregistrationflow) | **POST** /api/kratos/public/self-service/registration | Submit a Registration Flow
 [**SubmitSelfServiceSettingsFlow**](DefaultApi.md#submitselfservicesettingsflow) | **POST** /api/kratos/public/self-service/settings | Complete Settings Flow
-[**SubmitSelfServiceVerificationFlow**](DefaultApi.md#submitselfserviceverificationflow) | **POST** /api/kratos/public/self-service/verification/methods/link | Complete Verification Flow
+[**SubmitSelfServiceVerificationFlow**](DefaultApi.md#submitselfserviceverificationflow) | **POST** /api/kratos/public/self-service/verification | Complete Verification Flow
 [**ToSession**](DefaultApi.md#tosession) | **GET** /api/kratos/public/sessions/whoami | Check Who the Current HTTP Session Belongs To
 [**UpdateIdentityAdmin**](DefaultApi.md#updateidentityadmin) | **PUT** /api/kratos/admin/identities/{id} | Update an Identity
 
@@ -1559,11 +1559,11 @@ No authorization required
 
 <a name="initializeselfserviceloginforbrowsers"></a>
 # **InitializeSelfServiceLoginForBrowsers**
-> ClientLoginFlow InitializeSelfServiceLoginForBrowsers (bool? refresh = null)
+> void InitializeSelfServiceLoginForBrowsers (bool? refresh = null)
 
-Initialize Login Flow for Browsers
+Initialize Login Flow for browsers
 
-This endpoint initializes a browser-based user login flow. This endpoint will set the appropriate cookies and anti-CSRF measures required for browser-based flows.  If this endpoint is opened as a link in the browser, it will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  If this endpoint is called via an AJAX request, the response contains the login flow without a redirect.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 ```csharp
@@ -1586,9 +1586,8 @@ namespace Example
 
             try
             {
-                // Initialize Login Flow for Browsers
-                ClientLoginFlow result = apiInstance.InitializeSelfServiceLoginForBrowsers(refresh);
-                Debug.WriteLine(result);
+                // Initialize Login Flow for browsers
+                apiInstance.InitializeSelfServiceLoginForBrowsers(refresh);
             }
             catch (ApiException  e)
             {
@@ -1609,7 +1608,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ClientLoginFlow**](ClientLoginFlow.md)
+void (empty response body)
 
 ### Authorization
 
@@ -1624,19 +1623,18 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | loginFlow |  -  |
 | **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="initializeselfserviceloginwithoutbrowser"></a>
-# **InitializeSelfServiceLoginWithoutBrowser**
-> ClientLoginFlow InitializeSelfServiceLoginWithoutBrowser (bool? refresh = null)
+<a name="initializeselfserviceloginfornativeapps"></a>
+# **InitializeSelfServiceLoginForNativeApps**
+> ClientLoginFlow InitializeSelfServiceLoginForNativeApps (bool? refresh = null)
 
-Initialize Login Flow for APIs, Services, Apps, ...
+Initialize Login Flow for Native Apps and API clients
 
-This endpoint initiates a login flow for API clients that do not use a browser, such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initiates a login flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Example
 ```csharp
@@ -1648,7 +1646,7 @@ using Ory.Client.Model;
 
 namespace Example
 {
-    public class InitializeSelfServiceLoginWithoutBrowserExample
+    public class InitializeSelfServiceLoginForNativeAppsExample
     {
         public static void Main()
         {
@@ -1659,13 +1657,13 @@ namespace Example
 
             try
             {
-                // Initialize Login Flow for APIs, Services, Apps, ...
-                ClientLoginFlow result = apiInstance.InitializeSelfServiceLoginWithoutBrowser(refresh);
+                // Initialize Login Flow for Native Apps and API clients
+                ClientLoginFlow result = apiInstance.InitializeSelfServiceLoginForNativeApps(refresh);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling DefaultApi.InitializeSelfServiceLoginWithoutBrowser: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.InitializeSelfServiceLoginForNativeApps: " + e.Message );
                 Debug.Print("Status Code: "+ e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }

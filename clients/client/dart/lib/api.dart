@@ -96,6 +96,7 @@ part 'model/ui_node_anchor_attributes.dart';
 part 'model/ui_node_attributes.dart';
 part 'model/ui_node_image_attributes.dart';
 part 'model/ui_node_input_attributes.dart';
+part 'model/ui_node_input_attributes_value.dart';
 part 'model/ui_node_text_attributes.dart';
 part 'model/ui_text.dart';
 part 'model/update_identity.dart';

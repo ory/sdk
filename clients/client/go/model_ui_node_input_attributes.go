@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.6
+ * API version: v0.0.1-alpha.7
  * Contact: support@ory.sh
  */
 
@@ -27,8 +27,7 @@ type UiNodeInputAttributes struct {
 	// Mark this input field as required.
 	Required *bool `json:"required,omitempty"`
 	Type string `json:"type"`
-	// The input's value.
-	Value interface{} `json:"value,omitempty"`
+	Value *UiNodeInputAttributesValue `json:"value,omitempty"`
 }
 
 // NewUiNodeInputAttributes instantiates a new UiNodeInputAttributes object
@@ -219,23 +218,22 @@ func (o *UiNodeInputAttributes) SetType(v string) {
 	o.Type = v
 }
 
-// GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UiNodeInputAttributes) GetValue() interface{} {
-	if o == nil  {
-		var ret interface{}
+// GetValue returns the Value field value if set, zero value otherwise.
+func (o *UiNodeInputAttributes) GetValue() UiNodeInputAttributesValue {
+	if o == nil || o.Value == nil {
+		var ret UiNodeInputAttributesValue
 		return ret
 	}
-	return o.Value
+	return *o.Value
 }
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UiNodeInputAttributes) GetValueOk() (*interface{}, bool) {
+func (o *UiNodeInputAttributes) GetValueOk() (*UiNodeInputAttributesValue, bool) {
 	if o == nil || o.Value == nil {
 		return nil, false
 	}
-	return &o.Value, true
+	return o.Value, true
 }
 
 // HasValue returns a boolean if a field has been set.
@@ -247,9 +245,9 @@ func (o *UiNodeInputAttributes) HasValue() bool {
 	return false
 }
 
-// SetValue gets a reference to the given interface{} and assigns it to the Value field.
-func (o *UiNodeInputAttributes) SetValue(v interface{}) {
-	o.Value = v
+// SetValue gets a reference to the given UiNodeInputAttributesValue and assigns it to the Value field.
+func (o *UiNodeInputAttributes) SetValue(v UiNodeInputAttributesValue) {
+	o.Value = &v
 }
 
 func (o UiNodeInputAttributes) MarshalJSON() ([]byte, error) {
