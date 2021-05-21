@@ -24,12 +24,12 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**get_self_service_verification_flow_admin**](DefaultApi.md#get_self_service_verification_flow_admin) | **GET** /api/kratos/admin/self-service/verification/flows | Get Verification Flow |
 | [**get_version_admin**](DefaultApi.md#get_version_admin) | **GET** /api/kratos/admin/version | Return Running Software Version. |
 | [**initialize_self_service_browser_logout_flow**](DefaultApi.md#initialize_self_service_browser_logout_flow) | **GET** /api/kratos/public/self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow |
-| [**initialize_self_service_login_for_browsers**](DefaultApi.md#initialize_self_service_login_for_browsers) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for browsers |
-| [**initialize_self_service_login_for_native_apps**](DefaultApi.md#initialize_self_service_login_for_native_apps) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for Native Apps and API clients |
+| [**initialize_self_service_login_for_browsers**](DefaultApi.md#initialize_self_service_login_for_browsers) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for Browsers |
+| [**initialize_self_service_login_without_browser**](DefaultApi.md#initialize_self_service_login_without_browser) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ... |
 | [**initialize_self_service_recovery_for_browsers**](DefaultApi.md#initialize_self_service_recovery_for_browsers) | **GET** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browser Clients |
 | [**initialize_self_service_recovery_for_native_apps**](DefaultApi.md#initialize_self_service_recovery_for_native_apps) | **GET** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for Native Apps and API clients |
-| [**initialize_self_service_registration_for_browsers**](DefaultApi.md#initialize_self_service_registration_for_browsers) | **GET** /api/kratos/public/self-service/registration/browser | Initialize Registration Flow for browsers |
-| [**initialize_self_service_registration_for_native_apps**](DefaultApi.md#initialize_self_service_registration_for_native_apps) | **GET** /api/kratos/public/self-service/registration/api | Initialize Registration Flow for Native Apps and API clients |
+| [**initialize_self_service_registration_for_browsers**](DefaultApi.md#initialize_self_service_registration_for_browsers) | **GET** /api/kratos/public/self-service/registration/browser | Initialize Registration Flow for Browsers |
+| [**initialize_self_service_registration_without_browser**](DefaultApi.md#initialize_self_service_registration_without_browser) | **GET** /api/kratos/public/self-service/registration/api | Initialize Registration Flow for APIs, Services, Apps, ... |
 | [**initialize_self_service_settings_for_browsers**](DefaultApi.md#initialize_self_service_settings_for_browsers) | **GET** /api/kratos/public/self-service/settings/browser | Initialize Settings Flow for Browsers |
 | [**initialize_self_service_settings_for_native_apps**](DefaultApi.md#initialize_self_service_settings_for_native_apps) | **GET** /api/kratos/public/self-service/settings/api | Initialize Settings Flow for Native Apps and API clients |
 | [**initialize_self_service_verification_for_browsers**](DefaultApi.md#initialize_self_service_verification_for_browsers) | **GET** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients |
@@ -44,7 +44,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**submit_self_service_recovery_flow_with_link_method**](DefaultApi.md#submit_self_service_recovery_flow_with_link_method) | **POST** /api/kratos/public/self-service/recovery/methods/link | Complete Recovery Flow with Link Method |
 | [**submit_self_service_registration_flow**](DefaultApi.md#submit_self_service_registration_flow) | **POST** /api/kratos/public/self-service/registration | Submit a Registration Flow |
 | [**submit_self_service_settings_flow**](DefaultApi.md#submit_self_service_settings_flow) | **POST** /api/kratos/public/self-service/settings | Complete Settings Flow |
-| [**submit_self_service_verification_flow**](DefaultApi.md#submit_self_service_verification_flow) | **POST** /api/kratos/public/self-service/verification | Complete Verification Flow |
+| [**submit_self_service_verification_flow**](DefaultApi.md#submit_self_service_verification_flow) | **POST** /api/kratos/public/self-service/verification/flows | Complete Verification Flow |
 | [**to_session**](DefaultApi.md#to_session) | **GET** /api/kratos/public/sessions/whoami | Check Who the Current HTTP Session Belongs To |
 | [**update_identity_admin**](DefaultApi.md#update_identity_admin) | **PUT** /api/kratos/admin/identities/{id} | Update an Identity |
 
@@ -600,7 +600,7 @@ end
 
 Get Login Flow
 
-This endpoint returns a login flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint returns a login flow's context with, for example, error details and other information.  :::info  This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Examples
 
@@ -664,7 +664,7 @@ No authorization required
 
 Get Login Flow
 
-This endpoint returns a login flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint returns a login flow's context with, for example, error details and other information.  :::info  This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Examples
 
@@ -866,7 +866,7 @@ end
 
 Get Registration Flow
 
-This endpoint returns a registration flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint returns a registration flow's context with, for example, error details and other information.  :::info  This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Examples
 
@@ -930,7 +930,7 @@ No authorization required
 
 Get Registration Flow
 
-This endpoint returns a registration flow's context with, for example, error details and other information.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint returns a registration flow's context with, for example, error details and other information.  :::info  This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Examples
 
@@ -1400,11 +1400,11 @@ No authorization required
 
 ## initialize_self_service_login_for_browsers
 
-> initialize_self_service_login_for_browsers(opts)
+> <LoginFlow> initialize_self_service_login_for_browsers(opts)
 
-Initialize Login Flow for browsers
+Initialize Login Flow for Browsers
 
-This endpoint initializes a browser-based user login flow. Once initialized, the browser will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initializes a browser-based user login flow. This endpoint will set the appropriate cookies and anti-CSRF measures required for browser-based flows.  :::info  This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.  :::  If this endpoint is opened as a link in the browser, it will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  If this endpoint is called via an AJAX request, the response contains the login flow without a redirect.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Examples
 
@@ -1418,8 +1418,9 @@ opts = {
 }
 
 begin
-  # Initialize Login Flow for browsers
-  api_instance.initialize_self_service_login_for_browsers(opts)
+  # Initialize Login Flow for Browsers
+  result = api_instance.initialize_self_service_login_for_browsers(opts)
+  p result
 rescue OryHydraClient::ApiError => e
   puts "Error when calling DefaultApi->initialize_self_service_login_for_browsers: #{e}"
 end
@@ -1427,17 +1428,17 @@ end
 
 #### Using the initialize_self_service_login_for_browsers_with_http_info variant
 
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
+This returns an Array which contains the response data, status code and headers.
 
-> <Array(nil, Integer, Hash)> initialize_self_service_login_for_browsers_with_http_info(opts)
+> <Array(<LoginFlow>, Integer, Hash)> initialize_self_service_login_for_browsers_with_http_info(opts)
 
 ```ruby
 begin
-  # Initialize Login Flow for browsers
+  # Initialize Login Flow for Browsers
   data, status_code, headers = api_instance.initialize_self_service_login_for_browsers_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => nil
+  p data # => <LoginFlow>
 rescue OryHydraClient::ApiError => e
   puts "Error when calling DefaultApi->initialize_self_service_login_for_browsers_with_http_info: #{e}"
 end
@@ -1451,7 +1452,7 @@ end
 
 ### Return type
 
-nil (empty response body)
+[**LoginFlow**](LoginFlow.md)
 
 ### Authorization
 
@@ -1463,13 +1464,13 @@ No authorization required
 - **Accept**: application/json
 
 
-## initialize_self_service_login_for_native_apps
+## initialize_self_service_login_without_browser
 
-> <LoginFlow> initialize_self_service_login_for_native_apps(opts)
+> <LoginFlow> initialize_self_service_login_without_browser(opts)
 
-Initialize Login Flow for Native Apps and API clients
+Initialize Login Flow for APIs, Services, Apps, ...
 
-This endpoint initiates a login flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initiates a login flow for API clients that do not use a browser, such as mobile devices, smart TVs, and so on.  :::info  This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.  :::  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Examples
 
@@ -1483,29 +1484,29 @@ opts = {
 }
 
 begin
-  # Initialize Login Flow for Native Apps and API clients
-  result = api_instance.initialize_self_service_login_for_native_apps(opts)
+  # Initialize Login Flow for APIs, Services, Apps, ...
+  result = api_instance.initialize_self_service_login_without_browser(opts)
   p result
 rescue OryHydraClient::ApiError => e
-  puts "Error when calling DefaultApi->initialize_self_service_login_for_native_apps: #{e}"
+  puts "Error when calling DefaultApi->initialize_self_service_login_without_browser: #{e}"
 end
 ```
 
-#### Using the initialize_self_service_login_for_native_apps_with_http_info variant
+#### Using the initialize_self_service_login_without_browser_with_http_info variant
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<LoginFlow>, Integer, Hash)> initialize_self_service_login_for_native_apps_with_http_info(opts)
+> <Array(<LoginFlow>, Integer, Hash)> initialize_self_service_login_without_browser_with_http_info(opts)
 
 ```ruby
 begin
-  # Initialize Login Flow for Native Apps and API clients
-  data, status_code, headers = api_instance.initialize_self_service_login_for_native_apps_with_http_info(opts)
+  # Initialize Login Flow for APIs, Services, Apps, ...
+  data, status_code, headers = api_instance.initialize_self_service_login_without_browser_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <LoginFlow>
 rescue OryHydraClient::ApiError => e
-  puts "Error when calling DefaultApi->initialize_self_service_login_for_native_apps_with_http_info: #{e}"
+  puts "Error when calling DefaultApi->initialize_self_service_login_without_browser_with_http_info: #{e}"
 end
 ```
 
@@ -1652,11 +1653,11 @@ No authorization required
 
 ## initialize_self_service_registration_for_browsers
 
-> initialize_self_service_registration_for_browsers
+> <RegistrationFlow> initialize_self_service_registration_for_browsers
 
-Initialize Registration Flow for browsers
+Initialize Registration Flow for Browsers
 
-This endpoint initializes a browser-based user registration flow. Once initialized, the browser will be redirected to `selfservice.flows.registration.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  :::note  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initializes a browser-based user registration flow. This endpoint will set the appropriate cookies and anti-CSRF measures required for browser-based flows.  :::info  This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.  :::  If this endpoint is opened as a link in the browser, it will be redirected to `selfservice.flows.registration.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url`.  If this endpoint is called via an AJAX request, the response contains the registration flow without a redirect.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Examples
 
@@ -1667,8 +1668,9 @@ require 'ory-client'
 api_instance = OryHydraClient::DefaultApi.new
 
 begin
-  # Initialize Registration Flow for browsers
-  api_instance.initialize_self_service_registration_for_browsers
+  # Initialize Registration Flow for Browsers
+  result = api_instance.initialize_self_service_registration_for_browsers
+  p result
 rescue OryHydraClient::ApiError => e
   puts "Error when calling DefaultApi->initialize_self_service_registration_for_browsers: #{e}"
 end
@@ -1676,17 +1678,17 @@ end
 
 #### Using the initialize_self_service_registration_for_browsers_with_http_info variant
 
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
+This returns an Array which contains the response data, status code and headers.
 
-> <Array(nil, Integer, Hash)> initialize_self_service_registration_for_browsers_with_http_info
+> <Array(<RegistrationFlow>, Integer, Hash)> initialize_self_service_registration_for_browsers_with_http_info
 
 ```ruby
 begin
-  # Initialize Registration Flow for browsers
+  # Initialize Registration Flow for Browsers
   data, status_code, headers = api_instance.initialize_self_service_registration_for_browsers_with_http_info
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => nil
+  p data # => <RegistrationFlow>
 rescue OryHydraClient::ApiError => e
   puts "Error when calling DefaultApi->initialize_self_service_registration_for_browsers_with_http_info: #{e}"
 end
@@ -1698,7 +1700,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-nil (empty response body)
+[**RegistrationFlow**](RegistrationFlow.md)
 
 ### Authorization
 
@@ -1710,13 +1712,13 @@ No authorization required
 - **Accept**: application/json
 
 
-## initialize_self_service_registration_for_native_apps
+## initialize_self_service_registration_without_browser
 
-> <RegistrationFlow> initialize_self_service_registration_for_native_apps
+> <RegistrationFlow> initialize_self_service_registration_without_browser
 
-Initialize Registration Flow for Native Apps and API clients
+Initialize Registration Flow for APIs, Services, Apps, ...
 
-This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing registration flow call `/self-service/registration/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  :::info  This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.  :::  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing registration flow call `/self-service/registration/flows?flow=<flow_id>`.  :::warning  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  :::  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Examples
 
@@ -1727,29 +1729,29 @@ require 'ory-client'
 api_instance = OryHydraClient::DefaultApi.new
 
 begin
-  # Initialize Registration Flow for Native Apps and API clients
-  result = api_instance.initialize_self_service_registration_for_native_apps
+  # Initialize Registration Flow for APIs, Services, Apps, ...
+  result = api_instance.initialize_self_service_registration_without_browser
   p result
 rescue OryHydraClient::ApiError => e
-  puts "Error when calling DefaultApi->initialize_self_service_registration_for_native_apps: #{e}"
+  puts "Error when calling DefaultApi->initialize_self_service_registration_without_browser: #{e}"
 end
 ```
 
-#### Using the initialize_self_service_registration_for_native_apps_with_http_info variant
+#### Using the initialize_self_service_registration_without_browser_with_http_info variant
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<RegistrationFlow>, Integer, Hash)> initialize_self_service_registration_for_native_apps_with_http_info
+> <Array(<RegistrationFlow>, Integer, Hash)> initialize_self_service_registration_without_browser_with_http_info
 
 ```ruby
 begin
-  # Initialize Registration Flow for Native Apps and API clients
-  data, status_code, headers = api_instance.initialize_self_service_registration_for_native_apps_with_http_info
+  # Initialize Registration Flow for APIs, Services, Apps, ...
+  data, status_code, headers = api_instance.initialize_self_service_registration_without_browser_with_http_info
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <RegistrationFlow>
 rescue OryHydraClient::ApiError => e
-  puts "Error when calling DefaultApi->initialize_self_service_registration_for_native_apps_with_http_info: #{e}"
+  puts "Error when calling DefaultApi->initialize_self_service_registration_without_browser_with_http_info: #{e}"
 end
 ```
 
@@ -2367,7 +2369,7 @@ No authorization required
 
 Submit a Login Flow
 
-Use this endpoint to complete a login flow. This endpoint behaves differently for API and browser flows.  API flows expect `application/json` to be sent in the body and responds with HTTP 200 and a application/json body with the session token on success; HTTP 302 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  Browser flows expect `application/x-www-form-urlencoded` to be sent in the body and responds with a HTTP 302 redirect to the post/after login URL or the `return_to` value if it was set and if the login succeeded; a HTTP 302 redirect to the login UI URL with the flow ID containing the validation errors otherwise.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+:::info  This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.  :::  Use this endpoint to complete a login flow. This endpoint behaves differently for API and browser flows.  API flows expect `application/json` to be sent in the body and responds with HTTP 200 and a application/json body with the session token on success; HTTP 302 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with a HTTP 302 redirect to the post/after login URL or the `return_to` value if it was set and if the login succeeded; a HTTP 302 redirect to the login UI URL with the flow ID containing the validation errors otherwise.  Browser flows with an accept header of `application/json` will not redirect but instead respond with HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success; HTTP 302 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Examples
 
@@ -2571,7 +2573,7 @@ No authorization required
 
 Submit a Registration Flow
 
-Use this endpoint to complete a registration flow by sending an identity's traits and password. This endpoint behaves differently for API and browser flows.  API flows expect `application/json` to be sent in the body and respond with HTTP 200 and a application/json body with the created identity success - if the session hook is configured the `session` and `session_token` will also be included; HTTP 302 redirect to a fresh registration flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  Browser flows expect `application/x-www-form-urlencoded` to be sent in the body and responds with a HTTP 302 redirect to the post/after registration URL or the `return_to` value if it was set and if the registration succeeded; a HTTP 302 redirect to the registration UI URL with the flow ID containing the validation errors otherwise.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+:::info  This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.  :::  Use this endpoint to complete a registration flow by sending an identity's traits and password. This endpoint behaves differently for API and browser flows.  API flows expect `application/json` to be sent in the body and respond with HTTP 200 and a application/json body with the created identity success - if the session hook is configured the `session` and `session_token` will also be included; HTTP 302 redirect to a fresh registration flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with a HTTP 302 redirect to the post/after registration URL or the `return_to` value if it was set and if the registration succeeded; a HTTP 302 redirect to the registration UI URL with the flow ID containing the validation errors otherwise.  Browser flows with an accept header of `application/json` will not redirect but instead respond with HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success; HTTP 302 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
 ### Examples
 

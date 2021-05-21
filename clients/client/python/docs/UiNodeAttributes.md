@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **label** | [**UiText**](UiText.md) |  | [optional] 
 **pattern** | **str** | The input&#39;s pattern. | [optional] 
 **required** | **bool** | Mark this input field as required. | [optional] 
-**value** | [**UiNodeInputAttributesValue**](UiNodeInputAttributesValue.md) |  | [optional] 
+**value** | **bool, date, datetime, dict, float, int, list, str, none_type** | The input&#39;s value. | [optional] 
 **disabled** | **bool** | Sets the input&#39;s disabled field to true or false. | [optional] 
 **name** | **str** | The input&#39;s element name. | [optional] 
 **type** | **str** |  | [optional] 

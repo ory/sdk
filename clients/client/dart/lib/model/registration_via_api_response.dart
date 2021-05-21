@@ -14,7 +14,7 @@ class RegistrationViaApiResponse {
   RegistrationViaApiResponse({
     @required this.identity,
     this.session,
-    @required this.sessionToken,
+    this.sessionToken,
   });
 
   Identity identity;
@@ -45,7 +45,9 @@ class RegistrationViaApiResponse {
     if (session != null) {
       json[r'session'] = session;
     }
+    if (sessionToken != null) {
       json[r'session_token'] = sessionToken;
+    }
     return json;
   }
 

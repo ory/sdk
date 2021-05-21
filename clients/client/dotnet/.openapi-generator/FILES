@@ -70,7 +70,6 @@ docs/ClientUiNodeAnchorAttributes.md
 docs/ClientUiNodeAttributes.md
 docs/ClientUiNodeImageAttributes.md
 docs/ClientUiNodeInputAttributes.md
-docs/ClientUiNodeInputAttributesValue.md
 docs/ClientUiNodeTextAttributes.md
 docs/ClientUiText.md
 docs/ClientUpdateIdentity.md
@@ -168,7 +167,6 @@ src/Ory.Client/Model/ClientUiNodeAnchorAttributes.cs
 src/Ory.Client/Model/ClientUiNodeAttributes.cs
 src/Ory.Client/Model/ClientUiNodeImageAttributes.cs
 src/Ory.Client/Model/ClientUiNodeInputAttributes.cs
-src/Ory.Client/Model/ClientUiNodeInputAttributesValue.cs
 src/Ory.Client/Model/ClientUiNodeTextAttributes.cs
 src/Ory.Client/Model/ClientUiText.cs
 src/Ory.Client/Model/ClientUpdateIdentity.cs

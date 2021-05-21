@@ -72,7 +72,6 @@ docs/Model/UiNodeAnchorAttributes.md
 docs/Model/UiNodeAttributes.md
 docs/Model/UiNodeImageAttributes.md
 docs/Model/UiNodeInputAttributes.md
-docs/Model/UiNodeInputAttributesValue.md
 docs/Model/UiNodeTextAttributes.md
 docs/Model/UiText.md
 docs/Model/UpdateIdentity.md
@@ -155,7 +154,6 @@ lib/Model/UiNodeAnchorAttributes.php
 lib/Model/UiNodeAttributes.php
 lib/Model/UiNodeImageAttributes.php
 lib/Model/UiNodeInputAttributes.php
-lib/Model/UiNodeInputAttributesValue.php
 lib/Model/UiNodeTextAttributes.php
 lib/Model/UiText.php
 lib/Model/UpdateIdentity.php

@@ -13,7 +13,7 @@ class LoginViaApiResponse {
   /// Returns a new [LoginViaApiResponse] instance.
   LoginViaApiResponse({
     @required this.session,
-    @required this.sessionToken,
+    this.sessionToken,
   });
 
   Session session;
@@ -37,7 +37,9 @@ class LoginViaApiResponse {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'session'] = session;
+    if (sessionToken != null) {
       json[r'session_token'] = sessionToken;
+    }
     return json;
   }
 

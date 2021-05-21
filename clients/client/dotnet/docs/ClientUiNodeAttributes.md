@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Pattern** | **string** | The input&#39;s pattern. | [optional] 
 **Required** | **bool** | Mark this input field as required. | [optional] 
 **Type** | **string** |  | 
-**Value** | [**ClientUiNodeInputAttributesValue**](ClientUiNodeInputAttributesValue.md) |  | [optional] 
+**Value** | **Object** | The input&#39;s value. | [optional] 
 **Text** | [**ClientUiText**](ClientUiText.md) |  | 
 **Src** | **string** | The image&#39;s source URL.  format: uri | 
 **Href** | **string** | The link&#39;s href (destination) URL.  format: uri | 

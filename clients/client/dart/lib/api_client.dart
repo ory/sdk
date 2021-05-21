@@ -330,8 +330,6 @@ class ApiClient {
           return UiNodeImageAttributes.fromJson(value);
         case 'UiNodeInputAttributes':
           return UiNodeInputAttributes.fromJson(value);
-        case 'UiNodeInputAttributesValue':
-          return UiNodeInputAttributesValue.fromJson(value);
         case 'UiNodeTextAttributes':
           return UiNodeTextAttributes.fromJson(value);
         case 'UiText':
