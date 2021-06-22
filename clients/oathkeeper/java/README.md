@@ -1,8 +1,8 @@
 # oathkeeper-client
 
 ORY Oathkeeper
-- API version: v0.38.11-beta.1
-  - Build date: 2021-05-13T12:27:53.462161182Z[Etc/UTC]
+- API version: v0.38.12-beta.1
+  - Build date: 2021-06-22T21:25:56.920945792Z[Etc/UTC]
 
 ORY Oathkeeper is a reverse proxy that checks the HTTP Authorization for validity against a set of rules. This service uses Hydra to validate access tokens and policies.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.oathkeeper</groupId>
   <artifactId>oathkeeper-client</artifactId>
-  <version>v0.38.11-beta.1</version>
+  <version>v0.38.12-beta.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "sh.ory.oathkeeper:oathkeeper-client:v0.38.11-beta.1"
+compile "sh.ory.oathkeeper:oathkeeper-client:v0.38.12-beta.1"
 ```
 
 ### Others
@@ -64,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/oathkeeper-client-v0.38.11-beta.1.jar`
+* `target/oathkeeper-client-v0.38.12-beta.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started

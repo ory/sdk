@@ -2,7 +2,7 @@ lazy val root = (project in file(".")).
   settings(
     organization := "sh.ory.oathkeeper",
     name := "oathkeeper-client",
-    version := "v0.38.11-beta.1",
+    version := "v0.38.12-beta.1",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),
     javacOptions in compile ++= Seq("-Xlint:deprecation"),

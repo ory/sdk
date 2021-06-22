@@ -1,8 +1,8 @@
 [package]
 name = "ory-oathkeeper-client"
-version = "0.38.11-beta.1"
-description = "SDK Client for ORY Keto"
-documentation = "https://www.ory.sh/keto/docs/sdk"
+version = "0.38.12-beta.1"
+description = "SDK Client for Ory Oathkeeper"
+documentation = "https://www.ory.sh/oathkeeper/docs/sdk"
 homepage = "https://www.ory.sh"
 license = "Apache-2.0"
 authors = ["OpenAPI Generator team and contributors"]
