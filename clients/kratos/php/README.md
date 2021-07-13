@@ -54,18 +54,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Kratos\Client\Api\AdminApi(
+$apiInstance = new Ory\Kratos\Client\Api\MetadataApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$createIdentity = new \Ory\Kratos\Client\Model\CreateIdentity(); // \Ory\Kratos\Client\Model\CreateIdentity
 
 try {
-    $result = $apiInstance->createIdentity($createIdentity);
+    $result = $apiInstance->getVersion();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling AdminApi->createIdentity: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MetadataApi->getVersion: ', $e->getMessage(), PHP_EOL;
 }
 
 ```
@@ -76,52 +75,48 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AdminApi* | [**createIdentity**](docs/Api/AdminApi.md#createidentity) | **POST** /identities | Create an Identity
-*AdminApi* | [**createRecoveryLink**](docs/Api/AdminApi.md#createrecoverylink) | **POST** /recovery/link | Create a Recovery Link
-*AdminApi* | [**deleteIdentity**](docs/Api/AdminApi.md#deleteidentity) | **DELETE** /identities/{id} | Delete an Identity
-*AdminApi* | [**getIdentity**](docs/Api/AdminApi.md#getidentity) | **GET** /identities/{id} | Get an Identity
-*AdminApi* | [**getSchema**](docs/Api/AdminApi.md#getschema) | **GET** /schemas/{id} | 
-*AdminApi* | [**getSelfServiceError**](docs/Api/AdminApi.md#getselfserviceerror) | **GET** /self-service/errors | Get User-Facing Self-Service Errors
-*AdminApi* | [**getSelfServiceLoginFlow**](docs/Api/AdminApi.md#getselfserviceloginflow) | **GET** /self-service/login/flows | Get Login Flow
-*AdminApi* | [**getSelfServiceRecoveryFlow**](docs/Api/AdminApi.md#getselfservicerecoveryflow) | **GET** /self-service/recovery/flows | Get information about a recovery flow
-*AdminApi* | [**getSelfServiceRegistrationFlow**](docs/Api/AdminApi.md#getselfserviceregistrationflow) | **GET** /self-service/registration/flows | Get Registration Flow
-*AdminApi* | [**getSelfServiceSettingsFlow**](docs/Api/AdminApi.md#getselfservicesettingsflow) | **GET** /self-service/settings/flows | Get Settings Flow
-*AdminApi* | [**getSelfServiceVerificationFlow**](docs/Api/AdminApi.md#getselfserviceverificationflow) | **GET** /self-service/verification/flows | Get Verification Flow
-*AdminApi* | [**getVersion**](docs/Api/AdminApi.md#getversion) | **GET** /version | Return Running Software Version.
-*AdminApi* | [**isAlive**](docs/Api/AdminApi.md#isalive) | **GET** /health/alive | Check HTTP Server Status
-*AdminApi* | [**isReady**](docs/Api/AdminApi.md#isready) | **GET** /health/ready | Check HTTP Server and Database Status
-*AdminApi* | [**listIdentities**](docs/Api/AdminApi.md#listidentities) | **GET** /identities | List Identities
-*AdminApi* | [**prometheus**](docs/Api/AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get snapshot metrics from the Hydra service. If you&#39;re using k8s, you can then add annotations to your deployment like so:
-*AdminApi* | [**updateIdentity**](docs/Api/AdminApi.md#updateidentity) | **PUT** /identities/{id} | Update an Identity
-*PublicApi* | [**getSchema**](docs/Api/PublicApi.md#getschema) | **GET** /schemas/{id} | 
-*PublicApi* | [**getSelfServiceError**](docs/Api/PublicApi.md#getselfserviceerror) | **GET** /self-service/errors | Get User-Facing Self-Service Errors
-*PublicApi* | [**getSelfServiceLoginFlow**](docs/Api/PublicApi.md#getselfserviceloginflow) | **GET** /self-service/login/flows | Get Login Flow
-*PublicApi* | [**getSelfServiceRecoveryFlow**](docs/Api/PublicApi.md#getselfservicerecoveryflow) | **GET** /self-service/recovery/flows | Get information about a recovery flow
-*PublicApi* | [**getSelfServiceRegistrationFlow**](docs/Api/PublicApi.md#getselfserviceregistrationflow) | **GET** /self-service/registration/flows | Get Registration Flow
-*PublicApi* | [**getSelfServiceSettingsFlow**](docs/Api/PublicApi.md#getselfservicesettingsflow) | **GET** /self-service/settings/flows | Get Settings Flow
-*PublicApi* | [**getSelfServiceVerificationFlow**](docs/Api/PublicApi.md#getselfserviceverificationflow) | **GET** /self-service/verification/flows | Get Verification Flow
-*PublicApi* | [**initializeSelfServiceBrowserLogoutFlow**](docs/Api/PublicApi.md#initializeselfservicebrowserlogoutflow) | **GET** /self-service/browser/flows/logout | Initialize Browser-Based Logout User Flow
-*PublicApi* | [**initializeSelfServiceLoginForBrowsers**](docs/Api/PublicApi.md#initializeselfserviceloginforbrowsers) | **GET** /self-service/login/browser | Initialize Login Flow for browsers
-*PublicApi* | [**initializeSelfServiceLoginForNativeApps**](docs/Api/PublicApi.md#initializeselfserviceloginfornativeapps) | **GET** /self-service/login/api | Initialize Login Flow for Native Apps and API clients
-*PublicApi* | [**initializeSelfServiceRecoveryForBrowsers**](docs/Api/PublicApi.md#initializeselfservicerecoveryforbrowsers) | **GET** /self-service/recovery/browser | Initialize Recovery Flow for Browser Clients
-*PublicApi* | [**initializeSelfServiceRecoveryForNativeApps**](docs/Api/PublicApi.md#initializeselfservicerecoveryfornativeapps) | **GET** /self-service/recovery/api | Initialize Recovery Flow for Native Apps and API clients
-*PublicApi* | [**initializeSelfServiceRegistrationForBrowsers**](docs/Api/PublicApi.md#initializeselfserviceregistrationforbrowsers) | **GET** /self-service/registration/browser | Initialize Registration Flow for browsers
-*PublicApi* | [**initializeSelfServiceRegistrationForNativeApps**](docs/Api/PublicApi.md#initializeselfserviceregistrationfornativeapps) | **GET** /self-service/registration/api | Initialize Registration Flow for Native Apps and API clients
-*PublicApi* | [**initializeSelfServiceSettingsForBrowsers**](docs/Api/PublicApi.md#initializeselfservicesettingsforbrowsers) | **GET** /self-service/settings/browser | Initialize Settings Flow for Browsers
-*PublicApi* | [**initializeSelfServiceSettingsForNativeApps**](docs/Api/PublicApi.md#initializeselfservicesettingsfornativeapps) | **GET** /self-service/settings/api | Initialize Settings Flow for Native Apps and API clients
-*PublicApi* | [**initializeSelfServiceVerificationForBrowsers**](docs/Api/PublicApi.md#initializeselfserviceverificationforbrowsers) | **GET** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
-*PublicApi* | [**initializeSelfServiceVerificationForNativeApps**](docs/Api/PublicApi.md#initializeselfserviceverificationfornativeapps) | **GET** /self-service/verification/api | Initialize Verification Flow for Native Apps and API clients
-*PublicApi* | [**revokeSession**](docs/Api/PublicApi.md#revokesession) | **DELETE** /sessions | Initialize Logout Flow for API Clients - Revoke a Session
-*PublicApi* | [**submitSelfServiceLoginFlow**](docs/Api/PublicApi.md#submitselfserviceloginflow) | **POST** /self-service/login | Submit a Login Flow
-*PublicApi* | [**submitSelfServiceRecoveryFlow**](docs/Api/PublicApi.md#submitselfservicerecoveryflow) | **POST** /self-service/recovery | Complete Recovery Flow
-*PublicApi* | [**submitSelfServiceRecoveryFlowWithLinkMethod**](docs/Api/PublicApi.md#submitselfservicerecoveryflowwithlinkmethod) | **POST** /self-service/recovery/methods/link | Complete Recovery Flow with Link Method
-*PublicApi* | [**submitSelfServiceRegistrationFlow**](docs/Api/PublicApi.md#submitselfserviceregistrationflow) | **POST** /self-service/registration | Submit a Registration Flow
-*PublicApi* | [**submitSelfServiceSettingsFlow**](docs/Api/PublicApi.md#submitselfservicesettingsflow) | **POST** /self-service/settings | Complete Settings Flow
-*PublicApi* | [**submitSelfServiceVerificationFlow**](docs/Api/PublicApi.md#submitselfserviceverificationflow) | **POST** /self-service/verification/methods/link | Complete Verification Flow
-*PublicApi* | [**toSession**](docs/Api/PublicApi.md#tosession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
+*MetadataApi* | [**getVersion**](docs/Api/MetadataApi.md#getversion) | **GET** /version | Return Running Software Version.
+*MetadataApi* | [**isAlive**](docs/Api/MetadataApi.md#isalive) | **GET** /health/alive | Check HTTP Server Status
+*MetadataApi* | [**isReady**](docs/Api/MetadataApi.md#isready) | **GET** /health/ready | Check HTTP Server and Database Status
+*MetadataApi* | [**prometheus**](docs/Api/MetadataApi.md#prometheus) | **GET** /metrics/prometheus | Get snapshot metrics from the service. If you&#39;re using k8s, you can then add annotations to your deployment like so:
+*V0alpha1Api* | [**adminCreateIdentity**](docs/Api/V0alpha1Api.md#admincreateidentity) | **POST** /identities | Create an Identity
+*V0alpha1Api* | [**adminCreateSelfServiceRecoveryLink**](docs/Api/V0alpha1Api.md#admincreateselfservicerecoverylink) | **POST** /recovery/link | Create a Recovery Link
+*V0alpha1Api* | [**adminDeleteIdentity**](docs/Api/V0alpha1Api.md#admindeleteidentity) | **DELETE** /identities/{id} | Delete an Identity
+*V0alpha1Api* | [**adminGetIdentity**](docs/Api/V0alpha1Api.md#admingetidentity) | **GET** /identities/{id} | Get an Identity
+*V0alpha1Api* | [**adminListIdentities**](docs/Api/V0alpha1Api.md#adminlistidentities) | **GET** /identities | List Identities
+*V0alpha1Api* | [**adminUpdateIdentity**](docs/Api/V0alpha1Api.md#adminupdateidentity) | **PUT** /identities/{id} | Update an Identity
+*V0alpha1Api* | [**createSelfServiceLogoutFlowUrlForBrowsers**](docs/Api/V0alpha1Api.md#createselfservicelogoutflowurlforbrowsers) | **GET** /self-service/logout/browser | Create a Logout URL for Browsers
+*V0alpha1Api* | [**getJsonSchema**](docs/Api/V0alpha1Api.md#getjsonschema) | **GET** /schemas/{id} | 
+*V0alpha1Api* | [**getSelfServiceError**](docs/Api/V0alpha1Api.md#getselfserviceerror) | **GET** /self-service/errors | Get Self-Service Errors
+*V0alpha1Api* | [**getSelfServiceLoginFlow**](docs/Api/V0alpha1Api.md#getselfserviceloginflow) | **GET** /self-service/login/flows | Get Login Flow
+*V0alpha1Api* | [**getSelfServiceRecoveryFlow**](docs/Api/V0alpha1Api.md#getselfservicerecoveryflow) | **GET** /self-service/recovery/flows | Get Recovery Flow
+*V0alpha1Api* | [**getSelfServiceRegistrationFlow**](docs/Api/V0alpha1Api.md#getselfserviceregistrationflow) | **GET** /self-service/registration/flows | Get Registration Flow
+*V0alpha1Api* | [**getSelfServiceSettingsFlow**](docs/Api/V0alpha1Api.md#getselfservicesettingsflow) | **GET** /self-service/settings/flows | Get Settings Flow
+*V0alpha1Api* | [**getSelfServiceVerificationFlow**](docs/Api/V0alpha1Api.md#getselfserviceverificationflow) | **GET** /self-service/verification/flows | Get Verification Flow
+*V0alpha1Api* | [**initializeSelfServiceLoginFlowForBrowsers**](docs/Api/V0alpha1Api.md#initializeselfserviceloginflowforbrowsers) | **GET** /self-service/login/browser | Initialize Login Flow for Browsers
+*V0alpha1Api* | [**initializeSelfServiceLoginFlowWithoutBrowser**](docs/Api/V0alpha1Api.md#initializeselfserviceloginflowwithoutbrowser) | **GET** /self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ...
+*V0alpha1Api* | [**initializeSelfServiceRecoveryFlowForBrowsers**](docs/Api/V0alpha1Api.md#initializeselfservicerecoveryflowforbrowsers) | **GET** /self-service/recovery/browser | Initialize Recovery Flow for Browsers
+*V0alpha1Api* | [**initializeSelfServiceRecoveryFlowWithoutBrowser**](docs/Api/V0alpha1Api.md#initializeselfservicerecoveryflowwithoutbrowser) | **GET** /self-service/recovery/api | Initialize Recovery Flow for APIs, Services, Apps, ...
+*V0alpha1Api* | [**initializeSelfServiceRegistrationFlowForBrowsers**](docs/Api/V0alpha1Api.md#initializeselfserviceregistrationflowforbrowsers) | **GET** /self-service/registration/browser | Initialize Registration Flow for Browsers
+*V0alpha1Api* | [**initializeSelfServiceRegistrationFlowWithoutBrowser**](docs/Api/V0alpha1Api.md#initializeselfserviceregistrationflowwithoutbrowser) | **GET** /self-service/registration/api | Initialize Registration Flow for APIs, Services, Apps, ...
+*V0alpha1Api* | [**initializeSelfServiceSettingsFlowForBrowsers**](docs/Api/V0alpha1Api.md#initializeselfservicesettingsflowforbrowsers) | **GET** /self-service/settings/browser | Initialize Settings Flow for Browsers
+*V0alpha1Api* | [**initializeSelfServiceSettingsFlowWithoutBrowser**](docs/Api/V0alpha1Api.md#initializeselfservicesettingsflowwithoutbrowser) | **GET** /self-service/settings/api | Initialize Settings Flow for APIs, Services, Apps, ...
+*V0alpha1Api* | [**initializeSelfServiceVerificationFlowForBrowsers**](docs/Api/V0alpha1Api.md#initializeselfserviceverificationflowforbrowsers) | **GET** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
+*V0alpha1Api* | [**initializeSelfServiceVerificationFlowWithoutBrowser**](docs/Api/V0alpha1Api.md#initializeselfserviceverificationflowwithoutbrowser) | **GET** /self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
+*V0alpha1Api* | [**submitSelfServiceLoginFlow**](docs/Api/V0alpha1Api.md#submitselfserviceloginflow) | **POST** /self-service/login | Submit a Login Flow
+*V0alpha1Api* | [**submitSelfServiceLogoutFlow**](docs/Api/V0alpha1Api.md#submitselfservicelogoutflow) | **GET** /self-service/logout | Complete Self-Service Logout
+*V0alpha1Api* | [**submitSelfServiceLogoutFlowWithoutBrowser**](docs/Api/V0alpha1Api.md#submitselfservicelogoutflowwithoutbrowser) | **DELETE** /self-service/logout/api | Perform Logout for APIs, Services, Apps, ...
+*V0alpha1Api* | [**submitSelfServiceRecoveryFlow**](docs/Api/V0alpha1Api.md#submitselfservicerecoveryflow) | **POST** /self-service/recovery | Complete Recovery Flow
+*V0alpha1Api* | [**submitSelfServiceRegistrationFlow**](docs/Api/V0alpha1Api.md#submitselfserviceregistrationflow) | **POST** /self-service/registration | Submit a Registration Flow
+*V0alpha1Api* | [**submitSelfServiceSettingsFlow**](docs/Api/V0alpha1Api.md#submitselfservicesettingsflow) | **POST** /self-service/settings | Complete Settings Flow
+*V0alpha1Api* | [**submitSelfServiceVerificationFlow**](docs/Api/V0alpha1Api.md#submitselfserviceverificationflow) | **POST** /self-service/verification | Complete Verification Flow
+*V0alpha1Api* | [**toSession**](docs/Api/V0alpha1Api.md#tosession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 
 ## Models
 
+- [AdminCreateIdentityBody](docs/Model/AdminCreateIdentityBody.md)
+- [AdminCreateSelfServiceRecoveryLinkBody](docs/Model/AdminCreateSelfServiceRecoveryLinkBody.md)
+- [AdminUpdateIdentityBody](docs/Model/AdminUpdateIdentityBody.md)
 - [AuthenticateOKBody](docs/Model/AuthenticateOKBody.md)
 - [ContainerChangeResponseItem](docs/Model/ContainerChangeResponseItem.md)
 - [ContainerCreateCreatedBody](docs/Model/ContainerCreateCreatedBody.md)
@@ -129,8 +124,6 @@ Class | Method | HTTP request | Description
 - [ContainerUpdateOKBody](docs/Model/ContainerUpdateOKBody.md)
 - [ContainerWaitOKBody](docs/Model/ContainerWaitOKBody.md)
 - [ContainerWaitOKBodyError](docs/Model/ContainerWaitOKBodyError.md)
-- [CreateIdentity](docs/Model/CreateIdentity.md)
-- [CreateRecoveryLink](docs/Model/CreateRecoveryLink.md)
 - [ErrorResponse](docs/Model/ErrorResponse.md)
 - [GenericError](docs/Model/GenericError.md)
 - [GraphDriverData](docs/Model/GraphDriverData.md)
@@ -145,8 +138,6 @@ Class | Method | HTTP request | Description
 - [InlineResponse2001](docs/Model/InlineResponse2001.md)
 - [InlineResponse503](docs/Model/InlineResponse503.md)
 - [JsonError](docs/Model/JsonError.md)
-- [LoginFlow](docs/Model/LoginFlow.md)
-- [LoginViaApiResponse](docs/Model/LoginViaApiResponse.md)
 - [Meta](docs/Model/Meta.md)
 - [Plugin](docs/Model/Plugin.md)
 - [PluginConfig](docs/Model/PluginConfig.md)
@@ -163,59 +154,54 @@ Class | Method | HTTP request | Description
 - [PluginSettings](docs/Model/PluginSettings.md)
 - [Port](docs/Model/Port.md)
 - [RecoveryAddress](docs/Model/RecoveryAddress.md)
-- [RecoveryFlow](docs/Model/RecoveryFlow.md)
-- [RecoveryLink](docs/Model/RecoveryLink.md)
-- [RegistrationFlow](docs/Model/RegistrationFlow.md)
-- [RegistrationViaApiResponse](docs/Model/RegistrationViaApiResponse.md)
-- [RevokeSession](docs/Model/RevokeSession.md)
-- [SelfServiceErrorContainer](docs/Model/SelfServiceErrorContainer.md)
+- [SelfServiceError](docs/Model/SelfServiceError.md)
+- [SelfServiceLoginFlow](docs/Model/SelfServiceLoginFlow.md)
+- [SelfServiceLogoutUrl](docs/Model/SelfServiceLogoutUrl.md)
+- [SelfServiceRecoveryFlow](docs/Model/SelfServiceRecoveryFlow.md)
+- [SelfServiceRecoveryFlowState](docs/Model/SelfServiceRecoveryFlowState.md)
+- [SelfServiceRecoveryLink](docs/Model/SelfServiceRecoveryLink.md)
+- [SelfServiceRegistrationFlow](docs/Model/SelfServiceRegistrationFlow.md)
+- [SelfServiceSettingsFlow](docs/Model/SelfServiceSettingsFlow.md)
+- [SelfServiceSettingsFlowState](docs/Model/SelfServiceSettingsFlowState.md)
+- [SelfServiceVerificationFlow](docs/Model/SelfServiceVerificationFlow.md)
+- [SelfServiceVerificationFlowState](docs/Model/SelfServiceVerificationFlowState.md)
 - [ServiceUpdateResponse](docs/Model/ServiceUpdateResponse.md)
 - [Session](docs/Model/Session.md)
-- [SettingsFlow](docs/Model/SettingsFlow.md)
 - [SettingsProfileFormConfig](docs/Model/SettingsProfileFormConfig.md)
-- [SettingsViaApiResponse](docs/Model/SettingsViaApiResponse.md)
-- [SubmitSelfServiceBrowserSettingsOIDCFlowPayload](docs/Model/SubmitSelfServiceBrowserSettingsOIDCFlowPayload.md)
-- [SubmitSelfServiceLoginFlow](docs/Model/SubmitSelfServiceLoginFlow.md)
-- [SubmitSelfServiceLoginFlowWithPasswordMethod](docs/Model/SubmitSelfServiceLoginFlowWithPasswordMethod.md)
-- [SubmitSelfServiceRecoveryFlowWithLinkMethod](docs/Model/SubmitSelfServiceRecoveryFlowWithLinkMethod.md)
-- [SubmitSelfServiceRegistrationFlow](docs/Model/SubmitSelfServiceRegistrationFlow.md)
-- [SubmitSelfServiceRegistrationFlowWithPasswordMethod](docs/Model/SubmitSelfServiceRegistrationFlowWithPasswordMethod.md)
-- [SubmitSelfServiceSettingsFlow](docs/Model/SubmitSelfServiceSettingsFlow.md)
-- [SubmitSelfServiceSettingsFlowWithPasswordMethod](docs/Model/SubmitSelfServiceSettingsFlowWithPasswordMethod.md)
-- [SubmitSelfServiceSettingsFlowWithProfileMethod](docs/Model/SubmitSelfServiceSettingsFlowWithProfileMethod.md)
-- [SubmitSelfServiceVerificationFlowWithLinkMethod](docs/Model/SubmitSelfServiceVerificationFlowWithLinkMethod.md)
+- [SubmitSelfServiceLoginFlowBody](docs/Model/SubmitSelfServiceLoginFlowBody.md)
+- [SubmitSelfServiceLoginFlowWithOidcMethodBody](docs/Model/SubmitSelfServiceLoginFlowWithOidcMethodBody.md)
+- [SubmitSelfServiceLoginFlowWithPasswordMethodBody](docs/Model/SubmitSelfServiceLoginFlowWithPasswordMethodBody.md)
+- [SubmitSelfServiceLogoutFlowWithoutBrowserBody](docs/Model/SubmitSelfServiceLogoutFlowWithoutBrowserBody.md)
+- [SubmitSelfServiceRecoveryFlowBody](docs/Model/SubmitSelfServiceRecoveryFlowBody.md)
+- [SubmitSelfServiceRecoveryFlowWithLinkMethodBody](docs/Model/SubmitSelfServiceRecoveryFlowWithLinkMethodBody.md)
+- [SubmitSelfServiceRegistrationFlowBody](docs/Model/SubmitSelfServiceRegistrationFlowBody.md)
+- [SubmitSelfServiceRegistrationFlowWithOidcMethodBody](docs/Model/SubmitSelfServiceRegistrationFlowWithOidcMethodBody.md)
+- [SubmitSelfServiceRegistrationFlowWithPasswordMethodBody](docs/Model/SubmitSelfServiceRegistrationFlowWithPasswordMethodBody.md)
+- [SubmitSelfServiceSettingsFlowBody](docs/Model/SubmitSelfServiceSettingsFlowBody.md)
+- [SubmitSelfServiceSettingsFlowWithOidcMethodBody](docs/Model/SubmitSelfServiceSettingsFlowWithOidcMethodBody.md)
+- [SubmitSelfServiceSettingsFlowWithPasswordMethodBody](docs/Model/SubmitSelfServiceSettingsFlowWithPasswordMethodBody.md)
+- [SubmitSelfServiceSettingsFlowWithProfileMethodBody](docs/Model/SubmitSelfServiceSettingsFlowWithProfileMethodBody.md)
+- [SubmitSelfServiceVerificationFlowBody](docs/Model/SubmitSelfServiceVerificationFlowBody.md)
+- [SubmitSelfServiceVerificationFlowWithLinkMethodBody](docs/Model/SubmitSelfServiceVerificationFlowWithLinkMethodBody.md)
+- [SuccessfulSelfServiceLoginWithoutBrowser](docs/Model/SuccessfulSelfServiceLoginWithoutBrowser.md)
+- [SuccessfulSelfServiceRegistrationWithoutBrowser](docs/Model/SuccessfulSelfServiceRegistrationWithoutBrowser.md)
+- [SuccessfulSelfServiceSettingsWithoutBrowser](docs/Model/SuccessfulSelfServiceSettingsWithoutBrowser.md)
 - [UiContainer](docs/Model/UiContainer.md)
 - [UiNode](docs/Model/UiNode.md)
 - [UiNodeAnchorAttributes](docs/Model/UiNodeAnchorAttributes.md)
 - [UiNodeAttributes](docs/Model/UiNodeAttributes.md)
 - [UiNodeImageAttributes](docs/Model/UiNodeImageAttributes.md)
 - [UiNodeInputAttributes](docs/Model/UiNodeInputAttributes.md)
-- [UiNodeInputAttributesValue](docs/Model/UiNodeInputAttributesValue.md)
 - [UiNodeTextAttributes](docs/Model/UiNodeTextAttributes.md)
 - [UiText](docs/Model/UiText.md)
-- [UpdateIdentity](docs/Model/UpdateIdentity.md)
 - [VerifiableIdentityAddress](docs/Model/VerifiableIdentityAddress.md)
-- [VerificationFlow](docs/Model/VerificationFlow.md)
 - [Version](docs/Model/Version.md)
 - [Volume](docs/Model/Volume.md)
 - [VolumeUsageData](docs/Model/VolumeUsageData.md)
 
 ## Authorization
 
-### oryToken
-
-- **Type**: Bearer authentication
-
-
-### sessionCookie
-
-- **Type**: API key
-- **API key parameter name**: ory_kratos_session
-- **Location**: 
-
-
-
-### sessionToken
+### oryAccessToken
 
 - **Type**: Bearer authentication
 
@@ -236,5 +222,5 @@ hi@ory.sh
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `v0.6.3-alpha.1`
+- API version: `v0.7.0-alpha.1`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

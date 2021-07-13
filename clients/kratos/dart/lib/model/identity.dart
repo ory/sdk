@@ -13,10 +13,13 @@ class Identity {
   /// Returns a new [Identity] instance.
   Identity({
     this.createdAt,
+    this.credentials = const {},
     @required this.id,
     this.recoveryAddresses = const [],
     @required this.schemaId,
     @required this.schemaUrl,
+    this.state,
+    this.stateChangedAt,
     this.traits,
     this.updatedAt,
     this.verifiableAddresses = const [],
@@ -24,6 +27,9 @@ class Identity {
 
   /// CreatedAt is a helper struct field for gobuffalo.pop.
   DateTime createdAt;
+
+  /// Credentials represents all credentials that can be used for authenticating this identity.
+  Map<String, IdentityCredentials> credentials;
 
   String id;
 
@@ -35,6 +41,11 @@ class Identity {
 
   /// SchemaURL is the URL of the endpoint where the identity's traits schema can be fetched from.  format: url
   String schemaUrl;
+
+  /// State is the identity's state.
+  Object state;
+
+  DateTime stateChangedAt;
 
   /// Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_url`.
   Object traits;
@@ -48,10 +59,13 @@ class Identity {
   @override
   bool operator ==(Object other) => identical(this, other) || other is Identity &&
      other.createdAt == createdAt &&
+     other.credentials == credentials &&
      other.id == id &&
      other.recoveryAddresses == recoveryAddresses &&
      other.schemaId == schemaId &&
      other.schemaUrl == schemaUrl &&
+     other.state == state &&
+     other.stateChangedAt == stateChangedAt &&
      other.traits == traits &&
      other.updatedAt == updatedAt &&
      other.verifiableAddresses == verifiableAddresses;
@@ -59,21 +73,27 @@ class Identity {
   @override
   int get hashCode =>
     (createdAt == null ? 0 : createdAt.hashCode) +
+    (credentials == null ? 0 : credentials.hashCode) +
     (id == null ? 0 : id.hashCode) +
     (recoveryAddresses == null ? 0 : recoveryAddresses.hashCode) +
     (schemaId == null ? 0 : schemaId.hashCode) +
     (schemaUrl == null ? 0 : schemaUrl.hashCode) +
+    (state == null ? 0 : state.hashCode) +
+    (stateChangedAt == null ? 0 : stateChangedAt.hashCode) +
     (traits == null ? 0 : traits.hashCode) +
     (updatedAt == null ? 0 : updatedAt.hashCode) +
     (verifiableAddresses == null ? 0 : verifiableAddresses.hashCode);
 
   @override
-  String toString() => 'Identity[createdAt=$createdAt, id=$id, recoveryAddresses=$recoveryAddresses, schemaId=$schemaId, schemaUrl=$schemaUrl, traits=$traits, updatedAt=$updatedAt, verifiableAddresses=$verifiableAddresses]';
+  String toString() => 'Identity[createdAt=$createdAt, credentials=$credentials, id=$id, recoveryAddresses=$recoveryAddresses, schemaId=$schemaId, schemaUrl=$schemaUrl, state=$state, stateChangedAt=$stateChangedAt, traits=$traits, updatedAt=$updatedAt, verifiableAddresses=$verifiableAddresses]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (createdAt != null) {
       json[r'created_at'] = createdAt.toUtc().toIso8601String();
+    }
+    if (credentials != null) {
+      json[r'credentials'] = credentials;
     }
       json[r'id'] = id;
     if (recoveryAddresses != null) {
@@ -81,6 +101,10 @@ class Identity {
     }
       json[r'schema_id'] = schemaId;
       json[r'schema_url'] = schemaUrl;
+      json[r'state'] = state == null ? null : state;
+    if (stateChangedAt != null) {
+      json[r'state_changed_at'] = stateChangedAt.toUtc().toIso8601String();
+    }
       json[r'traits'] = traits == null ? null : traits;
     if (updatedAt != null) {
       json[r'updated_at'] = updatedAt.toUtc().toIso8601String();
@@ -99,10 +123,17 @@ class Identity {
         createdAt: json[r'created_at'] == null
           ? null
           : DateTime.parse(json[r'created_at']),
+        credentials: json[r'credentials'] == null
+          ? null
+          : IdentityCredentials.mapFromJson(json[r'credentials']),
         id: json[r'id'],
         recoveryAddresses: RecoveryAddress.listFromJson(json[r'recovery_addresses']),
         schemaId: json[r'schema_id'],
         schemaUrl: json[r'schema_url'],
+        state: json[r'state'],
+        stateChangedAt: json[r'state_changed_at'] == null
+          ? null
+          : DateTime.parse(json[r'state_changed_at']),
         traits: json[r'traits'],
         updatedAt: json[r'updated_at'] == null
           ? null

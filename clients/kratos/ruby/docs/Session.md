@@ -4,12 +4,12 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **active** | **Boolean** |  | [optional] |
-| **authenticated_at** | **Time** |  |  |
-| **expires_at** | **Time** |  |  |
+| **active** | **Boolean** | Whether or not the session is active. | [optional] |
+| **authenticated_at** | **Time** | The Session Authentication Timestamp  When this session was authenticated at. | [optional] |
+| **expires_at** | **Time** | The Session Expiry  When this session expires at. | [optional] |
 | **id** | **String** |  |  |
 | **identity** | [**Identity**](Identity.md) |  |  |
-| **issued_at** | **Time** |  |  |
+| **issued_at** | **Time** | The Session Issuance Timestamp  When this session was authenticated at. | [optional] |
 
 ## Example
 

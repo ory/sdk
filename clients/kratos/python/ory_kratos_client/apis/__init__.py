@@ -6,7 +6,7 @@
 # raise a `RecursionError`.
 # In order to avoid this, import only the API that you directly need like:
 #
-#   from .api.admin_api import AdminApi
+#   from .api.metadata_api import MetadataApi
 #
 # or import this package, but before doing it, use:
 #
@@ -14,5 +14,5 @@
 #   sys.setrecursionlimit(n)
 
 # Import APIs into API package:
-from ory_kratos_client.api.admin_api import AdminApi
-from ory_kratos_client.api.public_api import PublicApi
+from ory_kratos_client.api.metadata_api import MetadataApi
+from ory_kratos_client.api.v0alpha1_api import V0alpha1Api

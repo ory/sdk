@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory Kratos APIs. Public and administrative APIs are exposed on different ports. Public APIs can face the public internet without any protection while administrative APIs should never be exposed without prior authorization. To protect the administative API port you should use something like Nginx, Ory Oathkeeper, or any other technology capable of authorizing incoming requests. 
  *
- * API version: v0.6.3-alpha.1
+ * API version: v0.7.0-alpha.1
  * Contact: hi@ory.sh
  */
 
@@ -20,6 +20,8 @@ import (
 type Identity struct {
 	// CreatedAt is a helper struct field for gobuffalo.pop.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	// Credentials represents all credentials that can be used for authenticating this identity.
+	Credentials *map[string]IdentityCredentials `json:"credentials,omitempty"`
 	Id string `json:"id"`
 	// RecoveryAddresses contains all the addresses that can be used to recover an identity.
 	RecoveryAddresses []RecoveryAddress `json:"recovery_addresses,omitempty"`
@@ -27,6 +29,9 @@ type Identity struct {
 	SchemaId string `json:"schema_id"`
 	// SchemaURL is the URL of the endpoint where the identity's traits schema can be fetched from.  format: url
 	SchemaUrl string `json:"schema_url"`
+	// State is the identity's state.
+	State interface{} `json:"state"`
+	StateChangedAt *time.Time `json:"state_changed_at,omitempty"`
 	// Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_url`.
 	Traits interface{} `json:"traits"`
 	// UpdatedAt is a helper struct field for gobuffalo.pop.
@@ -39,11 +44,12 @@ type Identity struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIdentity(id string, schemaId string, schemaUrl string, traits interface{}) *Identity {
+func NewIdentity(id string, schemaId string, schemaUrl string, state interface{}, traits interface{}) *Identity {
 	this := Identity{}
 	this.Id = id
 	this.SchemaId = schemaId
 	this.SchemaUrl = schemaUrl
+	this.State = state
 	this.Traits = traits
 	return &this
 }
@@ -86,6 +92,38 @@ func (o *Identity) HasCreatedAt() bool {
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *Identity) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
+}
+
+// GetCredentials returns the Credentials field value if set, zero value otherwise.
+func (o *Identity) GetCredentials() map[string]IdentityCredentials {
+	if o == nil || o.Credentials == nil {
+		var ret map[string]IdentityCredentials
+		return ret
+	}
+	return *o.Credentials
+}
+
+// GetCredentialsOk returns a tuple with the Credentials field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Identity) GetCredentialsOk() (*map[string]IdentityCredentials, bool) {
+	if o == nil || o.Credentials == nil {
+		return nil, false
+	}
+	return o.Credentials, true
+}
+
+// HasCredentials returns a boolean if a field has been set.
+func (o *Identity) HasCredentials() bool {
+	if o != nil && o.Credentials != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCredentials gets a reference to the given map[string]IdentityCredentials and assigns it to the Credentials field.
+func (o *Identity) SetCredentials(v map[string]IdentityCredentials) {
+	o.Credentials = &v
 }
 
 // GetId returns the Id field value
@@ -192,6 +230,64 @@ func (o *Identity) SetSchemaUrl(v string) {
 	o.SchemaUrl = v
 }
 
+// GetState returns the State field value
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *Identity) GetState() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+
+	return o.State
+}
+
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Identity) GetStateOk() (*interface{}, bool) {
+	if o == nil || o.State == nil {
+		return nil, false
+	}
+	return &o.State, true
+}
+
+// SetState sets field value
+func (o *Identity) SetState(v interface{}) {
+	o.State = v
+}
+
+// GetStateChangedAt returns the StateChangedAt field value if set, zero value otherwise.
+func (o *Identity) GetStateChangedAt() time.Time {
+	if o == nil || o.StateChangedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.StateChangedAt
+}
+
+// GetStateChangedAtOk returns a tuple with the StateChangedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Identity) GetStateChangedAtOk() (*time.Time, bool) {
+	if o == nil || o.StateChangedAt == nil {
+		return nil, false
+	}
+	return o.StateChangedAt, true
+}
+
+// HasStateChangedAt returns a boolean if a field has been set.
+func (o *Identity) HasStateChangedAt() bool {
+	if o != nil && o.StateChangedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStateChangedAt gets a reference to the given time.Time and assigns it to the StateChangedAt field.
+func (o *Identity) SetStateChangedAt(v time.Time) {
+	o.StateChangedAt = &v
+}
+
 // GetTraits returns the Traits field value
 // If the value is explicit nil, the zero value for interface{} will be returned
 func (o *Identity) GetTraits() interface{} {
@@ -287,6 +383,9 @@ func (o Identity) MarshalJSON() ([]byte, error) {
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
 	}
+	if o.Credentials != nil {
+		toSerialize["credentials"] = o.Credentials
+	}
 	if true {
 		toSerialize["id"] = o.Id
 	}
@@ -298,6 +397,12 @@ func (o Identity) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["schema_url"] = o.SchemaUrl
+	}
+	if o.State != nil {
+		toSerialize["state"] = o.State
+	}
+	if o.StateChangedAt != nil {
+		toSerialize["state_changed_at"] = o.StateChangedAt
 	}
 	if o.Traits != nil {
 		toSerialize["traits"] = o.Traits

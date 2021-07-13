@@ -12,9 +12,7 @@ part of openapi.api;
 class ApiClient {
   ApiClient({this.basePath = 'http://localhost'}) {
     // Setup authentications (key: authentication name, value: authentication).
-    _authentications[r'oryToken'] = HttpBearerAuth();
-    _authentications[r'sessionCookie'] = ApiKeyAuth('cookie', 'ory_kratos_session');
-    _authentications[r'sessionToken'] = HttpBearerAuth();
+    _authentications[r'oryAccessToken'] = HttpBearerAuth();
   }
 
   final String basePath;
@@ -194,6 +192,12 @@ class ApiClient {
           break;
         case 'double':
           return value is double ? value : double.parse('$value');
+        case 'AdminCreateIdentityBody':
+          return AdminCreateIdentityBody.fromJson(value);
+        case 'AdminCreateSelfServiceRecoveryLinkBody':
+          return AdminCreateSelfServiceRecoveryLinkBody.fromJson(value);
+        case 'AdminUpdateIdentityBody':
+          return AdminUpdateIdentityBody.fromJson(value);
         case 'AuthenticateOKBody':
           return AuthenticateOKBody.fromJson(value);
         case 'ContainerChangeResponseItem':
@@ -208,10 +212,6 @@ class ApiClient {
           return ContainerWaitOKBody.fromJson(value);
         case 'ContainerWaitOKBodyError':
           return ContainerWaitOKBodyError.fromJson(value);
-        case 'CreateIdentity':
-          return CreateIdentity.fromJson(value);
-        case 'CreateRecoveryLink':
-          return CreateRecoveryLink.fromJson(value);
         case 'ErrorResponse':
           return ErrorResponse.fromJson(value);
         case 'GenericError':
@@ -240,10 +240,6 @@ class ApiClient {
           return InlineResponse503.fromJson(value);
         case 'JsonError':
           return JsonError.fromJson(value);
-        case 'LoginFlow':
-          return LoginFlow.fromJson(value);
-        case 'LoginViaApiResponse':
-          return LoginViaApiResponse.fromJson(value);
         case 'Meta':
           return Meta.fromJson(value);
         case 'Plugin':
@@ -276,48 +272,73 @@ class ApiClient {
           return Port.fromJson(value);
         case 'RecoveryAddress':
           return RecoveryAddress.fromJson(value);
-        case 'RecoveryFlow':
-          return RecoveryFlow.fromJson(value);
-        case 'RecoveryLink':
-          return RecoveryLink.fromJson(value);
-        case 'RegistrationFlow':
-          return RegistrationFlow.fromJson(value);
-        case 'RegistrationViaApiResponse':
-          return RegistrationViaApiResponse.fromJson(value);
-        case 'RevokeSession':
-          return RevokeSession.fromJson(value);
-        case 'SelfServiceErrorContainer':
-          return SelfServiceErrorContainer.fromJson(value);
+        case 'SelfServiceError':
+          return SelfServiceError.fromJson(value);
+        case 'SelfServiceLoginFlow':
+          return SelfServiceLoginFlow.fromJson(value);
+        case 'SelfServiceLogoutUrl':
+          return SelfServiceLogoutUrl.fromJson(value);
+        case 'SelfServiceRecoveryFlow':
+          return SelfServiceRecoveryFlow.fromJson(value);
+        case 'SelfServiceRecoveryFlowState':
+          return SelfServiceRecoveryFlowStateTypeTransformer().decode(value);
+          
+        case 'SelfServiceRecoveryLink':
+          return SelfServiceRecoveryLink.fromJson(value);
+        case 'SelfServiceRegistrationFlow':
+          return SelfServiceRegistrationFlow.fromJson(value);
+        case 'SelfServiceSettingsFlow':
+          return SelfServiceSettingsFlow.fromJson(value);
+        case 'SelfServiceSettingsFlowState':
+          return SelfServiceSettingsFlowStateTypeTransformer().decode(value);
+          
+        case 'SelfServiceVerificationFlow':
+          return SelfServiceVerificationFlow.fromJson(value);
+        case 'SelfServiceVerificationFlowState':
+          return SelfServiceVerificationFlowStateTypeTransformer().decode(value);
+          
         case 'ServiceUpdateResponse':
           return ServiceUpdateResponse.fromJson(value);
         case 'Session':
           return Session.fromJson(value);
-        case 'SettingsFlow':
-          return SettingsFlow.fromJson(value);
         case 'SettingsProfileFormConfig':
           return SettingsProfileFormConfig.fromJson(value);
-        case 'SettingsViaApiResponse':
-          return SettingsViaApiResponse.fromJson(value);
-        case 'SubmitSelfServiceBrowserSettingsOIDCFlowPayload':
-          return SubmitSelfServiceBrowserSettingsOIDCFlowPayload.fromJson(value);
-        case 'SubmitSelfServiceLoginFlow':
-          return SubmitSelfServiceLoginFlow.fromJson(value);
-        case 'SubmitSelfServiceLoginFlowWithPasswordMethod':
-          return SubmitSelfServiceLoginFlowWithPasswordMethod.fromJson(value);
-        case 'SubmitSelfServiceRecoveryFlowWithLinkMethod':
-          return SubmitSelfServiceRecoveryFlowWithLinkMethod.fromJson(value);
-        case 'SubmitSelfServiceRegistrationFlow':
-          return SubmitSelfServiceRegistrationFlow.fromJson(value);
-        case 'SubmitSelfServiceRegistrationFlowWithPasswordMethod':
-          return SubmitSelfServiceRegistrationFlowWithPasswordMethod.fromJson(value);
-        case 'SubmitSelfServiceSettingsFlow':
-          return SubmitSelfServiceSettingsFlow.fromJson(value);
-        case 'SubmitSelfServiceSettingsFlowWithPasswordMethod':
-          return SubmitSelfServiceSettingsFlowWithPasswordMethod.fromJson(value);
-        case 'SubmitSelfServiceSettingsFlowWithProfileMethod':
-          return SubmitSelfServiceSettingsFlowWithProfileMethod.fromJson(value);
-        case 'SubmitSelfServiceVerificationFlowWithLinkMethod':
-          return SubmitSelfServiceVerificationFlowWithLinkMethod.fromJson(value);
+        case 'SubmitSelfServiceLoginFlowBody':
+          return SubmitSelfServiceLoginFlowBody.fromJson(value);
+        case 'SubmitSelfServiceLoginFlowWithOidcMethodBody':
+          return SubmitSelfServiceLoginFlowWithOidcMethodBody.fromJson(value);
+        case 'SubmitSelfServiceLoginFlowWithPasswordMethodBody':
+          return SubmitSelfServiceLoginFlowWithPasswordMethodBody.fromJson(value);
+        case 'SubmitSelfServiceLogoutFlowWithoutBrowserBody':
+          return SubmitSelfServiceLogoutFlowWithoutBrowserBody.fromJson(value);
+        case 'SubmitSelfServiceRecoveryFlowBody':
+          return SubmitSelfServiceRecoveryFlowBody.fromJson(value);
+        case 'SubmitSelfServiceRecoveryFlowWithLinkMethodBody':
+          return SubmitSelfServiceRecoveryFlowWithLinkMethodBody.fromJson(value);
+        case 'SubmitSelfServiceRegistrationFlowBody':
+          return SubmitSelfServiceRegistrationFlowBody.fromJson(value);
+        case 'SubmitSelfServiceRegistrationFlowWithOidcMethodBody':
+          return SubmitSelfServiceRegistrationFlowWithOidcMethodBody.fromJson(value);
+        case 'SubmitSelfServiceRegistrationFlowWithPasswordMethodBody':
+          return SubmitSelfServiceRegistrationFlowWithPasswordMethodBody.fromJson(value);
+        case 'SubmitSelfServiceSettingsFlowBody':
+          return SubmitSelfServiceSettingsFlowBody.fromJson(value);
+        case 'SubmitSelfServiceSettingsFlowWithOidcMethodBody':
+          return SubmitSelfServiceSettingsFlowWithOidcMethodBody.fromJson(value);
+        case 'SubmitSelfServiceSettingsFlowWithPasswordMethodBody':
+          return SubmitSelfServiceSettingsFlowWithPasswordMethodBody.fromJson(value);
+        case 'SubmitSelfServiceSettingsFlowWithProfileMethodBody':
+          return SubmitSelfServiceSettingsFlowWithProfileMethodBody.fromJson(value);
+        case 'SubmitSelfServiceVerificationFlowBody':
+          return SubmitSelfServiceVerificationFlowBody.fromJson(value);
+        case 'SubmitSelfServiceVerificationFlowWithLinkMethodBody':
+          return SubmitSelfServiceVerificationFlowWithLinkMethodBody.fromJson(value);
+        case 'SuccessfulSelfServiceLoginWithoutBrowser':
+          return SuccessfulSelfServiceLoginWithoutBrowser.fromJson(value);
+        case 'SuccessfulSelfServiceRegistrationWithoutBrowser':
+          return SuccessfulSelfServiceRegistrationWithoutBrowser.fromJson(value);
+        case 'SuccessfulSelfServiceSettingsWithoutBrowser':
+          return SuccessfulSelfServiceSettingsWithoutBrowser.fromJson(value);
         case 'UiContainer':
           return UiContainer.fromJson(value);
         case 'UiNode':
@@ -330,18 +351,12 @@ class ApiClient {
           return UiNodeImageAttributes.fromJson(value);
         case 'UiNodeInputAttributes':
           return UiNodeInputAttributes.fromJson(value);
-        case 'UiNodeInputAttributesValue':
-          return UiNodeInputAttributesValue.fromJson(value);
         case 'UiNodeTextAttributes':
           return UiNodeTextAttributes.fromJson(value);
         case 'UiText':
           return UiText.fromJson(value);
-        case 'UpdateIdentity':
-          return UpdateIdentity.fromJson(value);
         case 'VerifiableIdentityAddress':
           return VerifiableIdentityAddress.fromJson(value);
-        case 'VerificationFlow':
-          return VerificationFlow.fromJson(value);
         case 'Version':
           return Version.fromJson(value);
         case 'Volume':

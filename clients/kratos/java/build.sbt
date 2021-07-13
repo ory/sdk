@@ -2,7 +2,7 @@ lazy val root = (project in file(".")).
   settings(
     organization := "sh.ory.kratos",
     name := "kratos-client",
-    version := "v0.6.3-alpha.1",
+    version := "v0.7.0-alpha.1",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),
     javacOptions in compile ++= Seq("-Xlint:deprecation"),

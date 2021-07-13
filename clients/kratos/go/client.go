@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory Kratos APIs. Public and administrative APIs are exposed on different ports. Public APIs can face the public internet without any protection while administrative APIs should never be exposed without prior authorization. To protect the administative API port you should use something like Nginx, Ory Oathkeeper, or any other technology capable of authorizing incoming requests. 
  *
- * API version: v0.6.3-alpha.1
+ * API version: v0.7.0-alpha.1
  * Contact: hi@ory.sh
  */
 
@@ -41,7 +41,7 @@ var (
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 )
 
-// APIClient manages communication with the Ory Kratos API API vv0.6.3-alpha.1
+// APIClient manages communication with the Ory Kratos API API vv0.7.0-alpha.1
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -49,9 +49,9 @@ type APIClient struct {
 
 	// API Services
 
-	AdminApi *AdminApiService
+	MetadataApi MetadataApi
 
-	PublicApi *PublicApiService
+	V0alpha1Api V0alpha1Api
 }
 
 type service struct {
@@ -70,8 +70,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.AdminApi = (*AdminApiService)(&c.common)
-	c.PublicApi = (*PublicApiService)(&c.common)
+	c.MetadataApi = (*MetadataApiService)(&c.common)
+	c.V0alpha1Api = (*V0alpha1ApiService)(&c.common)
 
 	return c
 }
