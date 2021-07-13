@@ -219,7 +219,7 @@ elixir() {
   mix hex.user auth 
 
   (cd "${dir}"; mix deps.get)
-  (cd "${dir}"; mix hex.publish)
+  (cd "${dir}"; mix hex.publish --yes)
 }
 
 
