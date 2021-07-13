@@ -271,6 +271,23 @@ rust () {
   fi
 }
 
+elixir () {
+	echo "Generating Elixir..."
+
+	dir = "clients/${PROJECT}/elixir"
+
+	openapi-generator-cli generate -i "${SPEC_FILE}" \
+    	    -g elixir \
+	    -o "$dir" \
+	    --git-user-id ory \
+	    --git-repo-id sdk \
+	    --git-host github.com \
+	    -c ./config/client/dart.yml.proc.yml
+
+  cp "LICENSE" "clients/${PROJECT}/dart"
+
+}
+
 typescript
 rust
 golang
@@ -280,5 +297,6 @@ python
 ruby
 dotnet
 dart
+elixir
 
 cleanup
