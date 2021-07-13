@@ -277,15 +277,14 @@ elixir () {
 	dir = "clients/${PROJECT}/elixir"
 
 	openapi-generator-cli generate -i "${SPEC_FILE}" \
-    	    -g elixir \
+    	-g elixir \
 	    -o "$dir" \
 	    --git-user-id ory \
 	    --git-repo-id sdk \
 	    --git-host github.com \
-	    -c ./config/client/dart.yml.proc.yml
+	    -c ./config/client/elixir.yml.proc.yml
 
-  cp "LICENSE" "clients/${PROJECT}/dart"
-
+  cp "LICENSE" "clients/${PROJECT}/elixir"
 }
 
 typescript
