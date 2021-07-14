@@ -1,6 +1,7 @@
 FROM openjdk:12-alpine
 
-RUN apk add --no-cache \
+RUN apk -U upgrade
+RUN apk add -U --no-cache \
 		ca-certificates
 
 # set up nsswitch.conf for Go's "netgo" implementation
@@ -61,7 +62,19 @@ ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 ENV GO111MODULE=on
 
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
+
 RUN apk add -U --no-cache ca-certificates bash nodejs npm python3 python3-dev py-pip ruby jq build-base gnupg git openssh curl gettext libffi libffi-dev openssl-dev php composer php-curl php7-tokenizer wget php-dom php-xml php-simplexml php-xmlwriter maven
+
+# https://stackoverflow.com/questions/35736598/cannot-pip-install-cryptography-in-docker-alpine-linux-3-3-with-openssl-1-0-2g
+RUN apk add --no-cache \
+        libressl-dev \
+        musl-dev \
+        libffi-dev && \
+    python3 -m pip install --no-cache-dir cryptography==2.1.4 && \
+    apk del \
+        libressl-dev \
+        musl-dev \
+        libffi-dev
 
 # RUN wget http://central.maven.org/maven2/org/openapitools/openapi-generator-cli/4.2.2/openapi-generator-cli-4.2.2.jar -O openapi-generator-cli.jar
 
