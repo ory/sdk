@@ -13,23 +13,27 @@ class Session {
   /// Returns a new [Session] instance.
   Session({
     this.active,
-    @required this.authenticatedAt,
-    @required this.expiresAt,
+    this.authenticatedAt,
+    this.expiresAt,
     @required this.id,
     @required this.identity,
-    @required this.issuedAt,
+    this.issuedAt,
   });
 
+  /// Whether or not the session is active.
   bool active;
 
+  /// The Session Authentication Timestamp  When this session was authenticated at.
   DateTime authenticatedAt;
 
+  /// The Session Expiry  When this session expires at.
   DateTime expiresAt;
 
   String id;
 
   Identity identity;
 
+  /// The Session Issuance Timestamp  When this session was authenticated at.
   DateTime issuedAt;
 
   @override
@@ -58,11 +62,17 @@ class Session {
     if (active != null) {
       json[r'active'] = active;
     }
+    if (authenticatedAt != null) {
       json[r'authenticated_at'] = authenticatedAt.toUtc().toIso8601String();
+    }
+    if (expiresAt != null) {
       json[r'expires_at'] = expiresAt.toUtc().toIso8601String();
+    }
       json[r'id'] = id;
       json[r'identity'] = identity;
+    if (issuedAt != null) {
       json[r'issued_at'] = issuedAt.toUtc().toIso8601String();
+    }
     return json;
   }
 
