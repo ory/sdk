@@ -20,6 +20,7 @@ docs/HealthStatus.md
 docs/IdResponse.md
 docs/Identity.md
 docs/IdentityCredentials.md
+docs/IdentityState.md
 docs/ImageDeleteResponseItem.md
 docs/ImageSummary.md
 docs/InlineResponse200.md
@@ -112,6 +113,7 @@ src/models/health_status.rs
 src/models/id_response.rs
 src/models/identity.rs
 src/models/identity_credentials.rs
+src/models/identity_state.rs
 src/models/image_delete_response_item.rs
 src/models/image_summary.rs
 src/models/inline_response_200.rs

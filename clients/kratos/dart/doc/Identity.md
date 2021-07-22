@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **recoveryAddresses** | [**List<RecoveryAddress>**](RecoveryAddress.md) | RecoveryAddresses contains all the addresses that can be used to recover an identity. | [optional] [default to const []]
 **schemaId** | **String** | SchemaID is the ID of the JSON Schema to be used for validating the identity's traits. | 
 **schemaUrl** | **String** | SchemaURL is the URL of the endpoint where the identity's traits schema can be fetched from.  format: url | 
-**state** | [**Object**](.md) | State is the identity's state. | 
+**state** | [**IdentityState**](IdentityState.md) |  | [optional] 
 **stateChangedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **traits** | [**Object**](.md) | Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_url`. | 
 **updatedAt** | [**DateTime**](DateTime.md) | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 

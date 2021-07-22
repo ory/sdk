@@ -47,6 +47,7 @@ part 'model/health_status.dart';
 part 'model/id_response.dart';
 part 'model/identity.dart';
 part 'model/identity_credentials.dart';
+part 'model/identity_state.dart';
 part 'model/image_delete_response_item.dart';
 part 'model/image_summary.dart';
 part 'model/inline_response200.dart';

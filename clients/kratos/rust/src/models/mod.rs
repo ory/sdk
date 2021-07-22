@@ -34,6 +34,8 @@ pub mod identity;
 pub use self::identity::Identity;
 pub mod identity_credentials;
 pub use self::identity_credentials::IdentityCredentials;
+pub mod identity_state;
+pub use self::identity_state::IdentityState;
 pub mod image_delete_response_item;
 pub use self::image_delete_response_item::ImageDeleteResponseItem;
 pub mod image_summary;

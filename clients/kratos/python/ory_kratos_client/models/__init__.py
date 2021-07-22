@@ -28,6 +28,7 @@ from ory_kratos_client.model.id_response import IdResponse
 from ory_kratos_client.model.identity import Identity
 from ory_kratos_client.model.identity_credentials import IdentityCredentials
 from ory_kratos_client.model.identity_list import IdentityList
+from ory_kratos_client.model.identity_state import IdentityState
 from ory_kratos_client.model.image_delete_response_item import ImageDeleteResponseItem
 from ory_kratos_client.model.image_summary import ImageSummary
 from ory_kratos_client.model.inline_response200 import InlineResponse200

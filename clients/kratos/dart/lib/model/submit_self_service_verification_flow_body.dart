@@ -99,13 +99,11 @@ class SubmitSelfServiceVerificationFlowBodyMethodEnum {
 
   String toJson() => value;
 
-  static const password = SubmitSelfServiceVerificationFlowBodyMethodEnum._(r'password');
-  static const oidc = SubmitSelfServiceVerificationFlowBodyMethodEnum._(r'oidc');
+  static const link = SubmitSelfServiceVerificationFlowBodyMethodEnum._(r'link');
 
   /// List of all possible values in this [enum][SubmitSelfServiceVerificationFlowBodyMethodEnum].
   static const values = <SubmitSelfServiceVerificationFlowBodyMethodEnum>[
-    password,
-    oidc,
+    link,
   ];
 
   static SubmitSelfServiceVerificationFlowBodyMethodEnum fromJson(dynamic value) =>
@@ -138,8 +136,7 @@ class SubmitSelfServiceVerificationFlowBodyMethodEnumTypeTransformer {
   /// and users are still using an old app with the old code.
   SubmitSelfServiceVerificationFlowBodyMethodEnum decode(dynamic data, {bool allowNull}) {
     switch (data) {
-      case r'password': return SubmitSelfServiceVerificationFlowBodyMethodEnum.password;
-      case r'oidc': return SubmitSelfServiceVerificationFlowBodyMethodEnum.oidc;
+      case r'link': return SubmitSelfServiceVerificationFlowBodyMethodEnum.link;
       default:
         if (allowNull == false) {
           throw ArgumentError('Unknown enum value to decode: $data');

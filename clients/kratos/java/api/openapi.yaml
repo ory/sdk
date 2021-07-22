@@ -11,7 +11,7 @@ info:
   license:
     name: Apache 2.0
   title: Ory Kratos API
-  version: v0.7.0-alpha.1
+  version: v0.7.1-alpha.1
 servers:
 - url: /
 paths:
@@ -1969,7 +1969,6 @@ components:
       example:
         traits: '{}'
         schema_id: schema_id
-        state: ""
       properties:
         schema_id:
           description: |-
@@ -1977,7 +1976,7 @@ components:
             will update the Identity's SchemaID.
           type: string
         state:
-          description: State is the identity's state.
+          $ref: '#/components/schemas/identityState'
         traits:
           description: |-
             Traits represent an identity's traits. The identity is able to create, modify, and delete traits
@@ -2792,7 +2791,6 @@ components:
         state_changed_at: 2000-01-23T04:56:07.000+00:00
         created_at: 2000-01-23T04:56:07.000+00:00
         schema_url: schema_url
-        state: ""
       properties:
         created_at:
           description: CreatedAt is a helper struct field for gobuffalo.pop.
@@ -2824,7 +2822,7 @@ components:
             format: url
           type: string
         state:
-          description: State is the identity's state.
+          $ref: '#/components/schemas/identityState'
         state_changed_at:
           format: date-time
           title: NullTime implements sql.NullTime functionality.
@@ -2849,7 +2847,6 @@ components:
       - id
       - schema_id
       - schema_url
-      - state
       - traits
       title: Identity represents an Ory Kratos identity
       type: object
@@ -2893,6 +2890,13 @@ components:
         $ref: '#/components/schemas/identity'
       title: A list of identities.
       type: array
+    identityState:
+      description: The state can either be `active` or `inactive`.
+      enum:
+      - active
+      - inactive
+      title: An Identity's State
+      type: string
     identityTraits:
       description: |-
         Traits represent an identity's traits. The identity is able to create, modify, and delete traits
@@ -3390,7 +3394,6 @@ components:
           state_changed_at: 2000-01-23T04:56:07.000+00:00
           created_at: 2000-01-23T04:56:07.000+00:00
           schema_url: schema_url
-          state: ""
         active: active
         type: type
         issued_at: 2000-01-23T04:56:07.000+00:00
@@ -3603,7 +3606,6 @@ components:
           state_changed_at: 2000-01-23T04:56:07.000+00:00
           created_at: 2000-01-23T04:56:07.000+00:00
           schema_url: schema_url
-          state: ""
         authenticated_at: 2000-01-23T04:56:07.000+00:00
         active: true
         issued_at: 2000-01-23T04:56:07.000+00:00
@@ -3756,8 +3758,7 @@ components:
         method:
           description: Method supports `link` only right now.
           enum:
-          - password
-          - oidc
+          - link
           type: string
       required:
       - email
@@ -3937,8 +3938,7 @@ components:
         method:
           description: Method supports `link` only right now.
           enum:
-          - password
-          - oidc
+          - link
           type: string
       required:
       - email
@@ -3990,7 +3990,6 @@ components:
             state_changed_at: 2000-01-23T04:56:07.000+00:00
             created_at: 2000-01-23T04:56:07.000+00:00
             schema_url: schema_url
-            state: ""
           authenticated_at: 2000-01-23T04:56:07.000+00:00
           active: true
           issued_at: 2000-01-23T04:56:07.000+00:00
@@ -4055,7 +4054,6 @@ components:
           state_changed_at: 2000-01-23T04:56:07.000+00:00
           created_at: 2000-01-23T04:56:07.000+00:00
           schema_url: schema_url
-          state: ""
         session:
           expires_at: 2000-01-23T04:56:07.000+00:00
           identity:
@@ -4098,7 +4096,6 @@ components:
             state_changed_at: 2000-01-23T04:56:07.000+00:00
             created_at: 2000-01-23T04:56:07.000+00:00
             schema_url: schema_url
-            state: ""
           authenticated_at: 2000-01-23T04:56:07.000+00:00
           active: true
           issued_at: 2000-01-23T04:56:07.000+00:00
@@ -4166,7 +4163,6 @@ components:
           state_changed_at: 2000-01-23T04:56:07.000+00:00
           created_at: 2000-01-23T04:56:07.000+00:00
           schema_url: schema_url
-          state: ""
         flow:
           expires_at: 2000-01-23T04:56:07.000+00:00
           ui:
@@ -4256,7 +4252,6 @@ components:
             state_changed_at: 2000-01-23T04:56:07.000+00:00
             created_at: 2000-01-23T04:56:07.000+00:00
             schema_url: schema_url
-            state: ""
           active: active
           type: type
           issued_at: 2000-01-23T04:56:07.000+00:00

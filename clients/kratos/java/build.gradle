@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'java'
 
 group = 'sh.ory.kratos'
-version = 'v0.7.0-alpha.1'
+version = 'v0.7.1-alpha.1'
 
 buildscript {
     repositories {

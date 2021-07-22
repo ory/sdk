@@ -17,8 +17,7 @@ Name | Type | Description | Notes
 
 Name | Value
 ---- | -----
-PASSWORD | &quot;password&quot;
-OIDC | &quot;oidc&quot;
+LINK | &quot;link&quot;
 
 
 

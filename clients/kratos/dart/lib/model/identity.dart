@@ -42,8 +42,7 @@ class Identity {
   /// SchemaURL is the URL of the endpoint where the identity's traits schema can be fetched from.  format: url
   String schemaUrl;
 
-  /// State is the identity's state.
-  Object state;
+  IdentityState state;
 
   DateTime stateChangedAt;
 
@@ -101,7 +100,9 @@ class Identity {
     }
       json[r'schema_id'] = schemaId;
       json[r'schema_url'] = schemaUrl;
-      json[r'state'] = state == null ? null : state;
+    if (state != null) {
+      json[r'state'] = state;
+    }
     if (stateChangedAt != null) {
       json[r'state_changed_at'] = stateChangedAt.toUtc().toIso8601String();
     }
@@ -130,7 +131,7 @@ class Identity {
         recoveryAddresses: RecoveryAddress.listFromJson(json[r'recovery_addresses']),
         schemaId: json[r'schema_id'],
         schemaUrl: json[r'schema_url'],
-        state: json[r'state'],
+        state: IdentityState.fromJson(json[r'state']),
         stateChangedAt: json[r'state_changed_at'] == null
           ? null
           : DateTime.parse(json[r'state_changed_at']),

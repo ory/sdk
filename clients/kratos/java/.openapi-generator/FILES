@@ -22,6 +22,7 @@ docs/HealthStatus.md
 docs/IdResponse.md
 docs/Identity.md
 docs/IdentityCredentials.md
+docs/IdentityState.md
 docs/ImageDeleteResponseItem.md
 docs/ImageSummary.md
 docs/InlineResponse200.md
@@ -136,6 +137,7 @@ src/main/java/sh/ory/kratos/model/HealthStatus.java
 src/main/java/sh/ory/kratos/model/IdResponse.java
 src/main/java/sh/ory/kratos/model/Identity.java
 src/main/java/sh/ory/kratos/model/IdentityCredentials.java
+src/main/java/sh/ory/kratos/model/IdentityState.java
 src/main/java/sh/ory/kratos/model/ImageDeleteResponseItem.java
 src/main/java/sh/ory/kratos/model/ImageSummary.java
 src/main/java/sh/ory/kratos/model/InlineResponse200.java
@@ -221,6 +223,7 @@ src/test/java/sh/ory/kratos/model/HealthNotReadyStatusTest.java
 src/test/java/sh/ory/kratos/model/HealthStatusTest.java
 src/test/java/sh/ory/kratos/model/IdResponseTest.java
 src/test/java/sh/ory/kratos/model/IdentityCredentialsTest.java
+src/test/java/sh/ory/kratos/model/IdentityStateTest.java
 src/test/java/sh/ory/kratos/model/IdentityTest.java
 src/test/java/sh/ory/kratos/model/ImageDeleteResponseItemTest.java
 src/test/java/sh/ory/kratos/model/ImageSummaryTest.java

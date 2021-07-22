@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory Kratos APIs. Public and administrative APIs are exposed on different ports. Public APIs can face the public internet without any protection while administrative APIs should never be exposed without prior authorization. To protect the administative API port you should use something like Nginx, Ory Oathkeeper, or any other technology capable of authorizing incoming requests. 
  *
- * API version: v0.7.0-alpha.1
+ * API version: v0.7.1-alpha.1
  * Contact: hi@ory.sh
  */
 
@@ -19,8 +19,7 @@ import (
 type AdminUpdateIdentityBody struct {
 	// SchemaID is the ID of the JSON Schema to be used for validating the identity's traits. If set will update the Identity's SchemaID.
 	SchemaId *string `json:"schema_id,omitempty"`
-	// State is the identity's state.
-	State interface{} `json:"state"`
+	State IdentityState `json:"state"`
 	// Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_id`.
 	Traits map[string]interface{} `json:"traits"`
 }
@@ -29,7 +28,7 @@ type AdminUpdateIdentityBody struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAdminUpdateIdentityBody(state interface{}, traits map[string]interface{}) *AdminUpdateIdentityBody {
+func NewAdminUpdateIdentityBody(state IdentityState, traits map[string]interface{}) *AdminUpdateIdentityBody {
 	this := AdminUpdateIdentityBody{}
 	this.State = state
 	this.Traits = traits
@@ -77,10 +76,9 @@ func (o *AdminUpdateIdentityBody) SetSchemaId(v string) {
 }
 
 // GetState returns the State field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *AdminUpdateIdentityBody) GetState() interface{} {
+func (o *AdminUpdateIdentityBody) GetState() IdentityState {
 	if o == nil {
-		var ret interface{}
+		var ret IdentityState
 		return ret
 	}
 
@@ -89,16 +87,15 @@ func (o *AdminUpdateIdentityBody) GetState() interface{} {
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AdminUpdateIdentityBody) GetStateOk() (*interface{}, bool) {
-	if o == nil || o.State == nil {
+func (o *AdminUpdateIdentityBody) GetStateOk() (*IdentityState, bool) {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.State, true
 }
 
 // SetState sets field value
-func (o *AdminUpdateIdentityBody) SetState(v interface{}) {
+func (o *AdminUpdateIdentityBody) SetState(v IdentityState) {
 	o.State = v
 }
 
@@ -131,7 +128,7 @@ func (o AdminUpdateIdentityBody) MarshalJSON() ([]byte, error) {
 	if o.SchemaId != nil {
 		toSerialize["schema_id"] = o.SchemaId
 	}
-	if o.State != nil {
+	if true {
 		toSerialize["state"] = o.State
 	}
 	if true {

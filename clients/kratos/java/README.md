@@ -1,8 +1,8 @@
 # kratos-client
 
 Ory Kratos API
-- API version: v0.7.0-alpha.1
-  - Build date: 2021-07-13T18:51:24.300092764Z[Etc/UTC]
+- API version: v0.7.1-alpha.1
+  - Build date: 2021-07-22T18:06:07.711120196Z[Etc/UTC]
 
 Documentation for all public and administrative Ory Kratos APIs. Public and administrative APIs
 are exposed on different ports. Public APIs can face the public internet without any protection
@@ -45,7 +45,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.kratos</groupId>
   <artifactId>kratos-client</artifactId>
-  <version>v0.7.0-alpha.1</version>
+  <version>v0.7.1-alpha.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -55,7 +55,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "sh.ory.kratos:kratos-client:v0.7.0-alpha.1"
+compile "sh.ory.kratos:kratos-client:v0.7.1-alpha.1"
 ```
 
 ### Others
@@ -68,7 +68,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/kratos-client-v0.7.0-alpha.1.jar`
+* `target/kratos-client-v0.7.1-alpha.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -169,6 +169,7 @@ Class | Method | HTTP request | Description
  - [IdResponse](docs/IdResponse.md)
  - [Identity](docs/Identity.md)
  - [IdentityCredentials](docs/IdentityCredentials.md)
+ - [IdentityState](docs/IdentityState.md)
  - [ImageDeleteResponseItem](docs/ImageDeleteResponseItem.md)
  - [ImageSummary](docs/ImageSummary.md)
  - [InlineResponse200](docs/InlineResponse200.md)

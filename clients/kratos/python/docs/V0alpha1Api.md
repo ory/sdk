@@ -471,7 +471,7 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
     id = "id_example" # str | ID must be set to the ID of identity you want to update
     admin_update_identity_body = AdminUpdateIdentityBody(
         schema_id="schema_id_example",
-        state=None,
+        state=IdentityState("active"),
         traits={},
     ) # AdminUpdateIdentityBody |  (optional)
 

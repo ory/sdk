@@ -228,6 +228,9 @@ class ApiClient {
           return Identity.fromJson(value);
         case 'IdentityCredentials':
           return IdentityCredentials.fromJson(value);
+        case 'IdentityState':
+          return IdentityStateTypeTransformer().decode(value);
+          
         case 'ImageDeleteResponseItem':
           return ImageDeleteResponseItem.fromJson(value);
         case 'ImageSummary':

@@ -13,15 +13,14 @@ class AdminUpdateIdentityBody {
   /// Returns a new [AdminUpdateIdentityBody] instance.
   AdminUpdateIdentityBody({
     this.schemaId,
-    this.state,
+    @required this.state,
     @required this.traits,
   });
 
   /// SchemaID is the ID of the JSON Schema to be used for validating the identity's traits. If set will update the Identity's SchemaID.
   String schemaId;
 
-  /// State is the identity's state.
-  Object state;
+  IdentityState state;
 
   /// Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_id`.
   Object traits;
@@ -46,7 +45,7 @@ class AdminUpdateIdentityBody {
     if (schemaId != null) {
       json[r'schema_id'] = schemaId;
     }
-      json[r'state'] = state == null ? null : state;
+      json[r'state'] = state;
       json[r'traits'] = traits;
     return json;
   }
@@ -57,7 +56,7 @@ class AdminUpdateIdentityBody {
     ? null
     : AdminUpdateIdentityBody(
         schemaId: json[r'schema_id'],
-        state: json[r'state'],
+        state: IdentityState.fromJson(json[r'state']),
         traits: json[r'traits'],
     );
 

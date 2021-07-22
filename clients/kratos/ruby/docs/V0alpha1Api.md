@@ -407,7 +407,7 @@ end
 api_instance = OryHydraClient::V0alpha1Api.new
 id = 'id_example' # String | ID must be set to the ID of identity you want to update
 opts = {
-  admin_update_identity_body: OryHydraClient::AdminUpdateIdentityBody.new({state: TODO, traits: 3.56}) # AdminUpdateIdentityBody | 
+  admin_update_identity_body: OryHydraClient::AdminUpdateIdentityBody.new({state: OryHydraClient::IdentityState::ACTIVE, traits: 3.56}) # AdminUpdateIdentityBody | 
 }
 
 begin
@@ -1838,7 +1838,7 @@ api_instance = OryHydraClient::V0alpha1Api.new
 flow = 'flow_example' # String | The Recovery Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
 opts = {
   token: 'token_example', # String | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
-  submit_self_service_recovery_flow_body: OryHydraClient::SubmitSelfServiceRecoveryFlowWithLinkMethodBody.new({email: 'email_example', method: 'password'}) # SubmitSelfServiceRecoveryFlowBody | 
+  submit_self_service_recovery_flow_body: OryHydraClient::SubmitSelfServiceRecoveryFlowWithLinkMethodBody.new({email: 'email_example', method: 'link'}) # SubmitSelfServiceRecoveryFlowBody | 
 }
 
 begin
@@ -2046,7 +2046,7 @@ api_instance = OryHydraClient::V0alpha1Api.new
 flow = 'flow_example' # String | The Verification Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
 opts = {
   token: 'token_example', # String | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
-  submit_self_service_verification_flow_body: OryHydraClient::SubmitSelfServiceVerificationFlowWithLinkMethodBody.new({email: 'email_example', method: 'password'}) # SubmitSelfServiceVerificationFlowBody | 
+  submit_self_service_verification_flow_body: OryHydraClient::SubmitSelfServiceVerificationFlowWithLinkMethodBody.new({email: 'email_example', method: 'link'}) # SubmitSelfServiceVerificationFlowBody | 
 }
 
 begin
