@@ -6,6 +6,7 @@ package read
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"fmt"
 	"io"
 
@@ -48,9 +49,8 @@ func (o *GetExpandReader) ReadResponse(response runtime.ClientResponse, consumer
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -59,7 +59,7 @@ func NewGetExpandOK() *GetExpandOK {
 	return &GetExpandOK{}
 }
 
-/*GetExpandOK handles this case with default header values.
+/* GetExpandOK describes a response with status code 200, with default header values.
 
 expandTree
 */
@@ -70,7 +70,6 @@ type GetExpandOK struct {
 func (o *GetExpandOK) Error() string {
 	return fmt.Sprintf("[GET /expand][%d] getExpandOK  %+v", 200, o.Payload)
 }
-
 func (o *GetExpandOK) GetPayload() *models.ExpandTree {
 	return o.Payload
 }
@@ -92,7 +91,7 @@ func NewGetExpandBadRequest() *GetExpandBadRequest {
 	return &GetExpandBadRequest{}
 }
 
-/*GetExpandBadRequest handles this case with default header values.
+/* GetExpandBadRequest describes a response with status code 400, with default header values.
 
 The standard error format
 */
@@ -103,7 +102,6 @@ type GetExpandBadRequest struct {
 func (o *GetExpandBadRequest) Error() string {
 	return fmt.Sprintf("[GET /expand][%d] getExpandBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *GetExpandBadRequest) GetPayload() *GetExpandBadRequestBody {
 	return o.Payload
 }
@@ -125,7 +123,7 @@ func NewGetExpandNotFound() *GetExpandNotFound {
 	return &GetExpandNotFound{}
 }
 
-/*GetExpandNotFound handles this case with default header values.
+/* GetExpandNotFound describes a response with status code 404, with default header values.
 
 The standard error format
 */
@@ -136,7 +134,6 @@ type GetExpandNotFound struct {
 func (o *GetExpandNotFound) Error() string {
 	return fmt.Sprintf("[GET /expand][%d] getExpandNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetExpandNotFound) GetPayload() *GetExpandNotFoundBody {
 	return o.Payload
 }
@@ -158,7 +155,7 @@ func NewGetExpandInternalServerError() *GetExpandInternalServerError {
 	return &GetExpandInternalServerError{}
 }
 
-/*GetExpandInternalServerError handles this case with default header values.
+/* GetExpandInternalServerError describes a response with status code 500, with default header values.
 
 The standard error format
 */
@@ -169,7 +166,6 @@ type GetExpandInternalServerError struct {
 func (o *GetExpandInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /expand][%d] getExpandInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *GetExpandInternalServerError) GetPayload() *GetExpandInternalServerErrorBody {
 	return o.Payload
 }
@@ -212,6 +208,11 @@ type GetExpandBadRequestBody struct {
 
 // Validate validates this get expand bad request body
 func (o *GetExpandBadRequestBody) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this get expand bad request body based on context it is used
+func (o *GetExpandBadRequestBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
@@ -262,6 +263,11 @@ func (o *GetExpandInternalServerErrorBody) Validate(formats strfmt.Registry) err
 	return nil
 }
 
+// ContextValidate validates this get expand internal server error body based on context it is used
+func (o *GetExpandInternalServerErrorBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	return nil
+}
+
 // MarshalBinary interface implementation
 func (o *GetExpandInternalServerErrorBody) MarshalBinary() ([]byte, error) {
 	if o == nil {
@@ -306,6 +312,11 @@ type GetExpandNotFoundBody struct {
 
 // Validate validates this get expand not found body
 func (o *GetExpandNotFoundBody) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this get expand not found body based on context it is used
+func (o *GetExpandNotFoundBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

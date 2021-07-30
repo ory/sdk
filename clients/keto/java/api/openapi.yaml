@@ -10,7 +10,7 @@ info:
     name: Apache 2.0
     url: https://github.com/ory/keto/blob/master/LICENSE
   title: ORY Keto
-  version: v0.6.0-alpha.5
+  version: v0.6.0-alpha.6
 servers:
 - url: /
 paths:

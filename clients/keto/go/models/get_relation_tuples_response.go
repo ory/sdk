@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -42,7 +43,6 @@ func (m *GetRelationTuplesResponse) Validate(formats strfmt.Registry) error {
 }
 
 func (m *GetRelationTuplesResponse) validateRelationTuples(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.RelationTuples) { // not required
 		return nil
 	}
@@ -54,6 +54,38 @@ func (m *GetRelationTuplesResponse) validateRelationTuples(formats strfmt.Regist
 
 		if m.RelationTuples[i] != nil {
 			if err := m.RelationTuples[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("relation_tuples" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this get relation tuples response based on the context it is used
+func (m *GetRelationTuplesResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateRelationTuples(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetRelationTuplesResponse) contextValidateRelationTuples(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.RelationTuples); i++ {
+
+		if m.RelationTuples[i] != nil {
+			if err := m.RelationTuples[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("relation_tuples" + "." + strconv.Itoa(i))
 				}

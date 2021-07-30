@@ -16,76 +16,93 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetCheckParams creates a new GetCheckParams object
-// with the default values initialized.
+// NewGetCheckParams creates a new GetCheckParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetCheckParams() *GetCheckParams {
-	var ()
 	return &GetCheckParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetCheckParamsWithTimeout creates a new GetCheckParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetCheckParamsWithTimeout(timeout time.Duration) *GetCheckParams {
-	var ()
 	return &GetCheckParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetCheckParamsWithContext creates a new GetCheckParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetCheckParamsWithContext(ctx context.Context) *GetCheckParams {
-	var ()
 	return &GetCheckParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetCheckParamsWithHTTPClient creates a new GetCheckParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetCheckParamsWithHTTPClient(client *http.Client) *GetCheckParams {
-	var ()
 	return &GetCheckParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetCheckParams contains all the parameters to send to the API endpoint
-for the get check operation typically these are written to a http.Request
+/* GetCheckParams contains all the parameters to send to the API endpoint
+   for the get check operation.
+
+   Typically these are written to a http.Request.
 */
 type GetCheckParams struct {
 
-	/*Namespace
-	  Namespace of the Relation Tuple
+	/* Namespace.
 
+	   Namespace of the Relation Tuple
 	*/
 	Namespace string
-	/*Object
-	  Object of the Relation Tuple
 
+	/* Object.
+
+	   Object of the Relation Tuple
 	*/
 	Object string
-	/*Relation
-	  Relation of the Relation Tuple
 
+	/* Relation.
+
+	   Relation of the Relation Tuple
 	*/
 	Relation string
-	/*Subject
-	  Subject of the Relation Tuple
+
+	/* Subject.
+
+	     Subject of the Relation Tuple
 
 	The subject follows the subject string encoding format.
-
 	*/
 	Subject *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get check params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetCheckParams) WithDefaults() *GetCheckParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get check params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetCheckParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get check params
@@ -177,6 +194,7 @@ func (o *GetCheckParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 	qrNamespace := o.Namespace
 	qNamespace := qrNamespace
 	if qNamespace != "" {
+
 		if err := r.SetQueryParam("namespace", qNamespace); err != nil {
 			return err
 		}
@@ -186,6 +204,7 @@ func (o *GetCheckParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 	qrObject := o.Object
 	qObject := qrObject
 	if qObject != "" {
+
 		if err := r.SetQueryParam("object", qObject); err != nil {
 			return err
 		}
@@ -195,6 +214,7 @@ func (o *GetCheckParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 	qrRelation := o.Relation
 	qRelation := qrRelation
 	if qRelation != "" {
+
 		if err := r.SetQueryParam("relation", qRelation); err != nil {
 			return err
 		}
@@ -204,16 +224,17 @@ func (o *GetCheckParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 
 		// query param subject
 		var qrSubject string
+
 		if o.Subject != nil {
 			qrSubject = *o.Subject
 		}
 		qSubject := qrSubject
 		if qSubject != "" {
+
 			if err := r.SetQueryParam("subject", qSubject); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

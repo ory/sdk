@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 Ory.Keto.Client.sln
 README.md
 appveyor.yml
@@ -17,19 +16,6 @@ docs/ReadApi.md
 docs/VersionApi.md
 docs/WriteApi.md
 git_push.sh
-src/Ory.Keto.Client.Test/Api/HealthApiTests.cs
-src/Ory.Keto.Client.Test/Api/ReadApiTests.cs
-src/Ory.Keto.Client.Test/Api/VersionApiTests.cs
-src/Ory.Keto.Client.Test/Api/WriteApiTests.cs
-src/Ory.Keto.Client.Test/Model/KetoExpandTreeTests.cs
-src/Ory.Keto.Client.Test/Model/KetoGetCheckResponseTests.cs
-src/Ory.Keto.Client.Test/Model/KetoGetRelationTuplesResponseTests.cs
-src/Ory.Keto.Client.Test/Model/KetoHealthNotReadyStatusTests.cs
-src/Ory.Keto.Client.Test/Model/KetoHealthStatusTests.cs
-src/Ory.Keto.Client.Test/Model/KetoInlineResponse400Tests.cs
-src/Ory.Keto.Client.Test/Model/KetoInternalRelationTupleTests.cs
-src/Ory.Keto.Client.Test/Model/KetoPatchDeltaTests.cs
-src/Ory.Keto.Client.Test/Model/KetoVersionTests.cs
 src/Ory.Keto.Client.Test/Ory.Keto.Client.Test.csproj
 src/Ory.Keto.Client/Api/HealthApi.cs
 src/Ory.Keto.Client/Api/ReadApi.cs

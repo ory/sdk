@@ -6,6 +6,7 @@ package write
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"fmt"
 	"io"
 
@@ -42,9 +43,8 @@ func (o *CreateRelationTupleReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -53,7 +53,7 @@ func NewCreateRelationTupleCreated() *CreateRelationTupleCreated {
 	return &CreateRelationTupleCreated{}
 }
 
-/*CreateRelationTupleCreated handles this case with default header values.
+/* CreateRelationTupleCreated describes a response with status code 201, with default header values.
 
 InternalRelationTuple
 */
@@ -64,7 +64,6 @@ type CreateRelationTupleCreated struct {
 func (o *CreateRelationTupleCreated) Error() string {
 	return fmt.Sprintf("[PUT /relation-tuples][%d] createRelationTupleCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateRelationTupleCreated) GetPayload() *models.InternalRelationTuple {
 	return o.Payload
 }
@@ -86,7 +85,7 @@ func NewCreateRelationTupleBadRequest() *CreateRelationTupleBadRequest {
 	return &CreateRelationTupleBadRequest{}
 }
 
-/*CreateRelationTupleBadRequest handles this case with default header values.
+/* CreateRelationTupleBadRequest describes a response with status code 400, with default header values.
 
 The standard error format
 */
@@ -97,7 +96,6 @@ type CreateRelationTupleBadRequest struct {
 func (o *CreateRelationTupleBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /relation-tuples][%d] createRelationTupleBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *CreateRelationTupleBadRequest) GetPayload() *CreateRelationTupleBadRequestBody {
 	return o.Payload
 }
@@ -119,7 +117,7 @@ func NewCreateRelationTupleInternalServerError() *CreateRelationTupleInternalSer
 	return &CreateRelationTupleInternalServerError{}
 }
 
-/*CreateRelationTupleInternalServerError handles this case with default header values.
+/* CreateRelationTupleInternalServerError describes a response with status code 500, with default header values.
 
 The standard error format
 */
@@ -130,7 +128,6 @@ type CreateRelationTupleInternalServerError struct {
 func (o *CreateRelationTupleInternalServerError) Error() string {
 	return fmt.Sprintf("[PUT /relation-tuples][%d] createRelationTupleInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *CreateRelationTupleInternalServerError) GetPayload() *CreateRelationTupleInternalServerErrorBody {
 	return o.Payload
 }
@@ -173,6 +170,11 @@ type CreateRelationTupleBadRequestBody struct {
 
 // Validate validates this create relation tuple bad request body
 func (o *CreateRelationTupleBadRequestBody) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this create relation tuple bad request body based on context it is used
+func (o *CreateRelationTupleBadRequestBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
@@ -220,6 +222,11 @@ type CreateRelationTupleInternalServerErrorBody struct {
 
 // Validate validates this create relation tuple internal server error body
 func (o *CreateRelationTupleInternalServerErrorBody) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this create relation tuple internal server error body based on context it is used
+func (o *CreateRelationTupleInternalServerErrorBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

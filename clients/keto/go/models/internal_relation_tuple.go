@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -37,7 +39,7 @@ type InternalRelationTuple struct {
 
 	// subject
 	// Required: true
-	Subject Subject `json:"subject"`
+	Subject *Subject `json:"subject"`
 }
 
 // Validate validates this internal relation tuple
@@ -95,11 +97,49 @@ func (m *InternalRelationTuple) validateRelation(formats strfmt.Registry) error 
 
 func (m *InternalRelationTuple) validateSubject(formats strfmt.Registry) error {
 
-	if err := m.Subject.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("subject")
-		}
+	if err := validate.Required("subject", "body", m.Subject); err != nil {
 		return err
+	}
+
+	if err := validate.Required("subject", "body", m.Subject); err != nil {
+		return err
+	}
+
+	if m.Subject != nil {
+		if err := m.Subject.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("subject")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this internal relation tuple based on the context it is used
+func (m *InternalRelationTuple) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateSubject(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InternalRelationTuple) contextValidateSubject(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Subject != nil {
+		if err := m.Subject.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("subject")
+			}
+			return err
+		}
 	}
 
 	return nil

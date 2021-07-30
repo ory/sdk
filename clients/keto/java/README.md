@@ -1,8 +1,8 @@
 # keto-client
 
 ORY Keto
-- API version: v0.6.0-alpha.5
-  - Build date: 2021-05-10T19:47:17.555826+02:00[Europe/Berlin]
+- API version: v0.6.0-alpha.6
+  - Build date: 2021-07-30T10:39:35.128184899Z[Etc/UTC]
 
 Ory Keto is a cloud native access control server providing best-practice patterns (RBAC, ABAC, ACL, AWS IAM Policies, Kubernetes Roles, ...) via REST APIs.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.keto</groupId>
   <artifactId>keto-client</artifactId>
-  <version>v0.6.0-alpha.5</version>
+  <version>v0.6.0-alpha.6</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "sh.ory.keto:keto-client:v0.6.0-alpha.5"
+compile "sh.ory.keto:keto-client:v0.6.0-alpha.6"
 ```
 
 ### Others
@@ -64,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/keto-client-v0.6.0-alpha.5.jar`
+* `target/keto-client-v0.6.0-alpha.6.jar`
 * `target/lib/*.jar`
 
 ## Getting Started

@@ -6,6 +6,7 @@ package write
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"fmt"
 	"io"
 
@@ -46,9 +47,8 @@ func (o *PatchRelationTuplesReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -57,7 +57,7 @@ func NewPatchRelationTuplesNoContent() *PatchRelationTuplesNoContent {
 	return &PatchRelationTuplesNoContent{}
 }
 
-/*PatchRelationTuplesNoContent handles this case with default header values.
+/* PatchRelationTuplesNoContent describes a response with status code 204, with default header values.
 
 Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201.
 */
@@ -78,7 +78,7 @@ func NewPatchRelationTuplesBadRequest() *PatchRelationTuplesBadRequest {
 	return &PatchRelationTuplesBadRequest{}
 }
 
-/*PatchRelationTuplesBadRequest handles this case with default header values.
+/* PatchRelationTuplesBadRequest describes a response with status code 400, with default header values.
 
 The standard error format
 */
@@ -89,7 +89,6 @@ type PatchRelationTuplesBadRequest struct {
 func (o *PatchRelationTuplesBadRequest) Error() string {
 	return fmt.Sprintf("[PATCH /relation-tuples][%d] patchRelationTuplesBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *PatchRelationTuplesBadRequest) GetPayload() *PatchRelationTuplesBadRequestBody {
 	return o.Payload
 }
@@ -111,7 +110,7 @@ func NewPatchRelationTuplesNotFound() *PatchRelationTuplesNotFound {
 	return &PatchRelationTuplesNotFound{}
 }
 
-/*PatchRelationTuplesNotFound handles this case with default header values.
+/* PatchRelationTuplesNotFound describes a response with status code 404, with default header values.
 
 The standard error format
 */
@@ -122,7 +121,6 @@ type PatchRelationTuplesNotFound struct {
 func (o *PatchRelationTuplesNotFound) Error() string {
 	return fmt.Sprintf("[PATCH /relation-tuples][%d] patchRelationTuplesNotFound  %+v", 404, o.Payload)
 }
-
 func (o *PatchRelationTuplesNotFound) GetPayload() *PatchRelationTuplesNotFoundBody {
 	return o.Payload
 }
@@ -144,7 +142,7 @@ func NewPatchRelationTuplesInternalServerError() *PatchRelationTuplesInternalSer
 	return &PatchRelationTuplesInternalServerError{}
 }
 
-/*PatchRelationTuplesInternalServerError handles this case with default header values.
+/* PatchRelationTuplesInternalServerError describes a response with status code 500, with default header values.
 
 The standard error format
 */
@@ -155,7 +153,6 @@ type PatchRelationTuplesInternalServerError struct {
 func (o *PatchRelationTuplesInternalServerError) Error() string {
 	return fmt.Sprintf("[PATCH /relation-tuples][%d] patchRelationTuplesInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *PatchRelationTuplesInternalServerError) GetPayload() *PatchRelationTuplesInternalServerErrorBody {
 	return o.Payload
 }
@@ -198,6 +195,11 @@ type PatchRelationTuplesBadRequestBody struct {
 
 // Validate validates this patch relation tuples bad request body
 func (o *PatchRelationTuplesBadRequestBody) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this patch relation tuples bad request body based on context it is used
+func (o *PatchRelationTuplesBadRequestBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
@@ -248,6 +250,11 @@ func (o *PatchRelationTuplesInternalServerErrorBody) Validate(formats strfmt.Reg
 	return nil
 }
 
+// ContextValidate validates this patch relation tuples internal server error body based on context it is used
+func (o *PatchRelationTuplesInternalServerErrorBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	return nil
+}
+
 // MarshalBinary interface implementation
 func (o *PatchRelationTuplesInternalServerErrorBody) MarshalBinary() ([]byte, error) {
 	if o == nil {
@@ -292,6 +299,11 @@ type PatchRelationTuplesNotFoundBody struct {
 
 // Validate validates this patch relation tuples not found body
 func (o *PatchRelationTuplesNotFoundBody) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this patch relation tuples not found body based on context it is used
+func (o *PatchRelationTuplesNotFoundBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
