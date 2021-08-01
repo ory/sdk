@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.0.1-alpha.16
+  version: v0.0.1-alpha.17
 servers:
 - url: https://{project}.projects.oryapis.com/
   variables:
@@ -2667,7 +2667,7 @@ components:
           example: SQL field "foo" is not a bool.
           type: string
         details:
-          additionalProperties: true
+          additionalProperties: false
           description: Further error details
           type: object
         message:
@@ -4602,12 +4602,8 @@ components:
       type: object
   securitySchemes:
     oryAccessToken:
-      description: |
-        This security mechanism is only applicable when using the [Ory Platform](https://console.ory.sh) by
-        creating an [Ory Personal Access Token](https://www.ory.sh/docs/guides/create-personal-access-token).
-        If you are using the open source version, this security mechanism
-        will not work out of the box as you will need to add a security mechanism yourself.
-      scheme: bearer
-      type: http
+      in: header
+      name: Authorization
+      type: apiKey
 x-forwarded-proto: string
 x-request-id: string

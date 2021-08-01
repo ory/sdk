@@ -62,8 +62,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
-            config.AccessToken = "YOUR_BEARER_TOKEN";
+            // Configure API key authorization: oryAccessToken
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
 
             var apiInstance = new V0alpha1Api(config);
             var clientAdminCreateIdentityBody = new ClientAdminCreateIdentityBody(); // ClientAdminCreateIdentityBody |  (optional) 
@@ -139,8 +141,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
-            config.AccessToken = "YOUR_BEARER_TOKEN";
+            // Configure API key authorization: oryAccessToken
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
 
             var apiInstance = new V0alpha1Api(config);
             var clientAdminCreateSelfServiceRecoveryLinkBody = new ClientAdminCreateSelfServiceRecoveryLinkBody(); // ClientAdminCreateSelfServiceRecoveryLinkBody |  (optional) 
@@ -216,8 +220,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
-            config.AccessToken = "YOUR_BEARER_TOKEN";
+            // Configure API key authorization: oryAccessToken
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
 
             var apiInstance = new V0alpha1Api(config);
             var id = id_example;  // string | ID is the identity's ID.
@@ -291,8 +297,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
-            config.AccessToken = "YOUR_BEARER_TOKEN";
+            // Configure API key authorization: oryAccessToken
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
 
             var apiInstance = new V0alpha1Api(config);
             var id = id_example;  // string | ID must be set to the ID of identity you want to get
@@ -367,8 +375,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
-            config.AccessToken = "YOUR_BEARER_TOKEN";
+            // Configure API key authorization: oryAccessToken
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
 
             var apiInstance = new V0alpha1Api(config);
             var perPage = 789;  // long? | Items per Page  This is the number of items per page. (optional)  (default to 100)
@@ -444,8 +454,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
-            config.AccessToken = "YOUR_BEARER_TOKEN";
+            // Configure API key authorization: oryAccessToken
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
 
             var apiInstance = new V0alpha1Api(config);
             var id = id_example;  // string | ID must be set to the ID of identity you want to update

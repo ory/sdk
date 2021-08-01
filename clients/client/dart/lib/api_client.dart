@@ -12,7 +12,7 @@ part of openapi.api;
 class ApiClient {
   ApiClient({this.basePath = 'https://playground.projects.oryapis.com'}) {
     // Setup authentications (key: authentication name, value: authentication).
-    _authentications[r'oryAccessToken'] = HttpBearerAuth();
+    _authentications[r'oryAccessToken'] = ApiKeyAuth('header', 'Authorization');
   }
 
   final String basePath;
