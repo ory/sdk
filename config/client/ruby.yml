@@ -7,4 +7,4 @@ gemAuthorEmail: opensource@ory.sh
 gemAuthor: ORY GmbH
 gemHomepage: https://www.ory.sh
 gemLicense: Apache-2.0
-moduleName: OryHydraClient
+moduleName: ${RUBY_MODULE_NAME}
