@@ -26,7 +26,6 @@ Method | HTTP request | Description
 [**listOAuth2Clients()**](AdminApi.md#listOAuth2Clients) | **GET** /clients | List OAuth 2.0 Clients
 [**listSubjectConsentSessions()**](AdminApi.md#listSubjectConsentSessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject
 [**patchOAuth2Client()**](AdminApi.md#patchOAuth2Client) | **PATCH** /clients/{id} | Patch an OAuth 2.0 Client
-[**prometheus()**](AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get Snapshot Metrics from the Hydra Service.
 [**rejectConsentRequest()**](AdminApi.md#rejectConsentRequest) | **PUT** /oauth2/auth/requests/consent/reject | Reject a Consent Request
 [**rejectLoginRequest()**](AdminApi.md#rejectLoginRequest) | **PUT** /oauth2/auth/requests/login/reject | Reject a Login Request
 [**rejectLogoutRequest()**](AdminApi.md#rejectLogoutRequest) | **PUT** /oauth2/auth/requests/logout/reject | Reject a Logout Request
@@ -1105,7 +1104,7 @@ No authorization required
 ## `listOAuth2Clients()`
 
 ```php
-listOAuth2Clients($limit, $offset): \Ory\Hydra\Client\Model\OAuth2Client[]
+listOAuth2Clients($limit, $offset, $name, $owner): \Ory\Hydra\Client\Model\OAuth2Client[]
 ```
 
 List OAuth 2.0 Clients
@@ -1125,11 +1124,13 @@ $apiInstance = new Ory\Hydra\Client\Api\AdminApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$limit = 56; // int | The maximum amount of policies returned, upper bound is 500 policies
+$limit = 56; // int | The maximum amount of clients to returned, upper bound is 500 clients.
 $offset = 56; // int | The offset from where to start looking.
+$name = 'name_example'; // string | The name of the clients to filter by.
+$owner = 'owner_example'; // string | The owner of the clients to filter by.
 
 try {
-    $result = $apiInstance->listOAuth2Clients($limit, $offset);
+    $result = $apiInstance->listOAuth2Clients($limit, $offset, $name, $owner);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->listOAuth2Clients: ', $e->getMessage(), PHP_EOL;
@@ -1140,8 +1141,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int**| The maximum amount of policies returned, upper bound is 500 policies | [optional]
+ **limit** | **int**| The maximum amount of clients to returned, upper bound is 500 clients. | [optional]
  **offset** | **int**| The offset from where to start looking. | [optional]
+ **name** | **string**| The name of the clients to filter by. | [optional]
+ **owner** | **string**| The owner of the clients to filter by. | [optional]
 
 ### Return type
 
@@ -1269,58 +1272,6 @@ No authorization required
 
 - **Content-Type**: `application/json`
 - **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `prometheus()`
-
-```php
-prometheus()
-```
-
-Get Snapshot Metrics from the Hydra Service.
-
-If you're using k8s, you can then add annotations to your deployment like so:  ``` metadata: annotations: prometheus.io/port: \"4445\" prometheus.io/path: \"/metrics/prometheus\" ```  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
-);
-
-try {
-    $apiInstance->prometheus();
-} catch (Exception $e) {
-    echo 'Exception when calling AdminApi->prometheus: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

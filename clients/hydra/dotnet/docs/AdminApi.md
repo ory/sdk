@@ -26,7 +26,6 @@ Method | HTTP request | Description
 [**ListOAuth2Clients**](AdminApi.md#listoauth2clients) | **GET** /clients | List OAuth 2.0 Clients
 [**ListSubjectConsentSessions**](AdminApi.md#listsubjectconsentsessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject
 [**PatchOAuth2Client**](AdminApi.md#patchoauth2client) | **PATCH** /clients/{id} | Patch an OAuth 2.0 Client
-[**Prometheus**](AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get Snapshot Metrics from the Hydra Service.
 [**RejectConsentRequest**](AdminApi.md#rejectconsentrequest) | **PUT** /oauth2/auth/requests/consent/reject | Reject a Consent Request
 [**RejectLoginRequest**](AdminApi.md#rejectloginrequest) | **PUT** /oauth2/auth/requests/login/reject | Reject a Login Request
 [**RejectLogoutRequest**](AdminApi.md#rejectlogoutrequest) | **PUT** /oauth2/auth/requests/logout/reject | Reject a Logout Request
@@ -107,8 +106,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | completedRequest |  -  |
-| **404** | genericError |  -  |
-| **500** | genericError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -182,10 +181,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | completedRequest |  -  |
-| **400** | genericError |  -  |
-| **401** | genericError |  -  |
-| **404** | genericError |  -  |
-| **500** | genericError |  -  |
+| **400** | jsonError |  -  |
+| **401** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -257,8 +256,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | completedRequest |  -  |
-| **404** | genericError |  -  |
-| **500** | genericError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -332,9 +331,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | JSONWebKeySet |  -  |
-| **401** | genericError |  -  |
-| **403** | genericError |  -  |
-| **500** | genericError |  -  |
+| **401** | jsonError |  -  |
+| **403** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -406,9 +405,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | oAuth2Client |  -  |
-| **400** | genericError |  -  |
-| **409** | genericError |  -  |
-| **500** | genericError |  -  |
+| **400** | jsonError |  -  |
+| **409** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -481,9 +480,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **401** | genericError |  -  |
-| **403** | genericError |  -  |
-| **500** | genericError |  -  |
+| **401** | jsonError |  -  |
+| **403** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -554,9 +553,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **401** | genericError |  -  |
-| **403** | genericError |  -  |
-| **500** | genericError |  -  |
+| **401** | jsonError |  -  |
+| **403** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -627,8 +626,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **404** | genericError |  -  |
-| **500** | genericError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -699,8 +698,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **401** | genericError |  -  |
-| **500** | genericError |  -  |
+| **401** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -771,8 +770,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **401** | genericError |  -  |
-| **500** | genericError |  -  |
+| **401** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -844,9 +843,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | consentRequest |  -  |
-| **404** | genericError |  -  |
+| **404** | jsonError |  -  |
 | **410** | requestWasHandledResponse |  -  |
-| **500** | genericError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -920,8 +919,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | JSONWebKeySet |  -  |
-| **404** | genericError |  -  |
-| **500** | genericError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -993,9 +992,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | JSONWebKeySet |  -  |
-| **401** | genericError |  -  |
-| **403** | genericError |  -  |
-| **500** | genericError |  -  |
+| **401** | jsonError |  -  |
+| **403** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1067,10 +1066,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | loginRequest |  -  |
-| **400** | genericError |  -  |
-| **404** | genericError |  -  |
+| **400** | jsonError |  -  |
+| **404** | jsonError |  -  |
 | **410** | requestWasHandledResponse |  -  |
-| **500** | genericError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1142,9 +1141,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | logoutRequest |  -  |
-| **404** | genericError |  -  |
+| **404** | jsonError |  -  |
 | **410** | requestWasHandledResponse |  -  |
-| **500** | genericError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1216,8 +1215,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | oAuth2Client |  -  |
-| **401** | genericError |  -  |
-| **500** | genericError |  -  |
+| **401** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1358,8 +1357,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | oAuth2TokenIntrospection |  -  |
-| **401** | genericError |  -  |
-| **500** | genericError |  -  |
+| **401** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1427,13 +1426,13 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | healthStatus |  -  |
-| **500** | genericError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="listoauth2clients"></a>
 # **ListOAuth2Clients**
-> List&lt;HydraOAuth2Client&gt; ListOAuth2Clients (long? limit = null, long? offset = null)
+> List&lt;HydraOAuth2Client&gt; ListOAuth2Clients (long? limit = null, long? offset = null, string name = null, string owner = null)
 
 List OAuth 2.0 Clients
 
@@ -1456,13 +1455,15 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
-            var limit = 789;  // long? | The maximum amount of policies returned, upper bound is 500 policies (optional) 
+            var limit = 789;  // long? | The maximum amount of clients to returned, upper bound is 500 clients. (optional) 
             var offset = 789;  // long? | The offset from where to start looking. (optional) 
+            var name = name_example;  // string | The name of the clients to filter by. (optional) 
+            var owner = owner_example;  // string | The owner of the clients to filter by. (optional) 
 
             try
             {
                 // List OAuth 2.0 Clients
-                List<HydraOAuth2Client> result = apiInstance.ListOAuth2Clients(limit, offset);
+                List<HydraOAuth2Client> result = apiInstance.ListOAuth2Clients(limit, offset, name, owner);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1480,8 +1481,10 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **long?**| The maximum amount of policies returned, upper bound is 500 policies | [optional] 
+ **limit** | **long?**| The maximum amount of clients to returned, upper bound is 500 clients. | [optional] 
  **offset** | **long?**| The offset from where to start looking. | [optional] 
+ **name** | **string**| The name of the clients to filter by. | [optional] 
+ **owner** | **string**| The owner of the clients to filter by. | [optional] 
 
 ### Return type
 
@@ -1501,7 +1504,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of clients. |  -  |
-| **500** | genericError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1573,8 +1576,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of used consent requests. |  -  |
-| **400** | genericError |  -  |
-| **500** | genericError |  -  |
+| **400** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1648,73 +1651,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | oAuth2Client |  -  |
-| **500** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="prometheus"></a>
-# **Prometheus**
-> void Prometheus ()
-
-Get Snapshot Metrics from the Hydra Service.
-
-If you're using k8s, you can then add annotations to your deployment like so:  ``` metadata: annotations: prometheus.io/port: \"4445\" prometheus.io/path: \"/metrics/prometheus\" ```  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Ory.Hydra.Client.Api;
-using Ory.Hydra.Client.Client;
-using Ory.Hydra.Client.Model;
-
-namespace Example
-{
-    public class PrometheusExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            var apiInstance = new AdminApi(config);
-
-            try
-            {
-                // Get Snapshot Metrics from the Hydra Service.
-                apiInstance.Prometheus();
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling AdminApi.Prometheus: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1788,8 +1725,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | completedRequest |  -  |
-| **404** | genericError |  -  |
-| **500** | genericError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1863,10 +1800,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | completedRequest |  -  |
-| **400** | genericError |  -  |
-| **401** | genericError |  -  |
-| **404** | genericError |  -  |
-| **500** | genericError |  -  |
+| **400** | jsonError |  -  |
+| **401** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1939,8 +1876,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **404** | genericError |  -  |
-| **500** | genericError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2011,8 +1948,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | genericError |  -  |
-| **500** | genericError |  -  |
+| **400** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2087,8 +2024,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | genericError |  -  |
-| **500** | genericError |  -  |
+| **400** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2164,9 +2101,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | JSONWebKey |  -  |
-| **401** | genericError |  -  |
-| **403** | genericError |  -  |
-| **500** | genericError |  -  |
+| **401** | jsonError |  -  |
+| **403** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2240,9 +2177,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | JSONWebKeySet |  -  |
-| **401** | genericError |  -  |
-| **403** | genericError |  -  |
-| **500** | genericError |  -  |
+| **401** | jsonError |  -  |
+| **403** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2316,7 +2253,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | oAuth2Client |  -  |
-| **500** | genericError |  -  |
+| **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

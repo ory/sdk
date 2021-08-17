@@ -128,8 +128,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | wellKnown |  -  |
-**401** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="isInstanceReady"></a>
 # **isInstanceReady**
@@ -269,9 +269,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | oauth2TokenResponse |  -  |
-**400** | genericError |  -  |
-**401** | genericError |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**401** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="oauthAuth"></a>
 # **oauthAuth**
@@ -329,8 +329,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**401** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="revokeOAuth2Token"></a>
 # **revokeOAuth2Token**
@@ -402,8 +402,8 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**401** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="userinfo"></a>
 # **userinfo**
@@ -411,7 +411,7 @@ null (empty response body)
 
 OpenID Connect Userinfo
 
-This endpoint returns the payload of the ID Token, including the idTokenExtra values, of the provided OAuth 2.0 Access Token.  For more information please [refer to the spec](http://openid.net/specs/openid-connect-core-1_0.html#UserInfo).
+This endpoint returns the payload of the ID Token, including the idTokenExtra values, of the provided OAuth 2.0 Access Token.  For more information please [refer to the spec](http://openid.net/specs/openid-connect-core-1_0.html#UserInfo).  In the case of authentication error, a WWW-Authenticate header might be set in the response with more information about the error. See [the spec](https://datatracker.ietf.org/doc/html/rfc6750#section-3) for more details about header format.
 
 ### Example
 ```java
@@ -467,8 +467,8 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | userinfoResponse |  -  |
-**401** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="wellKnown"></a>
 # **wellKnown**
@@ -527,5 +527,5 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | JSONWebKeySet |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 

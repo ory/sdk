@@ -1,6 +1,6 @@
 
 
-# GenericError
+# JsonError
 
 Error responses are sent when an error (e.g. unauthorized, bad request, ...) occurred.
 
@@ -8,8 +8,8 @@ Error responses are sent when an error (e.g. unauthorized, bad request, ...) occ
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**debug** | **String** | Debug contains debug information. This is usually not available and has to be enabled. |  [optional]
-**error** | **String** | Name is the error name. | 
+**error** | **String** | Name is the error name. |  [optional]
+**errorDebug** | **String** | Debug contains debug information. This is usually not available and has to be enabled. |  [optional]
 **errorDescription** | **String** | Description contains further information on the nature of the error. |  [optional]
 **statusCode** | **Long** | Code represents the error status code (404, 403, 401, ...). |  [optional]
 

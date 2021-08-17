@@ -10,14 +10,15 @@ docs/ConsentRequest.md
 docs/ConsentRequestSession.md
 docs/ContainerWaitOKBodyError.md
 docs/FlushInactiveOAuth2TokensRequest.md
-docs/GenericError.md
 docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
 docs/JSONWebKey.md
 docs/JSONWebKeySet.md
+docs/JsonError.md
 docs/JsonWebKeySetGeneratorRequest.md
 docs/LoginRequest.md
 docs/LogoutRequest.md
+docs/MetadataApi.md
 docs/OAuth2Client.md
 docs/OAuth2TokenIntrospection.md
 docs/Oauth2TokenResponse.md
@@ -50,6 +51,7 @@ git_push.sh
 ory_hydra_client/__init__.py
 ory_hydra_client/api/__init__.py
 ory_hydra_client/api/admin_api.py
+ory_hydra_client/api/metadata_api.py
 ory_hydra_client/api/public_api.py
 ory_hydra_client/api_client.py
 ory_hydra_client/apis/__init__.py
@@ -63,9 +65,9 @@ ory_hydra_client/model/consent_request.py
 ory_hydra_client/model/consent_request_session.py
 ory_hydra_client/model/container_wait_ok_body_error.py
 ory_hydra_client/model/flush_inactive_o_auth2_tokens_request.py
-ory_hydra_client/model/generic_error.py
 ory_hydra_client/model/health_not_ready_status.py
 ory_hydra_client/model/health_status.py
+ory_hydra_client/model/json_error.py
 ory_hydra_client/model/json_web_key.py
 ory_hydra_client/model/json_web_key_set.py
 ory_hydra_client/model/json_web_key_set_generator_request.py
@@ -106,8 +108,6 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_patch_document.py
-test/test_patch_request.py
-test/test_request_was_handled_response.py
-test/test_volume.py
+test/test_json_error.py
+test/test_metadata_api.py
 tox.ini

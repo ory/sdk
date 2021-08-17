@@ -9,6 +9,7 @@
 | **backchannel_logout_supported** | **Boolean** | Boolean value specifying whether the OP supports back-channel logout, with true indicating support. | [optional] |
 | **claims_parameter_supported** | **Boolean** | Boolean value specifying whether the OP supports use of the claims parameter, with true indicating support. | [optional] |
 | **claims_supported** | **Array&lt;String&gt;** | JSON array containing a list of the Claim Names of the Claims that the OpenID Provider MAY be able to supply values for. Note that for privacy or other reasons, this might not be an exhaustive list. | [optional] |
+| **code_challenge_methods_supported** | **Array&lt;String&gt;** | JSON array containing a list of Proof Key for Code Exchange (PKCE) [RFC7636] code challenge methods supported by this authorization server. | [optional] |
 | **end_session_endpoint** | **String** | URL at the OP to which an RP can perform a redirect to request that the End-User be logged out at the OP. | [optional] |
 | **frontchannel_logout_session_supported** | **Boolean** | Boolean value specifying whether the OP can pass iss (issuer) and sid (session ID) query parameters to identify the RP session with the OP when the frontchannel_logout_uri is used. If supported, the sid Claim is also included in ID Tokens issued by the OP. | [optional] |
 | **frontchannel_logout_supported** | **Boolean** | Boolean value specifying whether the OP supports HTTP-based logout, with true indicating support. | [optional] |
@@ -42,6 +43,7 @@ instance = OryHydraClient::WellKnown.new(
   backchannel_logout_supported: null,
   claims_parameter_supported: null,
   claims_supported: null,
+  code_challenge_methods_supported: null,
   end_session_endpoint: null,
   frontchannel_logout_session_supported: null,
   frontchannel_logout_supported: null,

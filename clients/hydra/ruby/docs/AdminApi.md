@@ -26,7 +26,6 @@ All URIs are relative to *http://localhost*
 | [**list_o_auth2_clients**](AdminApi.md#list_o_auth2_clients) | **GET** /clients | List OAuth 2.0 Clients |
 | [**list_subject_consent_sessions**](AdminApi.md#list_subject_consent_sessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject |
 | [**patch_o_auth2_client**](AdminApi.md#patch_o_auth2_client) | **PATCH** /clients/{id} | Patch an OAuth 2.0 Client |
-| [**prometheus**](AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get Snapshot Metrics from the Hydra Service. |
 | [**reject_consent_request**](AdminApi.md#reject_consent_request) | **PUT** /oauth2/auth/requests/consent/reject | Reject a Consent Request |
 | [**reject_login_request**](AdminApi.md#reject_login_request) | **PUT** /oauth2/auth/requests/login/reject | Reject a Login Request |
 | [**reject_logout_request**](AdminApi.md#reject_logout_request) | **PUT** /oauth2/auth/requests/logout/reject | Reject a Logout Request |
@@ -1280,8 +1279,10 @@ require 'ory-hydra-client'
 
 api_instance = OryHydraClient::AdminApi.new
 opts = {
-  limit: 789, # Integer | The maximum amount of policies returned, upper bound is 500 policies
-  offset: 789 # Integer | The offset from where to start looking.
+  limit: 789, # Integer | The maximum amount of clients to returned, upper bound is 500 clients.
+  offset: 789, # Integer | The offset from where to start looking.
+  name: 'name_example', # String | The name of the clients to filter by.
+  owner: 'owner_example' # String | The owner of the clients to filter by.
 }
 
 begin
@@ -1315,8 +1316,10 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **limit** | **Integer** | The maximum amount of policies returned, upper bound is 500 policies | [optional] |
+| **limit** | **Integer** | The maximum amount of clients to returned, upper bound is 500 clients. | [optional] |
 | **offset** | **Integer** | The offset from where to start looking. | [optional] |
+| **name** | **String** | The name of the clients to filter by. | [optional] |
+| **owner** | **String** | The owner of the clients to filter by. | [optional] |
 
 ### Return type
 
@@ -1460,66 +1463,6 @@ No authorization required
 
 - **Content-Type**: application/json
 - **Accept**: application/json
-
-
-## prometheus
-
-> prometheus
-
-Get Snapshot Metrics from the Hydra Service.
-
-If you're using k8s, you can then add annotations to your deployment like so:  ``` metadata: annotations: prometheus.io/port: \"4445\" prometheus.io/path: \"/metrics/prometheus\" ```  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
-
-### Examples
-
-```ruby
-require 'time'
-require 'ory-hydra-client'
-
-api_instance = OryHydraClient::AdminApi.new
-
-begin
-  # Get Snapshot Metrics from the Hydra Service.
-  api_instance.prometheus
-rescue OryHydraClient::ApiError => e
-  puts "Error when calling AdminApi->prometheus: #{e}"
-end
-```
-
-#### Using the prometheus_with_http_info variant
-
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
-
-> <Array(nil, Integer, Hash)> prometheus_with_http_info
-
-```ruby
-begin
-  # Get Snapshot Metrics from the Hydra Service.
-  data, status_code, headers = api_instance.prometheus_with_http_info
-  p status_code # => 2xx
-  p headers # => { ... }
-  p data # => nil
-rescue OryHydraClient::ApiError => e
-  puts "Error when calling AdminApi->prometheus_with_http_info: #{e}"
-end
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-nil (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
 
 
 ## reject_consent_request

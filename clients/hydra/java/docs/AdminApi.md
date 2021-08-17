@@ -26,7 +26,6 @@ Method | HTTP request | Description
 [**listOAuth2Clients**](AdminApi.md#listOAuth2Clients) | **GET** /clients | List OAuth 2.0 Clients
 [**listSubjectConsentSessions**](AdminApi.md#listSubjectConsentSessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject
 [**patchOAuth2Client**](AdminApi.md#patchOAuth2Client) | **PATCH** /clients/{id} | Patch an OAuth 2.0 Client
-[**prometheus**](AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get Snapshot Metrics from the Hydra Service.
 [**rejectConsentRequest**](AdminApi.md#rejectConsentRequest) | **PUT** /oauth2/auth/requests/consent/reject | Reject a Consent Request
 [**rejectLoginRequest**](AdminApi.md#rejectLoginRequest) | **PUT** /oauth2/auth/requests/login/reject | Reject a Login Request
 [**rejectLogoutRequest**](AdminApi.md#rejectLogoutRequest) | **PUT** /oauth2/auth/requests/logout/reject | Reject a Logout Request
@@ -100,8 +99,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | completedRequest |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="acceptLoginRequest"></a>
 # **acceptLoginRequest**
@@ -166,10 +165,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | completedRequest |  -  |
-**400** | genericError |  -  |
-**401** | genericError |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**401** | jsonError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="acceptLogoutRequest"></a>
 # **acceptLogoutRequest**
@@ -232,8 +231,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | completedRequest |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="createJsonWebKeySet"></a>
 # **createJsonWebKeySet**
@@ -298,9 +297,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | JSONWebKeySet |  -  |
-**401** | genericError |  -  |
-**403** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**403** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="createOAuth2Client"></a>
 # **createOAuth2Client**
@@ -363,9 +362,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | oAuth2Client |  -  |
-**400** | genericError |  -  |
-**409** | genericError |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**409** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="deleteJsonWebKey"></a>
 # **deleteJsonWebKey**
@@ -429,9 +428,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**401** | genericError |  -  |
-**403** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**403** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="deleteJsonWebKeySet"></a>
 # **deleteJsonWebKeySet**
@@ -493,9 +492,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**401** | genericError |  -  |
-**403** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**403** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="deleteOAuth2Client"></a>
 # **deleteOAuth2Client**
@@ -557,8 +556,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="deleteOAuth2Token"></a>
 # **deleteOAuth2Token**
@@ -620,8 +619,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**401** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="flushInactiveOAuth2Tokens"></a>
 # **flushInactiveOAuth2Tokens**
@@ -683,8 +682,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**401** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="getConsentRequest"></a>
 # **getConsentRequest**
@@ -747,9 +746,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | consentRequest |  -  |
-**404** | genericError |  -  |
+**404** | jsonError |  -  |
 **410** | requestWasHandledResponse |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
 <a name="getJsonWebKey"></a>
 # **getJsonWebKey**
@@ -814,8 +813,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | JSONWebKeySet |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="getJsonWebKeySet"></a>
 # **getJsonWebKeySet**
@@ -878,9 +877,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | JSONWebKeySet |  -  |
-**401** | genericError |  -  |
-**403** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**403** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="getLoginRequest"></a>
 # **getLoginRequest**
@@ -943,10 +942,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | loginRequest |  -  |
-**400** | genericError |  -  |
-**404** | genericError |  -  |
+**400** | jsonError |  -  |
+**404** | jsonError |  -  |
 **410** | requestWasHandledResponse |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
 <a name="getLogoutRequest"></a>
 # **getLogoutRequest**
@@ -1009,9 +1008,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | logoutRequest |  -  |
-**404** | genericError |  -  |
+**404** | jsonError |  -  |
 **410** | requestWasHandledResponse |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
 <a name="getOAuth2Client"></a>
 # **getOAuth2Client**
@@ -1074,8 +1073,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | oAuth2Client |  -  |
-**401** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="getVersion"></a>
 # **getVersion**
@@ -1198,8 +1197,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | oAuth2TokenIntrospection |  -  |
-**401** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="isInstanceAlive"></a>
 # **isInstanceAlive**
@@ -1258,11 +1257,11 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | healthStatus |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
 <a name="listOAuth2Clients"></a>
 # **listOAuth2Clients**
-> List&lt;OAuth2Client&gt; listOAuth2Clients(limit, offset)
+> List&lt;OAuth2Client&gt; listOAuth2Clients(limit, offset, name, owner)
 
 List OAuth 2.0 Clients
 
@@ -1283,10 +1282,12 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
-    Long limit = 56L; // Long | The maximum amount of policies returned, upper bound is 500 policies
+    Long limit = 56L; // Long | The maximum amount of clients to returned, upper bound is 500 clients.
     Long offset = 56L; // Long | The offset from where to start looking.
+    String name = "name_example"; // String | The name of the clients to filter by.
+    String owner = "owner_example"; // String | The owner of the clients to filter by.
     try {
-      List<OAuth2Client> result = apiInstance.listOAuth2Clients(limit, offset);
+      List<OAuth2Client> result = apiInstance.listOAuth2Clients(limit, offset, name, owner);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#listOAuth2Clients");
@@ -1303,8 +1304,10 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **Long**| The maximum amount of policies returned, upper bound is 500 policies | [optional]
+ **limit** | **Long**| The maximum amount of clients to returned, upper bound is 500 clients. | [optional]
  **offset** | **Long**| The offset from where to start looking. | [optional]
+ **name** | **String**| The name of the clients to filter by. | [optional]
+ **owner** | **String**| The owner of the clients to filter by. | [optional]
 
 ### Return type
 
@@ -1323,7 +1326,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A list of clients. |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
 <a name="listSubjectConsentSessions"></a>
 # **listSubjectConsentSessions**
@@ -1386,8 +1389,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A list of used consent requests. |  -  |
-**400** | genericError |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="patchOAuth2Client"></a>
 # **patchOAuth2Client**
@@ -1452,64 +1455,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | oAuth2Client |  -  |
-**500** | genericError |  -  |
-
-<a name="prometheus"></a>
-# **prometheus**
-> prometheus()
-
-Get Snapshot Metrics from the Hydra Service.
-
-If you&#39;re using k8s, you can then add annotations to your deployment like so:  &#x60;&#x60;&#x60; metadata: annotations: prometheus.io/port: \&quot;4445\&quot; prometheus.io/path: \&quot;/metrics/prometheus\&quot; &#x60;&#x60;&#x60;  If the service supports TLS Edge Termination, this endpoint does not require the &#x60;X-Forwarded-Proto&#x60; header to be set.
-
-### Example
-```java
-// Import classes:
-import sh.ory.hydra.ApiClient;
-import sh.ory.hydra.ApiException;
-import sh.ory.hydra.Configuration;
-import sh.ory.hydra.models.*;
-import sh.ory.hydra.api.AdminApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-
-    AdminApi apiInstance = new AdminApi(defaultClient);
-    try {
-      apiInstance.prometheus();
-    } catch (ApiException e) {
-      System.err.println("Exception when calling AdminApi#prometheus");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**500** | jsonError |  -  |
 
 <a name="rejectConsentRequest"></a>
 # **rejectConsentRequest**
@@ -1574,8 +1520,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | completedRequest |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="rejectLoginRequest"></a>
 # **rejectLoginRequest**
@@ -1640,10 +1586,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | completedRequest |  -  |
-**400** | genericError |  -  |
-**401** | genericError |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**401** | jsonError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="rejectLogoutRequest"></a>
 # **rejectLogoutRequest**
@@ -1707,8 +1653,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="revokeAuthenticationSession"></a>
 # **revokeAuthenticationSession**
@@ -1770,8 +1716,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | genericError |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="revokeConsentSessions"></a>
 # **revokeConsentSessions**
@@ -1837,8 +1783,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | genericError |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="updateJsonWebKey"></a>
 # **updateJsonWebKey**
@@ -1905,9 +1851,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | JSONWebKey |  -  |
-**401** | genericError |  -  |
-**403** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**403** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="updateJsonWebKeySet"></a>
 # **updateJsonWebKeySet**
@@ -1972,9 +1918,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | JSONWebKeySet |  -  |
-**401** | genericError |  -  |
-**403** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**403** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 <a name="updateOAuth2Client"></a>
 # **updateOAuth2Client**
@@ -2039,5 +1985,5 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | oAuth2Client |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 

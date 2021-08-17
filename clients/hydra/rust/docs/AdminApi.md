@@ -26,7 +26,6 @@ Method | HTTP request | Description
 [**list_o_auth2_clients**](AdminApi.md#list_o_auth2_clients) | **get** /clients | List OAuth 2.0 Clients
 [**list_subject_consent_sessions**](AdminApi.md#list_subject_consent_sessions) | **get** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject
 [**patch_o_auth2_client**](AdminApi.md#patch_o_auth2_client) | **patch** /clients/{id} | Patch an OAuth 2.0 Client
-[**prometheus**](AdminApi.md#prometheus) | **get** /metrics/prometheus | Get Snapshot Metrics from the Hydra Service.
 [**reject_consent_request**](AdminApi.md#reject_consent_request) | **put** /oauth2/auth/requests/consent/reject | Reject a Consent Request
 [**reject_login_request**](AdminApi.md#reject_login_request) | **put** /oauth2/auth/requests/login/reject | Reject a Login Request
 [**reject_logout_request**](AdminApi.md#reject_logout_request) | **put** /oauth2/auth/requests/logout/reject | Reject a Logout Request
@@ -610,7 +609,7 @@ No authorization required
 
 ## list_o_auth2_clients
 
-> Vec<crate::models::OAuth2Client> list_o_auth2_clients(limit, offset)
+> Vec<crate::models::OAuth2Client> list_o_auth2_clients(limit, offset, name, owner)
 List OAuth 2.0 Clients
 
 This endpoint lists all clients in the database, and never returns client secrets. As a default it lists the first 100 clients. The `limit` parameter can be used to retrieve more clients, but it has an upper bound at 500 objects. Pagination should be used to retrieve more than 500 objects.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components. The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/clients?limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
@@ -620,8 +619,10 @@ This endpoint lists all clients in the database, and never returns client secret
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**limit** | Option<**i64**> | The maximum amount of policies returned, upper bound is 500 policies |  |
+**limit** | Option<**i64**> | The maximum amount of clients to returned, upper bound is 500 clients. |  |
 **offset** | Option<**i64**> | The offset from where to start looking. |  |
+**name** | Option<**String**> | The name of the clients to filter by. |  |
+**owner** | Option<**String**> | The owner of the clients to filter by. |  |
 
 ### Return type
 
@@ -696,33 +697,6 @@ No authorization required
 
 - **Content-Type**: application/json
 - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## prometheus
-
-> prometheus()
-Get Snapshot Metrics from the Hydra Service.
-
-If you're using k8s, you can then add annotations to your deployment like so:  ``` metadata: annotations: prometheus.io/port: \"4445\" prometheus.io/path: \"/metrics/prometheus\" ```  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

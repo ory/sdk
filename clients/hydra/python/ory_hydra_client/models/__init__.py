@@ -16,11 +16,11 @@ from ory_hydra_client.model.consent_request import ConsentRequest
 from ory_hydra_client.model.consent_request_session import ConsentRequestSession
 from ory_hydra_client.model.container_wait_ok_body_error import ContainerWaitOKBodyError
 from ory_hydra_client.model.flush_inactive_o_auth2_tokens_request import FlushInactiveOAuth2TokensRequest
-from ory_hydra_client.model.generic_error import GenericError
 from ory_hydra_client.model.health_not_ready_status import HealthNotReadyStatus
 from ory_hydra_client.model.health_status import HealthStatus
 from ory_hydra_client.model.json_web_key import JSONWebKey
 from ory_hydra_client.model.json_web_key_set import JSONWebKeySet
+from ory_hydra_client.model.json_error import JsonError
 from ory_hydra_client.model.json_web_key_set_generator_request import JsonWebKeySetGeneratorRequest
 from ory_hydra_client.model.login_request import LoginRequest
 from ory_hydra_client.model.logout_request import LogoutRequest

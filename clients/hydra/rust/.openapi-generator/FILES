@@ -10,14 +10,15 @@ docs/ConsentRequest.md
 docs/ConsentRequestSession.md
 docs/ContainerWaitOkBodyError.md
 docs/FlushInactiveOAuth2TokensRequest.md
-docs/GenericError.md
 docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
+docs/JsonError.md
 docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JsonWebKeySetGeneratorRequest.md
 docs/LoginRequest.md
 docs/LogoutRequest.md
+docs/MetadataApi.md
 docs/OAuth2Client.md
 docs/OAuth2TokenIntrospection.md
 docs/Oauth2TokenResponse.md
@@ -47,6 +48,7 @@ docs/WellKnown.md
 git_push.sh
 src/apis/admin_api.rs
 src/apis/configuration.rs
+src/apis/metadata_api.rs
 src/apis/mod.rs
 src/apis/public_api.rs
 src/lib.rs
@@ -57,9 +59,9 @@ src/models/consent_request.rs
 src/models/consent_request_session.rs
 src/models/container_wait_ok_body_error.rs
 src/models/flush_inactive_o_auth2_tokens_request.rs
-src/models/generic_error.rs
 src/models/health_not_ready_status.rs
 src/models/health_status.rs
+src/models/json_error.rs
 src/models/json_web_key.rs
 src/models/json_web_key_set.rs
 src/models/json_web_key_set_generator_request.rs

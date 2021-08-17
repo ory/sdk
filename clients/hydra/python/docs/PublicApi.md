@@ -86,8 +86,8 @@ The well known endpoint an be used to retrieve information for OpenID Connect cl
 import time
 import ory_hydra_client
 from ory_hydra_client.api import public_api
-from ory_hydra_client.model.generic_error import GenericError
 from ory_hydra_client.model.well_known import WellKnown
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -132,8 +132,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | wellKnown |  -  |
-**401** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -216,7 +216,7 @@ import time
 import ory_hydra_client
 from ory_hydra_client.api import public_api
 from ory_hydra_client.model.oauth2_token_response import Oauth2TokenResponse
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -298,9 +298,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | oauth2TokenResponse |  -  |
-**400** | genericError |  -  |
-**401** | genericError |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**401** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -317,7 +317,7 @@ This endpoint is not documented here because you should never use your own imple
 import time
 import ory_hydra_client
 from ory_hydra_client.api import public_api
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -361,8 +361,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**401** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -381,7 +381,7 @@ Revoking a token (both access and refresh) means that the tokens will be invalid
 import time
 import ory_hydra_client
 from ory_hydra_client.api import public_api
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -445,8 +445,8 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**401** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -455,7 +455,7 @@ void (empty response body)
 
 OpenID Connect Userinfo
 
-This endpoint returns the payload of the ID Token, including the idTokenExtra values, of the provided OAuth 2.0 Access Token.  For more information please [refer to the spec](http://openid.net/specs/openid-connect-core-1_0.html#UserInfo).
+This endpoint returns the payload of the ID Token, including the idTokenExtra values, of the provided OAuth 2.0 Access Token.  For more information please [refer to the spec](http://openid.net/specs/openid-connect-core-1_0.html#UserInfo).  In the case of authentication error, a WWW-Authenticate header might be set in the response with more information about the error. See [the spec](https://datatracker.ietf.org/doc/html/rfc6750#section-3) for more details about header format.
 
 ### Example
 
@@ -464,8 +464,8 @@ This endpoint returns the payload of the ID Token, including the idTokenExtra va
 import time
 import ory_hydra_client
 from ory_hydra_client.api import public_api
-from ory_hydra_client.model.generic_error import GenericError
 from ory_hydra_client.model.userinfo_response import UserinfoResponse
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -520,8 +520,8 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | userinfoResponse |  -  |
-**401** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -538,8 +538,8 @@ This endpoint returns JSON Web Keys to be used as public keys for verifying Open
 import time
 import ory_hydra_client
 from ory_hydra_client.api import public_api
-from ory_hydra_client.model.generic_error import GenericError
 from ory_hydra_client.model.json_web_key_set import JSONWebKeySet
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -584,7 +584,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | JSONWebKeySet |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

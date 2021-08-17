@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -13,14 +12,15 @@ docs/ConsentRequest.md
 docs/ConsentRequestSession.md
 docs/ContainerWaitOKBodyError.md
 docs/FlushInactiveOAuth2TokensRequest.md
-docs/GenericError.md
 docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
 docs/JSONWebKey.md
 docs/JSONWebKeySet.md
+docs/JsonError.md
 docs/JsonWebKeySetGeneratorRequest.md
 docs/LoginRequest.md
 docs/LogoutRequest.md
+docs/MetadataApi.md
 docs/OAuth2Client.md
 docs/OAuth2TokenIntrospection.md
 docs/Oauth2TokenResponse.md
@@ -70,6 +70,7 @@ src/main/java/sh/ory/hydra/ServerConfiguration.java
 src/main/java/sh/ory/hydra/ServerVariable.java
 src/main/java/sh/ory/hydra/StringUtil.java
 src/main/java/sh/ory/hydra/api/AdminApi.java
+src/main/java/sh/ory/hydra/api/MetadataApi.java
 src/main/java/sh/ory/hydra/api/PublicApi.java
 src/main/java/sh/ory/hydra/auth/ApiKeyAuth.java
 src/main/java/sh/ory/hydra/auth/Authentication.java
@@ -86,11 +87,11 @@ src/main/java/sh/ory/hydra/model/ConsentRequest.java
 src/main/java/sh/ory/hydra/model/ConsentRequestSession.java
 src/main/java/sh/ory/hydra/model/ContainerWaitOKBodyError.java
 src/main/java/sh/ory/hydra/model/FlushInactiveOAuth2TokensRequest.java
-src/main/java/sh/ory/hydra/model/GenericError.java
 src/main/java/sh/ory/hydra/model/HealthNotReadyStatus.java
 src/main/java/sh/ory/hydra/model/HealthStatus.java
 src/main/java/sh/ory/hydra/model/JSONWebKey.java
 src/main/java/sh/ory/hydra/model/JSONWebKeySet.java
+src/main/java/sh/ory/hydra/model/JsonError.java
 src/main/java/sh/ory/hydra/model/JsonWebKeySetGeneratorRequest.java
 src/main/java/sh/ory/hydra/model/LoginRequest.java
 src/main/java/sh/ory/hydra/model/LogoutRequest.java
@@ -120,6 +121,7 @@ src/main/java/sh/ory/hydra/model/Volume.java
 src/main/java/sh/ory/hydra/model/VolumeUsageData.java
 src/main/java/sh/ory/hydra/model/WellKnown.java
 src/test/java/sh/ory/hydra/api/AdminApiTest.java
+src/test/java/sh/ory/hydra/api/MetadataApiTest.java
 src/test/java/sh/ory/hydra/api/PublicApiTest.java
 src/test/java/sh/ory/hydra/model/AcceptConsentRequestTest.java
 src/test/java/sh/ory/hydra/model/AcceptLoginRequestTest.java
@@ -128,11 +130,11 @@ src/test/java/sh/ory/hydra/model/ConsentRequestSessionTest.java
 src/test/java/sh/ory/hydra/model/ConsentRequestTest.java
 src/test/java/sh/ory/hydra/model/ContainerWaitOKBodyErrorTest.java
 src/test/java/sh/ory/hydra/model/FlushInactiveOAuth2TokensRequestTest.java
-src/test/java/sh/ory/hydra/model/GenericErrorTest.java
 src/test/java/sh/ory/hydra/model/HealthNotReadyStatusTest.java
 src/test/java/sh/ory/hydra/model/HealthStatusTest.java
 src/test/java/sh/ory/hydra/model/JSONWebKeySetTest.java
 src/test/java/sh/ory/hydra/model/JSONWebKeyTest.java
+src/test/java/sh/ory/hydra/model/JsonErrorTest.java
 src/test/java/sh/ory/hydra/model/JsonWebKeySetGeneratorRequestTest.java
 src/test/java/sh/ory/hydra/model/LoginRequestTest.java
 src/test/java/sh/ory/hydra/model/LogoutRequestTest.java

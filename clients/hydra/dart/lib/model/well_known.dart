@@ -17,6 +17,7 @@ class WellKnown {
     this.backchannelLogoutSupported,
     this.claimsParameterSupported,
     this.claimsSupported = const [],
+    this.codeChallengeMethodsSupported = const [],
     this.endSessionEndpoint,
     this.frontchannelLogoutSessionSupported,
     this.frontchannelLogoutSupported,
@@ -54,6 +55,9 @@ class WellKnown {
 
   /// JSON array containing a list of the Claim Names of the Claims that the OpenID Provider MAY be able to supply values for. Note that for privacy or other reasons, this might not be an exhaustive list.
   List<String> claimsSupported;
+
+  /// JSON array containing a list of Proof Key for Code Exchange (PKCE) [RFC7636] code challenge methods supported by this authorization server.
+  List<String> codeChallengeMethodsSupported;
 
   /// URL at the OP to which an RP can perform a redirect to request that the End-User be logged out at the OP.
   String endSessionEndpoint;
@@ -125,6 +129,7 @@ class WellKnown {
      other.backchannelLogoutSupported == backchannelLogoutSupported &&
      other.claimsParameterSupported == claimsParameterSupported &&
      other.claimsSupported == claimsSupported &&
+     other.codeChallengeMethodsSupported == codeChallengeMethodsSupported &&
      other.endSessionEndpoint == endSessionEndpoint &&
      other.frontchannelLogoutSessionSupported == frontchannelLogoutSessionSupported &&
      other.frontchannelLogoutSupported == frontchannelLogoutSupported &&
@@ -154,6 +159,7 @@ class WellKnown {
     (backchannelLogoutSupported == null ? 0 : backchannelLogoutSupported.hashCode) +
     (claimsParameterSupported == null ? 0 : claimsParameterSupported.hashCode) +
     (claimsSupported == null ? 0 : claimsSupported.hashCode) +
+    (codeChallengeMethodsSupported == null ? 0 : codeChallengeMethodsSupported.hashCode) +
     (endSessionEndpoint == null ? 0 : endSessionEndpoint.hashCode) +
     (frontchannelLogoutSessionSupported == null ? 0 : frontchannelLogoutSessionSupported.hashCode) +
     (frontchannelLogoutSupported == null ? 0 : frontchannelLogoutSupported.hashCode) +
@@ -177,7 +183,7 @@ class WellKnown {
     (userinfoSigningAlgValuesSupported == null ? 0 : userinfoSigningAlgValuesSupported.hashCode);
 
   @override
-  String toString() => 'WellKnown[authorizationEndpoint=$authorizationEndpoint, backchannelLogoutSessionSupported=$backchannelLogoutSessionSupported, backchannelLogoutSupported=$backchannelLogoutSupported, claimsParameterSupported=$claimsParameterSupported, claimsSupported=$claimsSupported, endSessionEndpoint=$endSessionEndpoint, frontchannelLogoutSessionSupported=$frontchannelLogoutSessionSupported, frontchannelLogoutSupported=$frontchannelLogoutSupported, grantTypesSupported=$grantTypesSupported, idTokenSigningAlgValuesSupported=$idTokenSigningAlgValuesSupported, issuer=$issuer, jwksUri=$jwksUri, registrationEndpoint=$registrationEndpoint, requestObjectSigningAlgValuesSupported=$requestObjectSigningAlgValuesSupported, requestParameterSupported=$requestParameterSupported, requestUriParameterSupported=$requestUriParameterSupported, requireRequestUriRegistration=$requireRequestUriRegistration, responseModesSupported=$responseModesSupported, responseTypesSupported=$responseTypesSupported, revocationEndpoint=$revocationEndpoint, scopesSupported=$scopesSupported, subjectTypesSupported=$subjectTypesSupported, tokenEndpoint=$tokenEndpoint, tokenEndpointAuthMethodsSupported=$tokenEndpointAuthMethodsSupported, userinfoEndpoint=$userinfoEndpoint, userinfoSigningAlgValuesSupported=$userinfoSigningAlgValuesSupported]';
+  String toString() => 'WellKnown[authorizationEndpoint=$authorizationEndpoint, backchannelLogoutSessionSupported=$backchannelLogoutSessionSupported, backchannelLogoutSupported=$backchannelLogoutSupported, claimsParameterSupported=$claimsParameterSupported, claimsSupported=$claimsSupported, codeChallengeMethodsSupported=$codeChallengeMethodsSupported, endSessionEndpoint=$endSessionEndpoint, frontchannelLogoutSessionSupported=$frontchannelLogoutSessionSupported, frontchannelLogoutSupported=$frontchannelLogoutSupported, grantTypesSupported=$grantTypesSupported, idTokenSigningAlgValuesSupported=$idTokenSigningAlgValuesSupported, issuer=$issuer, jwksUri=$jwksUri, registrationEndpoint=$registrationEndpoint, requestObjectSigningAlgValuesSupported=$requestObjectSigningAlgValuesSupported, requestParameterSupported=$requestParameterSupported, requestUriParameterSupported=$requestUriParameterSupported, requireRequestUriRegistration=$requireRequestUriRegistration, responseModesSupported=$responseModesSupported, responseTypesSupported=$responseTypesSupported, revocationEndpoint=$revocationEndpoint, scopesSupported=$scopesSupported, subjectTypesSupported=$subjectTypesSupported, tokenEndpoint=$tokenEndpoint, tokenEndpointAuthMethodsSupported=$tokenEndpointAuthMethodsSupported, userinfoEndpoint=$userinfoEndpoint, userinfoSigningAlgValuesSupported=$userinfoSigningAlgValuesSupported]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -193,6 +199,9 @@ class WellKnown {
     }
     if (claimsSupported != null) {
       json[r'claims_supported'] = claimsSupported;
+    }
+    if (codeChallengeMethodsSupported != null) {
+      json[r'code_challenge_methods_supported'] = codeChallengeMethodsSupported;
     }
     if (endSessionEndpoint != null) {
       json[r'end_session_endpoint'] = endSessionEndpoint;
@@ -260,6 +269,9 @@ class WellKnown {
         claimsSupported: json[r'claims_supported'] == null
           ? null
           : (json[r'claims_supported'] as List).cast<String>(),
+        codeChallengeMethodsSupported: json[r'code_challenge_methods_supported'] == null
+          ? null
+          : (json[r'code_challenge_methods_supported'] as List).cast<String>(),
         endSessionEndpoint: json[r'end_session_endpoint'],
         frontchannelLogoutSessionSupported: json[r'frontchannel_logout_session_supported'],
         frontchannelLogoutSupported: json[r'frontchannel_logout_supported'],

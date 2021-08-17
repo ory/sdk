@@ -207,8 +207,6 @@ class ApiClient {
           return ContainerWaitOKBodyError.fromJson(value);
         case 'FlushInactiveOAuth2TokensRequest':
           return FlushInactiveOAuth2TokensRequest.fromJson(value);
-        case 'GenericError':
-          return GenericError.fromJson(value);
         case 'HealthNotReadyStatus':
           return HealthNotReadyStatus.fromJson(value);
         case 'HealthStatus':
@@ -217,6 +215,8 @@ class ApiClient {
           return JSONWebKey.fromJson(value);
         case 'JSONWebKeySet':
           return JSONWebKeySet.fromJson(value);
+        case 'JsonError':
+          return JsonError.fromJson(value);
         case 'JsonWebKeySetGeneratorRequest':
           return JsonWebKeySetGeneratorRequest.fromJson(value);
         case 'LoginRequest':

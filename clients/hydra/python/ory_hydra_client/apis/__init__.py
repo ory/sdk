@@ -15,4 +15,5 @@
 
 # Import APIs into API package:
 from ory_hydra_client.api.admin_api import AdminApi
+from ory_hydra_client.api.metadata_api import MetadataApi
 from ory_hydra_client.api.public_api import PublicApi

@@ -1417,11 +1417,17 @@ class AdminApi {
   /// Parameters:
   ///
   /// * [int] limit:
-  ///   The maximum amount of policies returned, upper bound is 500 policies
+  ///   The maximum amount of clients to returned, upper bound is 500 clients.
   ///
   /// * [int] offset:
   ///   The offset from where to start looking.
-  Future<Response> listOAuth2ClientsWithHttpInfo({ int limit, int offset }) async {
+  ///
+  /// * [String] name:
+  ///   The name of the clients to filter by.
+  ///
+  /// * [String] owner:
+  ///   The owner of the clients to filter by.
+  Future<Response> listOAuth2ClientsWithHttpInfo({ int limit, int offset, String name, String owner }) async {
     // Verify required params are set.
 
     final path = r'/clients';
@@ -1437,6 +1443,12 @@ class AdminApi {
     }
     if (offset != null) {
       queryParams.addAll(_convertParametersForCollectionFormat('', 'offset', offset));
+    }
+    if (name != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'name', name));
+    }
+    if (owner != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'owner', owner));
     }
 
     final contentTypes = <String>[];
@@ -1474,12 +1486,18 @@ class AdminApi {
   /// Parameters:
   ///
   /// * [int] limit:
-  ///   The maximum amount of policies returned, upper bound is 500 policies
+  ///   The maximum amount of clients to returned, upper bound is 500 clients.
   ///
   /// * [int] offset:
   ///   The offset from where to start looking.
-  Future<List<OAuth2Client>> listOAuth2Clients({ int limit, int offset }) async {
-    final response = await listOAuth2ClientsWithHttpInfo( limit: limit, offset: offset );
+  ///
+  /// * [String] name:
+  ///   The name of the clients to filter by.
+  ///
+  /// * [String] owner:
+  ///   The owner of the clients to filter by.
+  Future<List<OAuth2Client>> listOAuth2Clients({ int limit, int offset, String name, String owner }) async {
+    final response = await listOAuth2ClientsWithHttpInfo( limit: limit, offset: offset, name: name, owner: owner );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1648,58 +1666,6 @@ class AdminApi {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'OAuth2Client',) as OAuth2Client;
         }
     return Future<OAuth2Client>.value(null);
-  }
-
-  /// Get Snapshot Metrics from the Hydra Service.
-  ///
-  /// If you're using k8s, you can then add annotations to your deployment like so:  ``` metadata: annotations: prometheus.io/port: \"4445\" prometheus.io/path: \"/metrics/prometheus\" ```  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
-  ///
-  /// Note: This method returns the HTTP [Response].
-  Future<Response> prometheusWithHttpInfo() async {
-    final path = r'/metrics/prometheus';
-
-    Object postBody;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    final contentTypes = <String>[];
-    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>[];
-
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-    }
-
-    return await apiClient.invokeAPI(
-      path,
-      'GET',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      nullableContentType,
-      authNames,
-    );
-  }
-
-  /// Get Snapshot Metrics from the Hydra Service.
-  ///
-  /// If you're using k8s, you can then add annotations to your deployment like so:  ``` metadata: annotations: prometheus.io/port: \"4445\" prometheus.io/path: \"/metrics/prometheus\" ```  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
-  Future<void> prometheus() async {
-    final response = await prometheusWithHttpInfo();
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
   }
 
   /// Reject a Consent Request

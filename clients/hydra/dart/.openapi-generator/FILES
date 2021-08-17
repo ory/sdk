@@ -9,14 +9,15 @@ doc/ConsentRequest.md
 doc/ConsentRequestSession.md
 doc/ContainerWaitOKBodyError.md
 doc/FlushInactiveOAuth2TokensRequest.md
-doc/GenericError.md
 doc/HealthNotReadyStatus.md
 doc/HealthStatus.md
 doc/JSONWebKey.md
 doc/JSONWebKeySet.md
+doc/JsonError.md
 doc/JsonWebKeySetGeneratorRequest.md
 doc/LoginRequest.md
 doc/LogoutRequest.md
+doc/MetadataApi.md
 doc/OAuth2Client.md
 doc/OAuth2TokenIntrospection.md
 doc/Oauth2TokenResponse.md
@@ -46,6 +47,7 @@ doc/WellKnown.md
 git_push.sh
 lib/api.dart
 lib/api/admin_api.dart
+lib/api/metadata_api.dart
 lib/api/public_api.dart
 lib/api_client.dart
 lib/api_exception.dart
@@ -62,9 +64,9 @@ lib/model/consent_request.dart
 lib/model/consent_request_session.dart
 lib/model/container_wait_ok_body_error.dart
 lib/model/flush_inactive_o_auth2_tokens_request.dart
-lib/model/generic_error.dart
 lib/model/health_not_ready_status.dart
 lib/model/health_status.dart
+lib/model/json_error.dart
 lib/model/json_web_key.dart
 lib/model/json_web_key_set.dart
 lib/model/json_web_key_set_generator_request.dart
@@ -96,6 +98,5 @@ lib/model/volume.dart
 lib/model/volume_usage_data.dart
 lib/model/well_known.dart
 pubspec.yaml
-test/patch_document_test.dart
-test/request_was_handled_response_test.dart
-test/volume_test.dart
+test/json_error_test.dart
+test/metadata_api_test.dart

@@ -27,6 +27,7 @@ part 'auth/http_basic_auth.dart';
 part 'auth/http_bearer_auth.dart';
 
 part 'api/admin_api.dart';
+part 'api/metadata_api.dart';
 part 'api/public_api.dart';
 
 part 'model/accept_consent_request.dart';
@@ -36,11 +37,11 @@ part 'model/consent_request.dart';
 part 'model/consent_request_session.dart';
 part 'model/container_wait_ok_body_error.dart';
 part 'model/flush_inactive_o_auth2_tokens_request.dart';
-part 'model/generic_error.dart';
 part 'model/health_not_ready_status.dart';
 part 'model/health_status.dart';
 part 'model/json_web_key.dart';
 part 'model/json_web_key_set.dart';
+part 'model/json_error.dart';
 part 'model/json_web_key_set_generator_request.dart';
 part 'model/login_request.dart';
 part 'model/logout_request.dart';

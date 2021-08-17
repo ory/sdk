@@ -26,7 +26,6 @@ Method | HTTP request | Description
 [**list_o_auth2_clients**](AdminApi.md#list_o_auth2_clients) | **GET** /clients | List OAuth 2.0 Clients
 [**list_subject_consent_sessions**](AdminApi.md#list_subject_consent_sessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject
 [**patch_o_auth2_client**](AdminApi.md#patch_o_auth2_client) | **PATCH** /clients/{id} | Patch an OAuth 2.0 Client
-[**prometheus**](AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get Snapshot Metrics from the Hydra Service.
 [**reject_consent_request**](AdminApi.md#reject_consent_request) | **PUT** /oauth2/auth/requests/consent/reject | Reject a Consent Request
 [**reject_login_request**](AdminApi.md#reject_login_request) | **PUT** /oauth2/auth/requests/login/reject | Reject a Login Request
 [**reject_logout_request**](AdminApi.md#reject_logout_request) | **PUT** /oauth2/auth/requests/logout/reject | Reject a Logout Request
@@ -52,7 +51,7 @@ import ory_hydra_client
 from ory_hydra_client.api import admin_api
 from ory_hydra_client.model.accept_consent_request import AcceptConsentRequest
 from ory_hydra_client.model.completed_request import CompletedRequest
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -126,8 +125,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | completedRequest |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -146,7 +145,7 @@ import ory_hydra_client
 from ory_hydra_client.api import admin_api
 from ory_hydra_client.model.accept_login_request import AcceptLoginRequest
 from ory_hydra_client.model.completed_request import CompletedRequest
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -213,10 +212,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | completedRequest |  -  |
-**400** | genericError |  -  |
-**401** | genericError |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**401** | jsonError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -234,7 +233,7 @@ import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
 from ory_hydra_client.model.completed_request import CompletedRequest
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -283,8 +282,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | completedRequest |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -302,8 +301,8 @@ import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
 from ory_hydra_client.model.json_web_key_set_generator_request import JsonWebKeySetGeneratorRequest
-from ory_hydra_client.model.generic_error import GenericError
 from ory_hydra_client.model.json_web_key_set import JSONWebKeySet
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -367,9 +366,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | JSONWebKeySet |  -  |
-**401** | genericError |  -  |
-**403** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**403** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -387,7 +386,7 @@ import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
 from ory_hydra_client.model.o_auth2_client import OAuth2Client
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -486,9 +485,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | oAuth2Client |  -  |
-**400** | genericError |  -  |
-**409** | genericError |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**409** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -505,7 +504,7 @@ Use this endpoint to delete a single JSON Web Key.  A JSON Web Key (JWK) is a Ja
 import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -555,9 +554,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**401** | genericError |  -  |
-**403** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**403** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -574,7 +573,7 @@ Use this endpoint to delete a complete JSON Web Key Set and all the keys in that
 import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -622,9 +621,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**401** | genericError |  -  |
-**403** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**403** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -641,7 +640,7 @@ Delete an existing OAuth 2.0 Client by its ID.  OAuth 2.0 clients are used to pe
 import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -689,8 +688,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -707,7 +706,7 @@ This endpoint deletes OAuth2 access tokens issued for a client from the database
 import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -755,8 +754,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**401** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -773,8 +772,8 @@ This endpoint flushes expired OAuth2 access tokens from the database. You can se
 import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.generic_error import GenericError
 from ory_hydra_client.model.flush_inactive_o_auth2_tokens_request import FlushInactiveOAuth2TokensRequest
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -825,8 +824,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**401** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -843,9 +842,9 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.generic_error import GenericError
 from ory_hydra_client.model.request_was_handled_response import RequestWasHandledResponse
 from ory_hydra_client.model.consent_request import ConsentRequest
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -894,9 +893,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | consentRequest |  -  |
-**404** | genericError |  -  |
+**404** | jsonError |  -  |
 **410** | requestWasHandledResponse |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -913,8 +912,8 @@ This endpoint returns a singular JSON Web Key, identified by the set and the spe
 import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.generic_error import GenericError
 from ory_hydra_client.model.json_web_key_set import JSONWebKeySet
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -965,8 +964,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | JSONWebKeySet |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -983,8 +982,8 @@ This endpoint can be used to retrieve JWK Sets stored in ORY Hydra.  A JSON Web 
 import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.generic_error import GenericError
 from ory_hydra_client.model.json_web_key_set import JSONWebKeySet
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1033,9 +1032,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | JSONWebKeySet |  -  |
-**401** | genericError |  -  |
-**403** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**403** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1052,9 +1051,9 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.generic_error import GenericError
 from ory_hydra_client.model.login_request import LoginRequest
 from ory_hydra_client.model.request_was_handled_response import RequestWasHandledResponse
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1103,10 +1102,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | loginRequest |  -  |
-**400** | genericError |  -  |
-**404** | genericError |  -  |
+**400** | jsonError |  -  |
+**404** | jsonError |  -  |
 **410** | requestWasHandledResponse |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1124,8 +1123,8 @@ import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
 from ory_hydra_client.model.logout_request import LogoutRequest
-from ory_hydra_client.model.generic_error import GenericError
 from ory_hydra_client.model.request_was_handled_response import RequestWasHandledResponse
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1174,9 +1173,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | logoutRequest |  -  |
-**404** | genericError |  -  |
+**404** | jsonError |  -  |
 **410** | requestWasHandledResponse |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1194,7 +1193,7 @@ import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
 from ory_hydra_client.model.o_auth2_client import OAuth2Client
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1243,8 +1242,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | oAuth2Client |  -  |
-**401** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1322,8 +1321,8 @@ The introspection endpoint allows to check if a token (both refresh and access) 
 import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.generic_error import GenericError
 from ory_hydra_client.model.o_auth2_token_introspection import OAuth2TokenIntrospection
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1383,8 +1382,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | oAuth2TokenIntrospection |  -  |
-**401** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1401,8 +1400,8 @@ This endpoint returns a 200 status code when the HTTP server is up running. This
 import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.generic_error import GenericError
 from ory_hydra_client.model.health_status import HealthStatus
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1447,7 +1446,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | healthStatus |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1465,7 +1464,7 @@ import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
 from ory_hydra_client.model.o_auth2_client import OAuth2Client
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1478,14 +1477,16 @@ configuration = ory_hydra_client.Configuration(
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = admin_api.AdminApi(api_client)
-    limit = 1 # int | The maximum amount of policies returned, upper bound is 500 policies (optional)
+    limit = 1 # int | The maximum amount of clients to returned, upper bound is 500 clients. (optional)
     offset = 1 # int | The offset from where to start looking. (optional)
+    name = "name_example" # str | The name of the clients to filter by. (optional)
+    owner = "owner_example" # str | The owner of the clients to filter by. (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
         # List OAuth 2.0 Clients
-        api_response = api_instance.list_o_auth2_clients(limit=limit, offset=offset)
+        api_response = api_instance.list_o_auth2_clients(limit=limit, offset=offset, name=name, owner=owner)
         pprint(api_response)
     except ory_hydra_client.ApiException as e:
         print("Exception when calling AdminApi->list_o_auth2_clients: %s\n" % e)
@@ -1496,8 +1497,10 @@ with ory_hydra_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int**| The maximum amount of policies returned, upper bound is 500 policies | [optional]
+ **limit** | **int**| The maximum amount of clients to returned, upper bound is 500 clients. | [optional]
  **offset** | **int**| The offset from where to start looking. | [optional]
+ **name** | **str**| The name of the clients to filter by. | [optional]
+ **owner** | **str**| The owner of the clients to filter by. | [optional]
 
 ### Return type
 
@@ -1517,7 +1520,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A list of clients. |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1535,7 +1538,7 @@ import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
 from ory_hydra_client.model.previous_consent_session import PreviousConsentSession
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1584,8 +1587,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A list of used consent requests. |  -  |
-**400** | genericError |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1603,8 +1606,8 @@ import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
 from ory_hydra_client.model.o_auth2_client import OAuth2Client
-from ory_hydra_client.model.generic_error import GenericError
 from ory_hydra_client.model.patch_request import PatchRequest
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1662,66 +1665,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | oAuth2Client |  -  |
-**500** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **prometheus**
-> prometheus()
-
-Get Snapshot Metrics from the Hydra Service.
-
-If you're using k8s, you can then add annotations to your deployment like so:  ``` metadata: annotations: prometheus.io/port: \"4445\" prometheus.io/path: \"/metrics/prometheus\" ```  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
-
-### Example
-
-```python
-import time
-import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_hydra_client.Configuration(
-    host = "http://localhost"
-)
-
-
-# Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        # Get Snapshot Metrics from the Hydra Service.
-        api_instance.prometheus()
-    except ory_hydra_client.ApiException as e:
-        print("Exception when calling AdminApi->prometheus: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1740,7 +1684,7 @@ import ory_hydra_client
 from ory_hydra_client.api import admin_api
 from ory_hydra_client.model.completed_request import CompletedRequest
 from ory_hydra_client.model.reject_request import RejectRequest
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1806,8 +1750,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | completedRequest |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1826,7 +1770,7 @@ import ory_hydra_client
 from ory_hydra_client.api import admin_api
 from ory_hydra_client.model.completed_request import CompletedRequest
 from ory_hydra_client.model.reject_request import RejectRequest
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1892,10 +1836,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | completedRequest |  -  |
-**400** | genericError |  -  |
-**401** | genericError |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**401** | jsonError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1913,7 +1857,7 @@ import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
 from ory_hydra_client.model.reject_request import RejectRequest
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1977,8 +1921,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1995,7 +1939,7 @@ This endpoint invalidates a subject's authentication session. After revoking the
 import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -2043,8 +1987,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | genericError |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2061,7 +2005,7 @@ This endpoint revokes a subject's granted consent sessions for a specific OAuth 
 import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -2121,8 +2065,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | genericError |  -  |
-**500** | genericError |  -  |
+**400** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2140,7 +2084,7 @@ import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
 from ory_hydra_client.model.json_web_key import JSONWebKey
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -2222,9 +2166,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | JSONWebKey |  -  |
-**401** | genericError |  -  |
-**403** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**403** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2241,8 +2185,8 @@ Use this method if you do not want to let Hydra generate the JWKs for you, but i
 import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.generic_error import GenericError
 from ory_hydra_client.model.json_web_key_set import JSONWebKeySet
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -2326,9 +2270,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | JSONWebKeySet |  -  |
-**401** | genericError |  -  |
-**403** | genericError |  -  |
-**500** | genericError |  -  |
+**401** | jsonError |  -  |
+**403** | jsonError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2346,7 +2290,7 @@ import time
 import ory_hydra_client
 from ory_hydra_client.api import admin_api
 from ory_hydra_client.model.o_auth2_client import OAuth2Client
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -2447,7 +2391,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | oAuth2Client |  -  |
-**500** | genericError |  -  |
+**500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

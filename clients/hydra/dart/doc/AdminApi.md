@@ -31,7 +31,6 @@ Method | HTTP request | Description
 [**listOAuth2Clients**](AdminApi.md#listoauth2clients) | **GET** /clients | List OAuth 2.0 Clients
 [**listSubjectConsentSessions**](AdminApi.md#listsubjectconsentsessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject
 [**patchOAuth2Client**](AdminApi.md#patchoauth2client) | **PATCH** /clients/{id} | Patch an OAuth 2.0 Client
-[**prometheus**](AdminApi.md#prometheus) | **GET** /metrics/prometheus | Get Snapshot Metrics from the Hydra Service.
 [**rejectConsentRequest**](AdminApi.md#rejectconsentrequest) | **PUT** /oauth2/auth/requests/consent/reject | Reject a Consent Request
 [**rejectLoginRequest**](AdminApi.md#rejectloginrequest) | **PUT** /oauth2/auth/requests/login/reject | Reject a Login Request
 [**rejectLogoutRequest**](AdminApi.md#rejectlogoutrequest) | **PUT** /oauth2/auth/requests/logout/reject | Reject a Logout Request
@@ -859,7 +858,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listOAuth2Clients**
-> List<OAuth2Client> listOAuth2Clients(limit, offset)
+> List<OAuth2Client> listOAuth2Clients(limit, offset, name, owner)
 
 List OAuth 2.0 Clients
 
@@ -870,11 +869,13 @@ This endpoint lists all clients in the database, and never returns client secret
 import 'package:ory_hydra_client/api.dart';
 
 final api_instance = AdminApi();
-final limit = 789; // int | The maximum amount of policies returned, upper bound is 500 policies
+final limit = 789; // int | The maximum amount of clients to returned, upper bound is 500 clients.
 final offset = 789; // int | The offset from where to start looking.
+final name = name_example; // String | The name of the clients to filter by.
+final owner = owner_example; // String | The owner of the clients to filter by.
 
 try { 
-    final result = api_instance.listOAuth2Clients(limit, offset);
+    final result = api_instance.listOAuth2Clients(limit, offset, name, owner);
     print(result);
 } catch (e) {
     print('Exception when calling AdminApi->listOAuth2Clients: $e\n');
@@ -885,8 +886,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int**| The maximum amount of policies returned, upper bound is 500 policies | [optional] 
+ **limit** | **int**| The maximum amount of clients to returned, upper bound is 500 clients. | [optional] 
  **offset** | **int**| The offset from where to start looking. | [optional] 
+ **name** | **String**| The name of the clients to filter by. | [optional] 
+ **owner** | **String**| The owner of the clients to filter by. | [optional] 
 
 ### Return type
 
@@ -988,44 +991,6 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **prometheus**
-> prometheus()
-
-Get Snapshot Metrics from the Hydra Service.
-
-If you're using k8s, you can then add annotations to your deployment like so:  ``` metadata: annotations: prometheus.io/port: \"4445\" prometheus.io/path: \"/metrics/prometheus\" ```  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
-
-### Example 
-```dart
-import 'package:ory_hydra_client/api.dart';
-
-final api_instance = AdminApi();
-
-try { 
-    api_instance.prometheus();
-} catch (e) {
-    print('Exception when calling AdminApi->prometheus: $e\n');
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

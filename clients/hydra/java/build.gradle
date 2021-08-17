@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'java'
 
 group = 'sh.ory.hydra'
-version = 'v1.10.4-alpha.1'
+version = 'v1.10.5'
 
 buildscript {
     repositories {
