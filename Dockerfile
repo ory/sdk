@@ -1,4 +1,4 @@
-FROM openjdk:12-alpine
+FROM openjdk:16-alpine
 
 RUN apk -U upgrade
 RUN apk add -U --no-cache \
@@ -9,7 +9,7 @@ RUN apk add -U --no-cache \
 # - docker run --rm debian:stretch grep '^hosts:' /etc/nsswitch.conf
 RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 
-ENV GOLANG_VERSION 1.15.6
+ENV GOLANG_VERSION 1.17
 
 RUN set -eux; \
 	apk add --no-cache --virtual .build-deps \
