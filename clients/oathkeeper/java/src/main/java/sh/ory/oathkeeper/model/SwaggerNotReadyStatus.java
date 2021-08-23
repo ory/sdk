@@ -31,7 +31,7 @@ import java.util.Map;
  * SwaggerNotReadyStatus swagger not ready status
  */
 @ApiModel(description = "SwaggerNotReadyStatus swagger not ready status")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-23T09:47:29.976932143Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-23T19:23:39.536053624Z[GMT]")
 public class SwaggerNotReadyStatus {
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)

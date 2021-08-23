@@ -29,7 +29,7 @@ import sh.ory.oathkeeper.model.SwaggerRule;
  * SwaggerRuleResponse A rule
  */
 @ApiModel(description = "SwaggerRuleResponse A rule")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-23T09:47:29.976932143Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-23T19:23:39.536053624Z[GMT]")
 public class SwaggerRuleResponse {
   public static final String SERIALIZED_NAME_BODY = "Body";
   @SerializedName(SERIALIZED_NAME_BODY)
