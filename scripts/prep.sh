@@ -3,8 +3,8 @@
 set -Eeuxo pipefail
 cd "$( dirname "${BASH_SOURCE[0]}" )/.."
 
-source "$HOME/.bashrc"
-source "$HOME/.cargo/env"
+source "$HOME/.bashrc" || true
+source "$HOME/.cargo/env" || true
 
 if [ -z "$(git log -1 --pretty=%B | grep "Add spec for")" ]; then
       echo "This commit does not appear to be related to a spec update, skipping chain."
