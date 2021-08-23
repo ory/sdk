@@ -100,6 +100,11 @@ RUN download_url=$(curl -s https://api.github.com/repos/go-swagger/go-swagger/re
     && curl -o /usr/local/bin/swagger -L'#' "$download_url" \
     && chmod +x /usr/local/bin/swagger
 
+RUN download_url=$(curl -s https://api.github.com/repos/cli/cli/releases/latest | \
+      jq -r '.assets[] | select(.name | contains("'"$(uname | tr '[:upper:]' '[:lower:]')"'_amd64.tar.gz")) | .browser_download_url') \
+    && curl -o /usr/local/bin/gh -L'#' "$download_url" \
+    && chmod +x /usr/local/bin/gh
+
 ADD go.mod go.mod
 ADD go.sum go.sum
 RUN go build -o /usr/local/bin/ory github.com/ory/cli
