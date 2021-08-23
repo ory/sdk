@@ -79,7 +79,7 @@ RUN apk add --no-cache \
 # RUN wget http://central.maven.org/maven2/org/openapitools/openapi-generator-cli/4.2.2/openapi-generator-cli-4.2.2.jar -O openapi-generator-cli.jar
 
 RUN npm i -g @openapitools/openapi-generator-cli
-RUN openapi-generator-cli version-manager set 5.1.1
+RUN openapi-generator-cli version-manager set 5.2.1
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install --user --upgrade setuptools wheel twine
 
