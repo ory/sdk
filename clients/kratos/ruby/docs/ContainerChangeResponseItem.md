@@ -1,4 +1,4 @@
-# OryHydraClient::ContainerChangeResponseItem
+# OryKratosClient::ContainerChangeResponseItem
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::ContainerChangeResponseItem.new(
+instance = OryKratosClient::ContainerChangeResponseItem.new(
   kind: null,
   path: null
 )

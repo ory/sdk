@@ -1,4 +1,4 @@
-# OryHydraClient::Port
+# OryKratosClient::Port
 
 ## Properties
 
@@ -14,7 +14,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::Port.new(
+instance = OryKratosClient::Port.new(
   ip: null,
   private_port: null,
   public_port: null,

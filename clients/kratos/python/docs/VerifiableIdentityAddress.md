@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **created_at** | **datetime** | When this entry was created | [optional] 
 **updated_at** | **datetime** | When this entry was last updated | [optional] 
 **verified_at** | **datetime** |  | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

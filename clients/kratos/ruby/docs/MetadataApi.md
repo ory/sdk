@@ -1,4 +1,4 @@
-# OryHydraClient::MetadataApi
+# OryKratosClient::MetadataApi
 
 All URIs are relative to *http://localhost*
 
@@ -24,13 +24,13 @@ This endpoint returns the version of Ory Kratos.  If the service supports TLS Ed
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::MetadataApi.new
+api_instance = OryKratosClient::MetadataApi.new
 
 begin
   # Return Running Software Version.
   result = api_instance.get_version
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling MetadataApi->get_version: #{e}"
 end
 ```
@@ -48,7 +48,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <InlineResponse2001>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling MetadataApi->get_version_with_http_info: #{e}"
 end
 ```
@@ -85,13 +85,13 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incomi
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::MetadataApi.new
+api_instance = OryKratosClient::MetadataApi.new
 
 begin
   # Check HTTP Server Status
   result = api_instance.is_alive
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling MetadataApi->is_alive: #{e}"
 end
 ```
@@ -109,7 +109,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <InlineResponse200>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling MetadataApi->is_alive_with_http_info: #{e}"
 end
 ```
@@ -146,13 +146,13 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is up running and t
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::MetadataApi.new
+api_instance = OryKratosClient::MetadataApi.new
 
 begin
   # Check HTTP Server and Database Status
   result = api_instance.is_ready
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling MetadataApi->is_ready: #{e}"
 end
 ```
@@ -170,7 +170,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <InlineResponse200>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling MetadataApi->is_ready_with_http_info: #{e}"
 end
 ```
@@ -207,12 +207,12 @@ Get snapshot metrics from the service. If you're using k8s, you can then add ann
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::MetadataApi.new
+api_instance = OryKratosClient::MetadataApi.new
 
 begin
   # Get snapshot metrics from the service. If you're using k8s, you can then add annotations to your deployment like so:
   api_instance.prometheus
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling MetadataApi->prometheus: #{e}"
 end
 ```
@@ -230,7 +230,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling MetadataApi->prometheus_with_http_info: #{e}"
 end
 ```

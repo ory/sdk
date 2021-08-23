@@ -93,12 +93,12 @@ class IdentityCredentials {
   static List<IdentityCredentials> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <IdentityCredentials>[]
-      : json.map((v) => IdentityCredentials.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => IdentityCredentials.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, IdentityCredentials> mapFromJson(Map<String, dynamic> json) {
     final map = <String, IdentityCredentials>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = IdentityCredentials.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = IdentityCredentials.fromJson(value));
     }
     return map;
   }
@@ -106,9 +106,9 @@ class IdentityCredentials {
   // maps a json object with a list of IdentityCredentials-objects as value to a dart map
   static Map<String, List<IdentityCredentials>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<IdentityCredentials>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = IdentityCredentials.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = IdentityCredentials.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

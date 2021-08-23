@@ -1,4 +1,4 @@
-# OryHydraClient::UiText
+# OryKratosClient::UiText
 
 ## Properties
 
@@ -14,7 +14,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::UiText.new(
+instance = OryKratosClient::UiText.new(
   context: null,
   id: null,
   text: null,

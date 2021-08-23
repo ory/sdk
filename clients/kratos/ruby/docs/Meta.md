@@ -1,4 +1,4 @@
-# OryHydraClient::Meta
+# OryKratosClient::Meta
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::Meta.new(
+instance = OryKratosClient::Meta.new(
   label: null
 )
 ```

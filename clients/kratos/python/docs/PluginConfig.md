@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **docker_version** | **str** | Docker Version used to create the plugin | [optional] 
 **user** | [**PluginConfigUser**](PluginConfigUser.md) |  | [optional] 
 **rootfs** | [**PluginConfigRootfs**](PluginConfigRootfs.md) |  | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1,4 +1,4 @@
-# OryHydraClient::ContainerWaitOKBody
+# OryKratosClient::ContainerWaitOKBody
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::ContainerWaitOKBody.new(
+instance = OryKratosClient::ContainerWaitOKBody.new(
   error: null,
   status_code: null
 )

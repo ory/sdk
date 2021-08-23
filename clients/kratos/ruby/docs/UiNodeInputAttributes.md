@@ -1,4 +1,4 @@
-# OryHydraClient::UiNodeInputAttributes
+# OryKratosClient::UiNodeInputAttributes
 
 ## Properties
 
@@ -17,7 +17,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::UiNodeInputAttributes.new(
+instance = OryKratosClient::UiNodeInputAttributes.new(
   disabled: null,
   label: null,
   name: null,

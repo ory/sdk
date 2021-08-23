@@ -72,12 +72,12 @@ class SubmitSelfServiceLoginFlowWithPasswordMethodBody {
   static List<SubmitSelfServiceLoginFlowWithPasswordMethodBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <SubmitSelfServiceLoginFlowWithPasswordMethodBody>[]
-      : json.map((v) => SubmitSelfServiceLoginFlowWithPasswordMethodBody.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => SubmitSelfServiceLoginFlowWithPasswordMethodBody.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, SubmitSelfServiceLoginFlowWithPasswordMethodBody> mapFromJson(Map<String, dynamic> json) {
     final map = <String, SubmitSelfServiceLoginFlowWithPasswordMethodBody>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = SubmitSelfServiceLoginFlowWithPasswordMethodBody.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = SubmitSelfServiceLoginFlowWithPasswordMethodBody.fromJson(value));
     }
     return map;
   }
@@ -85,9 +85,9 @@ class SubmitSelfServiceLoginFlowWithPasswordMethodBody {
   // maps a json object with a list of SubmitSelfServiceLoginFlowWithPasswordMethodBody-objects as value to a dart map
   static Map<String, List<SubmitSelfServiceLoginFlowWithPasswordMethodBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<SubmitSelfServiceLoginFlowWithPasswordMethodBody>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = SubmitSelfServiceLoginFlowWithPasswordMethodBody.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = SubmitSelfServiceLoginFlowWithPasswordMethodBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

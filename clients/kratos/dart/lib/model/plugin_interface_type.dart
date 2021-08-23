@@ -62,12 +62,12 @@ class PluginInterfaceType {
   static List<PluginInterfaceType> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <PluginInterfaceType>[]
-      : json.map((v) => PluginInterfaceType.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => PluginInterfaceType.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, PluginInterfaceType> mapFromJson(Map<String, dynamic> json) {
     final map = <String, PluginInterfaceType>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = PluginInterfaceType.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = PluginInterfaceType.fromJson(value));
     }
     return map;
   }
@@ -75,9 +75,9 @@ class PluginInterfaceType {
   // maps a json object with a list of PluginInterfaceType-objects as value to a dart map
   static Map<String, List<PluginInterfaceType>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<PluginInterfaceType>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = PluginInterfaceType.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = PluginInterfaceType.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

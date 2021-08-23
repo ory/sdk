@@ -1,4 +1,4 @@
-# OryHydraClient::SuccessfulSelfServiceLoginWithoutBrowser
+# OryKratosClient::SuccessfulSelfServiceLoginWithoutBrowser
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::SuccessfulSelfServiceLoginWithoutBrowser.new(
+instance = OryKratosClient::SuccessfulSelfServiceLoginWithoutBrowser.new(
   session: null,
   session_token: null
 )

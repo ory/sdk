@@ -1,4 +1,4 @@
-# OryHydraClient::PluginConfigRootfs
+# OryKratosClient::PluginConfigRootfs
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::PluginConfigRootfs.new(
+instance = OryKratosClient::PluginConfigRootfs.new(
   diff_ids: null,
   type: null
 )

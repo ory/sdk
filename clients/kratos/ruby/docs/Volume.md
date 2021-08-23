@@ -1,4 +1,4 @@
-# OryHydraClient::Volume
+# OryKratosClient::Volume
 
 ## Properties
 
@@ -19,7 +19,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::Volume.new(
+instance = OryKratosClient::Volume.new(
   created_at: null,
   driver: null,
   labels: null,

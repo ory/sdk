@@ -124,9 +124,7 @@ class Identity {
         createdAt: json[r'created_at'] == null
           ? null
           : DateTime.parse(json[r'created_at']),
-        credentials: json[r'credentials'] == null
-          ? null
-          : IdentityCredentials.mapFromJson(json[r'credentials']),
+            credentials: json[r'credentials']
         id: json[r'id'],
         recoveryAddresses: RecoveryAddress.listFromJson(json[r'recovery_addresses']),
         schemaId: json[r'schema_id'],
@@ -145,12 +143,12 @@ class Identity {
   static List<Identity> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <Identity>[]
-      : json.map((v) => Identity.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => Identity.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, Identity> mapFromJson(Map<String, dynamic> json) {
     final map = <String, Identity>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = Identity.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = Identity.fromJson(value));
     }
     return map;
   }
@@ -158,9 +156,9 @@ class Identity {
   // maps a json object with a list of Identity-objects as value to a dart map
   static Map<String, List<Identity>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<Identity>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = Identity.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = Identity.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

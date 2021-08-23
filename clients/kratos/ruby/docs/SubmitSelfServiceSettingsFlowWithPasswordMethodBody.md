@@ -1,4 +1,4 @@
-# OryHydraClient::SubmitSelfServiceSettingsFlowWithPasswordMethodBody
+# OryKratosClient::SubmitSelfServiceSettingsFlowWithPasswordMethodBody
 
 ## Properties
 
@@ -13,7 +13,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::SubmitSelfServiceSettingsFlowWithPasswordMethodBody.new(
+instance = OryKratosClient::SubmitSelfServiceSettingsFlowWithPasswordMethodBody.new(
   csrf_token: null,
   method: null,
   password: null

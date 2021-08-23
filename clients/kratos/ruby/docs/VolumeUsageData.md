@@ -1,4 +1,4 @@
-# OryHydraClient::VolumeUsageData
+# OryKratosClient::VolumeUsageData
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::VolumeUsageData.new(
+instance = OryKratosClient::VolumeUsageData.new(
   ref_count: null,
   size: null
 )

@@ -4,10 +4,10 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_version**](MetadataApi.md#get_version) | **get** /version | Return Running Software Version.
-[**is_alive**](MetadataApi.md#is_alive) | **get** /health/alive | Check HTTP Server Status
-[**is_ready**](MetadataApi.md#is_ready) | **get** /health/ready | Check HTTP Server and Database Status
-[**prometheus**](MetadataApi.md#prometheus) | **get** /metrics/prometheus | Get snapshot metrics from the service. If you're using k8s, you can then add annotations to your deployment like so:
+[**get_version**](MetadataApi.md#get_version) | **GET** /version | Return Running Software Version.
+[**is_alive**](MetadataApi.md#is_alive) | **GET** /health/alive | Check HTTP Server Status
+[**is_ready**](MetadataApi.md#is_ready) | **GET** /health/ready | Check HTTP Server and Database Status
+[**prometheus**](MetadataApi.md#prometheus) | **GET** /metrics/prometheus | Get snapshot metrics from the service. If you're using k8s, you can then add annotations to your deployment like so:
 
 
 

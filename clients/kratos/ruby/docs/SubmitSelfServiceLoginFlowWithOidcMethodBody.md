@@ -1,4 +1,4 @@
-# OryHydraClient::SubmitSelfServiceLoginFlowWithOidcMethodBody
+# OryKratosClient::SubmitSelfServiceLoginFlowWithOidcMethodBody
 
 ## Properties
 
@@ -13,7 +13,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::SubmitSelfServiceLoginFlowWithOidcMethodBody.new(
+instance = OryKratosClient::SubmitSelfServiceLoginFlowWithOidcMethodBody.new(
   csrf_token: null,
   method: null,
   traits: null

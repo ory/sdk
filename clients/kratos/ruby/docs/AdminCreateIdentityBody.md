@@ -1,4 +1,4 @@
-# OryHydraClient::AdminCreateIdentityBody
+# OryKratosClient::AdminCreateIdentityBody
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::AdminCreateIdentityBody.new(
+instance = OryKratosClient::AdminCreateIdentityBody.new(
   schema_id: null,
   traits: null
 )

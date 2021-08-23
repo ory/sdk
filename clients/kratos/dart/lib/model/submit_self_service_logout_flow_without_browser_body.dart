@@ -46,12 +46,12 @@ class SubmitSelfServiceLogoutFlowWithoutBrowserBody {
   static List<SubmitSelfServiceLogoutFlowWithoutBrowserBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <SubmitSelfServiceLogoutFlowWithoutBrowserBody>[]
-      : json.map((v) => SubmitSelfServiceLogoutFlowWithoutBrowserBody.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => SubmitSelfServiceLogoutFlowWithoutBrowserBody.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, SubmitSelfServiceLogoutFlowWithoutBrowserBody> mapFromJson(Map<String, dynamic> json) {
     final map = <String, SubmitSelfServiceLogoutFlowWithoutBrowserBody>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = SubmitSelfServiceLogoutFlowWithoutBrowserBody.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = SubmitSelfServiceLogoutFlowWithoutBrowserBody.fromJson(value));
     }
     return map;
   }
@@ -59,9 +59,9 @@ class SubmitSelfServiceLogoutFlowWithoutBrowserBody {
   // maps a json object with a list of SubmitSelfServiceLogoutFlowWithoutBrowserBody-objects as value to a dart map
   static Map<String, List<SubmitSelfServiceLogoutFlowWithoutBrowserBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<SubmitSelfServiceLogoutFlowWithoutBrowserBody>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = SubmitSelfServiceLogoutFlowWithoutBrowserBody.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = SubmitSelfServiceLogoutFlowWithoutBrowserBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

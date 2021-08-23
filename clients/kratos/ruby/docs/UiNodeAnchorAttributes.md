@@ -1,4 +1,4 @@
-# OryHydraClient::UiNodeAnchorAttributes
+# OryKratosClient::UiNodeAnchorAttributes
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::UiNodeAnchorAttributes.new(
+instance = OryKratosClient::UiNodeAnchorAttributes.new(
   href: null,
   title: null
 )

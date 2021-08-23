@@ -184,4 +184,3 @@ lib/Model/Volume.php
 lib/Model/VolumeUsageData.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
-test/Model/IdentityStateTest.php

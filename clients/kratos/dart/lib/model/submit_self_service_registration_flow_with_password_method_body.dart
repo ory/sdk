@@ -72,12 +72,12 @@ class SubmitSelfServiceRegistrationFlowWithPasswordMethodBody {
   static List<SubmitSelfServiceRegistrationFlowWithPasswordMethodBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <SubmitSelfServiceRegistrationFlowWithPasswordMethodBody>[]
-      : json.map((v) => SubmitSelfServiceRegistrationFlowWithPasswordMethodBody.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => SubmitSelfServiceRegistrationFlowWithPasswordMethodBody.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, SubmitSelfServiceRegistrationFlowWithPasswordMethodBody> mapFromJson(Map<String, dynamic> json) {
     final map = <String, SubmitSelfServiceRegistrationFlowWithPasswordMethodBody>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = SubmitSelfServiceRegistrationFlowWithPasswordMethodBody.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = SubmitSelfServiceRegistrationFlowWithPasswordMethodBody.fromJson(value));
     }
     return map;
   }
@@ -85,9 +85,9 @@ class SubmitSelfServiceRegistrationFlowWithPasswordMethodBody {
   // maps a json object with a list of SubmitSelfServiceRegistrationFlowWithPasswordMethodBody-objects as value to a dart map
   static Map<String, List<SubmitSelfServiceRegistrationFlowWithPasswordMethodBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<SubmitSelfServiceRegistrationFlowWithPasswordMethodBody>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = SubmitSelfServiceRegistrationFlowWithPasswordMethodBody.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = SubmitSelfServiceRegistrationFlowWithPasswordMethodBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

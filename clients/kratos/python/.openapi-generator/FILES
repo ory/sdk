@@ -198,5 +198,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_identity_state.py
 tox.ini

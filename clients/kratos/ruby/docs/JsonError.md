@@ -1,4 +1,4 @@
-# OryHydraClient::JsonError
+# OryKratosClient::JsonError
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::JsonError.new(
+instance = OryKratosClient::JsonError.new(
   error: null
 )
 ```

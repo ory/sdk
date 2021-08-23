@@ -1,4 +1,4 @@
-# OryHydraClient::RecoveryAddress
+# OryKratosClient::RecoveryAddress
 
 ## Properties
 
@@ -15,7 +15,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::RecoveryAddress.new(
+instance = OryKratosClient::RecoveryAddress.new(
   created_at: null,
   id: null,
   updated_at: null,

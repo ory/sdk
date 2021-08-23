@@ -1,4 +1,4 @@
-# OryHydraClient::ImageSummary
+# OryKratosClient::ImageSummary
 
 ## Properties
 
@@ -20,7 +20,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::ImageSummary.new(
+instance = OryKratosClient::ImageSummary.new(
   containers: null,
   created: null,
   id: null,

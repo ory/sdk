@@ -1,6 +1,7 @@
 .gitignore
 .travis.yml
 README.md
+analysis_options.yaml
 doc/AdminCreateIdentityBody.md
 doc/AdminCreateSelfServiceRecoveryLinkBody.md
 doc/AdminUpdateIdentityBody.md
@@ -186,4 +187,3 @@ lib/model/version.dart
 lib/model/volume.dart
 lib/model/volume_usage_data.dart
 pubspec.yaml
-test/identity_state_test.dart

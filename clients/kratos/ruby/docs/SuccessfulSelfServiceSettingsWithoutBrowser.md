@@ -1,4 +1,4 @@
-# OryHydraClient::SuccessfulSelfServiceSettingsWithoutBrowser
+# OryKratosClient::SuccessfulSelfServiceSettingsWithoutBrowser
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::SuccessfulSelfServiceSettingsWithoutBrowser.new(
+instance = OryKratosClient::SuccessfulSelfServiceSettingsWithoutBrowser.new(
   flow: null,
   identity: null
 )

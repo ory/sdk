@@ -1,4 +1,4 @@
-# OryHydraClient::SubmitSelfServiceSettingsFlowWithOidcMethodBody
+# OryKratosClient::SubmitSelfServiceSettingsFlowWithOidcMethodBody
 
 ## Properties
 
@@ -14,7 +14,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::SubmitSelfServiceSettingsFlowWithOidcMethodBody.new(
+instance = OryKratosClient::SubmitSelfServiceSettingsFlowWithOidcMethodBody.new(
   flow: null,
   link: null,
   method: null,

@@ -1,4 +1,4 @@
-# OryHydraClient::SubmitSelfServiceVerificationFlowWithLinkMethodBody
+# OryKratosClient::SubmitSelfServiceVerificationFlowWithLinkMethodBody
 
 ## Properties
 
@@ -13,7 +13,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::SubmitSelfServiceVerificationFlowWithLinkMethodBody.new(
+instance = OryKratosClient::SubmitSelfServiceVerificationFlowWithLinkMethodBody.new(
   csrf_token: null,
   email: null,
   method: null

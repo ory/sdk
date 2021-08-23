@@ -1,4 +1,4 @@
-# OryHydraClient::GraphDriverData
+# OryKratosClient::GraphDriverData
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::GraphDriverData.new(
+instance = OryKratosClient::GraphDriverData.new(
   data: null,
   name: null
 )

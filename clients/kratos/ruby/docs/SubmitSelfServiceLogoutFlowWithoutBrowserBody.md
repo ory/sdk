@@ -1,4 +1,4 @@
-# OryHydraClient::SubmitSelfServiceLogoutFlowWithoutBrowserBody
+# OryKratosClient::SubmitSelfServiceLogoutFlowWithoutBrowserBody
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::SubmitSelfServiceLogoutFlowWithoutBrowserBody.new(
+instance = OryKratosClient::SubmitSelfServiceLogoutFlowWithoutBrowserBody.new(
   session_token: null
 )
 ```

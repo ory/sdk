@@ -1,4 +1,4 @@
-# OryHydraClient::AuthenticateOKBody
+# OryKratosClient::AuthenticateOKBody
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::AuthenticateOKBody.new(
+instance = OryKratosClient::AuthenticateOKBody.new(
   identity_token: null,
   status: null
 )

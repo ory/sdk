@@ -1,4 +1,4 @@
-# OryHydraClient::SelfServiceVerificationFlowState
+# OryKratosClient::SelfServiceVerificationFlowState
 
 ## Properties
 
@@ -10,6 +10,6 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::SelfServiceVerificationFlowState.new()
+instance = OryKratosClient::SelfServiceVerificationFlowState.new()
 ```
 

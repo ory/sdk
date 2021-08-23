@@ -64,12 +64,12 @@ class SubmitSelfServiceSettingsFlowWithProfileMethodBody {
   static List<SubmitSelfServiceSettingsFlowWithProfileMethodBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <SubmitSelfServiceSettingsFlowWithProfileMethodBody>[]
-      : json.map((v) => SubmitSelfServiceSettingsFlowWithProfileMethodBody.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => SubmitSelfServiceSettingsFlowWithProfileMethodBody.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, SubmitSelfServiceSettingsFlowWithProfileMethodBody> mapFromJson(Map<String, dynamic> json) {
     final map = <String, SubmitSelfServiceSettingsFlowWithProfileMethodBody>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = SubmitSelfServiceSettingsFlowWithProfileMethodBody.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = SubmitSelfServiceSettingsFlowWithProfileMethodBody.fromJson(value));
     }
     return map;
   }
@@ -77,9 +77,9 @@ class SubmitSelfServiceSettingsFlowWithProfileMethodBody {
   // maps a json object with a list of SubmitSelfServiceSettingsFlowWithProfileMethodBody-objects as value to a dart map
   static Map<String, List<SubmitSelfServiceSettingsFlowWithProfileMethodBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<SubmitSelfServiceSettingsFlowWithProfileMethodBody>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = SubmitSelfServiceSettingsFlowWithProfileMethodBody.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = SubmitSelfServiceSettingsFlowWithProfileMethodBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

@@ -58,12 +58,12 @@ class ImageDeleteResponseItem {
   static List<ImageDeleteResponseItem> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <ImageDeleteResponseItem>[]
-      : json.map((v) => ImageDeleteResponseItem.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => ImageDeleteResponseItem.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, ImageDeleteResponseItem> mapFromJson(Map<String, dynamic> json) {
     final map = <String, ImageDeleteResponseItem>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = ImageDeleteResponseItem.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = ImageDeleteResponseItem.fromJson(value));
     }
     return map;
   }
@@ -71,9 +71,9 @@ class ImageDeleteResponseItem {
   // maps a json object with a list of ImageDeleteResponseItem-objects as value to a dart map
   static Map<String, List<ImageDeleteResponseItem>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<ImageDeleteResponseItem>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = ImageDeleteResponseItem.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = ImageDeleteResponseItem.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

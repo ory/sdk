@@ -90,7 +90,6 @@ docs/KratosVolumeUsageData.md
 docs/MetadataApi.md
 docs/V0alpha1Api.md
 git_push.sh
-src/Ory.Kratos.Client.Test/Model/KratosIdentityStateTests.cs
 src/Ory.Kratos.Client.Test/Ory.Kratos.Client.Test.csproj
 src/Ory.Kratos.Client/Api/MetadataApi.cs
 src/Ory.Kratos.Client/Api/V0alpha1Api.cs

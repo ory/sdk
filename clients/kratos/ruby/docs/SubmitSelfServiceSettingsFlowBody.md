@@ -1,4 +1,4 @@
-# OryHydraClient::SubmitSelfServiceSettingsFlowBody
+# OryKratosClient::SubmitSelfServiceSettingsFlowBody
 
 ## Class instance methods
 
@@ -11,7 +11,7 @@ Returns the list of classes defined in oneOf.
 ```ruby
 require 'ory-kratos-client'
 
-OryHydraClient::SubmitSelfServiceSettingsFlowBody.openapi_one_of
+OryKratosClient::SubmitSelfServiceSettingsFlowBody.openapi_one_of
 # =>
 # [
 #   :'SubmitSelfServiceSettingsFlowWithPasswordMethodBody',
@@ -28,7 +28,7 @@ Returns the discriminator's property name.
 ```ruby
 require 'ory-kratos-client'
 
-OryHydraClient::SubmitSelfServiceSettingsFlowBody.openapi_discriminator_name
+OryKratosClient::SubmitSelfServiceSettingsFlowBody.openapi_discriminator_name
 # => :'method'
 ```
 
@@ -41,7 +41,7 @@ Returns the discriminator's mapping.
 ```ruby
 require 'ory-kratos-client'
 
-OryHydraClient::SubmitSelfServiceSettingsFlowBody.openapi_discriminator_mapping
+OryKratosClient::SubmitSelfServiceSettingsFlowBody.openapi_discriminator_mapping
 # =>
 # {
 #   :'oidc' => :'SubmitSelfServiceSettingsFlowWithOidcMethodBody',
@@ -58,10 +58,10 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 ```ruby
 require 'ory-kratos-client'
 
-OryHydraClient::SubmitSelfServiceSettingsFlowBody.build(data)
+OryKratosClient::SubmitSelfServiceSettingsFlowBody.build(data)
 # => #<SubmitSelfServiceSettingsFlowWithPasswordMethodBody:0x00007fdd4aab02a0>
 
-OryHydraClient::SubmitSelfServiceSettingsFlowBody.build(data_that_doesnt_match)
+OryKratosClient::SubmitSelfServiceSettingsFlowBody.build(data_that_doesnt_match)
 # => nil
 ```
 

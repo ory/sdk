@@ -1,4 +1,4 @@
-# OryHydraClient::AdminCreateSelfServiceRecoveryLinkBody
+# OryKratosClient::AdminCreateSelfServiceRecoveryLinkBody
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::AdminCreateSelfServiceRecoveryLinkBody.new(
+instance = OryKratosClient::AdminCreateSelfServiceRecoveryLinkBody.new(
   expires_in: null,
   identity_id: null
 )

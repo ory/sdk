@@ -1,4 +1,4 @@
-# OryHydraClient::SelfServiceRecoveryFlow
+# OryKratosClient::SelfServiceRecoveryFlow
 
 ## Properties
 
@@ -18,7 +18,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::SelfServiceRecoveryFlow.new(
+instance = OryKratosClient::SelfServiceRecoveryFlow.new(
   active: null,
   expires_at: null,
   id: null,

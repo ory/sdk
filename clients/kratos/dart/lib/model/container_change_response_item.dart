@@ -54,12 +54,12 @@ class ContainerChangeResponseItem {
   static List<ContainerChangeResponseItem> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <ContainerChangeResponseItem>[]
-      : json.map((v) => ContainerChangeResponseItem.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => ContainerChangeResponseItem.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, ContainerChangeResponseItem> mapFromJson(Map<String, dynamic> json) {
     final map = <String, ContainerChangeResponseItem>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = ContainerChangeResponseItem.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = ContainerChangeResponseItem.fromJson(value));
     }
     return map;
   }
@@ -67,9 +67,9 @@ class ContainerChangeResponseItem {
   // maps a json object with a list of ContainerChangeResponseItem-objects as value to a dart map
   static Map<String, List<ContainerChangeResponseItem>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<ContainerChangeResponseItem>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = ContainerChangeResponseItem.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = ContainerChangeResponseItem.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

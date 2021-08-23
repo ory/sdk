@@ -1,4 +1,4 @@
-# OryHydraClient::Plugin
+# OryKratosClient::Plugin
 
 ## Properties
 
@@ -16,7 +16,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::Plugin.new(
+instance = OryKratosClient::Plugin.new(
   config: null,
   enabled: null,
   id: null,

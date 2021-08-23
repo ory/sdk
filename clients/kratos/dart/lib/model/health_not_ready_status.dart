@@ -50,12 +50,12 @@ class HealthNotReadyStatus {
   static List<HealthNotReadyStatus> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <HealthNotReadyStatus>[]
-      : json.map((v) => HealthNotReadyStatus.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => HealthNotReadyStatus.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, HealthNotReadyStatus> mapFromJson(Map<String, dynamic> json) {
     final map = <String, HealthNotReadyStatus>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = HealthNotReadyStatus.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = HealthNotReadyStatus.fromJson(value));
     }
     return map;
   }
@@ -63,9 +63,9 @@ class HealthNotReadyStatus {
   // maps a json object with a list of HealthNotReadyStatus-objects as value to a dart map
   static Map<String, List<HealthNotReadyStatus>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<HealthNotReadyStatus>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = HealthNotReadyStatus.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = HealthNotReadyStatus.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

@@ -1,4 +1,4 @@
-# OryHydraClient::Version
+# OryKratosClient::Version
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::Version.new(
+instance = OryKratosClient::Version.new(
   version: null
 )
 ```

@@ -1,4 +1,4 @@
-# OryHydraClient::VerifiableIdentityAddress
+# OryKratosClient::VerifiableIdentityAddress
 
 ## Properties
 
@@ -18,7 +18,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::VerifiableIdentityAddress.new(
+instance = OryKratosClient::VerifiableIdentityAddress.new(
   created_at: 2014-01-01T23:28:56.782Z,
   id: null,
   status: null,

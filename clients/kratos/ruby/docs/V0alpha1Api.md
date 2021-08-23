@@ -1,4 +1,4 @@
-# OryHydraClient::V0alpha1Api
+# OryKratosClient::V0alpha1Api
 
 All URIs are relative to *http://localhost*
 
@@ -52,21 +52,21 @@ This endpoint creates an identity. It is NOT possible to set an identity's crede
 require 'time'
 require 'ory-kratos-client'
 # setup authorization
-OryHydraClient.configure do |config|
+OryKratosClient.configure do |config|
   # Configure Bearer authorization: oryAccessToken
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 opts = {
-  admin_create_identity_body: OryHydraClient::AdminCreateIdentityBody.new({schema_id: 'schema_id_example', traits: 3.56}) # AdminCreateIdentityBody | 
+  admin_create_identity_body: OryKratosClient::AdminCreateIdentityBody.new({schema_id: 'schema_id_example', traits: 3.56}) # AdminCreateIdentityBody | 
 }
 
 begin
   # Create an Identity
   result = api_instance.admin_create_identity(opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->admin_create_identity: #{e}"
 end
 ```
@@ -84,7 +84,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <Identity>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->admin_create_identity_with_http_info: #{e}"
 end
 ```
@@ -123,16 +123,16 @@ This endpoint creates a recovery link which should be given to the user in order
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 opts = {
-  admin_create_self_service_recovery_link_body: OryHydraClient::AdminCreateSelfServiceRecoveryLinkBody.new({identity_id: 'identity_id_example'}) # AdminCreateSelfServiceRecoveryLinkBody | 
+  admin_create_self_service_recovery_link_body: OryKratosClient::AdminCreateSelfServiceRecoveryLinkBody.new({identity_id: 'identity_id_example'}) # AdminCreateSelfServiceRecoveryLinkBody | 
 }
 
 begin
   # Create a Recovery Link
   result = api_instance.admin_create_self_service_recovery_link(opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->admin_create_self_service_recovery_link: #{e}"
 end
 ```
@@ -150,7 +150,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceRecoveryLink>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->admin_create_self_service_recovery_link_with_http_info: #{e}"
 end
 ```
@@ -189,18 +189,18 @@ Calling this endpoint irrecoverably and permanently deletes the identity given i
 require 'time'
 require 'ory-kratos-client'
 # setup authorization
-OryHydraClient.configure do |config|
+OryKratosClient.configure do |config|
   # Configure Bearer authorization: oryAccessToken
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 id = 'id_example' # String | ID is the identity's ID.
 
 begin
   # Delete an Identity
   api_instance.admin_delete_identity(id)
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->admin_delete_identity: #{e}"
 end
 ```
@@ -218,7 +218,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->admin_delete_identity_with_http_info: #{e}"
 end
 ```
@@ -257,19 +257,19 @@ Learn how identities work in [Ory Kratos' User And Identity Model Documentation]
 require 'time'
 require 'ory-kratos-client'
 # setup authorization
-OryHydraClient.configure do |config|
+OryKratosClient.configure do |config|
   # Configure Bearer authorization: oryAccessToken
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 id = 'id_example' # String | ID must be set to the ID of identity you want to get
 
 begin
   # Get an Identity
   result = api_instance.admin_get_identity(id)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->admin_get_identity: #{e}"
 end
 ```
@@ -287,7 +287,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <Identity>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->admin_get_identity_with_http_info: #{e}"
 end
 ```
@@ -326,12 +326,12 @@ Lists all identities. Does not support search at the moment.  Learn how identiti
 require 'time'
 require 'ory-kratos-client'
 # setup authorization
-OryHydraClient.configure do |config|
+OryKratosClient.configure do |config|
   # Configure Bearer authorization: oryAccessToken
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 opts = {
   per_page: 789, # Integer | Items per Page  This is the number of items per page.
   page: 789 # Integer | Pagination Page
@@ -341,7 +341,7 @@ begin
   # List Identities
   result = api_instance.admin_list_identities(opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->admin_list_identities: #{e}"
 end
 ```
@@ -359,7 +359,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <Array<Identity>>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->admin_list_identities_with_http_info: #{e}"
 end
 ```
@@ -399,22 +399,22 @@ This endpoint updates an identity. It is NOT possible to set an identity's crede
 require 'time'
 require 'ory-kratos-client'
 # setup authorization
-OryHydraClient.configure do |config|
+OryKratosClient.configure do |config|
   # Configure Bearer authorization: oryAccessToken
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 id = 'id_example' # String | ID must be set to the ID of identity you want to update
 opts = {
-  admin_update_identity_body: OryHydraClient::AdminUpdateIdentityBody.new({state: OryHydraClient::IdentityState::ACTIVE, traits: 3.56}) # AdminUpdateIdentityBody | 
+  admin_update_identity_body: OryKratosClient::AdminUpdateIdentityBody.new({state: OryKratosClient::IdentityState::ACTIVE, traits: 3.56}) # AdminUpdateIdentityBody | 
 }
 
 begin
   # Update an Identity
   result = api_instance.admin_update_identity(id, opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->admin_update_identity: #{e}"
 end
 ```
@@ -432,7 +432,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <Identity>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->admin_update_identity_with_http_info: #{e}"
 end
 ```
@@ -472,7 +472,7 @@ This endpoint initializes a browser-based user logout flow and a URL which can b
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 opts = {
   cookie: 'cookie_example' # String | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request.
 }
@@ -481,7 +481,7 @@ begin
   # Create a Logout URL for Browsers
   result = api_instance.create_self_service_logout_flow_url_for_browsers(opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->create_self_service_logout_flow_url_for_browsers: #{e}"
 end
 ```
@@ -499,7 +499,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceLogoutUrl>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->create_self_service_logout_flow_url_for_browsers_with_http_info: #{e}"
 end
 ```
@@ -538,14 +538,14 @@ Get a JSON Schema
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 id = 'id_example' # String | ID must be set to the ID of schema you want to get
 
 begin
   
   result = api_instance.get_json_schema(id)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->get_json_schema: #{e}"
 end
 ```
@@ -563,7 +563,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => Object
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->get_json_schema_with_http_info: #{e}"
 end
 ```
@@ -602,14 +602,14 @@ This endpoint returns the error associated with a user-facing self service error
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 id = 'id_example' # String | Error is the error's ID
 
 begin
   # Get Self-Service Errors
   result = api_instance.get_self_service_error(id)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->get_self_service_error: #{e}"
 end
 ```
@@ -627,7 +627,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceError>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->get_self_service_error_with_http_info: #{e}"
 end
 ```
@@ -666,7 +666,7 @@ This endpoint returns a login flow's context with, for example, error details an
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 id = 'id_example' # String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
 opts = {
   cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here.
@@ -676,7 +676,7 @@ begin
   # Get Login Flow
   result = api_instance.get_self_service_login_flow(id, opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->get_self_service_login_flow: #{e}"
 end
 ```
@@ -694,7 +694,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceLoginFlow>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->get_self_service_login_flow_with_http_info: #{e}"
 end
 ```
@@ -734,7 +734,7 @@ This endpoint returns a recovery flow's context with, for example, error details
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 id = 'id_example' # String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
 opts = {
   cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here.
@@ -744,7 +744,7 @@ begin
   # Get Recovery Flow
   result = api_instance.get_self_service_recovery_flow(id, opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->get_self_service_recovery_flow: #{e}"
 end
 ```
@@ -762,7 +762,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceRecoveryFlow>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->get_self_service_recovery_flow_with_http_info: #{e}"
 end
 ```
@@ -802,7 +802,7 @@ This endpoint returns a registration flow's context with, for example, error det
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 id = 'id_example' # String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
 opts = {
   cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here.
@@ -812,7 +812,7 @@ begin
   # Get Registration Flow
   result = api_instance.get_self_service_registration_flow(id, opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->get_self_service_registration_flow: #{e}"
 end
 ```
@@ -830,7 +830,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceRegistrationFlow>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->get_self_service_registration_flow_with_http_info: #{e}"
 end
 ```
@@ -870,7 +870,7 @@ When accessing this endpoint through Ory Kratos' Public API you must ensure that
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 id = 'id_example' # String | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
 opts = {
   x_session_token: 'x_session_token_example', # String | The Session Token  When using the SDK in an app without a browser, please include the session token here.
@@ -881,7 +881,7 @@ begin
   # Get Settings Flow
   result = api_instance.get_self_service_settings_flow(id, opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->get_self_service_settings_flow: #{e}"
 end
 ```
@@ -899,7 +899,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceSettingsFlow>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->get_self_service_settings_flow_with_http_info: #{e}"
 end
 ```
@@ -940,7 +940,7 @@ This endpoint returns a verification flow's context with, for example, error det
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 id = 'id_example' # String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
 opts = {
   cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here.
@@ -950,7 +950,7 @@ begin
   # Get Verification Flow
   result = api_instance.get_self_service_verification_flow(id, opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->get_self_service_verification_flow: #{e}"
 end
 ```
@@ -968,7 +968,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceVerificationFlow>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->get_self_service_verification_flow_with_http_info: #{e}"
 end
 ```
@@ -1008,7 +1008,7 @@ This endpoint initializes a browser-based user login flow. This endpoint will se
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 opts = {
   refresh: true # Boolean | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
 }
@@ -1017,7 +1017,7 @@ begin
   # Initialize Login Flow for Browsers
   result = api_instance.initialize_self_service_login_flow_for_browsers(opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->initialize_self_service_login_flow_for_browsers: #{e}"
 end
 ```
@@ -1035,7 +1035,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceLoginFlow>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->initialize_self_service_login_flow_for_browsers_with_http_info: #{e}"
 end
 ```
@@ -1074,7 +1074,7 @@ This endpoint initiates a login flow for API clients that do not use a browser, 
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 opts = {
   refresh: true # Boolean | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
 }
@@ -1083,7 +1083,7 @@ begin
   # Initialize Login Flow for APIs, Services, Apps, ...
   result = api_instance.initialize_self_service_login_flow_without_browser(opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->initialize_self_service_login_flow_without_browser: #{e}"
 end
 ```
@@ -1101,7 +1101,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceLoginFlow>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->initialize_self_service_login_flow_without_browser_with_http_info: #{e}"
 end
 ```
@@ -1140,13 +1140,13 @@ This endpoint initializes a browser-based account recovery flow. Once initialize
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 
 begin
   # Initialize Recovery Flow for Browsers
   result = api_instance.initialize_self_service_recovery_flow_for_browsers
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->initialize_self_service_recovery_flow_for_browsers: #{e}"
 end
 ```
@@ -1164,7 +1164,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceRecoveryFlow>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->initialize_self_service_recovery_flow_for_browsers_with_http_info: #{e}"
 end
 ```
@@ -1201,13 +1201,13 @@ This endpoint initiates a recovery flow for API clients such as mobile devices, 
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 
 begin
   # Initialize Recovery Flow for APIs, Services, Apps, ...
   result = api_instance.initialize_self_service_recovery_flow_without_browser
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->initialize_self_service_recovery_flow_without_browser: #{e}"
 end
 ```
@@ -1225,7 +1225,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceRecoveryFlow>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->initialize_self_service_recovery_flow_without_browser_with_http_info: #{e}"
 end
 ```
@@ -1262,13 +1262,13 @@ This endpoint initializes a browser-based user registration flow. This endpoint 
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 
 begin
   # Initialize Registration Flow for Browsers
   result = api_instance.initialize_self_service_registration_flow_for_browsers
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->initialize_self_service_registration_flow_for_browsers: #{e}"
 end
 ```
@@ -1286,7 +1286,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceRegistrationFlow>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->initialize_self_service_registration_flow_for_browsers_with_http_info: #{e}"
 end
 ```
@@ -1323,13 +1323,13 @@ This endpoint initiates a registration flow for API clients such as mobile devic
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 
 begin
   # Initialize Registration Flow for APIs, Services, Apps, ...
   result = api_instance.initialize_self_service_registration_flow_without_browser
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->initialize_self_service_registration_flow_without_browser: #{e}"
 end
 ```
@@ -1347,7 +1347,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceRegistrationFlow>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->initialize_self_service_registration_flow_without_browser_with_http_info: #{e}"
 end
 ```
@@ -1384,7 +1384,7 @@ This endpoint initializes a browser-based user settings flow. Once initialized, 
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 opts = {
   cookie: 'cookie_example' # String | The Session Cookie of the Identity performing the settings flow.
 }
@@ -1393,7 +1393,7 @@ begin
   # Initialize Settings Flow for Browsers
   result = api_instance.initialize_self_service_settings_flow_for_browsers(opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->initialize_self_service_settings_flow_for_browsers: #{e}"
 end
 ```
@@ -1411,7 +1411,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceSettingsFlow>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->initialize_self_service_settings_flow_for_browsers_with_http_info: #{e}"
 end
 ```
@@ -1450,7 +1450,7 @@ This endpoint initiates a settings flow for API clients such as mobile devices, 
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 opts = {
   x_session_token: 'x_session_token_example' # String | The Session Token of the Identity performing the settings flow.
 }
@@ -1459,7 +1459,7 @@ begin
   # Initialize Settings Flow for APIs, Services, Apps, ...
   result = api_instance.initialize_self_service_settings_flow_without_browser(opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->initialize_self_service_settings_flow_without_browser: #{e}"
 end
 ```
@@ -1477,7 +1477,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceSettingsFlow>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->initialize_self_service_settings_flow_without_browser_with_http_info: #{e}"
 end
 ```
@@ -1516,13 +1516,13 @@ This endpoint initializes a browser-based account verification flow. Once initia
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 
 begin
   # Initialize Verification Flow for Browser Clients
   result = api_instance.initialize_self_service_verification_flow_for_browsers
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->initialize_self_service_verification_flow_for_browsers: #{e}"
 end
 ```
@@ -1540,7 +1540,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceVerificationFlow>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->initialize_self_service_verification_flow_for_browsers_with_http_info: #{e}"
 end
 ```
@@ -1577,13 +1577,13 @@ This endpoint initiates a verification flow for API clients such as mobile devic
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 
 begin
   # Initialize Verification Flow for APIs, Services, Apps, ...
   result = api_instance.initialize_self_service_verification_flow_without_browser
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->initialize_self_service_verification_flow_without_browser: #{e}"
 end
 ```
@@ -1601,7 +1601,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceVerificationFlow>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->initialize_self_service_verification_flow_without_browser_with_http_info: #{e}"
 end
 ```
@@ -1638,17 +1638,17 @@ Submit a Login Flow
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 flow = 'flow_example' # String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
 opts = {
-  submit_self_service_login_flow_body: OryHydraClient::SubmitSelfServiceLoginFlowWithPasswordMethodBody.new({method: 'password', password: 'password_example', password_identifier: 'password_identifier_example'}) # SubmitSelfServiceLoginFlowBody | 
+  submit_self_service_login_flow_body: OryKratosClient::SubmitSelfServiceLoginFlowWithPasswordMethodBody.new({method: 'password', password: 'password_example', password_identifier: 'password_identifier_example'}) # SubmitSelfServiceLoginFlowBody | 
 }
 
 begin
   # Submit a Login Flow
   result = api_instance.submit_self_service_login_flow(flow, opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->submit_self_service_login_flow: #{e}"
 end
 ```
@@ -1666,7 +1666,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SuccessfulSelfServiceLoginWithoutBrowser>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->submit_self_service_login_flow_with_http_info: #{e}"
 end
 ```
@@ -1706,7 +1706,7 @@ This endpoint logs out an identity in a self-service manner.  If the `Accept` HT
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 opts = {
   token: 'token_example' # String | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/urls` to generate a URL for this endpoint.
 }
@@ -1714,7 +1714,7 @@ opts = {
 begin
   # Complete Self-Service Logout
   api_instance.submit_self_service_logout_flow(opts)
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->submit_self_service_logout_flow: #{e}"
 end
 ```
@@ -1732,7 +1732,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->submit_self_service_logout_flow_with_http_info: #{e}"
 end
 ```
@@ -1771,13 +1771,13 @@ Use this endpoint to log out an identity using an Ory Session Token. If the Ory 
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
-submit_self_service_logout_flow_without_browser_body = OryHydraClient::SubmitSelfServiceLogoutFlowWithoutBrowserBody.new({session_token: 'session_token_example'}) # SubmitSelfServiceLogoutFlowWithoutBrowserBody | 
+api_instance = OryKratosClient::V0alpha1Api.new
+submit_self_service_logout_flow_without_browser_body = OryKratosClient::SubmitSelfServiceLogoutFlowWithoutBrowserBody.new({session_token: 'session_token_example'}) # SubmitSelfServiceLogoutFlowWithoutBrowserBody | 
 
 begin
   # Perform Logout for APIs, Services, Apps, ...
   api_instance.submit_self_service_logout_flow_without_browser(submit_self_service_logout_flow_without_browser_body)
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->submit_self_service_logout_flow_without_browser: #{e}"
 end
 ```
@@ -1795,7 +1795,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->submit_self_service_logout_flow_without_browser_with_http_info: #{e}"
 end
 ```
@@ -1834,18 +1834,18 @@ Use this endpoint to complete a recovery flow. This endpoint behaves differently
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 flow = 'flow_example' # String | The Recovery Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
 opts = {
   token: 'token_example', # String | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
-  submit_self_service_recovery_flow_body: OryHydraClient::SubmitSelfServiceRecoveryFlowWithLinkMethodBody.new({email: 'email_example', method: 'link'}) # SubmitSelfServiceRecoveryFlowBody | 
+  submit_self_service_recovery_flow_body: OryKratosClient::SubmitSelfServiceRecoveryFlowWithLinkMethodBody.new({email: 'email_example', method: 'link'}) # SubmitSelfServiceRecoveryFlowBody | 
 }
 
 begin
   # Complete Recovery Flow
   result = api_instance.submit_self_service_recovery_flow(flow, opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->submit_self_service_recovery_flow: #{e}"
 end
 ```
@@ -1863,7 +1863,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceRecoveryFlow>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->submit_self_service_recovery_flow_with_http_info: #{e}"
 end
 ```
@@ -1904,17 +1904,17 @@ Use this endpoint to complete a registration flow by sending an identity's trait
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 flow = 'flow_example' # String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
 opts = {
-  submit_self_service_registration_flow_body: OryHydraClient::SubmitSelfServiceRegistrationFlowWithPasswordMethodBody.new({method: 'password', password: 'password_example', traits: 3.56}) # SubmitSelfServiceRegistrationFlowBody | 
+  submit_self_service_registration_flow_body: OryKratosClient::SubmitSelfServiceRegistrationFlowWithPasswordMethodBody.new({method: 'password', password: 'password_example', traits: 3.56}) # SubmitSelfServiceRegistrationFlowBody | 
 }
 
 begin
   # Submit a Registration Flow
   result = api_instance.submit_self_service_registration_flow(flow, opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->submit_self_service_registration_flow: #{e}"
 end
 ```
@@ -1932,7 +1932,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SuccessfulSelfServiceRegistrationWithoutBrowser>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->submit_self_service_registration_flow_with_http_info: #{e}"
 end
 ```
@@ -1972,18 +1972,18 @@ Use this endpoint to complete a settings flow by sending an identity's updated p
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 flow = 'flow_example' # String | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
 opts = {
   x_session_token: 'x_session_token_example', # String | The Session Token of the Identity performing the settings flow.
-  submit_self_service_settings_flow_body: OryHydraClient::SubmitSelfServiceSettingsFlowWithPasswordMethodBody.new({method: 'password', password: 'password_example'}) # SubmitSelfServiceSettingsFlowBody | 
+  submit_self_service_settings_flow_body: OryKratosClient::SubmitSelfServiceSettingsFlowWithPasswordMethodBody.new({method: 'password', password: 'password_example'}) # SubmitSelfServiceSettingsFlowBody | 
 }
 
 begin
   # Complete Settings Flow
   result = api_instance.submit_self_service_settings_flow(flow, opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->submit_self_service_settings_flow: #{e}"
 end
 ```
@@ -2001,7 +2001,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SuccessfulSelfServiceSettingsWithoutBrowser>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->submit_self_service_settings_flow_with_http_info: #{e}"
 end
 ```
@@ -2042,18 +2042,18 @@ Use this endpoint to complete a verification flow. This endpoint behaves differe
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 flow = 'flow_example' # String | The Verification Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
 opts = {
   token: 'token_example', # String | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
-  submit_self_service_verification_flow_body: OryHydraClient::SubmitSelfServiceVerificationFlowWithLinkMethodBody.new({email: 'email_example', method: 'link'}) # SubmitSelfServiceVerificationFlowBody | 
+  submit_self_service_verification_flow_body: OryKratosClient::SubmitSelfServiceVerificationFlowWithLinkMethodBody.new({email: 'email_example', method: 'link'}) # SubmitSelfServiceVerificationFlowBody | 
 }
 
 begin
   # Complete Verification Flow
   result = api_instance.submit_self_service_verification_flow(flow, opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->submit_self_service_verification_flow: #{e}"
 end
 ```
@@ -2071,7 +2071,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceVerificationFlow>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->submit_self_service_verification_flow_with_http_info: #{e}"
 end
 ```
@@ -2112,7 +2112,7 @@ Uses the HTTP Headers in the GET request to determine (e.g. by using checking th
 require 'time'
 require 'ory-kratos-client'
 
-api_instance = OryHydraClient::V0alpha1Api.new
+api_instance = OryKratosClient::V0alpha1Api.new
 opts = {
   x_session_token: 'MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj', # String | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`.
   cookie: 'ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==' # String | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored.
@@ -2122,7 +2122,7 @@ begin
   # Check Who the Current HTTP Session Belongs To
   result = api_instance.to_session(opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->to_session: #{e}"
 end
 ```
@@ -2140,7 +2140,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <Session>
-rescue OryHydraClient::ApiError => e
+rescue OryKratosClient::ApiError => e
   puts "Error when calling V0alpha1Api->to_session_with_http_info: #{e}"
 end
 ```

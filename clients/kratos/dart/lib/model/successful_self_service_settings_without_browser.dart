@@ -52,12 +52,12 @@ class SuccessfulSelfServiceSettingsWithoutBrowser {
   static List<SuccessfulSelfServiceSettingsWithoutBrowser> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <SuccessfulSelfServiceSettingsWithoutBrowser>[]
-      : json.map((v) => SuccessfulSelfServiceSettingsWithoutBrowser.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => SuccessfulSelfServiceSettingsWithoutBrowser.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, SuccessfulSelfServiceSettingsWithoutBrowser> mapFromJson(Map<String, dynamic> json) {
     final map = <String, SuccessfulSelfServiceSettingsWithoutBrowser>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = SuccessfulSelfServiceSettingsWithoutBrowser.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = SuccessfulSelfServiceSettingsWithoutBrowser.fromJson(value));
     }
     return map;
   }
@@ -65,9 +65,9 @@ class SuccessfulSelfServiceSettingsWithoutBrowser {
   // maps a json object with a list of SuccessfulSelfServiceSettingsWithoutBrowser-objects as value to a dart map
   static Map<String, List<SuccessfulSelfServiceSettingsWithoutBrowser>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<SuccessfulSelfServiceSettingsWithoutBrowser>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = SuccessfulSelfServiceSettingsWithoutBrowser.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = SuccessfulSelfServiceSettingsWithoutBrowser.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

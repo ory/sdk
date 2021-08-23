@@ -1,4 +1,4 @@
-# OryHydraClient::HealthNotReadyStatus
+# OryKratosClient::HealthNotReadyStatus
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::HealthNotReadyStatus.new(
+instance = OryKratosClient::HealthNotReadyStatus.new(
   errors: null
 )
 ```

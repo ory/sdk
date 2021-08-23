@@ -1,4 +1,4 @@
-# OryHydraClient::ServiceUpdateResponse
+# OryKratosClient::ServiceUpdateResponse
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::ServiceUpdateResponse.new(
+instance = OryKratosClient::ServiceUpdateResponse.new(
   warnings: null
 )
 ```

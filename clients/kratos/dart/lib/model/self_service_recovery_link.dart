@@ -58,12 +58,12 @@ class SelfServiceRecoveryLink {
   static List<SelfServiceRecoveryLink> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <SelfServiceRecoveryLink>[]
-      : json.map((v) => SelfServiceRecoveryLink.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => SelfServiceRecoveryLink.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, SelfServiceRecoveryLink> mapFromJson(Map<String, dynamic> json) {
     final map = <String, SelfServiceRecoveryLink>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = SelfServiceRecoveryLink.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = SelfServiceRecoveryLink.fromJson(value));
     }
     return map;
   }
@@ -71,9 +71,9 @@ class SelfServiceRecoveryLink {
   // maps a json object with a list of SelfServiceRecoveryLink-objects as value to a dart map
   static Map<String, List<SelfServiceRecoveryLink>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<SelfServiceRecoveryLink>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = SelfServiceRecoveryLink.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = SelfServiceRecoveryLink.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

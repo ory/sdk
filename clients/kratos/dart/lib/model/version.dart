@@ -48,12 +48,12 @@ class Version {
   static List<Version> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <Version>[]
-      : json.map((v) => Version.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => Version.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, Version> mapFromJson(Map<String, dynamic> json) {
     final map = <String, Version>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = Version.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = Version.fromJson(value));
     }
     return map;
   }
@@ -61,9 +61,9 @@ class Version {
   // maps a json object with a list of Version-objects as value to a dart map
   static Map<String, List<Version>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<Version>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = Version.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = Version.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

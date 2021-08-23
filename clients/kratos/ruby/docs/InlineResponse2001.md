@@ -1,4 +1,4 @@
-# OryHydraClient::InlineResponse2001
+# OryKratosClient::InlineResponse2001
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::InlineResponse2001.new(
+instance = OryKratosClient::InlineResponse2001.new(
   version: null
 )
 ```

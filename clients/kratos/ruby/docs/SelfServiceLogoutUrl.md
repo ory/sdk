@@ -1,4 +1,4 @@
-# OryHydraClient::SelfServiceLogoutUrl
+# OryKratosClient::SelfServiceLogoutUrl
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::SelfServiceLogoutUrl.new(
+instance = OryKratosClient::SelfServiceLogoutUrl.new(
   logout_url: null
 )
 ```

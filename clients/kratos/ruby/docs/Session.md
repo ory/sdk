@@ -1,4 +1,4 @@
-# OryHydraClient::Session
+# OryKratosClient::Session
 
 ## Properties
 
@@ -16,7 +16,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::Session.new(
+instance = OryKratosClient::Session.new(
   active: null,
   authenticated_at: null,
   expires_at: null,

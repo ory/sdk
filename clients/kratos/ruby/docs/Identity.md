@@ -1,4 +1,4 @@
-# OryHydraClient::Identity
+# OryKratosClient::Identity
 
 ## Properties
 
@@ -21,7 +21,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::Identity.new(
+instance = OryKratosClient::Identity.new(
   created_at: null,
   credentials: null,
   id: null,

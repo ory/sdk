@@ -1,4 +1,4 @@
-# OryHydraClient::SelfServiceError
+# OryKratosClient::SelfServiceError
 
 ## Properties
 
@@ -14,7 +14,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::SelfServiceError.new(
+instance = OryKratosClient::SelfServiceError.new(
   created_at: null,
   error: null,
   id: null,

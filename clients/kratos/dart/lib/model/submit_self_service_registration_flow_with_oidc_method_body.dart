@@ -64,12 +64,12 @@ class SubmitSelfServiceRegistrationFlowWithOidcMethodBody {
   static List<SubmitSelfServiceRegistrationFlowWithOidcMethodBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <SubmitSelfServiceRegistrationFlowWithOidcMethodBody>[]
-      : json.map((v) => SubmitSelfServiceRegistrationFlowWithOidcMethodBody.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => SubmitSelfServiceRegistrationFlowWithOidcMethodBody.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, SubmitSelfServiceRegistrationFlowWithOidcMethodBody> mapFromJson(Map<String, dynamic> json) {
     final map = <String, SubmitSelfServiceRegistrationFlowWithOidcMethodBody>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = SubmitSelfServiceRegistrationFlowWithOidcMethodBody.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = SubmitSelfServiceRegistrationFlowWithOidcMethodBody.fromJson(value));
     }
     return map;
   }
@@ -77,9 +77,9 @@ class SubmitSelfServiceRegistrationFlowWithOidcMethodBody {
   // maps a json object with a list of SubmitSelfServiceRegistrationFlowWithOidcMethodBody-objects as value to a dart map
   static Map<String, List<SubmitSelfServiceRegistrationFlowWithOidcMethodBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<SubmitSelfServiceRegistrationFlowWithOidcMethodBody>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = SubmitSelfServiceRegistrationFlowWithOidcMethodBody.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = SubmitSelfServiceRegistrationFlowWithOidcMethodBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

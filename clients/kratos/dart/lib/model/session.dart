@@ -98,12 +98,12 @@ class Session {
   static List<Session> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <Session>[]
-      : json.map((v) => Session.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => Session.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, Session> mapFromJson(Map<String, dynamic> json) {
     final map = <String, Session>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = Session.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = Session.fromJson(value));
     }
     return map;
   }
@@ -111,9 +111,9 @@ class Session {
   // maps a json object with a list of Session-objects as value to a dart map
   static Map<String, List<Session>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<Session>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = Session.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = Session.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

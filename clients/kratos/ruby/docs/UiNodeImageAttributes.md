@@ -1,4 +1,4 @@
-# OryHydraClient::UiNodeImageAttributes
+# OryKratosClient::UiNodeImageAttributes
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::UiNodeImageAttributes.new(
+instance = OryKratosClient::UiNodeImageAttributes.new(
   src: null
 )
 ```

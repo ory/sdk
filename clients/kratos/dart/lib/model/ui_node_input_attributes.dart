@@ -100,12 +100,12 @@ class UiNodeInputAttributes {
   static List<UiNodeInputAttributes> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <UiNodeInputAttributes>[]
-      : json.map((v) => UiNodeInputAttributes.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => UiNodeInputAttributes.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, UiNodeInputAttributes> mapFromJson(Map<String, dynamic> json) {
     final map = <String, UiNodeInputAttributes>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = UiNodeInputAttributes.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = UiNodeInputAttributes.fromJson(value));
     }
     return map;
   }
@@ -113,9 +113,9 @@ class UiNodeInputAttributes {
   // maps a json object with a list of UiNodeInputAttributes-objects as value to a dart map
   static Map<String, List<UiNodeInputAttributes>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<UiNodeInputAttributes>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = UiNodeInputAttributes.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = UiNodeInputAttributes.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

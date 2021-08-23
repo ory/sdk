@@ -1,4 +1,4 @@
-# OryHydraClient::GenericError
+# OryKratosClient::GenericError
 
 ## Properties
 
@@ -17,7 +17,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::GenericError.new(
+instance = OryKratosClient::GenericError.new(
   code: 404,
   debug: SQL field &quot;foo&quot; is not a bool.,
   details: null,

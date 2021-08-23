@@ -1,4 +1,4 @@
-# OryHydraClient::ImageDeleteResponseItem
+# OryKratosClient::ImageDeleteResponseItem
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::ImageDeleteResponseItem.new(
+instance = OryKratosClient::ImageDeleteResponseItem.new(
   deleted: null,
   untagged: null
 )

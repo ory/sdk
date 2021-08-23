@@ -1,4 +1,4 @@
-# OryHydraClient::SettingsProfileFormConfig
+# OryKratosClient::SettingsProfileFormConfig
 
 ## Properties
 
@@ -14,7 +14,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::SettingsProfileFormConfig.new(
+instance = OryKratosClient::SettingsProfileFormConfig.new(
   action: null,
   messages: null,
   method: null,

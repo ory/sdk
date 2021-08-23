@@ -1,4 +1,4 @@
-# OryHydraClient::ContainerCreateCreatedBody
+# OryKratosClient::ContainerCreateCreatedBody
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::ContainerCreateCreatedBody.new(
+instance = OryKratosClient::ContainerCreateCreatedBody.new(
   id: null,
   warnings: null
 )

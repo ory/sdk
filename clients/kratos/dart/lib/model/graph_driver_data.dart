@@ -56,12 +56,12 @@ class GraphDriverData {
   static List<GraphDriverData> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <GraphDriverData>[]
-      : json.map((v) => GraphDriverData.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => GraphDriverData.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, GraphDriverData> mapFromJson(Map<String, dynamic> json) {
     final map = <String, GraphDriverData>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = GraphDriverData.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = GraphDriverData.fromJson(value));
     }
     return map;
   }
@@ -69,9 +69,9 @@ class GraphDriverData {
   // maps a json object with a list of GraphDriverData-objects as value to a dart map
   static Map<String, List<GraphDriverData>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<GraphDriverData>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = GraphDriverData.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = GraphDriverData.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

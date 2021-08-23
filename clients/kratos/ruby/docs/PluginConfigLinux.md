@@ -1,4 +1,4 @@
-# OryHydraClient::PluginConfigLinux
+# OryKratosClient::PluginConfigLinux
 
 ## Properties
 
@@ -13,7 +13,7 @@
 ```ruby
 require 'ory-kratos-client'
 
-instance = OryHydraClient::PluginConfigLinux.new(
+instance = OryKratosClient::PluginConfigLinux.new(
   allow_all_devices: null,
   capabilities: null,
   devices: null

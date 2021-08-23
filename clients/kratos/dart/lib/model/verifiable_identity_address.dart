@@ -112,12 +112,12 @@ class VerifiableIdentityAddress {
   static List<VerifiableIdentityAddress> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <VerifiableIdentityAddress>[]
-      : json.map((v) => VerifiableIdentityAddress.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => VerifiableIdentityAddress.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, VerifiableIdentityAddress> mapFromJson(Map<String, dynamic> json) {
     final map = <String, VerifiableIdentityAddress>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = VerifiableIdentityAddress.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = VerifiableIdentityAddress.fromJson(value));
     }
     return map;
   }
@@ -125,9 +125,9 @@ class VerifiableIdentityAddress {
   // maps a json object with a list of VerifiableIdentityAddress-objects as value to a dart map
   static Map<String, List<VerifiableIdentityAddress>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<VerifiableIdentityAddress>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = VerifiableIdentityAddress.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = VerifiableIdentityAddress.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

@@ -4,38 +4,38 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**admin_create_identity**](V0alpha1Api.md#admin_create_identity) | **post** /identities | Create an Identity
-[**admin_create_self_service_recovery_link**](V0alpha1Api.md#admin_create_self_service_recovery_link) | **post** /recovery/link | Create a Recovery Link
-[**admin_delete_identity**](V0alpha1Api.md#admin_delete_identity) | **delete** /identities/{id} | Delete an Identity
-[**admin_get_identity**](V0alpha1Api.md#admin_get_identity) | **get** /identities/{id} | Get an Identity
-[**admin_list_identities**](V0alpha1Api.md#admin_list_identities) | **get** /identities | List Identities
-[**admin_update_identity**](V0alpha1Api.md#admin_update_identity) | **put** /identities/{id} | Update an Identity
-[**create_self_service_logout_flow_url_for_browsers**](V0alpha1Api.md#create_self_service_logout_flow_url_for_browsers) | **get** /self-service/logout/browser | Create a Logout URL for Browsers
-[**get_json_schema**](V0alpha1Api.md#get_json_schema) | **get** /schemas/{id} | 
-[**get_self_service_error**](V0alpha1Api.md#get_self_service_error) | **get** /self-service/errors | Get Self-Service Errors
-[**get_self_service_login_flow**](V0alpha1Api.md#get_self_service_login_flow) | **get** /self-service/login/flows | Get Login Flow
-[**get_self_service_recovery_flow**](V0alpha1Api.md#get_self_service_recovery_flow) | **get** /self-service/recovery/flows | Get Recovery Flow
-[**get_self_service_registration_flow**](V0alpha1Api.md#get_self_service_registration_flow) | **get** /self-service/registration/flows | Get Registration Flow
-[**get_self_service_settings_flow**](V0alpha1Api.md#get_self_service_settings_flow) | **get** /self-service/settings/flows | Get Settings Flow
-[**get_self_service_verification_flow**](V0alpha1Api.md#get_self_service_verification_flow) | **get** /self-service/verification/flows | Get Verification Flow
-[**initialize_self_service_login_flow_for_browsers**](V0alpha1Api.md#initialize_self_service_login_flow_for_browsers) | **get** /self-service/login/browser | Initialize Login Flow for Browsers
-[**initialize_self_service_login_flow_without_browser**](V0alpha1Api.md#initialize_self_service_login_flow_without_browser) | **get** /self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ...
-[**initialize_self_service_recovery_flow_for_browsers**](V0alpha1Api.md#initialize_self_service_recovery_flow_for_browsers) | **get** /self-service/recovery/browser | Initialize Recovery Flow for Browsers
-[**initialize_self_service_recovery_flow_without_browser**](V0alpha1Api.md#initialize_self_service_recovery_flow_without_browser) | **get** /self-service/recovery/api | Initialize Recovery Flow for APIs, Services, Apps, ...
-[**initialize_self_service_registration_flow_for_browsers**](V0alpha1Api.md#initialize_self_service_registration_flow_for_browsers) | **get** /self-service/registration/browser | Initialize Registration Flow for Browsers
-[**initialize_self_service_registration_flow_without_browser**](V0alpha1Api.md#initialize_self_service_registration_flow_without_browser) | **get** /self-service/registration/api | Initialize Registration Flow for APIs, Services, Apps, ...
-[**initialize_self_service_settings_flow_for_browsers**](V0alpha1Api.md#initialize_self_service_settings_flow_for_browsers) | **get** /self-service/settings/browser | Initialize Settings Flow for Browsers
-[**initialize_self_service_settings_flow_without_browser**](V0alpha1Api.md#initialize_self_service_settings_flow_without_browser) | **get** /self-service/settings/api | Initialize Settings Flow for APIs, Services, Apps, ...
-[**initialize_self_service_verification_flow_for_browsers**](V0alpha1Api.md#initialize_self_service_verification_flow_for_browsers) | **get** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
-[**initialize_self_service_verification_flow_without_browser**](V0alpha1Api.md#initialize_self_service_verification_flow_without_browser) | **get** /self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
-[**submit_self_service_login_flow**](V0alpha1Api.md#submit_self_service_login_flow) | **post** /self-service/login | Submit a Login Flow
-[**submit_self_service_logout_flow**](V0alpha1Api.md#submit_self_service_logout_flow) | **get** /self-service/logout | Complete Self-Service Logout
-[**submit_self_service_logout_flow_without_browser**](V0alpha1Api.md#submit_self_service_logout_flow_without_browser) | **delete** /self-service/logout/api | Perform Logout for APIs, Services, Apps, ...
-[**submit_self_service_recovery_flow**](V0alpha1Api.md#submit_self_service_recovery_flow) | **post** /self-service/recovery | Complete Recovery Flow
-[**submit_self_service_registration_flow**](V0alpha1Api.md#submit_self_service_registration_flow) | **post** /self-service/registration | Submit a Registration Flow
-[**submit_self_service_settings_flow**](V0alpha1Api.md#submit_self_service_settings_flow) | **post** /self-service/settings | Complete Settings Flow
-[**submit_self_service_verification_flow**](V0alpha1Api.md#submit_self_service_verification_flow) | **post** /self-service/verification | Complete Verification Flow
-[**to_session**](V0alpha1Api.md#to_session) | **get** /sessions/whoami | Check Who the Current HTTP Session Belongs To
+[**admin_create_identity**](V0alpha1Api.md#admin_create_identity) | **POST** /identities | Create an Identity
+[**admin_create_self_service_recovery_link**](V0alpha1Api.md#admin_create_self_service_recovery_link) | **POST** /recovery/link | Create a Recovery Link
+[**admin_delete_identity**](V0alpha1Api.md#admin_delete_identity) | **DELETE** /identities/{id} | Delete an Identity
+[**admin_get_identity**](V0alpha1Api.md#admin_get_identity) | **GET** /identities/{id} | Get an Identity
+[**admin_list_identities**](V0alpha1Api.md#admin_list_identities) | **GET** /identities | List Identities
+[**admin_update_identity**](V0alpha1Api.md#admin_update_identity) | **PUT** /identities/{id} | Update an Identity
+[**create_self_service_logout_flow_url_for_browsers**](V0alpha1Api.md#create_self_service_logout_flow_url_for_browsers) | **GET** /self-service/logout/browser | Create a Logout URL for Browsers
+[**get_json_schema**](V0alpha1Api.md#get_json_schema) | **GET** /schemas/{id} | 
+[**get_self_service_error**](V0alpha1Api.md#get_self_service_error) | **GET** /self-service/errors | Get Self-Service Errors
+[**get_self_service_login_flow**](V0alpha1Api.md#get_self_service_login_flow) | **GET** /self-service/login/flows | Get Login Flow
+[**get_self_service_recovery_flow**](V0alpha1Api.md#get_self_service_recovery_flow) | **GET** /self-service/recovery/flows | Get Recovery Flow
+[**get_self_service_registration_flow**](V0alpha1Api.md#get_self_service_registration_flow) | **GET** /self-service/registration/flows | Get Registration Flow
+[**get_self_service_settings_flow**](V0alpha1Api.md#get_self_service_settings_flow) | **GET** /self-service/settings/flows | Get Settings Flow
+[**get_self_service_verification_flow**](V0alpha1Api.md#get_self_service_verification_flow) | **GET** /self-service/verification/flows | Get Verification Flow
+[**initialize_self_service_login_flow_for_browsers**](V0alpha1Api.md#initialize_self_service_login_flow_for_browsers) | **GET** /self-service/login/browser | Initialize Login Flow for Browsers
+[**initialize_self_service_login_flow_without_browser**](V0alpha1Api.md#initialize_self_service_login_flow_without_browser) | **GET** /self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ...
+[**initialize_self_service_recovery_flow_for_browsers**](V0alpha1Api.md#initialize_self_service_recovery_flow_for_browsers) | **GET** /self-service/recovery/browser | Initialize Recovery Flow for Browsers
+[**initialize_self_service_recovery_flow_without_browser**](V0alpha1Api.md#initialize_self_service_recovery_flow_without_browser) | **GET** /self-service/recovery/api | Initialize Recovery Flow for APIs, Services, Apps, ...
+[**initialize_self_service_registration_flow_for_browsers**](V0alpha1Api.md#initialize_self_service_registration_flow_for_browsers) | **GET** /self-service/registration/browser | Initialize Registration Flow for Browsers
+[**initialize_self_service_registration_flow_without_browser**](V0alpha1Api.md#initialize_self_service_registration_flow_without_browser) | **GET** /self-service/registration/api | Initialize Registration Flow for APIs, Services, Apps, ...
+[**initialize_self_service_settings_flow_for_browsers**](V0alpha1Api.md#initialize_self_service_settings_flow_for_browsers) | **GET** /self-service/settings/browser | Initialize Settings Flow for Browsers
+[**initialize_self_service_settings_flow_without_browser**](V0alpha1Api.md#initialize_self_service_settings_flow_without_browser) | **GET** /self-service/settings/api | Initialize Settings Flow for APIs, Services, Apps, ...
+[**initialize_self_service_verification_flow_for_browsers**](V0alpha1Api.md#initialize_self_service_verification_flow_for_browsers) | **GET** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
+[**initialize_self_service_verification_flow_without_browser**](V0alpha1Api.md#initialize_self_service_verification_flow_without_browser) | **GET** /self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
+[**submit_self_service_login_flow**](V0alpha1Api.md#submit_self_service_login_flow) | **POST** /self-service/login | Submit a Login Flow
+[**submit_self_service_logout_flow**](V0alpha1Api.md#submit_self_service_logout_flow) | **GET** /self-service/logout | Complete Self-Service Logout
+[**submit_self_service_logout_flow_without_browser**](V0alpha1Api.md#submit_self_service_logout_flow_without_browser) | **DELETE** /self-service/logout/api | Perform Logout for APIs, Services, Apps, ...
+[**submit_self_service_recovery_flow**](V0alpha1Api.md#submit_self_service_recovery_flow) | **POST** /self-service/recovery | Complete Recovery Flow
+[**submit_self_service_registration_flow**](V0alpha1Api.md#submit_self_service_registration_flow) | **POST** /self-service/registration | Submit a Registration Flow
+[**submit_self_service_settings_flow**](V0alpha1Api.md#submit_self_service_settings_flow) | **POST** /self-service/settings | Complete Settings Flow
+[**submit_self_service_verification_flow**](V0alpha1Api.md#submit_self_service_verification_flow) | **POST** /self-service/verification | Complete Verification Flow
+[**to_session**](V0alpha1Api.md#to_session) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 
 
 

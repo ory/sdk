@@ -53,12 +53,12 @@ class UiNodeAnchorAttributes {
   static List<UiNodeAnchorAttributes> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <UiNodeAnchorAttributes>[]
-      : json.map((v) => UiNodeAnchorAttributes.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => UiNodeAnchorAttributes.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, UiNodeAnchorAttributes> mapFromJson(Map<String, dynamic> json) {
     final map = <String, UiNodeAnchorAttributes>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = UiNodeAnchorAttributes.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = UiNodeAnchorAttributes.fromJson(value));
     }
     return map;
   }
@@ -66,9 +66,9 @@ class UiNodeAnchorAttributes {
   // maps a json object with a list of UiNodeAnchorAttributes-objects as value to a dart map
   static Map<String, List<UiNodeAnchorAttributes>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<UiNodeAnchorAttributes>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = UiNodeAnchorAttributes.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = UiNodeAnchorAttributes.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;
