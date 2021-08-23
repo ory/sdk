@@ -98,12 +98,12 @@ class IsInstanceAliveInternalServerErrorBody {
   static List<IsInstanceAliveInternalServerErrorBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <IsInstanceAliveInternalServerErrorBody>[]
-      : json.map((v) => IsInstanceAliveInternalServerErrorBody.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => IsInstanceAliveInternalServerErrorBody.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, IsInstanceAliveInternalServerErrorBody> mapFromJson(Map<String, dynamic> json) {
     final map = <String, IsInstanceAliveInternalServerErrorBody>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = IsInstanceAliveInternalServerErrorBody.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = IsInstanceAliveInternalServerErrorBody.fromJson(value));
     }
     return map;
   }
@@ -111,9 +111,9 @@ class IsInstanceAliveInternalServerErrorBody {
   // maps a json object with a list of IsInstanceAliveInternalServerErrorBody-objects as value to a dart map
   static Map<String, List<IsInstanceAliveInternalServerErrorBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<IsInstanceAliveInternalServerErrorBody>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = IsInstanceAliveInternalServerErrorBody.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = IsInstanceAliveInternalServerErrorBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

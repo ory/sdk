@@ -47,12 +47,12 @@ class DecisionsUnauthorized {
   static List<DecisionsUnauthorized> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <DecisionsUnauthorized>[]
-      : json.map((v) => DecisionsUnauthorized.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => DecisionsUnauthorized.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, DecisionsUnauthorized> mapFromJson(Map<String, dynamic> json) {
     final map = <String, DecisionsUnauthorized>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = DecisionsUnauthorized.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = DecisionsUnauthorized.fromJson(value));
     }
     return map;
   }
@@ -60,9 +60,9 @@ class DecisionsUnauthorized {
   // maps a json object with a list of DecisionsUnauthorized-objects as value to a dart map
   static Map<String, List<DecisionsUnauthorized>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<DecisionsUnauthorized>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = DecisionsUnauthorized.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = DecisionsUnauthorized.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

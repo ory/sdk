@@ -1,4 +1,4 @@
-# OryHydraClient::CreateRuleUnauthorizedBody
+# OryOathkeeperClient::CreateRuleUnauthorizedBody
 
 ## Properties
 
@@ -16,7 +16,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::CreateRuleUnauthorizedBody.new(
+instance = OryOathkeeperClient::CreateRuleUnauthorizedBody.new(
   code: null,
   details: null,
   message: null,

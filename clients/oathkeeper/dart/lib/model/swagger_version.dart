@@ -48,12 +48,12 @@ class SwaggerVersion {
   static List<SwaggerVersion> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <SwaggerVersion>[]
-      : json.map((v) => SwaggerVersion.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => SwaggerVersion.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, SwaggerVersion> mapFromJson(Map<String, dynamic> json) {
     final map = <String, SwaggerVersion>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = SwaggerVersion.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = SwaggerVersion.fromJson(value));
     }
     return map;
   }
@@ -61,9 +61,9 @@ class SwaggerVersion {
   // maps a json object with a list of SwaggerVersion-objects as value to a dart map
   static Map<String, List<SwaggerVersion>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<SwaggerVersion>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = SwaggerVersion.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = SwaggerVersion.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

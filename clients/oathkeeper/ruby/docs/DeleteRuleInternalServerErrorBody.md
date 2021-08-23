@@ -1,4 +1,4 @@
-# OryHydraClient::DeleteRuleInternalServerErrorBody
+# OryOathkeeperClient::DeleteRuleInternalServerErrorBody
 
 ## Properties
 
@@ -16,7 +16,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::DeleteRuleInternalServerErrorBody.new(
+instance = OryOathkeeperClient::DeleteRuleInternalServerErrorBody.new(
   code: null,
   details: null,
   message: null,

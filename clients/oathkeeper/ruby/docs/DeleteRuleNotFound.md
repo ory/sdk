@@ -1,4 +1,4 @@
-# OryHydraClient::DeleteRuleNotFound
+# OryOathkeeperClient::DeleteRuleNotFound
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::DeleteRuleNotFound.new(
+instance = OryOathkeeperClient::DeleteRuleNotFound.new(
   payload: null
 )
 ```

@@ -6,12 +6,14 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // JudgeInternalServerErrorBody JudgeInternalServerErrorBody JudgeInternalServerErrorBody JudgeInternalServerErrorBody judge internal server error body
+//
 // swagger:model JudgeInternalServerErrorBody
 type JudgeInternalServerErrorBody struct {
 
@@ -19,7 +21,7 @@ type JudgeInternalServerErrorBody struct {
 	Code int64 `json:"code,omitempty"`
 
 	// details
-	Details []map[string]interface{} `json:"details"`
+	Details []interface{} `json:"details"`
 
 	// message
 	Message string `json:"message,omitempty"`
@@ -36,6 +38,11 @@ type JudgeInternalServerErrorBody struct {
 
 // Validate validates this judge internal server error body
 func (m *JudgeInternalServerErrorBody) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this judge internal server error body based on context it is used
+func (m *JudgeInternalServerErrorBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

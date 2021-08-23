@@ -6,12 +6,14 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // CreateRuleUnauthorizedBody CreateRuleUnauthorizedBody CreateRuleUnauthorizedBody CreateRuleUnauthorizedBody CreateRuleUnauthorizedBody CreateRuleUnauthorizedBody CreateRuleUnauthorizedBody CreateRuleUnauthorizedBody create rule unauthorized body
+//
 // swagger:model CreateRuleUnauthorizedBody
 type CreateRuleUnauthorizedBody struct {
 
@@ -19,7 +21,7 @@ type CreateRuleUnauthorizedBody struct {
 	Code int64 `json:"code,omitempty"`
 
 	// details
-	Details []map[string]interface{} `json:"details"`
+	Details []interface{} `json:"details"`
 
 	// message
 	Message string `json:"message,omitempty"`
@@ -36,6 +38,11 @@ type CreateRuleUnauthorizedBody struct {
 
 // Validate validates this create rule unauthorized body
 func (m *CreateRuleUnauthorizedBody) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this create rule unauthorized body based on context it is used
+func (m *CreateRuleUnauthorizedBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

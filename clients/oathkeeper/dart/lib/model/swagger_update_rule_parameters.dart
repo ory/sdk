@@ -39,9 +39,7 @@ class SwaggerUpdateRuleParameters {
     if (body != null) {
       json[r'Body'] = body;
     }
-    if (id != null) {
       json[r'id'] = id;
-    }
     return json;
   }
 
@@ -57,12 +55,12 @@ class SwaggerUpdateRuleParameters {
   static List<SwaggerUpdateRuleParameters> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <SwaggerUpdateRuleParameters>[]
-      : json.map((v) => SwaggerUpdateRuleParameters.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => SwaggerUpdateRuleParameters.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, SwaggerUpdateRuleParameters> mapFromJson(Map<String, dynamic> json) {
     final map = <String, SwaggerUpdateRuleParameters>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = SwaggerUpdateRuleParameters.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = SwaggerUpdateRuleParameters.fromJson(value));
     }
     return map;
   }
@@ -70,9 +68,9 @@ class SwaggerUpdateRuleParameters {
   // maps a json object with a list of SwaggerUpdateRuleParameters-objects as value to a dart map
   static Map<String, List<SwaggerUpdateRuleParameters>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<SwaggerUpdateRuleParameters>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = SwaggerUpdateRuleParameters.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = SwaggerUpdateRuleParameters.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

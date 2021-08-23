@@ -1,4 +1,4 @@
-# OryHydraClient::CreateRuleInternalServerErrorBody
+# OryOathkeeperClient::CreateRuleInternalServerErrorBody
 
 ## Properties
 
@@ -16,7 +16,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::CreateRuleInternalServerErrorBody.new(
+instance = OryOathkeeperClient::CreateRuleInternalServerErrorBody.new(
   code: null,
   details: null,
   message: null,

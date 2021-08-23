@@ -6,12 +6,14 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // SwaggerJSONWebKey SwaggerJSONWebKey swagger JSON web key
+//
 // swagger:model swaggerJSONWebKey
 type SwaggerJSONWebKey struct {
 
@@ -94,6 +96,11 @@ type SwaggerJSONWebKey struct {
 
 // Validate validates this swagger JSON web key
 func (m *SwaggerJSONWebKey) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this swagger JSON web key based on context it is used
+func (m *SwaggerJSONWebKey) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

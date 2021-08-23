@@ -8,5 +8,6 @@ package models
 // DecisionsOK DecisionsOK DecisionsOK handles this case with default header values.
 //
 // An empty response
+//
 // swagger:model DecisionsOK
 type DecisionsOK interface{}

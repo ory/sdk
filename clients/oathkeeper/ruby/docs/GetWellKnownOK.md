@@ -1,4 +1,4 @@
-# OryHydraClient::GetWellKnownOK
+# OryOathkeeperClient::GetWellKnownOK
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::GetWellKnownOK.new(
+instance = OryOathkeeperClient::GetWellKnownOK.new(
   payload: null
 )
 ```

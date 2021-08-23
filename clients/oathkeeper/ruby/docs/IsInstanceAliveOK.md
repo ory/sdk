@@ -1,4 +1,4 @@
-# OryHydraClient::IsInstanceAliveOK
+# OryOathkeeperClient::IsInstanceAliveOK
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::IsInstanceAliveOK.new(
+instance = OryOathkeeperClient::IsInstanceAliveOK.new(
   payload: null
 )
 ```

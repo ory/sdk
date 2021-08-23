@@ -1,4 +1,4 @@
-# OryHydraClient::SwaggerJSONWebKey
+# OryOathkeeperClient::SwaggerJSONWebKey
 
 ## Properties
 
@@ -27,7 +27,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::SwaggerJSONWebKey.new(
+instance = OryOathkeeperClient::SwaggerJSONWebKey.new(
   alg: null,
   crv: null,
   d: null,

@@ -47,12 +47,12 @@ class IsInstanceAliveOK {
   static List<IsInstanceAliveOK> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <IsInstanceAliveOK>[]
-      : json.map((v) => IsInstanceAliveOK.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => IsInstanceAliveOK.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, IsInstanceAliveOK> mapFromJson(Map<String, dynamic> json) {
     final map = <String, IsInstanceAliveOK>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = IsInstanceAliveOK.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = IsInstanceAliveOK.fromJson(value));
     }
     return map;
   }
@@ -60,9 +60,9 @@ class IsInstanceAliveOK {
   // maps a json object with a list of IsInstanceAliveOK-objects as value to a dart map
   static Map<String, List<IsInstanceAliveOK>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<IsInstanceAliveOK>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = IsInstanceAliveOK.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = IsInstanceAliveOK.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

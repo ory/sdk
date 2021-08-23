@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**decisions**](ApiApi.md#decisions) | **get** /decisions | Access Control Decision API
-[**get_rule**](ApiApi.md#get_rule) | **get** /rules/{id} | Retrieve a rule
-[**get_version**](ApiApi.md#get_version) | **get** /version | Get service version
-[**get_well_known_json_web_keys**](ApiApi.md#get_well_known_json_web_keys) | **get** /.well-known/jwks.json | Lists cryptographic keys
-[**is_instance_alive**](ApiApi.md#is_instance_alive) | **get** /health/alive | Check alive status
-[**is_instance_ready**](ApiApi.md#is_instance_ready) | **get** /health/ready | Check readiness status
-[**list_rules**](ApiApi.md#list_rules) | **get** /rules | List all rules
+[**decisions**](ApiApi.md#decisions) | **GET** /decisions | Access Control Decision API
+[**get_rule**](ApiApi.md#get_rule) | **GET** /rules/{id} | Retrieve a rule
+[**get_version**](ApiApi.md#get_version) | **GET** /version | Get service version
+[**get_well_known_json_web_keys**](ApiApi.md#get_well_known_json_web_keys) | **GET** /.well-known/jwks.json | Lists cryptographic keys
+[**is_instance_alive**](ApiApi.md#is_instance_alive) | **GET** /health/alive | Check alive status
+[**is_instance_ready**](ApiApi.md#is_instance_ready) | **GET** /health/ready | Check readiness status
+[**list_rules**](ApiApi.md#list_rules) | **GET** /rules | List all rules
 
 
 

@@ -47,12 +47,12 @@ class GetWellKnownJSONWebKeysOK {
   static List<GetWellKnownJSONWebKeysOK> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <GetWellKnownJSONWebKeysOK>[]
-      : json.map((v) => GetWellKnownJSONWebKeysOK.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => GetWellKnownJSONWebKeysOK.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, GetWellKnownJSONWebKeysOK> mapFromJson(Map<String, dynamic> json) {
     final map = <String, GetWellKnownJSONWebKeysOK>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = GetWellKnownJSONWebKeysOK.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = GetWellKnownJSONWebKeysOK.fromJson(value));
     }
     return map;
   }
@@ -60,9 +60,9 @@ class GetWellKnownJSONWebKeysOK {
   // maps a json object with a list of GetWellKnownJSONWebKeysOK-objects as value to a dart map
   static Map<String, List<GetWellKnownJSONWebKeysOK>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<GetWellKnownJSONWebKeysOK>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = GetWellKnownJSONWebKeysOK.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = GetWellKnownJSONWebKeysOK.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

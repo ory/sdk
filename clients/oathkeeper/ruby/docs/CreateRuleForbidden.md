@@ -1,4 +1,4 @@
-# OryHydraClient::CreateRuleForbidden
+# OryOathkeeperClient::CreateRuleForbidden
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::CreateRuleForbidden.new(
+instance = OryOathkeeperClient::CreateRuleForbidden.new(
   payload: null
 )
 ```

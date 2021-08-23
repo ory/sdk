@@ -47,12 +47,12 @@ class GetRuleUnauthorized {
   static List<GetRuleUnauthorized> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <GetRuleUnauthorized>[]
-      : json.map((v) => GetRuleUnauthorized.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => GetRuleUnauthorized.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, GetRuleUnauthorized> mapFromJson(Map<String, dynamic> json) {
     final map = <String, GetRuleUnauthorized>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = GetRuleUnauthorized.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = GetRuleUnauthorized.fromJson(value));
     }
     return map;
   }
@@ -60,9 +60,9 @@ class GetRuleUnauthorized {
   // maps a json object with a list of GetRuleUnauthorized-objects as value to a dart map
   static Map<String, List<GetRuleUnauthorized>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<GetRuleUnauthorized>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = GetRuleUnauthorized.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = GetRuleUnauthorized.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

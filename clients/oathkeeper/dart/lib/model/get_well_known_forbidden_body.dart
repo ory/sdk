@@ -98,12 +98,12 @@ class GetWellKnownForbiddenBody {
   static List<GetWellKnownForbiddenBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <GetWellKnownForbiddenBody>[]
-      : json.map((v) => GetWellKnownForbiddenBody.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => GetWellKnownForbiddenBody.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, GetWellKnownForbiddenBody> mapFromJson(Map<String, dynamic> json) {
     final map = <String, GetWellKnownForbiddenBody>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = GetWellKnownForbiddenBody.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = GetWellKnownForbiddenBody.fromJson(value));
     }
     return map;
   }
@@ -111,9 +111,9 @@ class GetWellKnownForbiddenBody {
   // maps a json object with a list of GetWellKnownForbiddenBody-objects as value to a dart map
   static Map<String, List<GetWellKnownForbiddenBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<GetWellKnownForbiddenBody>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = GetWellKnownForbiddenBody.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = GetWellKnownForbiddenBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

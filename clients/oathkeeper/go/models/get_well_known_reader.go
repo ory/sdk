@@ -6,5 +6,6 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 // GetWellKnownReader GetWellKnownReader GetWellKnownReader GetWellKnownReader GetWellKnownReader GetWellKnownReader GetWellKnownReader GetWellKnownReader is a Reader for the GetWellKnown structure.
+//
 // swagger:model GetWellKnownReader
 type GetWellKnownReader interface{}

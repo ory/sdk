@@ -6,15 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // SwaggerRule SwaggerRule swaggerRule is a single rule that will get checked on every HTTP request.
+//
 // swagger:model swaggerRule
 type SwaggerRule struct {
 
@@ -80,7 +81,6 @@ func (m *SwaggerRule) Validate(formats strfmt.Registry) error {
 }
 
 func (m *SwaggerRule) validateAuthenticators(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Authenticators) { // not required
 		return nil
 	}
@@ -105,7 +105,6 @@ func (m *SwaggerRule) validateAuthenticators(formats strfmt.Registry) error {
 }
 
 func (m *SwaggerRule) validateAuthorizer(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Authorizer) { // not required
 		return nil
 	}
@@ -123,7 +122,6 @@ func (m *SwaggerRule) validateAuthorizer(formats strfmt.Registry) error {
 }
 
 func (m *SwaggerRule) validateMatch(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Match) { // not required
 		return nil
 	}
@@ -141,7 +139,6 @@ func (m *SwaggerRule) validateMatch(formats strfmt.Registry) error {
 }
 
 func (m *SwaggerRule) validateMutators(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Mutators) { // not required
 		return nil
 	}
@@ -166,13 +163,120 @@ func (m *SwaggerRule) validateMutators(formats strfmt.Registry) error {
 }
 
 func (m *SwaggerRule) validateUpstream(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Upstream) { // not required
 		return nil
 	}
 
 	if m.Upstream != nil {
 		if err := m.Upstream.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("upstream")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this swagger rule based on the context it is used
+func (m *SwaggerRule) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAuthenticators(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateAuthorizer(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMatch(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMutators(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUpstream(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SwaggerRule) contextValidateAuthenticators(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Authenticators); i++ {
+
+		if m.Authenticators[i] != nil {
+			if err := m.Authenticators[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("authenticators" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *SwaggerRule) contextValidateAuthorizer(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Authorizer != nil {
+		if err := m.Authorizer.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("authorizer")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *SwaggerRule) contextValidateMatch(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Match != nil {
+		if err := m.Match.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("match")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *SwaggerRule) contextValidateMutators(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Mutators); i++ {
+
+		if m.Mutators[i] != nil {
+			if err := m.Mutators[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("mutators" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *SwaggerRule) contextValidateUpstream(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Upstream != nil {
+		if err := m.Upstream.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("upstream")
 			}

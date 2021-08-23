@@ -47,12 +47,12 @@ class CreateRuleForbidden {
   static List<CreateRuleForbidden> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <CreateRuleForbidden>[]
-      : json.map((v) => CreateRuleForbidden.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => CreateRuleForbidden.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, CreateRuleForbidden> mapFromJson(Map<String, dynamic> json) {
     final map = <String, CreateRuleForbidden>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = CreateRuleForbidden.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = CreateRuleForbidden.fromJson(value));
     }
     return map;
   }
@@ -60,9 +60,9 @@ class CreateRuleForbidden {
   // maps a json object with a list of CreateRuleForbidden-objects as value to a dart map
   static Map<String, List<CreateRuleForbidden>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<CreateRuleForbidden>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = CreateRuleForbidden.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = CreateRuleForbidden.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

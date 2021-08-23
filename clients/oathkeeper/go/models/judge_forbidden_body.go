@@ -6,12 +6,14 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // JudgeForbiddenBody JudgeForbiddenBody JudgeForbiddenBody JudgeForbiddenBody judge forbidden body
+//
 // swagger:model JudgeForbiddenBody
 type JudgeForbiddenBody struct {
 
@@ -19,7 +21,7 @@ type JudgeForbiddenBody struct {
 	Code int64 `json:"code,omitempty"`
 
 	// details
-	Details []map[string]interface{} `json:"details"`
+	Details []interface{} `json:"details"`
 
 	// message
 	Message string `json:"message,omitempty"`
@@ -36,6 +38,11 @@ type JudgeForbiddenBody struct {
 
 // Validate validates this judge forbidden body
 func (m *JudgeForbiddenBody) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this judge forbidden body based on context it is used
+func (m *JudgeForbiddenBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

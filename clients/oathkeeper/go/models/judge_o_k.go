@@ -8,5 +8,6 @@ package models
 // JudgeOK JudgeOK JudgeOK JudgeOK handles this case with default header values.
 //
 // An empty response
+//
 // swagger:model JudgeOK
 type JudgeOK interface{}

@@ -1,4 +1,4 @@
-# OryHydraClient::SwaggerVersion
+# OryOathkeeperClient::SwaggerVersion
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::SwaggerVersion.new(
+instance = OryOathkeeperClient::SwaggerVersion.new(
   version: null
 )
 ```

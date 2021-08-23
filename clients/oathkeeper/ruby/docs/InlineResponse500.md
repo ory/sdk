@@ -1,4 +1,4 @@
-# OryHydraClient::InlineResponse500
+# OryOathkeeperClient::InlineResponse500
 
 ## Properties
 
@@ -16,7 +16,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::InlineResponse500.new(
+instance = OryOathkeeperClient::InlineResponse500.new(
   code: null,
   details: null,
   message: null,

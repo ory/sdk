@@ -1,4 +1,4 @@
-# OryHydraClient::JudgeNotFound
+# OryOathkeeperClient::JudgeNotFound
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::JudgeNotFound.new(
+instance = OryOathkeeperClient::JudgeNotFound.new(
   payload: null
 )
 ```

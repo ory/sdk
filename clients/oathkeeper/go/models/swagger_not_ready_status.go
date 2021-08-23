@@ -6,12 +6,14 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // SwaggerNotReadyStatus SwaggerNotReadyStatus swagger not ready status
+//
 // swagger:model swaggerNotReadyStatus
 type SwaggerNotReadyStatus struct {
 
@@ -21,6 +23,11 @@ type SwaggerNotReadyStatus struct {
 
 // Validate validates this swagger not ready status
 func (m *SwaggerNotReadyStatus) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this swagger not ready status based on context it is used
+func (m *SwaggerNotReadyStatus) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

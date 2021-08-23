@@ -1,4 +1,4 @@
-# OryHydraClient::SwaggerRulesResponse
+# OryOathkeeperClient::SwaggerRulesResponse
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::SwaggerRulesResponse.new(
+instance = OryOathkeeperClient::SwaggerRulesResponse.new(
   body: null
 )
 ```

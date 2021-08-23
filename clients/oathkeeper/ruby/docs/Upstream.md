@@ -1,4 +1,4 @@
-# OryHydraClient::Upstream
+# OryOathkeeperClient::Upstream
 
 ## Properties
 
@@ -13,7 +13,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::Upstream.new(
+instance = OryOathkeeperClient::Upstream.new(
   preserve_host: null,
   strip_path: null,
   url: null

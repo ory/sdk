@@ -6,5 +6,6 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 // ListRulesReader ListRulesReader ListRulesReader is a Reader for the ListRules structure.
+//
 // swagger:model ListRulesReader
 type ListRulesReader interface{}

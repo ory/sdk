@@ -47,12 +47,12 @@ class GetWellKnownJSONWebKeysInternalServerError {
   static List<GetWellKnownJSONWebKeysInternalServerError> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <GetWellKnownJSONWebKeysInternalServerError>[]
-      : json.map((v) => GetWellKnownJSONWebKeysInternalServerError.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => GetWellKnownJSONWebKeysInternalServerError.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, GetWellKnownJSONWebKeysInternalServerError> mapFromJson(Map<String, dynamic> json) {
     final map = <String, GetWellKnownJSONWebKeysInternalServerError>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = GetWellKnownJSONWebKeysInternalServerError.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = GetWellKnownJSONWebKeysInternalServerError.fromJson(value));
     }
     return map;
   }
@@ -60,9 +60,9 @@ class GetWellKnownJSONWebKeysInternalServerError {
   // maps a json object with a list of GetWellKnownJSONWebKeysInternalServerError-objects as value to a dart map
   static Map<String, List<GetWellKnownJSONWebKeysInternalServerError>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<GetWellKnownJSONWebKeysInternalServerError>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = GetWellKnownJSONWebKeysInternalServerError.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = GetWellKnownJSONWebKeysInternalServerError.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

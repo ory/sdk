@@ -98,12 +98,12 @@ class JudgeUnauthorizedBody {
   static List<JudgeUnauthorizedBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <JudgeUnauthorizedBody>[]
-      : json.map((v) => JudgeUnauthorizedBody.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => JudgeUnauthorizedBody.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, JudgeUnauthorizedBody> mapFromJson(Map<String, dynamic> json) {
     final map = <String, JudgeUnauthorizedBody>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = JudgeUnauthorizedBody.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = JudgeUnauthorizedBody.fromJson(value));
     }
     return map;
   }
@@ -111,9 +111,9 @@ class JudgeUnauthorizedBody {
   // maps a json object with a list of JudgeUnauthorizedBody-objects as value to a dart map
   static Map<String, List<JudgeUnauthorizedBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<JudgeUnauthorizedBody>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = JudgeUnauthorizedBody.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = JudgeUnauthorizedBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

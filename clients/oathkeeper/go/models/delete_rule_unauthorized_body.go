@@ -6,12 +6,14 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // DeleteRuleUnauthorizedBody DeleteRuleUnauthorizedBody DeleteRuleUnauthorizedBody DeleteRuleUnauthorizedBody DeleteRuleUnauthorizedBody DeleteRuleUnauthorizedBody DeleteRuleUnauthorizedBody DeleteRuleUnauthorizedBody delete rule unauthorized body
+//
 // swagger:model DeleteRuleUnauthorizedBody
 type DeleteRuleUnauthorizedBody struct {
 
@@ -19,7 +21,7 @@ type DeleteRuleUnauthorizedBody struct {
 	Code int64 `json:"code,omitempty"`
 
 	// details
-	Details []map[string]interface{} `json:"details"`
+	Details []interface{} `json:"details"`
 
 	// message
 	Message string `json:"message,omitempty"`
@@ -36,6 +38,11 @@ type DeleteRuleUnauthorizedBody struct {
 
 // Validate validates this delete rule unauthorized body
 func (m *DeleteRuleUnauthorizedBody) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this delete rule unauthorized body based on context it is used
+func (m *DeleteRuleUnauthorizedBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

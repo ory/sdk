@@ -1,4 +1,4 @@
-# OryHydraClient::JudgeUnauthorized
+# OryOathkeeperClient::JudgeUnauthorized
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::JudgeUnauthorized.new(
+instance = OryOathkeeperClient::JudgeUnauthorized.new(
   payload: null
 )
 ```

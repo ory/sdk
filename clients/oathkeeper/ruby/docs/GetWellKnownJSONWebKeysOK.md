@@ -1,4 +1,4 @@
-# OryHydraClient::GetWellKnownJSONWebKeysOK
+# OryOathkeeperClient::GetWellKnownJSONWebKeysOK
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::GetWellKnownJSONWebKeysOK.new(
+instance = OryOathkeeperClient::GetWellKnownJSONWebKeysOK.new(
   payload: null
 )
 ```

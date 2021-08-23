@@ -6,15 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // SwaggerJSONWebKeySet SwaggerJSONWebKeySet swagger JSON web key set
+//
 // swagger:model swaggerJSONWebKeySet
 type SwaggerJSONWebKeySet struct {
 
@@ -41,7 +42,6 @@ func (m *SwaggerJSONWebKeySet) Validate(formats strfmt.Registry) error {
 }
 
 func (m *SwaggerJSONWebKeySet) validateKeys(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Keys) { // not required
 		return nil
 	}
@@ -53,6 +53,38 @@ func (m *SwaggerJSONWebKeySet) validateKeys(formats strfmt.Registry) error {
 
 		if m.Keys[i] != nil {
 			if err := m.Keys[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("keys" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this swagger JSON web key set based on the context it is used
+func (m *SwaggerJSONWebKeySet) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateKeys(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SwaggerJSONWebKeySet) contextValidateKeys(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Keys); i++ {
+
+		if m.Keys[i] != nil {
+			if err := m.Keys[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("keys" + "." + strconv.Itoa(i))
 				}

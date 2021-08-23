@@ -1,4 +1,4 @@
-# OryHydraClient::ApiApi
+# OryOathkeeperClient::ApiApi
 
 All URIs are relative to *http://localhost*
 
@@ -27,12 +27,12 @@ Access Control Decision API
 require 'time'
 require 'ory-oathkeeper-client'
 
-api_instance = OryHydraClient::ApiApi.new
+api_instance = OryOathkeeperClient::ApiApi.new
 
 begin
   # Access Control Decision API
   api_instance.decisions
-rescue OryHydraClient::ApiError => e
+rescue OryOathkeeperClient::ApiError => e
   puts "Error when calling ApiApi->decisions: #{e}"
 end
 ```
@@ -50,7 +50,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
-rescue OryHydraClient::ApiError => e
+rescue OryOathkeeperClient::ApiError => e
   puts "Error when calling ApiApi->decisions_with_http_info: #{e}"
 end
 ```
@@ -87,14 +87,14 @@ Use this method to retrieve a rule from the storage. If it does not exist you wi
 require 'time'
 require 'ory-oathkeeper-client'
 
-api_instance = OryHydraClient::ApiApi.new
+api_instance = OryOathkeeperClient::ApiApi.new
 id = 'id_example' # String | 
 
 begin
   # Retrieve a rule
   result = api_instance.get_rule(id)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryOathkeeperClient::ApiError => e
   puts "Error when calling ApiApi->get_rule: #{e}"
 end
 ```
@@ -112,7 +112,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <Rule>
-rescue OryHydraClient::ApiError => e
+rescue OryOathkeeperClient::ApiError => e
   puts "Error when calling ApiApi->get_rule_with_http_info: #{e}"
 end
 ```
@@ -151,13 +151,13 @@ This endpoint returns the service version typically notated using semantic versi
 require 'time'
 require 'ory-oathkeeper-client'
 
-api_instance = OryHydraClient::ApiApi.new
+api_instance = OryOathkeeperClient::ApiApi.new
 
 begin
   # Get service version
   result = api_instance.get_version
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryOathkeeperClient::ApiError => e
   puts "Error when calling ApiApi->get_version: #{e}"
 end
 ```
@@ -175,7 +175,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <Version>
-rescue OryHydraClient::ApiError => e
+rescue OryOathkeeperClient::ApiError => e
   puts "Error when calling ApiApi->get_version_with_http_info: #{e}"
 end
 ```
@@ -212,13 +212,13 @@ This endpoint returns cryptographic keys that are required to, for example, veri
 require 'time'
 require 'ory-oathkeeper-client'
 
-api_instance = OryHydraClient::ApiApi.new
+api_instance = OryOathkeeperClient::ApiApi.new
 
 begin
   # Lists cryptographic keys
   result = api_instance.get_well_known_json_web_keys
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryOathkeeperClient::ApiError => e
   puts "Error when calling ApiApi->get_well_known_json_web_keys: #{e}"
 end
 ```
@@ -236,7 +236,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <JsonWebKeySet>
-rescue OryHydraClient::ApiError => e
+rescue OryOathkeeperClient::ApiError => e
   puts "Error when calling ApiApi->get_well_known_json_web_keys_with_http_info: #{e}"
 end
 ```
@@ -273,13 +273,13 @@ This endpoint returns a 200 status code when the HTTP server is up running. This
 require 'time'
 require 'ory-oathkeeper-client'
 
-api_instance = OryHydraClient::ApiApi.new
+api_instance = OryOathkeeperClient::ApiApi.new
 
 begin
   # Check alive status
   result = api_instance.is_instance_alive
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryOathkeeperClient::ApiError => e
   puts "Error when calling ApiApi->is_instance_alive: #{e}"
 end
 ```
@@ -297,7 +297,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <HealthStatus>
-rescue OryHydraClient::ApiError => e
+rescue OryOathkeeperClient::ApiError => e
   puts "Error when calling ApiApi->is_instance_alive_with_http_info: #{e}"
 end
 ```
@@ -334,13 +334,13 @@ This endpoint returns a 200 status code when the HTTP server is up running and t
 require 'time'
 require 'ory-oathkeeper-client'
 
-api_instance = OryHydraClient::ApiApi.new
+api_instance = OryOathkeeperClient::ApiApi.new
 
 begin
   # Check readiness status
   result = api_instance.is_instance_ready
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryOathkeeperClient::ApiError => e
   puts "Error when calling ApiApi->is_instance_ready: #{e}"
 end
 ```
@@ -358,7 +358,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <HealthStatus>
-rescue OryHydraClient::ApiError => e
+rescue OryOathkeeperClient::ApiError => e
   puts "Error when calling ApiApi->is_instance_ready_with_http_info: #{e}"
 end
 ```
@@ -395,7 +395,7 @@ This method returns an array of all rules that are stored in the backend. This i
 require 'time'
 require 'ory-oathkeeper-client'
 
-api_instance = OryHydraClient::ApiApi.new
+api_instance = OryOathkeeperClient::ApiApi.new
 opts = {
   limit: 789, # Integer | The maximum amount of rules returned.
   offset: 789 # Integer | The offset from where to start looking.
@@ -405,7 +405,7 @@ begin
   # List all rules
   result = api_instance.list_rules(opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryOathkeeperClient::ApiError => e
   puts "Error when calling ApiApi->list_rules: #{e}"
 end
 ```
@@ -423,7 +423,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <Array<Rule>>
-rescue OryHydraClient::ApiError => e
+rescue OryOathkeeperClient::ApiError => e
   puts "Error when calling ApiApi->list_rules_with_http_info: #{e}"
 end
 ```

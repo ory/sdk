@@ -6,15 +6,17 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // DeleteRuleUnauthorized DeleteRuleUnauthorized DeleteRuleUnauthorized DeleteRuleUnauthorized DeleteRuleUnauthorized DeleteRuleUnauthorized DeleteRuleUnauthorized DeleteRuleUnauthorized handles this case with default header values.
 //
 // The standard error format
+//
 // swagger:model DeleteRuleUnauthorized
 type DeleteRuleUnauthorized struct {
 
@@ -37,13 +39,40 @@ func (m *DeleteRuleUnauthorized) Validate(formats strfmt.Registry) error {
 }
 
 func (m *DeleteRuleUnauthorized) validatePayload(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Payload) { // not required
 		return nil
 	}
 
 	if m.Payload != nil {
 		if err := m.Payload.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("Payload")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this delete rule unauthorized based on the context it is used
+func (m *DeleteRuleUnauthorized) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidatePayload(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *DeleteRuleUnauthorized) contextValidatePayload(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Payload != nil {
+		if err := m.Payload.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Payload")
 			}

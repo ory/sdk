@@ -1,4 +1,4 @@
-# OryHydraClient::JudgeInternalServerError
+# OryOathkeeperClient::JudgeInternalServerError
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::JudgeInternalServerError.new(
+instance = OryOathkeeperClient::JudgeInternalServerError.new(
   payload: null
 )
 ```

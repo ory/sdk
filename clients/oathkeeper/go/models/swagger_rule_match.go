@@ -6,12 +6,14 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // SwaggerRuleMatch SwaggerRuleMatch swagger rule match
+//
 // swagger:model swaggerRuleMatch
 type SwaggerRuleMatch struct {
 
@@ -34,6 +36,11 @@ type SwaggerRuleMatch struct {
 
 // Validate validates this swagger rule match
 func (m *SwaggerRuleMatch) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this swagger rule match based on context it is used
+func (m *SwaggerRuleMatch) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

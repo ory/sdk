@@ -47,12 +47,12 @@ class JudgeInternalServerError {
   static List<JudgeInternalServerError> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <JudgeInternalServerError>[]
-      : json.map((v) => JudgeInternalServerError.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => JudgeInternalServerError.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, JudgeInternalServerError> mapFromJson(Map<String, dynamic> json) {
     final map = <String, JudgeInternalServerError>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = JudgeInternalServerError.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = JudgeInternalServerError.fromJson(value));
     }
     return map;
   }
@@ -60,9 +60,9 @@ class JudgeInternalServerError {
   // maps a json object with a list of JudgeInternalServerError-objects as value to a dart map
   static Map<String, List<JudgeInternalServerError>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<JudgeInternalServerError>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = JudgeInternalServerError.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = JudgeInternalServerError.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

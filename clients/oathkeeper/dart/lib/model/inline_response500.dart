@@ -92,12 +92,12 @@ class InlineResponse500 {
   static List<InlineResponse500> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <InlineResponse500>[]
-      : json.map((v) => InlineResponse500.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => InlineResponse500.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, InlineResponse500> mapFromJson(Map<String, dynamic> json) {
     final map = <String, InlineResponse500>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = InlineResponse500.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = InlineResponse500.fromJson(value));
     }
     return map;
   }
@@ -105,9 +105,9 @@ class InlineResponse500 {
   // maps a json object with a list of InlineResponse500-objects as value to a dart map
   static Map<String, List<InlineResponse500>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<InlineResponse500>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = InlineResponse500.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = InlineResponse500.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

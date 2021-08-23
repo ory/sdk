@@ -6,5 +6,6 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 // CreateRuleReader CreateRuleReader CreateRuleReader CreateRuleReader CreateRuleReader CreateRuleReader CreateRuleReader CreateRuleReader is a Reader for the CreateRule structure.
+//
 // swagger:model CreateRuleReader
 type CreateRuleReader interface{}

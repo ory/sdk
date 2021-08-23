@@ -1,4 +1,4 @@
-# OryHydraClient::GetWellKnownUnauthorized
+# OryOathkeeperClient::GetWellKnownUnauthorized
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::GetWellKnownUnauthorized.new(
+instance = OryOathkeeperClient::GetWellKnownUnauthorized.new(
   payload: null
 )
 ```

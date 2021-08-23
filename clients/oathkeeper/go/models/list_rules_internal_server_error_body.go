@@ -6,12 +6,14 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // ListRulesInternalServerErrorBody ListRulesInternalServerErrorBody ListRulesInternalServerErrorBody list rules internal server error body
+//
 // swagger:model ListRulesInternalServerErrorBody
 type ListRulesInternalServerErrorBody struct {
 
@@ -19,7 +21,7 @@ type ListRulesInternalServerErrorBody struct {
 	Code int64 `json:"code,omitempty"`
 
 	// details
-	Details []map[string]interface{} `json:"details"`
+	Details []interface{} `json:"details"`
 
 	// message
 	Message string `json:"message,omitempty"`
@@ -36,6 +38,11 @@ type ListRulesInternalServerErrorBody struct {
 
 // Validate validates this list rules internal server error body
 func (m *ListRulesInternalServerErrorBody) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this list rules internal server error body based on context it is used
+func (m *ListRulesInternalServerErrorBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

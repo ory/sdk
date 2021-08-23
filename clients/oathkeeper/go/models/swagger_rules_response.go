@@ -6,15 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // SwaggerRulesResponse SwaggerRulesResponse A list of rules
+//
 // swagger:model swaggerRulesResponse
 type SwaggerRulesResponse struct {
 
@@ -38,7 +39,6 @@ func (m *SwaggerRulesResponse) Validate(formats strfmt.Registry) error {
 }
 
 func (m *SwaggerRulesResponse) validateBody(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Body) { // not required
 		return nil
 	}
@@ -50,6 +50,38 @@ func (m *SwaggerRulesResponse) validateBody(formats strfmt.Registry) error {
 
 		if m.Body[i] != nil {
 			if err := m.Body[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("Body" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this swagger rules response based on the context it is used
+func (m *SwaggerRulesResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateBody(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SwaggerRulesResponse) contextValidateBody(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Body); i++ {
+
+		if m.Body[i] != nil {
+			if err := m.Body[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Body" + "." + strconv.Itoa(i))
 				}

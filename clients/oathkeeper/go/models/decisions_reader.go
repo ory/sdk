@@ -6,5 +6,6 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 // DecisionsReader DecisionsReader DecisionsReader is a Reader for the Decisions structure.
+//
 // swagger:model DecisionsReader
 type DecisionsReader interface{}

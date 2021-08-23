@@ -1,4 +1,4 @@
-# OryHydraClient::GetWellKnownJSONWebKeysInternalServerErrorBody
+# OryOathkeeperClient::GetWellKnownJSONWebKeysInternalServerErrorBody
 
 ## Properties
 
@@ -16,7 +16,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::GetWellKnownJSONWebKeysInternalServerErrorBody.new(
+instance = OryOathkeeperClient::GetWellKnownJSONWebKeysInternalServerErrorBody.new(
   code: null,
   details: null,
   message: null,

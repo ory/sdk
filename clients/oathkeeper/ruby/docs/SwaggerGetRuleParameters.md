@@ -1,4 +1,4 @@
-# OryHydraClient::SwaggerGetRuleParameters
+# OryOathkeeperClient::SwaggerGetRuleParameters
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::SwaggerGetRuleParameters.new(
+instance = OryOathkeeperClient::SwaggerGetRuleParameters.new(
   id: null
 )
 ```

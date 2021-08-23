@@ -98,12 +98,12 @@ class DeleteRuleNotFoundBody {
   static List<DeleteRuleNotFoundBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <DeleteRuleNotFoundBody>[]
-      : json.map((v) => DeleteRuleNotFoundBody.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => DeleteRuleNotFoundBody.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, DeleteRuleNotFoundBody> mapFromJson(Map<String, dynamic> json) {
     final map = <String, DeleteRuleNotFoundBody>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = DeleteRuleNotFoundBody.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = DeleteRuleNotFoundBody.fromJson(value));
     }
     return map;
   }
@@ -111,9 +111,9 @@ class DeleteRuleNotFoundBody {
   // maps a json object with a list of DeleteRuleNotFoundBody-objects as value to a dart map
   static Map<String, List<DeleteRuleNotFoundBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<DeleteRuleNotFoundBody>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = DeleteRuleNotFoundBody.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = DeleteRuleNotFoundBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

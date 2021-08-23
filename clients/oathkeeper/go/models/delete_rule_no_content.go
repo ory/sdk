@@ -8,5 +8,6 @@ package models
 // DeleteRuleNoContent DeleteRuleNoContent DeleteRuleNoContent DeleteRuleNoContent DeleteRuleNoContent DeleteRuleNoContent DeleteRuleNoContent DeleteRuleNoContent handles this case with default header values.
 //
 // An empty response
+//
 // swagger:model DeleteRuleNoContent
 type DeleteRuleNoContent interface{}

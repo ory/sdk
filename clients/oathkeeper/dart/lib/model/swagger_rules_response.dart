@@ -48,12 +48,12 @@ class SwaggerRulesResponse {
   static List<SwaggerRulesResponse> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <SwaggerRulesResponse>[]
-      : json.map((v) => SwaggerRulesResponse.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => SwaggerRulesResponse.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, SwaggerRulesResponse> mapFromJson(Map<String, dynamic> json) {
     final map = <String, SwaggerRulesResponse>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = SwaggerRulesResponse.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = SwaggerRulesResponse.fromJson(value));
     }
     return map;
   }
@@ -61,9 +61,9 @@ class SwaggerRulesResponse {
   // maps a json object with a list of SwaggerRulesResponse-objects as value to a dart map
   static Map<String, List<SwaggerRulesResponse>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<SwaggerRulesResponse>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = SwaggerRulesResponse.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = SwaggerRulesResponse.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

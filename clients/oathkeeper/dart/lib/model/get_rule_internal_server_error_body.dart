@@ -98,12 +98,12 @@ class GetRuleInternalServerErrorBody {
   static List<GetRuleInternalServerErrorBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <GetRuleInternalServerErrorBody>[]
-      : json.map((v) => GetRuleInternalServerErrorBody.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => GetRuleInternalServerErrorBody.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, GetRuleInternalServerErrorBody> mapFromJson(Map<String, dynamic> json) {
     final map = <String, GetRuleInternalServerErrorBody>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = GetRuleInternalServerErrorBody.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = GetRuleInternalServerErrorBody.fromJson(value));
     }
     return map;
   }
@@ -111,9 +111,9 @@ class GetRuleInternalServerErrorBody {
   // maps a json object with a list of GetRuleInternalServerErrorBody-objects as value to a dart map
   static Map<String, List<GetRuleInternalServerErrorBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<GetRuleInternalServerErrorBody>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = GetRuleInternalServerErrorBody.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = GetRuleInternalServerErrorBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

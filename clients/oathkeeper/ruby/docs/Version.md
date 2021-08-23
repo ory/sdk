@@ -1,4 +1,4 @@
-# OryHydraClient::Version
+# OryOathkeeperClient::Version
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::Version.new(
+instance = OryOathkeeperClient::Version.new(
   version: null
 )
 ```

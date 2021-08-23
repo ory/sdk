@@ -1,4 +1,4 @@
-# OryHydraClient::IsInstanceAliveInternalServerError
+# OryOathkeeperClient::IsInstanceAliveInternalServerError
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::IsInstanceAliveInternalServerError.new(
+instance = OryOathkeeperClient::IsInstanceAliveInternalServerError.new(
   payload: null
 )
 ```

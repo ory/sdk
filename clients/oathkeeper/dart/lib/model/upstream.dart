@@ -68,12 +68,12 @@ class Upstream {
   static List<Upstream> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <Upstream>[]
-      : json.map((v) => Upstream.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => Upstream.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, Upstream> mapFromJson(Map<String, dynamic> json) {
     final map = <String, Upstream>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = Upstream.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = Upstream.fromJson(value));
     }
     return map;
   }
@@ -81,9 +81,9 @@ class Upstream {
   // maps a json object with a list of Upstream-objects as value to a dart map
   static Map<String, List<Upstream>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<Upstream>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = Upstream.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = Upstream.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

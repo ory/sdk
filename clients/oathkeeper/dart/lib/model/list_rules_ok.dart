@@ -48,12 +48,12 @@ class ListRulesOK {
   static List<ListRulesOK> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <ListRulesOK>[]
-      : json.map((v) => ListRulesOK.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => ListRulesOK.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, ListRulesOK> mapFromJson(Map<String, dynamic> json) {
     final map = <String, ListRulesOK>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = ListRulesOK.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = ListRulesOK.fromJson(value));
     }
     return map;
   }
@@ -61,9 +61,9 @@ class ListRulesOK {
   // maps a json object with a list of ListRulesOK-objects as value to a dart map
   static Map<String, List<ListRulesOK>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<ListRulesOK>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = ListRulesOK.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = ListRulesOK.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

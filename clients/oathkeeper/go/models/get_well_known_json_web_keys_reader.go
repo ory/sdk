@@ -6,5 +6,6 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 // GetWellKnownJSONWebKeysReader GetWellKnownJSONWebKeysReader GetWellKnownJSONWebKeysReader is a Reader for the GetWellKnownJSONWebKeys structure.
+//
 // swagger:model GetWellKnownJSONWebKeysReader
 type GetWellKnownJSONWebKeysReader interface{}

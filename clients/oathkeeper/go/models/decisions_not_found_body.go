@@ -6,12 +6,14 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // DecisionsNotFoundBody DecisionsNotFoundBody DecisionsNotFoundBody decisions not found body
+//
 // swagger:model DecisionsNotFoundBody
 type DecisionsNotFoundBody struct {
 
@@ -19,7 +21,7 @@ type DecisionsNotFoundBody struct {
 	Code int64 `json:"code,omitempty"`
 
 	// details
-	Details []map[string]interface{} `json:"details"`
+	Details []interface{} `json:"details"`
 
 	// message
 	Message string `json:"message,omitempty"`
@@ -36,6 +38,11 @@ type DecisionsNotFoundBody struct {
 
 // Validate validates this decisions not found body
 func (m *DecisionsNotFoundBody) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this decisions not found body based on context it is used
+func (m *DecisionsNotFoundBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

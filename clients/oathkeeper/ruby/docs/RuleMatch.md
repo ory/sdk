@@ -1,4 +1,4 @@
-# OryHydraClient::RuleMatch
+# OryOathkeeperClient::RuleMatch
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::RuleMatch.new(
+instance = OryOathkeeperClient::RuleMatch.new(
   methods: null,
   url: null
 )

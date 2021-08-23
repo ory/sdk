@@ -1,4 +1,4 @@
-# OryHydraClient::HealthStatus
+# OryOathkeeperClient::HealthStatus
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::HealthStatus.new(
+instance = OryOathkeeperClient::HealthStatus.new(
   status: null
 )
 ```

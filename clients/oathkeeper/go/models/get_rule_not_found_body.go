@@ -6,12 +6,14 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // GetRuleNotFoundBody GetRuleNotFoundBody GetRuleNotFoundBody get rule not found body
+//
 // swagger:model GetRuleNotFoundBody
 type GetRuleNotFoundBody struct {
 
@@ -19,7 +21,7 @@ type GetRuleNotFoundBody struct {
 	Code int64 `json:"code,omitempty"`
 
 	// details
-	Details []map[string]interface{} `json:"details"`
+	Details []interface{} `json:"details"`
 
 	// message
 	Message string `json:"message,omitempty"`
@@ -36,6 +38,11 @@ type GetRuleNotFoundBody struct {
 
 // Validate validates this get rule not found body
 func (m *GetRuleNotFoundBody) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this get rule not found body based on context it is used
+func (m *GetRuleNotFoundBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

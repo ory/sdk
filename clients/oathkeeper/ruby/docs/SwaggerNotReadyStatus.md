@@ -1,4 +1,4 @@
-# OryHydraClient::SwaggerNotReadyStatus
+# OryOathkeeperClient::SwaggerNotReadyStatus
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryHydraClient::SwaggerNotReadyStatus.new(
+instance = OryOathkeeperClient::SwaggerNotReadyStatus.new(
   errors: null
 )
 ```

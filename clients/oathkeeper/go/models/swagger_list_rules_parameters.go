@@ -6,12 +6,14 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // SwaggerListRulesParameters SwaggerListRulesParameters swagger list rules parameters
+//
 // swagger:model swaggerListRulesParameters
 type SwaggerListRulesParameters struct {
 
@@ -26,6 +28,11 @@ type SwaggerListRulesParameters struct {
 
 // Validate validates this swagger list rules parameters
 func (m *SwaggerListRulesParameters) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this swagger list rules parameters based on context it is used
+func (m *SwaggerListRulesParameters) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
