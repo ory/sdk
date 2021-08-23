@@ -100,10 +100,15 @@ RUN download_url=$(curl -s https://api.github.com/repos/go-swagger/go-swagger/re
     && curl -o /usr/local/bin/swagger -L'#' "$download_url" \
     && chmod +x /usr/local/bin/swagger
 
-RUN download_url=$(curl -s https://api.github.com/repos/cli/cli/releases/latest | \
-      jq -r '.assets[] | select(.name | contains("'"$(uname | tr '[:upper:]' '[:lower:]')"'_amd64.tar.gz")) | .browser_download_url') \
-    && curl -o /usr/local/bin/gh -L'#' "$download_url" \
-    && chmod +x /usr/local/bin/gh
+RUN td=$(mktemp) \
+    tdd=$(mktemp -d) \
+    download_url=$(curl -s https://api.github.com/repos/cli/cli/releases/latest | \
+      jq -r '.assets[] | select(.name | contains("'"$(uname | tr '[:upper:]' '[:lower:]')"'_386.tar.gz")) | .browser_download_url') \
+    && curl -o $td -L'#' "$download_url" \
+    && tar -xzf $td --strip 1 -C $tdd \
+    && mv $tdd/bin/gh /usr/local/bin/gh \
+    && chmod +x /usr/local/bin/gh \
+    && rm -rf $td $tdd
 
 ADD go.mod go.mod
 ADD go.sum go.sum

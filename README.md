@@ -10,8 +10,8 @@ You may also manually build and publish this image using:
 
 ```shell script
 docker build -t oryd/sdk:latest .
-docker tag oryd/sdk:latest oryd/sdk:v0.0.33
-docker push  oryd/sdk:v0.0.33
+docker tag oryd/sdk:latest oryd/sdk:v0.0.34
+docker push  oryd/sdk:v0.0.34
 ```
 
 ## Commit a new spec
