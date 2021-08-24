@@ -1,6 +1,6 @@
-# ${GIT_REPO}-${lang}
+# ${GIT_REPO}-${LANG}
 
-This is the official Ory ${PROJECT_UCF} SDK for ${lang}.
+This is the official Ory ${PROJECT_UCF} SDK for ${LANG}.
 
 ## Published on Package Managers
 
