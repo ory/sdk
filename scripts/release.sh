@@ -15,7 +15,7 @@ to_git() {
   mkdir -p ${gitdir} || true
   git clone "git@github.com:${repo}.git" "${gitdir}" || true
 
-  if gh repo view $repo; then
+  if [[ $(curl -sw '%{http_code}' -o /dev/null "https://github.com/${repo}") == "200" ]]; then
     mkdir -p ${gitdir} || true
     git clone "git@github.com:${repo}.git" "${gitdir}" || true
   else
