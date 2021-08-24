@@ -4,7 +4,8 @@ All SDKs provided in this repository are generated using openapi-generator.
 
 ## Publish the Docker Image
 
-To publish the SDK Builder Docker Image, create a new GitHub release with the desired version.
+To publish the SDK Builder Docker Image, create a new GitHub release with the
+desired version.
 
 You may also manually build and publish this image using:
 
@@ -16,32 +17,36 @@ docker push  oryd/sdk:v0.0.34
 
 ## Commit a new spec
 
-Place the spec in `spec/<project>/<version>.json` (e.g. `spec/hydra/v0.0.0-alpha.1.json`) and create a commit that
-references both the project and the version `git commit -a -m "Add spec for <project>:<version>"`
+Place the spec in `spec/<project>/<version>.json` (e.g.
+`spec/hydra/v0.0.0-alpha.1.json`) and create a commit that references both the
+project and the version `git commit -a -m "Add spec for <project>:<version>"`
 (e.g. `git commit -a -m "Add spec for hydra:v0.0.0-alpha.1"`).
 
-**Do not create multiple commits adding several specs in one PR,** as only the latest commit will be checked when it
-lands on master.
+**Do not create multiple commits adding several specs in one PR,** as only the
+latest commit will be checked when it lands on master.
 
-Because this is an automated process, it is highly recommended to add, commit, and push the spec file directly to master
-in one go!
+Because this is an automated process, it is highly recommended to add, commit,
+and push the spec file directly to master in one go!
 
 You can create a PR if you're making changes to the build chain.
 
 ## Upgrading OpenAPI Generator
 
-Upgrading OpenAPI Generator versions requires careful upgrading of the Java pom.xml. The file might contain new versions
-for dependencies, but if overwritten, will not work with the release pipeline.
+Upgrading OpenAPI Generator versions requires careful upgrading of the Java
+pom.xml. The file might contain new versions for dependencies, but if
+overwritten, will not work with the release pipeline.
 
-Therefore, the pom.xml file is being always overwritten from the contrib/poms directory for each project. To update any
-dependencies, the changes must thus be made there. We recommend running the openapi generator manually on the local
+Therefore, the pom.xml file is being always overwritten from the contrib/poms
+directory for each project. To update any dependencies, the changes must thus be
+made there. We recommend running the openapi generator manually on the local
 machine and diffing the changes with contents in contrib/poms.
 
 ## Publishing
 
 ## PHP - Packagist
 
-Install PHP and [composer](https://packagist.org). Then, run the install command to initialize everything:
+Install PHP and [composer](https://packagist.org). Then, run the install command
+to initialize everything:
 
 ```shell script
 export PROJECT=hydra
@@ -49,8 +54,10 @@ cd clients/${PROJECT}/php
 composer install
 ```
 
-Then, push the directory to a git remote of your choosing and also publish the tag you want to release the package as.
-You can take a look at [./scripts/publish.sh](./scripts/publish.sh) to understand how to accomplish that.
+Then, push the directory to a git remote of your choosing and also publish the
+tag you want to release the package as. You can take a look at
+[./scripts/publish.sh](./scripts/publish.sh) to understand how to accomplish
+that.
 
 ## Python - PyPi / pip
 
@@ -83,16 +90,18 @@ YOu need to set `GEM_HOST_API_KEY`
 
 ## Java - Maven Central
 
-Due to a [bug in openapi-generator](https://github.com/OpenAPITools/openapi-generator/issues/3272)
+Due to a
+[bug in openapi-generator](https://github.com/OpenAPITools/openapi-generator/issues/3272)
 that appears in Java11+, please disable javadoc generation:
 
 ```shell
 mvn <cmd> -Dmaven.javadoc.skip=true
 ```
 
-You will also need a PGP keypair that is associated with one of the owners of the `sh.ory` group and that is published
-on one of the public key servers. For more details,
-see: [https://dzone.com/articles/publish-your-artifacts-to-maven-central](https://dzone.com/articles/publish-your-artifacts-to-maven-central)
+You will also need a PGP keypair that is associated with one of the owners of
+the `sh.ory` group and that is published on one of the public key servers. For
+more details, see:
+[https://dzone.com/articles/publish-your-artifacts-to-maven-central](https://dzone.com/articles/publish-your-artifacts-to-maven-central)
 
 ```shell script
 mvn clean
