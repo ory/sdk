@@ -27,7 +27,7 @@ to_git() {
   ls -la "${gitdir}"
 
   rm "${gitdir}/README.md" || true
-  envsubst < "${config/README.md}" > "${gitdir}/README.md"
+  envsubst < "config/README.md" > "${gitdir}/README.md"
 
   (cd "${gitdir}"; git add -A || true; (git commit -a  -F- <<EOF
 autogen: regenerate OpenAPI client for ${VERSION}
