@@ -12,9 +12,6 @@ to_git() {
 
   repo="ory/${GIT_REPO}-${lang}"
 
-  mkdir -p ${gitdir} || true
-  git clone "git@github.com:${repo}.git" "${gitdir}" || true
-
   if [[ $(curl -sw '%{http_code}' -o /dev/null "https://github.com/${repo}") == "200" ]]; then
     mkdir -p ${gitdir} || true
     git clone "git@github.com:${repo}.git" "${gitdir}" || true
