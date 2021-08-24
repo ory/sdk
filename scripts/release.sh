@@ -15,8 +15,7 @@ to_git() {
   mkdir -p ${gitdir} || true
   git clone "git@github.com:${repo}.git" "${gitdir}" || true
 
-
-  if gh repo view $repo ; then
+  if gh repo view $repo; then
     mkdir -p ${gitdir} || true
     git clone "git@github.com:${repo}.git" "${gitdir}" || true
   else
@@ -29,6 +28,8 @@ to_git() {
   rm -rf "${gitdir:?}/*"
   cp -R "${srcdir}/." "${gitdir}"
   ls -la "${gitdir}"
+
+  envsubst < "${config/README.md}" > "${gitdir}/README.md"
 
   (cd "${gitdir}"; git add -A || true; (git commit -a  -F- <<EOF
 autogen: regenerate OpenAPI client for ${VERSION}
@@ -168,21 +169,16 @@ FAIL=0
 
 echo "starting"
 
-python &
-ruby &
-golang &
-php &
-typescript &
-dart &
-rust &
-java &
-dotnet &
-upstream &
-
-for job in $(jobs -p); do
-    echo "$job"
-    wait "$job" || let "FAIL+=1"
-done
+python || let "FAIL+=1"
+ruby || let "FAIL+=1"
+golang || let "FAIL+=1"
+php || let "FAIL+=1"
+typescript || let "FAIL+=1"
+dart || let "FAIL+=1"
+rust || let "FAIL+=1"
+java || let "FAIL+=1"
+dotnet || let "FAIL+=1"
+upstream || let "FAIL+=1"
 
 echo "$FAIL"
 
