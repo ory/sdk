@@ -26,6 +26,7 @@ to_git() {
   cp -R "${srcdir}/." "${gitdir}"
   ls -la "${gitdir}"
 
+  rm "${gitdir}/README.md" || true
   envsubst < "${config/README.md}" > "${gitdir}/README.md"
 
   (cd "${gitdir}"; git add -A || true; (git commit -a  -F- <<EOF
