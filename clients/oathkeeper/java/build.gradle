@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'java'
 
 group = 'sh.ory.oathkeeper'
-version = 'v0.0.0-alpha.59'
+version = 'v0.0.0-alpha.62'
 
 buildscript {
     repositories {
