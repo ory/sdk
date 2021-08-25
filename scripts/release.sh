@@ -26,8 +26,51 @@ to_git() {
   cp -R "${srcdir}/." "${gitdir}"
   ls -la "${gitdir}"
 
+  case $lang in
+    dart)
+      export INSTALL='Install via [Dart (pub)](https://pub.dev/packages/${DART_PUB_NAME})'
+      ;;
+    dotnet)
+      export INSTALL="Install via [.NET (nuget)](https://www.nuget.org/packages/${DOTNET_PACKAGE_NAME}/)"
+      ;;
+    golang)
+      export INSTALL='```
+go get https://github.com/ory/${GIT_REPO}
+```'
+      ;;
+    java)
+      export INSTALL="[Java (Maven Central)](https://search.maven.org/artifact/${JAVA_GROUP_ID}/${JAVA_ARTIFACT_ID})"
+      ;;
+    typescript)
+      export INSTALL='```
+npm i ${NPM_NAME}
+```'
+      ;;
+    php)
+      export INSTALL="[PHP (Packagist)](https://packagist.org/packages/${PHP_PACKAGE_NAME})"
+      ;;
+    python)
+      export INSTALL="[Python (pip)](https://pypi.org/project/${PYTHON_PROJECT_NAME}/)"
+      ;;
+    ruby)
+      export INSTALL="[Ruby (Gem)](https://rubygems.org/gems/${RUBY_PROJECT_NAME}/)"
+      ;;
+    rust)
+      export INSTALL="[Rust (Crate)](https://crates.io/crates/${RUST_PACKAGE_NAME}/)"
+      ;;
+    PATTERN_N)
+      STATEMENTS
+      ;;
+
+    *)
+      export INSTALL="package repository is missing, please open an issue about this."
+      ;;
+  esac
+
   rm "${gitdir}/README.md" || true
-  LANG=$lang envsubst < "config/README.md" > "${gitdir}/README.md"
+  LANG=$lang \
+    GIT_REPO=${repo}
+    envsubst < "config/README.md" > "${gitdir}/README.md"
 
   (cd "${gitdir}"; git add -A || true; (git commit -a  -F- <<EOF
 autogen: regenerate OpenAPI client for ${VERSION}

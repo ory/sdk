@@ -2,19 +2,9 @@
 
 This is the official Ory ${PROJECT_UCF} SDK for ${LANG}.
 
-## Published on Package Managers
+## Installation
 
-This SDK is published for several popular languages on their respective package repositories:
-
-- [Dart (pub)](https://pub.dev/packages/${DART_PUB_NAME})
-- [.NET (nuget)](https://www.nuget.org/packages/${DOTNET_PACKAGE_NAME}/)
-- [Go](https://github.com/ory/${GIT_REPO})
-- [Java (Maven Central)](https://search.maven.org/artifact/${JAVA_GROUP_ID}/${JAVA_ARTIFACT_ID})
-- [JavaScript (npm)](https://www.npmjs.com/package/${NPM_NAME})
-- [PHP (Packagist)](https://packagist.org/packages/${PHP_PACKAGE_NAME})
-- [Python (pip)](https://pypi.org/project/${PYTHON_PROJECT_NAME}/)
-- [Ruby (Gem)](https://rubygems.org/gems/${RUBY_PROJECT_NAME}/)
-- [Rust (Crate)](https://crates.io/crates/${RUST_PACKAGE_NAME}/)
+${INSTALL}
 
 ## Generation
 
