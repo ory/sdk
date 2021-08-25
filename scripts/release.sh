@@ -69,7 +69,7 @@ npm i ${NPM_NAME}
 
   rm "${gitdir}/README.md" || true
   LANG=$lang \
-    GIT_REPO=${repo}
+    GIT_REPO=${repo} \
     envsubst < "config/README.md" > "${gitdir}/README.md"
 
   (cd "${gitdir}"; git add -A || true; (git commit -a  -F- <<EOF
