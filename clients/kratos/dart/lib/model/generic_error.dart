@@ -14,7 +14,7 @@ class GenericError {
   GenericError({
     this.code,
     this.debug,
-    this.details = const {},
+    this.details,
     @required this.message,
     this.reason,
     this.request,
@@ -28,7 +28,7 @@ class GenericError {
   String debug;
 
   /// Further error details
-  Map<String, Object> details;
+  Object details;
 
   /// Error message  The error's message.
   String message;
@@ -96,7 +96,7 @@ class GenericError {
     : GenericError(
         code: json[r'code'],
         debug: json[r'debug'],
-            details: json[r'details']
+        details: json[r'details'],
         message: json[r'message'],
         reason: json[r'reason'],
         request: json[r'request'],

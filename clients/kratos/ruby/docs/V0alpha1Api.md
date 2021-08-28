@@ -53,8 +53,10 @@ require 'time'
 require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # Configure API key authorization: oryAccessToken
+  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::V0alpha1Api.new
@@ -190,8 +192,10 @@ require 'time'
 require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # Configure API key authorization: oryAccessToken
+  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::V0alpha1Api.new
@@ -258,8 +262,10 @@ require 'time'
 require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # Configure API key authorization: oryAccessToken
+  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::V0alpha1Api.new
@@ -327,8 +333,10 @@ require 'time'
 require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # Configure API key authorization: oryAccessToken
+  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::V0alpha1Api.new
@@ -400,8 +408,10 @@ require 'time'
 require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # Configure API key authorization: oryAccessToken
+  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::V0alpha1Api.new

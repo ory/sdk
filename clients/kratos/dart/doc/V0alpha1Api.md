@@ -53,12 +53,10 @@ This endpoint creates an identity. It is NOT possible to set an identity's crede
 ### Example 
 ```dart
 import 'package:ory_kratos_client/api.dart';
-// TODO Configure HTTP Bearer authorization: oryAccessToken
-// Case 1. Use String Token
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
-// Case 2. Use Function which generate token.
-// String yourTokenGeneratorFunction() { ... }
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+// TODO Configure API key authorization: oryAccessToken
+//defaultApiClient.getAuthentication<ApiKeyAuth>('oryAccessToken').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('oryAccessToken').apiKeyPrefix = 'Bearer';
 
 final api_instance = V0alpha1Api();
 final adminCreateIdentityBody = AdminCreateIdentityBody(); // AdminCreateIdentityBody | 
@@ -145,12 +143,10 @@ Calling this endpoint irrecoverably and permanently deletes the identity given i
 ### Example 
 ```dart
 import 'package:ory_kratos_client/api.dart';
-// TODO Configure HTTP Bearer authorization: oryAccessToken
-// Case 1. Use String Token
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
-// Case 2. Use Function which generate token.
-// String yourTokenGeneratorFunction() { ... }
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+// TODO Configure API key authorization: oryAccessToken
+//defaultApiClient.getAuthentication<ApiKeyAuth>('oryAccessToken').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('oryAccessToken').apiKeyPrefix = 'Bearer';
 
 final api_instance = V0alpha1Api();
 final id = id_example; // String | ID is the identity's ID.
@@ -193,12 +189,10 @@ Learn how identities work in [Ory Kratos' User And Identity Model Documentation]
 ### Example 
 ```dart
 import 'package:ory_kratos_client/api.dart';
-// TODO Configure HTTP Bearer authorization: oryAccessToken
-// Case 1. Use String Token
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
-// Case 2. Use Function which generate token.
-// String yourTokenGeneratorFunction() { ... }
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+// TODO Configure API key authorization: oryAccessToken
+//defaultApiClient.getAuthentication<ApiKeyAuth>('oryAccessToken').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('oryAccessToken').apiKeyPrefix = 'Bearer';
 
 final api_instance = V0alpha1Api();
 final id = id_example; // String | ID must be set to the ID of identity you want to get
@@ -242,12 +236,10 @@ Lists all identities. Does not support search at the moment.  Learn how identiti
 ### Example 
 ```dart
 import 'package:ory_kratos_client/api.dart';
-// TODO Configure HTTP Bearer authorization: oryAccessToken
-// Case 1. Use String Token
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
-// Case 2. Use Function which generate token.
-// String yourTokenGeneratorFunction() { ... }
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+// TODO Configure API key authorization: oryAccessToken
+//defaultApiClient.getAuthentication<ApiKeyAuth>('oryAccessToken').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('oryAccessToken').apiKeyPrefix = 'Bearer';
 
 final api_instance = V0alpha1Api();
 final perPage = 789; // int | Items per Page  This is the number of items per page.
@@ -293,12 +285,10 @@ This endpoint updates an identity. It is NOT possible to set an identity's crede
 ### Example 
 ```dart
 import 'package:ory_kratos_client/api.dart';
-// TODO Configure HTTP Bearer authorization: oryAccessToken
-// Case 1. Use String Token
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
-// Case 2. Use Function which generate token.
-// String yourTokenGeneratorFunction() { ... }
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+// TODO Configure API key authorization: oryAccessToken
+//defaultApiClient.getAuthentication<ApiKeyAuth>('oryAccessToken').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('oryAccessToken').apiKeyPrefix = 'Bearer';
 
 final api_instance = V0alpha1Api();
 final id = id_example; // String | ID must be set to the ID of identity you want to update

@@ -11,7 +11,7 @@ info:
   license:
     name: Apache 2.0
   title: Ory Kratos API
-  version: v0.7.1-alpha.2
+  version: v0.7.3-alpha.1
 servers:
 - url: /
 paths:
@@ -2661,7 +2661,7 @@ components:
           example: SQL field "foo" is not a bool.
           type: string
         details:
-          additionalProperties: true
+          additionalProperties: false
           description: Further error details
           type: object
         message:
@@ -4596,12 +4596,8 @@ components:
       type: object
   securitySchemes:
     oryAccessToken:
-      description: |
-        This security mechanism is only applicable when using the [Ory Platform](https://console.ory.sh) by
-        creating an [Ory Personal Access Token](https://www.ory.sh/docs/guides/create-personal-access-token).
-        If you are using the open source version, this security mechanism
-        will not work out of the box as you will need to add a security mechanism yourself.
-      scheme: bearer
-      type: http
+      in: header
+      name: Authorization
+      type: apiKey
 x-forwarded-proto: string
 x-request-id: string

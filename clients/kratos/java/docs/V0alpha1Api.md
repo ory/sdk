@@ -61,9 +61,11 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure API key authorization: oryAccessToken
+    ApiKeyAuth oryAccessToken = (ApiKeyAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //oryAccessToken.setApiKeyPrefix("Token");
 
     V0alpha1Api apiInstance = new V0alpha1Api(defaultClient);
     AdminCreateIdentityBody adminCreateIdentityBody = new AdminCreateIdentityBody(); // AdminCreateIdentityBody | 
@@ -196,9 +198,11 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure API key authorization: oryAccessToken
+    ApiKeyAuth oryAccessToken = (ApiKeyAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //oryAccessToken.setApiKeyPrefix("Token");
 
     V0alpha1Api apiInstance = new V0alpha1Api(defaultClient);
     String id = "id_example"; // String | ID is the identity's ID.
@@ -264,9 +268,11 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure API key authorization: oryAccessToken
+    ApiKeyAuth oryAccessToken = (ApiKeyAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //oryAccessToken.setApiKeyPrefix("Token");
 
     V0alpha1Api apiInstance = new V0alpha1Api(defaultClient);
     String id = "id_example"; // String | ID must be set to the ID of identity you want to get
@@ -333,9 +339,11 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure API key authorization: oryAccessToken
+    ApiKeyAuth oryAccessToken = (ApiKeyAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //oryAccessToken.setApiKeyPrefix("Token");
 
     V0alpha1Api apiInstance = new V0alpha1Api(defaultClient);
     Long perPage = 100L; // Long | Items per Page  This is the number of items per page.
@@ -403,9 +411,11 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure API key authorization: oryAccessToken
+    ApiKeyAuth oryAccessToken = (ApiKeyAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //oryAccessToken.setApiKeyPrefix("Token");
 
     V0alpha1Api apiInstance = new V0alpha1Api(defaultClient);
     String id = "id_example"; // String | ID must be set to the ID of identity you want to update
