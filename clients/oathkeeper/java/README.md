@@ -1,8 +1,8 @@
 # oathkeeper-client
 
 ORY Oathkeeper
-- API version: v0.0.0-alpha.62
-  - Build date: 2021-08-25T14:21:46.812111487Z[Etc/UTC]
+- API version: v0.38.15-beta.1
+  - Build date: 2021-08-28T18:48:50.365673766Z[Etc/UTC]
 
 ORY Oathkeeper is a reverse proxy that checks the HTTP Authorization for validity against a set of rules. This service uses Hydra to validate access tokens and policies.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.oathkeeper</groupId>
   <artifactId>oathkeeper-client</artifactId>
-  <version>v0.0.0-alpha.62</version>
+  <version>v0.38.15-beta.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "sh.ory.oathkeeper:oathkeeper-client:v0.0.0-alpha.62"
+compile "sh.ory.oathkeeper:oathkeeper-client:v0.38.15-beta.1"
 ```
 
 ### Others
@@ -64,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/oathkeeper-client-v0.0.0-alpha.62.jar`
+* `target/oathkeeper-client-v0.38.15-beta.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -117,95 +117,14 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [CreateRuleCreated](docs/CreateRuleCreated.md)
- - [CreateRuleForbidden](docs/CreateRuleForbidden.md)
- - [CreateRuleForbiddenBody](docs/CreateRuleForbiddenBody.md)
- - [CreateRuleInternalServerError](docs/CreateRuleInternalServerError.md)
- - [CreateRuleInternalServerErrorBody](docs/CreateRuleInternalServerErrorBody.md)
- - [CreateRuleUnauthorized](docs/CreateRuleUnauthorized.md)
- - [CreateRuleUnauthorizedBody](docs/CreateRuleUnauthorizedBody.md)
- - [DecisionsForbidden](docs/DecisionsForbidden.md)
- - [DecisionsForbiddenBody](docs/DecisionsForbiddenBody.md)
- - [DecisionsInternalServerError](docs/DecisionsInternalServerError.md)
- - [DecisionsInternalServerErrorBody](docs/DecisionsInternalServerErrorBody.md)
- - [DecisionsNotFound](docs/DecisionsNotFound.md)
- - [DecisionsNotFoundBody](docs/DecisionsNotFoundBody.md)
- - [DecisionsUnauthorized](docs/DecisionsUnauthorized.md)
- - [DecisionsUnauthorizedBody](docs/DecisionsUnauthorizedBody.md)
- - [DeleteRuleForbidden](docs/DeleteRuleForbidden.md)
- - [DeleteRuleForbiddenBody](docs/DeleteRuleForbiddenBody.md)
- - [DeleteRuleInternalServerError](docs/DeleteRuleInternalServerError.md)
- - [DeleteRuleInternalServerErrorBody](docs/DeleteRuleInternalServerErrorBody.md)
- - [DeleteRuleNotFound](docs/DeleteRuleNotFound.md)
- - [DeleteRuleNotFoundBody](docs/DeleteRuleNotFoundBody.md)
- - [DeleteRuleUnauthorized](docs/DeleteRuleUnauthorized.md)
- - [DeleteRuleUnauthorizedBody](docs/DeleteRuleUnauthorizedBody.md)
- - [GetRuleForbidden](docs/GetRuleForbidden.md)
- - [GetRuleForbiddenBody](docs/GetRuleForbiddenBody.md)
- - [GetRuleInternalServerError](docs/GetRuleInternalServerError.md)
- - [GetRuleInternalServerErrorBody](docs/GetRuleInternalServerErrorBody.md)
- - [GetRuleNotFound](docs/GetRuleNotFound.md)
- - [GetRuleNotFoundBody](docs/GetRuleNotFoundBody.md)
- - [GetRuleOK](docs/GetRuleOK.md)
- - [GetRuleUnauthorized](docs/GetRuleUnauthorized.md)
- - [GetRuleUnauthorizedBody](docs/GetRuleUnauthorizedBody.md)
- - [GetWellKnownForbidden](docs/GetWellKnownForbidden.md)
- - [GetWellKnownForbiddenBody](docs/GetWellKnownForbiddenBody.md)
- - [GetWellKnownJSONWebKeysInternalServerError](docs/GetWellKnownJSONWebKeysInternalServerError.md)
- - [GetWellKnownJSONWebKeysInternalServerErrorBody](docs/GetWellKnownJSONWebKeysInternalServerErrorBody.md)
- - [GetWellKnownJSONWebKeysOK](docs/GetWellKnownJSONWebKeysOK.md)
- - [GetWellKnownOK](docs/GetWellKnownOK.md)
- - [GetWellKnownUnauthorized](docs/GetWellKnownUnauthorized.md)
- - [GetWellKnownUnauthorizedBody](docs/GetWellKnownUnauthorizedBody.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
  - [HealthStatus](docs/HealthStatus.md)
  - [InlineResponse500](docs/InlineResponse500.md)
- - [IsInstanceAliveInternalServerError](docs/IsInstanceAliveInternalServerError.md)
- - [IsInstanceAliveInternalServerErrorBody](docs/IsInstanceAliveInternalServerErrorBody.md)
- - [IsInstanceAliveOK](docs/IsInstanceAliveOK.md)
  - [JsonWebKey](docs/JsonWebKey.md)
  - [JsonWebKeySet](docs/JsonWebKeySet.md)
- - [JudgeForbidden](docs/JudgeForbidden.md)
- - [JudgeForbiddenBody](docs/JudgeForbiddenBody.md)
- - [JudgeInternalServerError](docs/JudgeInternalServerError.md)
- - [JudgeInternalServerErrorBody](docs/JudgeInternalServerErrorBody.md)
- - [JudgeNotFound](docs/JudgeNotFound.md)
- - [JudgeNotFoundBody](docs/JudgeNotFoundBody.md)
- - [JudgeUnauthorized](docs/JudgeUnauthorized.md)
- - [JudgeUnauthorizedBody](docs/JudgeUnauthorizedBody.md)
- - [ListRulesForbidden](docs/ListRulesForbidden.md)
- - [ListRulesForbiddenBody](docs/ListRulesForbiddenBody.md)
- - [ListRulesInternalServerError](docs/ListRulesInternalServerError.md)
- - [ListRulesInternalServerErrorBody](docs/ListRulesInternalServerErrorBody.md)
- - [ListRulesOK](docs/ListRulesOK.md)
- - [ListRulesUnauthorized](docs/ListRulesUnauthorized.md)
- - [ListRulesUnauthorizedBody](docs/ListRulesUnauthorizedBody.md)
  - [Rule](docs/Rule.md)
  - [RuleHandler](docs/RuleHandler.md)
  - [RuleMatch](docs/RuleMatch.md)
- - [SwaggerCreateRuleParameters](docs/SwaggerCreateRuleParameters.md)
- - [SwaggerGetRuleParameters](docs/SwaggerGetRuleParameters.md)
- - [SwaggerHealthStatus](docs/SwaggerHealthStatus.md)
- - [SwaggerJSONWebKey](docs/SwaggerJSONWebKey.md)
- - [SwaggerJSONWebKeySet](docs/SwaggerJSONWebKeySet.md)
- - [SwaggerListRulesParameters](docs/SwaggerListRulesParameters.md)
- - [SwaggerNotReadyStatus](docs/SwaggerNotReadyStatus.md)
- - [SwaggerRule](docs/SwaggerRule.md)
- - [SwaggerRuleHandler](docs/SwaggerRuleHandler.md)
- - [SwaggerRuleMatch](docs/SwaggerRuleMatch.md)
- - [SwaggerRuleResponse](docs/SwaggerRuleResponse.md)
- - [SwaggerRulesResponse](docs/SwaggerRulesResponse.md)
- - [SwaggerUpdateRuleParameters](docs/SwaggerUpdateRuleParameters.md)
- - [SwaggerVersion](docs/SwaggerVersion.md)
- - [UpdateRuleForbidden](docs/UpdateRuleForbidden.md)
- - [UpdateRuleForbiddenBody](docs/UpdateRuleForbiddenBody.md)
- - [UpdateRuleInternalServerError](docs/UpdateRuleInternalServerError.md)
- - [UpdateRuleInternalServerErrorBody](docs/UpdateRuleInternalServerErrorBody.md)
- - [UpdateRuleNotFound](docs/UpdateRuleNotFound.md)
- - [UpdateRuleNotFoundBody](docs/UpdateRuleNotFoundBody.md)
- - [UpdateRuleOK](docs/UpdateRuleOK.md)
- - [UpdateRuleUnauthorized](docs/UpdateRuleUnauthorized.md)
- - [UpdateRuleUnauthorizedBody](docs/UpdateRuleUnauthorizedBody.md)
  - [Upstream](docs/Upstream.md)
  - [Version](docs/Version.md)
 

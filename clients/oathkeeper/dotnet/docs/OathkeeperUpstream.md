@@ -1,5 +1,4 @@
 # Ory.Oathkeeper.Client.Model.OathkeeperUpstream
-Upstream Upstream Upstream Upstream Upstream Upstream Upstream upstream
 
 ## Properties
 
