@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **aud** | **[str]** | Audience contains a list of the token&#39;s intended audiences. | [optional] 
 **client_id** | **str** | ID is aclient identifier for the OAuth 2.0 client that requested this token. | [optional] 
 **exp** | **int** | Expires at is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token will expire. | [optional] 
-**ext** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Extra is arbitrary data set by the session. | [optional] 
+**ext** | **bool, date, datetime, dict, float, int, list, str, none_type** | Extra is arbitrary data set by the session. | [optional] 
 **iat** | **int** | Issued at is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token was originally issued. | [optional] 
 **iss** | **str** | IssuerURL is a string representing the issuer of this token | [optional] 
 **nbf** | **int** | NotBefore is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token is not to be used before. | [optional] 
@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **token_type** | **str** | TokenType is the introspected token&#39;s type, typically &#x60;Bearer&#x60;. | [optional] 
 **token_use** | **str** | TokenUse is the introspected token&#39;s use, for example &#x60;access_token&#x60; or &#x60;refresh_token&#x60;. | [optional] 
 **username** | **str** | Username is a human-readable identifier for the resource owner who authorized this token. | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -48,12 +48,12 @@ class JSONWebKeySet {
   static List<JSONWebKeySet> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <JSONWebKeySet>[]
-      : json.map((v) => JSONWebKeySet.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => JSONWebKeySet.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, JSONWebKeySet> mapFromJson(Map<String, dynamic> json) {
     final map = <String, JSONWebKeySet>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = JSONWebKeySet.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = JSONWebKeySet.fromJson(value));
     }
     return map;
   }
@@ -61,9 +61,9 @@ class JSONWebKeySet {
   // maps a json object with a list of JSONWebKeySet-objects as value to a dart map
   static Map<String, List<JSONWebKeySet>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<JSONWebKeySet>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = JSONWebKeySet.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = JSONWebKeySet.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

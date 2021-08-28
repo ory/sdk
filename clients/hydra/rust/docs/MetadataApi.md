@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**prometheus**](MetadataApi.md#prometheus) | **get** /metrics/prometheus | Get snapshot metrics from the service. If you're using k8s, you can then add annotations to your deployment like so:
+[**prometheus**](MetadataApi.md#prometheus) | **GET** /metrics/prometheus | Get snapshot metrics from the service. If you're using k8s, you can then add annotations to your deployment like so:
 
 
 

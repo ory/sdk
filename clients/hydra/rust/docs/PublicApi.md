@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**disconnect_user**](PublicApi.md#disconnect_user) | **get** /oauth2/sessions/logout | OpenID Connect Front-Backchannel Enabled Logout
-[**discover_open_id_configuration**](PublicApi.md#discover_open_id_configuration) | **get** /.well-known/openid-configuration | OpenID Connect Discovery
-[**is_instance_ready**](PublicApi.md#is_instance_ready) | **get** /health/ready | Check Readiness Status
-[**oauth2_token**](PublicApi.md#oauth2_token) | **post** /oauth2/token | The OAuth 2.0 Token Endpoint
-[**oauth_auth**](PublicApi.md#oauth_auth) | **get** /oauth2/auth | The OAuth 2.0 Authorize Endpoint
-[**revoke_o_auth2_token**](PublicApi.md#revoke_o_auth2_token) | **post** /oauth2/revoke | Revoke OAuth2 Tokens
-[**userinfo**](PublicApi.md#userinfo) | **get** /userinfo | OpenID Connect Userinfo
-[**well_known**](PublicApi.md#well_known) | **get** /.well-known/jwks.json | JSON Web Keys Discovery
+[**disconnect_user**](PublicApi.md#disconnect_user) | **GET** /oauth2/sessions/logout | OpenID Connect Front-Backchannel Enabled Logout
+[**discover_open_id_configuration**](PublicApi.md#discover_open_id_configuration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
+[**is_instance_ready**](PublicApi.md#is_instance_ready) | **GET** /health/ready | Check Readiness Status
+[**oauth2_token**](PublicApi.md#oauth2_token) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
+[**oauth_auth**](PublicApi.md#oauth_auth) | **GET** /oauth2/auth | The OAuth 2.0 Authorize Endpoint
+[**revoke_o_auth2_token**](PublicApi.md#revoke_o_auth2_token) | **POST** /oauth2/revoke | Revoke OAuth2 Tokens
+[**userinfo**](PublicApi.md#userinfo) | **GET** /userinfo | OpenID Connect Userinfo
+[**well_known**](PublicApi.md#well_known) | **GET** /.well-known/jwks.json | JSON Web Keys Discovery
 
 
 

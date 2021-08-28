@@ -74,12 +74,12 @@ class PatchDocument {
   static List<PatchDocument> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <PatchDocument>[]
-      : json.map((v) => PatchDocument.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => PatchDocument.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, PatchDocument> mapFromJson(Map<String, dynamic> json) {
     final map = <String, PatchDocument>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = PatchDocument.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = PatchDocument.fromJson(value));
     }
     return map;
   }
@@ -87,9 +87,9 @@ class PatchDocument {
   // maps a json object with a list of PatchDocument-objects as value to a dart map
   static Map<String, List<PatchDocument>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<PatchDocument>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = PatchDocument.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = PatchDocument.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

@@ -62,12 +62,12 @@ class JsonWebKeySetGeneratorRequest {
   static List<JsonWebKeySetGeneratorRequest> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <JsonWebKeySetGeneratorRequest>[]
-      : json.map((v) => JsonWebKeySetGeneratorRequest.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => JsonWebKeySetGeneratorRequest.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, JsonWebKeySetGeneratorRequest> mapFromJson(Map<String, dynamic> json) {
     final map = <String, JsonWebKeySetGeneratorRequest>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = JsonWebKeySetGeneratorRequest.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = JsonWebKeySetGeneratorRequest.fromJson(value));
     }
     return map;
   }
@@ -75,9 +75,9 @@ class JsonWebKeySetGeneratorRequest {
   // maps a json object with a list of JsonWebKeySetGeneratorRequest-objects as value to a dart map
   static Map<String, List<JsonWebKeySetGeneratorRequest>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<JsonWebKeySetGeneratorRequest>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = JsonWebKeySetGeneratorRequest.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = JsonWebKeySetGeneratorRequest.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

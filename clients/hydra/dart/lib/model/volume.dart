@@ -119,12 +119,12 @@ class Volume {
   static List<Volume> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <Volume>[]
-      : json.map((v) => Volume.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => Volume.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, Volume> mapFromJson(Map<String, dynamic> json) {
     final map = <String, Volume>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = Volume.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = Volume.fromJson(value));
     }
     return map;
   }
@@ -132,9 +132,9 @@ class Volume {
   // maps a json object with a list of Volume-objects as value to a dart map
   static Map<String, List<Volume>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<Volume>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = Volume.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = Volume.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

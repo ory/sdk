@@ -4,36 +4,36 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**accept_consent_request**](AdminApi.md#accept_consent_request) | **put** /oauth2/auth/requests/consent/accept | Accept a Consent Request
-[**accept_login_request**](AdminApi.md#accept_login_request) | **put** /oauth2/auth/requests/login/accept | Accept a Login Request
-[**accept_logout_request**](AdminApi.md#accept_logout_request) | **put** /oauth2/auth/requests/logout/accept | Accept a Logout Request
-[**create_json_web_key_set**](AdminApi.md#create_json_web_key_set) | **post** /keys/{set} | Generate a New JSON Web Key
-[**create_o_auth2_client**](AdminApi.md#create_o_auth2_client) | **post** /clients | Create an OAuth 2.0 Client
-[**delete_json_web_key**](AdminApi.md#delete_json_web_key) | **delete** /keys/{set}/{kid} | Delete a JSON Web Key
-[**delete_json_web_key_set**](AdminApi.md#delete_json_web_key_set) | **delete** /keys/{set} | Delete a JSON Web Key Set
-[**delete_o_auth2_client**](AdminApi.md#delete_o_auth2_client) | **delete** /clients/{id} | Deletes an OAuth 2.0 Client
-[**delete_o_auth2_token**](AdminApi.md#delete_o_auth2_token) | **delete** /oauth2/tokens | Delete OAuth2 Access Tokens from a Client
-[**flush_inactive_o_auth2_tokens**](AdminApi.md#flush_inactive_o_auth2_tokens) | **post** /oauth2/flush | Flush Expired OAuth2 Access Tokens
-[**get_consent_request**](AdminApi.md#get_consent_request) | **get** /oauth2/auth/requests/consent | Get Consent Request Information
-[**get_json_web_key**](AdminApi.md#get_json_web_key) | **get** /keys/{set}/{kid} | Fetch a JSON Web Key
-[**get_json_web_key_set**](AdminApi.md#get_json_web_key_set) | **get** /keys/{set} | Retrieve a JSON Web Key Set
-[**get_login_request**](AdminApi.md#get_login_request) | **get** /oauth2/auth/requests/login | Get a Login Request
-[**get_logout_request**](AdminApi.md#get_logout_request) | **get** /oauth2/auth/requests/logout | Get a Logout Request
-[**get_o_auth2_client**](AdminApi.md#get_o_auth2_client) | **get** /clients/{id} | Get an OAuth 2.0 Client.
-[**get_version**](AdminApi.md#get_version) | **get** /version | Get Service Version
-[**introspect_o_auth2_token**](AdminApi.md#introspect_o_auth2_token) | **post** /oauth2/introspect | Introspect OAuth2 Tokens
-[**is_instance_alive**](AdminApi.md#is_instance_alive) | **get** /health/alive | Check Alive Status
-[**list_o_auth2_clients**](AdminApi.md#list_o_auth2_clients) | **get** /clients | List OAuth 2.0 Clients
-[**list_subject_consent_sessions**](AdminApi.md#list_subject_consent_sessions) | **get** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject
-[**patch_o_auth2_client**](AdminApi.md#patch_o_auth2_client) | **patch** /clients/{id} | Patch an OAuth 2.0 Client
-[**reject_consent_request**](AdminApi.md#reject_consent_request) | **put** /oauth2/auth/requests/consent/reject | Reject a Consent Request
-[**reject_login_request**](AdminApi.md#reject_login_request) | **put** /oauth2/auth/requests/login/reject | Reject a Login Request
-[**reject_logout_request**](AdminApi.md#reject_logout_request) | **put** /oauth2/auth/requests/logout/reject | Reject a Logout Request
-[**revoke_authentication_session**](AdminApi.md#revoke_authentication_session) | **delete** /oauth2/auth/sessions/login | Invalidates All Login Sessions of a Certain User Invalidates a Subject's Authentication Session
-[**revoke_consent_sessions**](AdminApi.md#revoke_consent_sessions) | **delete** /oauth2/auth/sessions/consent | Revokes Consent Sessions of a Subject for a Specific OAuth 2.0 Client
-[**update_json_web_key**](AdminApi.md#update_json_web_key) | **put** /keys/{set}/{kid} | Update a JSON Web Key
-[**update_json_web_key_set**](AdminApi.md#update_json_web_key_set) | **put** /keys/{set} | Update a JSON Web Key Set
-[**update_o_auth2_client**](AdminApi.md#update_o_auth2_client) | **put** /clients/{id} | Update an OAuth 2.0 Client
+[**accept_consent_request**](AdminApi.md#accept_consent_request) | **PUT** /oauth2/auth/requests/consent/accept | Accept a Consent Request
+[**accept_login_request**](AdminApi.md#accept_login_request) | **PUT** /oauth2/auth/requests/login/accept | Accept a Login Request
+[**accept_logout_request**](AdminApi.md#accept_logout_request) | **PUT** /oauth2/auth/requests/logout/accept | Accept a Logout Request
+[**create_json_web_key_set**](AdminApi.md#create_json_web_key_set) | **POST** /keys/{set} | Generate a New JSON Web Key
+[**create_o_auth2_client**](AdminApi.md#create_o_auth2_client) | **POST** /clients | Create an OAuth 2.0 Client
+[**delete_json_web_key**](AdminApi.md#delete_json_web_key) | **DELETE** /keys/{set}/{kid} | Delete a JSON Web Key
+[**delete_json_web_key_set**](AdminApi.md#delete_json_web_key_set) | **DELETE** /keys/{set} | Delete a JSON Web Key Set
+[**delete_o_auth2_client**](AdminApi.md#delete_o_auth2_client) | **DELETE** /clients/{id} | Deletes an OAuth 2.0 Client
+[**delete_o_auth2_token**](AdminApi.md#delete_o_auth2_token) | **DELETE** /oauth2/tokens | Delete OAuth2 Access Tokens from a Client
+[**flush_inactive_o_auth2_tokens**](AdminApi.md#flush_inactive_o_auth2_tokens) | **POST** /oauth2/flush | Flush Expired OAuth2 Access Tokens
+[**get_consent_request**](AdminApi.md#get_consent_request) | **GET** /oauth2/auth/requests/consent | Get Consent Request Information
+[**get_json_web_key**](AdminApi.md#get_json_web_key) | **GET** /keys/{set}/{kid} | Fetch a JSON Web Key
+[**get_json_web_key_set**](AdminApi.md#get_json_web_key_set) | **GET** /keys/{set} | Retrieve a JSON Web Key Set
+[**get_login_request**](AdminApi.md#get_login_request) | **GET** /oauth2/auth/requests/login | Get a Login Request
+[**get_logout_request**](AdminApi.md#get_logout_request) | **GET** /oauth2/auth/requests/logout | Get a Logout Request
+[**get_o_auth2_client**](AdminApi.md#get_o_auth2_client) | **GET** /clients/{id} | Get an OAuth 2.0 Client.
+[**get_version**](AdminApi.md#get_version) | **GET** /version | Get Service Version
+[**introspect_o_auth2_token**](AdminApi.md#introspect_o_auth2_token) | **POST** /oauth2/introspect | Introspect OAuth2 Tokens
+[**is_instance_alive**](AdminApi.md#is_instance_alive) | **GET** /health/alive | Check Alive Status
+[**list_o_auth2_clients**](AdminApi.md#list_o_auth2_clients) | **GET** /clients | List OAuth 2.0 Clients
+[**list_subject_consent_sessions**](AdminApi.md#list_subject_consent_sessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject
+[**patch_o_auth2_client**](AdminApi.md#patch_o_auth2_client) | **PATCH** /clients/{id} | Patch an OAuth 2.0 Client
+[**reject_consent_request**](AdminApi.md#reject_consent_request) | **PUT** /oauth2/auth/requests/consent/reject | Reject a Consent Request
+[**reject_login_request**](AdminApi.md#reject_login_request) | **PUT** /oauth2/auth/requests/login/reject | Reject a Login Request
+[**reject_logout_request**](AdminApi.md#reject_logout_request) | **PUT** /oauth2/auth/requests/logout/reject | Reject a Logout Request
+[**revoke_authentication_session**](AdminApi.md#revoke_authentication_session) | **DELETE** /oauth2/auth/sessions/login | Invalidates All Login Sessions of a Certain User Invalidates a Subject's Authentication Session
+[**revoke_consent_sessions**](AdminApi.md#revoke_consent_sessions) | **DELETE** /oauth2/auth/sessions/consent | Revokes Consent Sessions of a Subject for a Specific OAuth 2.0 Client
+[**update_json_web_key**](AdminApi.md#update_json_web_key) | **PUT** /keys/{set}/{kid} | Update a JSON Web Key
+[**update_json_web_key_set**](AdminApi.md#update_json_web_key_set) | **PUT** /keys/{set} | Update a JSON Web Key Set
+[**update_o_auth2_client**](AdminApi.md#update_o_auth2_client) | **PUT** /clients/{id} | Update an OAuth 2.0 Client
 
 
 

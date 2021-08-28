@@ -50,12 +50,12 @@ class FlushInactiveOAuth2TokensRequest {
   static List<FlushInactiveOAuth2TokensRequest> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <FlushInactiveOAuth2TokensRequest>[]
-      : json.map((v) => FlushInactiveOAuth2TokensRequest.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => FlushInactiveOAuth2TokensRequest.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, FlushInactiveOAuth2TokensRequest> mapFromJson(Map<String, dynamic> json) {
     final map = <String, FlushInactiveOAuth2TokensRequest>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = FlushInactiveOAuth2TokensRequest.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = FlushInactiveOAuth2TokensRequest.fromJson(value));
     }
     return map;
   }
@@ -63,9 +63,9 @@ class FlushInactiveOAuth2TokensRequest {
   // maps a json object with a list of FlushInactiveOAuth2TokensRequest-objects as value to a dart map
   static Map<String, List<FlushInactiveOAuth2TokensRequest>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<FlushInactiveOAuth2TokensRequest>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = FlushInactiveOAuth2TokensRequest.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = FlushInactiveOAuth2TokensRequest.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

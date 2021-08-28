@@ -98,8 +98,6 @@ lib/ory-hydra-client/models/volume_usage_data.rb
 lib/ory-hydra-client/models/well_known.rb
 lib/ory-hydra-client/version.rb
 ory-hydra-client.gemspec
-spec/api/metadata_api_spec.rb
 spec/api_client_spec.rb
 spec/configuration_spec.rb
-spec/models/json_error_spec.rb
 spec/spec_helper.rb

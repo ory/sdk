@@ -1,6 +1,6 @@
 {
   "name": "@ory/hydra-client",
-  "version": "v1.10.5",
+  "version": "v1.10.6",
   "description": "OpenAPI client for @ory/hydra-client",
   "author": "ORY GmbH",
   "keywords": [

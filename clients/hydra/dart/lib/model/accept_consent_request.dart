@@ -100,12 +100,12 @@ class AcceptConsentRequest {
   static List<AcceptConsentRequest> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <AcceptConsentRequest>[]
-      : json.map((v) => AcceptConsentRequest.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => AcceptConsentRequest.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, AcceptConsentRequest> mapFromJson(Map<String, dynamic> json) {
     final map = <String, AcceptConsentRequest>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = AcceptConsentRequest.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = AcceptConsentRequest.fromJson(value));
     }
     return map;
   }
@@ -113,9 +113,9 @@ class AcceptConsentRequest {
   // maps a json object with a list of AcceptConsentRequest-objects as value to a dart map
   static Map<String, List<AcceptConsentRequest>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<AcceptConsentRequest>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = AcceptConsentRequest.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = AcceptConsentRequest.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

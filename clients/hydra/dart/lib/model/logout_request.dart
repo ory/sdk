@@ -97,12 +97,12 @@ class LogoutRequest {
   static List<LogoutRequest> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <LogoutRequest>[]
-      : json.map((v) => LogoutRequest.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => LogoutRequest.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, LogoutRequest> mapFromJson(Map<String, dynamic> json) {
     final map = <String, LogoutRequest>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = LogoutRequest.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = LogoutRequest.fromJson(value));
     }
     return map;
   }
@@ -110,9 +110,9 @@ class LogoutRequest {
   // maps a json object with a list of LogoutRequest-objects as value to a dart map
   static Map<String, List<LogoutRequest>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<LogoutRequest>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = LogoutRequest.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = LogoutRequest.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

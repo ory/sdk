@@ -109,12 +109,12 @@ class PreviousConsentSession {
   static List<PreviousConsentSession> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <PreviousConsentSession>[]
-      : json.map((v) => PreviousConsentSession.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => PreviousConsentSession.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, PreviousConsentSession> mapFromJson(Map<String, dynamic> json) {
     final map = <String, PreviousConsentSession>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = PreviousConsentSession.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = PreviousConsentSession.fromJson(value));
     }
     return map;
   }
@@ -122,9 +122,9 @@ class PreviousConsentSession {
   // maps a json object with a list of PreviousConsentSession-objects as value to a dart map
   static Map<String, List<PreviousConsentSession>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<PreviousConsentSession>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = PreviousConsentSession.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = PreviousConsentSession.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

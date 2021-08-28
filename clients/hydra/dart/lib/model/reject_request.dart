@@ -88,12 +88,12 @@ class RejectRequest {
   static List<RejectRequest> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <RejectRequest>[]
-      : json.map((v) => RejectRequest.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => RejectRequest.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, RejectRequest> mapFromJson(Map<String, dynamic> json) {
     final map = <String, RejectRequest>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = RejectRequest.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = RejectRequest.fromJson(value));
     }
     return map;
   }
@@ -101,9 +101,9 @@ class RejectRequest {
   // maps a json object with a list of RejectRequest-objects as value to a dart map
   static Map<String, List<RejectRequest>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<RejectRequest>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = RejectRequest.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = RejectRequest.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

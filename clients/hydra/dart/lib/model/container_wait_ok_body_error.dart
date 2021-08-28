@@ -48,12 +48,12 @@ class ContainerWaitOKBodyError {
   static List<ContainerWaitOKBodyError> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <ContainerWaitOKBodyError>[]
-      : json.map((v) => ContainerWaitOKBodyError.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => ContainerWaitOKBodyError.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, ContainerWaitOKBodyError> mapFromJson(Map<String, dynamic> json) {
     final map = <String, ContainerWaitOKBodyError>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = ContainerWaitOKBodyError.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = ContainerWaitOKBodyError.fromJson(value));
     }
     return map;
   }
@@ -61,9 +61,9 @@ class ContainerWaitOKBodyError {
   // maps a json object with a list of ContainerWaitOKBodyError-objects as value to a dart map
   static Map<String, List<ContainerWaitOKBodyError>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<ContainerWaitOKBodyError>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = ContainerWaitOKBodyError.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = ContainerWaitOKBodyError.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

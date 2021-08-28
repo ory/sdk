@@ -316,12 +316,12 @@ class WellKnown {
   static List<WellKnown> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <WellKnown>[]
-      : json.map((v) => WellKnown.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => WellKnown.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, WellKnown> mapFromJson(Map<String, dynamic> json) {
     final map = <String, WellKnown>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = WellKnown.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = WellKnown.fromJson(value));
     }
     return map;
   }
@@ -329,9 +329,9 @@ class WellKnown {
   // maps a json object with a list of WellKnown-objects as value to a dart map
   static Map<String, List<WellKnown>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<WellKnown>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = WellKnown.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = WellKnown.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

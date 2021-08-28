@@ -18,10 +18,10 @@ Name | Type | Description | Notes
 **frontchannel_logout_session_required** | **bool** | Boolean value specifying whether the RP requires that iss (issuer) and sid (session ID) query parameters be included to identify the RP session with the OP when the frontchannel_logout_uri is used. If omitted, the default value is false. | [optional] 
 **frontchannel_logout_uri** | **str** | RP URL that will cause the RP to log itself out when rendered in an iframe by the OP. An iss (issuer) query parameter and a sid (session ID) query parameter MAY be included by the OP to enable the RP to validate the request and to determine which of the potentially multiple sessions is to be logged out; if either is included, both MUST be. | [optional] 
 **grant_types** | [**StringSlicePipeDelimiter**](StringSlicePipeDelimiter.md) |  | [optional] 
-**jwks** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
+**jwks** | **bool, date, datetime, dict, float, int, list, str, none_type** |  | [optional] 
 **jwks_uri** | **str** | URL for the Client&#39;s JSON Web Key Set [JWK] document. If the Client signs requests to the Server, it contains the signing key(s) the Server uses to validate signatures from the Client. The JWK Set MAY also contain the Client&#39;s encryption keys(s), which are used by the Server to encrypt responses to the Client. When both signing and encryption keys are made available, a use (Key Use) parameter value is REQUIRED for all keys in the referenced JWK Set to indicate each key&#39;s intended usage. Although some algorithms allow the same key to be used for both signatures and encryption, doing so is NOT RECOMMENDED, as it is less secure. The JWK x5c parameter MAY be used to provide X.509 representations of keys provided. When used, the bare key values MUST still be present and MUST match those in the certificate. | [optional] 
 **logo_uri** | **str** | LogoURI is an URL string that references a logo for the client. | [optional] 
-**metadata** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
+**metadata** | **bool, date, datetime, dict, float, int, list, str, none_type** |  | [optional] 
 **owner** | **str** | Owner is a string identifying the owner of the OAuth 2.0 Client. | [optional] 
 **policy_uri** | **str** | PolicyURI is a URL string that points to a human-readable privacy policy document that describes how the deployment organization collects, uses, retains, and discloses personal data. | [optional] 
 **post_logout_redirect_uris** | [**StringSlicePipeDelimiter**](StringSlicePipeDelimiter.md) |  | [optional] 
@@ -37,6 +37,7 @@ Name | Type | Description | Notes
 **tos_uri** | **str** | TermsOfServiceURI is a URL string that points to a human-readable terms of service document for the client that describes a contractual relationship between the end-user and the client that the end-user accepts when authorizing the client. | [optional] 
 **updated_at** | **datetime** | UpdatedAt returns the timestamp of the last update. | [optional] 
 **userinfo_signed_response_alg** | **str** | JWS alg algorithm [JWA] REQUIRED for signing UserInfo Responses. If this is specified, the response will be JWT [JWT] serialized, and signed using JWS. The default, if omitted, is for the UserInfo Response to return the Claims as a UTF-8 encoded JSON object using the application/json content-type. | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

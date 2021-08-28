@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **error_description** | **str** | Description of the error in a human readable format. | [optional] 
 **error_hint** | **str** | Hint to help resolve the error. | [optional] 
 **status_code** | **int** | Represents the HTTP status code of the error (e.g. 401 or 403)  Defaults to 400 | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

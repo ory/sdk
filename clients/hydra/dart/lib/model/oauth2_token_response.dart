@@ -92,12 +92,12 @@ class Oauth2TokenResponse {
   static List<Oauth2TokenResponse> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <Oauth2TokenResponse>[]
-      : json.map((v) => Oauth2TokenResponse.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => Oauth2TokenResponse.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, Oauth2TokenResponse> mapFromJson(Map<String, dynamic> json) {
     final map = <String, Oauth2TokenResponse>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = Oauth2TokenResponse.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = Oauth2TokenResponse.fromJson(value));
     }
     return map;
   }
@@ -105,9 +105,9 @@ class Oauth2TokenResponse {
   // maps a json object with a list of Oauth2TokenResponse-objects as value to a dart map
   static Map<String, List<Oauth2TokenResponse>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<Oauth2TokenResponse>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = Oauth2TokenResponse.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = Oauth2TokenResponse.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

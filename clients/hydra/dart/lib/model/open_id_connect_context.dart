@@ -92,12 +92,12 @@ class OpenIDConnectContext {
   static List<OpenIDConnectContext> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <OpenIDConnectContext>[]
-      : json.map((v) => OpenIDConnectContext.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => OpenIDConnectContext.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, OpenIDConnectContext> mapFromJson(Map<String, dynamic> json) {
     final map = <String, OpenIDConnectContext>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = OpenIDConnectContext.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = OpenIDConnectContext.fromJson(value));
     }
     return map;
   }
@@ -105,9 +105,9 @@ class OpenIDConnectContext {
   // maps a json object with a list of OpenIDConnectContext-objects as value to a dart map
   static Map<String, List<OpenIDConnectContext>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<OpenIDConnectContext>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = OpenIDConnectContext.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = OpenIDConnectContext.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

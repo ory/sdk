@@ -3,7 +3,7 @@ info:
   description: Welcome to the ORY Hydra HTTP API documentation. You will find documentation
     for all HTTP APIs here.
   title: ORY Hydra
-  version: v1.10.5
+  version: v1.10.6
 servers:
 - url: /
 paths:

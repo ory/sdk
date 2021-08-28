@@ -95,5 +95,3 @@ lib/Model/VolumeUsageData.php
 lib/Model/WellKnown.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
-test/Api/MetadataApiTest.php
-test/Model/JsonErrorTest.php

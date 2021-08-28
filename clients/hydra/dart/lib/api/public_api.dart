@@ -33,17 +33,6 @@ class PublicApi {
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
     final authNames = <String>[];
 
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-    }
 
     return await apiClient.invokeAPI(
       path,
@@ -85,17 +74,6 @@ class PublicApi {
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
     final authNames = <String>[];
 
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-    }
 
     return await apiClient.invokeAPI(
       path,
@@ -144,17 +122,6 @@ class PublicApi {
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
     final authNames = <String>[];
 
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-    }
 
     return await apiClient.invokeAPI(
       path,
@@ -220,51 +187,20 @@ class PublicApi {
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
     final authNames = <String>['basic', 'oauth2'];
 
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (grantType != null) {
-        hasFields = true;
-        mp.fields[r'grant_type'] = parameterToString(grantType);
-      }
-      if (code != null) {
-        hasFields = true;
-        mp.fields[r'code'] = parameterToString(code);
-      }
-      if (refreshToken != null) {
-        hasFields = true;
-        mp.fields[r'refresh_token'] = parameterToString(refreshToken);
-      }
-      if (redirectUri != null) {
-        hasFields = true;
-        mp.fields[r'redirect_uri'] = parameterToString(redirectUri);
-      }
-      if (clientId != null) {
-        hasFields = true;
-        mp.fields[r'client_id'] = parameterToString(clientId);
-      }
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-      if (grantType != null) {
-        formParams[r'grant_type'] = parameterToString(grantType);
-      }
-      if (code != null) {
-        formParams[r'code'] = parameterToString(code);
-      }
-      if (refreshToken != null) {
-        formParams[r'refresh_token'] = parameterToString(refreshToken);
-      }
-      if (redirectUri != null) {
-        formParams[r'redirect_uri'] = parameterToString(redirectUri);
-      }
-      if (clientId != null) {
-        formParams[r'client_id'] = parameterToString(clientId);
-      }
+    if (grantType != null) {
+      formParams[r'grant_type'] = parameterToString(grantType);
+    }
+    if (code != null) {
+      formParams[r'code'] = parameterToString(code);
+    }
+    if (refreshToken != null) {
+      formParams[r'refresh_token'] = parameterToString(refreshToken);
+    }
+    if (redirectUri != null) {
+      formParams[r'redirect_uri'] = parameterToString(redirectUri);
+    }
+    if (clientId != null) {
+      formParams[r'client_id'] = parameterToString(clientId);
     }
 
     return await apiClient.invokeAPI(
@@ -326,17 +262,6 @@ class PublicApi {
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
     final authNames = <String>[];
 
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-    }
 
     return await apiClient.invokeAPI(
       path,
@@ -387,23 +312,8 @@ class PublicApi {
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
     final authNames = <String>['basic', 'oauth2'];
 
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (token != null) {
-        hasFields = true;
-        mp.fields[r'token'] = parameterToString(token);
-      }
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-      if (token != null) {
-        formParams[r'token'] = parameterToString(token);
-      }
+    if (token != null) {
+      formParams[r'token'] = parameterToString(token);
     }
 
     return await apiClient.invokeAPI(
@@ -450,17 +360,6 @@ class PublicApi {
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
     final authNames = <String>['oauth2'];
 
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-    }
 
     return await apiClient.invokeAPI(
       path,
@@ -509,17 +408,6 @@ class PublicApi {
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
     final authNames = <String>[];
 
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-    }
 
     return await apiClient.invokeAPI(
       path,

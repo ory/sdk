@@ -178,12 +178,12 @@ class OAuth2TokenIntrospection {
   static List<OAuth2TokenIntrospection> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <OAuth2TokenIntrospection>[]
-      : json.map((v) => OAuth2TokenIntrospection.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => OAuth2TokenIntrospection.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, OAuth2TokenIntrospection> mapFromJson(Map<String, dynamic> json) {
     final map = <String, OAuth2TokenIntrospection>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = OAuth2TokenIntrospection.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = OAuth2TokenIntrospection.fromJson(value));
     }
     return map;
   }
@@ -191,9 +191,9 @@ class OAuth2TokenIntrospection {
   // maps a json object with a list of OAuth2TokenIntrospection-objects as value to a dart map
   static Map<String, List<OAuth2TokenIntrospection>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<OAuth2TokenIntrospection>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = OAuth2TokenIntrospection.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = OAuth2TokenIntrospection.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

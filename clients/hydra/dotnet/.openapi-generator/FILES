@@ -46,8 +46,6 @@ docs/HydraWellKnown.md
 docs/MetadataApi.md
 docs/PublicApi.md
 git_push.sh
-src/Ory.Hydra.Client.Test/Api/MetadataApiTests.cs
-src/Ory.Hydra.Client.Test/Model/HydraJsonErrorTests.cs
 src/Ory.Hydra.Client.Test/Ory.Hydra.Client.Test.csproj
 src/Ory.Hydra.Client/Api/AdminApi.cs
 src/Ory.Hydra.Client/Api/MetadataApi.cs
