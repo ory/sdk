@@ -7,7 +7,11 @@ source scripts/prep.sh
 
 to_git() {
   lang=$1
-  gitdir=$(mktemp -d -t "${GIT_REPO}-${lang}.XXXXXX")
+  if [ -z ${3+x} ]; then
+    gitdir=$(mktemp -d -t "${GIT_REPO}-${lang}.XXXXXX")
+  else
+    gitdir="$3"
+  fi
   srcdir="clients/${PROJECT}/${lang}"
 
   repo="ory/${GIT_REPO}-${lang}"
@@ -105,9 +109,9 @@ typescript() {
 }
 
 java() {
-  to_git "java" "no"
+  gitdir=$(mktemp -d -t "${GIT_REPO}-java.XXXXXX")
+  to_git "java" "no" "$gitdir"
 
-  gitdir="repos/${GIT_REPO}/java"
   (cd "${gitdir}"; mvn clean)
 
   version=$(echo "${VERSION}" | sed "s/^v//")
