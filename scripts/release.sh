@@ -107,7 +107,7 @@ typescript() {
 java() {
   to_git "java" "no"
 
-  gitdir="repos/${GIT_REPO}-java"
+  gitdir="repos/${GIT_REPO}/java"
   (cd "${gitdir}"; mvn clean)
 
   version=$(echo "${VERSION}" | sed "s/^v//")
@@ -121,7 +121,7 @@ java() {
 
   (cd "${gitdir}"; mvn release:perform)
   (cd "${gitdir}"; git push origin --tags HEAD:master)
-  to_git "java" "yes"
+  to_git "java" "yes" "$gitdir"
 }
 
 php() {
