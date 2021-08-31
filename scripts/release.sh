@@ -167,6 +167,7 @@ dotnet() {
 
   (cd "${dir}"; VERSION=${RAW_VERSION} command dotnet pack -o .)
 
+  ls -la ${dir}
   nupkg_name="Ory.${PROJECT_UCF}.Client.${RAW_VERSION}.nupkg"
   if [ ${PROJECT} == "client" ]; then
     nupkg_name="Ory.Client.${RAW_VERSION}.nupkg"
