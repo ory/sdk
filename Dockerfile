@@ -1,4 +1,4 @@
-FROM openjdk:16.0.2-slim-buster
+FROM openjdk:15-slim-buster
 
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates ssh bash
 
