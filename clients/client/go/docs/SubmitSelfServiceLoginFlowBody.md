@@ -5,15 +5,17 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CsrfToken** | Pointer to **string** | Sending the anti-csrf token is only required for browser login flows. | [optional] 
-**Method** | **string** | Method should be set to \&quot;password\&quot; when logging in using the identifier and password strategy. | 
+**Method** | **string** | Method should be set to \&quot;totp\&quot; when logging in using the TOTP strategy. | 
 **Password** | **string** | The user&#39;s password. | 
 **PasswordIdentifier** | **string** | Identifier is the email or username of the user trying to log in. | 
+**Traits** | **string** | The provider to register with | 
+**TotpCode** | **string** | The TOTP code. | 
 
 ## Methods
 
 ### NewSubmitSelfServiceLoginFlowBody
 
-`func NewSubmitSelfServiceLoginFlowBody(method string, password string, passwordIdentifier string, ) *SubmitSelfServiceLoginFlowBody`
+`func NewSubmitSelfServiceLoginFlowBody(method string, password string, passwordIdentifier string, traits string, totpCode string, ) *SubmitSelfServiceLoginFlowBody`
 
 NewSubmitSelfServiceLoginFlowBody instantiates a new SubmitSelfServiceLoginFlowBody object
 This constructor will assign default values to properties that have it defined,
@@ -111,6 +113,46 @@ and a boolean to check if the value has been set.
 `func (o *SubmitSelfServiceLoginFlowBody) SetPasswordIdentifier(v string)`
 
 SetPasswordIdentifier sets PasswordIdentifier field to given value.
+
+
+### GetTraits
+
+`func (o *SubmitSelfServiceLoginFlowBody) GetTraits() string`
+
+GetTraits returns the Traits field if non-nil, zero value otherwise.
+
+### GetTraitsOk
+
+`func (o *SubmitSelfServiceLoginFlowBody) GetTraitsOk() (*string, bool)`
+
+GetTraitsOk returns a tuple with the Traits field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTraits
+
+`func (o *SubmitSelfServiceLoginFlowBody) SetTraits(v string)`
+
+SetTraits sets Traits field to given value.
+
+
+### GetTotpCode
+
+`func (o *SubmitSelfServiceLoginFlowBody) GetTotpCode() string`
+
+GetTotpCode returns the TotpCode field if non-nil, zero value otherwise.
+
+### GetTotpCodeOk
+
+`func (o *SubmitSelfServiceLoginFlowBody) GetTotpCodeOk() (*string, bool)`
+
+GetTotpCodeOk returns a tuple with the TotpCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTotpCode
+
+`func (o *SubmitSelfServiceLoginFlowBody) SetTotpCode(v string)`
+
+SetTotpCode sets TotpCode field to given value.
 
 
 

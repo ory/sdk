@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**active** | **string** | and so on. | [optional]
+**active** | [**\Ory\Client\Model\IdentityCredentialsType**](IdentityCredentialsType.md) |  | [optional]
 **createdAt** | [**\DateTime**](\DateTime.md) | CreatedAt is a helper struct field for gobuffalo.pop. | [optional]
 **expiresAt** | [**\DateTime**](\DateTime.md) | ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated. |
-**forced** | **bool** | Forced stores whether this login flow should enforce re-authentication. | [optional]
+**forced** | **bool** | Refresh stores whether this login flow should enforce re-authentication. | [optional]
 **id** | **string** |  |
 **issuedAt** | [**\DateTime**](\DateTime.md) | IssuedAt is the time (UTC) when the flow started. |
 **requestUrl** | **string** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. |
+**requestedAal** | [**\Ory\Client\Model\AuthenticatorAssuranceLevel**](AuthenticatorAssuranceLevel.md) |  | [optional]
 **type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. |
 **ui** | [**\Ory\Client\Model\UiContainer**](UiContainer.md) |  |
 **updatedAt** | [**\DateTime**](\DateTime.md) | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional]

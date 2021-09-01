@@ -1,4 +1,4 @@
-# OryHydraClient::SubmitSelfServiceLoginFlowBody
+# OryClient::SubmitSelfServiceLoginFlowBody
 
 ## Class instance methods
 
@@ -11,10 +11,12 @@ Returns the list of classes defined in oneOf.
 ```ruby
 require 'ory-client'
 
-OryHydraClient::SubmitSelfServiceLoginFlowBody.openapi_one_of
+OryClient::SubmitSelfServiceLoginFlowBody.openapi_one_of
 # =>
 # [
-#   :'SubmitSelfServiceLoginFlowWithPasswordMethodBody'
+#   :'SubmitSelfServiceLoginFlowWithOidcMethodBody',
+#   :'SubmitSelfServiceLoginFlowWithPasswordMethodBody',
+#   :'SubmitSelfServiceLoginFlowWithTotpMethodBody'
 # ]
 ```
 
@@ -27,7 +29,7 @@ Returns the discriminator's property name.
 ```ruby
 require 'ory-client'
 
-OryHydraClient::SubmitSelfServiceLoginFlowBody.openapi_discriminator_name
+OryClient::SubmitSelfServiceLoginFlowBody.openapi_discriminator_name
 # => :'method'
 ```
 
@@ -40,11 +42,12 @@ Returns the discriminator's mapping.
 ```ruby
 require 'ory-client'
 
-OryHydraClient::SubmitSelfServiceLoginFlowBody.openapi_discriminator_mapping
+OryClient::SubmitSelfServiceLoginFlowBody.openapi_discriminator_mapping
 # =>
 # {
 #   :'oidc' => :'SubmitSelfServiceLoginFlowWithOidcMethodBody',
-#   :'password' => :'SubmitSelfServiceLoginFlowWithPasswordMethodBody'
+#   :'password' => :'SubmitSelfServiceLoginFlowWithPasswordMethodBody',
+#   :'totp' => :'SubmitSelfServiceLoginFlowWithTotpMethodBody'
 # }
 
 ### build
@@ -56,10 +59,10 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 ```ruby
 require 'ory-client'
 
-OryHydraClient::SubmitSelfServiceLoginFlowBody.build(data)
-# => #<SubmitSelfServiceLoginFlowWithPasswordMethodBody:0x00007fdd4aab02a0>
+OryClient::SubmitSelfServiceLoginFlowBody.build(data)
+# => #<SubmitSelfServiceLoginFlowWithOidcMethodBody:0x00007fdd4aab02a0>
 
-OryHydraClient::SubmitSelfServiceLoginFlowBody.build(data_that_doesnt_match)
+OryClient::SubmitSelfServiceLoginFlowBody.build(data_that_doesnt_match)
 # => nil
 ```
 
@@ -71,6 +74,8 @@ OryHydraClient::SubmitSelfServiceLoginFlowBody.build(data_that_doesnt_match)
 
 #### Return type
 
+- `SubmitSelfServiceLoginFlowWithOidcMethodBody`
 - `SubmitSelfServiceLoginFlowWithPasswordMethodBody`
+- `SubmitSelfServiceLoginFlowWithTotpMethodBody`
 - `nil` (if no type matches)
 

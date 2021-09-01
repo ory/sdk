@@ -12,24 +12,31 @@ part of openapi.api;
 class UiNodeTextAttributes {
   /// Returns a new [UiNodeTextAttributes] instance.
   UiNodeTextAttributes({
+    @required this.id,
     @required this.text,
   });
+
+  /// A unique identifier
+  String id;
 
   UiText text;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is UiNodeTextAttributes &&
+     other.id == id &&
      other.text == text;
 
   @override
   int get hashCode =>
+    (id == null ? 0 : id.hashCode) +
     (text == null ? 0 : text.hashCode);
 
   @override
-  String toString() => 'UiNodeTextAttributes[text=$text]';
+  String toString() => 'UiNodeTextAttributes[id=$id, text=$text]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'id'] = id;
       json[r'text'] = text;
     return json;
   }
@@ -39,18 +46,19 @@ class UiNodeTextAttributes {
   static UiNodeTextAttributes fromJson(Map<String, dynamic> json) => json == null
     ? null
     : UiNodeTextAttributes(
+        id: json[r'id'],
         text: UiText.fromJson(json[r'text']),
     );
 
   static List<UiNodeTextAttributes> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <UiNodeTextAttributes>[]
-      : json.map((v) => UiNodeTextAttributes.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => UiNodeTextAttributes.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, UiNodeTextAttributes> mapFromJson(Map<String, dynamic> json) {
     final map = <String, UiNodeTextAttributes>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = UiNodeTextAttributes.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = UiNodeTextAttributes.fromJson(value));
     }
     return map;
   }
@@ -58,9 +66,9 @@ class UiNodeTextAttributes {
   // maps a json object with a list of UiNodeTextAttributes-objects as value to a dart map
   static Map<String, List<UiNodeTextAttributes>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<UiNodeTextAttributes>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = UiNodeTextAttributes.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = UiNodeTextAttributes.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

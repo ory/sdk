@@ -1,4 +1,4 @@
-# OryHydraClient::UiNodeAttributes
+# OryClient::UiNodeAttributes
 
 ## Class instance methods
 
@@ -11,7 +11,7 @@ Returns the list of classes defined in oneOf.
 ```ruby
 require 'ory-client'
 
-OryHydraClient::UiNodeAttributes.openapi_one_of
+OryClient::UiNodeAttributes.openapi_one_of
 # =>
 # [
 #   :'UiNodeAnchorAttributes',
@@ -30,10 +30,10 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 ```ruby
 require 'ory-client'
 
-OryHydraClient::UiNodeAttributes.build(data)
+OryClient::UiNodeAttributes.build(data)
 # => #<UiNodeAnchorAttributes:0x00007fdd4aab02a0>
 
-OryHydraClient::UiNodeAttributes.build(data_that_doesnt_match)
+OryClient::UiNodeAttributes.build(data_that_doesnt_match)
 # => nil
 ```
 

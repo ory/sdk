@@ -28,7 +28,7 @@ Iterable<QueryParam> _convertParametersForCollectionFormat(
   final params = <QueryParam>[];
 
   // preconditions
-  if (name != null && !name.isEmpty && value != null) {
+  if (name != null && name.isNotEmpty && value != null) {
     if (value is List) {
       // get the collection format, default: csv
       collectionFormat = (collectionFormat == null || collectionFormat.isEmpty)
@@ -57,6 +57,12 @@ String parameterToString(dynamic value) {
   }
   if (value is DateTime) {
     return value.toUtc().toIso8601String();
+  }
+  if (value is AuthenticatorAssuranceLevel) {
+    return AuthenticatorAssuranceLevelTypeTransformer().encode(value).toString();
+  }
+  if (value is IdentityCredentialsType) {
+    return IdentityCredentialsTypeTypeTransformer().encode(value).toString();
   }
   if (value is IdentityState) {
     return IdentityStateTypeTransformer().encode(value).toString();

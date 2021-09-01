@@ -64,12 +64,12 @@ class SubmitSelfServiceLoginFlowWithOidcMethodBody {
   static List<SubmitSelfServiceLoginFlowWithOidcMethodBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <SubmitSelfServiceLoginFlowWithOidcMethodBody>[]
-      : json.map((v) => SubmitSelfServiceLoginFlowWithOidcMethodBody.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => SubmitSelfServiceLoginFlowWithOidcMethodBody.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, SubmitSelfServiceLoginFlowWithOidcMethodBody> mapFromJson(Map<String, dynamic> json) {
     final map = <String, SubmitSelfServiceLoginFlowWithOidcMethodBody>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = SubmitSelfServiceLoginFlowWithOidcMethodBody.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = SubmitSelfServiceLoginFlowWithOidcMethodBody.fromJson(value));
     }
     return map;
   }
@@ -77,9 +77,9 @@ class SubmitSelfServiceLoginFlowWithOidcMethodBody {
   // maps a json object with a list of SubmitSelfServiceLoginFlowWithOidcMethodBody-objects as value to a dart map
   static Map<String, List<SubmitSelfServiceLoginFlowWithOidcMethodBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<SubmitSelfServiceLoginFlowWithOidcMethodBody>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = SubmitSelfServiceLoginFlowWithOidcMethodBody.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = SubmitSelfServiceLoginFlowWithOidcMethodBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

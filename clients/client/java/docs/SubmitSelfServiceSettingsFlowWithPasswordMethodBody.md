@@ -20,6 +20,7 @@ Name | Value
 PASSWORD | &quot;password&quot;
 PROFILE | &quot;profile&quot;
 OIDC | &quot;oidc&quot;
+TOTP | &quot;totp&quot;
 
 
 

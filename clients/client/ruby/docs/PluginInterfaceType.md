@@ -1,4 +1,4 @@
-# OryHydraClient::PluginInterfaceType
+# OryClient::PluginInterfaceType
 
 ## Properties
 
@@ -13,7 +13,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::PluginInterfaceType.new(
+instance = OryClient::PluginInterfaceType.new(
   capability: null,
   prefix: null,
   version: null

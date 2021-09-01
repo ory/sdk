@@ -1,4 +1,4 @@
-# OryHydraClient::SubmitSelfServiceVerificationFlowBody
+# OryClient::SubmitSelfServiceVerificationFlowBody
 
 ## Class instance methods
 
@@ -11,7 +11,7 @@ Returns the list of classes defined in oneOf.
 ```ruby
 require 'ory-client'
 
-OryHydraClient::SubmitSelfServiceVerificationFlowBody.openapi_one_of
+OryClient::SubmitSelfServiceVerificationFlowBody.openapi_one_of
 # =>
 # [
 #   :'SubmitSelfServiceVerificationFlowWithLinkMethodBody'
@@ -27,7 +27,7 @@ Returns the discriminator's property name.
 ```ruby
 require 'ory-client'
 
-OryHydraClient::SubmitSelfServiceVerificationFlowBody.openapi_discriminator_name
+OryClient::SubmitSelfServiceVerificationFlowBody.openapi_discriminator_name
 # => :'method'
 ```
 
@@ -40,7 +40,7 @@ Returns the discriminator's mapping.
 ```ruby
 require 'ory-client'
 
-OryHydraClient::SubmitSelfServiceVerificationFlowBody.openapi_discriminator_mapping
+OryClient::SubmitSelfServiceVerificationFlowBody.openapi_discriminator_mapping
 # =>
 # {
 #   :'link' => :'SubmitSelfServiceVerificationFlowWithLinkMethodBody'
@@ -55,10 +55,10 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 ```ruby
 require 'ory-client'
 
-OryHydraClient::SubmitSelfServiceVerificationFlowBody.build(data)
+OryClient::SubmitSelfServiceVerificationFlowBody.build(data)
 # => #<SubmitSelfServiceVerificationFlowWithLinkMethodBody:0x00007fdd4aab02a0>
 
-OryHydraClient::SubmitSelfServiceVerificationFlowBody.build(data_that_doesnt_match)
+OryClient::SubmitSelfServiceVerificationFlowBody.build(data_that_doesnt_match)
 # => nil
 ```
 

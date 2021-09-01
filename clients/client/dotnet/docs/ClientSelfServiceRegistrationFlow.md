@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Active** | **string** | and so on. | [optional] 
+**Active** | [**ClientIdentityCredentialsType**](ClientIdentityCredentialsType.md) |  | [optional] 
 **ExpiresAt** | **DateTime** | ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated. | 
 **Id** | **string** |  | 
 **IssuedAt** | **DateTime** | IssuedAt is the time (UTC) when the flow occurred. | 

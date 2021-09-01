@@ -63,12 +63,12 @@ class AdminUpdateIdentityBody {
   static List<AdminUpdateIdentityBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <AdminUpdateIdentityBody>[]
-      : json.map((v) => AdminUpdateIdentityBody.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => AdminUpdateIdentityBody.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, AdminUpdateIdentityBody> mapFromJson(Map<String, dynamic> json) {
     final map = <String, AdminUpdateIdentityBody>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = AdminUpdateIdentityBody.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = AdminUpdateIdentityBody.fromJson(value));
     }
     return map;
   }
@@ -76,9 +76,9 @@ class AdminUpdateIdentityBody {
   // maps a json object with a list of AdminUpdateIdentityBody-objects as value to a dart map
   static Map<String, List<AdminUpdateIdentityBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<AdminUpdateIdentityBody>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = AdminUpdateIdentityBody.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = AdminUpdateIdentityBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

@@ -1,4 +1,4 @@
-# OryHydraClient::GraphDriverData
+# OryClient::GraphDriverData
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::GraphDriverData.new(
+instance = OryClient::GraphDriverData.new(
   data: null,
   name: null
 )

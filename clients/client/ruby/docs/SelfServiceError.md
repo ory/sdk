@@ -1,4 +1,4 @@
-# OryHydraClient::SelfServiceError
+# OryClient::SelfServiceError
 
 ## Properties
 
@@ -14,7 +14,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::SelfServiceError.new(
+instance = OryClient::SelfServiceError.new(
   created_at: null,
   error: null,
   id: null,

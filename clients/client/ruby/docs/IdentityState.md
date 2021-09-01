@@ -1,4 +1,4 @@
-# OryHydraClient::IdentityState
+# OryClient::IdentityState
 
 ## Properties
 
@@ -10,6 +10,6 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::IdentityState.new()
+instance = OryClient::IdentityState.new()
 ```
 

@@ -1,4 +1,4 @@
-# OryHydraClient::SubmitSelfServiceRegistrationFlowBody
+# OryClient::SubmitSelfServiceRegistrationFlowBody
 
 ## Class instance methods
 
@@ -11,7 +11,7 @@ Returns the list of classes defined in oneOf.
 ```ruby
 require 'ory-client'
 
-OryHydraClient::SubmitSelfServiceRegistrationFlowBody.openapi_one_of
+OryClient::SubmitSelfServiceRegistrationFlowBody.openapi_one_of
 # =>
 # [
 #   :'SubmitSelfServiceRegistrationFlowWithPasswordMethodBody'
@@ -27,7 +27,7 @@ Returns the discriminator's property name.
 ```ruby
 require 'ory-client'
 
-OryHydraClient::SubmitSelfServiceRegistrationFlowBody.openapi_discriminator_name
+OryClient::SubmitSelfServiceRegistrationFlowBody.openapi_discriminator_name
 # => :'method'
 ```
 
@@ -40,7 +40,7 @@ Returns the discriminator's mapping.
 ```ruby
 require 'ory-client'
 
-OryHydraClient::SubmitSelfServiceRegistrationFlowBody.openapi_discriminator_mapping
+OryClient::SubmitSelfServiceRegistrationFlowBody.openapi_discriminator_mapping
 # =>
 # {
 #   :'oidc' => :'SubmitSelfServiceRegistrationFlowWithOidcMethodBody',
@@ -56,10 +56,10 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 ```ruby
 require 'ory-client'
 
-OryHydraClient::SubmitSelfServiceRegistrationFlowBody.build(data)
+OryClient::SubmitSelfServiceRegistrationFlowBody.build(data)
 # => #<SubmitSelfServiceRegistrationFlowWithPasswordMethodBody:0x00007fdd4aab02a0>
 
-OryHydraClient::SubmitSelfServiceRegistrationFlowBody.build(data_that_doesnt_match)
+OryClient::SubmitSelfServiceRegistrationFlowBody.build(data_that_doesnt_match)
 # => nil
 ```
 

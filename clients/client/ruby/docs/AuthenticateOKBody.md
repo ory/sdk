@@ -1,4 +1,4 @@
-# OryHydraClient::AuthenticateOKBody
+# OryClient::AuthenticateOKBody
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::AuthenticateOKBody.new(
+instance = OryClient::AuthenticateOKBody.new(
   identity_token: null,
   status: null
 )

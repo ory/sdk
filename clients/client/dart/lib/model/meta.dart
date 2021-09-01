@@ -47,12 +47,12 @@ class Meta {
   static List<Meta> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <Meta>[]
-      : json.map((v) => Meta.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => Meta.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, Meta> mapFromJson(Map<String, dynamic> json) {
     final map = <String, Meta>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = Meta.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = Meta.fromJson(value));
     }
     return map;
   }
@@ -60,9 +60,9 @@ class Meta {
   // maps a json object with a list of Meta-objects as value to a dart map
   static Map<String, List<Meta>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<Meta>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = Meta.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = Meta.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

@@ -19,13 +19,13 @@ class SelfServiceLoginFlow {
     @required this.id,
     @required this.issuedAt,
     @required this.requestUrl,
+    this.requestedAal,
     @required this.type,
     @required this.ui,
     this.updatedAt,
   });
 
-  /// and so on.
-  String active;
+  IdentityCredentialsType active;
 
   /// CreatedAt is a helper struct field for gobuffalo.pop.
   DateTime createdAt;
@@ -33,7 +33,7 @@ class SelfServiceLoginFlow {
   /// ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated.
   DateTime expiresAt;
 
-  /// Forced stores whether this login flow should enforce re-authentication.
+  /// Refresh stores whether this login flow should enforce re-authentication.
   bool forced;
 
   String id;
@@ -43,6 +43,8 @@ class SelfServiceLoginFlow {
 
   /// RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
   String requestUrl;
+
+  AuthenticatorAssuranceLevel requestedAal;
 
   /// The flow type can either be `api` or `browser`.
   String type;
@@ -61,6 +63,7 @@ class SelfServiceLoginFlow {
      other.id == id &&
      other.issuedAt == issuedAt &&
      other.requestUrl == requestUrl &&
+     other.requestedAal == requestedAal &&
      other.type == type &&
      other.ui == ui &&
      other.updatedAt == updatedAt;
@@ -74,12 +77,13 @@ class SelfServiceLoginFlow {
     (id == null ? 0 : id.hashCode) +
     (issuedAt == null ? 0 : issuedAt.hashCode) +
     (requestUrl == null ? 0 : requestUrl.hashCode) +
+    (requestedAal == null ? 0 : requestedAal.hashCode) +
     (type == null ? 0 : type.hashCode) +
     (ui == null ? 0 : ui.hashCode) +
     (updatedAt == null ? 0 : updatedAt.hashCode);
 
   @override
-  String toString() => 'SelfServiceLoginFlow[active=$active, createdAt=$createdAt, expiresAt=$expiresAt, forced=$forced, id=$id, issuedAt=$issuedAt, requestUrl=$requestUrl, type=$type, ui=$ui, updatedAt=$updatedAt]';
+  String toString() => 'SelfServiceLoginFlow[active=$active, createdAt=$createdAt, expiresAt=$expiresAt, forced=$forced, id=$id, issuedAt=$issuedAt, requestUrl=$requestUrl, requestedAal=$requestedAal, type=$type, ui=$ui, updatedAt=$updatedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -96,6 +100,9 @@ class SelfServiceLoginFlow {
       json[r'id'] = id;
       json[r'issued_at'] = issuedAt.toUtc().toIso8601String();
       json[r'request_url'] = requestUrl;
+    if (requestedAal != null) {
+      json[r'requested_aal'] = requestedAal;
+    }
       json[r'type'] = type;
       json[r'ui'] = ui;
     if (updatedAt != null) {
@@ -109,7 +116,7 @@ class SelfServiceLoginFlow {
   static SelfServiceLoginFlow fromJson(Map<String, dynamic> json) => json == null
     ? null
     : SelfServiceLoginFlow(
-        active: json[r'active'],
+        active: IdentityCredentialsType.fromJson(json[r'active']),
         createdAt: json[r'created_at'] == null
           ? null
           : DateTime.parse(json[r'created_at']),
@@ -122,6 +129,7 @@ class SelfServiceLoginFlow {
           ? null
           : DateTime.parse(json[r'issued_at']),
         requestUrl: json[r'request_url'],
+        requestedAal: AuthenticatorAssuranceLevel.fromJson(json[r'requested_aal']),
         type: json[r'type'],
         ui: UiContainer.fromJson(json[r'ui']),
         updatedAt: json[r'updated_at'] == null
@@ -132,12 +140,12 @@ class SelfServiceLoginFlow {
   static List<SelfServiceLoginFlow> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <SelfServiceLoginFlow>[]
-      : json.map((v) => SelfServiceLoginFlow.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => SelfServiceLoginFlow.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, SelfServiceLoginFlow> mapFromJson(Map<String, dynamic> json) {
     final map = <String, SelfServiceLoginFlow>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = SelfServiceLoginFlow.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = SelfServiceLoginFlow.fromJson(value));
     }
     return map;
   }
@@ -145,9 +153,9 @@ class SelfServiceLoginFlow {
   // maps a json object with a list of SelfServiceLoginFlow-objects as value to a dart map
   static Map<String, List<SelfServiceLoginFlow>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<SelfServiceLoginFlow>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = SelfServiceLoginFlow.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = SelfServiceLoginFlow.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

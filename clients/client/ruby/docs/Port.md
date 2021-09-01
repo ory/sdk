@@ -1,4 +1,4 @@
-# OryHydraClient::Port
+# OryClient::Port
 
 ## Properties
 
@@ -14,7 +14,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::Port.new(
+instance = OryClient::Port.new(
   ip: null,
   private_port: null,
   public_port: null,

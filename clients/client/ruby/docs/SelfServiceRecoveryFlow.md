@@ -1,4 +1,4 @@
-# OryHydraClient::SelfServiceRecoveryFlow
+# OryClient::SelfServiceRecoveryFlow
 
 ## Properties
 
@@ -18,7 +18,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::SelfServiceRecoveryFlow.new(
+instance = OryClient::SelfServiceRecoveryFlow.new(
   active: null,
   expires_at: null,
   id: null,

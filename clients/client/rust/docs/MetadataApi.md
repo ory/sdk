@@ -4,10 +4,10 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_version**](MetadataApi.md#get_version) | **get** /api/kratos/public/version | Return Running Software Version.
-[**is_alive**](MetadataApi.md#is_alive) | **get** /api/kratos/public/health/alive | Check HTTP Server Status
-[**is_ready**](MetadataApi.md#is_ready) | **get** /api/kratos/public/health/ready | Check HTTP Server and Database Status
-[**prometheus**](MetadataApi.md#prometheus) | **get** /api/kratos/public/metrics/prometheus | Get snapshot metrics from the service. If you're using k8s, you can then add annotations to your deployment like so:
+[**get_version**](MetadataApi.md#get_version) | **GET** /api/kratos/public/version | Return Running Software Version.
+[**is_alive**](MetadataApi.md#is_alive) | **GET** /api/kratos/public/health/alive | Check HTTP Server Status
+[**is_ready**](MetadataApi.md#is_ready) | **GET** /api/kratos/public/health/ready | Check HTTP Server and Database Status
+[**prometheus**](MetadataApi.md#prometheus) | **GET** /api/kratos/public/metrics/prometheus | Get snapshot metrics from the service. If you're using k8s, you can then add annotations to your deployment like so:
 
 
 

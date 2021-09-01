@@ -107,12 +107,12 @@ class SelfServiceRecoveryFlow {
   static List<SelfServiceRecoveryFlow> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <SelfServiceRecoveryFlow>[]
-      : json.map((v) => SelfServiceRecoveryFlow.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => SelfServiceRecoveryFlow.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, SelfServiceRecoveryFlow> mapFromJson(Map<String, dynamic> json) {
     final map = <String, SelfServiceRecoveryFlow>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = SelfServiceRecoveryFlow.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = SelfServiceRecoveryFlow.fromJson(value));
     }
     return map;
   }
@@ -120,9 +120,9 @@ class SelfServiceRecoveryFlow {
   // maps a json object with a list of SelfServiceRecoveryFlow-objects as value to a dart map
   static Map<String, List<SelfServiceRecoveryFlow>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<SelfServiceRecoveryFlow>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = SelfServiceRecoveryFlow.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = SelfServiceRecoveryFlow.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

@@ -1,4 +1,4 @@
-# OryHydraClient::JsonError
+# OryClient::JsonError
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::JsonError.new(
+instance = OryClient::JsonError.new(
   error: null
 )
 ```

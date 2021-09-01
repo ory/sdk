@@ -1,4 +1,4 @@
-# OryHydraClient::SelfServiceLogoutUrl
+# OryClient::SelfServiceLogoutUrl
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::SelfServiceLogoutUrl.new(
+instance = OryClient::SelfServiceLogoutUrl.new(
   logout_url: null
 )
 ```

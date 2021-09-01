@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.17
+ * API version: v0.0.1-alpha.18
  * Contact: support@ory.sh
  */
 
@@ -19,6 +19,8 @@ import (
 type UiNodeAnchorAttributes struct {
 	// The link's href (destination) URL.  format: uri
 	Href string `json:"href"`
+	// A unique identifier
+	Id string `json:"id"`
 	Title UiText `json:"title"`
 }
 
@@ -26,9 +28,10 @@ type UiNodeAnchorAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUiNodeAnchorAttributes(href string, title UiText) *UiNodeAnchorAttributes {
+func NewUiNodeAnchorAttributes(href string, id string, title UiText) *UiNodeAnchorAttributes {
 	this := UiNodeAnchorAttributes{}
 	this.Href = href
+	this.Id = id
 	this.Title = title
 	return &this
 }
@@ -65,6 +68,30 @@ func (o *UiNodeAnchorAttributes) SetHref(v string) {
 	o.Href = v
 }
 
+// GetId returns the Id field value
+func (o *UiNodeAnchorAttributes) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *UiNodeAnchorAttributes) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *UiNodeAnchorAttributes) SetId(v string) {
+	o.Id = v
+}
+
 // GetTitle returns the Title field value
 func (o *UiNodeAnchorAttributes) GetTitle() UiText {
 	if o == nil {
@@ -93,6 +120,9 @@ func (o UiNodeAnchorAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["href"] = o.Href
+	}
+	if true {
+		toSerialize["id"] = o.Id
 	}
 	if true {
 		toSerialize["title"] = o.Title

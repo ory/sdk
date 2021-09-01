@@ -74,12 +74,12 @@ class Port {
   static List<Port> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <Port>[]
-      : json.map((v) => Port.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => Port.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, Port> mapFromJson(Map<String, dynamic> json) {
     final map = <String, Port>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = Port.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = Port.fromJson(value));
     }
     return map;
   }
@@ -87,9 +87,9 @@ class Port {
   // maps a json object with a list of Port-objects as value to a dart map
   static Map<String, List<Port>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<Port>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = Port.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = Port.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

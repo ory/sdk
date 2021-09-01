@@ -1,4 +1,4 @@
-# OryHydraClient::VolumeUsageData
+# OryClient::VolumeUsageData
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::VolumeUsageData.new(
+instance = OryClient::VolumeUsageData.new(
   ref_count: null,
   size: null
 )

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**active** | **string** | and so on. | [optional]
+**active** | [**\Ory\Client\Model\IdentityCredentialsType**](IdentityCredentialsType.md) |  | [optional]
 **expiresAt** | [**\DateTime**](\DateTime.md) | ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated. |
 **id** | **string** |  |
 **issuedAt** | [**\DateTime**](\DateTime.md) | IssuedAt is the time (UTC) when the flow occurred. |

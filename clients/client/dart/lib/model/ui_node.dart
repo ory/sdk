@@ -73,12 +73,12 @@ class UiNode {
   static List<UiNode> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <UiNode>[]
-      : json.map((v) => UiNode.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => UiNode.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, UiNode> mapFromJson(Map<String, dynamic> json) {
     final map = <String, UiNode>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = UiNode.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = UiNode.fromJson(value));
     }
     return map;
   }
@@ -86,9 +86,9 @@ class UiNode {
   // maps a json object with a list of UiNode-objects as value to a dart map
   static Map<String, List<UiNode>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<UiNode>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = UiNode.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = UiNode.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

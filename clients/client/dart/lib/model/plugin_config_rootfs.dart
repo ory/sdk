@@ -60,12 +60,12 @@ class PluginConfigRootfs {
   static List<PluginConfigRootfs> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <PluginConfigRootfs>[]
-      : json.map((v) => PluginConfigRootfs.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => PluginConfigRootfs.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, PluginConfigRootfs> mapFromJson(Map<String, dynamic> json) {
     final map = <String, PluginConfigRootfs>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = PluginConfigRootfs.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = PluginConfigRootfs.fromJson(value));
     }
     return map;
   }
@@ -73,9 +73,9 @@ class PluginConfigRootfs {
   // maps a json object with a list of PluginConfigRootfs-objects as value to a dart map
   static Map<String, List<PluginConfigRootfs>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<PluginConfigRootfs>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = PluginConfigRootfs.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = PluginConfigRootfs.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

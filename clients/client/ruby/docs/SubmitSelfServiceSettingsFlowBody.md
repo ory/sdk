@@ -1,4 +1,4 @@
-# OryHydraClient::SubmitSelfServiceSettingsFlowBody
+# OryClient::SubmitSelfServiceSettingsFlowBody
 
 ## Class instance methods
 
@@ -11,11 +11,13 @@ Returns the list of classes defined in oneOf.
 ```ruby
 require 'ory-client'
 
-OryHydraClient::SubmitSelfServiceSettingsFlowBody.openapi_one_of
+OryClient::SubmitSelfServiceSettingsFlowBody.openapi_one_of
 # =>
 # [
+#   :'SubmitSelfServiceSettingsFlowWithOidcMethodBody',
 #   :'SubmitSelfServiceSettingsFlowWithPasswordMethodBody',
-#   :'SubmitSelfServiceSettingsFlowWithProfileMethodBody'
+#   :'SubmitSelfServiceSettingsFlowWithProfileMethodBody',
+#   :'SubmitSelfServiceSettingsFlowWithTotpMethodBody'
 # ]
 ```
 
@@ -28,7 +30,7 @@ Returns the discriminator's property name.
 ```ruby
 require 'ory-client'
 
-OryHydraClient::SubmitSelfServiceSettingsFlowBody.openapi_discriminator_name
+OryClient::SubmitSelfServiceSettingsFlowBody.openapi_discriminator_name
 # => :'method'
 ```
 
@@ -41,12 +43,13 @@ Returns the discriminator's mapping.
 ```ruby
 require 'ory-client'
 
-OryHydraClient::SubmitSelfServiceSettingsFlowBody.openapi_discriminator_mapping
+OryClient::SubmitSelfServiceSettingsFlowBody.openapi_discriminator_mapping
 # =>
 # {
 #   :'oidc' => :'SubmitSelfServiceSettingsFlowWithOidcMethodBody',
 #   :'password' => :'SubmitSelfServiceSettingsFlowWithPasswordMethodBody',
-#   :'profile' => :'SubmitSelfServiceSettingsFlowWithProfileMethodBody'
+#   :'profile' => :'SubmitSelfServiceSettingsFlowWithProfileMethodBody',
+#   :'totp' => :'SubmitSelfServiceSettingsFlowWithTotpMethodBody'
 # }
 
 ### build
@@ -58,10 +61,10 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 ```ruby
 require 'ory-client'
 
-OryHydraClient::SubmitSelfServiceSettingsFlowBody.build(data)
-# => #<SubmitSelfServiceSettingsFlowWithPasswordMethodBody:0x00007fdd4aab02a0>
+OryClient::SubmitSelfServiceSettingsFlowBody.build(data)
+# => #<SubmitSelfServiceSettingsFlowWithOidcMethodBody:0x00007fdd4aab02a0>
 
-OryHydraClient::SubmitSelfServiceSettingsFlowBody.build(data_that_doesnt_match)
+OryClient::SubmitSelfServiceSettingsFlowBody.build(data_that_doesnt_match)
 # => nil
 ```
 
@@ -73,7 +76,9 @@ OryHydraClient::SubmitSelfServiceSettingsFlowBody.build(data_that_doesnt_match)
 
 #### Return type
 
+- `SubmitSelfServiceSettingsFlowWithOidcMethodBody`
 - `SubmitSelfServiceSettingsFlowWithPasswordMethodBody`
 - `SubmitSelfServiceSettingsFlowWithProfileMethodBody`
+- `SubmitSelfServiceSettingsFlowWithTotpMethodBody`
 - `nil` (if no type matches)
 

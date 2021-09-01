@@ -1,4 +1,4 @@
-# OryHydraClient::SubmitSelfServiceLogoutFlowWithoutBrowserBody
+# OryClient::SubmitSelfServiceLogoutFlowWithoutBrowserBody
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::SubmitSelfServiceLogoutFlowWithoutBrowserBody.new(
+instance = OryClient::SubmitSelfServiceLogoutFlowWithoutBrowserBody.new(
   session_token: null
 )
 ```

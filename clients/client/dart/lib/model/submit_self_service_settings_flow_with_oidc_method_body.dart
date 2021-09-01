@@ -76,12 +76,12 @@ class SubmitSelfServiceSettingsFlowWithOidcMethodBody {
   static List<SubmitSelfServiceSettingsFlowWithOidcMethodBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <SubmitSelfServiceSettingsFlowWithOidcMethodBody>[]
-      : json.map((v) => SubmitSelfServiceSettingsFlowWithOidcMethodBody.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => SubmitSelfServiceSettingsFlowWithOidcMethodBody.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, SubmitSelfServiceSettingsFlowWithOidcMethodBody> mapFromJson(Map<String, dynamic> json) {
     final map = <String, SubmitSelfServiceSettingsFlowWithOidcMethodBody>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = SubmitSelfServiceSettingsFlowWithOidcMethodBody.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = SubmitSelfServiceSettingsFlowWithOidcMethodBody.fromJson(value));
     }
     return map;
   }
@@ -89,9 +89,9 @@ class SubmitSelfServiceSettingsFlowWithOidcMethodBody {
   // maps a json object with a list of SubmitSelfServiceSettingsFlowWithOidcMethodBody-objects as value to a dart map
   static Map<String, List<SubmitSelfServiceSettingsFlowWithOidcMethodBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<SubmitSelfServiceSettingsFlowWithOidcMethodBody>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = SubmitSelfServiceSettingsFlowWithOidcMethodBody.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = SubmitSelfServiceSettingsFlowWithOidcMethodBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

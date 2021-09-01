@@ -54,12 +54,12 @@ class AuthenticateOKBody {
   static List<AuthenticateOKBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <AuthenticateOKBody>[]
-      : json.map((v) => AuthenticateOKBody.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => AuthenticateOKBody.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, AuthenticateOKBody> mapFromJson(Map<String, dynamic> json) {
     final map = <String, AuthenticateOKBody>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = AuthenticateOKBody.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = AuthenticateOKBody.fromJson(value));
     }
     return map;
   }
@@ -67,9 +67,9 @@ class AuthenticateOKBody {
   // maps a json object with a list of AuthenticateOKBody-objects as value to a dart map
   static Map<String, List<AuthenticateOKBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<AuthenticateOKBody>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = AuthenticateOKBody.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = AuthenticateOKBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

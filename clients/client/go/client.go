@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.17
+ * API version: v0.0.1-alpha.18
  * Contact: support@ory.sh
  */
 
@@ -41,7 +41,7 @@ var (
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 )
 
-// APIClient manages communication with the Ory APIs API vv0.0.1-alpha.17
+// APIClient manages communication with the Ory APIs API vv0.0.1-alpha.18
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -51,7 +51,7 @@ type APIClient struct {
 
 	MetadataApi MetadataApi
 
-	V0alpha1Api V0alpha1Api
+	V0alpha2Api V0alpha2Api
 }
 
 type service struct {
@@ -71,7 +71,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.MetadataApi = (*MetadataApiService)(&c.common)
-	c.V0alpha1Api = (*V0alpha1ApiService)(&c.common)
+	c.V0alpha2Api = (*V0alpha2ApiService)(&c.common)
 
 	return c
 }

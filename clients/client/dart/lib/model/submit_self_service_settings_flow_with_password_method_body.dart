@@ -64,12 +64,12 @@ class SubmitSelfServiceSettingsFlowWithPasswordMethodBody {
   static List<SubmitSelfServiceSettingsFlowWithPasswordMethodBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <SubmitSelfServiceSettingsFlowWithPasswordMethodBody>[]
-      : json.map((v) => SubmitSelfServiceSettingsFlowWithPasswordMethodBody.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => SubmitSelfServiceSettingsFlowWithPasswordMethodBody.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, SubmitSelfServiceSettingsFlowWithPasswordMethodBody> mapFromJson(Map<String, dynamic> json) {
     final map = <String, SubmitSelfServiceSettingsFlowWithPasswordMethodBody>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = SubmitSelfServiceSettingsFlowWithPasswordMethodBody.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = SubmitSelfServiceSettingsFlowWithPasswordMethodBody.fromJson(value));
     }
     return map;
   }
@@ -77,9 +77,9 @@ class SubmitSelfServiceSettingsFlowWithPasswordMethodBody {
   // maps a json object with a list of SubmitSelfServiceSettingsFlowWithPasswordMethodBody-objects as value to a dart map
   static Map<String, List<SubmitSelfServiceSettingsFlowWithPasswordMethodBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<SubmitSelfServiceSettingsFlowWithPasswordMethodBody>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = SubmitSelfServiceSettingsFlowWithPasswordMethodBody.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = SubmitSelfServiceSettingsFlowWithPasswordMethodBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;
@@ -102,12 +102,14 @@ class SubmitSelfServiceSettingsFlowWithPasswordMethodBodyMethodEnum {
   static const password = SubmitSelfServiceSettingsFlowWithPasswordMethodBodyMethodEnum._(r'password');
   static const profile = SubmitSelfServiceSettingsFlowWithPasswordMethodBodyMethodEnum._(r'profile');
   static const oidc = SubmitSelfServiceSettingsFlowWithPasswordMethodBodyMethodEnum._(r'oidc');
+  static const totp = SubmitSelfServiceSettingsFlowWithPasswordMethodBodyMethodEnum._(r'totp');
 
   /// List of all possible values in this [enum][SubmitSelfServiceSettingsFlowWithPasswordMethodBodyMethodEnum].
   static const values = <SubmitSelfServiceSettingsFlowWithPasswordMethodBodyMethodEnum>[
     password,
     profile,
     oidc,
+    totp,
   ];
 
   static SubmitSelfServiceSettingsFlowWithPasswordMethodBodyMethodEnum fromJson(dynamic value) =>
@@ -143,6 +145,7 @@ class SubmitSelfServiceSettingsFlowWithPasswordMethodBodyMethodEnumTypeTransform
       case r'password': return SubmitSelfServiceSettingsFlowWithPasswordMethodBodyMethodEnum.password;
       case r'profile': return SubmitSelfServiceSettingsFlowWithPasswordMethodBodyMethodEnum.profile;
       case r'oidc': return SubmitSelfServiceSettingsFlowWithPasswordMethodBodyMethodEnum.oidc;
+      case r'totp': return SubmitSelfServiceSettingsFlowWithPasswordMethodBodyMethodEnum.totp;
       default:
         if (allowNull == false) {
           throw ArgumentError('Unknown enum value to decode: $data');

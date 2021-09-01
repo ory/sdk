@@ -56,12 +56,12 @@ class ContainerCreateCreatedBody {
   static List<ContainerCreateCreatedBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <ContainerCreateCreatedBody>[]
-      : json.map((v) => ContainerCreateCreatedBody.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => ContainerCreateCreatedBody.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, ContainerCreateCreatedBody> mapFromJson(Map<String, dynamic> json) {
     final map = <String, ContainerCreateCreatedBody>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = ContainerCreateCreatedBody.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = ContainerCreateCreatedBody.fromJson(value));
     }
     return map;
   }
@@ -69,9 +69,9 @@ class ContainerCreateCreatedBody {
   // maps a json object with a list of ContainerCreateCreatedBody-objects as value to a dart map
   static Map<String, List<ContainerCreateCreatedBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<ContainerCreateCreatedBody>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = ContainerCreateCreatedBody.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = ContainerCreateCreatedBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

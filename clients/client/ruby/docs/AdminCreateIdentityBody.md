@@ -1,4 +1,4 @@
-# OryHydraClient::AdminCreateIdentityBody
+# OryClient::AdminCreateIdentityBody
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::AdminCreateIdentityBody.new(
+instance = OryClient::AdminCreateIdentityBody.new(
   schema_id: null,
   traits: null
 )

@@ -20,6 +20,7 @@ Name | Value
 ---- | -----
 PASSWORD | &quot;password&quot;
 OIDC | &quot;oidc&quot;
+TOTP | &quot;totp&quot;
 
 
 

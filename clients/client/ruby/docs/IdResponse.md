@@ -1,4 +1,4 @@
-# OryHydraClient::IdResponse
+# OryClient::IdResponse
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::IdResponse.new(
+instance = OryClient::IdResponse.new(
   id: null
 )
 ```

@@ -1,4 +1,4 @@
-# OryHydraClient::Meta
+# OryClient::Meta
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::Meta.new(
+instance = OryClient::Meta.new(
   label: null
 )
 ```

@@ -57,7 +57,7 @@ class ApiClient {
   Future<Response> invokeAPI(
     String path,
     String method,
-    Iterable<QueryParam> queryParams,
+    List<QueryParam> queryParams,
     Object body,
     Map<String, String> headerParams,
     Map<String, String> formParams,
@@ -76,7 +76,7 @@ class ApiClient {
       ? '?${urlEncodedQueryParams.join('&')}'
       : '';
 
-    final url = '$basePath$path$queryString';
+    final Uri uri = Uri.parse('$basePath$path$queryString');
 
     if (nullableContentType != null) {
       headerParams['Content-Type'] = nullableContentType;
@@ -88,7 +88,7 @@ class ApiClient {
         body is MultipartFile && (nullableContentType == null ||
         !nullableContentType.toLowerCase().startsWith('multipart/form-data'))
       ) {
-        final request = StreamedRequest(method, Uri.parse(url));
+        final request = StreamedRequest(method, uri);
         request.headers.addAll(headerParams);
         request.contentLength = body.length;
         body.finalize().listen(
@@ -102,7 +102,7 @@ class ApiClient {
       }
 
       if (body is MultipartRequest) {
-        final request = MultipartRequest(method, Uri.parse(url));
+        final request = MultipartRequest(method, uri);
         request.fields.addAll(body.fields);
         request.files.addAll(body.files);
         request.headers.addAll(body.headers);
@@ -117,12 +117,12 @@ class ApiClient {
       final nullableHeaderParams = headerParams.isEmpty ? null : headerParams;
 
       switch(method) {
-        case 'POST': return await _client.post(url, headers: nullableHeaderParams, body: msgBody,);
-        case 'PUT': return await _client.put(url, headers: nullableHeaderParams, body: msgBody,);
-        case 'DELETE': return await _client.delete(url, headers: nullableHeaderParams,);
-        case 'PATCH': return await _client.patch(url, headers: nullableHeaderParams, body: msgBody,);
-        case 'HEAD': return await _client.head(url, headers: nullableHeaderParams,);
-        case 'GET': return await _client.get(url, headers: nullableHeaderParams,);
+        case 'POST': return await _client.post(uri, headers: nullableHeaderParams, body: msgBody,);
+        case 'PUT': return await _client.put(uri, headers: nullableHeaderParams, body: msgBody,);
+        case 'DELETE': return await _client.delete(uri, headers: nullableHeaderParams, body: msgBody,);
+        case 'PATCH': return await _client.patch(uri, headers: nullableHeaderParams, body: msgBody,);
+        case 'HEAD': return await _client.head(uri, headers: nullableHeaderParams,);
+        case 'GET': return await _client.get(uri, headers: nullableHeaderParams,);
       }
     } on SocketException catch (e, trace) {
       throw ApiException.withInner(HttpStatus.badRequest, 'Socket operation failed: $method $path', e, trace,);
@@ -167,13 +167,13 @@ class ApiClient {
     List<QueryParam> queryParams,
     Map<String, String> headerParams,
   ) {
-    authNames.forEach((authName) {
+    for(final authName in authNames) {
       final auth = _authentications[authName];
       if (auth == null) {
         throw ArgumentError('Authentication undefined: $authName');
       }
       auth.applyToParams(queryParams, headerParams);
-    });
+    }
   }
 
   static dynamic _deserialize(dynamic value, String targetType, {bool growable}) {
@@ -200,6 +200,9 @@ class ApiClient {
           return AdminUpdateIdentityBody.fromJson(value);
         case 'AuthenticateOKBody':
           return AuthenticateOKBody.fromJson(value);
+        case 'AuthenticatorAssuranceLevel':
+          return AuthenticatorAssuranceLevelTypeTransformer().decode(value);
+          
         case 'ContainerChangeResponseItem':
           return ContainerChangeResponseItem.fromJson(value);
         case 'ContainerCreateCreatedBody':
@@ -228,6 +231,9 @@ class ApiClient {
           return Identity.fromJson(value);
         case 'IdentityCredentials':
           return IdentityCredentials.fromJson(value);
+        case 'IdentityCredentialsType':
+          return IdentityCredentialsTypeTypeTransformer().decode(value);
+          
         case 'IdentityState':
           return IdentityStateTypeTransformer().decode(value);
           
@@ -304,14 +310,24 @@ class ApiClient {
           return ServiceUpdateResponse.fromJson(value);
         case 'Session':
           return Session.fromJson(value);
+        case 'SessionAuthenticationMethod':
+          return SessionAuthenticationMethod.fromJson(value);
+        case 'SessionDevice':
+          return SessionDevice.fromJson(value);
         case 'SettingsProfileFormConfig':
           return SettingsProfileFormConfig.fromJson(value);
         case 'SubmitSelfServiceLoginFlowBody':
           return SubmitSelfServiceLoginFlowBody.fromJson(value);
+        case 'SubmitSelfServiceLoginFlowWithLookupSecretMethodBody':
+          return SubmitSelfServiceLoginFlowWithLookupSecretMethodBody.fromJson(value);
         case 'SubmitSelfServiceLoginFlowWithOidcMethodBody':
           return SubmitSelfServiceLoginFlowWithOidcMethodBody.fromJson(value);
         case 'SubmitSelfServiceLoginFlowWithPasswordMethodBody':
           return SubmitSelfServiceLoginFlowWithPasswordMethodBody.fromJson(value);
+        case 'SubmitSelfServiceLoginFlowWithTotpMethodBody':
+          return SubmitSelfServiceLoginFlowWithTotpMethodBody.fromJson(value);
+        case 'SubmitSelfServiceLoginFlowWithWebAuthnMethodBody':
+          return SubmitSelfServiceLoginFlowWithWebAuthnMethodBody.fromJson(value);
         case 'SubmitSelfServiceLogoutFlowWithoutBrowserBody':
           return SubmitSelfServiceLogoutFlowWithoutBrowserBody.fromJson(value);
         case 'SubmitSelfServiceRecoveryFlowBody':
@@ -326,12 +342,18 @@ class ApiClient {
           return SubmitSelfServiceRegistrationFlowWithPasswordMethodBody.fromJson(value);
         case 'SubmitSelfServiceSettingsFlowBody':
           return SubmitSelfServiceSettingsFlowBody.fromJson(value);
+        case 'SubmitSelfServiceSettingsFlowWithLookupMethodBody':
+          return SubmitSelfServiceSettingsFlowWithLookupMethodBody.fromJson(value);
         case 'SubmitSelfServiceSettingsFlowWithOidcMethodBody':
           return SubmitSelfServiceSettingsFlowWithOidcMethodBody.fromJson(value);
         case 'SubmitSelfServiceSettingsFlowWithPasswordMethodBody':
           return SubmitSelfServiceSettingsFlowWithPasswordMethodBody.fromJson(value);
         case 'SubmitSelfServiceSettingsFlowWithProfileMethodBody':
           return SubmitSelfServiceSettingsFlowWithProfileMethodBody.fromJson(value);
+        case 'SubmitSelfServiceSettingsFlowWithTotpMethodBody':
+          return SubmitSelfServiceSettingsFlowWithTotpMethodBody.fromJson(value);
+        case 'SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody':
+          return SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody.fromJson(value);
         case 'SubmitSelfServiceVerificationFlowBody':
           return SubmitSelfServiceVerificationFlowBody.fromJson(value);
         case 'SubmitSelfServiceVerificationFlowWithLinkMethodBody':
@@ -340,8 +362,6 @@ class ApiClient {
           return SuccessfulSelfServiceLoginWithoutBrowser.fromJson(value);
         case 'SuccessfulSelfServiceRegistrationWithoutBrowser':
           return SuccessfulSelfServiceRegistrationWithoutBrowser.fromJson(value);
-        case 'SuccessfulSelfServiceSettingsWithoutBrowser':
-          return SuccessfulSelfServiceSettingsWithoutBrowser.fromJson(value);
         case 'UiContainer':
           return UiContainer.fromJson(value);
         case 'UiNode':

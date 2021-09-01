@@ -55,12 +55,12 @@ class AdminCreateSelfServiceRecoveryLinkBody {
   static List<AdminCreateSelfServiceRecoveryLinkBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <AdminCreateSelfServiceRecoveryLinkBody>[]
-      : json.map((v) => AdminCreateSelfServiceRecoveryLinkBody.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => AdminCreateSelfServiceRecoveryLinkBody.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, AdminCreateSelfServiceRecoveryLinkBody> mapFromJson(Map<String, dynamic> json) {
     final map = <String, AdminCreateSelfServiceRecoveryLinkBody>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = AdminCreateSelfServiceRecoveryLinkBody.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = AdminCreateSelfServiceRecoveryLinkBody.fromJson(value));
     }
     return map;
   }
@@ -68,9 +68,9 @@ class AdminCreateSelfServiceRecoveryLinkBody {
   // maps a json object with a list of AdminCreateSelfServiceRecoveryLinkBody-objects as value to a dart map
   static Map<String, List<AdminCreateSelfServiceRecoveryLinkBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<AdminCreateSelfServiceRecoveryLinkBody>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = AdminCreateSelfServiceRecoveryLinkBody.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = AdminCreateSelfServiceRecoveryLinkBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

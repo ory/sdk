@@ -7,12 +7,16 @@ Name | Type | Description | Notes
 **Disabled** | **bool** | Sets the input&#39;s disabled field to true or false. | 
 **Label** | Pointer to [**UiText**](UiText.md) |  | [optional] 
 **Name** | **string** | The input&#39;s element name. | 
+**Onclick** | Pointer to **string** | OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn. | [optional] 
 **Pattern** | Pointer to **string** | The input&#39;s pattern. | [optional] 
 **Required** | Pointer to **bool** | Mark this input field as required. | [optional] 
 **Type** | **string** |  | 
 **Value** | Pointer to **interface{}** | The input&#39;s value. | [optional] 
+**Id** | **string** | A unique identifier | 
 **Text** | [**UiText**](UiText.md) |  | 
+**Height** | Pointer to **int64** | Height of the image | [optional] 
 **Src** | **string** | The image&#39;s source URL.  format: uri | 
+**Width** | Pointer to **int64** | Width of the image | [optional] 
 **Href** | **string** | The link&#39;s href (destination) URL.  format: uri | 
 **Title** | [**UiText**](UiText.md) |  | 
 
@@ -20,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewUiNodeAttributes
 
-`func NewUiNodeAttributes(disabled bool, name string, type_ string, text UiText, src string, href string, title UiText, ) *UiNodeAttributes`
+`func NewUiNodeAttributes(disabled bool, name string, type_ string, id string, text UiText, src string, href string, title UiText, ) *UiNodeAttributes`
 
 NewUiNodeAttributes instantiates a new UiNodeAttributes object
 This constructor will assign default values to properties that have it defined,
@@ -99,6 +103,31 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+
+### GetOnclick
+
+`func (o *UiNodeAttributes) GetOnclick() string`
+
+GetOnclick returns the Onclick field if non-nil, zero value otherwise.
+
+### GetOnclickOk
+
+`func (o *UiNodeAttributes) GetOnclickOk() (*string, bool)`
+
+GetOnclickOk returns a tuple with the Onclick field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnclick
+
+`func (o *UiNodeAttributes) SetOnclick(v string)`
+
+SetOnclick sets Onclick field to given value.
+
+### HasOnclick
+
+`func (o *UiNodeAttributes) HasOnclick() bool`
+
+HasOnclick returns a boolean if a field has been set.
 
 ### GetPattern
 
@@ -205,6 +234,26 @@ HasValue returns a boolean if a field has been set.
 `func (o *UiNodeAttributes) UnsetValue()`
 
 UnsetValue ensures that no value is present for Value, not even an explicit nil
+### GetId
+
+`func (o *UiNodeAttributes) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *UiNodeAttributes) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *UiNodeAttributes) SetId(v string)`
+
+SetId sets Id field to given value.
+
+
 ### GetText
 
 `func (o *UiNodeAttributes) GetText() UiText`
@@ -225,6 +274,31 @@ and a boolean to check if the value has been set.
 SetText sets Text field to given value.
 
 
+### GetHeight
+
+`func (o *UiNodeAttributes) GetHeight() int64`
+
+GetHeight returns the Height field if non-nil, zero value otherwise.
+
+### GetHeightOk
+
+`func (o *UiNodeAttributes) GetHeightOk() (*int64, bool)`
+
+GetHeightOk returns a tuple with the Height field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHeight
+
+`func (o *UiNodeAttributes) SetHeight(v int64)`
+
+SetHeight sets Height field to given value.
+
+### HasHeight
+
+`func (o *UiNodeAttributes) HasHeight() bool`
+
+HasHeight returns a boolean if a field has been set.
+
 ### GetSrc
 
 `func (o *UiNodeAttributes) GetSrc() string`
@@ -244,6 +318,31 @@ and a boolean to check if the value has been set.
 
 SetSrc sets Src field to given value.
 
+
+### GetWidth
+
+`func (o *UiNodeAttributes) GetWidth() int64`
+
+GetWidth returns the Width field if non-nil, zero value otherwise.
+
+### GetWidthOk
+
+`func (o *UiNodeAttributes) GetWidthOk() (*int64, bool)`
+
+GetWidthOk returns a tuple with the Width field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWidth
+
+`func (o *UiNodeAttributes) SetWidth(v int64)`
+
+SetWidth sets Width field to given value.
+
+### HasWidth
+
+`func (o *UiNodeAttributes) HasWidth() bool`
+
+HasWidth returns a boolean if a field has been set.
 
 ### GetHref
 

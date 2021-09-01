@@ -1,4 +1,4 @@
-# OryHydraClient::SettingsProfileFormConfig
+# OryClient::SettingsProfileFormConfig
 
 ## Properties
 
@@ -14,7 +14,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::SettingsProfileFormConfig.new(
+instance = OryClient::SettingsProfileFormConfig.new(
   action: null,
   messages: null,
   method: null,

@@ -1,4 +1,4 @@
-# OryHydraClient::SubmitSelfServiceSettingsFlowWithProfileMethodBody
+# OryClient::SubmitSelfServiceSettingsFlowWithProfileMethodBody
 
 ## Properties
 
@@ -13,7 +13,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::SubmitSelfServiceSettingsFlowWithProfileMethodBody.new(
+instance = OryClient::SubmitSelfServiceSettingsFlowWithProfileMethodBody.new(
   csrf_token: null,
   method: null,
   traits: null

@@ -1,4 +1,4 @@
-# OryHydraClient::SubmitSelfServiceVerificationFlowWithLinkMethodBody
+# OryClient::SubmitSelfServiceVerificationFlowWithLinkMethodBody
 
 ## Properties
 
@@ -13,7 +13,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::SubmitSelfServiceVerificationFlowWithLinkMethodBody.new(
+instance = OryClient::SubmitSelfServiceVerificationFlowWithLinkMethodBody.new(
   csrf_token: null,
   email: null,
   method: null

@@ -8,7 +8,7 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**active** | **String** | and so on. | [optional] 
+**active** | [**IdentityCredentialsType**](IdentityCredentialsType.md) |  | [optional] 
 **expiresAt** | [**DateTime**](DateTime.md) | ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated. | 
 **id** | **String** |  | 
 **issuedAt** | [**DateTime**](DateTime.md) | IssuedAt is the time (UTC) when the flow occurred. | 

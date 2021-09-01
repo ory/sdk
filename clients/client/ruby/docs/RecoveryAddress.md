@@ -1,4 +1,4 @@
-# OryHydraClient::RecoveryAddress
+# OryClient::RecoveryAddress
 
 ## Properties
 
@@ -15,7 +15,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::RecoveryAddress.new(
+instance = OryClient::RecoveryAddress.new(
   created_at: null,
   id: null,
   updated_at: null,

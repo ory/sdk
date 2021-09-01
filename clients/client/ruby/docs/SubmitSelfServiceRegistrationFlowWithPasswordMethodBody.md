@@ -1,4 +1,4 @@
-# OryHydraClient::SubmitSelfServiceRegistrationFlowWithPasswordMethodBody
+# OryClient::SubmitSelfServiceRegistrationFlowWithPasswordMethodBody
 
 ## Properties
 
@@ -14,7 +14,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::SubmitSelfServiceRegistrationFlowWithPasswordMethodBody.new(
+instance = OryClient::SubmitSelfServiceRegistrationFlowWithPasswordMethodBody.new(
   csrf_token: null,
   method: null,
   password: null,

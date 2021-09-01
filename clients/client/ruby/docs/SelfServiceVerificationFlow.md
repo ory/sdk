@@ -1,4 +1,4 @@
-# OryHydraClient::SelfServiceVerificationFlow
+# OryClient::SelfServiceVerificationFlow
 
 ## Properties
 
@@ -18,7 +18,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::SelfServiceVerificationFlow.new(
+instance = OryClient::SelfServiceVerificationFlow.new(
   active: null,
   expires_at: null,
   id: null,

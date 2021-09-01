@@ -1,4 +1,4 @@
-# OryHydraClient::SubmitSelfServiceRecoveryFlowWithLinkMethodBody
+# OryClient::SubmitSelfServiceRecoveryFlowWithLinkMethodBody
 
 ## Properties
 
@@ -13,7 +13,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::SubmitSelfServiceRecoveryFlowWithLinkMethodBody.new(
+instance = OryClient::SubmitSelfServiceRecoveryFlowWithLinkMethodBody.new(
   csrf_token: null,
   email: null,
   method: null

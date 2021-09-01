@@ -1,4 +1,4 @@
-# OryHydraClient::Volume
+# OryClient::Volume
 
 ## Properties
 
@@ -19,7 +19,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::Volume.new(
+instance = OryClient::Volume.new(
   created_at: null,
   driver: null,
   labels: null,

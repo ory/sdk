@@ -106,12 +106,12 @@ class GenericError {
   static List<GenericError> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <GenericError>[]
-      : json.map((v) => GenericError.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => GenericError.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, GenericError> mapFromJson(Map<String, dynamic> json) {
     final map = <String, GenericError>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = GenericError.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = GenericError.fromJson(value));
     }
     return map;
   }
@@ -119,9 +119,9 @@ class GenericError {
   // maps a json object with a list of GenericError-objects as value to a dart map
   static Map<String, List<GenericError>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<GenericError>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = GenericError.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = GenericError.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

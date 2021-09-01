@@ -14,17 +14,24 @@ class Session {
   Session({
     this.active,
     this.authenticatedAt,
+    this.authenticationMethods = const [],
+    this.authenticatorAssuranceLevel,
     this.expiresAt,
     @required this.id,
     @required this.identity,
     this.issuedAt,
   });
 
-  /// Whether or not the session is active.
+  /// Active state. If false the session is no longer active.
   bool active;
 
-  /// The Session Authentication Timestamp  When this session was authenticated at.
+  /// The Session Authentication Timestamp  When this session was authenticated at. If multi-factor authentication was used this is the time when the last factor was authenticated (e.g. the TOTP code challenge was completed).
   DateTime authenticatedAt;
+
+  /// A list of authenticators which were used to authenticate the session.
+  List<SessionAuthenticationMethod> authenticationMethods;
+
+  AuthenticatorAssuranceLevel authenticatorAssuranceLevel;
 
   /// The Session Expiry  When this session expires at.
   DateTime expiresAt;
@@ -33,13 +40,15 @@ class Session {
 
   Identity identity;
 
-  /// The Session Issuance Timestamp  When this session was authenticated at.
+  /// The Session Issuance Timestamp  When this session was issued at. Usually equal or close to `authenticated_at`.
   DateTime issuedAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Session &&
      other.active == active &&
      other.authenticatedAt == authenticatedAt &&
+     other.authenticationMethods == authenticationMethods &&
+     other.authenticatorAssuranceLevel == authenticatorAssuranceLevel &&
      other.expiresAt == expiresAt &&
      other.id == id &&
      other.identity == identity &&
@@ -49,13 +58,15 @@ class Session {
   int get hashCode =>
     (active == null ? 0 : active.hashCode) +
     (authenticatedAt == null ? 0 : authenticatedAt.hashCode) +
+    (authenticationMethods == null ? 0 : authenticationMethods.hashCode) +
+    (authenticatorAssuranceLevel == null ? 0 : authenticatorAssuranceLevel.hashCode) +
     (expiresAt == null ? 0 : expiresAt.hashCode) +
     (id == null ? 0 : id.hashCode) +
     (identity == null ? 0 : identity.hashCode) +
     (issuedAt == null ? 0 : issuedAt.hashCode);
 
   @override
-  String toString() => 'Session[active=$active, authenticatedAt=$authenticatedAt, expiresAt=$expiresAt, id=$id, identity=$identity, issuedAt=$issuedAt]';
+  String toString() => 'Session[active=$active, authenticatedAt=$authenticatedAt, authenticationMethods=$authenticationMethods, authenticatorAssuranceLevel=$authenticatorAssuranceLevel, expiresAt=$expiresAt, id=$id, identity=$identity, issuedAt=$issuedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -64,6 +75,12 @@ class Session {
     }
     if (authenticatedAt != null) {
       json[r'authenticated_at'] = authenticatedAt.toUtc().toIso8601String();
+    }
+    if (authenticationMethods != null) {
+      json[r'authentication_methods'] = authenticationMethods;
+    }
+    if (authenticatorAssuranceLevel != null) {
+      json[r'authenticator_assurance_level'] = authenticatorAssuranceLevel;
     }
     if (expiresAt != null) {
       json[r'expires_at'] = expiresAt.toUtc().toIso8601String();
@@ -85,6 +102,8 @@ class Session {
         authenticatedAt: json[r'authenticated_at'] == null
           ? null
           : DateTime.parse(json[r'authenticated_at']),
+        authenticationMethods: SessionAuthenticationMethod.listFromJson(json[r'authentication_methods']),
+        authenticatorAssuranceLevel: AuthenticatorAssuranceLevel.fromJson(json[r'authenticator_assurance_level']),
         expiresAt: json[r'expires_at'] == null
           ? null
           : DateTime.parse(json[r'expires_at']),
@@ -98,12 +117,12 @@ class Session {
   static List<Session> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <Session>[]
-      : json.map((v) => Session.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => Session.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, Session> mapFromJson(Map<String, dynamic> json) {
     final map = <String, Session>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = Session.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = Session.fromJson(value));
     }
     return map;
   }
@@ -111,9 +130,9 @@ class Session {
   // maps a json object with a list of Session-objects as value to a dart map
   static Map<String, List<Session>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<Session>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = Session.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = Session.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

@@ -1,4 +1,4 @@
-# OryHydraClient::ContainerTopOKBody
+# OryClient::ContainerTopOKBody
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::ContainerTopOKBody.new(
+instance = OryClient::ContainerTopOKBody.new(
   processes: null,
   titles: null
 )

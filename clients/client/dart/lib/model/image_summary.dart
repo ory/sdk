@@ -124,12 +124,12 @@ class ImageSummary {
   static List<ImageSummary> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <ImageSummary>[]
-      : json.map((v) => ImageSummary.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => ImageSummary.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, ImageSummary> mapFromJson(Map<String, dynamic> json) {
     final map = <String, ImageSummary>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = ImageSummary.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = ImageSummary.fromJson(value));
     }
     return map;
   }
@@ -137,9 +137,9 @@ class ImageSummary {
   // maps a json object with a list of ImageSummary-objects as value to a dart map
   static Map<String, List<ImageSummary>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<ImageSummary>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = ImageSummary.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = ImageSummary.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

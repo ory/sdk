@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **state_changed_at** | **datetime** |  | [optional] 
 **updated_at** | **datetime** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **verifiable_addresses** | [**[VerifiableIdentityAddress]**](VerifiableIdentityAddress.md) | VerifiableAddresses contains all the addresses that can be verified by the user. | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

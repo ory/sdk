@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**active** | **String** | and so on. |  [optional]
+**active** | **IdentityCredentialsType** |  |  [optional]
 **expiresAt** | **OffsetDateTime** | ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated. | 
 **id** | **UUID** |  | 
 **issuedAt** | **OffsetDateTime** | IssuedAt is the time (UTC) when the flow occurred. | 

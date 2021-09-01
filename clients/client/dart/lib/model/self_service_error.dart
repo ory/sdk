@@ -78,12 +78,12 @@ class SelfServiceError {
   static List<SelfServiceError> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <SelfServiceError>[]
-      : json.map((v) => SelfServiceError.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => SelfServiceError.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, SelfServiceError> mapFromJson(Map<String, dynamic> json) {
     final map = <String, SelfServiceError>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = SelfServiceError.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = SelfServiceError.fromJson(value));
     }
     return map;
   }
@@ -91,9 +91,9 @@ class SelfServiceError {
   // maps a json object with a list of SelfServiceError-objects as value to a dart map
   static Map<String, List<SelfServiceError>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<SelfServiceError>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = SelfServiceError.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = SelfServiceError.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

@@ -1,4 +1,4 @@
-# OryHydraClient::SubmitSelfServiceSettingsFlowWithOidcMethodBody
+# OryClient::SubmitSelfServiceSettingsFlowWithOidcMethodBody
 
 ## Properties
 
@@ -14,7 +14,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::SubmitSelfServiceSettingsFlowWithOidcMethodBody.new(
+instance = OryClient::SubmitSelfServiceSettingsFlowWithOidcMethodBody.new(
   flow: null,
   link: null,
   method: null,

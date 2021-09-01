@@ -1,4 +1,4 @@
-# OryHydraClient::ContainerWaitOKBody
+# OryClient::ContainerWaitOKBody
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::ContainerWaitOKBody.new(
+instance = OryClient::ContainerWaitOKBody.new(
   error: null,
   status_code: null
 )

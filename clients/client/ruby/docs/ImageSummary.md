@@ -1,4 +1,4 @@
-# OryHydraClient::ImageSummary
+# OryClient::ImageSummary
 
 ## Properties
 
@@ -20,7 +20,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::ImageSummary.new(
+instance = OryClient::ImageSummary.new(
   containers: null,
   created: null,
   id: null,

@@ -1,4 +1,4 @@
-# OryHydraClient::UiText
+# OryClient::UiText
 
 ## Properties
 
@@ -14,7 +14,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::UiText.new(
+instance = OryClient::UiText.new(
   context: null,
   id: null,
   text: null,

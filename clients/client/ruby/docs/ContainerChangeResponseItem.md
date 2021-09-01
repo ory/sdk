@@ -1,4 +1,4 @@
-# OryHydraClient::ContainerChangeResponseItem
+# OryClient::ContainerChangeResponseItem
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::ContainerChangeResponseItem.new(
+instance = OryClient::ContainerChangeResponseItem.new(
   kind: null,
   path: null
 )

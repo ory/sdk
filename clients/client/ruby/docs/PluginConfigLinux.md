@@ -1,4 +1,4 @@
-# OryHydraClient::PluginConfigLinux
+# OryClient::PluginConfigLinux
 
 ## Properties
 
@@ -13,7 +13,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::PluginConfigLinux.new(
+instance = OryClient::PluginConfigLinux.new(
   allow_all_devices: null,
   capabilities: null,
   devices: null

@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v0.0.1-alpha.17
-  - Build date: 2021-08-01T10:37:52.194203415Z[Etc/UTC]
+- API version: v0.0.1-alpha.18
+  - Build date: 2021-09-01T15:43:49.688214874Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v0.0.1-alpha.17</version>
+  <version>v0.0.1-alpha.18</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -52,7 +52,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "sh.ory:client:v0.0.1-alpha.17"
+compile "sh.ory:client:v0.0.1-alpha.18"
 ```
 
 ### Others
@@ -65,7 +65,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v0.0.1-alpha.17.jar`
+* `target/client-v0.0.1-alpha.18.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -112,38 +112,38 @@ Class | Method | HTTP request | Description
 *MetadataApi* | [**isAlive**](docs/MetadataApi.md#isAlive) | **GET** /api/kratos/public/health/alive | Check HTTP Server Status
 *MetadataApi* | [**isReady**](docs/MetadataApi.md#isReady) | **GET** /api/kratos/public/health/ready | Check HTTP Server and Database Status
 *MetadataApi* | [**prometheus**](docs/MetadataApi.md#prometheus) | **GET** /api/kratos/public/metrics/prometheus | Get snapshot metrics from the service. If you&#39;re using k8s, you can then add annotations to your deployment like so:
-*V0alpha1Api* | [**adminCreateIdentity**](docs/V0alpha1Api.md#adminCreateIdentity) | **POST** /api/kratos/admin/identities | Create an Identity
-*V0alpha1Api* | [**adminCreateSelfServiceRecoveryLink**](docs/V0alpha1Api.md#adminCreateSelfServiceRecoveryLink) | **POST** /api/kratos/admin/recovery/link | Create a Recovery Link
-*V0alpha1Api* | [**adminDeleteIdentity**](docs/V0alpha1Api.md#adminDeleteIdentity) | **DELETE** /api/kratos/admin/identities/{id} | Delete an Identity
-*V0alpha1Api* | [**adminGetIdentity**](docs/V0alpha1Api.md#adminGetIdentity) | **GET** /api/kratos/admin/identities/{id} | Get an Identity
-*V0alpha1Api* | [**adminListIdentities**](docs/V0alpha1Api.md#adminListIdentities) | **GET** /api/kratos/admin/identities | List Identities
-*V0alpha1Api* | [**adminUpdateIdentity**](docs/V0alpha1Api.md#adminUpdateIdentity) | **PUT** /api/kratos/admin/identities/{id} | Update an Identity
-*V0alpha1Api* | [**createSelfServiceLogoutFlowUrlForBrowsers**](docs/V0alpha1Api.md#createSelfServiceLogoutFlowUrlForBrowsers) | **GET** /api/kratos/public/self-service/logout/browser | Create a Logout URL for Browsers
-*V0alpha1Api* | [**getJsonSchema**](docs/V0alpha1Api.md#getJsonSchema) | **GET** /api/kratos/public/schemas/{id} | 
-*V0alpha1Api* | [**getSelfServiceError**](docs/V0alpha1Api.md#getSelfServiceError) | **GET** /api/kratos/public/self-service/errors | Get Self-Service Errors
-*V0alpha1Api* | [**getSelfServiceLoginFlow**](docs/V0alpha1Api.md#getSelfServiceLoginFlow) | **GET** /api/kratos/public/self-service/login/flows | Get Login Flow
-*V0alpha1Api* | [**getSelfServiceRecoveryFlow**](docs/V0alpha1Api.md#getSelfServiceRecoveryFlow) | **GET** /api/kratos/public/self-service/recovery/flows | Get Recovery Flow
-*V0alpha1Api* | [**getSelfServiceRegistrationFlow**](docs/V0alpha1Api.md#getSelfServiceRegistrationFlow) | **GET** /api/kratos/public/self-service/registration/flows | Get Registration Flow
-*V0alpha1Api* | [**getSelfServiceSettingsFlow**](docs/V0alpha1Api.md#getSelfServiceSettingsFlow) | **GET** /api/kratos/public/self-service/settings/flows | Get Settings Flow
-*V0alpha1Api* | [**getSelfServiceVerificationFlow**](docs/V0alpha1Api.md#getSelfServiceVerificationFlow) | **GET** /api/kratos/public/self-service/verification/flows | Get Verification Flow
-*V0alpha1Api* | [**initializeSelfServiceLoginFlowForBrowsers**](docs/V0alpha1Api.md#initializeSelfServiceLoginFlowForBrowsers) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for Browsers
-*V0alpha1Api* | [**initializeSelfServiceLoginFlowWithoutBrowser**](docs/V0alpha1Api.md#initializeSelfServiceLoginFlowWithoutBrowser) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ...
-*V0alpha1Api* | [**initializeSelfServiceRecoveryFlowForBrowsers**](docs/V0alpha1Api.md#initializeSelfServiceRecoveryFlowForBrowsers) | **GET** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browsers
-*V0alpha1Api* | [**initializeSelfServiceRecoveryFlowWithoutBrowser**](docs/V0alpha1Api.md#initializeSelfServiceRecoveryFlowWithoutBrowser) | **GET** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for APIs, Services, Apps, ...
-*V0alpha1Api* | [**initializeSelfServiceRegistrationFlowForBrowsers**](docs/V0alpha1Api.md#initializeSelfServiceRegistrationFlowForBrowsers) | **GET** /api/kratos/public/self-service/registration/browser | Initialize Registration Flow for Browsers
-*V0alpha1Api* | [**initializeSelfServiceRegistrationFlowWithoutBrowser**](docs/V0alpha1Api.md#initializeSelfServiceRegistrationFlowWithoutBrowser) | **GET** /api/kratos/public/self-service/registration/api | Initialize Registration Flow for APIs, Services, Apps, ...
-*V0alpha1Api* | [**initializeSelfServiceSettingsFlowForBrowsers**](docs/V0alpha1Api.md#initializeSelfServiceSettingsFlowForBrowsers) | **GET** /api/kratos/public/self-service/settings/browser | Initialize Settings Flow for Browsers
-*V0alpha1Api* | [**initializeSelfServiceSettingsFlowWithoutBrowser**](docs/V0alpha1Api.md#initializeSelfServiceSettingsFlowWithoutBrowser) | **GET** /api/kratos/public/self-service/settings/api | Initialize Settings Flow for APIs, Services, Apps, ...
-*V0alpha1Api* | [**initializeSelfServiceVerificationFlowForBrowsers**](docs/V0alpha1Api.md#initializeSelfServiceVerificationFlowForBrowsers) | **GET** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients
-*V0alpha1Api* | [**initializeSelfServiceVerificationFlowWithoutBrowser**](docs/V0alpha1Api.md#initializeSelfServiceVerificationFlowWithoutBrowser) | **GET** /api/kratos/public/self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
-*V0alpha1Api* | [**submitSelfServiceLoginFlow**](docs/V0alpha1Api.md#submitSelfServiceLoginFlow) | **POST** /api/kratos/public/self-service/login | Submit a Login Flow
-*V0alpha1Api* | [**submitSelfServiceLogoutFlow**](docs/V0alpha1Api.md#submitSelfServiceLogoutFlow) | **GET** /api/kratos/public/self-service/logout | Complete Self-Service Logout
-*V0alpha1Api* | [**submitSelfServiceLogoutFlowWithoutBrowser**](docs/V0alpha1Api.md#submitSelfServiceLogoutFlowWithoutBrowser) | **DELETE** /api/kratos/public/self-service/logout/api | Perform Logout for APIs, Services, Apps, ...
-*V0alpha1Api* | [**submitSelfServiceRecoveryFlow**](docs/V0alpha1Api.md#submitSelfServiceRecoveryFlow) | **POST** /api/kratos/public/self-service/recovery | Complete Recovery Flow
-*V0alpha1Api* | [**submitSelfServiceRegistrationFlow**](docs/V0alpha1Api.md#submitSelfServiceRegistrationFlow) | **POST** /api/kratos/public/self-service/registration | Submit a Registration Flow
-*V0alpha1Api* | [**submitSelfServiceSettingsFlow**](docs/V0alpha1Api.md#submitSelfServiceSettingsFlow) | **POST** /api/kratos/public/self-service/settings | Complete Settings Flow
-*V0alpha1Api* | [**submitSelfServiceVerificationFlow**](docs/V0alpha1Api.md#submitSelfServiceVerificationFlow) | **POST** /api/kratos/public/self-service/verification | Complete Verification Flow
-*V0alpha1Api* | [**toSession**](docs/V0alpha1Api.md#toSession) | **GET** /api/kratos/public/sessions/whoami | Check Who the Current HTTP Session Belongs To
+*V0alpha2Api* | [**adminCreateIdentity**](docs/V0alpha2Api.md#adminCreateIdentity) | **POST** /api/kratos/admin/identities | Create an Identity
+*V0alpha2Api* | [**adminCreateSelfServiceRecoveryLink**](docs/V0alpha2Api.md#adminCreateSelfServiceRecoveryLink) | **POST** /api/kratos/admin/recovery/link | Create a Recovery Link
+*V0alpha2Api* | [**adminDeleteIdentity**](docs/V0alpha2Api.md#adminDeleteIdentity) | **DELETE** /api/kratos/admin/identities/{id} | Delete an Identity
+*V0alpha2Api* | [**adminGetIdentity**](docs/V0alpha2Api.md#adminGetIdentity) | **GET** /api/kratos/admin/identities/{id} | Get an Identity
+*V0alpha2Api* | [**adminListIdentities**](docs/V0alpha2Api.md#adminListIdentities) | **GET** /api/kratos/admin/identities | List Identities
+*V0alpha2Api* | [**adminUpdateIdentity**](docs/V0alpha2Api.md#adminUpdateIdentity) | **PUT** /api/kratos/admin/identities/{id} | Update an Identity
+*V0alpha2Api* | [**createSelfServiceLogoutFlowUrlForBrowsers**](docs/V0alpha2Api.md#createSelfServiceLogoutFlowUrlForBrowsers) | **GET** /api/kratos/public/self-service/logout/browser | Create a Logout URL for Browsers
+*V0alpha2Api* | [**getJsonSchema**](docs/V0alpha2Api.md#getJsonSchema) | **GET** /api/kratos/public/schemas/{id} | 
+*V0alpha2Api* | [**getSelfServiceError**](docs/V0alpha2Api.md#getSelfServiceError) | **GET** /api/kratos/public/self-service/errors | Get Self-Service Errors
+*V0alpha2Api* | [**getSelfServiceLoginFlow**](docs/V0alpha2Api.md#getSelfServiceLoginFlow) | **GET** /api/kratos/public/self-service/login/flows | Get Login Flow
+*V0alpha2Api* | [**getSelfServiceRecoveryFlow**](docs/V0alpha2Api.md#getSelfServiceRecoveryFlow) | **GET** /api/kratos/public/self-service/recovery/flows | Get Recovery Flow
+*V0alpha2Api* | [**getSelfServiceRegistrationFlow**](docs/V0alpha2Api.md#getSelfServiceRegistrationFlow) | **GET** /api/kratos/public/self-service/registration/flows | Get Registration Flow
+*V0alpha2Api* | [**getSelfServiceSettingsFlow**](docs/V0alpha2Api.md#getSelfServiceSettingsFlow) | **GET** /api/kratos/public/self-service/settings/flows | Get Settings Flow
+*V0alpha2Api* | [**getSelfServiceVerificationFlow**](docs/V0alpha2Api.md#getSelfServiceVerificationFlow) | **GET** /api/kratos/public/self-service/verification/flows | Get Verification Flow
+*V0alpha2Api* | [**initializeSelfServiceLoginFlowForBrowsers**](docs/V0alpha2Api.md#initializeSelfServiceLoginFlowForBrowsers) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for Browsers
+*V0alpha2Api* | [**initializeSelfServiceLoginFlowWithoutBrowser**](docs/V0alpha2Api.md#initializeSelfServiceLoginFlowWithoutBrowser) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ...
+*V0alpha2Api* | [**initializeSelfServiceRecoveryFlowForBrowsers**](docs/V0alpha2Api.md#initializeSelfServiceRecoveryFlowForBrowsers) | **GET** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browsers
+*V0alpha2Api* | [**initializeSelfServiceRecoveryFlowWithoutBrowser**](docs/V0alpha2Api.md#initializeSelfServiceRecoveryFlowWithoutBrowser) | **GET** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for APIs, Services, Apps, ...
+*V0alpha2Api* | [**initializeSelfServiceRegistrationFlowForBrowsers**](docs/V0alpha2Api.md#initializeSelfServiceRegistrationFlowForBrowsers) | **GET** /api/kratos/public/self-service/registration/browser | Initialize Registration Flow for Browsers
+*V0alpha2Api* | [**initializeSelfServiceRegistrationFlowWithoutBrowser**](docs/V0alpha2Api.md#initializeSelfServiceRegistrationFlowWithoutBrowser) | **GET** /api/kratos/public/self-service/registration/api | Initialize Registration Flow for APIs, Services, Apps, ...
+*V0alpha2Api* | [**initializeSelfServiceSettingsFlowForBrowsers**](docs/V0alpha2Api.md#initializeSelfServiceSettingsFlowForBrowsers) | **GET** /api/kratos/public/self-service/settings/browser | Initialize Settings Flow for Browsers
+*V0alpha2Api* | [**initializeSelfServiceSettingsFlowWithoutBrowser**](docs/V0alpha2Api.md#initializeSelfServiceSettingsFlowWithoutBrowser) | **GET** /api/kratos/public/self-service/settings/api | Initialize Settings Flow for APIs, Services, Apps, ...
+*V0alpha2Api* | [**initializeSelfServiceVerificationFlowForBrowsers**](docs/V0alpha2Api.md#initializeSelfServiceVerificationFlowForBrowsers) | **GET** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients
+*V0alpha2Api* | [**initializeSelfServiceVerificationFlowWithoutBrowser**](docs/V0alpha2Api.md#initializeSelfServiceVerificationFlowWithoutBrowser) | **GET** /api/kratos/public/self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
+*V0alpha2Api* | [**submitSelfServiceLoginFlow**](docs/V0alpha2Api.md#submitSelfServiceLoginFlow) | **POST** /api/kratos/public/self-service/login | Submit a Login Flow
+*V0alpha2Api* | [**submitSelfServiceLogoutFlow**](docs/V0alpha2Api.md#submitSelfServiceLogoutFlow) | **GET** /api/kratos/public/self-service/logout | Complete Self-Service Logout
+*V0alpha2Api* | [**submitSelfServiceLogoutFlowWithoutBrowser**](docs/V0alpha2Api.md#submitSelfServiceLogoutFlowWithoutBrowser) | **DELETE** /api/kratos/public/self-service/logout/api | Perform Logout for APIs, Services, Apps, ...
+*V0alpha2Api* | [**submitSelfServiceRecoveryFlow**](docs/V0alpha2Api.md#submitSelfServiceRecoveryFlow) | **POST** /api/kratos/public/self-service/recovery | Complete Recovery Flow
+*V0alpha2Api* | [**submitSelfServiceRegistrationFlow**](docs/V0alpha2Api.md#submitSelfServiceRegistrationFlow) | **POST** /api/kratos/public/self-service/registration | Submit a Registration Flow
+*V0alpha2Api* | [**submitSelfServiceSettingsFlow**](docs/V0alpha2Api.md#submitSelfServiceSettingsFlow) | **POST** /api/kratos/public/self-service/settings | Complete Settings Flow
+*V0alpha2Api* | [**submitSelfServiceVerificationFlow**](docs/V0alpha2Api.md#submitSelfServiceVerificationFlow) | **POST** /api/kratos/public/self-service/verification | Complete Verification Flow
+*V0alpha2Api* | [**toSession**](docs/V0alpha2Api.md#toSession) | **GET** /api/kratos/public/sessions/whoami | Check Who the Current HTTP Session Belongs To
 
 
 ## Documentation for Models
@@ -152,6 +152,7 @@ Class | Method | HTTP request | Description
  - [AdminCreateSelfServiceRecoveryLinkBody](docs/AdminCreateSelfServiceRecoveryLinkBody.md)
  - [AdminUpdateIdentityBody](docs/AdminUpdateIdentityBody.md)
  - [AuthenticateOKBody](docs/AuthenticateOKBody.md)
+ - [AuthenticatorAssuranceLevel](docs/AuthenticatorAssuranceLevel.md)
  - [ContainerChangeResponseItem](docs/ContainerChangeResponseItem.md)
  - [ContainerCreateCreatedBody](docs/ContainerCreateCreatedBody.md)
  - [ContainerTopOKBody](docs/ContainerTopOKBody.md)
@@ -166,6 +167,7 @@ Class | Method | HTTP request | Description
  - [IdResponse](docs/IdResponse.md)
  - [Identity](docs/Identity.md)
  - [IdentityCredentials](docs/IdentityCredentials.md)
+ - [IdentityCredentialsType](docs/IdentityCredentialsType.md)
  - [IdentityState](docs/IdentityState.md)
  - [ImageDeleteResponseItem](docs/ImageDeleteResponseItem.md)
  - [ImageSummary](docs/ImageSummary.md)
@@ -202,10 +204,15 @@ Class | Method | HTTP request | Description
  - [SelfServiceVerificationFlowState](docs/SelfServiceVerificationFlowState.md)
  - [ServiceUpdateResponse](docs/ServiceUpdateResponse.md)
  - [Session](docs/Session.md)
+ - [SessionAuthenticationMethod](docs/SessionAuthenticationMethod.md)
+ - [SessionDevice](docs/SessionDevice.md)
  - [SettingsProfileFormConfig](docs/SettingsProfileFormConfig.md)
  - [SubmitSelfServiceLoginFlowBody](docs/SubmitSelfServiceLoginFlowBody.md)
+ - [SubmitSelfServiceLoginFlowWithLookupSecretMethodBody](docs/SubmitSelfServiceLoginFlowWithLookupSecretMethodBody.md)
  - [SubmitSelfServiceLoginFlowWithOidcMethodBody](docs/SubmitSelfServiceLoginFlowWithOidcMethodBody.md)
  - [SubmitSelfServiceLoginFlowWithPasswordMethodBody](docs/SubmitSelfServiceLoginFlowWithPasswordMethodBody.md)
+ - [SubmitSelfServiceLoginFlowWithTotpMethodBody](docs/SubmitSelfServiceLoginFlowWithTotpMethodBody.md)
+ - [SubmitSelfServiceLoginFlowWithWebAuthnMethodBody](docs/SubmitSelfServiceLoginFlowWithWebAuthnMethodBody.md)
  - [SubmitSelfServiceLogoutFlowWithoutBrowserBody](docs/SubmitSelfServiceLogoutFlowWithoutBrowserBody.md)
  - [SubmitSelfServiceRecoveryFlowBody](docs/SubmitSelfServiceRecoveryFlowBody.md)
  - [SubmitSelfServiceRecoveryFlowWithLinkMethodBody](docs/SubmitSelfServiceRecoveryFlowWithLinkMethodBody.md)
@@ -213,14 +220,16 @@ Class | Method | HTTP request | Description
  - [SubmitSelfServiceRegistrationFlowWithOidcMethodBody](docs/SubmitSelfServiceRegistrationFlowWithOidcMethodBody.md)
  - [SubmitSelfServiceRegistrationFlowWithPasswordMethodBody](docs/SubmitSelfServiceRegistrationFlowWithPasswordMethodBody.md)
  - [SubmitSelfServiceSettingsFlowBody](docs/SubmitSelfServiceSettingsFlowBody.md)
+ - [SubmitSelfServiceSettingsFlowWithLookupMethodBody](docs/SubmitSelfServiceSettingsFlowWithLookupMethodBody.md)
  - [SubmitSelfServiceSettingsFlowWithOidcMethodBody](docs/SubmitSelfServiceSettingsFlowWithOidcMethodBody.md)
  - [SubmitSelfServiceSettingsFlowWithPasswordMethodBody](docs/SubmitSelfServiceSettingsFlowWithPasswordMethodBody.md)
  - [SubmitSelfServiceSettingsFlowWithProfileMethodBody](docs/SubmitSelfServiceSettingsFlowWithProfileMethodBody.md)
+ - [SubmitSelfServiceSettingsFlowWithTotpMethodBody](docs/SubmitSelfServiceSettingsFlowWithTotpMethodBody.md)
+ - [SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody](docs/SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody.md)
  - [SubmitSelfServiceVerificationFlowBody](docs/SubmitSelfServiceVerificationFlowBody.md)
  - [SubmitSelfServiceVerificationFlowWithLinkMethodBody](docs/SubmitSelfServiceVerificationFlowWithLinkMethodBody.md)
  - [SuccessfulSelfServiceLoginWithoutBrowser](docs/SuccessfulSelfServiceLoginWithoutBrowser.md)
  - [SuccessfulSelfServiceRegistrationWithoutBrowser](docs/SuccessfulSelfServiceRegistrationWithoutBrowser.md)
- - [SuccessfulSelfServiceSettingsWithoutBrowser](docs/SuccessfulSelfServiceSettingsWithoutBrowser.md)
  - [UiContainer](docs/UiContainer.md)
  - [UiNode](docs/UiNode.md)
  - [UiNodeAnchorAttributes](docs/UiNodeAnchorAttributes.md)

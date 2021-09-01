@@ -1,4 +1,4 @@
-# OryHydraClient::UiContainer
+# OryClient::UiContainer
 
 ## Properties
 
@@ -14,7 +14,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::UiContainer.new(
+instance = OryClient::UiContainer.new(
   action: null,
   messages: null,
   method: null,

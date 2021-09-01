@@ -1,4 +1,4 @@
-# OryHydraClient::InlineResponse503
+# OryClient::InlineResponse503
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::InlineResponse503.new(
+instance = OryClient::InlineResponse503.new(
   errors: null
 )
 ```

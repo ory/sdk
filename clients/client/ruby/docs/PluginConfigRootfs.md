@@ -1,4 +1,4 @@
-# OryHydraClient::PluginConfigRootfs
+# OryClient::PluginConfigRootfs
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::PluginConfigRootfs.new(
+instance = OryClient::PluginConfigRootfs.new(
   diff_ids: null,
   type: null
 )

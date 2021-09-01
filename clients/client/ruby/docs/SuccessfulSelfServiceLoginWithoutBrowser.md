@@ -1,4 +1,4 @@
-# OryHydraClient::SuccessfulSelfServiceLoginWithoutBrowser
+# OryClient::SuccessfulSelfServiceLoginWithoutBrowser
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::SuccessfulSelfServiceLoginWithoutBrowser.new(
+instance = OryClient::SuccessfulSelfServiceLoginWithoutBrowser.new(
   session: null,
   session_token: null
 )

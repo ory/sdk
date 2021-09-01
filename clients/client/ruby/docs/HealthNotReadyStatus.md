@@ -1,4 +1,4 @@
-# OryHydraClient::HealthNotReadyStatus
+# OryClient::HealthNotReadyStatus
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::HealthNotReadyStatus.new(
+instance = OryClient::HealthNotReadyStatus.new(
   errors: null
 )
 ```

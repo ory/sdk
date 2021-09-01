@@ -1,4 +1,4 @@
-# OryHydraClient::GenericError
+# OryClient::GenericError
 
 ## Properties
 
@@ -17,7 +17,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::GenericError.new(
+instance = OryClient::GenericError.new(
   code: 404,
   debug: SQL field &quot;foo&quot; is not a bool.,
   details: null,

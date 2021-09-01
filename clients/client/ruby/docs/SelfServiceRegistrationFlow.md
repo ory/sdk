@@ -1,10 +1,10 @@
-# OryHydraClient::SelfServiceRegistrationFlow
+# OryClient::SelfServiceRegistrationFlow
 
 ## Properties
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **active** | **String** | and so on. | [optional] |
+| **active** | [**IdentityCredentialsType**](IdentityCredentialsType.md) |  | [optional] |
 | **expires_at** | **Time** | ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated. |  |
 | **id** | **String** |  |  |
 | **issued_at** | **Time** | IssuedAt is the time (UTC) when the flow occurred. |  |
@@ -17,7 +17,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryHydraClient::SelfServiceRegistrationFlow.new(
+instance = OryClient::SelfServiceRegistrationFlow.new(
   active: null,
   expires_at: null,
   id: null,

@@ -168,12 +168,12 @@ class PluginConfig {
   static List<PluginConfig> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
       ? true == emptyIsNull ? null : <PluginConfig>[]
-      : json.map((v) => PluginConfig.fromJson(v)).toList(growable: true == growable);
+      : json.map((dynamic value) => PluginConfig.fromJson(value)).toList(growable: true == growable);
 
   static Map<String, PluginConfig> mapFromJson(Map<String, dynamic> json) {
     final map = <String, PluginConfig>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = PluginConfig.fromJson(v));
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) => map[key] = PluginConfig.fromJson(value));
     }
     return map;
   }
@@ -181,9 +181,9 @@ class PluginConfig {
   // maps a json object with a list of PluginConfig-objects as value to a dart map
   static Map<String, List<PluginConfig>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
     final map = <String, List<PluginConfig>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = PluginConfig.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
+    if (json?.isNotEmpty == true) {
+      json.forEach((key, value) {
+        map[key] = PluginConfig.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;
