@@ -1,6 +1,6 @@
 [package]
 name = "ory-kratos-client"
-version = "0.7.3-alpha.5"
+version = "0.7.3-alpha.6"
 description = "SDK Client for Ory Kratos"
 documentation = "https://www.ory.sh/kratos/docs/sdk"
 homepage = "https://www.ory.sh"
