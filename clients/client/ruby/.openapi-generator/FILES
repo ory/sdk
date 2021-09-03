@@ -204,17 +204,6 @@ lib/ory-client/models/volume.rb
 lib/ory-client/models/volume_usage_data.rb
 lib/ory-client/version.rb
 ory-client.gemspec
-spec/api/v0alpha2_api_spec.rb
 spec/api_client_spec.rb
 spec/configuration_spec.rb
-spec/models/authenticator_assurance_level_spec.rb
-spec/models/identity_credentials_type_spec.rb
-spec/models/session_authentication_method_spec.rb
-spec/models/session_device_spec.rb
-spec/models/submit_self_service_login_flow_with_lookup_secret_method_body_spec.rb
-spec/models/submit_self_service_login_flow_with_totp_method_body_spec.rb
-spec/models/submit_self_service_login_flow_with_web_authn_method_body_spec.rb
-spec/models/submit_self_service_settings_flow_with_lookup_method_body_spec.rb
-spec/models/submit_self_service_settings_flow_with_totp_method_body_spec.rb
-spec/models/submit_self_service_settings_flow_with_web_authn_method_body_spec.rb
 spec/spec_helper.rb

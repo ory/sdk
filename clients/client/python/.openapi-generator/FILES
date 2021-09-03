@@ -218,16 +218,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_authenticator_assurance_level.py
-test/test_identity_credentials_type.py
-test/test_session_authentication_method.py
-test/test_session_authentication_methods.py
-test/test_session_device.py
-test/test_submit_self_service_login_flow_with_lookup_secret_method_body.py
-test/test_submit_self_service_login_flow_with_totp_method_body.py
-test/test_submit_self_service_login_flow_with_web_authn_method_body.py
-test/test_submit_self_service_settings_flow_with_lookup_method_body.py
-test/test_submit_self_service_settings_flow_with_totp_method_body.py
-test/test_submit_self_service_settings_flow_with_web_authn_method_body.py
-test/test_v0alpha2_api.py
 tox.ini

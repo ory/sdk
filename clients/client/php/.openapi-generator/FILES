@@ -202,14 +202,3 @@ lib/Model/Volume.php
 lib/Model/VolumeUsageData.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
-test/Api/V0alpha2ApiTest.php
-test/Model/AuthenticatorAssuranceLevelTest.php
-test/Model/IdentityCredentialsTypeTest.php
-test/Model/SessionAuthenticationMethodTest.php
-test/Model/SessionDeviceTest.php
-test/Model/SubmitSelfServiceLoginFlowWithLookupSecretMethodBodyTest.php
-test/Model/SubmitSelfServiceLoginFlowWithTotpMethodBodyTest.php
-test/Model/SubmitSelfServiceLoginFlowWithWebAuthnMethodBodyTest.php
-test/Model/SubmitSelfServiceSettingsFlowWithLookupMethodBodyTest.php
-test/Model/SubmitSelfServiceSettingsFlowWithTotpMethodBodyTest.php
-test/Model/SubmitSelfServiceSettingsFlowWithWebAuthnMethodBodyTest.php
