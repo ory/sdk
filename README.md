@@ -12,8 +12,20 @@ You may also manually build and publish this image using:
 ```shell script
 docker build -t oryd/sdk:latest .
 docker tag oryd/sdk:latest oryd/sdk:v0.0.34
-docker push  oryd/sdk:v0.0.34
+docker push oryd/sdk:v0.0.34
 ```
+
+## Running the Image Locally
+
+If you wish to debug some generators or build steps, you can run the image locally:
+
+```shell script
+$ docker run --mount type=bind,source="$(pwd)",target=/sdk --name sdk -it oryd/sdk:v0.0.42 /bin/sh
+$ cd sdk
+$ ./scripts/generate.sh
+$ ...
+```
+
 
 ## Commit a new spec
 
