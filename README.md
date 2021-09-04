@@ -26,7 +26,6 @@ $ ./scripts/generate.sh
 $ ...
 ```
 
-
 ## Commit a new spec
 
 Place the spec in `spec/<project>/<version>.json` (e.g.
@@ -98,7 +97,7 @@ python3 -m twine upload dist/*
 
 ## Ruby
 
-YOu need to set `GEM_HOST_API_KEY`
+You need to set `GEM_HOST_API_KEY`
 
 ## Java - Maven Central
 
@@ -108,6 +107,14 @@ that appears in Java11+, please disable javadoc generation:
 
 ```shell
 mvn <cmd> -Dmaven.javadoc.skip=true
+```
+
+To test the build for Java, run:
+
+```
+$ ./scripts/generate.sh
+$ cd clients/<project>/java
+$ mvn test-compile
 ```
 
 You will also need a PGP keypair that is associated with one of the owners of
