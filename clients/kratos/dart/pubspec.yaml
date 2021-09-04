@@ -3,7 +3,7 @@
 #
 
 name: 'ory_kratos_client'
-version: '0.7.3-alpha.6'
+version: '0.7.3-alpha.8'
 description: 'OpenAPI API client'
 homepage: 'https://www.ory.sh'
 environment:
