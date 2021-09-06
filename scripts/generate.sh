@@ -203,6 +203,7 @@ dotnet () {
 
   dir="clients/${PROJECT}/dotnet"
 
+  # Workaround until https://github.com/OpenAPITools/openapi-generator/pull/10333 is merged
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g csharp-netcore \
     -o "$dir" \
@@ -210,6 +211,7 @@ dotnet () {
     --git-user-id ory \
     --git-repo-id sdk \
     --git-host github.com \
+    -t openapi/templates/csharp-netcore \
     -c ./config/client/dotnet.yml.proc.yml
 }
 
