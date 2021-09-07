@@ -93,7 +93,7 @@ RUN \
   curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
   curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list && \
   apt-get update && \
-  apt-get install dart=2.10.5-1
+  apt-get install dart=2.13.4-1
 
 # rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
