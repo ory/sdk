@@ -60,7 +60,7 @@ dotnet () {
   echo "Testing dotnet..."
 
   dir="clients/${PROJECT}/dotnet"
-  (cd "$dir" && command dotnet build -c Release && command dotnet test -c Release)
+  (cd "$dir" && command dotnet test -c Release)
 }
 
 dart () {
