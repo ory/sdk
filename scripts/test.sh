@@ -60,14 +60,14 @@ dotnet () {
   echo "Testing dotnet..."
 
   dir="clients/${PROJECT}/dotnet"
-  (cd "$dir" && dotnet build -c Release && dotnet test -c Release)
+  (cd "$dir" && command dotnet build -c Release && command dotnet test -c Release)
 }
 
 dart () {
   echo "Testing Dart..."
 
   dir="clients/${PROJECT}/dart"
-  (cd "$dir" && dart test .)
+  (cd "$dir" && command dart test .)
 }
 
 rust () {
