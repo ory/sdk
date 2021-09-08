@@ -56,11 +56,11 @@ golang () {
   (cd "${dir}" && go mod tidy && go build -o "$(mktemp)" .)
 }
 
-dotnet () {
-  echo "Testing dotnet..."
+csharp () {
+  echo "Testing C#..."
 
   dir="clients/${PROJECT}/dotnet"
-  (cd "$dir" && command dotnet test -c Release)
+  (cd "${dir}" && dotnet test -c Release)
 }
 
 dart () {
@@ -84,5 +84,5 @@ java
 php
 python
 ruby
-dotnet
+csharp
 dart
