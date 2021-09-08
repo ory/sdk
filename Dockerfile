@@ -114,6 +114,8 @@ RUN td=$(mktemp) \
     && chmod +x /usr/local/bin/gh \
     && rm -rf $td $tdd
 
+RUN gem install bundler
+
 ADD go.mod go.mod
 ADD go.sum go.sum
 RUN go build -o /usr/local/bin/ory github.com/ory/cli
