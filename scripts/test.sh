@@ -14,26 +14,6 @@ do
   envsubst < "${f}" > "${f}.proc.yml"
 done
 
-cleanup() {
-  rm "clients/${PROJECT}/java/git_push.sh" || true
-  rm "clients/${PROJECT}/php/git_push.sh" || true
-  rm "clients/${PROJECT}/python/git_push.sh" || true
-  rm "clients/${PROJECT}/ruby/git_push.sh" || true
-  rm "clients/${PROJECT}/typescript/git_push.sh" || true
-  rm "clients/${PROJECT}/dotnet/git_push.sh" || true
-  rm "clients/${PROJECT}/dart/git_push.sh" || true
-  rm "clients/${PROJECT}/rust/git_push.sh" || true
-
-  rm "clients/${PROJECT}/java/.travis.yml" || true
-  rm "clients/${PROJECT}/php/.travis.yml" || true
-  rm "clients/${PROJECT}/python/.travis.yml" || true
-  rm "clients/${PROJECT}/ruby/.travis.yml" || true
-  rm "clients/${PROJECT}/typescript/.travis.yml" || true
-  rm "clients/${PROJECT}/dotnet/.travis.yml" || true
-  rm "clients/${PROJECT}/dart/.travis.yml" || true
-  rm "clients/${PROJECT}/rust/.travis.yml" || true
-}
-
 typescript () {
   echo "Testing TypeScript..."
 
@@ -106,5 +86,3 @@ python
 ruby
 dotnet
 dart
-
-cleanup
