@@ -60,14 +60,13 @@ python () {
 
   dir="clients/${PROJECT}/python"
 
-  (cd "$dir"; pip install -r requirements.txt; pip install -r test-requirements.txt; pytest --cov=ory_kratos_client)
+  (cd "$dir"; pip install -r requirements.txt; pip install -r test-requirements.txt; pytest --cov="$PYTHON_PACKAGE_NAME")
 }
 
 ruby () {
   echo "Generating Ruby..."
 
-  dir="clients/${PROJECT}/ruby"
-  (cd "$dir"; bundle install --path vendor/bundle; bundle exec rspec; gem build ory-kratos-client.gemspec; gem install ./ory-kratos-client-v0.7.3-alpha.10.gem)
+  (cd "$dir"; bundle install --path vendor/bundle; bundle exec rspec; gem build gem build "${RUBY_PROJECT_NAME}.gemspec"; gem install "${RUBY_PROJECT_NAME}-${GEM_VERSION}.gem")
 }
 
 golang () {
