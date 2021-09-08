@@ -66,7 +66,7 @@ python () {
 ruby () {
   echo "Generating Ruby..."
 
-  (cd "$dir"; bundle install --path vendor/bundle; bundle exec rspec; gem build gem build "${RUBY_PROJECT_NAME}.gemspec"; gem install "${RUBY_PROJECT_NAME}-${GEM_VERSION}.gem")
+  (cd "$dir"; bundle install --path vendor/bundle; bundle exec rspec; gem build "${RUBY_PROJECT_NAME}.gemspec"; gem install "${RUBY_PROJECT_NAME}-${GEM_VERSION}.gem")
 }
 
 golang () {
