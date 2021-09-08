@@ -66,6 +66,8 @@ python () {
 ruby () {
   echo "Generating Ruby..."
 
+  dir="clients/${PROJECT}/ruby"
+
   (cd "$dir"; rm "${RUBY_PROJECT_NAME}-${GEM_VERSION}.gem" || true; bundle install --path vendor/bundle; bundle exec rspec; gem build "${RUBY_PROJECT_NAME}.gemspec"; gem install "${RUBY_PROJECT_NAME}-${GEM_VERSION}.gem")
 }
 
