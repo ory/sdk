@@ -52,7 +52,9 @@ csharp () {
   echo "Testing C#..."
 
   dir="clients/${PROJECT}/dotnet"
-  (cd "${dir}" && dotnet build -c Release && dotnet test -c Release)
+  (cd "${dir}" && \
+    VERSION="" dotnet build -c Release && \
+    VERSION="" dotnet test -c Release)
 }
 
 dart () {
