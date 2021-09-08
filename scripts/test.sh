@@ -6,14 +6,6 @@ cd "$( dirname "${BASH_SOURCE[0]}" )/.."
 
 source scripts/prep.sh
 
-rm -rf config/client/*.proc.yml
-
-for f in config/client/*
-do
-  echo "Processing $f..."
-  envsubst < "${f}" > "${f}.proc.yml"
-done
-
 typescript () {
   echo "Testing TypeScript..."
 
@@ -60,7 +52,7 @@ csharp () {
   echo "Testing C#..."
 
   dir="clients/${PROJECT}/dotnet"
-  (cd "${dir}" && dotnet test -c Release)
+  (cd "${dir}" && dotnet build -c Release && dotnet test -c Release)
 }
 
 dart () {
@@ -77,6 +69,7 @@ rust () {
   (cd "$dir" && cargo test)
 }
 
+csharp
 typescript
 rust
 golang
@@ -84,5 +77,4 @@ java
 php
 python
 ruby
-csharp
 dart
