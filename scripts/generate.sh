@@ -38,6 +38,8 @@ typescript () {
   echo "Generating TypeScript..."
 
   dir="clients/${PROJECT}/typescript"
+  rm -rf "$dir" || true
+  mkdir -p "$dir"
 
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g typescript-axios \
@@ -58,9 +60,8 @@ java () {
   echo "Generating Java..."
 
   dir="clients/${PROJECT}/java"
-
-  rm -rf "${dir}/src" || true
-  rm -rf "${dir}/docs" || true
+  rm -rf "$dir" || true
+  mkdir -p "$dir"
 
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g java \
@@ -123,6 +124,8 @@ php() {
   echo "Generating PHP..."
 
   dir="clients/${PROJECT}/php"
+  rm -rf "$dir" || true
+  mkdir -p "$dir"
 
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g php \
@@ -144,6 +147,8 @@ python () {
   echo "Generating Python..."
 
   dir="clients/${PROJECT}/python"
+  rm -rf "$dir" || true
+  mkdir -p "$dir"
 
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g python \
@@ -158,6 +163,8 @@ ruby () {
   echo "Generating Ruby..."
 
   dir="clients/${PROJECT}/ruby"
+  rm -rf "$dir" || true
+  mkdir -p "$dir"
 
   rm "${dir}/lib/${RUBY_PROJECT_NAME}/version.rb" || true
 
@@ -180,6 +187,8 @@ golang () {
   echo "Generating Golang..."
 
   dir="clients/${PROJECT}/go"
+  rm -rf "$dir" || true
+  mkdir -p "$dir"
 
   mkdir -p "${dir}"
   (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go")
@@ -202,6 +211,8 @@ dotnet () {
   echo "Generating dotnet..."
 
   dir="clients/${PROJECT}/dotnet"
+  rm -rf "$dir" || true
+  mkdir -p "$dir"
 
   # Workaround until https://github.com/OpenAPITools/openapi-generator/pull/10333 is merged
   openapi-generator-cli generate -i "${SPEC_FILE}" \
@@ -219,6 +230,8 @@ dart () {
   echo "Generating Dart..."
 
   dir="clients/${PROJECT}/dart"
+  rm -rf "$dir" || true
+  mkdir -p "$dir"
 
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g dart \
@@ -235,6 +248,8 @@ rust () {
   echo "Generating Rust..."
 
   dir="clients/${PROJECT}/rust"
+  rm -rf "$dir" || true
+  mkdir -p "$dir"
 
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g rust \
