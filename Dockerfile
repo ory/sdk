@@ -114,7 +114,9 @@ RUN td=$(mktemp) \
     && chmod +x /usr/local/bin/gh \
     && rm -rf $td $tdd
 
-RUN gem install bundler
+RUN gem install bundler && \
+      apt-get update && \
+      apt-get install -y --no-install-recommends ruby-dev
 
 ADD go.mod go.mod
 ADD go.sum go.sum
