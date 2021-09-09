@@ -234,7 +234,7 @@ dart () {
   mkdir -p "$dir"
 
   openapi-generator-cli generate -i "${SPEC_FILE}" \
-    -g dart2 \
+    -g dart-dio \
     -o "$dir" \
     --git-user-id ory \
     --git-repo-id sdk \
