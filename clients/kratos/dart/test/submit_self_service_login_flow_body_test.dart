@@ -1,27 +1,26 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-import 'package:ory_kratos_client/api.dart';
+import 'package:ory_kratos_client/model/submit_self_service_login_flow_body.dart';
 import 'package:test/test.dart';
 
 // tests for SubmitSelfServiceLoginFlowBody
 void main() {
-  final instance = SubmitSelfServiceLoginFlowBody();
+  final instance = SubmitSelfServiceLoginFlowBodyBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test SubmitSelfServiceLoginFlowBody', () {
-    // Sending the anti-csrf token is only required for browser login flows.
+  group(SubmitSelfServiceLoginFlowBody, () {
+    // The CSRF Token
     // String csrfToken
     test('to test the property `csrfToken`', () async {
       // TODO
     });
 
-    // Method should be set to \"password\" when logging in using the identifier and password strategy.
+    // Method to use  This field must be set to `oidc` when using the oidc method.
     // String method
     test('to test the property `method`', () async {
       // TODO
@@ -36,6 +35,12 @@ void main() {
     // Identifier is the email or username of the user trying to log in.
     // String passwordIdentifier
     test('to test the property `passwordIdentifier`', () async {
+      // TODO
+    });
+
+    // The provider to register with
+    // String traits
+    test('to test the property `traits`', () async {
       // TODO
     });
 

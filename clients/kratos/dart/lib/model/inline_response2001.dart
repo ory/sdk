@@ -1,70 +1,67 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class InlineResponse2001 {
-  /// Returns a new [InlineResponse2001] instance.
-  InlineResponse2001({
-    @required this.version,
-  });
+part 'inline_response2001.g.dart';
 
-  /// The version of Ory Kratos.
-  String version;
+abstract class InlineResponse2001 implements Built<InlineResponse2001, InlineResponse2001Builder> {
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is InlineResponse2001 &&
-     other.version == version;
+    /// The version of Ory Kratos.
+    @BuiltValueField(wireName: r'version')
+    String get version;
 
-  @override
-  int get hashCode =>
-    (version == null ? 0 : version.hashCode);
+    InlineResponse2001._();
 
-  @override
-  String toString() => 'InlineResponse2001[version=$version]';
+    static void _initializeBuilder(InlineResponse2001Builder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-      json[r'version'] = version;
-    return json;
-  }
+    factory InlineResponse2001([void updates(InlineResponse2001Builder b)]) = _$InlineResponse2001;
 
-  /// Returns a new [InlineResponse2001] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static InlineResponse2001 fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : InlineResponse2001(
-        version: json[r'version'],
-    );
+    @BuiltValueSerializer(custom: true)
+    static Serializer<InlineResponse2001> get serializer => _$InlineResponse2001Serializer();
+}
 
-  static List<InlineResponse2001> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <InlineResponse2001>[]
-      : json.map((dynamic value) => InlineResponse2001.fromJson(value)).toList(growable: true == growable);
+class _$InlineResponse2001Serializer implements StructuredSerializer<InlineResponse2001> {
 
-  static Map<String, InlineResponse2001> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, InlineResponse2001>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = InlineResponse2001.fromJson(value));
+    @override
+    final Iterable<Type> types = const [InlineResponse2001, _$InlineResponse2001];
+    @override
+    final String wireName = r'InlineResponse2001';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, InlineResponse2001 object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        result
+            ..add(r'version')
+            ..add(serializers.serialize(object.version,
+                specifiedType: const FullType(String)));
+        return result;
     }
-    return map;
-  }
 
-  // maps a json object with a list of InlineResponse2001-objects as value to a dart map
-  static Map<String, List<InlineResponse2001>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<InlineResponse2001>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = InlineResponse2001.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
+    @override
+    InlineResponse2001 deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = InlineResponse2001Builder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'version':
+                    result.version = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
 }
 

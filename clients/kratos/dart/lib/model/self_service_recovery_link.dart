@@ -1,82 +1,82 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class SelfServiceRecoveryLink {
-  /// Returns a new [SelfServiceRecoveryLink] instance.
-  SelfServiceRecoveryLink({
-    this.expiresAt,
-    @required this.recoveryLink,
-  });
+part 'self_service_recovery_link.g.dart';
 
-  /// Recovery Link Expires At  The timestamp when the recovery link expires.
-  DateTime expiresAt;
+abstract class SelfServiceRecoveryLink implements Built<SelfServiceRecoveryLink, SelfServiceRecoveryLinkBuilder> {
 
-  /// Recovery Link  This link can be used to recover the account.
-  String recoveryLink;
+    /// Recovery Link Expires At  The timestamp when the recovery link expires.
+    @nullable
+    @BuiltValueField(wireName: r'expires_at')
+    DateTime get expiresAt;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is SelfServiceRecoveryLink &&
-     other.expiresAt == expiresAt &&
-     other.recoveryLink == recoveryLink;
+    /// Recovery Link  This link can be used to recover the account.
+    @BuiltValueField(wireName: r'recovery_link')
+    String get recoveryLink;
 
-  @override
-  int get hashCode =>
-    (expiresAt == null ? 0 : expiresAt.hashCode) +
-    (recoveryLink == null ? 0 : recoveryLink.hashCode);
+    SelfServiceRecoveryLink._();
 
-  @override
-  String toString() => 'SelfServiceRecoveryLink[expiresAt=$expiresAt, recoveryLink=$recoveryLink]';
+    static void _initializeBuilder(SelfServiceRecoveryLinkBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (expiresAt != null) {
-      json[r'expires_at'] = expiresAt.toUtc().toIso8601String();
+    factory SelfServiceRecoveryLink([void updates(SelfServiceRecoveryLinkBuilder b)]) = _$SelfServiceRecoveryLink;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<SelfServiceRecoveryLink> get serializer => _$SelfServiceRecoveryLinkSerializer();
+}
+
+class _$SelfServiceRecoveryLinkSerializer implements StructuredSerializer<SelfServiceRecoveryLink> {
+
+    @override
+    final Iterable<Type> types = const [SelfServiceRecoveryLink, _$SelfServiceRecoveryLink];
+    @override
+    final String wireName = r'SelfServiceRecoveryLink';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, SelfServiceRecoveryLink object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.expiresAt != null) {
+            result
+                ..add(r'expires_at')
+                ..add(serializers.serialize(object.expiresAt,
+                    specifiedType: const FullType(DateTime)));
+        }
+        result
+            ..add(r'recovery_link')
+            ..add(serializers.serialize(object.recoveryLink,
+                specifiedType: const FullType(String)));
+        return result;
     }
-      json[r'recovery_link'] = recoveryLink;
-    return json;
-  }
 
-  /// Returns a new [SelfServiceRecoveryLink] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static SelfServiceRecoveryLink fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : SelfServiceRecoveryLink(
-        expiresAt: json[r'expires_at'] == null
-          ? null
-          : DateTime.parse(json[r'expires_at']),
-        recoveryLink: json[r'recovery_link'],
-    );
+    @override
+    SelfServiceRecoveryLink deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = SelfServiceRecoveryLinkBuilder();
 
-  static List<SelfServiceRecoveryLink> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <SelfServiceRecoveryLink>[]
-      : json.map((dynamic value) => SelfServiceRecoveryLink.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, SelfServiceRecoveryLink> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, SelfServiceRecoveryLink>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = SelfServiceRecoveryLink.fromJson(value));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'expires_at':
+                    result.expiresAt = serializers.deserialize(value,
+                        specifiedType: const FullType(DateTime)) as DateTime;
+                    break;
+                case r'recovery_link':
+                    result.recoveryLink = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of SelfServiceRecoveryLink-objects as value to a dart map
-  static Map<String, List<SelfServiceRecoveryLink>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<SelfServiceRecoveryLink>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = SelfServiceRecoveryLink.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

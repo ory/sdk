@@ -1,88 +1,94 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class SubmitSelfServiceLoginFlowWithOidcMethodBody {
-  /// Returns a new [SubmitSelfServiceLoginFlowWithOidcMethodBody] instance.
-  SubmitSelfServiceLoginFlowWithOidcMethodBody({
-    this.csrfToken,
-    @required this.method,
-    @required this.traits,
-  });
+part 'submit_self_service_login_flow_with_oidc_method_body.g.dart';
 
-  /// The CSRF Token
-  String csrfToken;
+abstract class SubmitSelfServiceLoginFlowWithOidcMethodBody implements Built<SubmitSelfServiceLoginFlowWithOidcMethodBody, SubmitSelfServiceLoginFlowWithOidcMethodBodyBuilder> {
 
-  /// Method to use  This field must be set to `oidc` when using the oidc method.
-  String method;
+    /// The CSRF Token
+    @nullable
+    @BuiltValueField(wireName: r'csrf_token')
+    String get csrfToken;
 
-  /// The provider to register with
-  String traits;
+    /// Method to use  This field must be set to `oidc` when using the oidc method.
+    @BuiltValueField(wireName: r'method')
+    String get method;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is SubmitSelfServiceLoginFlowWithOidcMethodBody &&
-     other.csrfToken == csrfToken &&
-     other.method == method &&
-     other.traits == traits;
+    /// The provider to register with
+    @BuiltValueField(wireName: r'traits')
+    String get traits;
 
-  @override
-  int get hashCode =>
-    (csrfToken == null ? 0 : csrfToken.hashCode) +
-    (method == null ? 0 : method.hashCode) +
-    (traits == null ? 0 : traits.hashCode);
+    SubmitSelfServiceLoginFlowWithOidcMethodBody._();
 
-  @override
-  String toString() => 'SubmitSelfServiceLoginFlowWithOidcMethodBody[csrfToken=$csrfToken, method=$method, traits=$traits]';
+    static void _initializeBuilder(SubmitSelfServiceLoginFlowWithOidcMethodBodyBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (csrfToken != null) {
-      json[r'csrf_token'] = csrfToken;
+    factory SubmitSelfServiceLoginFlowWithOidcMethodBody([void updates(SubmitSelfServiceLoginFlowWithOidcMethodBodyBuilder b)]) = _$SubmitSelfServiceLoginFlowWithOidcMethodBody;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<SubmitSelfServiceLoginFlowWithOidcMethodBody> get serializer => _$SubmitSelfServiceLoginFlowWithOidcMethodBodySerializer();
+}
+
+class _$SubmitSelfServiceLoginFlowWithOidcMethodBodySerializer implements StructuredSerializer<SubmitSelfServiceLoginFlowWithOidcMethodBody> {
+
+    @override
+    final Iterable<Type> types = const [SubmitSelfServiceLoginFlowWithOidcMethodBody, _$SubmitSelfServiceLoginFlowWithOidcMethodBody];
+    @override
+    final String wireName = r'SubmitSelfServiceLoginFlowWithOidcMethodBody';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, SubmitSelfServiceLoginFlowWithOidcMethodBody object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.csrfToken != null) {
+            result
+                ..add(r'csrf_token')
+                ..add(serializers.serialize(object.csrfToken,
+                    specifiedType: const FullType(String)));
+        }
+        result
+            ..add(r'method')
+            ..add(serializers.serialize(object.method,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'traits')
+            ..add(serializers.serialize(object.traits,
+                specifiedType: const FullType(String)));
+        return result;
     }
-      json[r'method'] = method;
-      json[r'traits'] = traits;
-    return json;
-  }
 
-  /// Returns a new [SubmitSelfServiceLoginFlowWithOidcMethodBody] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static SubmitSelfServiceLoginFlowWithOidcMethodBody fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : SubmitSelfServiceLoginFlowWithOidcMethodBody(
-        csrfToken: json[r'csrf_token'],
-        method: json[r'method'],
-        traits: json[r'traits'],
-    );
+    @override
+    SubmitSelfServiceLoginFlowWithOidcMethodBody deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = SubmitSelfServiceLoginFlowWithOidcMethodBodyBuilder();
 
-  static List<SubmitSelfServiceLoginFlowWithOidcMethodBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <SubmitSelfServiceLoginFlowWithOidcMethodBody>[]
-      : json.map((dynamic value) => SubmitSelfServiceLoginFlowWithOidcMethodBody.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, SubmitSelfServiceLoginFlowWithOidcMethodBody> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, SubmitSelfServiceLoginFlowWithOidcMethodBody>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = SubmitSelfServiceLoginFlowWithOidcMethodBody.fromJson(value));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'csrf_token':
+                    result.csrfToken = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'method':
+                    result.method = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'traits':
+                    result.traits = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of SubmitSelfServiceLoginFlowWithOidcMethodBody-objects as value to a dart map
-  static Map<String, List<SubmitSelfServiceLoginFlowWithOidcMethodBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<SubmitSelfServiceLoginFlowWithOidcMethodBody>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = SubmitSelfServiceLoginFlowWithOidcMethodBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

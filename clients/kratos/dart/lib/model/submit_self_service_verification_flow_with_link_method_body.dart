@@ -1,151 +1,94 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class SubmitSelfServiceVerificationFlowWithLinkMethodBody {
-  /// Returns a new [SubmitSelfServiceVerificationFlowWithLinkMethodBody] instance.
-  SubmitSelfServiceVerificationFlowWithLinkMethodBody({
-    this.csrfToken,
-    @required this.email,
-    @required this.method,
-  });
+part 'submit_self_service_verification_flow_with_link_method_body.g.dart';
 
-  /// Sending the anti-csrf token is only required for browser login flows.
-  String csrfToken;
+abstract class SubmitSelfServiceVerificationFlowWithLinkMethodBody implements Built<SubmitSelfServiceVerificationFlowWithLinkMethodBody, SubmitSelfServiceVerificationFlowWithLinkMethodBodyBuilder> {
 
-  /// Email to Verify  Needs to be set when initiating the flow. If the email is a registered verification email, a verification link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
-  String email;
+    /// Sending the anti-csrf token is only required for browser login flows.
+    @nullable
+    @BuiltValueField(wireName: r'csrf_token')
+    String get csrfToken;
 
-  /// Method supports `link` only right now.
-  SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnum method;
+    /// Email to Verify  Needs to be set when initiating the flow. If the email is a registered verification email, a verification link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
+    @BuiltValueField(wireName: r'email')
+    String get email;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is SubmitSelfServiceVerificationFlowWithLinkMethodBody &&
-     other.csrfToken == csrfToken &&
-     other.email == email &&
-     other.method == method;
+    /// Method supports `link` only right now.
+    @BuiltValueField(wireName: r'method')
+    String get method;
 
-  @override
-  int get hashCode =>
-    (csrfToken == null ? 0 : csrfToken.hashCode) +
-    (email == null ? 0 : email.hashCode) +
-    (method == null ? 0 : method.hashCode);
+    SubmitSelfServiceVerificationFlowWithLinkMethodBody._();
 
-  @override
-  String toString() => 'SubmitSelfServiceVerificationFlowWithLinkMethodBody[csrfToken=$csrfToken, email=$email, method=$method]';
+    static void _initializeBuilder(SubmitSelfServiceVerificationFlowWithLinkMethodBodyBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (csrfToken != null) {
-      json[r'csrf_token'] = csrfToken;
-    }
-      json[r'email'] = email;
-      json[r'method'] = method;
-    return json;
-  }
+    factory SubmitSelfServiceVerificationFlowWithLinkMethodBody([void updates(SubmitSelfServiceVerificationFlowWithLinkMethodBodyBuilder b)]) = _$SubmitSelfServiceVerificationFlowWithLinkMethodBody;
 
-  /// Returns a new [SubmitSelfServiceVerificationFlowWithLinkMethodBody] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static SubmitSelfServiceVerificationFlowWithLinkMethodBody fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : SubmitSelfServiceVerificationFlowWithLinkMethodBody(
-        csrfToken: json[r'csrf_token'],
-        email: json[r'email'],
-        method: SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnum.fromJson(json[r'method']),
-    );
-
-  static List<SubmitSelfServiceVerificationFlowWithLinkMethodBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <SubmitSelfServiceVerificationFlowWithLinkMethodBody>[]
-      : json.map((dynamic value) => SubmitSelfServiceVerificationFlowWithLinkMethodBody.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, SubmitSelfServiceVerificationFlowWithLinkMethodBody> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, SubmitSelfServiceVerificationFlowWithLinkMethodBody>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = SubmitSelfServiceVerificationFlowWithLinkMethodBody.fromJson(value));
-    }
-    return map;
-  }
-
-  // maps a json object with a list of SubmitSelfServiceVerificationFlowWithLinkMethodBody-objects as value to a dart map
-  static Map<String, List<SubmitSelfServiceVerificationFlowWithLinkMethodBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<SubmitSelfServiceVerificationFlowWithLinkMethodBody>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = SubmitSelfServiceVerificationFlowWithLinkMethodBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
+    @BuiltValueSerializer(custom: true)
+    static Serializer<SubmitSelfServiceVerificationFlowWithLinkMethodBody> get serializer => _$SubmitSelfServiceVerificationFlowWithLinkMethodBodySerializer();
 }
 
-/// Method supports `link` only right now.
-class SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnum {
-  /// Instantiate a new enum with the provided [value].
-  const SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnum._(this.value);
+class _$SubmitSelfServiceVerificationFlowWithLinkMethodBodySerializer implements StructuredSerializer<SubmitSelfServiceVerificationFlowWithLinkMethodBody> {
 
-  /// The underlying value of this enum member.
-  final String value;
+    @override
+    final Iterable<Type> types = const [SubmitSelfServiceVerificationFlowWithLinkMethodBody, _$SubmitSelfServiceVerificationFlowWithLinkMethodBody];
+    @override
+    final String wireName = r'SubmitSelfServiceVerificationFlowWithLinkMethodBody';
 
-  @override
-  String toString() => value;
-
-  String toJson() => value;
-
-  static const link = SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnum._(r'link');
-
-  /// List of all possible values in this [enum][SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnum].
-  static const values = <SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnum>[
-    link,
-  ];
-
-  static SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnum fromJson(dynamic value) =>
-    SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnumTypeTransformer().decode(value);
-
-  static List<SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnum> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnum>[]
-      : json
-          .map((value) => SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnum.fromJson(value))
-          .toList(growable: true == growable);
-}
-
-/// Transformation class that can [encode] an instance of [SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnum] to String,
-/// and [decode] dynamic data back to [SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnum].
-class SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnumTypeTransformer {
-  const SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnumTypeTransformer._();
-
-  factory SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnumTypeTransformer() => _instance ??= SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnumTypeTransformer._();
-
-  String encode(SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnum decode(dynamic data, {bool allowNull}) {
-    switch (data) {
-      case r'link': return SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnum.link;
-      default:
-        if (allowNull == false) {
-          throw ArgumentError('Unknown enum value to decode: $data');
+    @override
+    Iterable<Object> serialize(Serializers serializers, SubmitSelfServiceVerificationFlowWithLinkMethodBody object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.csrfToken != null) {
+            result
+                ..add(r'csrf_token')
+                ..add(serializers.serialize(object.csrfToken,
+                    specifiedType: const FullType(String)));
         }
+        result
+            ..add(r'email')
+            ..add(serializers.serialize(object.email,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'method')
+            ..add(serializers.serialize(object.method,
+                specifiedType: const FullType(String)));
+        return result;
     }
-    return null;
-  }
 
-  /// Singleton [SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnumTypeTransformer] instance.
-  static SubmitSelfServiceVerificationFlowWithLinkMethodBodyMethodEnumTypeTransformer _instance;
+    @override
+    SubmitSelfServiceVerificationFlowWithLinkMethodBody deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = SubmitSelfServiceVerificationFlowWithLinkMethodBodyBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'csrf_token':
+                    result.csrfToken = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'email':
+                    result.email = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'method':
+                    result.method = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
+    }
 }
 

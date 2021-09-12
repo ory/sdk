@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **attributes** | [**UiNodeAttributes**](UiNodeAttributes.md) |  | 
 **group** | **String** |  | 
-**messages** | [**List<UiText>**](UiText.md) |  | [default to const []]
+**messages** | [**BuiltList<UiText>**](UiText.md) |  | 
 **meta** | [**Meta**](Meta.md) |  | 
 **type** | **String** |  | 
 

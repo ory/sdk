@@ -1,8 +1,8 @@
 # kratos-client
 
 Ory Kratos API
-- API version: v0.7.3-alpha.8
-  - Build date: 2021-09-04T08:43:15.416288822Z[Etc/UTC]
+- API version: v0.7.5-alpha.2
+  - Build date: 2021-09-12T07:45:14.862245004Z[Etc/UTC]
 
 Documentation for all public and administrative Ory Kratos APIs. Public and administrative APIs
 are exposed on different ports. Public APIs can face the public internet without any protection
@@ -45,7 +45,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.kratos</groupId>
   <artifactId>kratos-client</artifactId>
-  <version>v0.7.3-alpha.8</version>
+  <version>v0.7.5-alpha.2</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -55,7 +55,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "sh.ory.kratos:kratos-client:v0.7.3-alpha.8"
+compile "sh.ory.kratos:kratos-client:v0.7.5-alpha.2"
 ```
 
 ### Others
@@ -68,7 +68,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/kratos-client-v0.7.3-alpha.8.jar`
+* `target/kratos-client-v0.7.5-alpha.2.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -154,43 +154,17 @@ Class | Method | HTTP request | Description
  - [AdminCreateIdentityBody](docs/AdminCreateIdentityBody.md)
  - [AdminCreateSelfServiceRecoveryLinkBody](docs/AdminCreateSelfServiceRecoveryLinkBody.md)
  - [AdminUpdateIdentityBody](docs/AdminUpdateIdentityBody.md)
- - [AuthenticateOKBody](docs/AuthenticateOKBody.md)
- - [ContainerChangeResponseItem](docs/ContainerChangeResponseItem.md)
- - [ContainerCreateCreatedBody](docs/ContainerCreateCreatedBody.md)
- - [ContainerTopOKBody](docs/ContainerTopOKBody.md)
- - [ContainerUpdateOKBody](docs/ContainerUpdateOKBody.md)
- - [ContainerWaitOKBody](docs/ContainerWaitOKBody.md)
- - [ContainerWaitOKBodyError](docs/ContainerWaitOKBodyError.md)
- - [ErrorResponse](docs/ErrorResponse.md)
  - [GenericError](docs/GenericError.md)
- - [GraphDriverData](docs/GraphDriverData.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
  - [HealthStatus](docs/HealthStatus.md)
- - [IdResponse](docs/IdResponse.md)
  - [Identity](docs/Identity.md)
  - [IdentityCredentials](docs/IdentityCredentials.md)
  - [IdentityState](docs/IdentityState.md)
- - [ImageDeleteResponseItem](docs/ImageDeleteResponseItem.md)
- - [ImageSummary](docs/ImageSummary.md)
  - [InlineResponse200](docs/InlineResponse200.md)
  - [InlineResponse2001](docs/InlineResponse2001.md)
  - [InlineResponse503](docs/InlineResponse503.md)
  - [JsonError](docs/JsonError.md)
  - [Meta](docs/Meta.md)
- - [Plugin](docs/Plugin.md)
- - [PluginConfig](docs/PluginConfig.md)
- - [PluginConfigArgs](docs/PluginConfigArgs.md)
- - [PluginConfigInterface](docs/PluginConfigInterface.md)
- - [PluginConfigLinux](docs/PluginConfigLinux.md)
- - [PluginConfigNetwork](docs/PluginConfigNetwork.md)
- - [PluginConfigRootfs](docs/PluginConfigRootfs.md)
- - [PluginConfigUser](docs/PluginConfigUser.md)
- - [PluginDevice](docs/PluginDevice.md)
- - [PluginEnv](docs/PluginEnv.md)
- - [PluginInterfaceType](docs/PluginInterfaceType.md)
- - [PluginMount](docs/PluginMount.md)
- - [PluginSettings](docs/PluginSettings.md)
- - [Port](docs/Port.md)
  - [RecoveryAddress](docs/RecoveryAddress.md)
  - [SelfServiceError](docs/SelfServiceError.md)
  - [SelfServiceLoginFlow](docs/SelfServiceLoginFlow.md)
@@ -203,7 +177,6 @@ Class | Method | HTTP request | Description
  - [SelfServiceSettingsFlowState](docs/SelfServiceSettingsFlowState.md)
  - [SelfServiceVerificationFlow](docs/SelfServiceVerificationFlow.md)
  - [SelfServiceVerificationFlowState](docs/SelfServiceVerificationFlowState.md)
- - [ServiceUpdateResponse](docs/ServiceUpdateResponse.md)
  - [Session](docs/Session.md)
  - [SettingsProfileFormConfig](docs/SettingsProfileFormConfig.md)
  - [SubmitSelfServiceLoginFlowBody](docs/SubmitSelfServiceLoginFlowBody.md)
@@ -234,8 +207,6 @@ Class | Method | HTTP request | Description
  - [UiText](docs/UiText.md)
  - [VerifiableIdentityAddress](docs/VerifiableIdentityAddress.md)
  - [Version](docs/Version.md)
- - [Volume](docs/Volume.md)
- - [VolumeUsageData](docs/VolumeUsageData.md)
 
 
 ## Documentation for Authorization

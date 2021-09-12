@@ -1,94 +1,107 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_collection/built_collection.dart';
+import 'package:ory_kratos_client/model/ui_text.dart';
+import 'package:ory_kratos_client/model/ui_node.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class UiContainer {
-  /// Returns a new [UiContainer] instance.
-  UiContainer({
-    @required this.action,
-    this.messages = const [],
-    @required this.method,
-    this.nodes = const [],
-  });
+part 'ui_container.g.dart';
 
-  /// Action should be used as the form action URL `<form action=\"{{ .Action }}\" method=\"post\">`.
-  String action;
+abstract class UiContainer implements Built<UiContainer, UiContainerBuilder> {
 
-  List<UiText> messages;
+    /// Action should be used as the form action URL `<form action=\"{{ .Action }}\" method=\"post\">`.
+    @BuiltValueField(wireName: r'action')
+    String get action;
 
-  /// Method is the form method (e.g. POST)
-  String method;
+    @nullable
+    @BuiltValueField(wireName: r'messages')
+    BuiltList<UiText> get messages;
 
-  List<UiNode> nodes;
+    /// Method is the form method (e.g. POST)
+    @BuiltValueField(wireName: r'method')
+    String get method;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is UiContainer &&
-     other.action == action &&
-     other.messages == messages &&
-     other.method == method &&
-     other.nodes == nodes;
+    @BuiltValueField(wireName: r'nodes')
+    BuiltList<UiNode> get nodes;
 
-  @override
-  int get hashCode =>
-    (action == null ? 0 : action.hashCode) +
-    (messages == null ? 0 : messages.hashCode) +
-    (method == null ? 0 : method.hashCode) +
-    (nodes == null ? 0 : nodes.hashCode);
+    UiContainer._();
 
-  @override
-  String toString() => 'UiContainer[action=$action, messages=$messages, method=$method, nodes=$nodes]';
+    static void _initializeBuilder(UiContainerBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-      json[r'action'] = action;
-    if (messages != null) {
-      json[r'messages'] = messages;
+    factory UiContainer([void updates(UiContainerBuilder b)]) = _$UiContainer;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<UiContainer> get serializer => _$UiContainerSerializer();
+}
+
+class _$UiContainerSerializer implements StructuredSerializer<UiContainer> {
+
+    @override
+    final Iterable<Type> types = const [UiContainer, _$UiContainer];
+    @override
+    final String wireName = r'UiContainer';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, UiContainer object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        result
+            ..add(r'action')
+            ..add(serializers.serialize(object.action,
+                specifiedType: const FullType(String)));
+        if (object.messages != null) {
+            result
+                ..add(r'messages')
+                ..add(serializers.serialize(object.messages,
+                    specifiedType: const FullType(BuiltList, [FullType(UiText)])));
+        }
+        result
+            ..add(r'method')
+            ..add(serializers.serialize(object.method,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'nodes')
+            ..add(serializers.serialize(object.nodes,
+                specifiedType: const FullType(BuiltList, [FullType(UiNode)])));
+        return result;
     }
-      json[r'method'] = method;
-      json[r'nodes'] = nodes;
-    return json;
-  }
 
-  /// Returns a new [UiContainer] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static UiContainer fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : UiContainer(
-        action: json[r'action'],
-        messages: UiText.listFromJson(json[r'messages']),
-        method: json[r'method'],
-        nodes: UiNode.listFromJson(json[r'nodes']),
-    );
+    @override
+    UiContainer deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = UiContainerBuilder();
 
-  static List<UiContainer> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <UiContainer>[]
-      : json.map((dynamic value) => UiContainer.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, UiContainer> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, UiContainer>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = UiContainer.fromJson(value));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'action':
+                    result.action = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'messages':
+                    result.messages.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(UiText)])) as BuiltList<UiText>);
+                    break;
+                case r'method':
+                    result.method = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'nodes':
+                    result.nodes.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(UiNode)])) as BuiltList<UiNode>);
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of UiContainer-objects as value to a dart map
-  static Map<String, List<UiContainer>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<UiContainer>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = UiContainer.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

@@ -1,27 +1,26 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-import 'package:ory_kratos_client/api.dart';
+import 'package:ory_kratos_client/model/self_service_error.dart';
 import 'package:test/test.dart';
 
 // tests for SelfServiceError
 void main() {
-  final instance = SelfServiceError();
+  final instance = SelfServiceErrorBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test SelfServiceError', () {
+  group(SelfServiceError, () {
     // CreatedAt is a helper struct field for gobuffalo.pop.
     // DateTime createdAt
     test('to test the property `createdAt`', () async {
       // TODO
     });
 
-    // Object error
+    // JsonObject error
     test('to test the property `error`', () async {
       // TODO
     });

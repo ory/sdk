@@ -1,69 +1,67 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:ory_kratos_client/model/ui_text.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class UiNodeTextAttributes {
-  /// Returns a new [UiNodeTextAttributes] instance.
-  UiNodeTextAttributes({
-    @required this.text,
-  });
+part 'ui_node_text_attributes.g.dart';
 
-  UiText text;
+abstract class UiNodeTextAttributes implements Built<UiNodeTextAttributes, UiNodeTextAttributesBuilder> {
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is UiNodeTextAttributes &&
-     other.text == text;
+    @BuiltValueField(wireName: r'text')
+    UiText get text;
 
-  @override
-  int get hashCode =>
-    (text == null ? 0 : text.hashCode);
+    UiNodeTextAttributes._();
 
-  @override
-  String toString() => 'UiNodeTextAttributes[text=$text]';
+    static void _initializeBuilder(UiNodeTextAttributesBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-      json[r'text'] = text;
-    return json;
-  }
+    factory UiNodeTextAttributes([void updates(UiNodeTextAttributesBuilder b)]) = _$UiNodeTextAttributes;
 
-  /// Returns a new [UiNodeTextAttributes] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static UiNodeTextAttributes fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : UiNodeTextAttributes(
-        text: UiText.fromJson(json[r'text']),
-    );
+    @BuiltValueSerializer(custom: true)
+    static Serializer<UiNodeTextAttributes> get serializer => _$UiNodeTextAttributesSerializer();
+}
 
-  static List<UiNodeTextAttributes> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <UiNodeTextAttributes>[]
-      : json.map((dynamic value) => UiNodeTextAttributes.fromJson(value)).toList(growable: true == growable);
+class _$UiNodeTextAttributesSerializer implements StructuredSerializer<UiNodeTextAttributes> {
 
-  static Map<String, UiNodeTextAttributes> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, UiNodeTextAttributes>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = UiNodeTextAttributes.fromJson(value));
+    @override
+    final Iterable<Type> types = const [UiNodeTextAttributes, _$UiNodeTextAttributes];
+    @override
+    final String wireName = r'UiNodeTextAttributes';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, UiNodeTextAttributes object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        result
+            ..add(r'text')
+            ..add(serializers.serialize(object.text,
+                specifiedType: const FullType(UiText)));
+        return result;
     }
-    return map;
-  }
 
-  // maps a json object with a list of UiNodeTextAttributes-objects as value to a dart map
-  static Map<String, List<UiNodeTextAttributes>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<UiNodeTextAttributes>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = UiNodeTextAttributes.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
+    @override
+    UiNodeTextAttributes deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = UiNodeTextAttributesBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'text':
+                    result.text.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(UiText)) as UiText);
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
 }
 

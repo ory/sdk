@@ -1,88 +1,97 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:ory_kratos_client/model/identity.dart';
+import 'package:ory_kratos_client/model/session.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class SuccessfulSelfServiceRegistrationWithoutBrowser {
-  /// Returns a new [SuccessfulSelfServiceRegistrationWithoutBrowser] instance.
-  SuccessfulSelfServiceRegistrationWithoutBrowser({
-    @required this.identity,
-    this.session,
-    this.sessionToken,
-  });
+part 'successful_self_service_registration_without_browser.g.dart';
 
-  Identity identity;
+abstract class SuccessfulSelfServiceRegistrationWithoutBrowser implements Built<SuccessfulSelfServiceRegistrationWithoutBrowser, SuccessfulSelfServiceRegistrationWithoutBrowserBuilder> {
 
-  Session session;
+    @BuiltValueField(wireName: r'identity')
+    Identity get identity;
 
-  /// The Session Token  This field is only set when the session hook is configured as a post-registration hook.  A session token is equivalent to a session cookie, but it can be sent in the HTTP Authorization Header:  Authorization: bearer ${session-token}  The session token is only issued for API flows, not for Browser flows!
-  String sessionToken;
+    @nullable
+    @BuiltValueField(wireName: r'session')
+    Session get session;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is SuccessfulSelfServiceRegistrationWithoutBrowser &&
-     other.identity == identity &&
-     other.session == session &&
-     other.sessionToken == sessionToken;
+    /// The Session Token  This field is only set when the session hook is configured as a post-registration hook.  A session token is equivalent to a session cookie, but it can be sent in the HTTP Authorization Header:  Authorization: bearer ${session-token}  The session token is only issued for API flows, not for Browser flows!
+    @nullable
+    @BuiltValueField(wireName: r'session_token')
+    String get sessionToken;
 
-  @override
-  int get hashCode =>
-    (identity == null ? 0 : identity.hashCode) +
-    (session == null ? 0 : session.hashCode) +
-    (sessionToken == null ? 0 : sessionToken.hashCode);
+    SuccessfulSelfServiceRegistrationWithoutBrowser._();
 
-  @override
-  String toString() => 'SuccessfulSelfServiceRegistrationWithoutBrowser[identity=$identity, session=$session, sessionToken=$sessionToken]';
+    static void _initializeBuilder(SuccessfulSelfServiceRegistrationWithoutBrowserBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-      json[r'identity'] = identity;
-    if (session != null) {
-      json[r'session'] = session;
+    factory SuccessfulSelfServiceRegistrationWithoutBrowser([void updates(SuccessfulSelfServiceRegistrationWithoutBrowserBuilder b)]) = _$SuccessfulSelfServiceRegistrationWithoutBrowser;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<SuccessfulSelfServiceRegistrationWithoutBrowser> get serializer => _$SuccessfulSelfServiceRegistrationWithoutBrowserSerializer();
+}
+
+class _$SuccessfulSelfServiceRegistrationWithoutBrowserSerializer implements StructuredSerializer<SuccessfulSelfServiceRegistrationWithoutBrowser> {
+
+    @override
+    final Iterable<Type> types = const [SuccessfulSelfServiceRegistrationWithoutBrowser, _$SuccessfulSelfServiceRegistrationWithoutBrowser];
+    @override
+    final String wireName = r'SuccessfulSelfServiceRegistrationWithoutBrowser';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, SuccessfulSelfServiceRegistrationWithoutBrowser object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        result
+            ..add(r'identity')
+            ..add(serializers.serialize(object.identity,
+                specifiedType: const FullType(Identity)));
+        if (object.session != null) {
+            result
+                ..add(r'session')
+                ..add(serializers.serialize(object.session,
+                    specifiedType: const FullType(Session)));
+        }
+        if (object.sessionToken != null) {
+            result
+                ..add(r'session_token')
+                ..add(serializers.serialize(object.sessionToken,
+                    specifiedType: const FullType(String)));
+        }
+        return result;
     }
-    if (sessionToken != null) {
-      json[r'session_token'] = sessionToken;
+
+    @override
+    SuccessfulSelfServiceRegistrationWithoutBrowser deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = SuccessfulSelfServiceRegistrationWithoutBrowserBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'identity':
+                    result.identity.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(Identity)) as Identity);
+                    break;
+                case r'session':
+                    result.session.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(Session)) as Session);
+                    break;
+                case r'session_token':
+                    result.sessionToken = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return json;
-  }
-
-  /// Returns a new [SuccessfulSelfServiceRegistrationWithoutBrowser] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static SuccessfulSelfServiceRegistrationWithoutBrowser fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : SuccessfulSelfServiceRegistrationWithoutBrowser(
-        identity: Identity.fromJson(json[r'identity']),
-        session: Session.fromJson(json[r'session']),
-        sessionToken: json[r'session_token'],
-    );
-
-  static List<SuccessfulSelfServiceRegistrationWithoutBrowser> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <SuccessfulSelfServiceRegistrationWithoutBrowser>[]
-      : json.map((dynamic value) => SuccessfulSelfServiceRegistrationWithoutBrowser.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, SuccessfulSelfServiceRegistrationWithoutBrowser> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, SuccessfulSelfServiceRegistrationWithoutBrowser>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = SuccessfulSelfServiceRegistrationWithoutBrowser.fromJson(value));
-    }
-    return map;
-  }
-
-  // maps a json object with a list of SuccessfulSelfServiceRegistrationWithoutBrowser-objects as value to a dart map
-  static Map<String, List<SuccessfulSelfServiceRegistrationWithoutBrowser>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<SuccessfulSelfServiceRegistrationWithoutBrowser>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = SuccessfulSelfServiceRegistrationWithoutBrowser.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

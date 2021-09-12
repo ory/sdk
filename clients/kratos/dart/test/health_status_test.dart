@@ -1,20 +1,19 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-import 'package:ory_kratos_client/api.dart';
+import 'package:ory_kratos_client/model/health_status.dart';
 import 'package:test/test.dart';
 
 // tests for HealthStatus
 void main() {
-  final instance = HealthStatus();
+  final instance = HealthStatusBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test HealthStatus', () {
+  group(HealthStatus, () {
     // Status always contains \"ok\".
     // String status
     test('to test the property `status`', () async {

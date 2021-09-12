@@ -1,122 +1,138 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:ory_kratos_client/model/identity.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class Session {
-  /// Returns a new [Session] instance.
-  Session({
-    this.active,
-    this.authenticatedAt,
-    this.expiresAt,
-    @required this.id,
-    @required this.identity,
-    this.issuedAt,
-  });
+part 'session.g.dart';
 
-  /// Whether or not the session is active.
-  bool active;
+abstract class Session implements Built<Session, SessionBuilder> {
 
-  /// The Session Authentication Timestamp  When this session was authenticated at.
-  DateTime authenticatedAt;
+    /// Whether or not the session is active.
+    @nullable
+    @BuiltValueField(wireName: r'active')
+    bool get active;
 
-  /// The Session Expiry  When this session expires at.
-  DateTime expiresAt;
+    /// The Session Authentication Timestamp  When this session was authenticated at.
+    @nullable
+    @BuiltValueField(wireName: r'authenticated_at')
+    DateTime get authenticatedAt;
 
-  String id;
+    /// The Session Expiry  When this session expires at.
+    @nullable
+    @BuiltValueField(wireName: r'expires_at')
+    DateTime get expiresAt;
 
-  Identity identity;
+    @BuiltValueField(wireName: r'id')
+    String get id;
 
-  /// The Session Issuance Timestamp  When this session was authenticated at.
-  DateTime issuedAt;
+    @BuiltValueField(wireName: r'identity')
+    Identity get identity;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is Session &&
-     other.active == active &&
-     other.authenticatedAt == authenticatedAt &&
-     other.expiresAt == expiresAt &&
-     other.id == id &&
-     other.identity == identity &&
-     other.issuedAt == issuedAt;
+    /// The Session Issuance Timestamp  When this session was authenticated at.
+    @nullable
+    @BuiltValueField(wireName: r'issued_at')
+    DateTime get issuedAt;
 
-  @override
-  int get hashCode =>
-    (active == null ? 0 : active.hashCode) +
-    (authenticatedAt == null ? 0 : authenticatedAt.hashCode) +
-    (expiresAt == null ? 0 : expiresAt.hashCode) +
-    (id == null ? 0 : id.hashCode) +
-    (identity == null ? 0 : identity.hashCode) +
-    (issuedAt == null ? 0 : issuedAt.hashCode);
+    Session._();
 
-  @override
-  String toString() => 'Session[active=$active, authenticatedAt=$authenticatedAt, expiresAt=$expiresAt, id=$id, identity=$identity, issuedAt=$issuedAt]';
+    static void _initializeBuilder(SessionBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (active != null) {
-      json[r'active'] = active;
+    factory Session([void updates(SessionBuilder b)]) = _$Session;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<Session> get serializer => _$SessionSerializer();
+}
+
+class _$SessionSerializer implements StructuredSerializer<Session> {
+
+    @override
+    final Iterable<Type> types = const [Session, _$Session];
+    @override
+    final String wireName = r'Session';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, Session object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.active != null) {
+            result
+                ..add(r'active')
+                ..add(serializers.serialize(object.active,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.authenticatedAt != null) {
+            result
+                ..add(r'authenticated_at')
+                ..add(serializers.serialize(object.authenticatedAt,
+                    specifiedType: const FullType(DateTime)));
+        }
+        if (object.expiresAt != null) {
+            result
+                ..add(r'expires_at')
+                ..add(serializers.serialize(object.expiresAt,
+                    specifiedType: const FullType(DateTime)));
+        }
+        result
+            ..add(r'id')
+            ..add(serializers.serialize(object.id,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'identity')
+            ..add(serializers.serialize(object.identity,
+                specifiedType: const FullType(Identity)));
+        if (object.issuedAt != null) {
+            result
+                ..add(r'issued_at')
+                ..add(serializers.serialize(object.issuedAt,
+                    specifiedType: const FullType(DateTime)));
+        }
+        return result;
     }
-    if (authenticatedAt != null) {
-      json[r'authenticated_at'] = authenticatedAt.toUtc().toIso8601String();
-    }
-    if (expiresAt != null) {
-      json[r'expires_at'] = expiresAt.toUtc().toIso8601String();
-    }
-      json[r'id'] = id;
-      json[r'identity'] = identity;
-    if (issuedAt != null) {
-      json[r'issued_at'] = issuedAt.toUtc().toIso8601String();
-    }
-    return json;
-  }
 
-  /// Returns a new [Session] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static Session fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : Session(
-        active: json[r'active'],
-        authenticatedAt: json[r'authenticated_at'] == null
-          ? null
-          : DateTime.parse(json[r'authenticated_at']),
-        expiresAt: json[r'expires_at'] == null
-          ? null
-          : DateTime.parse(json[r'expires_at']),
-        id: json[r'id'],
-        identity: Identity.fromJson(json[r'identity']),
-        issuedAt: json[r'issued_at'] == null
-          ? null
-          : DateTime.parse(json[r'issued_at']),
-    );
+    @override
+    Session deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = SessionBuilder();
 
-  static List<Session> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <Session>[]
-      : json.map((dynamic value) => Session.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, Session> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, Session>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = Session.fromJson(value));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'active':
+                    result.active = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'authenticated_at':
+                    result.authenticatedAt = serializers.deserialize(value,
+                        specifiedType: const FullType(DateTime)) as DateTime;
+                    break;
+                case r'expires_at':
+                    result.expiresAt = serializers.deserialize(value,
+                        specifiedType: const FullType(DateTime)) as DateTime;
+                    break;
+                case r'id':
+                    result.id = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'identity':
+                    result.identity.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(Identity)) as Identity);
+                    break;
+                case r'issued_at':
+                    result.issuedAt = serializers.deserialize(value,
+                        specifiedType: const FullType(DateTime)) as DateTime;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of Session-objects as value to a dart map
-  static Map<String, List<Session>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<Session>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = Session.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

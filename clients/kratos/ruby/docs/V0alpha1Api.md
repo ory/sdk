@@ -1651,7 +1651,7 @@ require 'ory-kratos-client'
 api_instance = OryKratosClient::V0alpha1Api.new
 flow = 'flow_example' # String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
 opts = {
-  submit_self_service_login_flow_body: OryKratosClient::SubmitSelfServiceLoginFlowWithPasswordMethodBody.new({method: 'password', password: 'password_example', password_identifier: 'password_identifier_example'}) # SubmitSelfServiceLoginFlowBody | 
+  submit_self_service_login_flow_body: OryKratosClient::SubmitSelfServiceLoginFlowWithOidcMethodBody.new({method: 'method_example', traits: 'traits_example'}) # SubmitSelfServiceLoginFlowBody | 
 }
 
 begin
@@ -1848,7 +1848,7 @@ api_instance = OryKratosClient::V0alpha1Api.new
 flow = 'flow_example' # String | The Recovery Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
 opts = {
   token: 'token_example', # String | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
-  submit_self_service_recovery_flow_body: OryKratosClient::SubmitSelfServiceRecoveryFlowWithLinkMethodBody.new({email: 'email_example', method: 'link'}) # SubmitSelfServiceRecoveryFlowBody | 
+  submit_self_service_recovery_flow_body: OryKratosClient::SubmitSelfServiceRecoveryFlowWithLinkMethodBody.new({email: 'email_example', method: 'method_example'}) # SubmitSelfServiceRecoveryFlowBody | 
 }
 
 begin
@@ -1917,7 +1917,7 @@ require 'ory-kratos-client'
 api_instance = OryKratosClient::V0alpha1Api.new
 flow = 'flow_example' # String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
 opts = {
-  submit_self_service_registration_flow_body: OryKratosClient::SubmitSelfServiceRegistrationFlowWithPasswordMethodBody.new({method: 'password', password: 'password_example', traits: 3.56}) # SubmitSelfServiceRegistrationFlowBody | 
+  submit_self_service_registration_flow_body: OryKratosClient::SubmitSelfServiceRegistrationFlowWithOidcMethodBody.new({method: 'method_example', traits: 'traits_example'}) # SubmitSelfServiceRegistrationFlowBody | 
 }
 
 begin
@@ -1986,7 +1986,7 @@ api_instance = OryKratosClient::V0alpha1Api.new
 flow = 'flow_example' # String | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
 opts = {
   x_session_token: 'x_session_token_example', # String | The Session Token of the Identity performing the settings flow.
-  submit_self_service_settings_flow_body: OryKratosClient::SubmitSelfServiceSettingsFlowWithPasswordMethodBody.new({method: 'password', password: 'password_example'}) # SubmitSelfServiceSettingsFlowBody | 
+  submit_self_service_settings_flow_body: OryKratosClient::SubmitSelfServiceSettingsFlowWithOidcMethodBody.new({method: 'method_example'}) # SubmitSelfServiceSettingsFlowBody | 
 }
 
 begin
@@ -2056,7 +2056,7 @@ api_instance = OryKratosClient::V0alpha1Api.new
 flow = 'flow_example' # String | The Verification Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
 opts = {
   token: 'token_example', # String | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
-  submit_self_service_verification_flow_body: OryKratosClient::SubmitSelfServiceVerificationFlowWithLinkMethodBody.new({email: 'email_example', method: 'link'}) # SubmitSelfServiceVerificationFlowBody | 
+  submit_self_service_verification_flow_body: OryKratosClient::SubmitSelfServiceVerificationFlowWithLinkMethodBody.new({email: 'email_example', method: 'method_example'}) # SubmitSelfServiceVerificationFlowBody | 
 }
 
 begin

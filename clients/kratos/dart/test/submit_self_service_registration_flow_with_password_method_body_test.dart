@@ -1,20 +1,19 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-import 'package:ory_kratos_client/api.dart';
+import 'package:ory_kratos_client/model/submit_self_service_registration_flow_with_password_method_body.dart';
 import 'package:test/test.dart';
 
 // tests for SubmitSelfServiceRegistrationFlowWithPasswordMethodBody
 void main() {
-  final instance = SubmitSelfServiceRegistrationFlowWithPasswordMethodBody();
+  final instance = SubmitSelfServiceRegistrationFlowWithPasswordMethodBodyBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test SubmitSelfServiceRegistrationFlowWithPasswordMethodBody', () {
+  group(SubmitSelfServiceRegistrationFlowWithPasswordMethodBody, () {
     // The CSRF Token
     // String csrfToken
     test('to test the property `csrfToken`', () async {
@@ -34,7 +33,7 @@ void main() {
     });
 
     // The identity's traits
-    // Object traits
+    // JsonObject traits
     test('to test the property `traits`', () async {
       // TODO
     });

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **int** | The status code | [optional] 
 **debug** | **String** | Debug information  This field is often not exposed to protect against leaking sensitive information. | [optional] 
-**details** | [**Object**](.md) | Further error details | [optional] 
+**details** | [**JsonObject**](.md) | Further error details | [optional] 
 **message** | **String** | Error message  The error's message. | 
 **reason** | **String** | A human-readable reason for the error | [optional] 
 **request** | **String** | The request ID  The request ID is often exposed internally in order to trace errors across service architectures. This is often a UUID. | [optional] 

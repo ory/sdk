@@ -1,117 +1,131 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class IdentityCredentials {
-  /// Returns a new [IdentityCredentials] instance.
-  IdentityCredentials({
-    this.config,
-    this.createdAt,
-    this.identifiers = const [],
-    this.type,
-    this.updatedAt,
-  });
+part 'identity_credentials.g.dart';
 
-  Object config;
+abstract class IdentityCredentials implements Built<IdentityCredentials, IdentityCredentialsBuilder> {
 
-  /// CreatedAt is a helper struct field for gobuffalo.pop.
-  DateTime createdAt;
+    @nullable
+    @BuiltValueField(wireName: r'config')
+    JsonObject get config;
 
-  /// Identifiers represents a list of unique identifiers this credential type matches.
-  List<String> identifiers;
+    /// CreatedAt is a helper struct field for gobuffalo.pop.
+    @nullable
+    @BuiltValueField(wireName: r'created_at')
+    DateTime get createdAt;
 
-  /// and so on.
-  String type;
+    /// Identifiers represents a list of unique identifiers this credential type matches.
+    @nullable
+    @BuiltValueField(wireName: r'identifiers')
+    BuiltList<String> get identifiers;
 
-  /// UpdatedAt is a helper struct field for gobuffalo.pop.
-  DateTime updatedAt;
+    /// and so on.
+    @nullable
+    @BuiltValueField(wireName: r'type')
+    String get type;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is IdentityCredentials &&
-     other.config == config &&
-     other.createdAt == createdAt &&
-     other.identifiers == identifiers &&
-     other.type == type &&
-     other.updatedAt == updatedAt;
+    /// UpdatedAt is a helper struct field for gobuffalo.pop.
+    @nullable
+    @BuiltValueField(wireName: r'updated_at')
+    DateTime get updatedAt;
 
-  @override
-  int get hashCode =>
-    (config == null ? 0 : config.hashCode) +
-    (createdAt == null ? 0 : createdAt.hashCode) +
-    (identifiers == null ? 0 : identifiers.hashCode) +
-    (type == null ? 0 : type.hashCode) +
-    (updatedAt == null ? 0 : updatedAt.hashCode);
+    IdentityCredentials._();
 
-  @override
-  String toString() => 'IdentityCredentials[config=$config, createdAt=$createdAt, identifiers=$identifiers, type=$type, updatedAt=$updatedAt]';
+    static void _initializeBuilder(IdentityCredentialsBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (config != null) {
-      json[r'config'] = config;
+    factory IdentityCredentials([void updates(IdentityCredentialsBuilder b)]) = _$IdentityCredentials;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<IdentityCredentials> get serializer => _$IdentityCredentialsSerializer();
+}
+
+class _$IdentityCredentialsSerializer implements StructuredSerializer<IdentityCredentials> {
+
+    @override
+    final Iterable<Type> types = const [IdentityCredentials, _$IdentityCredentials];
+    @override
+    final String wireName = r'IdentityCredentials';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, IdentityCredentials object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.config != null) {
+            result
+                ..add(r'config')
+                ..add(serializers.serialize(object.config,
+                    specifiedType: const FullType(JsonObject)));
+        }
+        if (object.createdAt != null) {
+            result
+                ..add(r'created_at')
+                ..add(serializers.serialize(object.createdAt,
+                    specifiedType: const FullType(DateTime)));
+        }
+        if (object.identifiers != null) {
+            result
+                ..add(r'identifiers')
+                ..add(serializers.serialize(object.identifiers,
+                    specifiedType: const FullType(BuiltList, [FullType(String)])));
+        }
+        if (object.type != null) {
+            result
+                ..add(r'type')
+                ..add(serializers.serialize(object.type,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.updatedAt != null) {
+            result
+                ..add(r'updated_at')
+                ..add(serializers.serialize(object.updatedAt,
+                    specifiedType: const FullType(DateTime)));
+        }
+        return result;
     }
-    if (createdAt != null) {
-      json[r'created_at'] = createdAt.toUtc().toIso8601String();
-    }
-    if (identifiers != null) {
-      json[r'identifiers'] = identifiers;
-    }
-    if (type != null) {
-      json[r'type'] = type;
-    }
-    if (updatedAt != null) {
-      json[r'updated_at'] = updatedAt.toUtc().toIso8601String();
-    }
-    return json;
-  }
 
-  /// Returns a new [IdentityCredentials] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static IdentityCredentials fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : IdentityCredentials(
-        config: json[r'config'],
-        createdAt: json[r'created_at'] == null
-          ? null
-          : DateTime.parse(json[r'created_at']),
-        identifiers: json[r'identifiers'] == null
-          ? null
-          : (json[r'identifiers'] as List).cast<String>(),
-        type: json[r'type'],
-        updatedAt: json[r'updated_at'] == null
-          ? null
-          : DateTime.parse(json[r'updated_at']),
-    );
+    @override
+    IdentityCredentials deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = IdentityCredentialsBuilder();
 
-  static List<IdentityCredentials> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <IdentityCredentials>[]
-      : json.map((dynamic value) => IdentityCredentials.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, IdentityCredentials> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, IdentityCredentials>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = IdentityCredentials.fromJson(value));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'config':
+                    result.config = serializers.deserialize(value,
+                        specifiedType: const FullType(JsonObject)) as JsonObject;
+                    break;
+                case r'created_at':
+                    result.createdAt = serializers.deserialize(value,
+                        specifiedType: const FullType(DateTime)) as DateTime;
+                    break;
+                case r'identifiers':
+                    result.identifiers.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
+                    break;
+                case r'type':
+                    result.type = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'updated_at':
+                    result.updatedAt = serializers.deserialize(value,
+                        specifiedType: const FullType(DateTime)) as DateTime;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of IdentityCredentials-objects as value to a dart map
-  static Map<String, List<IdentityCredentials>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<IdentityCredentials>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = IdentityCredentials.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

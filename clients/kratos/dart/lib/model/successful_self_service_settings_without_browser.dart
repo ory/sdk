@@ -1,76 +1,79 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:ory_kratos_client/model/identity.dart';
+import 'package:ory_kratos_client/model/self_service_settings_flow.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class SuccessfulSelfServiceSettingsWithoutBrowser {
-  /// Returns a new [SuccessfulSelfServiceSettingsWithoutBrowser] instance.
-  SuccessfulSelfServiceSettingsWithoutBrowser({
-    @required this.flow,
-    @required this.identity,
-  });
+part 'successful_self_service_settings_without_browser.g.dart';
 
-  SelfServiceSettingsFlow flow;
+abstract class SuccessfulSelfServiceSettingsWithoutBrowser implements Built<SuccessfulSelfServiceSettingsWithoutBrowser, SuccessfulSelfServiceSettingsWithoutBrowserBuilder> {
 
-  Identity identity;
+    @BuiltValueField(wireName: r'flow')
+    SelfServiceSettingsFlow get flow;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is SuccessfulSelfServiceSettingsWithoutBrowser &&
-     other.flow == flow &&
-     other.identity == identity;
+    @BuiltValueField(wireName: r'identity')
+    Identity get identity;
 
-  @override
-  int get hashCode =>
-    (flow == null ? 0 : flow.hashCode) +
-    (identity == null ? 0 : identity.hashCode);
+    SuccessfulSelfServiceSettingsWithoutBrowser._();
 
-  @override
-  String toString() => 'SuccessfulSelfServiceSettingsWithoutBrowser[flow=$flow, identity=$identity]';
+    static void _initializeBuilder(SuccessfulSelfServiceSettingsWithoutBrowserBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-      json[r'flow'] = flow;
-      json[r'identity'] = identity;
-    return json;
-  }
+    factory SuccessfulSelfServiceSettingsWithoutBrowser([void updates(SuccessfulSelfServiceSettingsWithoutBrowserBuilder b)]) = _$SuccessfulSelfServiceSettingsWithoutBrowser;
 
-  /// Returns a new [SuccessfulSelfServiceSettingsWithoutBrowser] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static SuccessfulSelfServiceSettingsWithoutBrowser fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : SuccessfulSelfServiceSettingsWithoutBrowser(
-        flow: SelfServiceSettingsFlow.fromJson(json[r'flow']),
-        identity: Identity.fromJson(json[r'identity']),
-    );
+    @BuiltValueSerializer(custom: true)
+    static Serializer<SuccessfulSelfServiceSettingsWithoutBrowser> get serializer => _$SuccessfulSelfServiceSettingsWithoutBrowserSerializer();
+}
 
-  static List<SuccessfulSelfServiceSettingsWithoutBrowser> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <SuccessfulSelfServiceSettingsWithoutBrowser>[]
-      : json.map((dynamic value) => SuccessfulSelfServiceSettingsWithoutBrowser.fromJson(value)).toList(growable: true == growable);
+class _$SuccessfulSelfServiceSettingsWithoutBrowserSerializer implements StructuredSerializer<SuccessfulSelfServiceSettingsWithoutBrowser> {
 
-  static Map<String, SuccessfulSelfServiceSettingsWithoutBrowser> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, SuccessfulSelfServiceSettingsWithoutBrowser>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = SuccessfulSelfServiceSettingsWithoutBrowser.fromJson(value));
+    @override
+    final Iterable<Type> types = const [SuccessfulSelfServiceSettingsWithoutBrowser, _$SuccessfulSelfServiceSettingsWithoutBrowser];
+    @override
+    final String wireName = r'SuccessfulSelfServiceSettingsWithoutBrowser';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, SuccessfulSelfServiceSettingsWithoutBrowser object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        result
+            ..add(r'flow')
+            ..add(serializers.serialize(object.flow,
+                specifiedType: const FullType(SelfServiceSettingsFlow)));
+        result
+            ..add(r'identity')
+            ..add(serializers.serialize(object.identity,
+                specifiedType: const FullType(Identity)));
+        return result;
     }
-    return map;
-  }
 
-  // maps a json object with a list of SuccessfulSelfServiceSettingsWithoutBrowser-objects as value to a dart map
-  static Map<String, List<SuccessfulSelfServiceSettingsWithoutBrowser>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<SuccessfulSelfServiceSettingsWithoutBrowser>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = SuccessfulSelfServiceSettingsWithoutBrowser.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
+    @override
+    SuccessfulSelfServiceSettingsWithoutBrowser deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = SuccessfulSelfServiceSettingsWithoutBrowserBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'flow':
+                    result.flow.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(SelfServiceSettingsFlow)) as SelfServiceSettingsFlow);
+                    break;
+                case r'identity':
+                    result.identity.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(Identity)) as Identity);
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
 }
 

@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **pattern** | **String** | The input's pattern. | [optional] 
 **required_** | **bool** | Mark this input field as required. | [optional] 
 **type** | **String** |  | 
-**value** | [**Object**](.md) | The input's value. | [optional] 
+**value** | [**JsonObject**](.md) | The input's value. | [optional] 
 **text** | [**UiText**](UiText.md) |  | 
 **src** | **String** | The image's source URL.  format: uri | 
 **href** | **String** | The link's href (destination) URL.  format: uri | 

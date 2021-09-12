@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **logout_url** | **String** | LogoutURL can be opened in a browser to  format: uri | [optional] |
+| **logout_url** | **String** | LogoutURL can be opened in a browser to  format: uri |  |
 
 ## Example
 

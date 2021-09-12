@@ -1,27 +1,38 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-import 'package:ory_kratos_client/api.dart';
+import 'package:ory_kratos_client/model/identity.dart';
 import 'package:test/test.dart';
 
 // tests for Identity
 void main() {
-  final instance = Identity();
+  final instance = IdentityBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test Identity', () {
+  group(Identity, () {
+    // CreatedAt is a helper struct field for gobuffalo.pop.
+    // DateTime createdAt
+    test('to test the property `createdAt`', () async {
+      // TODO
+    });
+
+    // Credentials represents all credentials that can be used for authenticating this identity.
+    // BuiltMap<String, IdentityCredentials> credentials
+    test('to test the property `credentials`', () async {
+      // TODO
+    });
+
     // String id
     test('to test the property `id`', () async {
       // TODO
     });
 
     // RecoveryAddresses contains all the addresses that can be used to recover an identity.
-    // List<RecoveryAddress> recoveryAddresses (default value: const [])
+    // BuiltList<RecoveryAddress> recoveryAddresses
     test('to test the property `recoveryAddresses`', () async {
       // TODO
     });
@@ -38,13 +49,30 @@ void main() {
       // TODO
     });
 
-    // Object traits
+    // IdentityState state
+    test('to test the property `state`', () async {
+      // TODO
+    });
+
+    // DateTime stateChangedAt
+    test('to test the property `stateChangedAt`', () async {
+      // TODO
+    });
+
+    // Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_url`.
+    // JsonObject traits
     test('to test the property `traits`', () async {
       // TODO
     });
 
+    // UpdatedAt is a helper struct field for gobuffalo.pop.
+    // DateTime updatedAt
+    test('to test the property `updatedAt`', () async {
+      // TODO
+    });
+
     // VerifiableAddresses contains all the addresses that can be verified by the user.
-    // List<VerifiableAddress> verifiableAddresses (default value: const [])
+    // BuiltList<VerifiableIdentityAddress> verifiableAddresses
     test('to test the property `verifiableAddresses`', () async {
       // TODO
     });

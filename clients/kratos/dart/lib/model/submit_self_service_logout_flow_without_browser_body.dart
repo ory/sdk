@@ -1,70 +1,67 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class SubmitSelfServiceLogoutFlowWithoutBrowserBody {
-  /// Returns a new [SubmitSelfServiceLogoutFlowWithoutBrowserBody] instance.
-  SubmitSelfServiceLogoutFlowWithoutBrowserBody({
-    @required this.sessionToken,
-  });
+part 'submit_self_service_logout_flow_without_browser_body.g.dart';
 
-  /// The Session Token  Invalidate this session token.
-  String sessionToken;
+abstract class SubmitSelfServiceLogoutFlowWithoutBrowserBody implements Built<SubmitSelfServiceLogoutFlowWithoutBrowserBody, SubmitSelfServiceLogoutFlowWithoutBrowserBodyBuilder> {
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is SubmitSelfServiceLogoutFlowWithoutBrowserBody &&
-     other.sessionToken == sessionToken;
+    /// The Session Token  Invalidate this session token.
+    @BuiltValueField(wireName: r'session_token')
+    String get sessionToken;
 
-  @override
-  int get hashCode =>
-    (sessionToken == null ? 0 : sessionToken.hashCode);
+    SubmitSelfServiceLogoutFlowWithoutBrowserBody._();
 
-  @override
-  String toString() => 'SubmitSelfServiceLogoutFlowWithoutBrowserBody[sessionToken=$sessionToken]';
+    static void _initializeBuilder(SubmitSelfServiceLogoutFlowWithoutBrowserBodyBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-      json[r'session_token'] = sessionToken;
-    return json;
-  }
+    factory SubmitSelfServiceLogoutFlowWithoutBrowserBody([void updates(SubmitSelfServiceLogoutFlowWithoutBrowserBodyBuilder b)]) = _$SubmitSelfServiceLogoutFlowWithoutBrowserBody;
 
-  /// Returns a new [SubmitSelfServiceLogoutFlowWithoutBrowserBody] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static SubmitSelfServiceLogoutFlowWithoutBrowserBody fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : SubmitSelfServiceLogoutFlowWithoutBrowserBody(
-        sessionToken: json[r'session_token'],
-    );
+    @BuiltValueSerializer(custom: true)
+    static Serializer<SubmitSelfServiceLogoutFlowWithoutBrowserBody> get serializer => _$SubmitSelfServiceLogoutFlowWithoutBrowserBodySerializer();
+}
 
-  static List<SubmitSelfServiceLogoutFlowWithoutBrowserBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <SubmitSelfServiceLogoutFlowWithoutBrowserBody>[]
-      : json.map((dynamic value) => SubmitSelfServiceLogoutFlowWithoutBrowserBody.fromJson(value)).toList(growable: true == growable);
+class _$SubmitSelfServiceLogoutFlowWithoutBrowserBodySerializer implements StructuredSerializer<SubmitSelfServiceLogoutFlowWithoutBrowserBody> {
 
-  static Map<String, SubmitSelfServiceLogoutFlowWithoutBrowserBody> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, SubmitSelfServiceLogoutFlowWithoutBrowserBody>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = SubmitSelfServiceLogoutFlowWithoutBrowserBody.fromJson(value));
+    @override
+    final Iterable<Type> types = const [SubmitSelfServiceLogoutFlowWithoutBrowserBody, _$SubmitSelfServiceLogoutFlowWithoutBrowserBody];
+    @override
+    final String wireName = r'SubmitSelfServiceLogoutFlowWithoutBrowserBody';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, SubmitSelfServiceLogoutFlowWithoutBrowserBody object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        result
+            ..add(r'session_token')
+            ..add(serializers.serialize(object.sessionToken,
+                specifiedType: const FullType(String)));
+        return result;
     }
-    return map;
-  }
 
-  // maps a json object with a list of SubmitSelfServiceLogoutFlowWithoutBrowserBody-objects as value to a dart map
-  static Map<String, List<SubmitSelfServiceLogoutFlowWithoutBrowserBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<SubmitSelfServiceLogoutFlowWithoutBrowserBody>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = SubmitSelfServiceLogoutFlowWithoutBrowserBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
+    @override
+    SubmitSelfServiceLogoutFlowWithoutBrowserBody deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = SubmitSelfServiceLogoutFlowWithoutBrowserBodyBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'session_token':
+                    result.sessionToken = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
 }
 

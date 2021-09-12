@@ -1,22 +1,21 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-import 'package:ory_kratos_client/api.dart';
+import 'package:ory_kratos_client/model/inline_response503.dart';
 import 'package:test/test.dart';
 
 // tests for InlineResponse503
 void main() {
-  final instance = InlineResponse503();
+  final instance = InlineResponse503Builder();
+  // TODO add properties to the builder and call build()
 
-  group('test InlineResponse503', () {
+  group(InlineResponse503, () {
     // Errors contains a list of errors that caused the not ready status.
-    // Map<String, String> errors (default value: const {})
+    // BuiltMap<String, String> errors
     test('to test the property `errors`', () async {
       // TODO
     });

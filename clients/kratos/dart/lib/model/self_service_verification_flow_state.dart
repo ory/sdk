@@ -1,79 +1,41 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-/// The state represents the state of the verification flow.  choose_method: ask the user to choose a method (e.g. recover account via email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the recovery challenge was passed.
-class SelfServiceVerificationFlowState {
-  /// Instantiate a new enum with the provided [value].
-  const SelfServiceVerificationFlowState._(this.value);
+part 'self_service_verification_flow_state.g.dart';
 
-  /// The underlying value of this enum member.
-  final String value;
+class SelfServiceVerificationFlowState extends EnumClass {
 
-  @override
-  String toString() => value;
+  /// The state represents the state of the verification flow.  choose_method: ask the user to choose a method (e.g. recover account via email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the recovery challenge was passed.
+  @BuiltValueEnumConst(wireName: r'choose_method')
+  static const SelfServiceVerificationFlowState chooseMethod = _$chooseMethod;
+  /// The state represents the state of the verification flow.  choose_method: ask the user to choose a method (e.g. recover account via email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the recovery challenge was passed.
+  @BuiltValueEnumConst(wireName: r'sent_email')
+  static const SelfServiceVerificationFlowState sentEmail = _$sentEmail;
+  /// The state represents the state of the verification flow.  choose_method: ask the user to choose a method (e.g. recover account via email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the recovery challenge was passed.
+  @BuiltValueEnumConst(wireName: r'passed_challenge')
+  static const SelfServiceVerificationFlowState passedChallenge = _$passedChallenge;
 
-  String toJson() => value;
+  static Serializer<SelfServiceVerificationFlowState> get serializer => _$selfServiceVerificationFlowStateSerializer;
 
-  static const chooseMethod = SelfServiceVerificationFlowState._(r'choose_method');
-  static const sentEmail = SelfServiceVerificationFlowState._(r'sent_email');
-  static const passedChallenge = SelfServiceVerificationFlowState._(r'passed_challenge');
+  const SelfServiceVerificationFlowState._(String name): super(name);
 
-  /// List of all possible values in this [enum][SelfServiceVerificationFlowState].
-  static const values = <SelfServiceVerificationFlowState>[
-    chooseMethod,
-    sentEmail,
-    passedChallenge,
-  ];
-
-  static SelfServiceVerificationFlowState fromJson(dynamic value) =>
-    SelfServiceVerificationFlowStateTypeTransformer().decode(value);
-
-  static List<SelfServiceVerificationFlowState> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <SelfServiceVerificationFlowState>[]
-      : json
-          .map((value) => SelfServiceVerificationFlowState.fromJson(value))
-          .toList(growable: true == growable);
+  static BuiltSet<SelfServiceVerificationFlowState> get values => _$values;
+  static SelfServiceVerificationFlowState valueOf(String name) => _$valueOf(name);
 }
 
-/// Transformation class that can [encode] an instance of [SelfServiceVerificationFlowState] to String,
-/// and [decode] dynamic data back to [SelfServiceVerificationFlowState].
-class SelfServiceVerificationFlowStateTypeTransformer {
-  const SelfServiceVerificationFlowStateTypeTransformer._();
+/// Optionally, enum_class can generate a mixin to go with your enum for use
+/// with Angular. It exposes your enum constants as getters. So, if you mix it
+/// in to your Dart component class, the values become available to the
+/// corresponding Angular template.
+///
+/// Trigger mixin generation by writing a line like this one next to your enum.
+abstract class SelfServiceVerificationFlowStateMixin = Object with _$SelfServiceVerificationFlowStateMixin;
 
-  factory SelfServiceVerificationFlowStateTypeTransformer() => _instance ??= SelfServiceVerificationFlowStateTypeTransformer._();
-
-  String encode(SelfServiceVerificationFlowState data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a SelfServiceVerificationFlowState.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  SelfServiceVerificationFlowState decode(dynamic data, {bool allowNull}) {
-    switch (data) {
-      case r'choose_method': return SelfServiceVerificationFlowState.chooseMethod;
-      case r'sent_email': return SelfServiceVerificationFlowState.sentEmail;
-      case r'passed_challenge': return SelfServiceVerificationFlowState.passedChallenge;
-      default:
-        if (allowNull == false) {
-          throw ArgumentError('Unknown enum value to decode: $data');
-        }
-    }
-    return null;
-  }
-
-  /// Singleton [SelfServiceVerificationFlowStateTypeTransformer] instance.
-  static SelfServiceVerificationFlowStateTypeTransformer _instance;
-}

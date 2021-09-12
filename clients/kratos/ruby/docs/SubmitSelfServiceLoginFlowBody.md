@@ -14,6 +14,7 @@ require 'ory-kratos-client'
 OryKratosClient::SubmitSelfServiceLoginFlowBody.openapi_one_of
 # =>
 # [
+#   :'SubmitSelfServiceLoginFlowWithOidcMethodBody',
 #   :'SubmitSelfServiceLoginFlowWithPasswordMethodBody'
 # ]
 ```
@@ -57,7 +58,7 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 require 'ory-kratos-client'
 
 OryKratosClient::SubmitSelfServiceLoginFlowBody.build(data)
-# => #<SubmitSelfServiceLoginFlowWithPasswordMethodBody:0x00007fdd4aab02a0>
+# => #<SubmitSelfServiceLoginFlowWithOidcMethodBody:0x00007fdd4aab02a0>
 
 OryKratosClient::SubmitSelfServiceLoginFlowBody.build(data_that_doesnt_match)
 # => nil
@@ -71,6 +72,7 @@ OryKratosClient::SubmitSelfServiceLoginFlowBody.build(data_that_doesnt_match)
 
 #### Return type
 
+- `SubmitSelfServiceLoginFlowWithOidcMethodBody`
 - `SubmitSelfServiceLoginFlowWithPasswordMethodBody`
 - `nil` (if no type matches)
 

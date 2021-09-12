@@ -1,21 +1,20 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
 import 'package:ory_kratos_client/api.dart';
+import 'package:ory_kratos_client/api/v0alpha1_api.dart';
 import 'package:test/test.dart';
 
 
 /// tests for V0alpha1Api
 void main() {
-  final instance = V0alpha1Api();
+  final instance = OryKratosClient().getV0alpha1Api();
 
-  group('tests for V0alpha1Api', () {
+  group(V0alpha1Api, () {
     // Create an Identity
     //
     // This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
@@ -56,7 +55,7 @@ void main() {
     //
     // Lists all identities. Does not support search at the moment.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
     //
-    //Future<List<Identity>> adminListIdentities({ int perPage, int page }) async
+    //Future<BuiltList<Identity>> adminListIdentities({ int perPage, int page }) async
     test('test adminListIdentities', () async {
       // TODO
     });
@@ -81,7 +80,7 @@ void main() {
 
     // Get a JSON Schema
     //
-    //Future<Object> getJsonSchema(String id) async
+    //Future<JsonObject> getJsonSchema(String id) async
     test('test getJsonSchema', () async {
       // TODO
     });

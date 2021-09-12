@@ -1,70 +1,67 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class UiNodeImageAttributes {
-  /// Returns a new [UiNodeImageAttributes] instance.
-  UiNodeImageAttributes({
-    @required this.src,
-  });
+part 'ui_node_image_attributes.g.dart';
 
-  /// The image's source URL.  format: uri
-  String src;
+abstract class UiNodeImageAttributes implements Built<UiNodeImageAttributes, UiNodeImageAttributesBuilder> {
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is UiNodeImageAttributes &&
-     other.src == src;
+    /// The image's source URL.  format: uri
+    @BuiltValueField(wireName: r'src')
+    String get src;
 
-  @override
-  int get hashCode =>
-    (src == null ? 0 : src.hashCode);
+    UiNodeImageAttributes._();
 
-  @override
-  String toString() => 'UiNodeImageAttributes[src=$src]';
+    static void _initializeBuilder(UiNodeImageAttributesBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-      json[r'src'] = src;
-    return json;
-  }
+    factory UiNodeImageAttributes([void updates(UiNodeImageAttributesBuilder b)]) = _$UiNodeImageAttributes;
 
-  /// Returns a new [UiNodeImageAttributes] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static UiNodeImageAttributes fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : UiNodeImageAttributes(
-        src: json[r'src'],
-    );
+    @BuiltValueSerializer(custom: true)
+    static Serializer<UiNodeImageAttributes> get serializer => _$UiNodeImageAttributesSerializer();
+}
 
-  static List<UiNodeImageAttributes> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <UiNodeImageAttributes>[]
-      : json.map((dynamic value) => UiNodeImageAttributes.fromJson(value)).toList(growable: true == growable);
+class _$UiNodeImageAttributesSerializer implements StructuredSerializer<UiNodeImageAttributes> {
 
-  static Map<String, UiNodeImageAttributes> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, UiNodeImageAttributes>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = UiNodeImageAttributes.fromJson(value));
+    @override
+    final Iterable<Type> types = const [UiNodeImageAttributes, _$UiNodeImageAttributes];
+    @override
+    final String wireName = r'UiNodeImageAttributes';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, UiNodeImageAttributes object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        result
+            ..add(r'src')
+            ..add(serializers.serialize(object.src,
+                specifiedType: const FullType(String)));
+        return result;
     }
-    return map;
-  }
 
-  // maps a json object with a list of UiNodeImageAttributes-objects as value to a dart map
-  static Map<String, List<UiNodeImageAttributes>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<UiNodeImageAttributes>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = UiNodeImageAttributes.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
+    @override
+    UiNodeImageAttributes deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = UiNodeImageAttributesBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'src':
+                    result.src = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
 }
 
