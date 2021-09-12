@@ -6,7 +6,7 @@ cd "$( dirname "${BASH_SOURCE[0]}" )/.."
 source "$HOME/.bashrc" || true
 source "$HOME/.cargo/env" || true
 
-if [ -z "${FORCE_VERSION}" ]; then
+if [ -z "${FORCE_VERSION+x}" ]; then
   if [ -z "$(git log -1 --pretty=%B | grep "Add spec for")" ]; then
         echo "This commit does not appear to be related to a spec update, skipping chain."
         exit 0
@@ -18,7 +18,7 @@ fi
 
 ####################################
 
-if [ -z "${FORCE_PROJECT}" ]; then
+if [ -z "${FORCE_PROJECT+x}" ]; then
   if [ -z "$(git log -1 --pretty=%B | grep "Add spec for")" ]; then
         echo "This commit does not appear to be related to a spec update, skipping chain."
         exit 0
