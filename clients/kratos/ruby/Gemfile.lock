@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ory-kratos-client (0.7.6.alpha1)
+    ory-kratos-client (0.7.6.alpha3)
       typhoeus (~> 1.0, >= 1.0.1)
 
 GEM
@@ -16,7 +16,7 @@ GEM
     ffi (1.15.4)
     jaro_winkler (1.5.4)
     method_source (1.0.0)
-    parallel (1.20.1)
+    parallel (1.21.0)
     parser (3.0.2.0)
       ast (~> 2.4.1)
     pry (0.13.1)

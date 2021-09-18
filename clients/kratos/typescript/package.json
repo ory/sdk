@@ -1,6 +1,6 @@
 {
   "name": "@ory/kratos-client",
-  "version": "v0.7.6-alpha.1",
+  "version": "v0.7.6-alpha.3",
   "description": "OpenAPI client for @ory/kratos-client",
   "author": "ORY GmbH",
   "keywords": [
