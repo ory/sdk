@@ -26,7 +26,7 @@ to_git() {
   (cd "${gitdir}"; git fetch origin || true; git checkout master || true; git reset --hard HEAD || true; git pull -ff origin master || true; git checkout -b "release-$(date +%s)" master)
 
   # rm -rf "${srcdir:?}/*"
-  rm -rf "${gitdir:?}/*"
+  rm -rf "${${gitdir%/}:?}/*"
   cp -R "${srcdir}/." "${gitdir}"
   ls -la "${gitdir}"
 
@@ -183,7 +183,7 @@ dart() {
   dir="clients/${PROJECT}/dart"
 
   mkdir -p ~/.pub-cache || true
-  set -x
+  set +x
   cat <<EOF > ~/.pub-cache/credentials.json
 {
   "accessToken":"${DART_ACCESS_TOKEN}",
@@ -196,7 +196,7 @@ dart() {
   "expiration": 1611594593613
 }
 EOF
-  set +x
+  set -x
 
   (cd "${dir}"; VERSION=${RAW_VERSION} command dart pub publish --force)
   to_git "dart" "yes"
