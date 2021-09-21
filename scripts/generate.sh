@@ -272,17 +272,18 @@ rust () {
 }
 
 elixir () {
-	echo "Generating Elixir..."
+  echo "Generating Elixir..."
+  
+  dir="clients/${PROJECT}/elixir"
+  rm -rf "$dir" || true
+  mkdir -p "$dir"
 
-	dir = "clients/${PROJECT}/elixir"
-
-	openapi-generator-cli generate -i "${SPEC_FILE}" \
+  openapi-generator-cli generate -i "${SPEC_FILE}" \
     	-g elixir \
 	    -o "$dir" \
 	    --git-user-id ory \
 	    --git-repo-id sdk \
 	    --git-host github.com \
-      -t openapi/templates/elixir \
 	    -c ./config/client/elixir.yml.proc.yml
 
   cp "LICENSE" "clients/${PROJECT}/elixir"
