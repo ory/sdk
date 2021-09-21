@@ -95,6 +95,12 @@ RUN \
   apt-get update && \
   apt-get install dart=2.13.4-1
 
+# elixir
+RUN \
+  curl https://packages.erlang-solutions.com/debian/erlang_solutions.asc | apt-key add - && \
+  echo "deb https://packages.erlang-solutions.com/debian buster contrib" | sudo tee /etc/apt/sources.list.d/erlang-solutions.list && \
+  apt-get -q update && apt-get install --no-install-recommends -y -q esl-erlang elixir
+
 # rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
