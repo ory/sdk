@@ -213,6 +213,16 @@ rust() {
   to_git "rust" "yes"
 }
 
+elixir() {
+  dir="clients/${PROJECT}/elixir"
+
+  mix hex.user auth 
+
+  (cd "${dir}"; mix deps.get)
+  (cd "${dir}"; mix hex.publish)
+}
+
+
 FAIL=0
 
 echo "starting"
@@ -224,6 +234,7 @@ php || let "FAIL+=1"
 typescript || let "FAIL+=1"
 dart || let "FAIL+=1"
 rust || let "FAIL+=1"
+elixir || let "FAIL+=1"
 java || let "FAIL+=1"
 dotnet || let "FAIL+=1"
 upstream || let "FAIL+=1"

@@ -282,6 +282,7 @@ elixir () {
 	    --git-user-id ory \
 	    --git-repo-id sdk \
 	    --git-host github.com \
+      -t openapi/templates/elixir \
 	    -c ./config/client/elixir.yml.proc.yml
 
   cp "LICENSE" "clients/${PROJECT}/elixir"
