@@ -26,7 +26,7 @@ to_git() {
   (cd "${gitdir}"; git checkout -b "release-$(date +%s)" master)
 
   # rm -rf "${srcdir:?}/*"
-  rm -r -f -v "${gitdir:?}/*"
+  rm -r -f -v ${gitdir:?}/*
   ls -la "${gitdir}"
   cp -R "${srcdir}/." "${gitdir}"
   ls -la "${gitdir}"
