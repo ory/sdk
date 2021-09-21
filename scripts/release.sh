@@ -63,6 +63,9 @@ npm i ${NPM_NAME}
     rust)
       export INSTALL="[Rust (Crate)](https://crates.io/crates/${RUST_PACKAGE_NAME}/)"
       ;;
+    elixir)
+      export INSTALL="[Elixir (Hex)](https://hex.io/crates/${ELIXIR_PACKAGE_NAME}/)"
+      ;;
     PATTERN_N)
       STATEMENTS
       ;;
@@ -216,7 +219,7 @@ rust() {
 elixir() {
   dir="clients/${PROJECT}/elixir"
 
-  mix hex.user auth 
+  mix hex.user auth
 
   (cd "${dir}"; mix deps.get)
   (cd "${dir}"; mix hex.publish --yes)
