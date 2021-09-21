@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ory-kratos-client (0.7.6.alpha4)
+    ory-kratos-client (0.7.6.alpha5)
       typhoeus (~> 1.0, >= 1.0.1)
 
 GEM
