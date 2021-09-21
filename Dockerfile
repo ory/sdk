@@ -98,7 +98,7 @@ RUN \
 # elixir
 RUN \
   curl https://packages.erlang-solutions.com/debian/erlang_solutions.asc | apt-key add - && \
-  echo "deb https://packages.erlang-solutions.com/debian buster contrib" | sudo tee /etc/apt/sources.list.d/erlang-solutions.list && \
+  echo "deb https://packages.erlang-solutions.com/debian buster contrib" | tee /etc/apt/sources.list.d/erlang-solutions.list && \
   apt-get -q update && apt-get install --no-install-recommends -y -q esl-erlang elixir
 
 # rust
