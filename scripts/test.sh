@@ -45,6 +45,10 @@ golang () {
   echo "Testing Golang..."
 
   dir="clients/${PROJECT}/go"
+  if ! [ -f README.md ]; then
+    echo "package main" > main.go
+    echo "func main(){}" >> main.go
+  fi
   (cd "${dir}" && go mod tidy && go build -o "$(mktemp)" .)
 }
 
