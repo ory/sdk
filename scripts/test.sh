@@ -45,7 +45,15 @@ golang () {
   echo "Testing Golang..."
 
   dir="clients/${PROJECT}/go"
-  (cd "${dir}" && go mod tidy && go build -o "$(mktemp)" .)
+  if [ -f "$dir/README.md" ]; then
+    # assuming swagger 3 in this case
+    (cd "${dir}" && go mod tidy && go build -o "$(mktemp)" .)
+  else
+    # assuming swagger 2
+    (cd "${dir}" && go mod tidy)
+    (cd "${dir}/client" && go build -o "$(mktemp)" .)
+    (cd "${dir}/models" && go build -o "$(mktemp)" .)
+  fi
 }
 
 csharp () {
