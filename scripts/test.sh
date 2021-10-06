@@ -45,7 +45,7 @@ golang () {
   echo "Testing Golang..."
 
   dir="clients/${PROJECT}/go"
-  if ! [ -f README.md ]; then
+  if ! [ -f "$dir/README.md" ]; then
     echo "package main" > "$dir/main.go"
     echo "func main(){}" >> "$dir/main.go"
   fi
