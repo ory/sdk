@@ -45,11 +45,13 @@ golang () {
   echo "Testing Golang..."
 
   dir="clients/${PROJECT}/go"
-  if ! [ -f "$dir/README.md" ]; then
-    echo "package main" > "$dir/main.go"
-    echo "func main(){}" >> "$dir/main.go"
+  if [ -f "$dir/README.md" ]; then
+    (cd "${dir}" && go mod tidy && go build -o "$(mktemp)" .)
+  else
+    (cd "${dir}" && go mod tidy)
+    (cd "${dir}/client" && go build -o "$(mktemp)" .)
+    (cd "${dir}/models" && go build -o "$(mktemp)" .)
   fi
-  (cd "${dir}" && go mod tidy && go build -o "$(mktemp)" .)
 }
 
 csharp () {
