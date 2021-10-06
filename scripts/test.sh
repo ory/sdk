@@ -46,8 +46,8 @@ golang () {
 
   dir="clients/${PROJECT}/go"
   if ! [ -f README.md ]; then
-    echo "package main" > main.go
-    echo "func main(){}" >> main.go
+    echo "package main" > "$dir/main.go"
+    echo "func main(){}" >> "$dir/main.go"
   fi
   (cd "${dir}" && go mod tidy && go build -o "$(mktemp)" .)
 }
