@@ -1,8 +1,8 @@
 # keto-client
 
 ORY Keto
-- API version: v0.6.0-alpha.6
-  - Build date: 2021-07-30T10:39:35.128184899Z[Etc/UTC]
+- API version: v0.7.0-alpha.0
+  - Build date: 2021-10-06T15:44:01.609146918Z[Etc/UTC]
 
 Ory Keto is a cloud native access control server providing best-practice patterns (RBAC, ABAC, ACL, AWS IAM Policies, Kubernetes Roles, ...) via REST APIs.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.keto</groupId>
   <artifactId>keto-client</artifactId>
-  <version>v0.6.0-alpha.6</version>
+  <version>v0.7.0-alpha.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "sh.ory.keto:keto-client:v0.6.0-alpha.6"
+compile "sh.ory.keto:keto-client:v0.7.0-alpha.0"
 ```
 
 ### Others
@@ -64,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/keto-client-v0.6.0-alpha.6.jar`
+* `target/keto-client-v0.7.0-alpha.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -129,6 +129,8 @@ Class | Method | HTTP request | Description
  - [InlineResponse400](docs/InlineResponse400.md)
  - [InternalRelationTuple](docs/InternalRelationTuple.md)
  - [PatchDelta](docs/PatchDelta.md)
+ - [RelationQuery](docs/RelationQuery.md)
+ - [SubjectSet](docs/SubjectSet.md)
  - [Version](docs/Version.md)
 
 

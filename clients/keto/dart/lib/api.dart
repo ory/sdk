@@ -1,52 +1,104 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-library openapi.api;
+library ory_keto_client.api;
 
-import 'dart:async';
-import 'dart:convert';
-import 'dart:io';
-
-import 'package:http/http.dart';
-import 'package:intl/intl.dart';
-import 'package:meta/meta.dart';
-
-part 'api_client.dart';
-part 'api_helper.dart';
-part 'api_exception.dart';
-part 'auth/authentication.dart';
-part 'auth/api_key_auth.dart';
-part 'auth/oauth.dart';
-part 'auth/http_basic_auth.dart';
-part 'auth/http_bearer_auth.dart';
-
-part 'api/health_api.dart';
-part 'api/read_api.dart';
-part 'api/version_api.dart';
-part 'api/write_api.dart';
-
-part 'model/expand_tree.dart';
-part 'model/get_check_response.dart';
-part 'model/get_relation_tuples_response.dart';
-part 'model/health_not_ready_status.dart';
-part 'model/health_status.dart';
-part 'model/inline_response400.dart';
-part 'model/internal_relation_tuple.dart';
-part 'model/patch_delta.dart';
-part 'model/version.dart';
+import 'package:dio/dio.dart';
+import 'package:built_value/serializer.dart';
+import 'package:ory_keto_client/serializers.dart';
+import 'package:ory_keto_client/auth/api_key_auth.dart';
+import 'package:ory_keto_client/auth/basic_auth.dart';
+import 'package:ory_keto_client/auth/oauth.dart';
+import 'package:ory_keto_client/api/health_api.dart';
+import 'package:ory_keto_client/api/read_api.dart';
+import 'package:ory_keto_client/api/version_api.dart';
+import 'package:ory_keto_client/api/write_api.dart';
 
 
-const _delimiters = {'csv': ',', 'ssv': ' ', 'tsv': '\t', 'pipes': '|'};
-const _dateEpochMarker = 'epoch';
-final _dateFormatter = DateFormat('yyyy-MM-dd');
-final _regList = RegExp(r'^List<(.*)>$');
-final _regSet = RegExp(r'^Set<(.*)>$');
-final _regMap = RegExp(r'^Map<String,(.*)>$');
+final _defaultInterceptors = [
+  OAuthInterceptor(),
+  BasicAuthInterceptor(),
+  ApiKeyAuthInterceptor(),
+];
 
-ApiClient defaultApiClient = ApiClient();
+class OryKetoClient {
+
+    static const String basePath = r'http://localhost';
+
+    final Dio dio;
+
+    final Serializers serializers;
+
+    OryKetoClient({
+      Dio dio,
+      Serializers serializers,
+      String basePathOverride,
+      List<Interceptor> interceptors,
+    })  : this.serializers = serializers ?? standardSerializers,
+          this.dio = dio ??
+              Dio(BaseOptions(
+                baseUrl: basePathOverride ?? basePath,
+                connectTimeout: 5000,
+                receiveTimeout: 3000,
+              )) {
+      if (interceptors == null) {
+        this.dio.interceptors.addAll(_defaultInterceptors);
+      } else {
+        this.dio.interceptors.addAll(interceptors);
+      }
+    }
+
+    void setOAuthToken(String name, String token) {
+        (this.dio.interceptors.firstWhere((element) => element is OAuthInterceptor, orElse: null) as OAuthInterceptor)?.tokens[name] = token;
+    }
+
+    void setBasicAuth(String name, String username, String password) {
+        (this.dio.interceptors.firstWhere((element) => element is BasicAuthInterceptor, orElse: null) as BasicAuthInterceptor)?.authInfo[name] = BasicAuthInfo(username, password);
+    }
+
+    void setApiKey(String name, String apiKey) {
+        (this.dio.interceptors.firstWhere((element) => element is ApiKeyAuthInterceptor, orElse: null) as ApiKeyAuthInterceptor)?.apiKeys[name] = apiKey;
+    }
+
+
+    /**
+    * Get HealthApi instance, base route and serializer can be overridden by a given but be careful,
+    * by doing that all interceptors will not be executed
+    */
+    HealthApi getHealthApi() {
+    return HealthApi(dio, serializers);
+    }
+
+
+    /**
+    * Get ReadApi instance, base route and serializer can be overridden by a given but be careful,
+    * by doing that all interceptors will not be executed
+    */
+    ReadApi getReadApi() {
+    return ReadApi(dio, serializers);
+    }
+
+
+    /**
+    * Get VersionApi instance, base route and serializer can be overridden by a given but be careful,
+    * by doing that all interceptors will not be executed
+    */
+    VersionApi getVersionApi() {
+    return VersionApi(dio, serializers);
+    }
+
+
+    /**
+    * Get WriteApi instance, base route and serializer can be overridden by a given but be careful,
+    * by doing that all interceptors will not be executed
+    */
+    WriteApi getWriteApi() {
+    return WriteApi(dio, serializers);
+    }
+
+
+}

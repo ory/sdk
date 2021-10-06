@@ -1,157 +1,130 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_collection/built_collection.dart';
+import 'package:ory_keto_client/model/subject_set.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class ExpandTree {
-  /// Returns a new [ExpandTree] instance.
-  ExpandTree({
-    this.children = const [],
-    @required this.subject,
-    @required this.type,
-  });
+part 'expand_tree.g.dart';
 
-  List<ExpandTree> children;
+abstract class ExpandTree implements Built<ExpandTree, ExpandTreeBuilder> {
 
-  String subject;
+    @nullable
+    @BuiltValueField(wireName: r'children')
+    BuiltList<ExpandTree> get children;
 
-  ExpandTreeTypeEnum type;
+    @nullable
+    @BuiltValueField(wireName: r'subject_id')
+    String get subjectId;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is ExpandTree &&
-     other.children == children &&
-     other.subject == subject &&
-     other.type == type;
+    @nullable
+    @BuiltValueField(wireName: r'subject_set')
+    SubjectSet get subjectSet;
 
-  @override
-  int get hashCode =>
-    (children == null ? 0 : children.hashCode) +
-    (subject == null ? 0 : subject.hashCode) +
-    (type == null ? 0 : type.hashCode);
+    @BuiltValueField(wireName: r'type')
+    ExpandTreeTypeEnum get type;
+    // enum typeEnum {  union,  exclusion,  intersection,  leaf,  };
 
-  @override
-  String toString() => 'ExpandTree[children=$children, subject=$subject, type=$type]';
+    ExpandTree._();
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (children != null) {
-      json[r'children'] = children;
-    }
-      json[r'subject'] = subject;
-      json[r'type'] = type;
-    return json;
-  }
+    static void _initializeBuilder(ExpandTreeBuilder b) => b;
 
-  /// Returns a new [ExpandTree] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static ExpandTree fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : ExpandTree(
-        children: ExpandTree.listFromJson(json[r'children']),
-        subject: json[r'subject'],
-        type: ExpandTreeTypeEnum.fromJson(json[r'type']),
-    );
+    factory ExpandTree([void updates(ExpandTreeBuilder b)]) = _$ExpandTree;
 
-  static List<ExpandTree> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <ExpandTree>[]
-      : json.map((v) => ExpandTree.fromJson(v)).toList(growable: true == growable);
-
-  static Map<String, ExpandTree> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, ExpandTree>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = ExpandTree.fromJson(v));
-    }
-    return map;
-  }
-
-  // maps a json object with a list of ExpandTree-objects as value to a dart map
-  static Map<String, List<ExpandTree>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<ExpandTree>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = ExpandTree.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
-      });
-    }
-    return map;
-  }
+    @BuiltValueSerializer(custom: true)
+    static Serializer<ExpandTree> get serializer => _$ExpandTreeSerializer();
 }
 
+class _$ExpandTreeSerializer implements StructuredSerializer<ExpandTree> {
 
-class ExpandTreeTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ExpandTreeTypeEnum._(this.value);
+    @override
+    final Iterable<Type> types = const [ExpandTree, _$ExpandTree];
+    @override
+    final String wireName = r'ExpandTree';
 
-  /// The underlying value of this enum member.
-  final String value;
-
-  @override
-  String toString() => value;
-
-  String toJson() => value;
-
-  static const union = ExpandTreeTypeEnum._(r'union');
-  static const exclusion = ExpandTreeTypeEnum._(r'exclusion');
-  static const intersection = ExpandTreeTypeEnum._(r'intersection');
-  static const leaf = ExpandTreeTypeEnum._(r'leaf');
-
-  /// List of all possible values in this [enum][ExpandTreeTypeEnum].
-  static const values = <ExpandTreeTypeEnum>[
-    union,
-    exclusion,
-    intersection,
-    leaf,
-  ];
-
-  static ExpandTreeTypeEnum fromJson(dynamic value) =>
-    ExpandTreeTypeEnumTypeTransformer().decode(value);
-
-  static List<ExpandTreeTypeEnum> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <ExpandTreeTypeEnum>[]
-      : json
-          .map((value) => ExpandTreeTypeEnum.fromJson(value))
-          .toList(growable: true == growable);
-}
-
-/// Transformation class that can [encode] an instance of [ExpandTreeTypeEnum] to String,
-/// and [decode] dynamic data back to [ExpandTreeTypeEnum].
-class ExpandTreeTypeEnumTypeTransformer {
-  const ExpandTreeTypeEnumTypeTransformer._();
-
-  factory ExpandTreeTypeEnumTypeTransformer() => _instance ??= ExpandTreeTypeEnumTypeTransformer._();
-
-  String encode(ExpandTreeTypeEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a ExpandTreeTypeEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  ExpandTreeTypeEnum decode(dynamic data, {bool allowNull}) {
-    switch (data) {
-      case r'union': return ExpandTreeTypeEnum.union;
-      case r'exclusion': return ExpandTreeTypeEnum.exclusion;
-      case r'intersection': return ExpandTreeTypeEnum.intersection;
-      case r'leaf': return ExpandTreeTypeEnum.leaf;
-      default:
-        if (allowNull == false) {
-          throw ArgumentError('Unknown enum value to decode: $data');
+    @override
+    Iterable<Object> serialize(Serializers serializers, ExpandTree object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.children != null) {
+            result
+                ..add(r'children')
+                ..add(serializers.serialize(object.children,
+                    specifiedType: const FullType(BuiltList, [FullType(ExpandTree)])));
         }
+        if (object.subjectId != null) {
+            result
+                ..add(r'subject_id')
+                ..add(serializers.serialize(object.subjectId,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.subjectSet != null) {
+            result
+                ..add(r'subject_set')
+                ..add(serializers.serialize(object.subjectSet,
+                    specifiedType: const FullType(SubjectSet)));
+        }
+        result
+            ..add(r'type')
+            ..add(serializers.serialize(object.type,
+                specifiedType: const FullType(ExpandTreeTypeEnum)));
+        return result;
     }
-    return null;
-  }
 
-  /// Singleton [ExpandTreeTypeEnumTypeTransformer] instance.
-  static ExpandTreeTypeEnumTypeTransformer _instance;
+    @override
+    ExpandTree deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = ExpandTreeBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'children':
+                    result.children.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(ExpandTree)])) as BuiltList<ExpandTree>);
+                    break;
+                case r'subject_id':
+                    result.subjectId = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'subject_set':
+                    result.subjectSet.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(SubjectSet)) as SubjectSet);
+                    break;
+                case r'type':
+                    result.type = serializers.deserialize(value,
+                        specifiedType: const FullType(ExpandTreeTypeEnum)) as ExpandTreeTypeEnum;
+                    break;
+            }
+        }
+        return result.build();
+    }
+}
+
+class ExpandTreeTypeEnum extends EnumClass {
+
+  @BuiltValueEnumConst(wireName: r'union')
+  static const ExpandTreeTypeEnum union = _$expandTreeTypeEnum_union;
+  @BuiltValueEnumConst(wireName: r'exclusion')
+  static const ExpandTreeTypeEnum exclusion = _$expandTreeTypeEnum_exclusion;
+  @BuiltValueEnumConst(wireName: r'intersection')
+  static const ExpandTreeTypeEnum intersection = _$expandTreeTypeEnum_intersection;
+  @BuiltValueEnumConst(wireName: r'leaf')
+  static const ExpandTreeTypeEnum leaf = _$expandTreeTypeEnum_leaf;
+
+  static Serializer<ExpandTreeTypeEnum> get serializer => _$expandTreeTypeEnumSerializer;
+
+  const ExpandTreeTypeEnum._(String name): super(name);
+
+  static BuiltSet<ExpandTreeTypeEnum> get values => _$expandTreeTypeEnumValues;
+  static ExpandTreeTypeEnum valueOf(String name) => _$expandTreeTypeEnumValueOf(name);
 }
 

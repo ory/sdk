@@ -1,93 +1,121 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:ory_keto_client/model/subject_set.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class InternalRelationTuple {
-  /// Returns a new [InternalRelationTuple] instance.
-  InternalRelationTuple({
-    @required this.namespace,
-    @required this.object,
-    @required this.relation,
-    @required this.subject,
-  });
+part 'internal_relation_tuple.g.dart';
 
-  /// Namespace of the Relation Tuple  in: query
-  String namespace;
+abstract class InternalRelationTuple implements Built<InternalRelationTuple, InternalRelationTupleBuilder> {
 
-  /// Object of the Relation Tuple  in: query
-  String object;
+    /// Namespace of the Relation Tuple
+    @BuiltValueField(wireName: r'namespace')
+    String get namespace;
 
-  /// Relation of the Relation Tuple  in: query
-  String relation;
+    /// Object of the Relation Tuple
+    @BuiltValueField(wireName: r'object')
+    String get object;
 
-  String subject;
+    /// Relation of the Relation Tuple
+    @BuiltValueField(wireName: r'relation')
+    String get relation;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is InternalRelationTuple &&
-     other.namespace == namespace &&
-     other.object == object &&
-     other.relation == relation &&
-     other.subject == subject;
+    /// SubjectID of the Relation Tuple  Either SubjectSet or SubjectID are required.
+    @nullable
+    @BuiltValueField(wireName: r'subject_id')
+    String get subjectId;
 
-  @override
-  int get hashCode =>
-    (namespace == null ? 0 : namespace.hashCode) +
-    (object == null ? 0 : object.hashCode) +
-    (relation == null ? 0 : relation.hashCode) +
-    (subject == null ? 0 : subject.hashCode);
+    @nullable
+    @BuiltValueField(wireName: r'subject_set')
+    SubjectSet get subjectSet;
 
-  @override
-  String toString() => 'InternalRelationTuple[namespace=$namespace, object=$object, relation=$relation, subject=$subject]';
+    InternalRelationTuple._();
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-      json[r'namespace'] = namespace;
-      json[r'object'] = object;
-      json[r'relation'] = relation;
-      json[r'subject'] = subject;
-    return json;
-  }
+    static void _initializeBuilder(InternalRelationTupleBuilder b) => b;
 
-  /// Returns a new [InternalRelationTuple] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static InternalRelationTuple fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : InternalRelationTuple(
-        namespace: json[r'namespace'],
-        object: json[r'object'],
-        relation: json[r'relation'],
-        subject: json[r'subject'],
-    );
+    factory InternalRelationTuple([void updates(InternalRelationTupleBuilder b)]) = _$InternalRelationTuple;
 
-  static List<InternalRelationTuple> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <InternalRelationTuple>[]
-      : json.map((v) => InternalRelationTuple.fromJson(v)).toList(growable: true == growable);
+    @BuiltValueSerializer(custom: true)
+    static Serializer<InternalRelationTuple> get serializer => _$InternalRelationTupleSerializer();
+}
 
-  static Map<String, InternalRelationTuple> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, InternalRelationTuple>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = InternalRelationTuple.fromJson(v));
+class _$InternalRelationTupleSerializer implements StructuredSerializer<InternalRelationTuple> {
+
+    @override
+    final Iterable<Type> types = const [InternalRelationTuple, _$InternalRelationTuple];
+    @override
+    final String wireName = r'InternalRelationTuple';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, InternalRelationTuple object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        result
+            ..add(r'namespace')
+            ..add(serializers.serialize(object.namespace,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'object')
+            ..add(serializers.serialize(object.object,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'relation')
+            ..add(serializers.serialize(object.relation,
+                specifiedType: const FullType(String)));
+        if (object.subjectId != null) {
+            result
+                ..add(r'subject_id')
+                ..add(serializers.serialize(object.subjectId,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.subjectSet != null) {
+            result
+                ..add(r'subject_set')
+                ..add(serializers.serialize(object.subjectSet,
+                    specifiedType: const FullType(SubjectSet)));
+        }
+        return result;
     }
-    return map;
-  }
 
-  // maps a json object with a list of InternalRelationTuple-objects as value to a dart map
-  static Map<String, List<InternalRelationTuple>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<InternalRelationTuple>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = InternalRelationTuple.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
-      });
+    @override
+    InternalRelationTuple deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = InternalRelationTupleBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'namespace':
+                    result.namespace = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'object':
+                    result.object = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'relation':
+                    result.relation = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'subject_id':
+                    result.subjectId = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'subject_set':
+                    result.subjectSet.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(SubjectSet)) as SubjectSet);
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
 }
 

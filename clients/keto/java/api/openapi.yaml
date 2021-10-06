@@ -10,7 +10,7 @@ info:
     name: Apache 2.0
     url: https://github.com/ory/keto/blob/master/LICENSE
   title: ORY Keto
-  version: v0.6.0-alpha.6
+  version: v0.7.0-alpha.0
 servers:
 - url: /
 paths:
@@ -38,12 +38,24 @@ paths:
         required: true
         schema:
           type: string
-      - description: |-
-          Subject of the Relation Tuple
-
-          The subject follows the subject string encoding format.
+      - description: SubjectID of the Relation Tuple
         in: query
-        name: subject
+        name: subject_id
+        schema:
+          type: string
+      - description: Namespace of the Subject Set
+        in: query
+        name: subject_set.namespace
+        schema:
+          type: string
+      - description: Object of the Subject Set
+        in: query
+        name: subject_set.object
+        schema:
+          type: string
+      - description: Relation of the Subject Set
+        in: query
+        name: subject_set.relation
         schema:
           type: string
       responses:
@@ -83,7 +95,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/InternalRelationTuple'
+              $ref: '#/components/schemas/RelationQuery'
         required: false
       responses:
         "200":
@@ -121,19 +133,19 @@ paths:
       description: Use this endpoint to expand a relation tuple.
       operationId: getExpand
       parameters:
-      - description: Namespace of the Relation Tuple
+      - description: Namespace of the Subject Set
         in: query
         name: namespace
         required: true
         schema:
           type: string
-      - description: Object of the Relation Tuple
+      - description: Object of the Subject Set
         in: query
         name: object
         required: true
         schema:
           type: string
-      - description: Relation of the Relation Tuple
+      - description: Relation of the Subject Set
         in: query
         name: relation
         required: true
@@ -254,12 +266,24 @@ paths:
         required: true
         schema:
           type: string
-      - description: |-
-          Subject of the Relation Tuple
-
-          The subject follows the subject string encoding format.
+      - description: SubjectID of the Relation Tuple
         in: query
-        name: subject
+        name: subject_id
+        schema:
+          type: string
+      - description: Namespace of the Subject Set
+        in: query
+        name: subject_set.namespace
+        schema:
+          type: string
+      - description: Object of the Subject Set
+        in: query
+        name: subject_set.object
+        schema:
+          type: string
+      - description: Relation of the Subject Set
+        in: query
+        name: subject_set.relation
         schema:
           type: string
       responses:
@@ -288,21 +312,42 @@ paths:
         field is required.
       operationId: getRelationTuples
       parameters:
-      - in: query
+      - description: Namespace of the Relation Tuple
+        in: query
         name: namespace
         required: true
         schema:
           type: string
-      - in: query
+      - description: Object of the Relation Tuple
+        in: query
         name: object
+        required: true
         schema:
           type: string
-      - in: query
+      - description: Relation of the Relation Tuple
+        in: query
         name: relation
+        required: true
         schema:
           type: string
-      - in: query
-        name: subject
+      - description: SubjectID of the Relation Tuple
+        in: query
+        name: subject_id
+        schema:
+          type: string
+      - description: Namespace of the Subject Set
+        in: query
+        name: subject_set.namespace
+        schema:
+          type: string
+      - description: Object of the Subject Set
+        in: query
+        name: subject_set.object
+        schema:
+          type: string
+      - description: Relation of the Subject Set
+        in: query
+        name: subject_set.relation
         schema:
           type: string
       - in: query
@@ -384,15 +429,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/InternalRelationTuple'
+              $ref: '#/components/schemas/RelationQuery'
         required: false
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InternalRelationTuple'
-          description: InternalRelationTuple
+                $ref: '#/components/schemas/RelationQuery'
+          description: RelationQuery
         "400":
           content:
             application/json:
@@ -435,67 +480,134 @@ paths:
       x-accepts: application/json
 components:
   schemas:
+    UUID:
+      format: uuid4
+      type: string
     InternalRelationTuple:
       example:
-        subject: subject
+        subject_id: subject_id
+        namespace: namespace
+        object: object
+        relation: relation
+        subject_set:
+          namespace: namespace
+          object: object
+          relation: relation
+      properties:
+        namespace:
+          description: Namespace of the Relation Tuple
+          type: string
+        object:
+          description: Object of the Relation Tuple
+          type: string
+        relation:
+          description: Relation of the Relation Tuple
+          type: string
+        subject_id:
+          description: |-
+            SubjectID of the Relation Tuple
+
+            Either SubjectSet or SubjectID are required.
+          type: string
+        subject_set:
+          $ref: '#/components/schemas/SubjectSet'
+      required:
+      - namespace
+      - object
+      - relation
+      type: object
+    PatchDelta:
+      example:
+        relation_tuple:
+          subject_id: subject_id
+          namespace: namespace
+          object: object
+          relation: relation
+          subject_set:
+            namespace: namespace
+            object: object
+            relation: relation
+        action: insert
+      properties:
+        action:
+          enum:
+          - insert
+          - delete
+          type: string
+        relation_tuple:
+          $ref: '#/components/schemas/InternalRelationTuple'
+      type: object
+    RelationQuery:
+      example:
+        subject_id: subject_id
+        namespace: namespace
+        object: object
+        relation: relation
+        subject_set:
+          namespace: namespace
+          object: object
+          relation: relation
+      properties:
+        namespace:
+          description: Namespace of the Relation Tuple
+          type: string
+        object:
+          description: Object of the Relation Tuple
+          type: string
+        relation:
+          description: Relation of the Relation Tuple
+          type: string
+        subject_id:
+          description: |-
+            SubjectID of the Relation Tuple
+
+            Either SubjectSet or SubjectID can be provided.
+          type: string
+        subject_set:
+          $ref: '#/components/schemas/SubjectSet'
+      required:
+      - namespace
+      type: object
+    SubjectSet:
+      example:
         namespace: namespace
         object: object
         relation: relation
       properties:
         namespace:
-          description: |-
-            Namespace of the Relation Tuple
-
-            in: query
+          description: Namespace of the Subject Set
           type: string
         object:
-          description: |-
-            Object of the Relation Tuple
-
-            in: query
+          description: Object of the Subject Set
           type: string
         relation:
-          description: |-
-            Relation of the Relation Tuple
-
-            in: query
-          type: string
-        subject:
+          description: Relation of the Subject Set
           type: string
       required:
       - namespace
       - object
       - relation
-      - subject
-      type: object
-    PatchDelta:
-      example:
-        relation_tuple:
-          subject: subject
-          namespace: namespace
-          object: object
-          relation: relation
-        action: action
-      properties:
-        action:
-          type: string
-        relation_tuple:
-          $ref: '#/components/schemas/InternalRelationTuple'
       type: object
     expandTree:
       example:
+        subject_id: subject_id
         children:
         - null
         - null
-        subject: subject
         type: union
+        subject_set:
+          namespace: namespace
+          object: object
+          relation: relation
       properties:
         children:
           items:
             $ref: '#/components/schemas/expandTree'
           type: array
-        subject:
+        subject_id:
           type: string
+        subject_set:
+          $ref: '#/components/schemas/SubjectSet'
         type:
           enum:
           - union
@@ -504,7 +616,6 @@ components:
           - leaf
           type: string
       required:
-      - subject
       - type
       type: object
     getCheckResponse:
@@ -524,14 +635,22 @@ components:
       example:
         next_page_token: next_page_token
         relation_tuples:
-        - subject: subject
+        - subject_id: subject_id
           namespace: namespace
           object: object
           relation: relation
-        - subject: subject
+          subject_set:
+            namespace: namespace
+            object: object
+            relation: relation
+        - subject_id: subject_id
           namespace: namespace
           object: object
           relation: relation
+          subject_set:
+            namespace: namespace
+            object: object
+            relation: relation
       properties:
         next_page_token:
           description: |-
@@ -561,10 +680,6 @@ components:
           description: Status always contains "ok".
           type: string
       type: object
-    patchAction:
-      type: string
-    subject:
-      type: string
     version:
       example:
         version: version
@@ -573,9 +688,6 @@ components:
           description: Version is the service's version.
           type: string
       type: object
-    UUID:
-      format: uuid4
-      type: string
     inline_response_400:
       properties:
         code:

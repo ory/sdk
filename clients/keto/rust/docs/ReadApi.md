@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_check**](ReadApi.md#get_check) | **get** /check | Check a relation tuple
-[**get_expand**](ReadApi.md#get_expand) | **get** /expand | Expand a Relation Tuple
-[**get_relation_tuples**](ReadApi.md#get_relation_tuples) | **get** /relation-tuples | Query relation tuples
-[**post_check**](ReadApi.md#post_check) | **post** /check | Check a relation tuple
+[**get_check**](ReadApi.md#get_check) | **GET** /check | Check a relation tuple
+[**get_expand**](ReadApi.md#get_expand) | **GET** /expand | Expand a Relation Tuple
+[**get_relation_tuples**](ReadApi.md#get_relation_tuples) | **GET** /relation-tuples | Query relation tuples
+[**post_check**](ReadApi.md#post_check) | **POST** /check | Check a relation tuple
 
 
 
 ## get_check
 
-> crate::models::GetCheckResponse get_check(namespace, object, relation, subject)
+> crate::models::GetCheckResponse get_check(namespace, object, relation, subject_id, subject_set_namespace, subject_set_object, subject_set_relation)
 Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
@@ -26,7 +26,10 @@ Name | Type | Description  | Required | Notes
 **namespace** | **String** | Namespace of the Relation Tuple | [required] |
 **object** | **String** | Object of the Relation Tuple | [required] |
 **relation** | **String** | Relation of the Relation Tuple | [required] |
-**subject** | Option<**String**> | Subject of the Relation Tuple  The subject follows the subject string encoding format. |  |
+**subject_id** | Option<**String**> | SubjectID of the Relation Tuple |  |
+**subject_set_namespace** | Option<**String**> | Namespace of the Subject Set |  |
+**subject_set_object** | Option<**String**> | Object of the Subject Set |  |
+**subject_set_relation** | Option<**String**> | Relation of the Subject Set |  |
 
 ### Return type
 
@@ -56,9 +59,9 @@ Use this endpoint to expand a relation tuple.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**namespace** | **String** | Namespace of the Relation Tuple | [required] |
-**object** | **String** | Object of the Relation Tuple | [required] |
-**relation** | **String** | Relation of the Relation Tuple | [required] |
+**namespace** | **String** | Namespace of the Subject Set | [required] |
+**object** | **String** | Object of the Subject Set | [required] |
+**relation** | **String** | Relation of the Subject Set | [required] |
 **max_depth** | Option<**i64**> |  |  |
 
 ### Return type
@@ -79,7 +82,7 @@ No authorization required
 
 ## get_relation_tuples
 
-> crate::models::GetRelationTuplesResponse get_relation_tuples(namespace, object, relation, subject, page_token, page_size)
+> crate::models::GetRelationTuplesResponse get_relation_tuples(namespace, object, relation, subject_id, subject_set_namespace, subject_set_object, subject_set_relation, page_token, page_size)
 Query relation tuples
 
 Get all relation tuples that match the query. Only the namespace field is required.
@@ -89,10 +92,13 @@ Get all relation tuples that match the query. Only the namespace field is requir
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**namespace** | **String** |  | [required] |
-**object** | Option<**String**> |  |  |
-**relation** | Option<**String**> |  |  |
-**subject** | Option<**String**> |  |  |
+**namespace** | **String** | Namespace of the Relation Tuple | [required] |
+**object** | **String** | Object of the Relation Tuple | [required] |
+**relation** | **String** | Relation of the Relation Tuple | [required] |
+**subject_id** | Option<**String**> | SubjectID of the Relation Tuple |  |
+**subject_set_namespace** | Option<**String**> | Namespace of the Subject Set |  |
+**subject_set_object** | Option<**String**> | Object of the Subject Set |  |
+**subject_set_relation** | Option<**String**> | Relation of the Subject Set |  |
 **page_token** | Option<**String**> |  |  |
 **page_size** | Option<**i64**> |  |  |
 
@@ -124,7 +130,7 @@ To learn how relation tuples and the check works, head over to [the documentatio
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**payload** | Option<[**InternalRelationTuple**](InternalRelationTuple.md)> |  |  |
+**payload** | Option<[**RelationQuery**](RelationQuery.md)> |  |  |
 
 ### Return type
 

@@ -1,24 +1,26 @@
-# OryHydraClient::InternalRelationTuple
+# OryKetoClient::InternalRelationTuple
 
 ## Properties
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **namespace** | **String** | Namespace of the Relation Tuple  in: query |  |
-| **object** | **String** | Object of the Relation Tuple  in: query |  |
-| **relation** | **String** | Relation of the Relation Tuple  in: query |  |
-| **subject** | **String** |  |  |
+| **namespace** | **String** | Namespace of the Relation Tuple |  |
+| **object** | **String** | Object of the Relation Tuple |  |
+| **relation** | **String** | Relation of the Relation Tuple |  |
+| **subject_id** | **String** | SubjectID of the Relation Tuple  Either SubjectSet or SubjectID are required. | [optional] |
+| **subject_set** | [**SubjectSet**](SubjectSet.md) |  | [optional] |
 
 ## Example
 
 ```ruby
 require 'ory-keto-client'
 
-instance = OryHydraClient::InternalRelationTuple.new(
+instance = OryKetoClient::InternalRelationTuple.new(
   namespace: null,
   object: null,
   relation: null,
-  subject: null
+  subject_id: null,
+  subject_set: null
 )
 ```
 

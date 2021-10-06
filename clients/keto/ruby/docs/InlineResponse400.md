@@ -1,4 +1,4 @@
-# OryHydraClient::InlineResponse400
+# OryKetoClient::InlineResponse400
 
 ## Properties
 
@@ -16,7 +16,7 @@
 ```ruby
 require 'ory-keto-client'
 
-instance = OryHydraClient::InlineResponse400.new(
+instance = OryKetoClient::InlineResponse400.new(
   code: null,
   details: null,
   message: null,

@@ -4,8 +4,8 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**is_instance_alive**](HealthApi.md#is_instance_alive) | **get** /health/alive | Check alive status
-[**is_instance_ready**](HealthApi.md#is_instance_ready) | **get** /health/ready | Check readiness status
+[**is_instance_alive**](HealthApi.md#is_instance_alive) | **GET** /health/alive | Check alive status
+[**is_instance_ready**](HealthApi.md#is_instance_ready) | **GET** /health/ready | Check readiness status
 
 
 

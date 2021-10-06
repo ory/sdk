@@ -1,72 +1,70 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class HealthStatus {
-  /// Returns a new [HealthStatus] instance.
-  HealthStatus({
-    this.status,
-  });
+part 'health_status.g.dart';
 
-  /// Status always contains \"ok\".
-  String status;
+abstract class HealthStatus implements Built<HealthStatus, HealthStatusBuilder> {
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is HealthStatus &&
-     other.status == status;
+    /// Status always contains \"ok\".
+    @nullable
+    @BuiltValueField(wireName: r'status')
+    String get status;
 
-  @override
-  int get hashCode =>
-    (status == null ? 0 : status.hashCode);
+    HealthStatus._();
 
-  @override
-  String toString() => 'HealthStatus[status=$status]';
+    static void _initializeBuilder(HealthStatusBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (status != null) {
-      json[r'status'] = status;
+    factory HealthStatus([void updates(HealthStatusBuilder b)]) = _$HealthStatus;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<HealthStatus> get serializer => _$HealthStatusSerializer();
+}
+
+class _$HealthStatusSerializer implements StructuredSerializer<HealthStatus> {
+
+    @override
+    final Iterable<Type> types = const [HealthStatus, _$HealthStatus];
+    @override
+    final String wireName = r'HealthStatus';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, HealthStatus object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.status != null) {
+            result
+                ..add(r'status')
+                ..add(serializers.serialize(object.status,
+                    specifiedType: const FullType(String)));
+        }
+        return result;
     }
-    return json;
-  }
 
-  /// Returns a new [HealthStatus] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static HealthStatus fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : HealthStatus(
-        status: json[r'status'],
-    );
+    @override
+    HealthStatus deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = HealthStatusBuilder();
 
-  static List<HealthStatus> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <HealthStatus>[]
-      : json.map((v) => HealthStatus.fromJson(v)).toList(growable: true == growable);
-
-  static Map<String, HealthStatus> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, HealthStatus>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = HealthStatus.fromJson(v));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'status':
+                    result.status = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of HealthStatus-objects as value to a dart map
-  static Map<String, List<HealthStatus>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<HealthStatus>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = HealthStatus.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
-      });
-    }
-    return map;
-  }
 }
 

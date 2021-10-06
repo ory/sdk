@@ -1,4 +1,4 @@
-# OryHydraClient::HealthApi
+# OryKetoClient::HealthApi
 
 All URIs are relative to *http://localhost*
 
@@ -22,13 +22,13 @@ This endpoint returns a 200 status code when the HTTP server is up running. This
 require 'time'
 require 'ory-keto-client'
 
-api_instance = OryHydraClient::HealthApi.new
+api_instance = OryKetoClient::HealthApi.new
 
 begin
   # Check alive status
   result = api_instance.is_instance_alive
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKetoClient::ApiError => e
   puts "Error when calling HealthApi->is_instance_alive: #{e}"
 end
 ```
@@ -46,7 +46,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <HealthStatus>
-rescue OryHydraClient::ApiError => e
+rescue OryKetoClient::ApiError => e
   puts "Error when calling HealthApi->is_instance_alive_with_http_info: #{e}"
 end
 ```
@@ -83,13 +83,13 @@ This endpoint returns a 200 status code when the HTTP server is up running and t
 require 'time'
 require 'ory-keto-client'
 
-api_instance = OryHydraClient::HealthApi.new
+api_instance = OryKetoClient::HealthApi.new
 
 begin
   # Check readiness status
   result = api_instance.is_instance_ready
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKetoClient::ApiError => e
   puts "Error when calling HealthApi->is_instance_ready: #{e}"
 end
 ```
@@ -107,7 +107,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <HealthStatus>
-rescue OryHydraClient::ApiError => e
+rescue OryKetoClient::ApiError => e
   puts "Error when calling HealthApi->is_instance_ready_with_http_info: #{e}"
 end
 ```

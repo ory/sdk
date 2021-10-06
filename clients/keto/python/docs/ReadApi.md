@@ -40,7 +40,10 @@ with ory_keto_client.ApiClient() as api_client:
     namespace = "namespace_example" # str | Namespace of the Relation Tuple
     object = "object_example" # str | Object of the Relation Tuple
     relation = "relation_example" # str | Relation of the Relation Tuple
-    subject = "subject_example" # str | Subject of the Relation Tuple  The subject follows the subject string encoding format. (optional)
+    subject_id = "subject_id_example" # str | SubjectID of the Relation Tuple (optional)
+    subject_set_namespace = "subject_set.namespace_example" # str | Namespace of the Subject Set (optional)
+    subject_set_object = "subject_set.object_example" # str | Object of the Subject Set (optional)
+    subject_set_relation = "subject_set.relation_example" # str | Relation of the Subject Set (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -54,7 +57,7 @@ with ory_keto_client.ApiClient() as api_client:
     # and optional values
     try:
         # Check a relation tuple
-        api_response = api_instance.get_check(namespace, object, relation, subject=subject)
+        api_response = api_instance.get_check(namespace, object, relation, subject_id=subject_id, subject_set_namespace=subject_set_namespace, subject_set_object=subject_set_object, subject_set_relation=subject_set_relation)
         pprint(api_response)
     except ory_keto_client.ApiException as e:
         print("Exception when calling ReadApi->get_check: %s\n" % e)
@@ -68,7 +71,10 @@ Name | Type | Description  | Notes
  **namespace** | **str**| Namespace of the Relation Tuple |
  **object** | **str**| Object of the Relation Tuple |
  **relation** | **str**| Relation of the Relation Tuple |
- **subject** | **str**| Subject of the Relation Tuple  The subject follows the subject string encoding format. | [optional]
+ **subject_id** | **str**| SubjectID of the Relation Tuple | [optional]
+ **subject_set_namespace** | **str**| Namespace of the Subject Set | [optional]
+ **subject_set_object** | **str**| Object of the Subject Set | [optional]
+ **subject_set_relation** | **str**| Relation of the Subject Set | [optional]
 
 ### Return type
 
@@ -121,9 +127,9 @@ configuration = ory_keto_client.Configuration(
 with ory_keto_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = read_api.ReadApi(api_client)
-    namespace = "namespace_example" # str | Namespace of the Relation Tuple
-    object = "object_example" # str | Object of the Relation Tuple
-    relation = "relation_example" # str | Relation of the Relation Tuple
+    namespace = "namespace_example" # str | Namespace of the Subject Set
+    object = "object_example" # str | Object of the Subject Set
+    relation = "relation_example" # str | Relation of the Subject Set
     max_depth = 1 # int |  (optional)
 
     # example passing only required values which don't have defaults set
@@ -149,9 +155,9 @@ with ory_keto_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **str**| Namespace of the Relation Tuple |
- **object** | **str**| Object of the Relation Tuple |
- **relation** | **str**| Relation of the Relation Tuple |
+ **namespace** | **str**| Namespace of the Subject Set |
+ **object** | **str**| Object of the Subject Set |
+ **relation** | **str**| Relation of the Subject Set |
  **max_depth** | **int**|  | [optional]
 
 ### Return type
@@ -179,7 +185,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_relation_tuples**
-> GetRelationTuplesResponse get_relation_tuples(namespace)
+> GetRelationTuplesResponse get_relation_tuples(namespace, object, relation)
 
 Query relation tuples
 
@@ -205,17 +211,20 @@ configuration = ory_keto_client.Configuration(
 with ory_keto_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = read_api.ReadApi(api_client)
-    namespace = "namespace_example" # str | 
-    object = "object_example" # str |  (optional)
-    relation = "relation_example" # str |  (optional)
-    subject = "subject_example" # str |  (optional)
+    namespace = "namespace_example" # str | Namespace of the Relation Tuple
+    object = "object_example" # str | Object of the Relation Tuple
+    relation = "relation_example" # str | Relation of the Relation Tuple
+    subject_id = "subject_id_example" # str | SubjectID of the Relation Tuple (optional)
+    subject_set_namespace = "subject_set.namespace_example" # str | Namespace of the Subject Set (optional)
+    subject_set_object = "subject_set.object_example" # str | Object of the Subject Set (optional)
+    subject_set_relation = "subject_set.relation_example" # str | Relation of the Subject Set (optional)
     page_token = "page_token_example" # str |  (optional)
     page_size = 1 # int |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Query relation tuples
-        api_response = api_instance.get_relation_tuples(namespace)
+        api_response = api_instance.get_relation_tuples(namespace, object, relation)
         pprint(api_response)
     except ory_keto_client.ApiException as e:
         print("Exception when calling ReadApi->get_relation_tuples: %s\n" % e)
@@ -224,7 +233,7 @@ with ory_keto_client.ApiClient() as api_client:
     # and optional values
     try:
         # Query relation tuples
-        api_response = api_instance.get_relation_tuples(namespace, object=object, relation=relation, subject=subject, page_token=page_token, page_size=page_size)
+        api_response = api_instance.get_relation_tuples(namespace, object, relation, subject_id=subject_id, subject_set_namespace=subject_set_namespace, subject_set_object=subject_set_object, subject_set_relation=subject_set_relation, page_token=page_token, page_size=page_size)
         pprint(api_response)
     except ory_keto_client.ApiException as e:
         print("Exception when calling ReadApi->get_relation_tuples: %s\n" % e)
@@ -235,10 +244,13 @@ with ory_keto_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **str**|  |
- **object** | **str**|  | [optional]
- **relation** | **str**|  | [optional]
- **subject** | **str**|  | [optional]
+ **namespace** | **str**| Namespace of the Relation Tuple |
+ **object** | **str**| Object of the Relation Tuple |
+ **relation** | **str**| Relation of the Relation Tuple |
+ **subject_id** | **str**| SubjectID of the Relation Tuple | [optional]
+ **subject_set_namespace** | **str**| Namespace of the Subject Set | [optional]
+ **subject_set_object** | **str**| Object of the Subject Set | [optional]
+ **subject_set_relation** | **str**| Relation of the Subject Set | [optional]
  **page_token** | **str**|  | [optional]
  **page_size** | **int**|  | [optional]
 
@@ -280,7 +292,7 @@ import ory_keto_client
 from ory_keto_client.api import read_api
 from ory_keto_client.model.inline_response400 import InlineResponse400
 from ory_keto_client.model.get_check_response import GetCheckResponse
-from ory_keto_client.model.internal_relation_tuple import InternalRelationTuple
+from ory_keto_client.model.relation_query import RelationQuery
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -293,12 +305,17 @@ configuration = ory_keto_client.Configuration(
 with ory_keto_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = read_api.ReadApi(api_client)
-    payload = InternalRelationTuple(
+    payload = RelationQuery(
         namespace="namespace_example",
         object="object_example",
         relation="relation_example",
-        subject="subject_example",
-    ) # InternalRelationTuple |  (optional)
+        subject_id="subject_id_example",
+        subject_set=SubjectSet(
+            namespace="namespace_example",
+            object="object_example",
+            relation="relation_example",
+        ),
+    ) # RelationQuery |  (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
@@ -315,7 +332,7 @@ with ory_keto_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**InternalRelationTuple**](InternalRelationTuple.md)|  | [optional]
+ **payload** | [**RelationQuery**](RelationQuery.md)|  | [optional]
 
 ### Return type
 

@@ -1,4 +1,4 @@
-# OryHydraClient::HealthStatus
+# OryKetoClient::HealthStatus
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-keto-client'
 
-instance = OryHydraClient::HealthStatus.new(
+instance = OryKetoClient::HealthStatus.new(
   status: null
 )
 ```

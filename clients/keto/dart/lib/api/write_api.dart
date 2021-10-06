@@ -1,246 +1,181 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'dart:async';
+import 'package:dio/dio.dart';
+import 'package:built_value/serializer.dart';
 
+import 'package:built_collection/built_collection.dart';
+import 'package:ory_keto_client/model/inline_response400.dart';
+import 'package:ory_keto_client/model/patch_delta.dart';
+import 'package:ory_keto_client/model/relation_query.dart';
 
 class WriteApi {
-  WriteApi([ApiClient apiClient]) : apiClient = apiClient ?? defaultApiClient;
 
-  final ApiClient apiClient;
+  final Dio _dio;
+
+  final Serializers _serializers;
+
+  const WriteApi(this._dio, this._serializers);
 
   /// Create a Relation Tuple
   ///
   /// Use this endpoint to create a relation tuple.
-  ///
-  /// Note: This method returns the HTTP [Response].
-  ///
-  /// Parameters:
-  ///
-  /// * [InternalRelationTuple] payload:
-  Future<Response> createRelationTupleWithHttpInfo({ InternalRelationTuple payload }) async {
-    // Verify required params are set.
-
-    final path = r'/relation-tuples';
-
-    Object postBody = payload;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    final contentTypes = <String>['application/json'];
-    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>[];
-
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-    }
-
-    return await apiClient.invokeAPI(
-      path,
-      'PUT',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      nullableContentType,
-      authNames,
+  Future<Response<RelationQuery>> createRelationTuple({ 
+    RelationQuery payload,
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/relation-tuples',
+      method: 'PUT',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
     );
-  }
 
-  /// Create a Relation Tuple
-  ///
-  /// Use this endpoint to create a relation tuple.
-  ///
-  /// Parameters:
-  ///
-  /// * [InternalRelationTuple] payload:
-  Future<InternalRelationTuple> createRelationTuple({ InternalRelationTuple payload }) async {
-    final response = await createRelationTupleWithHttpInfo( payload: payload );
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-    // When a remote server returns no body with a status of 204, we shall not decode it.
-    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
-    // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'InternalRelationTuple',) as InternalRelationTuple;
-        }
-    return Future<InternalRelationTuple>.value(null);
-  }
+    dynamic _bodyData;
 
-  /// Delete a Relation Tuple
-  ///
-  /// Use this endpoint to delete a relation tuple.
-  ///
-  /// Note: This method returns the HTTP [Response].
-  ///
-  /// Parameters:
-  ///
-  /// * [String] namespace (required):
-  ///   Namespace of the Relation Tuple
-  ///
-  /// * [String] object (required):
-  ///   Object of the Relation Tuple
-  ///
-  /// * [String] relation (required):
-  ///   Relation of the Relation Tuple
-  ///
-  /// * [String] subject:
-  ///   Subject of the Relation Tuple  The subject follows the subject string encoding format.
-  Future<Response> deleteRelationTupleWithHttpInfo(String namespace, String object, String relation, { String subject }) async {
-    // Verify required params are set.
-    if (namespace == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: namespace');
-    }
-    if (object == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: object');
-    }
-    if (relation == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: relation');
-    }
+    const _type = FullType(RelationQuery);
+    _bodyData = _serializers.serialize(payload, specifiedType: _type);
 
-    final path = r'/relation-tuples';
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
 
-    Object postBody;
+    const _responseType = FullType(RelationQuery);
+    final _responseData = _serializers.deserialize(
+      _response.data,
+      specifiedType: _responseType,
+    ) as RelationQuery;
 
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'namespace', namespace));
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'object', object));
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'relation', relation));
-    if (subject != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'subject', subject));
-    }
-
-    final contentTypes = <String>[];
-    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>[];
-
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-    }
-
-    return await apiClient.invokeAPI(
-      path,
-      'DELETE',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      nullableContentType,
-      authNames,
+    return Response<RelationQuery>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      request: _response.request,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
     );
   }
 
   /// Delete a Relation Tuple
   ///
   /// Use this endpoint to delete a relation tuple.
-  ///
-  /// Parameters:
-  ///
-  /// * [String] namespace (required):
-  ///   Namespace of the Relation Tuple
-  ///
-  /// * [String] object (required):
-  ///   Object of the Relation Tuple
-  ///
-  /// * [String] relation (required):
-  ///   Relation of the Relation Tuple
-  ///
-  /// * [String] subject:
-  ///   Subject of the Relation Tuple  The subject follows the subject string encoding format.
-  Future<void> deleteRelationTuple(String namespace, String object, String relation, { String subject }) async {
-    final response = await deleteRelationTupleWithHttpInfo(namespace, object, relation,  subject: subject );
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-  }
-
-  /// Patch Multiple Relation Tuples
-  ///
-  /// Use this endpoint to patch one or more relation tuples.
-  ///
-  /// Note: This method returns the HTTP [Response].
-  ///
-  /// Parameters:
-  ///
-  /// * [List<PatchDelta>] payload:
-  Future<Response> patchRelationTuplesWithHttpInfo({ List<PatchDelta> payload }) async {
-    // Verify required params are set.
-
-    final path = r'/relation-tuples';
-
-    Object postBody = payload;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    final contentTypes = <String>['application/json'];
-    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>[];
-
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-    }
-
-    return await apiClient.invokeAPI(
-      path,
-      'PATCH',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      nullableContentType,
-      authNames,
+  Future<Response<void>> deleteRelationTuple(
+    String namespace,
+    String object,
+    String relation, { 
+    String subjectId,
+    String subjectSetPeriodNamespace,
+    String subjectSetPeriodObject,
+    String subjectSetPeriodRelation,
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/relation-tuples',
+      method: 'DELETE',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      queryParameters: <String, dynamic>{
+        r'namespace': namespace,
+        r'object': object,
+        r'relation': relation,
+        if (subjectId != null) r'subject_id': subjectId,
+        if (subjectSetPeriodNamespace != null) r'subject_set.namespace': subjectSetPeriodNamespace,
+        if (subjectSetPeriodObject != null) r'subject_set.object': subjectSetPeriodObject,
+        if (subjectSetPeriodRelation != null) r'subject_set.relation': subjectSetPeriodRelation,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
     );
+
+    dynamic _bodyData;
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    return _response;
   }
 
   /// Patch Multiple Relation Tuples
   ///
   /// Use this endpoint to patch one or more relation tuples.
-  ///
-  /// Parameters:
-  ///
-  /// * [List<PatchDelta>] payload:
-  Future<void> patchRelationTuples({ List<PatchDelta> payload }) async {
-    final response = await patchRelationTuplesWithHttpInfo( payload: payload );
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
+  Future<Response<void>> patchRelationTuples({ 
+    BuiltList<PatchDelta> payload,
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/relation-tuples',
+      method: 'PATCH',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    const _type = FullType(BuiltList, [FullType(PatchDelta)]);
+    _bodyData = _serializers.serialize(payload, specifiedType: _type);
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    return _response;
   }
+
 }

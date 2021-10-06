@@ -17,4 +17,6 @@ from ory_keto_client.model.health_status import HealthStatus
 from ory_keto_client.model.inline_response400 import InlineResponse400
 from ory_keto_client.model.internal_relation_tuple import InternalRelationTuple
 from ory_keto_client.model.patch_delta import PatchDelta
+from ory_keto_client.model.relation_query import RelationQuery
+from ory_keto_client.model.subject_set import SubjectSet
 from ory_keto_client.model.version import Version

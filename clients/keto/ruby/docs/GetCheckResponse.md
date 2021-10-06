@@ -1,4 +1,4 @@
-# OryHydraClient::GetCheckResponse
+# OryKetoClient::GetCheckResponse
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-keto-client'
 
-instance = OryHydraClient::GetCheckResponse.new(
+instance = OryKetoClient::GetCheckResponse.new(
   allowed: null
 )
 ```

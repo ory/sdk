@@ -24,10 +24,10 @@ This endpoint returns a 200 status code when the HTTP server is up running. This
 ```dart
 import 'package:ory_keto_client/api.dart';
 
-final api_instance = HealthApi();
+var api_instance = new HealthApi();
 
 try { 
-    final result = api_instance.isInstanceAlive();
+    var result = api_instance.isInstanceAlive();
     print(result);
 } catch (e) {
     print('Exception when calling HealthApi->isInstanceAlive: $e\n');
@@ -63,10 +63,10 @@ This endpoint returns a 200 status code when the HTTP server is up running and t
 ```dart
 import 'package:ory_keto_client/api.dart';
 
-final api_instance = HealthApi();
+var api_instance = new HealthApi();
 
 try { 
-    final result = api_instance.isInstanceReady();
+    var result = api_instance.isInstanceReady();
     print(result);
 } catch (e) {
     print('Exception when calling HealthApi->isInstanceReady: $e\n');

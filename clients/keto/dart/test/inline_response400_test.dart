@@ -1,17 +1,25 @@
-import 'package:ory_keto_client/api.dart';
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.7
+
+// ignore_for_file: unused_import
+
+import 'package:ory_keto_client/model/inline_response400.dart';
 import 'package:test/test.dart';
 
 // tests for InlineResponse400
 void main() {
-  final instance = InlineResponse400();
+  final instance = InlineResponse400Builder();
+  // TODO add properties to the builder and call build()
 
-  group('test InlineResponse400', () {
+  group(InlineResponse400, () {
     // int code
     test('to test the property `code`', () async {
       // TODO
     });
 
-    // List<Object> details (default value: const [])
+    // BuiltList<JsonObject> details
     test('to test the property `details`', () async {
       // TODO
     });

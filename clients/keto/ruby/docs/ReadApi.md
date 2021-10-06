@@ -1,4 +1,4 @@
-# OryHydraClient::ReadApi
+# OryKetoClient::ReadApi
 
 All URIs are relative to *http://localhost*
 
@@ -24,19 +24,22 @@ To learn how relation tuples and the check works, head over to [the documentatio
 require 'time'
 require 'ory-keto-client'
 
-api_instance = OryHydraClient::ReadApi.new
+api_instance = OryKetoClient::ReadApi.new
 namespace = 'namespace_example' # String | Namespace of the Relation Tuple
 object = 'object_example' # String | Object of the Relation Tuple
 relation = 'relation_example' # String | Relation of the Relation Tuple
 opts = {
-  subject: 'subject_example' # String | Subject of the Relation Tuple  The subject follows the subject string encoding format.
+  subject_id: 'subject_id_example', # String | SubjectID of the Relation Tuple
+  subject_set_namespace: 'subject_set_namespace_example', # String | Namespace of the Subject Set
+  subject_set_object: 'subject_set_object_example', # String | Object of the Subject Set
+  subject_set_relation: 'subject_set_relation_example' # String | Relation of the Subject Set
 }
 
 begin
   # Check a relation tuple
   result = api_instance.get_check(namespace, object, relation, opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKetoClient::ApiError => e
   puts "Error when calling ReadApi->get_check: #{e}"
 end
 ```
@@ -54,7 +57,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <GetCheckResponse>
-rescue OryHydraClient::ApiError => e
+rescue OryKetoClient::ApiError => e
   puts "Error when calling ReadApi->get_check_with_http_info: #{e}"
 end
 ```
@@ -66,7 +69,10 @@ end
 | **namespace** | **String** | Namespace of the Relation Tuple |  |
 | **object** | **String** | Object of the Relation Tuple |  |
 | **relation** | **String** | Relation of the Relation Tuple |  |
-| **subject** | **String** | Subject of the Relation Tuple  The subject follows the subject string encoding format. | [optional] |
+| **subject_id** | **String** | SubjectID of the Relation Tuple | [optional] |
+| **subject_set_namespace** | **String** | Namespace of the Subject Set | [optional] |
+| **subject_set_object** | **String** | Object of the Subject Set | [optional] |
+| **subject_set_relation** | **String** | Relation of the Subject Set | [optional] |
 
 ### Return type
 
@@ -96,10 +102,10 @@ Use this endpoint to expand a relation tuple.
 require 'time'
 require 'ory-keto-client'
 
-api_instance = OryHydraClient::ReadApi.new
-namespace = 'namespace_example' # String | Namespace of the Relation Tuple
-object = 'object_example' # String | Object of the Relation Tuple
-relation = 'relation_example' # String | Relation of the Relation Tuple
+api_instance = OryKetoClient::ReadApi.new
+namespace = 'namespace_example' # String | Namespace of the Subject Set
+object = 'object_example' # String | Object of the Subject Set
+relation = 'relation_example' # String | Relation of the Subject Set
 opts = {
   max_depth: 789 # Integer | 
 }
@@ -108,7 +114,7 @@ begin
   # Expand a Relation Tuple
   result = api_instance.get_expand(namespace, object, relation, opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKetoClient::ApiError => e
   puts "Error when calling ReadApi->get_expand: #{e}"
 end
 ```
@@ -126,7 +132,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <ExpandTree>
-rescue OryHydraClient::ApiError => e
+rescue OryKetoClient::ApiError => e
   puts "Error when calling ReadApi->get_expand_with_http_info: #{e}"
 end
 ```
@@ -135,9 +141,9 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **namespace** | **String** | Namespace of the Relation Tuple |  |
-| **object** | **String** | Object of the Relation Tuple |  |
-| **relation** | **String** | Relation of the Relation Tuple |  |
+| **namespace** | **String** | Namespace of the Subject Set |  |
+| **object** | **String** | Object of the Subject Set |  |
+| **relation** | **String** | Relation of the Subject Set |  |
 | **max_depth** | **Integer** |  | [optional] |
 
 ### Return type
@@ -156,7 +162,7 @@ No authorization required
 
 ## get_relation_tuples
 
-> <GetRelationTuplesResponse> get_relation_tuples(namespace, opts)
+> <GetRelationTuplesResponse> get_relation_tuples(namespace, object, relation, opts)
 
 Query relation tuples
 
@@ -168,21 +174,24 @@ Get all relation tuples that match the query. Only the namespace field is requir
 require 'time'
 require 'ory-keto-client'
 
-api_instance = OryHydraClient::ReadApi.new
-namespace = 'namespace_example' # String | 
+api_instance = OryKetoClient::ReadApi.new
+namespace = 'namespace_example' # String | Namespace of the Relation Tuple
+object = 'object_example' # String | Object of the Relation Tuple
+relation = 'relation_example' # String | Relation of the Relation Tuple
 opts = {
-  object: 'object_example', # String | 
-  relation: 'relation_example', # String | 
-  subject: 'subject_example', # String | 
+  subject_id: 'subject_id_example', # String | SubjectID of the Relation Tuple
+  subject_set_namespace: 'subject_set_namespace_example', # String | Namespace of the Subject Set
+  subject_set_object: 'subject_set_object_example', # String | Object of the Subject Set
+  subject_set_relation: 'subject_set_relation_example', # String | Relation of the Subject Set
   page_token: 'page_token_example', # String | 
   page_size: 789 # Integer | 
 }
 
 begin
   # Query relation tuples
-  result = api_instance.get_relation_tuples(namespace, opts)
+  result = api_instance.get_relation_tuples(namespace, object, relation, opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKetoClient::ApiError => e
   puts "Error when calling ReadApi->get_relation_tuples: #{e}"
 end
 ```
@@ -191,16 +200,16 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<GetRelationTuplesResponse>, Integer, Hash)> get_relation_tuples_with_http_info(namespace, opts)
+> <Array(<GetRelationTuplesResponse>, Integer, Hash)> get_relation_tuples_with_http_info(namespace, object, relation, opts)
 
 ```ruby
 begin
   # Query relation tuples
-  data, status_code, headers = api_instance.get_relation_tuples_with_http_info(namespace, opts)
+  data, status_code, headers = api_instance.get_relation_tuples_with_http_info(namespace, object, relation, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <GetRelationTuplesResponse>
-rescue OryHydraClient::ApiError => e
+rescue OryKetoClient::ApiError => e
   puts "Error when calling ReadApi->get_relation_tuples_with_http_info: #{e}"
 end
 ```
@@ -209,10 +218,13 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **namespace** | **String** |  |  |
-| **object** | **String** |  | [optional] |
-| **relation** | **String** |  | [optional] |
-| **subject** | **String** |  | [optional] |
+| **namespace** | **String** | Namespace of the Relation Tuple |  |
+| **object** | **String** | Object of the Relation Tuple |  |
+| **relation** | **String** | Relation of the Relation Tuple |  |
+| **subject_id** | **String** | SubjectID of the Relation Tuple | [optional] |
+| **subject_set_namespace** | **String** | Namespace of the Subject Set | [optional] |
+| **subject_set_object** | **String** | Object of the Subject Set | [optional] |
+| **subject_set_relation** | **String** | Relation of the Subject Set | [optional] |
 | **page_token** | **String** |  | [optional] |
 | **page_size** | **Integer** |  | [optional] |
 
@@ -244,16 +256,16 @@ To learn how relation tuples and the check works, head over to [the documentatio
 require 'time'
 require 'ory-keto-client'
 
-api_instance = OryHydraClient::ReadApi.new
+api_instance = OryKetoClient::ReadApi.new
 opts = {
-  payload: OryHydraClient::InternalRelationTuple.new({namespace: 'namespace_example', object: 'object_example', relation: 'relation_example', subject: 'subject_example'}) # InternalRelationTuple | 
+  payload: OryKetoClient::RelationQuery.new({namespace: 'namespace_example'}) # RelationQuery | 
 }
 
 begin
   # Check a relation tuple
   result = api_instance.post_check(opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKetoClient::ApiError => e
   puts "Error when calling ReadApi->post_check: #{e}"
 end
 ```
@@ -271,7 +283,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <GetCheckResponse>
-rescue OryHydraClient::ApiError => e
+rescue OryKetoClient::ApiError => e
   puts "Error when calling ReadApi->post_check_with_http_info: #{e}"
 end
 ```
@@ -280,7 +292,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **payload** | [**InternalRelationTuple**](InternalRelationTuple.md) |  | [optional] |
+| **payload** | [**RelationQuery**](RelationQuery.md) |  | [optional] |
 
 ### Return type
 

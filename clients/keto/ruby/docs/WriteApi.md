@@ -1,4 +1,4 @@
-# OryHydraClient::WriteApi
+# OryKetoClient::WriteApi
 
 All URIs are relative to *http://localhost*
 
@@ -11,7 +11,7 @@ All URIs are relative to *http://localhost*
 
 ## create_relation_tuple
 
-> <InternalRelationTuple> create_relation_tuple(opts)
+> <RelationQuery> create_relation_tuple(opts)
 
 Create a Relation Tuple
 
@@ -23,16 +23,16 @@ Use this endpoint to create a relation tuple.
 require 'time'
 require 'ory-keto-client'
 
-api_instance = OryHydraClient::WriteApi.new
+api_instance = OryKetoClient::WriteApi.new
 opts = {
-  payload: OryHydraClient::InternalRelationTuple.new({namespace: 'namespace_example', object: 'object_example', relation: 'relation_example', subject: 'subject_example'}) # InternalRelationTuple | 
+  payload: OryKetoClient::RelationQuery.new({namespace: 'namespace_example'}) # RelationQuery | 
 }
 
 begin
   # Create a Relation Tuple
   result = api_instance.create_relation_tuple(opts)
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKetoClient::ApiError => e
   puts "Error when calling WriteApi->create_relation_tuple: #{e}"
 end
 ```
@@ -41,7 +41,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<InternalRelationTuple>, Integer, Hash)> create_relation_tuple_with_http_info(opts)
+> <Array(<RelationQuery>, Integer, Hash)> create_relation_tuple_with_http_info(opts)
 
 ```ruby
 begin
@@ -49,8 +49,8 @@ begin
   data, status_code, headers = api_instance.create_relation_tuple_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <InternalRelationTuple>
-rescue OryHydraClient::ApiError => e
+  p data # => <RelationQuery>
+rescue OryKetoClient::ApiError => e
   puts "Error when calling WriteApi->create_relation_tuple_with_http_info: #{e}"
 end
 ```
@@ -59,11 +59,11 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **payload** | [**InternalRelationTuple**](InternalRelationTuple.md) |  | [optional] |
+| **payload** | [**RelationQuery**](RelationQuery.md) |  | [optional] |
 
 ### Return type
 
-[**InternalRelationTuple**](InternalRelationTuple.md)
+[**RelationQuery**](RelationQuery.md)
 
 ### Authorization
 
@@ -89,18 +89,21 @@ Use this endpoint to delete a relation tuple.
 require 'time'
 require 'ory-keto-client'
 
-api_instance = OryHydraClient::WriteApi.new
+api_instance = OryKetoClient::WriteApi.new
 namespace = 'namespace_example' # String | Namespace of the Relation Tuple
 object = 'object_example' # String | Object of the Relation Tuple
 relation = 'relation_example' # String | Relation of the Relation Tuple
 opts = {
-  subject: 'subject_example' # String | Subject of the Relation Tuple  The subject follows the subject string encoding format.
+  subject_id: 'subject_id_example', # String | SubjectID of the Relation Tuple
+  subject_set_namespace: 'subject_set_namespace_example', # String | Namespace of the Subject Set
+  subject_set_object: 'subject_set_object_example', # String | Object of the Subject Set
+  subject_set_relation: 'subject_set_relation_example' # String | Relation of the Subject Set
 }
 
 begin
   # Delete a Relation Tuple
   api_instance.delete_relation_tuple(namespace, object, relation, opts)
-rescue OryHydraClient::ApiError => e
+rescue OryKetoClient::ApiError => e
   puts "Error when calling WriteApi->delete_relation_tuple: #{e}"
 end
 ```
@@ -118,7 +121,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
-rescue OryHydraClient::ApiError => e
+rescue OryKetoClient::ApiError => e
   puts "Error when calling WriteApi->delete_relation_tuple_with_http_info: #{e}"
 end
 ```
@@ -130,7 +133,10 @@ end
 | **namespace** | **String** | Namespace of the Relation Tuple |  |
 | **object** | **String** | Object of the Relation Tuple |  |
 | **relation** | **String** | Relation of the Relation Tuple |  |
-| **subject** | **String** | Subject of the Relation Tuple  The subject follows the subject string encoding format. | [optional] |
+| **subject_id** | **String** | SubjectID of the Relation Tuple | [optional] |
+| **subject_set_namespace** | **String** | Namespace of the Subject Set | [optional] |
+| **subject_set_object** | **String** | Object of the Subject Set | [optional] |
+| **subject_set_relation** | **String** | Relation of the Subject Set | [optional] |
 
 ### Return type
 
@@ -160,15 +166,15 @@ Use this endpoint to patch one or more relation tuples.
 require 'time'
 require 'ory-keto-client'
 
-api_instance = OryHydraClient::WriteApi.new
+api_instance = OryKetoClient::WriteApi.new
 opts = {
-  payload: [OryHydraClient::PatchDelta.new] # Array<PatchDelta> | 
+  payload: [OryKetoClient::PatchDelta.new] # Array<PatchDelta> | 
 }
 
 begin
   # Patch Multiple Relation Tuples
   api_instance.patch_relation_tuples(opts)
-rescue OryHydraClient::ApiError => e
+rescue OryKetoClient::ApiError => e
   puts "Error when calling WriteApi->patch_relation_tuples: #{e}"
 end
 ```
@@ -186,7 +192,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
-rescue OryHydraClient::ApiError => e
+rescue OryKetoClient::ApiError => e
   puts "Error when calling WriteApi->patch_relation_tuples_with_http_info: #{e}"
 end
 ```

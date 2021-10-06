@@ -1,4 +1,4 @@
-# OryHydraClient::Version
+# OryKetoClient::Version
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'ory-keto-client'
 
-instance = OryHydraClient::Version.new(
+instance = OryKetoClient::Version.new(
   version: null
 )
 ```

@@ -1,403 +1,292 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'dart:async';
+import 'package:dio/dio.dart';
+import 'package:built_value/serializer.dart';
 
+import 'package:ory_keto_client/model/expand_tree.dart';
+import 'package:ory_keto_client/model/get_check_response.dart';
+import 'package:ory_keto_client/model/get_relation_tuples_response.dart';
+import 'package:ory_keto_client/model/inline_response400.dart';
+import 'package:ory_keto_client/model/relation_query.dart';
 
 class ReadApi {
-  ReadApi([ApiClient apiClient]) : apiClient = apiClient ?? defaultApiClient;
 
-  final ApiClient apiClient;
+  final Dio _dio;
+
+  final Serializers _serializers;
+
+  const ReadApi(this._dio, this._serializers);
 
   /// Check a relation tuple
   ///
   /// To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
-  ///
-  /// Note: This method returns the HTTP [Response].
-  ///
-  /// Parameters:
-  ///
-  /// * [String] namespace (required):
-  ///   Namespace of the Relation Tuple
-  ///
-  /// * [String] object (required):
-  ///   Object of the Relation Tuple
-  ///
-  /// * [String] relation (required):
-  ///   Relation of the Relation Tuple
-  ///
-  /// * [String] subject:
-  ///   Subject of the Relation Tuple  The subject follows the subject string encoding format.
-  Future<Response> getCheckWithHttpInfo(String namespace, String object, String relation, { String subject }) async {
-    // Verify required params are set.
-    if (namespace == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: namespace');
-    }
-    if (object == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: object');
-    }
-    if (relation == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: relation');
-    }
-
-    final path = r'/check';
-
-    Object postBody;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'namespace', namespace));
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'object', object));
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'relation', relation));
-    if (subject != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'subject', subject));
-    }
-
-    final contentTypes = <String>[];
-    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>[];
-
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-    }
-
-    return await apiClient.invokeAPI(
-      path,
-      'GET',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      nullableContentType,
-      authNames,
+  Future<Response<GetCheckResponse>> getCheck(
+    String namespace,
+    String object,
+    String relation, { 
+    String subjectId,
+    String subjectSetPeriodNamespace,
+    String subjectSetPeriodObject,
+    String subjectSetPeriodRelation,
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/check',
+      method: 'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      queryParameters: <String, dynamic>{
+        r'namespace': namespace,
+        r'object': object,
+        r'relation': relation,
+        if (subjectId != null) r'subject_id': subjectId,
+        if (subjectSetPeriodNamespace != null) r'subject_set.namespace': subjectSetPeriodNamespace,
+        if (subjectSetPeriodObject != null) r'subject_set.object': subjectSetPeriodObject,
+        if (subjectSetPeriodRelation != null) r'subject_set.relation': subjectSetPeriodRelation,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
     );
-  }
 
-  /// Check a relation tuple
-  ///
-  /// To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
-  ///
-  /// Parameters:
-  ///
-  /// * [String] namespace (required):
-  ///   Namespace of the Relation Tuple
-  ///
-  /// * [String] object (required):
-  ///   Object of the Relation Tuple
-  ///
-  /// * [String] relation (required):
-  ///   Relation of the Relation Tuple
-  ///
-  /// * [String] subject:
-  ///   Subject of the Relation Tuple  The subject follows the subject string encoding format.
-  Future<GetCheckResponse> getCheck(String namespace, String object, String relation, { String subject }) async {
-    final response = await getCheckWithHttpInfo(namespace, object, relation,  subject: subject );
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-    // When a remote server returns no body with a status of 204, we shall not decode it.
-    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
-    // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetCheckResponse',) as GetCheckResponse;
-        }
-    return Future<GetCheckResponse>.value(null);
-  }
+    dynamic _bodyData;
 
-  /// Expand a Relation Tuple
-  ///
-  /// Use this endpoint to expand a relation tuple.
-  ///
-  /// Note: This method returns the HTTP [Response].
-  ///
-  /// Parameters:
-  ///
-  /// * [String] namespace (required):
-  ///   Namespace of the Relation Tuple
-  ///
-  /// * [String] object (required):
-  ///   Object of the Relation Tuple
-  ///
-  /// * [String] relation (required):
-  ///   Relation of the Relation Tuple
-  ///
-  /// * [int] maxDepth:
-  Future<Response> getExpandWithHttpInfo(String namespace, String object, String relation, { int maxDepth }) async {
-    // Verify required params are set.
-    if (namespace == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: namespace');
-    }
-    if (object == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: object');
-    }
-    if (relation == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: relation');
-    }
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
 
-    final path = r'/expand';
+    const _responseType = FullType(GetCheckResponse);
+    final _responseData = _serializers.deserialize(
+      _response.data,
+      specifiedType: _responseType,
+    ) as GetCheckResponse;
 
-    Object postBody;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'namespace', namespace));
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'object', object));
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'relation', relation));
-    if (maxDepth != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'max-depth', maxDepth));
-    }
-
-    final contentTypes = <String>[];
-    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>[];
-
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-    }
-
-    return await apiClient.invokeAPI(
-      path,
-      'GET',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      nullableContentType,
-      authNames,
+    return Response<GetCheckResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      request: _response.request,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
     );
   }
 
   /// Expand a Relation Tuple
   ///
   /// Use this endpoint to expand a relation tuple.
-  ///
-  /// Parameters:
-  ///
-  /// * [String] namespace (required):
-  ///   Namespace of the Relation Tuple
-  ///
-  /// * [String] object (required):
-  ///   Object of the Relation Tuple
-  ///
-  /// * [String] relation (required):
-  ///   Relation of the Relation Tuple
-  ///
-  /// * [int] maxDepth:
-  Future<ExpandTree> getExpand(String namespace, String object, String relation, { int maxDepth }) async {
-    final response = await getExpandWithHttpInfo(namespace, object, relation,  maxDepth: maxDepth );
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-    // When a remote server returns no body with a status of 204, we shall not decode it.
-    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
-    // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ExpandTree',) as ExpandTree;
-        }
-    return Future<ExpandTree>.value(null);
-  }
+  Future<Response<ExpandTree>> getExpand(
+    String namespace,
+    String object,
+    String relation, { 
+    int maxDepth,
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/expand',
+      method: 'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      queryParameters: <String, dynamic>{
+        r'namespace': namespace,
+        r'object': object,
+        r'relation': relation,
+        if (maxDepth != null) r'max-depth': maxDepth,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
 
-  /// Query relation tuples
-  ///
-  /// Get all relation tuples that match the query. Only the namespace field is required.
-  ///
-  /// Note: This method returns the HTTP [Response].
-  ///
-  /// Parameters:
-  ///
-  /// * [String] namespace (required):
-  ///
-  /// * [String] object:
-  ///
-  /// * [String] relation:
-  ///
-  /// * [String] subject:
-  ///
-  /// * [String] pageToken:
-  ///
-  /// * [int] pageSize:
-  Future<Response> getRelationTuplesWithHttpInfo(String namespace, { String object, String relation, String subject, String pageToken, int pageSize }) async {
-    // Verify required params are set.
-    if (namespace == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: namespace');
-    }
+    dynamic _bodyData;
 
-    final path = r'/relation-tuples';
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
 
-    Object postBody;
+    const _responseType = FullType(ExpandTree);
+    final _responseData = _serializers.deserialize(
+      _response.data,
+      specifiedType: _responseType,
+    ) as ExpandTree;
 
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'namespace', namespace));
-    if (object != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'object', object));
-    }
-    if (relation != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'relation', relation));
-    }
-    if (subject != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'subject', subject));
-    }
-    if (pageToken != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'page_token', pageToken));
-    }
-    if (pageSize != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'page_size', pageSize));
-    }
-
-    final contentTypes = <String>[];
-    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>[];
-
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-    }
-
-    return await apiClient.invokeAPI(
-      path,
-      'GET',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      nullableContentType,
-      authNames,
+    return Response<ExpandTree>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      request: _response.request,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
     );
   }
 
   /// Query relation tuples
   ///
   /// Get all relation tuples that match the query. Only the namespace field is required.
-  ///
-  /// Parameters:
-  ///
-  /// * [String] namespace (required):
-  ///
-  /// * [String] object:
-  ///
-  /// * [String] relation:
-  ///
-  /// * [String] subject:
-  ///
-  /// * [String] pageToken:
-  ///
-  /// * [int] pageSize:
-  Future<GetRelationTuplesResponse> getRelationTuples(String namespace, { String object, String relation, String subject, String pageToken, int pageSize }) async {
-    final response = await getRelationTuplesWithHttpInfo(namespace,  object: object, relation: relation, subject: subject, pageToken: pageToken, pageSize: pageSize );
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-    // When a remote server returns no body with a status of 204, we shall not decode it.
-    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
-    // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetRelationTuplesResponse',) as GetRelationTuplesResponse;
-        }
-    return Future<GetRelationTuplesResponse>.value(null);
-  }
+  Future<Response<GetRelationTuplesResponse>> getRelationTuples(
+    String namespace,
+    String object,
+    String relation, { 
+    String subjectId,
+    String subjectSetPeriodNamespace,
+    String subjectSetPeriodObject,
+    String subjectSetPeriodRelation,
+    String pageToken,
+    int pageSize,
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/relation-tuples',
+      method: 'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      queryParameters: <String, dynamic>{
+        r'namespace': namespace,
+        r'object': object,
+        r'relation': relation,
+        if (subjectId != null) r'subject_id': subjectId,
+        if (subjectSetPeriodNamespace != null) r'subject_set.namespace': subjectSetPeriodNamespace,
+        if (subjectSetPeriodObject != null) r'subject_set.object': subjectSetPeriodObject,
+        if (subjectSetPeriodRelation != null) r'subject_set.relation': subjectSetPeriodRelation,
+        if (pageToken != null) r'page_token': pageToken,
+        if (pageSize != null) r'page_size': pageSize,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
 
-  /// Check a relation tuple
-  ///
-  /// To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
-  ///
-  /// Note: This method returns the HTTP [Response].
-  ///
-  /// Parameters:
-  ///
-  /// * [InternalRelationTuple] payload:
-  Future<Response> postCheckWithHttpInfo({ InternalRelationTuple payload }) async {
-    // Verify required params are set.
+    dynamic _bodyData;
 
-    final path = r'/check';
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
 
-    Object postBody = payload;
+    const _responseType = FullType(GetRelationTuplesResponse);
+    final _responseData = _serializers.deserialize(
+      _response.data,
+      specifiedType: _responseType,
+    ) as GetRelationTuplesResponse;
 
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    final contentTypes = <String>['application/json'];
-    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>[];
-
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-    }
-
-    return await apiClient.invokeAPI(
-      path,
-      'POST',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      nullableContentType,
-      authNames,
+    return Response<GetRelationTuplesResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      request: _response.request,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
     );
   }
 
   /// Check a relation tuple
   ///
   /// To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
-  ///
-  /// Parameters:
-  ///
-  /// * [InternalRelationTuple] payload:
-  Future<GetCheckResponse> postCheck({ InternalRelationTuple payload }) async {
-    final response = await postCheckWithHttpInfo( payload: payload );
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-    // When a remote server returns no body with a status of 204, we shall not decode it.
-    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
-    // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetCheckResponse',) as GetCheckResponse;
-        }
-    return Future<GetCheckResponse>.value(null);
+  Future<Response<GetCheckResponse>> postCheck({ 
+    RelationQuery payload,
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/check',
+      method: 'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    const _type = FullType(RelationQuery);
+    _bodyData = _serializers.serialize(payload, specifiedType: _type);
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    const _responseType = FullType(GetCheckResponse);
+    final _responseData = _serializers.deserialize(
+      _response.data,
+      specifiedType: _responseType,
+    ) as GetCheckResponse;
+
+    return Response<GetCheckResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      request: _response.request,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
+
 }

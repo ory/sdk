@@ -1,4 +1,4 @@
-# OryHydraClient::GetRelationTuplesResponse
+# OryKetoClient::GetRelationTuplesResponse
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-keto-client'
 
-instance = OryHydraClient::GetRelationTuplesResponse.new(
+instance = OryKetoClient::GetRelationTuplesResponse.new(
   next_page_token: null,
   relation_tuples: null
 )

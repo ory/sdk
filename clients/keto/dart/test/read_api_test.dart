@@ -1,26 +1,25 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
 import 'package:ory_keto_client/api.dart';
+import 'package:ory_keto_client/api/read_api.dart';
 import 'package:test/test.dart';
 
 
 /// tests for ReadApi
 void main() {
-  final instance = ReadApi();
+  final instance = OryKetoClient().getReadApi();
 
-  group('tests for ReadApi', () {
+  group(ReadApi, () {
     // Check a relation tuple
     //
     // To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
     //
-    //Future<GetCheckResponse> getCheck(String namespace, String object, String relation, { String subject }) async
+    //Future<GetCheckResponse> getCheck(String namespace, String object, String relation, { String subjectId, String subjectSetPeriodNamespace, String subjectSetPeriodObject, String subjectSetPeriodRelation }) async
     test('test getCheck', () async {
       // TODO
     });
@@ -38,7 +37,7 @@ void main() {
     //
     // Get all relation tuples that match the query. Only the namespace field is required.
     //
-    //Future<GetRelationTuplesResponse> getRelationTuples(String namespace, { String object, String relation, String subject, String pageToken, int pageSize }) async
+    //Future<GetRelationTuplesResponse> getRelationTuples(String namespace, String object, String relation, { String subjectId, String subjectSetPeriodNamespace, String subjectSetPeriodObject, String subjectSetPeriodRelation, String pageToken, int pageSize }) async
     test('test getRelationTuples', () async {
       // TODO
     });
@@ -47,7 +46,7 @@ void main() {
     //
     // To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
     //
-    //Future<GetCheckResponse> postCheck({ InternalRelationTuple payload }) async
+    //Future<GetCheckResponse> postCheck({ RelationQuery payload }) async
     test('test postCheck', () async {
       // TODO
     });

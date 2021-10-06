@@ -1,4 +1,5 @@
 .gitignore
+.openapi-generator-ignore
 .travis.yml
 Cargo.toml
 README.md
@@ -12,6 +13,8 @@ docs/InlineResponse400.md
 docs/InternalRelationTuple.md
 docs/PatchDelta.md
 docs/ReadApi.md
+docs/RelationQuery.md
+docs/SubjectSet.md
 docs/Version.md
 docs/VersionApi.md
 docs/WriteApi.md
@@ -32,4 +35,6 @@ src/models/inline_response_400.rs
 src/models/internal_relation_tuple.rs
 src/models/mod.rs
 src/models/patch_delta.rs
+src/models/relation_query.rs
+src/models/subject_set.rs
 src/models/version.rs

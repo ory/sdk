@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 <a name="createrelationtuple"></a>
 # **CreateRelationTuple**
-> KetoInternalRelationTuple CreateRelationTuple (KetoInternalRelationTuple payload = null)
+> KetoRelationQuery CreateRelationTuple (KetoRelationQuery payload = null)
 
 Create a Relation Tuple
 
@@ -34,12 +34,12 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
             var apiInstance = new WriteApi(config);
-            var payload = new KetoInternalRelationTuple(); // KetoInternalRelationTuple |  (optional) 
+            var payload = new KetoRelationQuery(); // KetoRelationQuery |  (optional) 
 
             try
             {
                 // Create a Relation Tuple
-                KetoInternalRelationTuple result = apiInstance.CreateRelationTuple(payload);
+                KetoRelationQuery result = apiInstance.CreateRelationTuple(payload);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -57,11 +57,11 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**KetoInternalRelationTuple**](KetoInternalRelationTuple.md)|  | [optional] 
+ **payload** | [**KetoRelationQuery**](KetoRelationQuery.md)|  | [optional] 
 
 ### Return type
 
-[**KetoInternalRelationTuple**](KetoInternalRelationTuple.md)
+[**KetoRelationQuery**](KetoRelationQuery.md)
 
 ### Authorization
 
@@ -76,7 +76,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | InternalRelationTuple |  -  |
+| **201** | RelationQuery |  -  |
 | **400** | The standard error format |  -  |
 | **500** | The standard error format |  -  |
 
@@ -84,7 +84,7 @@ No authorization required
 
 <a name="deleterelationtuple"></a>
 # **DeleteRelationTuple**
-> void DeleteRelationTuple (string _namespace, string _object, string relation, string subject = null)
+> void DeleteRelationTuple (string _namespace, string _object, string relation, string subjectId = null, string subjectSetNamespace = null, string subjectSetObject = null, string subjectSetRelation = null)
 
 Delete a Relation Tuple
 
@@ -110,12 +110,15 @@ namespace Example
             var _namespace = _namespace_example;  // string | Namespace of the Relation Tuple
             var _object = _object_example;  // string | Object of the Relation Tuple
             var relation = relation_example;  // string | Relation of the Relation Tuple
-            var subject = subject_example;  // string | Subject of the Relation Tuple  The subject follows the subject string encoding format. (optional) 
+            var subjectId = subjectId_example;  // string | SubjectID of the Relation Tuple (optional) 
+            var subjectSetNamespace = subjectSetNamespace_example;  // string | Namespace of the Subject Set (optional) 
+            var subjectSetObject = subjectSetObject_example;  // string | Object of the Subject Set (optional) 
+            var subjectSetRelation = subjectSetRelation_example;  // string | Relation of the Subject Set (optional) 
 
             try
             {
                 // Delete a Relation Tuple
-                apiInstance.DeleteRelationTuple(_namespace, _object, relation, subject);
+                apiInstance.DeleteRelationTuple(_namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
             }
             catch (ApiException  e)
             {
@@ -135,7 +138,10 @@ Name | Type | Description  | Notes
  **_namespace** | **string**| Namespace of the Relation Tuple | 
  **_object** | **string**| Object of the Relation Tuple | 
  **relation** | **string**| Relation of the Relation Tuple | 
- **subject** | **string**| Subject of the Relation Tuple  The subject follows the subject string encoding format. | [optional] 
+ **subjectId** | **string**| SubjectID of the Relation Tuple | [optional] 
+ **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional] 
+ **subjectSetObject** | **string**| Object of the Subject Set | [optional] 
+ **subjectSetRelation** | **string**| Relation of the Subject Set | [optional] 
 
 ### Return type
 

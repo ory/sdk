@@ -1,4 +1,4 @@
-# OryHydraClient::PatchDelta
+# OryKetoClient::PatchDelta
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-keto-client'
 
-instance = OryHydraClient::PatchDelta.new(
+instance = OryKetoClient::PatchDelta.new(
   action: null,
   relation_tuple: null
 )

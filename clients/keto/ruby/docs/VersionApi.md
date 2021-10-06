@@ -1,4 +1,4 @@
-# OryHydraClient::VersionApi
+# OryKetoClient::VersionApi
 
 All URIs are relative to *http://localhost*
 
@@ -21,13 +21,13 @@ This endpoint returns the service version typically notated using semantic versi
 require 'time'
 require 'ory-keto-client'
 
-api_instance = OryHydraClient::VersionApi.new
+api_instance = OryKetoClient::VersionApi.new
 
 begin
   # Get service version
   result = api_instance.get_version
   p result
-rescue OryHydraClient::ApiError => e
+rescue OryKetoClient::ApiError => e
   puts "Error when calling VersionApi->get_version: #{e}"
 end
 ```
@@ -45,7 +45,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <Version>
-rescue OryHydraClient::ApiError => e
+rescue OryKetoClient::ApiError => e
   puts "Error when calling VersionApi->get_version_with_http_info: #{e}"
 end
 ```

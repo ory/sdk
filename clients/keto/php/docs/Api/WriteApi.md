@@ -12,7 +12,7 @@ Method | HTTP request | Description
 ## `createRelationTuple()`
 
 ```php
-createRelationTuple($payload): \Ory\Keto\Client\Model\InternalRelationTuple
+createRelationTuple($payload): \Ory\Keto\Client\Model\RelationQuery
 ```
 
 Create a Relation Tuple
@@ -32,7 +32,7 @@ $apiInstance = new Ory\Keto\Client\Api\WriteApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$payload = new \Ory\Keto\Client\Model\InternalRelationTuple(); // \Ory\Keto\Client\Model\InternalRelationTuple
+$payload = new \Ory\Keto\Client\Model\RelationQuery(); // \Ory\Keto\Client\Model\RelationQuery
 
 try {
     $result = $apiInstance->createRelationTuple($payload);
@@ -46,11 +46,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**\Ory\Keto\Client\Model\InternalRelationTuple**](../Model/InternalRelationTuple.md)|  | [optional]
+ **payload** | [**\Ory\Keto\Client\Model\RelationQuery**](../Model/RelationQuery.md)|  | [optional]
 
 ### Return type
 
-[**\Ory\Keto\Client\Model\InternalRelationTuple**](../Model/InternalRelationTuple.md)
+[**\Ory\Keto\Client\Model\RelationQuery**](../Model/RelationQuery.md)
 
 ### Authorization
 
@@ -68,7 +68,7 @@ No authorization required
 ## `deleteRelationTuple()`
 
 ```php
-deleteRelationTuple($namespace, $object, $relation, $subject)
+deleteRelationTuple($namespace, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation)
 ```
 
 Delete a Relation Tuple
@@ -91,10 +91,13 @@ $apiInstance = new Ory\Keto\Client\Api\WriteApi(
 $namespace = 'namespace_example'; // string | Namespace of the Relation Tuple
 $object = 'object_example'; // string | Object of the Relation Tuple
 $relation = 'relation_example'; // string | Relation of the Relation Tuple
-$subject = 'subject_example'; // string | Subject of the Relation Tuple  The subject follows the subject string encoding format.
+$subjectId = 'subjectId_example'; // string | SubjectID of the Relation Tuple
+$subjectSetNamespace = 'subjectSetNamespace_example'; // string | Namespace of the Subject Set
+$subjectSetObject = 'subjectSetObject_example'; // string | Object of the Subject Set
+$subjectSetRelation = 'subjectSetRelation_example'; // string | Relation of the Subject Set
 
 try {
-    $apiInstance->deleteRelationTuple($namespace, $object, $relation, $subject);
+    $apiInstance->deleteRelationTuple($namespace, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation);
 } catch (Exception $e) {
     echo 'Exception when calling WriteApi->deleteRelationTuple: ', $e->getMessage(), PHP_EOL;
 }
@@ -107,7 +110,10 @@ Name | Type | Description  | Notes
  **namespace** | **string**| Namespace of the Relation Tuple |
  **object** | **string**| Object of the Relation Tuple |
  **relation** | **string**| Relation of the Relation Tuple |
- **subject** | **string**| Subject of the Relation Tuple  The subject follows the subject string encoding format. | [optional]
+ **subjectId** | **string**| SubjectID of the Relation Tuple | [optional]
+ **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional]
+ **subjectSetObject** | **string**| Object of the Subject Set | [optional]
+ **subjectSetRelation** | **string**| Relation of the Subject Set | [optional]
 
 ### Return type
 

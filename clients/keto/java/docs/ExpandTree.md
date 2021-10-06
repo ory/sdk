@@ -8,7 +8,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **children** | [**List&lt;ExpandTree&gt;**](ExpandTree.md) |  |  [optional]
-**subject** | **String** |  | 
+**subjectId** | **String** |  |  [optional]
+**subjectSet** | [**SubjectSet**](SubjectSet.md) |  |  [optional]
 **type** | [**TypeEnum**](#TypeEnum) |  | 
 
 

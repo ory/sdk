@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 <a name="createRelationTuple"></a>
 # **createRelationTuple**
-> InternalRelationTuple createRelationTuple(payload)
+> RelationQuery createRelationTuple(payload)
 
 Create a Relation Tuple
 
@@ -32,9 +32,9 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     WriteApi apiInstance = new WriteApi(defaultClient);
-    InternalRelationTuple payload = new InternalRelationTuple(); // InternalRelationTuple | 
+    RelationQuery payload = new RelationQuery(); // RelationQuery | 
     try {
-      InternalRelationTuple result = apiInstance.createRelationTuple(payload);
+      RelationQuery result = apiInstance.createRelationTuple(payload);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WriteApi#createRelationTuple");
@@ -51,11 +51,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**InternalRelationTuple**](InternalRelationTuple.md)|  | [optional]
+ **payload** | [**RelationQuery**](RelationQuery.md)|  | [optional]
 
 ### Return type
 
-[**InternalRelationTuple**](InternalRelationTuple.md)
+[**RelationQuery**](RelationQuery.md)
 
 ### Authorization
 
@@ -69,13 +69,13 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | InternalRelationTuple |  -  |
+**201** | RelationQuery |  -  |
 **400** | The standard error format |  -  |
 **500** | The standard error format |  -  |
 
 <a name="deleteRelationTuple"></a>
 # **deleteRelationTuple**
-> deleteRelationTuple(namespace, _object, relation, subject)
+> deleteRelationTuple(namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation)
 
 Delete a Relation Tuple
 
@@ -99,9 +99,12 @@ public class Example {
     String namespace = "namespace_example"; // String | Namespace of the Relation Tuple
     String _object = "_object_example"; // String | Object of the Relation Tuple
     String relation = "relation_example"; // String | Relation of the Relation Tuple
-    String subject = "subject_example"; // String | Subject of the Relation Tuple  The subject follows the subject string encoding format.
+    String subjectId = "subjectId_example"; // String | SubjectID of the Relation Tuple
+    String subjectSetNamespace = "subjectSetNamespace_example"; // String | Namespace of the Subject Set
+    String subjectSetObject = "subjectSetObject_example"; // String | Object of the Subject Set
+    String subjectSetRelation = "subjectSetRelation_example"; // String | Relation of the Subject Set
     try {
-      apiInstance.deleteRelationTuple(namespace, _object, relation, subject);
+      apiInstance.deleteRelationTuple(namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
     } catch (ApiException e) {
       System.err.println("Exception when calling WriteApi#deleteRelationTuple");
       System.err.println("Status code: " + e.getCode());
@@ -120,7 +123,10 @@ Name | Type | Description  | Notes
  **namespace** | **String**| Namespace of the Relation Tuple |
  **_object** | **String**| Object of the Relation Tuple |
  **relation** | **String**| Relation of the Relation Tuple |
- **subject** | **String**| Subject of the Relation Tuple  The subject follows the subject string encoding format. | [optional]
+ **subjectId** | **String**| SubjectID of the Relation Tuple | [optional]
+ **subjectSetNamespace** | **String**| Namespace of the Subject Set | [optional]
+ **subjectSetObject** | **String**| Object of the Subject Set | [optional]
+ **subjectSetRelation** | **String**| Relation of the Subject Set | [optional]
 
 ### Return type
 

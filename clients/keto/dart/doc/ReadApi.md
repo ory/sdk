@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 
 # **getCheck**
-> GetCheckResponse getCheck(namespace, object, relation, subject)
+> GetCheckResponse getCheck(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation)
 
 Check a relation tuple
 
@@ -26,14 +26,17 @@ To learn how relation tuples and the check works, head over to [the documentatio
 ```dart
 import 'package:ory_keto_client/api.dart';
 
-final api_instance = ReadApi();
-final namespace = namespace_example; // String | Namespace of the Relation Tuple
-final object = object_example; // String | Object of the Relation Tuple
-final relation = relation_example; // String | Relation of the Relation Tuple
-final subject = subject_example; // String | Subject of the Relation Tuple  The subject follows the subject string encoding format.
+var api_instance = new ReadApi();
+var namespace = namespace_example; // String | Namespace of the Relation Tuple
+var object = object_example; // String | Object of the Relation Tuple
+var relation = relation_example; // String | Relation of the Relation Tuple
+var subjectId = subjectId_example; // String | SubjectID of the Relation Tuple
+var subjectSetPeriodNamespace = subjectSetPeriodNamespace_example; // String | Namespace of the Subject Set
+var subjectSetPeriodObject = subjectSetPeriodObject_example; // String | Object of the Subject Set
+var subjectSetPeriodRelation = subjectSetPeriodRelation_example; // String | Relation of the Subject Set
 
 try { 
-    final result = api_instance.getCheck(namespace, object, relation, subject);
+    var result = api_instance.getCheck(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation);
     print(result);
 } catch (e) {
     print('Exception when calling ReadApi->getCheck: $e\n');
@@ -47,7 +50,10 @@ Name | Type | Description  | Notes
  **namespace** | **String**| Namespace of the Relation Tuple | 
  **object** | **String**| Object of the Relation Tuple | 
  **relation** | **String**| Relation of the Relation Tuple | 
- **subject** | **String**| Subject of the Relation Tuple  The subject follows the subject string encoding format. | [optional] 
+ **subjectId** | **String**| SubjectID of the Relation Tuple | [optional] 
+ **subjectSetPeriodNamespace** | **String**| Namespace of the Subject Set | [optional] 
+ **subjectSetPeriodObject** | **String**| Object of the Subject Set | [optional] 
+ **subjectSetPeriodRelation** | **String**| Relation of the Subject Set | [optional] 
 
 ### Return type
 
@@ -75,14 +81,14 @@ Use this endpoint to expand a relation tuple.
 ```dart
 import 'package:ory_keto_client/api.dart';
 
-final api_instance = ReadApi();
-final namespace = namespace_example; // String | Namespace of the Relation Tuple
-final object = object_example; // String | Object of the Relation Tuple
-final relation = relation_example; // String | Relation of the Relation Tuple
-final maxDepth = 789; // int | 
+var api_instance = new ReadApi();
+var namespace = namespace_example; // String | Namespace of the Subject Set
+var object = object_example; // String | Object of the Subject Set
+var relation = relation_example; // String | Relation of the Subject Set
+var maxDepth = 789; // int | 
 
 try { 
-    final result = api_instance.getExpand(namespace, object, relation, maxDepth);
+    var result = api_instance.getExpand(namespace, object, relation, maxDepth);
     print(result);
 } catch (e) {
     print('Exception when calling ReadApi->getExpand: $e\n');
@@ -93,9 +99,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **String**| Namespace of the Relation Tuple | 
- **object** | **String**| Object of the Relation Tuple | 
- **relation** | **String**| Relation of the Relation Tuple | 
+ **namespace** | **String**| Namespace of the Subject Set | 
+ **object** | **String**| Object of the Subject Set | 
+ **relation** | **String**| Relation of the Subject Set | 
  **maxDepth** | **int**|  | [optional] 
 
 ### Return type
@@ -114,7 +120,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getRelationTuples**
-> GetRelationTuplesResponse getRelationTuples(namespace, object, relation, subject, pageToken, pageSize)
+> GetRelationTuplesResponse getRelationTuples(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation, pageToken, pageSize)
 
 Query relation tuples
 
@@ -124,16 +130,19 @@ Get all relation tuples that match the query. Only the namespace field is requir
 ```dart
 import 'package:ory_keto_client/api.dart';
 
-final api_instance = ReadApi();
-final namespace = namespace_example; // String | 
-final object = object_example; // String | 
-final relation = relation_example; // String | 
-final subject = subject_example; // String | 
-final pageToken = pageToken_example; // String | 
-final pageSize = 789; // int | 
+var api_instance = new ReadApi();
+var namespace = namespace_example; // String | Namespace of the Relation Tuple
+var object = object_example; // String | Object of the Relation Tuple
+var relation = relation_example; // String | Relation of the Relation Tuple
+var subjectId = subjectId_example; // String | SubjectID of the Relation Tuple
+var subjectSetPeriodNamespace = subjectSetPeriodNamespace_example; // String | Namespace of the Subject Set
+var subjectSetPeriodObject = subjectSetPeriodObject_example; // String | Object of the Subject Set
+var subjectSetPeriodRelation = subjectSetPeriodRelation_example; // String | Relation of the Subject Set
+var pageToken = pageToken_example; // String | 
+var pageSize = 789; // int | 
 
 try { 
-    final result = api_instance.getRelationTuples(namespace, object, relation, subject, pageToken, pageSize);
+    var result = api_instance.getRelationTuples(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation, pageToken, pageSize);
     print(result);
 } catch (e) {
     print('Exception when calling ReadApi->getRelationTuples: $e\n');
@@ -144,10 +153,13 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **String**|  | 
- **object** | **String**|  | [optional] 
- **relation** | **String**|  | [optional] 
- **subject** | **String**|  | [optional] 
+ **namespace** | **String**| Namespace of the Relation Tuple | 
+ **object** | **String**| Object of the Relation Tuple | 
+ **relation** | **String**| Relation of the Relation Tuple | 
+ **subjectId** | **String**| SubjectID of the Relation Tuple | [optional] 
+ **subjectSetPeriodNamespace** | **String**| Namespace of the Subject Set | [optional] 
+ **subjectSetPeriodObject** | **String**| Object of the Subject Set | [optional] 
+ **subjectSetPeriodRelation** | **String**| Relation of the Subject Set | [optional] 
  **pageToken** | **String**|  | [optional] 
  **pageSize** | **int**|  | [optional] 
 
@@ -177,11 +189,11 @@ To learn how relation tuples and the check works, head over to [the documentatio
 ```dart
 import 'package:ory_keto_client/api.dart';
 
-final api_instance = ReadApi();
-final payload = InternalRelationTuple(); // InternalRelationTuple | 
+var api_instance = new ReadApi();
+var payload = new RelationQuery(); // RelationQuery | 
 
 try { 
-    final result = api_instance.postCheck(payload);
+    var result = api_instance.postCheck(payload);
     print(result);
 } catch (e) {
     print('Exception when calling ReadApi->postCheck: $e\n');
@@ -192,7 +204,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**InternalRelationTuple**](InternalRelationTuple.md)|  | [optional] 
+ **payload** | [**RelationQuery**](RelationQuery.md)|  | [optional] 
 
 ### Return type
 

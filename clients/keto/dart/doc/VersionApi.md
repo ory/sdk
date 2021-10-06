@@ -23,10 +23,10 @@ This endpoint returns the service version typically notated using semantic versi
 ```dart
 import 'package:ory_keto_client/api.dart';
 
-final api_instance = VersionApi();
+var api_instance = new VersionApi();
 
 try { 
-    final result = api_instance.getVersion();
+    var result = api_instance.getVersion();
     print(result);
 } catch (e) {
     print('Exception when calling VersionApi->getVersion: $e\n');

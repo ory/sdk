@@ -1,4 +1,5 @@
 .gitignore
+.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -14,6 +15,8 @@ docs/InlineResponse400.md
 docs/InternalRelationTuple.md
 docs/PatchDelta.md
 docs/ReadApi.md
+docs/RelationQuery.md
+docs/SubjectSet.md
 docs/Version.md
 docs/VersionApi.md
 docs/WriteApi.md
@@ -55,6 +58,8 @@ src/main/java/sh/ory/keto/model/HealthStatus.java
 src/main/java/sh/ory/keto/model/InlineResponse400.java
 src/main/java/sh/ory/keto/model/InternalRelationTuple.java
 src/main/java/sh/ory/keto/model/PatchDelta.java
+src/main/java/sh/ory/keto/model/RelationQuery.java
+src/main/java/sh/ory/keto/model/SubjectSet.java
 src/main/java/sh/ory/keto/model/Version.java
 src/test/java/sh/ory/keto/api/HealthApiTest.java
 src/test/java/sh/ory/keto/api/ReadApiTest.java
@@ -68,4 +73,6 @@ src/test/java/sh/ory/keto/model/HealthStatusTest.java
 src/test/java/sh/ory/keto/model/InlineResponse400Test.java
 src/test/java/sh/ory/keto/model/InternalRelationTupleTest.java
 src/test/java/sh/ory/keto/model/PatchDeltaTest.java
+src/test/java/sh/ory/keto/model/RelationQueryTest.java
+src/test/java/sh/ory/keto/model/SubjectSetTest.java
 src/test/java/sh/ory/keto/model/VersionTest.java

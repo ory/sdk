@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **create_relation_tuple**
-> InternalRelationTuple create_relation_tuple()
+> RelationQuery create_relation_tuple()
 
 Create a Relation Tuple
 
@@ -23,7 +23,7 @@ import time
 import ory_keto_client
 from ory_keto_client.api import write_api
 from ory_keto_client.model.inline_response400 import InlineResponse400
-from ory_keto_client.model.internal_relation_tuple import InternalRelationTuple
+from ory_keto_client.model.relation_query import RelationQuery
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -36,12 +36,17 @@ configuration = ory_keto_client.Configuration(
 with ory_keto_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = write_api.WriteApi(api_client)
-    payload = InternalRelationTuple(
+    payload = RelationQuery(
         namespace="namespace_example",
         object="object_example",
         relation="relation_example",
-        subject="subject_example",
-    ) # InternalRelationTuple |  (optional)
+        subject_id="subject_id_example",
+        subject_set=SubjectSet(
+            namespace="namespace_example",
+            object="object_example",
+            relation="relation_example",
+        ),
+    ) # RelationQuery |  (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
@@ -58,11 +63,11 @@ with ory_keto_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**InternalRelationTuple**](InternalRelationTuple.md)|  | [optional]
+ **payload** | [**RelationQuery**](RelationQuery.md)|  | [optional]
 
 ### Return type
 
-[**InternalRelationTuple**](InternalRelationTuple.md)
+[**RelationQuery**](RelationQuery.md)
 
 ### Authorization
 
@@ -77,7 +82,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | InternalRelationTuple |  -  |
+**201** | RelationQuery |  -  |
 **400** | The standard error format |  -  |
 **500** | The standard error format |  -  |
 
@@ -112,7 +117,10 @@ with ory_keto_client.ApiClient() as api_client:
     namespace = "namespace_example" # str | Namespace of the Relation Tuple
     object = "object_example" # str | Object of the Relation Tuple
     relation = "relation_example" # str | Relation of the Relation Tuple
-    subject = "subject_example" # str | Subject of the Relation Tuple  The subject follows the subject string encoding format. (optional)
+    subject_id = "subject_id_example" # str | SubjectID of the Relation Tuple (optional)
+    subject_set_namespace = "subject_set.namespace_example" # str | Namespace of the Subject Set (optional)
+    subject_set_object = "subject_set.object_example" # str | Object of the Subject Set (optional)
+    subject_set_relation = "subject_set.relation_example" # str | Relation of the Subject Set (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -125,7 +133,7 @@ with ory_keto_client.ApiClient() as api_client:
     # and optional values
     try:
         # Delete a Relation Tuple
-        api_instance.delete_relation_tuple(namespace, object, relation, subject=subject)
+        api_instance.delete_relation_tuple(namespace, object, relation, subject_id=subject_id, subject_set_namespace=subject_set_namespace, subject_set_object=subject_set_object, subject_set_relation=subject_set_relation)
     except ory_keto_client.ApiException as e:
         print("Exception when calling WriteApi->delete_relation_tuple: %s\n" % e)
 ```
@@ -138,7 +146,10 @@ Name | Type | Description  | Notes
  **namespace** | **str**| Namespace of the Relation Tuple |
  **object** | **str**| Object of the Relation Tuple |
  **relation** | **str**| Relation of the Relation Tuple |
- **subject** | **str**| Subject of the Relation Tuple  The subject follows the subject string encoding format. | [optional]
+ **subject_id** | **str**| SubjectID of the Relation Tuple | [optional]
+ **subject_set_namespace** | **str**| Namespace of the Subject Set | [optional]
+ **subject_set_object** | **str**| Object of the Subject Set | [optional]
+ **subject_set_relation** | **str**| Relation of the Subject Set | [optional]
 
 ### Return type
 
@@ -192,12 +203,17 @@ with ory_keto_client.ApiClient() as api_client:
     api_instance = write_api.WriteApi(api_client)
     payload = [
         PatchDelta(
-            action="action_example",
+            action="insert",
             relation_tuple=InternalRelationTuple(
                 namespace="namespace_example",
                 object="object_example",
                 relation="relation_example",
-                subject="subject_example",
+                subject_id="subject_id_example",
+                subject_set=SubjectSet(
+                    namespace="namespace_example",
+                    object="object_example",
+                    relation="relation_example",
+                ),
             ),
         ),
     ] # [PatchDelta] |  (optional)

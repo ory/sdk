@@ -13,7 +13,7 @@ Method | HTTP request | Description
 ## `getCheck()`
 
 ```php
-getCheck($namespace, $object, $relation, $subject): \Ory\Keto\Client\Model\GetCheckResponse
+getCheck($namespace, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation): \Ory\Keto\Client\Model\GetCheckResponse
 ```
 
 Check a relation tuple
@@ -36,10 +36,13 @@ $apiInstance = new Ory\Keto\Client\Api\ReadApi(
 $namespace = 'namespace_example'; // string | Namespace of the Relation Tuple
 $object = 'object_example'; // string | Object of the Relation Tuple
 $relation = 'relation_example'; // string | Relation of the Relation Tuple
-$subject = 'subject_example'; // string | Subject of the Relation Tuple  The subject follows the subject string encoding format.
+$subjectId = 'subjectId_example'; // string | SubjectID of the Relation Tuple
+$subjectSetNamespace = 'subjectSetNamespace_example'; // string | Namespace of the Subject Set
+$subjectSetObject = 'subjectSetObject_example'; // string | Object of the Subject Set
+$subjectSetRelation = 'subjectSetRelation_example'; // string | Relation of the Subject Set
 
 try {
-    $result = $apiInstance->getCheck($namespace, $object, $relation, $subject);
+    $result = $apiInstance->getCheck($namespace, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ReadApi->getCheck: ', $e->getMessage(), PHP_EOL;
@@ -53,7 +56,10 @@ Name | Type | Description  | Notes
  **namespace** | **string**| Namespace of the Relation Tuple |
  **object** | **string**| Object of the Relation Tuple |
  **relation** | **string**| Relation of the Relation Tuple |
- **subject** | **string**| Subject of the Relation Tuple  The subject follows the subject string encoding format. | [optional]
+ **subjectId** | **string**| SubjectID of the Relation Tuple | [optional]
+ **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional]
+ **subjectSetObject** | **string**| Object of the Subject Set | [optional]
+ **subjectSetRelation** | **string**| Relation of the Subject Set | [optional]
 
 ### Return type
 
@@ -95,9 +101,9 @@ $apiInstance = new Ory\Keto\Client\Api\ReadApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$namespace = 'namespace_example'; // string | Namespace of the Relation Tuple
-$object = 'object_example'; // string | Object of the Relation Tuple
-$relation = 'relation_example'; // string | Relation of the Relation Tuple
+$namespace = 'namespace_example'; // string | Namespace of the Subject Set
+$object = 'object_example'; // string | Object of the Subject Set
+$relation = 'relation_example'; // string | Relation of the Subject Set
 $maxDepth = 56; // int
 
 try {
@@ -112,9 +118,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **string**| Namespace of the Relation Tuple |
- **object** | **string**| Object of the Relation Tuple |
- **relation** | **string**| Relation of the Relation Tuple |
+ **namespace** | **string**| Namespace of the Subject Set |
+ **object** | **string**| Object of the Subject Set |
+ **relation** | **string**| Relation of the Subject Set |
  **maxDepth** | **int**|  | [optional]
 
 ### Return type
@@ -137,7 +143,7 @@ No authorization required
 ## `getRelationTuples()`
 
 ```php
-getRelationTuples($namespace, $object, $relation, $subject, $pageToken, $pageSize): \Ory\Keto\Client\Model\GetRelationTuplesResponse
+getRelationTuples($namespace, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation, $pageToken, $pageSize): \Ory\Keto\Client\Model\GetRelationTuplesResponse
 ```
 
 Query relation tuples
@@ -157,15 +163,18 @@ $apiInstance = new Ory\Keto\Client\Api\ReadApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$namespace = 'namespace_example'; // string
-$object = 'object_example'; // string
-$relation = 'relation_example'; // string
-$subject = 'subject_example'; // string
+$namespace = 'namespace_example'; // string | Namespace of the Relation Tuple
+$object = 'object_example'; // string | Object of the Relation Tuple
+$relation = 'relation_example'; // string | Relation of the Relation Tuple
+$subjectId = 'subjectId_example'; // string | SubjectID of the Relation Tuple
+$subjectSetNamespace = 'subjectSetNamespace_example'; // string | Namespace of the Subject Set
+$subjectSetObject = 'subjectSetObject_example'; // string | Object of the Subject Set
+$subjectSetRelation = 'subjectSetRelation_example'; // string | Relation of the Subject Set
 $pageToken = 'pageToken_example'; // string
 $pageSize = 56; // int
 
 try {
-    $result = $apiInstance->getRelationTuples($namespace, $object, $relation, $subject, $pageToken, $pageSize);
+    $result = $apiInstance->getRelationTuples($namespace, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation, $pageToken, $pageSize);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ReadApi->getRelationTuples: ', $e->getMessage(), PHP_EOL;
@@ -176,10 +185,13 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **string**|  |
- **object** | **string**|  | [optional]
- **relation** | **string**|  | [optional]
- **subject** | **string**|  | [optional]
+ **namespace** | **string**| Namespace of the Relation Tuple |
+ **object** | **string**| Object of the Relation Tuple |
+ **relation** | **string**| Relation of the Relation Tuple |
+ **subjectId** | **string**| SubjectID of the Relation Tuple | [optional]
+ **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional]
+ **subjectSetObject** | **string**| Object of the Subject Set | [optional]
+ **subjectSetRelation** | **string**| Relation of the Subject Set | [optional]
  **pageToken** | **string**|  | [optional]
  **pageSize** | **int**|  | [optional]
 
@@ -223,7 +235,7 @@ $apiInstance = new Ory\Keto\Client\Api\ReadApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$payload = new \Ory\Keto\Client\Model\InternalRelationTuple(); // \Ory\Keto\Client\Model\InternalRelationTuple
+$payload = new \Ory\Keto\Client\Model\RelationQuery(); // \Ory\Keto\Client\Model\RelationQuery
 
 try {
     $result = $apiInstance->postCheck($payload);
@@ -237,7 +249,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**\Ory\Keto\Client\Model\InternalRelationTuple**](../Model/InternalRelationTuple.md)|  | [optional]
+ **payload** | [**\Ory\Keto\Client\Model\RelationQuery**](../Model/RelationQuery.md)|  | [optional]
 
 ### Return type
 

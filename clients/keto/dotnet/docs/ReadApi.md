@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 <a name="getcheck"></a>
 # **GetCheck**
-> KetoGetCheckResponse GetCheck (string _namespace, string _object, string relation, string subject = null)
+> KetoGetCheckResponse GetCheck (string _namespace, string _object, string relation, string subjectId = null, string subjectSetNamespace = null, string subjectSetObject = null, string subjectSetRelation = null)
 
 Check a relation tuple
 
@@ -38,12 +38,15 @@ namespace Example
             var _namespace = _namespace_example;  // string | Namespace of the Relation Tuple
             var _object = _object_example;  // string | Object of the Relation Tuple
             var relation = relation_example;  // string | Relation of the Relation Tuple
-            var subject = subject_example;  // string | Subject of the Relation Tuple  The subject follows the subject string encoding format. (optional) 
+            var subjectId = subjectId_example;  // string | SubjectID of the Relation Tuple (optional) 
+            var subjectSetNamespace = subjectSetNamespace_example;  // string | Namespace of the Subject Set (optional) 
+            var subjectSetObject = subjectSetObject_example;  // string | Object of the Subject Set (optional) 
+            var subjectSetRelation = subjectSetRelation_example;  // string | Relation of the Subject Set (optional) 
 
             try
             {
                 // Check a relation tuple
-                KetoGetCheckResponse result = apiInstance.GetCheck(_namespace, _object, relation, subject);
+                KetoGetCheckResponse result = apiInstance.GetCheck(_namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -64,7 +67,10 @@ Name | Type | Description  | Notes
  **_namespace** | **string**| Namespace of the Relation Tuple | 
  **_object** | **string**| Object of the Relation Tuple | 
  **relation** | **string**| Relation of the Relation Tuple | 
- **subject** | **string**| Subject of the Relation Tuple  The subject follows the subject string encoding format. | [optional] 
+ **subjectId** | **string**| SubjectID of the Relation Tuple | [optional] 
+ **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional] 
+ **subjectSetObject** | **string**| Object of the Subject Set | [optional] 
+ **subjectSetRelation** | **string**| Relation of the Subject Set | [optional] 
 
 ### Return type
 
@@ -115,9 +121,9 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
             var apiInstance = new ReadApi(config);
-            var _namespace = _namespace_example;  // string | Namespace of the Relation Tuple
-            var _object = _object_example;  // string | Object of the Relation Tuple
-            var relation = relation_example;  // string | Relation of the Relation Tuple
+            var _namespace = _namespace_example;  // string | Namespace of the Subject Set
+            var _object = _object_example;  // string | Object of the Subject Set
+            var relation = relation_example;  // string | Relation of the Subject Set
             var maxDepth = 789;  // long? |  (optional) 
 
             try
@@ -141,9 +147,9 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **_namespace** | **string**| Namespace of the Relation Tuple | 
- **_object** | **string**| Object of the Relation Tuple | 
- **relation** | **string**| Relation of the Relation Tuple | 
+ **_namespace** | **string**| Namespace of the Subject Set | 
+ **_object** | **string**| Object of the Subject Set | 
+ **relation** | **string**| Relation of the Subject Set | 
  **maxDepth** | **long?**|  | [optional] 
 
 ### Return type
@@ -172,7 +178,7 @@ No authorization required
 
 <a name="getrelationtuples"></a>
 # **GetRelationTuples**
-> KetoGetRelationTuplesResponse GetRelationTuples (string _namespace, string _object = null, string relation = null, string subject = null, string pageToken = null, long? pageSize = null)
+> KetoGetRelationTuplesResponse GetRelationTuples (string _namespace, string _object, string relation, string subjectId = null, string subjectSetNamespace = null, string subjectSetObject = null, string subjectSetRelation = null, string pageToken = null, long? pageSize = null)
 
 Query relation tuples
 
@@ -195,17 +201,20 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
             var apiInstance = new ReadApi(config);
-            var _namespace = _namespace_example;  // string | 
-            var _object = _object_example;  // string |  (optional) 
-            var relation = relation_example;  // string |  (optional) 
-            var subject = subject_example;  // string |  (optional) 
+            var _namespace = _namespace_example;  // string | Namespace of the Relation Tuple
+            var _object = _object_example;  // string | Object of the Relation Tuple
+            var relation = relation_example;  // string | Relation of the Relation Tuple
+            var subjectId = subjectId_example;  // string | SubjectID of the Relation Tuple (optional) 
+            var subjectSetNamespace = subjectSetNamespace_example;  // string | Namespace of the Subject Set (optional) 
+            var subjectSetObject = subjectSetObject_example;  // string | Object of the Subject Set (optional) 
+            var subjectSetRelation = subjectSetRelation_example;  // string | Relation of the Subject Set (optional) 
             var pageToken = pageToken_example;  // string |  (optional) 
             var pageSize = 789;  // long? |  (optional) 
 
             try
             {
                 // Query relation tuples
-                KetoGetRelationTuplesResponse result = apiInstance.GetRelationTuples(_namespace, _object, relation, subject, pageToken, pageSize);
+                KetoGetRelationTuplesResponse result = apiInstance.GetRelationTuples(_namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation, pageToken, pageSize);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -223,10 +232,13 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **_namespace** | **string**|  | 
- **_object** | **string**|  | [optional] 
- **relation** | **string**|  | [optional] 
- **subject** | **string**|  | [optional] 
+ **_namespace** | **string**| Namespace of the Relation Tuple | 
+ **_object** | **string**| Object of the Relation Tuple | 
+ **relation** | **string**| Relation of the Relation Tuple | 
+ **subjectId** | **string**| SubjectID of the Relation Tuple | [optional] 
+ **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional] 
+ **subjectSetObject** | **string**| Object of the Subject Set | [optional] 
+ **subjectSetRelation** | **string**| Relation of the Subject Set | [optional] 
  **pageToken** | **string**|  | [optional] 
  **pageSize** | **long?**|  | [optional] 
 
@@ -255,7 +267,7 @@ No authorization required
 
 <a name="postcheck"></a>
 # **PostCheck**
-> KetoGetCheckResponse PostCheck (KetoInternalRelationTuple payload = null)
+> KetoGetCheckResponse PostCheck (KetoRelationQuery payload = null)
 
 Check a relation tuple
 
@@ -278,7 +290,7 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
             var apiInstance = new ReadApi(config);
-            var payload = new KetoInternalRelationTuple(); // KetoInternalRelationTuple |  (optional) 
+            var payload = new KetoRelationQuery(); // KetoRelationQuery |  (optional) 
 
             try
             {
@@ -301,7 +313,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**KetoInternalRelationTuple**](KetoInternalRelationTuple.md)|  | [optional] 
+ **payload** | [**KetoRelationQuery**](KetoRelationQuery.md)|  | [optional] 
 
 ### Return type
 

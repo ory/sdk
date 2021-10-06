@@ -1,18 +1,31 @@
-import 'package:ory_keto_client/api.dart';
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.7
+
+// ignore_for_file: unused_import
+
+import 'package:ory_keto_client/model/expand_tree.dart';
 import 'package:test/test.dart';
 
 // tests for ExpandTree
 void main() {
-  final instance = ExpandTree();
+  final instance = ExpandTreeBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test ExpandTree', () {
-    // List<ExpandTree> children (default value: const [])
+  group(ExpandTree, () {
+    // BuiltList<ExpandTree> children
     test('to test the property `children`', () async {
       // TODO
     });
 
-    // String subject
-    test('to test the property `subject`', () async {
+    // String subjectId
+    test('to test the property `subjectId`', () async {
+      // TODO
+    });
+
+    // SubjectSet subjectSet
+    test('to test the property `subjectSet`', () async {
       // TODO
     });
 

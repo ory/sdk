@@ -1,80 +1,101 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_collection/built_collection.dart';
+import 'package:ory_keto_client/model/internal_relation_tuple.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class PatchDelta {
-  /// Returns a new [PatchDelta] instance.
-  PatchDelta({
-    this.action,
-    this.relationTuple,
-  });
+part 'patch_delta.g.dart';
 
-  String action;
+abstract class PatchDelta implements Built<PatchDelta, PatchDeltaBuilder> {
 
-  InternalRelationTuple relationTuple;
+    @nullable
+    @BuiltValueField(wireName: r'action')
+    PatchDeltaActionEnum get action;
+    // enum actionEnum {  insert,  delete,  };
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is PatchDelta &&
-     other.action == action &&
-     other.relationTuple == relationTuple;
+    @nullable
+    @BuiltValueField(wireName: r'relation_tuple')
+    InternalRelationTuple get relationTuple;
 
-  @override
-  int get hashCode =>
-    (action == null ? 0 : action.hashCode) +
-    (relationTuple == null ? 0 : relationTuple.hashCode);
+    PatchDelta._();
 
-  @override
-  String toString() => 'PatchDelta[action=$action, relationTuple=$relationTuple]';
+    static void _initializeBuilder(PatchDeltaBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (action != null) {
-      json[r'action'] = action;
+    factory PatchDelta([void updates(PatchDeltaBuilder b)]) = _$PatchDelta;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<PatchDelta> get serializer => _$PatchDeltaSerializer();
+}
+
+class _$PatchDeltaSerializer implements StructuredSerializer<PatchDelta> {
+
+    @override
+    final Iterable<Type> types = const [PatchDelta, _$PatchDelta];
+    @override
+    final String wireName = r'PatchDelta';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, PatchDelta object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.action != null) {
+            result
+                ..add(r'action')
+                ..add(serializers.serialize(object.action,
+                    specifiedType: const FullType(PatchDeltaActionEnum)));
+        }
+        if (object.relationTuple != null) {
+            result
+                ..add(r'relation_tuple')
+                ..add(serializers.serialize(object.relationTuple,
+                    specifiedType: const FullType(InternalRelationTuple)));
+        }
+        return result;
     }
-    if (relationTuple != null) {
-      json[r'relation_tuple'] = relationTuple;
+
+    @override
+    PatchDelta deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = PatchDeltaBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'action':
+                    result.action = serializers.deserialize(value,
+                        specifiedType: const FullType(PatchDeltaActionEnum)) as PatchDeltaActionEnum;
+                    break;
+                case r'relation_tuple':
+                    result.relationTuple.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(InternalRelationTuple)) as InternalRelationTuple);
+                    break;
+            }
+        }
+        return result.build();
     }
-    return json;
-  }
+}
 
-  /// Returns a new [PatchDelta] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static PatchDelta fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : PatchDelta(
-        action: json[r'action'],
-        relationTuple: InternalRelationTuple.fromJson(json[r'relation_tuple']),
-    );
+class PatchDeltaActionEnum extends EnumClass {
 
-  static List<PatchDelta> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <PatchDelta>[]
-      : json.map((v) => PatchDelta.fromJson(v)).toList(growable: true == growable);
+  @BuiltValueEnumConst(wireName: r'insert')
+  static const PatchDeltaActionEnum insert = _$patchDeltaActionEnum_insert;
+  @BuiltValueEnumConst(wireName: r'delete')
+  static const PatchDeltaActionEnum delete = _$patchDeltaActionEnum_delete;
 
-  static Map<String, PatchDelta> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, PatchDelta>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = PatchDelta.fromJson(v));
-    }
-    return map;
-  }
+  static Serializer<PatchDeltaActionEnum> get serializer => _$patchDeltaActionEnumSerializer;
 
-  // maps a json object with a list of PatchDelta-objects as value to a dart map
-  static Map<String, List<PatchDelta>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<PatchDelta>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = PatchDelta.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
-      });
-    }
-    return map;
-  }
+  const PatchDeltaActionEnum._(String name): super(name);
+
+  static BuiltSet<PatchDeltaActionEnum> get values => _$patchDeltaActionEnumValues;
+  static PatchDeltaActionEnum valueOf(String name) => _$patchDeltaActionEnumValueOf(name);
 }
 

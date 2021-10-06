@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_relation_tuple**](WriteApi.md#create_relation_tuple) | **put** /relation-tuples | Create a Relation Tuple
-[**delete_relation_tuple**](WriteApi.md#delete_relation_tuple) | **delete** /relation-tuples | Delete a Relation Tuple
-[**patch_relation_tuples**](WriteApi.md#patch_relation_tuples) | **patch** /relation-tuples | Patch Multiple Relation Tuples
+[**create_relation_tuple**](WriteApi.md#create_relation_tuple) | **PUT** /relation-tuples | Create a Relation Tuple
+[**delete_relation_tuple**](WriteApi.md#delete_relation_tuple) | **DELETE** /relation-tuples | Delete a Relation Tuple
+[**patch_relation_tuples**](WriteApi.md#patch_relation_tuples) | **PATCH** /relation-tuples | Patch Multiple Relation Tuples
 
 
 
 ## create_relation_tuple
 
-> crate::models::InternalRelationTuple create_relation_tuple(payload)
+> crate::models::RelationQuery create_relation_tuple(payload)
 Create a Relation Tuple
 
 Use this endpoint to create a relation tuple.
@@ -22,11 +22,11 @@ Use this endpoint to create a relation tuple.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**payload** | Option<[**InternalRelationTuple**](InternalRelationTuple.md)> |  |  |
+**payload** | Option<[**RelationQuery**](RelationQuery.md)> |  |  |
 
 ### Return type
 
-[**crate::models::InternalRelationTuple**](InternalRelationTuple.md)
+[**crate::models::RelationQuery**](RelationQuery.md)
 
 ### Authorization
 
@@ -42,7 +42,7 @@ No authorization required
 
 ## delete_relation_tuple
 
-> delete_relation_tuple(namespace, object, relation, subject)
+> delete_relation_tuple(namespace, object, relation, subject_id, subject_set_namespace, subject_set_object, subject_set_relation)
 Delete a Relation Tuple
 
 Use this endpoint to delete a relation tuple.
@@ -55,7 +55,10 @@ Name | Type | Description  | Required | Notes
 **namespace** | **String** | Namespace of the Relation Tuple | [required] |
 **object** | **String** | Object of the Relation Tuple | [required] |
 **relation** | **String** | Relation of the Relation Tuple | [required] |
-**subject** | Option<**String**> | Subject of the Relation Tuple  The subject follows the subject string encoding format. |  |
+**subject_id** | Option<**String**> | SubjectID of the Relation Tuple |  |
+**subject_set_namespace** | Option<**String**> | Namespace of the Subject Set |  |
+**subject_set_object** | Option<**String**> | Object of the Subject Set |  |
+**subject_set_relation** | Option<**String**> | Relation of the Subject Set |  |
 
 ### Return type
 
