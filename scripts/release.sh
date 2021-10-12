@@ -91,6 +91,8 @@ EOF
     echo "not tagging"
   fi
 
+  cp -f LICENSE "${gitdir}/LICENSE"
+
   (cd "${gitdir}"; git push origin --tags HEAD:master)
 }
 
