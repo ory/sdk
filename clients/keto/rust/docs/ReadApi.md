@@ -62,7 +62,7 @@ Name | Type | Description  | Required | Notes
 **namespace** | **String** | Namespace of the Subject Set | [required] |
 **object** | **String** | Object of the Subject Set | [required] |
 **relation** | **String** | Relation of the Subject Set | [required] |
-**max_depth** | Option<**i64**> |  |  |
+**max_depth** | **i64** |  | [required] |
 
 ### Return type
 
@@ -82,7 +82,7 @@ No authorization required
 
 ## get_relation_tuples
 
-> crate::models::GetRelationTuplesResponse get_relation_tuples(namespace, object, relation, subject_id, subject_set_namespace, subject_set_object, subject_set_relation, page_token, page_size)
+> crate::models::GetRelationTuplesResponse get_relation_tuples(namespace, page_token, page_size, object, relation, subject_id, subject_set_namespace, subject_set_object, subject_set_relation)
 Query relation tuples
 
 Get all relation tuples that match the query. Only the namespace field is required.
@@ -93,14 +93,14 @@ Get all relation tuples that match the query. Only the namespace field is requir
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **namespace** | **String** | Namespace of the Relation Tuple | [required] |
-**object** | **String** | Object of the Relation Tuple | [required] |
-**relation** | **String** | Relation of the Relation Tuple | [required] |
+**page_token** | Option<**String**> |  |  |
+**page_size** | Option<**i64**> |  |  |
+**object** | Option<**String**> | Object of the Relation Tuple |  |
+**relation** | Option<**String**> | Relation of the Relation Tuple |  |
 **subject_id** | Option<**String**> | SubjectID of the Relation Tuple |  |
 **subject_set_namespace** | Option<**String**> | Namespace of the Subject Set |  |
 **subject_set_object** | Option<**String**> | Object of the Subject Set |  |
 **subject_set_relation** | Option<**String**> | Relation of the Subject Set |  |
-**page_token** | Option<**String**> |  |  |
-**page_size** | Option<**i64**> |  |  |
 
 ### Return type
 

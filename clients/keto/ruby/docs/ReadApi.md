@@ -90,7 +90,7 @@ No authorization required
 
 ## get_expand
 
-> <ExpandTree> get_expand(namespace, object, relation, opts)
+> <ExpandTree> get_expand(namespace, object, relation, max_depth)
 
 Expand a Relation Tuple
 
@@ -106,13 +106,11 @@ api_instance = OryKetoClient::ReadApi.new
 namespace = 'namespace_example' # String | Namespace of the Subject Set
 object = 'object_example' # String | Object of the Subject Set
 relation = 'relation_example' # String | Relation of the Subject Set
-opts = {
-  max_depth: 789 # Integer | 
-}
+max_depth = 789 # Integer | 
 
 begin
   # Expand a Relation Tuple
-  result = api_instance.get_expand(namespace, object, relation, opts)
+  result = api_instance.get_expand(namespace, object, relation, max_depth)
   p result
 rescue OryKetoClient::ApiError => e
   puts "Error when calling ReadApi->get_expand: #{e}"
@@ -123,12 +121,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<ExpandTree>, Integer, Hash)> get_expand_with_http_info(namespace, object, relation, opts)
+> <Array(<ExpandTree>, Integer, Hash)> get_expand_with_http_info(namespace, object, relation, max_depth)
 
 ```ruby
 begin
   # Expand a Relation Tuple
-  data, status_code, headers = api_instance.get_expand_with_http_info(namespace, object, relation, opts)
+  data, status_code, headers = api_instance.get_expand_with_http_info(namespace, object, relation, max_depth)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <ExpandTree>
@@ -144,7 +142,7 @@ end
 | **namespace** | **String** | Namespace of the Subject Set |  |
 | **object** | **String** | Object of the Subject Set |  |
 | **relation** | **String** | Relation of the Subject Set |  |
-| **max_depth** | **Integer** |  | [optional] |
+| **max_depth** | **Integer** |  |  |
 
 ### Return type
 
@@ -162,7 +160,7 @@ No authorization required
 
 ## get_relation_tuples
 
-> <GetRelationTuplesResponse> get_relation_tuples(namespace, object, relation, opts)
+> <GetRelationTuplesResponse> get_relation_tuples(namespace, opts)
 
 Query relation tuples
 
@@ -176,20 +174,20 @@ require 'ory-keto-client'
 
 api_instance = OryKetoClient::ReadApi.new
 namespace = 'namespace_example' # String | Namespace of the Relation Tuple
-object = 'object_example' # String | Object of the Relation Tuple
-relation = 'relation_example' # String | Relation of the Relation Tuple
 opts = {
+  page_token: 'page_token_example', # String | 
+  page_size: 789, # Integer | 
+  object: 'object_example', # String | Object of the Relation Tuple
+  relation: 'relation_example', # String | Relation of the Relation Tuple
   subject_id: 'subject_id_example', # String | SubjectID of the Relation Tuple
   subject_set_namespace: 'subject_set_namespace_example', # String | Namespace of the Subject Set
   subject_set_object: 'subject_set_object_example', # String | Object of the Subject Set
-  subject_set_relation: 'subject_set_relation_example', # String | Relation of the Subject Set
-  page_token: 'page_token_example', # String | 
-  page_size: 789 # Integer | 
+  subject_set_relation: 'subject_set_relation_example' # String | Relation of the Subject Set
 }
 
 begin
   # Query relation tuples
-  result = api_instance.get_relation_tuples(namespace, object, relation, opts)
+  result = api_instance.get_relation_tuples(namespace, opts)
   p result
 rescue OryKetoClient::ApiError => e
   puts "Error when calling ReadApi->get_relation_tuples: #{e}"
@@ -200,12 +198,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<GetRelationTuplesResponse>, Integer, Hash)> get_relation_tuples_with_http_info(namespace, object, relation, opts)
+> <Array(<GetRelationTuplesResponse>, Integer, Hash)> get_relation_tuples_with_http_info(namespace, opts)
 
 ```ruby
 begin
   # Query relation tuples
-  data, status_code, headers = api_instance.get_relation_tuples_with_http_info(namespace, object, relation, opts)
+  data, status_code, headers = api_instance.get_relation_tuples_with_http_info(namespace, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <GetRelationTuplesResponse>
@@ -219,14 +217,14 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **namespace** | **String** | Namespace of the Relation Tuple |  |
-| **object** | **String** | Object of the Relation Tuple |  |
-| **relation** | **String** | Relation of the Relation Tuple |  |
+| **page_token** | **String** |  | [optional] |
+| **page_size** | **Integer** |  | [optional] |
+| **object** | **String** | Object of the Relation Tuple | [optional] |
+| **relation** | **String** | Relation of the Relation Tuple | [optional] |
 | **subject_id** | **String** | SubjectID of the Relation Tuple | [optional] |
 | **subject_set_namespace** | **String** | Namespace of the Subject Set | [optional] |
 | **subject_set_object** | **String** | Object of the Subject Set | [optional] |
 | **subject_set_relation** | **String** | Relation of the Subject Set | [optional] |
-| **page_token** | **String** |  | [optional] |
-| **page_size** | **Integer** |  | [optional] |
 
 ### Return type
 

@@ -121,7 +121,7 @@ Name | Type | Description  | Notes
  **namespace** | **string**| Namespace of the Subject Set |
  **object** | **string**| Object of the Subject Set |
  **relation** | **string**| Relation of the Subject Set |
- **maxDepth** | **int**|  | [optional]
+ **maxDepth** | **int**|  |
 
 ### Return type
 
@@ -143,7 +143,7 @@ No authorization required
 ## `getRelationTuples()`
 
 ```php
-getRelationTuples($namespace, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation, $pageToken, $pageSize): \Ory\Keto\Client\Model\GetRelationTuplesResponse
+getRelationTuples($namespace, $pageToken, $pageSize, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation): \Ory\Keto\Client\Model\GetRelationTuplesResponse
 ```
 
 Query relation tuples
@@ -164,17 +164,17 @@ $apiInstance = new Ory\Keto\Client\Api\ReadApi(
     new GuzzleHttp\Client()
 );
 $namespace = 'namespace_example'; // string | Namespace of the Relation Tuple
+$pageToken = 'pageToken_example'; // string
+$pageSize = 56; // int
 $object = 'object_example'; // string | Object of the Relation Tuple
 $relation = 'relation_example'; // string | Relation of the Relation Tuple
 $subjectId = 'subjectId_example'; // string | SubjectID of the Relation Tuple
 $subjectSetNamespace = 'subjectSetNamespace_example'; // string | Namespace of the Subject Set
 $subjectSetObject = 'subjectSetObject_example'; // string | Object of the Subject Set
 $subjectSetRelation = 'subjectSetRelation_example'; // string | Relation of the Subject Set
-$pageToken = 'pageToken_example'; // string
-$pageSize = 56; // int
 
 try {
-    $result = $apiInstance->getRelationTuples($namespace, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation, $pageToken, $pageSize);
+    $result = $apiInstance->getRelationTuples($namespace, $pageToken, $pageSize, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ReadApi->getRelationTuples: ', $e->getMessage(), PHP_EOL;
@@ -186,14 +186,14 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **string**| Namespace of the Relation Tuple |
- **object** | **string**| Object of the Relation Tuple |
- **relation** | **string**| Relation of the Relation Tuple |
+ **pageToken** | **string**|  | [optional]
+ **pageSize** | **int**|  | [optional]
+ **object** | **string**| Object of the Relation Tuple | [optional]
+ **relation** | **string**| Relation of the Relation Tuple | [optional]
  **subjectId** | **string**| SubjectID of the Relation Tuple | [optional]
  **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional]
  **subjectSetObject** | **string**| Object of the Subject Set | [optional]
  **subjectSetRelation** | **string**| Relation of the Subject Set | [optional]
- **pageToken** | **string**|  | [optional]
- **pageSize** | **int**|  | [optional]
 
 ### Return type
 

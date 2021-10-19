@@ -99,8 +99,8 @@ class ReadApi {
   Future<Response<ExpandTree>> getExpand(
     String namespace,
     String object,
-    String relation, { 
-    int maxDepth,
+    String relation,
+    int maxDepth, { 
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -118,7 +118,7 @@ class ReadApi {
         r'namespace': namespace,
         r'object': object,
         r'relation': relation,
-        if (maxDepth != null) r'max-depth': maxDepth,
+        r'max-depth': maxDepth,
       },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[],
@@ -161,15 +161,15 @@ class ReadApi {
   ///
   /// Get all relation tuples that match the query. Only the namespace field is required.
   Future<Response<GetRelationTuplesResponse>> getRelationTuples(
-    String namespace,
+    String namespace, { 
+    String pageToken,
+    int pageSize,
     String object,
-    String relation, { 
+    String relation,
     String subjectId,
     String subjectSetPeriodNamespace,
     String subjectSetPeriodObject,
     String subjectSetPeriodRelation,
-    String pageToken,
-    int pageSize,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -184,15 +184,15 @@ class ReadApi {
         ...?headers,
       },
       queryParameters: <String, dynamic>{
+        if (pageToken != null) r'page_token': pageToken,
+        if (pageSize != null) r'page_size': pageSize,
         r'namespace': namespace,
-        r'object': object,
-        r'relation': relation,
+        if (object != null) r'object': object,
+        if (relation != null) r'relation': relation,
         if (subjectId != null) r'subject_id': subjectId,
         if (subjectSetPeriodNamespace != null) r'subject_set.namespace': subjectSetPeriodNamespace,
         if (subjectSetPeriodObject != null) r'subject_set.object': subjectSetPeriodObject,
         if (subjectSetPeriodRelation != null) r'subject_set.relation': subjectSetPeriodRelation,
-        if (pageToken != null) r'page_token': pageToken,
-        if (pageSize != null) r'page_size': pageSize,
       },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[],

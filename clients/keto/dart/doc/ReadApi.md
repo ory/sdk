@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
  **namespace** | **String**| Namespace of the Subject Set | 
  **object** | **String**| Object of the Subject Set | 
  **relation** | **String**| Relation of the Subject Set | 
- **maxDepth** | **int**|  | [optional] 
+ **maxDepth** | **int**|  | 
 
 ### Return type
 
@@ -120,7 +120,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getRelationTuples**
-> GetRelationTuplesResponse getRelationTuples(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation, pageToken, pageSize)
+> GetRelationTuplesResponse getRelationTuples(namespace, pageToken, pageSize, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation)
 
 Query relation tuples
 
@@ -132,17 +132,17 @@ import 'package:ory_keto_client/api.dart';
 
 var api_instance = new ReadApi();
 var namespace = namespace_example; // String | Namespace of the Relation Tuple
+var pageToken = pageToken_example; // String | 
+var pageSize = 789; // int | 
 var object = object_example; // String | Object of the Relation Tuple
 var relation = relation_example; // String | Relation of the Relation Tuple
 var subjectId = subjectId_example; // String | SubjectID of the Relation Tuple
 var subjectSetPeriodNamespace = subjectSetPeriodNamespace_example; // String | Namespace of the Subject Set
 var subjectSetPeriodObject = subjectSetPeriodObject_example; // String | Object of the Subject Set
 var subjectSetPeriodRelation = subjectSetPeriodRelation_example; // String | Relation of the Subject Set
-var pageToken = pageToken_example; // String | 
-var pageSize = 789; // int | 
 
 try { 
-    var result = api_instance.getRelationTuples(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation, pageToken, pageSize);
+    var result = api_instance.getRelationTuples(namespace, pageToken, pageSize, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation);
     print(result);
 } catch (e) {
     print('Exception when calling ReadApi->getRelationTuples: $e\n');
@@ -154,14 +154,14 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **String**| Namespace of the Relation Tuple | 
- **object** | **String**| Object of the Relation Tuple | 
- **relation** | **String**| Relation of the Relation Tuple | 
+ **pageToken** | **String**|  | [optional] 
+ **pageSize** | **int**|  | [optional] 
+ **object** | **String**| Object of the Relation Tuple | [optional] 
+ **relation** | **String**| Relation of the Relation Tuple | [optional] 
  **subjectId** | **String**| SubjectID of the Relation Tuple | [optional] 
  **subjectSetPeriodNamespace** | **String**| Namespace of the Subject Set | [optional] 
  **subjectSetPeriodObject** | **String**| Object of the Subject Set | [optional] 
  **subjectSetPeriodRelation** | **String**| Relation of the Subject Set | [optional] 
- **pageToken** | **String**|  | [optional] 
- **pageSize** | **int**|  | [optional] 
 
 ### Return type
 

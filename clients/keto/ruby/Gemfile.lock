@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ory-keto-client (0.7.0.alpha0)
+    ory-keto-client (0.7.0.alpha1)
       typhoeus (~> 1.0, >= 1.0.1)
 
 GEM
@@ -11,7 +11,7 @@ GEM
     byebug (11.1.3)
     coderay (1.1.3)
     diff-lcs (1.4.4)
-    ethon (0.14.0)
+    ethon (0.15.0)
       ffi (>= 1.15.0)
     ffi (1.15.4)
     jaro_winkler (1.5.4)

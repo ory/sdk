@@ -98,7 +98,7 @@ No authorization required
 
 <a name="getexpand"></a>
 # **GetExpand**
-> KetoExpandTree GetExpand (string _namespace, string _object, string relation, long? maxDepth = null)
+> KetoExpandTree GetExpand (string _namespace, string _object, string relation, long maxDepth)
 
 Expand a Relation Tuple
 
@@ -124,7 +124,7 @@ namespace Example
             var _namespace = _namespace_example;  // string | Namespace of the Subject Set
             var _object = _object_example;  // string | Object of the Subject Set
             var relation = relation_example;  // string | Relation of the Subject Set
-            var maxDepth = 789;  // long? |  (optional) 
+            var maxDepth = 789;  // long | 
 
             try
             {
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
  **_namespace** | **string**| Namespace of the Subject Set | 
  **_object** | **string**| Object of the Subject Set | 
  **relation** | **string**| Relation of the Subject Set | 
- **maxDepth** | **long?**|  | [optional] 
+ **maxDepth** | **long**|  | 
 
 ### Return type
 
@@ -178,7 +178,7 @@ No authorization required
 
 <a name="getrelationtuples"></a>
 # **GetRelationTuples**
-> KetoGetRelationTuplesResponse GetRelationTuples (string _namespace, string _object, string relation, string subjectId = null, string subjectSetNamespace = null, string subjectSetObject = null, string subjectSetRelation = null, string pageToken = null, long? pageSize = null)
+> KetoGetRelationTuplesResponse GetRelationTuples (string _namespace, string pageToken = null, long? pageSize = null, string _object = null, string relation = null, string subjectId = null, string subjectSetNamespace = null, string subjectSetObject = null, string subjectSetRelation = null)
 
 Query relation tuples
 
@@ -202,19 +202,19 @@ namespace Example
             config.BasePath = "http://localhost";
             var apiInstance = new ReadApi(config);
             var _namespace = _namespace_example;  // string | Namespace of the Relation Tuple
-            var _object = _object_example;  // string | Object of the Relation Tuple
-            var relation = relation_example;  // string | Relation of the Relation Tuple
+            var pageToken = pageToken_example;  // string |  (optional) 
+            var pageSize = 789;  // long? |  (optional) 
+            var _object = _object_example;  // string | Object of the Relation Tuple (optional) 
+            var relation = relation_example;  // string | Relation of the Relation Tuple (optional) 
             var subjectId = subjectId_example;  // string | SubjectID of the Relation Tuple (optional) 
             var subjectSetNamespace = subjectSetNamespace_example;  // string | Namespace of the Subject Set (optional) 
             var subjectSetObject = subjectSetObject_example;  // string | Object of the Subject Set (optional) 
             var subjectSetRelation = subjectSetRelation_example;  // string | Relation of the Subject Set (optional) 
-            var pageToken = pageToken_example;  // string |  (optional) 
-            var pageSize = 789;  // long? |  (optional) 
 
             try
             {
                 // Query relation tuples
-                KetoGetRelationTuplesResponse result = apiInstance.GetRelationTuples(_namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation, pageToken, pageSize);
+                KetoGetRelationTuplesResponse result = apiInstance.GetRelationTuples(_namespace, pageToken, pageSize, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -233,14 +233,14 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_namespace** | **string**| Namespace of the Relation Tuple | 
- **_object** | **string**| Object of the Relation Tuple | 
- **relation** | **string**| Relation of the Relation Tuple | 
+ **pageToken** | **string**|  | [optional] 
+ **pageSize** | **long?**|  | [optional] 
+ **_object** | **string**| Object of the Relation Tuple | [optional] 
+ **relation** | **string**| Relation of the Relation Tuple | [optional] 
  **subjectId** | **string**| SubjectID of the Relation Tuple | [optional] 
  **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional] 
  **subjectSetObject** | **string**| Object of the Subject Set | [optional] 
  **subjectSetRelation** | **string**| Relation of the Subject Set | [optional] 
- **pageToken** | **string**|  | [optional] 
- **pageSize** | **long?**|  | [optional] 
 
 ### Return type
 

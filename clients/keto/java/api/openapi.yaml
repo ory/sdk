@@ -10,7 +10,7 @@ info:
     name: Apache 2.0
     url: https://github.com/ory/keto/blob/master/LICENSE
   title: ORY Keto
-  version: v0.7.0-alpha.0
+  version: v0.7.0-alpha.1
 servers:
 - url: /
 paths:
@@ -153,6 +153,7 @@ paths:
           type: string
       - in: query
         name: max-depth
+        required: true
         schema:
           format: int64
           type: integer
@@ -312,6 +313,15 @@ paths:
         field is required.
       operationId: getRelationTuples
       parameters:
+      - in: query
+        name: page_token
+        schema:
+          type: string
+      - in: query
+        name: page_size
+        schema:
+          format: int64
+          type: integer
       - description: Namespace of the Relation Tuple
         in: query
         name: namespace
@@ -321,13 +331,11 @@ paths:
       - description: Object of the Relation Tuple
         in: query
         name: object
-        required: true
         schema:
           type: string
       - description: Relation of the Relation Tuple
         in: query
         name: relation
-        required: true
         schema:
           type: string
       - description: SubjectID of the Relation Tuple
@@ -350,15 +358,6 @@ paths:
         name: subject_set.relation
         schema:
           type: string
-      - in: query
-        name: page_token
-        schema:
-          type: string
-      - in: query
-        name: page_size
-        schema:
-          format: int64
-          type: integer
       responses:
         "200":
           content:
@@ -534,6 +533,9 @@ components:
           - insert
           - delete
           type: string
+          x-go-enum-desc: |-
+            insert ActionInsert
+            delete ActionDelete
         relation_tuple:
           $ref: '#/components/schemas/InternalRelationTuple'
       type: object
@@ -609,12 +611,23 @@ components:
         subject_set:
           $ref: '#/components/schemas/SubjectSet'
         type:
+          description: |2-
+
+            union Union
+            exclusion Exclusion
+            intersection Intersection
+            leaf Leaf
           enum:
           - union
           - exclusion
           - intersection
           - leaf
           type: string
+          x-go-enum-desc: |-
+            union Union
+            exclusion Exclusion
+            intersection Intersection
+            leaf Leaf
       required:
       - type
       type: object

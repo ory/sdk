@@ -135,7 +135,7 @@ Name | Type | Description  | Notes
  **namespace** | **String**| Namespace of the Subject Set |
  **_object** | **String**| Object of the Subject Set |
  **relation** | **String**| Relation of the Subject Set |
- **maxDepth** | **Long**|  | [optional]
+ **maxDepth** | **Long**|  |
 
 ### Return type
 
@@ -160,7 +160,7 @@ No authorization required
 
 <a name="getRelationTuples"></a>
 # **getRelationTuples**
-> GetRelationTuplesResponse getRelationTuples(namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation, pageToken, pageSize)
+> GetRelationTuplesResponse getRelationTuples(namespace, pageToken, pageSize, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation)
 
 Query relation tuples
 
@@ -182,16 +182,16 @@ public class Example {
 
     ReadApi apiInstance = new ReadApi(defaultClient);
     String namespace = "namespace_example"; // String | Namespace of the Relation Tuple
+    String pageToken = "pageToken_example"; // String | 
+    Long pageSize = 56L; // Long | 
     String _object = "_object_example"; // String | Object of the Relation Tuple
     String relation = "relation_example"; // String | Relation of the Relation Tuple
     String subjectId = "subjectId_example"; // String | SubjectID of the Relation Tuple
     String subjectSetNamespace = "subjectSetNamespace_example"; // String | Namespace of the Subject Set
     String subjectSetObject = "subjectSetObject_example"; // String | Object of the Subject Set
     String subjectSetRelation = "subjectSetRelation_example"; // String | Relation of the Subject Set
-    String pageToken = "pageToken_example"; // String | 
-    Long pageSize = 56L; // Long | 
     try {
-      GetRelationTuplesResponse result = apiInstance.getRelationTuples(namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation, pageToken, pageSize);
+      GetRelationTuplesResponse result = apiInstance.getRelationTuples(namespace, pageToken, pageSize, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReadApi#getRelationTuples");
@@ -209,14 +209,14 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **String**| Namespace of the Relation Tuple |
- **_object** | **String**| Object of the Relation Tuple |
- **relation** | **String**| Relation of the Relation Tuple |
+ **pageToken** | **String**|  | [optional]
+ **pageSize** | **Long**|  | [optional]
+ **_object** | **String**| Object of the Relation Tuple | [optional]
+ **relation** | **String**| Relation of the Relation Tuple | [optional]
  **subjectId** | **String**| SubjectID of the Relation Tuple | [optional]
  **subjectSetNamespace** | **String**| Namespace of the Subject Set | [optional]
  **subjectSetObject** | **String**| Object of the Subject Set | [optional]
  **subjectSetRelation** | **String**| Relation of the Subject Set | [optional]
- **pageToken** | **String**|  | [optional]
- **pageSize** | **Long**|  | [optional]
 
 ### Return type
 

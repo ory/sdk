@@ -28,7 +28,7 @@ void main() {
     //
     // Use this endpoint to expand a relation tuple.
     //
-    //Future<ExpandTree> getExpand(String namespace, String object, String relation, { int maxDepth }) async
+    //Future<ExpandTree> getExpand(String namespace, String object, String relation, int maxDepth) async
     test('test getExpand', () async {
       // TODO
     });
@@ -37,7 +37,7 @@ void main() {
     //
     // Get all relation tuples that match the query. Only the namespace field is required.
     //
-    //Future<GetRelationTuplesResponse> getRelationTuples(String namespace, String object, String relation, { String subjectId, String subjectSetPeriodNamespace, String subjectSetPeriodObject, String subjectSetPeriodRelation, String pageToken, int pageSize }) async
+    //Future<GetRelationTuplesResponse> getRelationTuples(String namespace, { String pageToken, int pageSize, String object, String relation, String subjectId, String subjectSetPeriodNamespace, String subjectSetPeriodObject, String subjectSetPeriodRelation }) async
     test('test getRelationTuples', () async {
       // TODO
     });

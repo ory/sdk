@@ -12,7 +12,7 @@
     <Description>A library generated from a OpenAPI doc</Description>
     <Copyright>No Copyright</Copyright>
     <RootNamespace>Ory.Keto.Client</RootNamespace>
-    <Version>0.7.0-alpha.0</Version>
+    <Version>0.7.0-alpha.1</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Ory.Keto.Client.xml</DocumentationFile>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/ory/sdk.git</RepositoryUrl>

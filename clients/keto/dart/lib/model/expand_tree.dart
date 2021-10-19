@@ -26,6 +26,7 @@ abstract class ExpandTree implements Built<ExpandTree, ExpandTreeBuilder> {
     @BuiltValueField(wireName: r'subject_set')
     SubjectSet get subjectSet;
 
+    ///  union Union exclusion Exclusion intersection Intersection leaf Leaf
     @BuiltValueField(wireName: r'type')
     ExpandTreeTypeEnum get type;
     // enum typeEnum {  union,  exclusion,  intersection,  leaf,  };
@@ -111,12 +112,16 @@ class _$ExpandTreeSerializer implements StructuredSerializer<ExpandTree> {
 
 class ExpandTreeTypeEnum extends EnumClass {
 
+  ///  union Union exclusion Exclusion intersection Intersection leaf Leaf
   @BuiltValueEnumConst(wireName: r'union')
   static const ExpandTreeTypeEnum union = _$expandTreeTypeEnum_union;
+  ///  union Union exclusion Exclusion intersection Intersection leaf Leaf
   @BuiltValueEnumConst(wireName: r'exclusion')
   static const ExpandTreeTypeEnum exclusion = _$expandTreeTypeEnum_exclusion;
+  ///  union Union exclusion Exclusion intersection Intersection leaf Leaf
   @BuiltValueEnumConst(wireName: r'intersection')
   static const ExpandTreeTypeEnum intersection = _$expandTreeTypeEnum_intersection;
+  ///  union Union exclusion Exclusion intersection Intersection leaf Leaf
   @BuiltValueEnumConst(wireName: r'leaf')
   static const ExpandTreeTypeEnum leaf = _$expandTreeTypeEnum_leaf;
 

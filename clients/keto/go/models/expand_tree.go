@@ -30,7 +30,11 @@ type ExpandTree struct {
 	// subject set
 	SubjectSet *SubjectSet `json:"subject_set,omitempty"`
 
-	// type
+	//
+	// union Union
+	// exclusion Exclusion
+	// intersection Intersection
+	// leaf Leaf
 	// Required: true
 	// Enum: [union exclusion intersection leaf]
 	Type *string `json:"type"`

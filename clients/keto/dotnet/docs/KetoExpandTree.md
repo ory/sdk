@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Children** | [**List&lt;KetoExpandTree&gt;**](KetoExpandTree.md) |  | [optional] 
 **SubjectId** | **string** |  | [optional] 
 **SubjectSet** | [**KetoSubjectSet**](KetoSubjectSet.md) |  | [optional] 
-**Type** | **string** |  | 
+**Type** | **string** |  union Union exclusion Exclusion intersection Intersection leaf Leaf | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -7,7 +7,7 @@
 | **children** | [**Array&lt;ExpandTree&gt;**](ExpandTree.md) |  | [optional] |
 | **subject_id** | **String** |  | [optional] |
 | **subject_set** | [**SubjectSet**](SubjectSet.md) |  | [optional] |
-| **type** | **String** |  |  |
+| **type** | **String** |  union Union exclusion Exclusion intersection Intersection leaf Leaf |  |
 
 ## Example
 

@@ -1,6 +1,6 @@
 [package]
 name = "ory-keto-client"
-version = "0.7.0-alpha.0"
+version = "0.7.0-alpha.1"
 description = "SDK Client for Ory Keto"
 documentation = "https://www.ory.sh/keto/docs/sdk"
 homepage = "https://www.ory.sh"

@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** |  | 
+**type** | **str** |  union Union exclusion Exclusion intersection Intersection leaf Leaf | 
 **children** | [**[ExpandTree]**](ExpandTree.md) |  | [optional] 
 **subject_id** | **str** |  | [optional] 
 **subject_set** | [**SubjectSet**](SubjectSet.md) |  | [optional] 
