@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.19
+ * API version: v0.0.1-alpha.21
  * Contact: support@ory.sh
  */
 
@@ -23,6 +23,8 @@ type SubmitSelfServiceSettingsFlowWithOidcMethodBody struct {
 	Link *string `json:"link,omitempty"`
 	// Method  Should be set to profile when trying to update a profile.
 	Method string `json:"method"`
+	// The identity's traits  in: body
+	Traits map[string]interface{} `json:"traits,omitempty"`
 	// Unlink this provider  Either this or `link` must be set.  type: string in: body
 	Unlink *string `json:"unlink,omitempty"`
 }
@@ -133,6 +135,38 @@ func (o *SubmitSelfServiceSettingsFlowWithOidcMethodBody) SetMethod(v string) {
 	o.Method = v
 }
 
+// GetTraits returns the Traits field value if set, zero value otherwise.
+func (o *SubmitSelfServiceSettingsFlowWithOidcMethodBody) GetTraits() map[string]interface{} {
+	if o == nil || o.Traits == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Traits
+}
+
+// GetTraitsOk returns a tuple with the Traits field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubmitSelfServiceSettingsFlowWithOidcMethodBody) GetTraitsOk() (map[string]interface{}, bool) {
+	if o == nil || o.Traits == nil {
+		return nil, false
+	}
+	return o.Traits, true
+}
+
+// HasTraits returns a boolean if a field has been set.
+func (o *SubmitSelfServiceSettingsFlowWithOidcMethodBody) HasTraits() bool {
+	if o != nil && o.Traits != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTraits gets a reference to the given map[string]interface{} and assigns it to the Traits field.
+func (o *SubmitSelfServiceSettingsFlowWithOidcMethodBody) SetTraits(v map[string]interface{}) {
+	o.Traits = v
+}
+
 // GetUnlink returns the Unlink field value if set, zero value otherwise.
 func (o *SubmitSelfServiceSettingsFlowWithOidcMethodBody) GetUnlink() string {
 	if o == nil || o.Unlink == nil {
@@ -175,6 +209,9 @@ func (o SubmitSelfServiceSettingsFlowWithOidcMethodBody) MarshalJSON() ([]byte, 
 	}
 	if true {
 		toSerialize["method"] = o.Method
+	}
+	if o.Traits != nil {
+		toSerialize["traits"] = o.Traits
 	}
 	if o.Unlink != nil {
 		toSerialize["unlink"] = o.Unlink

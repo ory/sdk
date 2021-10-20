@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.19
+ * API version: v0.0.1-alpha.21
  * Contact: support@ory.sh
  */
 
@@ -19,6 +19,7 @@ import (
 type AdminCreateIdentityBody struct {
 	// SchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
 	SchemaId string `json:"schema_id"`
+	State *IdentityState `json:"state,omitempty"`
 	// Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_url`.
 	Traits map[string]interface{} `json:"traits"`
 }
@@ -66,6 +67,38 @@ func (o *AdminCreateIdentityBody) SetSchemaId(v string) {
 	o.SchemaId = v
 }
 
+// GetState returns the State field value if set, zero value otherwise.
+func (o *AdminCreateIdentityBody) GetState() IdentityState {
+	if o == nil || o.State == nil {
+		var ret IdentityState
+		return ret
+	}
+	return *o.State
+}
+
+// GetStateOk returns a tuple with the State field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AdminCreateIdentityBody) GetStateOk() (*IdentityState, bool) {
+	if o == nil || o.State == nil {
+		return nil, false
+	}
+	return o.State, true
+}
+
+// HasState returns a boolean if a field has been set.
+func (o *AdminCreateIdentityBody) HasState() bool {
+	if o != nil && o.State != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetState gets a reference to the given IdentityState and assigns it to the State field.
+func (o *AdminCreateIdentityBody) SetState(v IdentityState) {
+	o.State = &v
+}
+
 // GetTraits returns the Traits field value
 func (o *AdminCreateIdentityBody) GetTraits() map[string]interface{} {
 	if o == nil {
@@ -94,6 +127,9 @@ func (o AdminCreateIdentityBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["schema_id"] = o.SchemaId
+	}
+	if o.State != nil {
+		toSerialize["state"] = o.State
 	}
 	if true {
 		toSerialize["traits"] = o.Traits

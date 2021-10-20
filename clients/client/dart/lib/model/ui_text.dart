@@ -1,94 +1,105 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/json_object.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class UiText {
-  /// Returns a new [UiText] instance.
-  UiText({
-    this.context,
-    @required this.id,
-    @required this.text,
-    @required this.type,
-  });
+part 'ui_text.g.dart';
 
-  /// The message's context. Useful when customizing messages.
-  Object context;
+abstract class UiText implements Built<UiText, UiTextBuilder> {
 
-  int id;
+    /// The message's context. Useful when customizing messages.
+    @nullable
+    @BuiltValueField(wireName: r'context')
+    JsonObject get context;
 
-  /// The message text. Written in american english.
-  String text;
+    @BuiltValueField(wireName: r'id')
+    int get id;
 
-  String type;
+    /// The message text. Written in american english.
+    @BuiltValueField(wireName: r'text')
+    String get text;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is UiText &&
-     other.context == context &&
-     other.id == id &&
-     other.text == text &&
-     other.type == type;
+    @BuiltValueField(wireName: r'type')
+    String get type;
 
-  @override
-  int get hashCode =>
-    (context == null ? 0 : context.hashCode) +
-    (id == null ? 0 : id.hashCode) +
-    (text == null ? 0 : text.hashCode) +
-    (type == null ? 0 : type.hashCode);
+    UiText._();
 
-  @override
-  String toString() => 'UiText[context=$context, id=$id, text=$text, type=$type]';
+    static void _initializeBuilder(UiTextBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (context != null) {
-      json[r'context'] = context;
+    factory UiText([void updates(UiTextBuilder b)]) = _$UiText;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<UiText> get serializer => _$UiTextSerializer();
+}
+
+class _$UiTextSerializer implements StructuredSerializer<UiText> {
+
+    @override
+    final Iterable<Type> types = const [UiText, _$UiText];
+    @override
+    final String wireName = r'UiText';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, UiText object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.context != null) {
+            result
+                ..add(r'context')
+                ..add(serializers.serialize(object.context,
+                    specifiedType: const FullType(JsonObject)));
+        }
+        result
+            ..add(r'id')
+            ..add(serializers.serialize(object.id,
+                specifiedType: const FullType(int)));
+        result
+            ..add(r'text')
+            ..add(serializers.serialize(object.text,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'type')
+            ..add(serializers.serialize(object.type,
+                specifiedType: const FullType(String)));
+        return result;
     }
-      json[r'id'] = id;
-      json[r'text'] = text;
-      json[r'type'] = type;
-    return json;
-  }
 
-  /// Returns a new [UiText] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static UiText fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : UiText(
-        context: json[r'context'],
-        id: json[r'id'],
-        text: json[r'text'],
-        type: json[r'type'],
-    );
+    @override
+    UiText deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = UiTextBuilder();
 
-  static List<UiText> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <UiText>[]
-      : json.map((dynamic value) => UiText.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, UiText> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, UiText>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = UiText.fromJson(value));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'context':
+                    result.context = serializers.deserialize(value,
+                        specifiedType: const FullType(JsonObject)) as JsonObject;
+                    break;
+                case r'id':
+                    result.id = serializers.deserialize(value,
+                        specifiedType: const FullType(int)) as int;
+                    break;
+                case r'text':
+                    result.text = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'type':
+                    result.type = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of UiText-objects as value to a dart map
-  static Map<String, List<UiText>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<UiText>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = UiText.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

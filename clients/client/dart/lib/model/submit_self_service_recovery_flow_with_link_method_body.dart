@@ -1,151 +1,94 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class SubmitSelfServiceRecoveryFlowWithLinkMethodBody {
-  /// Returns a new [SubmitSelfServiceRecoveryFlowWithLinkMethodBody] instance.
-  SubmitSelfServiceRecoveryFlowWithLinkMethodBody({
-    this.csrfToken,
-    @required this.email,
-    @required this.method,
-  });
+part 'submit_self_service_recovery_flow_with_link_method_body.g.dart';
 
-  /// Sending the anti-csrf token is only required for browser login flows.
-  String csrfToken;
+abstract class SubmitSelfServiceRecoveryFlowWithLinkMethodBody implements Built<SubmitSelfServiceRecoveryFlowWithLinkMethodBody, SubmitSelfServiceRecoveryFlowWithLinkMethodBodyBuilder> {
 
-  /// Email to Recover  Needs to be set when initiating the flow. If the email is a registered recovery email, a recovery link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
-  String email;
+    /// Sending the anti-csrf token is only required for browser login flows.
+    @nullable
+    @BuiltValueField(wireName: r'csrf_token')
+    String get csrfToken;
 
-  /// Method supports `link` only right now.
-  SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnum method;
+    /// Email to Recover  Needs to be set when initiating the flow. If the email is a registered recovery email, a recovery link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
+    @BuiltValueField(wireName: r'email')
+    String get email;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is SubmitSelfServiceRecoveryFlowWithLinkMethodBody &&
-     other.csrfToken == csrfToken &&
-     other.email == email &&
-     other.method == method;
+    /// Method supports `link` only right now.
+    @BuiltValueField(wireName: r'method')
+    String get method;
 
-  @override
-  int get hashCode =>
-    (csrfToken == null ? 0 : csrfToken.hashCode) +
-    (email == null ? 0 : email.hashCode) +
-    (method == null ? 0 : method.hashCode);
+    SubmitSelfServiceRecoveryFlowWithLinkMethodBody._();
 
-  @override
-  String toString() => 'SubmitSelfServiceRecoveryFlowWithLinkMethodBody[csrfToken=$csrfToken, email=$email, method=$method]';
+    static void _initializeBuilder(SubmitSelfServiceRecoveryFlowWithLinkMethodBodyBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (csrfToken != null) {
-      json[r'csrf_token'] = csrfToken;
-    }
-      json[r'email'] = email;
-      json[r'method'] = method;
-    return json;
-  }
+    factory SubmitSelfServiceRecoveryFlowWithLinkMethodBody([void updates(SubmitSelfServiceRecoveryFlowWithLinkMethodBodyBuilder b)]) = _$SubmitSelfServiceRecoveryFlowWithLinkMethodBody;
 
-  /// Returns a new [SubmitSelfServiceRecoveryFlowWithLinkMethodBody] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static SubmitSelfServiceRecoveryFlowWithLinkMethodBody fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : SubmitSelfServiceRecoveryFlowWithLinkMethodBody(
-        csrfToken: json[r'csrf_token'],
-        email: json[r'email'],
-        method: SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnum.fromJson(json[r'method']),
-    );
-
-  static List<SubmitSelfServiceRecoveryFlowWithLinkMethodBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <SubmitSelfServiceRecoveryFlowWithLinkMethodBody>[]
-      : json.map((dynamic value) => SubmitSelfServiceRecoveryFlowWithLinkMethodBody.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, SubmitSelfServiceRecoveryFlowWithLinkMethodBody> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, SubmitSelfServiceRecoveryFlowWithLinkMethodBody>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = SubmitSelfServiceRecoveryFlowWithLinkMethodBody.fromJson(value));
-    }
-    return map;
-  }
-
-  // maps a json object with a list of SubmitSelfServiceRecoveryFlowWithLinkMethodBody-objects as value to a dart map
-  static Map<String, List<SubmitSelfServiceRecoveryFlowWithLinkMethodBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<SubmitSelfServiceRecoveryFlowWithLinkMethodBody>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = SubmitSelfServiceRecoveryFlowWithLinkMethodBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
+    @BuiltValueSerializer(custom: true)
+    static Serializer<SubmitSelfServiceRecoveryFlowWithLinkMethodBody> get serializer => _$SubmitSelfServiceRecoveryFlowWithLinkMethodBodySerializer();
 }
 
-/// Method supports `link` only right now.
-class SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnum {
-  /// Instantiate a new enum with the provided [value].
-  const SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnum._(this.value);
+class _$SubmitSelfServiceRecoveryFlowWithLinkMethodBodySerializer implements StructuredSerializer<SubmitSelfServiceRecoveryFlowWithLinkMethodBody> {
 
-  /// The underlying value of this enum member.
-  final String value;
+    @override
+    final Iterable<Type> types = const [SubmitSelfServiceRecoveryFlowWithLinkMethodBody, _$SubmitSelfServiceRecoveryFlowWithLinkMethodBody];
+    @override
+    final String wireName = r'SubmitSelfServiceRecoveryFlowWithLinkMethodBody';
 
-  @override
-  String toString() => value;
-
-  String toJson() => value;
-
-  static const link = SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnum._(r'link');
-
-  /// List of all possible values in this [enum][SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnum].
-  static const values = <SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnum>[
-    link,
-  ];
-
-  static SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnum fromJson(dynamic value) =>
-    SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnumTypeTransformer().decode(value);
-
-  static List<SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnum> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnum>[]
-      : json
-          .map((value) => SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnum.fromJson(value))
-          .toList(growable: true == growable);
-}
-
-/// Transformation class that can [encode] an instance of [SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnum] to String,
-/// and [decode] dynamic data back to [SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnum].
-class SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnumTypeTransformer {
-  const SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnumTypeTransformer._();
-
-  factory SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnumTypeTransformer() => _instance ??= SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnumTypeTransformer._();
-
-  String encode(SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnum decode(dynamic data, {bool allowNull}) {
-    switch (data) {
-      case r'link': return SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnum.link;
-      default:
-        if (allowNull == false) {
-          throw ArgumentError('Unknown enum value to decode: $data');
+    @override
+    Iterable<Object> serialize(Serializers serializers, SubmitSelfServiceRecoveryFlowWithLinkMethodBody object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.csrfToken != null) {
+            result
+                ..add(r'csrf_token')
+                ..add(serializers.serialize(object.csrfToken,
+                    specifiedType: const FullType(String)));
         }
+        result
+            ..add(r'email')
+            ..add(serializers.serialize(object.email,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'method')
+            ..add(serializers.serialize(object.method,
+                specifiedType: const FullType(String)));
+        return result;
     }
-    return null;
-  }
 
-  /// Singleton [SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnumTypeTransformer] instance.
-  static SubmitSelfServiceRecoveryFlowWithLinkMethodBodyMethodEnumTypeTransformer _instance;
+    @override
+    SubmitSelfServiceRecoveryFlowWithLinkMethodBody deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = SubmitSelfServiceRecoveryFlowWithLinkMethodBodyBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'csrf_token':
+                    result.csrfToken = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'email':
+                    result.email = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'method':
+                    result.method = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
+    }
 }
 

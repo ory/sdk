@@ -1,70 +1,67 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class InlineResponse200 {
-  /// Returns a new [InlineResponse200] instance.
-  InlineResponse200({
-    @required this.status,
-  });
+part 'inline_response200.g.dart';
 
-  /// Always \"ok\".
-  String status;
+abstract class InlineResponse200 implements Built<InlineResponse200, InlineResponse200Builder> {
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is InlineResponse200 &&
-     other.status == status;
+    /// Always \"ok\".
+    @BuiltValueField(wireName: r'status')
+    String get status;
 
-  @override
-  int get hashCode =>
-    (status == null ? 0 : status.hashCode);
+    InlineResponse200._();
 
-  @override
-  String toString() => 'InlineResponse200[status=$status]';
+    static void _initializeBuilder(InlineResponse200Builder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-      json[r'status'] = status;
-    return json;
-  }
+    factory InlineResponse200([void updates(InlineResponse200Builder b)]) = _$InlineResponse200;
 
-  /// Returns a new [InlineResponse200] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static InlineResponse200 fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : InlineResponse200(
-        status: json[r'status'],
-    );
+    @BuiltValueSerializer(custom: true)
+    static Serializer<InlineResponse200> get serializer => _$InlineResponse200Serializer();
+}
 
-  static List<InlineResponse200> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <InlineResponse200>[]
-      : json.map((dynamic value) => InlineResponse200.fromJson(value)).toList(growable: true == growable);
+class _$InlineResponse200Serializer implements StructuredSerializer<InlineResponse200> {
 
-  static Map<String, InlineResponse200> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, InlineResponse200>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = InlineResponse200.fromJson(value));
+    @override
+    final Iterable<Type> types = const [InlineResponse200, _$InlineResponse200];
+    @override
+    final String wireName = r'InlineResponse200';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, InlineResponse200 object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        result
+            ..add(r'status')
+            ..add(serializers.serialize(object.status,
+                specifiedType: const FullType(String)));
+        return result;
     }
-    return map;
-  }
 
-  // maps a json object with a list of InlineResponse200-objects as value to a dart map
-  static Map<String, List<InlineResponse200>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<InlineResponse200>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = InlineResponse200.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
+    @override
+    InlineResponse200 deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = InlineResponse200Builder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'status':
+                    result.status = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
 }
 

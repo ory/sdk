@@ -1,22 +1,21 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-import 'package:ory_client/api.dart';
+import 'package:ory_client/model/ui_text.dart';
 import 'package:test/test.dart';
 
 // tests for UiText
 void main() {
-  final instance = UiText();
+  final instance = UiTextBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test UiText', () {
+  group(UiText, () {
     // The message's context. Useful when customizing messages.
-    // Object context
+    // JsonObject context
     test('to test the property `context`', () async {
       // TODO
     });

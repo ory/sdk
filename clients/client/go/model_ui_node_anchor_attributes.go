@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.19
+ * API version: v0.0.1-alpha.21
  * Contact: support@ory.sh
  */
 
@@ -21,6 +21,7 @@ type UiNodeAnchorAttributes struct {
 	Href string `json:"href"`
 	// A unique identifier
 	Id string `json:"id"`
+	NodeType string `json:"node_type"`
 	Title UiText `json:"title"`
 }
 
@@ -28,10 +29,11 @@ type UiNodeAnchorAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUiNodeAnchorAttributes(href string, id string, title UiText) *UiNodeAnchorAttributes {
+func NewUiNodeAnchorAttributes(href string, id string, nodeType string, title UiText) *UiNodeAnchorAttributes {
 	this := UiNodeAnchorAttributes{}
 	this.Href = href
 	this.Id = id
+	this.NodeType = nodeType
 	this.Title = title
 	return &this
 }
@@ -92,6 +94,30 @@ func (o *UiNodeAnchorAttributes) SetId(v string) {
 	o.Id = v
 }
 
+// GetNodeType returns the NodeType field value
+func (o *UiNodeAnchorAttributes) GetNodeType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.NodeType
+}
+
+// GetNodeTypeOk returns a tuple with the NodeType field value
+// and a boolean to check if the value has been set.
+func (o *UiNodeAnchorAttributes) GetNodeTypeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.NodeType, true
+}
+
+// SetNodeType sets field value
+func (o *UiNodeAnchorAttributes) SetNodeType(v string) {
+	o.NodeType = v
+}
+
 // GetTitle returns the Title field value
 func (o *UiNodeAnchorAttributes) GetTitle() UiText {
 	if o == nil {
@@ -123,6 +149,9 @@ func (o UiNodeAnchorAttributes) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["node_type"] = o.NodeType
 	}
 	if true {
 		toSerialize["title"] = o.Title

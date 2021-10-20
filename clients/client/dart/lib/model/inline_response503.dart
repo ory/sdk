@@ -1,72 +1,68 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class InlineResponse503 {
-  /// Returns a new [InlineResponse503] instance.
-  InlineResponse503({
-    this.errors = const {},
-  });
+part 'inline_response503.g.dart';
 
-  /// Errors contains a list of errors that caused the not ready status.
-  Map<String, String> errors;
+abstract class InlineResponse503 implements Built<InlineResponse503, InlineResponse503Builder> {
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is InlineResponse503 &&
-     other.errors == errors;
+    /// Errors contains a list of errors that caused the not ready status.
+    @BuiltValueField(wireName: r'errors')
+    BuiltMap<String, String> get errors;
 
-  @override
-  int get hashCode =>
-    (errors == null ? 0 : errors.hashCode);
+    InlineResponse503._();
 
-  @override
-  String toString() => 'InlineResponse503[errors=$errors]';
+    static void _initializeBuilder(InlineResponse503Builder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-      json[r'errors'] = errors;
-    return json;
-  }
+    factory InlineResponse503([void updates(InlineResponse503Builder b)]) = _$InlineResponse503;
 
-  /// Returns a new [InlineResponse503] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static InlineResponse503 fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : InlineResponse503(
-        errors: json[r'errors'] == null ?
-          null :
-          (json[r'errors'] as Map).cast<String, String>(),
-    );
+    @BuiltValueSerializer(custom: true)
+    static Serializer<InlineResponse503> get serializer => _$InlineResponse503Serializer();
+}
 
-  static List<InlineResponse503> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <InlineResponse503>[]
-      : json.map((dynamic value) => InlineResponse503.fromJson(value)).toList(growable: true == growable);
+class _$InlineResponse503Serializer implements StructuredSerializer<InlineResponse503> {
 
-  static Map<String, InlineResponse503> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, InlineResponse503>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = InlineResponse503.fromJson(value));
+    @override
+    final Iterable<Type> types = const [InlineResponse503, _$InlineResponse503];
+    @override
+    final String wireName = r'InlineResponse503';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, InlineResponse503 object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        result
+            ..add(r'errors')
+            ..add(serializers.serialize(object.errors,
+                specifiedType: const FullType(BuiltMap, [FullType(String), FullType(String)])));
+        return result;
     }
-    return map;
-  }
 
-  // maps a json object with a list of InlineResponse503-objects as value to a dart map
-  static Map<String, List<InlineResponse503>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<InlineResponse503>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = InlineResponse503.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
+    @override
+    InlineResponse503 deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = InlineResponse503Builder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'errors':
+                    result.errors.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltMap, [FullType(String), FullType(String)])) as BuiltMap<String, String>);
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
 }
 

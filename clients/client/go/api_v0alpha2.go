@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.19
+ * API version: v0.0.1-alpha.21
  * Contact: support@ory.sh
  */
 
@@ -18,6 +18,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 // Linger please
@@ -76,6 +77,22 @@ Learn how identities work in [Ory Kratos' User And Identity Model Documentation]
 	 * AdminDeleteIdentityExecute executes the request
 	 */
 	AdminDeleteIdentityExecute(r V0alpha2ApiApiAdminDeleteIdentityRequest) (*http.Response, error)
+
+	/*
+	 * AdminDeleteIdentitySessions Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.
+	 * This endpoint is useful for:
+
+To forcefully logout Identity from all devices and sessions
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id ID is the identity's ID.
+	 * @return V0alpha2ApiApiAdminDeleteIdentitySessionsRequest
+	 */
+	AdminDeleteIdentitySessions(ctx context.Context, id string) V0alpha2ApiApiAdminDeleteIdentitySessionsRequest
+
+	/*
+	 * AdminDeleteIdentitySessionsExecute executes the request
+	 */
+	AdminDeleteIdentitySessionsExecute(r V0alpha2ApiApiAdminDeleteIdentitySessionsRequest) (*http.Response, error)
 
 	/*
 	 * AdminGetIdentity Get an Identity
@@ -205,6 +222,11 @@ res.render('login', flow)
 })
 ```
 
+This request may fail due to several reasons. The `error.id` can be one of:
+
+`has_session_already`: The user is already signed in.
+`self_service_flow_expired`: The flow is expired and you should request a new one.
+
 More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return V0alpha2ApiApiGetSelfServiceLoginFlowRequest
@@ -267,6 +289,11 @@ res.render('registration', flow)
 })
 ```
 
+This request may fail due to several reasons. The `error.id` can be one of:
+
+`has_session_already`: The user is already signed in.
+`self_service_flow_expired`: The flow is expired and you should request a new one.
+
 More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return V0alpha2ApiApiGetSelfServiceRegistrationFlowRequest
@@ -282,8 +309,7 @@ More information can be found at [Ory Kratos User Login and User Registration Do
 	/*
 	 * GetSelfServiceSettingsFlow Get Settings Flow
 	 * When accessing this endpoint through Ory Kratos' Public API you must ensure that either the Ory Kratos Session Cookie
-or the Ory Kratos Session Token are set. The public endpoint does not return 404 status codes
-but instead 403 or 500 to improve data privacy.
+or the Ory Kratos Session Token are set.
 
 Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator
 Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn
@@ -291,6 +317,14 @@ credentials (which would result in AAL2) but the session has only AAL1. If this 
 to sign in with the second factor or change the configuration.
 
 You can access this endpoint without credentials when using Ory Kratos' Admin API.
+
+If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
+case of an error, the `error.id` of the JSON response body can be one of:
+
+`csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+`no_active_session`: No Ory Session was found - sign in a user first.
+`intended_for_someone_else`: The flow was interrupted with `needs_privileged_session` but apparently some other
+identity logged in instead.
 
 More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -335,6 +369,28 @@ More information can be found at [Ory Kratos Email and Phone Verification Docume
 	GetSelfServiceVerificationFlowExecute(r V0alpha2ApiApiGetSelfServiceVerificationFlowRequest) (*SelfServiceVerificationFlow, *http.Response, error)
 
 	/*
+	 * GetWebAuthnJavaScript Get WebAuthn JavaScript
+	 * This endpoint provides JavaScript which is needed in order to perform WebAuthn login and registration.
+
+If you are building a JavaScript Browser App (e.g. in ReactJS or AngularJS) you will need to load this file:
+
+```html
+<script src="https://public-kratos.example.org/.well-known/ory/webauthn.js" type="script" async />
+```
+
+More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiGetWebAuthnJavaScriptRequest
+	 */
+	GetWebAuthnJavaScript(ctx context.Context) V0alpha2ApiApiGetWebAuthnJavaScriptRequest
+
+	/*
+	 * GetWebAuthnJavaScriptExecute executes the request
+	 * @return string
+	 */
+	GetWebAuthnJavaScriptExecute(r V0alpha2ApiApiGetWebAuthnJavaScriptRequest) (string, *http.Response, error)
+
+	/*
 	 * InitializeSelfServiceLoginFlowForBrowsers Initialize Login Flow for Browsers
 	 * This endpoint initializes a browser-based user login flow. This endpoint will set the appropriate
 cookies and anti-CSRF measures required for browser-based flows.
@@ -344,7 +400,13 @@ If this endpoint is opened as a link in the browser, it will be redirected to
 exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter
 `?refresh=true` was set.
 
-If this endpoint is called via an AJAX request, the response contains the login flow without a redirect.
+If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
+case of an error, the `error.id` of the JSON response body can be one of:
+
+`has_session_already`: The user is already signed in.
+`aal_needs_session`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet.
+`csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+`forbidden_return_to`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
 
 This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.
 
@@ -372,6 +434,12 @@ To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.
 You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server
 Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make
 you vulnerable to a variety of CSRF attacks, including CSRF login attacks.
+
+In the case of an error, the `error.id` of the JSON response body can be one of:
+
+`has_session_already`: The user is already signed in.
+`aal_needs_session`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet.
+`csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 
 This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
@@ -452,6 +520,13 @@ If this endpoint is opened as a link in the browser, it will be redirected to
 `selfservice.flows.registration.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session
 exists already, the browser will be redirected to `urls.default_redirect_url`.
 
+If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
+case of an error, the `error.id` of the JSON response body can be one of:
+
+`has_session_already`: The user is already signed in.
+`csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+`forbidden_return_to`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+
 If this endpoint is called via an AJAX request, the response contains the registration flow without a redirect.
 
 This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.
@@ -481,6 +556,11 @@ You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, Angula
 Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make
 you vulnerable to a variety of CSRF attacks.
 
+In the case of an error, the `error.id` of the JSON response body can be one of:
+
+`has_session_already`: The user is already signed in.
+`csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+
 This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
 More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
@@ -506,12 +586,19 @@ If this endpoint is opened as a link in the browser, it will be redirected to
 was set, the browser will be redirected to the login endpoint.
 
 If this endpoint is called via an AJAX request, the response contains the settings flow without any redirects
-or a 403 forbidden error if no valid session was set.
+or a 401 forbidden error if no valid session was set.
 
 Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator
 Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn
 credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user
 to sign in with the second factor (happens automatically for server-side browser flows) or change the configuration.
+
+If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
+case of an error, the `error.id` of the JSON response body can be one of:
+
+`csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+`no_active_session`: No Ory Session was found - sign in a user first.
+`forbidden_return_to`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
 
 This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.
 
@@ -542,6 +629,11 @@ Depending on your configuration this endpoint might return a 403 error if the se
 Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn
 credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user
 to sign in with the second factor or change the configuration.
+
+In the case of an error, the `error.id` of the JSON response body can be one of:
+
+`csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+`no_active_session`: No Ory Session was found - sign in a user first.
 
 This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
@@ -603,6 +695,20 @@ More information can be found at [Ory Kratos Email and Phone Verification Docume
 	InitializeSelfServiceVerificationFlowWithoutBrowserExecute(r V0alpha2ApiApiInitializeSelfServiceVerificationFlowWithoutBrowserRequest) (*SelfServiceVerificationFlow, *http.Response, error)
 
 	/*
+	 * ListIdentitySchemas Method for ListIdentitySchemas
+	 * Get all Identity Schemas
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiListIdentitySchemasRequest
+	 */
+	ListIdentitySchemas(ctx context.Context) V0alpha2ApiApiListIdentitySchemasRequest
+
+	/*
+	 * ListIdentitySchemasExecute executes the request
+	 * @return []IdentitySchema
+	 */
+	ListIdentitySchemasExecute(r V0alpha2ApiApiListIdentitySchemasRequest) ([]IdentitySchema, *http.Response, error)
+
+	/*
 	 * SubmitSelfServiceLoginFlow Submit a Login Flow
 	 * :::info
 
@@ -626,6 +732,15 @@ Browser flows with an accept header of `application/json` will not redirect but 
 HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success;
 HTTP 302 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
 HTTP 400 on form validation errors.
+
+If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the
+case of an error, the `error.id` of the JSON response body can be one of:
+
+`has_session_already`: The user is already signed in.
+`csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+`forbidden_return_to`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+`browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
+Most likely used in Social Sign In flows.
 
 More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -733,6 +848,15 @@ HTTP 200 and a application/json body with the signed in identity and a `Set-Cook
 HTTP 302 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
 HTTP 400 on form validation errors.
 
+If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the
+case of an error, the `error.id` of the JSON response body can be one of:
+
+`has_session_already`: The user is already signed in.
+`csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+`forbidden_return_to`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+`browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
+Most likely used in Social Sign In flows.
+
 More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return V0alpha2ApiApiSubmitSelfServiceRegistrationFlowRequest
@@ -766,6 +890,7 @@ a HTTP 302 redirect to the login endpoint when `selfservice.flows.settings.privi
 Browser flows with HTTP Header `Accept: application/json` respond with
 HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success;
 HTTP 302 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
+HTTP 401 when the endpoint is called without a valid session cookie.
 HTTP 403 when the page is accessed without a session cookie or the session's AAL is too low.
 HTTP 400 on form validation errors.
 
@@ -773,6 +898,20 @@ Depending on your configuration this endpoint might return a 403 error if the se
 Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn
 credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user
 to sign in with the second factor (happens automatically for server-side browser flows) or change the configuration.
+
+If this endpoint is called with a `Accept: application/json` HTTP header, the response contains the flow without a redirect. In the
+case of an error, the `error.id` of the JSON response body can be one of:
+
+`needs_privileged_session`: The identity requested to change something that needs a privileged session. Redirect
+the identity to the login init endpoint with query parameters `?refresh=true&return_to=<the-current-browser-url>`,
+or initiate a refresh login flow otherwise.
+`csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+`no_active_session`: No Ory Session was found - sign in a user first.
+`intended_for_someone_else`: The flow was interrupted with `needs_privileged_session` but apparently some other
+identity logged in instead.
+`forbidden_return_to`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+`browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
+Most likely used in Social Sign In flows.
 
 More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -842,7 +981,7 @@ const session = await client.toSession("the-session-token")
 console.log(session)
 ```
 
-Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator
+Depending on your configuration this endpoint might return a 403 status code if the session has a lower Authenticator
 Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn
 credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user
 to sign in with the second factor or change the configuration.
@@ -860,6 +999,11 @@ if the `Authorization: bearer <ory-session-token>` HTTP header was set with a va
 if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.
 
 If none of these headers are set or the cooke or token are invalid, the endpoint returns a HTTP 401 status code.
+
+As explained above, this request may fail due to several reasons. The `error.id` can be one of:
+
+`no_active_session`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token).
+`aal_needs_upgrade`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return V0alpha2ApiApiToSessionRequest
 	 */
@@ -1315,12 +1459,167 @@ func (a *V0alpha2ApiService) AdminDeleteIdentityExecute(r V0alpha2ApiApiAdminDel
 	return localVarHTTPResponse, nil
 }
 
-type V0alpha2ApiApiAdminGetIdentityRequest struct {
+type V0alpha2ApiApiAdminDeleteIdentitySessionsRequest struct {
 	ctx context.Context
 	ApiService V0alpha2Api
 	id string
 }
 
+
+func (r V0alpha2ApiApiAdminDeleteIdentitySessionsRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AdminDeleteIdentitySessionsExecute(r)
+}
+
+/*
+ * AdminDeleteIdentitySessions Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.
+ * This endpoint is useful for:
+
+To forcefully logout Identity from all devices and sessions
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param id ID is the identity's ID.
+ * @return V0alpha2ApiApiAdminDeleteIdentitySessionsRequest
+ */
+func (a *V0alpha2ApiService) AdminDeleteIdentitySessions(ctx context.Context, id string) V0alpha2ApiApiAdminDeleteIdentitySessionsRequest {
+	return V0alpha2ApiApiAdminDeleteIdentitySessionsRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *V0alpha2ApiService) AdminDeleteIdentitySessionsExecute(r V0alpha2ApiApiAdminDeleteIdentitySessionsRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminDeleteIdentitySessions")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/kratos/admin/identities/{id}/sessions"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["oryAccessToken"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v JsonError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v JsonError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v JsonError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v JsonError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminGetIdentityRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	id string
+	includeCredential *[]string
+}
+
+func (r V0alpha2ApiApiAdminGetIdentityRequest) IncludeCredential(includeCredential []string) V0alpha2ApiApiAdminGetIdentityRequest {
+	r.includeCredential = &includeCredential
+	return r
+}
 
 func (r V0alpha2ApiApiAdminGetIdentityRequest) Execute() (*Identity, *http.Response, error) {
 	return r.ApiService.AdminGetIdentityExecute(r)
@@ -1367,6 +1666,17 @@ func (a *V0alpha2ApiService) AdminGetIdentityExecute(r V0alpha2ApiApiAdminGetIde
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.includeCredential != nil {
+		t := *r.includeCredential
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("include_credential", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("include_credential", parameterToString(t, "multi"))
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2216,6 +2526,11 @@ res.render('login', flow)
 })
 ```
 
+This request may fail due to several reasons. The `error.id` can be one of:
+
+`has_session_already`: The user is already signed in.
+`self_service_flow_expired`: The flow is expired and you should request a new one.
+
 More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return V0alpha2ApiApiGetSelfServiceLoginFlowRequest
@@ -2556,6 +2871,11 @@ res.render('registration', flow)
 })
 ```
 
+This request may fail due to several reasons. The `error.id` can be one of:
+
+`has_session_already`: The user is already signed in.
+`self_service_flow_expired`: The flow is expired and you should request a new one.
+
 More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return V0alpha2ApiApiGetSelfServiceRegistrationFlowRequest
@@ -2720,8 +3040,7 @@ func (r V0alpha2ApiApiGetSelfServiceSettingsFlowRequest) Execute() (*SelfService
 /*
  * GetSelfServiceSettingsFlow Get Settings Flow
  * When accessing this endpoint through Ory Kratos' Public API you must ensure that either the Ory Kratos Session Cookie
-or the Ory Kratos Session Token are set. The public endpoint does not return 404 status codes
-but instead 403 or 500 to improve data privacy.
+or the Ory Kratos Session Token are set.
 
 Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator
 Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn
@@ -2729,6 +3048,14 @@ credentials (which would result in AAL2) but the session has only AAL1. If this 
 to sign in with the second factor or change the configuration.
 
 You can access this endpoint without credentials when using Ory Kratos' Admin API.
+
+If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
+case of an error, the `error.id` of the JSON response body can be one of:
+
+`csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+`no_active_session`: No Ory Session was found - sign in a user first.
+`intended_for_someone_else`: The flow was interrupted with `needs_privileged_session` but apparently some other
+identity logged in instead.
 
 More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -2814,6 +3141,16 @@ func (a *V0alpha2ApiService) GetSelfServiceSettingsFlowExecute(r V0alpha2ApiApiG
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v JsonError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v JsonError
@@ -3033,12 +3370,122 @@ func (a *V0alpha2ApiService) GetSelfServiceVerificationFlowExecute(r V0alpha2Api
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type V0alpha2ApiApiGetWebAuthnJavaScriptRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+}
+
+
+func (r V0alpha2ApiApiGetWebAuthnJavaScriptRequest) Execute() (string, *http.Response, error) {
+	return r.ApiService.GetWebAuthnJavaScriptExecute(r)
+}
+
+/*
+ * GetWebAuthnJavaScript Get WebAuthn JavaScript
+ * This endpoint provides JavaScript which is needed in order to perform WebAuthn login and registration.
+
+If you are building a JavaScript Browser App (e.g. in ReactJS or AngularJS) you will need to load this file:
+
+```html
+<script src="https://public-kratos.example.org/.well-known/ory/webauthn.js" type="script" async />
+```
+
+More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiGetWebAuthnJavaScriptRequest
+ */
+func (a *V0alpha2ApiService) GetWebAuthnJavaScript(ctx context.Context) V0alpha2ApiApiGetWebAuthnJavaScriptRequest {
+	return V0alpha2ApiApiGetWebAuthnJavaScriptRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return string
+ */
+func (a *V0alpha2ApiService) GetWebAuthnJavaScriptExecute(r V0alpha2ApiApiGetWebAuthnJavaScriptRequest) (string, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  string
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.GetWebAuthnJavaScript")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/kratos/public/.well-known/ory/webauthn.js"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type V0alpha2ApiApiInitializeSelfServiceLoginFlowForBrowsersRequest struct {
 	ctx context.Context
 	ApiService V0alpha2Api
 	refresh *bool
 	aal *string
-	xSessionToken *string
+	returnTo *string
 }
 
 func (r V0alpha2ApiApiInitializeSelfServiceLoginFlowForBrowsersRequest) Refresh(refresh bool) V0alpha2ApiApiInitializeSelfServiceLoginFlowForBrowsersRequest {
@@ -3049,8 +3496,8 @@ func (r V0alpha2ApiApiInitializeSelfServiceLoginFlowForBrowsersRequest) Aal(aal 
 	r.aal = &aal
 	return r
 }
-func (r V0alpha2ApiApiInitializeSelfServiceLoginFlowForBrowsersRequest) XSessionToken(xSessionToken string) V0alpha2ApiApiInitializeSelfServiceLoginFlowForBrowsersRequest {
-	r.xSessionToken = &xSessionToken
+func (r V0alpha2ApiApiInitializeSelfServiceLoginFlowForBrowsersRequest) ReturnTo(returnTo string) V0alpha2ApiApiInitializeSelfServiceLoginFlowForBrowsersRequest {
+	r.returnTo = &returnTo
 	return r
 }
 
@@ -3068,7 +3515,13 @@ If this endpoint is opened as a link in the browser, it will be redirected to
 exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter
 `?refresh=true` was set.
 
-If this endpoint is called via an AJAX request, the response contains the login flow without a redirect.
+If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
+case of an error, the `error.id` of the JSON response body can be one of:
+
+`has_session_already`: The user is already signed in.
+`aal_needs_session`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet.
+`csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+`forbidden_return_to`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
 
 This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.
 
@@ -3114,6 +3567,9 @@ func (a *V0alpha2ApiService) InitializeSelfServiceLoginFlowForBrowsersExecute(r 
 	if r.aal != nil {
 		localVarQueryParams.Add("aal", parameterToString(*r.aal, ""))
 	}
+	if r.returnTo != nil {
+		localVarQueryParams.Add("return_to", parameterToString(*r.returnTo, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -3130,9 +3586,6 @@ func (a *V0alpha2ApiService) InitializeSelfServiceLoginFlowForBrowsersExecute(r 
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xSessionToken != nil {
-		localVarHeaderParams["X-Session-Token"] = parameterToString(*r.xSessionToken, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3155,6 +3608,16 @@ func (a *V0alpha2ApiService) InitializeSelfServiceLoginFlowForBrowsersExecute(r 
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v JsonError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v JsonError
@@ -3217,6 +3680,12 @@ To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.
 You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server
 Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make
 you vulnerable to a variety of CSRF attacks, including CSRF login attacks.
+
+In the case of an error, the `error.id` of the JSON response body can be one of:
+
+`has_session_already`: The user is already signed in.
+`aal_needs_session`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet.
+`csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 
 This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
@@ -3341,8 +3810,13 @@ func (a *V0alpha2ApiService) InitializeSelfServiceLoginFlowWithoutBrowserExecute
 type V0alpha2ApiApiInitializeSelfServiceRecoveryFlowForBrowsersRequest struct {
 	ctx context.Context
 	ApiService V0alpha2Api
+	returnTo *string
 }
 
+func (r V0alpha2ApiApiInitializeSelfServiceRecoveryFlowForBrowsersRequest) ReturnTo(returnTo string) V0alpha2ApiApiInitializeSelfServiceRecoveryFlowForBrowsersRequest {
+	r.returnTo = &returnTo
+	return r
+}
 
 func (r V0alpha2ApiApiInitializeSelfServiceRecoveryFlowForBrowsersRequest) Execute() (*SelfServiceRecoveryFlow, *http.Response, error) {
 	return r.ApiService.InitializeSelfServiceRecoveryFlowForBrowsersExecute(r)
@@ -3395,6 +3869,9 @@ func (a *V0alpha2ApiService) InitializeSelfServiceRecoveryFlowForBrowsersExecute
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.returnTo != nil {
+		localVarQueryParams.Add("return_to", parameterToString(*r.returnTo, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -3605,8 +4082,13 @@ func (a *V0alpha2ApiService) InitializeSelfServiceRecoveryFlowWithoutBrowserExec
 type V0alpha2ApiApiInitializeSelfServiceRegistrationFlowForBrowsersRequest struct {
 	ctx context.Context
 	ApiService V0alpha2Api
+	returnTo *string
 }
 
+func (r V0alpha2ApiApiInitializeSelfServiceRegistrationFlowForBrowsersRequest) ReturnTo(returnTo string) V0alpha2ApiApiInitializeSelfServiceRegistrationFlowForBrowsersRequest {
+	r.returnTo = &returnTo
+	return r
+}
 
 func (r V0alpha2ApiApiInitializeSelfServiceRegistrationFlowForBrowsersRequest) Execute() (*SelfServiceRegistrationFlow, *http.Response, error) {
 	return r.ApiService.InitializeSelfServiceRegistrationFlowForBrowsersExecute(r)
@@ -3626,6 +4108,13 @@ This endpoint is EXPERIMENTAL and subject to potential breaking changes in the f
 If this endpoint is opened as a link in the browser, it will be redirected to
 `selfservice.flows.registration.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session
 exists already, the browser will be redirected to `urls.default_redirect_url`.
+
+If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
+case of an error, the `error.id` of the JSON response body can be one of:
+
+`has_session_already`: The user is already signed in.
+`csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+`forbidden_return_to`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
 
 If this endpoint is called via an AJAX request, the response contains the registration flow without a redirect.
 
@@ -3667,6 +4156,9 @@ func (a *V0alpha2ApiService) InitializeSelfServiceRegistrationFlowForBrowsersExe
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.returnTo != nil {
+		localVarQueryParams.Add("return_to", parameterToString(*r.returnTo, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -3752,6 +4244,11 @@ To fetch an existing registration flow call `/self-service/registration/flows?fl
 You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server
 Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make
 you vulnerable to a variety of CSRF attacks.
+
+In the case of an error, the `error.id` of the JSON response body can be one of:
+
+`has_session_already`: The user is already signed in.
+`csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 
 This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
@@ -3867,11 +4364,11 @@ func (a *V0alpha2ApiService) InitializeSelfServiceRegistrationFlowWithoutBrowser
 type V0alpha2ApiApiInitializeSelfServiceSettingsFlowForBrowsersRequest struct {
 	ctx context.Context
 	ApiService V0alpha2Api
-	cookie *string
+	returnTo *string
 }
 
-func (r V0alpha2ApiApiInitializeSelfServiceSettingsFlowForBrowsersRequest) Cookie(cookie string) V0alpha2ApiApiInitializeSelfServiceSettingsFlowForBrowsersRequest {
-	r.cookie = &cookie
+func (r V0alpha2ApiApiInitializeSelfServiceSettingsFlowForBrowsersRequest) ReturnTo(returnTo string) V0alpha2ApiApiInitializeSelfServiceSettingsFlowForBrowsersRequest {
+	r.returnTo = &returnTo
 	return r
 }
 
@@ -3890,12 +4387,19 @@ If this endpoint is opened as a link in the browser, it will be redirected to
 was set, the browser will be redirected to the login endpoint.
 
 If this endpoint is called via an AJAX request, the response contains the settings flow without any redirects
-or a 403 forbidden error if no valid session was set.
+or a 401 forbidden error if no valid session was set.
 
 Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator
 Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn
 credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user
 to sign in with the second factor (happens automatically for server-side browser flows) or change the configuration.
+
+If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
+case of an error, the `error.id` of the JSON response body can be one of:
+
+`csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+`no_active_session`: No Ory Session was found - sign in a user first.
+`forbidden_return_to`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
 
 This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.
 
@@ -3935,6 +4439,9 @@ func (a *V0alpha2ApiService) InitializeSelfServiceSettingsFlowForBrowsersExecute
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.returnTo != nil {
+		localVarQueryParams.Add("return_to", parameterToString(*r.returnTo, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -3951,9 +4458,6 @@ func (a *V0alpha2ApiService) InitializeSelfServiceSettingsFlowForBrowsersExecute
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.cookie != nil {
-		localVarHeaderParams["Cookie"] = parameterToString(*r.cookie, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3976,6 +4480,26 @@ func (a *V0alpha2ApiService) InitializeSelfServiceSettingsFlowForBrowsersExecute
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v JsonError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v JsonError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v JsonError
@@ -4041,6 +4565,11 @@ Depending on your configuration this endpoint might return a 403 error if the se
 Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn
 credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user
 to sign in with the second factor or change the configuration.
+
+In the case of an error, the `error.id` of the JSON response body can be one of:
+
+`csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+`no_active_session`: No Ory Session was found - sign in a user first.
 
 This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
@@ -4159,8 +4688,13 @@ func (a *V0alpha2ApiService) InitializeSelfServiceSettingsFlowWithoutBrowserExec
 type V0alpha2ApiApiInitializeSelfServiceVerificationFlowForBrowsersRequest struct {
 	ctx context.Context
 	ApiService V0alpha2Api
+	returnTo *string
 }
 
+func (r V0alpha2ApiApiInitializeSelfServiceVerificationFlowForBrowsersRequest) ReturnTo(returnTo string) V0alpha2ApiApiInitializeSelfServiceVerificationFlowForBrowsersRequest {
+	r.returnTo = &returnTo
+	return r
+}
 
 func (r V0alpha2ApiApiInitializeSelfServiceVerificationFlowForBrowsersRequest) Execute() (*SelfServiceVerificationFlow, *http.Response, error) {
 	return r.ApiService.InitializeSelfServiceVerificationFlowForBrowsersExecute(r)
@@ -4211,6 +4745,9 @@ func (a *V0alpha2ApiService) InitializeSelfServiceVerificationFlowForBrowsersExe
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.returnTo != nil {
+		localVarQueryParams.Add("return_to", parameterToString(*r.returnTo, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -4405,6 +4942,133 @@ func (a *V0alpha2ApiService) InitializeSelfServiceVerificationFlowWithoutBrowser
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type V0alpha2ApiApiListIdentitySchemasRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	perPage *int64
+	page *int64
+}
+
+func (r V0alpha2ApiApiListIdentitySchemasRequest) PerPage(perPage int64) V0alpha2ApiApiListIdentitySchemasRequest {
+	r.perPage = &perPage
+	return r
+}
+func (r V0alpha2ApiApiListIdentitySchemasRequest) Page(page int64) V0alpha2ApiApiListIdentitySchemasRequest {
+	r.page = &page
+	return r
+}
+
+func (r V0alpha2ApiApiListIdentitySchemasRequest) Execute() ([]IdentitySchema, *http.Response, error) {
+	return r.ApiService.ListIdentitySchemasExecute(r)
+}
+
+/*
+ * ListIdentitySchemas Method for ListIdentitySchemas
+ * Get all Identity Schemas
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiListIdentitySchemasRequest
+ */
+func (a *V0alpha2ApiService) ListIdentitySchemas(ctx context.Context) V0alpha2ApiApiListIdentitySchemasRequest {
+	return V0alpha2ApiApiListIdentitySchemasRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return []IdentitySchema
+ */
+func (a *V0alpha2ApiService) ListIdentitySchemasExecute(r V0alpha2ApiApiListIdentitySchemasRequest) ([]IdentitySchema, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  []IdentitySchema
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.ListIdentitySchemas")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/kratos/public/schemas"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.perPage != nil {
+		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+	}
+	if r.page != nil {
+		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v JsonError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest struct {
 	ctx context.Context
 	ApiService V0alpha2Api
@@ -4454,6 +5118,15 @@ Browser flows with an accept header of `application/json` will not redirect but 
 HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success;
 HTTP 302 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
 HTTP 400 on form validation errors.
+
+If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the
+case of an error, the `error.id` of the JSON response body can be one of:
+
+`has_session_already`: The user is already signed in.
+`csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+`forbidden_return_to`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+`browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
+Most likely used in Social Sign In flows.
 
 More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -4549,6 +5222,16 @@ func (a *V0alpha2ApiService) SubmitSelfServiceLoginFlowExecute(r V0alpha2ApiApiS
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v SelfServiceBrowserLocationChangeRequiredError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v JsonError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -4577,10 +5260,15 @@ type V0alpha2ApiApiSubmitSelfServiceLogoutFlowRequest struct {
 	ctx context.Context
 	ApiService V0alpha2Api
 	token *string
+	returnTo *string
 }
 
 func (r V0alpha2ApiApiSubmitSelfServiceLogoutFlowRequest) Token(token string) V0alpha2ApiApiSubmitSelfServiceLogoutFlowRequest {
 	r.token = &token
+	return r
+}
+func (r V0alpha2ApiApiSubmitSelfServiceLogoutFlowRequest) ReturnTo(returnTo string) V0alpha2ApiApiSubmitSelfServiceLogoutFlowRequest {
+	r.returnTo = &returnTo
 	return r
 }
 
@@ -4638,6 +5326,9 @@ func (a *V0alpha2ApiService) SubmitSelfServiceLogoutFlowExecute(r V0alpha2ApiApi
 
 	if r.token != nil {
 		localVarQueryParams.Add("token", parameterToString(*r.token, ""))
+	}
+	if r.returnTo != nil {
+		localVarQueryParams.Add("return_to", parameterToString(*r.returnTo, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -5020,6 +5711,15 @@ HTTP 200 and a application/json body with the signed in identity and a `Set-Cook
 HTTP 302 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
 HTTP 400 on form validation errors.
 
+If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the
+case of an error, the `error.id` of the JSON response body can be one of:
+
+`has_session_already`: The user is already signed in.
+`csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+`forbidden_return_to`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+`browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
+Most likely used in Social Sign In flows.
+
 More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return V0alpha2ApiApiSubmitSelfServiceRegistrationFlowRequest
@@ -5111,6 +5811,16 @@ func (a *V0alpha2ApiService) SubmitSelfServiceRegistrationFlowExecute(r V0alpha2
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v SelfServiceBrowserLocationChangeRequiredError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v JsonError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -5181,6 +5891,7 @@ a HTTP 302 redirect to the login endpoint when `selfservice.flows.settings.privi
 Browser flows with HTTP Header `Accept: application/json` respond with
 HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success;
 HTTP 302 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
+HTTP 401 when the endpoint is called without a valid session cookie.
 HTTP 403 when the page is accessed without a session cookie or the session's AAL is too low.
 HTTP 400 on form validation errors.
 
@@ -5188,6 +5899,20 @@ Depending on your configuration this endpoint might return a 403 error if the se
 Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn
 credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user
 to sign in with the second factor (happens automatically for server-side browser flows) or change the configuration.
+
+If this endpoint is called with a `Accept: application/json` HTTP header, the response contains the flow without a redirect. In the
+case of an error, the `error.id` of the JSON response body can be one of:
+
+`needs_privileged_session`: The identity requested to change something that needs a privileged session. Redirect
+the identity to the login init endpoint with query parameters `?refresh=true&return_to=<the-current-browser-url>`,
+or initiate a refresh login flow otherwise.
+`csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+`no_active_session`: No Ory Session was found - sign in a user first.
+`intended_for_someone_else`: The flow was interrupted with `needs_privileged_session` but apparently some other
+identity logged in instead.
+`forbidden_return_to`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+`browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
+Most likely used in Social Sign In flows.
 
 More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -5295,6 +6020,16 @@ func (a *V0alpha2ApiService) SubmitSelfServiceSettingsFlowExecute(r V0alpha2ApiA
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v JsonError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v SelfServiceBrowserLocationChangeRequiredError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -5534,7 +6269,7 @@ const session = await client.toSession("the-session-token")
 console.log(session)
 ```
 
-Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator
+Depending on your configuration this endpoint might return a 403 status code if the session has a lower Authenticator
 Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn
 credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user
 to sign in with the second factor or change the configuration.
@@ -5552,6 +6287,11 @@ if the `Authorization: bearer <ory-session-token>` HTTP header was set with a va
 if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.
 
 If none of these headers are set or the cooke or token are invalid, the endpoint returns a HTTP 401 status code.
+
+As explained above, this request may fail due to several reasons. The `error.id` can be one of:
+
+`no_active_session`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token).
+`aal_needs_upgrade`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return V0alpha2ApiApiToSessionRequest
  */

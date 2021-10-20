@@ -1,88 +1,94 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class SubmitSelfServiceLoginFlowWithTotpMethodBody {
-  /// Returns a new [SubmitSelfServiceLoginFlowWithTotpMethodBody] instance.
-  SubmitSelfServiceLoginFlowWithTotpMethodBody({
-    this.csrfToken,
-    @required this.method,
-    @required this.totpCode,
-  });
+part 'submit_self_service_login_flow_with_totp_method_body.g.dart';
 
-  /// Sending the anti-csrf token is only required for browser login flows.
-  String csrfToken;
+abstract class SubmitSelfServiceLoginFlowWithTotpMethodBody implements Built<SubmitSelfServiceLoginFlowWithTotpMethodBody, SubmitSelfServiceLoginFlowWithTotpMethodBodyBuilder> {
 
-  /// Method should be set to \"totp\" when logging in using the TOTP strategy.
-  String method;
+    /// Sending the anti-csrf token is only required for browser login flows.
+    @nullable
+    @BuiltValueField(wireName: r'csrf_token')
+    String get csrfToken;
 
-  /// The TOTP code.
-  String totpCode;
+    /// Method should be set to \"totp\" when logging in using the TOTP strategy.
+    @BuiltValueField(wireName: r'method')
+    String get method;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is SubmitSelfServiceLoginFlowWithTotpMethodBody &&
-     other.csrfToken == csrfToken &&
-     other.method == method &&
-     other.totpCode == totpCode;
+    /// The TOTP code.
+    @BuiltValueField(wireName: r'totp_code')
+    String get totpCode;
 
-  @override
-  int get hashCode =>
-    (csrfToken == null ? 0 : csrfToken.hashCode) +
-    (method == null ? 0 : method.hashCode) +
-    (totpCode == null ? 0 : totpCode.hashCode);
+    SubmitSelfServiceLoginFlowWithTotpMethodBody._();
 
-  @override
-  String toString() => 'SubmitSelfServiceLoginFlowWithTotpMethodBody[csrfToken=$csrfToken, method=$method, totpCode=$totpCode]';
+    static void _initializeBuilder(SubmitSelfServiceLoginFlowWithTotpMethodBodyBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (csrfToken != null) {
-      json[r'csrf_token'] = csrfToken;
+    factory SubmitSelfServiceLoginFlowWithTotpMethodBody([void updates(SubmitSelfServiceLoginFlowWithTotpMethodBodyBuilder b)]) = _$SubmitSelfServiceLoginFlowWithTotpMethodBody;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<SubmitSelfServiceLoginFlowWithTotpMethodBody> get serializer => _$SubmitSelfServiceLoginFlowWithTotpMethodBodySerializer();
+}
+
+class _$SubmitSelfServiceLoginFlowWithTotpMethodBodySerializer implements StructuredSerializer<SubmitSelfServiceLoginFlowWithTotpMethodBody> {
+
+    @override
+    final Iterable<Type> types = const [SubmitSelfServiceLoginFlowWithTotpMethodBody, _$SubmitSelfServiceLoginFlowWithTotpMethodBody];
+    @override
+    final String wireName = r'SubmitSelfServiceLoginFlowWithTotpMethodBody';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, SubmitSelfServiceLoginFlowWithTotpMethodBody object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.csrfToken != null) {
+            result
+                ..add(r'csrf_token')
+                ..add(serializers.serialize(object.csrfToken,
+                    specifiedType: const FullType(String)));
+        }
+        result
+            ..add(r'method')
+            ..add(serializers.serialize(object.method,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'totp_code')
+            ..add(serializers.serialize(object.totpCode,
+                specifiedType: const FullType(String)));
+        return result;
     }
-      json[r'method'] = method;
-      json[r'totp_code'] = totpCode;
-    return json;
-  }
 
-  /// Returns a new [SubmitSelfServiceLoginFlowWithTotpMethodBody] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static SubmitSelfServiceLoginFlowWithTotpMethodBody fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : SubmitSelfServiceLoginFlowWithTotpMethodBody(
-        csrfToken: json[r'csrf_token'],
-        method: json[r'method'],
-        totpCode: json[r'totp_code'],
-    );
+    @override
+    SubmitSelfServiceLoginFlowWithTotpMethodBody deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = SubmitSelfServiceLoginFlowWithTotpMethodBodyBuilder();
 
-  static List<SubmitSelfServiceLoginFlowWithTotpMethodBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <SubmitSelfServiceLoginFlowWithTotpMethodBody>[]
-      : json.map((dynamic value) => SubmitSelfServiceLoginFlowWithTotpMethodBody.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, SubmitSelfServiceLoginFlowWithTotpMethodBody> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, SubmitSelfServiceLoginFlowWithTotpMethodBody>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = SubmitSelfServiceLoginFlowWithTotpMethodBody.fromJson(value));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'csrf_token':
+                    result.csrfToken = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'method':
+                    result.method = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'totp_code':
+                    result.totpCode = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of SubmitSelfServiceLoginFlowWithTotpMethodBody-objects as value to a dart map
-  static Map<String, List<SubmitSelfServiceLoginFlowWithTotpMethodBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<SubmitSelfServiceLoginFlowWithTotpMethodBody>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = SubmitSelfServiceLoginFlowWithTotpMethodBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

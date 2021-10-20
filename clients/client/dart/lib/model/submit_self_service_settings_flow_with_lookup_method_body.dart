@@ -1,110 +1,142 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class SubmitSelfServiceSettingsFlowWithLookupMethodBody {
-  /// Returns a new [SubmitSelfServiceSettingsFlowWithLookupMethodBody] instance.
-  SubmitSelfServiceSettingsFlowWithLookupMethodBody({
-    this.csrfToken,
-    this.lookupSecretConfirm,
-    this.lookupSecretRegenerate,
-    this.lookupSecretReveal,
-    @required this.method,
-  });
+part 'submit_self_service_settings_flow_with_lookup_method_body.g.dart';
 
-  /// CSRFToken is the anti-CSRF token
-  String csrfToken;
+abstract class SubmitSelfServiceSettingsFlowWithLookupMethodBody implements Built<SubmitSelfServiceSettingsFlowWithLookupMethodBody, SubmitSelfServiceSettingsFlowWithLookupMethodBodyBuilder> {
 
-  /// If set to true will save the regenerated lookup secrets
-  bool lookupSecretConfirm;
+    /// CSRFToken is the anti-CSRF token
+    @nullable
+    @BuiltValueField(wireName: r'csrf_token')
+    String get csrfToken;
 
-  /// If set to true will regenerate the lookup secrets
-  bool lookupSecretRegenerate;
+    /// If set to true will save the regenerated lookup secrets
+    @nullable
+    @BuiltValueField(wireName: r'lookup_secret_confirm')
+    bool get lookupSecretConfirm;
 
-  /// If set to true will reveal the lookup secrets
-  bool lookupSecretReveal;
+    /// Disables this method if true.
+    @nullable
+    @BuiltValueField(wireName: r'lookup_secret_disable')
+    bool get lookupSecretDisable;
 
-  /// Method  Should be set to \"lookup\" when trying to add, update, or remove a lookup pairing.
-  String method;
+    /// If set to true will regenerate the lookup secrets
+    @nullable
+    @BuiltValueField(wireName: r'lookup_secret_regenerate')
+    bool get lookupSecretRegenerate;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is SubmitSelfServiceSettingsFlowWithLookupMethodBody &&
-     other.csrfToken == csrfToken &&
-     other.lookupSecretConfirm == lookupSecretConfirm &&
-     other.lookupSecretRegenerate == lookupSecretRegenerate &&
-     other.lookupSecretReveal == lookupSecretReveal &&
-     other.method == method;
+    /// If set to true will reveal the lookup secrets
+    @nullable
+    @BuiltValueField(wireName: r'lookup_secret_reveal')
+    bool get lookupSecretReveal;
 
-  @override
-  int get hashCode =>
-    (csrfToken == null ? 0 : csrfToken.hashCode) +
-    (lookupSecretConfirm == null ? 0 : lookupSecretConfirm.hashCode) +
-    (lookupSecretRegenerate == null ? 0 : lookupSecretRegenerate.hashCode) +
-    (lookupSecretReveal == null ? 0 : lookupSecretReveal.hashCode) +
-    (method == null ? 0 : method.hashCode);
+    /// Method  Should be set to \"lookup\" when trying to add, update, or remove a lookup pairing.
+    @BuiltValueField(wireName: r'method')
+    String get method;
 
-  @override
-  String toString() => 'SubmitSelfServiceSettingsFlowWithLookupMethodBody[csrfToken=$csrfToken, lookupSecretConfirm=$lookupSecretConfirm, lookupSecretRegenerate=$lookupSecretRegenerate, lookupSecretReveal=$lookupSecretReveal, method=$method]';
+    SubmitSelfServiceSettingsFlowWithLookupMethodBody._();
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (csrfToken != null) {
-      json[r'csrf_token'] = csrfToken;
+    static void _initializeBuilder(SubmitSelfServiceSettingsFlowWithLookupMethodBodyBuilder b) => b;
+
+    factory SubmitSelfServiceSettingsFlowWithLookupMethodBody([void updates(SubmitSelfServiceSettingsFlowWithLookupMethodBodyBuilder b)]) = _$SubmitSelfServiceSettingsFlowWithLookupMethodBody;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<SubmitSelfServiceSettingsFlowWithLookupMethodBody> get serializer => _$SubmitSelfServiceSettingsFlowWithLookupMethodBodySerializer();
+}
+
+class _$SubmitSelfServiceSettingsFlowWithLookupMethodBodySerializer implements StructuredSerializer<SubmitSelfServiceSettingsFlowWithLookupMethodBody> {
+
+    @override
+    final Iterable<Type> types = const [SubmitSelfServiceSettingsFlowWithLookupMethodBody, _$SubmitSelfServiceSettingsFlowWithLookupMethodBody];
+    @override
+    final String wireName = r'SubmitSelfServiceSettingsFlowWithLookupMethodBody';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, SubmitSelfServiceSettingsFlowWithLookupMethodBody object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.csrfToken != null) {
+            result
+                ..add(r'csrf_token')
+                ..add(serializers.serialize(object.csrfToken,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.lookupSecretConfirm != null) {
+            result
+                ..add(r'lookup_secret_confirm')
+                ..add(serializers.serialize(object.lookupSecretConfirm,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.lookupSecretDisable != null) {
+            result
+                ..add(r'lookup_secret_disable')
+                ..add(serializers.serialize(object.lookupSecretDisable,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.lookupSecretRegenerate != null) {
+            result
+                ..add(r'lookup_secret_regenerate')
+                ..add(serializers.serialize(object.lookupSecretRegenerate,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.lookupSecretReveal != null) {
+            result
+                ..add(r'lookup_secret_reveal')
+                ..add(serializers.serialize(object.lookupSecretReveal,
+                    specifiedType: const FullType(bool)));
+        }
+        result
+            ..add(r'method')
+            ..add(serializers.serialize(object.method,
+                specifiedType: const FullType(String)));
+        return result;
     }
-    if (lookupSecretConfirm != null) {
-      json[r'lookup_secret_confirm'] = lookupSecretConfirm;
-    }
-    if (lookupSecretRegenerate != null) {
-      json[r'lookup_secret_regenerate'] = lookupSecretRegenerate;
-    }
-    if (lookupSecretReveal != null) {
-      json[r'lookup_secret_reveal'] = lookupSecretReveal;
-    }
-      json[r'method'] = method;
-    return json;
-  }
 
-  /// Returns a new [SubmitSelfServiceSettingsFlowWithLookupMethodBody] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static SubmitSelfServiceSettingsFlowWithLookupMethodBody fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : SubmitSelfServiceSettingsFlowWithLookupMethodBody(
-        csrfToken: json[r'csrf_token'],
-        lookupSecretConfirm: json[r'lookup_secret_confirm'],
-        lookupSecretRegenerate: json[r'lookup_secret_regenerate'],
-        lookupSecretReveal: json[r'lookup_secret_reveal'],
-        method: json[r'method'],
-    );
+    @override
+    SubmitSelfServiceSettingsFlowWithLookupMethodBody deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = SubmitSelfServiceSettingsFlowWithLookupMethodBodyBuilder();
 
-  static List<SubmitSelfServiceSettingsFlowWithLookupMethodBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <SubmitSelfServiceSettingsFlowWithLookupMethodBody>[]
-      : json.map((dynamic value) => SubmitSelfServiceSettingsFlowWithLookupMethodBody.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, SubmitSelfServiceSettingsFlowWithLookupMethodBody> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, SubmitSelfServiceSettingsFlowWithLookupMethodBody>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = SubmitSelfServiceSettingsFlowWithLookupMethodBody.fromJson(value));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'csrf_token':
+                    result.csrfToken = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'lookup_secret_confirm':
+                    result.lookupSecretConfirm = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'lookup_secret_disable':
+                    result.lookupSecretDisable = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'lookup_secret_regenerate':
+                    result.lookupSecretRegenerate = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'lookup_secret_reveal':
+                    result.lookupSecretReveal = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'method':
+                    result.method = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of SubmitSelfServiceSettingsFlowWithLookupMethodBody-objects as value to a dart map
-  static Map<String, List<SubmitSelfServiceSettingsFlowWithLookupMethodBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<SubmitSelfServiceSettingsFlowWithLookupMethodBody>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = SubmitSelfServiceSettingsFlowWithLookupMethodBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

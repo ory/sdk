@@ -1,100 +1,112 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class SubmitSelfServiceSettingsFlowWithTotpMethodBody {
-  /// Returns a new [SubmitSelfServiceSettingsFlowWithTotpMethodBody] instance.
-  SubmitSelfServiceSettingsFlowWithTotpMethodBody({
-    this.csrfToken,
-    @required this.method,
-    this.totpCode,
-    this.totpUnlink,
-  });
+part 'submit_self_service_settings_flow_with_totp_method_body.g.dart';
 
-  /// CSRFToken is the anti-CSRF token
-  String csrfToken;
+abstract class SubmitSelfServiceSettingsFlowWithTotpMethodBody implements Built<SubmitSelfServiceSettingsFlowWithTotpMethodBody, SubmitSelfServiceSettingsFlowWithTotpMethodBodyBuilder> {
 
-  /// Method  Should be set to \"totp\" when trying to add, update, or remove a totp pairing.
-  String method;
+    /// CSRFToken is the anti-CSRF token
+    @nullable
+    @BuiltValueField(wireName: r'csrf_token')
+    String get csrfToken;
 
-  /// ValidationTOTP must contain a valid TOTP based on the
-  String totpCode;
+    /// Method  Should be set to \"totp\" when trying to add, update, or remove a totp pairing.
+    @BuiltValueField(wireName: r'method')
+    String get method;
 
-  /// UnlinkTOTP if true will remove the TOTP pairing, effectively removing the credential. This can be used to set up a new TOTP device.
-  bool totpUnlink;
+    /// ValidationTOTP must contain a valid TOTP based on the
+    @nullable
+    @BuiltValueField(wireName: r'totp_code')
+    String get totpCode;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is SubmitSelfServiceSettingsFlowWithTotpMethodBody &&
-     other.csrfToken == csrfToken &&
-     other.method == method &&
-     other.totpCode == totpCode &&
-     other.totpUnlink == totpUnlink;
+    /// UnlinkTOTP if true will remove the TOTP pairing, effectively removing the credential. This can be used to set up a new TOTP device.
+    @nullable
+    @BuiltValueField(wireName: r'totp_unlink')
+    bool get totpUnlink;
 
-  @override
-  int get hashCode =>
-    (csrfToken == null ? 0 : csrfToken.hashCode) +
-    (method == null ? 0 : method.hashCode) +
-    (totpCode == null ? 0 : totpCode.hashCode) +
-    (totpUnlink == null ? 0 : totpUnlink.hashCode);
+    SubmitSelfServiceSettingsFlowWithTotpMethodBody._();
 
-  @override
-  String toString() => 'SubmitSelfServiceSettingsFlowWithTotpMethodBody[csrfToken=$csrfToken, method=$method, totpCode=$totpCode, totpUnlink=$totpUnlink]';
+    static void _initializeBuilder(SubmitSelfServiceSettingsFlowWithTotpMethodBodyBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (csrfToken != null) {
-      json[r'csrf_token'] = csrfToken;
+    factory SubmitSelfServiceSettingsFlowWithTotpMethodBody([void updates(SubmitSelfServiceSettingsFlowWithTotpMethodBodyBuilder b)]) = _$SubmitSelfServiceSettingsFlowWithTotpMethodBody;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<SubmitSelfServiceSettingsFlowWithTotpMethodBody> get serializer => _$SubmitSelfServiceSettingsFlowWithTotpMethodBodySerializer();
+}
+
+class _$SubmitSelfServiceSettingsFlowWithTotpMethodBodySerializer implements StructuredSerializer<SubmitSelfServiceSettingsFlowWithTotpMethodBody> {
+
+    @override
+    final Iterable<Type> types = const [SubmitSelfServiceSettingsFlowWithTotpMethodBody, _$SubmitSelfServiceSettingsFlowWithTotpMethodBody];
+    @override
+    final String wireName = r'SubmitSelfServiceSettingsFlowWithTotpMethodBody';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, SubmitSelfServiceSettingsFlowWithTotpMethodBody object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.csrfToken != null) {
+            result
+                ..add(r'csrf_token')
+                ..add(serializers.serialize(object.csrfToken,
+                    specifiedType: const FullType(String)));
+        }
+        result
+            ..add(r'method')
+            ..add(serializers.serialize(object.method,
+                specifiedType: const FullType(String)));
+        if (object.totpCode != null) {
+            result
+                ..add(r'totp_code')
+                ..add(serializers.serialize(object.totpCode,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.totpUnlink != null) {
+            result
+                ..add(r'totp_unlink')
+                ..add(serializers.serialize(object.totpUnlink,
+                    specifiedType: const FullType(bool)));
+        }
+        return result;
     }
-      json[r'method'] = method;
-    if (totpCode != null) {
-      json[r'totp_code'] = totpCode;
-    }
-    if (totpUnlink != null) {
-      json[r'totp_unlink'] = totpUnlink;
-    }
-    return json;
-  }
 
-  /// Returns a new [SubmitSelfServiceSettingsFlowWithTotpMethodBody] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static SubmitSelfServiceSettingsFlowWithTotpMethodBody fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : SubmitSelfServiceSettingsFlowWithTotpMethodBody(
-        csrfToken: json[r'csrf_token'],
-        method: json[r'method'],
-        totpCode: json[r'totp_code'],
-        totpUnlink: json[r'totp_unlink'],
-    );
+    @override
+    SubmitSelfServiceSettingsFlowWithTotpMethodBody deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = SubmitSelfServiceSettingsFlowWithTotpMethodBodyBuilder();
 
-  static List<SubmitSelfServiceSettingsFlowWithTotpMethodBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <SubmitSelfServiceSettingsFlowWithTotpMethodBody>[]
-      : json.map((dynamic value) => SubmitSelfServiceSettingsFlowWithTotpMethodBody.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, SubmitSelfServiceSettingsFlowWithTotpMethodBody> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, SubmitSelfServiceSettingsFlowWithTotpMethodBody>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = SubmitSelfServiceSettingsFlowWithTotpMethodBody.fromJson(value));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'csrf_token':
+                    result.csrfToken = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'method':
+                    result.method = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'totp_code':
+                    result.totpCode = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'totp_unlink':
+                    result.totpUnlink = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of SubmitSelfServiceSettingsFlowWithTotpMethodBody-objects as value to a dart map
-  static Map<String, List<SubmitSelfServiceSettingsFlowWithTotpMethodBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<SubmitSelfServiceSettingsFlowWithTotpMethodBody>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = SubmitSelfServiceSettingsFlowWithTotpMethodBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

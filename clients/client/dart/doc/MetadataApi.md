@@ -12,7 +12,7 @@ Method | HTTP request | Description
 [**getVersion**](MetadataApi.md#getversion) | **GET** /api/kratos/public/version | Return Running Software Version.
 [**isAlive**](MetadataApi.md#isalive) | **GET** /api/kratos/public/health/alive | Check HTTP Server Status
 [**isReady**](MetadataApi.md#isready) | **GET** /api/kratos/public/health/ready | Check HTTP Server and Database Status
-[**prometheus**](MetadataApi.md#prometheus) | **GET** /api/kratos/public/metrics/prometheus | Get snapshot metrics from the service. If you're using k8s, you can then add annotations to your deployment like so:
+[**prometheus**](MetadataApi.md#prometheus) | **GET** /api/kratos/public/metrics/prometheus | Get snapshot metrics from the service. If you&#39;re using k8s, you can then add annotations to your deployment like so:
 
 
 # **getVersion**
@@ -26,10 +26,10 @@ This endpoint returns the version of Ory Kratos.  If the service supports TLS Ed
 ```dart
 import 'package:ory_client/api.dart';
 
-final api_instance = MetadataApi();
+var api_instance = new MetadataApi();
 
 try { 
-    final result = api_instance.getVersion();
+    var result = api_instance.getVersion();
     print(result);
 } catch (e) {
     print('Exception when calling MetadataApi->getVersion: $e\n');
@@ -65,10 +65,10 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incomi
 ```dart
 import 'package:ory_client/api.dart';
 
-final api_instance = MetadataApi();
+var api_instance = new MetadataApi();
 
 try { 
-    final result = api_instance.isAlive();
+    var result = api_instance.isAlive();
     print(result);
 } catch (e) {
     print('Exception when calling MetadataApi->isAlive: $e\n');
@@ -104,10 +104,10 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is up running and t
 ```dart
 import 'package:ory_client/api.dart';
 
-final api_instance = MetadataApi();
+var api_instance = new MetadataApi();
 
 try { 
-    final result = api_instance.isReady();
+    var result = api_instance.isReady();
     print(result);
 } catch (e) {
     print('Exception when calling MetadataApi->isReady: $e\n');
@@ -143,7 +143,7 @@ Get snapshot metrics from the service. If you're using k8s, you can then add ann
 ```dart
 import 'package:ory_client/api.dart';
 
-final api_instance = MetadataApi();
+var api_instance = new MetadataApi();
 
 try { 
     api_instance.prometheus();

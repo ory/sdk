@@ -9,6 +9,7 @@
 | **id** | **String** |  |  |
 | **issued_at** | **Time** | IssuedAt is the time (UTC) when the request occurred. |  |
 | **request_url** | **String** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. |  |
+| **return_to** | **String** | ReturnTo contains the requested return_to URL. | [optional] |
 | **state** | [**SelfServiceRecoveryFlowState**](SelfServiceRecoveryFlowState.md) |  |  |
 | **type** | **String** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | [optional] |
 | **ui** | [**UiContainer**](UiContainer.md) |  |  |
@@ -24,6 +25,7 @@ instance = OryClient::SelfServiceRecoveryFlow.new(
   id: null,
   issued_at: null,
   request_url: null,
+  return_to: null,
   state: null,
   type: null,
   ui: null

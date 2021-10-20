@@ -1,165 +1,106 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class SubmitSelfServiceLoginFlowWithPasswordMethodBody {
-  /// Returns a new [SubmitSelfServiceLoginFlowWithPasswordMethodBody] instance.
-  SubmitSelfServiceLoginFlowWithPasswordMethodBody({
-    this.csrfToken,
-    @required this.method,
-    @required this.password,
-    @required this.passwordIdentifier,
-  });
+part 'submit_self_service_login_flow_with_password_method_body.g.dart';
 
-  /// Sending the anti-csrf token is only required for browser login flows.
-  String csrfToken;
+abstract class SubmitSelfServiceLoginFlowWithPasswordMethodBody implements Built<SubmitSelfServiceLoginFlowWithPasswordMethodBody, SubmitSelfServiceLoginFlowWithPasswordMethodBodyBuilder> {
 
-  /// Method should be set to \"password\" when logging in using the identifier and password strategy.
-  SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnum method;
+    /// Sending the anti-csrf token is only required for browser login flows.
+    @nullable
+    @BuiltValueField(wireName: r'csrf_token')
+    String get csrfToken;
 
-  /// The user's password.
-  String password;
+    /// Method should be set to \"password\" when logging in using the identifier and password strategy.
+    @BuiltValueField(wireName: r'method')
+    String get method;
 
-  /// Identifier is the email or username of the user trying to log in.
-  String passwordIdentifier;
+    /// The user's password.
+    @BuiltValueField(wireName: r'password')
+    String get password;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is SubmitSelfServiceLoginFlowWithPasswordMethodBody &&
-     other.csrfToken == csrfToken &&
-     other.method == method &&
-     other.password == password &&
-     other.passwordIdentifier == passwordIdentifier;
+    /// Identifier is the email or username of the user trying to log in.
+    @BuiltValueField(wireName: r'password_identifier')
+    String get passwordIdentifier;
 
-  @override
-  int get hashCode =>
-    (csrfToken == null ? 0 : csrfToken.hashCode) +
-    (method == null ? 0 : method.hashCode) +
-    (password == null ? 0 : password.hashCode) +
-    (passwordIdentifier == null ? 0 : passwordIdentifier.hashCode);
+    SubmitSelfServiceLoginFlowWithPasswordMethodBody._();
 
-  @override
-  String toString() => 'SubmitSelfServiceLoginFlowWithPasswordMethodBody[csrfToken=$csrfToken, method=$method, password=$password, passwordIdentifier=$passwordIdentifier]';
+    static void _initializeBuilder(SubmitSelfServiceLoginFlowWithPasswordMethodBodyBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (csrfToken != null) {
-      json[r'csrf_token'] = csrfToken;
-    }
-      json[r'method'] = method;
-      json[r'password'] = password;
-      json[r'password_identifier'] = passwordIdentifier;
-    return json;
-  }
+    factory SubmitSelfServiceLoginFlowWithPasswordMethodBody([void updates(SubmitSelfServiceLoginFlowWithPasswordMethodBodyBuilder b)]) = _$SubmitSelfServiceLoginFlowWithPasswordMethodBody;
 
-  /// Returns a new [SubmitSelfServiceLoginFlowWithPasswordMethodBody] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static SubmitSelfServiceLoginFlowWithPasswordMethodBody fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : SubmitSelfServiceLoginFlowWithPasswordMethodBody(
-        csrfToken: json[r'csrf_token'],
-        method: SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnum.fromJson(json[r'method']),
-        password: json[r'password'],
-        passwordIdentifier: json[r'password_identifier'],
-    );
-
-  static List<SubmitSelfServiceLoginFlowWithPasswordMethodBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <SubmitSelfServiceLoginFlowWithPasswordMethodBody>[]
-      : json.map((dynamic value) => SubmitSelfServiceLoginFlowWithPasswordMethodBody.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, SubmitSelfServiceLoginFlowWithPasswordMethodBody> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, SubmitSelfServiceLoginFlowWithPasswordMethodBody>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = SubmitSelfServiceLoginFlowWithPasswordMethodBody.fromJson(value));
-    }
-    return map;
-  }
-
-  // maps a json object with a list of SubmitSelfServiceLoginFlowWithPasswordMethodBody-objects as value to a dart map
-  static Map<String, List<SubmitSelfServiceLoginFlowWithPasswordMethodBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<SubmitSelfServiceLoginFlowWithPasswordMethodBody>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = SubmitSelfServiceLoginFlowWithPasswordMethodBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
+    @BuiltValueSerializer(custom: true)
+    static Serializer<SubmitSelfServiceLoginFlowWithPasswordMethodBody> get serializer => _$SubmitSelfServiceLoginFlowWithPasswordMethodBodySerializer();
 }
 
-/// Method should be set to \"password\" when logging in using the identifier and password strategy.
-class SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnum {
-  /// Instantiate a new enum with the provided [value].
-  const SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnum._(this.value);
+class _$SubmitSelfServiceLoginFlowWithPasswordMethodBodySerializer implements StructuredSerializer<SubmitSelfServiceLoginFlowWithPasswordMethodBody> {
 
-  /// The underlying value of this enum member.
-  final String value;
+    @override
+    final Iterable<Type> types = const [SubmitSelfServiceLoginFlowWithPasswordMethodBody, _$SubmitSelfServiceLoginFlowWithPasswordMethodBody];
+    @override
+    final String wireName = r'SubmitSelfServiceLoginFlowWithPasswordMethodBody';
 
-  @override
-  String toString() => value;
-
-  String toJson() => value;
-
-  static const password = SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnum._(r'password');
-  static const oidc = SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnum._(r'oidc');
-  static const totp = SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnum._(r'totp');
-
-  /// List of all possible values in this [enum][SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnum].
-  static const values = <SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnum>[
-    password,
-    oidc,
-    totp,
-  ];
-
-  static SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnum fromJson(dynamic value) =>
-    SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnumTypeTransformer().decode(value);
-
-  static List<SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnum> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnum>[]
-      : json
-          .map((value) => SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnum.fromJson(value))
-          .toList(growable: true == growable);
-}
-
-/// Transformation class that can [encode] an instance of [SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnum] to String,
-/// and [decode] dynamic data back to [SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnum].
-class SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnumTypeTransformer {
-  const SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnumTypeTransformer._();
-
-  factory SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnumTypeTransformer() => _instance ??= SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnumTypeTransformer._();
-
-  String encode(SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnum decode(dynamic data, {bool allowNull}) {
-    switch (data) {
-      case r'password': return SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnum.password;
-      case r'oidc': return SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnum.oidc;
-      case r'totp': return SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnum.totp;
-      default:
-        if (allowNull == false) {
-          throw ArgumentError('Unknown enum value to decode: $data');
+    @override
+    Iterable<Object> serialize(Serializers serializers, SubmitSelfServiceLoginFlowWithPasswordMethodBody object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.csrfToken != null) {
+            result
+                ..add(r'csrf_token')
+                ..add(serializers.serialize(object.csrfToken,
+                    specifiedType: const FullType(String)));
         }
+        result
+            ..add(r'method')
+            ..add(serializers.serialize(object.method,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'password')
+            ..add(serializers.serialize(object.password,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'password_identifier')
+            ..add(serializers.serialize(object.passwordIdentifier,
+                specifiedType: const FullType(String)));
+        return result;
     }
-    return null;
-  }
 
-  /// Singleton [SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnumTypeTransformer] instance.
-  static SubmitSelfServiceLoginFlowWithPasswordMethodBodyMethodEnumTypeTransformer _instance;
+    @override
+    SubmitSelfServiceLoginFlowWithPasswordMethodBody deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = SubmitSelfServiceLoginFlowWithPasswordMethodBodyBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'csrf_token':
+                    result.csrfToken = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'method':
+                    result.method = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'password':
+                    result.password = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'password_identifier':
+                    result.passwordIdentifier = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
+    }
 }
 

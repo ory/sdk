@@ -1,69 +1,67 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:ory_client/model/generic_error.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class JsonError {
-  /// Returns a new [JsonError] instance.
-  JsonError({
-    @required this.error,
-  });
+part 'json_error.g.dart';
 
-  GenericError error;
+abstract class JsonError implements Built<JsonError, JsonErrorBuilder> {
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is JsonError &&
-     other.error == error;
+    @BuiltValueField(wireName: r'error')
+    GenericError get error;
 
-  @override
-  int get hashCode =>
-    (error == null ? 0 : error.hashCode);
+    JsonError._();
 
-  @override
-  String toString() => 'JsonError[error=$error]';
+    static void _initializeBuilder(JsonErrorBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-      json[r'error'] = error;
-    return json;
-  }
+    factory JsonError([void updates(JsonErrorBuilder b)]) = _$JsonError;
 
-  /// Returns a new [JsonError] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static JsonError fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : JsonError(
-        error: GenericError.fromJson(json[r'error']),
-    );
+    @BuiltValueSerializer(custom: true)
+    static Serializer<JsonError> get serializer => _$JsonErrorSerializer();
+}
 
-  static List<JsonError> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <JsonError>[]
-      : json.map((dynamic value) => JsonError.fromJson(value)).toList(growable: true == growable);
+class _$JsonErrorSerializer implements StructuredSerializer<JsonError> {
 
-  static Map<String, JsonError> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, JsonError>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = JsonError.fromJson(value));
+    @override
+    final Iterable<Type> types = const [JsonError, _$JsonError];
+    @override
+    final String wireName = r'JsonError';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, JsonError object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        result
+            ..add(r'error')
+            ..add(serializers.serialize(object.error,
+                specifiedType: const FullType(GenericError)));
+        return result;
     }
-    return map;
-  }
 
-  // maps a json object with a list of JsonError-objects as value to a dart map
-  static Map<String, List<JsonError>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<JsonError>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = JsonError.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
+    @override
+    JsonError deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = JsonErrorBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'error':
+                    result.error.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(GenericError)) as GenericError);
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
 }
 

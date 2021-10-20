@@ -1,27 +1,26 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-import 'package:ory_client/api.dart';
+import 'package:ory_client/model/submit_self_service_login_flow_body.dart';
 import 'package:test/test.dart';
 
 // tests for SubmitSelfServiceLoginFlowBody
 void main() {
-  final instance = SubmitSelfServiceLoginFlowBody();
+  final instance = SubmitSelfServiceLoginFlowBodyBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test SubmitSelfServiceLoginFlowBody', () {
+  group(SubmitSelfServiceLoginFlowBody, () {
     // Sending the anti-csrf token is only required for browser login flows.
     // String csrfToken
     test('to test the property `csrfToken`', () async {
       // TODO
     });
 
-    // Method should be set to \"password\" when logging in using the identifier and password strategy.
+    // Method should be set to \"totp\" when logging in using the TOTP strategy.
     // String method
     test('to test the property `method`', () async {
       // TODO
@@ -36,6 +35,24 @@ void main() {
     // Identifier is the email or username of the user trying to log in.
     // String passwordIdentifier
     test('to test the property `passwordIdentifier`', () async {
+      // TODO
+    });
+
+    // The provider to register with
+    // String provider
+    test('to test the property `provider`', () async {
+      // TODO
+    });
+
+    // The identity traits. This is a placeholder for the registration flow.
+    // JsonObject traits
+    test('to test the property `traits`', () async {
+      // TODO
+    });
+
+    // The TOTP code.
+    // String totpCode
+    test('to test the property `totpCode`', () async {
       // TODO
     });
 

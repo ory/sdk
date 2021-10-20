@@ -1,90 +1,97 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class SubmitSelfServiceLoginFlowWithWebAuthnMethodBody {
-  /// Returns a new [SubmitSelfServiceLoginFlowWithWebAuthnMethodBody] instance.
-  SubmitSelfServiceLoginFlowWithWebAuthnMethodBody({
-    this.csrfToken,
-    @required this.method,
-    this.webauthnLogin,
-  });
+part 'submit_self_service_login_flow_with_web_authn_method_body.g.dart';
 
-  /// Sending the anti-csrf token is only required for browser login flows.
-  String csrfToken;
+abstract class SubmitSelfServiceLoginFlowWithWebAuthnMethodBody implements Built<SubmitSelfServiceLoginFlowWithWebAuthnMethodBody, SubmitSelfServiceLoginFlowWithWebAuthnMethodBodyBuilder> {
 
-  /// Method should be set to \"webAuthn\" when logging in using the WebAuthn strategy.
-  String method;
+    /// Sending the anti-csrf token is only required for browser login flows.
+    @nullable
+    @BuiltValueField(wireName: r'csrf_token')
+    String get csrfToken;
 
-  /// Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection.
-  String webauthnLogin;
+    /// Method should be set to \"webAuthn\" when logging in using the WebAuthn strategy.
+    @BuiltValueField(wireName: r'method')
+    String get method;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is SubmitSelfServiceLoginFlowWithWebAuthnMethodBody &&
-     other.csrfToken == csrfToken &&
-     other.method == method &&
-     other.webauthnLogin == webauthnLogin;
+    /// Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection.
+    @nullable
+    @BuiltValueField(wireName: r'webauthn_login')
+    String get webauthnLogin;
 
-  @override
-  int get hashCode =>
-    (csrfToken == null ? 0 : csrfToken.hashCode) +
-    (method == null ? 0 : method.hashCode) +
-    (webauthnLogin == null ? 0 : webauthnLogin.hashCode);
+    SubmitSelfServiceLoginFlowWithWebAuthnMethodBody._();
 
-  @override
-  String toString() => 'SubmitSelfServiceLoginFlowWithWebAuthnMethodBody[csrfToken=$csrfToken, method=$method, webauthnLogin=$webauthnLogin]';
+    static void _initializeBuilder(SubmitSelfServiceLoginFlowWithWebAuthnMethodBodyBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (csrfToken != null) {
-      json[r'csrf_token'] = csrfToken;
+    factory SubmitSelfServiceLoginFlowWithWebAuthnMethodBody([void updates(SubmitSelfServiceLoginFlowWithWebAuthnMethodBodyBuilder b)]) = _$SubmitSelfServiceLoginFlowWithWebAuthnMethodBody;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<SubmitSelfServiceLoginFlowWithWebAuthnMethodBody> get serializer => _$SubmitSelfServiceLoginFlowWithWebAuthnMethodBodySerializer();
+}
+
+class _$SubmitSelfServiceLoginFlowWithWebAuthnMethodBodySerializer implements StructuredSerializer<SubmitSelfServiceLoginFlowWithWebAuthnMethodBody> {
+
+    @override
+    final Iterable<Type> types = const [SubmitSelfServiceLoginFlowWithWebAuthnMethodBody, _$SubmitSelfServiceLoginFlowWithWebAuthnMethodBody];
+    @override
+    final String wireName = r'SubmitSelfServiceLoginFlowWithWebAuthnMethodBody';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, SubmitSelfServiceLoginFlowWithWebAuthnMethodBody object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.csrfToken != null) {
+            result
+                ..add(r'csrf_token')
+                ..add(serializers.serialize(object.csrfToken,
+                    specifiedType: const FullType(String)));
+        }
+        result
+            ..add(r'method')
+            ..add(serializers.serialize(object.method,
+                specifiedType: const FullType(String)));
+        if (object.webauthnLogin != null) {
+            result
+                ..add(r'webauthn_login')
+                ..add(serializers.serialize(object.webauthnLogin,
+                    specifiedType: const FullType(String)));
+        }
+        return result;
     }
-      json[r'method'] = method;
-    if (webauthnLogin != null) {
-      json[r'webauthn_login'] = webauthnLogin;
+
+    @override
+    SubmitSelfServiceLoginFlowWithWebAuthnMethodBody deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = SubmitSelfServiceLoginFlowWithWebAuthnMethodBodyBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'csrf_token':
+                    result.csrfToken = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'method':
+                    result.method = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'webauthn_login':
+                    result.webauthnLogin = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return json;
-  }
-
-  /// Returns a new [SubmitSelfServiceLoginFlowWithWebAuthnMethodBody] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static SubmitSelfServiceLoginFlowWithWebAuthnMethodBody fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : SubmitSelfServiceLoginFlowWithWebAuthnMethodBody(
-        csrfToken: json[r'csrf_token'],
-        method: json[r'method'],
-        webauthnLogin: json[r'webauthn_login'],
-    );
-
-  static List<SubmitSelfServiceLoginFlowWithWebAuthnMethodBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <SubmitSelfServiceLoginFlowWithWebAuthnMethodBody>[]
-      : json.map((dynamic value) => SubmitSelfServiceLoginFlowWithWebAuthnMethodBody.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, SubmitSelfServiceLoginFlowWithWebAuthnMethodBody> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, SubmitSelfServiceLoginFlowWithWebAuthnMethodBody>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = SubmitSelfServiceLoginFlowWithWebAuthnMethodBody.fromJson(value));
-    }
-    return map;
-  }
-
-  // maps a json object with a list of SubmitSelfServiceLoginFlowWithWebAuthnMethodBody-objects as value to a dart map
-  static Map<String, List<SubmitSelfServiceLoginFlowWithWebAuthnMethodBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<SubmitSelfServiceLoginFlowWithWebAuthnMethodBody>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = SubmitSelfServiceLoginFlowWithWebAuthnMethodBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

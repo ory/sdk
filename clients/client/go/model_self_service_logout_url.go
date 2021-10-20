@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.19
+ * API version: v0.0.1-alpha.21
  * Contact: support@ory.sh
  */
 
@@ -17,16 +17,20 @@ import (
 
 // SelfServiceLogoutUrl struct for SelfServiceLogoutUrl
 type SelfServiceLogoutUrl struct {
-	// LogoutURL can be opened in a browser to  format: uri
-	LogoutUrl *string `json:"logout_url,omitempty"`
+	// LogoutToken can be used to perform logout using AJAX.
+	LogoutToken string `json:"logout_token"`
+	// LogoutURL can be opened in a browser to sign the user out.  format: uri
+	LogoutUrl string `json:"logout_url"`
 }
 
 // NewSelfServiceLogoutUrl instantiates a new SelfServiceLogoutUrl object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSelfServiceLogoutUrl() *SelfServiceLogoutUrl {
+func NewSelfServiceLogoutUrl(logoutToken string, logoutUrl string) *SelfServiceLogoutUrl {
 	this := SelfServiceLogoutUrl{}
+	this.LogoutToken = logoutToken
+	this.LogoutUrl = logoutUrl
 	return &this
 }
 
@@ -38,41 +42,60 @@ func NewSelfServiceLogoutUrlWithDefaults() *SelfServiceLogoutUrl {
 	return &this
 }
 
-// GetLogoutUrl returns the LogoutUrl field value if set, zero value otherwise.
-func (o *SelfServiceLogoutUrl) GetLogoutUrl() string {
-	if o == nil || o.LogoutUrl == nil {
+// GetLogoutToken returns the LogoutToken field value
+func (o *SelfServiceLogoutUrl) GetLogoutToken() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.LogoutUrl
+
+	return o.LogoutToken
 }
 
-// GetLogoutUrlOk returns a tuple with the LogoutUrl field value if set, nil otherwise
+// GetLogoutTokenOk returns a tuple with the LogoutToken field value
 // and a boolean to check if the value has been set.
-func (o *SelfServiceLogoutUrl) GetLogoutUrlOk() (*string, bool) {
-	if o == nil || o.LogoutUrl == nil {
+func (o *SelfServiceLogoutUrl) GetLogoutTokenOk() (*string, bool) {
+	if o == nil  {
 		return nil, false
 	}
-	return o.LogoutUrl, true
+	return &o.LogoutToken, true
 }
 
-// HasLogoutUrl returns a boolean if a field has been set.
-func (o *SelfServiceLogoutUrl) HasLogoutUrl() bool {
-	if o != nil && o.LogoutUrl != nil {
-		return true
+// SetLogoutToken sets field value
+func (o *SelfServiceLogoutUrl) SetLogoutToken(v string) {
+	o.LogoutToken = v
+}
+
+// GetLogoutUrl returns the LogoutUrl field value
+func (o *SelfServiceLogoutUrl) GetLogoutUrl() string {
+	if o == nil {
+		var ret string
+		return ret
 	}
 
-	return false
+	return o.LogoutUrl
 }
 
-// SetLogoutUrl gets a reference to the given string and assigns it to the LogoutUrl field.
+// GetLogoutUrlOk returns a tuple with the LogoutUrl field value
+// and a boolean to check if the value has been set.
+func (o *SelfServiceLogoutUrl) GetLogoutUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.LogoutUrl, true
+}
+
+// SetLogoutUrl sets field value
 func (o *SelfServiceLogoutUrl) SetLogoutUrl(v string) {
-	o.LogoutUrl = &v
+	o.LogoutUrl = v
 }
 
 func (o SelfServiceLogoutUrl) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.LogoutUrl != nil {
+	if true {
+		toSerialize["logout_token"] = o.LogoutToken
+	}
+	if true {
 		toSerialize["logout_url"] = o.LogoutUrl
 	}
 	return json.Marshal(toSerialize)

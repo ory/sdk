@@ -1,130 +1,173 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/json_object.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class GenericError {
-  /// Returns a new [GenericError] instance.
-  GenericError({
-    this.code,
-    this.debug,
-    this.details,
-    @required this.message,
-    this.reason,
-    this.request,
-    this.status,
-  });
+part 'generic_error.g.dart';
 
-  /// The status code
-  int code;
+abstract class GenericError implements Built<GenericError, GenericErrorBuilder> {
 
-  /// Debug information  This field is often not exposed to protect against leaking sensitive information.
-  String debug;
+    /// The status code
+    @nullable
+    @BuiltValueField(wireName: r'code')
+    int get code;
 
-  /// Further error details
-  Object details;
+    /// Debug information  This field is often not exposed to protect against leaking sensitive information.
+    @nullable
+    @BuiltValueField(wireName: r'debug')
+    String get debug;
 
-  /// Error message  The error's message.
-  String message;
+    /// Further error details
+    @nullable
+    @BuiltValueField(wireName: r'details')
+    JsonObject get details;
 
-  /// A human-readable reason for the error
-  String reason;
+    /// The error ID  Useful when trying to identify various errors in application logic.
+    @nullable
+    @BuiltValueField(wireName: r'id')
+    String get id;
 
-  /// The request ID  The request ID is often exposed internally in order to trace errors across service architectures. This is often a UUID.
-  String request;
+    /// Error message  The error's message.
+    @BuiltValueField(wireName: r'message')
+    String get message;
 
-  /// The status description
-  String status;
+    /// A human-readable reason for the error
+    @nullable
+    @BuiltValueField(wireName: r'reason')
+    String get reason;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is GenericError &&
-     other.code == code &&
-     other.debug == debug &&
-     other.details == details &&
-     other.message == message &&
-     other.reason == reason &&
-     other.request == request &&
-     other.status == status;
+    /// The request ID  The request ID is often exposed internally in order to trace errors across service architectures. This is often a UUID.
+    @nullable
+    @BuiltValueField(wireName: r'request')
+    String get request;
 
-  @override
-  int get hashCode =>
-    (code == null ? 0 : code.hashCode) +
-    (debug == null ? 0 : debug.hashCode) +
-    (details == null ? 0 : details.hashCode) +
-    (message == null ? 0 : message.hashCode) +
-    (reason == null ? 0 : reason.hashCode) +
-    (request == null ? 0 : request.hashCode) +
-    (status == null ? 0 : status.hashCode);
+    /// The status description
+    @nullable
+    @BuiltValueField(wireName: r'status')
+    String get status;
 
-  @override
-  String toString() => 'GenericError[code=$code, debug=$debug, details=$details, message=$message, reason=$reason, request=$request, status=$status]';
+    GenericError._();
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (code != null) {
-      json[r'code'] = code;
+    static void _initializeBuilder(GenericErrorBuilder b) => b;
+
+    factory GenericError([void updates(GenericErrorBuilder b)]) = _$GenericError;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<GenericError> get serializer => _$GenericErrorSerializer();
+}
+
+class _$GenericErrorSerializer implements StructuredSerializer<GenericError> {
+
+    @override
+    final Iterable<Type> types = const [GenericError, _$GenericError];
+    @override
+    final String wireName = r'GenericError';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, GenericError object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.code != null) {
+            result
+                ..add(r'code')
+                ..add(serializers.serialize(object.code,
+                    specifiedType: const FullType(int)));
+        }
+        if (object.debug != null) {
+            result
+                ..add(r'debug')
+                ..add(serializers.serialize(object.debug,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.details != null) {
+            result
+                ..add(r'details')
+                ..add(serializers.serialize(object.details,
+                    specifiedType: const FullType(JsonObject)));
+        }
+        if (object.id != null) {
+            result
+                ..add(r'id')
+                ..add(serializers.serialize(object.id,
+                    specifiedType: const FullType(String)));
+        }
+        result
+            ..add(r'message')
+            ..add(serializers.serialize(object.message,
+                specifiedType: const FullType(String)));
+        if (object.reason != null) {
+            result
+                ..add(r'reason')
+                ..add(serializers.serialize(object.reason,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.request != null) {
+            result
+                ..add(r'request')
+                ..add(serializers.serialize(object.request,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.status != null) {
+            result
+                ..add(r'status')
+                ..add(serializers.serialize(object.status,
+                    specifiedType: const FullType(String)));
+        }
+        return result;
     }
-    if (debug != null) {
-      json[r'debug'] = debug;
-    }
-    if (details != null) {
-      json[r'details'] = details;
-    }
-      json[r'message'] = message;
-    if (reason != null) {
-      json[r'reason'] = reason;
-    }
-    if (request != null) {
-      json[r'request'] = request;
-    }
-    if (status != null) {
-      json[r'status'] = status;
-    }
-    return json;
-  }
 
-  /// Returns a new [GenericError] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static GenericError fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : GenericError(
-        code: json[r'code'],
-        debug: json[r'debug'],
-        details: json[r'details'],
-        message: json[r'message'],
-        reason: json[r'reason'],
-        request: json[r'request'],
-        status: json[r'status'],
-    );
+    @override
+    GenericError deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = GenericErrorBuilder();
 
-  static List<GenericError> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <GenericError>[]
-      : json.map((dynamic value) => GenericError.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, GenericError> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, GenericError>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = GenericError.fromJson(value));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'code':
+                    result.code = serializers.deserialize(value,
+                        specifiedType: const FullType(int)) as int;
+                    break;
+                case r'debug':
+                    result.debug = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'details':
+                    result.details = serializers.deserialize(value,
+                        specifiedType: const FullType(JsonObject)) as JsonObject;
+                    break;
+                case r'id':
+                    result.id = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'message':
+                    result.message = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'reason':
+                    result.reason = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'request':
+                    result.request = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'status':
+                    result.status = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of GenericError-objects as value to a dart map
-  static Map<String, List<GenericError>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<GenericError>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = GenericError.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

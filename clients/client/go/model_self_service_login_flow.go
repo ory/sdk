@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.19
+ * API version: v0.0.1-alpha.21
  * Contact: support@ory.sh
  */
 
@@ -23,14 +23,16 @@ type SelfServiceLoginFlow struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated.
 	ExpiresAt time.Time `json:"expires_at"`
-	// Refresh stores whether this login flow should enforce re-authentication.
-	Forced *bool `json:"forced,omitempty"`
 	Id string `json:"id"`
 	// IssuedAt is the time (UTC) when the flow started.
 	IssuedAt time.Time `json:"issued_at"`
+	// Refresh stores whether this login flow should enforce re-authentication.
+	Refresh *bool `json:"refresh,omitempty"`
 	// RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
 	RequestUrl string `json:"request_url"`
 	RequestedAal *AuthenticatorAssuranceLevel `json:"requested_aal,omitempty"`
+	// ReturnTo contains the requested return_to URL.
+	ReturnTo *string `json:"return_to,omitempty"`
 	// The flow type can either be `api` or `browser`.
 	Type string `json:"type"`
 	Ui UiContainer `json:"ui"`
@@ -149,38 +151,6 @@ func (o *SelfServiceLoginFlow) SetExpiresAt(v time.Time) {
 	o.ExpiresAt = v
 }
 
-// GetForced returns the Forced field value if set, zero value otherwise.
-func (o *SelfServiceLoginFlow) GetForced() bool {
-	if o == nil || o.Forced == nil {
-		var ret bool
-		return ret
-	}
-	return *o.Forced
-}
-
-// GetForcedOk returns a tuple with the Forced field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SelfServiceLoginFlow) GetForcedOk() (*bool, bool) {
-	if o == nil || o.Forced == nil {
-		return nil, false
-	}
-	return o.Forced, true
-}
-
-// HasForced returns a boolean if a field has been set.
-func (o *SelfServiceLoginFlow) HasForced() bool {
-	if o != nil && o.Forced != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetForced gets a reference to the given bool and assigns it to the Forced field.
-func (o *SelfServiceLoginFlow) SetForced(v bool) {
-	o.Forced = &v
-}
-
 // GetId returns the Id field value
 func (o *SelfServiceLoginFlow) GetId() string {
 	if o == nil {
@@ -227,6 +197,38 @@ func (o *SelfServiceLoginFlow) GetIssuedAtOk() (*time.Time, bool) {
 // SetIssuedAt sets field value
 func (o *SelfServiceLoginFlow) SetIssuedAt(v time.Time) {
 	o.IssuedAt = v
+}
+
+// GetRefresh returns the Refresh field value if set, zero value otherwise.
+func (o *SelfServiceLoginFlow) GetRefresh() bool {
+	if o == nil || o.Refresh == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Refresh
+}
+
+// GetRefreshOk returns a tuple with the Refresh field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SelfServiceLoginFlow) GetRefreshOk() (*bool, bool) {
+	if o == nil || o.Refresh == nil {
+		return nil, false
+	}
+	return o.Refresh, true
+}
+
+// HasRefresh returns a boolean if a field has been set.
+func (o *SelfServiceLoginFlow) HasRefresh() bool {
+	if o != nil && o.Refresh != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRefresh gets a reference to the given bool and assigns it to the Refresh field.
+func (o *SelfServiceLoginFlow) SetRefresh(v bool) {
+	o.Refresh = &v
 }
 
 // GetRequestUrl returns the RequestUrl field value
@@ -283,6 +285,38 @@ func (o *SelfServiceLoginFlow) HasRequestedAal() bool {
 // SetRequestedAal gets a reference to the given AuthenticatorAssuranceLevel and assigns it to the RequestedAal field.
 func (o *SelfServiceLoginFlow) SetRequestedAal(v AuthenticatorAssuranceLevel) {
 	o.RequestedAal = &v
+}
+
+// GetReturnTo returns the ReturnTo field value if set, zero value otherwise.
+func (o *SelfServiceLoginFlow) GetReturnTo() string {
+	if o == nil || o.ReturnTo == nil {
+		var ret string
+		return ret
+	}
+	return *o.ReturnTo
+}
+
+// GetReturnToOk returns a tuple with the ReturnTo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SelfServiceLoginFlow) GetReturnToOk() (*string, bool) {
+	if o == nil || o.ReturnTo == nil {
+		return nil, false
+	}
+	return o.ReturnTo, true
+}
+
+// HasReturnTo returns a boolean if a field has been set.
+func (o *SelfServiceLoginFlow) HasReturnTo() bool {
+	if o != nil && o.ReturnTo != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetReturnTo gets a reference to the given string and assigns it to the ReturnTo field.
+func (o *SelfServiceLoginFlow) SetReturnTo(v string) {
+	o.ReturnTo = &v
 }
 
 // GetType returns the Type field value
@@ -376,20 +410,23 @@ func (o SelfServiceLoginFlow) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["expires_at"] = o.ExpiresAt
 	}
-	if o.Forced != nil {
-		toSerialize["forced"] = o.Forced
-	}
 	if true {
 		toSerialize["id"] = o.Id
 	}
 	if true {
 		toSerialize["issued_at"] = o.IssuedAt
 	}
+	if o.Refresh != nil {
+		toSerialize["refresh"] = o.Refresh
+	}
 	if true {
 		toSerialize["request_url"] = o.RequestUrl
 	}
 	if o.RequestedAal != nil {
 		toSerialize["requested_aal"] = o.RequestedAal
+	}
+	if o.ReturnTo != nil {
+		toSerialize["return_to"] = o.ReturnTo
 	}
 	if true {
 		toSerialize["type"] = o.Type

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **height** | Option<**i64**> | Height of the image | [optional]
 **id** | **String** | A unique identifier | 
+**node_type** | **String** |  | 
 **src** | **String** | The image's source URL.  format: uri | 
 **width** | Option<**i64**> | Width of the image | [optional]
 

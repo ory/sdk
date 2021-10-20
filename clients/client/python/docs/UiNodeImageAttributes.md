@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | A unique identifier | 
+**node_type** | **str** |  | 
 **src** | **str** | The image&#39;s source URL.  format: uri | 
 **height** | **int** | Height of the image | [optional] 
 **width** | **int** | Width of the image | [optional] 

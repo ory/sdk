@@ -1,21 +1,26 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-import 'package:ory_client/api.dart';
+import 'package:ory_client/model/self_service_logout_url.dart';
 import 'package:test/test.dart';
 
 // tests for SelfServiceLogoutUrl
 void main() {
-  final instance = SelfServiceLogoutUrl();
+  final instance = SelfServiceLogoutUrlBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test SelfServiceLogoutUrl', () {
-    // LogoutURL can be opened in a browser to  format: uri
+  group(SelfServiceLogoutUrl, () {
+    // LogoutToken can be used to perform logout using AJAX.
+    // String logoutToken
+    test('to test the property `logoutToken`', () async {
+      // TODO
+    });
+
+    // LogoutURL can be opened in a browser to sign the user out.  format: uri
     // String logoutUrl
     test('to test the property `logoutUrl`', () async {
       // TODO

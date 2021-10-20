@@ -1,20 +1,19 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-import 'package:ory_client/api.dart';
+import 'package:ory_client/model/ui_node_input_attributes.dart';
 import 'package:test/test.dart';
 
 // tests for UiNodeInputAttributes
 void main() {
-  final instance = UiNodeInputAttributes();
+  final instance = UiNodeInputAttributesBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test UiNodeInputAttributes', () {
+  group(UiNodeInputAttributes, () {
     // Sets the input's disabled field to true or false.
     // bool disabled
     test('to test the property `disabled`', () async {
@@ -29,6 +28,17 @@ void main() {
     // The input's element name.
     // String name
     test('to test the property `name`', () async {
+      // TODO
+    });
+
+    // String nodeType
+    test('to test the property `nodeType`', () async {
+      // TODO
+    });
+
+    // OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.
+    // String onclick
+    test('to test the property `onclick`', () async {
       // TODO
     });
 
@@ -49,7 +59,8 @@ void main() {
       // TODO
     });
 
-    // UiNodeInputAttributesValue value
+    // The input's value.
+    // JsonObject value
     test('to test the property `value`', () async {
       // TODO
     });

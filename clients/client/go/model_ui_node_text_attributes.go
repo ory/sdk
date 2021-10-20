@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.19
+ * API version: v0.0.1-alpha.21
  * Contact: support@ory.sh
  */
 
@@ -19,6 +19,7 @@ import (
 type UiNodeTextAttributes struct {
 	// A unique identifier
 	Id string `json:"id"`
+	NodeType string `json:"node_type"`
 	Text UiText `json:"text"`
 }
 
@@ -26,9 +27,10 @@ type UiNodeTextAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUiNodeTextAttributes(id string, text UiText) *UiNodeTextAttributes {
+func NewUiNodeTextAttributes(id string, nodeType string, text UiText) *UiNodeTextAttributes {
 	this := UiNodeTextAttributes{}
 	this.Id = id
+	this.NodeType = nodeType
 	this.Text = text
 	return &this
 }
@@ -65,6 +67,30 @@ func (o *UiNodeTextAttributes) SetId(v string) {
 	o.Id = v
 }
 
+// GetNodeType returns the NodeType field value
+func (o *UiNodeTextAttributes) GetNodeType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.NodeType
+}
+
+// GetNodeTypeOk returns a tuple with the NodeType field value
+// and a boolean to check if the value has been set.
+func (o *UiNodeTextAttributes) GetNodeTypeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.NodeType, true
+}
+
+// SetNodeType sets field value
+func (o *UiNodeTextAttributes) SetNodeType(v string) {
+	o.NodeType = v
+}
+
 // GetText returns the Text field value
 func (o *UiNodeTextAttributes) GetText() UiText {
 	if o == nil {
@@ -93,6 +119,9 @@ func (o UiNodeTextAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["node_type"] = o.NodeType
 	}
 	if true {
 		toSerialize["text"] = o.Text

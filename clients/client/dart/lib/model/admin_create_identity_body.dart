@@ -1,78 +1,96 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:ory_client/model/identity_state.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class AdminCreateIdentityBody {
-  /// Returns a new [AdminCreateIdentityBody] instance.
-  AdminCreateIdentityBody({
-    @required this.schemaId,
-    @required this.traits,
-  });
+part 'admin_create_identity_body.g.dart';
 
-  /// SchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
-  String schemaId;
+abstract class AdminCreateIdentityBody implements Built<AdminCreateIdentityBody, AdminCreateIdentityBodyBuilder> {
 
-  /// Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_url`.
-  Object traits;
+    /// SchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
+    @BuiltValueField(wireName: r'schema_id')
+    String get schemaId;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is AdminCreateIdentityBody &&
-     other.schemaId == schemaId &&
-     other.traits == traits;
+    @nullable
+    @BuiltValueField(wireName: r'state')
+    IdentityState get state;
+    // enum stateEnum {  active,  inactive,  };
 
-  @override
-  int get hashCode =>
-    (schemaId == null ? 0 : schemaId.hashCode) +
-    (traits == null ? 0 : traits.hashCode);
+    /// Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_url`.
+    @BuiltValueField(wireName: r'traits')
+    JsonObject get traits;
 
-  @override
-  String toString() => 'AdminCreateIdentityBody[schemaId=$schemaId, traits=$traits]';
+    AdminCreateIdentityBody._();
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-      json[r'schema_id'] = schemaId;
-      json[r'traits'] = traits;
-    return json;
-  }
+    static void _initializeBuilder(AdminCreateIdentityBodyBuilder b) => b;
 
-  /// Returns a new [AdminCreateIdentityBody] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static AdminCreateIdentityBody fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : AdminCreateIdentityBody(
-        schemaId: json[r'schema_id'],
-        traits: json[r'traits'],
-    );
+    factory AdminCreateIdentityBody([void updates(AdminCreateIdentityBodyBuilder b)]) = _$AdminCreateIdentityBody;
 
-  static List<AdminCreateIdentityBody> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <AdminCreateIdentityBody>[]
-      : json.map((dynamic value) => AdminCreateIdentityBody.fromJson(value)).toList(growable: true == growable);
+    @BuiltValueSerializer(custom: true)
+    static Serializer<AdminCreateIdentityBody> get serializer => _$AdminCreateIdentityBodySerializer();
+}
 
-  static Map<String, AdminCreateIdentityBody> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, AdminCreateIdentityBody>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = AdminCreateIdentityBody.fromJson(value));
+class _$AdminCreateIdentityBodySerializer implements StructuredSerializer<AdminCreateIdentityBody> {
+
+    @override
+    final Iterable<Type> types = const [AdminCreateIdentityBody, _$AdminCreateIdentityBody];
+    @override
+    final String wireName = r'AdminCreateIdentityBody';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, AdminCreateIdentityBody object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        result
+            ..add(r'schema_id')
+            ..add(serializers.serialize(object.schemaId,
+                specifiedType: const FullType(String)));
+        if (object.state != null) {
+            result
+                ..add(r'state')
+                ..add(serializers.serialize(object.state,
+                    specifiedType: const FullType(IdentityState)));
+        }
+        result
+            ..add(r'traits')
+            ..add(serializers.serialize(object.traits,
+                specifiedType: const FullType(JsonObject)));
+        return result;
     }
-    return map;
-  }
 
-  // maps a json object with a list of AdminCreateIdentityBody-objects as value to a dart map
-  static Map<String, List<AdminCreateIdentityBody>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<AdminCreateIdentityBody>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = AdminCreateIdentityBody.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
+    @override
+    AdminCreateIdentityBody deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = AdminCreateIdentityBodyBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'schema_id':
+                    result.schemaId = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'state':
+                    result.state = serializers.deserialize(value,
+                        specifiedType: const FullType(IdentityState)) as IdentityState;
+                    break;
+                case r'traits':
+                    result.traits = serializers.deserialize(value,
+                        specifiedType: const FullType(JsonObject)) as JsonObject;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
 }
 

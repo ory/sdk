@@ -1,21 +1,20 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
 import 'package:ory_client/api.dart';
+import 'package:ory_client/api/metadata_api.dart';
 import 'package:test/test.dart';
 
 
 /// tests for MetadataApi
 void main() {
-  final instance = MetadataApi();
+  final instance = OryClient().getMetadataApi();
 
-  group('tests for MetadataApi', () {
+  group(MetadataApi, () {
     // Return Running Software Version.
     //
     // This endpoint returns the version of Ory Kratos.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the version will never refer to the cluster state, only to a single instance.

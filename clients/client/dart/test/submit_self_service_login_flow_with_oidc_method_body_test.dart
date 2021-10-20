@@ -1,20 +1,19 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-import 'package:ory_client/api.dart';
+import 'package:ory_client/model/submit_self_service_login_flow_with_oidc_method_body.dart';
 import 'package:test/test.dart';
 
 // tests for SubmitSelfServiceLoginFlowWithOidcMethodBody
 void main() {
-  final instance = SubmitSelfServiceLoginFlowWithOidcMethodBody();
+  final instance = SubmitSelfServiceLoginFlowWithOidcMethodBodyBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test SubmitSelfServiceLoginFlowWithOidcMethodBody', () {
+  group(SubmitSelfServiceLoginFlowWithOidcMethodBody, () {
     // The CSRF Token
     // String csrfToken
     test('to test the property `csrfToken`', () async {
@@ -28,7 +27,13 @@ void main() {
     });
 
     // The provider to register with
-    // String traits
+    // String provider
+    test('to test the property `provider`', () async {
+      // TODO
+    });
+
+    // The identity traits. This is a placeholder for the registration flow.
+    // JsonObject traits
     test('to test the property `traits`', () async {
       // TODO
     });

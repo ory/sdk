@@ -14,6 +14,7 @@ require 'ory-client'
 OryClient::SubmitSelfServiceRegistrationFlowBody.openapi_one_of
 # =>
 # [
+#   :'SubmitSelfServiceRegistrationFlowWithOidcMethodBody',
 #   :'SubmitSelfServiceRegistrationFlowWithPasswordMethodBody'
 # ]
 ```
@@ -57,7 +58,7 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 require 'ory-client'
 
 OryClient::SubmitSelfServiceRegistrationFlowBody.build(data)
-# => #<SubmitSelfServiceRegistrationFlowWithPasswordMethodBody:0x00007fdd4aab02a0>
+# => #<SubmitSelfServiceRegistrationFlowWithOidcMethodBody:0x00007fdd4aab02a0>
 
 OryClient::SubmitSelfServiceRegistrationFlowBody.build(data_that_doesnt_match)
 # => nil
@@ -71,6 +72,7 @@ OryClient::SubmitSelfServiceRegistrationFlowBody.build(data_that_doesnt_match)
 
 #### Return type
 
+- `SubmitSelfServiceRegistrationFlowWithOidcMethodBody`
 - `SubmitSelfServiceRegistrationFlowWithPasswordMethodBody`
 - `nil` (if no type matches)
 

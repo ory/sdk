@@ -80,6 +80,7 @@ Class | Method | HTTP request | Description
 *V0alpha2Api* | [**adminCreateIdentity**](docs/Api/V0alpha2Api.md#admincreateidentity) | **POST** /api/kratos/admin/identities | Create an Identity
 *V0alpha2Api* | [**adminCreateSelfServiceRecoveryLink**](docs/Api/V0alpha2Api.md#admincreateselfservicerecoverylink) | **POST** /api/kratos/admin/recovery/link | Create a Recovery Link
 *V0alpha2Api* | [**adminDeleteIdentity**](docs/Api/V0alpha2Api.md#admindeleteidentity) | **DELETE** /api/kratos/admin/identities/{id} | Delete an Identity
+*V0alpha2Api* | [**adminDeleteIdentitySessions**](docs/Api/V0alpha2Api.md#admindeleteidentitysessions) | **DELETE** /api/kratos/admin/identities/{id}/sessions | Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.
 *V0alpha2Api* | [**adminGetIdentity**](docs/Api/V0alpha2Api.md#admingetidentity) | **GET** /api/kratos/admin/identities/{id} | Get an Identity
 *V0alpha2Api* | [**adminListIdentities**](docs/Api/V0alpha2Api.md#adminlistidentities) | **GET** /api/kratos/admin/identities | List Identities
 *V0alpha2Api* | [**adminUpdateIdentity**](docs/Api/V0alpha2Api.md#adminupdateidentity) | **PUT** /api/kratos/admin/identities/{id} | Update an Identity
@@ -91,6 +92,7 @@ Class | Method | HTTP request | Description
 *V0alpha2Api* | [**getSelfServiceRegistrationFlow**](docs/Api/V0alpha2Api.md#getselfserviceregistrationflow) | **GET** /api/kratos/public/self-service/registration/flows | Get Registration Flow
 *V0alpha2Api* | [**getSelfServiceSettingsFlow**](docs/Api/V0alpha2Api.md#getselfservicesettingsflow) | **GET** /api/kratos/public/self-service/settings/flows | Get Settings Flow
 *V0alpha2Api* | [**getSelfServiceVerificationFlow**](docs/Api/V0alpha2Api.md#getselfserviceverificationflow) | **GET** /api/kratos/public/self-service/verification/flows | Get Verification Flow
+*V0alpha2Api* | [**getWebAuthnJavaScript**](docs/Api/V0alpha2Api.md#getwebauthnjavascript) | **GET** /api/kratos/public/.well-known/ory/webauthn.js | Get WebAuthn JavaScript
 *V0alpha2Api* | [**initializeSelfServiceLoginFlowForBrowsers**](docs/Api/V0alpha2Api.md#initializeselfserviceloginflowforbrowsers) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for Browsers
 *V0alpha2Api* | [**initializeSelfServiceLoginFlowWithoutBrowser**](docs/Api/V0alpha2Api.md#initializeselfserviceloginflowwithoutbrowser) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ...
 *V0alpha2Api* | [**initializeSelfServiceRecoveryFlowForBrowsers**](docs/Api/V0alpha2Api.md#initializeselfservicerecoveryflowforbrowsers) | **GET** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browsers
@@ -101,6 +103,7 @@ Class | Method | HTTP request | Description
 *V0alpha2Api* | [**initializeSelfServiceSettingsFlowWithoutBrowser**](docs/Api/V0alpha2Api.md#initializeselfservicesettingsflowwithoutbrowser) | **GET** /api/kratos/public/self-service/settings/api | Initialize Settings Flow for APIs, Services, Apps, ...
 *V0alpha2Api* | [**initializeSelfServiceVerificationFlowForBrowsers**](docs/Api/V0alpha2Api.md#initializeselfserviceverificationflowforbrowsers) | **GET** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients
 *V0alpha2Api* | [**initializeSelfServiceVerificationFlowWithoutBrowser**](docs/Api/V0alpha2Api.md#initializeselfserviceverificationflowwithoutbrowser) | **GET** /api/kratos/public/self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
+*V0alpha2Api* | [**listIdentitySchemas**](docs/Api/V0alpha2Api.md#listidentityschemas) | **GET** /api/kratos/public/schemas | 
 *V0alpha2Api* | [**submitSelfServiceLoginFlow**](docs/Api/V0alpha2Api.md#submitselfserviceloginflow) | **POST** /api/kratos/public/self-service/login | Submit a Login Flow
 *V0alpha2Api* | [**submitSelfServiceLogoutFlow**](docs/Api/V0alpha2Api.md#submitselfservicelogoutflow) | **GET** /api/kratos/public/self-service/logout | Complete Self-Service Logout
 *V0alpha2Api* | [**submitSelfServiceLogoutFlowWithoutBrowser**](docs/Api/V0alpha2Api.md#submitselfservicelogoutflowwithoutbrowser) | **DELETE** /api/kratos/public/self-service/logout/api | Perform Logout for APIs, Services, Apps, ...
@@ -115,47 +118,25 @@ Class | Method | HTTP request | Description
 - [AdminCreateIdentityBody](docs/Model/AdminCreateIdentityBody.md)
 - [AdminCreateSelfServiceRecoveryLinkBody](docs/Model/AdminCreateSelfServiceRecoveryLinkBody.md)
 - [AdminUpdateIdentityBody](docs/Model/AdminUpdateIdentityBody.md)
-- [AuthenticateOKBody](docs/Model/AuthenticateOKBody.md)
 - [AuthenticatorAssuranceLevel](docs/Model/AuthenticatorAssuranceLevel.md)
-- [ContainerChangeResponseItem](docs/Model/ContainerChangeResponseItem.md)
-- [ContainerCreateCreatedBody](docs/Model/ContainerCreateCreatedBody.md)
-- [ContainerTopOKBody](docs/Model/ContainerTopOKBody.md)
-- [ContainerUpdateOKBody](docs/Model/ContainerUpdateOKBody.md)
-- [ContainerWaitOKBody](docs/Model/ContainerWaitOKBody.md)
-- [ContainerWaitOKBodyError](docs/Model/ContainerWaitOKBodyError.md)
-- [ErrorResponse](docs/Model/ErrorResponse.md)
+- [ErrorAuthenticatorAssuranceLevelNotSatisfied](docs/Model/ErrorAuthenticatorAssuranceLevelNotSatisfied.md)
 - [GenericError](docs/Model/GenericError.md)
-- [GraphDriverData](docs/Model/GraphDriverData.md)
 - [HealthNotReadyStatus](docs/Model/HealthNotReadyStatus.md)
 - [HealthStatus](docs/Model/HealthStatus.md)
-- [IdResponse](docs/Model/IdResponse.md)
 - [Identity](docs/Model/Identity.md)
 - [IdentityCredentials](docs/Model/IdentityCredentials.md)
 - [IdentityCredentialsType](docs/Model/IdentityCredentialsType.md)
+- [IdentitySchema](docs/Model/IdentitySchema.md)
 - [IdentityState](docs/Model/IdentityState.md)
-- [ImageDeleteResponseItem](docs/Model/ImageDeleteResponseItem.md)
-- [ImageSummary](docs/Model/ImageSummary.md)
 - [InlineResponse200](docs/Model/InlineResponse200.md)
 - [InlineResponse2001](docs/Model/InlineResponse2001.md)
 - [InlineResponse503](docs/Model/InlineResponse503.md)
 - [JsonError](docs/Model/JsonError.md)
-- [Meta](docs/Model/Meta.md)
-- [Plugin](docs/Model/Plugin.md)
-- [PluginConfig](docs/Model/PluginConfig.md)
-- [PluginConfigArgs](docs/Model/PluginConfigArgs.md)
-- [PluginConfigInterface](docs/Model/PluginConfigInterface.md)
-- [PluginConfigLinux](docs/Model/PluginConfigLinux.md)
-- [PluginConfigNetwork](docs/Model/PluginConfigNetwork.md)
-- [PluginConfigRootfs](docs/Model/PluginConfigRootfs.md)
-- [PluginConfigUser](docs/Model/PluginConfigUser.md)
-- [PluginDevice](docs/Model/PluginDevice.md)
-- [PluginEnv](docs/Model/PluginEnv.md)
-- [PluginInterfaceType](docs/Model/PluginInterfaceType.md)
-- [PluginMount](docs/Model/PluginMount.md)
-- [PluginSettings](docs/Model/PluginSettings.md)
-- [Port](docs/Model/Port.md)
+- [NeedsPrivilegedSessionError](docs/Model/NeedsPrivilegedSessionError.md)
 - [RecoveryAddress](docs/Model/RecoveryAddress.md)
+- [SelfServiceBrowserLocationChangeRequiredError](docs/Model/SelfServiceBrowserLocationChangeRequiredError.md)
 - [SelfServiceError](docs/Model/SelfServiceError.md)
+- [SelfServiceFlowExpiredError](docs/Model/SelfServiceFlowExpiredError.md)
 - [SelfServiceLoginFlow](docs/Model/SelfServiceLoginFlow.md)
 - [SelfServiceLogoutUrl](docs/Model/SelfServiceLogoutUrl.md)
 - [SelfServiceRecoveryFlow](docs/Model/SelfServiceRecoveryFlow.md)
@@ -166,7 +147,6 @@ Class | Method | HTTP request | Description
 - [SelfServiceSettingsFlowState](docs/Model/SelfServiceSettingsFlowState.md)
 - [SelfServiceVerificationFlow](docs/Model/SelfServiceVerificationFlow.md)
 - [SelfServiceVerificationFlowState](docs/Model/SelfServiceVerificationFlowState.md)
-- [ServiceUpdateResponse](docs/Model/ServiceUpdateResponse.md)
 - [Session](docs/Model/Session.md)
 - [SessionAuthenticationMethod](docs/Model/SessionAuthenticationMethod.md)
 - [SessionDevice](docs/Model/SessionDevice.md)
@@ -200,12 +180,12 @@ Class | Method | HTTP request | Description
 - [UiNodeAttributes](docs/Model/UiNodeAttributes.md)
 - [UiNodeImageAttributes](docs/Model/UiNodeImageAttributes.md)
 - [UiNodeInputAttributes](docs/Model/UiNodeInputAttributes.md)
+- [UiNodeMeta](docs/Model/UiNodeMeta.md)
+- [UiNodeScriptAttributes](docs/Model/UiNodeScriptAttributes.md)
 - [UiNodeTextAttributes](docs/Model/UiNodeTextAttributes.md)
 - [UiText](docs/Model/UiText.md)
 - [VerifiableIdentityAddress](docs/Model/VerifiableIdentityAddress.md)
 - [Version](docs/Model/Version.md)
-- [Volume](docs/Model/Volume.md)
-- [VolumeUsageData](docs/Model/VolumeUsageData.md)
 
 ## Authorization
 
@@ -233,5 +213,5 @@ support@ory.sh
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `v0.0.1-alpha.19`
+- API version: `v0.0.1-alpha.21`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

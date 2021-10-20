@@ -1,20 +1,19 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-import 'package:ory_client/api.dart';
+import 'package:ory_client/model/session_device.dart';
 import 'package:test/test.dart';
 
 // tests for SessionDevice
 void main() {
-  final instance = SessionDevice();
+  final instance = SessionDeviceBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test SessionDevice', () {
+  group(SessionDevice, () {
     // UserAgent of this device
     // String userAgent
     test('to test the property `userAgent`', () async {

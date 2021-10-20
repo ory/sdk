@@ -1,72 +1,70 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class Version {
-  /// Returns a new [Version] instance.
-  Version({
-    this.version,
-  });
+part 'version.g.dart';
 
-  /// Version is the service's version.
-  String version;
+abstract class Version implements Built<Version, VersionBuilder> {
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is Version &&
-     other.version == version;
+    /// Version is the service's version.
+    @nullable
+    @BuiltValueField(wireName: r'version')
+    String get version;
 
-  @override
-  int get hashCode =>
-    (version == null ? 0 : version.hashCode);
+    Version._();
 
-  @override
-  String toString() => 'Version[version=$version]';
+    static void _initializeBuilder(VersionBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (version != null) {
-      json[r'version'] = version;
+    factory Version([void updates(VersionBuilder b)]) = _$Version;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<Version> get serializer => _$VersionSerializer();
+}
+
+class _$VersionSerializer implements StructuredSerializer<Version> {
+
+    @override
+    final Iterable<Type> types = const [Version, _$Version];
+    @override
+    final String wireName = r'Version';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, Version object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.version != null) {
+            result
+                ..add(r'version')
+                ..add(serializers.serialize(object.version,
+                    specifiedType: const FullType(String)));
+        }
+        return result;
     }
-    return json;
-  }
 
-  /// Returns a new [Version] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static Version fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : Version(
-        version: json[r'version'],
-    );
+    @override
+    Version deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = VersionBuilder();
 
-  static List<Version> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <Version>[]
-      : json.map((dynamic value) => Version.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, Version> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, Version>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = Version.fromJson(value));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'version':
+                    result.version = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of Version-objects as value to a dart map
-  static Map<String, List<Version>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<Version>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = Version.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

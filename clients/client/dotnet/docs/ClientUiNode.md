@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Attributes** | [**ClientUiNodeAttributes**](ClientUiNodeAttributes.md) |  | 
 **Group** | **string** |  | 
 **Messages** | [**List&lt;ClientUiText&gt;**](ClientUiText.md) |  | 
-**Meta** | [**ClientMeta**](ClientMeta.md) |  | 
+**Meta** | [**ClientUiNodeMeta**](ClientUiNodeMeta.md) |  | 
 **Type** | **string** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,85 +1,102 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:ory_client/model/ui_text.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class UiNodeAnchorAttributes {
-  /// Returns a new [UiNodeAnchorAttributes] instance.
-  UiNodeAnchorAttributes({
-    @required this.href,
-    @required this.id,
-    @required this.title,
-  });
+part 'ui_node_anchor_attributes.g.dart';
 
-  /// The link's href (destination) URL.  format: uri
-  String href;
+abstract class UiNodeAnchorAttributes implements Built<UiNodeAnchorAttributes, UiNodeAnchorAttributesBuilder> {
 
-  /// A unique identifier
-  String id;
+    /// The link's href (destination) URL.  format: uri
+    @BuiltValueField(wireName: r'href')
+    String get href;
 
-  UiText title;
+    /// A unique identifier
+    @BuiltValueField(wireName: r'id')
+    String get id;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is UiNodeAnchorAttributes &&
-     other.href == href &&
-     other.id == id &&
-     other.title == title;
+    @BuiltValueField(wireName: r'node_type')
+    String get nodeType;
 
-  @override
-  int get hashCode =>
-    (href == null ? 0 : href.hashCode) +
-    (id == null ? 0 : id.hashCode) +
-    (title == null ? 0 : title.hashCode);
+    @BuiltValueField(wireName: r'title')
+    UiText get title;
 
-  @override
-  String toString() => 'UiNodeAnchorAttributes[href=$href, id=$id, title=$title]';
+    UiNodeAnchorAttributes._();
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-      json[r'href'] = href;
-      json[r'id'] = id;
-      json[r'title'] = title;
-    return json;
-  }
+    static void _initializeBuilder(UiNodeAnchorAttributesBuilder b) => b;
 
-  /// Returns a new [UiNodeAnchorAttributes] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static UiNodeAnchorAttributes fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : UiNodeAnchorAttributes(
-        href: json[r'href'],
-        id: json[r'id'],
-        title: UiText.fromJson(json[r'title']),
-    );
+    factory UiNodeAnchorAttributes([void updates(UiNodeAnchorAttributesBuilder b)]) = _$UiNodeAnchorAttributes;
 
-  static List<UiNodeAnchorAttributes> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <UiNodeAnchorAttributes>[]
-      : json.map((dynamic value) => UiNodeAnchorAttributes.fromJson(value)).toList(growable: true == growable);
+    @BuiltValueSerializer(custom: true)
+    static Serializer<UiNodeAnchorAttributes> get serializer => _$UiNodeAnchorAttributesSerializer();
+}
 
-  static Map<String, UiNodeAnchorAttributes> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, UiNodeAnchorAttributes>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = UiNodeAnchorAttributes.fromJson(value));
+class _$UiNodeAnchorAttributesSerializer implements StructuredSerializer<UiNodeAnchorAttributes> {
+
+    @override
+    final Iterable<Type> types = const [UiNodeAnchorAttributes, _$UiNodeAnchorAttributes];
+    @override
+    final String wireName = r'UiNodeAnchorAttributes';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, UiNodeAnchorAttributes object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        result
+            ..add(r'href')
+            ..add(serializers.serialize(object.href,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'id')
+            ..add(serializers.serialize(object.id,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'node_type')
+            ..add(serializers.serialize(object.nodeType,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'title')
+            ..add(serializers.serialize(object.title,
+                specifiedType: const FullType(UiText)));
+        return result;
     }
-    return map;
-  }
 
-  // maps a json object with a list of UiNodeAnchorAttributes-objects as value to a dart map
-  static Map<String, List<UiNodeAnchorAttributes>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<UiNodeAnchorAttributes>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = UiNodeAnchorAttributes.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
+    @override
+    UiNodeAnchorAttributes deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = UiNodeAnchorAttributesBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'href':
+                    result.href = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'id':
+                    result.id = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'node_type':
+                    result.nodeType = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'title':
+                    result.title.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(UiText)) as UiText);
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
 }
 

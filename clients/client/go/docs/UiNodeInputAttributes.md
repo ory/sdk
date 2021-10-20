@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Disabled** | **bool** | Sets the input&#39;s disabled field to true or false. | 
 **Label** | Pointer to [**UiText**](UiText.md) |  | [optional] 
 **Name** | **string** | The input&#39;s element name. | 
+**NodeType** | **string** |  | 
 **Onclick** | Pointer to **string** | OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn. | [optional] 
 **Pattern** | Pointer to **string** | The input&#39;s pattern. | [optional] 
 **Required** | Pointer to **bool** | Mark this input field as required. | [optional] 
@@ -17,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewUiNodeInputAttributes
 
-`func NewUiNodeInputAttributes(disabled bool, name string, type_ string, ) *UiNodeInputAttributes`
+`func NewUiNodeInputAttributes(disabled bool, name string, nodeType string, type_ string, ) *UiNodeInputAttributes`
 
 NewUiNodeInputAttributes instantiates a new UiNodeInputAttributes object
 This constructor will assign default values to properties that have it defined,
@@ -95,6 +96,26 @@ and a boolean to check if the value has been set.
 `func (o *UiNodeInputAttributes) SetName(v string)`
 
 SetName sets Name field to given value.
+
+
+### GetNodeType
+
+`func (o *UiNodeInputAttributes) GetNodeType() string`
+
+GetNodeType returns the NodeType field if non-nil, zero value otherwise.
+
+### GetNodeTypeOk
+
+`func (o *UiNodeInputAttributes) GetNodeTypeOk() (*string, bool)`
+
+GetNodeTypeOk returns a tuple with the NodeType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNodeType
+
+`func (o *UiNodeInputAttributes) SetNodeType(v string)`
+
+SetNodeType sets NodeType field to given value.
 
 
 ### GetOnclick

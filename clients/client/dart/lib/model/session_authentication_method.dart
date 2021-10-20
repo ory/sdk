@@ -1,155 +1,105 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class SessionAuthenticationMethod {
-  /// Returns a new [SessionAuthenticationMethod] instance.
-  SessionAuthenticationMethod({
-    this.completedAt,
-    this.method,
-  });
+part 'session_authentication_method.g.dart';
 
-  /// When the authentication challenge was completed.
-  DateTime completedAt;
+abstract class SessionAuthenticationMethod implements Built<SessionAuthenticationMethod, SessionAuthenticationMethodBuilder> {
 
-  SessionAuthenticationMethodMethodEnum method;
+    /// When the authentication challenge was completed.
+    @nullable
+    @BuiltValueField(wireName: r'completed_at')
+    DateTime get completedAt;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is SessionAuthenticationMethod &&
-     other.completedAt == completedAt &&
-     other.method == method;
+    @nullable
+    @BuiltValueField(wireName: r'method')
+    SessionAuthenticationMethodMethodEnum get method;
+    // enum methodEnum {  link_recovery,  password,  totp,  oidc,  };
 
-  @override
-  int get hashCode =>
-    (completedAt == null ? 0 : completedAt.hashCode) +
-    (method == null ? 0 : method.hashCode);
+    SessionAuthenticationMethod._();
 
-  @override
-  String toString() => 'SessionAuthenticationMethod[completedAt=$completedAt, method=$method]';
+    static void _initializeBuilder(SessionAuthenticationMethodBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (completedAt != null) {
-      json[r'completed_at'] = completedAt.toUtc().toIso8601String();
-    }
-    if (method != null) {
-      json[r'method'] = method;
-    }
-    return json;
-  }
+    factory SessionAuthenticationMethod([void updates(SessionAuthenticationMethodBuilder b)]) = _$SessionAuthenticationMethod;
 
-  /// Returns a new [SessionAuthenticationMethod] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static SessionAuthenticationMethod fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : SessionAuthenticationMethod(
-        completedAt: json[r'completed_at'] == null
-          ? null
-          : DateTime.parse(json[r'completed_at']),
-        method: SessionAuthenticationMethodMethodEnum.fromJson(json[r'method']),
-    );
-
-  static List<SessionAuthenticationMethod> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <SessionAuthenticationMethod>[]
-      : json.map((dynamic value) => SessionAuthenticationMethod.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, SessionAuthenticationMethod> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, SessionAuthenticationMethod>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = SessionAuthenticationMethod.fromJson(value));
-    }
-    return map;
-  }
-
-  // maps a json object with a list of SessionAuthenticationMethod-objects as value to a dart map
-  static Map<String, List<SessionAuthenticationMethod>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<SessionAuthenticationMethod>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = SessionAuthenticationMethod.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
+    @BuiltValueSerializer(custom: true)
+    static Serializer<SessionAuthenticationMethod> get serializer => _$SessionAuthenticationMethodSerializer();
 }
 
+class _$SessionAuthenticationMethodSerializer implements StructuredSerializer<SessionAuthenticationMethod> {
 
-class SessionAuthenticationMethodMethodEnum {
-  /// Instantiate a new enum with the provided [value].
-  const SessionAuthenticationMethodMethodEnum._(this.value);
+    @override
+    final Iterable<Type> types = const [SessionAuthenticationMethod, _$SessionAuthenticationMethod];
+    @override
+    final String wireName = r'SessionAuthenticationMethod';
 
-  /// The underlying value of this enum member.
-  final String value;
-
-  @override
-  String toString() => value;
-
-  String toJson() => value;
-
-  static const linkRecovery = SessionAuthenticationMethodMethodEnum._(r'link_recovery');
-  static const password = SessionAuthenticationMethodMethodEnum._(r'password');
-  static const totp = SessionAuthenticationMethodMethodEnum._(r'totp');
-  static const oidc = SessionAuthenticationMethodMethodEnum._(r'oidc');
-
-  /// List of all possible values in this [enum][SessionAuthenticationMethodMethodEnum].
-  static const values = <SessionAuthenticationMethodMethodEnum>[
-    linkRecovery,
-    password,
-    totp,
-    oidc,
-  ];
-
-  static SessionAuthenticationMethodMethodEnum fromJson(dynamic value) =>
-    SessionAuthenticationMethodMethodEnumTypeTransformer().decode(value);
-
-  static List<SessionAuthenticationMethodMethodEnum> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <SessionAuthenticationMethodMethodEnum>[]
-      : json
-          .map((value) => SessionAuthenticationMethodMethodEnum.fromJson(value))
-          .toList(growable: true == growable);
-}
-
-/// Transformation class that can [encode] an instance of [SessionAuthenticationMethodMethodEnum] to String,
-/// and [decode] dynamic data back to [SessionAuthenticationMethodMethodEnum].
-class SessionAuthenticationMethodMethodEnumTypeTransformer {
-  const SessionAuthenticationMethodMethodEnumTypeTransformer._();
-
-  factory SessionAuthenticationMethodMethodEnumTypeTransformer() => _instance ??= SessionAuthenticationMethodMethodEnumTypeTransformer._();
-
-  String encode(SessionAuthenticationMethodMethodEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a SessionAuthenticationMethodMethodEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  SessionAuthenticationMethodMethodEnum decode(dynamic data, {bool allowNull}) {
-    switch (data) {
-      case r'link_recovery': return SessionAuthenticationMethodMethodEnum.linkRecovery;
-      case r'password': return SessionAuthenticationMethodMethodEnum.password;
-      case r'totp': return SessionAuthenticationMethodMethodEnum.totp;
-      case r'oidc': return SessionAuthenticationMethodMethodEnum.oidc;
-      default:
-        if (allowNull == false) {
-          throw ArgumentError('Unknown enum value to decode: $data');
+    @override
+    Iterable<Object> serialize(Serializers serializers, SessionAuthenticationMethod object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.completedAt != null) {
+            result
+                ..add(r'completed_at')
+                ..add(serializers.serialize(object.completedAt,
+                    specifiedType: const FullType(DateTime)));
         }
+        if (object.method != null) {
+            result
+                ..add(r'method')
+                ..add(serializers.serialize(object.method,
+                    specifiedType: const FullType(SessionAuthenticationMethodMethodEnum)));
+        }
+        return result;
     }
-    return null;
-  }
 
-  /// Singleton [SessionAuthenticationMethodMethodEnumTypeTransformer] instance.
-  static SessionAuthenticationMethodMethodEnumTypeTransformer _instance;
+    @override
+    SessionAuthenticationMethod deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = SessionAuthenticationMethodBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'completed_at':
+                    result.completedAt = serializers.deserialize(value,
+                        specifiedType: const FullType(DateTime)) as DateTime;
+                    break;
+                case r'method':
+                    result.method = serializers.deserialize(value,
+                        specifiedType: const FullType(SessionAuthenticationMethodMethodEnum)) as SessionAuthenticationMethodMethodEnum;
+                    break;
+            }
+        }
+        return result.build();
+    }
+}
+
+class SessionAuthenticationMethodMethodEnum extends EnumClass {
+
+  @BuiltValueEnumConst(wireName: r'link_recovery')
+  static const SessionAuthenticationMethodMethodEnum linkRecovery = _$sessionAuthenticationMethodMethodEnum_linkRecovery;
+  @BuiltValueEnumConst(wireName: r'password')
+  static const SessionAuthenticationMethodMethodEnum password = _$sessionAuthenticationMethodMethodEnum_password;
+  @BuiltValueEnumConst(wireName: r'totp')
+  static const SessionAuthenticationMethodMethodEnum totp = _$sessionAuthenticationMethodMethodEnum_totp;
+  @BuiltValueEnumConst(wireName: r'oidc')
+  static const SessionAuthenticationMethodMethodEnum oidc = _$sessionAuthenticationMethodMethodEnum_oidc;
+
+  static Serializer<SessionAuthenticationMethodMethodEnum> get serializer => _$sessionAuthenticationMethodMethodEnumSerializer;
+
+  const SessionAuthenticationMethodMethodEnum._(String name): super(name);
+
+  static BuiltSet<SessionAuthenticationMethodMethodEnum> get values => _$sessionAuthenticationMethodMethodEnumValues;
+  static SessionAuthenticationMethodMethodEnum valueOf(String name) => _$sessionAuthenticationMethodMethodEnumValueOf(name);
 }
 

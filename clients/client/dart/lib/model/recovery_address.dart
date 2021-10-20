@@ -1,107 +1,118 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class RecoveryAddress {
-  /// Returns a new [RecoveryAddress] instance.
-  RecoveryAddress({
-    this.createdAt,
-    @required this.id,
-    this.updatedAt,
-    @required this.value,
-    @required this.via,
-  });
+part 'recovery_address.g.dart';
 
-  /// CreatedAt is a helper struct field for gobuffalo.pop.
-  DateTime createdAt;
+abstract class RecoveryAddress implements Built<RecoveryAddress, RecoveryAddressBuilder> {
 
-  String id;
+    /// CreatedAt is a helper struct field for gobuffalo.pop.
+    @nullable
+    @BuiltValueField(wireName: r'created_at')
+    DateTime get createdAt;
 
-  /// UpdatedAt is a helper struct field for gobuffalo.pop.
-  DateTime updatedAt;
+    @BuiltValueField(wireName: r'id')
+    String get id;
 
-  String value;
+    /// UpdatedAt is a helper struct field for gobuffalo.pop.
+    @nullable
+    @BuiltValueField(wireName: r'updated_at')
+    DateTime get updatedAt;
 
-  String via;
+    @BuiltValueField(wireName: r'value')
+    String get value;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is RecoveryAddress &&
-     other.createdAt == createdAt &&
-     other.id == id &&
-     other.updatedAt == updatedAt &&
-     other.value == value &&
-     other.via == via;
+    @BuiltValueField(wireName: r'via')
+    String get via;
 
-  @override
-  int get hashCode =>
-    (createdAt == null ? 0 : createdAt.hashCode) +
-    (id == null ? 0 : id.hashCode) +
-    (updatedAt == null ? 0 : updatedAt.hashCode) +
-    (value == null ? 0 : value.hashCode) +
-    (via == null ? 0 : via.hashCode);
+    RecoveryAddress._();
 
-  @override
-  String toString() => 'RecoveryAddress[createdAt=$createdAt, id=$id, updatedAt=$updatedAt, value=$value, via=$via]';
+    static void _initializeBuilder(RecoveryAddressBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (createdAt != null) {
-      json[r'created_at'] = createdAt.toUtc().toIso8601String();
+    factory RecoveryAddress([void updates(RecoveryAddressBuilder b)]) = _$RecoveryAddress;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<RecoveryAddress> get serializer => _$RecoveryAddressSerializer();
+}
+
+class _$RecoveryAddressSerializer implements StructuredSerializer<RecoveryAddress> {
+
+    @override
+    final Iterable<Type> types = const [RecoveryAddress, _$RecoveryAddress];
+    @override
+    final String wireName = r'RecoveryAddress';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, RecoveryAddress object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.createdAt != null) {
+            result
+                ..add(r'created_at')
+                ..add(serializers.serialize(object.createdAt,
+                    specifiedType: const FullType(DateTime)));
+        }
+        result
+            ..add(r'id')
+            ..add(serializers.serialize(object.id,
+                specifiedType: const FullType(String)));
+        if (object.updatedAt != null) {
+            result
+                ..add(r'updated_at')
+                ..add(serializers.serialize(object.updatedAt,
+                    specifiedType: const FullType(DateTime)));
+        }
+        result
+            ..add(r'value')
+            ..add(serializers.serialize(object.value,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'via')
+            ..add(serializers.serialize(object.via,
+                specifiedType: const FullType(String)));
+        return result;
     }
-      json[r'id'] = id;
-    if (updatedAt != null) {
-      json[r'updated_at'] = updatedAt.toUtc().toIso8601String();
+
+    @override
+    RecoveryAddress deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = RecoveryAddressBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'created_at':
+                    result.createdAt = serializers.deserialize(value,
+                        specifiedType: const FullType(DateTime)) as DateTime;
+                    break;
+                case r'id':
+                    result.id = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'updated_at':
+                    result.updatedAt = serializers.deserialize(value,
+                        specifiedType: const FullType(DateTime)) as DateTime;
+                    break;
+                case r'value':
+                    result.value = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'via':
+                    result.via = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-      json[r'value'] = value;
-      json[r'via'] = via;
-    return json;
-  }
-
-  /// Returns a new [RecoveryAddress] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static RecoveryAddress fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : RecoveryAddress(
-        createdAt: json[r'created_at'] == null
-          ? null
-          : DateTime.parse(json[r'created_at']),
-        id: json[r'id'],
-        updatedAt: json[r'updated_at'] == null
-          ? null
-          : DateTime.parse(json[r'updated_at']),
-        value: json[r'value'],
-        via: json[r'via'],
-    );
-
-  static List<RecoveryAddress> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <RecoveryAddress>[]
-      : json.map((dynamic value) => RecoveryAddress.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, RecoveryAddress> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, RecoveryAddress>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = RecoveryAddress.fromJson(value));
-    }
-    return map;
-  }
-
-  // maps a json object with a list of RecoveryAddress-objects as value to a dart map
-  static Map<String, List<RecoveryAddress>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<RecoveryAddress>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = RecoveryAddress.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

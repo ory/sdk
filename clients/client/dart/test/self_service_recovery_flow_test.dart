@@ -1,20 +1,19 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-import 'package:ory_client/api.dart';
+import 'package:ory_client/model/self_service_recovery_flow.dart';
 import 'package:test/test.dart';
 
 // tests for SelfServiceRecoveryFlow
 void main() {
-  final instance = SelfServiceRecoveryFlow();
+  final instance = SelfServiceRecoveryFlowBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test SelfServiceRecoveryFlow', () {
+  group(SelfServiceRecoveryFlow, () {
     // Active, if set, contains the registration method that is being used. It is initially not set.
     // String active
     test('to test the property `active`', () async {
@@ -41,6 +40,12 @@ void main() {
     // RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
     // String requestUrl
     test('to test the property `requestUrl`', () async {
+      // TODO
+    });
+
+    // ReturnTo contains the requested return_to URL.
+    // String returnTo
+    test('to test the property `returnTo`', () async {
       // TODO
     });
 

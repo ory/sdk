@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **identity** | [**Identity**](Identity.md) |  | 
 **issuedAt** | [**DateTime**](DateTime.md) | IssuedAt is the time (UTC) when the flow occurred. | 
 **requestUrl** | **String** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example. | 
+**returnTo** | **String** | ReturnTo contains the requested return_to URL. | [optional] 
 **state** | [**SelfServiceSettingsFlowState**](SelfServiceSettingsFlowState.md) |  | 
 **type** | **String** | The flow type can either be `api` or `browser`. | [optional] 
 **ui** | [**UiContainer**](UiContainer.md) |  | 

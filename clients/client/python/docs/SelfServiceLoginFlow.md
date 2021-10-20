@@ -13,8 +13,9 @@ Name | Type | Description | Notes
 **ui** | [**UiContainer**](UiContainer.md) |  | 
 **active** | [**IdentityCredentialsType**](IdentityCredentialsType.md) |  | [optional] 
 **created_at** | **datetime** | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] 
-**forced** | **bool** | Refresh stores whether this login flow should enforce re-authentication. | [optional] 
+**refresh** | **bool** | Refresh stores whether this login flow should enforce re-authentication. | [optional] 
 **requested_aal** | [**AuthenticatorAssuranceLevel**](AuthenticatorAssuranceLevel.md) |  | [optional] 
+**return_to** | **str** | ReturnTo contains the requested return_to URL. | [optional] 
 **updated_at** | **datetime** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

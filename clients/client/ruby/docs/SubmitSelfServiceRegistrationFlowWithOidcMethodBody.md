@@ -6,7 +6,8 @@
 | ---- | ---- | ----------- | ----- |
 | **csrf_token** | **String** | The CSRF Token | [optional] |
 | **method** | **String** | Method to use  This field must be set to &#x60;oidc&#x60; when using the oidc method. |  |
-| **traits** | **String** | The provider to register with |  |
+| **provider** | **String** | The provider to register with |  |
+| **traits** | **Object** | The identity traits | [optional] |
 
 ## Example
 
@@ -16,6 +17,7 @@ require 'ory-client'
 instance = OryClient::SubmitSelfServiceRegistrationFlowWithOidcMethodBody.new(
   csrf_token: null,
   method: null,
+  provider: null,
   traits: null
 )
 ```

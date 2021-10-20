@@ -1,72 +1,70 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class SessionDevice {
-  /// Returns a new [SessionDevice] instance.
-  SessionDevice({
-    this.userAgent,
-  });
+part 'session_device.g.dart';
 
-  /// UserAgent of this device
-  String userAgent;
+abstract class SessionDevice implements Built<SessionDevice, SessionDeviceBuilder> {
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is SessionDevice &&
-     other.userAgent == userAgent;
+    /// UserAgent of this device
+    @nullable
+    @BuiltValueField(wireName: r'user_agent')
+    String get userAgent;
 
-  @override
-  int get hashCode =>
-    (userAgent == null ? 0 : userAgent.hashCode);
+    SessionDevice._();
 
-  @override
-  String toString() => 'SessionDevice[userAgent=$userAgent]';
+    static void _initializeBuilder(SessionDeviceBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (userAgent != null) {
-      json[r'user_agent'] = userAgent;
+    factory SessionDevice([void updates(SessionDeviceBuilder b)]) = _$SessionDevice;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<SessionDevice> get serializer => _$SessionDeviceSerializer();
+}
+
+class _$SessionDeviceSerializer implements StructuredSerializer<SessionDevice> {
+
+    @override
+    final Iterable<Type> types = const [SessionDevice, _$SessionDevice];
+    @override
+    final String wireName = r'SessionDevice';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, SessionDevice object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.userAgent != null) {
+            result
+                ..add(r'user_agent')
+                ..add(serializers.serialize(object.userAgent,
+                    specifiedType: const FullType(String)));
+        }
+        return result;
     }
-    return json;
-  }
 
-  /// Returns a new [SessionDevice] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static SessionDevice fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : SessionDevice(
-        userAgent: json[r'user_agent'],
-    );
+    @override
+    SessionDevice deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = SessionDeviceBuilder();
 
-  static List<SessionDevice> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <SessionDevice>[]
-      : json.map((dynamic value) => SessionDevice.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, SessionDevice> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, SessionDevice>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = SessionDevice.fromJson(value));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'user_agent':
+                    result.userAgent = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of SessionDevice-objects as value to a dart map
-  static Map<String, List<SessionDevice>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<SessionDevice>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = SessionDevice.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

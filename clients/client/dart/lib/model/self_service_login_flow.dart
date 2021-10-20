@@ -1,164 +1,218 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:ory_client/model/authenticator_assurance_level.dart';
+import 'package:ory_client/model/ui_container.dart';
+import 'package:ory_client/model/identity_credentials_type.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class SelfServiceLoginFlow {
-  /// Returns a new [SelfServiceLoginFlow] instance.
-  SelfServiceLoginFlow({
-    this.active,
-    this.createdAt,
-    @required this.expiresAt,
-    this.forced,
-    @required this.id,
-    @required this.issuedAt,
-    @required this.requestUrl,
-    this.requestedAal,
-    @required this.type,
-    @required this.ui,
-    this.updatedAt,
-  });
+part 'self_service_login_flow.g.dart';
 
-  IdentityCredentialsType active;
+abstract class SelfServiceLoginFlow implements Built<SelfServiceLoginFlow, SelfServiceLoginFlowBuilder> {
 
-  /// CreatedAt is a helper struct field for gobuffalo.pop.
-  DateTime createdAt;
+    @nullable
+    @BuiltValueField(wireName: r'active')
+    IdentityCredentialsType get active;
+    // enum activeEnum {  password,  totp,  oidc,  };
 
-  /// ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated.
-  DateTime expiresAt;
+    /// CreatedAt is a helper struct field for gobuffalo.pop.
+    @nullable
+    @BuiltValueField(wireName: r'created_at')
+    DateTime get createdAt;
 
-  /// Refresh stores whether this login flow should enforce re-authentication.
-  bool forced;
+    /// ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated.
+    @BuiltValueField(wireName: r'expires_at')
+    DateTime get expiresAt;
 
-  String id;
+    @BuiltValueField(wireName: r'id')
+    String get id;
 
-  /// IssuedAt is the time (UTC) when the flow started.
-  DateTime issuedAt;
+    /// IssuedAt is the time (UTC) when the flow started.
+    @BuiltValueField(wireName: r'issued_at')
+    DateTime get issuedAt;
 
-  /// RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
-  String requestUrl;
+    /// Refresh stores whether this login flow should enforce re-authentication.
+    @nullable
+    @BuiltValueField(wireName: r'refresh')
+    bool get refresh;
 
-  AuthenticatorAssuranceLevel requestedAal;
+    /// RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
+    @BuiltValueField(wireName: r'request_url')
+    String get requestUrl;
 
-  /// The flow type can either be `api` or `browser`.
-  String type;
+    @nullable
+    @BuiltValueField(wireName: r'requested_aal')
+    AuthenticatorAssuranceLevel get requestedAal;
+    // enum requestedAalEnum {  aal0,  aal1,  aal2,  aal3,  };
 
-  UiContainer ui;
+    /// ReturnTo contains the requested return_to URL.
+    @nullable
+    @BuiltValueField(wireName: r'return_to')
+    String get returnTo;
 
-  /// UpdatedAt is a helper struct field for gobuffalo.pop.
-  DateTime updatedAt;
+    /// The flow type can either be `api` or `browser`.
+    @BuiltValueField(wireName: r'type')
+    String get type;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is SelfServiceLoginFlow &&
-     other.active == active &&
-     other.createdAt == createdAt &&
-     other.expiresAt == expiresAt &&
-     other.forced == forced &&
-     other.id == id &&
-     other.issuedAt == issuedAt &&
-     other.requestUrl == requestUrl &&
-     other.requestedAal == requestedAal &&
-     other.type == type &&
-     other.ui == ui &&
-     other.updatedAt == updatedAt;
+    @BuiltValueField(wireName: r'ui')
+    UiContainer get ui;
 
-  @override
-  int get hashCode =>
-    (active == null ? 0 : active.hashCode) +
-    (createdAt == null ? 0 : createdAt.hashCode) +
-    (expiresAt == null ? 0 : expiresAt.hashCode) +
-    (forced == null ? 0 : forced.hashCode) +
-    (id == null ? 0 : id.hashCode) +
-    (issuedAt == null ? 0 : issuedAt.hashCode) +
-    (requestUrl == null ? 0 : requestUrl.hashCode) +
-    (requestedAal == null ? 0 : requestedAal.hashCode) +
-    (type == null ? 0 : type.hashCode) +
-    (ui == null ? 0 : ui.hashCode) +
-    (updatedAt == null ? 0 : updatedAt.hashCode);
+    /// UpdatedAt is a helper struct field for gobuffalo.pop.
+    @nullable
+    @BuiltValueField(wireName: r'updated_at')
+    DateTime get updatedAt;
 
-  @override
-  String toString() => 'SelfServiceLoginFlow[active=$active, createdAt=$createdAt, expiresAt=$expiresAt, forced=$forced, id=$id, issuedAt=$issuedAt, requestUrl=$requestUrl, requestedAal=$requestedAal, type=$type, ui=$ui, updatedAt=$updatedAt]';
+    SelfServiceLoginFlow._();
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (active != null) {
-      json[r'active'] = active;
+    static void _initializeBuilder(SelfServiceLoginFlowBuilder b) => b;
+
+    factory SelfServiceLoginFlow([void updates(SelfServiceLoginFlowBuilder b)]) = _$SelfServiceLoginFlow;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<SelfServiceLoginFlow> get serializer => _$SelfServiceLoginFlowSerializer();
+}
+
+class _$SelfServiceLoginFlowSerializer implements StructuredSerializer<SelfServiceLoginFlow> {
+
+    @override
+    final Iterable<Type> types = const [SelfServiceLoginFlow, _$SelfServiceLoginFlow];
+    @override
+    final String wireName = r'SelfServiceLoginFlow';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, SelfServiceLoginFlow object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.active != null) {
+            result
+                ..add(r'active')
+                ..add(serializers.serialize(object.active,
+                    specifiedType: const FullType(IdentityCredentialsType)));
+        }
+        if (object.createdAt != null) {
+            result
+                ..add(r'created_at')
+                ..add(serializers.serialize(object.createdAt,
+                    specifiedType: const FullType(DateTime)));
+        }
+        result
+            ..add(r'expires_at')
+            ..add(serializers.serialize(object.expiresAt,
+                specifiedType: const FullType(DateTime)));
+        result
+            ..add(r'id')
+            ..add(serializers.serialize(object.id,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'issued_at')
+            ..add(serializers.serialize(object.issuedAt,
+                specifiedType: const FullType(DateTime)));
+        if (object.refresh != null) {
+            result
+                ..add(r'refresh')
+                ..add(serializers.serialize(object.refresh,
+                    specifiedType: const FullType(bool)));
+        }
+        result
+            ..add(r'request_url')
+            ..add(serializers.serialize(object.requestUrl,
+                specifiedType: const FullType(String)));
+        if (object.requestedAal != null) {
+            result
+                ..add(r'requested_aal')
+                ..add(serializers.serialize(object.requestedAal,
+                    specifiedType: const FullType(AuthenticatorAssuranceLevel)));
+        }
+        if (object.returnTo != null) {
+            result
+                ..add(r'return_to')
+                ..add(serializers.serialize(object.returnTo,
+                    specifiedType: const FullType(String)));
+        }
+        result
+            ..add(r'type')
+            ..add(serializers.serialize(object.type,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'ui')
+            ..add(serializers.serialize(object.ui,
+                specifiedType: const FullType(UiContainer)));
+        if (object.updatedAt != null) {
+            result
+                ..add(r'updated_at')
+                ..add(serializers.serialize(object.updatedAt,
+                    specifiedType: const FullType(DateTime)));
+        }
+        return result;
     }
-    if (createdAt != null) {
-      json[r'created_at'] = createdAt.toUtc().toIso8601String();
-    }
-      json[r'expires_at'] = expiresAt.toUtc().toIso8601String();
-    if (forced != null) {
-      json[r'forced'] = forced;
-    }
-      json[r'id'] = id;
-      json[r'issued_at'] = issuedAt.toUtc().toIso8601String();
-      json[r'request_url'] = requestUrl;
-    if (requestedAal != null) {
-      json[r'requested_aal'] = requestedAal;
-    }
-      json[r'type'] = type;
-      json[r'ui'] = ui;
-    if (updatedAt != null) {
-      json[r'updated_at'] = updatedAt.toUtc().toIso8601String();
-    }
-    return json;
-  }
 
-  /// Returns a new [SelfServiceLoginFlow] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static SelfServiceLoginFlow fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : SelfServiceLoginFlow(
-        active: IdentityCredentialsType.fromJson(json[r'active']),
-        createdAt: json[r'created_at'] == null
-          ? null
-          : DateTime.parse(json[r'created_at']),
-        expiresAt: json[r'expires_at'] == null
-          ? null
-          : DateTime.parse(json[r'expires_at']),
-        forced: json[r'forced'],
-        id: json[r'id'],
-        issuedAt: json[r'issued_at'] == null
-          ? null
-          : DateTime.parse(json[r'issued_at']),
-        requestUrl: json[r'request_url'],
-        requestedAal: AuthenticatorAssuranceLevel.fromJson(json[r'requested_aal']),
-        type: json[r'type'],
-        ui: UiContainer.fromJson(json[r'ui']),
-        updatedAt: json[r'updated_at'] == null
-          ? null
-          : DateTime.parse(json[r'updated_at']),
-    );
+    @override
+    SelfServiceLoginFlow deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = SelfServiceLoginFlowBuilder();
 
-  static List<SelfServiceLoginFlow> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <SelfServiceLoginFlow>[]
-      : json.map((dynamic value) => SelfServiceLoginFlow.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, SelfServiceLoginFlow> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, SelfServiceLoginFlow>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = SelfServiceLoginFlow.fromJson(value));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'active':
+                    result.active = serializers.deserialize(value,
+                        specifiedType: const FullType(IdentityCredentialsType)) as IdentityCredentialsType;
+                    break;
+                case r'created_at':
+                    result.createdAt = serializers.deserialize(value,
+                        specifiedType: const FullType(DateTime)) as DateTime;
+                    break;
+                case r'expires_at':
+                    result.expiresAt = serializers.deserialize(value,
+                        specifiedType: const FullType(DateTime)) as DateTime;
+                    break;
+                case r'id':
+                    result.id = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'issued_at':
+                    result.issuedAt = serializers.deserialize(value,
+                        specifiedType: const FullType(DateTime)) as DateTime;
+                    break;
+                case r'refresh':
+                    result.refresh = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'request_url':
+                    result.requestUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'requested_aal':
+                    result.requestedAal = serializers.deserialize(value,
+                        specifiedType: const FullType(AuthenticatorAssuranceLevel)) as AuthenticatorAssuranceLevel;
+                    break;
+                case r'return_to':
+                    result.returnTo = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'type':
+                    result.type = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'ui':
+                    result.ui.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(UiContainer)) as UiContainer);
+                    break;
+                case r'updated_at':
+                    result.updatedAt = serializers.deserialize(value,
+                        specifiedType: const FullType(DateTime)) as DateTime;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of SelfServiceLoginFlow-objects as value to a dart map
-  static Map<String, List<SelfServiceLoginFlow>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<SelfServiceLoginFlow>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = SelfServiceLoginFlow.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

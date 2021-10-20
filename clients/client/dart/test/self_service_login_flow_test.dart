@@ -1,22 +1,20 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-import 'package:ory_client/api.dart';
+import 'package:ory_client/model/self_service_login_flow.dart';
 import 'package:test/test.dart';
 
 // tests for SelfServiceLoginFlow
 void main() {
-  final instance = SelfServiceLoginFlow();
+  final instance = SelfServiceLoginFlowBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test SelfServiceLoginFlow', () {
-    // and so on.
-    // String active
+  group(SelfServiceLoginFlow, () {
+    // IdentityCredentialsType active
     test('to test the property `active`', () async {
       // TODO
     });
@@ -33,12 +31,6 @@ void main() {
       // TODO
     });
 
-    // Forced stores whether this login flow should enforce re-authentication.
-    // bool forced
-    test('to test the property `forced`', () async {
-      // TODO
-    });
-
     // String id
     test('to test the property `id`', () async {
       // TODO
@@ -50,9 +42,26 @@ void main() {
       // TODO
     });
 
+    // Refresh stores whether this login flow should enforce re-authentication.
+    // bool refresh
+    test('to test the property `refresh`', () async {
+      // TODO
+    });
+
     // RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
     // String requestUrl
     test('to test the property `requestUrl`', () async {
+      // TODO
+    });
+
+    // AuthenticatorAssuranceLevel requestedAal
+    test('to test the property `requestedAal`', () async {
+      // TODO
+    });
+
+    // ReturnTo contains the requested return_to URL.
+    // String returnTo
+    test('to test the property `returnTo`', () async {
       // TODO
     });
 
