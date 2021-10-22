@@ -447,7 +447,7 @@ class ModelSimple(OpenApiModel):
         )
 
     def __contains__(self, name):
-        """used by `in` operator to check if an attrbute value was set in an instance: `'attr' in instance`"""
+        """used by `in` operator to check if an attribute value was set in an instance: `'attr' in instance`"""
         if name in self.required_properties:
             return name in self.__dict__
 
@@ -502,7 +502,7 @@ class ModelNormal(OpenApiModel):
         )
 
     def __contains__(self, name):
-        """used by `in` operator to check if an attrbute value was set in an instance: `'attr' in instance`"""
+        """used by `in` operator to check if an attribute value was set in an instance: `'attr' in instance`"""
         if name in self.required_properties:
             return name in self.__dict__
 
@@ -1317,7 +1317,7 @@ def deserialize_model(model_data, model_class, path_to_item, check_type,
         model_data (int/str/float/bool/none_type/list/dict): data to instantiate the model
         model_class (OpenApiModel): the model class
         path_to_item (list): path to the model in the received data
-        check_type (bool): whether to check the data tupe for the values in
+        check_type (bool): whether to check the data type for the values in
             the model
         configuration (Configuration): the instance to use to convert files
         spec_property_naming (bool): True if the variable names in the input
