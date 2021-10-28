@@ -5,8 +5,10 @@
 
 // ignore_for_file: unused_import
 
+import 'package:ory_kratos_client/model/submit_self_service_login_flow_with_totp_method_body.dart';
 import 'package:ory_kratos_client/model/submit_self_service_login_flow_with_oidc_method_body.dart';
 import 'package:ory_kratos_client/model/submit_self_service_login_flow_with_password_method_body.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -14,12 +16,12 @@ part 'submit_self_service_login_flow_body.g.dart';
 
 abstract class SubmitSelfServiceLoginFlowBody implements Built<SubmitSelfServiceLoginFlowBody, SubmitSelfServiceLoginFlowBodyBuilder> {
 
-    /// The CSRF Token
+    /// Sending the anti-csrf token is only required for browser login flows.
     @nullable
     @BuiltValueField(wireName: r'csrf_token')
     String get csrfToken;
 
-    /// Method to use  This field must be set to `oidc` when using the oidc method.
+    /// Method should be set to \"totp\" when logging in using the TOTP strategy.
     @BuiltValueField(wireName: r'method')
     String get method;
 
@@ -32,8 +34,17 @@ abstract class SubmitSelfServiceLoginFlowBody implements Built<SubmitSelfService
     String get passwordIdentifier;
 
     /// The provider to register with
+    @BuiltValueField(wireName: r'provider')
+    String get provider;
+
+    /// The identity traits. This is a placeholder for the registration flow.
+    @nullable
     @BuiltValueField(wireName: r'traits')
-    String get traits;
+    JsonObject get traits;
+
+    /// The TOTP code.
+    @BuiltValueField(wireName: r'totp_code')
+    String get totpCode;
 
     SubmitSelfServiceLoginFlowBody._();
 
@@ -75,8 +86,18 @@ class _$SubmitSelfServiceLoginFlowBodySerializer implements StructuredSerializer
             ..add(serializers.serialize(object.passwordIdentifier,
                 specifiedType: const FullType(String)));
         result
-            ..add(r'traits')
-            ..add(serializers.serialize(object.traits,
+            ..add(r'provider')
+            ..add(serializers.serialize(object.provider,
+                specifiedType: const FullType(String)));
+        if (object.traits != null) {
+            result
+                ..add(r'traits')
+                ..add(serializers.serialize(object.traits,
+                    specifiedType: const FullType(JsonObject)));
+        }
+        result
+            ..add(r'totp_code')
+            ..add(serializers.serialize(object.totpCode,
                 specifiedType: const FullType(String)));
         return result;
     }
@@ -108,8 +129,16 @@ class _$SubmitSelfServiceLoginFlowBodySerializer implements StructuredSerializer
                     result.passwordIdentifier = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
+                case r'provider':
+                    result.provider = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
                 case r'traits':
                     result.traits = serializers.deserialize(value,
+                        specifiedType: const FullType(JsonObject)) as JsonObject;
+                    break;
+                case r'totp_code':
+                    result.totpCode = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
             }

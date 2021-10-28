@@ -7,6 +7,7 @@
 
 import 'package:ory_kratos_client/model/ui_node_input_attributes.dart';
 import 'package:ory_kratos_client/model/ui_node_image_attributes.dart';
+import 'package:ory_kratos_client/model/ui_node_script_attributes.dart';
 import 'package:ory_kratos_client/model/ui_node_anchor_attributes.dart';
 import 'package:ory_kratos_client/model/ui_text.dart';
 import 'package:ory_kratos_client/model/ui_node_text_attributes.dart';
@@ -30,6 +31,14 @@ abstract class UiNodeAttributes implements Built<UiNodeAttributes, UiNodeAttribu
     @BuiltValueField(wireName: r'name')
     String get name;
 
+    @BuiltValueField(wireName: r'node_type')
+    String get nodeType;
+
+    /// OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.
+    @nullable
+    @BuiltValueField(wireName: r'onclick')
+    String get onclick;
+
     /// The input's pattern.
     @nullable
     @BuiltValueField(wireName: r'pattern')
@@ -40,6 +49,7 @@ abstract class UiNodeAttributes implements Built<UiNodeAttributes, UiNodeAttribu
     @BuiltValueField(wireName: r'required')
     bool get required_;
 
+    /// The script MIME type
     @BuiltValueField(wireName: r'type')
     String get type;
 
@@ -48,12 +58,26 @@ abstract class UiNodeAttributes implements Built<UiNodeAttributes, UiNodeAttribu
     @BuiltValueField(wireName: r'value')
     JsonObject get value;
 
+    /// A unique identifier
+    @BuiltValueField(wireName: r'id')
+    String get id;
+
     @BuiltValueField(wireName: r'text')
     UiText get text;
 
-    /// The image's source URL.  format: uri
+    /// Height of the image
+    @nullable
+    @BuiltValueField(wireName: r'height')
+    int get height;
+
+    /// The script source
     @BuiltValueField(wireName: r'src')
     String get src;
+
+    /// Width of the image
+    @nullable
+    @BuiltValueField(wireName: r'width')
+    int get width;
 
     /// The link's href (destination) URL.  format: uri
     @BuiltValueField(wireName: r'href')
@@ -61,6 +85,22 @@ abstract class UiNodeAttributes implements Built<UiNodeAttributes, UiNodeAttribu
 
     @BuiltValueField(wireName: r'title')
     UiText get title;
+
+    /// The script async type
+    @BuiltValueField(wireName: r'async')
+    bool get async_;
+
+    /// The script cross origin policy
+    @BuiltValueField(wireName: r'crossorigin')
+    String get crossorigin;
+
+    /// The script's integrity hash
+    @BuiltValueField(wireName: r'integrity')
+    String get integrity;
+
+    /// The script referrer policy
+    @BuiltValueField(wireName: r'referrerpolicy')
+    String get referrerpolicy;
 
     UiNodeAttributes._();
 
@@ -97,6 +137,16 @@ class _$UiNodeAttributesSerializer implements StructuredSerializer<UiNodeAttribu
             ..add(r'name')
             ..add(serializers.serialize(object.name,
                 specifiedType: const FullType(String)));
+        result
+            ..add(r'node_type')
+            ..add(serializers.serialize(object.nodeType,
+                specifiedType: const FullType(String)));
+        if (object.onclick != null) {
+            result
+                ..add(r'onclick')
+                ..add(serializers.serialize(object.onclick,
+                    specifiedType: const FullType(String)));
+        }
         if (object.pattern != null) {
             result
                 ..add(r'pattern')
@@ -120,13 +170,29 @@ class _$UiNodeAttributesSerializer implements StructuredSerializer<UiNodeAttribu
                     specifiedType: const FullType(JsonObject)));
         }
         result
+            ..add(r'id')
+            ..add(serializers.serialize(object.id,
+                specifiedType: const FullType(String)));
+        result
             ..add(r'text')
             ..add(serializers.serialize(object.text,
                 specifiedType: const FullType(UiText)));
+        if (object.height != null) {
+            result
+                ..add(r'height')
+                ..add(serializers.serialize(object.height,
+                    specifiedType: const FullType(int)));
+        }
         result
             ..add(r'src')
             ..add(serializers.serialize(object.src,
                 specifiedType: const FullType(String)));
+        if (object.width != null) {
+            result
+                ..add(r'width')
+                ..add(serializers.serialize(object.width,
+                    specifiedType: const FullType(int)));
+        }
         result
             ..add(r'href')
             ..add(serializers.serialize(object.href,
@@ -135,6 +201,22 @@ class _$UiNodeAttributesSerializer implements StructuredSerializer<UiNodeAttribu
             ..add(r'title')
             ..add(serializers.serialize(object.title,
                 specifiedType: const FullType(UiText)));
+        result
+            ..add(r'async')
+            ..add(serializers.serialize(object.async_,
+                specifiedType: const FullType(bool)));
+        result
+            ..add(r'crossorigin')
+            ..add(serializers.serialize(object.crossorigin,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'integrity')
+            ..add(serializers.serialize(object.integrity,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'referrerpolicy')
+            ..add(serializers.serialize(object.referrerpolicy,
+                specifiedType: const FullType(String)));
         return result;
     }
 
@@ -161,6 +243,14 @@ class _$UiNodeAttributesSerializer implements StructuredSerializer<UiNodeAttribu
                     result.name = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
+                case r'node_type':
+                    result.nodeType = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'onclick':
+                    result.onclick = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
                 case r'pattern':
                     result.pattern = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
@@ -177,13 +267,25 @@ class _$UiNodeAttributesSerializer implements StructuredSerializer<UiNodeAttribu
                     result.value = serializers.deserialize(value,
                         specifiedType: const FullType(JsonObject)) as JsonObject;
                     break;
+                case r'id':
+                    result.id = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
                 case r'text':
                     result.text.replace(serializers.deserialize(value,
                         specifiedType: const FullType(UiText)) as UiText);
                     break;
+                case r'height':
+                    result.height = serializers.deserialize(value,
+                        specifiedType: const FullType(int)) as int;
+                    break;
                 case r'src':
                     result.src = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
+                    break;
+                case r'width':
+                    result.width = serializers.deserialize(value,
+                        specifiedType: const FullType(int)) as int;
                     break;
                 case r'href':
                     result.href = serializers.deserialize(value,
@@ -192,6 +294,22 @@ class _$UiNodeAttributesSerializer implements StructuredSerializer<UiNodeAttribu
                 case r'title':
                     result.title.replace(serializers.deserialize(value,
                         specifiedType: const FullType(UiText)) as UiText);
+                    break;
+                case r'async':
+                    result.async_ = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'crossorigin':
+                    result.crossorigin = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'integrity':
+                    result.integrity = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'referrerpolicy':
+                    result.referrerpolicy = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
                     break;
             }
         }

@@ -43,6 +43,12 @@ void main() {
       // TODO
     });
 
+    // ReturnTo contains the requested return_to URL.
+    // String returnTo
+    test('to test the property `returnTo`', () async {
+      // TODO
+    });
+
     // SelfServiceRecoveryFlowState state
     test('to test the property `state`', () async {
       // TODO

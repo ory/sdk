@@ -8,7 +8,7 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_kratos_client/model/ui_node_attributes.dart';
 import 'package:ory_kratos_client/model/ui_text.dart';
-import 'package:ory_kratos_client/model/meta.dart';
+import 'package:ory_kratos_client/model/ui_node_meta.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -26,7 +26,7 @@ abstract class UiNode implements Built<UiNode, UiNodeBuilder> {
     BuiltList<UiText> get messages;
 
     @BuiltValueField(wireName: r'meta')
-    Meta get meta;
+    UiNodeMeta get meta;
 
     @BuiltValueField(wireName: r'type')
     String get type;
@@ -67,7 +67,7 @@ class _$UiNodeSerializer implements StructuredSerializer<UiNode> {
         result
             ..add(r'meta')
             ..add(serializers.serialize(object.meta,
-                specifiedType: const FullType(Meta)));
+                specifiedType: const FullType(UiNodeMeta)));
         result
             ..add(r'type')
             ..add(serializers.serialize(object.type,
@@ -100,7 +100,7 @@ class _$UiNodeSerializer implements StructuredSerializer<UiNode> {
                     break;
                 case r'meta':
                     result.meta.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(Meta)) as Meta);
+                        specifiedType: const FullType(UiNodeMeta)) as UiNodeMeta);
                     break;
                 case r'type':
                     result.type = serializers.deserialize(value,

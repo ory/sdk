@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **id** | **String** |  | 
 **issued_at** | Option<**String**> | IssuedAt is the time (UTC) when the request occurred. | [optional]
 **request_url** | Option<**String**> | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example. | [optional]
+**return_to** | Option<**String**> | ReturnTo contains the requested return_to URL. | [optional]
 **state** | [**crate::models::SelfServiceVerificationFlowState**](selfServiceVerificationFlowState.md) |  | 
 **_type** | **String** | The flow type can either be `api` or `browser`. | 
 **ui** | [**crate::models::UiContainer**](uiContainer.md) |  | 

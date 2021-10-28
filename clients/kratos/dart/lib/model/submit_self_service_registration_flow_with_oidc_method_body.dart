@@ -5,6 +5,7 @@
 
 // ignore_for_file: unused_import
 
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -22,8 +23,13 @@ abstract class SubmitSelfServiceRegistrationFlowWithOidcMethodBody implements Bu
     String get method;
 
     /// The provider to register with
+    @BuiltValueField(wireName: r'provider')
+    String get provider;
+
+    /// The identity traits
+    @nullable
     @BuiltValueField(wireName: r'traits')
-    String get traits;
+    JsonObject get traits;
 
     SubmitSelfServiceRegistrationFlowWithOidcMethodBody._();
 
@@ -57,9 +63,15 @@ class _$SubmitSelfServiceRegistrationFlowWithOidcMethodBodySerializer implements
             ..add(serializers.serialize(object.method,
                 specifiedType: const FullType(String)));
         result
-            ..add(r'traits')
-            ..add(serializers.serialize(object.traits,
+            ..add(r'provider')
+            ..add(serializers.serialize(object.provider,
                 specifiedType: const FullType(String)));
+        if (object.traits != null) {
+            result
+                ..add(r'traits')
+                ..add(serializers.serialize(object.traits,
+                    specifiedType: const FullType(JsonObject)));
+        }
         return result;
     }
 
@@ -82,9 +94,13 @@ class _$SubmitSelfServiceRegistrationFlowWithOidcMethodBodySerializer implements
                     result.method = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
+                case r'provider':
+                    result.provider = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
                 case r'traits':
                     result.traits = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
+                        specifiedType: const FullType(JsonObject)) as JsonObject;
                     break;
             }
         }

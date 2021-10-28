@@ -14,13 +14,13 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(SubmitSelfServiceLoginFlowBody, () {
-    // The CSRF Token
+    // Sending the anti-csrf token is only required for browser login flows.
     // String csrfToken
     test('to test the property `csrfToken`', () async {
       // TODO
     });
 
-    // Method to use  This field must be set to `oidc` when using the oidc method.
+    // Method should be set to \"totp\" when logging in using the TOTP strategy.
     // String method
     test('to test the property `method`', () async {
       // TODO
@@ -39,8 +39,20 @@ void main() {
     });
 
     // The provider to register with
-    // String traits
+    // String provider
+    test('to test the property `provider`', () async {
+      // TODO
+    });
+
+    // The identity traits. This is a placeholder for the registration flow.
+    // JsonObject traits
     test('to test the property `traits`', () async {
+      // TODO
+    });
+
+    // The TOTP code.
+    // String totpCode
+    test('to test the property `totpCode`', () async {
       // TODO
     });
 

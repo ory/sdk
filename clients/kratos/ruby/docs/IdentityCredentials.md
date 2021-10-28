@@ -7,7 +7,7 @@
 | **config** | **Object** |  | [optional] |
 | **created_at** | **Time** | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] |
 | **identifiers** | **Array&lt;String&gt;** | Identifiers represents a list of unique identifiers this credential type matches. | [optional] |
-| **type** | **String** | and so on. | [optional] |
+| **type** | [**IdentityCredentialsType**](IdentityCredentialsType.md) |  | [optional] |
 | **updated_at** | **Time** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] |
 
 ## Example

@@ -37,6 +37,11 @@ abstract class SelfServiceVerificationFlow implements Built<SelfServiceVerificat
     @BuiltValueField(wireName: r'request_url')
     String get requestUrl;
 
+    /// ReturnTo contains the requested return_to URL.
+    @nullable
+    @BuiltValueField(wireName: r'return_to')
+    String get returnTo;
+
     @BuiltValueField(wireName: r'state')
     SelfServiceVerificationFlowState get state;
     // enum stateEnum {  choose_method,  sent_email,  passed_challenge,  };
@@ -97,6 +102,12 @@ class _$SelfServiceVerificationFlowSerializer implements StructuredSerializer<Se
                 ..add(serializers.serialize(object.requestUrl,
                     specifiedType: const FullType(String)));
         }
+        if (object.returnTo != null) {
+            result
+                ..add(r'return_to')
+                ..add(serializers.serialize(object.returnTo,
+                    specifiedType: const FullType(String)));
+        }
         result
             ..add(r'state')
             ..add(serializers.serialize(object.state,
@@ -141,6 +152,10 @@ class _$SelfServiceVerificationFlowSerializer implements StructuredSerializer<Se
                     break;
                 case r'request_url':
                     result.requestUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'return_to':
+                    result.returnTo = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
                 case r'state':

@@ -31,6 +31,17 @@ void main() {
       // TODO
     });
 
+    // String nodeType
+    test('to test the property `nodeType`', () async {
+      // TODO
+    });
+
+    // OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.
+    // String onclick
+    test('to test the property `onclick`', () async {
+      // TODO
+    });
+
     // The input's pattern.
     // String pattern
     test('to test the property `pattern`', () async {

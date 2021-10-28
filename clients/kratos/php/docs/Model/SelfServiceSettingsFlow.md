@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **identity** | [**\Ory\Kratos\Client\Model\Identity**](Identity.md) |  |
 **issuedAt** | [**\DateTime**](\DateTime.md) | IssuedAt is the time (UTC) when the flow occurred. |
 **requestUrl** | **string** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. |
+**returnTo** | **string** | ReturnTo contains the requested return_to URL. | [optional]
 **state** | [**\Ory\Kratos\Client\Model\SelfServiceSettingsFlowState**](SelfServiceSettingsFlowState.md) |  |
 **type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | [optional]
 **ui** | [**\Ory\Kratos\Client\Model\UiContainer**](UiContainer.md) |  |

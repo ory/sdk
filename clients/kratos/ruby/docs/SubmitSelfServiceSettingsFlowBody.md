@@ -16,7 +16,8 @@ OryKratosClient::SubmitSelfServiceSettingsFlowBody.openapi_one_of
 # [
 #   :'SubmitSelfServiceSettingsFlowWithOidcMethodBody',
 #   :'SubmitSelfServiceSettingsFlowWithPasswordMethodBody',
-#   :'SubmitSelfServiceSettingsFlowWithProfileMethodBody'
+#   :'SubmitSelfServiceSettingsFlowWithProfileMethodBody',
+#   :'SubmitSelfServiceSettingsFlowWithTotpMethodBody'
 # ]
 ```
 
@@ -47,7 +48,8 @@ OryKratosClient::SubmitSelfServiceSettingsFlowBody.openapi_discriminator_mapping
 # {
 #   :'oidc' => :'SubmitSelfServiceSettingsFlowWithOidcMethodBody',
 #   :'password' => :'SubmitSelfServiceSettingsFlowWithPasswordMethodBody',
-#   :'profile' => :'SubmitSelfServiceSettingsFlowWithProfileMethodBody'
+#   :'profile' => :'SubmitSelfServiceSettingsFlowWithProfileMethodBody',
+#   :'totp' => :'SubmitSelfServiceSettingsFlowWithTotpMethodBody'
 # }
 
 ### build
@@ -77,5 +79,6 @@ OryKratosClient::SubmitSelfServiceSettingsFlowBody.build(data_that_doesnt_match)
 - `SubmitSelfServiceSettingsFlowWithOidcMethodBody`
 - `SubmitSelfServiceSettingsFlowWithPasswordMethodBody`
 - `SubmitSelfServiceSettingsFlowWithProfileMethodBody`
+- `SubmitSelfServiceSettingsFlowWithTotpMethodBody`
 - `nil` (if no type matches)
 

@@ -42,14 +42,5 @@ void main() {
       // TODO
     });
 
-    // Get snapshot metrics from the service. If you're using k8s, you can then add annotations to your deployment like so:
-    //
-    // ``` metadata: annotations: prometheus.io/port: \"4434\" prometheus.io/path: \"/metrics/prometheus\" ```
-    //
-    //Future prometheus() async
-    test('test prometheus', () async {
-      // TODO
-    });
-
   });
 }

@@ -5,6 +5,7 @@
 
 // ignore_for_file: unused_import
 
+import 'package:ory_kratos_client/model/identity_credentials_type.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
@@ -28,10 +29,10 @@ abstract class IdentityCredentials implements Built<IdentityCredentials, Identit
     @BuiltValueField(wireName: r'identifiers')
     BuiltList<String> get identifiers;
 
-    /// and so on.
     @nullable
     @BuiltValueField(wireName: r'type')
-    String get type;
+    IdentityCredentialsType get type;
+    // enum typeEnum {  password,  totp,  oidc,  };
 
     /// UpdatedAt is a helper struct field for gobuffalo.pop.
     @nullable
@@ -81,7 +82,7 @@ class _$IdentityCredentialsSerializer implements StructuredSerializer<IdentityCr
             result
                 ..add(r'type')
                 ..add(serializers.serialize(object.type,
-                    specifiedType: const FullType(String)));
+                    specifiedType: const FullType(IdentityCredentialsType)));
         }
         if (object.updatedAt != null) {
             result
@@ -117,7 +118,7 @@ class _$IdentityCredentialsSerializer implements StructuredSerializer<IdentityCr
                     break;
                 case r'type':
                     result.type = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
+                        specifiedType: const FullType(IdentityCredentialsType)) as IdentityCredentialsType;
                     break;
                 case r'updated_at':
                     result.updatedAt = serializers.deserialize(value,

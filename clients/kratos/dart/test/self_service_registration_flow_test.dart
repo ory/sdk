@@ -14,8 +14,7 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(SelfServiceRegistrationFlow, () {
-    // and so on.
-    // String active
+    // IdentityCredentialsType active
     test('to test the property `active`', () async {
       // TODO
     });
@@ -40,6 +39,12 @@ void main() {
     // RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
     // String requestUrl
     test('to test the property `requestUrl`', () async {
+      // TODO
+    });
+
+    // ReturnTo contains the requested return_to URL.
+    // String returnTo
+    test('to test the property `returnTo`', () async {
       // TODO
     });
 

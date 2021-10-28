@@ -17,6 +17,13 @@ abstract class UiNodeAnchorAttributes implements Built<UiNodeAnchorAttributes, U
     @BuiltValueField(wireName: r'href')
     String get href;
 
+    /// A unique identifier
+    @BuiltValueField(wireName: r'id')
+    String get id;
+
+    @BuiltValueField(wireName: r'node_type')
+    String get nodeType;
+
     @BuiltValueField(wireName: r'title')
     UiText get title;
 
@@ -46,6 +53,14 @@ class _$UiNodeAnchorAttributesSerializer implements StructuredSerializer<UiNodeA
             ..add(serializers.serialize(object.href,
                 specifiedType: const FullType(String)));
         result
+            ..add(r'id')
+            ..add(serializers.serialize(object.id,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'node_type')
+            ..add(serializers.serialize(object.nodeType,
+                specifiedType: const FullType(String)));
+        result
             ..add(r'title')
             ..add(serializers.serialize(object.title,
                 specifiedType: const FullType(UiText)));
@@ -65,6 +80,14 @@ class _$UiNodeAnchorAttributesSerializer implements StructuredSerializer<UiNodeA
             switch (key) {
                 case r'href':
                     result.href = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'id':
+                    result.id = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'node_type':
+                    result.nodeType = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
                 case r'title':

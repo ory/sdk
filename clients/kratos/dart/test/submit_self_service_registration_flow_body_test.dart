@@ -32,9 +32,15 @@ void main() {
       // TODO
     });
 
-    // The provider to register with
-    // String traits
+    // The identity traits
+    // JsonObject traits
     test('to test the property `traits`', () async {
+      // TODO
+    });
+
+    // The provider to register with
+    // String provider
+    test('to test the property `provider`', () async {
       // TODO
     });
 

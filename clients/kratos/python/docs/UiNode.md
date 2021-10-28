@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **attributes** | [**UiNodeAttributes**](UiNodeAttributes.md) |  | 
 **group** | **str** |  | 
 **messages** | [**UiTexts**](UiTexts.md) |  | 
-**meta** | [**Meta**](Meta.md) |  | 
+**meta** | [**UiNodeMeta**](UiNodeMeta.md) |  | 
 **type** | **str** |  | 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

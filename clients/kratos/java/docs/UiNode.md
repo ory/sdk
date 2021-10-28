@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **attributes** | [**UiNodeAttributes**](UiNodeAttributes.md) |  | 
 **group** | **String** |  | 
 **messages** | [**List&lt;UiText&gt;**](UiText.md) |  | 
-**meta** | [**Meta**](Meta.md) |  | 
+**meta** | [**UiNodeMeta**](UiNodeMeta.md) |  | 
 **type** | **String** |  | 
 
 

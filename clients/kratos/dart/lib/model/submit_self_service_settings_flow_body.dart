@@ -7,6 +7,7 @@
 
 import 'package:ory_kratos_client/model/submit_self_service_settings_flow_with_profile_method_body.dart';
 import 'package:ory_kratos_client/model/submit_self_service_settings_flow_with_oidc_method_body.dart';
+import 'package:ory_kratos_client/model/submit_self_service_settings_flow_with_totp_method_body.dart';
 import 'package:ory_kratos_client/model/submit_self_service_settings_flow_with_password_method_body.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
@@ -16,12 +17,12 @@ part 'submit_self_service_settings_flow_body.g.dart';
 
 abstract class SubmitSelfServiceSettingsFlowBody implements Built<SubmitSelfServiceSettingsFlowBody, SubmitSelfServiceSettingsFlowBodyBuilder> {
 
-    /// The Anti-CSRF Token  This token is only required when performing browser flows.
+    /// CSRFToken is the anti-CSRF token
     @nullable
     @BuiltValueField(wireName: r'csrf_token')
     String get csrfToken;
 
-    /// Method  Should be set to profile when trying to update a profile.
+    /// Method  Should be set to \"totp\" when trying to add, update, or remove a totp pairing.
     @BuiltValueField(wireName: r'method')
     String get method;
 
@@ -29,7 +30,7 @@ abstract class SubmitSelfServiceSettingsFlowBody implements Built<SubmitSelfServ
     @BuiltValueField(wireName: r'password')
     String get password;
 
-    /// Traits contains all of the identity's traits.
+    /// The identity's traits  in: body
     @BuiltValueField(wireName: r'traits')
     JsonObject get traits;
 
@@ -47,6 +48,16 @@ abstract class SubmitSelfServiceSettingsFlowBody implements Built<SubmitSelfServ
     @nullable
     @BuiltValueField(wireName: r'unlink')
     String get unlink;
+
+    /// ValidationTOTP must contain a valid TOTP based on the
+    @nullable
+    @BuiltValueField(wireName: r'totp_code')
+    String get totpCode;
+
+    /// UnlinkTOTP if true will remove the TOTP pairing, effectively removing the credential. This can be used to set up a new TOTP device.
+    @nullable
+    @BuiltValueField(wireName: r'totp_unlink')
+    bool get totpUnlink;
 
     SubmitSelfServiceSettingsFlowBody._();
 
@@ -105,6 +116,18 @@ class _$SubmitSelfServiceSettingsFlowBodySerializer implements StructuredSeriali
                 ..add(serializers.serialize(object.unlink,
                     specifiedType: const FullType(String)));
         }
+        if (object.totpCode != null) {
+            result
+                ..add(r'totp_code')
+                ..add(serializers.serialize(object.totpCode,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.totpUnlink != null) {
+            result
+                ..add(r'totp_unlink')
+                ..add(serializers.serialize(object.totpUnlink,
+                    specifiedType: const FullType(bool)));
+        }
         return result;
     }
 
@@ -146,6 +169,14 @@ class _$SubmitSelfServiceSettingsFlowBodySerializer implements StructuredSeriali
                 case r'unlink':
                     result.unlink = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
+                    break;
+                case r'totp_code':
+                    result.totpCode = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'totp_unlink':
+                    result.totpUnlink = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
                     break;
             }
         }

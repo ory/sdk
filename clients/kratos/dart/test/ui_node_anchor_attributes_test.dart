@@ -20,6 +20,17 @@ void main() {
       // TODO
     });
 
+    // A unique identifier
+    // String id
+    test('to test the property `id`', () async {
+      // TODO
+    });
+
+    // String nodeType
+    test('to test the property `nodeType`', () async {
+      // TODO
+    });
+
     // UiText title
     test('to test the property `title`', () async {
       // TODO

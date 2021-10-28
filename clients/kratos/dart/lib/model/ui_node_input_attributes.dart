@@ -26,6 +26,14 @@ abstract class UiNodeInputAttributes implements Built<UiNodeInputAttributes, UiN
     @BuiltValueField(wireName: r'name')
     String get name;
 
+    @BuiltValueField(wireName: r'node_type')
+    String get nodeType;
+
+    /// OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.
+    @nullable
+    @BuiltValueField(wireName: r'onclick')
+    String get onclick;
+
     /// The input's pattern.
     @nullable
     @BuiltValueField(wireName: r'pattern')
@@ -79,6 +87,16 @@ class _$UiNodeInputAttributesSerializer implements StructuredSerializer<UiNodeIn
             ..add(r'name')
             ..add(serializers.serialize(object.name,
                 specifiedType: const FullType(String)));
+        result
+            ..add(r'node_type')
+            ..add(serializers.serialize(object.nodeType,
+                specifiedType: const FullType(String)));
+        if (object.onclick != null) {
+            result
+                ..add(r'onclick')
+                ..add(serializers.serialize(object.onclick,
+                    specifiedType: const FullType(String)));
+        }
         if (object.pattern != null) {
             result
                 ..add(r'pattern')
@@ -125,6 +143,14 @@ class _$UiNodeInputAttributesSerializer implements StructuredSerializer<UiNodeIn
                     break;
                 case r'name':
                     result.name = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'node_type':
+                    result.nodeType = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'onclick':
+                    result.onclick = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
                 case r'pattern':

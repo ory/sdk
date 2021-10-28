@@ -13,6 +13,13 @@ part 'ui_node_text_attributes.g.dart';
 
 abstract class UiNodeTextAttributes implements Built<UiNodeTextAttributes, UiNodeTextAttributesBuilder> {
 
+    /// A unique identifier
+    @BuiltValueField(wireName: r'id')
+    String get id;
+
+    @BuiltValueField(wireName: r'node_type')
+    String get nodeType;
+
     @BuiltValueField(wireName: r'text')
     UiText get text;
 
@@ -38,6 +45,14 @@ class _$UiNodeTextAttributesSerializer implements StructuredSerializer<UiNodeTex
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object>[];
         result
+            ..add(r'id')
+            ..add(serializers.serialize(object.id,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'node_type')
+            ..add(serializers.serialize(object.nodeType,
+                specifiedType: const FullType(String)));
+        result
             ..add(r'text')
             ..add(serializers.serialize(object.text,
                 specifiedType: const FullType(UiText)));
@@ -55,6 +70,14 @@ class _$UiNodeTextAttributesSerializer implements StructuredSerializer<UiNodeTex
             iterator.moveNext();
             final dynamic value = iterator.current;
             switch (key) {
+                case r'id':
+                    result.id = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'node_type':
+                    result.nodeType = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
                 case r'text':
                     result.text.replace(serializers.deserialize(value,
                         specifiedType: const FullType(UiText)) as UiText);

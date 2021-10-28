@@ -32,6 +32,12 @@ void main() {
       // TODO
     });
 
+    // The identity's traits  in: body
+    // JsonObject traits
+    test('to test the property `traits`', () async {
+      // TODO
+    });
+
     // Unlink this provider  Either this or `link` must be set.  type: string in: body
     // String unlink
     test('to test the property `unlink`', () async {

@@ -14,15 +14,26 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(Session, () {
-    // Whether or not the session is active.
+    // Active state. If false the session is no longer active.
     // bool active
     test('to test the property `active`', () async {
       // TODO
     });
 
-    // The Session Authentication Timestamp  When this session was authenticated at.
+    // The Session Authentication Timestamp  When this session was authenticated at. If multi-factor authentication was used this is the time when the last factor was authenticated (e.g. the TOTP code challenge was completed).
     // DateTime authenticatedAt
     test('to test the property `authenticatedAt`', () async {
+      // TODO
+    });
+
+    // A list of authenticators which were used to authenticate the session.
+    // BuiltList<SessionAuthenticationMethod> authenticationMethods
+    test('to test the property `authenticationMethods`', () async {
+      // TODO
+    });
+
+    // AuthenticatorAssuranceLevel authenticatorAssuranceLevel
+    test('to test the property `authenticatorAssuranceLevel`', () async {
       // TODO
     });
 
@@ -42,7 +53,7 @@ void main() {
       // TODO
     });
 
-    // The Session Issuance Timestamp  When this session was authenticated at.
+    // The Session Issuance Timestamp  When this session was issued at. Usually equal or close to `authenticated_at`.
     // DateTime issuedAt
     test('to test the property `issuedAt`', () async {
       // TODO

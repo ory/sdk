@@ -12,9 +12,26 @@ part 'ui_node_image_attributes.g.dart';
 
 abstract class UiNodeImageAttributes implements Built<UiNodeImageAttributes, UiNodeImageAttributesBuilder> {
 
+    /// Height of the image
+    @nullable
+    @BuiltValueField(wireName: r'height')
+    int get height;
+
+    /// A unique identifier
+    @BuiltValueField(wireName: r'id')
+    String get id;
+
+    @BuiltValueField(wireName: r'node_type')
+    String get nodeType;
+
     /// The image's source URL.  format: uri
     @BuiltValueField(wireName: r'src')
     String get src;
+
+    /// Width of the image
+    @nullable
+    @BuiltValueField(wireName: r'width')
+    int get width;
 
     UiNodeImageAttributes._();
 
@@ -37,10 +54,30 @@ class _$UiNodeImageAttributesSerializer implements StructuredSerializer<UiNodeIm
     Iterable<Object> serialize(Serializers serializers, UiNodeImageAttributes object,
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object>[];
+        if (object.height != null) {
+            result
+                ..add(r'height')
+                ..add(serializers.serialize(object.height,
+                    specifiedType: const FullType(int)));
+        }
+        result
+            ..add(r'id')
+            ..add(serializers.serialize(object.id,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'node_type')
+            ..add(serializers.serialize(object.nodeType,
+                specifiedType: const FullType(String)));
         result
             ..add(r'src')
             ..add(serializers.serialize(object.src,
                 specifiedType: const FullType(String)));
+        if (object.width != null) {
+            result
+                ..add(r'width')
+                ..add(serializers.serialize(object.width,
+                    specifiedType: const FullType(int)));
+        }
         return result;
     }
 
@@ -55,9 +92,25 @@ class _$UiNodeImageAttributesSerializer implements StructuredSerializer<UiNodeIm
             iterator.moveNext();
             final dynamic value = iterator.current;
             switch (key) {
+                case r'height':
+                    result.height = serializers.deserialize(value,
+                        specifiedType: const FullType(int)) as int;
+                    break;
+                case r'id':
+                    result.id = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'node_type':
+                    result.nodeType = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
                 case r'src':
                     result.src = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
+                    break;
+                case r'width':
+                    result.width = serializers.deserialize(value,
+                        specifiedType: const FullType(int)) as int;
                     break;
             }
         }

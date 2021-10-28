@@ -11,9 +11,11 @@ Name | Type | Description | Notes
 **request_url** | **str** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. | 
 **type** | **str** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | 
 **ui** | [**UiContainer**](UiContainer.md) |  | 
-**active** | **str** | and so on. | [optional] 
+**active** | [**IdentityCredentialsType**](IdentityCredentialsType.md) |  | [optional] 
 **created_at** | **datetime** | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] 
-**forced** | **bool** | Forced stores whether this login flow should enforce re-authentication. | [optional] 
+**refresh** | **bool** | Refresh stores whether this login flow should enforce re-authentication. | [optional] 
+**requested_aal** | [**AuthenticatorAssuranceLevel**](AuthenticatorAssuranceLevel.md) |  | [optional] 
+**return_to** | **str** | ReturnTo contains the requested return_to URL. | [optional] 
 **updated_at** | **datetime** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

@@ -5,6 +5,7 @@
 
 // ignore_for_file: unused_import
 
+import 'package:ory_kratos_client/model/identity_state.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -16,6 +17,11 @@ abstract class AdminCreateIdentityBody implements Built<AdminCreateIdentityBody,
     /// SchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
     @BuiltValueField(wireName: r'schema_id')
     String get schemaId;
+
+    @nullable
+    @BuiltValueField(wireName: r'state')
+    IdentityState get state;
+    // enum stateEnum {  active,  inactive,  };
 
     /// Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_url`.
     @BuiltValueField(wireName: r'traits')
@@ -46,6 +52,12 @@ class _$AdminCreateIdentityBodySerializer implements StructuredSerializer<AdminC
             ..add(r'schema_id')
             ..add(serializers.serialize(object.schemaId,
                 specifiedType: const FullType(String)));
+        if (object.state != null) {
+            result
+                ..add(r'state')
+                ..add(serializers.serialize(object.state,
+                    specifiedType: const FullType(IdentityState)));
+        }
         result
             ..add(r'traits')
             ..add(serializers.serialize(object.traits,
@@ -67,6 +79,10 @@ class _$AdminCreateIdentityBodySerializer implements StructuredSerializer<AdminC
                 case r'schema_id':
                     result.schemaId = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
+                    break;
+                case r'state':
+                    result.state = serializers.deserialize(value,
+                        specifiedType: const FullType(IdentityState)) as IdentityState;
                     break;
                 case r'traits':
                     result.traits = serializers.deserialize(value,

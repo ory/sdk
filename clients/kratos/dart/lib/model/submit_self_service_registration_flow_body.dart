@@ -6,6 +6,7 @@
 // ignore_for_file: unused_import
 
 import 'package:ory_kratos_client/model/submit_self_service_registration_flow_with_password_method_body.dart';
+import 'package:built_value/json_object.dart';
 import 'package:ory_kratos_client/model/submit_self_service_registration_flow_with_oidc_method_body.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -27,9 +28,13 @@ abstract class SubmitSelfServiceRegistrationFlowBody implements Built<SubmitSelf
     @BuiltValueField(wireName: r'password')
     String get password;
 
-    /// The provider to register with
+    /// The identity traits
     @BuiltValueField(wireName: r'traits')
-    String get traits;
+    JsonObject get traits;
+
+    /// The provider to register with
+    @BuiltValueField(wireName: r'provider')
+    String get provider;
 
     SubmitSelfServiceRegistrationFlowBody._();
 
@@ -69,6 +74,10 @@ class _$SubmitSelfServiceRegistrationFlowBodySerializer implements StructuredSer
         result
             ..add(r'traits')
             ..add(serializers.serialize(object.traits,
+                specifiedType: const FullType(JsonObject)));
+        result
+            ..add(r'provider')
+            ..add(serializers.serialize(object.provider,
                 specifiedType: const FullType(String)));
         return result;
     }
@@ -98,6 +107,10 @@ class _$SubmitSelfServiceRegistrationFlowBodySerializer implements StructuredSer
                     break;
                 case r'traits':
                     result.traits = serializers.deserialize(value,
+                        specifiedType: const FullType(JsonObject)) as JsonObject;
+                    break;
+                case r'provider':
+                    result.provider = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
             }

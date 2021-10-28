@@ -15,7 +15,8 @@ OryKratosClient::SubmitSelfServiceLoginFlowBody.openapi_one_of
 # =>
 # [
 #   :'SubmitSelfServiceLoginFlowWithOidcMethodBody',
-#   :'SubmitSelfServiceLoginFlowWithPasswordMethodBody'
+#   :'SubmitSelfServiceLoginFlowWithPasswordMethodBody',
+#   :'SubmitSelfServiceLoginFlowWithTotpMethodBody'
 # ]
 ```
 
@@ -45,7 +46,8 @@ OryKratosClient::SubmitSelfServiceLoginFlowBody.openapi_discriminator_mapping
 # =>
 # {
 #   :'oidc' => :'SubmitSelfServiceLoginFlowWithOidcMethodBody',
-#   :'password' => :'SubmitSelfServiceLoginFlowWithPasswordMethodBody'
+#   :'password' => :'SubmitSelfServiceLoginFlowWithPasswordMethodBody',
+#   :'totp' => :'SubmitSelfServiceLoginFlowWithTotpMethodBody'
 # }
 
 ### build
@@ -74,5 +76,6 @@ OryKratosClient::SubmitSelfServiceLoginFlowBody.build(data_that_doesnt_match)
 
 - `SubmitSelfServiceLoginFlowWithOidcMethodBody`
 - `SubmitSelfServiceLoginFlowWithPasswordMethodBody`
+- `SubmitSelfServiceLoginFlowWithTotpMethodBody`
 - `nil` (if no type matches)
 

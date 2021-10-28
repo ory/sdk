@@ -14,7 +14,7 @@ import 'package:ory_kratos_client/auth/api_key_auth.dart';
 import 'package:ory_kratos_client/auth/basic_auth.dart';
 import 'package:ory_kratos_client/auth/oauth.dart';
 import 'package:ory_kratos_client/api/metadata_api.dart';
-import 'package:ory_kratos_client/api/v0alpha1_api.dart';
+import 'package:ory_kratos_client/api/v0alpha2_api.dart';
 
 
 final _defaultInterceptors = [
@@ -73,11 +73,11 @@ class OryKratosClient {
 
 
     /**
-    * Get V0alpha1Api instance, base route and serializer can be overridden by a given but be careful,
+    * Get V0alpha2Api instance, base route and serializer can be overridden by a given but be careful,
     * by doing that all interceptors will not be executed
     */
-    V0alpha1Api getV0alpha1Api() {
-    return V0alpha1Api(dio, serializers);
+    V0alpha2Api getV0alpha2Api() {
+    return V0alpha2Api(dio, serializers);
     }
 
 

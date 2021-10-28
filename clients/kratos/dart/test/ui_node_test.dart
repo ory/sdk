@@ -29,7 +29,7 @@ void main() {
       // TODO
     });
 
-    // Meta meta
+    // UiNodeMeta meta
     test('to test the property `meta`', () async {
       // TODO
     });

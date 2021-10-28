@@ -5,6 +5,7 @@
 
 // ignore_for_file: unused_import
 
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -25,6 +26,11 @@ abstract class SubmitSelfServiceSettingsFlowWithOidcMethodBody implements Built<
     /// Method  Should be set to profile when trying to update a profile.
     @BuiltValueField(wireName: r'method')
     String get method;
+
+    /// The identity's traits  in: body
+    @nullable
+    @BuiltValueField(wireName: r'traits')
+    JsonObject get traits;
 
     /// Unlink this provider  Either this or `link` must be set.  type: string in: body
     @nullable
@@ -68,6 +74,12 @@ class _$SubmitSelfServiceSettingsFlowWithOidcMethodBodySerializer implements Str
             ..add(r'method')
             ..add(serializers.serialize(object.method,
                 specifiedType: const FullType(String)));
+        if (object.traits != null) {
+            result
+                ..add(r'traits')
+                ..add(serializers.serialize(object.traits,
+                    specifiedType: const FullType(JsonObject)));
+        }
         if (object.unlink != null) {
             result
                 ..add(r'unlink')
@@ -99,6 +111,10 @@ class _$SubmitSelfServiceSettingsFlowWithOidcMethodBodySerializer implements Str
                 case r'method':
                     result.method = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
+                    break;
+                case r'traits':
+                    result.traits = serializers.deserialize(value,
+                        specifiedType: const FullType(JsonObject)) as JsonObject;
                     break;
                 case r'unlink':
                     result.unlink = serializers.deserialize(value,

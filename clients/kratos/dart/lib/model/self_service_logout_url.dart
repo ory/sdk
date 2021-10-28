@@ -12,7 +12,11 @@ part 'self_service_logout_url.g.dart';
 
 abstract class SelfServiceLogoutUrl implements Built<SelfServiceLogoutUrl, SelfServiceLogoutUrlBuilder> {
 
-    /// LogoutURL can be opened in a browser to  format: uri
+    /// LogoutToken can be used to perform logout using AJAX.
+    @BuiltValueField(wireName: r'logout_token')
+    String get logoutToken;
+
+    /// LogoutURL can be opened in a browser to sign the user out.  format: uri
     @BuiltValueField(wireName: r'logout_url')
     String get logoutUrl;
 
@@ -38,6 +42,10 @@ class _$SelfServiceLogoutUrlSerializer implements StructuredSerializer<SelfServi
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object>[];
         result
+            ..add(r'logout_token')
+            ..add(serializers.serialize(object.logoutToken,
+                specifiedType: const FullType(String)));
+        result
             ..add(r'logout_url')
             ..add(serializers.serialize(object.logoutUrl,
                 specifiedType: const FullType(String)));
@@ -55,6 +63,10 @@ class _$SelfServiceLogoutUrlSerializer implements StructuredSerializer<SelfServi
             iterator.moveNext();
             final dynamic value = iterator.current;
             switch (key) {
+                case r'logout_token':
+                    result.logoutToken = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
                 case r'logout_url':
                     result.logoutUrl = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;

@@ -32,6 +32,12 @@ void main() {
       // TODO
     });
 
+    // The error ID  Useful when trying to identify various errors in application logic.
+    // String id
+    test('to test the property `id`', () async {
+      // TODO
+    });
+
     // Error message  The error's message.
     // String message
     test('to test the property `message`', () async {

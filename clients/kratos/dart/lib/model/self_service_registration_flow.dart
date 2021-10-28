@@ -5,6 +5,7 @@
 
 // ignore_for_file: unused_import
 
+import 'package:ory_kratos_client/model/identity_credentials_type.dart';
 import 'package:ory_kratos_client/model/ui_container.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -13,10 +14,10 @@ part 'self_service_registration_flow.g.dart';
 
 abstract class SelfServiceRegistrationFlow implements Built<SelfServiceRegistrationFlow, SelfServiceRegistrationFlowBuilder> {
 
-    /// and so on.
     @nullable
     @BuiltValueField(wireName: r'active')
-    String get active;
+    IdentityCredentialsType get active;
+    // enum activeEnum {  password,  totp,  oidc,  };
 
     /// ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated.
     @BuiltValueField(wireName: r'expires_at')
@@ -32,6 +33,11 @@ abstract class SelfServiceRegistrationFlow implements Built<SelfServiceRegistrat
     /// RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
     @BuiltValueField(wireName: r'request_url')
     String get requestUrl;
+
+    /// ReturnTo contains the requested return_to URL.
+    @nullable
+    @BuiltValueField(wireName: r'return_to')
+    String get returnTo;
 
     /// The flow type can either be `api` or `browser`.
     @nullable
@@ -66,7 +72,7 @@ class _$SelfServiceRegistrationFlowSerializer implements StructuredSerializer<Se
             result
                 ..add(r'active')
                 ..add(serializers.serialize(object.active,
-                    specifiedType: const FullType(String)));
+                    specifiedType: const FullType(IdentityCredentialsType)));
         }
         result
             ..add(r'expires_at')
@@ -84,6 +90,12 @@ class _$SelfServiceRegistrationFlowSerializer implements StructuredSerializer<Se
             ..add(r'request_url')
             ..add(serializers.serialize(object.requestUrl,
                 specifiedType: const FullType(String)));
+        if (object.returnTo != null) {
+            result
+                ..add(r'return_to')
+                ..add(serializers.serialize(object.returnTo,
+                    specifiedType: const FullType(String)));
+        }
         if (object.type != null) {
             result
                 ..add(r'type')
@@ -110,7 +122,7 @@ class _$SelfServiceRegistrationFlowSerializer implements StructuredSerializer<Se
             switch (key) {
                 case r'active':
                     result.active = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
+                        specifiedType: const FullType(IdentityCredentialsType)) as IdentityCredentialsType;
                     break;
                 case r'expires_at':
                     result.expiresAt = serializers.deserialize(value,
@@ -126,6 +138,10 @@ class _$SelfServiceRegistrationFlowSerializer implements StructuredSerializer<Se
                     break;
                 case r'request_url':
                     result.requestUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'return_to':
+                    result.returnTo = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
                 case r'type':

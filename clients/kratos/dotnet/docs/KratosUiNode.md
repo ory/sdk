@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Attributes** | [**KratosUiNodeAttributes**](KratosUiNodeAttributes.md) |  | 
 **Group** | **string** |  | 
 **Messages** | [**List&lt;KratosUiText&gt;**](KratosUiText.md) |  | 
-**Meta** | [**KratosMeta**](KratosMeta.md) |  | 
+**Meta** | [**KratosUiNodeMeta**](KratosUiNodeMeta.md) |  | 
 **Type** | **string** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

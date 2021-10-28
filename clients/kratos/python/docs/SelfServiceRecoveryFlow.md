@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **state** | [**SelfServiceRecoveryFlowState**](SelfServiceRecoveryFlowState.md) |  | 
 **ui** | [**UiContainer**](UiContainer.md) |  | 
 **active** | **str** | Active, if set, contains the registration method that is being used. It is initially not set. | [optional] 
+**return_to** | **str** | ReturnTo contains the requested return_to URL. | [optional] 
 **type** | **str** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

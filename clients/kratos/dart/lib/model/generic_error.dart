@@ -28,6 +28,11 @@ abstract class GenericError implements Built<GenericError, GenericErrorBuilder> 
     @BuiltValueField(wireName: r'details')
     JsonObject get details;
 
+    /// The error ID  Useful when trying to identify various errors in application logic.
+    @nullable
+    @BuiltValueField(wireName: r'id')
+    String get id;
+
     /// Error message  The error's message.
     @BuiltValueField(wireName: r'message')
     String get message;
@@ -86,6 +91,12 @@ class _$GenericErrorSerializer implements StructuredSerializer<GenericError> {
                 ..add(serializers.serialize(object.details,
                     specifiedType: const FullType(JsonObject)));
         }
+        if (object.id != null) {
+            result
+                ..add(r'id')
+                ..add(serializers.serialize(object.id,
+                    specifiedType: const FullType(String)));
+        }
         result
             ..add(r'message')
             ..add(serializers.serialize(object.message,
@@ -133,6 +144,10 @@ class _$GenericErrorSerializer implements StructuredSerializer<GenericError> {
                 case r'details':
                     result.details = serializers.deserialize(value,
                         specifiedType: const FullType(JsonObject)) as JsonObject;
+                    break;
+                case r'id':
+                    result.id = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
                     break;
                 case r'message':
                     result.message = serializers.deserialize(value,
