@@ -1,5 +1,5 @@
 {
-  "name": "ory/keto-client-php",
+  "name": "ory/keto-client",
   "description": "Ory Keto is a cloud native access control server providing best-practice patterns (RBAC, ABAC, ACL, AWS IAM Policies, Kubernetes Roles, ...) via REST APIs.",
   "keywords": [
     "openapitools",
