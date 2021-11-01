@@ -20,10 +20,26 @@ docker push oryd/sdk:v0.0.34
 If you wish to debug some generators or build steps, you can run the image locally:
 
 ```shell script
-$ docker run --mount type=bind,source="$(pwd)",target=/sdk --name sdk --user "$(id -u):$(id -g)" -it oryd/sdk:v0.0.42 /bin/sh
-$ cd sdk
-$ ./scripts/generate.sh
-$ ...
+docker run --mount type=bind,source="$(pwd)",target=/sdk --name sdk --user "$(id -u):$(id -g)" -it oryd/sdk:v0.0.42 /bin/sh
+```
+
+### Debugging Failing CircleCI Tests
+
+If a CircleCI tests fails ([see example](https://app.circleci.com/pipelines/github/ory/kratos/5333/workflows/00edb19c-e87a-456e-8053-8d064f1acfc0/jobs/28235))
+you may run the following code snippet to reproduce the failure locally:
+
+```shell script
+docker run --mount type=bind,source="$(pwd)",target=/project --name sdk --user "$(id -u):$(id -g)" -it oryd/sdk:v0.0.42 /bin/sh
+git clone --depth 1 --branch master --single-branch https://github.com/ory/sdk.git /sdk
+
+export FORCE_VERSION=v0.0.1-test.0
+export FORCE_PROJECT=kratos # or hydra or something else
+cd /project
+
+cd sdk
+cp spec/api.json "/sdk/spec/${CIRCLE_PROJECT_REPONAME}/v0.0.1-test.0.json"
+./scripts/generate.sh
+./scripts/test.sh
 ```
 
 ## Commit a new spec
