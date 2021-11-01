@@ -20,7 +20,7 @@ docker push oryd/sdk:v0.0.34
 If you wish to debug some generators or build steps, you can run the image locally:
 
 ```shell script
-docker run --mount type=bind,source="$(pwd)",target=/sdk --name sdk --user "$(id -u):$(id -g)" -it oryd/sdk:v0.0.42 /bin/sh
+docker run --mount type=bind,source="$(pwd)",target=/sdk --name sdk --user "$(id -u):$(id -g)" -it oryd/sdk:v0.0.47 /bin/sh
 ```
 
 ### Debugging Failing CircleCI Tests
@@ -29,7 +29,7 @@ If a CircleCI tests fails ([see example](https://app.circleci.com/pipelines/gith
 you may run the following code snippet to reproduce the failure locally:
 
 ```shell script
-docker run --mount type=bind,source="$(pwd)",target=/project --name sdk --user "$(id -u):$(id -g)" -it oryd/sdk:v0.0.42 /bin/sh
+docker run --mount type=bind,source="$(pwd)",target=/project -it oryd/sdk:v0.0.47 /bin/sh
 git clone --depth 1 --branch master --single-branch https://github.com/ory/sdk.git /sdk
 
 export FORCE_VERSION=v0.0.1-test.0
