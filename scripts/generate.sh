@@ -285,8 +285,6 @@ elixir () {
 	    --git-repo-id sdk \
 	    --git-host github.com \
 	    -c ./config/client/elixir.yml.proc.yml
-
-  cp "LICENSE" "clients/${PROJECT}/elixir"
 }
 
 typescript
