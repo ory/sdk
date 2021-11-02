@@ -82,7 +82,7 @@ export RUST_PACKAGE_NAME="ory-${PROJECT}-client"
 
 export NPM_NAME="@ory/$PROJECT-client"
 
-export ELIXIR_PACKAGE_NAME="ory_${PROJECT}_ex"
+export ELIXIR_PACKAGE_NAME="ory_${PROJECT}"
 
 export GIT_REPO="${PROJECT}-client"
 
@@ -106,7 +106,7 @@ if [ $project == "client" ]; then
 
   export NPM_NAME="@ory/client"
 
-  export ELIXIR_PACKAGE_NAME="ory_client_ex"
+  export ELIXIR_PACKAGE_NAME="ory_client"
 
   export GIT_REPO="client"
 fi
