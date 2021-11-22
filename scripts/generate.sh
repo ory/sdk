@@ -131,13 +131,13 @@ php() {
     -g php \
     -o "$dir" \
     --git-user-id ory \
-    --git-repo-id "${PROJECT}-client-php" \
+    --git-repo-id "${GIT_REPO}-php" \
     --git-host github.com \
     -c ./config/client/php.yml.proc.yml
 
   file="${dir}/composer.json"
 
-  jq -r ".name=\"ory/${PROJECT}-client\" | .homepage = \"https://github.com/ory/${PROJECT}-client-php\" | .authors[0].name = \"Ory GmbH\" | .authors[0].homepage = \"https://www.ory.sh\" | .license = \"Apache-2.0\"" "${file}" \
+  jq -r ".name=\"ory/${PHP_PACKAGE_NAME}\" | .homepage = \"https://github.com/ory/${GIT_REPO}-php\" | .authors[0].name = \"Ory GmbH\" | .authors[0].homepage = \"https://www.ory.sh\" | .license = \"Apache-2.0\"" "${file}" \
      > tmp.$$.json && mv tmp.$$.json "${file}"
 
   cat "${file}"
