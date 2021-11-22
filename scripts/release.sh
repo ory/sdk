@@ -128,7 +128,6 @@ java() {
 
   (cd "${gitdir}"; mvn release:perform)
   (cd "${gitdir}"; git push origin --tags HEAD:master)
-  to_git "java" "yes" "$gitdir"
 }
 
 php() {
