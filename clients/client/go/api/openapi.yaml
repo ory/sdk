@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.0.1-alpha.29
+  version: v0.0.1-alpha.30
 servers:
 - url: https://{project}.projects.oryapis.com/
   variables:
@@ -2523,6 +2523,10 @@ components:
       - state
       - traits
       type: object
+    CustomHostnameStatus:
+      description: CustomHostnameStatus is the enumeration of valid state values in
+        the CustomHostnameSSL
+      type: string
     Duration:
       description: |-
         A Duration represents the elapsed time between two instants
@@ -2786,6 +2790,30 @@ components:
       - aal3
       title: Authenticator Assurance Level (AAL)
       type: string
+    cnameSettings:
+      properties:
+        cookie_domain:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        hostname:
+          type: string
+        id:
+          format: uuid4
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        verification_errors:
+          items:
+            type: string
+          type: array
+        verification_status:
+          description: CustomHostnameStatus is the enumeration of valid state values
+            in the CustomHostnameSSL
+          type: string
+      type: object
     createCustomHostnameBody:
       properties:
         cookie_domain:
@@ -3219,6 +3247,10 @@ components:
     jsonSchema:
       description: Raw JSON Schema
       type: object
+    listCustomHostnamesResponse:
+      items:
+        $ref: '#/components/schemas/cnameSettings'
+      type: array
     needsPrivilegedSessionError:
       properties:
         code:
@@ -6219,6 +6251,16 @@ components:
       items:
         $ref: '#/components/schemas/uiText'
       type: array
+    updateCustomHostnameBody:
+      properties:
+        cookie_domain:
+          description: The domain where cookies will be set. Has to be a parent domain
+            of the custom hostname to work.
+          type: string
+        hostname:
+          description: The custom hostname where the API will be exposed.
+          type: string
+      type: object
     verifiableIdentityAddress:
       description: VerifiableAddress is an identity's verifiable address
       example:

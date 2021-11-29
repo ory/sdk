@@ -19,6 +19,7 @@ import 'package:ory_client/model/admin_create_self_service_recovery_link_body.da
 import 'package:ory_client/model/admin_update_identity_body.dart';
 import 'package:ory_client/model/api_token.dart';
 import 'package:ory_client/model/authenticator_assurance_level.dart';
+import 'package:ory_client/model/cname_settings.dart';
 import 'package:ory_client/model/create_custom_hostname_body.dart';
 import 'package:ory_client/model/error_authenticator_assurance_level_not_satisfied.dart';
 import 'package:ory_client/model/generic_error.dart';
@@ -109,6 +110,7 @@ import 'package:ory_client/model/ui_node_meta.dart';
 import 'package:ory_client/model/ui_node_script_attributes.dart';
 import 'package:ory_client/model/ui_node_text_attributes.dart';
 import 'package:ory_client/model/ui_text.dart';
+import 'package:ory_client/model/update_custom_hostname_body.dart';
 import 'package:ory_client/model/verifiable_identity_address.dart';
 import 'package:ory_client/model/version.dart';
 
@@ -121,6 +123,7 @@ part 'serializers.g.dart';
   AdminUpdateIdentityBody,
   ApiToken,
   AuthenticatorAssuranceLevel,
+  CnameSettings,
   CreateCustomHostnameBody,
   ErrorAuthenticatorAssuranceLevelNotSatisfied,
   GenericError,
@@ -211,6 +214,7 @@ part 'serializers.g.dart';
   UiNodeScriptAttributes,
   UiNodeTextAttributes,
   UiText,
+  UpdateCustomHostnameBody,
   VerifiableIdentityAddress,
   Version,
 ])

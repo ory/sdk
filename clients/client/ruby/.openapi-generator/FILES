@@ -12,6 +12,7 @@ docs/AdminCreateSelfServiceRecoveryLinkBody.md
 docs/AdminUpdateIdentityBody.md
 docs/ApiToken.md
 docs/AuthenticatorAssuranceLevel.md
+docs/CnameSettings.md
 docs/CreateCustomHostnameBody.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
 docs/GenericError.md
@@ -103,6 +104,7 @@ docs/UiNodeMeta.md
 docs/UiNodeScriptAttributes.md
 docs/UiNodeTextAttributes.md
 docs/UiText.md
+docs/UpdateCustomHostnameBody.md
 docs/V0alpha0Api.md
 docs/V0alpha2Api.md
 docs/VerifiableIdentityAddress.md
@@ -121,6 +123,7 @@ lib/ory-client/models/admin_create_self_service_recovery_link_body.rb
 lib/ory-client/models/admin_update_identity_body.rb
 lib/ory-client/models/api_token.rb
 lib/ory-client/models/authenticator_assurance_level.rb
+lib/ory-client/models/cname_settings.rb
 lib/ory-client/models/create_custom_hostname_body.rb
 lib/ory-client/models/error_authenticator_assurance_level_not_satisfied.rb
 lib/ory-client/models/generic_error.rb
@@ -211,6 +214,7 @@ lib/ory-client/models/ui_node_meta.rb
 lib/ory-client/models/ui_node_script_attributes.rb
 lib/ory-client/models/ui_node_text_attributes.rb
 lib/ory-client/models/ui_text.rb
+lib/ory-client/models/update_custom_hostname_body.rb
 lib/ory-client/models/verifiable_identity_address.rb
 lib/ory-client/models/version.rb
 lib/ory-client/version.rb
@@ -226,6 +230,7 @@ spec/models/admin_create_self_service_recovery_link_body_spec.rb
 spec/models/admin_update_identity_body_spec.rb
 spec/models/api_token_spec.rb
 spec/models/authenticator_assurance_level_spec.rb
+spec/models/cname_settings_spec.rb
 spec/models/create_custom_hostname_body_spec.rb
 spec/models/error_authenticator_assurance_level_not_satisfied_spec.rb
 spec/models/generic_error_spec.rb
@@ -316,6 +321,7 @@ spec/models/ui_node_script_attributes_spec.rb
 spec/models/ui_node_spec.rb
 spec/models/ui_node_text_attributes_spec.rb
 spec/models/ui_text_spec.rb
+spec/models/update_custom_hostname_body_spec.rb
 spec/models/verifiable_identity_address_spec.rb
 spec/models/version_spec.rb
 spec/spec_helper.rb

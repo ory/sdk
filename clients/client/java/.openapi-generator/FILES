@@ -11,6 +11,7 @@ docs/AdminCreateSelfServiceRecoveryLinkBody.md
 docs/AdminUpdateIdentityBody.md
 docs/ApiToken.md
 docs/AuthenticatorAssuranceLevel.md
+docs/CnameSettings.md
 docs/CreateCustomHostnameBody.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
 docs/GenericError.md
@@ -102,6 +103,7 @@ docs/UiNodeMeta.md
 docs/UiNodeScriptAttributes.md
 docs/UiNodeTextAttributes.md
 docs/UiText.md
+docs/UpdateCustomHostnameBody.md
 docs/V0alpha0Api.md
 docs/V0alpha2Api.md
 docs/VerifiableIdentityAddress.md
@@ -141,6 +143,7 @@ src/main/java/sh/ory/model/AdminCreateSelfServiceRecoveryLinkBody.java
 src/main/java/sh/ory/model/AdminUpdateIdentityBody.java
 src/main/java/sh/ory/model/ApiToken.java
 src/main/java/sh/ory/model/AuthenticatorAssuranceLevel.java
+src/main/java/sh/ory/model/CnameSettings.java
 src/main/java/sh/ory/model/CreateCustomHostnameBody.java
 src/main/java/sh/ory/model/ErrorAuthenticatorAssuranceLevelNotSatisfied.java
 src/main/java/sh/ory/model/GenericError.java
@@ -231,6 +234,7 @@ src/main/java/sh/ory/model/UiNodeMeta.java
 src/main/java/sh/ory/model/UiNodeScriptAttributes.java
 src/main/java/sh/ory/model/UiNodeTextAttributes.java
 src/main/java/sh/ory/model/UiText.java
+src/main/java/sh/ory/model/UpdateCustomHostnameBody.java
 src/main/java/sh/ory/model/VerifiableIdentityAddress.java
 src/main/java/sh/ory/model/Version.java
 src/test/java/sh/ory/api/MetadataApiTest.java
@@ -242,6 +246,7 @@ src/test/java/sh/ory/model/AdminCreateSelfServiceRecoveryLinkBodyTest.java
 src/test/java/sh/ory/model/AdminUpdateIdentityBodyTest.java
 src/test/java/sh/ory/model/ApiTokenTest.java
 src/test/java/sh/ory/model/AuthenticatorAssuranceLevelTest.java
+src/test/java/sh/ory/model/CnameSettingsTest.java
 src/test/java/sh/ory/model/CreateCustomHostnameBodyTest.java
 src/test/java/sh/ory/model/ErrorAuthenticatorAssuranceLevelNotSatisfiedTest.java
 src/test/java/sh/ory/model/GenericErrorTest.java
@@ -332,5 +337,6 @@ src/test/java/sh/ory/model/UiNodeScriptAttributesTest.java
 src/test/java/sh/ory/model/UiNodeTest.java
 src/test/java/sh/ory/model/UiNodeTextAttributesTest.java
 src/test/java/sh/ory/model/UiTextTest.java
+src/test/java/sh/ory/model/UpdateCustomHostnameBodyTest.java
 src/test/java/sh/ory/model/VerifiableIdentityAddressTest.java
 src/test/java/sh/ory/model/VersionTest.java

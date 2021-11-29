@@ -8,6 +8,7 @@ doc/AdminCreateSelfServiceRecoveryLinkBody.md
 doc/AdminUpdateIdentityBody.md
 doc/ApiToken.md
 doc/AuthenticatorAssuranceLevel.md
+doc/CnameSettings.md
 doc/CreateCustomHostnameBody.md
 doc/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
 doc/GenericError.md
@@ -99,6 +100,7 @@ doc/UiNodeMeta.md
 doc/UiNodeScriptAttributes.md
 doc/UiNodeTextAttributes.md
 doc/UiText.md
+doc/UpdateCustomHostnameBody.md
 doc/V0alpha0Api.md
 doc/V0alpha2Api.md
 doc/VerifiableIdentityAddress.md
@@ -118,6 +120,7 @@ lib/model/admin_create_self_service_recovery_link_body.dart
 lib/model/admin_update_identity_body.dart
 lib/model/api_token.dart
 lib/model/authenticator_assurance_level.dart
+lib/model/cname_settings.dart
 lib/model/create_custom_hostname_body.dart
 lib/model/error_authenticator_assurance_level_not_satisfied.dart
 lib/model/generic_error.dart
@@ -208,6 +211,7 @@ lib/model/ui_node_meta.dart
 lib/model/ui_node_script_attributes.dart
 lib/model/ui_node_text_attributes.dart
 lib/model/ui_text.dart
+lib/model/update_custom_hostname_body.dart
 lib/model/verifiable_identity_address.dart
 lib/model/version.dart
 lib/serializers.dart
@@ -218,6 +222,7 @@ test/admin_create_self_service_recovery_link_body_test.dart
 test/admin_update_identity_body_test.dart
 test/api_token_test.dart
 test/authenticator_assurance_level_test.dart
+test/cname_settings_test.dart
 test/create_custom_hostname_body_test.dart
 test/error_authenticator_assurance_level_not_satisfied_test.dart
 test/generic_error_test.dart
@@ -309,6 +314,7 @@ test/ui_node_script_attributes_test.dart
 test/ui_node_test.dart
 test/ui_node_text_attributes_test.dart
 test/ui_text_test.dart
+test/update_custom_hostname_body_test.dart
 test/v0alpha0_api_test.dart
 test/v0alpha2_api_test.dart
 test/verifiable_identity_address_test.dart

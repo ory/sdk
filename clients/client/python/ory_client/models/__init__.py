@@ -16,6 +16,7 @@ from ory_client.model.admin_update_identity_body import AdminUpdateIdentityBody
 from ory_client.model.api_token import ApiToken
 from ory_client.model.api_tokens import ApiTokens
 from ory_client.model.authenticator_assurance_level import AuthenticatorAssuranceLevel
+from ory_client.model.cname_settings import CnameSettings
 from ory_client.model.create_custom_hostname_body import CreateCustomHostnameBody
 from ory_client.model.error_authenticator_assurance_level_not_satisfied import ErrorAuthenticatorAssuranceLevelNotSatisfied
 from ory_client.model.generic_error import GenericError
@@ -38,6 +39,7 @@ from ory_client.model.inline_response503 import InlineResponse503
 from ory_client.model.is_owner_for_project_by_slug import IsOwnerForProjectBySlug
 from ory_client.model.is_owner_for_project_by_slug_payload import IsOwnerForProjectBySlugPayload
 from ory_client.model.json_error import JsonError
+from ory_client.model.list_custom_hostnames_response import ListCustomHostnamesResponse
 from ory_client.model.needs_privileged_session_error import NeedsPrivilegedSessionError
 from ory_client.model.null_string import NullString
 from ory_client.model.null_uuid import NullUUID
@@ -116,5 +118,6 @@ from ory_client.model.ui_node_text_attributes import UiNodeTextAttributes
 from ory_client.model.ui_nodes import UiNodes
 from ory_client.model.ui_text import UiText
 from ory_client.model.ui_texts import UiTexts
+from ory_client.model.update_custom_hostname_body import UpdateCustomHostnameBody
 from ory_client.model.verifiable_identity_address import VerifiableIdentityAddress
 from ory_client.model.version import Version

@@ -13,6 +13,7 @@ docs/Model/AdminCreateSelfServiceRecoveryLinkBody.md
 docs/Model/AdminUpdateIdentityBody.md
 docs/Model/ApiToken.md
 docs/Model/AuthenticatorAssuranceLevel.md
+docs/Model/CnameSettings.md
 docs/Model/CreateCustomHostnameBody.md
 docs/Model/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
 docs/Model/GenericError.md
@@ -103,6 +104,7 @@ docs/Model/UiNodeMeta.md
 docs/Model/UiNodeScriptAttributes.md
 docs/Model/UiNodeTextAttributes.md
 docs/Model/UiText.md
+docs/Model/UpdateCustomHostnameBody.md
 docs/Model/VerifiableIdentityAddress.md
 docs/Model/Version.md
 git_push.sh
@@ -118,6 +120,7 @@ lib/Model/AdminCreateSelfServiceRecoveryLinkBody.php
 lib/Model/AdminUpdateIdentityBody.php
 lib/Model/ApiToken.php
 lib/Model/AuthenticatorAssuranceLevel.php
+lib/Model/CnameSettings.php
 lib/Model/CreateCustomHostnameBody.php
 lib/Model/ErrorAuthenticatorAssuranceLevelNotSatisfied.php
 lib/Model/GenericError.php
@@ -209,6 +212,7 @@ lib/Model/UiNodeMeta.php
 lib/Model/UiNodeScriptAttributes.php
 lib/Model/UiNodeTextAttributes.php
 lib/Model/UiText.php
+lib/Model/UpdateCustomHostnameBody.php
 lib/Model/VerifiableIdentityAddress.php
 lib/Model/Version.php
 lib/ObjectSerializer.php
@@ -222,6 +226,7 @@ test/Model/AdminCreateSelfServiceRecoveryLinkBodyTest.php
 test/Model/AdminUpdateIdentityBodyTest.php
 test/Model/ApiTokenTest.php
 test/Model/AuthenticatorAssuranceLevelTest.php
+test/Model/CnameSettingsTest.php
 test/Model/CreateCustomHostnameBodyTest.php
 test/Model/ErrorAuthenticatorAssuranceLevelNotSatisfiedTest.php
 test/Model/GenericErrorTest.php
@@ -312,5 +317,6 @@ test/Model/UiNodeScriptAttributesTest.php
 test/Model/UiNodeTest.php
 test/Model/UiNodeTextAttributesTest.php
 test/Model/UiTextTest.php
+test/Model/UpdateCustomHostnameBodyTest.php
 test/Model/VerifiableIdentityAddressTest.php
 test/Model/VersionTest.php

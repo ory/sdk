@@ -14,6 +14,7 @@ docs/AdminCreateSelfServiceRecoveryLinkBody.md
 docs/AdminUpdateIdentityBody.md
 docs/ApiToken.md
 docs/AuthenticatorAssuranceLevel.md
+docs/CnameSettings.md
 docs/CreateCustomHostnameBody.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
 docs/GenericError.md
@@ -105,6 +106,7 @@ docs/UiNodeMeta.md
 docs/UiNodeScriptAttributes.md
 docs/UiNodeTextAttributes.md
 docs/UiText.md
+docs/UpdateCustomHostnameBody.md
 docs/V0alpha0Api.md
 docs/V0alpha2Api.md
 docs/VerifiableIdentityAddress.md
@@ -118,6 +120,7 @@ model_admin_create_self_service_recovery_link_body.go
 model_admin_update_identity_body.go
 model_api_token.go
 model_authenticator_assurance_level.go
+model_cname_settings.go
 model_create_custom_hostname_body.go
 model_error_authenticator_assurance_level_not_satisfied.go
 model_generic_error.go
@@ -208,6 +211,7 @@ model_ui_node_meta.go
 model_ui_node_script_attributes.go
 model_ui_node_text_attributes.go
 model_ui_text.go
+model_update_custom_hostname_body.go
 model_verifiable_identity_address.go
 model_version.go
 response.go

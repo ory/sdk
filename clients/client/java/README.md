@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v0.0.1-alpha.29
-  - Build date: 2021-11-24T16:29:33.176156252Z[Etc/UTC]
+- API version: v0.0.1-alpha.30
+  - Build date: 2021-11-29T12:53:23.012250882Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v0.0.1-alpha.29</version>
+  <version>v0.0.1-alpha.30</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -52,7 +52,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "sh.ory:client:v0.0.1-alpha.29"
+compile "sh.ory:client:v0.0.1-alpha.30"
 ```
 
 ### Others
@@ -65,7 +65,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v0.0.1-alpha.29.jar`
+* `target/client-v0.0.1-alpha.30.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -160,6 +160,7 @@ Class | Method | HTTP request | Description
  - [AdminUpdateIdentityBody](docs/AdminUpdateIdentityBody.md)
  - [ApiToken](docs/ApiToken.md)
  - [AuthenticatorAssuranceLevel](docs/AuthenticatorAssuranceLevel.md)
+ - [CnameSettings](docs/CnameSettings.md)
  - [CreateCustomHostnameBody](docs/CreateCustomHostnameBody.md)
  - [ErrorAuthenticatorAssuranceLevelNotSatisfied](docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md)
  - [GenericError](docs/GenericError.md)
@@ -250,6 +251,7 @@ Class | Method | HTTP request | Description
  - [UiNodeScriptAttributes](docs/UiNodeScriptAttributes.md)
  - [UiNodeTextAttributes](docs/UiNodeTextAttributes.md)
  - [UiText](docs/UiText.md)
+ - [UpdateCustomHostnameBody](docs/UpdateCustomHostnameBody.md)
  - [VerifiableIdentityAddress](docs/VerifiableIdentityAddress.md)
  - [Version](docs/Version.md)
 

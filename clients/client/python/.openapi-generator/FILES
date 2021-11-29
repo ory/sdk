@@ -10,6 +10,7 @@ docs/AdminUpdateIdentityBody.md
 docs/ApiToken.md
 docs/ApiTokens.md
 docs/AuthenticatorAssuranceLevel.md
+docs/CnameSettings.md
 docs/CreateCustomHostnameBody.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
 docs/GenericError.md
@@ -32,6 +33,7 @@ docs/InlineResponse503.md
 docs/IsOwnerForProjectBySlug.md
 docs/IsOwnerForProjectBySlugPayload.md
 docs/JsonError.md
+docs/ListCustomHostnamesResponse.md
 docs/MetadataApi.md
 docs/NeedsPrivilegedSessionError.md
 docs/NullString.md
@@ -111,6 +113,7 @@ docs/UiNodeTextAttributes.md
 docs/UiNodes.md
 docs/UiText.md
 docs/UiTexts.md
+docs/UpdateCustomHostnameBody.md
 docs/V0alpha0Api.md
 docs/V0alpha2Api.md
 docs/VerifiableIdentityAddress.md
@@ -133,6 +136,7 @@ ory_client/model/admin_update_identity_body.py
 ory_client/model/api_token.py
 ory_client/model/api_tokens.py
 ory_client/model/authenticator_assurance_level.py
+ory_client/model/cname_settings.py
 ory_client/model/create_custom_hostname_body.py
 ory_client/model/error_authenticator_assurance_level_not_satisfied.py
 ory_client/model/generic_error.py
@@ -155,6 +159,7 @@ ory_client/model/inline_response503.py
 ory_client/model/is_owner_for_project_by_slug.py
 ory_client/model/is_owner_for_project_by_slug_payload.py
 ory_client/model/json_error.py
+ory_client/model/list_custom_hostnames_response.py
 ory_client/model/needs_privileged_session_error.py
 ory_client/model/null_string.py
 ory_client/model/null_uuid.py
@@ -233,6 +238,7 @@ ory_client/model/ui_node_text_attributes.py
 ory_client/model/ui_nodes.py
 ory_client/model/ui_text.py
 ory_client/model/ui_texts.py
+ory_client/model/update_custom_hostname_body.py
 ory_client/model/verifiable_identity_address.py
 ory_client/model/version.py
 ory_client/model_utils.py
@@ -250,6 +256,7 @@ test/test_admin_update_identity_body.py
 test/test_api_token.py
 test/test_api_tokens.py
 test/test_authenticator_assurance_level.py
+test/test_cname_settings.py
 test/test_create_custom_hostname_body.py
 test/test_error_authenticator_assurance_level_not_satisfied.py
 test/test_generic_error.py
@@ -272,6 +279,7 @@ test/test_inline_response503.py
 test/test_is_owner_for_project_by_slug.py
 test/test_is_owner_for_project_by_slug_payload.py
 test/test_json_error.py
+test/test_list_custom_hostnames_response.py
 test/test_metadata_api.py
 test/test_needs_privileged_session_error.py
 test/test_null_string.py
@@ -351,6 +359,7 @@ test/test_ui_node_text_attributes.py
 test/test_ui_nodes.py
 test/test_ui_text.py
 test/test_ui_texts.py
+test/test_update_custom_hostname_body.py
 test/test_v0alpha0_api.py
 test/test_v0alpha2_api.py
 test/test_verifiable_identity_address.py

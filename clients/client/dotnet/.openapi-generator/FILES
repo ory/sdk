@@ -9,6 +9,7 @@ docs/ClientAdminCreateSelfServiceRecoveryLinkBody.md
 docs/ClientAdminUpdateIdentityBody.md
 docs/ClientApiToken.md
 docs/ClientAuthenticatorAssuranceLevel.md
+docs/ClientCnameSettings.md
 docs/ClientCreateCustomHostnameBody.md
 docs/ClientErrorAuthenticatorAssuranceLevelNotSatisfied.md
 docs/ClientGenericError.md
@@ -99,6 +100,7 @@ docs/ClientUiNodeMeta.md
 docs/ClientUiNodeScriptAttributes.md
 docs/ClientUiNodeTextAttributes.md
 docs/ClientUiText.md
+docs/ClientUpdateCustomHostnameBody.md
 docs/ClientVerifiableIdentityAddress.md
 docs/ClientVersion.md
 docs/MetadataApi.md
@@ -114,6 +116,7 @@ src/Ory.Client.Test/Model/ClientAdminCreateSelfServiceRecoveryLinkBodyTests.cs
 src/Ory.Client.Test/Model/ClientAdminUpdateIdentityBodyTests.cs
 src/Ory.Client.Test/Model/ClientApiTokenTests.cs
 src/Ory.Client.Test/Model/ClientAuthenticatorAssuranceLevelTests.cs
+src/Ory.Client.Test/Model/ClientCnameSettingsTests.cs
 src/Ory.Client.Test/Model/ClientCreateCustomHostnameBodyTests.cs
 src/Ory.Client.Test/Model/ClientErrorAuthenticatorAssuranceLevelNotSatisfiedTests.cs
 src/Ory.Client.Test/Model/ClientGenericErrorTests.cs
@@ -204,6 +207,7 @@ src/Ory.Client.Test/Model/ClientUiNodeScriptAttributesTests.cs
 src/Ory.Client.Test/Model/ClientUiNodeTests.cs
 src/Ory.Client.Test/Model/ClientUiNodeTextAttributesTests.cs
 src/Ory.Client.Test/Model/ClientUiTextTests.cs
+src/Ory.Client.Test/Model/ClientUpdateCustomHostnameBodyTests.cs
 src/Ory.Client.Test/Model/ClientVerifiableIdentityAddressTests.cs
 src/Ory.Client.Test/Model/ClientVersionTests.cs
 src/Ory.Client.Test/Ory.Client.Test.csproj
@@ -233,6 +237,7 @@ src/Ory.Client/Model/ClientAdminCreateSelfServiceRecoveryLinkBody.cs
 src/Ory.Client/Model/ClientAdminUpdateIdentityBody.cs
 src/Ory.Client/Model/ClientApiToken.cs
 src/Ory.Client/Model/ClientAuthenticatorAssuranceLevel.cs
+src/Ory.Client/Model/ClientCnameSettings.cs
 src/Ory.Client/Model/ClientCreateCustomHostnameBody.cs
 src/Ory.Client/Model/ClientErrorAuthenticatorAssuranceLevelNotSatisfied.cs
 src/Ory.Client/Model/ClientGenericError.cs
@@ -323,6 +328,7 @@ src/Ory.Client/Model/ClientUiNodeMeta.cs
 src/Ory.Client/Model/ClientUiNodeScriptAttributes.cs
 src/Ory.Client/Model/ClientUiNodeTextAttributes.cs
 src/Ory.Client/Model/ClientUiText.cs
+src/Ory.Client/Model/ClientUpdateCustomHostnameBody.cs
 src/Ory.Client/Model/ClientVerifiableIdentityAddress.cs
 src/Ory.Client/Model/ClientVersion.cs
 src/Ory.Client/Ory.Client.csproj
