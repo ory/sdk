@@ -21,7 +21,7 @@ abstract class SessionAuthenticationMethod implements Built<SessionAuthenticatio
     @nullable
     @BuiltValueField(wireName: r'method')
     SessionAuthenticationMethodMethodEnum get method;
-    // enum methodEnum {  link_recovery,  password,  totp,  oidc,  };
+    // enum methodEnum {  link_recovery,  password,  totp,  oidc,  webauthn,  };
 
     SessionAuthenticationMethod._();
 
@@ -94,6 +94,8 @@ class SessionAuthenticationMethodMethodEnum extends EnumClass {
   static const SessionAuthenticationMethodMethodEnum totp = _$sessionAuthenticationMethodMethodEnum_totp;
   @BuiltValueEnumConst(wireName: r'oidc')
   static const SessionAuthenticationMethodMethodEnum oidc = _$sessionAuthenticationMethodMethodEnum_oidc;
+  @BuiltValueEnumConst(wireName: r'webauthn')
+  static const SessionAuthenticationMethodMethodEnum webauthn = _$sessionAuthenticationMethodMethodEnum_webauthn;
 
   static Serializer<SessionAuthenticationMethodMethodEnum> get serializer => _$sessionAuthenticationMethodMethodEnumSerializer;
 

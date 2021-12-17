@@ -21,6 +21,7 @@ LINK_RECOVERY | &quot;link_recovery&quot;
 PASSWORD | &quot;password&quot;
 TOTP | &quot;totp&quot;
 OIDC | &quot;oidc&quot;
+WEBAUTHN | &quot;webauthn&quot;
 
 
 

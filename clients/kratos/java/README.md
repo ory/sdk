@@ -1,8 +1,8 @@
 # kratos-client
 
 Ory Kratos API
-- API version: v0.8.0-alpha.2
-  - Build date: 2021-10-28T10:30:47.941316621Z[Etc/UTC]
+- API version: v0.8.2-alpha.1
+  - Build date: 2021-12-17T16:16:15.394132631Z[Etc/UTC]
 
 Documentation for all public and administrative Ory Kratos APIs. Public and administrative APIs
 are exposed on different ports. Public APIs can face the public internet without any protection
@@ -45,7 +45,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.kratos</groupId>
   <artifactId>kratos-client</artifactId>
-  <version>v0.8.0-alpha.2</version>
+  <version>v0.8.2-alpha.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -55,7 +55,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "sh.ory.kratos:kratos-client:v0.8.0-alpha.2"
+compile "sh.ory.kratos:kratos-client:v0.8.2-alpha.1"
 ```
 
 ### Others
@@ -68,7 +68,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/kratos-client-v0.8.0-alpha.2.jar`
+* `target/kratos-client-v0.8.2-alpha.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
