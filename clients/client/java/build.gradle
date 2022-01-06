@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'java'
 
 group = 'sh.ory'
-version = 'v0.0.1-alpha.39'
+version = 'v0.0.1-alpha.40'
 
 buildscript {
     repositories {
