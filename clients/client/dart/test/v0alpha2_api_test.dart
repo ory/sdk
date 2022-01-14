@@ -69,6 +69,15 @@ void main() {
       // TODO
     });
 
+    // This endpoint returns all sessions that belong to the given Identity.
+    //
+    // This endpoint is useful for:  Listing all sessions that belong to an Identity in an administrative context.
+    //
+    //Future<BuiltList<Session>> adminListIdentitySessions(String id, { int perPage, int page, bool active }) async
+    test('test adminListIdentitySessions', () async {
+      // TODO
+    });
+
     // Update an Identity
     //
     // This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
@@ -251,6 +260,33 @@ void main() {
     //
     //Future<BuiltList<IdentitySchema>> listIdentitySchemas({ int perPage, int page }) async
     test('test listIdentitySchemas', () async {
+      // TODO
+    });
+
+    // This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the `/sessions/whoami` endpoint.
+    //
+    // This endpoint is useful for:  Displaying all other sessions that belong to the logged-in user
+    //
+    //Future<BuiltList<Session>> listSessions({ String xSessionToken, String cookie, int perPage, int page }) async
+    test('test listSessions', () async {
+      // TODO
+    });
+
+    // Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
+    //
+    // This endpoint is useful for:  To forcefully logout the current user from another device or session
+    //
+    //Future revokeSession(String id) async
+    test('test revokeSession', () async {
+      // TODO
+    });
+
+    // Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
+    //
+    // This endpoint is useful for:  To forcefully logout the current user from all other devices and sessions
+    //
+    //Future<RevokedSessions> revokeSessions({ String xSessionToken, String cookie }) async
+    test('test revokeSessions', () async {
       // TODO
     });
 

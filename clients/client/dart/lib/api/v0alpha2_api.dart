@@ -17,6 +17,7 @@ import 'package:ory_client/model/admin_update_identity_body.dart';
 import 'package:ory_client/model/identity.dart';
 import 'package:ory_client/model/identity_schema.dart';
 import 'package:ory_client/model/json_error.dart';
+import 'package:ory_client/model/revoked_sessions.dart';
 import 'package:ory_client/model/self_service_browser_location_change_required_error.dart';
 import 'package:ory_client/model/self_service_error.dart';
 import 'package:ory_client/model/self_service_login_flow.dart';
@@ -378,6 +379,74 @@ class V0alpha2Api {
     ) as BuiltList<Identity>;
 
     return Response<BuiltList<Identity>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      request: _response.request,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// This endpoint returns all sessions that belong to the given Identity.
+  ///
+  /// This endpoint is useful for:  Listing all sessions that belong to an Identity in an administrative context.
+  Future<Response<BuiltList<Session>>> adminListIdentitySessions(
+    String id, { 
+    int perPage,
+    int page,
+    bool active,
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/api/kratos/admin/identities/{id}/sessions'.replaceAll('{' r'id' '}', id.toString()),
+      method: 'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      queryParameters: <String, dynamic>{
+        if (perPage != null) r'per_page': perPage,
+        if (page != null) r'page': page,
+        if (active != null) r'active': active,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'name': 'oryAccessToken',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    const _responseType = FullType(BuiltList, [FullType(Session)]);
+    final BuiltList<Session> _responseData = _serializers.deserialize(
+      _response.data,
+      specifiedType: _responseType,
+    ) as BuiltList<Session>;
+
+    return Response<BuiltList<Session>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -1597,6 +1666,168 @@ class V0alpha2Api {
     ) as BuiltList<IdentitySchema>;
 
     return Response<BuiltList<IdentitySchema>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      request: _response.request,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the `/sessions/whoami` endpoint.
+  ///
+  /// This endpoint is useful for:  Displaying all other sessions that belong to the logged-in user
+  Future<Response<BuiltList<Session>>> listSessions({ 
+    String xSessionToken,
+    String cookie,
+    int perPage,
+    int page,
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/api/kratos/public/sessions',
+      method: 'GET',
+      headers: <String, dynamic>{
+        if (xSessionToken != null) r'X-Session-Token': xSessionToken,
+        if (cookie != null) r'Cookie': cookie,
+        ...?headers,
+      },
+      queryParameters: <String, dynamic>{
+        if (perPage != null) r'per_page': perPage,
+        if (page != null) r'page': page,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    const _responseType = FullType(BuiltList, [FullType(Session)]);
+    final BuiltList<Session> _responseData = _serializers.deserialize(
+      _response.data,
+      specifiedType: _responseType,
+    ) as BuiltList<Session>;
+
+    return Response<BuiltList<Session>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      request: _response.request,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
+  ///
+  /// This endpoint is useful for:  To forcefully logout the current user from another device or session
+  Future<Response<void>> revokeSession(
+    String id, { 
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/api/kratos/public/sessions/{id}'.replaceAll('{' r'id' '}', id.toString()),
+      method: 'DELETE',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    return _response;
+  }
+
+  /// Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
+  ///
+  /// This endpoint is useful for:  To forcefully logout the current user from all other devices and sessions
+  Future<Response<RevokedSessions>> revokeSessions({ 
+    String xSessionToken,
+    String cookie,
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/api/kratos/public/sessions',
+      method: 'DELETE',
+      headers: <String, dynamic>{
+        if (xSessionToken != null) r'X-Session-Token': xSessionToken,
+        if (cookie != null) r'Cookie': cookie,
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    const _responseType = FullType(RevokedSessions);
+    final _responseData = _serializers.deserialize(
+      _response.data,
+      specifiedType: _responseType,
+    ) as RevokedSessions;
+
+    return Response<RevokedSessions>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

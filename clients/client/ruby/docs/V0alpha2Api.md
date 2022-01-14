@@ -10,6 +10,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**admin_delete_identity_sessions**](V0alpha2Api.md#admin_delete_identity_sessions) | **DELETE** /api/kratos/admin/identities/{id}/sessions | Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity. |
 | [**admin_get_identity**](V0alpha2Api.md#admin_get_identity) | **GET** /api/kratos/admin/identities/{id} | Get an Identity |
 | [**admin_list_identities**](V0alpha2Api.md#admin_list_identities) | **GET** /api/kratos/admin/identities | List Identities |
+| [**admin_list_identity_sessions**](V0alpha2Api.md#admin_list_identity_sessions) | **GET** /api/kratos/admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity. |
 | [**admin_update_identity**](V0alpha2Api.md#admin_update_identity) | **PUT** /api/kratos/admin/identities/{id} | Update an Identity |
 | [**create_self_service_logout_flow_url_for_browsers**](V0alpha2Api.md#create_self_service_logout_flow_url_for_browsers) | **GET** /api/kratos/public/self-service/logout/browser | Create a Logout URL for Browsers |
 | [**get_json_schema**](V0alpha2Api.md#get_json_schema) | **GET** /api/kratos/public/schemas/{id} |  |
@@ -31,6 +32,9 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**initialize_self_service_verification_flow_for_browsers**](V0alpha2Api.md#initialize_self_service_verification_flow_for_browsers) | **GET** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients |
 | [**initialize_self_service_verification_flow_without_browser**](V0alpha2Api.md#initialize_self_service_verification_flow_without_browser) | **GET** /api/kratos/public/self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ... |
 | [**list_identity_schemas**](V0alpha2Api.md#list_identity_schemas) | **GET** /api/kratos/public/schemas |  |
+| [**list_sessions**](V0alpha2Api.md#list_sessions) | **GET** /api/kratos/public/sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint. |
+| [**revoke_session**](V0alpha2Api.md#revoke_session) | **DELETE** /api/kratos/public/sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted. |
+| [**revoke_sessions**](V0alpha2Api.md#revoke_sessions) | **DELETE** /api/kratos/public/sessions | Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted. |
 | [**submit_self_service_login_flow**](V0alpha2Api.md#submit_self_service_login_flow) | **POST** /api/kratos/public/self-service/login | Submit a Login Flow |
 | [**submit_self_service_logout_flow**](V0alpha2Api.md#submit_self_service_logout_flow) | **GET** /api/kratos/public/self-service/logout | Complete Self-Service Logout |
 | [**submit_self_service_logout_flow_without_browser**](V0alpha2Api.md#submit_self_service_logout_flow_without_browser) | **DELETE** /api/kratos/public/self-service/logout/api | Perform Logout for APIs, Services, Apps, ... |
@@ -448,12 +452,89 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **per_page** | **Integer** | Items per Page  This is the number of items per page. | [optional][default to 100] |
+| **per_page** | **Integer** | Items per Page  This is the number of items per page. | [optional][default to 250] |
 | **page** | **Integer** | Pagination Page | [optional][default to 0] |
 
 ### Return type
 
 [**Array&lt;Identity&gt;**](Identity.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## admin_list_identity_sessions
+
+> <Array<Session>> admin_list_identity_sessions(id, opts)
+
+This endpoint returns all sessions that belong to the given Identity.
+
+This endpoint is useful for:  Listing all sessions that belong to an Identity in an administrative context.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::V0alpha2Api.new
+id = 'id_example' # String | ID is the identity's ID.
+opts = {
+  per_page: 789, # Integer | Items per Page  This is the number of items per page.
+  page: 789, # Integer | Pagination Page
+  active: true # Boolean | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
+}
+
+begin
+  # This endpoint returns all sessions that belong to the given Identity.
+  result = api_instance.admin_list_identity_sessions(id, opts)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling V0alpha2Api->admin_list_identity_sessions: #{e}"
+end
+```
+
+#### Using the admin_list_identity_sessions_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Array<Session>>, Integer, Hash)> admin_list_identity_sessions_with_http_info(id, opts)
+
+```ruby
+begin
+  # This endpoint returns all sessions that belong to the given Identity.
+  data, status_code, headers = api_instance.admin_list_identity_sessions_with_http_info(id, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Array<Session>>
+rescue OryClient::ApiError => e
+  puts "Error when calling V0alpha2Api->admin_list_identity_sessions_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** | ID is the identity&#39;s ID. |  |
+| **per_page** | **Integer** | Items per Page  This is the number of items per page. | [optional][default to 250] |
+| **page** | **Integer** | Pagination Page | [optional][default to 0] |
+| **active** | **Boolean** | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [optional] |
+
+### Return type
+
+[**Array&lt;Session&gt;**](Session.md)
 
 ### Authorization
 
@@ -1839,12 +1920,215 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **per_page** | **Integer** | Items per Page  This is the number of items per page. | [optional][default to 100] |
+| **per_page** | **Integer** | Items per Page  This is the number of items per page. | [optional][default to 250] |
 | **page** | **Integer** | Pagination Page | [optional][default to 0] |
 
 ### Return type
 
 [**Array&lt;IdentitySchema&gt;**](IdentitySchema.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## list_sessions
+
+> <Array<Session>> list_sessions(opts)
+
+This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the `/sessions/whoami` endpoint.
+
+This endpoint is useful for:  Displaying all other sessions that belong to the logged-in user
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+
+api_instance = OryClient::V0alpha2Api.new
+opts = {
+  x_session_token: 'x_session_token_example', # String | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`.
+  cookie: 'cookie_example', # String | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored.
+  per_page: 789, # Integer | Items per Page  This is the number of items per page.
+  page: 789 # Integer | Pagination Page
+}
+
+begin
+  # This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the `/sessions/whoami` endpoint.
+  result = api_instance.list_sessions(opts)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling V0alpha2Api->list_sessions: #{e}"
+end
+```
+
+#### Using the list_sessions_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Array<Session>>, Integer, Hash)> list_sessions_with_http_info(opts)
+
+```ruby
+begin
+  # This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the `/sessions/whoami` endpoint.
+  data, status_code, headers = api_instance.list_sessions_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Array<Session>>
+rescue OryClient::ApiError => e
+  puts "Error when calling V0alpha2Api->list_sessions_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **x_session_token** | **String** | Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;. | [optional] |
+| **cookie** | **String** | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored. | [optional] |
+| **per_page** | **Integer** | Items per Page  This is the number of items per page. | [optional][default to 250] |
+| **page** | **Integer** | Pagination Page | [optional][default to 0] |
+
+### Return type
+
+[**Array&lt;Session&gt;**](Session.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## revoke_session
+
+> revoke_session(id)
+
+Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
+
+This endpoint is useful for:  To forcefully logout the current user from another device or session
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+
+api_instance = OryClient::V0alpha2Api.new
+id = 'id_example' # String | ID is the session's ID.
+
+begin
+  # Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
+  api_instance.revoke_session(id)
+rescue OryClient::ApiError => e
+  puts "Error when calling V0alpha2Api->revoke_session: #{e}"
+end
+```
+
+#### Using the revoke_session_with_http_info variant
+
+This returns an Array which contains the response data (`nil` in this case), status code and headers.
+
+> <Array(nil, Integer, Hash)> revoke_session_with_http_info(id)
+
+```ruby
+begin
+  # Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
+  data, status_code, headers = api_instance.revoke_session_with_http_info(id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => nil
+rescue OryClient::ApiError => e
+  puts "Error when calling V0alpha2Api->revoke_session_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** | ID is the session&#39;s ID. |  |
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## revoke_sessions
+
+> <RevokedSessions> revoke_sessions(opts)
+
+Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
+
+This endpoint is useful for:  To forcefully logout the current user from all other devices and sessions
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+
+api_instance = OryClient::V0alpha2Api.new
+opts = {
+  x_session_token: 'x_session_token_example', # String | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`.
+  cookie: 'cookie_example' # String | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored.
+}
+
+begin
+  # Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
+  result = api_instance.revoke_sessions(opts)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling V0alpha2Api->revoke_sessions: #{e}"
+end
+```
+
+#### Using the revoke_sessions_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<RevokedSessions>, Integer, Hash)> revoke_sessions_with_http_info(opts)
+
+```ruby
+begin
+  # Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
+  data, status_code, headers = api_instance.revoke_sessions_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <RevokedSessions>
+rescue OryClient::ApiError => e
+  puts "Error when calling V0alpha2Api->revoke_sessions_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **x_session_token** | **String** | Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;. | [optional] |
+| **cookie** | **String** | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored. | [optional] |
+
+### Return type
+
+[**RevokedSessions**](RevokedSessions.md)
 
 ### Authorization
 

@@ -36,6 +36,7 @@ docs/JsonError.md
 docs/MetadataApi.md
 docs/NeedsPrivilegedSessionError.md
 docs/NullPlan.md
+docs/Pagination.md
 docs/Project.md
 docs/ProjectHost.md
 docs/ProjectLookupSecretConfig.md
@@ -51,6 +52,7 @@ docs/ProjectWebAuthnConfig.md
 docs/RecoveryAddress.md
 docs/RedirectionConfig.md
 docs/RedirectionField.md
+docs/RevokedSessions.md
 docs/SchemaPatch.md
 docs/SelfServiceBrowserLocationChangeRequiredError.md
 docs/SelfServiceError.md
@@ -147,6 +149,7 @@ lib/ory-client/models/is_owner_for_project_by_slug_payload.rb
 lib/ory-client/models/json_error.rb
 lib/ory-client/models/needs_privileged_session_error.rb
 lib/ory-client/models/null_plan.rb
+lib/ory-client/models/pagination.rb
 lib/ory-client/models/project.rb
 lib/ory-client/models/project_host.rb
 lib/ory-client/models/project_lookup_secret_config.rb
@@ -162,6 +165,7 @@ lib/ory-client/models/project_web_authn_config.rb
 lib/ory-client/models/recovery_address.rb
 lib/ory-client/models/redirection_config.rb
 lib/ory-client/models/redirection_field.rb
+lib/ory-client/models/revoked_sessions.rb
 lib/ory-client/models/schema_patch.rb
 lib/ory-client/models/self_service_browser_location_change_required_error.rb
 lib/ory-client/models/self_service_error.rb
@@ -255,6 +259,7 @@ spec/models/is_owner_for_project_by_slug_spec.rb
 spec/models/json_error_spec.rb
 spec/models/needs_privileged_session_error_spec.rb
 spec/models/null_plan_spec.rb
+spec/models/pagination_spec.rb
 spec/models/project_host_spec.rb
 spec/models/project_lookup_secret_config_spec.rb
 spec/models/project_oidc_config_spec.rb
@@ -270,6 +275,7 @@ spec/models/project_web_authn_config_spec.rb
 spec/models/recovery_address_spec.rb
 spec/models/redirection_config_spec.rb
 spec/models/redirection_field_spec.rb
+spec/models/revoked_sessions_spec.rb
 spec/models/schema_patch_spec.rb
 spec/models/self_service_browser_location_change_required_error_spec.rb
 spec/models/self_service_error_spec.rb

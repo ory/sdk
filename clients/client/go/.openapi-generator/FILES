@@ -38,6 +38,7 @@ docs/JsonError.md
 docs/MetadataApi.md
 docs/NeedsPrivilegedSessionError.md
 docs/NullPlan.md
+docs/Pagination.md
 docs/Project.md
 docs/ProjectHost.md
 docs/ProjectLookupSecretConfig.md
@@ -53,6 +54,7 @@ docs/ProjectWebAuthnConfig.md
 docs/RecoveryAddress.md
 docs/RedirectionConfig.md
 docs/RedirectionField.md
+docs/RevokedSessions.md
 docs/SchemaPatch.md
 docs/SelfServiceBrowserLocationChangeRequiredError.md
 docs/SelfServiceError.md
@@ -144,6 +146,7 @@ model_is_owner_for_project_by_slug_payload.go
 model_json_error.go
 model_needs_privileged_session_error.go
 model_null_plan.go
+model_pagination.go
 model_project.go
 model_project_host.go
 model_project_lookup_secret_config.go
@@ -159,6 +162,7 @@ model_project_web_authn_config.go
 model_recovery_address.go
 model_redirection_config.go
 model_redirection_field.go
+model_revoked_sessions.go
 model_schema_patch.go
 model_self_service_browser_location_change_required_error.go
 model_self_service_error.go

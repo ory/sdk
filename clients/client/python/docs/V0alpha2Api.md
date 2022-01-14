@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**admin_delete_identity_sessions**](V0alpha2Api.md#admin_delete_identity_sessions) | **DELETE** /api/kratos/admin/identities/{id}/sessions | Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.
 [**admin_get_identity**](V0alpha2Api.md#admin_get_identity) | **GET** /api/kratos/admin/identities/{id} | Get an Identity
 [**admin_list_identities**](V0alpha2Api.md#admin_list_identities) | **GET** /api/kratos/admin/identities | List Identities
+[**admin_list_identity_sessions**](V0alpha2Api.md#admin_list_identity_sessions) | **GET** /api/kratos/admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity.
 [**admin_update_identity**](V0alpha2Api.md#admin_update_identity) | **PUT** /api/kratos/admin/identities/{id} | Update an Identity
 [**create_self_service_logout_flow_url_for_browsers**](V0alpha2Api.md#create_self_service_logout_flow_url_for_browsers) | **GET** /api/kratos/public/self-service/logout/browser | Create a Logout URL for Browsers
 [**get_json_schema**](V0alpha2Api.md#get_json_schema) | **GET** /api/kratos/public/schemas/{id} | 
@@ -31,6 +32,9 @@ Method | HTTP request | Description
 [**initialize_self_service_verification_flow_for_browsers**](V0alpha2Api.md#initialize_self_service_verification_flow_for_browsers) | **GET** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients
 [**initialize_self_service_verification_flow_without_browser**](V0alpha2Api.md#initialize_self_service_verification_flow_without_browser) | **GET** /api/kratos/public/self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
 [**list_identity_schemas**](V0alpha2Api.md#list_identity_schemas) | **GET** /api/kratos/public/schemas | 
+[**list_sessions**](V0alpha2Api.md#list_sessions) | **GET** /api/kratos/public/sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint.
+[**revoke_session**](V0alpha2Api.md#revoke_session) | **DELETE** /api/kratos/public/sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
+[**revoke_sessions**](V0alpha2Api.md#revoke_sessions) | **DELETE** /api/kratos/public/sessions | Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
 [**submit_self_service_login_flow**](V0alpha2Api.md#submit_self_service_login_flow) | **POST** /api/kratos/public/self-service/login | Submit a Login Flow
 [**submit_self_service_logout_flow**](V0alpha2Api.md#submit_self_service_logout_flow) | **GET** /api/kratos/public/self-service/logout | Complete Self-Service Logout
 [**submit_self_service_logout_flow_without_browser**](V0alpha2Api.md#submit_self_service_logout_flow_without_browser) | **DELETE** /api/kratos/public/self-service/logout/api | Perform Logout for APIs, Services, Apps, ...
@@ -492,7 +496,7 @@ configuration = ory_client.Configuration(
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    per_page = 100 # int | Items per Page  This is the number of items per page. (optional) if omitted the server will use the default value of 100
+    per_page = 250 # int | Items per Page  This is the number of items per page. (optional) if omitted the server will use the default value of 250
     page = 0 # int | Pagination Page (optional) if omitted the server will use the default value of 0
 
     # example passing only required values which don't have defaults set
@@ -510,7 +514,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **per_page** | **int**| Items per Page  This is the number of items per page. | [optional] if omitted the server will use the default value of 100
+ **per_page** | **int**| Items per Page  This is the number of items per page. | [optional] if omitted the server will use the default value of 250
  **page** | **int**| Pagination Page | [optional] if omitted the server will use the default value of 0
 
 ### Return type
@@ -531,6 +535,101 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | identityList |  -  |
+**500** | jsonError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **admin_list_identity_sessions**
+> SessionList admin_list_identity_sessions(id)
+
+This endpoint returns all sessions that belong to the given Identity.
+
+This endpoint is useful for:  Listing all sessions that belong to an Identity in an administrative context.
+
+### Example
+
+* Bearer Authentication (oryAccessToken):
+```python
+import time
+import ory_client
+from ory_client.api import v0alpha2_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.session_list import SessionList
+from pprint import pprint
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryAccessToken
+configuration = ory_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = v0alpha2_api.V0alpha2Api(api_client)
+    id = "id_example" # str | ID is the identity's ID.
+    per_page = 250 # int | Items per Page  This is the number of items per page. (optional) if omitted the server will use the default value of 250
+    page = 0 # int | Pagination Page (optional) if omitted the server will use the default value of 0
+    active = True # bool | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # This endpoint returns all sessions that belong to the given Identity.
+        api_response = api_instance.admin_list_identity_sessions(id)
+        pprint(api_response)
+    except ory_client.ApiException as e:
+        print("Exception when calling V0alpha2Api->admin_list_identity_sessions: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # This endpoint returns all sessions that belong to the given Identity.
+        api_response = api_instance.admin_list_identity_sessions(id, per_page=per_page, page=page, active=active)
+        pprint(api_response)
+    except ory_client.ApiException as e:
+        print("Exception when calling V0alpha2Api->admin_list_identity_sessions: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| ID is the identity&#39;s ID. |
+ **per_page** | **int**| Items per Page  This is the number of items per page. | [optional] if omitted the server will use the default value of 250
+ **page** | **int**| Pagination Page | [optional] if omitted the server will use the default value of 0
+ **active** | **bool**| Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [optional]
+
+### Return type
+
+[**SessionList**](SessionList.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | sessionList |  -  |
+**400** | jsonError |  -  |
+**401** | jsonError |  -  |
+**404** | jsonError |  -  |
 **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2016,7 +2115,7 @@ configuration = ory_client.Configuration(
 with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    per_page = 100 # int | Items per Page  This is the number of items per page. (optional) if omitted the server will use the default value of 100
+    per_page = 250 # int | Items per Page  This is the number of items per page. (optional) if omitted the server will use the default value of 250
     page = 0 # int | Pagination Page (optional) if omitted the server will use the default value of 0
 
     # example passing only required values which don't have defaults set
@@ -2033,7 +2132,7 @@ with ory_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **per_page** | **int**| Items per Page  This is the number of items per page. | [optional] if omitted the server will use the default value of 100
+ **per_page** | **int**| Items per Page  This is the number of items per page. | [optional] if omitted the server will use the default value of 250
  **page** | **int**| Pagination Page | [optional] if omitted the server will use the default value of 0
 
 ### Return type
@@ -2054,6 +2153,223 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | identitySchemas |  -  |
+**500** | jsonError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_sessions**
+> SessionList list_sessions()
+
+This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the `/sessions/whoami` endpoint.
+
+This endpoint is useful for:  Displaying all other sessions that belong to the logged-in user
+
+### Example
+
+```python
+import time
+import ory_client
+from ory_client.api import v0alpha2_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.session_list import SessionList
+from pprint import pprint
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = v0alpha2_api.V0alpha2Api(api_client)
+    x_session_token = "X-Session-Token_example" # str | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`. (optional)
+    cookie = "Cookie_example" # str | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored. (optional)
+    per_page = 250 # int | Items per Page  This is the number of items per page. (optional) if omitted the server will use the default value of 250
+    page = 0 # int | Pagination Page (optional) if omitted the server will use the default value of 0
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the `/sessions/whoami` endpoint.
+        api_response = api_instance.list_sessions(x_session_token=x_session_token, cookie=cookie, per_page=per_page, page=page)
+        pprint(api_response)
+    except ory_client.ApiException as e:
+        print("Exception when calling V0alpha2Api->list_sessions: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **x_session_token** | **str**| Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;. | [optional]
+ **cookie** | **str**| Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored. | [optional]
+ **per_page** | **int**| Items per Page  This is the number of items per page. | [optional] if omitted the server will use the default value of 250
+ **page** | **int**| Pagination Page | [optional] if omitted the server will use the default value of 0
+
+### Return type
+
+[**SessionList**](SessionList.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | sessionList |  -  |
+**400** | jsonError |  -  |
+**401** | jsonError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **revoke_session**
+> revoke_session(id)
+
+Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
+
+This endpoint is useful for:  To forcefully logout the current user from another device or session
+
+### Example
+
+```python
+import time
+import ory_client
+from ory_client.api import v0alpha2_api
+from ory_client.model.json_error import JsonError
+from pprint import pprint
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = v0alpha2_api.V0alpha2Api(api_client)
+    id = "id_example" # str | ID is the session's ID.
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
+        api_instance.revoke_session(id)
+    except ory_client.ApiException as e:
+        print("Exception when calling V0alpha2Api->revoke_session: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| ID is the session&#39;s ID. |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**400** | jsonError |  -  |
+**401** | jsonError |  -  |
+**500** | jsonError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **revoke_sessions**
+> RevokedSessions revoke_sessions()
+
+Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
+
+This endpoint is useful for:  To forcefully logout the current user from all other devices and sessions
+
+### Example
+
+```python
+import time
+import ory_client
+from ory_client.api import v0alpha2_api
+from ory_client.model.json_error import JsonError
+from ory_client.model.revoked_sessions import RevokedSessions
+from pprint import pprint
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = v0alpha2_api.V0alpha2Api(api_client)
+    x_session_token = "X-Session-Token_example" # str | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`. (optional)
+    cookie = "Cookie_example" # str | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored. (optional)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
+        api_response = api_instance.revoke_sessions(x_session_token=x_session_token, cookie=cookie)
+        pprint(api_response)
+    except ory_client.ApiException as e:
+        print("Exception when calling V0alpha2Api->revoke_sessions: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **x_session_token** | **str**| Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;. | [optional]
+ **cookie** | **str**| Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored. | [optional]
+
+### Return type
+
+[**RevokedSessions**](RevokedSessions.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | revokedSessions |  -  |
+**400** | jsonError |  -  |
+**401** | jsonError |  -  |
+**404** | jsonError |  -  |
 **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

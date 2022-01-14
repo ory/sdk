@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **_async** | **bool** | The script async type | [optional] 
 **crossorigin** | **str** | The script cross origin policy | [optional] 
 **integrity** | **str** | The script&#39;s integrity hash | [optional] 
+**nonce** | **str** | Nonce for CSP  A nonce you may want to use to improve your Content Security Policy. You do not have to use this value but if you want to improve your CSP policies you may use it. You can also choose to use your own nonce value! | [optional] 
 **referrerpolicy** | **str** | The script referrer policy | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

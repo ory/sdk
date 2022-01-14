@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**adminDeleteIdentitySessions**](V0alpha2Api.md#adminDeleteIdentitySessions) | **DELETE** /api/kratos/admin/identities/{id}/sessions | Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.
 [**adminGetIdentity**](V0alpha2Api.md#adminGetIdentity) | **GET** /api/kratos/admin/identities/{id} | Get an Identity
 [**adminListIdentities**](V0alpha2Api.md#adminListIdentities) | **GET** /api/kratos/admin/identities | List Identities
+[**adminListIdentitySessions**](V0alpha2Api.md#adminListIdentitySessions) | **GET** /api/kratos/admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity.
 [**adminUpdateIdentity**](V0alpha2Api.md#adminUpdateIdentity) | **PUT** /api/kratos/admin/identities/{id} | Update an Identity
 [**createSelfServiceLogoutFlowUrlForBrowsers**](V0alpha2Api.md#createSelfServiceLogoutFlowUrlForBrowsers) | **GET** /api/kratos/public/self-service/logout/browser | Create a Logout URL for Browsers
 [**getJsonSchema**](V0alpha2Api.md#getJsonSchema) | **GET** /api/kratos/public/schemas/{id} | 
@@ -31,6 +32,9 @@ Method | HTTP request | Description
 [**initializeSelfServiceVerificationFlowForBrowsers**](V0alpha2Api.md#initializeSelfServiceVerificationFlowForBrowsers) | **GET** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients
 [**initializeSelfServiceVerificationFlowWithoutBrowser**](V0alpha2Api.md#initializeSelfServiceVerificationFlowWithoutBrowser) | **GET** /api/kratos/public/self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
 [**listIdentitySchemas**](V0alpha2Api.md#listIdentitySchemas) | **GET** /api/kratos/public/schemas | 
+[**listSessions**](V0alpha2Api.md#listSessions) | **GET** /api/kratos/public/sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint.
+[**revokeSession**](V0alpha2Api.md#revokeSession) | **DELETE** /api/kratos/public/sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
+[**revokeSessions**](V0alpha2Api.md#revokeSessions) | **DELETE** /api/kratos/public/sessions | Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
 [**submitSelfServiceLoginFlow**](V0alpha2Api.md#submitSelfServiceLoginFlow) | **POST** /api/kratos/public/self-service/login | Submit a Login Flow
 [**submitSelfServiceLogoutFlow**](V0alpha2Api.md#submitSelfServiceLogoutFlow) | **GET** /api/kratos/public/self-service/logout | Complete Self-Service Logout
 [**submitSelfServiceLogoutFlowWithoutBrowser**](V0alpha2Api.md#submitSelfServiceLogoutFlowWithoutBrowser) | **DELETE** /api/kratos/public/self-service/logout/api | Perform Logout for APIs, Services, Apps, ...
@@ -418,7 +422,7 @@ public class Example {
     oryAccessToken.setBearerToken("BEARER TOKEN");
 
     V0alpha2Api apiInstance = new V0alpha2Api(defaultClient);
-    Long perPage = 100L; // Long | Items per Page  This is the number of items per page.
+    Long perPage = 250L; // Long | Items per Page  This is the number of items per page.
     Long page = 0L; // Long | Pagination Page
     try {
       List<Identity> result = apiInstance.adminListIdentities(perPage, page);
@@ -438,7 +442,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **perPage** | **Long**| Items per Page  This is the number of items per page. | [optional] [default to 100]
+ **perPage** | **Long**| Items per Page  This is the number of items per page. | [optional] [default to 250]
  **page** | **Long**| Pagination Page | [optional] [default to 0]
 
 ### Return type
@@ -458,6 +462,83 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | identityList |  -  |
+**500** | jsonError |  -  |
+
+<a name="adminListIdentitySessions"></a>
+# **adminListIdentitySessions**
+> List&lt;Session&gt; adminListIdentitySessions(id, perPage, page, active)
+
+This endpoint returns all sessions that belong to the given Identity.
+
+This endpoint is useful for:  Listing all sessions that belong to an Identity in an administrative context.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.V0alpha2Api;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryAccessToken
+    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setBearerToken("BEARER TOKEN");
+
+    V0alpha2Api apiInstance = new V0alpha2Api(defaultClient);
+    String id = "id_example"; // String | ID is the identity's ID.
+    Long perPage = 250L; // Long | Items per Page  This is the number of items per page.
+    Long page = 0L; // Long | Pagination Page
+    Boolean active = true; // Boolean | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
+    try {
+      List<Session> result = apiInstance.adminListIdentitySessions(id, perPage, page, active);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling V0alpha2Api#adminListIdentitySessions");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| ID is the identity&#39;s ID. |
+ **perPage** | **Long**| Items per Page  This is the number of items per page. | [optional] [default to 250]
+ **page** | **Long**| Pagination Page | [optional] [default to 0]
+ **active** | **Boolean**| Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [optional]
+
+### Return type
+
+[**List&lt;Session&gt;**](Session.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | sessionList |  -  |
+**400** | jsonError |  -  |
+**401** | jsonError |  -  |
+**404** | jsonError |  -  |
 **500** | jsonError |  -  |
 
 <a name="adminUpdateIdentity"></a>
@@ -1789,7 +1870,7 @@ public class Example {
     defaultClient.setBasePath("https://playground.projects.oryapis.com");
 
     V0alpha2Api apiInstance = new V0alpha2Api(defaultClient);
-    Long perPage = 100L; // Long | Items per Page  This is the number of items per page.
+    Long perPage = 250L; // Long | Items per Page  This is the number of items per page.
     Long page = 0L; // Long | Pagination Page
     try {
       List<IdentitySchema> result = apiInstance.listIdentitySchemas(perPage, page);
@@ -1809,7 +1890,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **perPage** | **Long**| Items per Page  This is the number of items per page. | [optional] [default to 100]
+ **perPage** | **Long**| Items per Page  This is the number of items per page. | [optional] [default to 250]
  **page** | **Long**| Pagination Page | [optional] [default to 0]
 
 ### Return type
@@ -1829,6 +1910,210 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | identitySchemas |  -  |
+**500** | jsonError |  -  |
+
+<a name="listSessions"></a>
+# **listSessions**
+> List&lt;Session&gt; listSessions(xSessionToken, cookie, perPage, page)
+
+This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint.
+
+This endpoint is useful for:  Displaying all other sessions that belong to the logged-in user
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.V0alpha2Api;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+
+    V0alpha2Api apiInstance = new V0alpha2Api(defaultClient);
+    String xSessionToken = "xSessionToken_example"; // String | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`.
+    String cookie = "cookie_example"; // String | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored.
+    Long perPage = 250L; // Long | Items per Page  This is the number of items per page.
+    Long page = 0L; // Long | Pagination Page
+    try {
+      List<Session> result = apiInstance.listSessions(xSessionToken, cookie, perPage, page);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling V0alpha2Api#listSessions");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xSessionToken** | **String**| Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;. | [optional]
+ **cookie** | **String**| Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored. | [optional]
+ **perPage** | **Long**| Items per Page  This is the number of items per page. | [optional] [default to 250]
+ **page** | **Long**| Pagination Page | [optional] [default to 0]
+
+### Return type
+
+[**List&lt;Session&gt;**](Session.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | sessionList |  -  |
+**400** | jsonError |  -  |
+**401** | jsonError |  -  |
+**404** | jsonError |  -  |
+**500** | jsonError |  -  |
+
+<a name="revokeSession"></a>
+# **revokeSession**
+> revokeSession(id)
+
+Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
+
+This endpoint is useful for:  To forcefully logout the current user from another device or session
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.V0alpha2Api;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+
+    V0alpha2Api apiInstance = new V0alpha2Api(defaultClient);
+    String id = "id_example"; // String | ID is the session's ID.
+    try {
+      apiInstance.revokeSession(id);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling V0alpha2Api#revokeSession");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| ID is the session&#39;s ID. |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**400** | jsonError |  -  |
+**401** | jsonError |  -  |
+**500** | jsonError |  -  |
+
+<a name="revokeSessions"></a>
+# **revokeSessions**
+> RevokedSessions revokeSessions(xSessionToken, cookie)
+
+Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
+
+This endpoint is useful for:  To forcefully logout the current user from all other devices and sessions
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.V0alpha2Api;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+
+    V0alpha2Api apiInstance = new V0alpha2Api(defaultClient);
+    String xSessionToken = "xSessionToken_example"; // String | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`.
+    String cookie = "cookie_example"; // String | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored.
+    try {
+      RevokedSessions result = apiInstance.revokeSessions(xSessionToken, cookie);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling V0alpha2Api#revokeSessions");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xSessionToken** | **String**| Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;. | [optional]
+ **cookie** | **String**| Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored. | [optional]
+
+### Return type
+
+[**RevokedSessions**](RevokedSessions.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | revokedSessions |  -  |
+**400** | jsonError |  -  |
+**401** | jsonError |  -  |
+**404** | jsonError |  -  |
 **500** | jsonError |  -  |
 
 <a name="submitSelfServiceLoginFlow"></a>

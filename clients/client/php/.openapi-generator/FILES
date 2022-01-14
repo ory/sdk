@@ -36,6 +36,7 @@ docs/Model/IsOwnerForProjectBySlugPayload.md
 docs/Model/JsonError.md
 docs/Model/NeedsPrivilegedSessionError.md
 docs/Model/NullPlan.md
+docs/Model/Pagination.md
 docs/Model/Project.md
 docs/Model/ProjectHost.md
 docs/Model/ProjectLookupSecretConfig.md
@@ -51,6 +52,7 @@ docs/Model/ProjectWebAuthnConfig.md
 docs/Model/RecoveryAddress.md
 docs/Model/RedirectionConfig.md
 docs/Model/RedirectionField.md
+docs/Model/RevokedSessions.md
 docs/Model/SchemaPatch.md
 docs/Model/SelfServiceBrowserLocationChangeRequiredError.md
 docs/Model/SelfServiceError.md
@@ -145,6 +147,7 @@ lib/Model/JsonError.php
 lib/Model/ModelInterface.php
 lib/Model/NeedsPrivilegedSessionError.php
 lib/Model/NullPlan.php
+lib/Model/Pagination.php
 lib/Model/Project.php
 lib/Model/ProjectHost.php
 lib/Model/ProjectLookupSecretConfig.php
@@ -160,6 +163,7 @@ lib/Model/ProjectWebAuthnConfig.php
 lib/Model/RecoveryAddress.php
 lib/Model/RedirectionConfig.php
 lib/Model/RedirectionField.php
+lib/Model/RevokedSessions.php
 lib/Model/SchemaPatch.php
 lib/Model/SelfServiceBrowserLocationChangeRequiredError.php
 lib/Model/SelfServiceError.php
@@ -251,6 +255,7 @@ test/Model/IsOwnerForProjectBySlugTest.php
 test/Model/JsonErrorTest.php
 test/Model/NeedsPrivilegedSessionErrorTest.php
 test/Model/NullPlanTest.php
+test/Model/PaginationTest.php
 test/Model/ProjectHostTest.php
 test/Model/ProjectLookupSecretConfigTest.php
 test/Model/ProjectOidcConfigTest.php
@@ -266,6 +271,7 @@ test/Model/ProjectWebAuthnConfigTest.php
 test/Model/RecoveryAddressTest.php
 test/Model/RedirectionConfigTest.php
 test/Model/RedirectionFieldTest.php
+test/Model/RevokedSessionsTest.php
 test/Model/SchemaPatchTest.php
 test/Model/SelfServiceBrowserLocationChangeRequiredErrorTest.php
 test/Model/SelfServiceErrorTest.php

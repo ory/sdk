@@ -32,6 +32,7 @@ doc/JsonError.md
 doc/MetadataApi.md
 doc/NeedsPrivilegedSessionError.md
 doc/NullPlan.md
+doc/Pagination.md
 doc/Project.md
 doc/ProjectHost.md
 doc/ProjectLookupSecretConfig.md
@@ -47,6 +48,7 @@ doc/ProjectWebAuthnConfig.md
 doc/RecoveryAddress.md
 doc/RedirectionConfig.md
 doc/RedirectionField.md
+doc/RevokedSessions.md
 doc/SchemaPatch.md
 doc/SelfServiceBrowserLocationChangeRequiredError.md
 doc/SelfServiceError.md
@@ -144,6 +146,7 @@ lib/model/is_owner_for_project_by_slug_payload.dart
 lib/model/json_error.dart
 lib/model/needs_privileged_session_error.dart
 lib/model/null_plan.dart
+lib/model/pagination.dart
 lib/model/project.dart
 lib/model/project_host.dart
 lib/model/project_lookup_secret_config.dart
@@ -159,6 +162,7 @@ lib/model/project_web_authn_config.dart
 lib/model/recovery_address.dart
 lib/model/redirection_config.dart
 lib/model/redirection_field.dart
+lib/model/revoked_sessions.dart
 lib/model/schema_patch.dart
 lib/model/self_service_browser_location_change_required_error.dart
 lib/model/self_service_error.dart
@@ -248,6 +252,7 @@ test/json_error_test.dart
 test/metadata_api_test.dart
 test/needs_privileged_session_error_test.dart
 test/null_plan_test.dart
+test/pagination_test.dart
 test/project_host_test.dart
 test/project_lookup_secret_config_test.dart
 test/project_oidc_config_test.dart
@@ -263,6 +268,7 @@ test/project_web_authn_config_test.dart
 test/recovery_address_test.dart
 test/redirection_config_test.dart
 test/redirection_field_test.dart
+test/revoked_sessions_test.dart
 test/schema_patch_test.dart
 test/self_service_browser_location_change_required_error_test.dart
 test/self_service_error_test.dart

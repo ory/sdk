@@ -33,6 +33,7 @@ docs/JsonError.md
 docs/MetadataApi.md
 docs/NeedsPrivilegedSessionError.md
 docs/NullPlan.md
+docs/Pagination.md
 docs/Project.md
 docs/ProjectHost.md
 docs/ProjectLookupSecretConfig.md
@@ -48,6 +49,7 @@ docs/ProjectWebAuthnConfig.md
 docs/RecoveryAddress.md
 docs/RedirectionConfig.md
 docs/RedirectionField.md
+docs/RevokedSessions.md
 docs/SchemaPatch.md
 docs/SelfServiceBrowserLocationChangeRequiredError.md
 docs/SelfServiceError.md
@@ -144,6 +146,7 @@ src/models/json_error.rs
 src/models/mod.rs
 src/models/needs_privileged_session_error.rs
 src/models/null_plan.rs
+src/models/pagination.rs
 src/models/project.rs
 src/models/project_host.rs
 src/models/project_lookup_secret_config.rs
@@ -159,6 +162,7 @@ src/models/project_web_authn_config.rs
 src/models/recovery_address.rs
 src/models/redirection_config.rs
 src/models/redirection_field.rs
+src/models/revoked_sessions.rs
 src/models/schema_patch.rs
 src/models/self_service_browser_location_change_required_error.rs
 src/models/self_service_error.rs

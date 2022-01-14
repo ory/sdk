@@ -124,6 +124,12 @@ void main() {
       // TODO
     });
 
+    // Nonce for CSP  A nonce you may want to use to improve your Content Security Policy. You do not have to use this value but if you want to improve your CSP policies you may use it. You can also choose to use your own nonce value!
+    // String nonce
+    test('to test the property `nonce`', () async {
+      // TODO
+    });
+
     // The script referrer policy
     // String referrerpolicy
     test('to test the property `referrerpolicy`', () async {

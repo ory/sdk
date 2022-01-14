@@ -35,6 +35,7 @@ docs/JsonError.md
 docs/MetadataApi.md
 docs/NeedsPrivilegedSessionError.md
 docs/NullPlan.md
+docs/Pagination.md
 docs/Project.md
 docs/ProjectHost.md
 docs/ProjectLookupSecretConfig.md
@@ -50,6 +51,7 @@ docs/ProjectWebAuthnConfig.md
 docs/RecoveryAddress.md
 docs/RedirectionConfig.md
 docs/RedirectionField.md
+docs/RevokedSessions.md
 docs/SchemaPatch.md
 docs/SelfServiceBrowserLocationChangeRequiredError.md
 docs/SelfServiceError.md
@@ -167,6 +169,7 @@ src/main/java/sh/ory/model/IsOwnerForProjectBySlugPayload.java
 src/main/java/sh/ory/model/JsonError.java
 src/main/java/sh/ory/model/NeedsPrivilegedSessionError.java
 src/main/java/sh/ory/model/NullPlan.java
+src/main/java/sh/ory/model/Pagination.java
 src/main/java/sh/ory/model/Project.java
 src/main/java/sh/ory/model/ProjectHost.java
 src/main/java/sh/ory/model/ProjectLookupSecretConfig.java
@@ -182,6 +185,7 @@ src/main/java/sh/ory/model/ProjectWebAuthnConfig.java
 src/main/java/sh/ory/model/RecoveryAddress.java
 src/main/java/sh/ory/model/RedirectionConfig.java
 src/main/java/sh/ory/model/RedirectionField.java
+src/main/java/sh/ory/model/RevokedSessions.java
 src/main/java/sh/ory/model/SchemaPatch.java
 src/main/java/sh/ory/model/SelfServiceBrowserLocationChangeRequiredError.java
 src/main/java/sh/ory/model/SelfServiceError.java
@@ -271,6 +275,7 @@ src/test/java/sh/ory/model/IsOwnerForProjectBySlugTest.java
 src/test/java/sh/ory/model/JsonErrorTest.java
 src/test/java/sh/ory/model/NeedsPrivilegedSessionErrorTest.java
 src/test/java/sh/ory/model/NullPlanTest.java
+src/test/java/sh/ory/model/PaginationTest.java
 src/test/java/sh/ory/model/ProjectHostTest.java
 src/test/java/sh/ory/model/ProjectLookupSecretConfigTest.java
 src/test/java/sh/ory/model/ProjectOidcConfigTest.java
@@ -286,6 +291,7 @@ src/test/java/sh/ory/model/ProjectWebAuthnConfigTest.java
 src/test/java/sh/ory/model/RecoveryAddressTest.java
 src/test/java/sh/ory/model/RedirectionConfigTest.java
 src/test/java/sh/ory/model/RedirectionFieldTest.java
+src/test/java/sh/ory/model/RevokedSessionsTest.java
 src/test/java/sh/ory/model/SchemaPatchTest.java
 src/test/java/sh/ory/model/SelfServiceBrowserLocationChangeRequiredErrorTest.java
 src/test/java/sh/ory/model/SelfServiceErrorTest.java

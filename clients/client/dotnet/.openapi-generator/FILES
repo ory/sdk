@@ -32,6 +32,7 @@ docs/ClientIsOwnerForProjectBySlugPayload.md
 docs/ClientJsonError.md
 docs/ClientNeedsPrivilegedSessionError.md
 docs/ClientNullPlan.md
+docs/ClientPagination.md
 docs/ClientProject.md
 docs/ClientProjectHost.md
 docs/ClientProjectLookupSecretConfig.md
@@ -47,6 +48,7 @@ docs/ClientProjectWebAuthnConfig.md
 docs/ClientRecoveryAddress.md
 docs/ClientRedirectionConfig.md
 docs/ClientRedirectionField.md
+docs/ClientRevokedSessions.md
 docs/ClientSchemaPatch.md
 docs/ClientSelfServiceBrowserLocationChangeRequiredError.md
 docs/ClientSelfServiceError.md
@@ -140,6 +142,7 @@ src/Ory.Client.Test/Model/ClientIsOwnerForProjectBySlugTests.cs
 src/Ory.Client.Test/Model/ClientJsonErrorTests.cs
 src/Ory.Client.Test/Model/ClientNeedsPrivilegedSessionErrorTests.cs
 src/Ory.Client.Test/Model/ClientNullPlanTests.cs
+src/Ory.Client.Test/Model/ClientPaginationTests.cs
 src/Ory.Client.Test/Model/ClientProjectHostTests.cs
 src/Ory.Client.Test/Model/ClientProjectLookupSecretConfigTests.cs
 src/Ory.Client.Test/Model/ClientProjectOidcConfigTests.cs
@@ -155,6 +158,7 @@ src/Ory.Client.Test/Model/ClientProjectWebAuthnConfigTests.cs
 src/Ory.Client.Test/Model/ClientRecoveryAddressTests.cs
 src/Ory.Client.Test/Model/ClientRedirectionConfigTests.cs
 src/Ory.Client.Test/Model/ClientRedirectionFieldTests.cs
+src/Ory.Client.Test/Model/ClientRevokedSessionsTests.cs
 src/Ory.Client.Test/Model/ClientSchemaPatchTests.cs
 src/Ory.Client.Test/Model/ClientSelfServiceBrowserLocationChangeRequiredErrorTests.cs
 src/Ory.Client.Test/Model/ClientSelfServiceErrorTests.cs
@@ -262,6 +266,7 @@ src/Ory.Client/Model/ClientIsOwnerForProjectBySlugPayload.cs
 src/Ory.Client/Model/ClientJsonError.cs
 src/Ory.Client/Model/ClientNeedsPrivilegedSessionError.cs
 src/Ory.Client/Model/ClientNullPlan.cs
+src/Ory.Client/Model/ClientPagination.cs
 src/Ory.Client/Model/ClientProject.cs
 src/Ory.Client/Model/ClientProjectHost.cs
 src/Ory.Client/Model/ClientProjectLookupSecretConfig.cs
@@ -277,6 +282,7 @@ src/Ory.Client/Model/ClientProjectWebAuthnConfig.cs
 src/Ory.Client/Model/ClientRecoveryAddress.cs
 src/Ory.Client/Model/ClientRedirectionConfig.cs
 src/Ory.Client/Model/ClientRedirectionField.cs
+src/Ory.Client/Model/ClientRevokedSessions.cs
 src/Ory.Client/Model/ClientSchemaPatch.cs
 src/Ory.Client/Model/ClientSelfServiceBrowserLocationChangeRequiredError.cs
 src/Ory.Client/Model/ClientSelfServiceError.cs

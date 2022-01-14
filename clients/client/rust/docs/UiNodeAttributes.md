@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **_async** | **bool** | The script async type | 
 **crossorigin** | **String** | The script cross origin policy | 
 **integrity** | **String** | The script's integrity hash | 
+**nonce** | **String** | Nonce for CSP  A nonce you may want to use to improve your Content Security Policy. You do not have to use this value but if you want to improve your CSP policies you may use it. You can also choose to use your own nonce value! | 
 **referrerpolicy** | **String** | The script referrer policy | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

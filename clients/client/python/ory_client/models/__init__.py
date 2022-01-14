@@ -43,6 +43,7 @@ from ory_client.model.json_error import JsonError
 from ory_client.model.list_custom_hostnames_response import ListCustomHostnamesResponse
 from ory_client.model.needs_privileged_session_error import NeedsPrivilegedSessionError
 from ory_client.model.null_plan import NullPlan
+from ory_client.model.pagination import Pagination
 from ory_client.model.project import Project
 from ory_client.model.project_host import ProjectHost
 from ory_client.model.project_lookup_secret_config import ProjectLookupSecretConfig
@@ -61,6 +62,7 @@ from ory_client.model.projects import Projects
 from ory_client.model.recovery_address import RecoveryAddress
 from ory_client.model.redirection_config import RedirectionConfig
 from ory_client.model.redirection_field import RedirectionField
+from ory_client.model.revoked_sessions import RevokedSessions
 from ory_client.model.schema_patch import SchemaPatch
 from ory_client.model.self_service_browser_location_change_required_error import SelfServiceBrowserLocationChangeRequiredError
 from ory_client.model.self_service_error import SelfServiceError
@@ -79,6 +81,7 @@ from ory_client.model.session import Session
 from ory_client.model.session_authentication_method import SessionAuthenticationMethod
 from ory_client.model.session_authentication_methods import SessionAuthenticationMethods
 from ory_client.model.session_device import SessionDevice
+from ory_client.model.session_list import SessionList
 from ory_client.model.settings_profile_form_config import SettingsProfileFormConfig
 from ory_client.model.string_slice_pipe_delimiter import StringSlicePipeDelimiter
 from ory_client.model.stripe_customer_response import StripeCustomerResponse

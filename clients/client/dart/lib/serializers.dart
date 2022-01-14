@@ -42,6 +42,7 @@ import 'package:ory_client/model/is_owner_for_project_by_slug_payload.dart';
 import 'package:ory_client/model/json_error.dart';
 import 'package:ory_client/model/needs_privileged_session_error.dart';
 import 'package:ory_client/model/null_plan.dart';
+import 'package:ory_client/model/pagination.dart';
 import 'package:ory_client/model/project.dart';
 import 'package:ory_client/model/project_host.dart';
 import 'package:ory_client/model/project_lookup_secret_config.dart';
@@ -57,6 +58,7 @@ import 'package:ory_client/model/project_web_authn_config.dart';
 import 'package:ory_client/model/recovery_address.dart';
 import 'package:ory_client/model/redirection_config.dart';
 import 'package:ory_client/model/redirection_field.dart';
+import 'package:ory_client/model/revoked_sessions.dart';
 import 'package:ory_client/model/schema_patch.dart';
 import 'package:ory_client/model/self_service_browser_location_change_required_error.dart';
 import 'package:ory_client/model/self_service_error.dart';
@@ -147,6 +149,7 @@ part 'serializers.g.dart';
   JsonError,
   NeedsPrivilegedSessionError,
   NullPlan,
+  Pagination,
   Project,
   ProjectHost,
   ProjectLookupSecretConfig,
@@ -162,6 +165,7 @@ part 'serializers.g.dart';
   RecoveryAddress,
   RedirectionConfig,
   RedirectionField,
+  RevokedSessions,
   SchemaPatch,
   SelfServiceBrowserLocationChangeRequiredError,
   SelfServiceError,
@@ -228,6 +232,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(Identity)]),
         () => ListBuilder<Identity>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Session)]),
+        () => ListBuilder<Session>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(IdentitySchema)]),
