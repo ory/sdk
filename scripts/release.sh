@@ -60,6 +60,9 @@ npm i ${NPM_NAME}
     ruby)
       export INSTALL="[Ruby (Gem)](https://rubygems.org/gems/${RUBY_PROJECT_NAME}/)"
       ;;
+    elixir)
+      export INSTALL="[Elixir (Hex)](https://hex.pm/packages/${ELIXIR_PACKAGE_NAME}/)"
+      ;;
     rust)
       export INSTALL="[Rust (Crate)](https://crates.io/crates/${RUST_PACKAGE_NAME}/)"
       ;;
@@ -151,6 +154,18 @@ ruby() {
   to_git "ruby" "yes"
 }
 
+elixir() {
+  dir="clients/${PROJECT}/elixir"
+
+  hexfile="ory_${PROJECT}_client-${RAW_VERSION}.tar"
+  if [ ${PROJECT} == "client" ]; then
+    hexfile="ory_client-${GEM_VERSION}.tar"
+  fi
+
+  (cd "${dir}"; rm *.tar || true; mix hex.build; mix hex.publish package --organization ory --yes "${hexfile}")
+  to_git "elixir" "yes"
+}
+
 golang() {
   dir="clients/${PROJECT}/go"
 
@@ -236,4 +251,3 @@ else
   echo "One or more subtasks failed to complete."
   exit 1
 fi
-

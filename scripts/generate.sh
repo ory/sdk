@@ -183,6 +183,31 @@ ruby () {
   cat "${file}"
 }
 
+elixir () {
+  echo "Generating Elixir..."
+
+  dir="clients/${PROJECT}/elixir"
+  rm -rf "$dir" || true
+  mkdir -p "$dir"
+
+  openapi-generator-cli generate -i "${SPEC_FILE}" \
+    -g elixir \
+    -o "$dir" \
+    --git-user-id ory \
+    --git-repo-id sdk \
+    --git-host github.com \
+    -c ./config/client/elixir.yml.proc.yml
+
+  file="${dir}/lib/${ELIXIR_PROJECT_NAME}/mix.exs"
+
+  (sed "s/licenses: \[\"\"\]/licenses: [\"Apache-2.0\"]/g" < "${file}") > tmp.$$.rb && mv tmp.$$.rb "${file}"
+  (sed "s/version: \"latest\"/version: \"0.8.2-alpha.1\"/g" < "${file}") > tmp.$$.rb && mv tmp.$$.rb "${file}"
+  (sed "s/version: \"v/version: \"/g" < "${file}") > tmp.$$.rb && mv tmp.$$.rb "${file}"
+  (sed "s/licenses:/links: [\"https:\/\/www.ory.sh\"],\n      licenses:/g" < "${file}") > tmp.$$.rb && mv tmp.$$.rb "${file}"
+
+  cp "LICENSE" "clients/${PROJECT}/elixir"
+}
+
 golang () {
   echo "Generating Golang..."
 
@@ -275,6 +300,7 @@ java
 php
 python
 ruby
+elixir
 dotnet
 dart
 

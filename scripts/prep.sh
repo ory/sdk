@@ -84,6 +84,9 @@ export PYTHON_PACKAGE_NAME="ory_${PROJECT}_client"
 export RUBY_PROJECT_NAME="ory-${PROJECT}-client"
 export RUBY_MODULE_NAME="Ory${PROJECT_UCF}Client"
 
+export ELIXIR_MODULE_NAME="Ory${PROJECT_UCF}Client"
+export ELIXIR_PACKAGE_NAME="ory-${PROJECT}-client"
+
 export RUST_PACKAGE_NAME="ory-${PROJECT}-client"
 
 export NPM_NAME="@ory/$PROJECT-client"
@@ -105,6 +108,9 @@ if [ $project == "client" ]; then
 
   export RUBY_PROJECT_NAME="ory-client"
   export RUBY_MODULE_NAME="OryClient"
+
+  export ELIXIR_MODULE_NAME="OryClient"
+  export ELIXIR_PACKAGE_NAME="ory-client"
 
   export RUST_PACKAGE_NAME="ory-client"
 

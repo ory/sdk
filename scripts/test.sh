@@ -41,6 +41,13 @@ ruby () {
   (cd "$dir" && rm "${RUBY_PROJECT_NAME}-${GEM_VERSION}.gem" || true && bundle install --path vendor/bundle && bundle exec rspec && gem build "${RUBY_PROJECT_NAME}.gemspec" && gem install "${RUBY_PROJECT_NAME}-${GEM_VERSION}.gem")
 }
 
+elixir () {
+  echo "Testing Elixir..."
+
+  dir="clients/${PROJECT}/elixir"
+  (cd "$dir" && rm "ory_${PROJECT}_client-${RAW_VERSION}.tar" || true && mix deps.get && mix test && mix hex.build && mix archive.install "ory_${PROJECT}_client-${RAW_VERSION}.tar")
+}
+
 golang () {
   echo "Testing Golang..."
 
@@ -87,4 +94,5 @@ java
 php
 python
 ruby
+elixir
 dart
