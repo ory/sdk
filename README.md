@@ -30,13 +30,11 @@ you may run the following code snippet to reproduce the failure locally:
 
 ```shell script
 docker run --mount type=bind,source="$(pwd)",target=/project -it oryd/sdk:v0.0.47 /bin/sh
-git clone --depth 1 --branch master --single-branch https://github.com/ory/sdk.git /sdk
 
-export FORCE_VERSION=v0.0.1-test.0
-export FORCE_PROJECT=kratos # or hydra or something else
+export FORCE_VERSION=v1.11.0
+export FORCE_PROJECT=hydra # or hydra or something else
 cd /project
 
-cd sdk
 cp spec/api.json "/sdk/spec/${CIRCLE_PROJECT_REPONAME}/v0.0.1-test.0.json"
 ./scripts/generate.sh
 ./scripts/test.sh
