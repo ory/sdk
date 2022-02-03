@@ -5,12 +5,12 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**decisions**](ApiApi.md#decisions) | **GET** /decisions | Access Control Decision API
-[**get_rule**](ApiApi.md#get_rule) | **GET** /rules/{id} | Retrieve a rule
-[**get_version**](ApiApi.md#get_version) | **GET** /version | Get service version
-[**get_well_known_json_web_keys**](ApiApi.md#get_well_known_json_web_keys) | **GET** /.well-known/jwks.json | Lists cryptographic keys
-[**is_instance_alive**](ApiApi.md#is_instance_alive) | **GET** /health/alive | Check alive status
-[**is_instance_ready**](ApiApi.md#is_instance_ready) | **GET** /health/ready | Check readiness status
-[**list_rules**](ApiApi.md#list_rules) | **GET** /rules | List all rules
+[**get_rule**](ApiApi.md#get_rule) | **GET** /rules/{id} | Retrieve a Rule
+[**get_version**](ApiApi.md#get_version) | **GET** /version | Get Service Version
+[**get_well_known_json_web_keys**](ApiApi.md#get_well_known_json_web_keys) | **GET** /.well-known/jwks.json | Lists Cryptographic Keys
+[**is_instance_alive**](ApiApi.md#is_instance_alive) | **GET** /health/alive | Check Alive Status
+[**is_instance_ready**](ApiApi.md#is_instance_ready) | **GET** /health/ready | Check Readiness Status
+[**list_rules**](ApiApi.md#list_rules) | **GET** /rules | List All Rules
 
 
 # **decisions**
@@ -80,7 +80,7 @@ No authorization required
 # **get_rule**
 > Rule get_rule(id)
 
-Retrieve a rule
+Retrieve a Rule
 
 Use this method to retrieve a rule from the storage. If it does not exist you will receive a 404 error.
 
@@ -108,7 +108,7 @@ with ory_oathkeeper_client.ApiClient() as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # Retrieve a rule
+        # Retrieve a Rule
         api_response = api_instance.get_rule(id)
         pprint(api_response)
     except ory_oathkeeper_client.ApiException as e:
@@ -148,7 +148,7 @@ No authorization required
 # **get_version**
 > Version get_version()
 
-Get service version
+Get Service Version
 
 This endpoint returns the service version typically notated using semantic versioning.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
 
@@ -174,7 +174,7 @@ with ory_oathkeeper_client.ApiClient() as api_client:
 
     # example, this endpoint has no required or optional parameters
     try:
-        # Get service version
+        # Get Service Version
         api_response = api_instance.get_version()
         pprint(api_response)
     except ory_oathkeeper_client.ApiException as e:
@@ -209,7 +209,7 @@ No authorization required
 # **get_well_known_json_web_keys**
 > JsonWebKeySet get_well_known_json_web_keys()
 
-Lists cryptographic keys
+Lists Cryptographic Keys
 
 This endpoint returns cryptographic keys that are required to, for example, verify signatures of ID Tokens.
 
@@ -236,7 +236,7 @@ with ory_oathkeeper_client.ApiClient() as api_client:
 
     # example, this endpoint has no required or optional parameters
     try:
-        # Lists cryptographic keys
+        # Lists Cryptographic Keys
         api_response = api_instance.get_well_known_json_web_keys()
         pprint(api_response)
     except ory_oathkeeper_client.ApiException as e:
@@ -272,7 +272,7 @@ No authorization required
 # **is_instance_alive**
 > HealthStatus is_instance_alive()
 
-Check alive status
+Check Alive Status
 
 This endpoint returns a 200 status code when the HTTP server is up running. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
 
@@ -299,7 +299,7 @@ with ory_oathkeeper_client.ApiClient() as api_client:
 
     # example, this endpoint has no required or optional parameters
     try:
-        # Check alive status
+        # Check Alive Status
         api_response = api_instance.is_instance_alive()
         pprint(api_response)
     except ory_oathkeeper_client.ApiException as e:
@@ -335,7 +335,7 @@ No authorization required
 # **is_instance_ready**
 > HealthStatus is_instance_ready()
 
-Check readiness status
+Check Readiness Status
 
 This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
 
@@ -362,7 +362,7 @@ with ory_oathkeeper_client.ApiClient() as api_client:
 
     # example, this endpoint has no required or optional parameters
     try:
-        # Check readiness status
+        # Check Readiness Status
         api_response = api_instance.is_instance_ready()
         pprint(api_response)
     except ory_oathkeeper_client.ApiException as e:
@@ -398,7 +398,7 @@ No authorization required
 # **list_rules**
 > [Rule] list_rules()
 
-List all rules
+List All Rules
 
 This method returns an array of all rules that are stored in the backend. This is useful if you want to get a full view of what rules you have currently in place.
 
@@ -428,7 +428,7 @@ with ory_oathkeeper_client.ApiClient() as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # List all rules
+        # List All Rules
         api_response = api_instance.list_rules(limit=limit, offset=offset)
         pprint(api_response)
     except ory_oathkeeper_client.ApiException as e:

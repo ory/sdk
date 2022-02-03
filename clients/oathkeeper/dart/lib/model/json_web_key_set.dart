@@ -1,72 +1,72 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:ory_oathkeeper_client/model/json_web_key.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class JsonWebKeySet {
-  /// Returns a new [JsonWebKeySet] instance.
-  JsonWebKeySet({
-    this.keys = const [],
-  });
+part 'json_web_key_set.g.dart';
 
-  /// The value of the \"keys\" parameter is an array of JWK values.  By default, the order of the JWK values within the array does not imply an order of preference among them, although applications of JWK Sets can choose to assign a meaning to the order for their purposes, if desired.
-  List<JsonWebKey> keys;
+abstract class JsonWebKeySet implements Built<JsonWebKeySet, JsonWebKeySetBuilder> {
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is JsonWebKeySet &&
-     other.keys == keys;
+    /// The value of the \"keys\" parameter is an array of JWK values.  By default, the order of the JWK values within the array does not imply an order of preference among them, although applications of JWK Sets can choose to assign a meaning to the order for their purposes, if desired.
+    @nullable
+    @BuiltValueField(wireName: r'keys')
+    BuiltList<JsonWebKey> get keys;
 
-  @override
-  int get hashCode =>
-    (keys == null ? 0 : keys.hashCode);
+    JsonWebKeySet._();
 
-  @override
-  String toString() => 'JsonWebKeySet[keys=$keys]';
+    static void _initializeBuilder(JsonWebKeySetBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (keys != null) {
-      json[r'keys'] = keys;
+    factory JsonWebKeySet([void updates(JsonWebKeySetBuilder b)]) = _$JsonWebKeySet;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<JsonWebKeySet> get serializer => _$JsonWebKeySetSerializer();
+}
+
+class _$JsonWebKeySetSerializer implements StructuredSerializer<JsonWebKeySet> {
+
+    @override
+    final Iterable<Type> types = const [JsonWebKeySet, _$JsonWebKeySet];
+    @override
+    final String wireName = r'JsonWebKeySet';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, JsonWebKeySet object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.keys != null) {
+            result
+                ..add(r'keys')
+                ..add(serializers.serialize(object.keys,
+                    specifiedType: const FullType(BuiltList, [FullType(JsonWebKey)])));
+        }
+        return result;
     }
-    return json;
-  }
 
-  /// Returns a new [JsonWebKeySet] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static JsonWebKeySet fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : JsonWebKeySet(
-        keys: JsonWebKey.listFromJson(json[r'keys']),
-    );
+    @override
+    JsonWebKeySet deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = JsonWebKeySetBuilder();
 
-  static List<JsonWebKeySet> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <JsonWebKeySet>[]
-      : json.map((dynamic value) => JsonWebKeySet.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, JsonWebKeySet> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, JsonWebKeySet>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = JsonWebKeySet.fromJson(value));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'keys':
+                    result.keys.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(JsonWebKey)])) as BuiltList<JsonWebKey>);
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of JsonWebKeySet-objects as value to a dart map
-  static Map<String, List<JsonWebKeySet>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<JsonWebKeySet>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = JsonWebKeySet.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

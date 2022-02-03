@@ -1,5 +1,6 @@
 .gitignore
 .gitlab-ci.yml
+.openapi-generator-ignore
 .travis.yml
 README.md
 docs/ApiApi.md
@@ -40,4 +41,15 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_api_api.py
+test/test_health_not_ready_status.py
+test/test_health_status.py
+test/test_inline_response500.py
+test/test_json_web_key.py
+test/test_json_web_key_set.py
+test/test_rule.py
+test/test_rule_handler.py
+test/test_rule_match.py
+test/test_upstream.py
+test/test_version.py
 tox.ini

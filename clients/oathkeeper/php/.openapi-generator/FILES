@@ -1,6 +1,8 @@
 .gitignore
+.openapi-generator-ignore
 .php_cs
 .travis.yml
+README.md
 composer.json
 docs/Api/ApiApi.md
 docs/Model/HealthNotReadyStatus.md
@@ -31,3 +33,14 @@ lib/Model/Upstream.php
 lib/Model/Version.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
+test/Api/ApiApiTest.php
+test/Model/HealthNotReadyStatusTest.php
+test/Model/HealthStatusTest.php
+test/Model/InlineResponse500Test.php
+test/Model/JsonWebKeySetTest.php
+test/Model/JsonWebKeyTest.php
+test/Model/RuleHandlerTest.php
+test/Model/RuleMatchTest.php
+test/Model/RuleTest.php
+test/Model/UpstreamTest.php
+test/Model/VersionTest.php

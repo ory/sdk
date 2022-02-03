@@ -1,11 +1,19 @@
-import 'package:ory_oathkeeper_client/api.dart';
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.7
+
+// ignore_for_file: unused_import
+
+import 'package:ory_oathkeeper_client/model/json_web_key.dart';
 import 'package:test/test.dart';
 
 // tests for JsonWebKey
 void main() {
-  final instance = JsonWebKey();
+  final instance = JsonWebKeyBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test JsonWebKey', () {
+  group(JsonWebKey, () {
     // The \"alg\" (algorithm) parameter identifies the algorithm intended for use with the key.  The values used should either be registered in the IANA \"JSON Web Signature and Encryption Algorithms\" registry established by [JWA] or be a value that contains a Collision- Resistant Name.
     // String alg
     test('to test the property `alg`', () async {
@@ -86,7 +94,7 @@ void main() {
     });
 
     // The \"x5c\" (X.509 certificate chain) parameter contains a chain of one or more PKIX certificates [RFC5280].  The certificate chain is represented as a JSON array of certificate value strings.  Each string in the array is a base64-encoded (Section 4 of [RFC4648] -- not base64url-encoded) DER [ITU.X690.1994] PKIX certificate value. The PKIX certificate containing the key value MUST be the first certificate.
-    // List<String> x5c (default value: const [])
+    // BuiltList<String> x5c
     test('to test the property `x5c`', () async {
       // TODO
     });

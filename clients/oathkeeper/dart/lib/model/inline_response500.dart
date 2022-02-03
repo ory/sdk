@@ -1,116 +1,141 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class InlineResponse500 {
-  /// Returns a new [InlineResponse500] instance.
-  InlineResponse500({
-    this.code,
-    this.details = const [],
-    this.message,
-    this.reason,
-    this.request,
-    this.status,
-  });
+part 'inline_response500.g.dart';
 
-  int code;
+abstract class InlineResponse500 implements Built<InlineResponse500, InlineResponse500Builder> {
 
-  List<Object> details;
+    @nullable
+    @BuiltValueField(wireName: r'code')
+    int get code;
 
-  String message;
+    @nullable
+    @BuiltValueField(wireName: r'details')
+    BuiltList<JsonObject> get details;
 
-  String reason;
+    @nullable
+    @BuiltValueField(wireName: r'message')
+    String get message;
 
-  String request;
+    @nullable
+    @BuiltValueField(wireName: r'reason')
+    String get reason;
 
-  String status;
+    @nullable
+    @BuiltValueField(wireName: r'request')
+    String get request;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is InlineResponse500 &&
-     other.code == code &&
-     other.details == details &&
-     other.message == message &&
-     other.reason == reason &&
-     other.request == request &&
-     other.status == status;
+    @nullable
+    @BuiltValueField(wireName: r'status')
+    String get status;
 
-  @override
-  int get hashCode =>
-    (code == null ? 0 : code.hashCode) +
-    (details == null ? 0 : details.hashCode) +
-    (message == null ? 0 : message.hashCode) +
-    (reason == null ? 0 : reason.hashCode) +
-    (request == null ? 0 : request.hashCode) +
-    (status == null ? 0 : status.hashCode);
+    InlineResponse500._();
 
-  @override
-  String toString() => 'InlineResponse500[code=$code, details=$details, message=$message, reason=$reason, request=$request, status=$status]';
+    static void _initializeBuilder(InlineResponse500Builder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (code != null) {
-      json[r'code'] = code;
+    factory InlineResponse500([void updates(InlineResponse500Builder b)]) = _$InlineResponse500;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<InlineResponse500> get serializer => _$InlineResponse500Serializer();
+}
+
+class _$InlineResponse500Serializer implements StructuredSerializer<InlineResponse500> {
+
+    @override
+    final Iterable<Type> types = const [InlineResponse500, _$InlineResponse500];
+    @override
+    final String wireName = r'InlineResponse500';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, InlineResponse500 object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.code != null) {
+            result
+                ..add(r'code')
+                ..add(serializers.serialize(object.code,
+                    specifiedType: const FullType(int)));
+        }
+        if (object.details != null) {
+            result
+                ..add(r'details')
+                ..add(serializers.serialize(object.details,
+                    specifiedType: const FullType(BuiltList, [FullType(JsonObject)])));
+        }
+        if (object.message != null) {
+            result
+                ..add(r'message')
+                ..add(serializers.serialize(object.message,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.reason != null) {
+            result
+                ..add(r'reason')
+                ..add(serializers.serialize(object.reason,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.request != null) {
+            result
+                ..add(r'request')
+                ..add(serializers.serialize(object.request,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.status != null) {
+            result
+                ..add(r'status')
+                ..add(serializers.serialize(object.status,
+                    specifiedType: const FullType(String)));
+        }
+        return result;
     }
-    if (details != null) {
-      json[r'details'] = details;
-    }
-    if (message != null) {
-      json[r'message'] = message;
-    }
-    if (reason != null) {
-      json[r'reason'] = reason;
-    }
-    if (request != null) {
-      json[r'request'] = request;
-    }
-    if (status != null) {
-      json[r'status'] = status;
-    }
-    return json;
-  }
 
-  /// Returns a new [InlineResponse500] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static InlineResponse500 fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : InlineResponse500(
-        code: json[r'code'],
-        details: Object.listFromJson(json[r'details']),
-        message: json[r'message'],
-        reason: json[r'reason'],
-        request: json[r'request'],
-        status: json[r'status'],
-    );
+    @override
+    InlineResponse500 deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = InlineResponse500Builder();
 
-  static List<InlineResponse500> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <InlineResponse500>[]
-      : json.map((dynamic value) => InlineResponse500.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, InlineResponse500> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, InlineResponse500>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = InlineResponse500.fromJson(value));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'code':
+                    result.code = serializers.deserialize(value,
+                        specifiedType: const FullType(int)) as int;
+                    break;
+                case r'details':
+                    result.details.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(JsonObject)])) as BuiltList<JsonObject>);
+                    break;
+                case r'message':
+                    result.message = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'reason':
+                    result.reason = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'request':
+                    result.request = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'status':
+                    result.status = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of InlineResponse500-objects as value to a dart map
-  static Map<String, List<InlineResponse500>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<InlineResponse500>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = InlineResponse500.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

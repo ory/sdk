@@ -1,13 +1,21 @@
-import 'package:ory_oathkeeper_client/api.dart';
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.7
+
+// ignore_for_file: unused_import
+
+import 'package:ory_oathkeeper_client/model/rule_match.dart';
 import 'package:test/test.dart';
 
 // tests for RuleMatch
 void main() {
-  final instance = RuleMatch();
+  final instance = RuleMatchBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test RuleMatch', () {
+  group(RuleMatch, () {
     // An array of HTTP methods (e.g. GET, POST, PUT, DELETE, ...). When ORY Oathkeeper searches for rules to decide what to do with an incoming request to the proxy server, it compares the HTTP method of the incoming request with the HTTP methods of each rules. If a match is found, the rule is considered a partial match. If the matchesUrl field is satisfied as well, the rule is considered a full match.
-    // List<String> methods (default value: const [])
+    // BuiltList<String> methods
     test('to test the property `methods`', () async {
       // TODO
     });

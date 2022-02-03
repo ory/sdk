@@ -9,7 +9,7 @@ import 'package:ory_oathkeeper_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **int** |  | [optional] 
-**details** | [**List<Object>**](Object.md) |  | [optional] [default to const []]
+**details** | [**BuiltList<JsonObject>**](JsonObject.md) |  | [optional] 
 **message** | **String** |  | [optional] 
 **reason** | **String** |  | [optional] 
 **request** | **String** |  | [optional] 

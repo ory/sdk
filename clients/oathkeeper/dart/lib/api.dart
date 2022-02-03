@@ -1,50 +1,74 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-library openapi.api;
+library ory_oathkeeper_client.api;
 
-import 'dart:async';
-import 'dart:convert';
-import 'dart:io';
-
-import 'package:http/http.dart';
-import 'package:intl/intl.dart';
-import 'package:meta/meta.dart';
-
-part 'api_client.dart';
-part 'api_helper.dart';
-part 'api_exception.dart';
-part 'auth/authentication.dart';
-part 'auth/api_key_auth.dart';
-part 'auth/oauth.dart';
-part 'auth/http_basic_auth.dart';
-part 'auth/http_bearer_auth.dart';
-
-part 'api/api_api.dart';
-
-part 'model/health_not_ready_status.dart';
-part 'model/health_status.dart';
-part 'model/inline_response500.dart';
-part 'model/json_web_key.dart';
-part 'model/json_web_key_set.dart';
-part 'model/rule.dart';
-part 'model/rule_handler.dart';
-part 'model/rule_match.dart';
-part 'model/upstream.dart';
-part 'model/version.dart';
+import 'package:dio/dio.dart';
+import 'package:built_value/serializer.dart';
+import 'package:ory_oathkeeper_client/serializers.dart';
+import 'package:ory_oathkeeper_client/auth/api_key_auth.dart';
+import 'package:ory_oathkeeper_client/auth/basic_auth.dart';
+import 'package:ory_oathkeeper_client/auth/oauth.dart';
+import 'package:ory_oathkeeper_client/api/api_api.dart';
 
 
-const _delimiters = {'csv': ',', 'ssv': ' ', 'tsv': '\t', 'pipes': '|'};
-const _dateEpochMarker = 'epoch';
-final _dateFormatter = DateFormat('yyyy-MM-dd');
-final _regList = RegExp(r'^List<(.*)>$');
-final _regSet = RegExp(r'^Set<(.*)>$');
-final _regMap = RegExp(r'^Map<String,(.*)>$');
+final _defaultInterceptors = [
+  OAuthInterceptor(),
+  BasicAuthInterceptor(),
+  ApiKeyAuthInterceptor(),
+];
 
-ApiClient defaultApiClient = ApiClient();
+class OryOathkeeperClient {
+
+    static const String basePath = r'http://localhost';
+
+    final Dio dio;
+
+    final Serializers serializers;
+
+    OryOathkeeperClient({
+      Dio dio,
+      Serializers serializers,
+      String basePathOverride,
+      List<Interceptor> interceptors,
+    })  : this.serializers = serializers ?? standardSerializers,
+          this.dio = dio ??
+              Dio(BaseOptions(
+                baseUrl: basePathOverride ?? basePath,
+                connectTimeout: 5000,
+                receiveTimeout: 3000,
+              )) {
+      if (interceptors == null) {
+        this.dio.interceptors.addAll(_defaultInterceptors);
+      } else {
+        this.dio.interceptors.addAll(interceptors);
+      }
+    }
+
+    void setOAuthToken(String name, String token) {
+        (this.dio.interceptors.firstWhere((element) => element is OAuthInterceptor, orElse: null) as OAuthInterceptor)?.tokens[name] = token;
+    }
+
+    void setBasicAuth(String name, String username, String password) {
+        (this.dio.interceptors.firstWhere((element) => element is BasicAuthInterceptor, orElse: null) as BasicAuthInterceptor)?.authInfo[name] = BasicAuthInfo(username, password);
+    }
+
+    void setApiKey(String name, String apiKey) {
+        (this.dio.interceptors.firstWhere((element) => element is ApiKeyAuthInterceptor, orElse: null) as ApiKeyAuthInterceptor)?.apiKeys[name] = apiKey;
+    }
+
+
+    /**
+    * Get ApiApi instance, base route and serializer can be overridden by a given but be careful,
+    * by doing that all interceptors will not be executed
+    */
+    ApiApi getApiApi() {
+    return ApiApi(dio, serializers);
+    }
+
+
+}

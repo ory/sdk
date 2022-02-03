@@ -10,12 +10,12 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**decisions**](ApiApi.md#decisions) | **GET** /decisions | Access Control Decision API
-[**getRule**](ApiApi.md#getrule) | **GET** /rules/{id} | Retrieve a rule
-[**getVersion**](ApiApi.md#getversion) | **GET** /version | Get service version
-[**getWellKnownJSONWebKeys**](ApiApi.md#getwellknownjsonwebkeys) | **GET** /.well-known/jwks.json | Lists cryptographic keys
-[**isInstanceAlive**](ApiApi.md#isinstancealive) | **GET** /health/alive | Check alive status
-[**isInstanceReady**](ApiApi.md#isinstanceready) | **GET** /health/ready | Check readiness status
-[**listRules**](ApiApi.md#listrules) | **GET** /rules | List all rules
+[**getRule**](ApiApi.md#getrule) | **GET** /rules/{id} | Retrieve a Rule
+[**getVersion**](ApiApi.md#getversion) | **GET** /version | Get Service Version
+[**getWellKnownJSONWebKeys**](ApiApi.md#getwellknownjsonwebkeys) | **GET** /.well-known/jwks.json | Lists Cryptographic Keys
+[**isInstanceAlive**](ApiApi.md#isinstancealive) | **GET** /health/alive | Check Alive Status
+[**isInstanceReady**](ApiApi.md#isinstanceready) | **GET** /health/ready | Check Readiness Status
+[**listRules**](ApiApi.md#listrules) | **GET** /rules | List All Rules
 
 
 # **decisions**
@@ -29,7 +29,7 @@ Access Control Decision API
 ```dart
 import 'package:ory_oathkeeper_client/api.dart';
 
-final api_instance = ApiApi();
+var api_instance = new ApiApi();
 
 try { 
     api_instance.decisions();
@@ -59,7 +59,7 @@ No authorization required
 # **getRule**
 > Rule getRule(id)
 
-Retrieve a rule
+Retrieve a Rule
 
 Use this method to retrieve a rule from the storage. If it does not exist you will receive a 404 error.
 
@@ -67,11 +67,11 @@ Use this method to retrieve a rule from the storage. If it does not exist you wi
 ```dart
 import 'package:ory_oathkeeper_client/api.dart';
 
-final api_instance = ApiApi();
-final id = id_example; // String | 
+var api_instance = new ApiApi();
+var id = id_example; // String | 
 
 try { 
-    final result = api_instance.getRule(id);
+    var result = api_instance.getRule(id);
     print(result);
 } catch (e) {
     print('Exception when calling ApiApi->getRule: $e\n');
@@ -102,7 +102,7 @@ No authorization required
 # **getVersion**
 > Version getVersion()
 
-Get service version
+Get Service Version
 
 This endpoint returns the service version typically notated using semantic versioning.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
 
@@ -110,10 +110,10 @@ This endpoint returns the service version typically notated using semantic versi
 ```dart
 import 'package:ory_oathkeeper_client/api.dart';
 
-final api_instance = ApiApi();
+var api_instance = new ApiApi();
 
 try { 
-    final result = api_instance.getVersion();
+    var result = api_instance.getVersion();
     print(result);
 } catch (e) {
     print('Exception when calling ApiApi->getVersion: $e\n');
@@ -141,7 +141,7 @@ No authorization required
 # **getWellKnownJSONWebKeys**
 > JsonWebKeySet getWellKnownJSONWebKeys()
 
-Lists cryptographic keys
+Lists Cryptographic Keys
 
 This endpoint returns cryptographic keys that are required to, for example, verify signatures of ID Tokens.
 
@@ -149,10 +149,10 @@ This endpoint returns cryptographic keys that are required to, for example, veri
 ```dart
 import 'package:ory_oathkeeper_client/api.dart';
 
-final api_instance = ApiApi();
+var api_instance = new ApiApi();
 
 try { 
-    final result = api_instance.getWellKnownJSONWebKeys();
+    var result = api_instance.getWellKnownJSONWebKeys();
     print(result);
 } catch (e) {
     print('Exception when calling ApiApi->getWellKnownJSONWebKeys: $e\n');
@@ -180,7 +180,7 @@ No authorization required
 # **isInstanceAlive**
 > HealthStatus isInstanceAlive()
 
-Check alive status
+Check Alive Status
 
 This endpoint returns a 200 status code when the HTTP server is up running. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
 
@@ -188,10 +188,10 @@ This endpoint returns a 200 status code when the HTTP server is up running. This
 ```dart
 import 'package:ory_oathkeeper_client/api.dart';
 
-final api_instance = ApiApi();
+var api_instance = new ApiApi();
 
 try { 
-    final result = api_instance.isInstanceAlive();
+    var result = api_instance.isInstanceAlive();
     print(result);
 } catch (e) {
     print('Exception when calling ApiApi->isInstanceAlive: $e\n');
@@ -219,7 +219,7 @@ No authorization required
 # **isInstanceReady**
 > HealthStatus isInstanceReady()
 
-Check readiness status
+Check Readiness Status
 
 This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
 
@@ -227,10 +227,10 @@ This endpoint returns a 200 status code when the HTTP server is up running and t
 ```dart
 import 'package:ory_oathkeeper_client/api.dart';
 
-final api_instance = ApiApi();
+var api_instance = new ApiApi();
 
 try { 
-    final result = api_instance.isInstanceReady();
+    var result = api_instance.isInstanceReady();
     print(result);
 } catch (e) {
     print('Exception when calling ApiApi->isInstanceReady: $e\n');
@@ -256,9 +256,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listRules**
-> List<Rule> listRules(limit, offset)
+> BuiltList<Rule> listRules(limit, offset)
 
-List all rules
+List All Rules
 
 This method returns an array of all rules that are stored in the backend. This is useful if you want to get a full view of what rules you have currently in place.
 
@@ -266,12 +266,12 @@ This method returns an array of all rules that are stored in the backend. This i
 ```dart
 import 'package:ory_oathkeeper_client/api.dart';
 
-final api_instance = ApiApi();
-final limit = 789; // int | The maximum amount of rules returned.
-final offset = 789; // int | The offset from where to start looking.
+var api_instance = new ApiApi();
+var limit = 789; // int | The maximum amount of rules returned.
+var offset = 789; // int | The offset from where to start looking.
 
 try { 
-    final result = api_instance.listRules(limit, offset);
+    var result = api_instance.listRules(limit, offset);
     print(result);
 } catch (e) {
     print('Exception when calling ApiApi->listRules: $e\n');
@@ -287,7 +287,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List<Rule>**](Rule.md)
+[**BuiltList<Rule>**](Rule.md)
 
 ### Authorization
 

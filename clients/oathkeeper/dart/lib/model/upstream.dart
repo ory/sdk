@@ -1,92 +1,100 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class Upstream {
-  /// Returns a new [Upstream] instance.
-  Upstream({
-    this.preserveHost,
-    this.stripPath,
-    this.url,
-  });
+part 'upstream.g.dart';
 
-  /// PreserveHost, if false (the default), tells ORY Oathkeeper to set the upstream request's Host header to the hostname of the API's upstream's URL. Setting this flag to true instructs ORY Oathkeeper not to do so.
-  bool preserveHost;
+abstract class Upstream implements Built<Upstream, UpstreamBuilder> {
 
-  /// StripPath if set, replaces the provided path prefix when forwarding the requested URL to the upstream URL.
-  String stripPath;
+    /// PreserveHost, if false (the default), tells ORY Oathkeeper to set the upstream request's Host header to the hostname of the API's upstream's URL. Setting this flag to true instructs ORY Oathkeeper not to do so.
+    @nullable
+    @BuiltValueField(wireName: r'preserve_host')
+    bool get preserveHost;
 
-  /// URL is the URL the request will be proxied to.
-  String url;
+    /// StripPath if set, replaces the provided path prefix when forwarding the requested URL to the upstream URL.
+    @nullable
+    @BuiltValueField(wireName: r'strip_path')
+    String get stripPath;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is Upstream &&
-     other.preserveHost == preserveHost &&
-     other.stripPath == stripPath &&
-     other.url == url;
+    /// URL is the URL the request will be proxied to.
+    @nullable
+    @BuiltValueField(wireName: r'url')
+    String get url;
 
-  @override
-  int get hashCode =>
-    (preserveHost == null ? 0 : preserveHost.hashCode) +
-    (stripPath == null ? 0 : stripPath.hashCode) +
-    (url == null ? 0 : url.hashCode);
+    Upstream._();
 
-  @override
-  String toString() => 'Upstream[preserveHost=$preserveHost, stripPath=$stripPath, url=$url]';
+    static void _initializeBuilder(UpstreamBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (preserveHost != null) {
-      json[r'preserve_host'] = preserveHost;
+    factory Upstream([void updates(UpstreamBuilder b)]) = _$Upstream;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<Upstream> get serializer => _$UpstreamSerializer();
+}
+
+class _$UpstreamSerializer implements StructuredSerializer<Upstream> {
+
+    @override
+    final Iterable<Type> types = const [Upstream, _$Upstream];
+    @override
+    final String wireName = r'Upstream';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, Upstream object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.preserveHost != null) {
+            result
+                ..add(r'preserve_host')
+                ..add(serializers.serialize(object.preserveHost,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.stripPath != null) {
+            result
+                ..add(r'strip_path')
+                ..add(serializers.serialize(object.stripPath,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.url != null) {
+            result
+                ..add(r'url')
+                ..add(serializers.serialize(object.url,
+                    specifiedType: const FullType(String)));
+        }
+        return result;
     }
-    if (stripPath != null) {
-      json[r'strip_path'] = stripPath;
-    }
-    if (url != null) {
-      json[r'url'] = url;
-    }
-    return json;
-  }
 
-  /// Returns a new [Upstream] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static Upstream fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : Upstream(
-        preserveHost: json[r'preserve_host'],
-        stripPath: json[r'strip_path'],
-        url: json[r'url'],
-    );
+    @override
+    Upstream deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = UpstreamBuilder();
 
-  static List<Upstream> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <Upstream>[]
-      : json.map((dynamic value) => Upstream.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, Upstream> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, Upstream>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = Upstream.fromJson(value));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'preserve_host':
+                    result.preserveHost = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'strip_path':
+                    result.stripPath = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'url':
+                    result.url = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of Upstream-objects as value to a dart map
-  static Map<String, List<Upstream>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<Upstream>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = Upstream.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

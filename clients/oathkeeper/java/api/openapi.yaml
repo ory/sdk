@@ -8,7 +8,7 @@ info:
     for validity against a set of rules. This service uses Hydra to validate access
     tokens and policies.
   title: ORY Oathkeeper
-  version: v0.38.15-beta.1
+  version: v0.38.17-beta.1
 servers:
 - url: /
 paths:
@@ -30,7 +30,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/inline_response_500'
           description: The standard error format
-      summary: Lists cryptographic keys
+      summary: Lists Cryptographic Keys
       tags:
       - api
       x-accepts: application/json
@@ -100,7 +100,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/inline_response_500'
           description: The standard error format
-      summary: Check alive status
+      summary: Check Alive Status
       tags:
       - api
       x-accepts: application/json
@@ -129,7 +129,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/healthNotReadyStatus'
           description: healthNotReadyStatus
-      summary: Check readiness status
+      summary: Check Readiness Status
       tags:
       - api
       x-accepts: application/json
@@ -167,7 +167,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/inline_response_500'
           description: The standard error format
-      summary: List all rules
+      summary: List All Rules
       tags:
       - api
       x-accepts: application/json
@@ -201,7 +201,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/inline_response_500'
           description: The standard error format
-      summary: Retrieve a rule
+      summary: Retrieve a Rule
       tags:
       - api
       x-accepts: application/json
@@ -223,7 +223,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/version'
           description: version
-      summary: Get service version
+      summary: Get Service Version
       tags:
       - api
       x-accepts: application/json

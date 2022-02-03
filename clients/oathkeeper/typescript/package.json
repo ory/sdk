@@ -1,6 +1,6 @@
 {
   "name": "@ory/oathkeeper-client",
-  "version": "v0.38.15-beta.1",
+  "version": "v0.38.17-beta.1",
   "description": "OpenAPI client for @ory/oathkeeper-client",
   "author": "ORY GmbH",
   "keywords": [
@@ -23,5 +23,8 @@
   "devDependencies": {
     "@types/node": "^12.11.5",
     "typescript": "^3.6.4"
+  },
+  "publishConfig": {
+    "registry": "https://github.com/ory/sdk.git"
   }
 }

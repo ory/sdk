@@ -1,35 +1,33 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'dart:async';
+import 'package:ory_oathkeeper_client/auth/auth.dart';
+import 'package:dio/dio.dart';
 
-class ApiKeyAuth implements Authentication {
-  ApiKeyAuth(this.location, this.paramName);
+class ApiKeyAuthInterceptor extends AuthInterceptor {
+    Map<String, String> apiKeys = {};
 
-  final String location;
-  final String paramName;
-
-  String apiKeyPrefix;
-  String apiKey;
-
-  @override
-  void applyToParams(List<QueryParam> queryParams, Map<String, String> headerParams) {
-    final value = apiKeyPrefix == null ? apiKey : '$apiKeyPrefix $apiKey';
-
-    if (location == 'query' && value != null) {
-      queryParams.add(QueryParam(paramName, value));
-    } else if (location == 'header' && value != null) {
-      headerParams[paramName] = value;
-    } else if (location == 'cookie' && value != null) {
-      headerParams.update('Cookie', (String existingCookie) {
-        return '$existingCookie; $paramName=$value';
-      }, ifAbsent: () => '$paramName=$value');
+    @override
+    Future<dynamic> onRequest(RequestOptions options) {
+        final authInfo = getAuthInfo(options, 'apiKey');
+        for (final info in authInfo) {
+            final authName = info['name'] as String;
+            final authKeyName = info['keyName'] as String;
+            final authWhere = info['where'] as String;
+            final apiKey = apiKeys[authName];
+            if (apiKey != null) {
+                if (authWhere == 'query') {
+                    options.queryParameters[authKeyName] = apiKey;
+                } else {
+                    options.headers[authKeyName] = apiKey;
+                }
+            }
+        }
+        return super.onRequest(options);
     }
-  }
 }
