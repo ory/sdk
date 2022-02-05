@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **datetime** | The Project&#39;s Creation Date | [readonly] 
 **current_revision** | [**ProjectRevision**](ProjectRevision.md) |  | 
+**hosts** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | 
 **id** | **str** |  | 
 **revisions** | [**ProjectRevisions**](ProjectRevisions.md) |  | 
 **slug** | **str** | The project&#39;s slug | [readonly] 

@@ -24,8 +24,8 @@ Creates a new project.
 import time
 import ory_client
 from ory_client.api import v0alpha0_api
-from ory_client.model.project_patch import ProjectPatch
 from ory_client.model.project import Project
+from ory_client.model.project_revision import ProjectRevision
 from ory_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
@@ -48,101 +48,142 @@ configuration = ory_client.Configuration(
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = v0alpha0_api.V0alpha0Api(api_client)
-    project_patch = ProjectPatch(
-        api_url="api_url_example",
-        application_url="application_url_example",
-        default_identity_schema_url="default_identity_schema_url_example",
-        error_ui_url="https://example.org/error",
-        kratos_custom_schema_id="kratos_custom_schema_id_example",
-        login_ui_url="https://example.org/login",
-        lookup_secret=ProjectLookupSecretConfig(
-            enabled=True,
-        ),
-        name="ACME App",
-        password=ProjectPasswordConfig(
-            enabled=True,
-            revoke_active_sessions=True,
-        ),
-        recovery=ProjectRecoveryConfig(
-            enabled=True,
-        ),
-        recovery_ui_url="https://example.org/recover",
-        redirection_config=RedirectionConfig(
-            _global=RedirectionField(
-                main="main_example",
-                oidc="oidc_example",
-                password="password_example",
-                profile="profile_example",
+    project_revision = ProjectRevision(
+        id="id_example",
+        kratos_cookies_same_site="kratos_cookies_same_site_example",
+        kratos_courier_smtp_connection_uri="kratos_courier_smtp_connection_uri_example",
+        kratos_courier_smtp_from_address="kratos_courier_smtp_from_address_example",
+        kratos_courier_smtp_from_name="kratos_courier_smtp_from_name_example",
+        kratos_courier_smtp_headers={},
+        kratos_identity_schemas=ProjectRevisionIdentitySchemas([
+            ProjectRevisionIdentitySchema(
+                id="id_example",
+                identity_schema=IdentitySchema(
+                    blob_name="blob_name_example",
+                    blob_url="blob_url_example",
+                    content_hash="content_hash_example",
+                    id="id_example",
+                    name="CustomerIdentity",
+                    schema={},
+                ),
+                identity_schema_id="identity_schema_id_example",
+                import_id="import_id_example",
+                import_url="base64://ey...",
+                is_default=True,
+                preset="preset_example",
+                project_revision_id="project_revision_id_example",
             ),
-            login=RedirectionField(
-                main="main_example",
-                oidc="oidc_example",
-                password="password_example",
-                profile="profile_example",
+        ]),
+        kratos_secrets_cipher=StringSliceJSONFormat([
+            "kratos_secrets_cipher_example",
+        ]),
+        kratos_secrets_cookie=StringSliceJSONFormat([
+            "kratos_secrets_cookie_example",
+        ]),
+        kratos_secrets_default=StringSliceJSONFormat([
+            "kratos_secrets_default_example",
+        ]),
+        kratos_selfservice_allowed_return_urls=StringSliceJSONFormat([
+            "kratos_selfservice_allowed_return_urls_example",
+        ]),
+        kratos_selfservice_default_browser_return_url="kratos_selfservice_default_browser_return_url_example",
+        kratos_selfservice_flows_error_ui_url="kratos_selfservice_flows_error_ui_url_example",
+        kratos_selfservice_flows_hooks=ProjectRevisionHooks([
+            ProjectRevisionHook(
+                config_key="config_key_example",
+                hook="hook_example",
+                id="id_example",
+                project_revision_id="project_revision_id_example",
+                web_hook_config_auth_api_key_in="header",
+                web_hook_config_auth_api_key_name="X-API-Key",
+                web_hook_config_auth_api_key_value="eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ",
+                web_hook_config_auth_basic_auth_password="web_hook_config_auth_basic_auth_password_example",
+                web_hook_config_auth_basic_auth_user="web_hook_config_auth_basic_auth_user_example",
+                web_hook_config_auth_type="web_hook_config_auth_type_example",
+                web_hook_config_body="base64://ZnVuY3Rpb24oY3R4KSB7CiAgaWRlbnRpdHlfaWQ6IGlmIGN0eFsiaWRlbnRpdHkiXSAhPSBudWxsIHRoZW4gY3R4LmlkZW50aXR5LmlkLAp9=",
+                web_hook_config_method="POST",
+                web_hook_config_url="https://www.example.org/web-hook-listener",
             ),
-            logout=RedirectionField(
-                main="main_example",
-                oidc="oidc_example",
-                password="password_example",
-                profile="profile_example",
+        ]),
+        kratos_selfservice_flows_login_after_default_browser_return_url="kratos_selfservice_flows_login_after_default_browser_return_url_example",
+        kratos_selfservice_flows_login_after_oidc_default_browser_return_url="kratos_selfservice_flows_login_after_oidc_default_browser_return_url_example",
+        kratos_selfservice_flows_login_after_password_default_browser_return_url="kratos_selfservice_flows_login_after_password_default_browser_return_url_example",
+        kratos_selfservice_flows_login_lifespan="kratos_selfservice_flows_login_lifespan_example",
+        kratos_selfservice_flows_login_ui_url="kratos_selfservice_flows_login_ui_url_example",
+        kratos_selfservice_flows_logout_after_default_browser_return_url="kratos_selfservice_flows_logout_after_default_browser_return_url_example",
+        kratos_selfservice_flows_recovery_after_default_browser_return_url="kratos_selfservice_flows_recovery_after_default_browser_return_url_example",
+        kratos_selfservice_flows_recovery_enabled=True,
+        kratos_selfservice_flows_recovery_lifespan="kratos_selfservice_flows_recovery_lifespan_example",
+        kratos_selfservice_flows_recovery_ui_url="kratos_selfservice_flows_recovery_ui_url_example",
+        kratos_selfservice_flows_registration_after_default_browser_return_url="kratos_selfservice_flows_registration_after_default_browser_return_url_example",
+        kratos_selfservice_flows_registration_after_oidc_default_browser_return_url="kratos_selfservice_flows_registration_after_oidc_default_browser_return_url_example",
+        kratos_selfservice_flows_registration_after_password_default_browser_return_url="kratos_selfservice_flows_registration_after_password_default_browser_return_url_example",
+        kratos_selfservice_flows_registration_lifespan="kratos_selfservice_flows_registration_lifespan_example",
+        kratos_selfservice_flows_registration_ui_url="kratos_selfservice_flows_registration_ui_url_example",
+        kratos_selfservice_flows_settings_after_default_browser_return_url="kratos_selfservice_flows_settings_after_default_browser_return_url_example",
+        kratos_selfservice_flows_settings_after_password_default_browser_return_url="kratos_selfservice_flows_settings_after_password_default_browser_return_url_example",
+        kratos_selfservice_flows_settings_after_profile_default_browser_return_url="kratos_selfservice_flows_settings_after_profile_default_browser_return_url_example",
+        kratos_selfservice_flows_settings_lifespan="kratos_selfservice_flows_settings_lifespan_example",
+        kratos_selfservice_flows_settings_privileged_session_max_age="kratos_selfservice_flows_settings_privileged_session_max_age_example",
+        kratos_selfservice_flows_settings_required_aal="kratos_selfservice_flows_settings_required_aal_example",
+        kratos_selfservice_flows_settings_ui_url="kratos_selfservice_flows_settings_ui_url_example",
+        kratos_selfservice_flows_verification_after_default_browser_return_url="kratos_selfservice_flows_verification_after_default_browser_return_url_example",
+        kratos_selfservice_flows_verification_enabled=True,
+        kratos_selfservice_flows_verification_lifespan="kratos_selfservice_flows_verification_lifespan_example",
+        kratos_selfservice_flows_verification_ui_url="kratos_selfservice_flows_verification_ui_url_example",
+        kratos_selfservice_methods_link_config_base_url="kratos_selfservice_methods_link_config_base_url_example",
+        kratos_selfservice_methods_link_config_lifespan="kratos_selfservice_methods_link_config_lifespan_example",
+        kratos_selfservice_methods_link_enabled=True,
+        kratos_selfservice_methods_lookup_secret_enabled=True,
+        kratos_selfservice_methods_oidc_config_providers=ProjectRevisionThirdPartyLoginProviders([
+            ProjectRevisionThirdPartyLoginProvider(
+                apple_private_key="-----BEGIN PRIVATE KEY----- ........ -----END PRIVATE KEY-----",
+                apple_private_key_id="UX56C66723",
+                apple_team_id="KP76DQS54M",
+                auth_url="https://www.googleapis.com/oauth2/v2/auth",
+                azure_tenant="contoso.onmicrosoft.com",
+                client_id="client_id_example",
+                client_secret="client_secret_example",
+                id="id_example",
+                issuer_url="https://accounts.google.com",
+                label="label_example",
+                mapper_url="mapper_url_example",
+                project_revision_id="project_revision_id_example",
+                provider="google",
+                provider_id="provider_id_example",
+                requested_claims={},
+                scope=StringSliceJSONFormat([
+                    "scope_example",
+                ]),
+                token_url="https://www.googleapis.com/oauth2/v4/token",
             ),
-            recovery=RedirectionField(
-                main="main_example",
-                oidc="oidc_example",
-                password="password_example",
-                profile="profile_example",
-            ),
-            registration=RedirectionField(
-                main="main_example",
-                oidc="oidc_example",
-                password="password_example",
-                profile="profile_example",
-            ),
-            settings=RedirectionField(
-                main="main_example",
-                oidc="oidc_example",
-                password="password_example",
-                profile="profile_example",
-            ),
-            url_allowlist=[
-                "url_allowlist_example",
-            ],
-            verification=RedirectionField(
-                main="main_example",
-                oidc="oidc_example",
-                password="password_example",
-                profile="profile_example",
-            ),
-        ),
-        registration_ui_url="https://example.org/signup",
-        session_after_sign_up=True,
-        session_soft_2fa=True,
-        settings_privileged_session_max_age_seconds=900,
-        settings_soft_2fa=True,
-        settings_ui_url="https://example.org/settings",
-        totp=ProjectTotpConfig(
-            enabled=True,
-            issuer="ory.sh",
-        ),
-        verification=ProjectVerificationConfig(
-            enabled=True,
-            require_verified_address=True,
-        ),
-        verification_ui_url="https://example.org/verify",
-        webauthn=ProjectWebAuthnConfig(
-            enabled=True,
-            rp_display_name="Ory Corp",
-            rp_icon="https://example.org/icon.png",
-            rp_id="example.org",
-            rp_origin="https://example.org/",
-        ),
-    ) # ProjectPatch |  (optional)
+        ]),
+        kratos_selfservice_methods_oidc_enabled=True,
+        kratos_selfservice_methods_password_config_haveibeenpwned_enabled=True,
+        kratos_selfservice_methods_password_config_ignore_network_errors=True,
+        kratos_selfservice_methods_password_config_max_breaches=1,
+        kratos_selfservice_methods_password_enabled=True,
+        kratos_selfservice_methods_profile_enabled=True,
+        kratos_selfservice_methods_totp_config_issuer="kratos_selfservice_methods_totp_config_issuer_example",
+        kratos_selfservice_methods_totp_enabled=True,
+        kratos_selfservice_methods_webauthn_config_rp_display_name="kratos_selfservice_methods_webauthn_config_rp_display_name_example",
+        kratos_selfservice_methods_webauthn_config_rp_icon="kratos_selfservice_methods_webauthn_config_rp_icon_example",
+        kratos_selfservice_methods_webauthn_config_rp_id="kratos_selfservice_methods_webauthn_config_rp_id_example",
+        kratos_selfservice_methods_webauthn_config_rp_origin="kratos_selfservice_methods_webauthn_config_rp_origin_example",
+        kratos_selfservice_methods_webauthn_enabled=True,
+        kratos_session_cookie_persistent=True,
+        kratos_session_cookie_same_site="kratos_session_cookie_same_site_example",
+        kratos_session_lifespan="kratos_session_lifespan_example",
+        kratos_session_whoami_required_aal="kratos_session_whoami_required_aal_example",
+        name="name_example",
+        project_id="project_id_example",
+    ) # ProjectRevision |  (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
         # Create a Project
-        api_response = api_instance.create_project(project_patch=project_patch)
+        api_response = api_instance.create_project(project_revision=project_revision)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling V0alpha0Api->create_project: %s\n" % e)
@@ -153,7 +194,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_patch** | [**ProjectPatch**](ProjectPatch.md)|  | [optional]
+ **project_revision** | [**ProjectRevision**](ProjectRevision.md)|  | [optional]
 
 ### Return type
 
@@ -350,8 +391,8 @@ Creates a new configuration revision for a project.
 import time
 import ory_client
 from ory_client.api import v0alpha0_api
-from ory_client.model.project_patch import ProjectPatch
 from ory_client.model.project import Project
+from ory_client.model.project_revision import ProjectRevision
 from ory_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
@@ -375,95 +416,136 @@ with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = v0alpha0_api.V0alpha0Api(api_client)
     project_id = "project_id_example" # str | Project ID  The project's ID.
-    project_patch = ProjectPatch(
-        api_url="api_url_example",
-        application_url="application_url_example",
-        default_identity_schema_url="default_identity_schema_url_example",
-        error_ui_url="https://example.org/error",
-        kratos_custom_schema_id="kratos_custom_schema_id_example",
-        login_ui_url="https://example.org/login",
-        lookup_secret=ProjectLookupSecretConfig(
-            enabled=True,
-        ),
-        name="ACME App",
-        password=ProjectPasswordConfig(
-            enabled=True,
-            revoke_active_sessions=True,
-        ),
-        recovery=ProjectRecoveryConfig(
-            enabled=True,
-        ),
-        recovery_ui_url="https://example.org/recover",
-        redirection_config=RedirectionConfig(
-            _global=RedirectionField(
-                main="main_example",
-                oidc="oidc_example",
-                password="password_example",
-                profile="profile_example",
+    project_revision = ProjectRevision(
+        id="id_example",
+        kratos_cookies_same_site="kratos_cookies_same_site_example",
+        kratos_courier_smtp_connection_uri="kratos_courier_smtp_connection_uri_example",
+        kratos_courier_smtp_from_address="kratos_courier_smtp_from_address_example",
+        kratos_courier_smtp_from_name="kratos_courier_smtp_from_name_example",
+        kratos_courier_smtp_headers={},
+        kratos_identity_schemas=ProjectRevisionIdentitySchemas([
+            ProjectRevisionIdentitySchema(
+                id="id_example",
+                identity_schema=IdentitySchema(
+                    blob_name="blob_name_example",
+                    blob_url="blob_url_example",
+                    content_hash="content_hash_example",
+                    id="id_example",
+                    name="CustomerIdentity",
+                    schema={},
+                ),
+                identity_schema_id="identity_schema_id_example",
+                import_id="import_id_example",
+                import_url="base64://ey...",
+                is_default=True,
+                preset="preset_example",
+                project_revision_id="project_revision_id_example",
             ),
-            login=RedirectionField(
-                main="main_example",
-                oidc="oidc_example",
-                password="password_example",
-                profile="profile_example",
+        ]),
+        kratos_secrets_cipher=StringSliceJSONFormat([
+            "kratos_secrets_cipher_example",
+        ]),
+        kratos_secrets_cookie=StringSliceJSONFormat([
+            "kratos_secrets_cookie_example",
+        ]),
+        kratos_secrets_default=StringSliceJSONFormat([
+            "kratos_secrets_default_example",
+        ]),
+        kratos_selfservice_allowed_return_urls=StringSliceJSONFormat([
+            "kratos_selfservice_allowed_return_urls_example",
+        ]),
+        kratos_selfservice_default_browser_return_url="kratos_selfservice_default_browser_return_url_example",
+        kratos_selfservice_flows_error_ui_url="kratos_selfservice_flows_error_ui_url_example",
+        kratos_selfservice_flows_hooks=ProjectRevisionHooks([
+            ProjectRevisionHook(
+                config_key="config_key_example",
+                hook="hook_example",
+                id="id_example",
+                project_revision_id="project_revision_id_example",
+                web_hook_config_auth_api_key_in="header",
+                web_hook_config_auth_api_key_name="X-API-Key",
+                web_hook_config_auth_api_key_value="eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ",
+                web_hook_config_auth_basic_auth_password="web_hook_config_auth_basic_auth_password_example",
+                web_hook_config_auth_basic_auth_user="web_hook_config_auth_basic_auth_user_example",
+                web_hook_config_auth_type="web_hook_config_auth_type_example",
+                web_hook_config_body="base64://ZnVuY3Rpb24oY3R4KSB7CiAgaWRlbnRpdHlfaWQ6IGlmIGN0eFsiaWRlbnRpdHkiXSAhPSBudWxsIHRoZW4gY3R4LmlkZW50aXR5LmlkLAp9=",
+                web_hook_config_method="POST",
+                web_hook_config_url="https://www.example.org/web-hook-listener",
             ),
-            logout=RedirectionField(
-                main="main_example",
-                oidc="oidc_example",
-                password="password_example",
-                profile="profile_example",
+        ]),
+        kratos_selfservice_flows_login_after_default_browser_return_url="kratos_selfservice_flows_login_after_default_browser_return_url_example",
+        kratos_selfservice_flows_login_after_oidc_default_browser_return_url="kratos_selfservice_flows_login_after_oidc_default_browser_return_url_example",
+        kratos_selfservice_flows_login_after_password_default_browser_return_url="kratos_selfservice_flows_login_after_password_default_browser_return_url_example",
+        kratos_selfservice_flows_login_lifespan="kratos_selfservice_flows_login_lifespan_example",
+        kratos_selfservice_flows_login_ui_url="kratos_selfservice_flows_login_ui_url_example",
+        kratos_selfservice_flows_logout_after_default_browser_return_url="kratos_selfservice_flows_logout_after_default_browser_return_url_example",
+        kratos_selfservice_flows_recovery_after_default_browser_return_url="kratos_selfservice_flows_recovery_after_default_browser_return_url_example",
+        kratos_selfservice_flows_recovery_enabled=True,
+        kratos_selfservice_flows_recovery_lifespan="kratos_selfservice_flows_recovery_lifespan_example",
+        kratos_selfservice_flows_recovery_ui_url="kratos_selfservice_flows_recovery_ui_url_example",
+        kratos_selfservice_flows_registration_after_default_browser_return_url="kratos_selfservice_flows_registration_after_default_browser_return_url_example",
+        kratos_selfservice_flows_registration_after_oidc_default_browser_return_url="kratos_selfservice_flows_registration_after_oidc_default_browser_return_url_example",
+        kratos_selfservice_flows_registration_after_password_default_browser_return_url="kratos_selfservice_flows_registration_after_password_default_browser_return_url_example",
+        kratos_selfservice_flows_registration_lifespan="kratos_selfservice_flows_registration_lifespan_example",
+        kratos_selfservice_flows_registration_ui_url="kratos_selfservice_flows_registration_ui_url_example",
+        kratos_selfservice_flows_settings_after_default_browser_return_url="kratos_selfservice_flows_settings_after_default_browser_return_url_example",
+        kratos_selfservice_flows_settings_after_password_default_browser_return_url="kratos_selfservice_flows_settings_after_password_default_browser_return_url_example",
+        kratos_selfservice_flows_settings_after_profile_default_browser_return_url="kratos_selfservice_flows_settings_after_profile_default_browser_return_url_example",
+        kratos_selfservice_flows_settings_lifespan="kratos_selfservice_flows_settings_lifespan_example",
+        kratos_selfservice_flows_settings_privileged_session_max_age="kratos_selfservice_flows_settings_privileged_session_max_age_example",
+        kratos_selfservice_flows_settings_required_aal="kratos_selfservice_flows_settings_required_aal_example",
+        kratos_selfservice_flows_settings_ui_url="kratos_selfservice_flows_settings_ui_url_example",
+        kratos_selfservice_flows_verification_after_default_browser_return_url="kratos_selfservice_flows_verification_after_default_browser_return_url_example",
+        kratos_selfservice_flows_verification_enabled=True,
+        kratos_selfservice_flows_verification_lifespan="kratos_selfservice_flows_verification_lifespan_example",
+        kratos_selfservice_flows_verification_ui_url="kratos_selfservice_flows_verification_ui_url_example",
+        kratos_selfservice_methods_link_config_base_url="kratos_selfservice_methods_link_config_base_url_example",
+        kratos_selfservice_methods_link_config_lifespan="kratos_selfservice_methods_link_config_lifespan_example",
+        kratos_selfservice_methods_link_enabled=True,
+        kratos_selfservice_methods_lookup_secret_enabled=True,
+        kratos_selfservice_methods_oidc_config_providers=ProjectRevisionThirdPartyLoginProviders([
+            ProjectRevisionThirdPartyLoginProvider(
+                apple_private_key="-----BEGIN PRIVATE KEY----- ........ -----END PRIVATE KEY-----",
+                apple_private_key_id="UX56C66723",
+                apple_team_id="KP76DQS54M",
+                auth_url="https://www.googleapis.com/oauth2/v2/auth",
+                azure_tenant="contoso.onmicrosoft.com",
+                client_id="client_id_example",
+                client_secret="client_secret_example",
+                id="id_example",
+                issuer_url="https://accounts.google.com",
+                label="label_example",
+                mapper_url="mapper_url_example",
+                project_revision_id="project_revision_id_example",
+                provider="google",
+                provider_id="provider_id_example",
+                requested_claims={},
+                scope=StringSliceJSONFormat([
+                    "scope_example",
+                ]),
+                token_url="https://www.googleapis.com/oauth2/v4/token",
             ),
-            recovery=RedirectionField(
-                main="main_example",
-                oidc="oidc_example",
-                password="password_example",
-                profile="profile_example",
-            ),
-            registration=RedirectionField(
-                main="main_example",
-                oidc="oidc_example",
-                password="password_example",
-                profile="profile_example",
-            ),
-            settings=RedirectionField(
-                main="main_example",
-                oidc="oidc_example",
-                password="password_example",
-                profile="profile_example",
-            ),
-            url_allowlist=[
-                "url_allowlist_example",
-            ],
-            verification=RedirectionField(
-                main="main_example",
-                oidc="oidc_example",
-                password="password_example",
-                profile="profile_example",
-            ),
-        ),
-        registration_ui_url="https://example.org/signup",
-        session_after_sign_up=True,
-        session_soft_2fa=True,
-        settings_privileged_session_max_age_seconds=900,
-        settings_soft_2fa=True,
-        settings_ui_url="https://example.org/settings",
-        totp=ProjectTotpConfig(
-            enabled=True,
-            issuer="ory.sh",
-        ),
-        verification=ProjectVerificationConfig(
-            enabled=True,
-            require_verified_address=True,
-        ),
-        verification_ui_url="https://example.org/verify",
-        webauthn=ProjectWebAuthnConfig(
-            enabled=True,
-            rp_display_name="Ory Corp",
-            rp_icon="https://example.org/icon.png",
-            rp_id="example.org",
-            rp_origin="https://example.org/",
-        ),
-    ) # ProjectPatch |  (optional)
+        ]),
+        kratos_selfservice_methods_oidc_enabled=True,
+        kratos_selfservice_methods_password_config_haveibeenpwned_enabled=True,
+        kratos_selfservice_methods_password_config_ignore_network_errors=True,
+        kratos_selfservice_methods_password_config_max_breaches=1,
+        kratos_selfservice_methods_password_enabled=True,
+        kratos_selfservice_methods_profile_enabled=True,
+        kratos_selfservice_methods_totp_config_issuer="kratos_selfservice_methods_totp_config_issuer_example",
+        kratos_selfservice_methods_totp_enabled=True,
+        kratos_selfservice_methods_webauthn_config_rp_display_name="kratos_selfservice_methods_webauthn_config_rp_display_name_example",
+        kratos_selfservice_methods_webauthn_config_rp_icon="kratos_selfservice_methods_webauthn_config_rp_icon_example",
+        kratos_selfservice_methods_webauthn_config_rp_id="kratos_selfservice_methods_webauthn_config_rp_id_example",
+        kratos_selfservice_methods_webauthn_config_rp_origin="kratos_selfservice_methods_webauthn_config_rp_origin_example",
+        kratos_selfservice_methods_webauthn_enabled=True,
+        kratos_session_cookie_persistent=True,
+        kratos_session_cookie_same_site="kratos_session_cookie_same_site_example",
+        kratos_session_lifespan="kratos_session_lifespan_example",
+        kratos_session_whoami_required_aal="kratos_session_whoami_required_aal_example",
+        name="name_example",
+        project_id="project_id_example",
+    ) # ProjectRevision |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -477,7 +559,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Update a Project
-        api_response = api_instance.update_project(project_id, project_patch=project_patch)
+        api_response = api_instance.update_project(project_id, project_revision=project_revision)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling V0alpha0Api->update_project: %s\n" % e)
@@ -489,7 +571,7 @@ with ory_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**| Project ID  The project&#39;s ID. |
- **project_patch** | [**ProjectPatch**](ProjectPatch.md)|  | [optional]
+ **project_revision** | [**ProjectRevision**](ProjectRevision.md)|  | [optional]
 
 ### Return type
 

@@ -6,3 +6,4 @@ tmp.*.json
 release.properties
 *.releaseBackup
 repos/
+openapitools.json
