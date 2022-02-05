@@ -41,6 +41,7 @@ typescript () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
+  openapi-generator-cli version-manager set 5.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g typescript-axios \
     -o "$dir" \
@@ -63,6 +64,7 @@ java () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
+  openapi-generator-cli version-manager set 5.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g java \
     -o "$dir" \
@@ -127,6 +129,7 @@ php() {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
+  openapi-generator-cli version-manager set 5.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g php \
     -o "$dir" \
@@ -150,6 +153,7 @@ python () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
+  openapi-generator-cli version-manager set 5.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g python \
     -o "$dir" \
@@ -168,6 +172,7 @@ ruby () {
 
   rm "${dir}/lib/${RUBY_PROJECT_NAME}/version.rb" || true
 
+  openapi-generator-cli version-manager set 5.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g ruby \
     -o "$dir" \
@@ -196,6 +201,7 @@ golang () {
   if [ $project != "kratos" ]  && [ $project != "client" ]; then
     swagger generate client --allow-template-override -f "${SPEC_FILE}" -t "${dir}" -A "Ory_${PROJECT_UCF}"
   else
+    openapi-generator-cli version-manager set 5.4.0
     openapi-generator-cli generate -i "${SPEC_FILE}" \
       -g go \
       -o "$dir" \
@@ -214,7 +220,7 @@ dotnet () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  # Workaround until https://github.com/OpenAPITools/openapi-generator/pull/10333 is merged
+  openapi-generator-cli version-manager set 5.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g csharp-netcore \
     -o "$dir" \
@@ -222,7 +228,6 @@ dotnet () {
     --git-user-id ory \
     --git-repo-id sdk \
     --git-host github.com \
-    -t openapi/templates/csharp-netcore \
     -c ./config/client/dotnet.yml.proc.yml
 }
 
@@ -233,6 +238,7 @@ dart () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
+  openapi-generator-cli version-manager set 5.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g dart-dio \
     -o "$dir" \
@@ -251,6 +257,7 @@ rust () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
+  openapi-generator-cli version-manager set 5.2.1
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g rust \
     -o "$dir" \
