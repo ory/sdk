@@ -11,6 +11,9 @@ jobs:
           if [ -z "$(git log -1 --pretty=%B | grep 'Add spec for' | grep -v '.pre.')" ]; then
               circleci-agent step halt
           fi
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
       - run: ./scripts/init.sh
       - run: ./scripts/generate.sh
       - run: ./scripts/test.sh
