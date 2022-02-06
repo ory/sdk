@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.0.1-alpha.58
+  version: v0.0.1-alpha.66
 servers:
 - url: https://{project}.projects.oryapis.com/
   variables:
@@ -2634,7 +2634,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/projectPatch'
+              $ref: '#/components/schemas/projectRevision'
         x-originalParamName: Body
       responses:
         "201":
@@ -2743,7 +2743,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/projectPatch'
+              $ref: '#/components/schemas/projectRevision'
         x-originalParamName: Body
       responses:
         "200":
@@ -2837,10 +2837,18 @@ components:
     ID:
       format: int64
       type: integer
+    InvitePayload:
+      properties:
+        invitee_email:
+          type: string
+      type: object
     JSONRawMessage:
       title: JSONRawMessage represents a json.RawMessage that works well with JSON,
         SQL, and Swagger.
       type: object
+    NullBool:
+      nullable: true
+      type: boolean
     NullPlan:
       enum:
       - unknown
@@ -2858,6 +2866,18 @@ components:
     NullUUID:
       format: uuid4
       type: string
+    QuotaProjectMemberSeats:
+      properties:
+        project_id:
+          format: uuid4
+          type: string
+        remaining_seats:
+          format: int64
+          type: integer
+        total_seats:
+          format: int64
+          type: integer
+      type: object
     RecoveryAddress:
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
@@ -2888,88 +2908,13 @@ components:
       type: object
     RecoveryAddressType:
       type: string
-    RedirectionConfig:
-      example:
-        settings:
-          password: password
-          profile: profile
-          main: main
-          oidc: oidc
-        logout:
-          password: password
-          profile: profile
-          main: main
-          oidc: oidc
-        url_allowlist:
-        - url_allowlist
-        - url_allowlist
-        global:
-          password: password
-          profile: profile
-          main: main
-          oidc: oidc
-        registration:
-          password: password
-          profile: profile
-          main: main
-          oidc: oidc
-        recovery:
-          password: password
-          profile: profile
-          main: main
-          oidc: oidc
-        login:
-          password: password
-          profile: profile
-          main: main
-          oidc: oidc
-        verification:
-          password: password
-          profile: profile
-          main: main
-          oidc: oidc
-      properties:
-        global:
-          $ref: '#/components/schemas/RedirectionField'
-        login:
-          $ref: '#/components/schemas/RedirectionField'
-        logout:
-          $ref: '#/components/schemas/RedirectionField'
-        recovery:
-          $ref: '#/components/schemas/RedirectionField'
-        registration:
-          $ref: '#/components/schemas/RedirectionField'
-        settings:
-          $ref: '#/components/schemas/RedirectionField'
-        url_allowlist:
-          items:
-            type: string
-          type: array
-        verification:
-          $ref: '#/components/schemas/RedirectionField'
-      type: object
-    RedirectionField:
-      example:
-        password: password
-        profile: profile
-        main: main
-        oidc: oidc
-      properties:
-        main:
-          type: string
-        oidc:
-          type: string
-        password:
-          type: string
-        profile:
-          type: string
-      type: object
     String:
       $ref: '#/components/schemas/NullString'
-    StringSlicePipeDelimiter:
+    StringSliceJSONFormat:
       items:
         type: string
-      title: StringSlicePipeDelimiter de/encodes the string slice to/from a SQL string.
+      title: StringSliceJSONFormat represents []string{} which is encoded to/from
+        JSON for SQL storage.
       type: array
     SubscriptionStatus:
       title: SubscriptionStatus is the list of allowed values for the subscription's
@@ -2989,6 +2934,14 @@ components:
           type: string
       required:
       - plan_or_price
+      type: object
+    Warning:
+      properties:
+        code:
+          format: int64
+          type: integer
+        message:
+          type: string
       type: object
     activeProject:
       description: The Active Project ID
@@ -3080,6 +3033,16 @@ components:
       - aal3
       title: Authenticator Assurance Level (AAL)
       type: string
+    cloudAccount:
+      properties:
+        email:
+          type: string
+        id:
+          format: uuid4
+          type: string
+        name:
+          type: string
+      type: object
     cnameSettings:
       properties:
         cookie_domain:
@@ -3230,6 +3193,10 @@ components:
       required:
       - message
       title: Error response
+      type: object
+    getProjectAccessResponse:
+      additionalProperties:
+        type: boolean
       type: object
     healthNotReadyStatus:
       properties:
@@ -3424,11 +3391,29 @@ components:
         This also allows schemas to have the same name across the system.
       example:
         schema: '{}'
+        blob_name: blob_name
         updated_at: 2000-01-23T04:56:07.000+00:00
         name: CustomerIdentity
         created_at: 2000-01-23T04:56:07.000+00:00
+        content_hash: content_hash
         id: id
+        blob_url: blob_url
       properties:
+        blob_name:
+          description: |-
+            The gcs file name
+
+            This is a randomly generated name which is used to uniquely identify the file on the blob storage
+          type: string
+        blob_url:
+          description: The publicly accessible url of the schema
+          type: string
+        content_hash:
+          description: |-
+            The Content Hash
+
+            Contains a hash of the schema's content.
+          type: string
         created_at:
           description: The Schema's Creation Date
           format: date-time
@@ -3453,6 +3438,8 @@ components:
           readOnly: true
           type: string
       required:
+      - blob_name
+      - blob_url
       - created_at
       - id
       - name
@@ -3598,6 +3585,10 @@ components:
       title: Is sent when a privileged session is required to perform the settings
         update.
       type: object
+    nullJsonRawMessage:
+      description: NullJSONRawMessage represents a json.RawMessage that works well
+        with JSON, SQL, and Swagger and is NULLable-
+      type: object
     nullTime:
       format: date-time
       title: NullTime implements sql.NullTime functionality.
@@ -3625,345 +3616,564 @@ components:
       example:
         subscription_id: subscription_id
         updated_at: 2000-01-23T04:56:07.000+00:00
+        hosts:
+        - hosts
+        - hosts
         current_revision:
-          verification_ui_url: verification_ui_url
-          totp:
-            enabled: true
-            issuer: ory.sh
-          error_ui_url: error_ui_url
-          api_url: api_url
-          kratos_config_version: kratos_config_version
-          registration_ui_url: registration_ui_url
-          session_soft_2fa: true
-          created_at: 2000-01-23T04:56:07.000+00:00
-          lookup_secret:
-            enabled: true
-          recovery:
-            enabled: true
-          redirection_config:
-            settings:
-              password: password
-              profile: profile
-              main: main
-              oidc: oidc
-            logout:
-              password: password
-              profile: profile
-              main: main
-              oidc: oidc
-            url_allowlist:
-            - url_allowlist
-            - url_allowlist
-            global:
-              password: password
-              profile: profile
-              main: main
-              oidc: oidc
-            registration:
-              password: password
-              profile: profile
-              main: main
-              oidc: oidc
-            recovery:
-              password: password
-              profile: profile
-              main: main
-              oidc: oidc
-            login:
-              password: password
-              profile: profile
-              main: main
-              oidc: oidc
-            verification:
-              password: password
-              profile: profile
-              main: main
-              oidc: oidc
-          recovery_ui_url: recovery_ui_url
-          password:
-            revoke_active_sessions: true
-            enabled: true
-          updated_at: 2000-01-23T04:56:07.000+00:00
+          kratos_selfservice_methods_oidc_enabled: true
+          kratos_selfservice_methods_lookup_secret_enabled: true
+          kratos_selfservice_methods_profile_enabled: true
+          kratos_selfservice_methods_webauthn_config_rp_id: kratos_selfservice_methods_webauthn_config_rp_id
+          kratos_cookies_same_site: kratos_cookies_same_site
+          kratos_selfservice_methods_link_config_lifespan: kratos_selfservice_methods_link_config_lifespan
+          kratos_secrets_cipher:
+          - kratos_secrets_cipher
+          - kratos_secrets_cipher
+          kratos_selfservice_flows_login_after_oidc_default_browser_return_url: kratos_selfservice_flows_login_after_oidc_default_browser_return_url
+          kratos_selfservice_flows_registration_ui_url: kratos_selfservice_flows_registration_ui_url
+          kratos_selfservice_flows_recovery_lifespan: kratos_selfservice_flows_recovery_lifespan
+          kratos_selfservice_flows_registration_after_password_default_browser_return_url: kratos_selfservice_flows_registration_after_password_default_browser_return_url
+          kratos_selfservice_flows_registration_lifespan: kratos_selfservice_flows_registration_lifespan
+          kratos_courier_smtp_from_name: kratos_courier_smtp_from_name
+          kratos_selfservice_methods_webauthn_config_rp_origin: kratos_selfservice_methods_webauthn_config_rp_origin
+          kratos_selfservice_methods_link_config_base_url: kratos_selfservice_methods_link_config_base_url
+          kratos_selfservice_methods_password_config_haveibeenpwned_enabled: true
+          kratos_selfservice_methods_webauthn_config_rp_display_name: kratos_selfservice_methods_webauthn_config_rp_display_name
+          kratos_selfservice_flows_verification_enabled: true
           project_id: project_id
-          default_identity_schema_url: default_identity_schema_url
+          kratos_selfservice_flows_login_ui_url: kratos_selfservice_flows_login_ui_url
           id: id
-          login_ui_url: login_ui_url
-          verification:
-            require_verified_address: true
-            enabled: true
-          hosts:
-          - hosts
-          - hosts
-          settings_ui_url: settings_ui_url
-          oidc_providers:
-          - issuer_url: issuer_url
-            string: string
+          kratos_selfservice_flows_registration_after_oidc_default_browser_return_url: kratos_selfservice_flows_registration_after_oidc_default_browser_return_url
+          kratos_selfservice_flows_hooks:
+          - web_hook_config_auth_api_key_value: eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ
+            web_hook_config_auth_type: web_hook_config_auth_type
+            created_at: 2000-01-23T04:56:07.000+00:00
+            project_revision_id: project_revision_id
+            web_hook_config_auth_basic_auth_user: web_hook_config_auth_basic_auth_user
+            hook: hook
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            web_hook_config_method: POST
+            config_key: config_key
+            web_hook_config_body: base64://ZnVuY3Rpb24oY3R4KSB7CiAgaWRlbnRpdHlfaWQ6IGlmIGN0eFsiaWRlbnRpdHkiXSAhPSBudWxsIHRoZW4gY3R4LmlkZW50aXR5LmlkLAp9=
+            web_hook_config_auth_api_key_in: header
+            web_hook_config_url: https://www.example.org/web-hook-listener
+            web_hook_config_auth_api_key_name: X-API-Key
+            id: id
+            web_hook_config_auth_basic_auth_password: web_hook_config_auth_basic_auth_password
+          - web_hook_config_auth_api_key_value: eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ
+            web_hook_config_auth_type: web_hook_config_auth_type
+            created_at: 2000-01-23T04:56:07.000+00:00
+            project_revision_id: project_revision_id
+            web_hook_config_auth_basic_auth_user: web_hook_config_auth_basic_auth_user
+            hook: hook
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            web_hook_config_method: POST
+            config_key: config_key
+            web_hook_config_body: base64://ZnVuY3Rpb24oY3R4KSB7CiAgaWRlbnRpdHlfaWQ6IGlmIGN0eFsiaWRlbnRpdHkiXSAhPSBudWxsIHRoZW4gY3R4LmlkZW50aXR5LmlkLAp9=
+            web_hook_config_auth_api_key_in: header
+            web_hook_config_url: https://www.example.org/web-hook-listener
+            web_hook_config_auth_api_key_name: X-API-Key
+            id: id
+            web_hook_config_auth_basic_auth_password: web_hook_config_auth_basic_auth_password
+          kratos_selfservice_flows_recovery_after_default_browser_return_url: kratos_selfservice_flows_recovery_after_default_browser_return_url
+          kratos_selfservice_flows_login_after_password_default_browser_return_url: kratos_selfservice_flows_login_after_password_default_browser_return_url
+          kratos_courier_smtp_connection_uri: kratos_courier_smtp_connection_uri
+          kratos_selfservice_flows_logout_after_default_browser_return_url: kratos_selfservice_flows_logout_after_default_browser_return_url
+          kratos_selfservice_methods_oidc_config_providers:
+          - issuer_url: https://accounts.google.com
+            azure_tenant: contoso.onmicrosoft.com
+            apple_private_key_id: UX56C66723
+            created_at: 2000-01-23T04:56:07.000+00:00
+            project_revision_id: project_revision_id
             label: label
             mapper_url: mapper_url
             client_id: client_id
             requested_claims: '{}'
-            provider: provider
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            apple_team_id: KP76DQS54M
+            provider: google
             scope:
             - scope
             - scope
-            auth_url: auth_url
+            provider_id: provider_id
+            apple_private_key: '-----BEGIN PRIVATE KEY----- ........ -----END PRIVATE
+              KEY-----'
+            auth_url: https://www.googleapis.com/oauth2/v2/auth
             client_secret: client_secret
             id: id
-            token_url: token_url
-            tenant: tenant
-          - issuer_url: issuer_url
-            string: string
+            token_url: https://www.googleapis.com/oauth2/v4/token
+          - issuer_url: https://accounts.google.com
+            azure_tenant: contoso.onmicrosoft.com
+            apple_private_key_id: UX56C66723
+            created_at: 2000-01-23T04:56:07.000+00:00
+            project_revision_id: project_revision_id
             label: label
             mapper_url: mapper_url
             client_id: client_id
             requested_claims: '{}'
-            provider: provider
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            apple_team_id: KP76DQS54M
+            provider: google
             scope:
             - scope
             - scope
-            auth_url: auth_url
+            provider_id: provider_id
+            apple_private_key: '-----BEGIN PRIVATE KEY----- ........ -----END PRIVATE
+              KEY-----'
+            auth_url: https://www.googleapis.com/oauth2/v2/auth
             client_secret: client_secret
             id: id
-            token_url: token_url
-            tenant: tenant
-          settings_soft_2fa: true
-          application_url: application_url
-          settings_privileged_session_max_age_seconds: 0
-          kratos_custom_schema_id: kratos_custom_schema_id
+            token_url: https://www.googleapis.com/oauth2/v4/token
+          kratos_selfservice_methods_webauthn_config_rp_icon: kratos_selfservice_methods_webauthn_config_rp_icon
+          kratos_selfservice_allowed_return_urls:
+          - kratos_selfservice_allowed_return_urls
+          - kratos_selfservice_allowed_return_urls
+          kratos_secrets_default:
+          - kratos_secrets_default
+          - kratos_secrets_default
+          kratos_selfservice_default_browser_return_url: kratos_selfservice_default_browser_return_url
+          kratos_selfservice_flows_verification_lifespan: kratos_selfservice_flows_verification_lifespan
+          kratos_selfservice_flows_registration_after_default_browser_return_url: kratos_selfservice_flows_registration_after_default_browser_return_url
           name: name
-          webauthn:
-            rp_id: example.org
-            rp_display_name: Ory Corp
-            rp_origin: https://example.org/
-            rp_icon: https://example.org/icon.png
-            enabled: true
-          session_after_sign_up: true
+          kratos_selfservice_methods_totp_enabled: true
+          kratos_selfservice_flows_error_ui_url: kratos_selfservice_flows_error_ui_url
+          kratos_selfservice_flows_settings_required_aal: kratos_selfservice_flows_settings_required_aal
+          kratos_courier_smtp_headers: '{}'
+          kratos_selfservice_methods_password_enabled: true
+          kratos_session_cookie_persistent: true
+          kratos_selfservice_methods_webauthn_enabled: true
+          kratos_courier_smtp_from_address: kratos_courier_smtp_from_address
+          created_at: 2000-01-23T04:56:07.000+00:00
+          kratos_selfservice_methods_totp_config_issuer: kratos_selfservice_methods_totp_config_issuer
+          kratos_selfservice_methods_link_enabled: true
+          kratos_identity_schemas:
+          - identity_schema_id: identity_schema_id
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            import_id: import_id
+            import_url: base64://ey...
+            identity_schema:
+              schema: '{}'
+              blob_name: blob_name
+              updated_at: 2000-01-23T04:56:07.000+00:00
+              name: CustomerIdentity
+              created_at: 2000-01-23T04:56:07.000+00:00
+              content_hash: content_hash
+              id: id
+              blob_url: blob_url
+            created_at: 2000-01-23T04:56:07.000+00:00
+            project_revision_id: project_revision_id
+            id: id
+            preset: preset
+            is_default: true
+          - identity_schema_id: identity_schema_id
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            import_id: import_id
+            import_url: base64://ey...
+            identity_schema:
+              schema: '{}'
+              blob_name: blob_name
+              updated_at: 2000-01-23T04:56:07.000+00:00
+              name: CustomerIdentity
+              created_at: 2000-01-23T04:56:07.000+00:00
+              content_hash: content_hash
+              id: id
+              blob_url: blob_url
+            created_at: 2000-01-23T04:56:07.000+00:00
+            project_revision_id: project_revision_id
+            id: id
+            preset: preset
+            is_default: true
+          kratos_selfservice_methods_password_config_ignore_network_errors: true
+          kratos_session_cookie_same_site: kratos_session_cookie_same_site
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          kratos_selfservice_flows_login_lifespan: kratos_selfservice_flows_login_lifespan
+          kratos_selfservice_flows_verification_ui_url: kratos_selfservice_flows_verification_ui_url
+          kratos_selfservice_methods_password_config_max_breaches: 0
+          kratos_selfservice_flows_settings_after_default_browser_return_url: kratos_selfservice_flows_settings_after_default_browser_return_url
+          kratos_selfservice_flows_settings_ui_url: kratos_selfservice_flows_settings_ui_url
+          kratos_selfservice_flows_login_after_default_browser_return_url: kratos_selfservice_flows_login_after_default_browser_return_url
+          kratos_session_lifespan: kratos_session_lifespan
+          kratos_selfservice_flows_recovery_enabled: true
+          kratos_selfservice_flows_settings_after_profile_default_browser_return_url: kratos_selfservice_flows_settings_after_profile_default_browser_return_url
+          kratos_selfservice_flows_settings_privileged_session_max_age: kratos_selfservice_flows_settings_privileged_session_max_age
+          kratos_session_whoami_required_aal: kratos_session_whoami_required_aal
+          kratos_secrets_cookie:
+          - kratos_secrets_cookie
+          - kratos_secrets_cookie
+          kratos_selfservice_flows_recovery_ui_url: kratos_selfservice_flows_recovery_ui_url
+          kratos_selfservice_flows_verification_after_default_browser_return_url: kratos_selfservice_flows_verification_after_default_browser_return_url
+          kratos_selfservice_flows_settings_lifespan: kratos_selfservice_flows_settings_lifespan
+          kratos_selfservice_flows_settings_after_password_default_browser_return_url: kratos_selfservice_flows_settings_after_password_default_browser_return_url
         created_at: 2000-01-23T04:56:07.000+00:00
         revisions:
-        - verification_ui_url: verification_ui_url
-          totp:
-            enabled: true
-            issuer: ory.sh
-          error_ui_url: error_ui_url
-          api_url: api_url
-          kratos_config_version: kratos_config_version
-          registration_ui_url: registration_ui_url
-          session_soft_2fa: true
-          created_at: 2000-01-23T04:56:07.000+00:00
-          lookup_secret:
-            enabled: true
-          recovery:
-            enabled: true
-          redirection_config:
-            settings:
-              password: password
-              profile: profile
-              main: main
-              oidc: oidc
-            logout:
-              password: password
-              profile: profile
-              main: main
-              oidc: oidc
-            url_allowlist:
-            - url_allowlist
-            - url_allowlist
-            global:
-              password: password
-              profile: profile
-              main: main
-              oidc: oidc
-            registration:
-              password: password
-              profile: profile
-              main: main
-              oidc: oidc
-            recovery:
-              password: password
-              profile: profile
-              main: main
-              oidc: oidc
-            login:
-              password: password
-              profile: profile
-              main: main
-              oidc: oidc
-            verification:
-              password: password
-              profile: profile
-              main: main
-              oidc: oidc
-          recovery_ui_url: recovery_ui_url
-          password:
-            revoke_active_sessions: true
-            enabled: true
-          updated_at: 2000-01-23T04:56:07.000+00:00
+        - kratos_selfservice_methods_oidc_enabled: true
+          kratos_selfservice_methods_lookup_secret_enabled: true
+          kratos_selfservice_methods_profile_enabled: true
+          kratos_selfservice_methods_webauthn_config_rp_id: kratos_selfservice_methods_webauthn_config_rp_id
+          kratos_cookies_same_site: kratos_cookies_same_site
+          kratos_selfservice_methods_link_config_lifespan: kratos_selfservice_methods_link_config_lifespan
+          kratos_secrets_cipher:
+          - kratos_secrets_cipher
+          - kratos_secrets_cipher
+          kratos_selfservice_flows_login_after_oidc_default_browser_return_url: kratos_selfservice_flows_login_after_oidc_default_browser_return_url
+          kratos_selfservice_flows_registration_ui_url: kratos_selfservice_flows_registration_ui_url
+          kratos_selfservice_flows_recovery_lifespan: kratos_selfservice_flows_recovery_lifespan
+          kratos_selfservice_flows_registration_after_password_default_browser_return_url: kratos_selfservice_flows_registration_after_password_default_browser_return_url
+          kratos_selfservice_flows_registration_lifespan: kratos_selfservice_flows_registration_lifespan
+          kratos_courier_smtp_from_name: kratos_courier_smtp_from_name
+          kratos_selfservice_methods_webauthn_config_rp_origin: kratos_selfservice_methods_webauthn_config_rp_origin
+          kratos_selfservice_methods_link_config_base_url: kratos_selfservice_methods_link_config_base_url
+          kratos_selfservice_methods_password_config_haveibeenpwned_enabled: true
+          kratos_selfservice_methods_webauthn_config_rp_display_name: kratos_selfservice_methods_webauthn_config_rp_display_name
+          kratos_selfservice_flows_verification_enabled: true
           project_id: project_id
-          default_identity_schema_url: default_identity_schema_url
+          kratos_selfservice_flows_login_ui_url: kratos_selfservice_flows_login_ui_url
           id: id
-          login_ui_url: login_ui_url
-          verification:
-            require_verified_address: true
-            enabled: true
-          hosts:
-          - hosts
-          - hosts
-          settings_ui_url: settings_ui_url
-          oidc_providers:
-          - issuer_url: issuer_url
-            string: string
+          kratos_selfservice_flows_registration_after_oidc_default_browser_return_url: kratos_selfservice_flows_registration_after_oidc_default_browser_return_url
+          kratos_selfservice_flows_hooks:
+          - web_hook_config_auth_api_key_value: eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ
+            web_hook_config_auth_type: web_hook_config_auth_type
+            created_at: 2000-01-23T04:56:07.000+00:00
+            project_revision_id: project_revision_id
+            web_hook_config_auth_basic_auth_user: web_hook_config_auth_basic_auth_user
+            hook: hook
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            web_hook_config_method: POST
+            config_key: config_key
+            web_hook_config_body: base64://ZnVuY3Rpb24oY3R4KSB7CiAgaWRlbnRpdHlfaWQ6IGlmIGN0eFsiaWRlbnRpdHkiXSAhPSBudWxsIHRoZW4gY3R4LmlkZW50aXR5LmlkLAp9=
+            web_hook_config_auth_api_key_in: header
+            web_hook_config_url: https://www.example.org/web-hook-listener
+            web_hook_config_auth_api_key_name: X-API-Key
+            id: id
+            web_hook_config_auth_basic_auth_password: web_hook_config_auth_basic_auth_password
+          - web_hook_config_auth_api_key_value: eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ
+            web_hook_config_auth_type: web_hook_config_auth_type
+            created_at: 2000-01-23T04:56:07.000+00:00
+            project_revision_id: project_revision_id
+            web_hook_config_auth_basic_auth_user: web_hook_config_auth_basic_auth_user
+            hook: hook
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            web_hook_config_method: POST
+            config_key: config_key
+            web_hook_config_body: base64://ZnVuY3Rpb24oY3R4KSB7CiAgaWRlbnRpdHlfaWQ6IGlmIGN0eFsiaWRlbnRpdHkiXSAhPSBudWxsIHRoZW4gY3R4LmlkZW50aXR5LmlkLAp9=
+            web_hook_config_auth_api_key_in: header
+            web_hook_config_url: https://www.example.org/web-hook-listener
+            web_hook_config_auth_api_key_name: X-API-Key
+            id: id
+            web_hook_config_auth_basic_auth_password: web_hook_config_auth_basic_auth_password
+          kratos_selfservice_flows_recovery_after_default_browser_return_url: kratos_selfservice_flows_recovery_after_default_browser_return_url
+          kratos_selfservice_flows_login_after_password_default_browser_return_url: kratos_selfservice_flows_login_after_password_default_browser_return_url
+          kratos_courier_smtp_connection_uri: kratos_courier_smtp_connection_uri
+          kratos_selfservice_flows_logout_after_default_browser_return_url: kratos_selfservice_flows_logout_after_default_browser_return_url
+          kratos_selfservice_methods_oidc_config_providers:
+          - issuer_url: https://accounts.google.com
+            azure_tenant: contoso.onmicrosoft.com
+            apple_private_key_id: UX56C66723
+            created_at: 2000-01-23T04:56:07.000+00:00
+            project_revision_id: project_revision_id
             label: label
             mapper_url: mapper_url
             client_id: client_id
             requested_claims: '{}'
-            provider: provider
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            apple_team_id: KP76DQS54M
+            provider: google
             scope:
             - scope
             - scope
-            auth_url: auth_url
+            provider_id: provider_id
+            apple_private_key: '-----BEGIN PRIVATE KEY----- ........ -----END PRIVATE
+              KEY-----'
+            auth_url: https://www.googleapis.com/oauth2/v2/auth
             client_secret: client_secret
             id: id
-            token_url: token_url
-            tenant: tenant
-          - issuer_url: issuer_url
-            string: string
+            token_url: https://www.googleapis.com/oauth2/v4/token
+          - issuer_url: https://accounts.google.com
+            azure_tenant: contoso.onmicrosoft.com
+            apple_private_key_id: UX56C66723
+            created_at: 2000-01-23T04:56:07.000+00:00
+            project_revision_id: project_revision_id
             label: label
             mapper_url: mapper_url
             client_id: client_id
             requested_claims: '{}'
-            provider: provider
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            apple_team_id: KP76DQS54M
+            provider: google
             scope:
             - scope
             - scope
-            auth_url: auth_url
+            provider_id: provider_id
+            apple_private_key: '-----BEGIN PRIVATE KEY----- ........ -----END PRIVATE
+              KEY-----'
+            auth_url: https://www.googleapis.com/oauth2/v2/auth
             client_secret: client_secret
             id: id
-            token_url: token_url
-            tenant: tenant
-          settings_soft_2fa: true
-          application_url: application_url
-          settings_privileged_session_max_age_seconds: 0
-          kratos_custom_schema_id: kratos_custom_schema_id
+            token_url: https://www.googleapis.com/oauth2/v4/token
+          kratos_selfservice_methods_webauthn_config_rp_icon: kratos_selfservice_methods_webauthn_config_rp_icon
+          kratos_selfservice_allowed_return_urls:
+          - kratos_selfservice_allowed_return_urls
+          - kratos_selfservice_allowed_return_urls
+          kratos_secrets_default:
+          - kratos_secrets_default
+          - kratos_secrets_default
+          kratos_selfservice_default_browser_return_url: kratos_selfservice_default_browser_return_url
+          kratos_selfservice_flows_verification_lifespan: kratos_selfservice_flows_verification_lifespan
+          kratos_selfservice_flows_registration_after_default_browser_return_url: kratos_selfservice_flows_registration_after_default_browser_return_url
           name: name
-          webauthn:
-            rp_id: example.org
-            rp_display_name: Ory Corp
-            rp_origin: https://example.org/
-            rp_icon: https://example.org/icon.png
-            enabled: true
-          session_after_sign_up: true
-        - verification_ui_url: verification_ui_url
-          totp:
-            enabled: true
-            issuer: ory.sh
-          error_ui_url: error_ui_url
-          api_url: api_url
-          kratos_config_version: kratos_config_version
-          registration_ui_url: registration_ui_url
-          session_soft_2fa: true
+          kratos_selfservice_methods_totp_enabled: true
+          kratos_selfservice_flows_error_ui_url: kratos_selfservice_flows_error_ui_url
+          kratos_selfservice_flows_settings_required_aal: kratos_selfservice_flows_settings_required_aal
+          kratos_courier_smtp_headers: '{}'
+          kratos_selfservice_methods_password_enabled: true
+          kratos_session_cookie_persistent: true
+          kratos_selfservice_methods_webauthn_enabled: true
+          kratos_courier_smtp_from_address: kratos_courier_smtp_from_address
           created_at: 2000-01-23T04:56:07.000+00:00
-          lookup_secret:
-            enabled: true
-          recovery:
-            enabled: true
-          redirection_config:
-            settings:
-              password: password
-              profile: profile
-              main: main
-              oidc: oidc
-            logout:
-              password: password
-              profile: profile
-              main: main
-              oidc: oidc
-            url_allowlist:
-            - url_allowlist
-            - url_allowlist
-            global:
-              password: password
-              profile: profile
-              main: main
-              oidc: oidc
-            registration:
-              password: password
-              profile: profile
-              main: main
-              oidc: oidc
-            recovery:
-              password: password
-              profile: profile
-              main: main
-              oidc: oidc
-            login:
-              password: password
-              profile: profile
-              main: main
-              oidc: oidc
-            verification:
-              password: password
-              profile: profile
-              main: main
-              oidc: oidc
-          recovery_ui_url: recovery_ui_url
-          password:
-            revoke_active_sessions: true
-            enabled: true
+          kratos_selfservice_methods_totp_config_issuer: kratos_selfservice_methods_totp_config_issuer
+          kratos_selfservice_methods_link_enabled: true
+          kratos_identity_schemas:
+          - identity_schema_id: identity_schema_id
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            import_id: import_id
+            import_url: base64://ey...
+            identity_schema:
+              schema: '{}'
+              blob_name: blob_name
+              updated_at: 2000-01-23T04:56:07.000+00:00
+              name: CustomerIdentity
+              created_at: 2000-01-23T04:56:07.000+00:00
+              content_hash: content_hash
+              id: id
+              blob_url: blob_url
+            created_at: 2000-01-23T04:56:07.000+00:00
+            project_revision_id: project_revision_id
+            id: id
+            preset: preset
+            is_default: true
+          - identity_schema_id: identity_schema_id
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            import_id: import_id
+            import_url: base64://ey...
+            identity_schema:
+              schema: '{}'
+              blob_name: blob_name
+              updated_at: 2000-01-23T04:56:07.000+00:00
+              name: CustomerIdentity
+              created_at: 2000-01-23T04:56:07.000+00:00
+              content_hash: content_hash
+              id: id
+              blob_url: blob_url
+            created_at: 2000-01-23T04:56:07.000+00:00
+            project_revision_id: project_revision_id
+            id: id
+            preset: preset
+            is_default: true
+          kratos_selfservice_methods_password_config_ignore_network_errors: true
+          kratos_session_cookie_same_site: kratos_session_cookie_same_site
           updated_at: 2000-01-23T04:56:07.000+00:00
+          kratos_selfservice_flows_login_lifespan: kratos_selfservice_flows_login_lifespan
+          kratos_selfservice_flows_verification_ui_url: kratos_selfservice_flows_verification_ui_url
+          kratos_selfservice_methods_password_config_max_breaches: 0
+          kratos_selfservice_flows_settings_after_default_browser_return_url: kratos_selfservice_flows_settings_after_default_browser_return_url
+          kratos_selfservice_flows_settings_ui_url: kratos_selfservice_flows_settings_ui_url
+          kratos_selfservice_flows_login_after_default_browser_return_url: kratos_selfservice_flows_login_after_default_browser_return_url
+          kratos_session_lifespan: kratos_session_lifespan
+          kratos_selfservice_flows_recovery_enabled: true
+          kratos_selfservice_flows_settings_after_profile_default_browser_return_url: kratos_selfservice_flows_settings_after_profile_default_browser_return_url
+          kratos_selfservice_flows_settings_privileged_session_max_age: kratos_selfservice_flows_settings_privileged_session_max_age
+          kratos_session_whoami_required_aal: kratos_session_whoami_required_aal
+          kratos_secrets_cookie:
+          - kratos_secrets_cookie
+          - kratos_secrets_cookie
+          kratos_selfservice_flows_recovery_ui_url: kratos_selfservice_flows_recovery_ui_url
+          kratos_selfservice_flows_verification_after_default_browser_return_url: kratos_selfservice_flows_verification_after_default_browser_return_url
+          kratos_selfservice_flows_settings_lifespan: kratos_selfservice_flows_settings_lifespan
+          kratos_selfservice_flows_settings_after_password_default_browser_return_url: kratos_selfservice_flows_settings_after_password_default_browser_return_url
+        - kratos_selfservice_methods_oidc_enabled: true
+          kratos_selfservice_methods_lookup_secret_enabled: true
+          kratos_selfservice_methods_profile_enabled: true
+          kratos_selfservice_methods_webauthn_config_rp_id: kratos_selfservice_methods_webauthn_config_rp_id
+          kratos_cookies_same_site: kratos_cookies_same_site
+          kratos_selfservice_methods_link_config_lifespan: kratos_selfservice_methods_link_config_lifespan
+          kratos_secrets_cipher:
+          - kratos_secrets_cipher
+          - kratos_secrets_cipher
+          kratos_selfservice_flows_login_after_oidc_default_browser_return_url: kratos_selfservice_flows_login_after_oidc_default_browser_return_url
+          kratos_selfservice_flows_registration_ui_url: kratos_selfservice_flows_registration_ui_url
+          kratos_selfservice_flows_recovery_lifespan: kratos_selfservice_flows_recovery_lifespan
+          kratos_selfservice_flows_registration_after_password_default_browser_return_url: kratos_selfservice_flows_registration_after_password_default_browser_return_url
+          kratos_selfservice_flows_registration_lifespan: kratos_selfservice_flows_registration_lifespan
+          kratos_courier_smtp_from_name: kratos_courier_smtp_from_name
+          kratos_selfservice_methods_webauthn_config_rp_origin: kratos_selfservice_methods_webauthn_config_rp_origin
+          kratos_selfservice_methods_link_config_base_url: kratos_selfservice_methods_link_config_base_url
+          kratos_selfservice_methods_password_config_haveibeenpwned_enabled: true
+          kratos_selfservice_methods_webauthn_config_rp_display_name: kratos_selfservice_methods_webauthn_config_rp_display_name
+          kratos_selfservice_flows_verification_enabled: true
           project_id: project_id
-          default_identity_schema_url: default_identity_schema_url
+          kratos_selfservice_flows_login_ui_url: kratos_selfservice_flows_login_ui_url
           id: id
-          login_ui_url: login_ui_url
-          verification:
-            require_verified_address: true
-            enabled: true
-          hosts:
-          - hosts
-          - hosts
-          settings_ui_url: settings_ui_url
-          oidc_providers:
-          - issuer_url: issuer_url
-            string: string
+          kratos_selfservice_flows_registration_after_oidc_default_browser_return_url: kratos_selfservice_flows_registration_after_oidc_default_browser_return_url
+          kratos_selfservice_flows_hooks:
+          - web_hook_config_auth_api_key_value: eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ
+            web_hook_config_auth_type: web_hook_config_auth_type
+            created_at: 2000-01-23T04:56:07.000+00:00
+            project_revision_id: project_revision_id
+            web_hook_config_auth_basic_auth_user: web_hook_config_auth_basic_auth_user
+            hook: hook
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            web_hook_config_method: POST
+            config_key: config_key
+            web_hook_config_body: base64://ZnVuY3Rpb24oY3R4KSB7CiAgaWRlbnRpdHlfaWQ6IGlmIGN0eFsiaWRlbnRpdHkiXSAhPSBudWxsIHRoZW4gY3R4LmlkZW50aXR5LmlkLAp9=
+            web_hook_config_auth_api_key_in: header
+            web_hook_config_url: https://www.example.org/web-hook-listener
+            web_hook_config_auth_api_key_name: X-API-Key
+            id: id
+            web_hook_config_auth_basic_auth_password: web_hook_config_auth_basic_auth_password
+          - web_hook_config_auth_api_key_value: eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ
+            web_hook_config_auth_type: web_hook_config_auth_type
+            created_at: 2000-01-23T04:56:07.000+00:00
+            project_revision_id: project_revision_id
+            web_hook_config_auth_basic_auth_user: web_hook_config_auth_basic_auth_user
+            hook: hook
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            web_hook_config_method: POST
+            config_key: config_key
+            web_hook_config_body: base64://ZnVuY3Rpb24oY3R4KSB7CiAgaWRlbnRpdHlfaWQ6IGlmIGN0eFsiaWRlbnRpdHkiXSAhPSBudWxsIHRoZW4gY3R4LmlkZW50aXR5LmlkLAp9=
+            web_hook_config_auth_api_key_in: header
+            web_hook_config_url: https://www.example.org/web-hook-listener
+            web_hook_config_auth_api_key_name: X-API-Key
+            id: id
+            web_hook_config_auth_basic_auth_password: web_hook_config_auth_basic_auth_password
+          kratos_selfservice_flows_recovery_after_default_browser_return_url: kratos_selfservice_flows_recovery_after_default_browser_return_url
+          kratos_selfservice_flows_login_after_password_default_browser_return_url: kratos_selfservice_flows_login_after_password_default_browser_return_url
+          kratos_courier_smtp_connection_uri: kratos_courier_smtp_connection_uri
+          kratos_selfservice_flows_logout_after_default_browser_return_url: kratos_selfservice_flows_logout_after_default_browser_return_url
+          kratos_selfservice_methods_oidc_config_providers:
+          - issuer_url: https://accounts.google.com
+            azure_tenant: contoso.onmicrosoft.com
+            apple_private_key_id: UX56C66723
+            created_at: 2000-01-23T04:56:07.000+00:00
+            project_revision_id: project_revision_id
             label: label
             mapper_url: mapper_url
             client_id: client_id
             requested_claims: '{}'
-            provider: provider
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            apple_team_id: KP76DQS54M
+            provider: google
             scope:
             - scope
             - scope
-            auth_url: auth_url
+            provider_id: provider_id
+            apple_private_key: '-----BEGIN PRIVATE KEY----- ........ -----END PRIVATE
+              KEY-----'
+            auth_url: https://www.googleapis.com/oauth2/v2/auth
             client_secret: client_secret
             id: id
-            token_url: token_url
-            tenant: tenant
-          - issuer_url: issuer_url
-            string: string
+            token_url: https://www.googleapis.com/oauth2/v4/token
+          - issuer_url: https://accounts.google.com
+            azure_tenant: contoso.onmicrosoft.com
+            apple_private_key_id: UX56C66723
+            created_at: 2000-01-23T04:56:07.000+00:00
+            project_revision_id: project_revision_id
             label: label
             mapper_url: mapper_url
             client_id: client_id
             requested_claims: '{}'
-            provider: provider
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            apple_team_id: KP76DQS54M
+            provider: google
             scope:
             - scope
             - scope
-            auth_url: auth_url
+            provider_id: provider_id
+            apple_private_key: '-----BEGIN PRIVATE KEY----- ........ -----END PRIVATE
+              KEY-----'
+            auth_url: https://www.googleapis.com/oauth2/v2/auth
             client_secret: client_secret
             id: id
-            token_url: token_url
-            tenant: tenant
-          settings_soft_2fa: true
-          application_url: application_url
-          settings_privileged_session_max_age_seconds: 0
-          kratos_custom_schema_id: kratos_custom_schema_id
+            token_url: https://www.googleapis.com/oauth2/v4/token
+          kratos_selfservice_methods_webauthn_config_rp_icon: kratos_selfservice_methods_webauthn_config_rp_icon
+          kratos_selfservice_allowed_return_urls:
+          - kratos_selfservice_allowed_return_urls
+          - kratos_selfservice_allowed_return_urls
+          kratos_secrets_default:
+          - kratos_secrets_default
+          - kratos_secrets_default
+          kratos_selfservice_default_browser_return_url: kratos_selfservice_default_browser_return_url
+          kratos_selfservice_flows_verification_lifespan: kratos_selfservice_flows_verification_lifespan
+          kratos_selfservice_flows_registration_after_default_browser_return_url: kratos_selfservice_flows_registration_after_default_browser_return_url
           name: name
-          webauthn:
-            rp_id: example.org
-            rp_display_name: Ory Corp
-            rp_origin: https://example.org/
-            rp_icon: https://example.org/icon.png
-            enabled: true
-          session_after_sign_up: true
+          kratos_selfservice_methods_totp_enabled: true
+          kratos_selfservice_flows_error_ui_url: kratos_selfservice_flows_error_ui_url
+          kratos_selfservice_flows_settings_required_aal: kratos_selfservice_flows_settings_required_aal
+          kratos_courier_smtp_headers: '{}'
+          kratos_selfservice_methods_password_enabled: true
+          kratos_session_cookie_persistent: true
+          kratos_selfservice_methods_webauthn_enabled: true
+          kratos_courier_smtp_from_address: kratos_courier_smtp_from_address
+          created_at: 2000-01-23T04:56:07.000+00:00
+          kratos_selfservice_methods_totp_config_issuer: kratos_selfservice_methods_totp_config_issuer
+          kratos_selfservice_methods_link_enabled: true
+          kratos_identity_schemas:
+          - identity_schema_id: identity_schema_id
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            import_id: import_id
+            import_url: base64://ey...
+            identity_schema:
+              schema: '{}'
+              blob_name: blob_name
+              updated_at: 2000-01-23T04:56:07.000+00:00
+              name: CustomerIdentity
+              created_at: 2000-01-23T04:56:07.000+00:00
+              content_hash: content_hash
+              id: id
+              blob_url: blob_url
+            created_at: 2000-01-23T04:56:07.000+00:00
+            project_revision_id: project_revision_id
+            id: id
+            preset: preset
+            is_default: true
+          - identity_schema_id: identity_schema_id
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            import_id: import_id
+            import_url: base64://ey...
+            identity_schema:
+              schema: '{}'
+              blob_name: blob_name
+              updated_at: 2000-01-23T04:56:07.000+00:00
+              name: CustomerIdentity
+              created_at: 2000-01-23T04:56:07.000+00:00
+              content_hash: content_hash
+              id: id
+              blob_url: blob_url
+            created_at: 2000-01-23T04:56:07.000+00:00
+            project_revision_id: project_revision_id
+            id: id
+            preset: preset
+            is_default: true
+          kratos_selfservice_methods_password_config_ignore_network_errors: true
+          kratos_session_cookie_same_site: kratos_session_cookie_same_site
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          kratos_selfservice_flows_login_lifespan: kratos_selfservice_flows_login_lifespan
+          kratos_selfservice_flows_verification_ui_url: kratos_selfservice_flows_verification_ui_url
+          kratos_selfservice_methods_password_config_max_breaches: 0
+          kratos_selfservice_flows_settings_after_default_browser_return_url: kratos_selfservice_flows_settings_after_default_browser_return_url
+          kratos_selfservice_flows_settings_ui_url: kratos_selfservice_flows_settings_ui_url
+          kratos_selfservice_flows_login_after_default_browser_return_url: kratos_selfservice_flows_login_after_default_browser_return_url
+          kratos_session_lifespan: kratos_session_lifespan
+          kratos_selfservice_flows_recovery_enabled: true
+          kratos_selfservice_flows_settings_after_profile_default_browser_return_url: kratos_selfservice_flows_settings_after_profile_default_browser_return_url
+          kratos_selfservice_flows_settings_privileged_session_max_age: kratos_selfservice_flows_settings_privileged_session_max_age
+          kratos_session_whoami_required_aal: kratos_session_whoami_required_aal
+          kratos_secrets_cookie:
+          - kratos_secrets_cookie
+          - kratos_secrets_cookie
+          kratos_selfservice_flows_recovery_ui_url: kratos_selfservice_flows_recovery_ui_url
+          kratos_selfservice_flows_verification_after_default_browser_return_url: kratos_selfservice_flows_verification_after_default_browser_return_url
+          kratos_selfservice_flows_settings_lifespan: kratos_selfservice_flows_settings_lifespan
+          kratos_selfservice_flows_settings_after_password_default_browser_return_url: kratos_selfservice_flows_settings_after_password_default_browser_return_url
         id: id
         state: running
         slug: slug
@@ -3975,6 +4185,12 @@ components:
           type: string
         current_revision:
           $ref: '#/components/schemas/projectRevision'
+        hosts:
+          items:
+            type: string
+          title: StringSliceJSONFormat represents []string{} which is encoded to/from
+            JSON for SQL storage.
+          type: array
         id:
           format: uuid4
           type: string
@@ -4004,6 +4220,7 @@ components:
       required:
       - created_at
       - current_revision
+      - hosts
       - id
       - revisions
       - slug
@@ -4026,37 +4243,823 @@ components:
       - id
       - project_id
       type: object
-    projectLookupSecretConfig:
-      example:
-        enabled: true
+    projectInvite:
       properties:
-        enabled:
-          description: Set to true to enable the WebAuthn authentication method.
-          type: boolean
+        created_at:
+          description: The Project's Revision Creation Date
+          format: date-time
+          readOnly: true
+          type: string
+        id:
+          format: uuid4
+          type: string
+        invitee_email:
+          description: The invitee's email
+          type: string
+        invitee_id:
+          format: uuid4
+          type: string
+        owner_email:
+          description: |-
+            The invite owner's email
+            Usually the project's owner email
+          type: string
+        owner_id:
+          format: uuid4
+          type: string
+        project_id:
+          format: uuid4
+          type: string
+        status:
+          description: |-
+            The invite's status
+            Keeps track of the invites status such as pending, accepted, declined, expired
+          type: string
+        updated_at:
+          description: Last Time Project's Revision was Updated
+          format: date-time
+          readOnly: true
+          type: string
+      required:
+      - created_at
+      - id
+      - invitee_email
+      - owner_email
+      - owner_id
+      - project_id
+      - status
+      - updated_at
       type: object
-    projectOidcConfig:
+    projectInvites:
+      items:
+        $ref: '#/components/schemas/projectInvite'
+      type: array
+    projectMember:
+      $ref: '#/components/schemas/cloudAccount'
+    projectMembers:
+      items:
+        $ref: '#/components/schemas/projectMember'
+      type: array
+    projectRevision:
       example:
-        issuer_url: issuer_url
-        string: string
+        kratos_selfservice_methods_oidc_enabled: true
+        kratos_selfservice_methods_lookup_secret_enabled: true
+        kratos_selfservice_methods_profile_enabled: true
+        kratos_selfservice_methods_webauthn_config_rp_id: kratos_selfservice_methods_webauthn_config_rp_id
+        kratos_cookies_same_site: kratos_cookies_same_site
+        kratos_selfservice_methods_link_config_lifespan: kratos_selfservice_methods_link_config_lifespan
+        kratos_secrets_cipher:
+        - kratos_secrets_cipher
+        - kratos_secrets_cipher
+        kratos_selfservice_flows_login_after_oidc_default_browser_return_url: kratos_selfservice_flows_login_after_oidc_default_browser_return_url
+        kratos_selfservice_flows_registration_ui_url: kratos_selfservice_flows_registration_ui_url
+        kratos_selfservice_flows_recovery_lifespan: kratos_selfservice_flows_recovery_lifespan
+        kratos_selfservice_flows_registration_after_password_default_browser_return_url: kratos_selfservice_flows_registration_after_password_default_browser_return_url
+        kratos_selfservice_flows_registration_lifespan: kratos_selfservice_flows_registration_lifespan
+        kratos_courier_smtp_from_name: kratos_courier_smtp_from_name
+        kratos_selfservice_methods_webauthn_config_rp_origin: kratos_selfservice_methods_webauthn_config_rp_origin
+        kratos_selfservice_methods_link_config_base_url: kratos_selfservice_methods_link_config_base_url
+        kratos_selfservice_methods_password_config_haveibeenpwned_enabled: true
+        kratos_selfservice_methods_webauthn_config_rp_display_name: kratos_selfservice_methods_webauthn_config_rp_display_name
+        kratos_selfservice_flows_verification_enabled: true
+        project_id: project_id
+        kratos_selfservice_flows_login_ui_url: kratos_selfservice_flows_login_ui_url
+        id: id
+        kratos_selfservice_flows_registration_after_oidc_default_browser_return_url: kratos_selfservice_flows_registration_after_oidc_default_browser_return_url
+        kratos_selfservice_flows_hooks:
+        - web_hook_config_auth_api_key_value: eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ
+          web_hook_config_auth_type: web_hook_config_auth_type
+          created_at: 2000-01-23T04:56:07.000+00:00
+          project_revision_id: project_revision_id
+          web_hook_config_auth_basic_auth_user: web_hook_config_auth_basic_auth_user
+          hook: hook
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          web_hook_config_method: POST
+          config_key: config_key
+          web_hook_config_body: base64://ZnVuY3Rpb24oY3R4KSB7CiAgaWRlbnRpdHlfaWQ6IGlmIGN0eFsiaWRlbnRpdHkiXSAhPSBudWxsIHRoZW4gY3R4LmlkZW50aXR5LmlkLAp9=
+          web_hook_config_auth_api_key_in: header
+          web_hook_config_url: https://www.example.org/web-hook-listener
+          web_hook_config_auth_api_key_name: X-API-Key
+          id: id
+          web_hook_config_auth_basic_auth_password: web_hook_config_auth_basic_auth_password
+        - web_hook_config_auth_api_key_value: eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ
+          web_hook_config_auth_type: web_hook_config_auth_type
+          created_at: 2000-01-23T04:56:07.000+00:00
+          project_revision_id: project_revision_id
+          web_hook_config_auth_basic_auth_user: web_hook_config_auth_basic_auth_user
+          hook: hook
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          web_hook_config_method: POST
+          config_key: config_key
+          web_hook_config_body: base64://ZnVuY3Rpb24oY3R4KSB7CiAgaWRlbnRpdHlfaWQ6IGlmIGN0eFsiaWRlbnRpdHkiXSAhPSBudWxsIHRoZW4gY3R4LmlkZW50aXR5LmlkLAp9=
+          web_hook_config_auth_api_key_in: header
+          web_hook_config_url: https://www.example.org/web-hook-listener
+          web_hook_config_auth_api_key_name: X-API-Key
+          id: id
+          web_hook_config_auth_basic_auth_password: web_hook_config_auth_basic_auth_password
+        kratos_selfservice_flows_recovery_after_default_browser_return_url: kratos_selfservice_flows_recovery_after_default_browser_return_url
+        kratos_selfservice_flows_login_after_password_default_browser_return_url: kratos_selfservice_flows_login_after_password_default_browser_return_url
+        kratos_courier_smtp_connection_uri: kratos_courier_smtp_connection_uri
+        kratos_selfservice_flows_logout_after_default_browser_return_url: kratos_selfservice_flows_logout_after_default_browser_return_url
+        kratos_selfservice_methods_oidc_config_providers:
+        - issuer_url: https://accounts.google.com
+          azure_tenant: contoso.onmicrosoft.com
+          apple_private_key_id: UX56C66723
+          created_at: 2000-01-23T04:56:07.000+00:00
+          project_revision_id: project_revision_id
+          label: label
+          mapper_url: mapper_url
+          client_id: client_id
+          requested_claims: '{}'
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          apple_team_id: KP76DQS54M
+          provider: google
+          scope:
+          - scope
+          - scope
+          provider_id: provider_id
+          apple_private_key: '-----BEGIN PRIVATE KEY----- ........ -----END PRIVATE
+            KEY-----'
+          auth_url: https://www.googleapis.com/oauth2/v2/auth
+          client_secret: client_secret
+          id: id
+          token_url: https://www.googleapis.com/oauth2/v4/token
+        - issuer_url: https://accounts.google.com
+          azure_tenant: contoso.onmicrosoft.com
+          apple_private_key_id: UX56C66723
+          created_at: 2000-01-23T04:56:07.000+00:00
+          project_revision_id: project_revision_id
+          label: label
+          mapper_url: mapper_url
+          client_id: client_id
+          requested_claims: '{}'
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          apple_team_id: KP76DQS54M
+          provider: google
+          scope:
+          - scope
+          - scope
+          provider_id: provider_id
+          apple_private_key: '-----BEGIN PRIVATE KEY----- ........ -----END PRIVATE
+            KEY-----'
+          auth_url: https://www.googleapis.com/oauth2/v2/auth
+          client_secret: client_secret
+          id: id
+          token_url: https://www.googleapis.com/oauth2/v4/token
+        kratos_selfservice_methods_webauthn_config_rp_icon: kratos_selfservice_methods_webauthn_config_rp_icon
+        kratos_selfservice_allowed_return_urls:
+        - kratos_selfservice_allowed_return_urls
+        - kratos_selfservice_allowed_return_urls
+        kratos_secrets_default:
+        - kratos_secrets_default
+        - kratos_secrets_default
+        kratos_selfservice_default_browser_return_url: kratos_selfservice_default_browser_return_url
+        kratos_selfservice_flows_verification_lifespan: kratos_selfservice_flows_verification_lifespan
+        kratos_selfservice_flows_registration_after_default_browser_return_url: kratos_selfservice_flows_registration_after_default_browser_return_url
+        name: name
+        kratos_selfservice_methods_totp_enabled: true
+        kratos_selfservice_flows_error_ui_url: kratos_selfservice_flows_error_ui_url
+        kratos_selfservice_flows_settings_required_aal: kratos_selfservice_flows_settings_required_aal
+        kratos_courier_smtp_headers: '{}'
+        kratos_selfservice_methods_password_enabled: true
+        kratos_session_cookie_persistent: true
+        kratos_selfservice_methods_webauthn_enabled: true
+        kratos_courier_smtp_from_address: kratos_courier_smtp_from_address
+        created_at: 2000-01-23T04:56:07.000+00:00
+        kratos_selfservice_methods_totp_config_issuer: kratos_selfservice_methods_totp_config_issuer
+        kratos_selfservice_methods_link_enabled: true
+        kratos_identity_schemas:
+        - identity_schema_id: identity_schema_id
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          import_id: import_id
+          import_url: base64://ey...
+          identity_schema:
+            schema: '{}'
+            blob_name: blob_name
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            name: CustomerIdentity
+            created_at: 2000-01-23T04:56:07.000+00:00
+            content_hash: content_hash
+            id: id
+            blob_url: blob_url
+          created_at: 2000-01-23T04:56:07.000+00:00
+          project_revision_id: project_revision_id
+          id: id
+          preset: preset
+          is_default: true
+        - identity_schema_id: identity_schema_id
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          import_id: import_id
+          import_url: base64://ey...
+          identity_schema:
+            schema: '{}'
+            blob_name: blob_name
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            name: CustomerIdentity
+            created_at: 2000-01-23T04:56:07.000+00:00
+            content_hash: content_hash
+            id: id
+            blob_url: blob_url
+          created_at: 2000-01-23T04:56:07.000+00:00
+          project_revision_id: project_revision_id
+          id: id
+          preset: preset
+          is_default: true
+        kratos_selfservice_methods_password_config_ignore_network_errors: true
+        kratos_session_cookie_same_site: kratos_session_cookie_same_site
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        kratos_selfservice_flows_login_lifespan: kratos_selfservice_flows_login_lifespan
+        kratos_selfservice_flows_verification_ui_url: kratos_selfservice_flows_verification_ui_url
+        kratos_selfservice_methods_password_config_max_breaches: 0
+        kratos_selfservice_flows_settings_after_default_browser_return_url: kratos_selfservice_flows_settings_after_default_browser_return_url
+        kratos_selfservice_flows_settings_ui_url: kratos_selfservice_flows_settings_ui_url
+        kratos_selfservice_flows_login_after_default_browser_return_url: kratos_selfservice_flows_login_after_default_browser_return_url
+        kratos_session_lifespan: kratos_session_lifespan
+        kratos_selfservice_flows_recovery_enabled: true
+        kratos_selfservice_flows_settings_after_profile_default_browser_return_url: kratos_selfservice_flows_settings_after_profile_default_browser_return_url
+        kratos_selfservice_flows_settings_privileged_session_max_age: kratos_selfservice_flows_settings_privileged_session_max_age
+        kratos_session_whoami_required_aal: kratos_session_whoami_required_aal
+        kratos_secrets_cookie:
+        - kratos_secrets_cookie
+        - kratos_secrets_cookie
+        kratos_selfservice_flows_recovery_ui_url: kratos_selfservice_flows_recovery_ui_url
+        kratos_selfservice_flows_verification_after_default_browser_return_url: kratos_selfservice_flows_verification_after_default_browser_return_url
+        kratos_selfservice_flows_settings_lifespan: kratos_selfservice_flows_settings_lifespan
+        kratos_selfservice_flows_settings_after_password_default_browser_return_url: kratos_selfservice_flows_settings_after_password_default_browser_return_url
+      properties:
+        created_at:
+          description: The Project's Revision Creation Date
+          format: date-time
+          readOnly: true
+          type: string
+        id:
+          format: uuid4
+          type: string
+        kratos_cookies_same_site:
+          description: |-
+            Configures the Ory Kratos Cookie SameSite Attribute
+
+            This governs the "cookies.same_site" setting.
+          type: string
+        kratos_courier_smtp_connection_uri:
+          description: |-
+            Configures the Ory Kratos SMTP Connection URI
+
+            This governs the "courier.smtp.connection_uri" setting.
+          type: string
+        kratos_courier_smtp_from_address:
+          description: |-
+            Configures the Ory Kratos SMTP From Address
+
+            This governs the "courier.smtp.from_address" setting.
+          type: string
+        kratos_courier_smtp_from_name:
+          description: |-
+            Configures the Ory Kratos SMTP From Name
+
+            This governs the "courier.smtp.from_name" setting.
+          type: string
+        kratos_courier_smtp_headers:
+          description: NullJSONRawMessage represents a json.RawMessage that works
+            well with JSON, SQL, and Swagger and is NULLable-
+          type: object
+        kratos_identity_schemas:
+          items:
+            $ref: '#/components/schemas/projectRevisionIdentitySchema'
+          type: array
+        kratos_secrets_cipher:
+          items:
+            type: string
+          title: StringSliceJSONFormat represents []string{} which is encoded to/from
+            JSON for SQL storage.
+          type: array
+        kratos_secrets_cookie:
+          items:
+            type: string
+          title: StringSliceJSONFormat represents []string{} which is encoded to/from
+            JSON for SQL storage.
+          type: array
+        kratos_secrets_default:
+          items:
+            type: string
+          title: StringSliceJSONFormat represents []string{} which is encoded to/from
+            JSON for SQL storage.
+          type: array
+        kratos_selfservice_allowed_return_urls:
+          items:
+            type: string
+          title: StringSliceJSONFormat represents []string{} which is encoded to/from
+            JSON for SQL storage.
+          type: array
+        kratos_selfservice_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Default Return URL
+
+            This governs the "selfservice.allowed_return_urls" setting.
+          type: string
+        kratos_selfservice_flows_error_ui_url:
+          description: |-
+            Configures the Ory Kratos Error UI URL
+
+            This governs the "selfservice.flows.error.ui_url" setting.
+          type: string
+        kratos_selfservice_flows_hooks:
+          items:
+            $ref: '#/components/schemas/projectRevisionHook'
+          type: array
+        kratos_selfservice_flows_login_after_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Login Default Return URL
+
+            This governs the "selfservice.flows.login.after.default_browser_return_url" setting.
+          type: string
+        kratos_selfservice_flows_login_after_oidc_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Login After OIDC Default Return URL
+
+            This governs the "selfservice.flows.login.after.oidc.default_browser_return_url" setting.
+          type: string
+        kratos_selfservice_flows_login_after_password_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Login After Password Default Return URL
+
+            This governs the "selfservice.flows.login.after.password.default_browser_return_url" setting.
+          type: string
+        kratos_selfservice_flows_login_lifespan:
+          description: |-
+            Configures the Ory Kratos Login Lifespan
+
+            This governs the "selfservice.flows.login.lifespan" setting.
+          type: string
+        kratos_selfservice_flows_login_ui_url:
+          description: |-
+            Configures the Ory Kratos Login UI URL
+
+            This governs the "selfservice.flows.login.ui_url" setting.
+          type: string
+        kratos_selfservice_flows_logout_after_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Logout Default Return URL
+
+            This governs the "selfservice.flows.logout.after.default_browser_return_url" setting.
+          type: string
+        kratos_selfservice_flows_recovery_after_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Recovery Default Return URL
+
+            This governs the "selfservice.flows.recovery.after.default_browser_return_url" setting.
+          type: string
+        kratos_selfservice_flows_recovery_enabled:
+          description: |-
+            Configures the Ory Kratos Recovery Enabled Setting
+
+            This governs the "selfservice.flows.recovery.enabled" setting.
+          type: boolean
+        kratos_selfservice_flows_recovery_lifespan:
+          description: |-
+            Configures the Ory Kratos Recovery Lifespan
+
+            This governs the "selfservice.flows.recovery.lifespan" setting.
+          type: string
+        kratos_selfservice_flows_recovery_ui_url:
+          description: |-
+            Configures the Ory Kratos Recovery UI URL
+
+            This governs the "selfservice.flows.recovery.ui_url" setting.
+          type: string
+        kratos_selfservice_flows_registration_after_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Registration Default Return URL
+
+            This governs the "selfservice.flows.registration.after.default_browser_return_url" setting.
+          type: string
+        kratos_selfservice_flows_registration_after_oidc_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Registration After OIDC Default Return URL
+
+            This governs the "selfservice.flows.registration.after.oidc.default_browser_return_url" setting.
+          type: string
+        kratos_selfservice_flows_registration_after_password_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Registration After Password Default Return URL
+
+            This governs the "selfservice.flows.registration.after.password.default_browser_return_url" setting.
+          type: string
+        kratos_selfservice_flows_registration_lifespan:
+          description: |-
+            Configures the Ory Kratos Registration Lifespan
+
+            This governs the "selfservice.flows.registration.lifespan" setting.
+          type: string
+        kratos_selfservice_flows_registration_ui_url:
+          description: |-
+            Configures the Ory Kratos Registration UI URL
+
+            This governs the "selfservice.flows.registration.ui_url" setting.0
+          type: string
+        kratos_selfservice_flows_settings_after_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Settings Default Return URL
+
+            This governs the "selfservice.flows.settings.after.default_browser_return_url" setting.
+          type: string
+        kratos_selfservice_flows_settings_after_password_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Settings Default Return URL After Updating Passwords
+
+            This governs the "selfservice.flows.settings.after.password.default_browser_return_url" setting.
+          type: string
+        kratos_selfservice_flows_settings_after_profile_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Settings Default Return URL After Updating Profiles
+
+            This governs the "selfservice.flows.settings.after.profile.default_browser_return_url" setting.
+          type: string
+        kratos_selfservice_flows_settings_lifespan:
+          description: |-
+            Configures the Ory Kratos Settings Lifespan
+
+            This governs the "selfservice.flows.settings.lifespan" setting.
+          type: string
+        kratos_selfservice_flows_settings_privileged_session_max_age:
+          description: |-
+            Configures the Ory Kratos Settings Privileged Session Max Age
+
+            This governs the "selfservice.flows.settings.privileged_session_max_age" setting.
+          type: string
+        kratos_selfservice_flows_settings_required_aal:
+          description: |-
+            Configures the Ory Kratos Settings Required AAL
+
+            This governs the "selfservice.flows.settings.required_aal" setting.
+          type: string
+        kratos_selfservice_flows_settings_ui_url:
+          description: |-
+            Configures the Ory Kratos Settings UI URL
+
+            This governs the "selfservice.flows.settings.ui_url" setting.
+          type: string
+        kratos_selfservice_flows_verification_after_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Verification Default Return URL
+
+            This governs the "selfservice.flows.verification.after.default_browser_return_url" setting.
+          type: string
+        kratos_selfservice_flows_verification_enabled:
+          description: |-
+            Configures the Ory Kratos Verification Enabled Setting
+
+            This governs the "selfservice.flows.verification.enabled" setting.
+          type: boolean
+        kratos_selfservice_flows_verification_lifespan:
+          description: |-
+            Configures the Ory Kratos Verification Lifespan
+
+            This governs the "selfservice.flows.verification.lifespan" setting.
+          type: string
+        kratos_selfservice_flows_verification_ui_url:
+          description: |-
+            Configures the Ory Kratos Verification UI URL
+
+            This governs the "selfservice.flows.verification.ui_url" setting.
+          type: string
+        kratos_selfservice_methods_link_config_base_url:
+          description: |-
+            Configures the Base URL which Recovery, Verification, and Login Links Point to
+
+            It is recommended to leave this value empty. It will be appropriately configured to the best matching domain
+            (e.g. when using custom domains) automatically.
+
+            This governs the "selfservice.methods.link.config.base_url" setting.
+          type: string
+        kratos_selfservice_methods_link_config_lifespan:
+          description: |-
+            Configures whether Ory Kratos Link Method is enabled
+
+            This governs the "selfservice.methods.link.config.lifespan" setting.
+          type: string
+        kratos_selfservice_methods_link_enabled:
+          nullable: true
+          type: boolean
+        kratos_selfservice_methods_lookup_secret_enabled:
+          nullable: true
+          type: boolean
+        kratos_selfservice_methods_oidc_config_providers:
+          items:
+            $ref: '#/components/schemas/projectRevisionThirdPartyLoginProvider'
+          type: array
+        kratos_selfservice_methods_oidc_enabled:
+          description: |-
+            Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled
+
+            This governs the "selfservice.methods.oidc.enabled" setting.
+          type: boolean
+        kratos_selfservice_methods_password_config_haveibeenpwned_enabled:
+          nullable: true
+          type: boolean
+        kratos_selfservice_methods_password_config_ignore_network_errors:
+          nullable: true
+          type: boolean
+        kratos_selfservice_methods_password_config_max_breaches:
+          description: |-
+            Configures Ory Kratos Password Max Breaches Detection
+
+            This governs the "selfservice.methods.password.enabled" setting.
+          format: int64
+          type: integer
+        kratos_selfservice_methods_password_enabled:
+          nullable: true
+          type: boolean
+        kratos_selfservice_methods_profile_enabled:
+          nullable: true
+          type: boolean
+        kratos_selfservice_methods_totp_config_issuer:
+          description: |-
+            Configures Ory Kratos TOTP Issuer
+
+            This governs the "selfservice.methods.totp.config.issuer" setting.
+          type: string
+        kratos_selfservice_methods_totp_enabled:
+          nullable: true
+          type: boolean
+        kratos_selfservice_methods_webauthn_config_rp_display_name:
+          description: |-
+            Configures the Ory Kratos Webauthn RP Display Name
+
+            This governs the "selfservice.methods.webauthn.config.rp.display_name" setting.
+          type: string
+        kratos_selfservice_methods_webauthn_config_rp_icon:
+          description: |-
+            Configures the Ory Kratos Webauthn RP Icon
+
+            This governs the "selfservice.methods.webauthn.config.rp.icon" setting.
+          type: string
+        kratos_selfservice_methods_webauthn_config_rp_id:
+          description: |-
+            Configures the Ory Kratos Webauthn RP ID
+
+            This governs the "selfservice.methods.webauthn.config.rp.id" setting.
+          type: string
+        kratos_selfservice_methods_webauthn_config_rp_origin:
+          description: |-
+            Configures the Ory Kratos Webauthn RP Origin
+
+            This governs the "selfservice.methods.webauthn.config.rp.origin" setting.
+          type: string
+        kratos_selfservice_methods_webauthn_enabled:
+          nullable: true
+          type: boolean
+        kratos_session_cookie_persistent:
+          nullable: true
+          type: boolean
+        kratos_session_cookie_same_site:
+          description: |-
+            Configures the Ory Kratos Session Cookie SameSite Attribute
+
+            This governs the "session.cookie.same_site" setting.
+          type: string
+        kratos_session_lifespan:
+          description: |-
+            Configures the Ory Kratos Session Lifespan
+
+            This governs the "session.lifespan" setting.
+          type: string
+        kratos_session_whoami_required_aal:
+          description: |-
+            Configures the Ory Kratos Session Whoami AAL requirement
+
+            This governs the "session.whoami.required_aal" setting.
+          type: string
+        name:
+          description: The project's name.
+          type: string
+        project_id:
+          format: uuid4
+          type: string
+        updated_at:
+          description: Last Time Project's Revision was Updated
+          format: date-time
+          readOnly: true
+          type: string
+      required:
+      - name
+      type: object
+    projectRevisionHook:
+      example:
+        web_hook_config_auth_api_key_value: eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ
+        web_hook_config_auth_type: web_hook_config_auth_type
+        created_at: 2000-01-23T04:56:07.000+00:00
+        project_revision_id: project_revision_id
+        web_hook_config_auth_basic_auth_user: web_hook_config_auth_basic_auth_user
+        hook: hook
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        web_hook_config_method: POST
+        config_key: config_key
+        web_hook_config_body: base64://ZnVuY3Rpb24oY3R4KSB7CiAgaWRlbnRpdHlfaWQ6IGlmIGN0eFsiaWRlbnRpdHkiXSAhPSBudWxsIHRoZW4gY3R4LmlkZW50aXR5LmlkLAp9=
+        web_hook_config_auth_api_key_in: header
+        web_hook_config_url: https://www.example.org/web-hook-listener
+        web_hook_config_auth_api_key_name: X-API-Key
+        id: id
+        web_hook_config_auth_basic_auth_password: web_hook_config_auth_basic_auth_password
+      properties:
+        config_key:
+          description: The Hooks Config Key
+          type: string
+        created_at:
+          description: The Project's Revision Creation Date
+          format: date-time
+          readOnly: true
+          type: string
+        hook:
+          description: The Hook Type
+          type: string
+        id:
+          format: uuid4
+          type: string
+        project_revision_id:
+          format: uuid4
+          type: string
+        updated_at:
+          description: Last Time Project's Revision was Updated
+          format: date-time
+          readOnly: true
+          type: string
+        web_hook_config_auth_api_key_in:
+          description: Whether to send the API Key in the HTTP Header or as a HTTP
+            Cookie
+          example: header
+          type: string
+        web_hook_config_auth_api_key_name:
+          description: The name of the api key
+          example: X-API-Key
+          type: string
+        web_hook_config_auth_api_key_value:
+          description: The value of the api key
+          example: eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ
+          type: string
+        web_hook_config_auth_basic_auth_password:
+          description: The password to be sent in the HTTP Basic Auth Header
+          type: string
+        web_hook_config_auth_basic_auth_user:
+          description: The username to be sent in the HTTP Basic Auth Header
+          type: string
+        web_hook_config_auth_type:
+          description: HTTP Auth Method to use for the Web-Hook
+          type: string
+        web_hook_config_body:
+          description: URI pointing to the JsonNet template used for Web-Hook payload
+            generation. Only used for those HTTP methods, which support HTTP body
+            payloads.
+          example: base64://ZnVuY3Rpb24oY3R4KSB7CiAgaWRlbnRpdHlfaWQ6IGlmIGN0eFsiaWRlbnRpdHkiXSAhPSBudWxsIHRoZW4gY3R4LmlkZW50aXR5LmlkLAp9=
+          type: string
+        web_hook_config_method:
+          description: The HTTP method to use (GET, POST, etc) for the Web-Hook
+          example: POST
+          type: string
+        web_hook_config_url:
+          description: The URL the Web-Hook should call
+          example: https://www.example.org/web-hook-listener
+          type: string
+      required:
+      - config_key
+      - hook
+      type: object
+    projectRevisionHooks:
+      items:
+        $ref: '#/components/schemas/projectRevisionHook'
+      type: array
+    projectRevisionIdentitySchema:
+      example:
+        identity_schema_id: identity_schema_id
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        import_id: import_id
+        import_url: base64://ey...
+        identity_schema:
+          schema: '{}'
+          blob_name: blob_name
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          name: CustomerIdentity
+          created_at: 2000-01-23T04:56:07.000+00:00
+          content_hash: content_hash
+          id: id
+          blob_url: blob_url
+        created_at: 2000-01-23T04:56:07.000+00:00
+        project_revision_id: project_revision_id
+        id: id
+        preset: preset
+        is_default: true
+      properties:
+        created_at:
+          description: The Project's Revision Creation Date
+          format: date-time
+          readOnly: true
+          type: string
+        id:
+          format: uuid4
+          type: string
+        identity_schema:
+          $ref: '#/components/schemas/identitySchema'
+        identity_schema_id:
+          format: uuid4
+          type: string
+        import_id:
+          description: The imported (named) ID of the Identity Schema referenced in
+            the Ory Kratos config.
+          type: string
+        import_url:
+          description: |-
+            The ImportURL can be used to import an Identity Schema from a bse64 encoded string.
+            In the future, this key also support HTTPS and other sources!
+
+            If you import an Ory Kratos configuration, this would be akin to the `identity.schemas.#.url` key.
+
+            The configuration will always return the import URL when you fetch it from the API.
+          example: base64://ey...
+          type: string
+        is_default:
+          description: |-
+            If true sets the default schema for identities
+
+            Only one schema can ever be the default schema. If you
+            try to add two schemas with default to true, the
+            request will fail.
+          type: boolean
+        preset:
+          description: Use a preset instead of a custom identity schema.
+          type: string
+        project_revision_id:
+          format: uuid4
+          type: string
+        updated_at:
+          description: Last Time Project's Revision was Updated
+          format: date-time
+          readOnly: true
+          type: string
+      type: object
+    projectRevisionIdentitySchemas:
+      items:
+        $ref: '#/components/schemas/projectRevisionIdentitySchema'
+      type: array
+    projectRevisionThirdPartyLoginProvider:
+      example:
+        issuer_url: https://accounts.google.com
+        azure_tenant: contoso.onmicrosoft.com
+        apple_private_key_id: UX56C66723
+        created_at: 2000-01-23T04:56:07.000+00:00
+        project_revision_id: project_revision_id
         label: label
         mapper_url: mapper_url
         client_id: client_id
         requested_claims: '{}'
-        provider: provider
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        apple_team_id: KP76DQS54M
+        provider: google
         scope:
         - scope
         - scope
-        auth_url: auth_url
+        provider_id: provider_id
+        apple_private_key: '-----BEGIN PRIVATE KEY----- ........ -----END PRIVATE
+          KEY-----'
+        auth_url: https://www.googleapis.com/oauth2/v2/auth
         client_secret: client_secret
         id: id
-        token_url: token_url
-        tenant: tenant
+        token_url: https://www.googleapis.com/oauth2/v4/token
       properties:
+        apple_private_key:
+          description: |-
+            Apple Private Key
+
+            Sign In with Apple Private Key needed for generating a JWT token for client secret
+          example: '-----BEGIN PRIVATE KEY----- ........ -----END PRIVATE KEY-----'
+          type: string
+        apple_private_key_id:
+          description: |-
+            Apple Private Key Identifier
+
+            Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret
+          example: UX56C66723
+          type: string
+        apple_team_id:
+          description: |-
+            Apple Developer Team ID
+
+            Apple Developer Team ID needed for generating a JWT token for client secret
+          example: KP76DQS54M
+          type: string
         auth_url:
           description: |-
             AuthURL is the authorize url, typically something like: https://example.org/oauth2/auth
             Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when
             `provider` is set to `generic`.
+          example: https://www.googleapis.com/oauth2/v2/auth
+          type: string
+        azure_tenant:
+          description: |-
+            Tenant is the Azure AD Tenant to use for authentication, and must be set when `provider` is set to `microsoft`.
+
+            Can be either `common`, `organizations`, `consumers` for a multitenant application or a specific tenant like
+            `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` or `contoso.onmicrosoft.com`.
+          example: contoso.onmicrosoft.com
           type: string
         client_id:
           description: ClientID is the application's Client ID.
@@ -4064,13 +5067,19 @@ components:
         client_secret:
           description: ClientSecret is the application's secret.
           type: string
+        created_at:
+          description: The Project's Revision Creation Date
+          format: date-time
+          readOnly: true
+          type: string
         id:
-          description: ID is the provider's ID
+          format: uuid4
           type: string
         issuer_url:
           description: |-
             IssuerURL is the OpenID Connect Server URL. You can leave this empty if `provider` is not set to `generic`.
             If set, neither `auth_url` nor `token_url` are required.
+          example: https://accounts.google.com
           type: string
         label:
           description: Label represents an optional label which can be used in the
@@ -4082,6 +5091,9 @@ components:
             profile information) to hydrate the identity's data.
 
             It can be either a URL (file://, http(s)://, base64://) or an inline JSONNet code snippet.
+          type: string
+        project_revision_id:
+          format: uuid4
           type: string
         provider:
           description: |-
@@ -4096,479 +5108,40 @@ components:
             facebook
             vk
             yandex
+            apple
+          example: google
+          type: string
+        provider_id:
+          description: ID is the provider's ID
           type: string
         requested_claims:
-          description: |-
-            RequestedClaims string encoded json object that specifies claims and optionally their properties which should be
-            included in the id_token or returned from the UserInfo Endpoint.
-
-            More information: https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter
+          title: JSONRawMessage represents a json.RawMessage that works well with
+            JSON, SQL, and Swagger.
           type: object
         scope:
-          description: Scope specifies optional requested permissions.
           items:
             type: string
+          title: StringSliceJSONFormat represents []string{} which is encoded to/from
+            JSON for SQL storage.
           type: array
-        string:
-          type: string
-        tenant:
-          description: |-
-            Tenant is the Azure AD Tenant to use for authentication, and must be set when `provider` is set to `microsoft`.
-            Can be either `common`, `organizations`, `consumers` for a multitenant application or a specific tenant like
-            `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` or `contoso.onmicrosoft.com`.
-          type: string
         token_url:
           description: |-
             TokenURL is the token url, typically something like: https://example.org/oauth2/token
+
             Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when
             `provider` is set to `generic`.
+          example: https://www.googleapis.com/oauth2/v4/token
           type: string
-      type: object
-    projectOidcConfigs:
-      items:
-        $ref: '#/components/schemas/projectOidcConfig'
-      type: array
-    projectPasswordConfig:
-      example:
-        revoke_active_sessions: true
-        enabled: true
-      properties:
-        enabled:
-          description: Set to true to enable the password authentication method.
-          type: boolean
-        revoke_active_sessions:
-          description: Set to true to remove active sessions when the users logs in.
-          type: boolean
-      type: object
-    projectPatch:
-      properties:
-        api_url:
-          description: |-
-            URL of Project API
-
-            In the future will allow to override Kratos project URL.
-            If set, error is returned. If left empty our hosted URL is used
-          type: string
-        application_url:
-          description: |-
-            URL where your application is available.
-
-            Your users will be redirected to this URL when they successfully complete a login, logout, verification,
-            recovery, or registration flow. More fine-grained redirection patterns are available for the individual flows
-            (login, registration, ...).
-
-            If left empty, our hosted URL will be used instead. It contains technical information on the
-            identities and is useful when developing a new project or trying out Ory Cloud.
-          type: string
-        default_identity_schema_url:
-          description: |-
-            Default Identity Schema URL
-
-            This represents your Ory Kratos Default Identity Schema. It is your identity's default schema.
-            This allows setting custom fields such as "address", specifying whether you want to log in
-            using email or a username, and more. For more information on this topic, please check out
-            the identity documentation.
-
-            If KratosCustomSchemaID is also added to the payload, it will be preferred and replace
-            the value of DefaultIdentitySchemaURL set by the client.
-
-            The value of this field can be either any "https://" URL - for example a file hosted at GitHub,
-            or a `preset://`-prefixed string.
-
-            Available presets are:
-
-            preset://email
-            preset://username
-            preset://basic
-            preset://blank
-          type: string
-        error_ui_url:
-          description: |-
-            Self-Service Error UI URL
-
-            Sets the UI URL for the error UI. If left empty, this will use Ory's hosted pages.
-          example: https://example.org/error
-          type: string
-        kratos_custom_schema_id:
-          description: |-
-            The Custom Schema ID
-
-            The custom schema ID is a preferred field over DefaultIdentitySchemaURL, meaning it will
-            override the DefaultIdentitySchemaURL with the custom schema's URL instead of accepting it
-            from the client-side.
-            Once this field is set the given custom schema will be associated with this project.
-          type: string
-        login_ui_url:
-          description: |-
-            Self-Service Login UI URL
-
-            Sets the UI URL for the login UI. If left empty, this will use Ory's hosted pages.
-          example: https://example.org/login
-          type: string
-        lookup_secret:
-          $ref: '#/components/schemas/projectLookupSecretConfig'
-        name:
-          description: |-
-            The project name.
-
-            Helps you identify your project.
-
-            in: body
-          example: ACME App
-          type: string
-        password:
-          $ref: '#/components/schemas/projectPasswordConfig'
-        recovery:
-          $ref: '#/components/schemas/projectRecoveryConfig'
-        recovery_ui_url:
-          description: |-
-            Self-Service Login UI URL
-
-            Sets the UI URL for the recovery UI. If left empty, this will use Ory's hosted pages.
-          example: https://example.org/recover
-          type: string
-        redirection_config:
-          $ref: '#/components/schemas/RedirectionConfig'
-        registration_ui_url:
-          description: |-
-            Self-Service Login UI URL
-
-            Sets the UI URL for the registration UI. If left empty, this will use Ory's hosted pages.
-          example: https://example.org/signup
-          type: string
-        session_after_sign_up:
-          description: |-
-            Issue Session after Sign Up
-
-            If set to true, users will receive a session after they successfully signed up. Enabling this option
-            allows account enumeration during registration flows. Read more: https://www.ory.sh/kratos/docs/self-service/flows/user-registration#successful-registration
-          type: boolean
-        session_soft_2fa:
-          description: Enable Soft 2FA for Login Sessions
-          type: boolean
-        settings_privileged_session_max_age_seconds:
-          description: |-
-            Duration in Seconds of how long a Session is Privileged
-
-            Defines how long a session is considered privileged in seconds. If the session's authenticated_at is older than the value
-            specified here, the user needs to re-authenticate to perform certain actions (e.g. password change).
-          example: 900
-          format: int64
-          type: integer
-        settings_soft_2fa:
-          description: Enable Soft 2FA for Self-Service Settings Flows
-          type: boolean
-        settings_ui_url:
-          description: |-
-            Self-Service Settings UI URL
-
-            Sets the UI URL for the settings UI. If left empty, this will use Ory's hosted pages.
-          example: https://example.org/settings
-          type: string
-        totp:
-          $ref: '#/components/schemas/projectTotpConfig'
-        verification:
-          $ref: '#/components/schemas/projectVerificationConfig'
-        verification_ui_url:
-          description: |-
-            Self-Service Login UI URL
-
-            Sets the UI URL for the verification UI. If left empty, this will use Ory's hosted pages.
-          example: https://example.org/verify
-          type: string
-        webauthn:
-          $ref: '#/components/schemas/projectWebAuthnConfig'
-      required:
-      - error_ui_url
-      - login_ui_url
-      - lookup_secret
-      - password
-      - recovery
-      - recovery_ui_url
-      - registration_ui_url
-      - session_after_sign_up
-      - session_soft_2fa
-      - settings_privileged_session_max_age_seconds
-      - settings_soft_2fa
-      - settings_ui_url
-      - totp
-      - verification
-      - verification_ui_url
-      - webauthn
-      type: object
-    projectRecoveryConfig:
-      example:
-        enabled: true
-      properties:
-        enabled:
-          description: Set to true to enable account recovery.
-          type: boolean
-      type: object
-    projectRevision:
-      example:
-        verification_ui_url: verification_ui_url
-        totp:
-          enabled: true
-          issuer: ory.sh
-        error_ui_url: error_ui_url
-        api_url: api_url
-        kratos_config_version: kratos_config_version
-        registration_ui_url: registration_ui_url
-        session_soft_2fa: true
-        created_at: 2000-01-23T04:56:07.000+00:00
-        lookup_secret:
-          enabled: true
-        recovery:
-          enabled: true
-        redirection_config:
-          settings:
-            password: password
-            profile: profile
-            main: main
-            oidc: oidc
-          logout:
-            password: password
-            profile: profile
-            main: main
-            oidc: oidc
-          url_allowlist:
-          - url_allowlist
-          - url_allowlist
-          global:
-            password: password
-            profile: profile
-            main: main
-            oidc: oidc
-          registration:
-            password: password
-            profile: profile
-            main: main
-            oidc: oidc
-          recovery:
-            password: password
-            profile: profile
-            main: main
-            oidc: oidc
-          login:
-            password: password
-            profile: profile
-            main: main
-            oidc: oidc
-          verification:
-            password: password
-            profile: profile
-            main: main
-            oidc: oidc
-        recovery_ui_url: recovery_ui_url
-        password:
-          revoke_active_sessions: true
-          enabled: true
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        project_id: project_id
-        default_identity_schema_url: default_identity_schema_url
-        id: id
-        login_ui_url: login_ui_url
-        verification:
-          require_verified_address: true
-          enabled: true
-        hosts:
-        - hosts
-        - hosts
-        settings_ui_url: settings_ui_url
-        oidc_providers:
-        - issuer_url: issuer_url
-          string: string
-          label: label
-          mapper_url: mapper_url
-          client_id: client_id
-          requested_claims: '{}'
-          provider: provider
-          scope:
-          - scope
-          - scope
-          auth_url: auth_url
-          client_secret: client_secret
-          id: id
-          token_url: token_url
-          tenant: tenant
-        - issuer_url: issuer_url
-          string: string
-          label: label
-          mapper_url: mapper_url
-          client_id: client_id
-          requested_claims: '{}'
-          provider: provider
-          scope:
-          - scope
-          - scope
-          auth_url: auth_url
-          client_secret: client_secret
-          id: id
-          token_url: token_url
-          tenant: tenant
-        settings_soft_2fa: true
-        application_url: application_url
-        settings_privileged_session_max_age_seconds: 0
-        kratos_custom_schema_id: kratos_custom_schema_id
-        name: name
-        webauthn:
-          rp_id: example.org
-          rp_display_name: Ory Corp
-          rp_origin: https://example.org/
-          rp_icon: https://example.org/icon.png
-          enabled: true
-        session_after_sign_up: true
-      properties:
-        api_url:
-          description: |-
-            The Project API URL
-
-            The URL where the Project's APIs are available.
-          type: string
-        application_url:
-          description: |-
-            Your Application URL
-
-            The URL where your application is available.
-            Your users will be redirected to this URL when they successfully complete a login, logout, verification,
-            recovery, or registration flow.
-
-            More fine-grained redirection patterns are available for the individual flows.
-          type: string
-        created_at:
-          description: The Project's Revision Creation Date
-          format: date-time
-          readOnly: true
-          type: string
-        default_identity_schema_url:
-          description: |-
-            Default Identity Schema URL
-
-            This represents your Ory Kratos Default Identity Schema. It is your identity's default schema.
-            This allows setting custom fields such as "address", specifying whether you want to log in
-            using email or a username, and more. For more information on this topic, please check out
-            the identity documentation.
-
-            The value of this field can be either any "https://" URL - for example a file hosted at GitHub,
-            or a `preset://`-prefixed string. Available profiles are:
-
-            profile://email
-            profile://username
-          type: string
-        error_ui_url:
-          description: |-
-            Self-Service Error UI URL
-
-            Sets the UI URL for the error UI. If left empty, this will use Ory's hosted pages.
-          type: string
-        hosts:
-          items:
-            type: string
-          title: StringSlicePipeDelimiter de/encodes the string slice to/from a SQL
-            string.
-          type: array
-        id:
-          format: uuid4
-          type: string
-        kratos_config_version:
-          description: The Project's Kratos Config Version
-          readOnly: true
-          type: string
-        kratos_custom_schema_id:
-          format: uuid4
-          type: string
-        login_ui_url:
-          description: |-
-            Self-Service Login UI URL
-
-            Sets the UI URL for the login UI. If left empty, this will use Ory's hosted pages.
-          type: string
-        lookup_secret:
-          $ref: '#/components/schemas/projectLookupSecretConfig'
-        name:
-          description: The project's name.
-          type: string
-        oidc_providers:
-          items:
-            $ref: '#/components/schemas/projectOidcConfig'
-          type: array
-        password:
-          $ref: '#/components/schemas/projectPasswordConfig'
-        project_id:
-          format: uuid4
-          type: string
-        recovery:
-          $ref: '#/components/schemas/projectRecoveryConfig'
-        recovery_ui_url:
-          description: |-
-            Self-Service Login UI URL
-
-            Sets the UI URL for the recovery UI. If left empty, this will use Ory's hosted pages.
-          type: string
-        redirection_config:
-          $ref: '#/components/schemas/RedirectionConfig'
-        registration_ui_url:
-          description: |-
-            Self-Service Login UI URL
-
-            Sets the UI URL for the registration UI. If left empty, this will use Ory's hosted pages.
-          type: string
-        session_after_sign_up:
-          description: |-
-            Issue Session after Sign Up
-
-            If set to true, users will receive a session after they successfully signed up. Enabling this option
-            allows account enumeration during registration flows. Read more: https://www.ory.sh/kratos/docs/self-service/flows/user-registration#successful-registration
-          type: boolean
-        session_soft_2fa:
-          description: Enable Soft 2FA for Login Sessions
-          type: boolean
-        settings_privileged_session_max_age_seconds:
-          description: |-
-            Duration in Seconds of how long a Session is Privileged
-
-            Defines how long a session is considered privileged in seconds. If the session's authenticated_at is older than the value
-            specified here, the user needs to re-authenticate to perform certain actions (e.g. password change).
-          format: int64
-          type: integer
-        settings_soft_2fa:
-          description: Enable Soft 2FA for Self-Service Settings Flows
-          type: boolean
-        settings_ui_url:
-          description: |-
-            Self-Service Settings UI URL
-
-            Sets the UI URL for the settings UI. If left empty, this will use Ory's hosted pages.
-          type: string
-        totp:
-          $ref: '#/components/schemas/projectTotpConfig'
         updated_at:
           description: Last Time Project's Revision was Updated
           format: date-time
           readOnly: true
           type: string
-        verification:
-          $ref: '#/components/schemas/projectVerificationConfig'
-        verification_ui_url:
-          description: |-
-            Self-Service Login UI URL
-
-            Sets the UI URL for the verification UI. If left empty, this will use Ory's hosted pages.
-          type: string
-        webauthn:
-          $ref: '#/components/schemas/projectWebAuthnConfig'
-      required:
-      - api_url
-      - application_url
-      - created_at
-      - default_identity_schema_url
-      - hosts
-      - id
-      - name
-      - project_id
-      - session_after_sign_up
-      - updated_at
       type: object
+    projectRevisionThirdPartyLoginProviders:
+      items:
+        $ref: '#/components/schemas/projectRevisionThirdPartyLoginProvider'
+      type: array
     projectRevisions:
       items:
         $ref: '#/components/schemas/projectRevision'
@@ -4577,64 +5150,6 @@ components:
       properties:
         slug:
           description: The Project Slug
-          type: string
-      type: object
-    projectTotpConfig:
-      example:
-        enabled: true
-        issuer: ory.sh
-      properties:
-        enabled:
-          description: Set to true to enable the TOTP authentication method.
-          type: boolean
-        issuer:
-          description: The issuer is the name which will appear in the Authenticator
-            app.
-          example: ory.sh
-          type: string
-      type: object
-    projectVerificationConfig:
-      example:
-        require_verified_address: true
-        enabled: true
-      properties:
-        enabled:
-          description: Set to true to enable email / phone verification.
-          type: boolean
-        require_verified_address:
-          description: Set to true to only allow users with a verified address to
-            sign in.
-          type: boolean
-      type: object
-    projectWebAuthnConfig:
-      example:
-        rp_id: example.org
-        rp_display_name: Ory Corp
-        rp_origin: https://example.org/
-        rp_icon: https://example.org/icon.png
-        enabled: true
-      properties:
-        enabled:
-          description: Set to true to enable the WebAuthn authentication method.
-          type: boolean
-        rp_display_name:
-          description: The display name to show in the authenticator.
-          example: Ory Corp
-          type: string
-        rp_icon:
-          description: A URL to an icon which might be shown in the authenticator.
-          example: https://example.org/icon.png
-          format: uri
-          type: string
-        rp_id:
-          description: This must be the hostname of the login page.
-          example: example.org
-          format: hostname
-          type: string
-        rp_origin:
-          description: This must be the scheme://hostname of the login page.
-          example: https://example.org/
-          format: uri
           type: string
       type: object
     projects:
@@ -6294,6 +6809,25 @@ components:
       required:
       - identity
       type: object
+    successfulUpdateProjectConfig:
+      properties:
+        project:
+          $ref: '#/components/schemas/project'
+        warnings:
+          description: |-
+            Import Warnings
+
+            Not all configuration items can be imported to Ory Cloud. For example,
+            setting the port does not make sense because Ory Cloud provides the runtime
+            and networking.
+
+            This field contains warnings where configuration keys were found but can not
+            be imported. These keys will be ignored by Ory Cloud. This field will help
+            you understand why certain configuration keys might not be respected!
+          items:
+            $ref: '#/components/schemas/Warning'
+          type: array
+      type: object
     uiContainer:
       description: Container represents a HTML Form. The container can work with both
         HTTP Form and JSON requests
@@ -6631,6 +7165,14 @@ components:
         hostname:
           description: The custom hostname where the API will be exposed.
           type: string
+      type: object
+    updateProjectConfigConfig:
+      properties:
+        identity:
+          description: The Ory Kratos config to import
+          type: object
+      required:
+      - identity
       type: object
     verifiableIdentityAddress:
       description: VerifiableAddress is an identity's verifiable address

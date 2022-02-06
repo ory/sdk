@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v0.0.1-alpha.58
-  - Build date: 2022-01-21T13:43:24.720546170Z[Etc/UTC]
+- API version: v0.0.1-alpha.66
+  - Build date: 2022-02-06T09:59:57.292194834Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -16,7 +16,7 @@ with a valid Personal Access Token. Public APIs are mostly used in browsers.
 
 Building the API client library requires:
 1. Java 1.8+
-2. Maven/Gradle
+2. Maven (3.8.3+)/Gradle (7.2+)
 
 ## Installation
 
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v0.0.1-alpha.58</version>
+  <version>v0.0.1-alpha.66</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -52,7 +52,14 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "sh.ory:client:v0.0.1-alpha.58"
+  repositories {
+    mavenCentral()     // Needed if the 'client' jar has been published to maven central.
+    mavenLocal()       // Needed if the 'client' jar has been published to the local maven repo.
+  }
+
+  dependencies {
+     implementation "sh.ory:client:v0.0.1-alpha.66"
+  }
 ```
 
 ### Others
@@ -65,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v0.0.1-alpha.58.jar`
+* `target/client-v0.0.1-alpha.66.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -164,6 +171,7 @@ Class | Method | HTTP request | Description
  - [AdminUpdateIdentityBody](docs/AdminUpdateIdentityBody.md)
  - [ApiToken](docs/ApiToken.md)
  - [AuthenticatorAssuranceLevel](docs/AuthenticatorAssuranceLevel.md)
+ - [CloudAccount](docs/CloudAccount.md)
  - [CnameSettings](docs/CnameSettings.md)
  - [CreateCustomHostnameBody](docs/CreateCustomHostnameBody.md)
  - [CreateSubscriptionPayload](docs/CreateSubscriptionPayload.md)
@@ -182,6 +190,7 @@ Class | Method | HTTP request | Description
  - [InlineResponse200](docs/InlineResponse200.md)
  - [InlineResponse2001](docs/InlineResponse2001.md)
  - [InlineResponse503](docs/InlineResponse503.md)
+ - [InvitePayload](docs/InvitePayload.md)
  - [IsOwnerForProjectBySlug](docs/IsOwnerForProjectBySlug.md)
  - [IsOwnerForProjectBySlugPayload](docs/IsOwnerForProjectBySlugPayload.md)
  - [JsonError](docs/JsonError.md)
@@ -190,19 +199,14 @@ Class | Method | HTTP request | Description
  - [Pagination](docs/Pagination.md)
  - [Project](docs/Project.md)
  - [ProjectHost](docs/ProjectHost.md)
- - [ProjectLookupSecretConfig](docs/ProjectLookupSecretConfig.md)
- - [ProjectOidcConfig](docs/ProjectOidcConfig.md)
- - [ProjectPasswordConfig](docs/ProjectPasswordConfig.md)
- - [ProjectPatch](docs/ProjectPatch.md)
- - [ProjectRecoveryConfig](docs/ProjectRecoveryConfig.md)
+ - [ProjectInvite](docs/ProjectInvite.md)
  - [ProjectRevision](docs/ProjectRevision.md)
+ - [ProjectRevisionHook](docs/ProjectRevisionHook.md)
+ - [ProjectRevisionIdentitySchema](docs/ProjectRevisionIdentitySchema.md)
+ - [ProjectRevisionThirdPartyLoginProvider](docs/ProjectRevisionThirdPartyLoginProvider.md)
  - [ProjectSlug](docs/ProjectSlug.md)
- - [ProjectTotpConfig](docs/ProjectTotpConfig.md)
- - [ProjectVerificationConfig](docs/ProjectVerificationConfig.md)
- - [ProjectWebAuthnConfig](docs/ProjectWebAuthnConfig.md)
+ - [QuotaProjectMemberSeats](docs/QuotaProjectMemberSeats.md)
  - [RecoveryAddress](docs/RecoveryAddress.md)
- - [RedirectionConfig](docs/RedirectionConfig.md)
- - [RedirectionField](docs/RedirectionField.md)
  - [RevokedSessions](docs/RevokedSessions.md)
  - [SchemaPatch](docs/SchemaPatch.md)
  - [SelfServiceBrowserLocationChangeRequiredError](docs/SelfServiceBrowserLocationChangeRequiredError.md)
@@ -247,6 +251,7 @@ Class | Method | HTTP request | Description
  - [Subscription](docs/Subscription.md)
  - [SuccessfulSelfServiceLoginWithoutBrowser](docs/SuccessfulSelfServiceLoginWithoutBrowser.md)
  - [SuccessfulSelfServiceRegistrationWithoutBrowser](docs/SuccessfulSelfServiceRegistrationWithoutBrowser.md)
+ - [SuccessfulUpdateProjectConfig](docs/SuccessfulUpdateProjectConfig.md)
  - [UiContainer](docs/UiContainer.md)
  - [UiNode](docs/UiNode.md)
  - [UiNodeAnchorAttributes](docs/UiNodeAnchorAttributes.md)
@@ -258,9 +263,11 @@ Class | Method | HTTP request | Description
  - [UiNodeTextAttributes](docs/UiNodeTextAttributes.md)
  - [UiText](docs/UiText.md)
  - [UpdateCustomHostnameBody](docs/UpdateCustomHostnameBody.md)
+ - [UpdateProjectConfigConfig](docs/UpdateProjectConfigConfig.md)
  - [UpdateSubscriptionPayload](docs/UpdateSubscriptionPayload.md)
  - [VerifiableIdentityAddress](docs/VerifiableIdentityAddress.md)
  - [Version](docs/Version.md)
+ - [Warning](docs/Warning.md)
 
 
 ## Documentation for Authorization

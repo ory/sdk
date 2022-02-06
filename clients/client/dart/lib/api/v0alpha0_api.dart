@@ -12,7 +12,7 @@ import 'package:built_value/serializer.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/model/generic_error.dart';
 import 'package:ory_client/model/project.dart';
-import 'package:ory_client/model/project_patch.dart';
+import 'package:ory_client/model/project_revision.dart';
 
 class V0alpha0Api {
 
@@ -26,7 +26,7 @@ class V0alpha0Api {
   ///
   /// Creates a new project.
   Future<Response<Project>> createProject({ 
-    ProjectPatch projectPatch,
+    ProjectRevision projectRevision,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -58,8 +58,8 @@ class V0alpha0Api {
 
     dynamic _bodyData;
 
-    const _type = FullType(ProjectPatch);
-    _bodyData = _serializers.serialize(projectPatch, specifiedType: _type);
+    const _type = FullType(ProjectRevision);
+    _bodyData = _serializers.serialize(projectRevision, specifiedType: _type);
 
     final _response = await _dio.request<dynamic>(
       _request.path,
@@ -209,7 +209,7 @@ class V0alpha0Api {
   /// Creates a new configuration revision for a project.
   Future<Response<Project>> updateProject(
     String projectId, { 
-    ProjectPatch projectPatch,
+    ProjectRevision projectRevision,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -241,8 +241,8 @@ class V0alpha0Api {
 
     dynamic _bodyData;
 
-    const _type = FullType(ProjectPatch);
-    _bodyData = _serializers.serialize(projectPatch, specifiedType: _type);
+    const _type = FullType(ProjectRevision);
+    _bodyData = _serializers.serialize(projectRevision, specifiedType: _type);
 
     final _response = await _dio.request<dynamic>(
       _request.path,

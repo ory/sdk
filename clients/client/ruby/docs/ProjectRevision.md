@@ -4,35 +4,72 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **api_url** | **String** | The Project API URL  The URL where the Project&#39;s APIs are available. |  |
-| **application_url** | **String** | Your Application URL  The URL where your application is available. Your users will be redirected to this URL when they successfully complete a login, logout, verification, recovery, or registration flow.  More fine-grained redirection patterns are available for the individual flows. |  |
-| **created_at** | **Time** | The Project&#39;s Revision Creation Date | [readonly] |
-| **default_identity_schema_url** | **String** | Default Identity Schema URL  This represents your Ory Kratos Default Identity Schema. It is your identity&#39;s default schema. This allows setting custom fields such as \&quot;address\&quot;, specifying whether you want to log in using email or a username, and more. For more information on this topic, please check out the identity documentation.  The value of this field can be either any \&quot;https://\&quot; URL - for example a file hosted at GitHub, or a &#x60;preset://&#x60;-prefixed string. Available profiles are:  profile://email profile://username |  |
-| **error_ui_url** | **String** | Self-Service Error UI URL  Sets the UI URL for the error UI. If left empty, this will use Ory&#39;s hosted pages. | [optional] |
-| **hosts** | **Array&lt;String&gt;** |  |  |
-| **id** | **String** |  |  |
-| **kratos_config_version** | **String** | The Project&#39;s Kratos Config Version | [optional][readonly] |
-| **kratos_custom_schema_id** | **String** |  | [optional] |
-| **login_ui_url** | **String** | Self-Service Login UI URL  Sets the UI URL for the login UI. If left empty, this will use Ory&#39;s hosted pages. | [optional] |
-| **lookup_secret** | [**ProjectLookupSecretConfig**](ProjectLookupSecretConfig.md) |  | [optional] |
+| **created_at** | **Time** | The Project&#39;s Revision Creation Date | [optional][readonly] |
+| **id** | **String** |  | [optional] |
+| **kratos_cookies_same_site** | **String** | Configures the Ory Kratos Cookie SameSite Attribute  This governs the \&quot;cookies.same_site\&quot; setting. | [optional] |
+| **kratos_courier_smtp_connection_uri** | **String** | Configures the Ory Kratos SMTP Connection URI  This governs the \&quot;courier.smtp.connection_uri\&quot; setting. | [optional] |
+| **kratos_courier_smtp_from_address** | **String** | Configures the Ory Kratos SMTP From Address  This governs the \&quot;courier.smtp.from_address\&quot; setting. | [optional] |
+| **kratos_courier_smtp_from_name** | **String** | Configures the Ory Kratos SMTP From Name  This governs the \&quot;courier.smtp.from_name\&quot; setting. | [optional] |
+| **kratos_courier_smtp_headers** | **Object** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] |
+| **kratos_identity_schemas** | [**Array&lt;ProjectRevisionIdentitySchema&gt;**](ProjectRevisionIdentitySchema.md) |  | [optional] |
+| **kratos_secrets_cipher** | **Array&lt;String&gt;** |  | [optional] |
+| **kratos_secrets_cookie** | **Array&lt;String&gt;** |  | [optional] |
+| **kratos_secrets_default** | **Array&lt;String&gt;** |  | [optional] |
+| **kratos_selfservice_allowed_return_urls** | **Array&lt;String&gt;** |  | [optional] |
+| **kratos_selfservice_default_browser_return_url** | **String** | Configures the Ory Kratos Default Return URL  This governs the \&quot;selfservice.allowed_return_urls\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_error_ui_url** | **String** | Configures the Ory Kratos Error UI URL  This governs the \&quot;selfservice.flows.error.ui_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_hooks** | [**Array&lt;ProjectRevisionHook&gt;**](ProjectRevisionHook.md) |  | [optional] |
+| **kratos_selfservice_flows_login_after_default_browser_return_url** | **String** | Configures the Ory Kratos Login Default Return URL  This governs the \&quot;selfservice.flows.login.after.default_browser_return_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_login_after_oidc_default_browser_return_url** | **String** | Configures the Ory Kratos Login After OIDC Default Return URL  This governs the \&quot;selfservice.flows.login.after.oidc.default_browser_return_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_login_after_password_default_browser_return_url** | **String** | Configures the Ory Kratos Login After Password Default Return URL  This governs the \&quot;selfservice.flows.login.after.password.default_browser_return_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_login_lifespan** | **String** | Configures the Ory Kratos Login Lifespan  This governs the \&quot;selfservice.flows.login.lifespan\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_login_ui_url** | **String** | Configures the Ory Kratos Login UI URL  This governs the \&quot;selfservice.flows.login.ui_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_logout_after_default_browser_return_url** | **String** | Configures the Ory Kratos Logout Default Return URL  This governs the \&quot;selfservice.flows.logout.after.default_browser_return_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_recovery_after_default_browser_return_url** | **String** | Configures the Ory Kratos Recovery Default Return URL  This governs the \&quot;selfservice.flows.recovery.after.default_browser_return_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_recovery_enabled** | **Boolean** | Configures the Ory Kratos Recovery Enabled Setting  This governs the \&quot;selfservice.flows.recovery.enabled\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_recovery_lifespan** | **String** | Configures the Ory Kratos Recovery Lifespan  This governs the \&quot;selfservice.flows.recovery.lifespan\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_recovery_ui_url** | **String** | Configures the Ory Kratos Recovery UI URL  This governs the \&quot;selfservice.flows.recovery.ui_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_registration_after_default_browser_return_url** | **String** | Configures the Ory Kratos Registration Default Return URL  This governs the \&quot;selfservice.flows.registration.after.default_browser_return_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_registration_after_oidc_default_browser_return_url** | **String** | Configures the Ory Kratos Registration After OIDC Default Return URL  This governs the \&quot;selfservice.flows.registration.after.oidc.default_browser_return_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_registration_after_password_default_browser_return_url** | **String** | Configures the Ory Kratos Registration After Password Default Return URL  This governs the \&quot;selfservice.flows.registration.after.password.default_browser_return_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_registration_lifespan** | **String** | Configures the Ory Kratos Registration Lifespan  This governs the \&quot;selfservice.flows.registration.lifespan\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_registration_ui_url** | **String** | Configures the Ory Kratos Registration UI URL  This governs the \&quot;selfservice.flows.registration.ui_url\&quot; setting.0 | [optional] |
+| **kratos_selfservice_flows_settings_after_default_browser_return_url** | **String** | Configures the Ory Kratos Settings Default Return URL  This governs the \&quot;selfservice.flows.settings.after.default_browser_return_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_settings_after_password_default_browser_return_url** | **String** | Configures the Ory Kratos Settings Default Return URL After Updating Passwords  This governs the \&quot;selfservice.flows.settings.after.password.default_browser_return_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_settings_after_profile_default_browser_return_url** | **String** | Configures the Ory Kratos Settings Default Return URL After Updating Profiles  This governs the \&quot;selfservice.flows.settings.after.profile.default_browser_return_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_settings_lifespan** | **String** | Configures the Ory Kratos Settings Lifespan  This governs the \&quot;selfservice.flows.settings.lifespan\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_settings_privileged_session_max_age** | **String** | Configures the Ory Kratos Settings Privileged Session Max Age  This governs the \&quot;selfservice.flows.settings.privileged_session_max_age\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_settings_required_aal** | **String** | Configures the Ory Kratos Settings Required AAL  This governs the \&quot;selfservice.flows.settings.required_aal\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_settings_ui_url** | **String** | Configures the Ory Kratos Settings UI URL  This governs the \&quot;selfservice.flows.settings.ui_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_verification_after_default_browser_return_url** | **String** | Configures the Ory Kratos Verification Default Return URL  This governs the \&quot;selfservice.flows.verification.after.default_browser_return_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_verification_enabled** | **Boolean** | Configures the Ory Kratos Verification Enabled Setting  This governs the \&quot;selfservice.flows.verification.enabled\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_verification_lifespan** | **String** | Configures the Ory Kratos Verification Lifespan  This governs the \&quot;selfservice.flows.verification.lifespan\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_verification_ui_url** | **String** | Configures the Ory Kratos Verification UI URL  This governs the \&quot;selfservice.flows.verification.ui_url\&quot; setting. | [optional] |
+| **kratos_selfservice_methods_link_config_base_url** | **String** | Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \&quot;selfservice.methods.link.config.base_url\&quot; setting. | [optional] |
+| **kratos_selfservice_methods_link_config_lifespan** | **String** | Configures whether Ory Kratos Link Method is enabled  This governs the \&quot;selfservice.methods.link.config.lifespan\&quot; setting. | [optional] |
+| **kratos_selfservice_methods_link_enabled** | **Boolean** |  | [optional] |
+| **kratos_selfservice_methods_lookup_secret_enabled** | **Boolean** |  | [optional] |
+| **kratos_selfservice_methods_oidc_config_providers** | [**Array&lt;ProjectRevisionThirdPartyLoginProvider&gt;**](ProjectRevisionThirdPartyLoginProvider.md) |  | [optional] |
+| **kratos_selfservice_methods_oidc_enabled** | **Boolean** | Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \&quot;selfservice.methods.oidc.enabled\&quot; setting. | [optional] |
+| **kratos_selfservice_methods_password_config_haveibeenpwned_enabled** | **Boolean** |  | [optional] |
+| **kratos_selfservice_methods_password_config_ignore_network_errors** | **Boolean** |  | [optional] |
+| **kratos_selfservice_methods_password_config_max_breaches** | **Integer** | Configures Ory Kratos Password Max Breaches Detection  This governs the \&quot;selfservice.methods.password.enabled\&quot; setting. | [optional] |
+| **kratos_selfservice_methods_password_enabled** | **Boolean** |  | [optional] |
+| **kratos_selfservice_methods_profile_enabled** | **Boolean** |  | [optional] |
+| **kratos_selfservice_methods_totp_config_issuer** | **String** | Configures Ory Kratos TOTP Issuer  This governs the \&quot;selfservice.methods.totp.config.issuer\&quot; setting. | [optional] |
+| **kratos_selfservice_methods_totp_enabled** | **Boolean** |  | [optional] |
+| **kratos_selfservice_methods_webauthn_config_rp_display_name** | **String** | Configures the Ory Kratos Webauthn RP Display Name  This governs the \&quot;selfservice.methods.webauthn.config.rp.display_name\&quot; setting. | [optional] |
+| **kratos_selfservice_methods_webauthn_config_rp_icon** | **String** | Configures the Ory Kratos Webauthn RP Icon  This governs the \&quot;selfservice.methods.webauthn.config.rp.icon\&quot; setting. | [optional] |
+| **kratos_selfservice_methods_webauthn_config_rp_id** | **String** | Configures the Ory Kratos Webauthn RP ID  This governs the \&quot;selfservice.methods.webauthn.config.rp.id\&quot; setting. | [optional] |
+| **kratos_selfservice_methods_webauthn_config_rp_origin** | **String** | Configures the Ory Kratos Webauthn RP Origin  This governs the \&quot;selfservice.methods.webauthn.config.rp.origin\&quot; setting. | [optional] |
+| **kratos_selfservice_methods_webauthn_enabled** | **Boolean** |  | [optional] |
+| **kratos_session_cookie_persistent** | **Boolean** |  | [optional] |
+| **kratos_session_cookie_same_site** | **String** | Configures the Ory Kratos Session Cookie SameSite Attribute  This governs the \&quot;session.cookie.same_site\&quot; setting. | [optional] |
+| **kratos_session_lifespan** | **String** | Configures the Ory Kratos Session Lifespan  This governs the \&quot;session.lifespan\&quot; setting. | [optional] |
+| **kratos_session_whoami_required_aal** | **String** | Configures the Ory Kratos Session Whoami AAL requirement  This governs the \&quot;session.whoami.required_aal\&quot; setting. | [optional] |
 | **name** | **String** | The project&#39;s name. |  |
-| **oidc_providers** | [**Array&lt;ProjectOidcConfig&gt;**](ProjectOidcConfig.md) |  | [optional] |
-| **password** | [**ProjectPasswordConfig**](ProjectPasswordConfig.md) |  | [optional] |
-| **project_id** | **String** |  |  |
-| **recovery** | [**ProjectRecoveryConfig**](ProjectRecoveryConfig.md) |  | [optional] |
-| **recovery_ui_url** | **String** | Self-Service Login UI URL  Sets the UI URL for the recovery UI. If left empty, this will use Ory&#39;s hosted pages. | [optional] |
-| **redirection_config** | [**RedirectionConfig**](RedirectionConfig.md) |  | [optional] |
-| **registration_ui_url** | **String** | Self-Service Login UI URL  Sets the UI URL for the registration UI. If left empty, this will use Ory&#39;s hosted pages. | [optional] |
-| **session_after_sign_up** | **Boolean** | Issue Session after Sign Up  If set to true, users will receive a session after they successfully signed up. Enabling this option allows account enumeration during registration flows. Read more: https://www.ory.sh/kratos/docs/self-service/flows/user-registration#successful-registration |  |
-| **session_soft_2fa** | **Boolean** | Enable Soft 2FA for Login Sessions | [optional] |
-| **settings_privileged_session_max_age_seconds** | **Integer** | Duration in Seconds of how long a Session is Privileged  Defines how long a session is considered privileged in seconds. If the session&#39;s authenticated_at is older than the value specified here, the user needs to re-authenticate to perform certain actions (e.g. password change). | [optional] |
-| **settings_soft_2fa** | **Boolean** | Enable Soft 2FA for Self-Service Settings Flows | [optional] |
-| **settings_ui_url** | **String** | Self-Service Settings UI URL  Sets the UI URL for the settings UI. If left empty, this will use Ory&#39;s hosted pages. | [optional] |
-| **totp** | [**ProjectTotpConfig**](ProjectTotpConfig.md) |  | [optional] |
-| **updated_at** | **Time** | Last Time Project&#39;s Revision was Updated | [readonly] |
-| **verification** | [**ProjectVerificationConfig**](ProjectVerificationConfig.md) |  | [optional] |
-| **verification_ui_url** | **String** | Self-Service Login UI URL  Sets the UI URL for the verification UI. If left empty, this will use Ory&#39;s hosted pages. | [optional] |
-| **webauthn** | [**ProjectWebAuthnConfig**](ProjectWebAuthnConfig.md) |  | [optional] |
+| **project_id** | **String** |  | [optional] |
+| **updated_at** | **Time** | Last Time Project&#39;s Revision was Updated | [optional][readonly] |
 
 ## Example
 
@@ -40,35 +77,72 @@
 require 'ory-client'
 
 instance = OryClient::ProjectRevision.new(
-  api_url: null,
-  application_url: null,
   created_at: null,
-  default_identity_schema_url: null,
-  error_ui_url: null,
-  hosts: null,
   id: null,
-  kratos_config_version: null,
-  kratos_custom_schema_id: null,
-  login_ui_url: null,
-  lookup_secret: null,
+  kratos_cookies_same_site: null,
+  kratos_courier_smtp_connection_uri: null,
+  kratos_courier_smtp_from_address: null,
+  kratos_courier_smtp_from_name: null,
+  kratos_courier_smtp_headers: null,
+  kratos_identity_schemas: null,
+  kratos_secrets_cipher: null,
+  kratos_secrets_cookie: null,
+  kratos_secrets_default: null,
+  kratos_selfservice_allowed_return_urls: null,
+  kratos_selfservice_default_browser_return_url: null,
+  kratos_selfservice_flows_error_ui_url: null,
+  kratos_selfservice_flows_hooks: null,
+  kratos_selfservice_flows_login_after_default_browser_return_url: null,
+  kratos_selfservice_flows_login_after_oidc_default_browser_return_url: null,
+  kratos_selfservice_flows_login_after_password_default_browser_return_url: null,
+  kratos_selfservice_flows_login_lifespan: null,
+  kratos_selfservice_flows_login_ui_url: null,
+  kratos_selfservice_flows_logout_after_default_browser_return_url: null,
+  kratos_selfservice_flows_recovery_after_default_browser_return_url: null,
+  kratos_selfservice_flows_recovery_enabled: null,
+  kratos_selfservice_flows_recovery_lifespan: null,
+  kratos_selfservice_flows_recovery_ui_url: null,
+  kratos_selfservice_flows_registration_after_default_browser_return_url: null,
+  kratos_selfservice_flows_registration_after_oidc_default_browser_return_url: null,
+  kratos_selfservice_flows_registration_after_password_default_browser_return_url: null,
+  kratos_selfservice_flows_registration_lifespan: null,
+  kratos_selfservice_flows_registration_ui_url: null,
+  kratos_selfservice_flows_settings_after_default_browser_return_url: null,
+  kratos_selfservice_flows_settings_after_password_default_browser_return_url: null,
+  kratos_selfservice_flows_settings_after_profile_default_browser_return_url: null,
+  kratos_selfservice_flows_settings_lifespan: null,
+  kratos_selfservice_flows_settings_privileged_session_max_age: null,
+  kratos_selfservice_flows_settings_required_aal: null,
+  kratos_selfservice_flows_settings_ui_url: null,
+  kratos_selfservice_flows_verification_after_default_browser_return_url: null,
+  kratos_selfservice_flows_verification_enabled: null,
+  kratos_selfservice_flows_verification_lifespan: null,
+  kratos_selfservice_flows_verification_ui_url: null,
+  kratos_selfservice_methods_link_config_base_url: null,
+  kratos_selfservice_methods_link_config_lifespan: null,
+  kratos_selfservice_methods_link_enabled: null,
+  kratos_selfservice_methods_lookup_secret_enabled: null,
+  kratos_selfservice_methods_oidc_config_providers: null,
+  kratos_selfservice_methods_oidc_enabled: null,
+  kratos_selfservice_methods_password_config_haveibeenpwned_enabled: null,
+  kratos_selfservice_methods_password_config_ignore_network_errors: null,
+  kratos_selfservice_methods_password_config_max_breaches: null,
+  kratos_selfservice_methods_password_enabled: null,
+  kratos_selfservice_methods_profile_enabled: null,
+  kratos_selfservice_methods_totp_config_issuer: null,
+  kratos_selfservice_methods_totp_enabled: null,
+  kratos_selfservice_methods_webauthn_config_rp_display_name: null,
+  kratos_selfservice_methods_webauthn_config_rp_icon: null,
+  kratos_selfservice_methods_webauthn_config_rp_id: null,
+  kratos_selfservice_methods_webauthn_config_rp_origin: null,
+  kratos_selfservice_methods_webauthn_enabled: null,
+  kratos_session_cookie_persistent: null,
+  kratos_session_cookie_same_site: null,
+  kratos_session_lifespan: null,
+  kratos_session_whoami_required_aal: null,
   name: null,
-  oidc_providers: null,
-  password: null,
   project_id: null,
-  recovery: null,
-  recovery_ui_url: null,
-  redirection_config: null,
-  registration_ui_url: null,
-  session_after_sign_up: null,
-  session_soft_2fa: null,
-  settings_privileged_session_max_age_seconds: null,
-  settings_soft_2fa: null,
-  settings_ui_url: null,
-  totp: null,
-  updated_at: null,
-  verification: null,
-  verification_ui_url: null,
-  webauthn: null
+  updated_at: null
 )
 ```
 

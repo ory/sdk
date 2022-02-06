@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **DateTime** | The Project&#39;s Creation Date | [readonly] 
 **CurrentRevision** | [**ClientProjectRevision**](ClientProjectRevision.md) |  | 
+**Hosts** | **List&lt;string&gt;** |  | 
 **Id** | **string** |  | 
 **Revisions** | [**List&lt;ClientProjectRevision&gt;**](ClientProjectRevision.md) |  | 
 **Slug** | **string** | The project&#39;s slug | [readonly] 

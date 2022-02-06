@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **String** | The Project's Creation Date | [readonly]
 **current_revision** | [**crate::models::ProjectRevision**](projectRevision.md) |  | 
+**hosts** | **Vec<String>** |  | 
 **id** | **String** |  | 
 **revisions** | [**Vec<crate::models::ProjectRevision>**](projectRevision.md) |  | 
 **slug** | **String** | The project's slug | [readonly]

@@ -21,6 +21,9 @@ abstract class Project implements Built<Project, ProjectBuilder> {
     @BuiltValueField(wireName: r'current_revision')
     ProjectRevision get currentRevision;
 
+    @BuiltValueField(wireName: r'hosts')
+    BuiltList<String> get hosts;
+
     @BuiltValueField(wireName: r'id')
     String get id;
 
@@ -74,6 +77,10 @@ class _$ProjectSerializer implements StructuredSerializer<Project> {
             ..add(serializers.serialize(object.currentRevision,
                 specifiedType: const FullType(ProjectRevision)));
         result
+            ..add(r'hosts')
+            ..add(serializers.serialize(object.hosts,
+                specifiedType: const FullType(BuiltList, [FullType(String)])));
+        result
             ..add(r'id')
             ..add(serializers.serialize(object.id,
                 specifiedType: const FullType(String)));
@@ -120,6 +127,10 @@ class _$ProjectSerializer implements StructuredSerializer<Project> {
                 case r'current_revision':
                     result.currentRevision.replace(serializers.deserialize(value,
                         specifiedType: const FullType(ProjectRevision)) as ProjectRevision);
+                    break;
+                case r'hosts':
+                    result.hosts.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
                     break;
                 case r'id':
                     result.id = serializers.deserialize(value,

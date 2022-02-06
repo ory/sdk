@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.58
+ * API version: v0.0.1-alpha.66
  * Contact: support@ory.sh
  */
 
@@ -21,6 +21,7 @@ type Project struct {
 	// The Project's Creation Date
 	CreatedAt time.Time `json:"created_at"`
 	CurrentRevision ProjectRevision `json:"current_revision"`
+	Hosts []string `json:"hosts"`
 	Id string `json:"id"`
 	Revisions []ProjectRevision `json:"revisions"`
 	// The project's slug
@@ -36,10 +37,11 @@ type Project struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProject(createdAt time.Time, currentRevision ProjectRevision, id string, revisions []ProjectRevision, slug string, state string, updatedAt time.Time) *Project {
+func NewProject(createdAt time.Time, currentRevision ProjectRevision, hosts []string, id string, revisions []ProjectRevision, slug string, state string, updatedAt time.Time) *Project {
 	this := Project{}
 	this.CreatedAt = createdAt
 	this.CurrentRevision = currentRevision
+	this.Hosts = hosts
 	this.Id = id
 	this.Revisions = revisions
 	this.Slug = slug
@@ -102,6 +104,30 @@ func (o *Project) GetCurrentRevisionOk() (*ProjectRevision, bool) {
 // SetCurrentRevision sets field value
 func (o *Project) SetCurrentRevision(v ProjectRevision) {
 	o.CurrentRevision = v
+}
+
+// GetHosts returns the Hosts field value
+func (o *Project) GetHosts() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Hosts
+}
+
+// GetHostsOk returns a tuple with the Hosts field value
+// and a boolean to check if the value has been set.
+func (o *Project) GetHostsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Hosts, true
+}
+
+// SetHosts sets field value
+func (o *Project) SetHosts(v []string) {
+	o.Hosts = v
 }
 
 // GetId returns the Id field value
@@ -263,6 +289,9 @@ func (o Project) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["current_revision"] = o.CurrentRevision
+	}
+	if true {
+		toSerialize["hosts"] = o.Hosts
 	}
 	if true {
 		toSerialize["id"] = o.Id

@@ -31,7 +31,7 @@ end
 
 api_instance = OryClient::V0alpha0Api.new
 opts = {
-  project_patch: OryClient::ProjectPatch.new({error_ui_url: 'https://example.org/error', login_ui_url: 'https://example.org/login', lookup_secret: OryClient::ProjectLookupSecretConfig.new, password: OryClient::ProjectPasswordConfig.new, recovery: OryClient::ProjectRecoveryConfig.new, recovery_ui_url: 'https://example.org/recover', registration_ui_url: 'https://example.org/signup', session_after_sign_up: false, session_soft_2fa: false, settings_privileged_session_max_age_seconds: 900, settings_soft_2fa: false, settings_ui_url: 'https://example.org/settings', totp: OryClient::ProjectTotpConfig.new, verification: OryClient::ProjectVerificationConfig.new, verification_ui_url: 'https://example.org/verify', webauthn: OryClient::ProjectWebAuthnConfig.new}) # ProjectPatch | 
+  project_revision: OryClient::ProjectRevision.new({name: 'name_example'}) # ProjectRevision | 
 }
 
 begin
@@ -65,7 +65,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **project_patch** | [**ProjectPatch**](ProjectPatch.md) |  | [optional] |
+| **project_revision** | [**ProjectRevision**](ProjectRevision.md) |  | [optional] |
 
 ### Return type
 
@@ -238,7 +238,7 @@ end
 api_instance = OryClient::V0alpha0Api.new
 project_id = 'project_id_example' # String | Project ID  The project's ID.
 opts = {
-  project_patch: OryClient::ProjectPatch.new({error_ui_url: 'https://example.org/error', login_ui_url: 'https://example.org/login', lookup_secret: OryClient::ProjectLookupSecretConfig.new, password: OryClient::ProjectPasswordConfig.new, recovery: OryClient::ProjectRecoveryConfig.new, recovery_ui_url: 'https://example.org/recover', registration_ui_url: 'https://example.org/signup', session_after_sign_up: false, session_soft_2fa: false, settings_privileged_session_max_age_seconds: 900, settings_soft_2fa: false, settings_ui_url: 'https://example.org/settings', totp: OryClient::ProjectTotpConfig.new, verification: OryClient::ProjectVerificationConfig.new, verification_ui_url: 'https://example.org/verify', webauthn: OryClient::ProjectWebAuthnConfig.new}) # ProjectPatch | 
+  project_revision: OryClient::ProjectRevision.new({name: 'name_example'}) # ProjectRevision | 
 }
 
 begin
@@ -273,7 +273,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **project_id** | **String** | Project ID  The project&#39;s ID. |  |
-| **project_patch** | [**ProjectPatch**](ProjectPatch.md) |  | [optional] |
+| **project_revision** | [**ProjectRevision**](ProjectRevision.md) |  | [optional] |
 
 ### Return type
 

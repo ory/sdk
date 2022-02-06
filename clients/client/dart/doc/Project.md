@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdAt** | [**DateTime**](DateTime.md) | The Project's Creation Date | 
 **currentRevision** | [**ProjectRevision**](ProjectRevision.md) |  | 
+**hosts** | **BuiltList<String>** |  | 
 **id** | **String** |  | 
 **revisions** | [**BuiltList<ProjectRevision>**](ProjectRevision.md) |  | 
 **slug** | **String** | The project's slug | 

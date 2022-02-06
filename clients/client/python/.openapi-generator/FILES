@@ -1,5 +1,6 @@
 .gitignore
 .gitlab-ci.yml
+.openapi-generator-ignore
 .travis.yml
 README.md
 docs/ActiveProject.md
@@ -9,6 +10,7 @@ docs/AdminUpdateIdentityBody.md
 docs/ApiToken.md
 docs/ApiTokens.md
 docs/AuthenticatorAssuranceLevel.md
+docs/CloudAccount.md
 docs/CnameSettings.md
 docs/CreateCustomHostnameBody.md
 docs/CreateSubscriptionPayload.md
@@ -144,6 +146,7 @@ ory_client/model/admin_update_identity_body.py
 ory_client/model/api_token.py
 ory_client/model/api_tokens.py
 ory_client/model/authenticator_assurance_level.py
+ory_client/model/cloud_account.py
 ory_client/model/cname_settings.py
 ory_client/model/create_custom_hostname_body.py
 ory_client/model/create_subscription_payload.py
@@ -273,6 +276,7 @@ test/test_admin_update_identity_body.py
 test/test_api_token.py
 test/test_api_tokens.py
 test/test_authenticator_assurance_level.py
+test/test_cloud_account.py
 test/test_cname_settings.py
 test/test_create_custom_hostname_body.py
 test/test_create_subscription_payload.py

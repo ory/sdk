@@ -5,15 +5,11 @@
 
 // ignore_for_file: unused_import
 
-import 'package:ory_client/model/project_recovery_config.dart';
-import 'package:ory_client/model/project_web_authn_config.dart';
-import 'package:ory_client/model/project_totp_config.dart';
+import 'package:ory_client/model/project_revision_hook.dart';
 import 'package:built_collection/built_collection.dart';
-import 'package:ory_client/model/project_password_config.dart';
-import 'package:ory_client/model/project_verification_config.dart';
-import 'package:ory_client/model/project_oidc_config.dart';
-import 'package:ory_client/model/redirection_config.dart';
-import 'package:ory_client/model/project_lookup_secret_config.dart';
+import 'package:ory_client/model/project_revision_third_party_login_provider.dart';
+import 'package:ory_client/model/project_revision_identity_schema.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -21,128 +17,316 @@ part 'project_revision.g.dart';
 
 abstract class ProjectRevision implements Built<ProjectRevision, ProjectRevisionBuilder> {
 
-    /// The Project API URL  The URL where the Project's APIs are available.
-    @BuiltValueField(wireName: r'api_url')
-    String get apiUrl;
-
-    /// Your Application URL  The URL where your application is available. Your users will be redirected to this URL when they successfully complete a login, logout, verification, recovery, or registration flow.  More fine-grained redirection patterns are available for the individual flows.
-    @BuiltValueField(wireName: r'application_url')
-    String get applicationUrl;
-
     /// The Project's Revision Creation Date
+    @nullable
     @BuiltValueField(wireName: r'created_at')
     DateTime get createdAt;
 
-    /// Default Identity Schema URL  This represents your Ory Kratos Default Identity Schema. It is your identity's default schema. This allows setting custom fields such as \"address\", specifying whether you want to log in using email or a username, and more. For more information on this topic, please check out the identity documentation.  The value of this field can be either any \"https://\" URL - for example a file hosted at GitHub, or a `preset://`-prefixed string. Available profiles are:  profile://email profile://username
-    @BuiltValueField(wireName: r'default_identity_schema_url')
-    String get defaultIdentitySchemaUrl;
-
-    /// Self-Service Error UI URL  Sets the UI URL for the error UI. If left empty, this will use Ory's hosted pages.
     @nullable
-    @BuiltValueField(wireName: r'error_ui_url')
-    String get errorUiUrl;
-
-    @BuiltValueField(wireName: r'hosts')
-    BuiltList<String> get hosts;
-
     @BuiltValueField(wireName: r'id')
     String get id;
 
-    /// The Project's Kratos Config Version
+    /// Configures the Ory Kratos Cookie SameSite Attribute  This governs the \"cookies.same_site\" setting.
     @nullable
-    @BuiltValueField(wireName: r'kratos_config_version')
-    String get kratosConfigVersion;
+    @BuiltValueField(wireName: r'kratos_cookies_same_site')
+    String get kratosCookiesSameSite;
+
+    /// Configures the Ory Kratos SMTP Connection URI  This governs the \"courier.smtp.connection_uri\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_courier_smtp_connection_uri')
+    String get kratosCourierSmtpConnectionUri;
+
+    /// Configures the Ory Kratos SMTP From Address  This governs the \"courier.smtp.from_address\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_courier_smtp_from_address')
+    String get kratosCourierSmtpFromAddress;
+
+    /// Configures the Ory Kratos SMTP From Name  This governs the \"courier.smtp.from_name\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_courier_smtp_from_name')
+    String get kratosCourierSmtpFromName;
+
+    /// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+    @nullable
+    @BuiltValueField(wireName: r'kratos_courier_smtp_headers')
+    JsonObject get kratosCourierSmtpHeaders;
 
     @nullable
-    @BuiltValueField(wireName: r'kratos_custom_schema_id')
-    String get kratosCustomSchemaId;
-
-    /// Self-Service Login UI URL  Sets the UI URL for the login UI. If left empty, this will use Ory's hosted pages.
-    @nullable
-    @BuiltValueField(wireName: r'login_ui_url')
-    String get loginUiUrl;
+    @BuiltValueField(wireName: r'kratos_identity_schemas')
+    BuiltList<ProjectRevisionIdentitySchema> get kratosIdentitySchemas;
 
     @nullable
-    @BuiltValueField(wireName: r'lookup_secret')
-    ProjectLookupSecretConfig get lookupSecret;
+    @BuiltValueField(wireName: r'kratos_secrets_cipher')
+    BuiltList<String> get kratosSecretsCipher;
+
+    @nullable
+    @BuiltValueField(wireName: r'kratos_secrets_cookie')
+    BuiltList<String> get kratosSecretsCookie;
+
+    @nullable
+    @BuiltValueField(wireName: r'kratos_secrets_default')
+    BuiltList<String> get kratosSecretsDefault;
+
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_allowed_return_urls')
+    BuiltList<String> get kratosSelfserviceAllowedReturnUrls;
+
+    /// Configures the Ory Kratos Default Return URL  This governs the \"selfservice.allowed_return_urls\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_default_browser_return_url')
+    String get kratosSelfserviceDefaultBrowserReturnUrl;
+
+    /// Configures the Ory Kratos Error UI URL  This governs the \"selfservice.flows.error.ui_url\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_error_ui_url')
+    String get kratosSelfserviceFlowsErrorUiUrl;
+
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_hooks')
+    BuiltList<ProjectRevisionHook> get kratosSelfserviceFlowsHooks;
+
+    /// Configures the Ory Kratos Login Default Return URL  This governs the \"selfservice.flows.login.after.default_browser_return_url\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_login_after_default_browser_return_url')
+    String get kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl;
+
+    /// Configures the Ory Kratos Login After OIDC Default Return URL  This governs the \"selfservice.flows.login.after.oidc.default_browser_return_url\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_login_after_oidc_default_browser_return_url')
+    String get kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl;
+
+    /// Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.login.after.password.default_browser_return_url\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_login_after_password_default_browser_return_url')
+    String get kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl;
+
+    /// Configures the Ory Kratos Login Lifespan  This governs the \"selfservice.flows.login.lifespan\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_login_lifespan')
+    String get kratosSelfserviceFlowsLoginLifespan;
+
+    /// Configures the Ory Kratos Login UI URL  This governs the \"selfservice.flows.login.ui_url\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_login_ui_url')
+    String get kratosSelfserviceFlowsLoginUiUrl;
+
+    /// Configures the Ory Kratos Logout Default Return URL  This governs the \"selfservice.flows.logout.after.default_browser_return_url\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_logout_after_default_browser_return_url')
+    String get kratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl;
+
+    /// Configures the Ory Kratos Recovery Default Return URL  This governs the \"selfservice.flows.recovery.after.default_browser_return_url\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_recovery_after_default_browser_return_url')
+    String get kratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl;
+
+    /// Configures the Ory Kratos Recovery Enabled Setting  This governs the \"selfservice.flows.recovery.enabled\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_recovery_enabled')
+    bool get kratosSelfserviceFlowsRecoveryEnabled;
+
+    /// Configures the Ory Kratos Recovery Lifespan  This governs the \"selfservice.flows.recovery.lifespan\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_recovery_lifespan')
+    String get kratosSelfserviceFlowsRecoveryLifespan;
+
+    /// Configures the Ory Kratos Recovery UI URL  This governs the \"selfservice.flows.recovery.ui_url\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_recovery_ui_url')
+    String get kratosSelfserviceFlowsRecoveryUiUrl;
+
+    /// Configures the Ory Kratos Registration Default Return URL  This governs the \"selfservice.flows.registration.after.default_browser_return_url\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_registration_after_default_browser_return_url')
+    String get kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl;
+
+    /// Configures the Ory Kratos Registration After OIDC Default Return URL  This governs the \"selfservice.flows.registration.after.oidc.default_browser_return_url\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_registration_after_oidc_default_browser_return_url')
+    String get kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl;
+
+    /// Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_registration_after_password_default_browser_return_url')
+    String get kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl;
+
+    /// Configures the Ory Kratos Registration Lifespan  This governs the \"selfservice.flows.registration.lifespan\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_registration_lifespan')
+    String get kratosSelfserviceFlowsRegistrationLifespan;
+
+    /// Configures the Ory Kratos Registration UI URL  This governs the \"selfservice.flows.registration.ui_url\" setting.0
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_registration_ui_url')
+    String get kratosSelfserviceFlowsRegistrationUiUrl;
+
+    /// Configures the Ory Kratos Settings Default Return URL  This governs the \"selfservice.flows.settings.after.default_browser_return_url\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_settings_after_default_browser_return_url')
+    String get kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl;
+
+    /// Configures the Ory Kratos Settings Default Return URL After Updating Passwords  This governs the \"selfservice.flows.settings.after.password.default_browser_return_url\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_settings_after_password_default_browser_return_url')
+    String get kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl;
+
+    /// Configures the Ory Kratos Settings Default Return URL After Updating Profiles  This governs the \"selfservice.flows.settings.after.profile.default_browser_return_url\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_settings_after_profile_default_browser_return_url')
+    String get kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl;
+
+    /// Configures the Ory Kratos Settings Lifespan  This governs the \"selfservice.flows.settings.lifespan\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_settings_lifespan')
+    String get kratosSelfserviceFlowsSettingsLifespan;
+
+    /// Configures the Ory Kratos Settings Privileged Session Max Age  This governs the \"selfservice.flows.settings.privileged_session_max_age\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_settings_privileged_session_max_age')
+    String get kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge;
+
+    /// Configures the Ory Kratos Settings Required AAL  This governs the \"selfservice.flows.settings.required_aal\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_settings_required_aal')
+    String get kratosSelfserviceFlowsSettingsRequiredAal;
+
+    /// Configures the Ory Kratos Settings UI URL  This governs the \"selfservice.flows.settings.ui_url\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_settings_ui_url')
+    String get kratosSelfserviceFlowsSettingsUiUrl;
+
+    /// Configures the Ory Kratos Verification Default Return URL  This governs the \"selfservice.flows.verification.after.default_browser_return_url\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_verification_after_default_browser_return_url')
+    String get kratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl;
+
+    /// Configures the Ory Kratos Verification Enabled Setting  This governs the \"selfservice.flows.verification.enabled\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_verification_enabled')
+    bool get kratosSelfserviceFlowsVerificationEnabled;
+
+    /// Configures the Ory Kratos Verification Lifespan  This governs the \"selfservice.flows.verification.lifespan\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_verification_lifespan')
+    String get kratosSelfserviceFlowsVerificationLifespan;
+
+    /// Configures the Ory Kratos Verification UI URL  This governs the \"selfservice.flows.verification.ui_url\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_flows_verification_ui_url')
+    String get kratosSelfserviceFlowsVerificationUiUrl;
+
+    /// Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \"selfservice.methods.link.config.base_url\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_methods_link_config_base_url')
+    String get kratosSelfserviceMethodsLinkConfigBaseUrl;
+
+    /// Configures whether Ory Kratos Link Method is enabled  This governs the \"selfservice.methods.link.config.lifespan\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_methods_link_config_lifespan')
+    String get kratosSelfserviceMethodsLinkConfigLifespan;
+
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_methods_link_enabled')
+    bool get kratosSelfserviceMethodsLinkEnabled;
+
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_methods_lookup_secret_enabled')
+    bool get kratosSelfserviceMethodsLookupSecretEnabled;
+
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_methods_oidc_config_providers')
+    BuiltList<ProjectRevisionThirdPartyLoginProvider> get kratosSelfserviceMethodsOidcConfigProviders;
+
+    /// Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \"selfservice.methods.oidc.enabled\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_methods_oidc_enabled')
+    bool get kratosSelfserviceMethodsOidcEnabled;
+
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_methods_password_config_haveibeenpwned_enabled')
+    bool get kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled;
+
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_methods_password_config_ignore_network_errors')
+    bool get kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors;
+
+    /// Configures Ory Kratos Password Max Breaches Detection  This governs the \"selfservice.methods.password.enabled\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_methods_password_config_max_breaches')
+    int get kratosSelfserviceMethodsPasswordConfigMaxBreaches;
+
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_methods_password_enabled')
+    bool get kratosSelfserviceMethodsPasswordEnabled;
+
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_methods_profile_enabled')
+    bool get kratosSelfserviceMethodsProfileEnabled;
+
+    /// Configures Ory Kratos TOTP Issuer  This governs the \"selfservice.methods.totp.config.issuer\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_methods_totp_config_issuer')
+    String get kratosSelfserviceMethodsTotpConfigIssuer;
+
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_methods_totp_enabled')
+    bool get kratosSelfserviceMethodsTotpEnabled;
+
+    /// Configures the Ory Kratos Webauthn RP Display Name  This governs the \"selfservice.methods.webauthn.config.rp.display_name\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_methods_webauthn_config_rp_display_name')
+    String get kratosSelfserviceMethodsWebauthnConfigRpDisplayName;
+
+    /// Configures the Ory Kratos Webauthn RP Icon  This governs the \"selfservice.methods.webauthn.config.rp.icon\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_methods_webauthn_config_rp_icon')
+    String get kratosSelfserviceMethodsWebauthnConfigRpIcon;
+
+    /// Configures the Ory Kratos Webauthn RP ID  This governs the \"selfservice.methods.webauthn.config.rp.id\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_methods_webauthn_config_rp_id')
+    String get kratosSelfserviceMethodsWebauthnConfigRpId;
+
+    /// Configures the Ory Kratos Webauthn RP Origin  This governs the \"selfservice.methods.webauthn.config.rp.origin\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_methods_webauthn_config_rp_origin')
+    String get kratosSelfserviceMethodsWebauthnConfigRpOrigin;
+
+    @nullable
+    @BuiltValueField(wireName: r'kratos_selfservice_methods_webauthn_enabled')
+    bool get kratosSelfserviceMethodsWebauthnEnabled;
+
+    @nullable
+    @BuiltValueField(wireName: r'kratos_session_cookie_persistent')
+    bool get kratosSessionCookiePersistent;
+
+    /// Configures the Ory Kratos Session Cookie SameSite Attribute  This governs the \"session.cookie.same_site\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_session_cookie_same_site')
+    String get kratosSessionCookieSameSite;
+
+    /// Configures the Ory Kratos Session Lifespan  This governs the \"session.lifespan\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_session_lifespan')
+    String get kratosSessionLifespan;
+
+    /// Configures the Ory Kratos Session Whoami AAL requirement  This governs the \"session.whoami.required_aal\" setting.
+    @nullable
+    @BuiltValueField(wireName: r'kratos_session_whoami_required_aal')
+    String get kratosSessionWhoamiRequiredAal;
 
     /// The project's name.
     @BuiltValueField(wireName: r'name')
     String get name;
 
     @nullable
-    @BuiltValueField(wireName: r'oidc_providers')
-    BuiltList<ProjectOidcConfig> get oidcProviders;
-
-    @nullable
-    @BuiltValueField(wireName: r'password')
-    ProjectPasswordConfig get password;
-
     @BuiltValueField(wireName: r'project_id')
     String get projectId;
 
-    @nullable
-    @BuiltValueField(wireName: r'recovery')
-    ProjectRecoveryConfig get recovery;
-
-    /// Self-Service Login UI URL  Sets the UI URL for the recovery UI. If left empty, this will use Ory's hosted pages.
-    @nullable
-    @BuiltValueField(wireName: r'recovery_ui_url')
-    String get recoveryUiUrl;
-
-    @nullable
-    @BuiltValueField(wireName: r'redirection_config')
-    RedirectionConfig get redirectionConfig;
-
-    /// Self-Service Login UI URL  Sets the UI URL for the registration UI. If left empty, this will use Ory's hosted pages.
-    @nullable
-    @BuiltValueField(wireName: r'registration_ui_url')
-    String get registrationUiUrl;
-
-    /// Issue Session after Sign Up  If set to true, users will receive a session after they successfully signed up. Enabling this option allows account enumeration during registration flows. Read more: https://www.ory.sh/kratos/docs/self-service/flows/user-registration#successful-registration
-    @BuiltValueField(wireName: r'session_after_sign_up')
-    bool get sessionAfterSignUp;
-
-    /// Enable Soft 2FA for Login Sessions
-    @nullable
-    @BuiltValueField(wireName: r'session_soft_2fa')
-    bool get sessionSoft2fa;
-
-    /// Duration in Seconds of how long a Session is Privileged  Defines how long a session is considered privileged in seconds. If the session's authenticated_at is older than the value specified here, the user needs to re-authenticate to perform certain actions (e.g. password change).
-    @nullable
-    @BuiltValueField(wireName: r'settings_privileged_session_max_age_seconds')
-    int get settingsPrivilegedSessionMaxAgeSeconds;
-
-    /// Enable Soft 2FA for Self-Service Settings Flows
-    @nullable
-    @BuiltValueField(wireName: r'settings_soft_2fa')
-    bool get settingsSoft2fa;
-
-    /// Self-Service Settings UI URL  Sets the UI URL for the settings UI. If left empty, this will use Ory's hosted pages.
-    @nullable
-    @BuiltValueField(wireName: r'settings_ui_url')
-    String get settingsUiUrl;
-
-    @nullable
-    @BuiltValueField(wireName: r'totp')
-    ProjectTotpConfig get totp;
-
     /// Last Time Project's Revision was Updated
+    @nullable
     @BuiltValueField(wireName: r'updated_at')
     DateTime get updatedAt;
-
-    @nullable
-    @BuiltValueField(wireName: r'verification')
-    ProjectVerificationConfig get verification;
-
-    /// Self-Service Login UI URL  Sets the UI URL for the verification UI. If left empty, this will use Ory's hosted pages.
-    @nullable
-    @BuiltValueField(wireName: r'verification_ui_url')
-    String get verificationUiUrl;
-
-    @nullable
-    @BuiltValueField(wireName: r'webauthn')
-    ProjectWebAuthnConfig get webauthn;
 
     ProjectRevision._();
 
@@ -165,159 +349,399 @@ class _$ProjectRevisionSerializer implements StructuredSerializer<ProjectRevisio
     Iterable<Object> serialize(Serializers serializers, ProjectRevision object,
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object>[];
-        result
-            ..add(r'api_url')
-            ..add(serializers.serialize(object.apiUrl,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'application_url')
-            ..add(serializers.serialize(object.applicationUrl,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'created_at')
-            ..add(serializers.serialize(object.createdAt,
-                specifiedType: const FullType(DateTime)));
-        result
-            ..add(r'default_identity_schema_url')
-            ..add(serializers.serialize(object.defaultIdentitySchemaUrl,
-                specifiedType: const FullType(String)));
-        if (object.errorUiUrl != null) {
+        if (object.createdAt != null) {
             result
-                ..add(r'error_ui_url')
-                ..add(serializers.serialize(object.errorUiUrl,
+                ..add(r'created_at')
+                ..add(serializers.serialize(object.createdAt,
+                    specifiedType: const FullType(DateTime)));
+        }
+        if (object.id != null) {
+            result
+                ..add(r'id')
+                ..add(serializers.serialize(object.id,
                     specifiedType: const FullType(String)));
         }
-        result
-            ..add(r'hosts')
-            ..add(serializers.serialize(object.hosts,
-                specifiedType: const FullType(BuiltList, [FullType(String)])));
-        result
-            ..add(r'id')
-            ..add(serializers.serialize(object.id,
-                specifiedType: const FullType(String)));
-        if (object.kratosConfigVersion != null) {
+        if (object.kratosCookiesSameSite != null) {
             result
-                ..add(r'kratos_config_version')
-                ..add(serializers.serialize(object.kratosConfigVersion,
+                ..add(r'kratos_cookies_same_site')
+                ..add(serializers.serialize(object.kratosCookiesSameSite,
                     specifiedType: const FullType(String)));
         }
-        if (object.kratosCustomSchemaId != null) {
+        if (object.kratosCourierSmtpConnectionUri != null) {
             result
-                ..add(r'kratos_custom_schema_id')
-                ..add(serializers.serialize(object.kratosCustomSchemaId,
+                ..add(r'kratos_courier_smtp_connection_uri')
+                ..add(serializers.serialize(object.kratosCourierSmtpConnectionUri,
                     specifiedType: const FullType(String)));
         }
-        if (object.loginUiUrl != null) {
+        if (object.kratosCourierSmtpFromAddress != null) {
             result
-                ..add(r'login_ui_url')
-                ..add(serializers.serialize(object.loginUiUrl,
+                ..add(r'kratos_courier_smtp_from_address')
+                ..add(serializers.serialize(object.kratosCourierSmtpFromAddress,
                     specifiedType: const FullType(String)));
         }
-        if (object.lookupSecret != null) {
+        if (object.kratosCourierSmtpFromName != null) {
             result
-                ..add(r'lookup_secret')
-                ..add(serializers.serialize(object.lookupSecret,
-                    specifiedType: const FullType(ProjectLookupSecretConfig)));
+                ..add(r'kratos_courier_smtp_from_name')
+                ..add(serializers.serialize(object.kratosCourierSmtpFromName,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosCourierSmtpHeaders != null) {
+            result
+                ..add(r'kratos_courier_smtp_headers')
+                ..add(serializers.serialize(object.kratosCourierSmtpHeaders,
+                    specifiedType: const FullType(JsonObject)));
+        }
+        if (object.kratosIdentitySchemas != null) {
+            result
+                ..add(r'kratos_identity_schemas')
+                ..add(serializers.serialize(object.kratosIdentitySchemas,
+                    specifiedType: const FullType(BuiltList, [FullType(ProjectRevisionIdentitySchema)])));
+        }
+        if (object.kratosSecretsCipher != null) {
+            result
+                ..add(r'kratos_secrets_cipher')
+                ..add(serializers.serialize(object.kratosSecretsCipher,
+                    specifiedType: const FullType(BuiltList, [FullType(String)])));
+        }
+        if (object.kratosSecretsCookie != null) {
+            result
+                ..add(r'kratos_secrets_cookie')
+                ..add(serializers.serialize(object.kratosSecretsCookie,
+                    specifiedType: const FullType(BuiltList, [FullType(String)])));
+        }
+        if (object.kratosSecretsDefault != null) {
+            result
+                ..add(r'kratos_secrets_default')
+                ..add(serializers.serialize(object.kratosSecretsDefault,
+                    specifiedType: const FullType(BuiltList, [FullType(String)])));
+        }
+        if (object.kratosSelfserviceAllowedReturnUrls != null) {
+            result
+                ..add(r'kratos_selfservice_allowed_return_urls')
+                ..add(serializers.serialize(object.kratosSelfserviceAllowedReturnUrls,
+                    specifiedType: const FullType(BuiltList, [FullType(String)])));
+        }
+        if (object.kratosSelfserviceDefaultBrowserReturnUrl != null) {
+            result
+                ..add(r'kratos_selfservice_default_browser_return_url')
+                ..add(serializers.serialize(object.kratosSelfserviceDefaultBrowserReturnUrl,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsErrorUiUrl != null) {
+            result
+                ..add(r'kratos_selfservice_flows_error_ui_url')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsErrorUiUrl,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsHooks != null) {
+            result
+                ..add(r'kratos_selfservice_flows_hooks')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsHooks,
+                    specifiedType: const FullType(BuiltList, [FullType(ProjectRevisionHook)])));
+        }
+        if (object.kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl != null) {
+            result
+                ..add(r'kratos_selfservice_flows_login_after_default_browser_return_url')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl != null) {
+            result
+                ..add(r'kratos_selfservice_flows_login_after_oidc_default_browser_return_url')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl != null) {
+            result
+                ..add(r'kratos_selfservice_flows_login_after_password_default_browser_return_url')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsLoginLifespan != null) {
+            result
+                ..add(r'kratos_selfservice_flows_login_lifespan')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsLoginLifespan,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsLoginUiUrl != null) {
+            result
+                ..add(r'kratos_selfservice_flows_login_ui_url')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsLoginUiUrl,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl != null) {
+            result
+                ..add(r'kratos_selfservice_flows_logout_after_default_browser_return_url')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl != null) {
+            result
+                ..add(r'kratos_selfservice_flows_recovery_after_default_browser_return_url')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsRecoveryEnabled != null) {
+            result
+                ..add(r'kratos_selfservice_flows_recovery_enabled')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsRecoveryEnabled,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.kratosSelfserviceFlowsRecoveryLifespan != null) {
+            result
+                ..add(r'kratos_selfservice_flows_recovery_lifespan')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsRecoveryLifespan,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsRecoveryUiUrl != null) {
+            result
+                ..add(r'kratos_selfservice_flows_recovery_ui_url')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsRecoveryUiUrl,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl != null) {
+            result
+                ..add(r'kratos_selfservice_flows_registration_after_default_browser_return_url')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl != null) {
+            result
+                ..add(r'kratos_selfservice_flows_registration_after_oidc_default_browser_return_url')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl != null) {
+            result
+                ..add(r'kratos_selfservice_flows_registration_after_password_default_browser_return_url')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsRegistrationLifespan != null) {
+            result
+                ..add(r'kratos_selfservice_flows_registration_lifespan')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsRegistrationLifespan,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsRegistrationUiUrl != null) {
+            result
+                ..add(r'kratos_selfservice_flows_registration_ui_url')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsRegistrationUiUrl,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl != null) {
+            result
+                ..add(r'kratos_selfservice_flows_settings_after_default_browser_return_url')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl != null) {
+            result
+                ..add(r'kratos_selfservice_flows_settings_after_password_default_browser_return_url')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl != null) {
+            result
+                ..add(r'kratos_selfservice_flows_settings_after_profile_default_browser_return_url')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsSettingsLifespan != null) {
+            result
+                ..add(r'kratos_selfservice_flows_settings_lifespan')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsSettingsLifespan,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge != null) {
+            result
+                ..add(r'kratos_selfservice_flows_settings_privileged_session_max_age')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsSettingsRequiredAal != null) {
+            result
+                ..add(r'kratos_selfservice_flows_settings_required_aal')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsSettingsRequiredAal,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsSettingsUiUrl != null) {
+            result
+                ..add(r'kratos_selfservice_flows_settings_ui_url')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsSettingsUiUrl,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl != null) {
+            result
+                ..add(r'kratos_selfservice_flows_verification_after_default_browser_return_url')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsVerificationEnabled != null) {
+            result
+                ..add(r'kratos_selfservice_flows_verification_enabled')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsVerificationEnabled,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.kratosSelfserviceFlowsVerificationLifespan != null) {
+            result
+                ..add(r'kratos_selfservice_flows_verification_lifespan')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsVerificationLifespan,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceFlowsVerificationUiUrl != null) {
+            result
+                ..add(r'kratos_selfservice_flows_verification_ui_url')
+                ..add(serializers.serialize(object.kratosSelfserviceFlowsVerificationUiUrl,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceMethodsLinkConfigBaseUrl != null) {
+            result
+                ..add(r'kratos_selfservice_methods_link_config_base_url')
+                ..add(serializers.serialize(object.kratosSelfserviceMethodsLinkConfigBaseUrl,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceMethodsLinkConfigLifespan != null) {
+            result
+                ..add(r'kratos_selfservice_methods_link_config_lifespan')
+                ..add(serializers.serialize(object.kratosSelfserviceMethodsLinkConfigLifespan,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceMethodsLinkEnabled != null) {
+            result
+                ..add(r'kratos_selfservice_methods_link_enabled')
+                ..add(serializers.serialize(object.kratosSelfserviceMethodsLinkEnabled,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.kratosSelfserviceMethodsLookupSecretEnabled != null) {
+            result
+                ..add(r'kratos_selfservice_methods_lookup_secret_enabled')
+                ..add(serializers.serialize(object.kratosSelfserviceMethodsLookupSecretEnabled,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.kratosSelfserviceMethodsOidcConfigProviders != null) {
+            result
+                ..add(r'kratos_selfservice_methods_oidc_config_providers')
+                ..add(serializers.serialize(object.kratosSelfserviceMethodsOidcConfigProviders,
+                    specifiedType: const FullType(BuiltList, [FullType(ProjectRevisionThirdPartyLoginProvider)])));
+        }
+        if (object.kratosSelfserviceMethodsOidcEnabled != null) {
+            result
+                ..add(r'kratos_selfservice_methods_oidc_enabled')
+                ..add(serializers.serialize(object.kratosSelfserviceMethodsOidcEnabled,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled != null) {
+            result
+                ..add(r'kratos_selfservice_methods_password_config_haveibeenpwned_enabled')
+                ..add(serializers.serialize(object.kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors != null) {
+            result
+                ..add(r'kratos_selfservice_methods_password_config_ignore_network_errors')
+                ..add(serializers.serialize(object.kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.kratosSelfserviceMethodsPasswordConfigMaxBreaches != null) {
+            result
+                ..add(r'kratos_selfservice_methods_password_config_max_breaches')
+                ..add(serializers.serialize(object.kratosSelfserviceMethodsPasswordConfigMaxBreaches,
+                    specifiedType: const FullType(int)));
+        }
+        if (object.kratosSelfserviceMethodsPasswordEnabled != null) {
+            result
+                ..add(r'kratos_selfservice_methods_password_enabled')
+                ..add(serializers.serialize(object.kratosSelfserviceMethodsPasswordEnabled,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.kratosSelfserviceMethodsProfileEnabled != null) {
+            result
+                ..add(r'kratos_selfservice_methods_profile_enabled')
+                ..add(serializers.serialize(object.kratosSelfserviceMethodsProfileEnabled,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.kratosSelfserviceMethodsTotpConfigIssuer != null) {
+            result
+                ..add(r'kratos_selfservice_methods_totp_config_issuer')
+                ..add(serializers.serialize(object.kratosSelfserviceMethodsTotpConfigIssuer,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceMethodsTotpEnabled != null) {
+            result
+                ..add(r'kratos_selfservice_methods_totp_enabled')
+                ..add(serializers.serialize(object.kratosSelfserviceMethodsTotpEnabled,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.kratosSelfserviceMethodsWebauthnConfigRpDisplayName != null) {
+            result
+                ..add(r'kratos_selfservice_methods_webauthn_config_rp_display_name')
+                ..add(serializers.serialize(object.kratosSelfserviceMethodsWebauthnConfigRpDisplayName,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceMethodsWebauthnConfigRpIcon != null) {
+            result
+                ..add(r'kratos_selfservice_methods_webauthn_config_rp_icon')
+                ..add(serializers.serialize(object.kratosSelfserviceMethodsWebauthnConfigRpIcon,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceMethodsWebauthnConfigRpId != null) {
+            result
+                ..add(r'kratos_selfservice_methods_webauthn_config_rp_id')
+                ..add(serializers.serialize(object.kratosSelfserviceMethodsWebauthnConfigRpId,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceMethodsWebauthnConfigRpOrigin != null) {
+            result
+                ..add(r'kratos_selfservice_methods_webauthn_config_rp_origin')
+                ..add(serializers.serialize(object.kratosSelfserviceMethodsWebauthnConfigRpOrigin,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSelfserviceMethodsWebauthnEnabled != null) {
+            result
+                ..add(r'kratos_selfservice_methods_webauthn_enabled')
+                ..add(serializers.serialize(object.kratosSelfserviceMethodsWebauthnEnabled,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.kratosSessionCookiePersistent != null) {
+            result
+                ..add(r'kratos_session_cookie_persistent')
+                ..add(serializers.serialize(object.kratosSessionCookiePersistent,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.kratosSessionCookieSameSite != null) {
+            result
+                ..add(r'kratos_session_cookie_same_site')
+                ..add(serializers.serialize(object.kratosSessionCookieSameSite,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSessionLifespan != null) {
+            result
+                ..add(r'kratos_session_lifespan')
+                ..add(serializers.serialize(object.kratosSessionLifespan,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.kratosSessionWhoamiRequiredAal != null) {
+            result
+                ..add(r'kratos_session_whoami_required_aal')
+                ..add(serializers.serialize(object.kratosSessionWhoamiRequiredAal,
+                    specifiedType: const FullType(String)));
         }
         result
             ..add(r'name')
             ..add(serializers.serialize(object.name,
                 specifiedType: const FullType(String)));
-        if (object.oidcProviders != null) {
+        if (object.projectId != null) {
             result
-                ..add(r'oidc_providers')
-                ..add(serializers.serialize(object.oidcProviders,
-                    specifiedType: const FullType(BuiltList, [FullType(ProjectOidcConfig)])));
-        }
-        if (object.password != null) {
-            result
-                ..add(r'password')
-                ..add(serializers.serialize(object.password,
-                    specifiedType: const FullType(ProjectPasswordConfig)));
-        }
-        result
-            ..add(r'project_id')
-            ..add(serializers.serialize(object.projectId,
-                specifiedType: const FullType(String)));
-        if (object.recovery != null) {
-            result
-                ..add(r'recovery')
-                ..add(serializers.serialize(object.recovery,
-                    specifiedType: const FullType(ProjectRecoveryConfig)));
-        }
-        if (object.recoveryUiUrl != null) {
-            result
-                ..add(r'recovery_ui_url')
-                ..add(serializers.serialize(object.recoveryUiUrl,
+                ..add(r'project_id')
+                ..add(serializers.serialize(object.projectId,
                     specifiedType: const FullType(String)));
         }
-        if (object.redirectionConfig != null) {
+        if (object.updatedAt != null) {
             result
-                ..add(r'redirection_config')
-                ..add(serializers.serialize(object.redirectionConfig,
-                    specifiedType: const FullType(RedirectionConfig)));
-        }
-        if (object.registrationUiUrl != null) {
-            result
-                ..add(r'registration_ui_url')
-                ..add(serializers.serialize(object.registrationUiUrl,
-                    specifiedType: const FullType(String)));
-        }
-        result
-            ..add(r'session_after_sign_up')
-            ..add(serializers.serialize(object.sessionAfterSignUp,
-                specifiedType: const FullType(bool)));
-        if (object.sessionSoft2fa != null) {
-            result
-                ..add(r'session_soft_2fa')
-                ..add(serializers.serialize(object.sessionSoft2fa,
-                    specifiedType: const FullType(bool)));
-        }
-        if (object.settingsPrivilegedSessionMaxAgeSeconds != null) {
-            result
-                ..add(r'settings_privileged_session_max_age_seconds')
-                ..add(serializers.serialize(object.settingsPrivilegedSessionMaxAgeSeconds,
-                    specifiedType: const FullType(int)));
-        }
-        if (object.settingsSoft2fa != null) {
-            result
-                ..add(r'settings_soft_2fa')
-                ..add(serializers.serialize(object.settingsSoft2fa,
-                    specifiedType: const FullType(bool)));
-        }
-        if (object.settingsUiUrl != null) {
-            result
-                ..add(r'settings_ui_url')
-                ..add(serializers.serialize(object.settingsUiUrl,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.totp != null) {
-            result
-                ..add(r'totp')
-                ..add(serializers.serialize(object.totp,
-                    specifiedType: const FullType(ProjectTotpConfig)));
-        }
-        result
-            ..add(r'updated_at')
-            ..add(serializers.serialize(object.updatedAt,
-                specifiedType: const FullType(DateTime)));
-        if (object.verification != null) {
-            result
-                ..add(r'verification')
-                ..add(serializers.serialize(object.verification,
-                    specifiedType: const FullType(ProjectVerificationConfig)));
-        }
-        if (object.verificationUiUrl != null) {
-            result
-                ..add(r'verification_ui_url')
-                ..add(serializers.serialize(object.verificationUiUrl,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.webauthn != null) {
-            result
-                ..add(r'webauthn')
-                ..add(serializers.serialize(object.webauthn,
-                    specifiedType: const FullType(ProjectWebAuthnConfig)));
+                ..add(r'updated_at')
+                ..add(serializers.serialize(object.updatedAt,
+                    specifiedType: const FullType(DateTime)));
         }
         return result;
     }
@@ -333,121 +757,269 @@ class _$ProjectRevisionSerializer implements StructuredSerializer<ProjectRevisio
             iterator.moveNext();
             final dynamic value = iterator.current;
             switch (key) {
-                case r'api_url':
-                    result.apiUrl = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'application_url':
-                    result.applicationUrl = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
                 case r'created_at':
                     result.createdAt = serializers.deserialize(value,
                         specifiedType: const FullType(DateTime)) as DateTime;
-                    break;
-                case r'default_identity_schema_url':
-                    result.defaultIdentitySchemaUrl = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'error_ui_url':
-                    result.errorUiUrl = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'hosts':
-                    result.hosts.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
                     break;
                 case r'id':
                     result.id = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
-                case r'kratos_config_version':
-                    result.kratosConfigVersion = serializers.deserialize(value,
+                case r'kratos_cookies_same_site':
+                    result.kratosCookiesSameSite = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
-                case r'kratos_custom_schema_id':
-                    result.kratosCustomSchemaId = serializers.deserialize(value,
+                case r'kratos_courier_smtp_connection_uri':
+                    result.kratosCourierSmtpConnectionUri = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
-                case r'login_ui_url':
-                    result.loginUiUrl = serializers.deserialize(value,
+                case r'kratos_courier_smtp_from_address':
+                    result.kratosCourierSmtpFromAddress = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
-                case r'lookup_secret':
-                    result.lookupSecret.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(ProjectLookupSecretConfig)) as ProjectLookupSecretConfig);
+                case r'kratos_courier_smtp_from_name':
+                    result.kratosCourierSmtpFromName = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_courier_smtp_headers':
+                    result.kratosCourierSmtpHeaders = serializers.deserialize(value,
+                        specifiedType: const FullType(JsonObject)) as JsonObject;
+                    break;
+                case r'kratos_identity_schemas':
+                    result.kratosIdentitySchemas.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(ProjectRevisionIdentitySchema)])) as BuiltList<ProjectRevisionIdentitySchema>);
+                    break;
+                case r'kratos_secrets_cipher':
+                    result.kratosSecretsCipher.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
+                    break;
+                case r'kratos_secrets_cookie':
+                    result.kratosSecretsCookie.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
+                    break;
+                case r'kratos_secrets_default':
+                    result.kratosSecretsDefault.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
+                    break;
+                case r'kratos_selfservice_allowed_return_urls':
+                    result.kratosSelfserviceAllowedReturnUrls.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
+                    break;
+                case r'kratos_selfservice_default_browser_return_url':
+                    result.kratosSelfserviceDefaultBrowserReturnUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_error_ui_url':
+                    result.kratosSelfserviceFlowsErrorUiUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_hooks':
+                    result.kratosSelfserviceFlowsHooks.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(ProjectRevisionHook)])) as BuiltList<ProjectRevisionHook>);
+                    break;
+                case r'kratos_selfservice_flows_login_after_default_browser_return_url':
+                    result.kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_login_after_oidc_default_browser_return_url':
+                    result.kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_login_after_password_default_browser_return_url':
+                    result.kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_login_lifespan':
+                    result.kratosSelfserviceFlowsLoginLifespan = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_login_ui_url':
+                    result.kratosSelfserviceFlowsLoginUiUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_logout_after_default_browser_return_url':
+                    result.kratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_recovery_after_default_browser_return_url':
+                    result.kratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_recovery_enabled':
+                    result.kratosSelfserviceFlowsRecoveryEnabled = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'kratos_selfservice_flows_recovery_lifespan':
+                    result.kratosSelfserviceFlowsRecoveryLifespan = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_recovery_ui_url':
+                    result.kratosSelfserviceFlowsRecoveryUiUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_registration_after_default_browser_return_url':
+                    result.kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_registration_after_oidc_default_browser_return_url':
+                    result.kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_registration_after_password_default_browser_return_url':
+                    result.kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_registration_lifespan':
+                    result.kratosSelfserviceFlowsRegistrationLifespan = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_registration_ui_url':
+                    result.kratosSelfserviceFlowsRegistrationUiUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_settings_after_default_browser_return_url':
+                    result.kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_settings_after_password_default_browser_return_url':
+                    result.kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_settings_after_profile_default_browser_return_url':
+                    result.kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_settings_lifespan':
+                    result.kratosSelfserviceFlowsSettingsLifespan = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_settings_privileged_session_max_age':
+                    result.kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_settings_required_aal':
+                    result.kratosSelfserviceFlowsSettingsRequiredAal = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_settings_ui_url':
+                    result.kratosSelfserviceFlowsSettingsUiUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_verification_after_default_browser_return_url':
+                    result.kratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_verification_enabled':
+                    result.kratosSelfserviceFlowsVerificationEnabled = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'kratos_selfservice_flows_verification_lifespan':
+                    result.kratosSelfserviceFlowsVerificationLifespan = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_flows_verification_ui_url':
+                    result.kratosSelfserviceFlowsVerificationUiUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_methods_link_config_base_url':
+                    result.kratosSelfserviceMethodsLinkConfigBaseUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_methods_link_config_lifespan':
+                    result.kratosSelfserviceMethodsLinkConfigLifespan = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_methods_link_enabled':
+                    result.kratosSelfserviceMethodsLinkEnabled = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'kratos_selfservice_methods_lookup_secret_enabled':
+                    result.kratosSelfserviceMethodsLookupSecretEnabled = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'kratos_selfservice_methods_oidc_config_providers':
+                    result.kratosSelfserviceMethodsOidcConfigProviders.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(ProjectRevisionThirdPartyLoginProvider)])) as BuiltList<ProjectRevisionThirdPartyLoginProvider>);
+                    break;
+                case r'kratos_selfservice_methods_oidc_enabled':
+                    result.kratosSelfserviceMethodsOidcEnabled = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'kratos_selfservice_methods_password_config_haveibeenpwned_enabled':
+                    result.kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'kratos_selfservice_methods_password_config_ignore_network_errors':
+                    result.kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'kratos_selfservice_methods_password_config_max_breaches':
+                    result.kratosSelfserviceMethodsPasswordConfigMaxBreaches = serializers.deserialize(value,
+                        specifiedType: const FullType(int)) as int;
+                    break;
+                case r'kratos_selfservice_methods_password_enabled':
+                    result.kratosSelfserviceMethodsPasswordEnabled = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'kratos_selfservice_methods_profile_enabled':
+                    result.kratosSelfserviceMethodsProfileEnabled = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'kratos_selfservice_methods_totp_config_issuer':
+                    result.kratosSelfserviceMethodsTotpConfigIssuer = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_methods_totp_enabled':
+                    result.kratosSelfserviceMethodsTotpEnabled = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'kratos_selfservice_methods_webauthn_config_rp_display_name':
+                    result.kratosSelfserviceMethodsWebauthnConfigRpDisplayName = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_methods_webauthn_config_rp_icon':
+                    result.kratosSelfserviceMethodsWebauthnConfigRpIcon = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_methods_webauthn_config_rp_id':
+                    result.kratosSelfserviceMethodsWebauthnConfigRpId = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_methods_webauthn_config_rp_origin':
+                    result.kratosSelfserviceMethodsWebauthnConfigRpOrigin = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_selfservice_methods_webauthn_enabled':
+                    result.kratosSelfserviceMethodsWebauthnEnabled = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'kratos_session_cookie_persistent':
+                    result.kratosSessionCookiePersistent = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'kratos_session_cookie_same_site':
+                    result.kratosSessionCookieSameSite = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_session_lifespan':
+                    result.kratosSessionLifespan = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kratos_session_whoami_required_aal':
+                    result.kratosSessionWhoamiRequiredAal = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
                     break;
                 case r'name':
                     result.name = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
-                case r'oidc_providers':
-                    result.oidcProviders.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltList, [FullType(ProjectOidcConfig)])) as BuiltList<ProjectOidcConfig>);
-                    break;
-                case r'password':
-                    result.password.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(ProjectPasswordConfig)) as ProjectPasswordConfig);
-                    break;
                 case r'project_id':
                     result.projectId = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
-                case r'recovery':
-                    result.recovery.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(ProjectRecoveryConfig)) as ProjectRecoveryConfig);
-                    break;
-                case r'recovery_ui_url':
-                    result.recoveryUiUrl = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'redirection_config':
-                    result.redirectionConfig.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(RedirectionConfig)) as RedirectionConfig);
-                    break;
-                case r'registration_ui_url':
-                    result.registrationUiUrl = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'session_after_sign_up':
-                    result.sessionAfterSignUp = serializers.deserialize(value,
-                        specifiedType: const FullType(bool)) as bool;
-                    break;
-                case r'session_soft_2fa':
-                    result.sessionSoft2fa = serializers.deserialize(value,
-                        specifiedType: const FullType(bool)) as bool;
-                    break;
-                case r'settings_privileged_session_max_age_seconds':
-                    result.settingsPrivilegedSessionMaxAgeSeconds = serializers.deserialize(value,
-                        specifiedType: const FullType(int)) as int;
-                    break;
-                case r'settings_soft_2fa':
-                    result.settingsSoft2fa = serializers.deserialize(value,
-                        specifiedType: const FullType(bool)) as bool;
-                    break;
-                case r'settings_ui_url':
-                    result.settingsUiUrl = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'totp':
-                    result.totp.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(ProjectTotpConfig)) as ProjectTotpConfig);
-                    break;
                 case r'updated_at':
                     result.updatedAt = serializers.deserialize(value,
                         specifiedType: const FullType(DateTime)) as DateTime;
-                    break;
-                case r'verification':
-                    result.verification.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(ProjectVerificationConfig)) as ProjectVerificationConfig);
-                    break;
-                case r'verification_ui_url':
-                    result.verificationUiUrl = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'webauthn':
-                    result.webauthn.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(ProjectWebAuthnConfig)) as ProjectWebAuthnConfig);
                     break;
             }
         }

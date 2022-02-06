@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## create_project
 
-> crate::models::Project create_project(project_patch)
+> crate::models::Project create_project(project_revision)
 Create a Project
 
 Creates a new project.
@@ -23,7 +23,7 @@ Creates a new project.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**project_patch** | Option<[**ProjectPatch**](ProjectPatch.md)> |  |  |
+**project_revision** | Option<[**ProjectRevision**](ProjectRevision.md)> |  |  |
 
 ### Return type
 
@@ -100,7 +100,7 @@ This endpoint does not need any parameter.
 
 ## update_project
 
-> crate::models::Project update_project(project_id, project_patch)
+> crate::models::Project update_project(project_id, project_revision)
 Update a Project
 
 Creates a new configuration revision for a project.
@@ -111,7 +111,7 @@ Creates a new configuration revision for a project.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **project_id** | **String** | Project ID  The project's ID. | [required] |
-**project_patch** | Option<[**ProjectPatch**](ProjectPatch.md)> |  |  |
+**project_revision** | Option<[**ProjectRevision**](ProjectRevision.md)> |  |  |
 
 ### Return type
 

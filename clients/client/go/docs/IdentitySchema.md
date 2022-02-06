@@ -4,6 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BlobName** | **string** | The gcs file name  This is a randomly generated name which is used to uniquely identify the file on the blob storage | 
+**BlobUrl** | **string** | The publicly accessible url of the schema | 
+**ContentHash** | Pointer to **string** | The Content Hash  Contains a hash of the schema&#39;s content. | [optional] 
 **CreatedAt** | **time.Time** | The Schema&#39;s Creation Date | [readonly] 
 **Id** | **string** |  | 
 **Name** | **string** | The schema name  This is set by the user and is for them to easily recognise their schema | 
@@ -14,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewIdentitySchema
 
-`func NewIdentitySchema(createdAt time.Time, id string, name string, updatedAt time.Time, ) *IdentitySchema`
+`func NewIdentitySchema(blobName string, blobUrl string, createdAt time.Time, id string, name string, updatedAt time.Time, ) *IdentitySchema`
 
 NewIdentitySchema instantiates a new IdentitySchema object
 This constructor will assign default values to properties that have it defined,
@@ -28,6 +31,71 @@ will change when the set of required properties is changed
 NewIdentitySchemaWithDefaults instantiates a new IdentitySchema object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetBlobName
+
+`func (o *IdentitySchema) GetBlobName() string`
+
+GetBlobName returns the BlobName field if non-nil, zero value otherwise.
+
+### GetBlobNameOk
+
+`func (o *IdentitySchema) GetBlobNameOk() (*string, bool)`
+
+GetBlobNameOk returns a tuple with the BlobName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBlobName
+
+`func (o *IdentitySchema) SetBlobName(v string)`
+
+SetBlobName sets BlobName field to given value.
+
+
+### GetBlobUrl
+
+`func (o *IdentitySchema) GetBlobUrl() string`
+
+GetBlobUrl returns the BlobUrl field if non-nil, zero value otherwise.
+
+### GetBlobUrlOk
+
+`func (o *IdentitySchema) GetBlobUrlOk() (*string, bool)`
+
+GetBlobUrlOk returns a tuple with the BlobUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBlobUrl
+
+`func (o *IdentitySchema) SetBlobUrl(v string)`
+
+SetBlobUrl sets BlobUrl field to given value.
+
+
+### GetContentHash
+
+`func (o *IdentitySchema) GetContentHash() string`
+
+GetContentHash returns the ContentHash field if non-nil, zero value otherwise.
+
+### GetContentHashOk
+
+`func (o *IdentitySchema) GetContentHashOk() (*string, bool)`
+
+GetContentHashOk returns a tuple with the ContentHash field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContentHash
+
+`func (o *IdentitySchema) SetContentHash(v string)`
+
+SetContentHash sets ContentHash field to given value.
+
+### HasContentHash
+
+`func (o *IdentitySchema) HasContentHash() bool`
+
+HasContentHash returns a boolean if a field has been set.
 
 ### GetCreatedAt
 

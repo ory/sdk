@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.58
+ * API version: v0.0.1-alpha.66
  * Contact: support@ory.sh
  */
 
@@ -92,11 +92,11 @@ type V0alpha0ApiService service
 type V0alpha0ApiApiCreateProjectRequest struct {
 	ctx context.Context
 	ApiService V0alpha0Api
-	projectPatch *ProjectPatch
+	projectRevision *ProjectRevision
 }
 
-func (r V0alpha0ApiApiCreateProjectRequest) ProjectPatch(projectPatch ProjectPatch) V0alpha0ApiApiCreateProjectRequest {
-	r.projectPatch = &projectPatch
+func (r V0alpha0ApiApiCreateProjectRequest) ProjectRevision(projectRevision ProjectRevision) V0alpha0ApiApiCreateProjectRequest {
+	r.projectRevision = &projectRevision
 	return r
 }
 
@@ -160,7 +160,7 @@ func (a *V0alpha0ApiService) CreateProjectExecute(r V0alpha0ApiApiCreateProjectR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.projectPatch
+	localVarPostBody = r.projectRevision
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -521,11 +521,11 @@ type V0alpha0ApiApiUpdateProjectRequest struct {
 	ctx context.Context
 	ApiService V0alpha0Api
 	projectId string
-	projectPatch *ProjectPatch
+	projectRevision *ProjectRevision
 }
 
-func (r V0alpha0ApiApiUpdateProjectRequest) ProjectPatch(projectPatch ProjectPatch) V0alpha0ApiApiUpdateProjectRequest {
-	r.projectPatch = &projectPatch
+func (r V0alpha0ApiApiUpdateProjectRequest) ProjectRevision(projectRevision ProjectRevision) V0alpha0ApiApiUpdateProjectRequest {
+	r.projectRevision = &projectRevision
 	return r
 }
 
@@ -592,7 +592,7 @@ func (a *V0alpha0ApiService) UpdateProjectExecute(r V0alpha0ApiApiUpdateProjectR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.projectPatch
+	localVarPostBody = r.projectRevision
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err

@@ -16,6 +16,7 @@ from ory_client.model.admin_update_identity_body import AdminUpdateIdentityBody
 from ory_client.model.api_token import ApiToken
 from ory_client.model.api_tokens import ApiTokens
 from ory_client.model.authenticator_assurance_level import AuthenticatorAssuranceLevel
+from ory_client.model.cloud_account import CloudAccount
 from ory_client.model.cname_settings import CnameSettings
 from ory_client.model.create_custom_hostname_body import CreateCustomHostnameBody
 from ory_client.model.create_subscription_payload import CreateSubscriptionPayload

@@ -16,13 +16,13 @@ Method | HTTP request | Description
 
 
 # **createProject**
-> Project createProject(projectPatch)
+> Project createProject(projectRevision)
 
 Create a Project
 
 Creates a new project.
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 // TODO Configure HTTP basic authorization: oryAccessToken
@@ -30,10 +30,10 @@ import 'package:ory_client/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 var api_instance = new V0alpha0Api();
-var projectPatch = new ProjectPatch(); // ProjectPatch | 
+var projectRevision = new ProjectRevision(); // ProjectRevision | 
 
-try { 
-    var result = api_instance.createProject(projectPatch);
+try {
+    var result = api_instance.createProject(projectRevision);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha0Api->createProject: $e\n');
@@ -44,7 +44,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectPatch** | [**ProjectPatch**](ProjectPatch.md)|  | [optional] 
+ **projectRevision** | [**ProjectRevision**](ProjectRevision.md)|  | [optional] 
 
 ### Return type
 
@@ -68,7 +68,7 @@ Get a Project
 
 Get a projects you have access to by its ID.
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 // TODO Configure HTTP basic authorization: oryAccessToken
@@ -78,7 +78,7 @@ import 'package:ory_client/api.dart';
 var api_instance = new V0alpha0Api();
 var projectId = projectId_example; // String | Project ID  The project's ID.
 
-try { 
+try {
     var result = api_instance.getProject(projectId);
     print(result);
 } catch (e) {
@@ -114,7 +114,7 @@ List All Projects
 
 Lists all projects you have access to.
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 // TODO Configure HTTP basic authorization: oryAccessToken
@@ -123,7 +123,7 @@ import 'package:ory_client/api.dart';
 
 var api_instance = new V0alpha0Api();
 
-try { 
+try {
     var result = api_instance.listProjects();
     print(result);
 } catch (e) {
@@ -150,13 +150,13 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateProject**
-> Project updateProject(projectId, projectPatch)
+> Project updateProject(projectId, projectRevision)
 
 Update a Project
 
 Creates a new configuration revision for a project.
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 // TODO Configure HTTP basic authorization: oryAccessToken
@@ -165,10 +165,10 @@ import 'package:ory_client/api.dart';
 
 var api_instance = new V0alpha0Api();
 var projectId = projectId_example; // String | Project ID  The project's ID.
-var projectPatch = new ProjectPatch(); // ProjectPatch | 
+var projectRevision = new ProjectRevision(); // ProjectRevision | 
 
-try { 
-    var result = api_instance.updateProject(projectId, projectPatch);
+try {
+    var result = api_instance.updateProject(projectId, projectRevision);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha0Api->updateProject: $e\n');
@@ -180,7 +180,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **String**| Project ID  The project's ID. | 
- **projectPatch** | [**ProjectPatch**](ProjectPatch.md)|  | [optional] 
+ **projectRevision** | [**ProjectRevision**](ProjectRevision.md)|  | [optional] 
 
 ### Return type
 

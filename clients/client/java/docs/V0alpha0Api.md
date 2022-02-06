@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 <a name="createProject"></a>
 # **createProject**
-> Project createProject(projectPatch)
+> Project createProject(projectRevision)
 
 Create a Project
 
@@ -38,9 +38,9 @@ public class Example {
     oryAccessToken.setBearerToken("BEARER TOKEN");
 
     V0alpha0Api apiInstance = new V0alpha0Api(defaultClient);
-    ProjectPatch projectPatch = new ProjectPatch(); // ProjectPatch | 
+    ProjectRevision projectRevision = new ProjectRevision(); // ProjectRevision | 
     try {
-      Project result = apiInstance.createProject(projectPatch);
+      Project result = apiInstance.createProject(projectRevision);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling V0alpha0Api#createProject");
@@ -57,7 +57,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectPatch** | [**ProjectPatch**](ProjectPatch.md)|  | [optional]
+ **projectRevision** | [**ProjectRevision**](ProjectRevision.md)|  | [optional]
 
 ### Return type
 
@@ -221,7 +221,7 @@ This endpoint does not need any parameter.
 
 <a name="updateProject"></a>
 # **updateProject**
-> Project updateProject(projectId, projectPatch)
+> Project updateProject(projectId, projectRevision)
 
 Update a Project
 
@@ -248,9 +248,9 @@ public class Example {
 
     V0alpha0Api apiInstance = new V0alpha0Api(defaultClient);
     String projectId = "projectId_example"; // String | Project ID  The project's ID.
-    ProjectPatch projectPatch = new ProjectPatch(); // ProjectPatch | 
+    ProjectRevision projectRevision = new ProjectRevision(); // ProjectRevision | 
     try {
-      Project result = apiInstance.updateProject(projectId, projectPatch);
+      Project result = apiInstance.updateProject(projectId, projectRevision);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling V0alpha0Api#updateProject");
@@ -268,7 +268,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **String**| Project ID  The project&#39;s ID. |
- **projectPatch** | [**ProjectPatch**](ProjectPatch.md)|  | [optional]
+ **projectRevision** | [**ProjectRevision**](ProjectRevision.md)|  | [optional]
 
 ### Return type
 

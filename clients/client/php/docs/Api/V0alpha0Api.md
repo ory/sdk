@@ -13,7 +13,7 @@ Method | HTTP request | Description
 ## `createProject()`
 
 ```php
-createProject($projectPatch): \Ory\Client\Model\Project
+createProject($projectRevision): \Ory\Client\Model\Project
 ```
 
 Create a Project
@@ -37,10 +37,10 @@ $apiInstance = new Ory\Client\Api\V0alpha0Api(
     new GuzzleHttp\Client(),
     $config
 );
-$projectPatch = new \Ory\Client\Model\ProjectPatch(); // \Ory\Client\Model\ProjectPatch
+$projectRevision = new \Ory\Client\Model\ProjectRevision(); // \Ory\Client\Model\ProjectRevision
 
 try {
-    $result = $apiInstance->createProject($projectPatch);
+    $result = $apiInstance->createProject($projectRevision);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling V0alpha0Api->createProject: ', $e->getMessage(), PHP_EOL;
@@ -51,7 +51,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectPatch** | [**\Ory\Client\Model\ProjectPatch**](../Model/ProjectPatch.md)|  | [optional]
+ **projectRevision** | [**\Ory\Client\Model\ProjectRevision**](../Model/ProjectRevision.md)|  | [optional]
 
 ### Return type
 
@@ -190,7 +190,7 @@ This endpoint does not need any parameter.
 ## `updateProject()`
 
 ```php
-updateProject($projectId, $projectPatch): \Ory\Client\Model\Project
+updateProject($projectId, $projectRevision): \Ory\Client\Model\Project
 ```
 
 Update a Project
@@ -215,10 +215,10 @@ $apiInstance = new Ory\Client\Api\V0alpha0Api(
     $config
 );
 $projectId = 'projectId_example'; // string | Project ID  The project's ID.
-$projectPatch = new \Ory\Client\Model\ProjectPatch(); // \Ory\Client\Model\ProjectPatch
+$projectRevision = new \Ory\Client\Model\ProjectRevision(); // \Ory\Client\Model\ProjectRevision
 
 try {
-    $result = $apiInstance->updateProject($projectId, $projectPatch);
+    $result = $apiInstance->updateProject($projectId, $projectRevision);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling V0alpha0Api->updateProject: ', $e->getMessage(), PHP_EOL;
@@ -230,7 +230,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **string**| Project ID  The project&#39;s ID. |
- **projectPatch** | [**\Ory\Client\Model\ProjectPatch**](../Model/ProjectPatch.md)|  | [optional]
+ **projectRevision** | [**\Ory\Client\Model\ProjectRevision**](../Model/ProjectRevision.md)|  | [optional]
 
 ### Return type
 

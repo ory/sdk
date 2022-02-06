@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdAt** | **OffsetDateTime** | The Project&#39;s Creation Date |  [readonly]
 **currentRevision** | [**ProjectRevision**](ProjectRevision.md) |  | 
+**hosts** | **List&lt;String&gt;** |  | 
 **id** | **UUID** |  | 
 **revisions** | [**List&lt;ProjectRevision&gt;**](ProjectRevision.md) |  | 
 **slug** | **String** | The project&#39;s slug |  [readonly]

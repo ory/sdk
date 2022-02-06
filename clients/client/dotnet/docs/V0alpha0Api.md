@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 <a name="createproject"></a>
 # **CreateProject**
-> ClientProject CreateProject (ClientProjectPatch clientProjectPatch = null)
+> ClientProject CreateProject (ClientProjectRevision clientProjectRevision = null)
 
 Create a Project
 
@@ -38,12 +38,12 @@ namespace Example
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new V0alpha0Api(config);
-            var clientProjectPatch = new ClientProjectPatch(); // ClientProjectPatch |  (optional) 
+            var clientProjectRevision = new ClientProjectRevision(); // ClientProjectRevision |  (optional) 
 
             try
             {
                 // Create a Project
-                ClientProject result = apiInstance.CreateProject(clientProjectPatch);
+                ClientProject result = apiInstance.CreateProject(clientProjectRevision);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -61,7 +61,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clientProjectPatch** | [**ClientProjectPatch**](ClientProjectPatch.md)|  | [optional] 
+ **clientProjectRevision** | [**ClientProjectRevision**](ClientProjectRevision.md)|  | [optional] 
 
 ### Return type
 
@@ -116,7 +116,7 @@ namespace Example
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new V0alpha0Api(config);
-            var projectId = projectId_example;  // string | Project ID  The project's ID.
+            var projectId = "projectId_example";  // string | Project ID  The project's ID.
 
             try
             {
@@ -242,7 +242,7 @@ This endpoint does not need any parameter.
 
 <a name="updateproject"></a>
 # **UpdateProject**
-> ClientProject UpdateProject (string projectId, ClientProjectPatch clientProjectPatch = null)
+> ClientProject UpdateProject (string projectId, ClientProjectRevision clientProjectRevision = null)
 
 Update a Project
 
@@ -268,13 +268,13 @@ namespace Example
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new V0alpha0Api(config);
-            var projectId = projectId_example;  // string | Project ID  The project's ID.
-            var clientProjectPatch = new ClientProjectPatch(); // ClientProjectPatch |  (optional) 
+            var projectId = "projectId_example";  // string | Project ID  The project's ID.
+            var clientProjectRevision = new ClientProjectRevision(); // ClientProjectRevision |  (optional) 
 
             try
             {
                 // Update a Project
-                ClientProject result = apiInstance.UpdateProject(projectId, clientProjectPatch);
+                ClientProject result = apiInstance.UpdateProject(projectId, clientProjectRevision);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -293,7 +293,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **string**| Project ID  The project&#39;s ID. | 
- **clientProjectPatch** | [**ClientProjectPatch**](ClientProjectPatch.md)|  | [optional] 
+ **clientProjectRevision** | [**ClientProjectRevision**](ClientProjectRevision.md)|  | [optional] 
 
 ### Return type
 

@@ -19,7 +19,7 @@ void main() {
     //
     // Creates a new project.
     //
-    //Future<Project> createProject({ ProjectPatch projectPatch }) async
+    //Future<Project> createProject({ ProjectRevision projectRevision }) async
     test('test createProject', () async {
       // TODO
     });
@@ -46,7 +46,7 @@ void main() {
     //
     // Creates a new configuration revision for a project.
     //
-    //Future<Project> updateProject(String projectId, { ProjectPatch projectPatch }) async
+    //Future<Project> updateProject(String projectId, { ProjectRevision projectRevision }) async
     test('test updateProject', () async {
       // TODO
     });

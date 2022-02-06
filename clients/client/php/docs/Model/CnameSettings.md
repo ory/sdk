@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cookieDomain** | **string** |  | [optional]
-**createdAt** | [**\DateTime**](\DateTime.md) |  | [optional]
+**createdAt** | **\DateTime** |  | [optional]
 **hostname** | **string** |  | [optional]
 **id** | **string** |  | [optional]
-**updatedAt** | [**\DateTime**](\DateTime.md) |  | [optional]
+**updatedAt** | **\DateTime** |  | [optional]
 **verificationErrors** | **string[]** |  | [optional]
 **verificationStatus** | **string** | CustomHostnameStatus is the enumeration of valid state values in the CustomHostnameSSL | [optional]
 

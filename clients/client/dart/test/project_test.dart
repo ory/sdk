@@ -25,6 +25,11 @@ void main() {
       // TODO
     });
 
+    // BuiltList<String> hosts
+    test('to test the property `hosts`', () async {
+      // TODO
+    });
+
     // String id
     test('to test the property `id`', () async {
       // TODO

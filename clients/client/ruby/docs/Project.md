@@ -6,6 +6,7 @@
 | ---- | ---- | ----------- | ----- |
 | **created_at** | **Time** | The Project&#39;s Creation Date | [readonly] |
 | **current_revision** | [**ProjectRevision**](ProjectRevision.md) |  |  |
+| **hosts** | **Array&lt;String&gt;** |  |  |
 | **id** | **String** |  |  |
 | **revisions** | [**Array&lt;ProjectRevision&gt;**](ProjectRevision.md) |  |  |
 | **slug** | **String** | The project&#39;s slug | [readonly] |
@@ -21,6 +22,7 @@ require 'ory-client'
 instance = OryClient::Project.new(
   created_at: null,
   current_revision: null,
+  hosts: null,
   id: null,
   revisions: null,
   slug: null,

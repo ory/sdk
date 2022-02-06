@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreateProject
 
-> Project CreateProject(ctx).ProjectPatch(projectPatch).Execute()
+> Project CreateProject(ctx).ProjectRevision(projectRevision).Execute()
 
 Create a Project
 
@@ -32,11 +32,11 @@ import (
 )
 
 func main() {
-    projectPatch := *openapiclient.NewProjectPatch("https://example.org/error", "https://example.org/login", *openapiclient.NewProjectLookupSecretConfig(), *openapiclient.NewProjectPasswordConfig(), *openapiclient.NewProjectRecoveryConfig(), "https://example.org/recover", "https://example.org/signup", false, false, int64(900), false, "https://example.org/settings", *openapiclient.NewProjectTotpConfig(), *openapiclient.NewProjectVerificationConfig(), "https://example.org/verify", *openapiclient.NewProjectWebAuthnConfig()) // ProjectPatch |  (optional)
+    projectRevision := *openapiclient.NewProjectRevision("Name_example") // ProjectRevision |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.V0alpha0Api.CreateProject(context.Background()).ProjectPatch(projectPatch).Execute()
+    resp, r, err := apiClient.V0alpha0Api.CreateProject(context.Background()).ProjectRevision(projectRevision).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha0Api.CreateProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -57,7 +57,7 @@ Other parameters are passed through a pointer to a apiCreateProjectRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectPatch** | [**ProjectPatch**](ProjectPatch.md) |  | 
+ **projectRevision** | [**ProjectRevision**](ProjectRevision.md) |  | 
 
 ### Return type
 
@@ -210,7 +210,7 @@ Other parameters are passed through a pointer to a apiListProjectsRequest struct
 
 ## UpdateProject
 
-> Project UpdateProject(ctx, projectId).ProjectPatch(projectPatch).Execute()
+> Project UpdateProject(ctx, projectId).ProjectRevision(projectRevision).Execute()
 
 Update a Project
 
@@ -230,11 +230,11 @@ import (
 
 func main() {
     projectId := "projectId_example" // string | Project ID  The project's ID.
-    projectPatch := *openapiclient.NewProjectPatch("https://example.org/error", "https://example.org/login", *openapiclient.NewProjectLookupSecretConfig(), *openapiclient.NewProjectPasswordConfig(), *openapiclient.NewProjectRecoveryConfig(), "https://example.org/recover", "https://example.org/signup", false, false, int64(900), false, "https://example.org/settings", *openapiclient.NewProjectTotpConfig(), *openapiclient.NewProjectVerificationConfig(), "https://example.org/verify", *openapiclient.NewProjectWebAuthnConfig()) // ProjectPatch |  (optional)
+    projectRevision := *openapiclient.NewProjectRevision("Name_example") // ProjectRevision |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.V0alpha0Api.UpdateProject(context.Background(), projectId).ProjectPatch(projectPatch).Execute()
+    resp, r, err := apiClient.V0alpha0Api.UpdateProject(context.Background(), projectId).ProjectRevision(projectRevision).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha0Api.UpdateProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -260,7 +260,7 @@ Other parameters are passed through a pointer to a apiUpdateProjectRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **projectPatch** | [**ProjectPatch**](ProjectPatch.md) |  | 
+ **projectRevision** | [**ProjectRevision**](ProjectRevision.md) |  | 
 
 ### Return type
 

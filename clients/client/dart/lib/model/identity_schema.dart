@@ -13,6 +13,19 @@ part 'identity_schema.g.dart';
 
 abstract class IdentitySchema implements Built<IdentitySchema, IdentitySchemaBuilder> {
 
+    /// The gcs file name  This is a randomly generated name which is used to uniquely identify the file on the blob storage
+    @BuiltValueField(wireName: r'blob_name')
+    String get blobName;
+
+    /// The publicly accessible url of the schema
+    @BuiltValueField(wireName: r'blob_url')
+    String get blobUrl;
+
+    /// The Content Hash  Contains a hash of the schema's content.
+    @nullable
+    @BuiltValueField(wireName: r'content_hash')
+    String get contentHash;
+
     /// The Schema's Creation Date
     @BuiltValueField(wireName: r'created_at')
     DateTime get createdAt;
@@ -55,6 +68,20 @@ class _$IdentitySchemaSerializer implements StructuredSerializer<IdentitySchema>
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object>[];
         result
+            ..add(r'blob_name')
+            ..add(serializers.serialize(object.blobName,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'blob_url')
+            ..add(serializers.serialize(object.blobUrl,
+                specifiedType: const FullType(String)));
+        if (object.contentHash != null) {
+            result
+                ..add(r'content_hash')
+                ..add(serializers.serialize(object.contentHash,
+                    specifiedType: const FullType(String)));
+        }
+        result
             ..add(r'created_at')
             ..add(serializers.serialize(object.createdAt,
                 specifiedType: const FullType(DateTime)));
@@ -90,6 +117,18 @@ class _$IdentitySchemaSerializer implements StructuredSerializer<IdentitySchema>
             iterator.moveNext();
             final dynamic value = iterator.current;
             switch (key) {
+                case r'blob_name':
+                    result.blobName = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'blob_url':
+                    result.blobUrl = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'content_hash':
+                    result.contentHash = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
                 case r'created_at':
                     result.createdAt = serializers.deserialize(value,
                         specifiedType: const FullType(DateTime)) as DateTime;

@@ -20,6 +20,7 @@ Creates a new project.
 ### Example
 
 * Bearer Authentication (oryAccessToken):
+
 ```python
 import time
 import ory_client
@@ -211,6 +212,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | project |  -  |
@@ -231,6 +233,7 @@ Get a projects you have access to by its ID.
 ### Example
 
 * Bearer Authentication (oryAccessToken):
+
 ```python
 import time
 import ory_client
@@ -291,6 +294,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | project |  -  |
@@ -311,6 +315,7 @@ Lists all projects you have access to.
 ### Example
 
 * Bearer Authentication (oryAccessToken):
+
 ```python
 import time
 import ory_client
@@ -367,6 +372,7 @@ This endpoint does not need any parameter.
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | projects |  -  |
@@ -387,6 +393,7 @@ Creates a new configuration revision for a project.
 ### Example
 
 * Bearer Authentication (oryAccessToken):
+
 ```python
 import time
 import ory_client
@@ -588,6 +595,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | project |  -  |

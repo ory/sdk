@@ -57,7 +57,7 @@ Create an Identity
 
 This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 // TODO Configure HTTP basic authorization: oryAccessToken
@@ -67,7 +67,7 @@ import 'package:ory_client/api.dart';
 var api_instance = new V0alpha2Api();
 var adminCreateIdentityBody = new AdminCreateIdentityBody(); // AdminCreateIdentityBody | 
 
-try { 
+try {
     var result = api_instance.adminCreateIdentity(adminCreateIdentityBody);
     print(result);
 } catch (e) {
@@ -103,7 +103,7 @@ Create a Recovery Link
 
 This endpoint creates a recovery link which should be given to the user in order for them to recover (or activate) their account.
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 // TODO Configure HTTP basic authorization: oryAccessToken
@@ -113,7 +113,7 @@ import 'package:ory_client/api.dart';
 var api_instance = new V0alpha2Api();
 var adminCreateSelfServiceRecoveryLinkBody = new AdminCreateSelfServiceRecoveryLinkBody(); // AdminCreateSelfServiceRecoveryLinkBody | 
 
-try { 
+try {
     var result = api_instance.adminCreateSelfServiceRecoveryLink(adminCreateSelfServiceRecoveryLinkBody);
     print(result);
 } catch (e) {
@@ -149,7 +149,7 @@ Delete an Identity
 
 Calling this endpoint irrecoverably and permanently deletes the identity given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is assumed that is has been deleted already.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 // TODO Configure HTTP basic authorization: oryAccessToken
@@ -159,7 +159,7 @@ import 'package:ory_client/api.dart';
 var api_instance = new V0alpha2Api();
 var id = id_example; // String | ID is the identity's ID.
 
-try { 
+try {
     api_instance.adminDeleteIdentity(id);
 } catch (e) {
     print('Exception when calling V0alpha2Api->adminDeleteIdentity: $e\n');
@@ -194,7 +194,7 @@ Calling this endpoint irrecoverably and permanently deletes and invalidates all 
 
 This endpoint is useful for:  To forcefully logout Identity from all devices and sessions
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 // TODO Configure HTTP basic authorization: oryAccessToken
@@ -204,7 +204,7 @@ import 'package:ory_client/api.dart';
 var api_instance = new V0alpha2Api();
 var id = id_example; // String | ID is the identity's ID.
 
-try { 
+try {
     api_instance.adminDeleteIdentitySessions(id);
 } catch (e) {
     print('Exception when calling V0alpha2Api->adminDeleteIdentitySessions: $e\n');
@@ -239,7 +239,7 @@ Get an Identity
 
 Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 // TODO Configure HTTP basic authorization: oryAccessToken
@@ -250,7 +250,7 @@ var api_instance = new V0alpha2Api();
 var id = id_example; // String | ID must be set to the ID of identity you want to get
 var includeCredential = []; // BuiltList<String> | DeclassifyCredentials will declassify one or more identity's credentials  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token.
 
-try { 
+try {
     var result = api_instance.adminGetIdentity(id, includeCredential);
     print(result);
 } catch (e) {
@@ -287,7 +287,7 @@ List Identities
 
 Lists all identities. Does not support search at the moment.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 // TODO Configure HTTP basic authorization: oryAccessToken
@@ -298,7 +298,7 @@ var api_instance = new V0alpha2Api();
 var perPage = 789; // int | Items per Page  This is the number of items per page.
 var page = 789; // int | Pagination Page
 
-try { 
+try {
     var result = api_instance.adminListIdentities(perPage, page);
     print(result);
 } catch (e) {
@@ -335,7 +335,7 @@ This endpoint returns all sessions that belong to the given Identity.
 
 This endpoint is useful for:  Listing all sessions that belong to an Identity in an administrative context.
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 // TODO Configure HTTP basic authorization: oryAccessToken
@@ -348,7 +348,7 @@ var perPage = 789; // int | Items per Page  This is the number of items per page
 var page = 789; // int | Pagination Page
 var active = true; // bool | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
 
-try { 
+try {
     var result = api_instance.adminListIdentitySessions(id, perPage, page, active);
     print(result);
 } catch (e) {
@@ -387,7 +387,7 @@ Update an Identity
 
 This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 // TODO Configure HTTP basic authorization: oryAccessToken
@@ -398,7 +398,7 @@ var api_instance = new V0alpha2Api();
 var id = id_example; // String | ID must be set to the ID of identity you want to update
 var adminUpdateIdentityBody = new AdminUpdateIdentityBody(); // AdminUpdateIdentityBody | 
 
-try { 
+try {
     var result = api_instance.adminUpdateIdentity(id, adminUpdateIdentityBody);
     print(result);
 } catch (e) {
@@ -435,14 +435,14 @@ Create a Logout URL for Browsers
 
 This endpoint initializes a browser-based user logout flow and a URL which can be used to log out the user.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...). For API clients you can call the `/self-service/logout/api` URL directly with the Ory Session Token.  The URL is only valid for the currently signed in user. If no user is signed in, this endpoint returns a 401 error.  When calling this endpoint from a backend, please ensure to properly forward the HTTP cookies.
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
 var api_instance = new V0alpha2Api();
 var cookie = cookie_example; // String | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request.
 
-try { 
+try {
     var result = api_instance.createSelfServiceLogoutFlowUrlForBrowsers(cookie);
     print(result);
 } catch (e) {
@@ -478,14 +478,14 @@ No authorization required
 
 Get a JSON Schema
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
 var api_instance = new V0alpha2Api();
 var id = id_example; // String | ID must be set to the ID of schema you want to get
 
-try { 
+try {
     var result = api_instance.getJsonSchema(id);
     print(result);
 } catch (e) {
@@ -521,14 +521,14 @@ Get Self-Service Errors
 
 This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?id=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
 var api_instance = new V0alpha2Api();
 var id = id_example; // String | Error is the error's ID
 
-try { 
+try {
     var result = api_instance.getSelfServiceError(id);
     print(result);
 } catch (e) {
@@ -564,7 +564,7 @@ Get Login Flow
 
 This endpoint returns a login flow's context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request's HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  ```js pseudo-code example router.get('/login', async function (req, res) { const flow = await client.getSelfServiceLoginFlow(req.header('cookie'), req.query['flow'])  res.render('login', flow) }) ```  This request may fail due to several reasons. The `error.id` can be one of:  `session_already_available`: The user is already signed in. `self_service_flow_expired`: The flow is expired and you should request a new one.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
@@ -572,7 +572,7 @@ var api_instance = new V0alpha2Api();
 var id = id_example; // String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
 var cookie = cookie_example; // String | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here.
 
-try { 
+try {
     var result = api_instance.getSelfServiceLoginFlow(id, cookie);
     print(result);
 } catch (e) {
@@ -609,7 +609,7 @@ Get Recovery Flow
 
 This endpoint returns a recovery flow's context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request's HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  ```js pseudo-code example router.get('/recovery', async function (req, res) { const flow = await client.getSelfServiceRecoveryFlow(req.header('Cookie'), req.query['flow'])  res.render('recovery', flow) }) ```  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
@@ -617,7 +617,7 @@ var api_instance = new V0alpha2Api();
 var id = id_example; // String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
 var cookie = cookie_example; // String | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here.
 
-try { 
+try {
     var result = api_instance.getSelfServiceRecoveryFlow(id, cookie);
     print(result);
 } catch (e) {
@@ -654,7 +654,7 @@ Get Registration Flow
 
 This endpoint returns a registration flow's context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request's HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  ```js pseudo-code example router.get('/registration', async function (req, res) { const flow = await client.getSelfServiceRegistrationFlow(req.header('cookie'), req.query['flow'])  res.render('registration', flow) }) ```  This request may fail due to several reasons. The `error.id` can be one of:  `session_already_available`: The user is already signed in. `self_service_flow_expired`: The flow is expired and you should request a new one.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
@@ -662,7 +662,7 @@ var api_instance = new V0alpha2Api();
 var id = id_example; // String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
 var cookie = cookie_example; // String | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here.
 
-try { 
+try {
     var result = api_instance.getSelfServiceRegistrationFlow(id, cookie);
     print(result);
 } catch (e) {
@@ -699,7 +699,7 @@ Get Settings Flow
 
 When accessing this endpoint through Ory Kratos' Public API you must ensure that either the Ory Kratos Session Cookie or the Ory Kratos Session Token are set.  Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  You can access this endpoint without credentials when using Ory Kratos' Admin API.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `session_inactive`: No Ory Session was found - sign in a user first. `security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other identity logged in instead.  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
@@ -708,7 +708,7 @@ var id = id_example; // String | ID is the Settings Flow ID  The value for this 
 var xSessionToken = xSessionToken_example; // String | The Session Token  When using the SDK in an app without a browser, please include the session token here.
 var cookie = cookie_example; // String | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. You only need to do this for browser- based flows.
 
-try { 
+try {
     var result = api_instance.getSelfServiceSettingsFlow(id, xSessionToken, cookie);
     print(result);
 } catch (e) {
@@ -746,7 +746,7 @@ Get Verification Flow
 
 This endpoint returns a verification flow's context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request's HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  ```js pseudo-code example router.get('/recovery', async function (req, res) { const flow = await client.getSelfServiceVerificationFlow(req.header('cookie'), req.query['flow'])  res.render('verification', flow) })  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
@@ -754,7 +754,7 @@ var api_instance = new V0alpha2Api();
 var id = id_example; // String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
 var cookie = cookie_example; // String | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here.
 
-try { 
+try {
     var result = api_instance.getSelfServiceVerificationFlow(id, cookie);
     print(result);
 } catch (e) {
@@ -791,13 +791,13 @@ Get WebAuthn JavaScript
 
 This endpoint provides JavaScript which is needed in order to perform WebAuthn login and registration.  If you are building a JavaScript Browser App (e.g. in ReactJS or AngularJS) you will need to load this file:  ```html <script src=\"https://public-kratos.example.org/.well-known/ory/webauthn.js\" type=\"script\" async /> ```  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
 var api_instance = new V0alpha2Api();
 
-try { 
+try {
     var result = api_instance.getWebAuthnJavaScript();
     print(result);
 } catch (e) {
@@ -830,7 +830,7 @@ Initialize Login Flow for Browsers
 
 This endpoint initializes a browser-based user login flow. This endpoint will set the appropriate cookies and anti-CSRF measures required for browser-based flows.  If this endpoint is opened as a link in the browser, it will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
@@ -839,7 +839,7 @@ var refresh = true; // bool | Refresh a login session  If set to true, this will
 var aal = aal_example; // String | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\".
 var returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
 
-try { 
+try {
     var result = api_instance.initializeSelfServiceLoginFlowForBrowsers(refresh, aal, returnTo);
     print(result);
 } catch (e) {
@@ -877,7 +877,7 @@ Initialize Login Flow for APIs, Services, Apps, ...
 
 This endpoint initiates a login flow for API clients that do not use a browser, such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
@@ -886,7 +886,7 @@ var refresh = true; // bool | Refresh a login session  If set to true, this will
 var aal = aal_example; // String | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\".
 var xSessionToken = xSessionToken_example; // String | The Session Token of the Identity performing the settings flow.
 
-try { 
+try {
     var result = api_instance.initializeSelfServiceLoginFlowWithoutBrowser(refresh, aal, xSessionToken);
     print(result);
 } catch (e) {
@@ -924,14 +924,14 @@ Initialize Recovery Flow for Browsers
 
 This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to `selfservice.flows.recovery.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists, the browser is returned to the configured return URL.  If this endpoint is called via an AJAX request, the response contains the recovery flow without any redirects or a 400 bad request error if the user is already authenticated.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
 var api_instance = new V0alpha2Api();
 var returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
 
-try { 
+try {
     var result = api_instance.initializeSelfServiceRecoveryFlowForBrowsers(returnTo);
     print(result);
 } catch (e) {
@@ -967,13 +967,13 @@ Initialize Recovery Flow for APIs, Services, Apps, ...
 
 This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).   More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
 var api_instance = new V0alpha2Api();
 
-try { 
+try {
     var result = api_instance.initializeSelfServiceRecoveryFlowWithoutBrowser();
     print(result);
 } catch (e) {
@@ -1006,14 +1006,14 @@ Initialize Registration Flow for Browsers
 
 This endpoint initializes a browser-based user registration flow. This endpoint will set the appropriate cookies and anti-CSRF measures required for browser-based flows.  :::info  This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.  :::  If this endpoint is opened as a link in the browser, it will be redirected to `selfservice.flows.registration.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url`.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!  If this endpoint is called via an AJAX request, the response contains the registration flow without a redirect.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
 var api_instance = new V0alpha2Api();
 var returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
 
-try { 
+try {
     var result = api_instance.initializeSelfServiceRegistrationFlowForBrowsers(returnTo);
     print(result);
 } catch (e) {
@@ -1049,13 +1049,13 @@ Initialize Registration Flow for APIs, Services, Apps, ...
 
 This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing registration flow call `/self-service/registration/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
 var api_instance = new V0alpha2Api();
 
-try { 
+try {
     var result = api_instance.initializeSelfServiceRegistrationFlowWithoutBrowser();
     print(result);
 } catch (e) {
@@ -1088,14 +1088,14 @@ Initialize Settings Flow for Browsers
 
 This endpoint initializes a browser-based user settings flow. Once initialized, the browser will be redirected to `selfservice.flows.settings.ui_url` with the flow ID set as the query parameter `?flow=`. If no valid Ory Kratos Session Cookie is included in the request, a login flow will be initialized.  If this endpoint is opened as a link in the browser, it will be redirected to `selfservice.flows.settings.ui_url` with the flow ID set as the query parameter `?flow=`. If no valid user session was set, the browser will be redirected to the login endpoint.  If this endpoint is called via an AJAX request, the response contains the settings flow without any redirects or a 401 forbidden error if no valid session was set.  Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor (happens automatically for server-side browser flows) or change the configuration.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `session_inactive`: No Ory Session was found - sign in a user first. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
 var api_instance = new V0alpha2Api();
 var returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
 
-try { 
+try {
     var result = api_instance.initializeSelfServiceSettingsFlowForBrowsers(returnTo);
     print(result);
 } catch (e) {
@@ -1131,14 +1131,14 @@ Initialize Settings Flow for APIs, Services, Apps, ...
 
 This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid Ory Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call `/self-service/settings/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  In the case of an error, the `error.id` of the JSON response body can be one of:  `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `session_inactive`: No Ory Session was found - sign in a user first.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
 var api_instance = new V0alpha2Api();
 var xSessionToken = xSessionToken_example; // String | The Session Token of the Identity performing the settings flow.
 
-try { 
+try {
     var result = api_instance.initializeSelfServiceSettingsFlowWithoutBrowser(xSessionToken);
     print(result);
 } catch (e) {
@@ -1174,14 +1174,14 @@ Initialize Verification Flow for Browser Clients
 
 This endpoint initializes a browser-based account verification flow. Once initialized, the browser will be redirected to `selfservice.flows.verification.ui_url` with the flow ID set as the query parameter `?flow=`.  If this endpoint is called via an AJAX request, the response contains the recovery flow without any redirects.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
 var api_instance = new V0alpha2Api();
 var returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
 
-try { 
+try {
     var result = api_instance.initializeSelfServiceVerificationFlowForBrowsers(returnTo);
     print(result);
 } catch (e) {
@@ -1217,13 +1217,13 @@ Initialize Verification Flow for APIs, Services, Apps, ...
 
 This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
 var api_instance = new V0alpha2Api();
 
-try { 
+try {
     var result = api_instance.initializeSelfServiceVerificationFlowWithoutBrowser();
     print(result);
 } catch (e) {
@@ -1256,7 +1256,7 @@ No authorization required
 
 Get all Identity Schemas
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
@@ -1264,7 +1264,7 @@ var api_instance = new V0alpha2Api();
 var perPage = 789; // int | Items per Page  This is the number of items per page.
 var page = 789; // int | Pagination Page
 
-try { 
+try {
     var result = api_instance.listIdentitySchemas(perPage, page);
     print(result);
 } catch (e) {
@@ -1301,7 +1301,7 @@ This endpoints returns all other active sessions that belong to the logged-in us
 
 This endpoint is useful for:  Displaying all other sessions that belong to the logged-in user
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
@@ -1311,7 +1311,7 @@ var cookie = cookie_example; // String | Set the Cookie Header. This is especial
 var perPage = 789; // int | Items per Page  This is the number of items per page.
 var page = 789; // int | Pagination Page
 
-try { 
+try {
     var result = api_instance.listSessions(xSessionToken, cookie, perPage, page);
     print(result);
 } catch (e) {
@@ -1350,14 +1350,14 @@ Calling this endpoint invalidates the specified session. The current session can
 
 This endpoint is useful for:  To forcefully logout the current user from another device or session
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
 var api_instance = new V0alpha2Api();
 var id = id_example; // String | ID is the session's ID.
 
-try { 
+try {
     api_instance.revokeSession(id);
 } catch (e) {
     print('Exception when calling V0alpha2Api->revokeSession: $e\n');
@@ -1392,7 +1392,7 @@ Calling this endpoint invalidates all except the current session that belong to 
 
 This endpoint is useful for:  To forcefully logout the current user from all other devices and sessions
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
@@ -1400,7 +1400,7 @@ var api_instance = new V0alpha2Api();
 var xSessionToken = xSessionToken_example; // String | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`.
 var cookie = cookie_example; // String | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored.
 
-try { 
+try {
     var result = api_instance.revokeSessions(xSessionToken, cookie);
     print(result);
 } catch (e) {
@@ -1437,7 +1437,7 @@ Submit a Login Flow
 
 :::info  This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.  :::  Use this endpoint to complete a login flow. This endpoint behaves differently for API and browser flows.  API flows expect `application/json` to be sent in the body and responds with HTTP 200 and a application/json body with the session token on success; HTTP 302 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with a HTTP 302 redirect to the post/after login URL or the `return_to` value if it was set and if the login succeeded; a HTTP 302 redirect to the login UI URL with the flow ID containing the validation errors otherwise.  Browser flows with an accept header of `application/json` will not redirect but instead respond with HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success; HTTP 302 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration! `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL. Most likely used in Social Sign In flows.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
@@ -1446,7 +1446,7 @@ var flow = flow_example; // String | The Login Flow ID  The value for this param
 var xSessionToken = xSessionToken_example; // String | The Session Token of the Identity performing the settings flow.
 var submitSelfServiceLoginFlowBody = new SubmitSelfServiceLoginFlowBody(); // SubmitSelfServiceLoginFlowBody | 
 
-try { 
+try {
     var result = api_instance.submitSelfServiceLoginFlow(flow, xSessionToken, submitSelfServiceLoginFlowBody);
     print(result);
 } catch (e) {
@@ -1484,7 +1484,7 @@ Complete Self-Service Logout
 
 This endpoint logs out an identity in a self-service manner.  If the `Accept` HTTP header is not set to `application/json`, the browser will be redirected (HTTP 302 Found) to the `return_to` parameter of the initial request or fall back to `urls.default_return_to`.  If the `Accept` HTTP header is set to `application/json`, a 204 No Content response will be sent on successful logout instead.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...). For API clients you can call the `/self-service/logout/api` URL directly with the Ory Session Token.  More information can be found at [Ory Kratos User Logout Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-logout).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
@@ -1492,7 +1492,7 @@ var api_instance = new V0alpha2Api();
 var token = token_example; // String | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/urls` to generate a URL for this endpoint.
 var returnTo = returnTo_example; // String | The URL to return to after the logout was completed.
 
-try { 
+try {
     api_instance.submitSelfServiceLogoutFlow(token, returnTo);
 } catch (e) {
     print('Exception when calling V0alpha2Api->submitSelfServiceLogoutFlow: $e\n');
@@ -1528,14 +1528,14 @@ Perform Logout for APIs, Services, Apps, ...
 
 Use this endpoint to log out an identity using an Ory Session Token. If the Ory Session Token was successfully revoked, the server returns a 204 No Content response. A 204 No Content response is also sent when the Ory Session Token has been revoked already before.  If the Ory Session Token is malformed or does not exist a 403 Forbidden response will be returned.  This endpoint does not remove any HTTP Cookies - use the Browser-Based Self-Service Logout Flow instead.
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
 var api_instance = new V0alpha2Api();
 var submitSelfServiceLogoutFlowWithoutBrowserBody = new SubmitSelfServiceLogoutFlowWithoutBrowserBody(); // SubmitSelfServiceLogoutFlowWithoutBrowserBody | 
 
-try { 
+try {
     api_instance.submitSelfServiceLogoutFlowWithoutBrowser(submitSelfServiceLogoutFlowWithoutBrowserBody);
 } catch (e) {
     print('Exception when calling V0alpha2Api->submitSelfServiceLogoutFlowWithoutBrowser: $e\n');
@@ -1570,7 +1570,7 @@ Complete Recovery Flow
 
 Use this endpoint to complete a recovery flow. This endpoint behaves differently for API and browser flows and has several states:  `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent and works with API- and Browser-initiated flows. For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid. and a HTTP 302 Found redirect with a fresh recovery flow if the flow was otherwise invalid (e.g. expired). For Browser clients without HTTP Header `Accept` or with `Accept: text/_*` it returns a HTTP 302 Found redirect to the Recovery UI URL with the Recovery Flow ID appended. `sent_email` is the success state after `choose_method` for the `link` method and allows the user to request another recovery email. It works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state. `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow (\"sending a recovery link\") does not have any API capabilities. The server responds with a HTTP 302 Found redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Recover UI URL with a new Recovery Flow ID which contains an error message that the recovery link was invalid.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
@@ -1579,7 +1579,7 @@ var flow = flow_example; // String | The Recovery Flow ID  The value for this pa
 var token = token_example; // String | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
 var submitSelfServiceRecoveryFlowBody = new SubmitSelfServiceRecoveryFlowBody(); // SubmitSelfServiceRecoveryFlowBody | 
 
-try { 
+try {
     var result = api_instance.submitSelfServiceRecoveryFlow(flow, token, submitSelfServiceRecoveryFlowBody);
     print(result);
 } catch (e) {
@@ -1617,7 +1617,7 @@ Submit a Registration Flow
 
 Use this endpoint to complete a registration flow by sending an identity's traits and password. This endpoint behaves differently for API and browser flows.  API flows expect `application/json` to be sent in the body and respond with HTTP 200 and a application/json body with the created identity success - if the session hook is configured the `session` and `session_token` will also be included; HTTP 302 redirect to a fresh registration flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with a HTTP 302 redirect to the post/after registration URL or the `return_to` value if it was set and if the registration succeeded; a HTTP 302 redirect to the registration UI URL with the flow ID containing the validation errors otherwise.  Browser flows with an accept header of `application/json` will not redirect but instead respond with HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success; HTTP 302 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration! `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL. Most likely used in Social Sign In flows.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
@@ -1625,7 +1625,7 @@ var api_instance = new V0alpha2Api();
 var flow = flow_example; // String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
 var submitSelfServiceRegistrationFlowBody = new SubmitSelfServiceRegistrationFlowBody(); // SubmitSelfServiceRegistrationFlowBody | 
 
-try { 
+try {
     var result = api_instance.submitSelfServiceRegistrationFlow(flow, submitSelfServiceRegistrationFlowBody);
     print(result);
 } catch (e) {
@@ -1662,7 +1662,7 @@ Complete Settings Flow
 
 Use this endpoint to complete a settings flow by sending an identity's updated password. This endpoint behaves differently for API and browser flows.  API-initiated flows expect `application/json` to be sent in the body and respond with HTTP 200 and an application/json body with the session token on success; HTTP 302 redirect to a fresh settings flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors. HTTP 401 when the endpoint is called without a valid session token. HTTP 403 when `selfservice.flows.settings.privileged_session_max_age` was reached or the session's AAL is too low. Implies that the user needs to re-authenticate.  Browser flows without HTTP Header `Accept` or with `Accept: text/_*` respond with a HTTP 302 redirect to the post/after settings URL or the `return_to` value if it was set and if the flow succeeded; a HTTP 302 redirect to the Settings UI URL with the flow ID containing the validation errors otherwise. a HTTP 302 redirect to the login endpoint when `selfservice.flows.settings.privileged_session_max_age` was reached or the session's AAL is too low.  Browser flows with HTTP Header `Accept: application/json` respond with HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success; HTTP 302 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 401 when the endpoint is called without a valid session cookie. HTTP 403 when the page is accessed without a session cookie or the session's AAL is too low. HTTP 400 on form validation errors.  Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor (happens automatically for server-side browser flows) or change the configuration.  If this endpoint is called with a `Accept: application/json` HTTP header, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_refresh_required`: The identity requested to change something that needs a privileged session. Redirect the identity to the login init endpoint with query parameters `?refresh=true&return_to=<the-current-browser-url>`, or initiate a refresh login flow otherwise. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `session_inactive`: No Ory Session was found - sign in a user first. `security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other identity logged in instead. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration! `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL. Most likely used in Social Sign In flows.  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
@@ -1671,7 +1671,7 @@ var flow = flow_example; // String | The Settings Flow ID  The value for this pa
 var xSessionToken = xSessionToken_example; // String | The Session Token of the Identity performing the settings flow.
 var submitSelfServiceSettingsFlowBody = new SubmitSelfServiceSettingsFlowBody(); // SubmitSelfServiceSettingsFlowBody | 
 
-try { 
+try {
     var result = api_instance.submitSelfServiceSettingsFlow(flow, xSessionToken, submitSelfServiceSettingsFlowBody);
     print(result);
 } catch (e) {
@@ -1709,7 +1709,7 @@ Complete Verification Flow
 
 Use this endpoint to complete a verification flow. This endpoint behaves differently for API and browser flows and has several states:  `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent and works with API- and Browser-initiated flows. For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid and a HTTP 302 Found redirect with a fresh verification flow if the flow was otherwise invalid (e.g. expired). For Browser clients without HTTP Header `Accept` or with `Accept: text/_*` it returns a HTTP 302 Found redirect to the Verification UI URL with the Verification Flow ID appended. `sent_email` is the success state after `choose_method` when using the `link` method and allows the user to request another verification email. It works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state. `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow (\"sending a verification link\") does not have any API capabilities. The server responds with a HTTP 302 Found redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Verification UI URL with a new Verification Flow ID which contains an error message that the verification link was invalid.  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
@@ -1718,7 +1718,7 @@ var flow = flow_example; // String | The Verification Flow ID  The value for thi
 var token = token_example; // String | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
 var submitSelfServiceVerificationFlowBody = new SubmitSelfServiceVerificationFlowBody(); // SubmitSelfServiceVerificationFlowBody | 
 
-try { 
+try {
     var result = api_instance.submitSelfServiceVerificationFlow(flow, token, submitSelfServiceVerificationFlowBody);
     print(result);
 } catch (e) {
@@ -1756,7 +1756,7 @@ Check Who the Current HTTP Session Belongs To
 
 Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. Additionally when the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header in the response.  If you call this endpoint from a server-side application, you must forward the HTTP Cookie Header to this endpoint:  ```js pseudo-code example router.get('/protected-endpoint', async function (req, res) { const session = await client.toSession(undefined, req.header('cookie'))  console.log(session) }) ```  When calling this endpoint from a non-browser application (e.g. mobile app) you must include the session token:  ```js pseudo-code example ... const session = await client.toSession(\"the-session-token\")  console.log(session) ```  Depending on your configuration this endpoint might return a 403 status code if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  This endpoint is useful for:  AJAX calls. Remember to send credentials and set up CORS correctly! Reverse proxies and API Gateways Server-side calls - use the `X-Session-Token` header!  This endpoint authenticates users by checking  if the `Cookie` HTTP header was set containing an Ory Kratos Session Cookie; if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token; if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.  If none of these headers are set or the cooke or token are invalid, the endpoint returns a HTTP 401 status code.  As explained above, this request may fail due to several reasons. The `error.id` can be one of:  `session_inactive`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token). `session_aal2_required`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
 
-### Example 
+### Example
 ```dart
 import 'package:ory_client/api.dart';
 
@@ -1764,7 +1764,7 @@ var api_instance = new V0alpha2Api();
 var xSessionToken = MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj; // String | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`.
 var cookie = ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==; // String | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored.
 
-try { 
+try {
     var result = api_instance.toSession(xSessionToken, cookie);
     print(result);
 } catch (e) {

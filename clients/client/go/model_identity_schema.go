@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.58
+ * API version: v0.0.1-alpha.66
  * Contact: support@ory.sh
  */
 
@@ -18,6 +18,12 @@ import (
 
 // IdentitySchema Together the name and identity uuid are a unique index constraint. This prevents a user from having schemas with the same name. This also allows schemas to have the same name across the system.
 type IdentitySchema struct {
+	// The gcs file name  This is a randomly generated name which is used to uniquely identify the file on the blob storage
+	BlobName string `json:"blob_name"`
+	// The publicly accessible url of the schema
+	BlobUrl string `json:"blob_url"`
+	// The Content Hash  Contains a hash of the schema's content.
+	ContentHash *string `json:"content_hash,omitempty"`
 	// The Schema's Creation Date
 	CreatedAt time.Time `json:"created_at"`
 	Id string `json:"id"`
@@ -33,8 +39,10 @@ type IdentitySchema struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIdentitySchema(createdAt time.Time, id string, name string, updatedAt time.Time) *IdentitySchema {
+func NewIdentitySchema(blobName string, blobUrl string, createdAt time.Time, id string, name string, updatedAt time.Time) *IdentitySchema {
 	this := IdentitySchema{}
+	this.BlobName = blobName
+	this.BlobUrl = blobUrl
 	this.CreatedAt = createdAt
 	this.Id = id
 	this.Name = name
@@ -48,6 +56,86 @@ func NewIdentitySchema(createdAt time.Time, id string, name string, updatedAt ti
 func NewIdentitySchemaWithDefaults() *IdentitySchema {
 	this := IdentitySchema{}
 	return &this
+}
+
+// GetBlobName returns the BlobName field value
+func (o *IdentitySchema) GetBlobName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BlobName
+}
+
+// GetBlobNameOk returns a tuple with the BlobName field value
+// and a boolean to check if the value has been set.
+func (o *IdentitySchema) GetBlobNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BlobName, true
+}
+
+// SetBlobName sets field value
+func (o *IdentitySchema) SetBlobName(v string) {
+	o.BlobName = v
+}
+
+// GetBlobUrl returns the BlobUrl field value
+func (o *IdentitySchema) GetBlobUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BlobUrl
+}
+
+// GetBlobUrlOk returns a tuple with the BlobUrl field value
+// and a boolean to check if the value has been set.
+func (o *IdentitySchema) GetBlobUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BlobUrl, true
+}
+
+// SetBlobUrl sets field value
+func (o *IdentitySchema) SetBlobUrl(v string) {
+	o.BlobUrl = v
+}
+
+// GetContentHash returns the ContentHash field value if set, zero value otherwise.
+func (o *IdentitySchema) GetContentHash() string {
+	if o == nil || o.ContentHash == nil {
+		var ret string
+		return ret
+	}
+	return *o.ContentHash
+}
+
+// GetContentHashOk returns a tuple with the ContentHash field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IdentitySchema) GetContentHashOk() (*string, bool) {
+	if o == nil || o.ContentHash == nil {
+		return nil, false
+	}
+	return o.ContentHash, true
+}
+
+// HasContentHash returns a boolean if a field has been set.
+func (o *IdentitySchema) HasContentHash() bool {
+	if o != nil && o.ContentHash != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetContentHash gets a reference to the given string and assigns it to the ContentHash field.
+func (o *IdentitySchema) SetContentHash(v string) {
+	o.ContentHash = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value
@@ -180,6 +268,15 @@ func (o *IdentitySchema) SetUpdatedAt(v time.Time) {
 
 func (o IdentitySchema) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["blob_name"] = o.BlobName
+	}
+	if true {
+		toSerialize["blob_url"] = o.BlobUrl
+	}
+	if o.ContentHash != nil {
+		toSerialize["content_hash"] = o.ContentHash
+	}
 	if true {
 		toSerialize["created_at"] = o.CreatedAt
 	}

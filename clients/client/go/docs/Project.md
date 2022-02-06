@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **time.Time** | The Project&#39;s Creation Date | [readonly] 
 **CurrentRevision** | [**ProjectRevision**](ProjectRevision.md) |  | 
+**Hosts** | **[]string** |  | 
 **Id** | **string** |  | 
 **Revisions** | [**[]ProjectRevision**](ProjectRevision.md) |  | 
 **Slug** | **string** | The project&#39;s slug | [readonly] 
@@ -17,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewProject
 
-`func NewProject(createdAt time.Time, currentRevision ProjectRevision, id string, revisions []ProjectRevision, slug string, state string, updatedAt time.Time, ) *Project`
+`func NewProject(createdAt time.Time, currentRevision ProjectRevision, hosts []string, id string, revisions []ProjectRevision, slug string, state string, updatedAt time.Time, ) *Project`
 
 NewProject instantiates a new Project object
 This constructor will assign default values to properties that have it defined,
@@ -70,6 +71,26 @@ and a boolean to check if the value has been set.
 `func (o *Project) SetCurrentRevision(v ProjectRevision)`
 
 SetCurrentRevision sets CurrentRevision field to given value.
+
+
+### GetHosts
+
+`func (o *Project) GetHosts() []string`
+
+GetHosts returns the Hosts field if non-nil, zero value otherwise.
+
+### GetHostsOk
+
+`func (o *Project) GetHostsOk() (*[]string, bool)`
+
+GetHostsOk returns a tuple with the Hosts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHosts
+
+`func (o *Project) SetHosts(v []string)`
+
+SetHosts sets Hosts field to given value.
 
 
 ### GetId
