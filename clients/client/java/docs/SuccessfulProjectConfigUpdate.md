@@ -1,6 +1,6 @@
 
 
-# SuccessfulUpdateProjectConfig
+# SuccessfulProjectConfigUpdate
 
 
 ## Properties

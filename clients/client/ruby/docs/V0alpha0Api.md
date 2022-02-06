@@ -292,7 +292,7 @@ end
 
 ## update_project_config
 
-> <SuccessfulUpdateProjectConfig> update_project_config(project_id, opts)
+> <SuccessfulProjectConfigUpdate> update_project_config(project_id, opts)
 
 Update an Ory Cloud Project Configuration
 
@@ -328,7 +328,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<SuccessfulUpdateProjectConfig>, Integer, Hash)> update_project_config_with_http_info(project_id, opts)
+> <Array(<SuccessfulProjectConfigUpdate>, Integer, Hash)> update_project_config_with_http_info(project_id, opts)
 
 ```ruby
 begin
@@ -336,7 +336,7 @@ begin
   data, status_code, headers = api_instance.update_project_config_with_http_info(project_id, opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <SuccessfulUpdateProjectConfig>
+  p data # => <SuccessfulProjectConfigUpdate>
 rescue OryClient::ApiError => e
   puts "Error when calling V0alpha0Api->update_project_config_with_http_info: #{e}"
 end
@@ -351,7 +351,7 @@ end
 
 ### Return type
 
-[**SuccessfulUpdateProjectConfig**](SuccessfulUpdateProjectConfig.md)
+[**SuccessfulProjectConfigUpdate**](SuccessfulProjectConfigUpdate.md)
 
 ### Authorization
 

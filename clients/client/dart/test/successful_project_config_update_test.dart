@@ -5,15 +5,15 @@
 
 // ignore_for_file: unused_import
 
-import 'package:ory_client/model/successful_update_project_config.dart';
+import 'package:ory_client/model/successful_project_config_update.dart';
 import 'package:test/test.dart';
 
-// tests for SuccessfulUpdateProjectConfig
+// tests for SuccessfulProjectConfigUpdate
 void main() {
-  final instance = SuccessfulUpdateProjectConfigBuilder();
+  final instance = SuccessfulProjectConfigUpdateBuilder();
   // TODO add properties to the builder and call build()
 
-  group(SuccessfulUpdateProjectConfig, () {
+  group(SuccessfulProjectConfigUpdate, () {
     // Project project
     test('to test the property `project`', () async {
       // TODO

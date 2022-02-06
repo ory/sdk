@@ -1,4 +1,4 @@
-# SuccessfulUpdateProjectConfig
+# SuccessfulProjectConfigUpdate
 
 ## Properties
 
@@ -9,70 +9,70 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewSuccessfulUpdateProjectConfig
+### NewSuccessfulProjectConfigUpdate
 
-`func NewSuccessfulUpdateProjectConfig() *SuccessfulUpdateProjectConfig`
+`func NewSuccessfulProjectConfigUpdate() *SuccessfulProjectConfigUpdate`
 
-NewSuccessfulUpdateProjectConfig instantiates a new SuccessfulUpdateProjectConfig object
+NewSuccessfulProjectConfigUpdate instantiates a new SuccessfulProjectConfigUpdate object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewSuccessfulUpdateProjectConfigWithDefaults
+### NewSuccessfulProjectConfigUpdateWithDefaults
 
-`func NewSuccessfulUpdateProjectConfigWithDefaults() *SuccessfulUpdateProjectConfig`
+`func NewSuccessfulProjectConfigUpdateWithDefaults() *SuccessfulProjectConfigUpdate`
 
-NewSuccessfulUpdateProjectConfigWithDefaults instantiates a new SuccessfulUpdateProjectConfig object
+NewSuccessfulProjectConfigUpdateWithDefaults instantiates a new SuccessfulProjectConfigUpdate object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetProject
 
-`func (o *SuccessfulUpdateProjectConfig) GetProject() Project`
+`func (o *SuccessfulProjectConfigUpdate) GetProject() Project`
 
 GetProject returns the Project field if non-nil, zero value otherwise.
 
 ### GetProjectOk
 
-`func (o *SuccessfulUpdateProjectConfig) GetProjectOk() (*Project, bool)`
+`func (o *SuccessfulProjectConfigUpdate) GetProjectOk() (*Project, bool)`
 
 GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProject
 
-`func (o *SuccessfulUpdateProjectConfig) SetProject(v Project)`
+`func (o *SuccessfulProjectConfigUpdate) SetProject(v Project)`
 
 SetProject sets Project field to given value.
 
 ### HasProject
 
-`func (o *SuccessfulUpdateProjectConfig) HasProject() bool`
+`func (o *SuccessfulProjectConfigUpdate) HasProject() bool`
 
 HasProject returns a boolean if a field has been set.
 
 ### GetWarnings
 
-`func (o *SuccessfulUpdateProjectConfig) GetWarnings() []Warning`
+`func (o *SuccessfulProjectConfigUpdate) GetWarnings() []Warning`
 
 GetWarnings returns the Warnings field if non-nil, zero value otherwise.
 
 ### GetWarningsOk
 
-`func (o *SuccessfulUpdateProjectConfig) GetWarningsOk() (*[]Warning, bool)`
+`func (o *SuccessfulProjectConfigUpdate) GetWarningsOk() (*[]Warning, bool)`
 
 GetWarningsOk returns a tuple with the Warnings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWarnings
 
-`func (o *SuccessfulUpdateProjectConfig) SetWarnings(v []Warning)`
+`func (o *SuccessfulProjectConfigUpdate) SetWarnings(v []Warning)`
 
 SetWarnings sets Warnings field to given value.
 
 ### HasWarnings
 
-`func (o *SuccessfulUpdateProjectConfig) HasWarnings() bool`
+`func (o *SuccessfulProjectConfigUpdate) HasWarnings() bool`
 
 HasWarnings returns a boolean if a field has been set.
 

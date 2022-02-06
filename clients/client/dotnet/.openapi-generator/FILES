@@ -87,9 +87,9 @@ docs/ClientSubmitSelfServiceSettingsFlowWithWebAuthnMethodBody.md
 docs/ClientSubmitSelfServiceVerificationFlowBody.md
 docs/ClientSubmitSelfServiceVerificationFlowWithLinkMethodBody.md
 docs/ClientSubscription.md
+docs/ClientSuccessfulProjectConfigUpdate.md
 docs/ClientSuccessfulSelfServiceLoginWithoutBrowser.md
 docs/ClientSuccessfulSelfServiceRegistrationWithoutBrowser.md
-docs/ClientSuccessfulUpdateProjectConfig.md
 docs/ClientUiContainer.md
 docs/ClientUiNode.md
 docs/ClientUiNodeAnchorAttributes.md
@@ -197,9 +197,9 @@ src/Ory.Client.Test/Model/ClientSubmitSelfServiceSettingsFlowWithWebAuthnMethodB
 src/Ory.Client.Test/Model/ClientSubmitSelfServiceVerificationFlowBodyTests.cs
 src/Ory.Client.Test/Model/ClientSubmitSelfServiceVerificationFlowWithLinkMethodBodyTests.cs
 src/Ory.Client.Test/Model/ClientSubscriptionTests.cs
+src/Ory.Client.Test/Model/ClientSuccessfulProjectConfigUpdateTests.cs
 src/Ory.Client.Test/Model/ClientSuccessfulSelfServiceLoginWithoutBrowserTests.cs
 src/Ory.Client.Test/Model/ClientSuccessfulSelfServiceRegistrationWithoutBrowserTests.cs
-src/Ory.Client.Test/Model/ClientSuccessfulUpdateProjectConfigTests.cs
 src/Ory.Client.Test/Model/ClientUiContainerTests.cs
 src/Ory.Client.Test/Model/ClientUiNodeAnchorAttributesTests.cs
 src/Ory.Client.Test/Model/ClientUiNodeAttributesTests.cs
@@ -321,9 +321,9 @@ src/Ory.Client/Model/ClientSubmitSelfServiceSettingsFlowWithWebAuthnMethodBody.c
 src/Ory.Client/Model/ClientSubmitSelfServiceVerificationFlowBody.cs
 src/Ory.Client/Model/ClientSubmitSelfServiceVerificationFlowWithLinkMethodBody.cs
 src/Ory.Client/Model/ClientSubscription.cs
+src/Ory.Client/Model/ClientSuccessfulProjectConfigUpdate.cs
 src/Ory.Client/Model/ClientSuccessfulSelfServiceLoginWithoutBrowser.cs
 src/Ory.Client/Model/ClientSuccessfulSelfServiceRegistrationWithoutBrowser.cs
-src/Ory.Client/Model/ClientSuccessfulUpdateProjectConfig.cs
 src/Ory.Client/Model/ClientUiContainer.cs
 src/Ory.Client/Model/ClientUiNode.cs
 src/Ory.Client/Model/ClientUiNodeAnchorAttributes.cs

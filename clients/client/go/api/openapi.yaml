@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.0.1-alpha.68
+  version: v0.0.1-alpha.69
 servers:
 - url: https://{project}.projects.oryapis.com/
   variables:
@@ -2826,8 +2826,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/successfulUpdateProjectConfig'
-          description: successfulUpdateProjectConfig
+                $ref: '#/components/schemas/successfulProjectConfigUpdate'
+          description: successfulProjectConfigUpdate
         "400":
           content:
             application/json:
@@ -6694,207 +6694,7 @@ components:
       - status
       - updated_at
       type: object
-    successfulSelfServiceLoginWithoutBrowser:
-      description: The Response for Login Flows via API
-      example:
-        session_token: session_token
-        session:
-          expires_at: 2000-01-23T04:56:07.000+00:00
-          authentication_methods:
-          - completed_at: 2000-01-23T04:56:07.000+00:00
-            method: link_recovery
-          - completed_at: 2000-01-23T04:56:07.000+00:00
-            method: link_recovery
-          identity:
-            recovery_addresses:
-            - updated_at: 2000-01-23T04:56:07.000+00:00
-              created_at: 2000-01-23T04:56:07.000+00:00
-              id: id
-              value: value
-              via: via
-            - updated_at: 2000-01-23T04:56:07.000+00:00
-              created_at: 2000-01-23T04:56:07.000+00:00
-              id: id
-              value: value
-              via: via
-            traits: ""
-            updated_at: 2000-01-23T04:56:07.000+00:00
-            credentials:
-              key:
-                updated_at: 2000-01-23T04:56:07.000+00:00
-                identifiers:
-                - identifiers
-                - identifiers
-                created_at: 2000-01-23T04:56:07.000+00:00
-                config: '{}'
-            verifiable_addresses:
-            - updated_at: 2014-01-01T23:28:56.782Z
-              verified_at: 2000-01-23T04:56:07.000+00:00
-              verified: true
-              created_at: 2014-01-01T23:28:56.782Z
-              id: id
-              value: value
-              status: status
-              via: via
-            - updated_at: 2014-01-01T23:28:56.782Z
-              verified_at: 2000-01-23T04:56:07.000+00:00
-              verified: true
-              created_at: 2014-01-01T23:28:56.782Z
-              id: id
-              value: value
-              status: status
-              via: via
-            schema_id: schema_id
-            state_changed_at: 2000-01-23T04:56:07.000+00:00
-            created_at: 2000-01-23T04:56:07.000+00:00
-            schema_url: schema_url
-            id: id
-          authenticated_at: 2000-01-23T04:56:07.000+00:00
-          active: true
-          id: id
-          issued_at: 2000-01-23T04:56:07.000+00:00
-      properties:
-        session:
-          $ref: '#/components/schemas/session'
-        session_token:
-          description: |-
-            The Session Token
-
-            A session token is equivalent to a session cookie, but it can be sent in the HTTP Authorization
-            Header:
-
-            Authorization: bearer ${session-token}
-
-            The session token is only issued for API flows, not for Browser flows!
-          type: string
-      required:
-      - session
-      type: object
-    successfulSelfServiceRegistrationWithoutBrowser:
-      description: The Response for Registration Flows via API
-      example:
-        session_token: session_token
-        identity:
-          recovery_addresses:
-          - updated_at: 2000-01-23T04:56:07.000+00:00
-            created_at: 2000-01-23T04:56:07.000+00:00
-            id: id
-            value: value
-            via: via
-          - updated_at: 2000-01-23T04:56:07.000+00:00
-            created_at: 2000-01-23T04:56:07.000+00:00
-            id: id
-            value: value
-            via: via
-          traits: ""
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          credentials:
-            key:
-              updated_at: 2000-01-23T04:56:07.000+00:00
-              identifiers:
-              - identifiers
-              - identifiers
-              created_at: 2000-01-23T04:56:07.000+00:00
-              config: '{}'
-          verifiable_addresses:
-          - updated_at: 2014-01-01T23:28:56.782Z
-            verified_at: 2000-01-23T04:56:07.000+00:00
-            verified: true
-            created_at: 2014-01-01T23:28:56.782Z
-            id: id
-            value: value
-            status: status
-            via: via
-          - updated_at: 2014-01-01T23:28:56.782Z
-            verified_at: 2000-01-23T04:56:07.000+00:00
-            verified: true
-            created_at: 2014-01-01T23:28:56.782Z
-            id: id
-            value: value
-            status: status
-            via: via
-          schema_id: schema_id
-          state_changed_at: 2000-01-23T04:56:07.000+00:00
-          created_at: 2000-01-23T04:56:07.000+00:00
-          schema_url: schema_url
-          id: id
-        session:
-          expires_at: 2000-01-23T04:56:07.000+00:00
-          authentication_methods:
-          - completed_at: 2000-01-23T04:56:07.000+00:00
-            method: link_recovery
-          - completed_at: 2000-01-23T04:56:07.000+00:00
-            method: link_recovery
-          identity:
-            recovery_addresses:
-            - updated_at: 2000-01-23T04:56:07.000+00:00
-              created_at: 2000-01-23T04:56:07.000+00:00
-              id: id
-              value: value
-              via: via
-            - updated_at: 2000-01-23T04:56:07.000+00:00
-              created_at: 2000-01-23T04:56:07.000+00:00
-              id: id
-              value: value
-              via: via
-            traits: ""
-            updated_at: 2000-01-23T04:56:07.000+00:00
-            credentials:
-              key:
-                updated_at: 2000-01-23T04:56:07.000+00:00
-                identifiers:
-                - identifiers
-                - identifiers
-                created_at: 2000-01-23T04:56:07.000+00:00
-                config: '{}'
-            verifiable_addresses:
-            - updated_at: 2014-01-01T23:28:56.782Z
-              verified_at: 2000-01-23T04:56:07.000+00:00
-              verified: true
-              created_at: 2014-01-01T23:28:56.782Z
-              id: id
-              value: value
-              status: status
-              via: via
-            - updated_at: 2014-01-01T23:28:56.782Z
-              verified_at: 2000-01-23T04:56:07.000+00:00
-              verified: true
-              created_at: 2014-01-01T23:28:56.782Z
-              id: id
-              value: value
-              status: status
-              via: via
-            schema_id: schema_id
-            state_changed_at: 2000-01-23T04:56:07.000+00:00
-            created_at: 2000-01-23T04:56:07.000+00:00
-            schema_url: schema_url
-            id: id
-          authenticated_at: 2000-01-23T04:56:07.000+00:00
-          active: true
-          id: id
-          issued_at: 2000-01-23T04:56:07.000+00:00
-      properties:
-        identity:
-          $ref: '#/components/schemas/identity'
-        session:
-          $ref: '#/components/schemas/session'
-        session_token:
-          description: |-
-            The Session Token
-
-            This field is only set when the session hook is configured as a post-registration hook.
-
-            A session token is equivalent to a session cookie, but it can be sent in the HTTP Authorization
-            Header:
-
-            Authorization: bearer ${session-token}
-
-            The session token is only issued for API flows, not for Browser flows!
-          type: string
-      required:
-      - identity
-      type: object
-    successfulUpdateProjectConfig:
+    successfulProjectConfigUpdate:
       example:
         warnings:
         - code: 0
@@ -7482,6 +7282,206 @@ components:
           items:
             $ref: '#/components/schemas/Warning'
           type: array
+      type: object
+    successfulSelfServiceLoginWithoutBrowser:
+      description: The Response for Login Flows via API
+      example:
+        session_token: session_token
+        session:
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          authentication_methods:
+          - completed_at: 2000-01-23T04:56:07.000+00:00
+            method: link_recovery
+          - completed_at: 2000-01-23T04:56:07.000+00:00
+            method: link_recovery
+          identity:
+            recovery_addresses:
+            - updated_at: 2000-01-23T04:56:07.000+00:00
+              created_at: 2000-01-23T04:56:07.000+00:00
+              id: id
+              value: value
+              via: via
+            - updated_at: 2000-01-23T04:56:07.000+00:00
+              created_at: 2000-01-23T04:56:07.000+00:00
+              id: id
+              value: value
+              via: via
+            traits: ""
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            credentials:
+              key:
+                updated_at: 2000-01-23T04:56:07.000+00:00
+                identifiers:
+                - identifiers
+                - identifiers
+                created_at: 2000-01-23T04:56:07.000+00:00
+                config: '{}'
+            verifiable_addresses:
+            - updated_at: 2014-01-01T23:28:56.782Z
+              verified_at: 2000-01-23T04:56:07.000+00:00
+              verified: true
+              created_at: 2014-01-01T23:28:56.782Z
+              id: id
+              value: value
+              status: status
+              via: via
+            - updated_at: 2014-01-01T23:28:56.782Z
+              verified_at: 2000-01-23T04:56:07.000+00:00
+              verified: true
+              created_at: 2014-01-01T23:28:56.782Z
+              id: id
+              value: value
+              status: status
+              via: via
+            schema_id: schema_id
+            state_changed_at: 2000-01-23T04:56:07.000+00:00
+            created_at: 2000-01-23T04:56:07.000+00:00
+            schema_url: schema_url
+            id: id
+          authenticated_at: 2000-01-23T04:56:07.000+00:00
+          active: true
+          id: id
+          issued_at: 2000-01-23T04:56:07.000+00:00
+      properties:
+        session:
+          $ref: '#/components/schemas/session'
+        session_token:
+          description: |-
+            The Session Token
+
+            A session token is equivalent to a session cookie, but it can be sent in the HTTP Authorization
+            Header:
+
+            Authorization: bearer ${session-token}
+
+            The session token is only issued for API flows, not for Browser flows!
+          type: string
+      required:
+      - session
+      type: object
+    successfulSelfServiceRegistrationWithoutBrowser:
+      description: The Response for Registration Flows via API
+      example:
+        session_token: session_token
+        identity:
+          recovery_addresses:
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            value: value
+            via: via
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            value: value
+            via: via
+          traits: ""
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          credentials:
+            key:
+              updated_at: 2000-01-23T04:56:07.000+00:00
+              identifiers:
+              - identifiers
+              - identifiers
+              created_at: 2000-01-23T04:56:07.000+00:00
+              config: '{}'
+          verifiable_addresses:
+          - updated_at: 2014-01-01T23:28:56.782Z
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            verified: true
+            created_at: 2014-01-01T23:28:56.782Z
+            id: id
+            value: value
+            status: status
+            via: via
+          - updated_at: 2014-01-01T23:28:56.782Z
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            verified: true
+            created_at: 2014-01-01T23:28:56.782Z
+            id: id
+            value: value
+            status: status
+            via: via
+          schema_id: schema_id
+          state_changed_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
+          schema_url: schema_url
+          id: id
+        session:
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          authentication_methods:
+          - completed_at: 2000-01-23T04:56:07.000+00:00
+            method: link_recovery
+          - completed_at: 2000-01-23T04:56:07.000+00:00
+            method: link_recovery
+          identity:
+            recovery_addresses:
+            - updated_at: 2000-01-23T04:56:07.000+00:00
+              created_at: 2000-01-23T04:56:07.000+00:00
+              id: id
+              value: value
+              via: via
+            - updated_at: 2000-01-23T04:56:07.000+00:00
+              created_at: 2000-01-23T04:56:07.000+00:00
+              id: id
+              value: value
+              via: via
+            traits: ""
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            credentials:
+              key:
+                updated_at: 2000-01-23T04:56:07.000+00:00
+                identifiers:
+                - identifiers
+                - identifiers
+                created_at: 2000-01-23T04:56:07.000+00:00
+                config: '{}'
+            verifiable_addresses:
+            - updated_at: 2014-01-01T23:28:56.782Z
+              verified_at: 2000-01-23T04:56:07.000+00:00
+              verified: true
+              created_at: 2014-01-01T23:28:56.782Z
+              id: id
+              value: value
+              status: status
+              via: via
+            - updated_at: 2014-01-01T23:28:56.782Z
+              verified_at: 2000-01-23T04:56:07.000+00:00
+              verified: true
+              created_at: 2014-01-01T23:28:56.782Z
+              id: id
+              value: value
+              status: status
+              via: via
+            schema_id: schema_id
+            state_changed_at: 2000-01-23T04:56:07.000+00:00
+            created_at: 2000-01-23T04:56:07.000+00:00
+            schema_url: schema_url
+            id: id
+          authenticated_at: 2000-01-23T04:56:07.000+00:00
+          active: true
+          id: id
+          issued_at: 2000-01-23T04:56:07.000+00:00
+      properties:
+        identity:
+          $ref: '#/components/schemas/identity'
+        session:
+          $ref: '#/components/schemas/session'
+        session_token:
+          description: |-
+            The Session Token
+
+            This field is only set when the session hook is configured as a post-registration hook.
+
+            A session token is equivalent to a session cookie, but it can be sent in the HTTP Authorization
+            Header:
+
+            Authorization: bearer ${session-token}
+
+            The session token is only issued for API flows, not for Browser flows!
+          type: string
+      required:
+      - identity
       type: object
     uiContainer:
       description: Container represents a HTML Form. The container can work with both

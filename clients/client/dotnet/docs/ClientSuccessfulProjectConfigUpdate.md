@@ -1,4 +1,4 @@
-# Ory.Client.Model.ClientSuccessfulUpdateProjectConfig
+# Ory.Client.Model.ClientSuccessfulProjectConfigUpdate
 
 ## Properties
 

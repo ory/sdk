@@ -283,7 +283,7 @@ Name | Type | Description  | Notes
 
 ## UpdateProjectConfig
 
-> SuccessfulUpdateProjectConfig UpdateProjectConfig(ctx, projectId).UpdateProjectConfigConfig(updateProjectConfigConfig).Execute()
+> SuccessfulProjectConfigUpdate UpdateProjectConfig(ctx, projectId).UpdateProjectConfigConfig(updateProjectConfigConfig).Execute()
 
 Update an Ory Cloud Project Configuration
 
@@ -312,7 +312,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha0Api.UpdateProjectConfig``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateProjectConfig`: SuccessfulUpdateProjectConfig
+    // response from `UpdateProjectConfig`: SuccessfulProjectConfigUpdate
     fmt.Fprintf(os.Stdout, "Response from `V0alpha0Api.UpdateProjectConfig`: %v\n", resp)
 }
 ```
@@ -337,7 +337,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SuccessfulUpdateProjectConfig**](SuccessfulUpdateProjectConfig.md)
+[**SuccessfulProjectConfigUpdate**](SuccessfulProjectConfigUpdate.md)
 
 ### Authorization
 

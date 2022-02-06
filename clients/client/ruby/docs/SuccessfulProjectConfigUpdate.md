@@ -1,4 +1,4 @@
-# OryClient::SuccessfulUpdateProjectConfig
+# OryClient::SuccessfulProjectConfigUpdate
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'ory-client'
 
-instance = OryClient::SuccessfulUpdateProjectConfig.new(
+instance = OryClient::SuccessfulProjectConfigUpdate.new(
   project: null,
   warnings: null
 )

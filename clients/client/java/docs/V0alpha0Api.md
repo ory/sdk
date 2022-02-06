@@ -295,7 +295,7 @@ Name | Type | Description  | Notes
 
 <a name="updateProjectConfig"></a>
 # **updateProjectConfig**
-> SuccessfulUpdateProjectConfig updateProjectConfig(projectId, updateProjectConfigConfig)
+> SuccessfulProjectConfigUpdate updateProjectConfig(projectId, updateProjectConfigConfig)
 
 Update an Ory Cloud Project Configuration
 
@@ -324,7 +324,7 @@ public class Example {
     String projectId = "projectId_example"; // String | Project ID  The project's ID.
     UpdateProjectConfigConfig updateProjectConfigConfig = new UpdateProjectConfigConfig(); // UpdateProjectConfigConfig | 
     try {
-      SuccessfulUpdateProjectConfig result = apiInstance.updateProjectConfig(projectId, updateProjectConfigConfig);
+      SuccessfulProjectConfigUpdate result = apiInstance.updateProjectConfig(projectId, updateProjectConfigConfig);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling V0alpha0Api#updateProjectConfig");
@@ -346,7 +346,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SuccessfulUpdateProjectConfig**](SuccessfulUpdateProjectConfig.md)
+[**SuccessfulProjectConfigUpdate**](SuccessfulProjectConfigUpdate.md)
 
 ### Authorization
 
@@ -360,7 +360,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | successfulUpdateProjectConfig |  -  |
+**200** | successfulProjectConfigUpdate |  -  |
 **400** | genericError |  -  |
 **401** | genericError |  -  |
 **403** | genericError |  -  |

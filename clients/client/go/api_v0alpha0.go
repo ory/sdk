@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.68
+ * API version: v0.0.1-alpha.69
  * Contact: support@ory.sh
  */
 
@@ -113,9 +113,9 @@ service!
 
 	/*
 	 * UpdateProjectConfigExecute executes the request
-	 * @return SuccessfulUpdateProjectConfig
+	 * @return SuccessfulProjectConfigUpdate
 	 */
-	UpdateProjectConfigExecute(r V0alpha0ApiApiUpdateProjectConfigRequest) (*SuccessfulUpdateProjectConfig, *http.Response, error)
+	UpdateProjectConfigExecute(r V0alpha0ApiApiUpdateProjectConfigRequest) (*SuccessfulProjectConfigUpdate, *http.Response, error)
 }
 
 // V0alpha0ApiService V0alpha0Api service
@@ -711,7 +711,7 @@ func (r V0alpha0ApiApiUpdateProjectConfigRequest) UpdateProjectConfigConfig(upda
 	return r
 }
 
-func (r V0alpha0ApiApiUpdateProjectConfigRequest) Execute() (*SuccessfulUpdateProjectConfig, *http.Response, error) {
+func (r V0alpha0ApiApiUpdateProjectConfigRequest) Execute() (*SuccessfulProjectConfigUpdate, *http.Response, error) {
 	return r.ApiService.UpdateProjectConfigExecute(r)
 }
 
@@ -749,16 +749,16 @@ func (a *V0alpha0ApiService) UpdateProjectConfig(ctx context.Context, projectId 
 
 /*
  * Execute executes the request
- * @return SuccessfulUpdateProjectConfig
+ * @return SuccessfulProjectConfigUpdate
  */
-func (a *V0alpha0ApiService) UpdateProjectConfigExecute(r V0alpha0ApiApiUpdateProjectConfigRequest) (*SuccessfulUpdateProjectConfig, *http.Response, error) {
+func (a *V0alpha0ApiService) UpdateProjectConfigExecute(r V0alpha0ApiApiUpdateProjectConfigRequest) (*SuccessfulProjectConfigUpdate, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  *SuccessfulUpdateProjectConfig
+		localVarReturnValue  *SuccessfulProjectConfigUpdate
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha0ApiService.UpdateProjectConfig")

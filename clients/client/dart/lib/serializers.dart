@@ -97,9 +97,9 @@ import 'package:ory_client/model/submit_self_service_settings_flow_with_web_auth
 import 'package:ory_client/model/submit_self_service_verification_flow_body.dart';
 import 'package:ory_client/model/submit_self_service_verification_flow_with_link_method_body.dart';
 import 'package:ory_client/model/subscription.dart';
+import 'package:ory_client/model/successful_project_config_update.dart';
 import 'package:ory_client/model/successful_self_service_login_without_browser.dart';
 import 'package:ory_client/model/successful_self_service_registration_without_browser.dart';
-import 'package:ory_client/model/successful_update_project_config.dart';
 import 'package:ory_client/model/ui_container.dart';
 import 'package:ory_client/model/ui_node.dart';
 import 'package:ory_client/model/ui_node_anchor_attributes.dart';
@@ -204,9 +204,9 @@ part 'serializers.g.dart';
   SubmitSelfServiceVerificationFlowBody,
   SubmitSelfServiceVerificationFlowWithLinkMethodBody,
   Subscription,
+  SuccessfulProjectConfigUpdate,
   SuccessfulSelfServiceLoginWithoutBrowser,
   SuccessfulSelfServiceRegistrationWithoutBrowser,
-  SuccessfulUpdateProjectConfig,
   UiContainer,
   UiNode,
   UiNodeAnchorAttributes,

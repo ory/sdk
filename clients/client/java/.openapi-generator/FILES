@@ -90,9 +90,9 @@ docs/SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody.md
 docs/SubmitSelfServiceVerificationFlowBody.md
 docs/SubmitSelfServiceVerificationFlowWithLinkMethodBody.md
 docs/Subscription.md
+docs/SuccessfulProjectConfigUpdate.md
 docs/SuccessfulSelfServiceLoginWithoutBrowser.md
 docs/SuccessfulSelfServiceRegistrationWithoutBrowser.md
-docs/SuccessfulUpdateProjectConfig.md
 docs/UiContainer.md
 docs/UiNode.md
 docs/UiNodeAnchorAttributes.md
@@ -224,9 +224,9 @@ src/main/java/sh/ory/model/SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody.j
 src/main/java/sh/ory/model/SubmitSelfServiceVerificationFlowBody.java
 src/main/java/sh/ory/model/SubmitSelfServiceVerificationFlowWithLinkMethodBody.java
 src/main/java/sh/ory/model/Subscription.java
+src/main/java/sh/ory/model/SuccessfulProjectConfigUpdate.java
 src/main/java/sh/ory/model/SuccessfulSelfServiceLoginWithoutBrowser.java
 src/main/java/sh/ory/model/SuccessfulSelfServiceRegistrationWithoutBrowser.java
-src/main/java/sh/ory/model/SuccessfulUpdateProjectConfig.java
 src/main/java/sh/ory/model/UiContainer.java
 src/main/java/sh/ory/model/UiNode.java
 src/main/java/sh/ory/model/UiNodeAnchorAttributes.java
@@ -330,9 +330,9 @@ src/test/java/sh/ory/model/SubmitSelfServiceSettingsFlowWithWebAuthnMethodBodyTe
 src/test/java/sh/ory/model/SubmitSelfServiceVerificationFlowBodyTest.java
 src/test/java/sh/ory/model/SubmitSelfServiceVerificationFlowWithLinkMethodBodyTest.java
 src/test/java/sh/ory/model/SubscriptionTest.java
+src/test/java/sh/ory/model/SuccessfulProjectConfigUpdateTest.java
 src/test/java/sh/ory/model/SuccessfulSelfServiceLoginWithoutBrowserTest.java
 src/test/java/sh/ory/model/SuccessfulSelfServiceRegistrationWithoutBrowserTest.java
-src/test/java/sh/ory/model/SuccessfulUpdateProjectConfigTest.java
 src/test/java/sh/ory/model/UiContainerTest.java
 src/test/java/sh/ory/model/UiNodeAnchorAttributesTest.java
 src/test/java/sh/ory/model/UiNodeAttributesTest.java

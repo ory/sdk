@@ -93,9 +93,9 @@ docs/SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody.md
 docs/SubmitSelfServiceVerificationFlowBody.md
 docs/SubmitSelfServiceVerificationFlowWithLinkMethodBody.md
 docs/Subscription.md
+docs/SuccessfulProjectConfigUpdate.md
 docs/SuccessfulSelfServiceLoginWithoutBrowser.md
 docs/SuccessfulSelfServiceRegistrationWithoutBrowser.md
-docs/SuccessfulUpdateProjectConfig.md
 docs/UiContainer.md
 docs/UiNode.md
 docs/UiNodeAnchorAttributes.md
@@ -201,9 +201,9 @@ model_submit_self_service_settings_flow_with_web_authn_method_body.go
 model_submit_self_service_verification_flow_body.go
 model_submit_self_service_verification_flow_with_link_method_body.go
 model_subscription.go
+model_successful_project_config_update.go
 model_successful_self_service_login_without_browser.go
 model_successful_self_service_registration_without_browser.go
-model_successful_update_project_config.go
 model_ui_container.go
 model_ui_node.go
 model_ui_node_anchor_attributes.go

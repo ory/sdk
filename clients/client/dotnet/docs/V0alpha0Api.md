@@ -323,7 +323,7 @@ Name | Type | Description  | Notes
 
 <a name="updateprojectconfig"></a>
 # **UpdateProjectConfig**
-> ClientSuccessfulUpdateProjectConfig UpdateProjectConfig (string projectId, ClientUpdateProjectConfigConfig clientUpdateProjectConfigConfig = null)
+> ClientSuccessfulProjectConfigUpdate UpdateProjectConfig (string projectId, ClientUpdateProjectConfigConfig clientUpdateProjectConfigConfig = null)
 
 Update an Ory Cloud Project Configuration
 
@@ -355,7 +355,7 @@ namespace Example
             try
             {
                 // Update an Ory Cloud Project Configuration
-                ClientSuccessfulUpdateProjectConfig result = apiInstance.UpdateProjectConfig(projectId, clientUpdateProjectConfigConfig);
+                ClientSuccessfulProjectConfigUpdate result = apiInstance.UpdateProjectConfig(projectId, clientUpdateProjectConfigConfig);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -378,7 +378,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ClientSuccessfulUpdateProjectConfig**](ClientSuccessfulUpdateProjectConfig.md)
+[**ClientSuccessfulProjectConfigUpdate**](ClientSuccessfulProjectConfigUpdate.md)
 
 ### Authorization
 
@@ -393,7 +393,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successfulUpdateProjectConfig |  -  |
+| **200** | successfulProjectConfigUpdate |  -  |
 | **400** | genericError |  -  |
 | **401** | genericError |  -  |
 | **403** | genericError |  -  |

@@ -87,9 +87,9 @@ doc/SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody.md
 doc/SubmitSelfServiceVerificationFlowBody.md
 doc/SubmitSelfServiceVerificationFlowWithLinkMethodBody.md
 doc/Subscription.md
+doc/SuccessfulProjectConfigUpdate.md
 doc/SuccessfulSelfServiceLoginWithoutBrowser.md
 doc/SuccessfulSelfServiceRegistrationWithoutBrowser.md
-doc/SuccessfulUpdateProjectConfig.md
 doc/UiContainer.md
 doc/UiNode.md
 doc/UiNodeAnchorAttributes.md
@@ -201,9 +201,9 @@ lib/model/submit_self_service_settings_flow_with_web_authn_method_body.dart
 lib/model/submit_self_service_verification_flow_body.dart
 lib/model/submit_self_service_verification_flow_with_link_method_body.dart
 lib/model/subscription.dart
+lib/model/successful_project_config_update.dart
 lib/model/successful_self_service_login_without_browser.dart
 lib/model/successful_self_service_registration_without_browser.dart
-lib/model/successful_update_project_config.dart
 lib/model/ui_container.dart
 lib/model/ui_node.dart
 lib/model/ui_node_anchor_attributes.dart
@@ -307,9 +307,9 @@ test/submit_self_service_settings_flow_with_web_authn_method_body_test.dart
 test/submit_self_service_verification_flow_body_test.dart
 test/submit_self_service_verification_flow_with_link_method_body_test.dart
 test/subscription_test.dart
+test/successful_project_config_update_test.dart
 test/successful_self_service_login_without_browser_test.dart
 test/successful_self_service_registration_without_browser_test.dart
-test/successful_update_project_config_test.dart
 test/ui_container_test.dart
 test/ui_node_anchor_attributes_test.dart
 test/ui_node_attributes_test.dart

@@ -199,7 +199,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateProjectConfig**
-> SuccessfulUpdateProjectConfig updateProjectConfig(projectId, updateProjectConfigConfig)
+> SuccessfulProjectConfigUpdate updateProjectConfig(projectId, updateProjectConfigConfig)
 
 Update an Ory Cloud Project Configuration
 
@@ -233,7 +233,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SuccessfulUpdateProjectConfig**](SuccessfulUpdateProjectConfig.md)
+[**SuccessfulProjectConfigUpdate**](SuccessfulProjectConfigUpdate.md)
 
 ### Authorization
 

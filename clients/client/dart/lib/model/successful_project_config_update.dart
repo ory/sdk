@@ -11,9 +11,9 @@ import 'package:ory_client/model/warning.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'successful_update_project_config.g.dart';
+part 'successful_project_config_update.g.dart';
 
-abstract class SuccessfulUpdateProjectConfig implements Built<SuccessfulUpdateProjectConfig, SuccessfulUpdateProjectConfigBuilder> {
+abstract class SuccessfulProjectConfigUpdate implements Built<SuccessfulProjectConfigUpdate, SuccessfulProjectConfigUpdateBuilder> {
 
     @nullable
     @BuiltValueField(wireName: r'project')
@@ -24,25 +24,25 @@ abstract class SuccessfulUpdateProjectConfig implements Built<SuccessfulUpdatePr
     @BuiltValueField(wireName: r'warnings')
     BuiltList<Warning> get warnings;
 
-    SuccessfulUpdateProjectConfig._();
+    SuccessfulProjectConfigUpdate._();
 
-    static void _initializeBuilder(SuccessfulUpdateProjectConfigBuilder b) => b;
+    static void _initializeBuilder(SuccessfulProjectConfigUpdateBuilder b) => b;
 
-    factory SuccessfulUpdateProjectConfig([void updates(SuccessfulUpdateProjectConfigBuilder b)]) = _$SuccessfulUpdateProjectConfig;
+    factory SuccessfulProjectConfigUpdate([void updates(SuccessfulProjectConfigUpdateBuilder b)]) = _$SuccessfulProjectConfigUpdate;
 
     @BuiltValueSerializer(custom: true)
-    static Serializer<SuccessfulUpdateProjectConfig> get serializer => _$SuccessfulUpdateProjectConfigSerializer();
+    static Serializer<SuccessfulProjectConfigUpdate> get serializer => _$SuccessfulProjectConfigUpdateSerializer();
 }
 
-class _$SuccessfulUpdateProjectConfigSerializer implements StructuredSerializer<SuccessfulUpdateProjectConfig> {
+class _$SuccessfulProjectConfigUpdateSerializer implements StructuredSerializer<SuccessfulProjectConfigUpdate> {
 
     @override
-    final Iterable<Type> types = const [SuccessfulUpdateProjectConfig, _$SuccessfulUpdateProjectConfig];
+    final Iterable<Type> types = const [SuccessfulProjectConfigUpdate, _$SuccessfulProjectConfigUpdate];
     @override
-    final String wireName = r'SuccessfulUpdateProjectConfig';
+    final String wireName = r'SuccessfulProjectConfigUpdate';
 
     @override
-    Iterable<Object> serialize(Serializers serializers, SuccessfulUpdateProjectConfig object,
+    Iterable<Object> serialize(Serializers serializers, SuccessfulProjectConfigUpdate object,
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object>[];
         if (object.project != null) {
@@ -61,9 +61,9 @@ class _$SuccessfulUpdateProjectConfigSerializer implements StructuredSerializer<
     }
 
     @override
-    SuccessfulUpdateProjectConfig deserialize(Serializers serializers, Iterable<Object> serialized,
+    SuccessfulProjectConfigUpdate deserialize(Serializers serializers, Iterable<Object> serialized,
         {FullType specifiedType = FullType.unspecified}) {
-        final result = SuccessfulUpdateProjectConfigBuilder();
+        final result = SuccessfulProjectConfigUpdateBuilder();
 
         final iterator = serialized.iterator;
         while (iterator.moveNext()) {

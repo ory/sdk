@@ -105,9 +105,9 @@ docs/SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody.md
 docs/SubmitSelfServiceVerificationFlowBody.md
 docs/SubmitSelfServiceVerificationFlowWithLinkMethodBody.md
 docs/Subscription.md
+docs/SuccessfulProjectConfigUpdate.md
 docs/SuccessfulSelfServiceLoginWithoutBrowser.md
 docs/SuccessfulSelfServiceRegistrationWithoutBrowser.md
-docs/SuccessfulUpdateProjectConfig.md
 docs/UiContainer.md
 docs/UiNode.md
 docs/UiNodeAnchorAttributes.md
@@ -240,9 +240,9 @@ ory_client/model/submit_self_service_settings_flow_with_web_authn_method_body.py
 ory_client/model/submit_self_service_verification_flow_body.py
 ory_client/model/submit_self_service_verification_flow_with_link_method_body.py
 ory_client/model/subscription.py
+ory_client/model/successful_project_config_update.py
 ory_client/model/successful_self_service_login_without_browser.py
 ory_client/model/successful_self_service_registration_without_browser.py
-ory_client/model/successful_update_project_config.py
 ory_client/model/ui_container.py
 ory_client/model/ui_node.py
 ory_client/model/ui_node_anchor_attributes.py
@@ -371,9 +371,9 @@ test/test_submit_self_service_settings_flow_with_web_authn_method_body.py
 test/test_submit_self_service_verification_flow_body.py
 test/test_submit_self_service_verification_flow_with_link_method_body.py
 test/test_subscription.py
+test/test_successful_project_config_update.py
 test/test_successful_self_service_login_without_browser.py
 test/test_successful_self_service_registration_without_browser.py
-test/test_successful_update_project_config.py
 test/test_ui_container.py
 test/test_ui_node.py
 test/test_ui_node_anchor_attributes.py

@@ -1,4 +1,4 @@
-# ory_client.model.SuccessfulUpdateProjectConfig
+# ory_client.model.SuccessfulProjectConfigUpdate
 
 ## Load the model package
 ```dart

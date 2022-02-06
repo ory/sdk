@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.68
+ * API version: v0.0.1-alpha.69
  * Contact: support@ory.sh
  */
 
@@ -15,32 +15,32 @@ import (
 	"encoding/json"
 )
 
-// SuccessfulUpdateProjectConfig struct for SuccessfulUpdateProjectConfig
-type SuccessfulUpdateProjectConfig struct {
+// SuccessfulProjectConfigUpdate struct for SuccessfulProjectConfigUpdate
+type SuccessfulProjectConfigUpdate struct {
 	Project *Project `json:"project,omitempty"`
 	// Import Warnings  Not all configuration items can be imported to Ory Cloud. For example, setting the port does not make sense because Ory Cloud provides the runtime and networking.  This field contains warnings where configuration keys were found but can not be imported. These keys will be ignored by Ory Cloud. This field will help you understand why certain configuration keys might not be respected!
 	Warnings []Warning `json:"warnings,omitempty"`
 }
 
-// NewSuccessfulUpdateProjectConfig instantiates a new SuccessfulUpdateProjectConfig object
+// NewSuccessfulProjectConfigUpdate instantiates a new SuccessfulProjectConfigUpdate object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSuccessfulUpdateProjectConfig() *SuccessfulUpdateProjectConfig {
-	this := SuccessfulUpdateProjectConfig{}
+func NewSuccessfulProjectConfigUpdate() *SuccessfulProjectConfigUpdate {
+	this := SuccessfulProjectConfigUpdate{}
 	return &this
 }
 
-// NewSuccessfulUpdateProjectConfigWithDefaults instantiates a new SuccessfulUpdateProjectConfig object
+// NewSuccessfulProjectConfigUpdateWithDefaults instantiates a new SuccessfulProjectConfigUpdate object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSuccessfulUpdateProjectConfigWithDefaults() *SuccessfulUpdateProjectConfig {
-	this := SuccessfulUpdateProjectConfig{}
+func NewSuccessfulProjectConfigUpdateWithDefaults() *SuccessfulProjectConfigUpdate {
+	this := SuccessfulProjectConfigUpdate{}
 	return &this
 }
 
 // GetProject returns the Project field value if set, zero value otherwise.
-func (o *SuccessfulUpdateProjectConfig) GetProject() Project {
+func (o *SuccessfulProjectConfigUpdate) GetProject() Project {
 	if o == nil || o.Project == nil {
 		var ret Project
 		return ret
@@ -50,7 +50,7 @@ func (o *SuccessfulUpdateProjectConfig) GetProject() Project {
 
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SuccessfulUpdateProjectConfig) GetProjectOk() (*Project, bool) {
+func (o *SuccessfulProjectConfigUpdate) GetProjectOk() (*Project, bool) {
 	if o == nil || o.Project == nil {
 		return nil, false
 	}
@@ -58,7 +58,7 @@ func (o *SuccessfulUpdateProjectConfig) GetProjectOk() (*Project, bool) {
 }
 
 // HasProject returns a boolean if a field has been set.
-func (o *SuccessfulUpdateProjectConfig) HasProject() bool {
+func (o *SuccessfulProjectConfigUpdate) HasProject() bool {
 	if o != nil && o.Project != nil {
 		return true
 	}
@@ -67,12 +67,12 @@ func (o *SuccessfulUpdateProjectConfig) HasProject() bool {
 }
 
 // SetProject gets a reference to the given Project and assigns it to the Project field.
-func (o *SuccessfulUpdateProjectConfig) SetProject(v Project) {
+func (o *SuccessfulProjectConfigUpdate) SetProject(v Project) {
 	o.Project = &v
 }
 
 // GetWarnings returns the Warnings field value if set, zero value otherwise.
-func (o *SuccessfulUpdateProjectConfig) GetWarnings() []Warning {
+func (o *SuccessfulProjectConfigUpdate) GetWarnings() []Warning {
 	if o == nil || o.Warnings == nil {
 		var ret []Warning
 		return ret
@@ -82,7 +82,7 @@ func (o *SuccessfulUpdateProjectConfig) GetWarnings() []Warning {
 
 // GetWarningsOk returns a tuple with the Warnings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SuccessfulUpdateProjectConfig) GetWarningsOk() ([]Warning, bool) {
+func (o *SuccessfulProjectConfigUpdate) GetWarningsOk() ([]Warning, bool) {
 	if o == nil || o.Warnings == nil {
 		return nil, false
 	}
@@ -90,7 +90,7 @@ func (o *SuccessfulUpdateProjectConfig) GetWarningsOk() ([]Warning, bool) {
 }
 
 // HasWarnings returns a boolean if a field has been set.
-func (o *SuccessfulUpdateProjectConfig) HasWarnings() bool {
+func (o *SuccessfulProjectConfigUpdate) HasWarnings() bool {
 	if o != nil && o.Warnings != nil {
 		return true
 	}
@@ -99,11 +99,11 @@ func (o *SuccessfulUpdateProjectConfig) HasWarnings() bool {
 }
 
 // SetWarnings gets a reference to the given []Warning and assigns it to the Warnings field.
-func (o *SuccessfulUpdateProjectConfig) SetWarnings(v []Warning) {
+func (o *SuccessfulProjectConfigUpdate) SetWarnings(v []Warning) {
 	o.Warnings = v
 }
 
-func (o SuccessfulUpdateProjectConfig) MarshalJSON() ([]byte, error) {
+func (o SuccessfulProjectConfigUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Project != nil {
 		toSerialize["project"] = o.Project
@@ -114,38 +114,38 @@ func (o SuccessfulUpdateProjectConfig) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableSuccessfulUpdateProjectConfig struct {
-	value *SuccessfulUpdateProjectConfig
+type NullableSuccessfulProjectConfigUpdate struct {
+	value *SuccessfulProjectConfigUpdate
 	isSet bool
 }
 
-func (v NullableSuccessfulUpdateProjectConfig) Get() *SuccessfulUpdateProjectConfig {
+func (v NullableSuccessfulProjectConfigUpdate) Get() *SuccessfulProjectConfigUpdate {
 	return v.value
 }
 
-func (v *NullableSuccessfulUpdateProjectConfig) Set(val *SuccessfulUpdateProjectConfig) {
+func (v *NullableSuccessfulProjectConfigUpdate) Set(val *SuccessfulProjectConfigUpdate) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSuccessfulUpdateProjectConfig) IsSet() bool {
+func (v NullableSuccessfulProjectConfigUpdate) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableSuccessfulUpdateProjectConfig) Unset() {
+func (v *NullableSuccessfulProjectConfigUpdate) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSuccessfulUpdateProjectConfig(val *SuccessfulUpdateProjectConfig) *NullableSuccessfulUpdateProjectConfig {
-	return &NullableSuccessfulUpdateProjectConfig{value: val, isSet: true}
+func NewNullableSuccessfulProjectConfigUpdate(val *SuccessfulProjectConfigUpdate) *NullableSuccessfulProjectConfigUpdate {
+	return &NullableSuccessfulProjectConfigUpdate{value: val, isSet: true}
 }
 
-func (v NullableSuccessfulUpdateProjectConfig) MarshalJSON() ([]byte, error) {
+func (v NullableSuccessfulProjectConfigUpdate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSuccessfulUpdateProjectConfig) UnmarshalJSON(src []byte) error {
+func (v *NullableSuccessfulProjectConfigUpdate) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

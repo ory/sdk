@@ -253,7 +253,7 @@ Name | Type | Description  | Notes
 ## `updateProjectConfig()`
 
 ```php
-updateProjectConfig($projectId, $updateProjectConfigConfig): \Ory\Client\Model\SuccessfulUpdateProjectConfig
+updateProjectConfig($projectId, $updateProjectConfigConfig): \Ory\Client\Model\SuccessfulProjectConfigUpdate
 ```
 
 Update an Ory Cloud Project Configuration
@@ -297,7 +297,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Client\Model\SuccessfulUpdateProjectConfig**](../Model/SuccessfulUpdateProjectConfig.md)
+[**\Ory\Client\Model\SuccessfulProjectConfigUpdate**](../Model/SuccessfulProjectConfigUpdate.md)
 
 ### Authorization
 

@@ -608,7 +608,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_project_config**
-> SuccessfulUpdateProjectConfig update_project_config(project_id)
+> SuccessfulProjectConfigUpdate update_project_config(project_id)
 
 Update an Ory Cloud Project Configuration
 
@@ -622,8 +622,8 @@ This endpoints allows you to update the Ory Cloud Project configuration for indi
 import time
 import ory_client
 from ory_client.api import v0alpha0_api
-from ory_client.model.successful_update_project_config import SuccessfulUpdateProjectConfig
 from ory_client.model.update_project_config_config import UpdateProjectConfigConfig
+from ory_client.model.successful_project_config_update import SuccessfulProjectConfigUpdate
 from ory_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
@@ -679,7 +679,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SuccessfulUpdateProjectConfig**](SuccessfulUpdateProjectConfig.md)
+[**SuccessfulProjectConfigUpdate**](SuccessfulProjectConfigUpdate.md)
 
 ### Authorization
 
@@ -695,7 +695,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | successfulUpdateProjectConfig |  -  |
+**200** | successfulProjectConfigUpdate |  -  |
 **400** | genericError |  -  |
 **401** | genericError |  -  |
 **403** | genericError |  -  |

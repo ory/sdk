@@ -91,9 +91,9 @@ docs/Model/SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody.md
 docs/Model/SubmitSelfServiceVerificationFlowBody.md
 docs/Model/SubmitSelfServiceVerificationFlowWithLinkMethodBody.md
 docs/Model/Subscription.md
+docs/Model/SuccessfulProjectConfigUpdate.md
 docs/Model/SuccessfulSelfServiceLoginWithoutBrowser.md
 docs/Model/SuccessfulSelfServiceRegistrationWithoutBrowser.md
-docs/Model/SuccessfulUpdateProjectConfig.md
 docs/Model/UiContainer.md
 docs/Model/UiNode.md
 docs/Model/UiNodeAnchorAttributes.md
@@ -202,9 +202,9 @@ lib/Model/SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody.php
 lib/Model/SubmitSelfServiceVerificationFlowBody.php
 lib/Model/SubmitSelfServiceVerificationFlowWithLinkMethodBody.php
 lib/Model/Subscription.php
+lib/Model/SuccessfulProjectConfigUpdate.php
 lib/Model/SuccessfulSelfServiceLoginWithoutBrowser.php
 lib/Model/SuccessfulSelfServiceRegistrationWithoutBrowser.php
-lib/Model/SuccessfulUpdateProjectConfig.php
 lib/Model/UiContainer.php
 lib/Model/UiNode.php
 lib/Model/UiNodeAnchorAttributes.php
@@ -310,9 +310,9 @@ test/Model/SubmitSelfServiceSettingsFlowWithWebAuthnMethodBodyTest.php
 test/Model/SubmitSelfServiceVerificationFlowBodyTest.php
 test/Model/SubmitSelfServiceVerificationFlowWithLinkMethodBodyTest.php
 test/Model/SubscriptionTest.php
+test/Model/SuccessfulProjectConfigUpdateTest.php
 test/Model/SuccessfulSelfServiceLoginWithoutBrowserTest.php
 test/Model/SuccessfulSelfServiceRegistrationWithoutBrowserTest.php
-test/Model/SuccessfulUpdateProjectConfigTest.php
 test/Model/UiContainerTest.php
 test/Model/UiNodeAnchorAttributesTest.php
 test/Model/UiNodeAttributesTest.php

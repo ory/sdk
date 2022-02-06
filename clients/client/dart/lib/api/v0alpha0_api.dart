@@ -13,7 +13,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/model/generic_error.dart';
 import 'package:ory_client/model/project.dart';
 import 'package:ory_client/model/project_revision.dart';
-import 'package:ory_client/model/successful_update_project_config.dart';
+import 'package:ory_client/model/successful_project_config_update.dart';
 import 'package:ory_client/model/update_project_config_config.dart';
 
 class V0alpha0Api {
@@ -273,7 +273,7 @@ class V0alpha0Api {
   /// Update an Ory Cloud Project Configuration
   ///
   /// This endpoints allows you to update the Ory Cloud Project configuration for individual services (identity, permission, ...). The configuration is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.  Be aware that updating any service's configuration will completely override your current configuration for that service!
-  Future<Response<SuccessfulUpdateProjectConfig>> updateProjectConfig(
+  Future<Response<SuccessfulProjectConfigUpdate>> updateProjectConfig(
     String projectId, { 
     UpdateProjectConfigConfig updateProjectConfigConfig,
     CancelToken cancelToken,
@@ -316,13 +316,13 @@ class V0alpha0Api {
       options: _request,
     );
 
-    const _responseType = FullType(SuccessfulUpdateProjectConfig);
+    const _responseType = FullType(SuccessfulProjectConfigUpdate);
     final _responseData = _serializers.deserialize(
       _response.data,
       specifiedType: _responseType,
-    ) as SuccessfulUpdateProjectConfig;
+    ) as SuccessfulProjectConfigUpdate;
 
-    return Response<SuccessfulUpdateProjectConfig>(
+    return Response<SuccessfulProjectConfigUpdate>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

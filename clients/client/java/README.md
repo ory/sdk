@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v0.0.1-alpha.68
-  - Build date: 2022-02-06T16:56:22.118673094Z[Etc/UTC]
+- API version: v0.0.1-alpha.69
+  - Build date: 2022-02-06T17:51:53.184008644Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v0.0.1-alpha.68</version>
+  <version>v0.0.1-alpha.69</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v0.0.1-alpha.68"
+     implementation "sh.ory:client:v0.0.1-alpha.69"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v0.0.1-alpha.68.jar`
+* `target/client-v0.0.1-alpha.69.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -250,9 +250,9 @@ Class | Method | HTTP request | Description
  - [SubmitSelfServiceVerificationFlowBody](docs/SubmitSelfServiceVerificationFlowBody.md)
  - [SubmitSelfServiceVerificationFlowWithLinkMethodBody](docs/SubmitSelfServiceVerificationFlowWithLinkMethodBody.md)
  - [Subscription](docs/Subscription.md)
+ - [SuccessfulProjectConfigUpdate](docs/SuccessfulProjectConfigUpdate.md)
  - [SuccessfulSelfServiceLoginWithoutBrowser](docs/SuccessfulSelfServiceLoginWithoutBrowser.md)
  - [SuccessfulSelfServiceRegistrationWithoutBrowser](docs/SuccessfulSelfServiceRegistrationWithoutBrowser.md)
- - [SuccessfulUpdateProjectConfig](docs/SuccessfulUpdateProjectConfig.md)
  - [UiContainer](docs/UiContainer.md)
  - [UiNode](docs/UiNode.md)
  - [UiNodeAnchorAttributes](docs/UiNodeAnchorAttributes.md)
