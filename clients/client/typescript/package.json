@@ -1,6 +1,6 @@
 {
   "name": "@ory/client",
-  "version": "v0.0.1-alpha.70",
+  "version": "v0.0.1-alpha.71",
   "description": "OpenAPI client for @ory/client",
   "author": "ORY GmbH",
   "keywords": [
@@ -23,8 +23,5 @@
   "devDependencies": {
     "@types/node": "^12.11.5",
     "typescript": "^3.6.4"
-  },
-  "publishConfig": {
-    "registry": "https://github.com/ory/sdk.git"
   }
 }
