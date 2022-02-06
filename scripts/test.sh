@@ -79,7 +79,6 @@ rust () {
   (cd "$dir" && cargo test)
 }
 
-csharp
 typescript
 rust
 golang
@@ -88,3 +87,4 @@ php
 python
 ruby
 dart
+csharp
