@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**getProject**](V0alpha0Api.md#getproject) | **GET** /backoffice/public/projects/{project_id} | Get a Project
 [**listProjects**](V0alpha0Api.md#listprojects) | **GET** /backoffice/public/projects | List All Projects
 [**updateProject**](V0alpha0Api.md#updateproject) | **PUT** /backoffice/public/projects/{project_id} | Update a Project
+[**updateProjectConfig**](V0alpha0Api.md#updateprojectconfig) | **PUT** /backoffice/public/projects/{project_id}/configs | Update an Ory Cloud Project Configuration
 
 
 # **createProject**
@@ -185,6 +186,54 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Project**](Project.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateProjectConfig**
+> SuccessfulUpdateProjectConfig updateProjectConfig(projectId, updateProjectConfigConfig)
+
+Update an Ory Cloud Project Configuration
+
+This endpoints allows you to update the Ory Cloud Project configuration for individual services (identity, permission, ...). The configuration is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.  Be aware that updating any service's configuration will completely override your current configuration for that service!
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+
+var api_instance = new V0alpha0Api();
+var projectId = projectId_example; // String | Project ID  The project's ID.
+var updateProjectConfigConfig = new UpdateProjectConfigConfig(); // UpdateProjectConfigConfig | 
+
+try {
+    var result = api_instance.updateProjectConfig(projectId, updateProjectConfigConfig);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha0Api->updateProjectConfig: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **String**| Project ID  The project's ID. | 
+ **updateProjectConfigConfig** | [**UpdateProjectConfigConfig**](UpdateProjectConfigConfig.md)|  | [optional] 
+
+### Return type
+
+[**SuccessfulUpdateProjectConfig**](SuccessfulUpdateProjectConfig.md)
 
 ### Authorization
 

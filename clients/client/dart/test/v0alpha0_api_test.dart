@@ -51,5 +51,14 @@ void main() {
       // TODO
     });
 
+    // Update an Ory Cloud Project Configuration
+    //
+    // This endpoints allows you to update the Ory Cloud Project configuration for individual services (identity, permission, ...). The configuration is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.  Be aware that updating any service's configuration will completely override your current configuration for that service!
+    //
+    //Future<SuccessfulUpdateProjectConfig> updateProjectConfig(String projectId, { UpdateProjectConfigConfig updateProjectConfigConfig }) async
+    test('test updateProjectConfig', () async {
+      // TODO
+    });
+
   });
 }

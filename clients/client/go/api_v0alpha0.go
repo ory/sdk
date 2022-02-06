@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.67
+ * API version: v0.0.1-alpha.68
  * Contact: support@ory.sh
  */
 
@@ -84,6 +84,38 @@ type V0alpha0Api interface {
 	 * @return Project
 	 */
 	UpdateProjectExecute(r V0alpha0ApiApiUpdateProjectRequest) (*Project, *http.Response, error)
+
+	/*
+	 * UpdateProjectConfig Update an Ory Cloud Project Configuration
+	 * This endpoints allows you to update the Ory Cloud Project configuration for
+individual services (identity, permission, ...). The configuration is fully compatible
+with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).
+
+This endpoint expects the `version` key to be set in the payload. If it is unset, it
+will try to import the config as if it is from the most recent version.
+
+If you have an older version of a configuration, you should set the version key in the payload!
+
+While this endpoint is able to process all configuration items related to features (e.g. password reset),
+it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the
+open source.
+
+For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings
+to help you understand which parts of your config could not be processed.
+
+Be aware that updating any service's configuration will completely override your current configuration for that
+service!
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param projectId Project ID  The project's ID.
+	 * @return V0alpha0ApiApiUpdateProjectConfigRequest
+	 */
+	UpdateProjectConfig(ctx context.Context, projectId string) V0alpha0ApiApiUpdateProjectConfigRequest
+
+	/*
+	 * UpdateProjectConfigExecute executes the request
+	 * @return SuccessfulUpdateProjectConfig
+	 */
+	UpdateProjectConfigExecute(r V0alpha0ApiApiUpdateProjectConfigRequest) (*SuccessfulUpdateProjectConfig, *http.Response, error)
 }
 
 // V0alpha0ApiService V0alpha0Api service
@@ -614,6 +646,183 @@ func (a *V0alpha0ApiService) UpdateProjectExecute(r V0alpha0ApiApiUpdateProjectR
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha0ApiApiUpdateProjectConfigRequest struct {
+	ctx context.Context
+	ApiService V0alpha0Api
+	projectId string
+	updateProjectConfigConfig *UpdateProjectConfigConfig
+}
+
+func (r V0alpha0ApiApiUpdateProjectConfigRequest) UpdateProjectConfigConfig(updateProjectConfigConfig UpdateProjectConfigConfig) V0alpha0ApiApiUpdateProjectConfigRequest {
+	r.updateProjectConfigConfig = &updateProjectConfigConfig
+	return r
+}
+
+func (r V0alpha0ApiApiUpdateProjectConfigRequest) Execute() (*SuccessfulUpdateProjectConfig, *http.Response, error) {
+	return r.ApiService.UpdateProjectConfigExecute(r)
+}
+
+/*
+ * UpdateProjectConfig Update an Ory Cloud Project Configuration
+ * This endpoints allows you to update the Ory Cloud Project configuration for
+individual services (identity, permission, ...). The configuration is fully compatible
+with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).
+
+This endpoint expects the `version` key to be set in the payload. If it is unset, it
+will try to import the config as if it is from the most recent version.
+
+If you have an older version of a configuration, you should set the version key in the payload!
+
+While this endpoint is able to process all configuration items related to features (e.g. password reset),
+it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the
+open source.
+
+For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings
+to help you understand which parts of your config could not be processed.
+
+Be aware that updating any service's configuration will completely override your current configuration for that
+service!
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param projectId Project ID  The project's ID.
+ * @return V0alpha0ApiApiUpdateProjectConfigRequest
+ */
+func (a *V0alpha0ApiService) UpdateProjectConfig(ctx context.Context, projectId string) V0alpha0ApiApiUpdateProjectConfigRequest {
+	return V0alpha0ApiApiUpdateProjectConfigRequest{
+		ApiService: a,
+		ctx: ctx,
+		projectId: projectId,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return SuccessfulUpdateProjectConfig
+ */
+func (a *V0alpha0ApiService) UpdateProjectConfigExecute(r V0alpha0ApiApiUpdateProjectConfigRequest) (*SuccessfulUpdateProjectConfig, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *SuccessfulUpdateProjectConfig
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha0ApiService.UpdateProjectConfig")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/backoffice/public/projects/{project_id}/configs"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateProjectConfigConfig
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v GenericError

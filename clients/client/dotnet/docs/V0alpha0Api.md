@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**GetProject**](V0alpha0Api.md#getproject) | **GET** /backoffice/public/projects/{project_id} | Get a Project
 [**ListProjects**](V0alpha0Api.md#listprojects) | **GET** /backoffice/public/projects | List All Projects
 [**UpdateProject**](V0alpha0Api.md#updateproject) | **PUT** /backoffice/public/projects/{project_id} | Update a Project
+[**UpdateProjectConfig**](V0alpha0Api.md#updateprojectconfig) | **PUT** /backoffice/public/projects/{project_id}/configs | Update an Ory Cloud Project Configuration
 
 
 <a name="createproject"></a>
@@ -313,6 +314,87 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | project |  -  |
+| **401** | genericError |  -  |
+| **403** | genericError |  -  |
+| **404** | genericError |  -  |
+| **0** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="updateprojectconfig"></a>
+# **UpdateProjectConfig**
+> ClientSuccessfulUpdateProjectConfig UpdateProjectConfig (string projectId, ClientUpdateProjectConfigConfig clientUpdateProjectConfigConfig = null)
+
+Update an Ory Cloud Project Configuration
+
+This endpoints allows you to update the Ory Cloud Project configuration for individual services (identity, permission, ...). The configuration is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.  Be aware that updating any service's configuration will completely override your current configuration for that service!
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class UpdateProjectConfigExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://playground.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryAccessToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new V0alpha0Api(config);
+            var projectId = "projectId_example";  // string | Project ID  The project's ID.
+            var clientUpdateProjectConfigConfig = new ClientUpdateProjectConfigConfig(); // ClientUpdateProjectConfigConfig |  (optional) 
+
+            try
+            {
+                // Update an Ory Cloud Project Configuration
+                ClientSuccessfulUpdateProjectConfig result = apiInstance.UpdateProjectConfig(projectId, clientUpdateProjectConfigConfig);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling V0alpha0Api.UpdateProjectConfig: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **string**| Project ID  The project&#39;s ID. | 
+ **clientUpdateProjectConfigConfig** | [**ClientUpdateProjectConfigConfig**](ClientUpdateProjectConfigConfig.md)|  | [optional] 
+
+### Return type
+
+[**ClientSuccessfulUpdateProjectConfig**](ClientSuccessfulUpdateProjectConfig.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successfulUpdateProjectConfig |  -  |
+| **400** | genericError |  -  |
 | **401** | genericError |  -  |
 | **403** | genericError |  -  |
 | **404** | genericError |  -  |

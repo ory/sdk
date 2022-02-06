@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**GetProject**](V0alpha0Api.md#GetProject) | **Get** /backoffice/public/projects/{project_id} | Get a Project
 [**ListProjects**](V0alpha0Api.md#ListProjects) | **Get** /backoffice/public/projects | List All Projects
 [**UpdateProject**](V0alpha0Api.md#UpdateProject) | **Put** /backoffice/public/projects/{project_id} | Update a Project
+[**UpdateProjectConfig**](V0alpha0Api.md#UpdateProjectConfig) | **Put** /backoffice/public/projects/{project_id}/configs | Update an Ory Cloud Project Configuration
 
 
 
@@ -265,6 +266,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Project**](Project.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateProjectConfig
+
+> SuccessfulUpdateProjectConfig UpdateProjectConfig(ctx, projectId).UpdateProjectConfigConfig(updateProjectConfigConfig).Execute()
+
+Update an Ory Cloud Project Configuration
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    projectId := "projectId_example" // string | Project ID  The project's ID.
+    updateProjectConfigConfig := *openapiclient.NewUpdateProjectConfigConfig(map[string]interface{}(123)) // UpdateProjectConfigConfig |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha0Api.UpdateProjectConfig(context.Background(), projectId).UpdateProjectConfigConfig(updateProjectConfigConfig).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `V0alpha0Api.UpdateProjectConfig``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateProjectConfig`: SuccessfulUpdateProjectConfig
+    fmt.Fprintf(os.Stdout, "Response from `V0alpha0Api.UpdateProjectConfig`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectId** | **string** | Project ID  The project&#39;s ID. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateProjectConfigRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **updateProjectConfigConfig** | [**UpdateProjectConfigConfig**](UpdateProjectConfigConfig.md) |  | 
+
+### Return type
+
+[**SuccessfulUpdateProjectConfig**](SuccessfulUpdateProjectConfig.md)
 
 ### Authorization
 

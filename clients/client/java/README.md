@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v0.0.1-alpha.67
-  - Build date: 2022-02-06T10:55:17.152157738Z[Etc/UTC]
+- API version: v0.0.1-alpha.68
+  - Build date: 2022-02-06T16:56:22.118673094Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v0.0.1-alpha.67</version>
+  <version>v0.0.1-alpha.68</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v0.0.1-alpha.67"
+     implementation "sh.ory:client:v0.0.1-alpha.68"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v0.0.1-alpha.67.jar`
+* `target/client-v0.0.1-alpha.68.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -122,6 +122,7 @@ Class | Method | HTTP request | Description
 *V0alpha0Api* | [**getProject**](docs/V0alpha0Api.md#getProject) | **GET** /backoffice/public/projects/{project_id} | Get a Project
 *V0alpha0Api* | [**listProjects**](docs/V0alpha0Api.md#listProjects) | **GET** /backoffice/public/projects | List All Projects
 *V0alpha0Api* | [**updateProject**](docs/V0alpha0Api.md#updateProject) | **PUT** /backoffice/public/projects/{project_id} | Update a Project
+*V0alpha0Api* | [**updateProjectConfig**](docs/V0alpha0Api.md#updateProjectConfig) | **PUT** /backoffice/public/projects/{project_id}/configs | Update an Ory Cloud Project Configuration
 *V0alpha2Api* | [**adminCreateIdentity**](docs/V0alpha2Api.md#adminCreateIdentity) | **POST** /api/kratos/admin/identities | Create an Identity
 *V0alpha2Api* | [**adminCreateSelfServiceRecoveryLink**](docs/V0alpha2Api.md#adminCreateSelfServiceRecoveryLink) | **POST** /api/kratos/admin/recovery/link | Create a Recovery Link
 *V0alpha2Api* | [**adminDeleteIdentity**](docs/V0alpha2Api.md#adminDeleteIdentity) | **DELETE** /api/kratos/admin/identities/{id} | Delete an Identity
