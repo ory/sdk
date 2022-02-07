@@ -10,8 +10,13 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createProject**](V0alpha0Api.md#createproject) | **POST** /backoffice/public/projects | Create a Project
+[**getActiveProject**](V0alpha0Api.md#getactiveproject) | **GET** /backoffice/public/console/projects/active | Returns Your Active Ory Cloud Project
 [**getProject**](V0alpha0Api.md#getproject) | **GET** /backoffice/public/projects/{project_id} | Get a Project
+[**getProjectMembers**](V0alpha0Api.md#getprojectmembers) | **GET** /backoffice/public/projects/{project_id}/members | Get all members associated with this project.
 [**listProjects**](V0alpha0Api.md#listprojects) | **GET** /backoffice/public/projects | List All Projects
+[**purgeProject**](V0alpha0Api.md#purgeproject) | **DELETE** /backoffice/public/projects/{project_id} | Irrecoverably Purge a Project
+[**removeProjectMember**](V0alpha0Api.md#removeprojectmember) | **DELETE** /backoffice/public/projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to &#x60;REMOVED&#x60;.
+[**setActiveProject**](V0alpha0Api.md#setactiveproject) | **PUT** /backoffice/public/console/projects/active | Sets Your Active Project
 [**updateProject**](V0alpha0Api.md#updateproject) | **PUT** /backoffice/public/projects/{project_id} | Update a Project
 [**updateProjectConfig**](V0alpha0Api.md#updateprojectconfig) | **PUT** /backoffice/public/projects/{project_id}/configs | Update an Ory Cloud Project Configuration
 
@@ -62,6 +67,48 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getActiveProject**
+> ActiveProject getActiveProject()
+
+Returns Your Active Ory Cloud Project
+
+Use this API to get your active project in the Ory Cloud Console UI.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+
+var api_instance = new V0alpha0Api();
+
+try {
+    var result = api_instance.getActiveProject();
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha0Api->getActiveProject: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ActiveProject**](ActiveProject.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getProject**
 > Project getProject(projectId)
 
@@ -96,6 +143,52 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Project**](Project.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getProjectMembers**
+> BuiltList<CloudAccount> getProjectMembers(projectId)
+
+Get all members associated with this project.
+
+This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+
+var api_instance = new V0alpha0Api();
+var projectId = projectId_example; // String | Project ID  The project's ID.
+
+try {
+    var result = api_instance.getProjectMembers(projectId);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha0Api->getProjectMembers: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **String**| Project ID  The project's ID. | 
+
+### Return type
+
+[**BuiltList<CloudAccount>**](CloudAccount.md)
 
 ### Authorization
 
@@ -146,6 +239,143 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **purgeProject**
+> purgeProject(projectId)
+
+Irrecoverably Purge a Project
+
+!! Use with extreme caution !!  Using this API endpoint you can purge (completely delete) a project and its data. This action can not be undone and will delete ALL your data.  !! Use with extreme caution !!
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+
+var api_instance = new V0alpha0Api();
+var projectId = projectId_example; // String | Project ID  The project's ID.
+
+try {
+    api_instance.purgeProject(projectId);
+} catch (e) {
+    print('Exception when calling V0alpha0Api->purgeProject: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **String**| Project ID  The project's ID. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **removeProjectMember**
+> removeProjectMember(projectId, memberId)
+
+Remove a member associated with this project. This also sets their invite status to `REMOVED`.
+
+This endpoint requires the user to be a member of the project with the role `OWNER`.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+
+var api_instance = new V0alpha0Api();
+var projectId = projectId_example; // String | Project ID  The project's ID.
+var memberId = memberId_example; // String | Member ID
+
+try {
+    api_instance.removeProjectMember(projectId, memberId);
+} catch (e) {
+    print('Exception when calling V0alpha0Api->removeProjectMember: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **String**| Project ID  The project's ID. | 
+ **memberId** | **String**| Member ID | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **setActiveProject**
+> setActiveProject(inlineObject)
+
+Sets Your Active Project
+
+Use this API to set your active project in the Ory Cloud Console UI.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+
+var api_instance = new V0alpha0Api();
+var inlineObject = new InlineObject(); // InlineObject | 
+
+try {
+    api_instance.setActiveProject(inlineObject);
+} catch (e) {
+    print('Exception when calling V0alpha0Api->setActiveProject: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inlineObject** | [**InlineObject**](InlineObject.md)|  | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

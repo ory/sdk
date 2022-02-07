@@ -25,6 +25,7 @@ docs/ClientIdentitySchema.md
 docs/ClientIdentitySchemaLocation.md
 docs/ClientIdentitySchemaValidationResult.md
 docs/ClientIdentityState.md
+docs/ClientInlineObject.md
 docs/ClientInlineResponse200.md
 docs/ClientInlineResponse2001.md
 docs/ClientInlineResponse503.md
@@ -135,6 +136,7 @@ src/Ory.Client.Test/Model/ClientIdentitySchemaTests.cs
 src/Ory.Client.Test/Model/ClientIdentitySchemaValidationResultTests.cs
 src/Ory.Client.Test/Model/ClientIdentityStateTests.cs
 src/Ory.Client.Test/Model/ClientIdentityTests.cs
+src/Ory.Client.Test/Model/ClientInlineObjectTests.cs
 src/Ory.Client.Test/Model/ClientInlineResponse2001Tests.cs
 src/Ory.Client.Test/Model/ClientInlineResponse200Tests.cs
 src/Ory.Client.Test/Model/ClientInlineResponse503Tests.cs
@@ -259,6 +261,7 @@ src/Ory.Client/Model/ClientIdentitySchema.cs
 src/Ory.Client/Model/ClientIdentitySchemaLocation.cs
 src/Ory.Client/Model/ClientIdentitySchemaValidationResult.cs
 src/Ory.Client/Model/ClientIdentityState.cs
+src/Ory.Client/Model/ClientInlineObject.cs
 src/Ory.Client/Model/ClientInlineResponse200.cs
 src/Ory.Client/Model/ClientInlineResponse2001.cs
 src/Ory.Client/Model/ClientInlineResponse503.cs

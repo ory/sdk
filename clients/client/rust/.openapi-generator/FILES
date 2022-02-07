@@ -25,6 +25,7 @@ docs/IdentitySchema.md
 docs/IdentitySchemaLocation.md
 docs/IdentitySchemaValidationResult.md
 docs/IdentityState.md
+docs/InlineObject.md
 docs/InlineResponse200.md
 docs/InlineResponse2001.md
 docs/InlineResponse503.md
@@ -138,6 +139,7 @@ src/models/identity_schema.rs
 src/models/identity_schema_location.rs
 src/models/identity_schema_validation_result.rs
 src/models/identity_state.rs
+src/models/inline_object.rs
 src/models/inline_response_200.rs
 src/models/inline_response_200_1.rs
 src/models/inline_response_503.rs

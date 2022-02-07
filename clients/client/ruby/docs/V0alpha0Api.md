@@ -5,8 +5,13 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
 | [**create_project**](V0alpha0Api.md#create_project) | **POST** /backoffice/public/projects | Create a Project |
+| [**get_active_project**](V0alpha0Api.md#get_active_project) | **GET** /backoffice/public/console/projects/active | Returns Your Active Ory Cloud Project |
 | [**get_project**](V0alpha0Api.md#get_project) | **GET** /backoffice/public/projects/{project_id} | Get a Project |
+| [**get_project_members**](V0alpha0Api.md#get_project_members) | **GET** /backoffice/public/projects/{project_id}/members | Get all members associated with this project. |
 | [**list_projects**](V0alpha0Api.md#list_projects) | **GET** /backoffice/public/projects | List All Projects |
+| [**purge_project**](V0alpha0Api.md#purge_project) | **DELETE** /backoffice/public/projects/{project_id} | Irrecoverably Purge a Project |
+| [**remove_project_member**](V0alpha0Api.md#remove_project_member) | **DELETE** /backoffice/public/projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to &#x60;REMOVED&#x60;. |
+| [**set_active_project**](V0alpha0Api.md#set_active_project) | **PUT** /backoffice/public/console/projects/active | Sets Your Active Project |
 | [**update_project**](V0alpha0Api.md#update_project) | **PUT** /backoffice/public/projects/{project_id} | Update a Project |
 | [**update_project_config**](V0alpha0Api.md#update_project_config) | **PUT** /backoffice/public/projects/{project_id}/configs | Update an Ory Cloud Project Configuration |
 
@@ -82,6 +87,72 @@ end
 - **Accept**: application/json
 
 
+## get_active_project
+
+> <ActiveProject> get_active_project
+
+Returns Your Active Ory Cloud Project
+
+Use this API to get your active project in the Ory Cloud Console UI.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::V0alpha0Api.new
+
+begin
+  # Returns Your Active Ory Cloud Project
+  result = api_instance.get_active_project
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling V0alpha0Api->get_active_project: #{e}"
+end
+```
+
+#### Using the get_active_project_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<ActiveProject>, Integer, Hash)> get_active_project_with_http_info
+
+```ruby
+begin
+  # Returns Your Active Ory Cloud Project
+  data, status_code, headers = api_instance.get_active_project_with_http_info
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <ActiveProject>
+rescue OryClient::ApiError => e
+  puts "Error when calling V0alpha0Api->get_active_project_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ActiveProject**](ActiveProject.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## get_project
 
 > <Project> get_project(project_id)
@@ -140,6 +211,75 @@ end
 ### Return type
 
 [**Project**](Project.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_project_members
+
+> <Array<CloudAccount>> get_project_members(project_id)
+
+Get all members associated with this project.
+
+This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::V0alpha0Api.new
+project_id = 'project_id_example' # String | Project ID  The project's ID.
+
+begin
+  # Get all members associated with this project.
+  result = api_instance.get_project_members(project_id)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling V0alpha0Api->get_project_members: #{e}"
+end
+```
+
+#### Using the get_project_members_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Array<CloudAccount>>, Integer, Hash)> get_project_members_with_http_info(project_id)
+
+```ruby
+begin
+  # Get all members associated with this project.
+  data, status_code, headers = api_instance.get_project_members_with_http_info(project_id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Array<CloudAccount>>
+rescue OryClient::ApiError => e
+  puts "Error when calling V0alpha0Api->get_project_members_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **project_id** | **String** | Project ID  The project&#39;s ID. |  |
+
+### Return type
+
+[**Array&lt;CloudAccount&gt;**](CloudAccount.md)
 
 ### Authorization
 
@@ -214,6 +354,214 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## purge_project
+
+> purge_project(project_id)
+
+Irrecoverably Purge a Project
+
+!! Use with extreme caution !!  Using this API endpoint you can purge (completely delete) a project and its data. This action can not be undone and will delete ALL your data.  !! Use with extreme caution !!
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::V0alpha0Api.new
+project_id = 'project_id_example' # String | Project ID  The project's ID.
+
+begin
+  # Irrecoverably Purge a Project
+  api_instance.purge_project(project_id)
+rescue OryClient::ApiError => e
+  puts "Error when calling V0alpha0Api->purge_project: #{e}"
+end
+```
+
+#### Using the purge_project_with_http_info variant
+
+This returns an Array which contains the response data (`nil` in this case), status code and headers.
+
+> <Array(nil, Integer, Hash)> purge_project_with_http_info(project_id)
+
+```ruby
+begin
+  # Irrecoverably Purge a Project
+  data, status_code, headers = api_instance.purge_project_with_http_info(project_id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => nil
+rescue OryClient::ApiError => e
+  puts "Error when calling V0alpha0Api->purge_project_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **project_id** | **String** | Project ID  The project&#39;s ID. |  |
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## remove_project_member
+
+> remove_project_member(project_id, member_id)
+
+Remove a member associated with this project. This also sets their invite status to `REMOVED`.
+
+This endpoint requires the user to be a member of the project with the role `OWNER`.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::V0alpha0Api.new
+project_id = 'project_id_example' # String | Project ID  The project's ID.
+member_id = 'member_id_example' # String | Member ID
+
+begin
+  # Remove a member associated with this project. This also sets their invite status to `REMOVED`.
+  api_instance.remove_project_member(project_id, member_id)
+rescue OryClient::ApiError => e
+  puts "Error when calling V0alpha0Api->remove_project_member: #{e}"
+end
+```
+
+#### Using the remove_project_member_with_http_info variant
+
+This returns an Array which contains the response data (`nil` in this case), status code and headers.
+
+> <Array(nil, Integer, Hash)> remove_project_member_with_http_info(project_id, member_id)
+
+```ruby
+begin
+  # Remove a member associated with this project. This also sets their invite status to `REMOVED`.
+  data, status_code, headers = api_instance.remove_project_member_with_http_info(project_id, member_id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => nil
+rescue OryClient::ApiError => e
+  puts "Error when calling V0alpha0Api->remove_project_member_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **project_id** | **String** | Project ID  The project&#39;s ID. |  |
+| **member_id** | **String** | Member ID |  |
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## set_active_project
+
+> set_active_project(opts)
+
+Sets Your Active Project
+
+Use this API to set your active project in the Ory Cloud Console UI.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::V0alpha0Api.new
+opts = {
+  inline_object: OryClient::InlineObject.new({project_id: 'project_id_example'}) # InlineObject | 
+}
+
+begin
+  # Sets Your Active Project
+  api_instance.set_active_project(opts)
+rescue OryClient::ApiError => e
+  puts "Error when calling V0alpha0Api->set_active_project: #{e}"
+end
+```
+
+#### Using the set_active_project_with_http_info variant
+
+This returns an Array which contains the response data (`nil` in this case), status code and headers.
+
+> <Array(nil, Integer, Hash)> set_active_project_with_http_info(opts)
+
+```ruby
+begin
+  # Sets Your Active Project
+  data, status_code, headers = api_instance.set_active_project_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => nil
+rescue OryClient::ApiError => e
+  puts "Error when calling V0alpha0Api->set_active_project_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **inline_object** | [**InlineObject**](InlineObject.md) |  | [optional] |
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 

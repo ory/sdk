@@ -5,8 +5,13 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_project**](V0alpha0Api.md#create_project) | **POST** /backoffice/public/projects | Create a Project
+[**get_active_project**](V0alpha0Api.md#get_active_project) | **GET** /backoffice/public/console/projects/active | Returns Your Active Ory Cloud Project
 [**get_project**](V0alpha0Api.md#get_project) | **GET** /backoffice/public/projects/{project_id} | Get a Project
+[**get_project_members**](V0alpha0Api.md#get_project_members) | **GET** /backoffice/public/projects/{project_id}/members | Get all members associated with this project.
 [**list_projects**](V0alpha0Api.md#list_projects) | **GET** /backoffice/public/projects | List All Projects
+[**purge_project**](V0alpha0Api.md#purge_project) | **DELETE** /backoffice/public/projects/{project_id} | Irrecoverably Purge a Project
+[**remove_project_member**](V0alpha0Api.md#remove_project_member) | **DELETE** /backoffice/public/projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to &#x60;REMOVED&#x60;.
+[**set_active_project**](V0alpha0Api.md#set_active_project) | **PUT** /backoffice/public/console/projects/active | Sets Your Active Project
 [**update_project**](V0alpha0Api.md#update_project) | **PUT** /backoffice/public/projects/{project_id} | Update a Project
 [**update_project_config**](V0alpha0Api.md#update_project_config) | **PUT** /backoffice/public/projects/{project_id}/configs | Update an Ory Cloud Project Configuration
 
@@ -224,6 +229,82 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_active_project**
+> ActiveProject get_active_project()
+
+Returns Your Active Ory Cloud Project
+
+Use this API to get your active project in the Ory Cloud Console UI.
+
+### Example
+
+* Bearer Authentication (oryAccessToken):
+
+```python
+import time
+import ory_client
+from ory_client.api import v0alpha0_api
+from ory_client.model.generic_error import GenericError
+from ory_client.model.active_project import ActiveProject
+from pprint import pprint
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryAccessToken
+configuration = ory_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = v0alpha0_api.V0alpha0Api(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        # Returns Your Active Ory Cloud Project
+        api_response = api_instance.get_active_project()
+        pprint(api_response)
+    except ory_client.ApiException as e:
+        print("Exception when calling V0alpha0Api->get_active_project: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ActiveProject**](ActiveProject.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | activeProject |  -  |
+**401** | genericError |  -  |
+**0** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_project**
 > Project get_project(project_id)
 
@@ -306,6 +387,87 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_project_members**
+> ProjectMembers get_project_members(project_id)
+
+Get all members associated with this project.
+
+This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
+
+### Example
+
+* Bearer Authentication (oryAccessToken):
+
+```python
+import time
+import ory_client
+from ory_client.api import v0alpha0_api
+from ory_client.model.project_members import ProjectMembers
+from ory_client.model.generic_error import GenericError
+from pprint import pprint
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryAccessToken
+configuration = ory_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = v0alpha0_api.V0alpha0Api(api_client)
+    project_id = "project_id_example" # str | Project ID  The project's ID.
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Get all members associated with this project.
+        api_response = api_instance.get_project_members(project_id)
+        pprint(api_response)
+    except ory_client.ApiException as e:
+        print("Exception when calling V0alpha0Api->get_project_members: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**| Project ID  The project&#39;s ID. |
+
+### Return type
+
+[**ProjectMembers**](ProjectMembers.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | projectMembers |  -  |
+**401** | genericError |  -  |
+**406** | genericError |  -  |
+**500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **list_projects**
 > Projects list_projects()
 
@@ -380,6 +542,250 @@ This endpoint does not need any parameter.
 **401** | genericError |  -  |
 **403** | genericError |  -  |
 **404** | genericError |  -  |
+**0** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **purge_project**
+> purge_project(project_id)
+
+Irrecoverably Purge a Project
+
+!! Use with extreme caution !!  Using this API endpoint you can purge (completely delete) a project and its data. This action can not be undone and will delete ALL your data.  !! Use with extreme caution !!
+
+### Example
+
+* Bearer Authentication (oryAccessToken):
+
+```python
+import time
+import ory_client
+from ory_client.api import v0alpha0_api
+from ory_client.model.generic_error import GenericError
+from pprint import pprint
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryAccessToken
+configuration = ory_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = v0alpha0_api.V0alpha0Api(api_client)
+    project_id = "project_id_example" # str | Project ID  The project's ID.
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Irrecoverably Purge a Project
+        api_instance.purge_project(project_id)
+    except ory_client.ApiException as e:
+        print("Exception when calling V0alpha0Api->purge_project: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**| Project ID  The project&#39;s ID. |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**401** | genericError |  -  |
+**403** | genericError |  -  |
+**404** | genericError |  -  |
+**0** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **remove_project_member**
+> remove_project_member(project_id, member_id)
+
+Remove a member associated with this project. This also sets their invite status to `REMOVED`.
+
+This endpoint requires the user to be a member of the project with the role `OWNER`.
+
+### Example
+
+* Bearer Authentication (oryAccessToken):
+
+```python
+import time
+import ory_client
+from ory_client.api import v0alpha0_api
+from ory_client.model.generic_error import GenericError
+from pprint import pprint
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryAccessToken
+configuration = ory_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = v0alpha0_api.V0alpha0Api(api_client)
+    project_id = "project_id_example" # str | Project ID  The project's ID.
+    member_id = "member_id_example" # str | Member ID
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Remove a member associated with this project. This also sets their invite status to `REMOVED`.
+        api_instance.remove_project_member(project_id, member_id)
+    except ory_client.ApiException as e:
+        print("Exception when calling V0alpha0Api->remove_project_member: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**| Project ID  The project&#39;s ID. |
+ **member_id** | **str**| Member ID |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**400** | genericError |  -  |
+**401** | genericError |  -  |
+**406** | genericError |  -  |
+**500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **set_active_project**
+> set_active_project()
+
+Sets Your Active Project
+
+Use this API to set your active project in the Ory Cloud Console UI.
+
+### Example
+
+* Bearer Authentication (oryAccessToken):
+
+```python
+import time
+import ory_client
+from ory_client.api import v0alpha0_api
+from ory_client.model.inline_object import InlineObject
+from ory_client.model.generic_error import GenericError
+from pprint import pprint
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryAccessToken
+configuration = ory_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = v0alpha0_api.V0alpha0Api(api_client)
+    inline_object = InlineObject(
+        project_id="project_id_example",
+    ) # InlineObject |  (optional)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Sets Your Active Project
+        api_instance.set_active_project(inline_object=inline_object)
+    except ory_client.ApiException as e:
+        print("Exception when calling V0alpha0Api->set_active_project: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inline_object** | [**InlineObject**](InlineObject.md)|  | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**401** | genericError |  -  |
 **0** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

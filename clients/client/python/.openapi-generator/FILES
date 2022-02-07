@@ -30,6 +30,7 @@ docs/IdentitySchemaLocation.md
 docs/IdentitySchemaValidationResult.md
 docs/IdentitySchemas.md
 docs/IdentityState.md
+docs/InlineObject.md
 docs/InlineResponse200.md
 docs/InlineResponse2001.md
 docs/InlineResponse503.md
@@ -166,6 +167,7 @@ ory_client/model/identity_schema_location.py
 ory_client/model/identity_schema_validation_result.py
 ory_client/model/identity_schemas.py
 ory_client/model/identity_state.py
+ory_client/model/inline_object.py
 ory_client/model/inline_response200.py
 ory_client/model/inline_response2001.py
 ory_client/model/inline_response503.py
@@ -296,6 +298,7 @@ test/test_identity_schema_location.py
 test/test_identity_schema_validation_result.py
 test/test_identity_schemas.py
 test/test_identity_state.py
+test/test_inline_object.py
 test/test_inline_response200.py
 test/test_inline_response2001.py
 test/test_inline_response503.py

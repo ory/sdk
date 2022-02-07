@@ -27,6 +27,7 @@ docs/IdentitySchema.md
 docs/IdentitySchemaLocation.md
 docs/IdentitySchemaValidationResult.md
 docs/IdentityState.md
+docs/InlineObject.md
 docs/InlineResponse200.md
 docs/InlineResponse2001.md
 docs/InlineResponse503.md
@@ -162,6 +163,7 @@ src/main/java/sh/ory/model/IdentitySchema.java
 src/main/java/sh/ory/model/IdentitySchemaLocation.java
 src/main/java/sh/ory/model/IdentitySchemaValidationResult.java
 src/main/java/sh/ory/model/IdentityState.java
+src/main/java/sh/ory/model/InlineObject.java
 src/main/java/sh/ory/model/InlineResponse200.java
 src/main/java/sh/ory/model/InlineResponse2001.java
 src/main/java/sh/ory/model/InlineResponse503.java
@@ -268,6 +270,7 @@ src/test/java/sh/ory/model/IdentitySchemaTest.java
 src/test/java/sh/ory/model/IdentitySchemaValidationResultTest.java
 src/test/java/sh/ory/model/IdentityStateTest.java
 src/test/java/sh/ory/model/IdentityTest.java
+src/test/java/sh/ory/model/InlineObjectTest.java
 src/test/java/sh/ory/model/InlineResponse2001Test.java
 src/test/java/sh/ory/model/InlineResponse200Test.java
 src/test/java/sh/ory/model/InlineResponse503Test.java

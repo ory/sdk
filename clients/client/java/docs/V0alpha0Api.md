@@ -5,8 +5,13 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createProject**](V0alpha0Api.md#createProject) | **POST** /backoffice/public/projects | Create a Project
+[**getActiveProject**](V0alpha0Api.md#getActiveProject) | **GET** /backoffice/public/console/projects/active | Returns Your Active Ory Cloud Project
 [**getProject**](V0alpha0Api.md#getProject) | **GET** /backoffice/public/projects/{project_id} | Get a Project
+[**getProjectMembers**](V0alpha0Api.md#getProjectMembers) | **GET** /backoffice/public/projects/{project_id}/members | Get all members associated with this project.
 [**listProjects**](V0alpha0Api.md#listProjects) | **GET** /backoffice/public/projects | List All Projects
+[**purgeProject**](V0alpha0Api.md#purgeProject) | **DELETE** /backoffice/public/projects/{project_id} | Irrecoverably Purge a Project
+[**removeProjectMember**](V0alpha0Api.md#removeProjectMember) | **DELETE** /backoffice/public/projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to &#x60;REMOVED&#x60;.
+[**setActiveProject**](V0alpha0Api.md#setActiveProject) | **PUT** /backoffice/public/console/projects/active | Sets Your Active Project
 [**updateProject**](V0alpha0Api.md#updateProject) | **PUT** /backoffice/public/projects/{project_id} | Update a Project
 [**updateProjectConfig**](V0alpha0Api.md#updateProjectConfig) | **PUT** /backoffice/public/projects/{project_id}/configs | Update an Ory Cloud Project Configuration
 
@@ -82,6 +87,71 @@ Name | Type | Description  | Notes
 **404** | genericError |  -  |
 **0** | genericError |  -  |
 
+<a name="getActiveProject"></a>
+# **getActiveProject**
+> ActiveProject getActiveProject()
+
+Returns Your Active Ory Cloud Project
+
+Use this API to get your active project in the Ory Cloud Console UI.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.V0alpha0Api;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryAccessToken
+    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setBearerToken("BEARER TOKEN");
+
+    V0alpha0Api apiInstance = new V0alpha0Api(defaultClient);
+    try {
+      ActiveProject result = apiInstance.getActiveProject();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling V0alpha0Api#getActiveProject");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ActiveProject**](ActiveProject.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | activeProject |  -  |
+**401** | genericError |  -  |
+**0** | genericError |  -  |
+
 <a name="getProject"></a>
 # **getProject**
 > Project getProject(projectId)
@@ -153,6 +223,76 @@ Name | Type | Description  | Notes
 **404** | genericError |  -  |
 **0** | genericError |  -  |
 
+<a name="getProjectMembers"></a>
+# **getProjectMembers**
+> List&lt;CloudAccount&gt; getProjectMembers(projectId)
+
+Get all members associated with this project.
+
+This endpoint requires the user to be a member of the project with the role &#x60;OWNER&#x60; or &#x60;DEVELOPER&#x60;.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.V0alpha0Api;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryAccessToken
+    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setBearerToken("BEARER TOKEN");
+
+    V0alpha0Api apiInstance = new V0alpha0Api(defaultClient);
+    String projectId = "projectId_example"; // String | Project ID  The project's ID.
+    try {
+      List<CloudAccount> result = apiInstance.getProjectMembers(projectId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling V0alpha0Api#getProjectMembers");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **String**| Project ID  The project&#39;s ID. |
+
+### Return type
+
+[**List&lt;CloudAccount&gt;**](CloudAccount.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | projectMembers |  -  |
+**401** | genericError |  -  |
+**406** | genericError |  -  |
+**500** | genericError |  -  |
+
 <a name="listProjects"></a>
 # **listProjects**
 > List&lt;Project&gt; listProjects()
@@ -218,6 +358,216 @@ This endpoint does not need any parameter.
 **401** | genericError |  -  |
 **403** | genericError |  -  |
 **404** | genericError |  -  |
+**0** | genericError |  -  |
+
+<a name="purgeProject"></a>
+# **purgeProject**
+> purgeProject(projectId)
+
+Irrecoverably Purge a Project
+
+!! Use with extreme caution !!  Using this API endpoint you can purge (completely delete) a project and its data. This action can not be undone and will delete ALL your data.  !! Use with extreme caution !!
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.V0alpha0Api;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryAccessToken
+    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setBearerToken("BEARER TOKEN");
+
+    V0alpha0Api apiInstance = new V0alpha0Api(defaultClient);
+    String projectId = "projectId_example"; // String | Project ID  The project's ID.
+    try {
+      apiInstance.purgeProject(projectId);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling V0alpha0Api#purgeProject");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **String**| Project ID  The project&#39;s ID. |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**401** | genericError |  -  |
+**403** | genericError |  -  |
+**404** | genericError |  -  |
+**0** | genericError |  -  |
+
+<a name="removeProjectMember"></a>
+# **removeProjectMember**
+> removeProjectMember(projectId, memberId)
+
+Remove a member associated with this project. This also sets their invite status to &#x60;REMOVED&#x60;.
+
+This endpoint requires the user to be a member of the project with the role &#x60;OWNER&#x60;.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.V0alpha0Api;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryAccessToken
+    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setBearerToken("BEARER TOKEN");
+
+    V0alpha0Api apiInstance = new V0alpha0Api(defaultClient);
+    String projectId = "projectId_example"; // String | Project ID  The project's ID.
+    String memberId = "memberId_example"; // String | Member ID
+    try {
+      apiInstance.removeProjectMember(projectId, memberId);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling V0alpha0Api#removeProjectMember");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **String**| Project ID  The project&#39;s ID. |
+ **memberId** | **String**| Member ID |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**400** | genericError |  -  |
+**401** | genericError |  -  |
+**406** | genericError |  -  |
+**500** | genericError |  -  |
+
+<a name="setActiveProject"></a>
+# **setActiveProject**
+> setActiveProject(inlineObject)
+
+Sets Your Active Project
+
+Use this API to set your active project in the Ory Cloud Console UI.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.V0alpha0Api;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryAccessToken
+    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setBearerToken("BEARER TOKEN");
+
+    V0alpha0Api apiInstance = new V0alpha0Api(defaultClient);
+    InlineObject inlineObject = new InlineObject(); // InlineObject | 
+    try {
+      apiInstance.setActiveProject(inlineObject);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling V0alpha0Api#setActiveProject");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inlineObject** | [**InlineObject**](InlineObject.md)|  | [optional]
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**401** | genericError |  -  |
 **0** | genericError |  -  |
 
 <a name="updateProject"></a>

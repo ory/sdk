@@ -24,6 +24,7 @@ doc/IdentitySchema.md
 doc/IdentitySchemaLocation.md
 doc/IdentitySchemaValidationResult.md
 doc/IdentityState.md
+doc/InlineObject.md
 doc/InlineResponse200.md
 doc/InlineResponse2001.md
 doc/InlineResponse503.md
@@ -139,6 +140,7 @@ lib/model/identity_schema.dart
 lib/model/identity_schema_location.dart
 lib/model/identity_schema_validation_result.dart
 lib/model/identity_state.dart
+lib/model/inline_object.dart
 lib/model/inline_response200.dart
 lib/model/inline_response2001.dart
 lib/model/inline_response503.dart
@@ -244,6 +246,7 @@ test/identity_schema_test.dart
 test/identity_schema_validation_result_test.dart
 test/identity_state_test.dart
 test/identity_test.dart
+test/inline_object_test.dart
 test/inline_response2001_test.dart
 test/inline_response200_test.dart
 test/inline_response503_test.dart

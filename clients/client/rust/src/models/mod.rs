@@ -42,6 +42,8 @@ pub mod identity_schema_validation_result;
 pub use self::identity_schema_validation_result::IdentitySchemaValidationResult;
 pub mod identity_state;
 pub use self::identity_state::IdentityState;
+pub mod inline_object;
+pub use self::inline_object::InlineObject;
 pub mod inline_response_200;
 pub use self::inline_response_200::InlineResponse200;
 pub mod inline_response_200_1;

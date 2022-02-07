@@ -10,7 +10,10 @@ import 'package:dio/dio.dart';
 import 'package:built_value/serializer.dart';
 
 import 'package:built_collection/built_collection.dart';
+import 'package:ory_client/model/active_project.dart';
+import 'package:ory_client/model/cloud_account.dart';
 import 'package:ory_client/model/generic_error.dart';
+import 'package:ory_client/model/inline_object.dart';
 import 'package:ory_client/model/project.dart';
 import 'package:ory_client/model/project_revision.dart';
 import 'package:ory_client/model/successful_project_config_update.dart';
@@ -87,6 +90,65 @@ class V0alpha0Api {
     );
   }
 
+  /// Returns Your Active Ory Cloud Project
+  ///
+  /// Use this API to get your active project in the Ory Cloud Console UI.
+  Future<Response<ActiveProject>> getActiveProject({ 
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/backoffice/public/console/projects/active',
+      method: 'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'name': 'oryAccessToken',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    const _responseType = FullType(ActiveProject);
+    final _responseData = _serializers.deserialize(
+      _response.data,
+      specifiedType: _responseType,
+    ) as ActiveProject;
+
+    return Response<ActiveProject>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      request: _response.request,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
   /// Get a Project
   ///
   /// Get a projects you have access to by its ID.
@@ -136,6 +198,66 @@ class V0alpha0Api {
     ) as Project;
 
     return Response<Project>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      request: _response.request,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Get all members associated with this project.
+  ///
+  /// This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
+  Future<Response<BuiltList<CloudAccount>>> getProjectMembers(
+    String projectId, { 
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/backoffice/public/projects/{project_id}/members'.replaceAll('{' r'project_id' '}', projectId.toString()),
+      method: 'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'name': 'oryAccessToken',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    const _responseType = FullType(BuiltList, [FullType(CloudAccount)]);
+    final BuiltList<CloudAccount> _responseData = _serializers.deserialize(
+      _response.data,
+      specifiedType: _responseType,
+    ) as BuiltList<CloudAccount>;
+
+    return Response<BuiltList<CloudAccount>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -204,6 +326,145 @@ class V0alpha0Api {
       statusMessage: _response.statusMessage,
       extra: _response.extra,
     );
+  }
+
+  /// Irrecoverably Purge a Project
+  ///
+  /// !! Use with extreme caution !!  Using this API endpoint you can purge (completely delete) a project and its data. This action can not be undone and will delete ALL your data.  !! Use with extreme caution !!
+  Future<Response<void>> purgeProject(
+    String projectId, { 
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/backoffice/public/projects/{project_id}'.replaceAll('{' r'project_id' '}', projectId.toString()),
+      method: 'DELETE',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'name': 'oryAccessToken',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    return _response;
+  }
+
+  /// Remove a member associated with this project. This also sets their invite status to `REMOVED`.
+  ///
+  /// This endpoint requires the user to be a member of the project with the role `OWNER`.
+  Future<Response<void>> removeProjectMember(
+    String projectId,
+    String memberId, { 
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/backoffice/public/projects/{project_id}/members/{member_id}'.replaceAll('{' r'project_id' '}', projectId.toString()).replaceAll('{' r'member_id' '}', memberId.toString()),
+      method: 'DELETE',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'name': 'oryAccessToken',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    return _response;
+  }
+
+  /// Sets Your Active Project
+  ///
+  /// Use this API to set your active project in the Ory Cloud Console UI.
+  Future<Response<void>> setActiveProject({ 
+    InlineObject inlineObject,
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/backoffice/public/console/projects/active',
+      method: 'PUT',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'name': 'oryAccessToken',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    const _type = FullType(InlineObject);
+    _bodyData = _serializers.serialize(inlineObject, specifiedType: _type);
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    return _response;
   }
 
   /// Update a Project

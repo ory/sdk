@@ -35,6 +35,7 @@ import 'package:ory_client/model/identity_schema.dart';
 import 'package:ory_client/model/identity_schema_location.dart';
 import 'package:ory_client/model/identity_schema_validation_result.dart';
 import 'package:ory_client/model/identity_state.dart';
+import 'package:ory_client/model/inline_object.dart';
 import 'package:ory_client/model/inline_response200.dart';
 import 'package:ory_client/model/inline_response2001.dart';
 import 'package:ory_client/model/inline_response503.dart';
@@ -142,6 +143,7 @@ part 'serializers.g.dart';
   IdentitySchemaLocation,
   IdentitySchemaValidationResult,
   IdentityState,
+  InlineObject,
   InlineResponse200,
   InlineResponse2001,
   InlineResponse503,
@@ -228,6 +230,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(Project)]),
         () => ListBuilder<Project>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CloudAccount)]),
+        () => ListBuilder<CloudAccount>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(Identity)]),

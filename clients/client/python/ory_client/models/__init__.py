@@ -36,6 +36,7 @@ from ory_client.model.identity_schema_location import IdentitySchemaLocation
 from ory_client.model.identity_schema_validation_result import IdentitySchemaValidationResult
 from ory_client.model.identity_schemas import IdentitySchemas
 from ory_client.model.identity_state import IdentityState
+from ory_client.model.inline_object import InlineObject
 from ory_client.model.inline_response200 import InlineResponse200
 from ory_client.model.inline_response2001 import InlineResponse2001
 from ory_client.model.inline_response503 import InlineResponse503

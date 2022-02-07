@@ -24,6 +24,15 @@ void main() {
       // TODO
     });
 
+    // Returns Your Active Ory Cloud Project
+    //
+    // Use this API to get your active project in the Ory Cloud Console UI.
+    //
+    //Future<ActiveProject> getActiveProject() async
+    test('test getActiveProject', () async {
+      // TODO
+    });
+
     // Get a Project
     //
     // Get a projects you have access to by its ID.
@@ -33,12 +42,48 @@ void main() {
       // TODO
     });
 
+    // Get all members associated with this project.
+    //
+    // This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
+    //
+    //Future<BuiltList<CloudAccount>> getProjectMembers(String projectId) async
+    test('test getProjectMembers', () async {
+      // TODO
+    });
+
     // List All Projects
     //
     // Lists all projects you have access to.
     //
     //Future<BuiltList<Project>> listProjects() async
     test('test listProjects', () async {
+      // TODO
+    });
+
+    // Irrecoverably Purge a Project
+    //
+    // !! Use with extreme caution !!  Using this API endpoint you can purge (completely delete) a project and its data. This action can not be undone and will delete ALL your data.  !! Use with extreme caution !!
+    //
+    //Future purgeProject(String projectId) async
+    test('test purgeProject', () async {
+      // TODO
+    });
+
+    // Remove a member associated with this project. This also sets their invite status to `REMOVED`.
+    //
+    // This endpoint requires the user to be a member of the project with the role `OWNER`.
+    //
+    //Future removeProjectMember(String projectId, String memberId) async
+    test('test removeProjectMember', () async {
+      // TODO
+    });
+
+    // Sets Your Active Project
+    //
+    // Use this API to set your active project in the Ory Cloud Console UI.
+    //
+    //Future setActiveProject({ InlineObject inlineObject }) async
+    test('test setActiveProject', () async {
       // TODO
     });
 

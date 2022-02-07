@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.0.1-alpha.73
+  version: v0.0.1-alpha.74
 servers:
 - url: https://{project}.projects.oryapis.com/
   variables:
@@ -2587,6 +2587,79 @@ paths:
       summary: Return Running Software Version.
       tags:
       - metadata
+  /backoffice/public/console/projects/active:
+    get:
+      description: Use this API to get your active project in the Ory Cloud Console
+        UI.
+      operationId: getActiveProject
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/activeProject'
+          description: activeProject
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Returns Your Active Ory Cloud Project
+      tags:
+      - v0alpha0
+    put:
+      description: Use this API to set your active project in the Ory Cloud Console
+        UI.
+      operationId: setActiveProject
+      requestBody:
+        $ref: '#/components/requestBodies/inline_object'
+        content:
+          application/json:
+            schema:
+              properties:
+                project_id:
+                  description: |-
+                    Project ID
+
+                    The Project ID you want to set active.
+
+                    format: uuid
+                  type: string
+              required:
+              - project_id
+              type: object
+        x-originalParamName: Body
+      responses:
+        "204":
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Sets Your Active Project
+      tags:
+      - v0alpha0
   /backoffice/public/projects:
     get:
       description: Lists all projects you have access to.
@@ -2673,6 +2746,61 @@ paths:
       tags:
       - v0alpha0
   /backoffice/public/projects/{project_id}:
+    delete:
+      description: |-
+        !! Use with extreme caution !!
+
+        Using this API endpoint you can purge (completely delete) a project and its data.
+        This action can not be undone and will delete ALL your data.
+
+        !! Use with extreme caution !!
+      operationId: purgeProject
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Irrecoverably Purge a Project
+      tags:
+      - v0alpha0
     get:
       description: Get a projects you have access to by its ID.
       operationId: getProject
@@ -2863,7 +2991,120 @@ paths:
       summary: Update an Ory Cloud Project Configuration
       tags:
       - v0alpha0
+  /backoffice/public/projects/{project_id}/members:
+    get:
+      description: This endpoint requires the user to be a member of the project with
+        the role `OWNER` or `DEVELOPER`.
+      operationId: getProjectMembers
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projectMembers'
+          description: projectMembers
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Get all members associated with this project.
+      tags:
+      - v0alpha0
+  /backoffice/public/projects/{project_id}/members/{member_id}:
+    delete:
+      description: This endpoint requires the user to be a member of the project with
+        the role `OWNER`.
+      operationId: removeProjectMember
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Member ID
+        explode: false
+        in: path
+        name: member_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Remove a member associated with this project. This also sets their
+        invite status to `REMOVED`.
+      tags:
+      - v0alpha0
 components:
+  requestBodies:
+    inline_object:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_object'
   responses:
     emptyResponse:
       description: |-
@@ -3030,6 +3271,8 @@ components:
       type: object
     activeProject:
       description: The Active Project ID
+      example:
+        project_id: project_id
       properties:
         project_id:
           description: |-
@@ -7921,6 +8164,19 @@ components:
           type: string
       required:
       - version
+      type: object
+    inline_object:
+      properties:
+        project_id:
+          description: |-
+            Project ID
+
+            The Project ID you want to set active.
+
+            format: uuid
+          type: string
+      required:
+      - project_id
       type: object
   securitySchemes:
     oryAccessToken:

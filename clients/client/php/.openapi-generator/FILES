@@ -29,6 +29,7 @@ docs/Model/IdentitySchema.md
 docs/Model/IdentitySchemaLocation.md
 docs/Model/IdentitySchemaValidationResult.md
 docs/Model/IdentityState.md
+docs/Model/InlineObject.md
 docs/Model/InlineResponse200.md
 docs/Model/InlineResponse2001.md
 docs/Model/InlineResponse503.md
@@ -139,6 +140,7 @@ lib/Model/IdentitySchema.php
 lib/Model/IdentitySchemaLocation.php
 lib/Model/IdentitySchemaValidationResult.php
 lib/Model/IdentityState.php
+lib/Model/InlineObject.php
 lib/Model/InlineResponse200.php
 lib/Model/InlineResponse2001.php
 lib/Model/InlineResponse503.php
@@ -248,6 +250,7 @@ test/Model/IdentitySchemaTest.php
 test/Model/IdentitySchemaValidationResultTest.php
 test/Model/IdentityStateTest.php
 test/Model/IdentityTest.php
+test/Model/InlineObjectTest.php
 test/Model/InlineResponse2001Test.php
 test/Model/InlineResponse200Test.php
 test/Model/InlineResponse503Test.php

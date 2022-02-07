@@ -28,6 +28,7 @@ docs/IdentitySchema.md
 docs/IdentitySchemaLocation.md
 docs/IdentitySchemaValidationResult.md
 docs/IdentityState.md
+docs/InlineObject.md
 docs/InlineResponse200.md
 docs/InlineResponse2001.md
 docs/InlineResponse503.md
@@ -142,6 +143,7 @@ lib/ory-client/models/identity_schema.rb
 lib/ory-client/models/identity_schema_location.rb
 lib/ory-client/models/identity_schema_validation_result.rb
 lib/ory-client/models/identity_state.rb
+lib/ory-client/models/inline_object.rb
 lib/ory-client/models/inline_response200.rb
 lib/ory-client/models/inline_response2001.rb
 lib/ory-client/models/inline_response503.rb
@@ -252,6 +254,7 @@ spec/models/identity_schema_spec.rb
 spec/models/identity_schema_validation_result_spec.rb
 spec/models/identity_spec.rb
 spec/models/identity_state_spec.rb
+spec/models/inline_object_spec.rb
 spec/models/inline_response2001_spec.rb
 spec/models/inline_response200_spec.rb
 spec/models/inline_response503_spec.rb

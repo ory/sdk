@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v0.0.1-alpha.73
-  - Build date: 2022-02-07T15:04:21.984591723Z[Etc/UTC]
+- API version: v0.0.1-alpha.74
+  - Build date: 2022-02-07T18:19:27.817298006Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v0.0.1-alpha.73</version>
+  <version>v0.0.1-alpha.74</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v0.0.1-alpha.73"
+     implementation "sh.ory:client:v0.0.1-alpha.74"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v0.0.1-alpha.73.jar`
+* `target/client-v0.0.1-alpha.74.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -119,8 +119,13 @@ Class | Method | HTTP request | Description
 *MetadataApi* | [**isAlive**](docs/MetadataApi.md#isAlive) | **GET** /api/kratos/public/health/alive | Check HTTP Server Status
 *MetadataApi* | [**isReady**](docs/MetadataApi.md#isReady) | **GET** /api/kratos/public/health/ready | Check HTTP Server and Database Status
 *V0alpha0Api* | [**createProject**](docs/V0alpha0Api.md#createProject) | **POST** /backoffice/public/projects | Create a Project
+*V0alpha0Api* | [**getActiveProject**](docs/V0alpha0Api.md#getActiveProject) | **GET** /backoffice/public/console/projects/active | Returns Your Active Ory Cloud Project
 *V0alpha0Api* | [**getProject**](docs/V0alpha0Api.md#getProject) | **GET** /backoffice/public/projects/{project_id} | Get a Project
+*V0alpha0Api* | [**getProjectMembers**](docs/V0alpha0Api.md#getProjectMembers) | **GET** /backoffice/public/projects/{project_id}/members | Get all members associated with this project.
 *V0alpha0Api* | [**listProjects**](docs/V0alpha0Api.md#listProjects) | **GET** /backoffice/public/projects | List All Projects
+*V0alpha0Api* | [**purgeProject**](docs/V0alpha0Api.md#purgeProject) | **DELETE** /backoffice/public/projects/{project_id} | Irrecoverably Purge a Project
+*V0alpha0Api* | [**removeProjectMember**](docs/V0alpha0Api.md#removeProjectMember) | **DELETE** /backoffice/public/projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to &#x60;REMOVED&#x60;.
+*V0alpha0Api* | [**setActiveProject**](docs/V0alpha0Api.md#setActiveProject) | **PUT** /backoffice/public/console/projects/active | Sets Your Active Project
 *V0alpha0Api* | [**updateProject**](docs/V0alpha0Api.md#updateProject) | **PUT** /backoffice/public/projects/{project_id} | Update a Project
 *V0alpha0Api* | [**updateProjectConfig**](docs/V0alpha0Api.md#updateProjectConfig) | **PUT** /backoffice/public/projects/{project_id}/configs | Update an Ory Cloud Project Configuration
 *V0alpha2Api* | [**adminCreateIdentity**](docs/V0alpha2Api.md#adminCreateIdentity) | **POST** /api/kratos/admin/identities | Create an Identity
@@ -188,6 +193,7 @@ Class | Method | HTTP request | Description
  - [IdentitySchemaLocation](docs/IdentitySchemaLocation.md)
  - [IdentitySchemaValidationResult](docs/IdentitySchemaValidationResult.md)
  - [IdentityState](docs/IdentityState.md)
+ - [InlineObject](docs/InlineObject.md)
  - [InlineResponse200](docs/InlineResponse200.md)
  - [InlineResponse2001](docs/InlineResponse2001.md)
  - [InlineResponse503](docs/InlineResponse503.md)
