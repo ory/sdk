@@ -198,7 +198,7 @@ golang () {
   mkdir -p "${dir}"
   (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go")
 
-  if [ $project != "kratos" ]  && [ $project != "client" ]; then
+  if [ $project != "kratos" ] && [ $project != "client" ] && [ $project != "oathkeeper" ]; then
     swagger generate client --allow-template-override -f "${SPEC_FILE}" -t "${dir}" -A "Ory_${PROJECT_UCF}"
   else
     openapi-generator-cli version-manager set 5.4.0
