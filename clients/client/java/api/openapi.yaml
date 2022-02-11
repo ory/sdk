@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.0.1-alpha.90
+  version: v0.0.1-alpha.91
 servers:
 - url: https://{project}.projects.oryapis.com/
   variables:
