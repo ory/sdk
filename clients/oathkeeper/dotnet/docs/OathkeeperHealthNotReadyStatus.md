@@ -1,4 +1,5 @@
 # Ory.Oathkeeper.Client.Model.OathkeeperHealthNotReadyStatus
+HealthNotReadyStatus HealthNotReadyStatus health not ready status
 
 ## Properties
 

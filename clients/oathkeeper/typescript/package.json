@@ -1,6 +1,6 @@
 {
   "name": "@ory/oathkeeper-client",
-  "version": "v0.38.19-beta.1",
+  "version": "v0.38.20-beta.1",
   "description": "OpenAPI client for @ory/oathkeeper-client",
   "author": "ORY GmbH",
   "keywords": [
@@ -15,16 +15,13 @@
   "typings": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc --outDir dist/",
-    "prepublishOnly": "npm run build"
+    "prepare": "npm run build"
   },
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.21.4"
   },
   "devDependencies": {
     "@types/node": "^12.11.5",
     "typescript": "^3.6.4"
-  },
-  "publishConfig": {
-    "registry": "https://github.com/ory/sdk.git"
   }
 }

@@ -6,10 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**decisions**](ApiApi.md#decisions) | **GET** /decisions | Access Control Decision API
 [**getRule**](ApiApi.md#getRule) | **GET** /rules/{id} | Retrieve a Rule
-[**getVersion**](ApiApi.md#getVersion) | **GET** /version | Get Service Version
 [**getWellKnownJSONWebKeys**](ApiApi.md#getWellKnownJSONWebKeys) | **GET** /.well-known/jwks.json | Lists Cryptographic Keys
-[**isInstanceAlive**](ApiApi.md#isInstanceAlive) | **GET** /health/alive | Check Alive Status
-[**isInstanceReady**](ApiApi.md#isInstanceReady) | **GET** /health/ready | Check Readiness Status
 [**listRules**](ApiApi.md#listRules) | **GET** /rules | List All Rules
 
 
@@ -69,10 +66,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | An empty response |  -  |
-**401** | The standard error format |  -  |
-**403** | The standard error format |  -  |
-**404** | The standard error format |  -  |
-**500** | The standard error format |  -  |
+**401** | genericError |  -  |
+**403** | genericError |  -  |
+**404** | genericError |  -  |
+**500** | genericError |  -  |
 
 <a name="getRule"></a>
 # **getRule**
@@ -135,66 +132,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A rule |  -  |
-**404** | The standard error format |  -  |
-**500** | The standard error format |  -  |
-
-<a name="getVersion"></a>
-# **getVersion**
-> Version getVersion()
-
-Get Service Version
-
-This endpoint returns the service version typically notated using semantic versioning.  If the service supports TLS Edge Termination, this endpoint does not require the &#x60;X-Forwarded-Proto&#x60; header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
-
-### Example
-```java
-// Import classes:
-import sh.ory.oathkeeper.ApiClient;
-import sh.ory.oathkeeper.ApiException;
-import sh.ory.oathkeeper.Configuration;
-import sh.ory.oathkeeper.models.*;
-import sh.ory.oathkeeper.api.ApiApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-
-    ApiApi apiInstance = new ApiApi(defaultClient);
-    try {
-      Version result = apiInstance.getVersion();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ApiApi#getVersion");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**Version**](Version.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | version |  -  |
+**404** | genericError |  -  |
+**500** | genericError |  -  |
 
 <a name="getWellKnownJSONWebKeys"></a>
 # **getWellKnownJSONWebKeys**
@@ -253,125 +192,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | jsonWebKeySet |  -  |
-**500** | The standard error format |  -  |
-
-<a name="isInstanceAlive"></a>
-# **isInstanceAlive**
-> HealthStatus isInstanceAlive()
-
-Check Alive Status
-
-This endpoint returns a 200 status code when the HTTP server is up running. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the &#x60;X-Forwarded-Proto&#x60; header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
-
-### Example
-```java
-// Import classes:
-import sh.ory.oathkeeper.ApiClient;
-import sh.ory.oathkeeper.ApiException;
-import sh.ory.oathkeeper.Configuration;
-import sh.ory.oathkeeper.models.*;
-import sh.ory.oathkeeper.api.ApiApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-
-    ApiApi apiInstance = new ApiApi(defaultClient);
-    try {
-      HealthStatus result = apiInstance.isInstanceAlive();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ApiApi#isInstanceAlive");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**HealthStatus**](HealthStatus.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | healthStatus |  -  |
-**500** | The standard error format |  -  |
-
-<a name="isInstanceReady"></a>
-# **isInstanceReady**
-> HealthStatus isInstanceReady()
-
-Check Readiness Status
-
-This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the &#x60;X-Forwarded-Proto&#x60; header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
-
-### Example
-```java
-// Import classes:
-import sh.ory.oathkeeper.ApiClient;
-import sh.ory.oathkeeper.ApiException;
-import sh.ory.oathkeeper.Configuration;
-import sh.ory.oathkeeper.models.*;
-import sh.ory.oathkeeper.api.ApiApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-
-    ApiApi apiInstance = new ApiApi(defaultClient);
-    try {
-      HealthStatus result = apiInstance.isInstanceReady();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ApiApi#isInstanceReady");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**HealthStatus**](HealthStatus.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | healthStatus |  -  |
-**503** | healthNotReadyStatus |  -  |
+**500** | genericError |  -  |
 
 <a name="listRules"></a>
 # **listRules**
@@ -436,5 +257,5 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A list of rules |  -  |
-**500** | The standard error format |  -  |
+**500** | genericError |  -  |
 

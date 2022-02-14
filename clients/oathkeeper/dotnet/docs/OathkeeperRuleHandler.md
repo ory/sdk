@@ -1,4 +1,5 @@
 # Ory.Oathkeeper.Client.Model.OathkeeperRuleHandler
+RuleHandler RuleHandler RuleHandler rule handler
 
 ## Properties
 

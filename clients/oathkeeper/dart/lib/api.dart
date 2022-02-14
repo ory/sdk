@@ -14,6 +14,7 @@ import 'package:ory_oathkeeper_client/auth/api_key_auth.dart';
 import 'package:ory_oathkeeper_client/auth/basic_auth.dart';
 import 'package:ory_oathkeeper_client/auth/oauth.dart';
 import 'package:ory_oathkeeper_client/api/api_api.dart';
+import 'package:ory_oathkeeper_client/api/metadata_api.dart';
 
 
 final _defaultInterceptors = [
@@ -68,6 +69,15 @@ class OryOathkeeperClient {
     */
     ApiApi getApiApi() {
     return ApiApi(dio, serializers);
+    }
+
+
+    /**
+    * Get MetadataApi instance, base route and serializer can be overridden by a given but be careful,
+    * by doing that all interceptors will not be executed
+    */
+    MetadataApi getMetadataApi() {
+    return MetadataApi(dio, serializers);
     }
 
 

@@ -1,14 +1,13 @@
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   contact:
-    email: hi@ory.am
-    name: ORY
-    url: https://www.ory.am
-  description: ORY Oathkeeper is a reverse proxy that checks the HTTP Authorization
-    for validity against a set of rules. This service uses Hydra to validate access
-    tokens and policies.
-  title: ORY Oathkeeper
-  version: v0.38.19-beta.1
+    email: hi@ory.sh
+  description: |
+    Documentation for all of Ory Oathkeeper's APIs.
+  license:
+    name: Apache 2.0
+  title: Ory Oathkeeper API
+  version: v0.38.20-beta.1
 servers:
 - url: /
 paths:
@@ -28,8 +27,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
       summary: Lists Cryptographic Keys
       tags:
       - api
@@ -45,32 +44,31 @@ paths:
       operationId: decisions
       responses:
         "200":
-          content: {}
           description: An empty response
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
       summary: Access Control Decision API
       tags:
       - api
@@ -78,60 +76,60 @@ paths:
   /health/alive:
     get:
       description: |-
-        This endpoint returns a 200 status code when the HTTP server is up running.
-        This status does currently not include checks whether the database connection is working.
+        This endpoint returns a HTTP 200 status code when Ory Oathkeeper is accepting incoming
+        HTTP requests. This status does currently not include checks whether the database connection is working.
 
         If the service supports TLS Edge Termination, this endpoint does not require the
         `X-Forwarded-Proto` header to be set.
 
         Be aware that if you are running multiple nodes of this service, the health status will never
         refer to the cluster state, only to a single instance.
-      operationId: isInstanceAlive
+      operationId: isAlive
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/healthStatus'
-          description: healthStatus
+                $ref: '#/components/schemas/inline_response_200'
+          description: Ory Oathkeeper is ready to accept connections.
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
-          description: The standard error format
-      summary: Check Alive Status
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      summary: Check HTTP Server Status
       tags:
-      - api
+      - metadata
       x-accepts: application/json
   /health/ready:
     get:
       description: |-
-        This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g.
+        This endpoint returns a HTTP 200 status code when Ory Oathkeeper is up running and the environment dependencies (e.g.
         the database) are responsive as well.
 
         If the service supports TLS Edge Termination, this endpoint does not require the
         `X-Forwarded-Proto` header to be set.
 
-        Be aware that if you are running multiple nodes of this service, the health status will never
+        Be aware that if you are running multiple nodes of Ory Oathkeeper, the health status will never
         refer to the cluster state, only to a single instance.
-      operationId: isInstanceReady
+      operationId: isReady
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/healthStatus'
-          description: healthStatus
+                $ref: '#/components/schemas/inline_response_200'
+          description: Ory Oathkeeper is ready to accept requests.
         "503":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/healthNotReadyStatus'
-          description: healthNotReadyStatus
-      summary: Check Readiness Status
+                $ref: '#/components/schemas/inline_response_503'
+          description: Ory Kratos is not yet ready to accept requests.
+      summary: Check HTTP Server and Database Status
       tags:
-      - api
+      - metadata
       x-accepts: application/json
   /rules:
     get:
@@ -141,17 +139,23 @@ paths:
       operationId: listRules
       parameters:
       - description: The maximum amount of rules returned.
+        explode: true
         in: query
         name: limit
+        required: false
         schema:
           format: int64
           type: integer
+        style: form
       - description: The offset from where to start looking.
+        explode: true
         in: query
         name: offset
+        required: false
         schema:
           format: int64
           type: integer
+        style: form
       responses:
         "200":
           content:
@@ -165,8 +169,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
       summary: List All Rules
       tags:
       - api
@@ -177,11 +181,13 @@ paths:
         not exist you will receive a 404 error.
       operationId: getRule
       parameters:
-      - in: path
+      - explode: false
+        in: path
         name: id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "200":
           content:
@@ -193,14 +199,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
       summary: Retrieve a Rule
       tags:
       - api
@@ -208,12 +214,12 @@ paths:
   /version:
     get:
       description: |-
-        This endpoint returns the service version typically notated using semantic versioning.
+        This endpoint returns the version of Ory Oathkeeper.
 
         If the service supports TLS Edge Termination, this endpoint does not require the
         `X-Forwarded-Proto` header to be set.
 
-        Be aware that if you are running multiple nodes of this service, the health status will never
+        Be aware that if you are running multiple nodes of this service, the version will never
         refer to the cluster state, only to a single instance.
       operationId: getVersion
       responses:
@@ -221,18 +227,36 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/version'
-          description: version
-      summary: Get Service Version
+                $ref: '#/components/schemas/inline_response_200_1'
+          description: Returns the Ory Oathkeeper version.
+      summary: Return Running Software Version.
       tags:
-      - api
+      - metadata
       x-accepts: application/json
 components:
+  responses:
+    emptyResponse:
+      description: An empty response
+    rule:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/rule'
+      description: A rule
+    rules:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/rule'
+            type: array
+      description: A list of rules
   schemas:
     UUID:
       format: uuid4
       type: string
     Upstream:
+      description: Upstream Upstream Upstream Upstream upstream
       example:
         preserve_host: true
         strip_path: strip_path
@@ -251,7 +275,34 @@ components:
           description: URL is the URL the request will be proxied to.
           type: string
       type: object
+    genericError:
+      description: GenericError The standard error format
+      properties:
+        code:
+          description: code
+          format: int64
+          type: integer
+        details:
+          description: details
+          items:
+            additionalProperties: true
+            type: object
+          type: array
+        message:
+          description: message
+          type: string
+        reason:
+          description: reason
+          type: string
+        request:
+          description: request
+          type: string
+        status:
+          description: status
+          type: string
+      type: object
     healthNotReadyStatus:
+      description: HealthNotReadyStatus HealthNotReadyStatus health not ready status
       properties:
         errors:
           additionalProperties:
@@ -261,8 +312,7 @@ components:
           type: object
       type: object
     healthStatus:
-      example:
-        status: status
+      description: HealthStatus health status
       properties:
         status:
           description: Status always contains "ok".
@@ -299,16 +349,22 @@ components:
             Resistant Name.
           type: string
         crv:
+          description: crv
           type: string
         d:
+          description: d
           type: string
         dp:
+          description: dp
           type: string
         dq:
+          description: dq
           type: string
         e:
+          description: e
           type: string
         k:
+          description: k
           type: string
         kid:
           description: |-
@@ -331,12 +387,16 @@ components:
             Resistant Name.  The "kty" value is a case-sensitive string.
           type: string
         n:
+          description: "n"
           type: string
         p:
+          description: p
           type: string
         q:
+          description: q
           type: string
         qi:
+          description: qi
           type: string
         use:
           description: |-
@@ -346,6 +406,7 @@ components:
             on data. Values are commonly "sig" (signature) or "enc" (encryption).
           type: string
         x:
+          description: x
           type: string
         x5c:
           description: |-
@@ -360,9 +421,12 @@ components:
             type: string
           type: array
         y:
+          description: "y"
           type: string
       type: object
     jsonWebKeySet:
+      description: JSONWebKeySet JSONWebKeySet JSONWebKeySet JSONWebKeySet json web
+        key set
       example:
         keys:
         - d: d
@@ -479,6 +543,7 @@ components:
       title: swaggerRule is a single rule that will get checked on every HTTP request.
       type: object
     ruleHandler:
+      description: RuleHandler RuleHandler RuleHandler rule handler
       example:
         handler: handler
         config: '{}'
@@ -487,7 +552,6 @@ components:
           description: |-
             Config contains the configuration for the handler. Please read the user
             guide for a complete list of each handler's available settings.
-          properties: {}
           type: object
         handler:
           description: |-
@@ -524,33 +588,42 @@ components:
           type: string
       type: object
     version:
-      example:
-        version: version
       properties:
         version:
           description: Version is the service's version.
           type: string
       type: object
-    inline_response_500:
+    inline_response_200:
+      example:
+        status: status
       properties:
-        code:
-          format: int64
-          type: integer
-        details:
-          items:
-            properties: {}
-            type: object
-          type: array
-        message:
-          type: string
-        reason:
-          type: string
-        request:
-          type: string
         status:
+          description: Always "ok".
           type: string
+      required:
+      - status
+      type: object
+    inline_response_503:
+      properties:
+        errors:
+          additionalProperties:
+            type: string
+          description: Errors contains a list of errors that caused the not ready
+            status.
+          type: object
+      required:
+      - errors
+      type: object
+    inline_response_200_1:
+      example:
+        version: version
+      properties:
+        version:
+          description: The version of Ory Oathkeeper.
+          type: string
+      required:
+      - version
       type: object
 x-forwarded-proto: string
 x-request-id: string
-x-original-swagger-version: "2.0"
 

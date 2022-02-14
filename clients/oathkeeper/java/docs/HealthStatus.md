@@ -2,6 +2,7 @@
 
 # HealthStatus
 
+HealthStatus health status
 
 ## Properties
 

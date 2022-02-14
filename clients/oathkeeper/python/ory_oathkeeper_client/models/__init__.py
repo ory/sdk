@@ -9,9 +9,12 @@
 # import sys
 # sys.setrecursionlimit(n)
 
+from ory_oathkeeper_client.model.generic_error import GenericError
 from ory_oathkeeper_client.model.health_not_ready_status import HealthNotReadyStatus
 from ory_oathkeeper_client.model.health_status import HealthStatus
-from ory_oathkeeper_client.model.inline_response500 import InlineResponse500
+from ory_oathkeeper_client.model.inline_response200 import InlineResponse200
+from ory_oathkeeper_client.model.inline_response2001 import InlineResponse2001
+from ory_oathkeeper_client.model.inline_response503 import InlineResponse503
 from ory_oathkeeper_client.model.json_web_key import JsonWebKey
 from ory_oathkeeper_client.model.json_web_key_set import JsonWebKeySet
 from ory_oathkeeper_client.model.rule import Rule

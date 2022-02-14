@@ -6,10 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**Decisions**](ApiApi.md#decisions) | **GET** /decisions | Access Control Decision API
 [**GetRule**](ApiApi.md#getrule) | **GET** /rules/{id} | Retrieve a Rule
-[**GetVersion**](ApiApi.md#getversion) | **GET** /version | Get Service Version
 [**GetWellKnownJSONWebKeys**](ApiApi.md#getwellknownjsonwebkeys) | **GET** /.well-known/jwks.json | Lists Cryptographic Keys
-[**IsInstanceAlive**](ApiApi.md#isinstancealive) | **GET** /health/alive | Check Alive Status
-[**IsInstanceReady**](ApiApi.md#isinstanceready) | **GET** /health/ready | Check Readiness Status
 [**ListRules**](ApiApi.md#listrules) | **GET** /rules | List All Rules
 
 
@@ -76,10 +73,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | An empty response |  -  |
-| **401** | The standard error format |  -  |
-| **403** | The standard error format |  -  |
-| **404** | The standard error format |  -  |
-| **500** | The standard error format |  -  |
+| **401** | genericError |  -  |
+| **403** | genericError |  -  |
+| **404** | genericError |  -  |
+| **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -108,7 +105,7 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
             var apiInstance = new ApiApi(config);
-            var id = id_example;  // string | 
+            var id = "id_example";  // string | 
 
             try
             {
@@ -151,75 +148,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A rule |  -  |
-| **404** | The standard error format |  -  |
-| **500** | The standard error format |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="getversion"></a>
-# **GetVersion**
-> OathkeeperVersion GetVersion ()
-
-Get Service Version
-
-This endpoint returns the service version typically notated using semantic versioning.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Ory.Oathkeeper.Client.Api;
-using Ory.Oathkeeper.Client.Client;
-using Ory.Oathkeeper.Client.Model;
-
-namespace Example
-{
-    public class GetVersionExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            var apiInstance = new ApiApi(config);
-
-            try
-            {
-                // Get Service Version
-                OathkeeperVersion result = apiInstance.GetVersion();
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling ApiApi.GetVersion: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**OathkeeperVersion**](OathkeeperVersion.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | version |  -  |
+| **404** | genericError |  -  |
+| **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -287,143 +217,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | jsonWebKeySet |  -  |
-| **500** | The standard error format |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="isinstancealive"></a>
-# **IsInstanceAlive**
-> OathkeeperHealthStatus IsInstanceAlive ()
-
-Check Alive Status
-
-This endpoint returns a 200 status code when the HTTP server is up running. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Ory.Oathkeeper.Client.Api;
-using Ory.Oathkeeper.Client.Client;
-using Ory.Oathkeeper.Client.Model;
-
-namespace Example
-{
-    public class IsInstanceAliveExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            var apiInstance = new ApiApi(config);
-
-            try
-            {
-                // Check Alive Status
-                OathkeeperHealthStatus result = apiInstance.IsInstanceAlive();
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling ApiApi.IsInstanceAlive: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**OathkeeperHealthStatus**](OathkeeperHealthStatus.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | healthStatus |  -  |
-| **500** | The standard error format |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="isinstanceready"></a>
-# **IsInstanceReady**
-> OathkeeperHealthStatus IsInstanceReady ()
-
-Check Readiness Status
-
-This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Ory.Oathkeeper.Client.Api;
-using Ory.Oathkeeper.Client.Client;
-using Ory.Oathkeeper.Client.Model;
-
-namespace Example
-{
-    public class IsInstanceReadyExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            var apiInstance = new ApiApi(config);
-
-            try
-            {
-                // Check Readiness Status
-                OathkeeperHealthStatus result = apiInstance.IsInstanceReady();
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling ApiApi.IsInstanceReady: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**OathkeeperHealthStatus**](OathkeeperHealthStatus.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | healthStatus |  -  |
-| **503** | healthNotReadyStatus |  -  |
+| **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -452,8 +246,8 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
             var apiInstance = new ApiApi(config);
-            var limit = 789;  // long? | The maximum amount of rules returned. (optional) 
-            var offset = 789;  // long? | The offset from where to start looking. (optional) 
+            var limit = 789L;  // long? | The maximum amount of rules returned. (optional) 
+            var offset = 789L;  // long? | The offset from where to start looking. (optional) 
 
             try
             {
@@ -497,7 +291,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of rules |  -  |
-| **500** | The standard error format |  -  |
+| **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

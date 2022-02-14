@@ -6,10 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**decisions**](ApiApi.md#decisions) | **GET** /decisions | Access Control Decision API
 [**get_rule**](ApiApi.md#get_rule) | **GET** /rules/{id} | Retrieve a Rule
-[**get_version**](ApiApi.md#get_version) | **GET** /version | Get Service Version
 [**get_well_known_json_web_keys**](ApiApi.md#get_well_known_json_web_keys) | **GET** /.well-known/jwks.json | Lists Cryptographic Keys
-[**is_instance_alive**](ApiApi.md#is_instance_alive) | **GET** /health/alive | Check Alive Status
-[**is_instance_ready**](ApiApi.md#is_instance_ready) | **GET** /health/ready | Check Readiness Status
 [**list_rules**](ApiApi.md#list_rules) | **GET** /rules | List All Rules
 
 
@@ -22,11 +19,12 @@ Access Control Decision API
 
 ### Example
 
+
 ```python
 import time
 import ory_oathkeeper_client
 from ory_oathkeeper_client.api import api_api
-from ory_oathkeeper_client.model.inline_response500 import InlineResponse500
+from ory_oathkeeper_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -67,13 +65,14 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | An empty response |  -  |
-**401** | The standard error format |  -  |
-**403** | The standard error format |  -  |
-**404** | The standard error format |  -  |
-**500** | The standard error format |  -  |
+**401** | genericError |  -  |
+**403** | genericError |  -  |
+**404** | genericError |  -  |
+**500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -86,11 +85,12 @@ Use this method to retrieve a rule from the storage. If it does not exist you wi
 
 ### Example
 
+
 ```python
 import time
 import ory_oathkeeper_client
 from ory_oathkeeper_client.api import api_api
-from ory_oathkeeper_client.model.inline_response500 import InlineResponse500
+from ory_oathkeeper_client.model.generic_error import GenericError
 from ory_oathkeeper_client.model.rule import Rule
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
@@ -137,72 +137,12 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A rule |  -  |
-**404** | The standard error format |  -  |
-**500** | The standard error format |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_version**
-> Version get_version()
-
-Get Service Version
-
-This endpoint returns the service version typically notated using semantic versioning.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
-
-### Example
-
-```python
-import time
-import ory_oathkeeper_client
-from ory_oathkeeper_client.api import api_api
-from ory_oathkeeper_client.model.version import Version
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_oathkeeper_client.Configuration(
-    host = "http://localhost"
-)
-
-
-# Enter a context with an instance of the API client
-with ory_oathkeeper_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = api_api.ApiApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        # Get Service Version
-        api_response = api_instance.get_version()
-        pprint(api_response)
-    except ory_oathkeeper_client.ApiException as e:
-        print("Exception when calling ApiApi->get_version: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**Version**](Version.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | version |  -  |
+**404** | genericError |  -  |
+**500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -215,11 +155,12 @@ This endpoint returns cryptographic keys that are required to, for example, veri
 
 ### Example
 
+
 ```python
 import time
 import ory_oathkeeper_client
 from ory_oathkeeper_client.api import api_api
-from ory_oathkeeper_client.model.inline_response500 import InlineResponse500
+from ory_oathkeeper_client.model.generic_error import GenericError
 from ory_oathkeeper_client.model.json_web_key_set import JsonWebKeySet
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
@@ -262,136 +203,11 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | jsonWebKeySet |  -  |
-**500** | The standard error format |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **is_instance_alive**
-> HealthStatus is_instance_alive()
-
-Check Alive Status
-
-This endpoint returns a 200 status code when the HTTP server is up running. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
-
-### Example
-
-```python
-import time
-import ory_oathkeeper_client
-from ory_oathkeeper_client.api import api_api
-from ory_oathkeeper_client.model.inline_response500 import InlineResponse500
-from ory_oathkeeper_client.model.health_status import HealthStatus
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_oathkeeper_client.Configuration(
-    host = "http://localhost"
-)
-
-
-# Enter a context with an instance of the API client
-with ory_oathkeeper_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = api_api.ApiApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        # Check Alive Status
-        api_response = api_instance.is_instance_alive()
-        pprint(api_response)
-    except ory_oathkeeper_client.ApiException as e:
-        print("Exception when calling ApiApi->is_instance_alive: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**HealthStatus**](HealthStatus.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | healthStatus |  -  |
-**500** | The standard error format |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **is_instance_ready**
-> HealthStatus is_instance_ready()
-
-Check Readiness Status
-
-This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
-
-### Example
-
-```python
-import time
-import ory_oathkeeper_client
-from ory_oathkeeper_client.api import api_api
-from ory_oathkeeper_client.model.health_not_ready_status import HealthNotReadyStatus
-from ory_oathkeeper_client.model.health_status import HealthStatus
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_oathkeeper_client.Configuration(
-    host = "http://localhost"
-)
-
-
-# Enter a context with an instance of the API client
-with ory_oathkeeper_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = api_api.ApiApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        # Check Readiness Status
-        api_response = api_instance.is_instance_ready()
-        pprint(api_response)
-    except ory_oathkeeper_client.ApiException as e:
-        print("Exception when calling ApiApi->is_instance_ready: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**HealthStatus**](HealthStatus.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | healthStatus |  -  |
-**503** | healthNotReadyStatus |  -  |
+**500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -404,11 +220,12 @@ This method returns an array of all rules that are stored in the backend. This i
 
 ### Example
 
+
 ```python
 import time
 import ory_oathkeeper_client
 from ory_oathkeeper_client.api import api_api
-from ory_oathkeeper_client.model.inline_response500 import InlineResponse500
+from ory_oathkeeper_client.model.generic_error import GenericError
 from ory_oathkeeper_client.model.rule import Rule
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
@@ -458,10 +275,11 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A list of rules |  -  |
-**500** | The standard error format |  -  |
+**500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

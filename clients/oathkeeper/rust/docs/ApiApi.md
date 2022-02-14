@@ -6,10 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**decisions**](ApiApi.md#decisions) | **GET** /decisions | Access Control Decision API
 [**get_rule**](ApiApi.md#get_rule) | **GET** /rules/{id} | Retrieve a Rule
-[**get_version**](ApiApi.md#get_version) | **GET** /version | Get Service Version
 [**get_well_known_json_web_keys**](ApiApi.md#get_well_known_json_web_keys) | **GET** /.well-known/jwks.json | Lists Cryptographic Keys
-[**is_instance_alive**](ApiApi.md#is_instance_alive) | **GET** /health/alive | Check Alive Status
-[**is_instance_ready**](ApiApi.md#is_instance_ready) | **GET** /health/ready | Check Readiness Status
 [**list_rules**](ApiApi.md#list_rules) | **GET** /rules | List All Rules
 
 
@@ -71,33 +68,6 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## get_version
-
-> crate::models::Version get_version()
-Get Service Version
-
-This endpoint returns the service version typically notated using semantic versioning.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**crate::models::Version**](version.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
 ## get_well_known_json_web_keys
 
 > crate::models::JsonWebKeySet get_well_known_json_web_keys()
@@ -112,60 +82,6 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**crate::models::JsonWebKeySet**](jsonWebKeySet.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## is_instance_alive
-
-> crate::models::HealthStatus is_instance_alive()
-Check Alive Status
-
-This endpoint returns a 200 status code when the HTTP server is up running. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**crate::models::HealthStatus**](healthStatus.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## is_instance_ready
-
-> crate::models::HealthStatus is_instance_ready()
-Check Readiness Status
-
-This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**crate::models::HealthStatus**](healthStatus.md)
 
 ### Authorization
 
