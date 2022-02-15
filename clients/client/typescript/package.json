@@ -1,6 +1,6 @@
 {
   "name": "@ory/client",
-  "version": "v0.0.1-alpha.93",
+  "version": "v0.0.1-alpha.94",
   "description": "OpenAPI client for @ory/client",
   "author": "ORY GmbH",
   "keywords": [
