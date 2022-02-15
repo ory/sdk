@@ -1,6 +1,6 @@
 <?php
 /**
- * RequestWasHandledResponse
+ * TrustJwtGrantIssuerBody
  *
  * PHP version 7.3
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * RequestWasHandledResponse Class Doc Comment
+ * TrustJwtGrantIssuerBody Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -42,7 +42,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class RequestWasHandledResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class TrustJwtGrantIssuerBody implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class RequestWasHandledResponse implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'requestWasHandledResponse';
+    protected static $openAPIModelName = 'trustJwtGrantIssuerBody';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,7 +59,11 @@ class RequestWasHandledResponse implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'redirect_to' => 'string'
+        'expires_at' => '\DateTime',
+        'issuer' => 'string',
+        'jwk' => '\OpenAPI\Client\Model\JSONWebKey',
+        'scope' => 'string[]',
+        'subject' => 'string'
     ];
 
     /**
@@ -70,7 +74,11 @@ class RequestWasHandledResponse implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'redirect_to' => null
+        'expires_at' => 'date-time',
+        'issuer' => null,
+        'jwk' => null,
+        'scope' => null,
+        'subject' => null
     ];
 
     /**
@@ -100,7 +108,11 @@ class RequestWasHandledResponse implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'redirect_to' => 'redirect_to'
+        'expires_at' => 'expires_at',
+        'issuer' => 'issuer',
+        'jwk' => 'jwk',
+        'scope' => 'scope',
+        'subject' => 'subject'
     ];
 
     /**
@@ -109,7 +121,11 @@ class RequestWasHandledResponse implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'redirect_to' => 'setRedirectTo'
+        'expires_at' => 'setExpiresAt',
+        'issuer' => 'setIssuer',
+        'jwk' => 'setJwk',
+        'scope' => 'setScope',
+        'subject' => 'setSubject'
     ];
 
     /**
@@ -118,7 +134,11 @@ class RequestWasHandledResponse implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'redirect_to' => 'getRedirectTo'
+        'expires_at' => 'getExpiresAt',
+        'issuer' => 'getIssuer',
+        'jwk' => 'getJwk',
+        'scope' => 'getScope',
+        'subject' => 'getSubject'
     ];
 
     /**
@@ -178,7 +198,11 @@ class RequestWasHandledResponse implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
-        $this->container['redirect_to'] = $data['redirect_to'] ?? null;
+        $this->container['expires_at'] = $data['expires_at'] ?? null;
+        $this->container['issuer'] = $data['issuer'] ?? null;
+        $this->container['jwk'] = $data['jwk'] ?? null;
+        $this->container['scope'] = $data['scope'] ?? null;
+        $this->container['subject'] = $data['subject'] ?? null;
     }
 
     /**
@@ -190,8 +214,20 @@ class RequestWasHandledResponse implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
-        if ($this->container['redirect_to'] === null) {
-            $invalidProperties[] = "'redirect_to' can't be null";
+        if ($this->container['expires_at'] === null) {
+            $invalidProperties[] = "'expires_at' can't be null";
+        }
+        if ($this->container['issuer'] === null) {
+            $invalidProperties[] = "'issuer' can't be null";
+        }
+        if ($this->container['jwk'] === null) {
+            $invalidProperties[] = "'jwk' can't be null";
+        }
+        if ($this->container['scope'] === null) {
+            $invalidProperties[] = "'scope' can't be null";
+        }
+        if ($this->container['subject'] === null) {
+            $invalidProperties[] = "'subject' can't be null";
         }
         return $invalidProperties;
     }
@@ -209,25 +245,121 @@ class RequestWasHandledResponse implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets redirect_to
+     * Gets expires_at
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getRedirectTo()
+    public function getExpiresAt()
     {
-        return $this->container['redirect_to'];
+        return $this->container['expires_at'];
     }
 
     /**
-     * Sets redirect_to
+     * Sets expires_at
      *
-     * @param string $redirect_to Original request URL to which you should redirect the user if request was already handled.
+     * @param \DateTime $expires_at The \"expires_at\" indicates, when grant will expire, so we will reject assertion from \"issuer\" targeting \"subject\".
      *
      * @return self
      */
-    public function setRedirectTo($redirect_to)
+    public function setExpiresAt($expires_at)
     {
-        $this->container['redirect_to'] = $redirect_to;
+        $this->container['expires_at'] = $expires_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets issuer
+     *
+     * @return string
+     */
+    public function getIssuer()
+    {
+        return $this->container['issuer'];
+    }
+
+    /**
+     * Sets issuer
+     *
+     * @param string $issuer The \"issuer\" identifies the principal that issued the JWT assertion (same as \"iss\" claim in JWT).
+     *
+     * @return self
+     */
+    public function setIssuer($issuer)
+    {
+        $this->container['issuer'] = $issuer;
+
+        return $this;
+    }
+
+    /**
+     * Gets jwk
+     *
+     * @return \OpenAPI\Client\Model\JSONWebKey
+     */
+    public function getJwk()
+    {
+        return $this->container['jwk'];
+    }
+
+    /**
+     * Sets jwk
+     *
+     * @param \OpenAPI\Client\Model\JSONWebKey $jwk jwk
+     *
+     * @return self
+     */
+    public function setJwk($jwk)
+    {
+        $this->container['jwk'] = $jwk;
+
+        return $this;
+    }
+
+    /**
+     * Gets scope
+     *
+     * @return string[]
+     */
+    public function getScope()
+    {
+        return $this->container['scope'];
+    }
+
+    /**
+     * Sets scope
+     *
+     * @param string[] $scope The \"scope\" contains list of scope values (as described in Section 3.3 of OAuth 2.0 [RFC6749])
+     *
+     * @return self
+     */
+    public function setScope($scope)
+    {
+        $this->container['scope'] = $scope;
+
+        return $this;
+    }
+
+    /**
+     * Gets subject
+     *
+     * @return string
+     */
+    public function getSubject()
+    {
+        return $this->container['subject'];
+    }
+
+    /**
+     * Sets subject
+     *
+     * @param string $subject The \"subject\" identifies the principal that is the subject of the JWT.
+     *
+     * @return self
+     */
+    public function setSubject($subject)
+    {
+        $this->container['subject'] = $subject;
 
         return $this;
     }

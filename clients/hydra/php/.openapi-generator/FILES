@@ -12,6 +12,7 @@ docs/Model/ConsentRequest.md
 docs/Model/ConsentRequestSession.md
 docs/Model/ContainerWaitOKBodyError.md
 docs/Model/FlushInactiveOAuth2TokensRequest.md
+docs/Model/GenericError.md
 docs/Model/HealthNotReadyStatus.md
 docs/Model/HealthStatus.md
 docs/Model/JSONWebKey.md
@@ -40,6 +41,9 @@ docs/Model/PluginSettings.md
 docs/Model/PreviousConsentSession.md
 docs/Model/RejectRequest.md
 docs/Model/RequestWasHandledResponse.md
+docs/Model/TrustJwtGrantIssuerBody.md
+docs/Model/TrustedJsonWebKey.md
+docs/Model/TrustedJwtGrantIssuer.md
 docs/Model/UserinfoResponse.md
 docs/Model/Version.md
 docs/Model/Volume.md
@@ -59,6 +63,7 @@ lib/Model/ConsentRequest.php
 lib/Model/ConsentRequestSession.php
 lib/Model/ContainerWaitOKBodyError.php
 lib/Model/FlushInactiveOAuth2TokensRequest.php
+lib/Model/GenericError.php
 lib/Model/HealthNotReadyStatus.php
 lib/Model/HealthStatus.php
 lib/Model/JSONWebKey.php
@@ -88,6 +93,9 @@ lib/Model/PluginSettings.php
 lib/Model/PreviousConsentSession.php
 lib/Model/RejectRequest.php
 lib/Model/RequestWasHandledResponse.php
+lib/Model/TrustJwtGrantIssuerBody.php
+lib/Model/TrustedJsonWebKey.php
+lib/Model/TrustedJwtGrantIssuer.php
 lib/Model/UserinfoResponse.php
 lib/Model/Version.php
 lib/Model/Volume.php
@@ -95,3 +103,6 @@ lib/Model/VolumeUsageData.php
 lib/Model/WellKnown.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
+test/Model/TrustJwtGrantIssuerBodyTest.php
+test/Model/TrustedJsonWebKeyTest.php
+test/Model/TrustedJwtGrantIssuerTest.php

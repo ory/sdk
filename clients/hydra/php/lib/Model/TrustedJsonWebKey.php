@@ -1,6 +1,6 @@
 <?php
 /**
- * RequestWasHandledResponse
+ * TrustedJsonWebKey
  *
  * PHP version 7.3
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * RequestWasHandledResponse Class Doc Comment
+ * TrustedJsonWebKey Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -42,7 +42,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class RequestWasHandledResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class TrustedJsonWebKey implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class RequestWasHandledResponse implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'requestWasHandledResponse';
+    protected static $openAPIModelName = 'trustedJsonWebKey';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,7 +59,8 @@ class RequestWasHandledResponse implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'redirect_to' => 'string'
+        'kid' => 'string',
+        'set' => 'string'
     ];
 
     /**
@@ -70,7 +71,8 @@ class RequestWasHandledResponse implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'redirect_to' => null
+        'kid' => null,
+        'set' => null
     ];
 
     /**
@@ -100,7 +102,8 @@ class RequestWasHandledResponse implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'redirect_to' => 'redirect_to'
+        'kid' => 'kid',
+        'set' => 'set'
     ];
 
     /**
@@ -109,7 +112,8 @@ class RequestWasHandledResponse implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'redirect_to' => 'setRedirectTo'
+        'kid' => 'setKid',
+        'set' => 'setSet'
     ];
 
     /**
@@ -118,7 +122,8 @@ class RequestWasHandledResponse implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'redirect_to' => 'getRedirectTo'
+        'kid' => 'getKid',
+        'set' => 'getSet'
     ];
 
     /**
@@ -178,7 +183,8 @@ class RequestWasHandledResponse implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
-        $this->container['redirect_to'] = $data['redirect_to'] ?? null;
+        $this->container['kid'] = $data['kid'] ?? null;
+        $this->container['set'] = $data['set'] ?? null;
     }
 
     /**
@@ -190,9 +196,6 @@ class RequestWasHandledResponse implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
-        if ($this->container['redirect_to'] === null) {
-            $invalidProperties[] = "'redirect_to' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -209,25 +212,49 @@ class RequestWasHandledResponse implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets redirect_to
+     * Gets kid
      *
-     * @return string
+     * @return string|null
      */
-    public function getRedirectTo()
+    public function getKid()
     {
-        return $this->container['redirect_to'];
+        return $this->container['kid'];
     }
 
     /**
-     * Sets redirect_to
+     * Sets kid
      *
-     * @param string $redirect_to Original request URL to which you should redirect the user if request was already handled.
+     * @param string|null $kid The \"key_id\" is key unique identifier (same as kid header in jws/jwt).
      *
      * @return self
      */
-    public function setRedirectTo($redirect_to)
+    public function setKid($kid)
     {
-        $this->container['redirect_to'] = $redirect_to;
+        $this->container['kid'] = $kid;
+
+        return $this;
+    }
+
+    /**
+     * Gets set
+     *
+     * @return string|null
+     */
+    public function getSet()
+    {
+        return $this->container['set'];
+    }
+
+    /**
+     * Sets set
+     *
+     * @param string|null $set The \"set\" is basically a name for a group(set) of keys. Will be the same as \"issuer\" in grant.
+     *
+     * @return self
+     */
+    public function setSet($set)
+    {
+        $this->container['set'] = $set;
 
         return $this;
     }

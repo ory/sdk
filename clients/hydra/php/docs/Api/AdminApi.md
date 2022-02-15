@@ -1,4 +1,4 @@
-# Ory\Hydra\Client\AdminApi
+# OpenAPI\Client\AdminApi
 
 All URIs are relative to http://localhost.
 
@@ -13,24 +13,28 @@ Method | HTTP request | Description
 [**deleteJsonWebKeySet()**](AdminApi.md#deleteJsonWebKeySet) | **DELETE** /keys/{set} | Delete a JSON Web Key Set
 [**deleteOAuth2Client()**](AdminApi.md#deleteOAuth2Client) | **DELETE** /clients/{id} | Deletes an OAuth 2.0 Client
 [**deleteOAuth2Token()**](AdminApi.md#deleteOAuth2Token) | **DELETE** /oauth2/tokens | Delete OAuth2 Access Tokens from a Client
+[**deleteTrustedJwtGrantIssuer()**](AdminApi.md#deleteTrustedJwtGrantIssuer) | **DELETE** /trust/grants/jwt-bearer/issuers/{id} | Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer
 [**flushInactiveOAuth2Tokens()**](AdminApi.md#flushInactiveOAuth2Tokens) | **POST** /oauth2/flush | Flush Expired OAuth2 Access Tokens
 [**getConsentRequest()**](AdminApi.md#getConsentRequest) | **GET** /oauth2/auth/requests/consent | Get Consent Request Information
 [**getJsonWebKey()**](AdminApi.md#getJsonWebKey) | **GET** /keys/{set}/{kid} | Fetch a JSON Web Key
 [**getJsonWebKeySet()**](AdminApi.md#getJsonWebKeySet) | **GET** /keys/{set} | Retrieve a JSON Web Key Set
 [**getLoginRequest()**](AdminApi.md#getLoginRequest) | **GET** /oauth2/auth/requests/login | Get a Login Request
 [**getLogoutRequest()**](AdminApi.md#getLogoutRequest) | **GET** /oauth2/auth/requests/logout | Get a Logout Request
-[**getOAuth2Client()**](AdminApi.md#getOAuth2Client) | **GET** /clients/{id} | Get an OAuth 2.0 Client.
+[**getOAuth2Client()**](AdminApi.md#getOAuth2Client) | **GET** /clients/{id} | Get an OAuth 2.0 Client
+[**getTrustedJwtGrantIssuer()**](AdminApi.md#getTrustedJwtGrantIssuer) | **GET** /trust/grants/jwt-bearer/issuers/{id} | Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
 [**getVersion()**](AdminApi.md#getVersion) | **GET** /version | Get Service Version
 [**introspectOAuth2Token()**](AdminApi.md#introspectOAuth2Token) | **POST** /oauth2/introspect | Introspect OAuth2 Tokens
 [**isInstanceAlive()**](AdminApi.md#isInstanceAlive) | **GET** /health/alive | Check Alive Status
 [**listOAuth2Clients()**](AdminApi.md#listOAuth2Clients) | **GET** /clients | List OAuth 2.0 Clients
 [**listSubjectConsentSessions()**](AdminApi.md#listSubjectConsentSessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject
+[**listTrustedJwtGrantIssuers()**](AdminApi.md#listTrustedJwtGrantIssuers) | **GET** /trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
 [**patchOAuth2Client()**](AdminApi.md#patchOAuth2Client) | **PATCH** /clients/{id} | Patch an OAuth 2.0 Client
 [**rejectConsentRequest()**](AdminApi.md#rejectConsentRequest) | **PUT** /oauth2/auth/requests/consent/reject | Reject a Consent Request
 [**rejectLoginRequest()**](AdminApi.md#rejectLoginRequest) | **PUT** /oauth2/auth/requests/login/reject | Reject a Login Request
 [**rejectLogoutRequest()**](AdminApi.md#rejectLogoutRequest) | **PUT** /oauth2/auth/requests/logout/reject | Reject a Logout Request
 [**revokeAuthenticationSession()**](AdminApi.md#revokeAuthenticationSession) | **DELETE** /oauth2/auth/sessions/login | Invalidates All Login Sessions of a Certain User Invalidates a Subject&#39;s Authentication Session
 [**revokeConsentSessions()**](AdminApi.md#revokeConsentSessions) | **DELETE** /oauth2/auth/sessions/consent | Revokes Consent Sessions of a Subject for a Specific OAuth 2.0 Client
+[**trustJwtGrantIssuer()**](AdminApi.md#trustJwtGrantIssuer) | **POST** /trust/grants/jwt-bearer/issuers | Trust an OAuth2 JWT Bearer Grant Type Issuer
 [**updateJsonWebKey()**](AdminApi.md#updateJsonWebKey) | **PUT** /keys/{set}/{kid} | Update a JSON Web Key
 [**updateJsonWebKeySet()**](AdminApi.md#updateJsonWebKeySet) | **PUT** /keys/{set} | Update a JSON Web Key Set
 [**updateOAuth2Client()**](AdminApi.md#updateOAuth2Client) | **PUT** /clients/{id} | Update an OAuth 2.0 Client
@@ -39,7 +43,7 @@ Method | HTTP request | Description
 ## `acceptConsentRequest()`
 
 ```php
-acceptConsentRequest($consentChallenge, $body): \Ory\Hydra\Client\Model\CompletedRequest
+acceptConsentRequest($consent_challenge, $body): \OpenAPI\Client\Model\CompletedRequest
 ```
 
 Accept a Consent Request
@@ -54,16 +58,16 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$consentChallenge = 'consentChallenge_example'; // string
-$body = new \Ory\Hydra\Client\Model\AcceptConsentRequest(); // \Ory\Hydra\Client\Model\AcceptConsentRequest
+$consent_challenge = 'consent_challenge_example'; // string
+$body = new \OpenAPI\Client\Model\AcceptConsentRequest(); // \OpenAPI\Client\Model\AcceptConsentRequest
 
 try {
-    $result = $apiInstance->acceptConsentRequest($consentChallenge, $body);
+    $result = $apiInstance->acceptConsentRequest($consent_challenge, $body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->acceptConsentRequest: ', $e->getMessage(), PHP_EOL;
@@ -74,12 +78,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consentChallenge** | **string**|  |
- **body** | [**\Ory\Hydra\Client\Model\AcceptConsentRequest**](../Model/AcceptConsentRequest.md)|  | [optional]
+ **consent_challenge** | **string**|  |
+ **body** | [**\OpenAPI\Client\Model\AcceptConsentRequest**](../Model/AcceptConsentRequest.md)|  | [optional]
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\CompletedRequest**](../Model/CompletedRequest.md)
+[**\OpenAPI\Client\Model\CompletedRequest**](../Model/CompletedRequest.md)
 
 ### Authorization
 
@@ -97,7 +101,7 @@ No authorization required
 ## `acceptLoginRequest()`
 
 ```php
-acceptLoginRequest($loginChallenge, $body): \Ory\Hydra\Client\Model\CompletedRequest
+acceptLoginRequest($login_challenge, $body): \OpenAPI\Client\Model\CompletedRequest
 ```
 
 Accept a Login Request
@@ -112,16 +116,16 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$loginChallenge = 'loginChallenge_example'; // string
-$body = new \Ory\Hydra\Client\Model\AcceptLoginRequest(); // \Ory\Hydra\Client\Model\AcceptLoginRequest
+$login_challenge = 'login_challenge_example'; // string
+$body = new \OpenAPI\Client\Model\AcceptLoginRequest(); // \OpenAPI\Client\Model\AcceptLoginRequest
 
 try {
-    $result = $apiInstance->acceptLoginRequest($loginChallenge, $body);
+    $result = $apiInstance->acceptLoginRequest($login_challenge, $body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->acceptLoginRequest: ', $e->getMessage(), PHP_EOL;
@@ -132,12 +136,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **loginChallenge** | **string**|  |
- **body** | [**\Ory\Hydra\Client\Model\AcceptLoginRequest**](../Model/AcceptLoginRequest.md)|  | [optional]
+ **login_challenge** | **string**|  |
+ **body** | [**\OpenAPI\Client\Model\AcceptLoginRequest**](../Model/AcceptLoginRequest.md)|  | [optional]
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\CompletedRequest**](../Model/CompletedRequest.md)
+[**\OpenAPI\Client\Model\CompletedRequest**](../Model/CompletedRequest.md)
 
 ### Authorization
 
@@ -155,7 +159,7 @@ No authorization required
 ## `acceptLogoutRequest()`
 
 ```php
-acceptLogoutRequest($logoutChallenge): \Ory\Hydra\Client\Model\CompletedRequest
+acceptLogoutRequest($logout_challenge): \OpenAPI\Client\Model\CompletedRequest
 ```
 
 Accept a Logout Request
@@ -170,15 +174,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$logoutChallenge = 'logoutChallenge_example'; // string
+$logout_challenge = 'logout_challenge_example'; // string
 
 try {
-    $result = $apiInstance->acceptLogoutRequest($logoutChallenge);
+    $result = $apiInstance->acceptLogoutRequest($logout_challenge);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->acceptLogoutRequest: ', $e->getMessage(), PHP_EOL;
@@ -189,11 +193,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **logoutChallenge** | **string**|  |
+ **logout_challenge** | **string**|  |
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\CompletedRequest**](../Model/CompletedRequest.md)
+[**\OpenAPI\Client\Model\CompletedRequest**](../Model/CompletedRequest.md)
 
 ### Authorization
 
@@ -211,7 +215,7 @@ No authorization required
 ## `createJsonWebKeySet()`
 
 ```php
-createJsonWebKeySet($set, $body): \Ory\Hydra\Client\Model\JSONWebKeySet
+createJsonWebKeySet($set, $body): \OpenAPI\Client\Model\JSONWebKeySet
 ```
 
 Generate a New JSON Web Key
@@ -226,13 +230,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $set = 'set_example'; // string | The set
-$body = new \Ory\Hydra\Client\Model\JsonWebKeySetGeneratorRequest(); // \Ory\Hydra\Client\Model\JsonWebKeySetGeneratorRequest
+$body = new \OpenAPI\Client\Model\JsonWebKeySetGeneratorRequest(); // \OpenAPI\Client\Model\JsonWebKeySetGeneratorRequest
 
 try {
     $result = $apiInstance->createJsonWebKeySet($set, $body);
@@ -247,11 +251,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **set** | **string**| The set |
- **body** | [**\Ory\Hydra\Client\Model\JsonWebKeySetGeneratorRequest**](../Model/JsonWebKeySetGeneratorRequest.md)|  | [optional]
+ **body** | [**\OpenAPI\Client\Model\JsonWebKeySetGeneratorRequest**](../Model/JsonWebKeySetGeneratorRequest.md)|  | [optional]
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\JSONWebKeySet**](../Model/JSONWebKeySet.md)
+[**\OpenAPI\Client\Model\JSONWebKeySet**](../Model/JSONWebKeySet.md)
 
 ### Authorization
 
@@ -269,12 +273,12 @@ No authorization required
 ## `createOAuth2Client()`
 
 ```php
-createOAuth2Client($body): \Ory\Hydra\Client\Model\OAuth2Client
+createOAuth2Client($body): \OpenAPI\Client\Model\OAuth2Client
 ```
 
 Create an OAuth 2.0 Client
 
-Create a new OAuth 2.0 client If you pass `client_secret` the secret will be used, otherwise a random secret will be generated. The secret will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somwhere safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+Create a new OAuth 2.0 client If you pass `client_secret` the secret will be used, otherwise a random secret will be generated. The secret will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somwhere safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
 
 ### Example
 
@@ -284,12 +288,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$body = new \Ory\Hydra\Client\Model\OAuth2Client(); // \Ory\Hydra\Client\Model\OAuth2Client
+$body = new \OpenAPI\Client\Model\OAuth2Client(); // \OpenAPI\Client\Model\OAuth2Client
 
 try {
     $result = $apiInstance->createOAuth2Client($body);
@@ -303,11 +307,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\Ory\Hydra\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)|  |
+ **body** | [**\OpenAPI\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)|  |
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)
+[**\OpenAPI\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)
 
 ### Authorization
 
@@ -340,7 +344,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -397,7 +401,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -442,7 +446,7 @@ deleteOAuth2Client($id)
 
 Deletes an OAuth 2.0 Client
 
-Delete an existing OAuth 2.0 Client by its ID.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+Delete an existing OAuth 2.0 Client by its ID.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.  Make sure that this endpoint is well protected and only callable by first-party components.
 
 ### Example
 
@@ -452,7 +456,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -492,7 +496,7 @@ No authorization required
 ## `deleteOAuth2Token()`
 
 ```php
-deleteOAuth2Token($clientId)
+deleteOAuth2Token($client_id)
 ```
 
 Delete OAuth2 Access Tokens from a Client
@@ -507,15 +511,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$clientId = 'clientId_example'; // string
+$client_id = 'client_id_example'; // string
 
 try {
-    $apiInstance->deleteOAuth2Token($clientId);
+    $apiInstance->deleteOAuth2Token($client_id);
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->deleteOAuth2Token: ', $e->getMessage(), PHP_EOL;
 }
@@ -525,7 +529,62 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clientId** | **string**|  |
+ **client_id** | **string**|  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deleteTrustedJwtGrantIssuer()`
+
+```php
+deleteTrustedJwtGrantIssuer($id)
+```
+
+Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer
+
+Use this endpoint to delete trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you created the trust relationship.  Once deleted, the associated issuer will no longer be able to perform the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grant.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$id = 'id_example'; // string | The id of the desired grant
+
+try {
+    $apiInstance->deleteTrustedJwtGrantIssuer($id);
+} catch (Exception $e) {
+    echo 'Exception when calling AdminApi->deleteTrustedJwtGrantIssuer: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The id of the desired grant |
 
 ### Return type
 
@@ -562,12 +621,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$body = new \Ory\Hydra\Client\Model\FlushInactiveOAuth2TokensRequest(); // \Ory\Hydra\Client\Model\FlushInactiveOAuth2TokensRequest
+$body = new \OpenAPI\Client\Model\FlushInactiveOAuth2TokensRequest(); // \OpenAPI\Client\Model\FlushInactiveOAuth2TokensRequest
 
 try {
     $apiInstance->flushInactiveOAuth2Tokens($body);
@@ -580,7 +639,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\Ory\Hydra\Client\Model\FlushInactiveOAuth2TokensRequest**](../Model/FlushInactiveOAuth2TokensRequest.md)|  | [optional]
+ **body** | [**\OpenAPI\Client\Model\FlushInactiveOAuth2TokensRequest**](../Model/FlushInactiveOAuth2TokensRequest.md)|  | [optional]
 
 ### Return type
 
@@ -602,7 +661,7 @@ No authorization required
 ## `getConsentRequest()`
 
 ```php
-getConsentRequest($consentChallenge): \Ory\Hydra\Client\Model\ConsentRequest
+getConsentRequest($consent_challenge): \OpenAPI\Client\Model\ConsentRequest
 ```
 
 Get Consent Request Information
@@ -617,15 +676,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$consentChallenge = 'consentChallenge_example'; // string
+$consent_challenge = 'consent_challenge_example'; // string
 
 try {
-    $result = $apiInstance->getConsentRequest($consentChallenge);
+    $result = $apiInstance->getConsentRequest($consent_challenge);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->getConsentRequest: ', $e->getMessage(), PHP_EOL;
@@ -636,11 +695,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consentChallenge** | **string**|  |
+ **consent_challenge** | **string**|  |
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\ConsentRequest**](../Model/ConsentRequest.md)
+[**\OpenAPI\Client\Model\ConsentRequest**](../Model/ConsentRequest.md)
 
 ### Authorization
 
@@ -658,7 +717,7 @@ No authorization required
 ## `getJsonWebKey()`
 
 ```php
-getJsonWebKey($kid, $set): \Ory\Hydra\Client\Model\JSONWebKeySet
+getJsonWebKey($kid, $set): \OpenAPI\Client\Model\JSONWebKeySet
 ```
 
 Fetch a JSON Web Key
@@ -673,7 +732,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -698,7 +757,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\JSONWebKeySet**](../Model/JSONWebKeySet.md)
+[**\OpenAPI\Client\Model\JSONWebKeySet**](../Model/JSONWebKeySet.md)
 
 ### Authorization
 
@@ -716,7 +775,7 @@ No authorization required
 ## `getJsonWebKeySet()`
 
 ```php
-getJsonWebKeySet($set): \Ory\Hydra\Client\Model\JSONWebKeySet
+getJsonWebKeySet($set): \OpenAPI\Client\Model\JSONWebKeySet
 ```
 
 Retrieve a JSON Web Key Set
@@ -731,7 +790,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -754,7 +813,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\JSONWebKeySet**](../Model/JSONWebKeySet.md)
+[**\OpenAPI\Client\Model\JSONWebKeySet**](../Model/JSONWebKeySet.md)
 
 ### Authorization
 
@@ -772,7 +831,7 @@ No authorization required
 ## `getLoginRequest()`
 
 ```php
-getLoginRequest($loginChallenge): \Ory\Hydra\Client\Model\LoginRequest
+getLoginRequest($login_challenge): \OpenAPI\Client\Model\LoginRequest
 ```
 
 Get a Login Request
@@ -787,15 +846,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$loginChallenge = 'loginChallenge_example'; // string
+$login_challenge = 'login_challenge_example'; // string
 
 try {
-    $result = $apiInstance->getLoginRequest($loginChallenge);
+    $result = $apiInstance->getLoginRequest($login_challenge);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->getLoginRequest: ', $e->getMessage(), PHP_EOL;
@@ -806,11 +865,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **loginChallenge** | **string**|  |
+ **login_challenge** | **string**|  |
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\LoginRequest**](../Model/LoginRequest.md)
+[**\OpenAPI\Client\Model\LoginRequest**](../Model/LoginRequest.md)
 
 ### Authorization
 
@@ -828,7 +887,7 @@ No authorization required
 ## `getLogoutRequest()`
 
 ```php
-getLogoutRequest($logoutChallenge): \Ory\Hydra\Client\Model\LogoutRequest
+getLogoutRequest($logout_challenge): \OpenAPI\Client\Model\LogoutRequest
 ```
 
 Get a Logout Request
@@ -843,15 +902,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$logoutChallenge = 'logoutChallenge_example'; // string
+$logout_challenge = 'logout_challenge_example'; // string
 
 try {
-    $result = $apiInstance->getLogoutRequest($logoutChallenge);
+    $result = $apiInstance->getLogoutRequest($logout_challenge);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->getLogoutRequest: ', $e->getMessage(), PHP_EOL;
@@ -862,11 +921,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **logoutChallenge** | **string**|  |
+ **logout_challenge** | **string**|  |
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\LogoutRequest**](../Model/LogoutRequest.md)
+[**\OpenAPI\Client\Model\LogoutRequest**](../Model/LogoutRequest.md)
 
 ### Authorization
 
@@ -884,12 +943,12 @@ No authorization required
 ## `getOAuth2Client()`
 
 ```php
-getOAuth2Client($id): \Ory\Hydra\Client\Model\OAuth2Client
+getOAuth2Client($id): \OpenAPI\Client\Model\OAuth2Client
 ```
 
-Get an OAuth 2.0 Client.
+Get an OAuth 2.0 Client
 
-Get an OAUth 2.0 client by its ID. This endpoint never returns passwords.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+Get an OAuth 2.0 client by its ID. This endpoint never returns the client secret.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
 
 ### Example
 
@@ -899,7 +958,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -922,7 +981,63 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)
+[**\OpenAPI\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getTrustedJwtGrantIssuer()`
+
+```php
+getTrustedJwtGrantIssuer($id): \OpenAPI\Client\Model\TrustedJwtGrantIssuer
+```
+
+Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
+
+Use this endpoint to get a trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you created the trust relationship.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$id = 'id_example'; // string | The id of the desired grant
+
+try {
+    $result = $apiInstance->getTrustedJwtGrantIssuer($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AdminApi->getTrustedJwtGrantIssuer: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The id of the desired grant |
+
+### Return type
+
+[**\OpenAPI\Client\Model\TrustedJwtGrantIssuer**](../Model/TrustedJwtGrantIssuer.md)
 
 ### Authorization
 
@@ -940,7 +1055,7 @@ No authorization required
 ## `getVersion()`
 
 ```php
-getVersion(): \Ory\Hydra\Client\Model\Version
+getVersion(): \OpenAPI\Client\Model\Version
 ```
 
 Get Service Version
@@ -955,7 +1070,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -975,7 +1090,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\Version**](../Model/Version.md)
+[**\OpenAPI\Client\Model\Version**](../Model/Version.md)
 
 ### Authorization
 
@@ -993,7 +1108,7 @@ No authorization required
 ## `introspectOAuth2Token()`
 
 ```php
-introspectOAuth2Token($token, $scope): \Ory\Hydra\Client\Model\OAuth2TokenIntrospection
+introspectOAuth2Token($token, $scope): \OpenAPI\Client\Model\OAuth2TokenIntrospection
 ```
 
 Introspect OAuth2 Tokens
@@ -1008,7 +1123,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1033,7 +1148,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\OAuth2TokenIntrospection**](../Model/OAuth2TokenIntrospection.md)
+[**\OpenAPI\Client\Model\OAuth2TokenIntrospection**](../Model/OAuth2TokenIntrospection.md)
 
 ### Authorization
 
@@ -1051,7 +1166,7 @@ No authorization required
 ## `isInstanceAlive()`
 
 ```php
-isInstanceAlive(): \Ory\Hydra\Client\Model\HealthStatus
+isInstanceAlive(): \OpenAPI\Client\Model\HealthStatus
 ```
 
 Check Alive Status
@@ -1066,7 +1181,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1086,7 +1201,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\HealthStatus**](../Model/HealthStatus.md)
+[**\OpenAPI\Client\Model\HealthStatus**](../Model/HealthStatus.md)
 
 ### Authorization
 
@@ -1104,12 +1219,12 @@ No authorization required
 ## `listOAuth2Clients()`
 
 ```php
-listOAuth2Clients($limit, $offset, $name, $owner): \Ory\Hydra\Client\Model\OAuth2Client[]
+listOAuth2Clients($limit, $offset, $client_name, $owner): \OpenAPI\Client\Model\OAuth2Client[]
 ```
 
 List OAuth 2.0 Clients
 
-This endpoint lists all clients in the database, and never returns client secrets. As a default it lists the first 100 clients. The `limit` parameter can be used to retrieve more clients, but it has an upper bound at 500 objects. Pagination should be used to retrieve more than 500 objects.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components. The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/clients?limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
+This endpoint lists all clients in the database, and never returns client secrets. As a default it lists the first 100 clients. The `limit` parameter can be used to retrieve more clients, but it has an upper bound at 500 objects. Pagination should be used to retrieve more than 500 objects.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.  The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/clients?limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
 
 ### Example
 
@@ -1119,18 +1234,18 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $limit = 56; // int | The maximum amount of clients to returned, upper bound is 500 clients.
 $offset = 56; // int | The offset from where to start looking.
-$name = 'name_example'; // string | The name of the clients to filter by.
+$client_name = 'client_name_example'; // string | The name of the clients to filter by.
 $owner = 'owner_example'; // string | The owner of the clients to filter by.
 
 try {
-    $result = $apiInstance->listOAuth2Clients($limit, $offset, $name, $owner);
+    $result = $apiInstance->listOAuth2Clients($limit, $offset, $client_name, $owner);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->listOAuth2Clients: ', $e->getMessage(), PHP_EOL;
@@ -1143,12 +1258,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **int**| The maximum amount of clients to returned, upper bound is 500 clients. | [optional]
  **offset** | **int**| The offset from where to start looking. | [optional]
- **name** | **string**| The name of the clients to filter by. | [optional]
+ **client_name** | **string**| The name of the clients to filter by. | [optional]
  **owner** | **string**| The owner of the clients to filter by. | [optional]
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\OAuth2Client[]**](../Model/OAuth2Client.md)
+[**\OpenAPI\Client\Model\OAuth2Client[]**](../Model/OAuth2Client.md)
 
 ### Authorization
 
@@ -1166,7 +1281,7 @@ No authorization required
 ## `listSubjectConsentSessions()`
 
 ```php
-listSubjectConsentSessions($subject): \Ory\Hydra\Client\Model\PreviousConsentSession[]
+listSubjectConsentSessions($subject): \OpenAPI\Client\Model\PreviousConsentSession[]
 ```
 
 Lists All Consent Sessions of a Subject
@@ -1181,7 +1296,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1204,7 +1319,67 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\PreviousConsentSession[]**](../Model/PreviousConsentSession.md)
+[**\OpenAPI\Client\Model\PreviousConsentSession[]**](../Model/PreviousConsentSession.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `listTrustedJwtGrantIssuers()`
+
+```php
+listTrustedJwtGrantIssuers($issuer, $limit, $offset): \OpenAPI\Client\Model\TrustedJwtGrantIssuer[]
+```
+
+List Trusted OAuth2 JWT Bearer Grant Type Issuers
+
+Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$issuer = 'issuer_example'; // string | If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned.
+$limit = 56; // int | The maximum amount of policies returned, upper bound is 500 policies
+$offset = 56; // int | The offset from where to start looking.
+
+try {
+    $result = $apiInstance->listTrustedJwtGrantIssuers($issuer, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AdminApi->listTrustedJwtGrantIssuers: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **issuer** | **string**| If optional \&quot;issuer\&quot; is supplied, only jwt-bearer grants with this issuer will be returned. | [optional]
+ **limit** | **int**| The maximum amount of policies returned, upper bound is 500 policies | [optional]
+ **offset** | **int**| The offset from where to start looking. | [optional]
+
+### Return type
+
+[**\OpenAPI\Client\Model\TrustedJwtGrantIssuer[]**](../Model/TrustedJwtGrantIssuer.md)
 
 ### Authorization
 
@@ -1222,12 +1397,12 @@ No authorization required
 ## `patchOAuth2Client()`
 
 ```php
-patchOAuth2Client($id, $body): \Ory\Hydra\Client\Model\OAuth2Client
+patchOAuth2Client($id, $body): \OpenAPI\Client\Model\OAuth2Client
 ```
 
 Patch an OAuth 2.0 Client
 
-Patch an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+Patch an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
 
 ### Example
 
@@ -1237,13 +1412,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$id = 'id_example'; // string
-$body = array(new \Ory\Hydra\Client\Model\PatchDocument()); // \Ory\Hydra\Client\Model\PatchDocument[]
+$id = 'id_example'; // string | The id of the OAuth 2.0 Client.
+$body = array(new \OpenAPI\Client\Model\PatchDocument()); // \OpenAPI\Client\Model\PatchDocument[]
 
 try {
     $result = $apiInstance->patchOAuth2Client($id, $body);
@@ -1257,12 +1432,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string**|  |
- **body** | [**\Ory\Hydra\Client\Model\PatchDocument[]**](../Model/PatchDocument.md)|  |
+ **id** | **string**| The id of the OAuth 2.0 Client. |
+ **body** | [**\OpenAPI\Client\Model\PatchDocument[]**](../Model/PatchDocument.md)|  |
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)
+[**\OpenAPI\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)
 
 ### Authorization
 
@@ -1280,7 +1455,7 @@ No authorization required
 ## `rejectConsentRequest()`
 
 ```php
-rejectConsentRequest($consentChallenge, $body): \Ory\Hydra\Client\Model\CompletedRequest
+rejectConsentRequest($consent_challenge, $body): \OpenAPI\Client\Model\CompletedRequest
 ```
 
 Reject a Consent Request
@@ -1295,16 +1470,16 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$consentChallenge = 'consentChallenge_example'; // string
-$body = new \Ory\Hydra\Client\Model\RejectRequest(); // \Ory\Hydra\Client\Model\RejectRequest
+$consent_challenge = 'consent_challenge_example'; // string
+$body = new \OpenAPI\Client\Model\RejectRequest(); // \OpenAPI\Client\Model\RejectRequest
 
 try {
-    $result = $apiInstance->rejectConsentRequest($consentChallenge, $body);
+    $result = $apiInstance->rejectConsentRequest($consent_challenge, $body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->rejectConsentRequest: ', $e->getMessage(), PHP_EOL;
@@ -1315,12 +1490,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consentChallenge** | **string**|  |
- **body** | [**\Ory\Hydra\Client\Model\RejectRequest**](../Model/RejectRequest.md)|  | [optional]
+ **consent_challenge** | **string**|  |
+ **body** | [**\OpenAPI\Client\Model\RejectRequest**](../Model/RejectRequest.md)|  | [optional]
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\CompletedRequest**](../Model/CompletedRequest.md)
+[**\OpenAPI\Client\Model\CompletedRequest**](../Model/CompletedRequest.md)
 
 ### Authorization
 
@@ -1338,7 +1513,7 @@ No authorization required
 ## `rejectLoginRequest()`
 
 ```php
-rejectLoginRequest($loginChallenge, $body): \Ory\Hydra\Client\Model\CompletedRequest
+rejectLoginRequest($login_challenge, $body): \OpenAPI\Client\Model\CompletedRequest
 ```
 
 Reject a Login Request
@@ -1353,16 +1528,16 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$loginChallenge = 'loginChallenge_example'; // string
-$body = new \Ory\Hydra\Client\Model\RejectRequest(); // \Ory\Hydra\Client\Model\RejectRequest
+$login_challenge = 'login_challenge_example'; // string
+$body = new \OpenAPI\Client\Model\RejectRequest(); // \OpenAPI\Client\Model\RejectRequest
 
 try {
-    $result = $apiInstance->rejectLoginRequest($loginChallenge, $body);
+    $result = $apiInstance->rejectLoginRequest($login_challenge, $body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->rejectLoginRequest: ', $e->getMessage(), PHP_EOL;
@@ -1373,12 +1548,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **loginChallenge** | **string**|  |
- **body** | [**\Ory\Hydra\Client\Model\RejectRequest**](../Model/RejectRequest.md)|  | [optional]
+ **login_challenge** | **string**|  |
+ **body** | [**\OpenAPI\Client\Model\RejectRequest**](../Model/RejectRequest.md)|  | [optional]
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\CompletedRequest**](../Model/CompletedRequest.md)
+[**\OpenAPI\Client\Model\CompletedRequest**](../Model/CompletedRequest.md)
 
 ### Authorization
 
@@ -1396,7 +1571,7 @@ No authorization required
 ## `rejectLogoutRequest()`
 
 ```php
-rejectLogoutRequest($logoutChallenge, $body)
+rejectLogoutRequest($logout_challenge, $body)
 ```
 
 Reject a Logout Request
@@ -1411,16 +1586,16 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$logoutChallenge = 'logoutChallenge_example'; // string
-$body = new \Ory\Hydra\Client\Model\RejectRequest(); // \Ory\Hydra\Client\Model\RejectRequest
+$logout_challenge = 'logout_challenge_example'; // string
+$body = new \OpenAPI\Client\Model\RejectRequest(); // \OpenAPI\Client\Model\RejectRequest
 
 try {
-    $apiInstance->rejectLogoutRequest($logoutChallenge, $body);
+    $apiInstance->rejectLogoutRequest($logout_challenge, $body);
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->rejectLogoutRequest: ', $e->getMessage(), PHP_EOL;
 }
@@ -1430,8 +1605,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **logoutChallenge** | **string**|  |
- **body** | [**\Ory\Hydra\Client\Model\RejectRequest**](../Model/RejectRequest.md)|  | [optional]
+ **logout_challenge** | **string**|  |
+ **body** | [**\OpenAPI\Client\Model\RejectRequest**](../Model/RejectRequest.md)|  | [optional]
 
 ### Return type
 
@@ -1468,7 +1643,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1523,7 +1698,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1564,10 +1739,66 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `trustJwtGrantIssuer()`
+
+```php
+trustJwtGrantIssuer($body): \OpenAPI\Client\Model\TrustedJwtGrantIssuer
+```
+
+Trust an OAuth2 JWT Bearer Grant Type Issuer
+
+Use this endpoint to establish a trust relationship for a JWT issuer to perform JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants [RFC7523](https://datatracker.ietf.org/doc/html/rfc7523).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$body = new \OpenAPI\Client\Model\TrustJwtGrantIssuerBody(); // \OpenAPI\Client\Model\TrustJwtGrantIssuerBody
+
+try {
+    $result = $apiInstance->trustJwtGrantIssuer($body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AdminApi->trustJwtGrantIssuer: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**\OpenAPI\Client\Model\TrustJwtGrantIssuerBody**](../Model/TrustJwtGrantIssuerBody.md)|  | [optional]
+
+### Return type
+
+[**\OpenAPI\Client\Model\TrustedJwtGrantIssuer**](../Model/TrustedJwtGrantIssuer.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `updateJsonWebKey()`
 
 ```php
-updateJsonWebKey($kid, $set, $body): \Ory\Hydra\Client\Model\JSONWebKey
+updateJsonWebKey($kid, $set, $body): \OpenAPI\Client\Model\JSONWebKey
 ```
 
 Update a JSON Web Key
@@ -1582,14 +1813,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $kid = 'kid_example'; // string | The kid of the desired key
 $set = 'set_example'; // string | The set
-$body = new \Ory\Hydra\Client\Model\JSONWebKey(); // \Ory\Hydra\Client\Model\JSONWebKey
+$body = new \OpenAPI\Client\Model\JSONWebKey(); // \OpenAPI\Client\Model\JSONWebKey
 
 try {
     $result = $apiInstance->updateJsonWebKey($kid, $set, $body);
@@ -1605,11 +1836,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **kid** | **string**| The kid of the desired key |
  **set** | **string**| The set |
- **body** | [**\Ory\Hydra\Client\Model\JSONWebKey**](../Model/JSONWebKey.md)|  | [optional]
+ **body** | [**\OpenAPI\Client\Model\JSONWebKey**](../Model/JSONWebKey.md)|  | [optional]
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\JSONWebKey**](../Model/JSONWebKey.md)
+[**\OpenAPI\Client\Model\JSONWebKey**](../Model/JSONWebKey.md)
 
 ### Authorization
 
@@ -1627,7 +1858,7 @@ No authorization required
 ## `updateJsonWebKeySet()`
 
 ```php
-updateJsonWebKeySet($set, $body): \Ory\Hydra\Client\Model\JSONWebKeySet
+updateJsonWebKeySet($set, $body): \OpenAPI\Client\Model\JSONWebKeySet
 ```
 
 Update a JSON Web Key Set
@@ -1642,13 +1873,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $set = 'set_example'; // string | The set
-$body = new \Ory\Hydra\Client\Model\JSONWebKeySet(); // \Ory\Hydra\Client\Model\JSONWebKeySet
+$body = new \OpenAPI\Client\Model\JSONWebKeySet(); // \OpenAPI\Client\Model\JSONWebKeySet
 
 try {
     $result = $apiInstance->updateJsonWebKeySet($set, $body);
@@ -1663,11 +1894,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **set** | **string**| The set |
- **body** | [**\Ory\Hydra\Client\Model\JSONWebKeySet**](../Model/JSONWebKeySet.md)|  | [optional]
+ **body** | [**\OpenAPI\Client\Model\JSONWebKeySet**](../Model/JSONWebKeySet.md)|  | [optional]
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\JSONWebKeySet**](../Model/JSONWebKeySet.md)
+[**\OpenAPI\Client\Model\JSONWebKeySet**](../Model/JSONWebKeySet.md)
 
 ### Authorization
 
@@ -1685,12 +1916,12 @@ No authorization required
 ## `updateOAuth2Client()`
 
 ```php
-updateOAuth2Client($id, $body): \Ory\Hydra\Client\Model\OAuth2Client
+updateOAuth2Client($id, $body): \OpenAPI\Client\Model\OAuth2Client
 ```
 
 Update an OAuth 2.0 Client
 
-Update an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+Update an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
 
 ### Example
 
@@ -1700,13 +1931,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Ory\Hydra\Client\Api\AdminApi(
+$apiInstance = new OpenAPI\Client\Api\AdminApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$id = 'id_example'; // string
-$body = new \Ory\Hydra\Client\Model\OAuth2Client(); // \Ory\Hydra\Client\Model\OAuth2Client
+$id = 'id_example'; // string | The id of the OAuth 2.0 Client.
+$body = new \OpenAPI\Client\Model\OAuth2Client(); // \OpenAPI\Client\Model\OAuth2Client
 
 try {
     $result = $apiInstance->updateOAuth2Client($id, $body);
@@ -1720,12 +1951,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string**|  |
- **body** | [**\Ory\Hydra\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)|  |
+ **id** | **string**| The id of the OAuth 2.0 Client. |
+ **body** | [**\OpenAPI\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)|  |
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)
+[**\OpenAPI\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)
 
 ### Authorization
 

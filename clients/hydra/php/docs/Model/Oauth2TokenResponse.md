@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**accessToken** | **string** |  | [optional]
-**expiresIn** | **int** |  | [optional]
-**idToken** | **string** |  | [optional]
-**refreshToken** | **string** |  | [optional]
+**access_token** | **string** |  | [optional]
+**expires_in** | **int** |  | [optional]
+**id_token** | **string** |  | [optional]
+**refresh_token** | **string** |  | [optional]
 **scope** | **string** |  | [optional]
-**tokenType** | **string** |  | [optional]
+**token_type** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
