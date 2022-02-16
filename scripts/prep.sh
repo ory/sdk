@@ -46,12 +46,6 @@ echo "Generating SDKs for $project:$version"
 
 spec_file="spec/${project}/${version}.json"
 
-## Update version string in the spec file ##
-if [ $project != "kratos" ] && [ $project != "client" ] && [ $project != "oathkeeper" ]; then
-  ory dev swagger sanitize "${spec_file}"
-  swagger validate "${spec_file}"
-fi
-
 jq -c ".info.version = \"${version}\"" "${spec_file}" > tmp.$$.json && mv tmp.$$.json "${spec_file}"
 ## end ##
 
