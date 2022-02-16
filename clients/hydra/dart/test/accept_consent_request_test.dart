@@ -1,20 +1,31 @@
-import 'package:ory_hydra_client/api.dart';
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.7
+
+// ignore_for_file: unused_import
+
+import 'package:ory_hydra_client/model/accept_consent_request.dart';
 import 'package:test/test.dart';
 
 // tests for AcceptConsentRequest
 void main() {
-  final instance = AcceptConsentRequest();
+  final instance = AcceptConsentRequestBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test AcceptConsentRequest', () {
-    // GrantedAudience sets the audience the user authorized the client to use. Should be a subset of `requested_access_token_audience`.
-    // List<String> grantAccessTokenAudience (default value: const [])
+  group(AcceptConsentRequest, () {
+    // BuiltList<String> grantAccessTokenAudience
     test('to test the property `grantAccessTokenAudience`', () async {
       // TODO
     });
 
-    // GrantScope sets the scope the user authorized the client to use. Should be a subset of `requested_scope`.
-    // List<String> grantScope (default value: const [])
+    // BuiltList<String> grantScope
     test('to test the property `grantScope`', () async {
+      // TODO
+    });
+
+    // DateTime handledAt
+    test('to test the property `handledAt`', () async {
       // TODO
     });
 

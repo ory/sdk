@@ -1,82 +1,87 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class ConsentRequestSession {
-  /// Returns a new [ConsentRequestSession] instance.
-  ConsentRequestSession({
-    this.accessToken,
-    this.idToken,
-  });
+part 'consent_request_session.g.dart';
 
-  /// AccessToken sets session data for the access and refresh token, as well as any future tokens issued by the refresh grant. Keep in mind that this data will be available to anyone performing OAuth 2.0 Challenge Introspection. If only your services can perform OAuth 2.0 Challenge Introspection, this is usually fine. But if third parties can access that endpoint as well, sensitive data from the session might be exposed to them. Use with care!
-  Object accessToken;
+abstract class ConsentRequestSession implements Built<ConsentRequestSession, ConsentRequestSessionBuilder> {
 
-  /// IDToken sets session data for the OpenID Connect ID token. Keep in mind that the session'id payloads are readable by anyone that has access to the ID Challenge. Use with care!
-  Object idToken;
+    /// AccessToken sets session data for the access and refresh token, as well as any future tokens issued by the refresh grant. Keep in mind that this data will be available to anyone performing OAuth 2.0 Challenge Introspection. If only your services can perform OAuth 2.0 Challenge Introspection, this is usually fine. But if third parties can access that endpoint as well, sensitive data from the session might be exposed to them. Use with care!
+    @nullable
+    @BuiltValueField(wireName: r'access_token')
+    BuiltMap<String, JsonObject> get accessToken;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is ConsentRequestSession &&
-     other.accessToken == accessToken &&
-     other.idToken == idToken;
+    /// IDToken sets session data for the OpenID Connect ID token. Keep in mind that the session'id payloads are readable by anyone that has access to the ID Challenge. Use with care!
+    @nullable
+    @BuiltValueField(wireName: r'id_token')
+    BuiltMap<String, JsonObject> get idToken;
 
-  @override
-  int get hashCode =>
-    (accessToken == null ? 0 : accessToken.hashCode) +
-    (idToken == null ? 0 : idToken.hashCode);
+    ConsentRequestSession._();
 
-  @override
-  String toString() => 'ConsentRequestSession[accessToken=$accessToken, idToken=$idToken]';
+    static void _initializeBuilder(ConsentRequestSessionBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (accessToken != null) {
-      json[r'access_token'] = accessToken;
+    factory ConsentRequestSession([void updates(ConsentRequestSessionBuilder b)]) = _$ConsentRequestSession;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<ConsentRequestSession> get serializer => _$ConsentRequestSessionSerializer();
+}
+
+class _$ConsentRequestSessionSerializer implements StructuredSerializer<ConsentRequestSession> {
+
+    @override
+    final Iterable<Type> types = const [ConsentRequestSession, _$ConsentRequestSession];
+    @override
+    final String wireName = r'ConsentRequestSession';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, ConsentRequestSession object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.accessToken != null) {
+            result
+                ..add(r'access_token')
+                ..add(serializers.serialize(object.accessToken,
+                    specifiedType: const FullType(BuiltMap, [FullType(String), FullType(JsonObject)])));
+        }
+        if (object.idToken != null) {
+            result
+                ..add(r'id_token')
+                ..add(serializers.serialize(object.idToken,
+                    specifiedType: const FullType(BuiltMap, [FullType(String), FullType(JsonObject)])));
+        }
+        return result;
     }
-    if (idToken != null) {
-      json[r'id_token'] = idToken;
+
+    @override
+    ConsentRequestSession deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = ConsentRequestSessionBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'access_token':
+                    result.accessToken.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltMap, [FullType(String), FullType(JsonObject)])) as BuiltMap<String, JsonObject>);
+                    break;
+                case r'id_token':
+                    result.idToken.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltMap, [FullType(String), FullType(JsonObject)])) as BuiltMap<String, JsonObject>);
+                    break;
+            }
+        }
+        return result.build();
     }
-    return json;
-  }
-
-  /// Returns a new [ConsentRequestSession] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static ConsentRequestSession fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : ConsentRequestSession(
-        accessToken: json[r'access_token'],
-        idToken: json[r'id_token'],
-    );
-
-  static List<ConsentRequestSession> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <ConsentRequestSession>[]
-      : json.map((dynamic value) => ConsentRequestSession.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, ConsentRequestSession> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, ConsentRequestSession>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = ConsentRequestSession.fromJson(value));
-    }
-    return map;
-  }
-
-  // maps a json object with a list of ConsentRequestSession-objects as value to a dart map
-  static Map<String, List<ConsentRequestSession>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<ConsentRequestSession>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = ConsentRequestSession.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

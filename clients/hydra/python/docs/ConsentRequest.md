@@ -6,8 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **challenge** | **str** | ID is the identifier (\&quot;authorization challenge\&quot;) of the consent authorization request. It is used to identify the session. | 
 **acr** | **str** | ACR represents the Authentication AuthorizationContext Class Reference value for this authentication session. You can use it to express that, for example, a user authenticated using two factor authentication. | [optional] 
+**amr** | [**StringSlicePipeDelimiter**](StringSlicePipeDelimiter.md) |  | [optional] 
 **client** | [**OAuth2Client**](OAuth2Client.md) |  | [optional] 
-**context** | **bool, date, datetime, dict, float, int, list, str, none_type** |  | [optional] 
+**context** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
 **login_challenge** | **str** | LoginChallenge is the login challenge this consent challenge belongs to. It can be used to associate a login and consent request in the login &amp; consent app. | [optional] 
 **login_session_id** | **str** | LoginSessionID is the login session ID. If the user-agent reuses a login session (via cookie / remember flag) this ID will remain the same. If the user-agent did not have an existing authentication session (e.g. remember is false) this will be a new random value. This value is used as the \&quot;sid\&quot; parameter in the ID Token and in OIDC Front-/Back- channel logout. It&#39;s value can generally be used to associate consecutive login requests by a certain user. | [optional] 
 **oidc_context** | [**OpenIDConnectContext**](OpenIDConnectContext.md) |  | [optional] 

@@ -1,340 +1,440 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class WellKnown {
-  /// Returns a new [WellKnown] instance.
-  WellKnown({
-    @required this.authorizationEndpoint,
-    this.backchannelLogoutSessionSupported,
-    this.backchannelLogoutSupported,
-    this.claimsParameterSupported,
-    this.claimsSupported = const [],
-    this.codeChallengeMethodsSupported = const [],
-    this.endSessionEndpoint,
-    this.frontchannelLogoutSessionSupported,
-    this.frontchannelLogoutSupported,
-    this.grantTypesSupported = const [],
-    this.idTokenSigningAlgValuesSupported = const [],
-    @required this.issuer,
-    @required this.jwksUri,
-    this.registrationEndpoint,
-    this.requestObjectSigningAlgValuesSupported = const [],
-    this.requestParameterSupported,
-    this.requestUriParameterSupported,
-    this.requireRequestUriRegistration,
-    this.responseModesSupported = const [],
-    this.responseTypesSupported = const [],
-    this.revocationEndpoint,
-    this.scopesSupported = const [],
-    this.subjectTypesSupported = const [],
-    @required this.tokenEndpoint,
-    this.tokenEndpointAuthMethodsSupported = const [],
-    this.userinfoEndpoint,
-    this.userinfoSigningAlgValuesSupported = const [],
-  });
+part 'well_known.g.dart';
 
-  /// URL of the OP's OAuth 2.0 Authorization Endpoint.
-  String authorizationEndpoint;
+abstract class WellKnown implements Built<WellKnown, WellKnownBuilder> {
 
-  /// Boolean value specifying whether the OP can pass a sid (session ID) Claim in the Logout Token to identify the RP session with the OP. If supported, the sid Claim is also included in ID Tokens issued by the OP
-  bool backchannelLogoutSessionSupported;
+    /// URL of the OP's OAuth 2.0 Authorization Endpoint.
+    @BuiltValueField(wireName: r'authorization_endpoint')
+    String get authorizationEndpoint;
 
-  /// Boolean value specifying whether the OP supports back-channel logout, with true indicating support.
-  bool backchannelLogoutSupported;
+    /// Boolean value specifying whether the OP can pass a sid (session ID) Claim in the Logout Token to identify the RP session with the OP. If supported, the sid Claim is also included in ID Tokens issued by the OP
+    @nullable
+    @BuiltValueField(wireName: r'backchannel_logout_session_supported')
+    bool get backchannelLogoutSessionSupported;
 
-  /// Boolean value specifying whether the OP supports use of the claims parameter, with true indicating support.
-  bool claimsParameterSupported;
+    /// Boolean value specifying whether the OP supports back-channel logout, with true indicating support.
+    @nullable
+    @BuiltValueField(wireName: r'backchannel_logout_supported')
+    bool get backchannelLogoutSupported;
 
-  /// JSON array containing a list of the Claim Names of the Claims that the OpenID Provider MAY be able to supply values for. Note that for privacy or other reasons, this might not be an exhaustive list.
-  List<String> claimsSupported;
+    /// Boolean value specifying whether the OP supports use of the claims parameter, with true indicating support.
+    @nullable
+    @BuiltValueField(wireName: r'claims_parameter_supported')
+    bool get claimsParameterSupported;
 
-  /// JSON array containing a list of Proof Key for Code Exchange (PKCE) [RFC7636] code challenge methods supported by this authorization server.
-  List<String> codeChallengeMethodsSupported;
+    /// JSON array containing a list of the Claim Names of the Claims that the OpenID Provider MAY be able to supply values for. Note that for privacy or other reasons, this might not be an exhaustive list.
+    @nullable
+    @BuiltValueField(wireName: r'claims_supported')
+    BuiltList<String> get claimsSupported;
 
-  /// URL at the OP to which an RP can perform a redirect to request that the End-User be logged out at the OP.
-  String endSessionEndpoint;
+    /// JSON array containing a list of Proof Key for Code Exchange (PKCE) [RFC7636] code challenge methods supported by this authorization server.
+    @nullable
+    @BuiltValueField(wireName: r'code_challenge_methods_supported')
+    BuiltList<String> get codeChallengeMethodsSupported;
 
-  /// Boolean value specifying whether the OP can pass iss (issuer) and sid (session ID) query parameters to identify the RP session with the OP when the frontchannel_logout_uri is used. If supported, the sid Claim is also included in ID Tokens issued by the OP.
-  bool frontchannelLogoutSessionSupported;
+    /// URL at the OP to which an RP can perform a redirect to request that the End-User be logged out at the OP.
+    @nullable
+    @BuiltValueField(wireName: r'end_session_endpoint')
+    String get endSessionEndpoint;
 
-  /// Boolean value specifying whether the OP supports HTTP-based logout, with true indicating support.
-  bool frontchannelLogoutSupported;
+    /// Boolean value specifying whether the OP can pass iss (issuer) and sid (session ID) query parameters to identify the RP session with the OP when the frontchannel_logout_uri is used. If supported, the sid Claim is also included in ID Tokens issued by the OP.
+    @nullable
+    @BuiltValueField(wireName: r'frontchannel_logout_session_supported')
+    bool get frontchannelLogoutSessionSupported;
 
-  /// JSON array containing a list of the OAuth 2.0 Grant Type values that this OP supports.
-  List<String> grantTypesSupported;
+    /// Boolean value specifying whether the OP supports HTTP-based logout, with true indicating support.
+    @nullable
+    @BuiltValueField(wireName: r'frontchannel_logout_supported')
+    bool get frontchannelLogoutSupported;
 
-  /// JSON array containing a list of the JWS signing algorithms (alg values) supported by the OP for the ID Token to encode the Claims in a JWT.
-  List<String> idTokenSigningAlgValuesSupported;
+    /// JSON array containing a list of the OAuth 2.0 Grant Type values that this OP supports.
+    @nullable
+    @BuiltValueField(wireName: r'grant_types_supported')
+    BuiltList<String> get grantTypesSupported;
 
-  /// URL using the https scheme with no query or fragment component that the OP asserts as its IssuerURL Identifier. If IssuerURL discovery is supported , this value MUST be identical to the issuer value returned by WebFinger. This also MUST be identical to the iss Claim value in ID Tokens issued from this IssuerURL.
-  String issuer;
+    /// JSON array containing a list of the JWS signing algorithms (alg values) supported by the OP for the ID Token to encode the Claims in a JWT.
+    @BuiltValueField(wireName: r'id_token_signing_alg_values_supported')
+    BuiltList<String> get idTokenSigningAlgValuesSupported;
 
-  /// URL of the OP's JSON Web Key Set [JWK] document. This contains the signing key(s) the RP uses to validate signatures from the OP. The JWK Set MAY also contain the Server's encryption key(s), which are used by RPs to encrypt requests to the Server. When both signing and encryption keys are made available, a use (Key Use) parameter value is REQUIRED for all keys in the referenced JWK Set to indicate each key's intended usage. Although some algorithms allow the same key to be used for both signatures and encryption, doing so is NOT RECOMMENDED, as it is less secure. The JWK x5c parameter MAY be used to provide X.509 representations of keys provided. When used, the bare key values MUST still be present and MUST match those in the certificate.
-  String jwksUri;
+    /// URL using the https scheme with no query or fragment component that the OP asserts as its IssuerURL Identifier. If IssuerURL discovery is supported , this value MUST be identical to the issuer value returned by WebFinger. This also MUST be identical to the iss Claim value in ID Tokens issued from this IssuerURL.
+    @BuiltValueField(wireName: r'issuer')
+    String get issuer;
 
-  /// URL of the OP's Dynamic Client Registration Endpoint.
-  String registrationEndpoint;
+    /// URL of the OP's JSON Web Key Set [JWK] document. This contains the signing key(s) the RP uses to validate signatures from the OP. The JWK Set MAY also contain the Server's encryption key(s), which are used by RPs to encrypt requests to the Server. When both signing and encryption keys are made available, a use (Key Use) parameter value is REQUIRED for all keys in the referenced JWK Set to indicate each key's intended usage. Although some algorithms allow the same key to be used for both signatures and encryption, doing so is NOT RECOMMENDED, as it is less secure. The JWK x5c parameter MAY be used to provide X.509 representations of keys provided. When used, the bare key values MUST still be present and MUST match those in the certificate.
+    @BuiltValueField(wireName: r'jwks_uri')
+    String get jwksUri;
 
-  /// JSON array containing a list of the JWS signing algorithms (alg values) supported by the OP for Request Objects, which are described in Section 6.1 of OpenID Connect Core 1.0 [OpenID.Core]. These algorithms are used both when the Request Object is passed by value (using the request parameter) and when it is passed by reference (using the request_uri parameter).
-  List<String> requestObjectSigningAlgValuesSupported;
+    /// URL of the OP's Dynamic Client Registration Endpoint.
+    @nullable
+    @BuiltValueField(wireName: r'registration_endpoint')
+    String get registrationEndpoint;
 
-  /// Boolean value specifying whether the OP supports use of the request parameter, with true indicating support.
-  bool requestParameterSupported;
+    /// JSON array containing a list of the JWS signing algorithms (alg values) supported by the OP for Request Objects, which are described in Section 6.1 of OpenID Connect Core 1.0 [OpenID.Core]. These algorithms are used both when the Request Object is passed by value (using the request parameter) and when it is passed by reference (using the request_uri parameter).
+    @nullable
+    @BuiltValueField(wireName: r'request_object_signing_alg_values_supported')
+    BuiltList<String> get requestObjectSigningAlgValuesSupported;
 
-  /// Boolean value specifying whether the OP supports use of the request_uri parameter, with true indicating support.
-  bool requestUriParameterSupported;
+    /// Boolean value specifying whether the OP supports use of the request parameter, with true indicating support.
+    @nullable
+    @BuiltValueField(wireName: r'request_parameter_supported')
+    bool get requestParameterSupported;
 
-  /// Boolean value specifying whether the OP requires any request_uri values used to be pre-registered using the request_uris registration parameter.
-  bool requireRequestUriRegistration;
+    /// Boolean value specifying whether the OP supports use of the request_uri parameter, with true indicating support.
+    @nullable
+    @BuiltValueField(wireName: r'request_uri_parameter_supported')
+    bool get requestUriParameterSupported;
 
-  /// JSON array containing a list of the OAuth 2.0 response_mode values that this OP supports.
-  List<String> responseModesSupported;
+    /// Boolean value specifying whether the OP requires any request_uri values used to be pre-registered using the request_uris registration parameter.
+    @nullable
+    @BuiltValueField(wireName: r'require_request_uri_registration')
+    bool get requireRequestUriRegistration;
 
-  /// JSON array containing a list of the OAuth 2.0 response_type values that this OP supports. Dynamic OpenID Providers MUST support the code, id_token, and the token id_token Response Type values.
-  List<String> responseTypesSupported;
+    /// JSON array containing a list of the OAuth 2.0 response_mode values that this OP supports.
+    @nullable
+    @BuiltValueField(wireName: r'response_modes_supported')
+    BuiltList<String> get responseModesSupported;
 
-  /// URL of the authorization server's OAuth 2.0 revocation endpoint.
-  String revocationEndpoint;
+    /// JSON array containing a list of the OAuth 2.0 response_type values that this OP supports. Dynamic OpenID Providers MUST support the code, id_token, and the token id_token Response Type values.
+    @BuiltValueField(wireName: r'response_types_supported')
+    BuiltList<String> get responseTypesSupported;
 
-  /// SON array containing a list of the OAuth 2.0 [RFC6749] scope values that this server supports. The server MUST support the openid scope value. Servers MAY choose not to advertise some supported scope values even when this parameter is used
-  List<String> scopesSupported;
+    /// URL of the authorization server's OAuth 2.0 revocation endpoint.
+    @nullable
+    @BuiltValueField(wireName: r'revocation_endpoint')
+    String get revocationEndpoint;
 
-  /// JSON array containing a list of the Subject Identifier types that this OP supports. Valid types include pairwise and public.
-  List<String> subjectTypesSupported;
+    /// SON array containing a list of the OAuth 2.0 [RFC6749] scope values that this server supports. The server MUST support the openid scope value. Servers MAY choose not to advertise some supported scope values even when this parameter is used
+    @nullable
+    @BuiltValueField(wireName: r'scopes_supported')
+    BuiltList<String> get scopesSupported;
 
-  /// URL of the OP's OAuth 2.0 Token Endpoint
-  String tokenEndpoint;
+    /// JSON array containing a list of the Subject Identifier types that this OP supports. Valid types include pairwise and public.
+    @BuiltValueField(wireName: r'subject_types_supported')
+    BuiltList<String> get subjectTypesSupported;
 
-  /// JSON array containing a list of Client Authentication methods supported by this Token Endpoint. The options are client_secret_post, client_secret_basic, client_secret_jwt, and private_key_jwt, as described in Section 9 of OpenID Connect Core 1.0
-  List<String> tokenEndpointAuthMethodsSupported;
+    /// URL of the OP's OAuth 2.0 Token Endpoint
+    @BuiltValueField(wireName: r'token_endpoint')
+    String get tokenEndpoint;
 
-  /// URL of the OP's UserInfo Endpoint.
-  String userinfoEndpoint;
+    /// JSON array containing a list of Client Authentication methods supported by this Token Endpoint. The options are client_secret_post, client_secret_basic, client_secret_jwt, and private_key_jwt, as described in Section 9 of OpenID Connect Core 1.0
+    @nullable
+    @BuiltValueField(wireName: r'token_endpoint_auth_methods_supported')
+    BuiltList<String> get tokenEndpointAuthMethodsSupported;
 
-  /// JSON array containing a list of the JWS [JWS] signing algorithms (alg values) [JWA] supported by the UserInfo Endpoint to encode the Claims in a JWT [JWT].
-  List<String> userinfoSigningAlgValuesSupported;
+    /// URL of the OP's UserInfo Endpoint.
+    @nullable
+    @BuiltValueField(wireName: r'userinfo_endpoint')
+    String get userinfoEndpoint;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is WellKnown &&
-     other.authorizationEndpoint == authorizationEndpoint &&
-     other.backchannelLogoutSessionSupported == backchannelLogoutSessionSupported &&
-     other.backchannelLogoutSupported == backchannelLogoutSupported &&
-     other.claimsParameterSupported == claimsParameterSupported &&
-     other.claimsSupported == claimsSupported &&
-     other.codeChallengeMethodsSupported == codeChallengeMethodsSupported &&
-     other.endSessionEndpoint == endSessionEndpoint &&
-     other.frontchannelLogoutSessionSupported == frontchannelLogoutSessionSupported &&
-     other.frontchannelLogoutSupported == frontchannelLogoutSupported &&
-     other.grantTypesSupported == grantTypesSupported &&
-     other.idTokenSigningAlgValuesSupported == idTokenSigningAlgValuesSupported &&
-     other.issuer == issuer &&
-     other.jwksUri == jwksUri &&
-     other.registrationEndpoint == registrationEndpoint &&
-     other.requestObjectSigningAlgValuesSupported == requestObjectSigningAlgValuesSupported &&
-     other.requestParameterSupported == requestParameterSupported &&
-     other.requestUriParameterSupported == requestUriParameterSupported &&
-     other.requireRequestUriRegistration == requireRequestUriRegistration &&
-     other.responseModesSupported == responseModesSupported &&
-     other.responseTypesSupported == responseTypesSupported &&
-     other.revocationEndpoint == revocationEndpoint &&
-     other.scopesSupported == scopesSupported &&
-     other.subjectTypesSupported == subjectTypesSupported &&
-     other.tokenEndpoint == tokenEndpoint &&
-     other.tokenEndpointAuthMethodsSupported == tokenEndpointAuthMethodsSupported &&
-     other.userinfoEndpoint == userinfoEndpoint &&
-     other.userinfoSigningAlgValuesSupported == userinfoSigningAlgValuesSupported;
+    /// JSON array containing a list of the JWS [JWS] signing algorithms (alg values) [JWA] supported by the UserInfo Endpoint to encode the Claims in a JWT [JWT].
+    @nullable
+    @BuiltValueField(wireName: r'userinfo_signing_alg_values_supported')
+    BuiltList<String> get userinfoSigningAlgValuesSupported;
 
-  @override
-  int get hashCode =>
-    (authorizationEndpoint == null ? 0 : authorizationEndpoint.hashCode) +
-    (backchannelLogoutSessionSupported == null ? 0 : backchannelLogoutSessionSupported.hashCode) +
-    (backchannelLogoutSupported == null ? 0 : backchannelLogoutSupported.hashCode) +
-    (claimsParameterSupported == null ? 0 : claimsParameterSupported.hashCode) +
-    (claimsSupported == null ? 0 : claimsSupported.hashCode) +
-    (codeChallengeMethodsSupported == null ? 0 : codeChallengeMethodsSupported.hashCode) +
-    (endSessionEndpoint == null ? 0 : endSessionEndpoint.hashCode) +
-    (frontchannelLogoutSessionSupported == null ? 0 : frontchannelLogoutSessionSupported.hashCode) +
-    (frontchannelLogoutSupported == null ? 0 : frontchannelLogoutSupported.hashCode) +
-    (grantTypesSupported == null ? 0 : grantTypesSupported.hashCode) +
-    (idTokenSigningAlgValuesSupported == null ? 0 : idTokenSigningAlgValuesSupported.hashCode) +
-    (issuer == null ? 0 : issuer.hashCode) +
-    (jwksUri == null ? 0 : jwksUri.hashCode) +
-    (registrationEndpoint == null ? 0 : registrationEndpoint.hashCode) +
-    (requestObjectSigningAlgValuesSupported == null ? 0 : requestObjectSigningAlgValuesSupported.hashCode) +
-    (requestParameterSupported == null ? 0 : requestParameterSupported.hashCode) +
-    (requestUriParameterSupported == null ? 0 : requestUriParameterSupported.hashCode) +
-    (requireRequestUriRegistration == null ? 0 : requireRequestUriRegistration.hashCode) +
-    (responseModesSupported == null ? 0 : responseModesSupported.hashCode) +
-    (responseTypesSupported == null ? 0 : responseTypesSupported.hashCode) +
-    (revocationEndpoint == null ? 0 : revocationEndpoint.hashCode) +
-    (scopesSupported == null ? 0 : scopesSupported.hashCode) +
-    (subjectTypesSupported == null ? 0 : subjectTypesSupported.hashCode) +
-    (tokenEndpoint == null ? 0 : tokenEndpoint.hashCode) +
-    (tokenEndpointAuthMethodsSupported == null ? 0 : tokenEndpointAuthMethodsSupported.hashCode) +
-    (userinfoEndpoint == null ? 0 : userinfoEndpoint.hashCode) +
-    (userinfoSigningAlgValuesSupported == null ? 0 : userinfoSigningAlgValuesSupported.hashCode);
+    WellKnown._();
 
-  @override
-  String toString() => 'WellKnown[authorizationEndpoint=$authorizationEndpoint, backchannelLogoutSessionSupported=$backchannelLogoutSessionSupported, backchannelLogoutSupported=$backchannelLogoutSupported, claimsParameterSupported=$claimsParameterSupported, claimsSupported=$claimsSupported, codeChallengeMethodsSupported=$codeChallengeMethodsSupported, endSessionEndpoint=$endSessionEndpoint, frontchannelLogoutSessionSupported=$frontchannelLogoutSessionSupported, frontchannelLogoutSupported=$frontchannelLogoutSupported, grantTypesSupported=$grantTypesSupported, idTokenSigningAlgValuesSupported=$idTokenSigningAlgValuesSupported, issuer=$issuer, jwksUri=$jwksUri, registrationEndpoint=$registrationEndpoint, requestObjectSigningAlgValuesSupported=$requestObjectSigningAlgValuesSupported, requestParameterSupported=$requestParameterSupported, requestUriParameterSupported=$requestUriParameterSupported, requireRequestUriRegistration=$requireRequestUriRegistration, responseModesSupported=$responseModesSupported, responseTypesSupported=$responseTypesSupported, revocationEndpoint=$revocationEndpoint, scopesSupported=$scopesSupported, subjectTypesSupported=$subjectTypesSupported, tokenEndpoint=$tokenEndpoint, tokenEndpointAuthMethodsSupported=$tokenEndpointAuthMethodsSupported, userinfoEndpoint=$userinfoEndpoint, userinfoSigningAlgValuesSupported=$userinfoSigningAlgValuesSupported]';
+    static void _initializeBuilder(WellKnownBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-      json[r'authorization_endpoint'] = authorizationEndpoint;
-    if (backchannelLogoutSessionSupported != null) {
-      json[r'backchannel_logout_session_supported'] = backchannelLogoutSessionSupported;
+    factory WellKnown([void updates(WellKnownBuilder b)]) = _$WellKnown;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<WellKnown> get serializer => _$WellKnownSerializer();
+}
+
+class _$WellKnownSerializer implements StructuredSerializer<WellKnown> {
+
+    @override
+    final Iterable<Type> types = const [WellKnown, _$WellKnown];
+    @override
+    final String wireName = r'WellKnown';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, WellKnown object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        result
+            ..add(r'authorization_endpoint')
+            ..add(serializers.serialize(object.authorizationEndpoint,
+                specifiedType: const FullType(String)));
+        if (object.backchannelLogoutSessionSupported != null) {
+            result
+                ..add(r'backchannel_logout_session_supported')
+                ..add(serializers.serialize(object.backchannelLogoutSessionSupported,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.backchannelLogoutSupported != null) {
+            result
+                ..add(r'backchannel_logout_supported')
+                ..add(serializers.serialize(object.backchannelLogoutSupported,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.claimsParameterSupported != null) {
+            result
+                ..add(r'claims_parameter_supported')
+                ..add(serializers.serialize(object.claimsParameterSupported,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.claimsSupported != null) {
+            result
+                ..add(r'claims_supported')
+                ..add(serializers.serialize(object.claimsSupported,
+                    specifiedType: const FullType(BuiltList, [FullType(String)])));
+        }
+        if (object.codeChallengeMethodsSupported != null) {
+            result
+                ..add(r'code_challenge_methods_supported')
+                ..add(serializers.serialize(object.codeChallengeMethodsSupported,
+                    specifiedType: const FullType(BuiltList, [FullType(String)])));
+        }
+        if (object.endSessionEndpoint != null) {
+            result
+                ..add(r'end_session_endpoint')
+                ..add(serializers.serialize(object.endSessionEndpoint,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.frontchannelLogoutSessionSupported != null) {
+            result
+                ..add(r'frontchannel_logout_session_supported')
+                ..add(serializers.serialize(object.frontchannelLogoutSessionSupported,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.frontchannelLogoutSupported != null) {
+            result
+                ..add(r'frontchannel_logout_supported')
+                ..add(serializers.serialize(object.frontchannelLogoutSupported,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.grantTypesSupported != null) {
+            result
+                ..add(r'grant_types_supported')
+                ..add(serializers.serialize(object.grantTypesSupported,
+                    specifiedType: const FullType(BuiltList, [FullType(String)])));
+        }
+        result
+            ..add(r'id_token_signing_alg_values_supported')
+            ..add(serializers.serialize(object.idTokenSigningAlgValuesSupported,
+                specifiedType: const FullType(BuiltList, [FullType(String)])));
+        result
+            ..add(r'issuer')
+            ..add(serializers.serialize(object.issuer,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'jwks_uri')
+            ..add(serializers.serialize(object.jwksUri,
+                specifiedType: const FullType(String)));
+        if (object.registrationEndpoint != null) {
+            result
+                ..add(r'registration_endpoint')
+                ..add(serializers.serialize(object.registrationEndpoint,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.requestObjectSigningAlgValuesSupported != null) {
+            result
+                ..add(r'request_object_signing_alg_values_supported')
+                ..add(serializers.serialize(object.requestObjectSigningAlgValuesSupported,
+                    specifiedType: const FullType(BuiltList, [FullType(String)])));
+        }
+        if (object.requestParameterSupported != null) {
+            result
+                ..add(r'request_parameter_supported')
+                ..add(serializers.serialize(object.requestParameterSupported,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.requestUriParameterSupported != null) {
+            result
+                ..add(r'request_uri_parameter_supported')
+                ..add(serializers.serialize(object.requestUriParameterSupported,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.requireRequestUriRegistration != null) {
+            result
+                ..add(r'require_request_uri_registration')
+                ..add(serializers.serialize(object.requireRequestUriRegistration,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.responseModesSupported != null) {
+            result
+                ..add(r'response_modes_supported')
+                ..add(serializers.serialize(object.responseModesSupported,
+                    specifiedType: const FullType(BuiltList, [FullType(String)])));
+        }
+        result
+            ..add(r'response_types_supported')
+            ..add(serializers.serialize(object.responseTypesSupported,
+                specifiedType: const FullType(BuiltList, [FullType(String)])));
+        if (object.revocationEndpoint != null) {
+            result
+                ..add(r'revocation_endpoint')
+                ..add(serializers.serialize(object.revocationEndpoint,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.scopesSupported != null) {
+            result
+                ..add(r'scopes_supported')
+                ..add(serializers.serialize(object.scopesSupported,
+                    specifiedType: const FullType(BuiltList, [FullType(String)])));
+        }
+        result
+            ..add(r'subject_types_supported')
+            ..add(serializers.serialize(object.subjectTypesSupported,
+                specifiedType: const FullType(BuiltList, [FullType(String)])));
+        result
+            ..add(r'token_endpoint')
+            ..add(serializers.serialize(object.tokenEndpoint,
+                specifiedType: const FullType(String)));
+        if (object.tokenEndpointAuthMethodsSupported != null) {
+            result
+                ..add(r'token_endpoint_auth_methods_supported')
+                ..add(serializers.serialize(object.tokenEndpointAuthMethodsSupported,
+                    specifiedType: const FullType(BuiltList, [FullType(String)])));
+        }
+        if (object.userinfoEndpoint != null) {
+            result
+                ..add(r'userinfo_endpoint')
+                ..add(serializers.serialize(object.userinfoEndpoint,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.userinfoSigningAlgValuesSupported != null) {
+            result
+                ..add(r'userinfo_signing_alg_values_supported')
+                ..add(serializers.serialize(object.userinfoSigningAlgValuesSupported,
+                    specifiedType: const FullType(BuiltList, [FullType(String)])));
+        }
+        return result;
     }
-    if (backchannelLogoutSupported != null) {
-      json[r'backchannel_logout_supported'] = backchannelLogoutSupported;
-    }
-    if (claimsParameterSupported != null) {
-      json[r'claims_parameter_supported'] = claimsParameterSupported;
-    }
-    if (claimsSupported != null) {
-      json[r'claims_supported'] = claimsSupported;
-    }
-    if (codeChallengeMethodsSupported != null) {
-      json[r'code_challenge_methods_supported'] = codeChallengeMethodsSupported;
-    }
-    if (endSessionEndpoint != null) {
-      json[r'end_session_endpoint'] = endSessionEndpoint;
-    }
-    if (frontchannelLogoutSessionSupported != null) {
-      json[r'frontchannel_logout_session_supported'] = frontchannelLogoutSessionSupported;
-    }
-    if (frontchannelLogoutSupported != null) {
-      json[r'frontchannel_logout_supported'] = frontchannelLogoutSupported;
-    }
-    if (grantTypesSupported != null) {
-      json[r'grant_types_supported'] = grantTypesSupported;
-    }
-      json[r'id_token_signing_alg_values_supported'] = idTokenSigningAlgValuesSupported;
-      json[r'issuer'] = issuer;
-      json[r'jwks_uri'] = jwksUri;
-    if (registrationEndpoint != null) {
-      json[r'registration_endpoint'] = registrationEndpoint;
-    }
-    if (requestObjectSigningAlgValuesSupported != null) {
-      json[r'request_object_signing_alg_values_supported'] = requestObjectSigningAlgValuesSupported;
-    }
-    if (requestParameterSupported != null) {
-      json[r'request_parameter_supported'] = requestParameterSupported;
-    }
-    if (requestUriParameterSupported != null) {
-      json[r'request_uri_parameter_supported'] = requestUriParameterSupported;
-    }
-    if (requireRequestUriRegistration != null) {
-      json[r'require_request_uri_registration'] = requireRequestUriRegistration;
-    }
-    if (responseModesSupported != null) {
-      json[r'response_modes_supported'] = responseModesSupported;
-    }
-      json[r'response_types_supported'] = responseTypesSupported;
-    if (revocationEndpoint != null) {
-      json[r'revocation_endpoint'] = revocationEndpoint;
-    }
-    if (scopesSupported != null) {
-      json[r'scopes_supported'] = scopesSupported;
-    }
-      json[r'subject_types_supported'] = subjectTypesSupported;
-      json[r'token_endpoint'] = tokenEndpoint;
-    if (tokenEndpointAuthMethodsSupported != null) {
-      json[r'token_endpoint_auth_methods_supported'] = tokenEndpointAuthMethodsSupported;
-    }
-    if (userinfoEndpoint != null) {
-      json[r'userinfo_endpoint'] = userinfoEndpoint;
-    }
-    if (userinfoSigningAlgValuesSupported != null) {
-      json[r'userinfo_signing_alg_values_supported'] = userinfoSigningAlgValuesSupported;
-    }
-    return json;
-  }
 
-  /// Returns a new [WellKnown] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static WellKnown fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : WellKnown(
-        authorizationEndpoint: json[r'authorization_endpoint'],
-        backchannelLogoutSessionSupported: json[r'backchannel_logout_session_supported'],
-        backchannelLogoutSupported: json[r'backchannel_logout_supported'],
-        claimsParameterSupported: json[r'claims_parameter_supported'],
-        claimsSupported: json[r'claims_supported'] == null
-          ? null
-          : (json[r'claims_supported'] as List).cast<String>(),
-        codeChallengeMethodsSupported: json[r'code_challenge_methods_supported'] == null
-          ? null
-          : (json[r'code_challenge_methods_supported'] as List).cast<String>(),
-        endSessionEndpoint: json[r'end_session_endpoint'],
-        frontchannelLogoutSessionSupported: json[r'frontchannel_logout_session_supported'],
-        frontchannelLogoutSupported: json[r'frontchannel_logout_supported'],
-        grantTypesSupported: json[r'grant_types_supported'] == null
-          ? null
-          : (json[r'grant_types_supported'] as List).cast<String>(),
-        idTokenSigningAlgValuesSupported: json[r'id_token_signing_alg_values_supported'] == null
-          ? null
-          : (json[r'id_token_signing_alg_values_supported'] as List).cast<String>(),
-        issuer: json[r'issuer'],
-        jwksUri: json[r'jwks_uri'],
-        registrationEndpoint: json[r'registration_endpoint'],
-        requestObjectSigningAlgValuesSupported: json[r'request_object_signing_alg_values_supported'] == null
-          ? null
-          : (json[r'request_object_signing_alg_values_supported'] as List).cast<String>(),
-        requestParameterSupported: json[r'request_parameter_supported'],
-        requestUriParameterSupported: json[r'request_uri_parameter_supported'],
-        requireRequestUriRegistration: json[r'require_request_uri_registration'],
-        responseModesSupported: json[r'response_modes_supported'] == null
-          ? null
-          : (json[r'response_modes_supported'] as List).cast<String>(),
-        responseTypesSupported: json[r'response_types_supported'] == null
-          ? null
-          : (json[r'response_types_supported'] as List).cast<String>(),
-        revocationEndpoint: json[r'revocation_endpoint'],
-        scopesSupported: json[r'scopes_supported'] == null
-          ? null
-          : (json[r'scopes_supported'] as List).cast<String>(),
-        subjectTypesSupported: json[r'subject_types_supported'] == null
-          ? null
-          : (json[r'subject_types_supported'] as List).cast<String>(),
-        tokenEndpoint: json[r'token_endpoint'],
-        tokenEndpointAuthMethodsSupported: json[r'token_endpoint_auth_methods_supported'] == null
-          ? null
-          : (json[r'token_endpoint_auth_methods_supported'] as List).cast<String>(),
-        userinfoEndpoint: json[r'userinfo_endpoint'],
-        userinfoSigningAlgValuesSupported: json[r'userinfo_signing_alg_values_supported'] == null
-          ? null
-          : (json[r'userinfo_signing_alg_values_supported'] as List).cast<String>(),
-    );
+    @override
+    WellKnown deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = WellKnownBuilder();
 
-  static List<WellKnown> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <WellKnown>[]
-      : json.map((dynamic value) => WellKnown.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, WellKnown> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, WellKnown>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = WellKnown.fromJson(value));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'authorization_endpoint':
+                    result.authorizationEndpoint = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'backchannel_logout_session_supported':
+                    result.backchannelLogoutSessionSupported = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'backchannel_logout_supported':
+                    result.backchannelLogoutSupported = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'claims_parameter_supported':
+                    result.claimsParameterSupported = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'claims_supported':
+                    result.claimsSupported.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
+                    break;
+                case r'code_challenge_methods_supported':
+                    result.codeChallengeMethodsSupported.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
+                    break;
+                case r'end_session_endpoint':
+                    result.endSessionEndpoint = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'frontchannel_logout_session_supported':
+                    result.frontchannelLogoutSessionSupported = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'frontchannel_logout_supported':
+                    result.frontchannelLogoutSupported = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'grant_types_supported':
+                    result.grantTypesSupported.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
+                    break;
+                case r'id_token_signing_alg_values_supported':
+                    result.idTokenSigningAlgValuesSupported.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
+                    break;
+                case r'issuer':
+                    result.issuer = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'jwks_uri':
+                    result.jwksUri = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'registration_endpoint':
+                    result.registrationEndpoint = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'request_object_signing_alg_values_supported':
+                    result.requestObjectSigningAlgValuesSupported.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
+                    break;
+                case r'request_parameter_supported':
+                    result.requestParameterSupported = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'request_uri_parameter_supported':
+                    result.requestUriParameterSupported = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'require_request_uri_registration':
+                    result.requireRequestUriRegistration = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'response_modes_supported':
+                    result.responseModesSupported.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
+                    break;
+                case r'response_types_supported':
+                    result.responseTypesSupported.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
+                    break;
+                case r'revocation_endpoint':
+                    result.revocationEndpoint = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'scopes_supported':
+                    result.scopesSupported.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
+                    break;
+                case r'subject_types_supported':
+                    result.subjectTypesSupported.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
+                    break;
+                case r'token_endpoint':
+                    result.tokenEndpoint = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'token_endpoint_auth_methods_supported':
+                    result.tokenEndpointAuthMethodsSupported.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
+                    break;
+                case r'userinfo_endpoint':
+                    result.userinfoEndpoint = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'userinfo_signing_alg_values_supported':
+                    result.userinfoSigningAlgValuesSupported.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of WellKnown-objects as value to a dart map
-  static Map<String, List<WellKnown>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<WellKnown>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = WellKnown.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

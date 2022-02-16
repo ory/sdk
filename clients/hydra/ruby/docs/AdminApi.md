@@ -13,24 +13,26 @@ All URIs are relative to *http://localhost*
 | [**delete_json_web_key_set**](AdminApi.md#delete_json_web_key_set) | **DELETE** /keys/{set} | Delete a JSON Web Key Set |
 | [**delete_o_auth2_client**](AdminApi.md#delete_o_auth2_client) | **DELETE** /clients/{id} | Deletes an OAuth 2.0 Client |
 | [**delete_o_auth2_token**](AdminApi.md#delete_o_auth2_token) | **DELETE** /oauth2/tokens | Delete OAuth2 Access Tokens from a Client |
+| [**delete_trusted_jwt_grant_issuer**](AdminApi.md#delete_trusted_jwt_grant_issuer) | **DELETE** /trust/grants/jwt-bearer/issuers/{id} | Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer |
 | [**flush_inactive_o_auth2_tokens**](AdminApi.md#flush_inactive_o_auth2_tokens) | **POST** /oauth2/flush | Flush Expired OAuth2 Access Tokens |
 | [**get_consent_request**](AdminApi.md#get_consent_request) | **GET** /oauth2/auth/requests/consent | Get Consent Request Information |
 | [**get_json_web_key**](AdminApi.md#get_json_web_key) | **GET** /keys/{set}/{kid} | Fetch a JSON Web Key |
 | [**get_json_web_key_set**](AdminApi.md#get_json_web_key_set) | **GET** /keys/{set} | Retrieve a JSON Web Key Set |
 | [**get_login_request**](AdminApi.md#get_login_request) | **GET** /oauth2/auth/requests/login | Get a Login Request |
 | [**get_logout_request**](AdminApi.md#get_logout_request) | **GET** /oauth2/auth/requests/logout | Get a Logout Request |
-| [**get_o_auth2_client**](AdminApi.md#get_o_auth2_client) | **GET** /clients/{id} | Get an OAuth 2.0 Client. |
-| [**get_version**](AdminApi.md#get_version) | **GET** /version | Get Service Version |
+| [**get_o_auth2_client**](AdminApi.md#get_o_auth2_client) | **GET** /clients/{id} | Get an OAuth 2.0 Client |
+| [**get_trusted_jwt_grant_issuer**](AdminApi.md#get_trusted_jwt_grant_issuer) | **GET** /trust/grants/jwt-bearer/issuers/{id} | Get a Trusted OAuth2 JWT Bearer Grant Type Issuer |
 | [**introspect_o_auth2_token**](AdminApi.md#introspect_o_auth2_token) | **POST** /oauth2/introspect | Introspect OAuth2 Tokens |
-| [**is_instance_alive**](AdminApi.md#is_instance_alive) | **GET** /health/alive | Check Alive Status |
 | [**list_o_auth2_clients**](AdminApi.md#list_o_auth2_clients) | **GET** /clients | List OAuth 2.0 Clients |
 | [**list_subject_consent_sessions**](AdminApi.md#list_subject_consent_sessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject |
+| [**list_trusted_jwt_grant_issuers**](AdminApi.md#list_trusted_jwt_grant_issuers) | **GET** /trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers |
 | [**patch_o_auth2_client**](AdminApi.md#patch_o_auth2_client) | **PATCH** /clients/{id} | Patch an OAuth 2.0 Client |
 | [**reject_consent_request**](AdminApi.md#reject_consent_request) | **PUT** /oauth2/auth/requests/consent/reject | Reject a Consent Request |
 | [**reject_login_request**](AdminApi.md#reject_login_request) | **PUT** /oauth2/auth/requests/login/reject | Reject a Login Request |
 | [**reject_logout_request**](AdminApi.md#reject_logout_request) | **PUT** /oauth2/auth/requests/logout/reject | Reject a Logout Request |
 | [**revoke_authentication_session**](AdminApi.md#revoke_authentication_session) | **DELETE** /oauth2/auth/sessions/login | Invalidates All Login Sessions of a Certain User Invalidates a Subject&#39;s Authentication Session |
 | [**revoke_consent_sessions**](AdminApi.md#revoke_consent_sessions) | **DELETE** /oauth2/auth/sessions/consent | Revokes Consent Sessions of a Subject for a Specific OAuth 2.0 Client |
+| [**trust_jwt_grant_issuer**](AdminApi.md#trust_jwt_grant_issuer) | **POST** /trust/grants/jwt-bearer/issuers | Trust an OAuth2 JWT Bearer Grant Type Issuer |
 | [**update_json_web_key**](AdminApi.md#update_json_web_key) | **PUT** /keys/{set}/{kid} | Update a JSON Web Key |
 | [**update_json_web_key_set**](AdminApi.md#update_json_web_key_set) | **PUT** /keys/{set} | Update a JSON Web Key Set |
 | [**update_o_auth2_client**](AdminApi.md#update_o_auth2_client) | **PUT** /clients/{id} | Update an OAuth 2.0 Client |
@@ -53,7 +55,7 @@ require 'ory-hydra-client'
 api_instance = OryHydraClient::AdminApi.new
 consent_challenge = 'consent_challenge_example' # String | 
 opts = {
-  body: OryHydraClient::AcceptConsentRequest.new # AcceptConsentRequest | 
+  accept_consent_request: OryHydraClient::AcceptConsentRequest.new # AcceptConsentRequest | 
 }
 
 begin
@@ -88,7 +90,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **consent_challenge** | **String** |  |  |
-| **body** | [**AcceptConsentRequest**](AcceptConsentRequest.md) |  | [optional] |
+| **accept_consent_request** | [**AcceptConsentRequest**](AcceptConsentRequest.md) |  | [optional] |
 
 ### Return type
 
@@ -121,7 +123,7 @@ require 'ory-hydra-client'
 api_instance = OryHydraClient::AdminApi.new
 login_challenge = 'login_challenge_example' # String | 
 opts = {
-  body: OryHydraClient::AcceptLoginRequest.new({subject: 'subject_example'}) # AcceptLoginRequest | 
+  accept_login_request: OryHydraClient::AcceptLoginRequest.new({subject: 'subject_example'}) # AcceptLoginRequest | 
 }
 
 begin
@@ -156,7 +158,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **login_challenge** | **String** |  |  |
-| **body** | [**AcceptLoginRequest**](AcceptLoginRequest.md) |  | [optional] |
+| **accept_login_request** | [**AcceptLoginRequest**](AcceptLoginRequest.md) |  | [optional] |
 
 ### Return type
 
@@ -253,7 +255,7 @@ require 'ory-hydra-client'
 api_instance = OryHydraClient::AdminApi.new
 set = 'set_example' # String | The set
 opts = {
-  body: OryHydraClient::JsonWebKeySetGeneratorRequest.new({alg: 'alg_example', kid: 'kid_example', use: 'use_example'}) # JsonWebKeySetGeneratorRequest | 
+  json_web_key_set_generator_request: OryHydraClient::JsonWebKeySetGeneratorRequest.new({alg: 'alg_example', kid: 'kid_example', use: 'use_example'}) # JsonWebKeySetGeneratorRequest | 
 }
 
 begin
@@ -288,7 +290,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **set** | **String** | The set |  |
-| **body** | [**JsonWebKeySetGeneratorRequest**](JsonWebKeySetGeneratorRequest.md) |  | [optional] |
+| **json_web_key_set_generator_request** | [**JsonWebKeySetGeneratorRequest**](JsonWebKeySetGeneratorRequest.md) |  | [optional] |
 
 ### Return type
 
@@ -306,11 +308,11 @@ No authorization required
 
 ## create_o_auth2_client
 
-> <OAuth2Client> create_o_auth2_client(body)
+> <OAuth2Client> create_o_auth2_client(o_auth2_client)
 
 Create an OAuth 2.0 Client
 
-Create a new OAuth 2.0 client If you pass `client_secret` the secret will be used, otherwise a random secret will be generated. The secret will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somwhere safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+Create a new OAuth 2.0 client If you pass `client_secret` the secret will be used, otherwise a random secret will be generated. The secret will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somwhere safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
 
 ### Examples
 
@@ -319,11 +321,11 @@ require 'time'
 require 'ory-hydra-client'
 
 api_instance = OryHydraClient::AdminApi.new
-body = OryHydraClient::OAuth2Client.new # OAuth2Client | 
+o_auth2_client = OryHydraClient::OAuth2Client.new # OAuth2Client | 
 
 begin
   # Create an OAuth 2.0 Client
-  result = api_instance.create_o_auth2_client(body)
+  result = api_instance.create_o_auth2_client(o_auth2_client)
   p result
 rescue OryHydraClient::ApiError => e
   puts "Error when calling AdminApi->create_o_auth2_client: #{e}"
@@ -334,12 +336,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<OAuth2Client>, Integer, Hash)> create_o_auth2_client_with_http_info(body)
+> <Array(<OAuth2Client>, Integer, Hash)> create_o_auth2_client_with_http_info(o_auth2_client)
 
 ```ruby
 begin
   # Create an OAuth 2.0 Client
-  data, status_code, headers = api_instance.create_o_auth2_client_with_http_info(body)
+  data, status_code, headers = api_instance.create_o_auth2_client_with_http_info(o_auth2_client)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <OAuth2Client>
@@ -352,7 +354,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **body** | [**OAuth2Client**](OAuth2Client.md) |  |  |
+| **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md) |  |  |
 
 ### Return type
 
@@ -502,7 +504,7 @@ No authorization required
 
 Deletes an OAuth 2.0 Client
 
-Delete an existing OAuth 2.0 Client by its ID.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+Delete an existing OAuth 2.0 Client by its ID.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.  Make sure that this endpoint is well protected and only callable by first-party components.
 
 ### Examples
 
@@ -622,6 +624,69 @@ No authorization required
 - **Accept**: application/json
 
 
+## delete_trusted_jwt_grant_issuer
+
+> delete_trusted_jwt_grant_issuer(id)
+
+Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer
+
+Use this endpoint to delete trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you created the trust relationship.  Once deleted, the associated issuer will no longer be able to perform the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grant.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-hydra-client'
+
+api_instance = OryHydraClient::AdminApi.new
+id = 'id_example' # String | The id of the desired grant
+
+begin
+  # Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer
+  api_instance.delete_trusted_jwt_grant_issuer(id)
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling AdminApi->delete_trusted_jwt_grant_issuer: #{e}"
+end
+```
+
+#### Using the delete_trusted_jwt_grant_issuer_with_http_info variant
+
+This returns an Array which contains the response data (`nil` in this case), status code and headers.
+
+> <Array(nil, Integer, Hash)> delete_trusted_jwt_grant_issuer_with_http_info(id)
+
+```ruby
+begin
+  # Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer
+  data, status_code, headers = api_instance.delete_trusted_jwt_grant_issuer_with_http_info(id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => nil
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling AdminApi->delete_trusted_jwt_grant_issuer_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** | The id of the desired grant |  |
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## flush_inactive_o_auth2_tokens
 
 > flush_inactive_o_auth2_tokens(opts)
@@ -638,7 +703,7 @@ require 'ory-hydra-client'
 
 api_instance = OryHydraClient::AdminApi.new
 opts = {
-  body: OryHydraClient::FlushInactiveOAuth2TokensRequest.new # FlushInactiveOAuth2TokensRequest | 
+  flush_inactive_o_auth2_tokens_request: OryHydraClient::FlushInactiveOAuth2TokensRequest.new # FlushInactiveOAuth2TokensRequest | 
 }
 
 begin
@@ -671,7 +736,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **body** | [**FlushInactiveOAuth2TokensRequest**](FlushInactiveOAuth2TokensRequest.md) |  | [optional] |
+| **flush_inactive_o_auth2_tokens_request** | [**FlushInactiveOAuth2TokensRequest**](FlushInactiveOAuth2TokensRequest.md) |  | [optional] |
 
 ### Return type
 
@@ -1013,9 +1078,9 @@ No authorization required
 
 > <OAuth2Client> get_o_auth2_client(id)
 
-Get an OAuth 2.0 Client.
+Get an OAuth 2.0 Client
 
-Get an OAUth 2.0 client by its ID. This endpoint never returns passwords.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+Get an OAuth 2.0 client by its ID. This endpoint never returns the client secret.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
 
 ### Examples
 
@@ -1027,7 +1092,7 @@ api_instance = OryHydraClient::AdminApi.new
 id = 'id_example' # String | The id of the OAuth 2.0 Client.
 
 begin
-  # Get an OAuth 2.0 Client.
+  # Get an OAuth 2.0 Client
   result = api_instance.get_o_auth2_client(id)
   p result
 rescue OryHydraClient::ApiError => e
@@ -1043,7 +1108,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # Get an OAuth 2.0 Client.
+  # Get an OAuth 2.0 Client
   data, status_code, headers = api_instance.get_o_auth2_client_with_http_info(id)
   p status_code # => 2xx
   p headers # => { ... }
@@ -1073,13 +1138,13 @@ No authorization required
 - **Accept**: application/json
 
 
-## get_version
+## get_trusted_jwt_grant_issuer
 
-> <Version> get_version
+> <TrustedJwtGrantIssuer> get_trusted_jwt_grant_issuer(id)
 
-Get Service Version
+Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
 
-This endpoint returns the service version typically notated using semantic versioning.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
+Use this endpoint to get a trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you created the trust relationship.
 
 ### Examples
 
@@ -1088,41 +1153,44 @@ require 'time'
 require 'ory-hydra-client'
 
 api_instance = OryHydraClient::AdminApi.new
+id = 'id_example' # String | The id of the desired grant
 
 begin
-  # Get Service Version
-  result = api_instance.get_version
+  # Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
+  result = api_instance.get_trusted_jwt_grant_issuer(id)
   p result
 rescue OryHydraClient::ApiError => e
-  puts "Error when calling AdminApi->get_version: #{e}"
+  puts "Error when calling AdminApi->get_trusted_jwt_grant_issuer: #{e}"
 end
 ```
 
-#### Using the get_version_with_http_info variant
+#### Using the get_trusted_jwt_grant_issuer_with_http_info variant
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<Version>, Integer, Hash)> get_version_with_http_info
+> <Array(<TrustedJwtGrantIssuer>, Integer, Hash)> get_trusted_jwt_grant_issuer_with_http_info(id)
 
 ```ruby
 begin
-  # Get Service Version
-  data, status_code, headers = api_instance.get_version_with_http_info
+  # Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
+  data, status_code, headers = api_instance.get_trusted_jwt_grant_issuer_with_http_info(id)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <Version>
+  p data # => <TrustedJwtGrantIssuer>
 rescue OryHydraClient::ApiError => e
-  puts "Error when calling AdminApi->get_version_with_http_info: #{e}"
+  puts "Error when calling AdminApi->get_trusted_jwt_grant_issuer_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-This endpoint does not need any parameter.
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** | The id of the desired grant |  |
 
 ### Return type
 
-[**Version**](Version.md)
+[**TrustedJwtGrantIssuer**](TrustedJwtGrantIssuer.md)
 
 ### Authorization
 
@@ -1202,74 +1270,13 @@ No authorization required
 - **Accept**: application/json
 
 
-## is_instance_alive
-
-> <HealthStatus> is_instance_alive
-
-Check Alive Status
-
-This endpoint returns a 200 status code when the HTTP server is up running. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
-
-### Examples
-
-```ruby
-require 'time'
-require 'ory-hydra-client'
-
-api_instance = OryHydraClient::AdminApi.new
-
-begin
-  # Check Alive Status
-  result = api_instance.is_instance_alive
-  p result
-rescue OryHydraClient::ApiError => e
-  puts "Error when calling AdminApi->is_instance_alive: #{e}"
-end
-```
-
-#### Using the is_instance_alive_with_http_info variant
-
-This returns an Array which contains the response data, status code and headers.
-
-> <Array(<HealthStatus>, Integer, Hash)> is_instance_alive_with_http_info
-
-```ruby
-begin
-  # Check Alive Status
-  data, status_code, headers = api_instance.is_instance_alive_with_http_info
-  p status_code # => 2xx
-  p headers # => { ... }
-  p data # => <HealthStatus>
-rescue OryHydraClient::ApiError => e
-  puts "Error when calling AdminApi->is_instance_alive_with_http_info: #{e}"
-end
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**HealthStatus**](HealthStatus.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
 ## list_o_auth2_clients
 
 > <Array<OAuth2Client>> list_o_auth2_clients(opts)
 
 List OAuth 2.0 Clients
 
-This endpoint lists all clients in the database, and never returns client secrets. As a default it lists the first 100 clients. The `limit` parameter can be used to retrieve more clients, but it has an upper bound at 500 objects. Pagination should be used to retrieve more than 500 objects.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components. The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/clients?limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
+This endpoint lists all clients in the database, and never returns client secrets. As a default it lists the first 100 clients. The `limit` parameter can be used to retrieve more clients, but it has an upper bound at 500 objects. Pagination should be used to retrieve more than 500 objects.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.  The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/clients?limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
 
 ### Examples
 
@@ -1281,7 +1288,7 @@ api_instance = OryHydraClient::AdminApi.new
 opts = {
   limit: 789, # Integer | The maximum amount of clients to returned, upper bound is 500 clients.
   offset: 789, # Integer | The offset from where to start looking.
-  name: 'name_example', # String | The name of the clients to filter by.
+  client_name: 'client_name_example', # String | The name of the clients to filter by.
   owner: 'owner_example' # String | The owner of the clients to filter by.
 }
 
@@ -1318,7 +1325,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **limit** | **Integer** | The maximum amount of clients to returned, upper bound is 500 clients. | [optional] |
 | **offset** | **Integer** | The offset from where to start looking. | [optional] |
-| **name** | **String** | The name of the clients to filter by. | [optional] |
+| **client_name** | **String** | The name of the clients to filter by. | [optional] |
 | **owner** | **String** | The owner of the clients to filter by. | [optional] |
 
 ### Return type
@@ -1399,13 +1406,13 @@ No authorization required
 - **Accept**: application/json
 
 
-## patch_o_auth2_client
+## list_trusted_jwt_grant_issuers
 
-> <OAuth2Client> patch_o_auth2_client(id, body)
+> <Array<TrustedJwtGrantIssuer>> list_trusted_jwt_grant_issuers(opts)
 
-Patch an OAuth 2.0 Client
+List Trusted OAuth2 JWT Bearer Grant Type Issuers
 
-Patch an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
 
 ### Examples
 
@@ -1414,12 +1421,82 @@ require 'time'
 require 'ory-hydra-client'
 
 api_instance = OryHydraClient::AdminApi.new
-id = 'id_example' # String | 
-body = [OryHydraClient::PatchDocument.new({op: '"replace"', path: '"/name"'})] # Array<PatchDocument> | 
+opts = {
+  issuer: 'issuer_example', # String | If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned.
+  limit: 789, # Integer | The maximum amount of policies returned, upper bound is 500 policies
+  offset: 789 # Integer | The offset from where to start looking.
+}
+
+begin
+  # List Trusted OAuth2 JWT Bearer Grant Type Issuers
+  result = api_instance.list_trusted_jwt_grant_issuers(opts)
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling AdminApi->list_trusted_jwt_grant_issuers: #{e}"
+end
+```
+
+#### Using the list_trusted_jwt_grant_issuers_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Array<TrustedJwtGrantIssuer>>, Integer, Hash)> list_trusted_jwt_grant_issuers_with_http_info(opts)
+
+```ruby
+begin
+  # List Trusted OAuth2 JWT Bearer Grant Type Issuers
+  data, status_code, headers = api_instance.list_trusted_jwt_grant_issuers_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Array<TrustedJwtGrantIssuer>>
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling AdminApi->list_trusted_jwt_grant_issuers_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **issuer** | **String** | If optional \&quot;issuer\&quot; is supplied, only jwt-bearer grants with this issuer will be returned. | [optional] |
+| **limit** | **Integer** | The maximum amount of policies returned, upper bound is 500 policies | [optional] |
+| **offset** | **Integer** | The offset from where to start looking. | [optional] |
+
+### Return type
+
+[**Array&lt;TrustedJwtGrantIssuer&gt;**](TrustedJwtGrantIssuer.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## patch_o_auth2_client
+
+> <OAuth2Client> patch_o_auth2_client(id, patch_document)
+
+Patch an OAuth 2.0 Client
+
+Patch an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-hydra-client'
+
+api_instance = OryHydraClient::AdminApi.new
+id = 'id_example' # String | The id of the OAuth 2.0 Client.
+patch_document = [OryHydraClient::PatchDocument.new({op: '"replace"', path: '"/name"'})] # Array<PatchDocument> | 
 
 begin
   # Patch an OAuth 2.0 Client
-  result = api_instance.patch_o_auth2_client(id, body)
+  result = api_instance.patch_o_auth2_client(id, patch_document)
   p result
 rescue OryHydraClient::ApiError => e
   puts "Error when calling AdminApi->patch_o_auth2_client: #{e}"
@@ -1430,12 +1507,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<OAuth2Client>, Integer, Hash)> patch_o_auth2_client_with_http_info(id, body)
+> <Array(<OAuth2Client>, Integer, Hash)> patch_o_auth2_client_with_http_info(id, patch_document)
 
 ```ruby
 begin
   # Patch an OAuth 2.0 Client
-  data, status_code, headers = api_instance.patch_o_auth2_client_with_http_info(id, body)
+  data, status_code, headers = api_instance.patch_o_auth2_client_with_http_info(id, patch_document)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <OAuth2Client>
@@ -1448,8 +1525,8 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **id** | **String** |  |  |
-| **body** | [**Array&lt;PatchDocument&gt;**](PatchDocument.md) |  |  |
+| **id** | **String** | The id of the OAuth 2.0 Client. |  |
+| **patch_document** | [**Array&lt;PatchDocument&gt;**](PatchDocument.md) |  |  |
 
 ### Return type
 
@@ -1482,7 +1559,7 @@ require 'ory-hydra-client'
 api_instance = OryHydraClient::AdminApi.new
 consent_challenge = 'consent_challenge_example' # String | 
 opts = {
-  body: OryHydraClient::RejectRequest.new # RejectRequest | 
+  reject_request: OryHydraClient::RejectRequest.new # RejectRequest | 
 }
 
 begin
@@ -1517,7 +1594,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **consent_challenge** | **String** |  |  |
-| **body** | [**RejectRequest**](RejectRequest.md) |  | [optional] |
+| **reject_request** | [**RejectRequest**](RejectRequest.md) |  | [optional] |
 
 ### Return type
 
@@ -1550,7 +1627,7 @@ require 'ory-hydra-client'
 api_instance = OryHydraClient::AdminApi.new
 login_challenge = 'login_challenge_example' # String | 
 opts = {
-  body: OryHydraClient::RejectRequest.new # RejectRequest | 
+  reject_request: OryHydraClient::RejectRequest.new # RejectRequest | 
 }
 
 begin
@@ -1585,7 +1662,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **login_challenge** | **String** |  |  |
-| **body** | [**RejectRequest**](RejectRequest.md) |  | [optional] |
+| **reject_request** | [**RejectRequest**](RejectRequest.md) |  | [optional] |
 
 ### Return type
 
@@ -1618,7 +1695,7 @@ require 'ory-hydra-client'
 api_instance = OryHydraClient::AdminApi.new
 logout_challenge = 'logout_challenge_example' # String | 
 opts = {
-  body: OryHydraClient::RejectRequest.new # RejectRequest | 
+  reject_request: OryHydraClient::RejectRequest.new # RejectRequest | 
 }
 
 begin
@@ -1652,7 +1729,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **logout_challenge** | **String** |  |  |
-| **body** | [**RejectRequest**](RejectRequest.md) |  | [optional] |
+| **reject_request** | [**RejectRequest**](RejectRequest.md) |  | [optional] |
 
 ### Return type
 
@@ -1800,6 +1877,72 @@ No authorization required
 - **Accept**: application/json
 
 
+## trust_jwt_grant_issuer
+
+> <TrustedJwtGrantIssuer> trust_jwt_grant_issuer(opts)
+
+Trust an OAuth2 JWT Bearer Grant Type Issuer
+
+Use this endpoint to establish a trust relationship for a JWT issuer to perform JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants [RFC7523](https://datatracker.ietf.org/doc/html/rfc7523).
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-hydra-client'
+
+api_instance = OryHydraClient::AdminApi.new
+opts = {
+  trust_jwt_grant_issuer_body: OryHydraClient::TrustJwtGrantIssuerBody.new({expires_at: Time.now, issuer: 'https://jwt-idp.example.com', jwk: OryHydraClient::JSONWebKey.new({alg: 'RS256', kid: '1603dfe0af8f4596', kty: 'RSA', use: 'sig'}), scope: ["openid", "offline"], subject: 'mike@example.com'}) # TrustJwtGrantIssuerBody | 
+}
+
+begin
+  # Trust an OAuth2 JWT Bearer Grant Type Issuer
+  result = api_instance.trust_jwt_grant_issuer(opts)
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling AdminApi->trust_jwt_grant_issuer: #{e}"
+end
+```
+
+#### Using the trust_jwt_grant_issuer_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<TrustedJwtGrantIssuer>, Integer, Hash)> trust_jwt_grant_issuer_with_http_info(opts)
+
+```ruby
+begin
+  # Trust an OAuth2 JWT Bearer Grant Type Issuer
+  data, status_code, headers = api_instance.trust_jwt_grant_issuer_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <TrustedJwtGrantIssuer>
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling AdminApi->trust_jwt_grant_issuer_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **trust_jwt_grant_issuer_body** | [**TrustJwtGrantIssuerBody**](TrustJwtGrantIssuerBody.md) |  | [optional] |
+
+### Return type
+
+[**TrustedJwtGrantIssuer**](TrustedJwtGrantIssuer.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
 ## update_json_web_key
 
 > <JSONWebKey> update_json_web_key(kid, set, opts)
@@ -1818,7 +1961,7 @@ api_instance = OryHydraClient::AdminApi.new
 kid = 'kid_example' # String | The kid of the desired key
 set = 'set_example' # String | The set
 opts = {
-  body: OryHydraClient::JSONWebKey.new({alg: 'RS256', kid: '1603dfe0af8f4596', kty: 'RSA', use: 'sig'}) # JSONWebKey | 
+  json_web_key: OryHydraClient::JSONWebKey.new({alg: 'RS256', kid: '1603dfe0af8f4596', kty: 'RSA', use: 'sig'}) # JSONWebKey | 
 }
 
 begin
@@ -1854,7 +1997,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **kid** | **String** | The kid of the desired key |  |
 | **set** | **String** | The set |  |
-| **body** | [**JSONWebKey**](JSONWebKey.md) |  | [optional] |
+| **json_web_key** | [**JSONWebKey**](JSONWebKey.md) |  | [optional] |
 
 ### Return type
 
@@ -1887,7 +2030,7 @@ require 'ory-hydra-client'
 api_instance = OryHydraClient::AdminApi.new
 set = 'set_example' # String | The set
 opts = {
-  body: OryHydraClient::JSONWebKeySet.new # JSONWebKeySet | 
+  json_web_key_set: OryHydraClient::JSONWebKeySet.new # JSONWebKeySet | 
 }
 
 begin
@@ -1922,7 +2065,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **set** | **String** | The set |  |
-| **body** | [**JSONWebKeySet**](JSONWebKeySet.md) |  | [optional] |
+| **json_web_key_set** | [**JSONWebKeySet**](JSONWebKeySet.md) |  | [optional] |
 
 ### Return type
 
@@ -1940,11 +2083,11 @@ No authorization required
 
 ## update_o_auth2_client
 
-> <OAuth2Client> update_o_auth2_client(id, body)
+> <OAuth2Client> update_o_auth2_client(id, o_auth2_client)
 
 Update an OAuth 2.0 Client
 
-Update an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+Update an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
 
 ### Examples
 
@@ -1953,12 +2096,12 @@ require 'time'
 require 'ory-hydra-client'
 
 api_instance = OryHydraClient::AdminApi.new
-id = 'id_example' # String | 
-body = OryHydraClient::OAuth2Client.new # OAuth2Client | 
+id = 'id_example' # String | The id of the OAuth 2.0 Client.
+o_auth2_client = OryHydraClient::OAuth2Client.new # OAuth2Client | 
 
 begin
   # Update an OAuth 2.0 Client
-  result = api_instance.update_o_auth2_client(id, body)
+  result = api_instance.update_o_auth2_client(id, o_auth2_client)
   p result
 rescue OryHydraClient::ApiError => e
   puts "Error when calling AdminApi->update_o_auth2_client: #{e}"
@@ -1969,12 +2112,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<OAuth2Client>, Integer, Hash)> update_o_auth2_client_with_http_info(id, body)
+> <Array(<OAuth2Client>, Integer, Hash)> update_o_auth2_client_with_http_info(id, o_auth2_client)
 
 ```ruby
 begin
   # Update an OAuth 2.0 Client
-  data, status_code, headers = api_instance.update_o_auth2_client_with_http_info(id, body)
+  data, status_code, headers = api_instance.update_o_auth2_client_with_http_info(id, o_auth2_client)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <OAuth2Client>
@@ -1987,8 +2130,8 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **id** | **String** |  |  |
-| **body** | [**OAuth2Client**](OAuth2Client.md) |  |  |
+| **id** | **String** | The id of the OAuth 2.0 Client. |  |
+| **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md) |  |  |
 
 ### Return type
 

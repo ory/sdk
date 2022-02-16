@@ -1,11 +1,19 @@
-import 'package:ory_hydra_client/api.dart';
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.7
+
+// ignore_for_file: unused_import
+
+import 'package:ory_hydra_client/model/well_known.dart';
 import 'package:test/test.dart';
 
 // tests for WellKnown
 void main() {
-  final instance = WellKnown();
+  final instance = WellKnownBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test WellKnown', () {
+  group(WellKnown, () {
     // URL of the OP's OAuth 2.0 Authorization Endpoint.
     // String authorizationEndpoint
     test('to test the property `authorizationEndpoint`', () async {
@@ -31,8 +39,14 @@ void main() {
     });
 
     // JSON array containing a list of the Claim Names of the Claims that the OpenID Provider MAY be able to supply values for. Note that for privacy or other reasons, this might not be an exhaustive list.
-    // List<String> claimsSupported (default value: const [])
+    // BuiltList<String> claimsSupported
     test('to test the property `claimsSupported`', () async {
+      // TODO
+    });
+
+    // JSON array containing a list of Proof Key for Code Exchange (PKCE) [RFC7636] code challenge methods supported by this authorization server.
+    // BuiltList<String> codeChallengeMethodsSupported
+    test('to test the property `codeChallengeMethodsSupported`', () async {
       // TODO
     });
 
@@ -55,13 +69,13 @@ void main() {
     });
 
     // JSON array containing a list of the OAuth 2.0 Grant Type values that this OP supports.
-    // List<String> grantTypesSupported (default value: const [])
+    // BuiltList<String> grantTypesSupported
     test('to test the property `grantTypesSupported`', () async {
       // TODO
     });
 
     // JSON array containing a list of the JWS signing algorithms (alg values) supported by the OP for the ID Token to encode the Claims in a JWT.
-    // List<String> idTokenSigningAlgValuesSupported (default value: const [])
+    // BuiltList<String> idTokenSigningAlgValuesSupported
     test('to test the property `idTokenSigningAlgValuesSupported`', () async {
       // TODO
     });
@@ -84,6 +98,12 @@ void main() {
       // TODO
     });
 
+    // JSON array containing a list of the JWS signing algorithms (alg values) supported by the OP for Request Objects, which are described in Section 6.1 of OpenID Connect Core 1.0 [OpenID.Core]. These algorithms are used both when the Request Object is passed by value (using the request parameter) and when it is passed by reference (using the request_uri parameter).
+    // BuiltList<String> requestObjectSigningAlgValuesSupported
+    test('to test the property `requestObjectSigningAlgValuesSupported`', () async {
+      // TODO
+    });
+
     // Boolean value specifying whether the OP supports use of the request parameter, with true indicating support.
     // bool requestParameterSupported
     test('to test the property `requestParameterSupported`', () async {
@@ -103,13 +123,13 @@ void main() {
     });
 
     // JSON array containing a list of the OAuth 2.0 response_mode values that this OP supports.
-    // List<String> responseModesSupported (default value: const [])
+    // BuiltList<String> responseModesSupported
     test('to test the property `responseModesSupported`', () async {
       // TODO
     });
 
     // JSON array containing a list of the OAuth 2.0 response_type values that this OP supports. Dynamic OpenID Providers MUST support the code, id_token, and the token id_token Response Type values.
-    // List<String> responseTypesSupported (default value: const [])
+    // BuiltList<String> responseTypesSupported
     test('to test the property `responseTypesSupported`', () async {
       // TODO
     });
@@ -121,13 +141,13 @@ void main() {
     });
 
     // SON array containing a list of the OAuth 2.0 [RFC6749] scope values that this server supports. The server MUST support the openid scope value. Servers MAY choose not to advertise some supported scope values even when this parameter is used
-    // List<String> scopesSupported (default value: const [])
+    // BuiltList<String> scopesSupported
     test('to test the property `scopesSupported`', () async {
       // TODO
     });
 
     // JSON array containing a list of the Subject Identifier types that this OP supports. Valid types include pairwise and public.
-    // List<String> subjectTypesSupported (default value: const [])
+    // BuiltList<String> subjectTypesSupported
     test('to test the property `subjectTypesSupported`', () async {
       // TODO
     });
@@ -139,7 +159,7 @@ void main() {
     });
 
     // JSON array containing a list of Client Authentication methods supported by this Token Endpoint. The options are client_secret_post, client_secret_basic, client_secret_jwt, and private_key_jwt, as described in Section 9 of OpenID Connect Core 1.0
-    // List<String> tokenEndpointAuthMethodsSupported (default value: const [])
+    // BuiltList<String> tokenEndpointAuthMethodsSupported
     test('to test the property `tokenEndpointAuthMethodsSupported`', () async {
       // TODO
     });
@@ -151,7 +171,7 @@ void main() {
     });
 
     // JSON array containing a list of the JWS [JWS] signing algorithms (alg values) [JWA] supported by the UserInfo Endpoint to encode the Claims in a JWT [JWT].
-    // List<String> userinfoSigningAlgValuesSupported (default value: const [])
+    // BuiltList<String> userinfoSigningAlgValuesSupported
     test('to test the property `userinfoSigningAlgValuesSupported`', () async {
       // TODO
     });

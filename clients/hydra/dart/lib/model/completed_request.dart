@@ -1,70 +1,67 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class CompletedRequest {
-  /// Returns a new [CompletedRequest] instance.
-  CompletedRequest({
-    @required this.redirectTo,
-  });
+part 'completed_request.g.dart';
 
-  /// RedirectURL is the URL which you should redirect the user to once the authentication process is completed.
-  String redirectTo;
+abstract class CompletedRequest implements Built<CompletedRequest, CompletedRequestBuilder> {
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is CompletedRequest &&
-     other.redirectTo == redirectTo;
+    /// RedirectURL is the URL which you should redirect the user to once the authentication process is completed.
+    @BuiltValueField(wireName: r'redirect_to')
+    String get redirectTo;
 
-  @override
-  int get hashCode =>
-    (redirectTo == null ? 0 : redirectTo.hashCode);
+    CompletedRequest._();
 
-  @override
-  String toString() => 'CompletedRequest[redirectTo=$redirectTo]';
+    static void _initializeBuilder(CompletedRequestBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-      json[r'redirect_to'] = redirectTo;
-    return json;
-  }
+    factory CompletedRequest([void updates(CompletedRequestBuilder b)]) = _$CompletedRequest;
 
-  /// Returns a new [CompletedRequest] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static CompletedRequest fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : CompletedRequest(
-        redirectTo: json[r'redirect_to'],
-    );
+    @BuiltValueSerializer(custom: true)
+    static Serializer<CompletedRequest> get serializer => _$CompletedRequestSerializer();
+}
 
-  static List<CompletedRequest> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <CompletedRequest>[]
-      : json.map((dynamic value) => CompletedRequest.fromJson(value)).toList(growable: true == growable);
+class _$CompletedRequestSerializer implements StructuredSerializer<CompletedRequest> {
 
-  static Map<String, CompletedRequest> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, CompletedRequest>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = CompletedRequest.fromJson(value));
+    @override
+    final Iterable<Type> types = const [CompletedRequest, _$CompletedRequest];
+    @override
+    final String wireName = r'CompletedRequest';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, CompletedRequest object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        result
+            ..add(r'redirect_to')
+            ..add(serializers.serialize(object.redirectTo,
+                specifiedType: const FullType(String)));
+        return result;
     }
-    return map;
-  }
 
-  // maps a json object with a list of CompletedRequest-objects as value to a dart map
-  static Map<String, List<CompletedRequest>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<CompletedRequest>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = CompletedRequest.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
+    @override
+    CompletedRequest deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = CompletedRequestBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'redirect_to':
+                    result.redirectTo = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
 }
 

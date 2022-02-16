@@ -1,11 +1,19 @@
-import 'package:ory_hydra_client/api.dart';
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.7
+
+// ignore_for_file: unused_import
+
+import 'package:ory_hydra_client/model/userinfo_response.dart';
 import 'package:test/test.dart';
 
 // tests for UserinfoResponse
 void main() {
-  final instance = UserinfoResponse();
+  final instance = UserinfoResponseBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test UserinfoResponse', () {
+  group(UserinfoResponse, () {
     // End-User's birthday, represented as an ISO 8601:2004 [ISO8601‑2004] YYYY-MM-DD format. The year MAY be 0000, indicating that it is omitted. To represent only the year, YYYY format is allowed. Note that depending on the underlying platform's date related function, providing just year can result in varying month and day, so the implementers need to take this factor into account to correctly process the dates.
     // String birthdate
     test('to test the property `birthdate`', () async {

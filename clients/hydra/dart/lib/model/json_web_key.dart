@@ -1,214 +1,287 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class JSONWebKey {
-  /// Returns a new [JSONWebKey] instance.
-  JSONWebKey({
-    @required this.alg,
-    this.crv,
-    this.d,
-    this.dp,
-    this.dq,
-    this.e,
-    this.k,
-    @required this.kid,
-    @required this.kty,
-    this.n,
-    this.p,
-    this.q,
-    this.qi,
-    @required this.use,
-    this.x,
-    this.x5c = const [],
-    this.y,
-  });
+part 'json_web_key.g.dart';
 
-  /// The \"alg\" (algorithm) parameter identifies the algorithm intended for use with the key.  The values used should either be registered in the IANA \"JSON Web Signature and Encryption Algorithms\" registry established by [JWA] or be a value that contains a Collision- Resistant Name.
-  String alg;
+abstract class JSONWebKey implements Built<JSONWebKey, JSONWebKeyBuilder> {
 
-  String crv;
+    /// The \"alg\" (algorithm) parameter identifies the algorithm intended for use with the key.  The values used should either be registered in the IANA \"JSON Web Signature and Encryption Algorithms\" registry established by [JWA] or be a value that contains a Collision- Resistant Name.
+    @BuiltValueField(wireName: r'alg')
+    String get alg;
 
-  String d;
+    @nullable
+    @BuiltValueField(wireName: r'crv')
+    String get crv;
 
-  String dp;
+    @nullable
+    @BuiltValueField(wireName: r'd')
+    String get d;
 
-  String dq;
+    @nullable
+    @BuiltValueField(wireName: r'dp')
+    String get dp;
 
-  String e;
+    @nullable
+    @BuiltValueField(wireName: r'dq')
+    String get dq;
 
-  String k;
+    @nullable
+    @BuiltValueField(wireName: r'e')
+    String get e;
 
-  /// The \"kid\" (key ID) parameter is used to match a specific key.  This is used, for instance, to choose among a set of keys within a JWK Set during key rollover.  The structure of the \"kid\" value is unspecified.  When \"kid\" values are used within a JWK Set, different keys within the JWK Set SHOULD use distinct \"kid\" values.  (One example in which different keys might use the same \"kid\" value is if they have different \"kty\" (key type) values but are considered to be equivalent alternatives by the application using them.)  The \"kid\" value is a case-sensitive string.
-  String kid;
+    @nullable
+    @BuiltValueField(wireName: r'k')
+    String get k;
 
-  /// The \"kty\" (key type) parameter identifies the cryptographic algorithm family used with the key, such as \"RSA\" or \"EC\". \"kty\" values should either be registered in the IANA \"JSON Web Key Types\" registry established by [JWA] or be a value that contains a Collision- Resistant Name.  The \"kty\" value is a case-sensitive string.
-  String kty;
+    /// The \"kid\" (key ID) parameter is used to match a specific key.  This is used, for instance, to choose among a set of keys within a JWK Set during key rollover.  The structure of the \"kid\" value is unspecified.  When \"kid\" values are used within a JWK Set, different keys within the JWK Set SHOULD use distinct \"kid\" values.  (One example in which different keys might use the same \"kid\" value is if they have different \"kty\" (key type) values but are considered to be equivalent alternatives by the application using them.)  The \"kid\" value is a case-sensitive string.
+    @BuiltValueField(wireName: r'kid')
+    String get kid;
 
-  String n;
+    /// The \"kty\" (key type) parameter identifies the cryptographic algorithm family used with the key, such as \"RSA\" or \"EC\". \"kty\" values should either be registered in the IANA \"JSON Web Key Types\" registry established by [JWA] or be a value that contains a Collision- Resistant Name.  The \"kty\" value is a case-sensitive string.
+    @BuiltValueField(wireName: r'kty')
+    String get kty;
 
-  String p;
+    @nullable
+    @BuiltValueField(wireName: r'n')
+    String get n;
 
-  String q;
+    @nullable
+    @BuiltValueField(wireName: r'p')
+    String get p;
 
-  String qi;
+    @nullable
+    @BuiltValueField(wireName: r'q')
+    String get q;
 
-  /// Use (\"public key use\") identifies the intended use of the public key. The \"use\" parameter is employed to indicate whether a public key is used for encrypting data or verifying the signature on data. Values are commonly \"sig\" (signature) or \"enc\" (encryption).
-  String use;
+    @nullable
+    @BuiltValueField(wireName: r'qi')
+    String get qi;
 
-  String x;
+    /// Use (\"public key use\") identifies the intended use of the public key. The \"use\" parameter is employed to indicate whether a public key is used for encrypting data or verifying the signature on data. Values are commonly \"sig\" (signature) or \"enc\" (encryption).
+    @BuiltValueField(wireName: r'use')
+    String get use;
 
-  /// The \"x5c\" (X.509 certificate chain) parameter contains a chain of one or more PKIX certificates [RFC5280].  The certificate chain is represented as a JSON array of certificate value strings.  Each string in the array is a base64-encoded (Section 4 of [RFC4648] -- not base64url-encoded) DER [ITU.X690.1994] PKIX certificate value. The PKIX certificate containing the key value MUST be the first certificate.
-  List<String> x5c;
+    @nullable
+    @BuiltValueField(wireName: r'x')
+    String get x;
 
-  String y;
+    /// The \"x5c\" (X.509 certificate chain) parameter contains a chain of one or more PKIX certificates [RFC5280].  The certificate chain is represented as a JSON array of certificate value strings.  Each string in the array is a base64-encoded (Section 4 of [RFC4648] -- not base64url-encoded) DER [ITU.X690.1994] PKIX certificate value. The PKIX certificate containing the key value MUST be the first certificate.
+    @nullable
+    @BuiltValueField(wireName: r'x5c')
+    BuiltList<String> get x5c;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is JSONWebKey &&
-     other.alg == alg &&
-     other.crv == crv &&
-     other.d == d &&
-     other.dp == dp &&
-     other.dq == dq &&
-     other.e == e &&
-     other.k == k &&
-     other.kid == kid &&
-     other.kty == kty &&
-     other.n == n &&
-     other.p == p &&
-     other.q == q &&
-     other.qi == qi &&
-     other.use == use &&
-     other.x == x &&
-     other.x5c == x5c &&
-     other.y == y;
+    @nullable
+    @BuiltValueField(wireName: r'y')
+    String get y;
 
-  @override
-  int get hashCode =>
-    (alg == null ? 0 : alg.hashCode) +
-    (crv == null ? 0 : crv.hashCode) +
-    (d == null ? 0 : d.hashCode) +
-    (dp == null ? 0 : dp.hashCode) +
-    (dq == null ? 0 : dq.hashCode) +
-    (e == null ? 0 : e.hashCode) +
-    (k == null ? 0 : k.hashCode) +
-    (kid == null ? 0 : kid.hashCode) +
-    (kty == null ? 0 : kty.hashCode) +
-    (n == null ? 0 : n.hashCode) +
-    (p == null ? 0 : p.hashCode) +
-    (q == null ? 0 : q.hashCode) +
-    (qi == null ? 0 : qi.hashCode) +
-    (use == null ? 0 : use.hashCode) +
-    (x == null ? 0 : x.hashCode) +
-    (x5c == null ? 0 : x5c.hashCode) +
-    (y == null ? 0 : y.hashCode);
+    JSONWebKey._();
 
-  @override
-  String toString() => 'JSONWebKey[alg=$alg, crv=$crv, d=$d, dp=$dp, dq=$dq, e=$e, k=$k, kid=$kid, kty=$kty, n=$n, p=$p, q=$q, qi=$qi, use=$use, x=$x, x5c=$x5c, y=$y]';
+    static void _initializeBuilder(JSONWebKeyBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-      json[r'alg'] = alg;
-    if (crv != null) {
-      json[r'crv'] = crv;
+    factory JSONWebKey([void updates(JSONWebKeyBuilder b)]) = _$JSONWebKey;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<JSONWebKey> get serializer => _$JSONWebKeySerializer();
+}
+
+class _$JSONWebKeySerializer implements StructuredSerializer<JSONWebKey> {
+
+    @override
+    final Iterable<Type> types = const [JSONWebKey, _$JSONWebKey];
+    @override
+    final String wireName = r'JSONWebKey';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, JSONWebKey object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        result
+            ..add(r'alg')
+            ..add(serializers.serialize(object.alg,
+                specifiedType: const FullType(String)));
+        if (object.crv != null) {
+            result
+                ..add(r'crv')
+                ..add(serializers.serialize(object.crv,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.d != null) {
+            result
+                ..add(r'd')
+                ..add(serializers.serialize(object.d,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.dp != null) {
+            result
+                ..add(r'dp')
+                ..add(serializers.serialize(object.dp,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.dq != null) {
+            result
+                ..add(r'dq')
+                ..add(serializers.serialize(object.dq,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.e != null) {
+            result
+                ..add(r'e')
+                ..add(serializers.serialize(object.e,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.k != null) {
+            result
+                ..add(r'k')
+                ..add(serializers.serialize(object.k,
+                    specifiedType: const FullType(String)));
+        }
+        result
+            ..add(r'kid')
+            ..add(serializers.serialize(object.kid,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'kty')
+            ..add(serializers.serialize(object.kty,
+                specifiedType: const FullType(String)));
+        if (object.n != null) {
+            result
+                ..add(r'n')
+                ..add(serializers.serialize(object.n,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.p != null) {
+            result
+                ..add(r'p')
+                ..add(serializers.serialize(object.p,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.q != null) {
+            result
+                ..add(r'q')
+                ..add(serializers.serialize(object.q,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.qi != null) {
+            result
+                ..add(r'qi')
+                ..add(serializers.serialize(object.qi,
+                    specifiedType: const FullType(String)));
+        }
+        result
+            ..add(r'use')
+            ..add(serializers.serialize(object.use,
+                specifiedType: const FullType(String)));
+        if (object.x != null) {
+            result
+                ..add(r'x')
+                ..add(serializers.serialize(object.x,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.x5c != null) {
+            result
+                ..add(r'x5c')
+                ..add(serializers.serialize(object.x5c,
+                    specifiedType: const FullType(BuiltList, [FullType(String)])));
+        }
+        if (object.y != null) {
+            result
+                ..add(r'y')
+                ..add(serializers.serialize(object.y,
+                    specifiedType: const FullType(String)));
+        }
+        return result;
     }
-    if (d != null) {
-      json[r'd'] = d;
-    }
-    if (dp != null) {
-      json[r'dp'] = dp;
-    }
-    if (dq != null) {
-      json[r'dq'] = dq;
-    }
-    if (e != null) {
-      json[r'e'] = e;
-    }
-    if (k != null) {
-      json[r'k'] = k;
-    }
-      json[r'kid'] = kid;
-      json[r'kty'] = kty;
-    if (n != null) {
-      json[r'n'] = n;
-    }
-    if (p != null) {
-      json[r'p'] = p;
-    }
-    if (q != null) {
-      json[r'q'] = q;
-    }
-    if (qi != null) {
-      json[r'qi'] = qi;
-    }
-      json[r'use'] = use;
-    if (x != null) {
-      json[r'x'] = x;
-    }
-    if (x5c != null) {
-      json[r'x5c'] = x5c;
-    }
-    if (y != null) {
-      json[r'y'] = y;
-    }
-    return json;
-  }
 
-  /// Returns a new [JSONWebKey] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static JSONWebKey fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : JSONWebKey(
-        alg: json[r'alg'],
-        crv: json[r'crv'],
-        d: json[r'd'],
-        dp: json[r'dp'],
-        dq: json[r'dq'],
-        e: json[r'e'],
-        k: json[r'k'],
-        kid: json[r'kid'],
-        kty: json[r'kty'],
-        n: json[r'n'],
-        p: json[r'p'],
-        q: json[r'q'],
-        qi: json[r'qi'],
-        use: json[r'use'],
-        x: json[r'x'],
-        x5c: json[r'x5c'] == null
-          ? null
-          : (json[r'x5c'] as List).cast<String>(),
-        y: json[r'y'],
-    );
+    @override
+    JSONWebKey deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = JSONWebKeyBuilder();
 
-  static List<JSONWebKey> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <JSONWebKey>[]
-      : json.map((dynamic value) => JSONWebKey.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, JSONWebKey> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, JSONWebKey>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = JSONWebKey.fromJson(value));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'alg':
+                    result.alg = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'crv':
+                    result.crv = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'd':
+                    result.d = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'dp':
+                    result.dp = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'dq':
+                    result.dq = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'e':
+                    result.e = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'k':
+                    result.k = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kid':
+                    result.kid = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kty':
+                    result.kty = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'n':
+                    result.n = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'p':
+                    result.p = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'q':
+                    result.q = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'qi':
+                    result.qi = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'use':
+                    result.use = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'x':
+                    result.x = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'x5c':
+                    result.x5c.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
+                    break;
+                case r'y':
+                    result.y = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of JSONWebKey-objects as value to a dart map
-  static Map<String, List<JSONWebKey>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<JSONWebKey>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = JSONWebKey.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

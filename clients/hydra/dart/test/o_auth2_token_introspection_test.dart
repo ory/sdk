@@ -1,11 +1,19 @@
-import 'package:ory_hydra_client/api.dart';
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.7
+
+// ignore_for_file: unused_import
+
+import 'package:ory_hydra_client/model/o_auth2_token_introspection.dart';
 import 'package:test/test.dart';
 
 // tests for OAuth2TokenIntrospection
 void main() {
-  final instance = OAuth2TokenIntrospection();
+  final instance = OAuth2TokenIntrospectionBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test OAuth2TokenIntrospection', () {
+  group(OAuth2TokenIntrospection, () {
     // Active is a boolean indicator of whether or not the presented token is currently active.  The specifics of a token's \"active\" state will vary depending on the implementation of the authorization server and the information it keeps about its tokens, but a \"true\" value return for the \"active\" property will generally indicate that a given token has been issued by this authorization server, has not been revoked by the resource owner, and is within its given time window of validity (e.g., after its issuance time and before its expiration time).
     // bool active
     test('to test the property `active`', () async {
@@ -13,12 +21,12 @@ void main() {
     });
 
     // Audience contains a list of the token's intended audiences.
-    // List<String> aud (default value: const [])
+    // BuiltList<String> aud
     test('to test the property `aud`', () async {
       // TODO
     });
 
-    // ClientID is aclient identifier for the OAuth 2.0 client that requested this token.
+    // ID is aclient identifier for the OAuth 2.0 client that requested this token.
     // String clientId
     test('to test the property `clientId`', () async {
       // TODO
@@ -31,7 +39,7 @@ void main() {
     });
 
     // Extra is arbitrary data set by the session.
-    // Object ext
+    // BuiltMap<String, JsonObject> ext
     test('to test the property `ext`', () async {
       // TODO
     });
@@ -72,9 +80,15 @@ void main() {
       // TODO
     });
 
-    // TokenType is the introspected token's type, for example `access_token` or `refresh_token`.
+    // TokenType is the introspected token's type, typically `Bearer`.
     // String tokenType
     test('to test the property `tokenType`', () async {
+      // TODO
+    });
+
+    // TokenUse is the introspected token's use, for example `access_token` or `refresh_token`.
+    // String tokenUse
+    test('to test the property `tokenUse`', () async {
       // TODO
     });
 

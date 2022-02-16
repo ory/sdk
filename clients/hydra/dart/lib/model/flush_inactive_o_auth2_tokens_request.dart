@@ -1,74 +1,70 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class FlushInactiveOAuth2TokensRequest {
-  /// Returns a new [FlushInactiveOAuth2TokensRequest] instance.
-  FlushInactiveOAuth2TokensRequest({
-    this.notAfter,
-  });
+part 'flush_inactive_o_auth2_tokens_request.g.dart';
 
-  /// NotAfter sets after which point tokens should not be flushed. This is useful when you want to keep a history of recently issued tokens for auditing.
-  DateTime notAfter;
+abstract class FlushInactiveOAuth2TokensRequest implements Built<FlushInactiveOAuth2TokensRequest, FlushInactiveOAuth2TokensRequestBuilder> {
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is FlushInactiveOAuth2TokensRequest &&
-     other.notAfter == notAfter;
+    /// NotAfter sets after which point tokens should not be flushed. This is useful when you want to keep a history of recently issued tokens for auditing.
+    @nullable
+    @BuiltValueField(wireName: r'notAfter')
+    DateTime get notAfter;
 
-  @override
-  int get hashCode =>
-    (notAfter == null ? 0 : notAfter.hashCode);
+    FlushInactiveOAuth2TokensRequest._();
 
-  @override
-  String toString() => 'FlushInactiveOAuth2TokensRequest[notAfter=$notAfter]';
+    static void _initializeBuilder(FlushInactiveOAuth2TokensRequestBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (notAfter != null) {
-      json[r'notAfter'] = notAfter.toUtc().toIso8601String();
+    factory FlushInactiveOAuth2TokensRequest([void updates(FlushInactiveOAuth2TokensRequestBuilder b)]) = _$FlushInactiveOAuth2TokensRequest;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<FlushInactiveOAuth2TokensRequest> get serializer => _$FlushInactiveOAuth2TokensRequestSerializer();
+}
+
+class _$FlushInactiveOAuth2TokensRequestSerializer implements StructuredSerializer<FlushInactiveOAuth2TokensRequest> {
+
+    @override
+    final Iterable<Type> types = const [FlushInactiveOAuth2TokensRequest, _$FlushInactiveOAuth2TokensRequest];
+    @override
+    final String wireName = r'FlushInactiveOAuth2TokensRequest';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, FlushInactiveOAuth2TokensRequest object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.notAfter != null) {
+            result
+                ..add(r'notAfter')
+                ..add(serializers.serialize(object.notAfter,
+                    specifiedType: const FullType(DateTime)));
+        }
+        return result;
     }
-    return json;
-  }
 
-  /// Returns a new [FlushInactiveOAuth2TokensRequest] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static FlushInactiveOAuth2TokensRequest fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : FlushInactiveOAuth2TokensRequest(
-        notAfter: json[r'notAfter'] == null
-          ? null
-          : DateTime.parse(json[r'notAfter']),
-    );
+    @override
+    FlushInactiveOAuth2TokensRequest deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = FlushInactiveOAuth2TokensRequestBuilder();
 
-  static List<FlushInactiveOAuth2TokensRequest> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <FlushInactiveOAuth2TokensRequest>[]
-      : json.map((dynamic value) => FlushInactiveOAuth2TokensRequest.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, FlushInactiveOAuth2TokensRequest> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, FlushInactiveOAuth2TokensRequest>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = FlushInactiveOAuth2TokensRequest.fromJson(value));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'notAfter':
+                    result.notAfter = serializers.deserialize(value,
+                        specifiedType: const FullType(DateTime)) as DateTime;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of FlushInactiveOAuth2TokensRequest-objects as value to a dart map
-  static Map<String, List<FlushInactiveOAuth2TokensRequest>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<FlushInactiveOAuth2TokensRequest>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = FlushInactiveOAuth2TokensRequest.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

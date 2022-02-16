@@ -1,98 +1,110 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/json_object.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class PatchDocument {
-  /// Returns a new [PatchDocument] instance.
-  PatchDocument({
-    this.from,
-    @required this.op,
-    @required this.path,
-    this.value,
-  });
+part 'patch_document.g.dart';
 
-  /// A JSON-pointer
-  String from;
+abstract class PatchDocument implements Built<PatchDocument, PatchDocumentBuilder> {
 
-  /// The operation to be performed
-  String op;
+    /// A JSON-pointer
+    @nullable
+    @BuiltValueField(wireName: r'from')
+    String get from;
 
-  /// A JSON-pointer
-  String path;
+    /// The operation to be performed
+    @BuiltValueField(wireName: r'op')
+    String get op;
 
-  /// The value to be used within the operations
-  Object value;
+    /// A JSON-pointer
+    @BuiltValueField(wireName: r'path')
+    String get path;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is PatchDocument &&
-     other.from == from &&
-     other.op == op &&
-     other.path == path &&
-     other.value == value;
+    /// The value to be used within the operations
+    @nullable
+    @BuiltValueField(wireName: r'value')
+    JsonObject get value;
 
-  @override
-  int get hashCode =>
-    (from == null ? 0 : from.hashCode) +
-    (op == null ? 0 : op.hashCode) +
-    (path == null ? 0 : path.hashCode) +
-    (value == null ? 0 : value.hashCode);
+    PatchDocument._();
 
-  @override
-  String toString() => 'PatchDocument[from=$from, op=$op, path=$path, value=$value]';
+    static void _initializeBuilder(PatchDocumentBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (from != null) {
-      json[r'from'] = from;
+    factory PatchDocument([void updates(PatchDocumentBuilder b)]) = _$PatchDocument;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<PatchDocument> get serializer => _$PatchDocumentSerializer();
+}
+
+class _$PatchDocumentSerializer implements StructuredSerializer<PatchDocument> {
+
+    @override
+    final Iterable<Type> types = const [PatchDocument, _$PatchDocument];
+    @override
+    final String wireName = r'PatchDocument';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, PatchDocument object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.from != null) {
+            result
+                ..add(r'from')
+                ..add(serializers.serialize(object.from,
+                    specifiedType: const FullType(String)));
+        }
+        result
+            ..add(r'op')
+            ..add(serializers.serialize(object.op,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'path')
+            ..add(serializers.serialize(object.path,
+                specifiedType: const FullType(String)));
+        if (object.value != null) {
+            result
+                ..add(r'value')
+                ..add(serializers.serialize(object.value,
+                    specifiedType: const FullType(JsonObject)));
+        }
+        return result;
     }
-      json[r'op'] = op;
-      json[r'path'] = path;
-    if (value != null) {
-      json[r'value'] = value;
+
+    @override
+    PatchDocument deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = PatchDocumentBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'from':
+                    result.from = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'op':
+                    result.op = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'path':
+                    result.path = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'value':
+                    result.value = serializers.deserialize(value,
+                        specifiedType: const FullType(JsonObject)) as JsonObject;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return json;
-  }
-
-  /// Returns a new [PatchDocument] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static PatchDocument fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : PatchDocument(
-        from: json[r'from'],
-        op: json[r'op'],
-        path: json[r'path'],
-        value: json[r'value'],
-    );
-
-  static List<PatchDocument> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <PatchDocument>[]
-      : json.map((dynamic value) => PatchDocument.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, PatchDocument> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, PatchDocument>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = PatchDocument.fromJson(value));
-    }
-    return map;
-  }
-
-  // maps a json object with a list of PatchDocument-objects as value to a dart map
-  static Map<String, List<PatchDocument>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<PatchDocument>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = PatchDocument.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

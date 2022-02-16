@@ -6,7 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**disconnectUser()**](PublicApi.md#disconnectUser) | **GET** /oauth2/sessions/logout | OpenID Connect Front-Backchannel Enabled Logout
 [**discoverOpenIDConfiguration()**](PublicApi.md#discoverOpenIDConfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
-[**isInstanceReady()**](PublicApi.md#isInstanceReady) | **GET** /health/ready | Check Readiness Status
+[**dynamicClientRegistrationCreateOAuth2Client()**](PublicApi.md#dynamicClientRegistrationCreateOAuth2Client) | **POST** /connect/register | Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+[**dynamicClientRegistrationDeleteOAuth2Client()**](PublicApi.md#dynamicClientRegistrationDeleteOAuth2Client) | **DELETE** /connect/register/{id} | Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+[**dynamicClientRegistrationGetOAuth2Client()**](PublicApi.md#dynamicClientRegistrationGetOAuth2Client) | **GET** /connect/register/{id} | Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+[**dynamicClientRegistrationUpdateOAuth2Client()**](PublicApi.md#dynamicClientRegistrationUpdateOAuth2Client) | **PUT** /connect/register/{id} | Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 [**oauth2Token()**](PublicApi.md#oauth2Token) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
 [**oauthAuth()**](PublicApi.md#oauthAuth) | **GET** /oauth2/auth | The OAuth 2.0 Authorize Endpoint
 [**revokeOAuth2Token()**](PublicApi.md#revokeOAuth2Token) | **POST** /oauth2/revoke | Revoke OAuth2 Tokens
@@ -22,7 +25,7 @@ disconnectUser()
 
 OpenID Connect Front-Backchannel Enabled Logout
 
-This endpoint initiates and completes user logout at ORY Hydra and initiates OpenID Connect Front-/Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html
+This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front-/Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html
 
 ### Example
 
@@ -119,15 +122,15 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `isInstanceReady()`
+## `dynamicClientRegistrationCreateOAuth2Client()`
 
 ```php
-isInstanceReady(): \Ory\Hydra\Client\Model\HealthStatus
+dynamicClientRegistrationCreateOAuth2Client($oAuth2Client): \Ory\Hydra\Client\Model\OAuth2Client
 ```
 
-Check Readiness Status
+Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 
-This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+This endpoint behaves like the administrative counterpart (`createOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  Please note that using this endpoint you are not able to choose the `client_secret` nor the `client_id` as those values will be server generated when specifying `token_endpoint_auth_method` as `client_secret_basic` or `client_secret_post`.  The `client_secret` will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somewhere safe.
 
 ### Example
 
@@ -142,22 +145,80 @@ $apiInstance = new Ory\Hydra\Client\Api\PublicApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
+$oAuth2Client = new \Ory\Hydra\Client\Model\OAuth2Client(); // \Ory\Hydra\Client\Model\OAuth2Client
 
 try {
-    $result = $apiInstance->isInstanceReady();
+    $result = $apiInstance->dynamicClientRegistrationCreateOAuth2Client($oAuth2Client);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling PublicApi->isInstanceReady: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling PublicApi->dynamicClientRegistrationCreateOAuth2Client: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
 ### Parameters
 
-This endpoint does not need any parameter.
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **oAuth2Client** | [**\Ory\Hydra\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)|  |
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\HealthStatus**](../Model/HealthStatus.md)
+[**\Ory\Hydra\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `dynamicClientRegistrationDeleteOAuth2Client()`
+
+```php
+dynamicClientRegistrationDeleteOAuth2Client($id)
+```
+
+Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+
+This endpoint behaves like the administrative counterpart (`deleteOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Hydra\Client\Api\PublicApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$id = 'id_example'; // string | The id of the OAuth 2.0 Client.
+
+try {
+    $apiInstance->dynamicClientRegistrationDeleteOAuth2Client($id);
+} catch (Exception $e) {
+    echo 'Exception when calling PublicApi->dynamicClientRegistrationDeleteOAuth2Client: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The id of the OAuth 2.0 Client. |
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 
@@ -172,10 +233,124 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `dynamicClientRegistrationGetOAuth2Client()`
+
+```php
+dynamicClientRegistrationGetOAuth2Client($id): \Ory\Hydra\Client\Model\OAuth2Client
+```
+
+Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+
+This endpoint behaves like the administrative counterpart (`getOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Hydra\Client\Api\PublicApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$id = 'id_example'; // string | The id of the OAuth 2.0 Client.
+
+try {
+    $result = $apiInstance->dynamicClientRegistrationGetOAuth2Client($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PublicApi->dynamicClientRegistrationGetOAuth2Client: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The id of the OAuth 2.0 Client. |
+
+### Return type
+
+[**\Ory\Hydra\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `dynamicClientRegistrationUpdateOAuth2Client()`
+
+```php
+dynamicClientRegistrationUpdateOAuth2Client($id, $oAuth2Client): \Ory\Hydra\Client\Model\OAuth2Client
+```
+
+Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+
+This endpoint behaves like the administrative counterpart (`updateOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Hydra\Client\Api\PublicApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$id = 'id_example'; // string | The id of the OAuth 2.0 Client.
+$oAuth2Client = new \Ory\Hydra\Client\Model\OAuth2Client(); // \Ory\Hydra\Client\Model\OAuth2Client
+
+try {
+    $result = $apiInstance->dynamicClientRegistrationUpdateOAuth2Client($id, $oAuth2Client);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PublicApi->dynamicClientRegistrationUpdateOAuth2Client: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The id of the OAuth 2.0 Client. |
+ **oAuth2Client** | [**\Ory\Hydra\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)|  |
+
+### Return type
+
+[**\Ory\Hydra\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `oauth2Token()`
 
 ```php
-oauth2Token($grantType, $code, $refreshToken, $redirectUri, $clientId): \Ory\Hydra\Client\Model\Oauth2TokenResponse
+oauth2Token($grantType, $clientId, $code, $redirectUri, $refreshToken): \Ory\Hydra\Client\Model\Oauth2TokenResponse
 ```
 
 The OAuth 2.0 Token Endpoint
@@ -205,13 +380,13 @@ $apiInstance = new Ory\Hydra\Client\Api\PublicApi(
     $config
 );
 $grantType = 'grantType_example'; // string
-$code = 'code_example'; // string
-$refreshToken = 'refreshToken_example'; // string
-$redirectUri = 'redirectUri_example'; // string
 $clientId = 'clientId_example'; // string
+$code = 'code_example'; // string
+$redirectUri = 'redirectUri_example'; // string
+$refreshToken = 'refreshToken_example'; // string
 
 try {
-    $result = $apiInstance->oauth2Token($grantType, $code, $refreshToken, $redirectUri, $clientId);
+    $result = $apiInstance->oauth2Token($grantType, $clientId, $code, $redirectUri, $refreshToken);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->oauth2Token: ', $e->getMessage(), PHP_EOL;
@@ -223,10 +398,10 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **grantType** | **string**|  |
- **code** | **string**|  | [optional]
- **refreshToken** | **string**|  | [optional]
- **redirectUri** | **string**|  | [optional]
  **clientId** | **string**|  | [optional]
+ **code** | **string**|  | [optional]
+ **redirectUri** | **string**|  | [optional]
+ **refreshToken** | **string**|  | [optional]
 
 ### Return type
 

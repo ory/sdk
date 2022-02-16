@@ -1,86 +1,91 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class JsonWebKeySetGeneratorRequest {
-  /// Returns a new [JsonWebKeySetGeneratorRequest] instance.
-  JsonWebKeySetGeneratorRequest({
-    @required this.alg,
-    @required this.kid,
-    @required this.use,
-  });
+part 'json_web_key_set_generator_request.g.dart';
 
-  /// The algorithm to be used for creating the key. Supports \"RS256\", \"ES512\", \"HS512\", and \"HS256\"
-  String alg;
+abstract class JsonWebKeySetGeneratorRequest implements Built<JsonWebKeySetGeneratorRequest, JsonWebKeySetGeneratorRequestBuilder> {
 
-  /// The kid of the key to be created
-  String kid;
+    /// The algorithm to be used for creating the key. Supports \"RS256\", \"ES256\", \"ES512\", \"HS512\", and \"HS256\"
+    @BuiltValueField(wireName: r'alg')
+    String get alg;
 
-  /// The \"use\" (public key use) parameter identifies the intended use of the public key. The \"use\" parameter is employed to indicate whether a public key is used for encrypting data or verifying the signature on data. Valid values are \"enc\" and \"sig\".
-  String use;
+    /// The kid of the key to be created
+    @BuiltValueField(wireName: r'kid')
+    String get kid;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is JsonWebKeySetGeneratorRequest &&
-     other.alg == alg &&
-     other.kid == kid &&
-     other.use == use;
+    /// The \"use\" (public key use) parameter identifies the intended use of the public key. The \"use\" parameter is employed to indicate whether a public key is used for encrypting data or verifying the signature on data. Valid values are \"enc\" and \"sig\".
+    @BuiltValueField(wireName: r'use')
+    String get use;
 
-  @override
-  int get hashCode =>
-    (alg == null ? 0 : alg.hashCode) +
-    (kid == null ? 0 : kid.hashCode) +
-    (use == null ? 0 : use.hashCode);
+    JsonWebKeySetGeneratorRequest._();
 
-  @override
-  String toString() => 'JsonWebKeySetGeneratorRequest[alg=$alg, kid=$kid, use=$use]';
+    static void _initializeBuilder(JsonWebKeySetGeneratorRequestBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-      json[r'alg'] = alg;
-      json[r'kid'] = kid;
-      json[r'use'] = use;
-    return json;
-  }
+    factory JsonWebKeySetGeneratorRequest([void updates(JsonWebKeySetGeneratorRequestBuilder b)]) = _$JsonWebKeySetGeneratorRequest;
 
-  /// Returns a new [JsonWebKeySetGeneratorRequest] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static JsonWebKeySetGeneratorRequest fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : JsonWebKeySetGeneratorRequest(
-        alg: json[r'alg'],
-        kid: json[r'kid'],
-        use: json[r'use'],
-    );
+    @BuiltValueSerializer(custom: true)
+    static Serializer<JsonWebKeySetGeneratorRequest> get serializer => _$JsonWebKeySetGeneratorRequestSerializer();
+}
 
-  static List<JsonWebKeySetGeneratorRequest> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <JsonWebKeySetGeneratorRequest>[]
-      : json.map((dynamic value) => JsonWebKeySetGeneratorRequest.fromJson(value)).toList(growable: true == growable);
+class _$JsonWebKeySetGeneratorRequestSerializer implements StructuredSerializer<JsonWebKeySetGeneratorRequest> {
 
-  static Map<String, JsonWebKeySetGeneratorRequest> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, JsonWebKeySetGeneratorRequest>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = JsonWebKeySetGeneratorRequest.fromJson(value));
+    @override
+    final Iterable<Type> types = const [JsonWebKeySetGeneratorRequest, _$JsonWebKeySetGeneratorRequest];
+    @override
+    final String wireName = r'JsonWebKeySetGeneratorRequest';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, JsonWebKeySetGeneratorRequest object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        result
+            ..add(r'alg')
+            ..add(serializers.serialize(object.alg,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'kid')
+            ..add(serializers.serialize(object.kid,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'use')
+            ..add(serializers.serialize(object.use,
+                specifiedType: const FullType(String)));
+        return result;
     }
-    return map;
-  }
 
-  // maps a json object with a list of JsonWebKeySetGeneratorRequest-objects as value to a dart map
-  static Map<String, List<JsonWebKeySetGeneratorRequest>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<JsonWebKeySetGeneratorRequest>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = JsonWebKeySetGeneratorRequest.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
+    @override
+    JsonWebKeySetGeneratorRequest deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = JsonWebKeySetGeneratorRequestBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'alg':
+                    result.alg = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'kid':
+                    result.kid = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'use':
+                    result.use = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
 }
 

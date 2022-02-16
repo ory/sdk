@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **aud** | **List&lt;String&gt;** | Audience contains a list of the token&#39;s intended audiences. |  [optional]
 **clientId** | **String** | ID is aclient identifier for the OAuth 2.0 client that requested this token. |  [optional]
 **exp** | **Long** | Expires at is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token will expire. |  [optional]
-**ext** | **Object** | Extra is arbitrary data set by the session. |  [optional]
+**ext** | **Map&lt;String, Object&gt;** | Extra is arbitrary data set by the session. |  [optional]
 **iat** | **Long** | Issued at is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token was originally issued. |  [optional]
 **iss** | **String** | IssuerURL is a string representing the issuer of this token |  [optional]
 **nbf** | **Long** | NotBefore is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token is not to be used before. |  [optional]

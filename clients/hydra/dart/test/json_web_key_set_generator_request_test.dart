@@ -1,12 +1,20 @@
-import 'package:ory_hydra_client/api.dart';
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.7
+
+// ignore_for_file: unused_import
+
+import 'package:ory_hydra_client/model/json_web_key_set_generator_request.dart';
 import 'package:test/test.dart';
 
 // tests for JsonWebKeySetGeneratorRequest
 void main() {
-  final instance = JsonWebKeySetGeneratorRequest();
+  final instance = JsonWebKeySetGeneratorRequestBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test JsonWebKeySetGeneratorRequest', () {
-    // The algorithm to be used for creating the key. Supports \"RS256\", \"ES512\", \"HS512\", and \"HS256\"
+  group(JsonWebKeySetGeneratorRequest, () {
+    // The algorithm to be used for creating the key. Supports \"RS256\", \"ES256\", \"ES512\", \"HS512\", and \"HS256\"
     // String alg
     test('to test the property `alg`', () async {
       // TODO

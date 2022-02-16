@@ -1,70 +1,67 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class RequestWasHandledResponse {
-  /// Returns a new [RequestWasHandledResponse] instance.
-  RequestWasHandledResponse({
-    @required this.redirectTo,
-  });
+part 'request_was_handled_response.g.dart';
 
-  /// Original request URL to which you should redirect the user if request was already handled.
-  String redirectTo;
+abstract class RequestWasHandledResponse implements Built<RequestWasHandledResponse, RequestWasHandledResponseBuilder> {
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is RequestWasHandledResponse &&
-     other.redirectTo == redirectTo;
+    /// Original request URL to which you should redirect the user if request was already handled.
+    @BuiltValueField(wireName: r'redirect_to')
+    String get redirectTo;
 
-  @override
-  int get hashCode =>
-    (redirectTo == null ? 0 : redirectTo.hashCode);
+    RequestWasHandledResponse._();
 
-  @override
-  String toString() => 'RequestWasHandledResponse[redirectTo=$redirectTo]';
+    static void _initializeBuilder(RequestWasHandledResponseBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-      json[r'redirect_to'] = redirectTo;
-    return json;
-  }
+    factory RequestWasHandledResponse([void updates(RequestWasHandledResponseBuilder b)]) = _$RequestWasHandledResponse;
 
-  /// Returns a new [RequestWasHandledResponse] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static RequestWasHandledResponse fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : RequestWasHandledResponse(
-        redirectTo: json[r'redirect_to'],
-    );
+    @BuiltValueSerializer(custom: true)
+    static Serializer<RequestWasHandledResponse> get serializer => _$RequestWasHandledResponseSerializer();
+}
 
-  static List<RequestWasHandledResponse> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <RequestWasHandledResponse>[]
-      : json.map((dynamic value) => RequestWasHandledResponse.fromJson(value)).toList(growable: true == growable);
+class _$RequestWasHandledResponseSerializer implements StructuredSerializer<RequestWasHandledResponse> {
 
-  static Map<String, RequestWasHandledResponse> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, RequestWasHandledResponse>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = RequestWasHandledResponse.fromJson(value));
+    @override
+    final Iterable<Type> types = const [RequestWasHandledResponse, _$RequestWasHandledResponse];
+    @override
+    final String wireName = r'RequestWasHandledResponse';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, RequestWasHandledResponse object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        result
+            ..add(r'redirect_to')
+            ..add(serializers.serialize(object.redirectTo,
+                specifiedType: const FullType(String)));
+        return result;
     }
-    return map;
-  }
 
-  // maps a json object with a list of RequestWasHandledResponse-objects as value to a dart map
-  static Map<String, List<RequestWasHandledResponse>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<RequestWasHandledResponse>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = RequestWasHandledResponse.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
+    @override
+    RequestWasHandledResponse deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = RequestWasHandledResponseBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'redirect_to':
+                    result.redirectTo = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
 }
 

@@ -26,6 +26,8 @@ Name | Type | Description | Notes
 **policy_uri** | Option<**String**> | PolicyURI is a URL string that points to a human-readable privacy policy document that describes how the deployment organization collects, uses, retains, and discloses personal data. | [optional]
 **post_logout_redirect_uris** | Option<**Vec<String>**> |  | [optional]
 **redirect_uris** | Option<**Vec<String>**> |  | [optional]
+**registration_access_token** | Option<**String**> | RegistrationAccessToken can be used to update, get, or delete the OAuth2 Client. | [optional]
+**registration_client_uri** | Option<**String**> | RegistrationClientURI is the URL used to update, get, or delete the OAuth2 Client. | [optional]
 **request_object_signing_alg** | Option<**String**> | JWS [JWS] alg algorithm [JWA] that MUST be used for signing Request Objects sent to the OP. All Request Objects from this Client MUST be rejected, if not signed with this algorithm. | [optional]
 **request_uris** | Option<**Vec<String>**> |  | [optional]
 **response_types** | Option<**Vec<String>**> |  | [optional]

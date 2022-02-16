@@ -1,11 +1,19 @@
-import 'package:ory_hydra_client/api.dart';
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.7
+
+// ignore_for_file: unused_import
+
+import 'package:ory_hydra_client/model/oauth2_token_response.dart';
 import 'package:test/test.dart';
 
 // tests for Oauth2TokenResponse
 void main() {
-  final instance = Oauth2TokenResponse();
+  final instance = Oauth2TokenResponseBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test Oauth2TokenResponse', () {
+  group(Oauth2TokenResponse, () {
     // String accessToken
     test('to test the property `accessToken`', () async {
       // TODO

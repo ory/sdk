@@ -13,24 +13,26 @@ Method | HTTP request | Description
 [**deleteJsonWebKeySet**](AdminApi.md#deleteJsonWebKeySet) | **DELETE** /keys/{set} | Delete a JSON Web Key Set
 [**deleteOAuth2Client**](AdminApi.md#deleteOAuth2Client) | **DELETE** /clients/{id} | Deletes an OAuth 2.0 Client
 [**deleteOAuth2Token**](AdminApi.md#deleteOAuth2Token) | **DELETE** /oauth2/tokens | Delete OAuth2 Access Tokens from a Client
+[**deleteTrustedJwtGrantIssuer**](AdminApi.md#deleteTrustedJwtGrantIssuer) | **DELETE** /trust/grants/jwt-bearer/issuers/{id} | Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer
 [**flushInactiveOAuth2Tokens**](AdminApi.md#flushInactiveOAuth2Tokens) | **POST** /oauth2/flush | Flush Expired OAuth2 Access Tokens
 [**getConsentRequest**](AdminApi.md#getConsentRequest) | **GET** /oauth2/auth/requests/consent | Get Consent Request Information
 [**getJsonWebKey**](AdminApi.md#getJsonWebKey) | **GET** /keys/{set}/{kid} | Fetch a JSON Web Key
 [**getJsonWebKeySet**](AdminApi.md#getJsonWebKeySet) | **GET** /keys/{set} | Retrieve a JSON Web Key Set
 [**getLoginRequest**](AdminApi.md#getLoginRequest) | **GET** /oauth2/auth/requests/login | Get a Login Request
 [**getLogoutRequest**](AdminApi.md#getLogoutRequest) | **GET** /oauth2/auth/requests/logout | Get a Logout Request
-[**getOAuth2Client**](AdminApi.md#getOAuth2Client) | **GET** /clients/{id} | Get an OAuth 2.0 Client.
-[**getVersion**](AdminApi.md#getVersion) | **GET** /version | Get Service Version
+[**getOAuth2Client**](AdminApi.md#getOAuth2Client) | **GET** /clients/{id} | Get an OAuth 2.0 Client
+[**getTrustedJwtGrantIssuer**](AdminApi.md#getTrustedJwtGrantIssuer) | **GET** /trust/grants/jwt-bearer/issuers/{id} | Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
 [**introspectOAuth2Token**](AdminApi.md#introspectOAuth2Token) | **POST** /oauth2/introspect | Introspect OAuth2 Tokens
-[**isInstanceAlive**](AdminApi.md#isInstanceAlive) | **GET** /health/alive | Check Alive Status
 [**listOAuth2Clients**](AdminApi.md#listOAuth2Clients) | **GET** /clients | List OAuth 2.0 Clients
 [**listSubjectConsentSessions**](AdminApi.md#listSubjectConsentSessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject
+[**listTrustedJwtGrantIssuers**](AdminApi.md#listTrustedJwtGrantIssuers) | **GET** /trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
 [**patchOAuth2Client**](AdminApi.md#patchOAuth2Client) | **PATCH** /clients/{id} | Patch an OAuth 2.0 Client
 [**rejectConsentRequest**](AdminApi.md#rejectConsentRequest) | **PUT** /oauth2/auth/requests/consent/reject | Reject a Consent Request
 [**rejectLoginRequest**](AdminApi.md#rejectLoginRequest) | **PUT** /oauth2/auth/requests/login/reject | Reject a Login Request
 [**rejectLogoutRequest**](AdminApi.md#rejectLogoutRequest) | **PUT** /oauth2/auth/requests/logout/reject | Reject a Logout Request
 [**revokeAuthenticationSession**](AdminApi.md#revokeAuthenticationSession) | **DELETE** /oauth2/auth/sessions/login | Invalidates All Login Sessions of a Certain User Invalidates a Subject&#39;s Authentication Session
 [**revokeConsentSessions**](AdminApi.md#revokeConsentSessions) | **DELETE** /oauth2/auth/sessions/consent | Revokes Consent Sessions of a Subject for a Specific OAuth 2.0 Client
+[**trustJwtGrantIssuer**](AdminApi.md#trustJwtGrantIssuer) | **POST** /trust/grants/jwt-bearer/issuers | Trust an OAuth2 JWT Bearer Grant Type Issuer
 [**updateJsonWebKey**](AdminApi.md#updateJsonWebKey) | **PUT** /keys/{set}/{kid} | Update a JSON Web Key
 [**updateJsonWebKeySet**](AdminApi.md#updateJsonWebKeySet) | **PUT** /keys/{set} | Update a JSON Web Key Set
 [**updateOAuth2Client**](AdminApi.md#updateOAuth2Client) | **PUT** /clients/{id} | Update an OAuth 2.0 Client
@@ -38,7 +40,7 @@ Method | HTTP request | Description
 
 <a name="acceptConsentRequest"></a>
 # **acceptConsentRequest**
-> CompletedRequest acceptConsentRequest(consentChallenge, body)
+> CompletedRequest acceptConsentRequest(consentChallenge, acceptConsentRequest)
 
 Accept a Consent Request
 
@@ -60,9 +62,9 @@ public class Example {
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String consentChallenge = "consentChallenge_example"; // String | 
-    AcceptConsentRequest body = new AcceptConsentRequest(); // AcceptConsentRequest | 
+    AcceptConsentRequest acceptConsentRequest = new AcceptConsentRequest(); // AcceptConsentRequest | 
     try {
-      CompletedRequest result = apiInstance.acceptConsentRequest(consentChallenge, body);
+      CompletedRequest result = apiInstance.acceptConsentRequest(consentChallenge, acceptConsentRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#acceptConsentRequest");
@@ -80,7 +82,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **consentChallenge** | **String**|  |
- **body** | [**AcceptConsentRequest**](AcceptConsentRequest.md)|  | [optional]
+ **acceptConsentRequest** | [**AcceptConsentRequest**](AcceptConsentRequest.md)|  | [optional]
 
 ### Return type
 
@@ -104,7 +106,7 @@ No authorization required
 
 <a name="acceptLoginRequest"></a>
 # **acceptLoginRequest**
-> CompletedRequest acceptLoginRequest(loginChallenge, body)
+> CompletedRequest acceptLoginRequest(loginChallenge, acceptLoginRequest)
 
 Accept a Login Request
 
@@ -126,9 +128,9 @@ public class Example {
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String loginChallenge = "loginChallenge_example"; // String | 
-    AcceptLoginRequest body = new AcceptLoginRequest(); // AcceptLoginRequest | 
+    AcceptLoginRequest acceptLoginRequest = new AcceptLoginRequest(); // AcceptLoginRequest | 
     try {
-      CompletedRequest result = apiInstance.acceptLoginRequest(loginChallenge, body);
+      CompletedRequest result = apiInstance.acceptLoginRequest(loginChallenge, acceptLoginRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#acceptLoginRequest");
@@ -146,7 +148,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **loginChallenge** | **String**|  |
- **body** | [**AcceptLoginRequest**](AcceptLoginRequest.md)|  | [optional]
+ **acceptLoginRequest** | [**AcceptLoginRequest**](AcceptLoginRequest.md)|  | [optional]
 
 ### Return type
 
@@ -236,7 +238,7 @@ No authorization required
 
 <a name="createJsonWebKeySet"></a>
 # **createJsonWebKeySet**
-> JSONWebKeySet createJsonWebKeySet(set, body)
+> JSONWebKeySet createJsonWebKeySet(set, jsonWebKeySetGeneratorRequest)
 
 Generate a New JSON Web Key
 
@@ -258,9 +260,9 @@ public class Example {
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String set = "set_example"; // String | The set
-    JsonWebKeySetGeneratorRequest body = new JsonWebKeySetGeneratorRequest(); // JsonWebKeySetGeneratorRequest | 
+    JsonWebKeySetGeneratorRequest jsonWebKeySetGeneratorRequest = new JsonWebKeySetGeneratorRequest(); // JsonWebKeySetGeneratorRequest | 
     try {
-      JSONWebKeySet result = apiInstance.createJsonWebKeySet(set, body);
+      JSONWebKeySet result = apiInstance.createJsonWebKeySet(set, jsonWebKeySetGeneratorRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#createJsonWebKeySet");
@@ -278,7 +280,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **set** | **String**| The set |
- **body** | [**JsonWebKeySetGeneratorRequest**](JsonWebKeySetGeneratorRequest.md)|  | [optional]
+ **jsonWebKeySetGeneratorRequest** | [**JsonWebKeySetGeneratorRequest**](JsonWebKeySetGeneratorRequest.md)|  | [optional]
 
 ### Return type
 
@@ -303,11 +305,11 @@ No authorization required
 
 <a name="createOAuth2Client"></a>
 # **createOAuth2Client**
-> OAuth2Client createOAuth2Client(body)
+> OAuth2Client createOAuth2Client(oauth2Client)
 
 Create an OAuth 2.0 Client
 
-Create a new OAuth 2.0 client If you pass &#x60;client_secret&#x60; the secret will be used, otherwise a random secret will be generated. The secret will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somwhere safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+Create a new OAuth 2.0 client If you pass &#x60;client_secret&#x60; the secret will be used, otherwise a random secret will be generated. The secret will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somwhere safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
 
 ### Example
 ```java
@@ -324,9 +326,9 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
-    OAuth2Client body = new OAuth2Client(); // OAuth2Client | 
+    OAuth2Client oauth2Client = new OAuth2Client(); // OAuth2Client | 
     try {
-      OAuth2Client result = apiInstance.createOAuth2Client(body);
+      OAuth2Client result = apiInstance.createOAuth2Client(oauth2Client);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#createOAuth2Client");
@@ -343,7 +345,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**OAuth2Client**](OAuth2Client.md)|  |
+ **oauth2Client** | [**OAuth2Client**](OAuth2Client.md)|  |
 
 ### Return type
 
@@ -362,9 +364,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | oAuth2Client |  -  |
-**400** | jsonError |  -  |
-**409** | jsonError |  -  |
-**500** | jsonError |  -  |
+**0** | jsonError |  -  |
 
 <a name="deleteJsonWebKey"></a>
 # **deleteJsonWebKey**
@@ -502,7 +502,7 @@ No authorization required
 
 Deletes an OAuth 2.0 Client
 
-Delete an existing OAuth 2.0 Client by its ID.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+Delete an existing OAuth 2.0 Client by its ID.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.  Make sure that this endpoint is well protected and only callable by first-party components.
 
 ### Example
 ```java
@@ -556,8 +556,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**404** | jsonError |  -  |
-**500** | jsonError |  -  |
+**0** | jsonError |  -  |
 
 <a name="deleteOAuth2Token"></a>
 # **deleteOAuth2Token**
@@ -622,9 +621,72 @@ No authorization required
 **401** | jsonError |  -  |
 **500** | jsonError |  -  |
 
+<a name="deleteTrustedJwtGrantIssuer"></a>
+# **deleteTrustedJwtGrantIssuer**
+> deleteTrustedJwtGrantIssuer(id)
+
+Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer
+
+Use this endpoint to delete trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you created the trust relationship.  Once deleted, the associated issuer will no longer be able to perform the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grant.
+
+### Example
+```java
+// Import classes:
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    AdminApi apiInstance = new AdminApi(defaultClient);
+    String id = "id_example"; // String | The id of the desired grant
+    try {
+      apiInstance.deleteTrustedJwtGrantIssuer(id);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AdminApi#deleteTrustedJwtGrantIssuer");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The id of the desired grant |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**404** | genericError |  -  |
+**500** | genericError |  -  |
+
 <a name="flushInactiveOAuth2Tokens"></a>
 # **flushInactiveOAuth2Tokens**
-> flushInactiveOAuth2Tokens(body)
+> flushInactiveOAuth2Tokens(flushInactiveOAuth2TokensRequest)
 
 Flush Expired OAuth2 Access Tokens
 
@@ -645,9 +707,9 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
-    FlushInactiveOAuth2TokensRequest body = new FlushInactiveOAuth2TokensRequest(); // FlushInactiveOAuth2TokensRequest | 
+    FlushInactiveOAuth2TokensRequest flushInactiveOAuth2TokensRequest = new FlushInactiveOAuth2TokensRequest(); // FlushInactiveOAuth2TokensRequest | 
     try {
-      apiInstance.flushInactiveOAuth2Tokens(body);
+      apiInstance.flushInactiveOAuth2Tokens(flushInactiveOAuth2TokensRequest);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#flushInactiveOAuth2Tokens");
       System.err.println("Status code: " + e.getCode());
@@ -663,7 +725,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**FlushInactiveOAuth2TokensRequest**](FlushInactiveOAuth2TokensRequest.md)|  | [optional]
+ **flushInactiveOAuth2TokensRequest** | [**FlushInactiveOAuth2TokensRequest**](FlushInactiveOAuth2TokensRequest.md)|  | [optional]
 
 ### Return type
 
@@ -1016,9 +1078,9 @@ No authorization required
 # **getOAuth2Client**
 > OAuth2Client getOAuth2Client(id)
 
-Get an OAuth 2.0 Client.
+Get an OAuth 2.0 Client
 
-Get an OAUth 2.0 client by its ID. This endpoint never returns passwords.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+Get an OAuth 2.0 client by its ID. This endpoint never returns the client secret.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
 
 ### Example
 ```java
@@ -1073,16 +1135,15 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | oAuth2Client |  -  |
-**401** | jsonError |  -  |
-**500** | jsonError |  -  |
+**0** | jsonError |  -  |
 
-<a name="getVersion"></a>
-# **getVersion**
-> Version getVersion()
+<a name="getTrustedJwtGrantIssuer"></a>
+# **getTrustedJwtGrantIssuer**
+> TrustedJwtGrantIssuer getTrustedJwtGrantIssuer(id)
 
-Get Service Version
+Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
 
-This endpoint returns the service version typically notated using semantic versioning.  If the service supports TLS Edge Termination, this endpoint does not require the &#x60;X-Forwarded-Proto&#x60; header to be set.
+Use this endpoint to get a trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you created the trust relationship.
 
 ### Example
 ```java
@@ -1099,11 +1160,12 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
+    String id = "id_example"; // String | The id of the desired grant
     try {
-      Version result = apiInstance.getVersion();
+      TrustedJwtGrantIssuer result = apiInstance.getTrustedJwtGrantIssuer(id);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling AdminApi#getVersion");
+      System.err.println("Exception when calling AdminApi#getTrustedJwtGrantIssuer");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1114,11 +1176,14 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The id of the desired grant |
 
 ### Return type
 
-[**Version**](Version.md)
+[**TrustedJwtGrantIssuer**](TrustedJwtGrantIssuer.md)
 
 ### Authorization
 
@@ -1132,7 +1197,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | version |  -  |
+**200** | trustedJwtGrantIssuer |  -  |
+**404** | genericError |  -  |
+**500** | genericError |  -  |
 
 <a name="introspectOAuth2Token"></a>
 # **introspectOAuth2Token**
@@ -1200,72 +1267,13 @@ No authorization required
 **401** | jsonError |  -  |
 **500** | jsonError |  -  |
 
-<a name="isInstanceAlive"></a>
-# **isInstanceAlive**
-> HealthStatus isInstanceAlive()
-
-Check Alive Status
-
-This endpoint returns a 200 status code when the HTTP server is up running. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the &#x60;X-Forwarded-Proto&#x60; header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
-
-### Example
-```java
-// Import classes:
-import sh.ory.hydra.ApiClient;
-import sh.ory.hydra.ApiException;
-import sh.ory.hydra.Configuration;
-import sh.ory.hydra.models.*;
-import sh.ory.hydra.api.AdminApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-
-    AdminApi apiInstance = new AdminApi(defaultClient);
-    try {
-      HealthStatus result = apiInstance.isInstanceAlive();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling AdminApi#isInstanceAlive");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**HealthStatus**](HealthStatus.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | healthStatus |  -  |
-**500** | jsonError |  -  |
-
 <a name="listOAuth2Clients"></a>
 # **listOAuth2Clients**
-> List&lt;OAuth2Client&gt; listOAuth2Clients(limit, offset, name, owner)
+> List&lt;OAuth2Client&gt; listOAuth2Clients(limit, offset, clientName, owner)
 
 List OAuth 2.0 Clients
 
-This endpoint lists all clients in the database, and never returns client secrets. As a default it lists the first 100 clients. The &#x60;limit&#x60; parameter can be used to retrieve more clients, but it has an upper bound at 500 objects. Pagination should be used to retrieve more than 500 objects.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components. The \&quot;Link\&quot; header is also included in successful responses, which contains one or more links for pagination, formatted like so: &#39;&lt;https://hydra-url/admin/clients?limit&#x3D;{limit}&amp;offset&#x3D;{offset}&gt;; rel&#x3D;\&quot;{page}\&quot;&#39;, where page is one of the following applicable pages: &#39;first&#39;, &#39;next&#39;, &#39;last&#39;, and &#39;previous&#39;. Multiple links can be included in this header, and will be separated by a comma.
+This endpoint lists all clients in the database, and never returns client secrets. As a default it lists the first 100 clients. The &#x60;limit&#x60; parameter can be used to retrieve more clients, but it has an upper bound at 500 objects. Pagination should be used to retrieve more than 500 objects.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.  The \&quot;Link\&quot; header is also included in successful responses, which contains one or more links for pagination, formatted like so: &#39;&lt;https://hydra-url/admin/clients?limit&#x3D;{limit}&amp;offset&#x3D;{offset}&gt;; rel&#x3D;\&quot;{page}\&quot;&#39;, where page is one of the following applicable pages: &#39;first&#39;, &#39;next&#39;, &#39;last&#39;, and &#39;previous&#39;. Multiple links can be included in this header, and will be separated by a comma.
 
 ### Example
 ```java
@@ -1284,10 +1292,10 @@ public class Example {
     AdminApi apiInstance = new AdminApi(defaultClient);
     Long limit = 56L; // Long | The maximum amount of clients to returned, upper bound is 500 clients.
     Long offset = 56L; // Long | The offset from where to start looking.
-    String name = "name_example"; // String | The name of the clients to filter by.
+    String clientName = "clientName_example"; // String | The name of the clients to filter by.
     String owner = "owner_example"; // String | The owner of the clients to filter by.
     try {
-      List<OAuth2Client> result = apiInstance.listOAuth2Clients(limit, offset, name, owner);
+      List<OAuth2Client> result = apiInstance.listOAuth2Clients(limit, offset, clientName, owner);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#listOAuth2Clients");
@@ -1306,7 +1314,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **Long**| The maximum amount of clients to returned, upper bound is 500 clients. | [optional]
  **offset** | **Long**| The offset from where to start looking. | [optional]
- **name** | **String**| The name of the clients to filter by. | [optional]
+ **clientName** | **String**| The name of the clients to filter by. | [optional]
  **owner** | **String**| The owner of the clients to filter by. | [optional]
 
 ### Return type
@@ -1326,7 +1334,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A list of clients. |  -  |
-**500** | jsonError |  -  |
+**0** | jsonError |  -  |
 
 <a name="listSubjectConsentSessions"></a>
 # **listSubjectConsentSessions**
@@ -1392,13 +1400,13 @@ No authorization required
 **400** | jsonError |  -  |
 **500** | jsonError |  -  |
 
-<a name="patchOAuth2Client"></a>
-# **patchOAuth2Client**
-> OAuth2Client patchOAuth2Client(id, body)
+<a name="listTrustedJwtGrantIssuers"></a>
+# **listTrustedJwtGrantIssuers**
+> List&lt;TrustedJwtGrantIssuer&gt; listTrustedJwtGrantIssuers(issuer, limit, offset)
 
-Patch an OAuth 2.0 Client
+List Trusted OAuth2 JWT Bearer Grant Type Issuers
 
-Patch an existing OAuth 2.0 Client. If you pass &#x60;client_secret&#x60; the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
 
 ### Example
 ```java
@@ -1415,10 +1423,77 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
-    String id = "id_example"; // String | 
-    List<PatchDocument> body = Arrays.asList(); // List<PatchDocument> | 
+    String issuer = "issuer_example"; // String | If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned.
+    Long limit = 56L; // Long | The maximum amount of policies returned, upper bound is 500 policies
+    Long offset = 56L; // Long | The offset from where to start looking.
     try {
-      OAuth2Client result = apiInstance.patchOAuth2Client(id, body);
+      List<TrustedJwtGrantIssuer> result = apiInstance.listTrustedJwtGrantIssuers(issuer, limit, offset);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AdminApi#listTrustedJwtGrantIssuers");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **issuer** | **String**| If optional \&quot;issuer\&quot; is supplied, only jwt-bearer grants with this issuer will be returned. | [optional]
+ **limit** | **Long**| The maximum amount of policies returned, upper bound is 500 policies | [optional]
+ **offset** | **Long**| The offset from where to start looking. | [optional]
+
+### Return type
+
+[**List&lt;TrustedJwtGrantIssuer&gt;**](TrustedJwtGrantIssuer.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | trustedJwtGrantIssuers |  -  |
+**500** | genericError |  -  |
+
+<a name="patchOAuth2Client"></a>
+# **patchOAuth2Client**
+> OAuth2Client patchOAuth2Client(id, patchDocument)
+
+Patch an OAuth 2.0 Client
+
+Patch an existing OAuth 2.0 Client. If you pass &#x60;client_secret&#x60; the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+```java
+// Import classes:
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    AdminApi apiInstance = new AdminApi(defaultClient);
+    String id = "id_example"; // String | The id of the OAuth 2.0 Client.
+    List<PatchDocument> patchDocument = Arrays.asList(); // List<PatchDocument> | 
+    try {
+      OAuth2Client result = apiInstance.patchOAuth2Client(id, patchDocument);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#patchOAuth2Client");
@@ -1435,8 +1510,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**|  |
- **body** | [**List&lt;PatchDocument&gt;**](PatchDocument.md)|  |
+ **id** | **String**| The id of the OAuth 2.0 Client. |
+ **patchDocument** | [**List&lt;PatchDocument&gt;**](PatchDocument.md)|  |
 
 ### Return type
 
@@ -1455,11 +1530,11 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | oAuth2Client |  -  |
-**500** | jsonError |  -  |
+**0** | jsonError |  -  |
 
 <a name="rejectConsentRequest"></a>
 # **rejectConsentRequest**
-> CompletedRequest rejectConsentRequest(consentChallenge, body)
+> CompletedRequest rejectConsentRequest(consentChallenge, rejectRequest)
 
 Reject a Consent Request
 
@@ -1481,9 +1556,9 @@ public class Example {
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String consentChallenge = "consentChallenge_example"; // String | 
-    RejectRequest body = new RejectRequest(); // RejectRequest | 
+    RejectRequest rejectRequest = new RejectRequest(); // RejectRequest | 
     try {
-      CompletedRequest result = apiInstance.rejectConsentRequest(consentChallenge, body);
+      CompletedRequest result = apiInstance.rejectConsentRequest(consentChallenge, rejectRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#rejectConsentRequest");
@@ -1501,7 +1576,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **consentChallenge** | **String**|  |
- **body** | [**RejectRequest**](RejectRequest.md)|  | [optional]
+ **rejectRequest** | [**RejectRequest**](RejectRequest.md)|  | [optional]
 
 ### Return type
 
@@ -1525,7 +1600,7 @@ No authorization required
 
 <a name="rejectLoginRequest"></a>
 # **rejectLoginRequest**
-> CompletedRequest rejectLoginRequest(loginChallenge, body)
+> CompletedRequest rejectLoginRequest(loginChallenge, rejectRequest)
 
 Reject a Login Request
 
@@ -1547,9 +1622,9 @@ public class Example {
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String loginChallenge = "loginChallenge_example"; // String | 
-    RejectRequest body = new RejectRequest(); // RejectRequest | 
+    RejectRequest rejectRequest = new RejectRequest(); // RejectRequest | 
     try {
-      CompletedRequest result = apiInstance.rejectLoginRequest(loginChallenge, body);
+      CompletedRequest result = apiInstance.rejectLoginRequest(loginChallenge, rejectRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#rejectLoginRequest");
@@ -1567,7 +1642,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **loginChallenge** | **String**|  |
- **body** | [**RejectRequest**](RejectRequest.md)|  | [optional]
+ **rejectRequest** | [**RejectRequest**](RejectRequest.md)|  | [optional]
 
 ### Return type
 
@@ -1593,7 +1668,7 @@ No authorization required
 
 <a name="rejectLogoutRequest"></a>
 # **rejectLogoutRequest**
-> rejectLogoutRequest(logoutChallenge, body)
+> rejectLogoutRequest(logoutChallenge, rejectRequest)
 
 Reject a Logout Request
 
@@ -1615,9 +1690,9 @@ public class Example {
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String logoutChallenge = "logoutChallenge_example"; // String | 
-    RejectRequest body = new RejectRequest(); // RejectRequest | 
+    RejectRequest rejectRequest = new RejectRequest(); // RejectRequest | 
     try {
-      apiInstance.rejectLogoutRequest(logoutChallenge, body);
+      apiInstance.rejectLogoutRequest(logoutChallenge, rejectRequest);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#rejectLogoutRequest");
       System.err.println("Status code: " + e.getCode());
@@ -1634,7 +1709,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **logoutChallenge** | **String**|  |
- **body** | [**RejectRequest**](RejectRequest.md)|  | [optional]
+ **rejectRequest** | [**RejectRequest**](RejectRequest.md)|  | [optional]
 
 ### Return type
 
@@ -1786,9 +1861,74 @@ No authorization required
 **400** | jsonError |  -  |
 **500** | jsonError |  -  |
 
+<a name="trustJwtGrantIssuer"></a>
+# **trustJwtGrantIssuer**
+> TrustedJwtGrantIssuer trustJwtGrantIssuer(trustJwtGrantIssuerBody)
+
+Trust an OAuth2 JWT Bearer Grant Type Issuer
+
+Use this endpoint to establish a trust relationship for a JWT issuer to perform JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants [RFC7523](https://datatracker.ietf.org/doc/html/rfc7523).
+
+### Example
+```java
+// Import classes:
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    AdminApi apiInstance = new AdminApi(defaultClient);
+    TrustJwtGrantIssuerBody trustJwtGrantIssuerBody = new TrustJwtGrantIssuerBody(); // TrustJwtGrantIssuerBody | 
+    try {
+      TrustedJwtGrantIssuer result = apiInstance.trustJwtGrantIssuer(trustJwtGrantIssuerBody);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AdminApi#trustJwtGrantIssuer");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **trustJwtGrantIssuerBody** | [**TrustJwtGrantIssuerBody**](TrustJwtGrantIssuerBody.md)|  | [optional]
+
+### Return type
+
+[**TrustedJwtGrantIssuer**](TrustedJwtGrantIssuer.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | trustedJwtGrantIssuer |  -  |
+**400** | genericError |  -  |
+**409** | genericError |  -  |
+**500** | genericError |  -  |
+
 <a name="updateJsonWebKey"></a>
 # **updateJsonWebKey**
-> JSONWebKey updateJsonWebKey(kid, set, body)
+> JSONWebKey updateJsonWebKey(kid, set, jsONWebKey)
 
 Update a JSON Web Key
 
@@ -1811,9 +1951,9 @@ public class Example {
     AdminApi apiInstance = new AdminApi(defaultClient);
     String kid = "kid_example"; // String | The kid of the desired key
     String set = "set_example"; // String | The set
-    JSONWebKey body = new JSONWebKey(); // JSONWebKey | 
+    JSONWebKey jsONWebKey = new JSONWebKey(); // JSONWebKey | 
     try {
-      JSONWebKey result = apiInstance.updateJsonWebKey(kid, set, body);
+      JSONWebKey result = apiInstance.updateJsonWebKey(kid, set, jsONWebKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#updateJsonWebKey");
@@ -1832,7 +1972,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **kid** | **String**| The kid of the desired key |
  **set** | **String**| The set |
- **body** | [**JSONWebKey**](JSONWebKey.md)|  | [optional]
+ **jsONWebKey** | [**JSONWebKey**](JSONWebKey.md)|  | [optional]
 
 ### Return type
 
@@ -1857,7 +1997,7 @@ No authorization required
 
 <a name="updateJsonWebKeySet"></a>
 # **updateJsonWebKeySet**
-> JSONWebKeySet updateJsonWebKeySet(set, body)
+> JSONWebKeySet updateJsonWebKeySet(set, jsONWebKeySet)
 
 Update a JSON Web Key Set
 
@@ -1879,9 +2019,9 @@ public class Example {
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String set = "set_example"; // String | The set
-    JSONWebKeySet body = new JSONWebKeySet(); // JSONWebKeySet | 
+    JSONWebKeySet jsONWebKeySet = new JSONWebKeySet(); // JSONWebKeySet | 
     try {
-      JSONWebKeySet result = apiInstance.updateJsonWebKeySet(set, body);
+      JSONWebKeySet result = apiInstance.updateJsonWebKeySet(set, jsONWebKeySet);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#updateJsonWebKeySet");
@@ -1899,7 +2039,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **set** | **String**| The set |
- **body** | [**JSONWebKeySet**](JSONWebKeySet.md)|  | [optional]
+ **jsONWebKeySet** | [**JSONWebKeySet**](JSONWebKeySet.md)|  | [optional]
 
 ### Return type
 
@@ -1924,11 +2064,11 @@ No authorization required
 
 <a name="updateOAuth2Client"></a>
 # **updateOAuth2Client**
-> OAuth2Client updateOAuth2Client(id, body)
+> OAuth2Client updateOAuth2Client(id, oauth2Client)
 
 Update an OAuth 2.0 Client
 
-Update an existing OAuth 2.0 Client. If you pass &#x60;client_secret&#x60; the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+Update an existing OAuth 2.0 Client. If you pass &#x60;client_secret&#x60; the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
 
 ### Example
 ```java
@@ -1945,10 +2085,10 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
-    String id = "id_example"; // String | 
-    OAuth2Client body = new OAuth2Client(); // OAuth2Client | 
+    String id = "id_example"; // String | The id of the OAuth 2.0 Client.
+    OAuth2Client oauth2Client = new OAuth2Client(); // OAuth2Client | 
     try {
-      OAuth2Client result = apiInstance.updateOAuth2Client(id, body);
+      OAuth2Client result = apiInstance.updateOAuth2Client(id, oauth2Client);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#updateOAuth2Client");
@@ -1965,8 +2105,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**|  |
- **body** | [**OAuth2Client**](OAuth2Client.md)|  |
+ **id** | **String**| The id of the OAuth 2.0 Client. |
+ **oauth2Client** | [**OAuth2Client**](OAuth2Client.md)|  |
 
 ### Return type
 
@@ -1985,5 +2125,5 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | oAuth2Client |  -  |
-**500** | jsonError |  -  |
+**0** | jsonError |  -  |
 

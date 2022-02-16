@@ -6,7 +6,10 @@ All URIs are relative to *http://localhost*
 | ------ | ------------ | ----------- |
 | [**disconnect_user**](PublicApi.md#disconnect_user) | **GET** /oauth2/sessions/logout | OpenID Connect Front-Backchannel Enabled Logout |
 | [**discover_open_id_configuration**](PublicApi.md#discover_open_id_configuration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery |
-| [**is_instance_ready**](PublicApi.md#is_instance_ready) | **GET** /health/ready | Check Readiness Status |
+| [**dynamic_client_registration_create_o_auth2_client**](PublicApi.md#dynamic_client_registration_create_o_auth2_client) | **POST** /connect/register | Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol |
+| [**dynamic_client_registration_delete_o_auth2_client**](PublicApi.md#dynamic_client_registration_delete_o_auth2_client) | **DELETE** /connect/register/{id} | Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol |
+| [**dynamic_client_registration_get_o_auth2_client**](PublicApi.md#dynamic_client_registration_get_o_auth2_client) | **GET** /connect/register/{id} | Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol |
+| [**dynamic_client_registration_update_o_auth2_client**](PublicApi.md#dynamic_client_registration_update_o_auth2_client) | **PUT** /connect/register/{id} | Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol |
 | [**oauth2_token**](PublicApi.md#oauth2_token) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint |
 | [**oauth_auth**](PublicApi.md#oauth_auth) | **GET** /oauth2/auth | The OAuth 2.0 Authorize Endpoint |
 | [**revoke_o_auth2_token**](PublicApi.md#revoke_o_auth2_token) | **POST** /oauth2/revoke | Revoke OAuth2 Tokens |
@@ -20,7 +23,7 @@ All URIs are relative to *http://localhost*
 
 OpenID Connect Front-Backchannel Enabled Logout
 
-This endpoint initiates and completes user logout at ORY Hydra and initiates OpenID Connect Front-/Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html
+This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front-/Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html
 
 ### Examples
 
@@ -135,13 +138,13 @@ No authorization required
 - **Accept**: application/json
 
 
-## is_instance_ready
+## dynamic_client_registration_create_o_auth2_client
 
-> <HealthStatus> is_instance_ready
+> <OAuth2Client> dynamic_client_registration_create_o_auth2_client(o_auth2_client)
 
-Check Readiness Status
+Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 
-This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+This endpoint behaves like the administrative counterpart (`createOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  Please note that using this endpoint you are not able to choose the `client_secret` nor the `client_id` as those values will be server generated when specifying `token_endpoint_auth_method` as `client_secret_basic` or `client_secret_post`.  The `client_secret` will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somewhere safe.
 
 ### Examples
 
@@ -150,41 +153,107 @@ require 'time'
 require 'ory-hydra-client'
 
 api_instance = OryHydraClient::PublicApi.new
+o_auth2_client = OryHydraClient::OAuth2Client.new # OAuth2Client | 
 
 begin
-  # Check Readiness Status
-  result = api_instance.is_instance_ready
+  # Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+  result = api_instance.dynamic_client_registration_create_o_auth2_client(o_auth2_client)
   p result
 rescue OryHydraClient::ApiError => e
-  puts "Error when calling PublicApi->is_instance_ready: #{e}"
+  puts "Error when calling PublicApi->dynamic_client_registration_create_o_auth2_client: #{e}"
 end
 ```
 
-#### Using the is_instance_ready_with_http_info variant
+#### Using the dynamic_client_registration_create_o_auth2_client_with_http_info variant
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<HealthStatus>, Integer, Hash)> is_instance_ready_with_http_info
+> <Array(<OAuth2Client>, Integer, Hash)> dynamic_client_registration_create_o_auth2_client_with_http_info(o_auth2_client)
 
 ```ruby
 begin
-  # Check Readiness Status
-  data, status_code, headers = api_instance.is_instance_ready_with_http_info
+  # Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+  data, status_code, headers = api_instance.dynamic_client_registration_create_o_auth2_client_with_http_info(o_auth2_client)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <HealthStatus>
+  p data # => <OAuth2Client>
 rescue OryHydraClient::ApiError => e
-  puts "Error when calling PublicApi->is_instance_ready_with_http_info: #{e}"
+  puts "Error when calling PublicApi->dynamic_client_registration_create_o_auth2_client_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-This endpoint does not need any parameter.
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md) |  |  |
 
 ### Return type
 
-[**HealthStatus**](HealthStatus.md)
+[**OAuth2Client**](OAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## dynamic_client_registration_delete_o_auth2_client
+
+> dynamic_client_registration_delete_o_auth2_client(id)
+
+Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+
+This endpoint behaves like the administrative counterpart (`deleteOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-hydra-client'
+
+api_instance = OryHydraClient::PublicApi.new
+id = 'id_example' # String | The id of the OAuth 2.0 Client.
+
+begin
+  # Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+  api_instance.dynamic_client_registration_delete_o_auth2_client(id)
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling PublicApi->dynamic_client_registration_delete_o_auth2_client: #{e}"
+end
+```
+
+#### Using the dynamic_client_registration_delete_o_auth2_client_with_http_info variant
+
+This returns an Array which contains the response data (`nil` in this case), status code and headers.
+
+> <Array(nil, Integer, Hash)> dynamic_client_registration_delete_o_auth2_client_with_http_info(id)
+
+```ruby
+begin
+  # Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+  data, status_code, headers = api_instance.dynamic_client_registration_delete_o_auth2_client_with_http_info(id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => nil
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling PublicApi->dynamic_client_registration_delete_o_auth2_client_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** | The id of the OAuth 2.0 Client. |  |
+
+### Return type
+
+nil (empty response body)
 
 ### Authorization
 
@@ -193,6 +262,136 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## dynamic_client_registration_get_o_auth2_client
+
+> <OAuth2Client> dynamic_client_registration_get_o_auth2_client(id)
+
+Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+
+This endpoint behaves like the administrative counterpart (`getOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-hydra-client'
+
+api_instance = OryHydraClient::PublicApi.new
+id = 'id_example' # String | The id of the OAuth 2.0 Client.
+
+begin
+  # Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+  result = api_instance.dynamic_client_registration_get_o_auth2_client(id)
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling PublicApi->dynamic_client_registration_get_o_auth2_client: #{e}"
+end
+```
+
+#### Using the dynamic_client_registration_get_o_auth2_client_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<OAuth2Client>, Integer, Hash)> dynamic_client_registration_get_o_auth2_client_with_http_info(id)
+
+```ruby
+begin
+  # Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+  data, status_code, headers = api_instance.dynamic_client_registration_get_o_auth2_client_with_http_info(id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <OAuth2Client>
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling PublicApi->dynamic_client_registration_get_o_auth2_client_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** | The id of the OAuth 2.0 Client. |  |
+
+### Return type
+
+[**OAuth2Client**](OAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## dynamic_client_registration_update_o_auth2_client
+
+> <OAuth2Client> dynamic_client_registration_update_o_auth2_client(id, o_auth2_client)
+
+Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+
+This endpoint behaves like the administrative counterpart (`updateOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-hydra-client'
+
+api_instance = OryHydraClient::PublicApi.new
+id = 'id_example' # String | The id of the OAuth 2.0 Client.
+o_auth2_client = OryHydraClient::OAuth2Client.new # OAuth2Client | 
+
+begin
+  # Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+  result = api_instance.dynamic_client_registration_update_o_auth2_client(id, o_auth2_client)
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling PublicApi->dynamic_client_registration_update_o_auth2_client: #{e}"
+end
+```
+
+#### Using the dynamic_client_registration_update_o_auth2_client_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<OAuth2Client>, Integer, Hash)> dynamic_client_registration_update_o_auth2_client_with_http_info(id, o_auth2_client)
+
+```ruby
+begin
+  # Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+  data, status_code, headers = api_instance.dynamic_client_registration_update_o_auth2_client_with_http_info(id, o_auth2_client)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <OAuth2Client>
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling PublicApi->dynamic_client_registration_update_o_auth2_client_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** | The id of the OAuth 2.0 Client. |  |
+| **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md) |  |  |
+
+### Return type
+
+[**OAuth2Client**](OAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 
@@ -222,10 +421,10 @@ end
 api_instance = OryHydraClient::PublicApi.new
 grant_type = 'grant_type_example' # String | 
 opts = {
+  client_id: 'client_id_example', # String | 
   code: 'code_example', # String | 
-  refresh_token: 'refresh_token_example', # String | 
   redirect_uri: 'redirect_uri_example', # String | 
-  client_id: 'client_id_example' # String | 
+  refresh_token: 'refresh_token_example' # String | 
 }
 
 begin
@@ -260,10 +459,10 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **grant_type** | **String** |  |  |
-| **code** | **String** |  | [optional] |
-| **refresh_token** | **String** |  | [optional] |
-| **redirect_uri** | **String** |  | [optional] |
 | **client_id** | **String** |  | [optional] |
+| **code** | **String** |  | [optional] |
+| **redirect_uri** | **String** |  | [optional] |
+| **refresh_token** | **String** |  | [optional] |
 
 ### Return type
 

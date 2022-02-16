@@ -1,9 +1,13 @@
-openapi: 3.0.1
+openapi: 3.0.3
 info:
-  description: Welcome to the ORY Hydra HTTP API documentation. You will find documentation
-    for all HTTP APIs here.
-  title: ORY Hydra
-  version: v1.10.6
+  contact:
+    email: hi@ory.sh
+  description: |
+    Documentation for all of Ory Oathkeeper's APIs.
+  license:
+    name: Apache 2.0
+  title: Ory Oathkeeper API
+  version: v1.11.4
 servers:
 - url: /
 paths:
@@ -67,36 +71,52 @@ paths:
   /clients:
     get:
       description: |-
-        This endpoint lists all clients in the database, and never returns client secrets. As a default it lists the first 100 clients. The `limit` parameter can be used to retrieve more clients, but it has an upper bound at 500 objects. Pagination should be used to retrieve more than 500 objects.
+        This endpoint lists all clients in the database, and never returns client secrets.
+        As a default it lists the first 100 clients. The `limit` parameter can be used to retrieve more clients,
+        but it has an upper bound at 500 objects. Pagination should be used to retrieve more than 500 objects.
 
-        OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+        OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+        generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
         The "Link" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/clients?limit={limit}&offset={offset}>; rel="{page}"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'.
         Multiple links can be included in this header, and will be separated by a comma.
       operationId: listOAuth2Clients
       parameters:
       - description: The maximum amount of clients to returned, upper bound is 500
           clients.
+        explode: true
         in: query
         name: limit
+        required: false
         schema:
           format: int64
           type: integer
+        style: form
       - description: The offset from where to start looking.
+        explode: true
         in: query
         name: offset
+        required: false
         schema:
           format: int64
           type: integer
+        style: form
       - description: The name of the clients to filter by.
+        explode: true
         in: query
-        name: name
+        name: client_name
+        required: false
         schema:
           type: string
+        style: form
       - description: The owner of the clients to filter by.
+        explode: true
         in: query
         name: owner
+        required: false
         schema:
           type: string
+        style: form
       responses:
         "200":
           content:
@@ -106,7 +126,7 @@ paths:
                   $ref: '#/components/schemas/oAuth2Client'
                 type: array
           description: A list of clients.
-        "500":
+        default:
           content:
             application/json:
               schema:
@@ -118,9 +138,12 @@ paths:
       x-accepts: application/json
     post:
       description: |-
-        Create a new OAuth 2.0 client If you pass `client_secret` the secret will be used, otherwise a random secret will be generated. The secret will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somwhere safe.
+        Create a new OAuth 2.0 client If you pass `client_secret` the secret will be used, otherwise a random secret
+        will be generated. The secret will be returned in the response and you will not be able to retrieve it later on.
+        Write the secret down and keep it somwhere safe.
 
-        OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+        OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+        generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
       operationId: createOAuth2Client
       requestBody:
         content:
@@ -128,6 +151,7 @@ paths:
             schema:
               $ref: '#/components/schemas/oAuth2Client'
         required: true
+        x-originalParamName: Body
       responses:
         "201":
           content:
@@ -135,19 +159,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/oAuth2Client'
           description: oAuth2Client
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/jsonError'
-          description: jsonError
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/jsonError'
-          description: jsonError
-        "500":
+        default:
           content:
             application/json:
               schema:
@@ -156,7 +168,6 @@ paths:
       summary: Create an OAuth 2.0 Client
       tags:
       - admin
-      x-codegen-request-body-name: Body
       x-contentType: application/json
       x-accepts: application/json
   /clients/{id}:
@@ -164,28 +175,26 @@ paths:
       description: |-
         Delete an existing OAuth 2.0 Client by its ID.
 
-        OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+        OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+        generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+        Make sure that this endpoint is well protected and only callable by first-party components.
       operationId: deleteOAuth2Client
       parameters:
       - description: The id of the OAuth 2.0 Client.
+        explode: false
         in: path
         name: id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "204":
-          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/jsonError'
-          description: jsonError
-        "500":
+        default:
           content:
             application/json:
               schema:
@@ -197,17 +206,20 @@ paths:
       x-accepts: application/json
     get:
       description: |-
-        Get an OAUth 2.0 client by its ID. This endpoint never returns passwords.
+        Get an OAuth 2.0 client by its ID. This endpoint never returns the client secret.
 
-        OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+        OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+        generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
       operationId: getOAuth2Client
       parameters:
       - description: The id of the OAuth 2.0 Client.
+        explode: false
         in: path
         name: id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "200":
           content:
@@ -215,40 +227,41 @@ paths:
               schema:
                 $ref: '#/components/schemas/oAuth2Client'
           description: oAuth2Client
-        "401":
+        default:
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/jsonError'
           description: jsonError
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/jsonError'
-          description: jsonError
-      summary: Get an OAuth 2.0 Client.
+      summary: Get an OAuth 2.0 Client
       tags:
       - admin
       x-accepts: application/json
     patch:
       description: |-
-        Patch an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.
+        Patch an existing OAuth 2.0 Client. If you pass `client_secret`
+        the secret will be updated and returned via the API. This is the
+        only time you will be able to retrieve the client secret, so write it down and keep it safe.
 
-        OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+        OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+        generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
       operationId: patchOAuth2Client
       parameters:
-      - in: path
+      - description: The id of the OAuth 2.0 Client.
+        explode: false
+        in: path
         name: id
         required: true
         schema:
           type: string
+        style: simple
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/patchRequest'
         required: true
+        x-originalParamName: Body
       responses:
         "200":
           content:
@@ -256,7 +269,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/oAuth2Client'
           description: oAuth2Client
-        "500":
+        default:
           content:
             application/json:
               schema:
@@ -265,27 +278,32 @@ paths:
       summary: Patch an OAuth 2.0 Client
       tags:
       - admin
-      x-codegen-request-body-name: Body
       x-contentType: application/json
       x-accepts: application/json
     put:
       description: |-
-        Update an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.
+        Update an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API.
+        This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.
 
-        OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities. To manage ORY Hydra, you will need an OAuth 2.0 Client as well. Make sure that this endpoint is well protected and only callable by first-party components.
+        OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+        generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
       operationId: updateOAuth2Client
       parameters:
-      - in: path
+      - description: The id of the OAuth 2.0 Client.
+        explode: false
+        in: path
         name: id
         required: true
         schema:
           type: string
+        style: simple
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/oAuth2Client'
         required: true
+        x-originalParamName: Body
       responses:
         "200":
           content:
@@ -293,7 +311,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/oAuth2Client'
           description: oAuth2Client
-        "500":
+        default:
           content:
             application/json:
               schema:
@@ -302,66 +320,239 @@ paths:
       summary: Update an OAuth 2.0 Client
       tags:
       - admin
-      x-codegen-request-body-name: Body
       x-contentType: application/json
       x-accepts: application/json
-  /health/alive:
-    get:
+  /connect/register:
+    post:
       description: |-
-        This endpoint returns a 200 status code when the HTTP server is up running.
-        This status does currently not include checks whether the database connection is working.
+        This endpoint behaves like the administrative counterpart (`createOAuth2Client`) but is capable of facing the
+        public internet directly and can be used in self-service. It implements the OpenID Connect
+        Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint
+        is disabled by default. It can be enabled by an administrator.
 
-        If the service supports TLS Edge Termination, this endpoint does not require the
-        `X-Forwarded-Proto` header to be set.
+        Please note that using this endpoint you are not able to choose the `client_secret` nor the `client_id` as those
+        values will be server generated when specifying `token_endpoint_auth_method` as `client_secret_basic` or
+        `client_secret_post`.
 
-        Be aware that if you are running multiple nodes of this service, the health status will never
-        refer to the cluster state, only to a single instance.
-      operationId: isInstanceAlive
+        The `client_secret` will be returned in the response and you will not be able to retrieve it later on.
+        Write the secret down and keep it somewhere safe.
+      operationId: dynamicClientRegistrationCreateOAuth2Client
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/oAuth2Client'
+        required: true
+        x-originalParamName: Body
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/healthStatus'
-          description: healthStatus
-        "500":
+                $ref: '#/components/schemas/oAuth2Client'
+          description: oAuth2Client
+        default:
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/jsonError'
           description: jsonError
-      summary: Check Alive Status
+      summary: Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client
+        Registration Management Protocol
       tags:
-      - admin
+      - public
+      x-contentType: application/json
       x-accepts: application/json
-  /health/ready:
+  /connect/register/{id}:
+    delete:
+      description: |-
+        This endpoint behaves like the administrative counterpart (`deleteOAuth2Client`) but is capable of facing the
+        public internet directly and can be used in self-service. It implements the OpenID Connect
+        Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint
+        is disabled by default. It can be enabled by an administrator.
+
+        To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client
+        uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query.
+        If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.
+
+        OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+        generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+      operationId: dynamicClientRegistrationDeleteOAuth2Client
+      parameters:
+      - description: The id of the OAuth 2.0 Client.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/jsonError'
+          description: jsonError
+      summary: Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client
+        Registration Management Protocol
+      tags:
+      - public
+      x-accepts: application/json
     get:
       description: |-
-        This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g.
-        the database) are responsive as well.
+        This endpoint behaves like the administrative counterpart (`getOAuth2Client`) but is capable of facing the
+        public internet directly and can be used in self-service. It implements the OpenID Connect
+        Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint
+        is disabled by default. It can be enabled by an administrator.
+
+        To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client
+        uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query.
+        If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.
+
+        OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+        generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+      operationId: dynamicClientRegistrationGetOAuth2Client
+      parameters:
+      - description: The id of the OAuth 2.0 Client.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oAuth2Client'
+          description: oAuth2Client
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/jsonError'
+          description: jsonError
+      summary: Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration
+        Management Protocol
+      tags:
+      - public
+      x-accepts: application/json
+    put:
+      description: |-
+        This endpoint behaves like the administrative counterpart (`updateOAuth2Client`) but is capable of facing the
+        public internet directly and can be used in self-service. It implements the OpenID Connect
+        Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint
+        is disabled by default. It can be enabled by an administrator.
+
+        If you pass `client_secret` the secret will be updated and returned via the API.
+        This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.
+
+        To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client
+        uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query.
+        If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.
+
+        OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+        generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+      operationId: dynamicClientRegistrationUpdateOAuth2Client
+      parameters:
+      - description: The id of the OAuth 2.0 Client.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/oAuth2Client'
+        required: true
+        x-originalParamName: Body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oAuth2Client'
+          description: oAuth2Client
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/jsonError'
+          description: jsonError
+      summary: Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client
+        Registration Management Protocol
+      tags:
+      - public
+      x-contentType: application/json
+      x-accepts: application/json
+  /health/alive:
+    get:
+      description: |-
+        This endpoint returns a HTTP 200 status code when Ory Hydra is accepting incoming
+        HTTP requests. This status does currently not include checks whether the database connection is working.
 
         If the service supports TLS Edge Termination, this endpoint does not require the
         `X-Forwarded-Proto` header to be set.
 
         Be aware that if you are running multiple nodes of this service, the health status will never
         refer to the cluster state, only to a single instance.
-      operationId: isInstanceReady
+      operationId: isAlive
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/healthStatus'
-          description: healthStatus
+                $ref: '#/components/schemas/inline_response_200'
+          description: Ory Hydra is ready to accept connections.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      summary: Check HTTP Server Status
+      tags:
+      - metadata
+      x-accepts: application/json
+  /health/ready:
+    get:
+      description: |-
+        This endpoint returns a HTTP 200 status code when Ory Hydra is up running and the environment dependencies (e.g.
+        the database) are responsive as well.
+
+        If the service supports TLS Edge Termination, this endpoint does not require the
+        `X-Forwarded-Proto` header to be set.
+
+        Be aware that if you are running multiple nodes of Ory Hydra, the health status will never
+        refer to the cluster state, only to a single instance.
+      operationId: isReady
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+          description: Ory Hydra is ready to accept requests.
         "503":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/healthNotReadyStatus'
-          description: healthNotReadyStatus
-      summary: Check Readiness Status
+                $ref: '#/components/schemas/inline_response_503'
+          description: Ory Kratos is not yet ready to accept requests.
+      summary: Check HTTP Server and Database Status
       tags:
-      - public
+      - metadata
       x-accepts: application/json
   /keys/{set}:
     delete:
@@ -372,14 +563,15 @@ paths:
       operationId: deleteJsonWebKeySet
       parameters:
       - description: The set
+        explode: false
         in: path
         name: set
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "204":
-          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -413,11 +605,13 @@ paths:
       operationId: getJsonWebKeySet
       parameters:
       - description: The set
+        explode: false
         in: path
         name: set
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "200":
           content:
@@ -455,17 +649,19 @@ paths:
       operationId: createJsonWebKeySet
       parameters:
       - description: The set
+        explode: false
         in: path
         name: set
         required: true
         schema:
           type: string
+        style: simple
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/jsonWebKeySetGeneratorRequest'
-        required: false
+        x-originalParamName: Body
       responses:
         "201":
           content:
@@ -494,7 +690,6 @@ paths:
       summary: Generate a New JSON Web Key
       tags:
       - admin
-      x-codegen-request-body-name: Body
       x-contentType: application/json
       x-accepts: application/json
     put:
@@ -505,17 +700,19 @@ paths:
       operationId: updateJsonWebKeySet
       parameters:
       - description: The set
+        explode: false
         in: path
         name: set
         required: true
         schema:
           type: string
+        style: simple
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/JSONWebKeySet'
-        required: false
+        x-originalParamName: Body
       responses:
         "200":
           content:
@@ -544,7 +741,6 @@ paths:
       summary: Update a JSON Web Key Set
       tags:
       - admin
-      x-codegen-request-body-name: Body
       x-contentType: application/json
       x-accepts: application/json
   /keys/{set}/{kid}:
@@ -556,20 +752,23 @@ paths:
       operationId: deleteJsonWebKey
       parameters:
       - description: The kid of the desired key
+        explode: false
         in: path
         name: kid
         required: true
         schema:
           type: string
+        style: simple
       - description: The set
+        explode: false
         in: path
         name: set
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "204":
-          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -601,17 +800,21 @@ paths:
       operationId: getJsonWebKey
       parameters:
       - description: The kid of the desired key
+        explode: false
         in: path
         name: kid
         required: true
         schema:
           type: string
+        style: simple
       - description: The set
+        explode: false
         in: path
         name: set
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "200":
           content:
@@ -643,23 +846,27 @@ paths:
       operationId: updateJsonWebKey
       parameters:
       - description: The kid of the desired key
+        explode: false
         in: path
         name: kid
         required: true
         schema:
           type: string
+        style: simple
       - description: The set
+        explode: false
         in: path
         name: set
         required: true
         schema:
           type: string
+        style: simple
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/JSONWebKey'
-        required: false
+        x-originalParamName: Body
       responses:
         "200":
           content:
@@ -688,30 +895,7 @@ paths:
       summary: Update a JSON Web Key
       tags:
       - admin
-      x-codegen-request-body-name: Body
       x-contentType: application/json
-      x-accepts: application/json
-  /metrics/prometheus:
-    get:
-      description: |-
-        ```
-        metadata:
-        annotations:
-        prometheus.io/port: "4434"
-        prometheus.io/path: "/metrics/prometheus"
-        ```
-      operationId: prometheus
-      responses:
-        "200":
-          content: {}
-          description: |-
-            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
-            typically 201.
-      summary: |-
-        Get snapshot metrics from the service. If you're using k8s, you can then add annotations to
-        your deployment like so:
-      tags:
-      - metadata
       x-accepts: application/json
   /oauth2/auth:
     get:
@@ -723,7 +907,6 @@ paths:
       operationId: oauthAuth
       responses:
         "302":
-          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -758,11 +941,13 @@ paths:
         or rejected the request.
       operationId: getConsentRequest
       parameters:
-      - in: query
+      - explode: true
+        in: query
         name: consent_challenge
         required: true
         schema:
           type: string
+        style: form
       responses:
         "200":
           content:
@@ -813,17 +998,19 @@ paths:
         The response contains a redirect URL which the consent provider should redirect the user-agent to.
       operationId: acceptConsentRequest
       parameters:
-      - in: query
+      - explode: true
+        in: query
         name: consent_challenge
         required: true
         schema:
           type: string
+        style: form
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/acceptConsentRequest'
-        required: false
+        x-originalParamName: Body
       responses:
         "200":
           content:
@@ -846,7 +1033,6 @@ paths:
       summary: Accept a Consent Request
       tags:
       - admin
-      x-codegen-request-body-name: Body
       x-contentType: application/json
       x-accepts: application/json
   /oauth2/auth/requests/consent/reject:
@@ -869,17 +1055,19 @@ paths:
         The response contains a redirect URL which the consent provider should redirect the user-agent to.
       operationId: rejectConsentRequest
       parameters:
-      - in: query
+      - explode: true
+        in: query
         name: consent_challenge
         required: true
         schema:
           type: string
+        style: form
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/rejectRequest'
-        required: false
+        x-originalParamName: Body
       responses:
         "200":
           content:
@@ -902,7 +1090,6 @@ paths:
       summary: Reject a Consent Request
       tags:
       - admin
-      x-codegen-request-body-name: Body
       x-contentType: application/json
       x-accepts: application/json
   /oauth2/auth/requests/login:
@@ -917,11 +1104,13 @@ paths:
         provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.
       operationId: getLoginRequest
       parameters:
-      - in: query
+      - explode: true
+        in: query
         name: login_challenge
         required: true
         schema:
           type: string
+        style: form
       responses:
         "200":
           content:
@@ -975,17 +1164,19 @@ paths:
         The response contains a redirect URL which the login provider should redirect the user-agent to.
       operationId: acceptLoginRequest
       parameters:
-      - in: query
+      - explode: true
+        in: query
         name: login_challenge
         required: true
         schema:
           type: string
+        style: form
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/acceptLoginRequest'
-        required: false
+        x-originalParamName: Body
       responses:
         "200":
           content:
@@ -1020,7 +1211,6 @@ paths:
       summary: Accept a Login Request
       tags:
       - admin
-      x-codegen-request-body-name: Body
       x-contentType: application/json
       x-accepts: application/json
   /oauth2/auth/requests/login/reject:
@@ -1040,17 +1230,19 @@ paths:
         The response contains a redirect URL which the login provider should redirect the user-agent to.
       operationId: rejectLoginRequest
       parameters:
-      - in: query
+      - explode: true
+        in: query
         name: login_challenge
         required: true
         schema:
           type: string
+        style: form
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/rejectRequest'
-        required: false
+        x-originalParamName: Body
       responses:
         "200":
           content:
@@ -1085,7 +1277,6 @@ paths:
       summary: Reject a Login Request
       tags:
       - admin
-      x-codegen-request-body-name: Body
       x-contentType: application/json
       x-accepts: application/json
   /oauth2/auth/requests/logout:
@@ -1093,11 +1284,13 @@ paths:
       description: Use this endpoint to fetch a logout request.
       operationId: getLogoutRequest
       parameters:
-      - in: query
+      - explode: true
+        in: query
         name: logout_challenge
         required: true
         schema:
           type: string
+        style: form
       responses:
         "200":
           content:
@@ -1136,11 +1329,13 @@ paths:
         The response contains a redirect URL which the consent provider should redirect the user-agent to.
       operationId: acceptLogoutRequest
       parameters:
-      - in: query
+      - explode: true
+        in: query
         name: logout_challenge
         required: true
         schema:
           type: string
+        style: form
       responses:
         "200":
           content:
@@ -1173,11 +1368,13 @@ paths:
         The response is empty as the logout provider has to chose what action to perform next.
       operationId: rejectLogoutRequest
       parameters:
-      - in: query
+      - explode: true
+        in: query
         name: logout_challenge
         required: true
         schema:
           type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -1186,10 +1383,9 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/rejectRequest'
-        required: false
+        x-originalParamName: Body
       responses:
         "204":
-          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -1208,7 +1404,6 @@ paths:
       summary: Reject a Logout Request
       tags:
       - admin
-      x-codegen-request-body-name: Body
       x-contentType: application/json
       x-accepts: application/json
   /oauth2/auth/sessions/consent:
@@ -1219,26 +1414,33 @@ paths:
       operationId: revokeConsentSessions
       parameters:
       - description: The subject (Subject) who's consent sessions should be deleted.
+        explode: true
         in: query
         name: subject
         required: true
         schema:
           type: string
+        style: form
       - description: If set, deletes only those consent sessions by the Subject that
           have been granted to the specified OAuth 2.0 Client ID
+        explode: true
         in: query
         name: client
+        required: false
         schema:
           type: string
+        style: form
       - description: If set to `?all=true`, deletes all consent sessions by the Subject
           that have been granted.
+        explode: true
         in: query
         name: all
+        required: false
         schema:
           type: boolean
+        style: form
       responses:
         "204":
-          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -1269,11 +1471,13 @@ paths:
         Multiple links can be included in this header, and will be separated by a comma.
       operationId: listSubjectConsentSessions
       parameters:
-      - in: query
+      - explode: true
+        in: query
         name: subject
         required: true
         schema:
           type: string
+        style: form
       responses:
         "200":
           content:
@@ -1307,14 +1511,15 @@ paths:
         Front- or Back-channel logout.
       operationId: revokeAuthenticationSession
       parameters:
-      - in: query
+      - explode: true
+        in: query
         name: subject
         required: true
         schema:
           type: string
+        style: form
       responses:
         "204":
-          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -1348,10 +1553,9 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/flushInactiveOAuth2TokensRequest'
-        required: false
+        x-originalParamName: Body
       responses:
         "204":
-          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -1370,7 +1574,6 @@ paths:
       summary: Flush Expired OAuth2 Access Tokens
       tags:
       - admin
-      x-codegen-request-body-name: Body
       x-contentType: application/json
       x-accepts: application/json
   /oauth2/introspect:
@@ -1383,25 +1586,30 @@ paths:
         For more information [read this blog post](https://www.oauth.com/oauth2-servers/token-introspection-endpoint/).
       operationId: introspectOAuth2Token
       requestBody:
+        $ref: '#/components/requestBodies/inline_object'
         content:
           application/x-www-form-urlencoded:
             schema:
               properties:
+                scope:
+                  description: |-
+                    An optional, space separated list of required scopes. If the access token was not granted one of the
+                    scopes, the result of active will be false.
+                  type: string
+                  x-formData-name: scope
                 token:
                   description: |-
                     The string value of the token. For access tokens, this
                     is the "access_token" value returned from the token endpoint
                     defined in OAuth 2.0. For refresh tokens, this is the "refresh_token"
                     value returned.
+                  required:
+                  - token
                   type: string
-                scope:
-                  description: |-
-                    An optional, space separated list of required scopes. If the access token was not granted one of the
-                    scopes, the result of active will be false.
-                  type: string
+                  x-formData-name: token
               required:
               - token
-        required: true
+              type: object
       responses:
         "200":
           content:
@@ -1435,18 +1643,21 @@ paths:
         the client the token was generated for.
       operationId: revokeOAuth2Token
       requestBody:
+        $ref: '#/components/requestBodies/inline_object_1'
         content:
           application/x-www-form-urlencoded:
             schema:
               properties:
                 token:
+                  required:
+                  - token
                   type: string
+                  x-formData-name: token
               required:
               - token
-        required: true
+              type: object
       responses:
         "200":
-          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -1473,14 +1684,13 @@ paths:
   /oauth2/sessions/logout:
     get:
       description: |-
-        This endpoint initiates and completes user logout at ORY Hydra and initiates OpenID Connect Front-/Back-channel logout:
+        This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front-/Back-channel logout:
 
         https://openid.net/specs/openid-connect-frontchannel-1_0.html
         https://openid.net/specs/openid-connect-backchannel-1_0.html
       operationId: disconnectUser
       responses:
         "302":
-          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -1501,23 +1711,31 @@ paths:
         > Do note that Hydra SDK does not implement this endpoint properly. Use one of the libraries listed above!
       operationId: oauth2Token
       requestBody:
+        $ref: '#/components/requestBodies/inline_object_2'
         content:
           application/x-www-form-urlencoded:
             schema:
               properties:
-                grant_type:
-                  type: string
-                code:
-                  type: string
-                refresh_token:
-                  type: string
-                redirect_uri:
-                  type: string
                 client_id:
                   type: string
+                  x-formData-name: client_id
+                code:
+                  type: string
+                  x-formData-name: code
+                grant_type:
+                  required:
+                  - grant_type
+                  type: string
+                  x-formData-name: grant_type
+                redirect_uri:
+                  type: string
+                  x-formData-name: redirect_uri
+                refresh_token:
+                  type: string
+                  x-formData-name: refresh_token
               required:
               - grant_type
-        required: true
+              type: object
       responses:
         "200":
           content:
@@ -1557,14 +1775,15 @@ paths:
         from the database
       operationId: deleteOAuth2Token
       parameters:
-      - in: query
+      - explode: true
+        in: query
         name: client_id
         required: true
         schema:
           type: string
+        style: form
       responses:
         "204":
-          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -1581,6 +1800,173 @@ paths:
                 $ref: '#/components/schemas/jsonError'
           description: jsonError
       summary: Delete OAuth2 Access Tokens from a Client
+      tags:
+      - admin
+      x-accepts: application/json
+  /trust/grants/jwt-bearer/issuers:
+    get:
+      description: Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
+      operationId: listTrustedJwtGrantIssuers
+      parameters:
+      - description: If optional "issuer" is supplied, only jwt-bearer grants with
+          this issuer will be returned.
+        explode: true
+        in: query
+        name: issuer
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The maximum amount of policies returned, upper bound is 500 policies
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: The offset from where to start looking.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/trustedJwtGrantIssuers'
+          description: trustedJwtGrantIssuers
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      summary: List Trusted OAuth2 JWT Bearer Grant Type Issuers
+      tags:
+      - admin
+      x-accepts: application/json
+    post:
+      description: |-
+        Use this endpoint to establish a trust relationship for a JWT issuer
+        to perform JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication
+        and Authorization Grants [RFC7523](https://datatracker.ietf.org/doc/html/rfc7523).
+      operationId: trustJwtGrantIssuer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/trustJwtGrantIssuerBody'
+        x-originalParamName: Body
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/trustedJwtGrantIssuer'
+          description: trustedJwtGrantIssuer
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      summary: Trust an OAuth2 JWT Bearer Grant Type Issuer
+      tags:
+      - admin
+      x-contentType: application/json
+      x-accepts: application/json
+  /trust/grants/jwt-bearer/issuers/{id}:
+    delete:
+      description: |-
+        Use this endpoint to delete trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you
+        created the trust relationship.
+
+        Once deleted, the associated issuer will no longer be able to perform the JSON Web Token (JWT) Profile
+        for OAuth 2.0 Client Authentication and Authorization Grant.
+      operationId: deleteTrustedJwtGrantIssuer
+      parameters:
+      - description: The id of the desired grant
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      summary: Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer
+      tags:
+      - admin
+      x-accepts: application/json
+    get:
+      description: |-
+        Use this endpoint to get a trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you
+        created the trust relationship.
+      operationId: getTrustedJwtGrantIssuer
+      parameters:
+      - description: The id of the desired grant
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/trustedJwtGrantIssuer'
+          description: trustedJwtGrantIssuer
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      summary: Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
       tags:
       - admin
       x-accepts: application/json
@@ -1624,34 +2010,64 @@ paths:
   /version:
     get:
       description: |-
-        This endpoint returns the service version typically notated using semantic versioning.
+        This endpoint returns the version of Ory Hydra.
 
         If the service supports TLS Edge Termination, this endpoint does not require the
         `X-Forwarded-Proto` header to be set.
+
+        Be aware that if you are running multiple nodes of this service, the version will never
+        refer to the cluster state, only to a single instance.
       operationId: getVersion
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/version'
-          description: version
-      summary: Get Service Version
+                $ref: '#/components/schemas/inline_response_200_1'
+          description: Returns the Ory Hydra version.
+      summary: Return Running Software Version.
       tags:
-      - admin
+      - metadata
       x-accepts: application/json
 components:
+  requestBodies:
+    inline_object_1:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/inline_object_1'
+    inline_object:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/inline_object'
+    inline_object_2:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/inline_object_2'
+  responses:
+    emptyResponse:
+      description: |-
+        Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+        typically 201.
+    handledConsentRequestList:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/PreviousConsentSession'
+            type: array
+      description: A list of used consent requests.
+    oAuth2ClientList:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/oAuth2Client'
+            type: array
+      description: A list of clients.
   schemas:
-    UUID:
-      format: uuid4
-      type: string
-    ContainerWaitOKBodyError:
-      description: ContainerWaitOKBodyError container waiting error, if any
-      properties:
-        Message:
-          description: Details of an error
-          type: string
-      type: object
     JSONRawMessage:
       title: JSONRawMessage represents a json.RawMessage that works well with JSON,
         SQL, and Swagger.
@@ -1836,295 +2252,6 @@ components:
       type: object
     JoseJSONWebKeySet:
       type: object
-    PluginConfig:
-      properties:
-        Args:
-          $ref: '#/components/schemas/PluginConfigArgs'
-        Description:
-          description: description
-          type: string
-        DockerVersion:
-          description: Docker Version used to create the plugin
-          type: string
-        Documentation:
-          description: documentation
-          type: string
-        Entrypoint:
-          description: entrypoint
-          items:
-            type: string
-          type: array
-        Env:
-          description: env
-          items:
-            $ref: '#/components/schemas/PluginEnv'
-          type: array
-        Interface:
-          $ref: '#/components/schemas/PluginConfigInterface'
-        IpcHost:
-          description: ipc host
-          type: boolean
-        Linux:
-          $ref: '#/components/schemas/PluginConfigLinux'
-        Mounts:
-          description: mounts
-          items:
-            $ref: '#/components/schemas/PluginMount'
-          type: array
-        Network:
-          $ref: '#/components/schemas/PluginConfigNetwork'
-        PidHost:
-          description: pid host
-          type: boolean
-        PropagatedMount:
-          description: propagated mount
-          type: string
-        User:
-          $ref: '#/components/schemas/PluginConfigUser'
-        WorkDir:
-          description: work dir
-          type: string
-        rootfs:
-          $ref: '#/components/schemas/PluginConfigRootfs'
-      required:
-      - Args
-      - Description
-      - Documentation
-      - Entrypoint
-      - Env
-      - Interface
-      - IpcHost
-      - Linux
-      - Mounts
-      - Network
-      - PidHost
-      - PropagatedMount
-      - WorkDir
-      title: PluginConfig The config of a plugin.
-      type: object
-    PluginConfigArgs:
-      description: PluginConfigArgs plugin config args
-      properties:
-        Description:
-          description: description
-          type: string
-        Name:
-          description: name
-          type: string
-        Settable:
-          description: settable
-          items:
-            type: string
-          type: array
-        Value:
-          description: value
-          items:
-            type: string
-          type: array
-      required:
-      - Description
-      - Name
-      - Settable
-      - Value
-      type: object
-    PluginConfigInterface:
-      description: PluginConfigInterface The interface between Docker and the plugin
-      properties:
-        Socket:
-          description: socket
-          type: string
-        Types:
-          description: types
-          items:
-            $ref: '#/components/schemas/PluginInterfaceType'
-          type: array
-      required:
-      - Socket
-      - Types
-      type: object
-    PluginConfigLinux:
-      description: PluginConfigLinux plugin config linux
-      properties:
-        AllowAllDevices:
-          description: allow all devices
-          type: boolean
-        Capabilities:
-          description: capabilities
-          items:
-            type: string
-          type: array
-        Devices:
-          description: devices
-          items:
-            $ref: '#/components/schemas/PluginDevice'
-          type: array
-      required:
-      - AllowAllDevices
-      - Capabilities
-      - Devices
-      type: object
-    PluginConfigNetwork:
-      description: PluginConfigNetwork plugin config network
-      properties:
-        Type:
-          description: type
-          type: string
-      required:
-      - Type
-      type: object
-    PluginConfigRootfs:
-      description: PluginConfigRootfs plugin config rootfs
-      properties:
-        diff_ids:
-          description: diff ids
-          items:
-            type: string
-          type: array
-        type:
-          description: type
-          type: string
-      type: object
-    PluginConfigUser:
-      description: PluginConfigUser plugin config user
-      properties:
-        GID:
-          description: g ID
-          format: uint32
-          type: integer
-        UID:
-          description: UID
-          format: uint32
-          type: integer
-      type: object
-    PluginDevice:
-      description: PluginDevice plugin device
-      properties:
-        Description:
-          description: description
-          type: string
-        Name:
-          description: name
-          type: string
-        Path:
-          description: path
-          type: string
-        Settable:
-          description: settable
-          items:
-            type: string
-          type: array
-      required:
-      - Description
-      - Name
-      - Path
-      - Settable
-      type: object
-    PluginEnv:
-      description: PluginEnv plugin env
-      properties:
-        Description:
-          description: description
-          type: string
-        Name:
-          description: name
-          type: string
-        Settable:
-          description: settable
-          items:
-            type: string
-          type: array
-        Value:
-          description: value
-          type: string
-      required:
-      - Description
-      - Name
-      - Settable
-      - Value
-      type: object
-    PluginInterfaceType:
-      description: PluginInterfaceType plugin interface type
-      properties:
-        Capability:
-          description: capability
-          type: string
-        Prefix:
-          description: prefix
-          type: string
-        Version:
-          description: version
-          type: string
-      required:
-      - Capability
-      - Prefix
-      - Version
-      type: object
-    PluginMount:
-      description: PluginMount plugin mount
-      properties:
-        Description:
-          description: description
-          type: string
-        Destination:
-          description: destination
-          type: string
-        Name:
-          description: name
-          type: string
-        Options:
-          description: options
-          items:
-            type: string
-          type: array
-        Settable:
-          description: settable
-          items:
-            type: string
-          type: array
-        Source:
-          description: source
-          type: string
-        Type:
-          description: type
-          type: string
-      required:
-      - Description
-      - Destination
-      - Name
-      - Options
-      - Settable
-      - Source
-      - Type
-      type: object
-    PluginSettings:
-      properties:
-        Args:
-          description: args
-          items:
-            type: string
-          type: array
-        Devices:
-          description: devices
-          items:
-            $ref: '#/components/schemas/PluginDevice'
-          type: array
-        Env:
-          description: env
-          items:
-            type: string
-          type: array
-        Mounts:
-          description: mounts
-          items:
-            $ref: '#/components/schemas/PluginMount'
-          type: array
-      required:
-      - Args
-      - Devices
-      - Env
-      - Mounts
-      title: PluginSettings Settings that can be modified by users.
-      type: object
     PreviousConsentSession:
       description: |-
         The response used to return used consent requests
@@ -2135,20 +2262,26 @@ components:
           requested_access_token_audience:
           - requested_access_token_audience
           - requested_access_token_audience
-          acr: acr
           login_challenge: login_challenge
           subject: subject
-          context: '{}'
+          amr:
+          - amr
+          - amr
           oidc_context:
             login_hint: login_hint
             ui_locales:
             - ui_locales
             - ui_locales
-            id_token_hint_claims: '{}'
+            id_token_hint_claims:
+              key: '{}'
             acr_values:
             - acr_values
             - acr_values
             display: display
+          skip: true
+          request_url: request_url
+          acr: acr
+          context: '{}'
           challenge: challenge
           client:
             metadata: '{}'
@@ -2157,9 +2290,11 @@ components:
             jwks: '{}'
             logo_uri: logo_uri
             created_at: 2000-01-23T04:56:07.000+00:00
+            registration_client_uri: registration_client_uri
             allowed_cors_origins:
             - allowed_cors_origins
             - allowed_cors_origins
+            registration_access_token: registration_access_token
             client_id: client_id
             token_endpoint_auth_method: token_endpoint_auth_method
             userinfo_signed_response_alg: userinfo_signed_response_alg
@@ -2200,15 +2335,15 @@ components:
             response_types:
             - response_types
             - response_types
-          skip: true
           login_session_id: login_session_id
-          request_url: request_url
           requested_scope:
           - requested_scope
           - requested_scope
         session:
-          access_token: '{}'
-          id_token: '{}'
+          access_token:
+            key: '{}'
+          id_token:
+            key: '{}'
         grant_access_token_audience:
         - grant_access_token_audience
         - grant_access_token_audience
@@ -2255,79 +2390,9 @@ components:
         type: string
       title: StringSlicePipeDelimiter de/encodes the string slice to/from a SQL string.
       type: array
-    Volume:
-      description: Volume volume
-      properties:
-        CreatedAt:
-          description: Date/Time the volume was created.
-          type: string
-        Driver:
-          description: Name of the volume driver used by the volume.
-          type: string
-        Labels:
-          additionalProperties:
-            type: string
-          description: User-defined key/value metadata.
-          type: object
-        Mountpoint:
-          description: Mount path of the volume on the host.
-          type: string
-        Name:
-          description: Name of the volume.
-          type: string
-        Options:
-          additionalProperties:
-            type: string
-          description: The driver specific options used when creating the volume.
-          type: object
-        Scope:
-          description: |-
-            The level at which the volume exists. Either `global` for cluster-wide,
-            or `local` for machine level.
-          type: string
-        Status:
-          description: |-
-            Low-level details about the volume, provided by the volume driver.
-            Details are returned as a map with key/value pairs:
-            `{"key":"value","key2":"value2"}`.
-
-            The `Status` field is optional, and is omitted if the volume driver
-            does not support this feature.
-          properties: {}
-          type: object
-        UsageData:
-          $ref: '#/components/schemas/VolumeUsageData'
-      required:
-      - Driver
-      - Labels
-      - Mountpoint
-      - Name
-      - Options
-      - Scope
-      type: object
-    VolumeUsageData:
-      description: |-
-        VolumeUsageData Usage details about the volume. This information is used by the
-        `GET /system/df` endpoint, and omitted in other endpoints.
-      properties:
-        RefCount:
-          description: |-
-            The number of containers referencing this volume. This field
-            is set to `-1` if the reference-count is not available.
-          format: int64
-          type: integer
-        Size:
-          description: |-
-            Amount of disk space used by the volume (in bytes). This information
-            is only available for volumes created with the `"local"` volume
-            driver. For volumes created with other volume drivers, this field
-            is set to `-1` ("not available")
-          format: int64
-          type: integer
-      required:
-      - RefCount
-      - Size
-      type: object
+    UUID:
+      format: uuid4
+      type: string
     acceptConsentRequest:
       properties:
         grant_access_token_audience:
@@ -2368,6 +2433,12 @@ components:
             ACR sets the Authentication AuthorizationContext Class Reference value for this authentication session. You can use it
             to express that, for example, a user authenticated using two factor authentication.
           type: string
+        amr:
+          items:
+            type: string
+          title: StringSlicePipeDelimiter de/encodes the string slice to/from a SQL
+            string.
+          type: array
         context:
           title: JSONRawMessage represents a json.RawMessage that works well with
             JSON, SQL, and Swagger.
@@ -2429,20 +2500,26 @@ components:
         requested_access_token_audience:
         - requested_access_token_audience
         - requested_access_token_audience
-        acr: acr
         login_challenge: login_challenge
         subject: subject
-        context: '{}'
+        amr:
+        - amr
+        - amr
         oidc_context:
           login_hint: login_hint
           ui_locales:
           - ui_locales
           - ui_locales
-          id_token_hint_claims: '{}'
+          id_token_hint_claims:
+            key: '{}'
           acr_values:
           - acr_values
           - acr_values
           display: display
+        skip: true
+        request_url: request_url
+        acr: acr
+        context: '{}'
         challenge: challenge
         client:
           metadata: '{}'
@@ -2451,9 +2528,11 @@ components:
           jwks: '{}'
           logo_uri: logo_uri
           created_at: 2000-01-23T04:56:07.000+00:00
+          registration_client_uri: registration_client_uri
           allowed_cors_origins:
           - allowed_cors_origins
           - allowed_cors_origins
+          registration_access_token: registration_access_token
           client_id: client_id
           token_endpoint_auth_method: token_endpoint_auth_method
           userinfo_signed_response_alg: userinfo_signed_response_alg
@@ -2494,9 +2573,7 @@ components:
           response_types:
           - response_types
           - response_types
-        skip: true
         login_session_id: login_session_id
-        request_url: request_url
         requested_scope:
         - requested_scope
         - requested_scope
@@ -2506,6 +2583,12 @@ components:
             ACR represents the Authentication AuthorizationContext Class Reference value for this authentication session. You can use it
             to express that, for example, a user authenticated using two factor authentication.
           type: string
+        amr:
+          items:
+            type: string
+          title: StringSlicePipeDelimiter de/encodes the string slice to/from a SQL
+            string.
+          type: array
         challenge:
           description: |-
             ID is the identifier ("authorization challenge") of the consent authorization request. It is used to
@@ -2566,22 +2649,24 @@ components:
       type: object
     consentRequestSession:
       example:
-        access_token: '{}'
-        id_token: '{}'
+        access_token:
+          key: '{}'
+        id_token:
+          key: '{}'
       properties:
         access_token:
+          additionalProperties: true
           description: |-
             AccessToken sets session data for the access and refresh token, as well as any future tokens issued by the
             refresh grant. Keep in mind that this data will be available to anyone performing OAuth 2.0 Challenge Introspection.
             If only your services can perform OAuth 2.0 Challenge Introspection, this is usually fine. But if third parties
             can access that endpoint as well, sensitive data from the session might be exposed to them. Use with care!
-          properties: {}
           type: object
         id_token:
+          additionalProperties: true
           description: |-
             IDToken sets session data for the OpenID Connect ID token. Keep in mind that the session'id payloads are readable
             by anyone that has access to the ID Challenge. Use with care!
-          properties: {}
           type: object
       title: Used to pass session data to a consent request.
       type: object
@@ -2594,6 +2679,66 @@ components:
           format: date-time
           type: string
       type: object
+    flushLoginConsentRequest:
+      properties:
+        notAfter:
+          description: |-
+            NotAfter sets after which point tokens should not be flushed. This is useful when you want to keep a history
+            of recent login and consent database entries for auditing.
+          format: date-time
+          type: string
+      type: object
+    genericError:
+      properties:
+        code:
+          description: The status code
+          example: 404
+          format: int64
+          type: integer
+        debug:
+          description: |-
+            Debug information
+
+            This field is often not exposed to protect against leaking
+            sensitive information.
+          example: SQL field "foo" is not a bool.
+          type: string
+        details:
+          additionalProperties: true
+          description: Further error details
+          type: object
+        id:
+          description: |-
+            The error ID
+
+            Useful when trying to identify various errors in application logic.
+          type: string
+        message:
+          description: |-
+            Error message
+
+            The error's message.
+          example: The resource could not be found
+          type: string
+        reason:
+          description: A human-readable reason for the error
+          example: User with ID 1234 does not exist.
+          type: string
+        request:
+          description: |-
+            The request ID
+
+            The request ID is often exposed internally in order to trace
+            errors across service architectures. This is often a UUID.
+          example: d7ef54b1-ec15-46e6-bccb-524b82c035e6
+          type: string
+        status:
+          description: The status description
+          example: Not Found
+          type: string
+      required:
+      - message
+      type: object
     healthNotReadyStatus:
       properties:
         errors:
@@ -2604,8 +2749,6 @@ components:
           type: object
       type: object
     healthStatus:
-      example:
-        status: status
       properties:
         status:
           description: Status always contains "ok".
@@ -2640,7 +2783,7 @@ components:
       properties:
         alg:
           description: The algorithm to be used for creating the key. Supports "RS256",
-            "ES512", "HS512", and "HS256"
+            "ES256", "ES512", "HS512", and "HS256"
           type: string
         kid:
           description: The kid of the key to be created
@@ -2668,7 +2811,8 @@ components:
           ui_locales:
           - ui_locales
           - ui_locales
-          id_token_hint_claims: '{}'
+          id_token_hint_claims:
+            key: '{}'
           acr_values:
           - acr_values
           - acr_values
@@ -2681,9 +2825,11 @@ components:
           jwks: '{}'
           logo_uri: logo_uri
           created_at: 2000-01-23T04:56:07.000+00:00
+          registration_client_uri: registration_client_uri
           allowed_cors_origins:
           - allowed_cors_origins
           - allowed_cors_origins
+          registration_access_token: registration_access_token
           client_id: client_id
           token_endpoint_auth_method: token_endpoint_auth_method
           userinfo_signed_response_alg: userinfo_signed_response_alg
@@ -2799,9 +2945,11 @@ components:
           jwks: '{}'
           logo_uri: logo_uri
           created_at: 2000-01-23T04:56:07.000+00:00
+          registration_client_uri: registration_client_uri
           allowed_cors_origins:
           - allowed_cors_origins
           - allowed_cors_origins
+          registration_access_token: registration_access_token
           client_id: client_id
           token_endpoint_auth_method: token_endpoint_auth_method
           userinfo_signed_response_alg: userinfo_signed_response_alg
@@ -2881,9 +3029,11 @@ components:
         jwks: '{}'
         logo_uri: logo_uri
         created_at: 2000-01-23T04:56:07.000+00:00
+        registration_client_uri: registration_client_uri
         allowed_cors_origins:
         - allowed_cors_origins
         - allowed_cors_origins
+        registration_access_token: registration_access_token
         client_id: client_id
         token_endpoint_auth_method: token_endpoint_auth_method
         userinfo_signed_response_alg: userinfo_signed_response_alg
@@ -3048,6 +3198,14 @@ components:
           title: StringSlicePipeDelimiter de/encodes the string slice to/from a SQL
             string.
           type: array
+        registration_access_token:
+          description: RegistrationAccessToken can be used to update, get, or delete
+            the OAuth2 Client.
+          type: string
+        registration_client_uri:
+          description: RegistrationClientURI is the URL used to update, get, or delete
+            the OAuth2 Client.
+          type: string
         request_object_signing_alg:
           description: |-
             JWS [JWS] alg algorithm [JWA] that MUST be used for signing Request Objects sent to the OP. All Request Objects
@@ -3113,7 +3271,8 @@ components:
     oAuth2TokenIntrospection:
       description: https://tools.ietf.org/html/rfc7662
       example:
-        ext: '{}'
+        ext:
+          key: '{}'
         sub: sub
         iss: iss
         active: true
@@ -3159,8 +3318,8 @@ components:
           format: int64
           type: integer
         ext:
+          additionalProperties: true
           description: Extra is arbitrary data set by the session.
-          properties: {}
           type: object
         iat:
           description: |-
@@ -3236,13 +3395,44 @@ components:
         token_type:
           type: string
       type: object
+    oauthTokenResponse:
+      description: The token response
+      properties:
+        access_token:
+          description: The access token issued by the authorization server.
+          type: string
+        expires_in:
+          description: |-
+            The lifetime in seconds of the access token.  For
+            example, the value "3600" denotes that the access token will
+            expire in one hour from the time the response was generated.
+          format: int64
+          type: integer
+        id_token:
+          description: To retrieve a refresh token request the id_token scope.
+          format: int64
+          type: integer
+        refresh_token:
+          description: |-
+            The refresh token, which can be used to obtain new
+            access tokens. To retrieve it add the scope "offline" to your access token request.
+          type: string
+        scope:
+          description: The scope of the access token
+          format: int64
+          type: integer
+        token_type:
+          description: The type of the token issued
+          type: string
+      type: object
     openIDConnectContext:
       example:
         login_hint: login_hint
         ui_locales:
         - ui_locales
         - ui_locales
-        id_token_hint_claims: '{}'
+        id_token_hint_claims:
+          key: '{}'
         acr_values:
         - acr_values
         - acr_values
@@ -3274,10 +3464,10 @@ components:
             The Authorization Server MAY also attempt to detect the capabilities of the User Agent and present an appropriate display.
           type: string
         id_token_hint_claims:
+          additionalProperties: true
           description: |-
             IDTokenHintClaims are the claims of the ID Token previously issued by the Authorization Server being passed as a hint about the
             End-User's current or past authenticated session with the Client.
-          properties: {}
           type: object
         login_hint:
           description: |-
@@ -3314,7 +3504,6 @@ components:
           type: string
         value:
           description: The value to be used within the operations
-          properties: {}
           type: object
       required:
       - op
@@ -3325,6 +3514,36 @@ components:
       items:
         $ref: '#/components/schemas/patchDocument'
       type: array
+    refreshTokenHookRequest:
+      properties:
+        client_id:
+          description: ClientID is the identifier of the OAuth 2.0 client.
+          type: string
+        granted_audience:
+          description: GrantedAudience is the list of audiences granted to the OAuth
+            2.0 client.
+          items:
+            type: string
+          type: array
+        granted_scopes:
+          description: GrantedScopes is the list of scopes granted to the OAuth 2.0
+            client.
+          items:
+            type: string
+          type: array
+        subject:
+          description: Subject is the identifier of the authenticated end-user.
+          type: string
+      title: RefreshTokenHookRequest is the request body sent to the refresh token
+        hook.
+      type: object
+    refreshTokenHookResponse:
+      properties:
+        session:
+          $ref: '#/components/schemas/consentRequestSession'
+      title: RefreshTokenHookResponse is the response body received from the refresh
+        token hook.
+      type: object
     rejectRequest:
       properties:
         error:
@@ -3364,6 +3583,109 @@ components:
       title: The response payload sent when there is an attempt to access already
         handled request.
       type: object
+    trustJwtGrantIssuerBody:
+      properties:
+        expires_at:
+          description: The "expires_at" indicates, when grant will expire, so we will
+            reject assertion from "issuer" targeting "subject".
+          format: date-time
+          type: string
+        issuer:
+          description: The "issuer" identifies the principal that issued the JWT assertion
+            (same as "iss" claim in JWT).
+          example: https://jwt-idp.example.com
+          type: string
+        jwk:
+          $ref: '#/components/schemas/JSONWebKey'
+        scope:
+          description: The "scope" contains list of scope values (as described in
+            Section 3.3 of OAuth 2.0 [RFC6749])
+          example:
+          - openid
+          - offline
+          items:
+            type: string
+          type: array
+        subject:
+          description: The "subject" identifies the principal that is the subject
+            of the JWT.
+          example: mike@example.com
+          type: string
+      required:
+      - expires_at
+      - issuer
+      - jwk
+      - scope
+      - subject
+      type: object
+    trustedJsonWebKey:
+      example:
+        set: https://jwt-idp.example.com
+        kid: 123e4567-e89b-12d3-a456-426655440000
+      properties:
+        kid:
+          description: The "key_id" is key unique identifier (same as kid header in
+            jws/jwt).
+          example: 123e4567-e89b-12d3-a456-426655440000
+          type: string
+        set:
+          description: The "set" is basically a name for a group(set) of keys. Will
+            be the same as "issuer" in grant.
+          example: https://jwt-idp.example.com
+          type: string
+      type: object
+    trustedJwtGrantIssuer:
+      example:
+        public_key:
+          set: https://jwt-idp.example.com
+          kid: 123e4567-e89b-12d3-a456-426655440000
+        expires_at: 2000-01-23T04:56:07.000+00:00
+        subject: mike@example.com
+        scope:
+        - openid
+        - offline
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 9edc811f-4e28-453c-9b46-4de65f00217f
+        issuer: https://jwt-idp.example.com
+      properties:
+        created_at:
+          description: The "created_at" indicates, when grant was created.
+          format: date-time
+          type: string
+        expires_at:
+          description: The "expires_at" indicates, when grant will expire, so we will
+            reject assertion from "issuer" targeting "subject".
+          format: date-time
+          type: string
+        id:
+          example: 9edc811f-4e28-453c-9b46-4de65f00217f
+          type: string
+        issuer:
+          description: The "issuer" identifies the principal that issued the JWT assertion
+            (same as "iss" claim in JWT).
+          example: https://jwt-idp.example.com
+          type: string
+        public_key:
+          $ref: '#/components/schemas/trustedJsonWebKey'
+        scope:
+          description: The "scope" contains list of scope values (as described in
+            Section 3.3 of OAuth 2.0 [RFC6749])
+          example:
+          - openid
+          - offline
+          items:
+            type: string
+          type: array
+        subject:
+          description: The "subject" identifies the principal that is the subject
+            of the JWT.
+          example: mike@example.com
+          type: string
+      type: object
+    trustedJwtGrantIssuers:
+      items:
+        $ref: '#/components/schemas/trustedJwtGrantIssuer'
+      type: array
     userinfoResponse:
       description: The userinfo response
       example:
@@ -3501,8 +3823,6 @@ components:
           type: string
       type: object
     version:
-      example:
-        version: version
       properties:
         version:
           description: Version is the service's version.
@@ -3726,6 +4046,90 @@ components:
       - token_endpoint
       title: WellKnown represents important OpenID Connect discovery metadata
       type: object
+    inline_response_200:
+      example:
+        status: status
+      properties:
+        status:
+          description: Always "ok".
+          type: string
+      required:
+      - status
+      type: object
+    inline_response_503:
+      properties:
+        errors:
+          additionalProperties:
+            type: string
+          description: Errors contains a list of errors that caused the not ready
+            status.
+          type: object
+      required:
+      - errors
+      type: object
+    inline_object:
+      properties:
+        scope:
+          description: |-
+            An optional, space separated list of required scopes. If the access token was not granted one of the
+            scopes, the result of active will be false.
+          type: string
+          x-formData-name: scope
+        token:
+          description: |-
+            The string value of the token. For access tokens, this
+            is the "access_token" value returned from the token endpoint
+            defined in OAuth 2.0. For refresh tokens, this is the "refresh_token"
+            value returned.
+          required:
+          - token
+          type: string
+          x-formData-name: token
+      required:
+      - token
+      type: object
+    inline_object_1:
+      properties:
+        token:
+          required:
+          - token
+          type: string
+          x-formData-name: token
+      required:
+      - token
+      type: object
+    inline_object_2:
+      properties:
+        client_id:
+          type: string
+          x-formData-name: client_id
+        code:
+          type: string
+          x-formData-name: code
+        grant_type:
+          required:
+          - grant_type
+          type: string
+          x-formData-name: grant_type
+        redirect_uri:
+          type: string
+          x-formData-name: redirect_uri
+        refresh_token:
+          type: string
+          x-formData-name: refresh_token
+      required:
+      - grant_type
+      type: object
+    inline_response_200_1:
+      example:
+        version: version
+      properties:
+        version:
+          description: The version of Ory Hydra.
+          type: string
+      required:
+      - version
+      type: object
   securitySchemes:
     basic:
       scheme: basic
@@ -3742,5 +4146,4 @@ components:
       type: oauth2
 x-forwarded-proto: string
 x-request-id: string
-x-original-swagger-version: "2.0"
 

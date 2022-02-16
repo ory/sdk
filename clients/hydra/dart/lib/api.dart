@@ -1,82 +1,94 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-library openapi.api;
+library ory_hydra_client.api;
 
-import 'dart:async';
-import 'dart:convert';
-import 'dart:io';
-
-import 'package:http/http.dart';
-import 'package:intl/intl.dart';
-import 'package:meta/meta.dart';
-
-part 'api_client.dart';
-part 'api_helper.dart';
-part 'api_exception.dart';
-part 'auth/authentication.dart';
-part 'auth/api_key_auth.dart';
-part 'auth/oauth.dart';
-part 'auth/http_basic_auth.dart';
-part 'auth/http_bearer_auth.dart';
-
-part 'api/admin_api.dart';
-part 'api/metadata_api.dart';
-part 'api/public_api.dart';
-
-part 'model/accept_consent_request.dart';
-part 'model/accept_login_request.dart';
-part 'model/completed_request.dart';
-part 'model/consent_request.dart';
-part 'model/consent_request_session.dart';
-part 'model/container_wait_ok_body_error.dart';
-part 'model/flush_inactive_o_auth2_tokens_request.dart';
-part 'model/health_not_ready_status.dart';
-part 'model/health_status.dart';
-part 'model/json_web_key.dart';
-part 'model/json_web_key_set.dart';
-part 'model/json_error.dart';
-part 'model/json_web_key_set_generator_request.dart';
-part 'model/login_request.dart';
-part 'model/logout_request.dart';
-part 'model/o_auth2_client.dart';
-part 'model/o_auth2_token_introspection.dart';
-part 'model/oauth2_token_response.dart';
-part 'model/open_id_connect_context.dart';
-part 'model/patch_document.dart';
-part 'model/plugin_config.dart';
-part 'model/plugin_config_args.dart';
-part 'model/plugin_config_interface.dart';
-part 'model/plugin_config_linux.dart';
-part 'model/plugin_config_network.dart';
-part 'model/plugin_config_rootfs.dart';
-part 'model/plugin_config_user.dart';
-part 'model/plugin_device.dart';
-part 'model/plugin_env.dart';
-part 'model/plugin_interface_type.dart';
-part 'model/plugin_mount.dart';
-part 'model/plugin_settings.dart';
-part 'model/previous_consent_session.dart';
-part 'model/reject_request.dart';
-part 'model/request_was_handled_response.dart';
-part 'model/userinfo_response.dart';
-part 'model/version.dart';
-part 'model/volume.dart';
-part 'model/volume_usage_data.dart';
-part 'model/well_known.dart';
+import 'package:dio/dio.dart';
+import 'package:built_value/serializer.dart';
+import 'package:ory_hydra_client/serializers.dart';
+import 'package:ory_hydra_client/auth/api_key_auth.dart';
+import 'package:ory_hydra_client/auth/basic_auth.dart';
+import 'package:ory_hydra_client/auth/oauth.dart';
+import 'package:ory_hydra_client/api/admin_api.dart';
+import 'package:ory_hydra_client/api/metadata_api.dart';
+import 'package:ory_hydra_client/api/public_api.dart';
 
 
-const _delimiters = {'csv': ',', 'ssv': ' ', 'tsv': '\t', 'pipes': '|'};
-const _dateEpochMarker = 'epoch';
-final _dateFormatter = DateFormat('yyyy-MM-dd');
-final _regList = RegExp(r'^List<(.*)>$');
-final _regSet = RegExp(r'^Set<(.*)>$');
-final _regMap = RegExp(r'^Map<String,(.*)>$');
+final _defaultInterceptors = [
+  OAuthInterceptor(),
+  BasicAuthInterceptor(),
+  ApiKeyAuthInterceptor(),
+];
 
-ApiClient defaultApiClient = ApiClient();
+class OryHydraClient {
+
+    static const String basePath = r'http://localhost';
+
+    final Dio dio;
+
+    final Serializers serializers;
+
+    OryHydraClient({
+      Dio dio,
+      Serializers serializers,
+      String basePathOverride,
+      List<Interceptor> interceptors,
+    })  : this.serializers = serializers ?? standardSerializers,
+          this.dio = dio ??
+              Dio(BaseOptions(
+                baseUrl: basePathOverride ?? basePath,
+                connectTimeout: 5000,
+                receiveTimeout: 3000,
+              )) {
+      if (interceptors == null) {
+        this.dio.interceptors.addAll(_defaultInterceptors);
+      } else {
+        this.dio.interceptors.addAll(interceptors);
+      }
+    }
+
+    void setOAuthToken(String name, String token) {
+        (this.dio.interceptors.firstWhere((element) => element is OAuthInterceptor, orElse: null) as OAuthInterceptor)?.tokens[name] = token;
+    }
+
+    void setBasicAuth(String name, String username, String password) {
+        (this.dio.interceptors.firstWhere((element) => element is BasicAuthInterceptor, orElse: null) as BasicAuthInterceptor)?.authInfo[name] = BasicAuthInfo(username, password);
+    }
+
+    void setApiKey(String name, String apiKey) {
+        (this.dio.interceptors.firstWhere((element) => element is ApiKeyAuthInterceptor, orElse: null) as ApiKeyAuthInterceptor)?.apiKeys[name] = apiKey;
+    }
+
+
+    /**
+    * Get AdminApi instance, base route and serializer can be overridden by a given but be careful,
+    * by doing that all interceptors will not be executed
+    */
+    AdminApi getAdminApi() {
+    return AdminApi(dio, serializers);
+    }
+
+
+    /**
+    * Get MetadataApi instance, base route and serializer can be overridden by a given but be careful,
+    * by doing that all interceptors will not be executed
+    */
+    MetadataApi getMetadataApi() {
+    return MetadataApi(dio, serializers);
+    }
+
+
+    /**
+    * Get PublicApi instance, base route and serializer can be overridden by a given but be careful,
+    * by doing that all interceptors will not be executed
+    */
+    PublicApi getPublicApi() {
+    return PublicApi(dio, serializers);
+    }
+
+
+}

@@ -6,7 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**disconnect_user**](PublicApi.md#disconnect_user) | **GET** /oauth2/sessions/logout | OpenID Connect Front-Backchannel Enabled Logout
 [**discover_open_id_configuration**](PublicApi.md#discover_open_id_configuration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
-[**is_instance_ready**](PublicApi.md#is_instance_ready) | **GET** /health/ready | Check Readiness Status
+[**dynamic_client_registration_create_o_auth2_client**](PublicApi.md#dynamic_client_registration_create_o_auth2_client) | **POST** /connect/register | Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+[**dynamic_client_registration_delete_o_auth2_client**](PublicApi.md#dynamic_client_registration_delete_o_auth2_client) | **DELETE** /connect/register/{id} | Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+[**dynamic_client_registration_get_o_auth2_client**](PublicApi.md#dynamic_client_registration_get_o_auth2_client) | **GET** /connect/register/{id} | Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+[**dynamic_client_registration_update_o_auth2_client**](PublicApi.md#dynamic_client_registration_update_o_auth2_client) | **PUT** /connect/register/{id} | Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 [**oauth2_token**](PublicApi.md#oauth2_token) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
 [**oauth_auth**](PublicApi.md#oauth_auth) | **GET** /oauth2/auth | The OAuth 2.0 Authorize Endpoint
 [**revoke_o_auth2_token**](PublicApi.md#revoke_o_auth2_token) | **POST** /oauth2/revoke | Revoke OAuth2 Tokens
@@ -19,9 +22,10 @@ Method | HTTP request | Description
 
 OpenID Connect Front-Backchannel Enabled Logout
 
-This endpoint initiates and completes user logout at ORY Hydra and initiates OpenID Connect Front-/Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html
+This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front-/Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html
 
 ### Example
+
 
 ```python
 import time
@@ -67,6 +71,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
@@ -81,6 +86,7 @@ OpenID Connect Discovery
 The well known endpoint an be used to retrieve information for OpenID Connect clients. We encourage you to not roll your own OpenID Connect client but to use an OpenID Connect client library instead. You can learn more on this flow at https://openid.net/specs/openid-connect-discovery-1_0.html .  Popular libraries for OpenID Connect clients include oidc-client-js (JavaScript), go-oidc (Golang), and others. For a full list of clients go here: https://openid.net/developers/certified/
 
 ### Example
+
 
 ```python
 import time
@@ -129,6 +135,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | wellKnown |  -  |
@@ -137,21 +144,22 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **is_instance_ready**
-> HealthStatus is_instance_ready()
+# **dynamic_client_registration_create_o_auth2_client**
+> OAuth2Client dynamic_client_registration_create_o_auth2_client(o_auth2_client)
 
-Check Readiness Status
+Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 
-This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+This endpoint behaves like the administrative counterpart (`createOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  Please note that using this endpoint you are not able to choose the `client_secret` nor the `client_id` as those values will be server generated when specifying `token_endpoint_auth_method` as `client_secret_basic` or `client_secret_post`.  The `client_secret` will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somewhere safe.
 
 ### Example
+
 
 ```python
 import time
 import ory_hydra_client
 from ory_hydra_client.api import public_api
-from ory_hydra_client.model.health_status import HealthStatus
-from ory_hydra_client.model.health_not_ready_status import HealthNotReadyStatus
+from ory_hydra_client.model.o_auth2_client import OAuth2Client
+from ory_hydra_client.model.json_error import JsonError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -164,23 +172,146 @@ configuration = ory_hydra_client.Configuration(
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = public_api.PublicApi(api_client)
+    o_auth2_client = OAuth2Client(
+        allowed_cors_origins=StringSlicePipeDelimiter([
+            "allowed_cors_origins_example",
+        ]),
+        audience=StringSlicePipeDelimiter([
+            "audience_example",
+        ]),
+        backchannel_logout_session_required=True,
+        backchannel_logout_uri="backchannel_logout_uri_example",
+        client_id="client_id_example",
+        client_name="client_name_example",
+        client_secret="client_secret_example",
+        client_secret_expires_at=1,
+        client_uri="client_uri_example",
+        contacts=StringSlicePipeDelimiter([
+            "contacts_example",
+        ]),
+        created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+        frontchannel_logout_session_required=True,
+        frontchannel_logout_uri="frontchannel_logout_uri_example",
+        grant_types=StringSlicePipeDelimiter([
+            "grant_types_example",
+        ]),
+        jwks={},
+        jwks_uri="jwks_uri_example",
+        logo_uri="logo_uri_example",
+        metadata={},
+        owner="owner_example",
+        policy_uri="policy_uri_example",
+        post_logout_redirect_uris=StringSlicePipeDelimiter([
+            "post_logout_redirect_uris_example",
+        ]),
+        redirect_uris=StringSlicePipeDelimiter([
+            "redirect_uris_example",
+        ]),
+        registration_access_token="registration_access_token_example",
+        registration_client_uri="registration_client_uri_example",
+        request_object_signing_alg="request_object_signing_alg_example",
+        request_uris=StringSlicePipeDelimiter([
+            "request_uris_example",
+        ]),
+        response_types=StringSlicePipeDelimiter([
+            "response_types_example",
+        ]),
+        scope="z",
+        sector_identifier_uri="sector_identifier_uri_example",
+        subject_type="subject_type_example",
+        token_endpoint_auth_method="token_endpoint_auth_method_example",
+        token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",
+        tos_uri="tos_uri_example",
+        updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+        userinfo_signed_response_alg="userinfo_signed_response_alg_example",
+    ) # OAuth2Client | 
 
-    # example, this endpoint has no required or optional parameters
+    # example passing only required values which don't have defaults set
     try:
-        # Check Readiness Status
-        api_response = api_instance.is_instance_ready()
+        # Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+        api_response = api_instance.dynamic_client_registration_create_o_auth2_client(o_auth2_client)
         pprint(api_response)
     except ory_hydra_client.ApiException as e:
-        print("Exception when calling PublicApi->is_instance_ready: %s\n" % e)
+        print("Exception when calling PublicApi->dynamic_client_registration_create_o_auth2_client: %s\n" % e)
 ```
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md)|  |
 
 ### Return type
 
-[**HealthStatus**](HealthStatus.md)
+[**OAuth2Client**](OAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | oAuth2Client |  -  |
+**0** | jsonError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **dynamic_client_registration_delete_o_auth2_client**
+> dynamic_client_registration_delete_o_auth2_client(id)
+
+Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+
+This endpoint behaves like the administrative counterpart (`deleteOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+
+
+```python
+import time
+import ory_hydra_client
+from ory_hydra_client.api import public_api
+from ory_hydra_client.model.json_error import JsonError
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_hydra_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = public_api.PublicApi(api_client)
+    id = "id_example" # str | The id of the OAuth 2.0 Client.
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+        api_instance.dynamic_client_registration_delete_o_auth2_client(id)
+    except ory_hydra_client.ApiException as e:
+        print("Exception when calling PublicApi->dynamic_client_registration_delete_o_auth2_client: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The id of the OAuth 2.0 Client. |
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 
@@ -193,10 +324,203 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | healthStatus |  -  |
-**503** | healthNotReadyStatus |  -  |
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**0** | jsonError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **dynamic_client_registration_get_o_auth2_client**
+> OAuth2Client dynamic_client_registration_get_o_auth2_client(id)
+
+Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+
+This endpoint behaves like the administrative counterpart (`getOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+
+
+```python
+import time
+import ory_hydra_client
+from ory_hydra_client.api import public_api
+from ory_hydra_client.model.o_auth2_client import OAuth2Client
+from ory_hydra_client.model.json_error import JsonError
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_hydra_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = public_api.PublicApi(api_client)
+    id = "id_example" # str | The id of the OAuth 2.0 Client.
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+        api_response = api_instance.dynamic_client_registration_get_o_auth2_client(id)
+        pprint(api_response)
+    except ory_hydra_client.ApiException as e:
+        print("Exception when calling PublicApi->dynamic_client_registration_get_o_auth2_client: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The id of the OAuth 2.0 Client. |
+
+### Return type
+
+[**OAuth2Client**](OAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | oAuth2Client |  -  |
+**0** | jsonError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **dynamic_client_registration_update_o_auth2_client**
+> OAuth2Client dynamic_client_registration_update_o_auth2_client(id, o_auth2_client)
+
+Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+
+This endpoint behaves like the administrative counterpart (`updateOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+
+
+```python
+import time
+import ory_hydra_client
+from ory_hydra_client.api import public_api
+from ory_hydra_client.model.o_auth2_client import OAuth2Client
+from ory_hydra_client.model.json_error import JsonError
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_hydra_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = public_api.PublicApi(api_client)
+    id = "id_example" # str | The id of the OAuth 2.0 Client.
+    o_auth2_client = OAuth2Client(
+        allowed_cors_origins=StringSlicePipeDelimiter([
+            "allowed_cors_origins_example",
+        ]),
+        audience=StringSlicePipeDelimiter([
+            "audience_example",
+        ]),
+        backchannel_logout_session_required=True,
+        backchannel_logout_uri="backchannel_logout_uri_example",
+        client_id="client_id_example",
+        client_name="client_name_example",
+        client_secret="client_secret_example",
+        client_secret_expires_at=1,
+        client_uri="client_uri_example",
+        contacts=StringSlicePipeDelimiter([
+            "contacts_example",
+        ]),
+        created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+        frontchannel_logout_session_required=True,
+        frontchannel_logout_uri="frontchannel_logout_uri_example",
+        grant_types=StringSlicePipeDelimiter([
+            "grant_types_example",
+        ]),
+        jwks={},
+        jwks_uri="jwks_uri_example",
+        logo_uri="logo_uri_example",
+        metadata={},
+        owner="owner_example",
+        policy_uri="policy_uri_example",
+        post_logout_redirect_uris=StringSlicePipeDelimiter([
+            "post_logout_redirect_uris_example",
+        ]),
+        redirect_uris=StringSlicePipeDelimiter([
+            "redirect_uris_example",
+        ]),
+        registration_access_token="registration_access_token_example",
+        registration_client_uri="registration_client_uri_example",
+        request_object_signing_alg="request_object_signing_alg_example",
+        request_uris=StringSlicePipeDelimiter([
+            "request_uris_example",
+        ]),
+        response_types=StringSlicePipeDelimiter([
+            "response_types_example",
+        ]),
+        scope="z",
+        sector_identifier_uri="sector_identifier_uri_example",
+        subject_type="subject_type_example",
+        token_endpoint_auth_method="token_endpoint_auth_method_example",
+        token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",
+        tos_uri="tos_uri_example",
+        updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+        userinfo_signed_response_alg="userinfo_signed_response_alg_example",
+    ) # OAuth2Client | 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+        api_response = api_instance.dynamic_client_registration_update_o_auth2_client(id, o_auth2_client)
+        pprint(api_response)
+    except ory_hydra_client.ApiException as e:
+        print("Exception when calling PublicApi->dynamic_client_registration_update_o_auth2_client: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The id of the OAuth 2.0 Client. |
+ **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md)|  |
+
+### Return type
+
+[**OAuth2Client**](OAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | oAuth2Client |  -  |
+**0** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -211,6 +535,7 @@ The client makes a request to the token endpoint by sending the following parame
 
 * Basic Authentication (basic):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import ory_hydra_client
@@ -246,10 +571,10 @@ with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = public_api.PublicApi(api_client)
     grant_type = "grant_type_example" # str | 
-    code = "code_example" # str |  (optional)
-    refresh_token = "refresh_token_example" # str |  (optional)
-    redirect_uri = "redirect_uri_example" # str |  (optional)
     client_id = "client_id_example" # str |  (optional)
+    code = "code_example" # str |  (optional)
+    redirect_uri = "redirect_uri_example" # str |  (optional)
+    refresh_token = "refresh_token_example" # str |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -263,7 +588,7 @@ with ory_hydra_client.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # The OAuth 2.0 Token Endpoint
-        api_response = api_instance.oauth2_token(grant_type, code=code, refresh_token=refresh_token, redirect_uri=redirect_uri, client_id=client_id)
+        api_response = api_instance.oauth2_token(grant_type, client_id=client_id, code=code, redirect_uri=redirect_uri, refresh_token=refresh_token)
         pprint(api_response)
     except ory_hydra_client.ApiException as e:
         print("Exception when calling PublicApi->oauth2_token: %s\n" % e)
@@ -275,10 +600,10 @@ with ory_hydra_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **grant_type** | **str**|  |
- **code** | **str**|  | [optional]
- **refresh_token** | **str**|  | [optional]
- **redirect_uri** | **str**|  | [optional]
  **client_id** | **str**|  | [optional]
+ **code** | **str**|  | [optional]
+ **redirect_uri** | **str**|  | [optional]
+ **refresh_token** | **str**|  | [optional]
 
 ### Return type
 
@@ -295,6 +620,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | oauth2TokenResponse |  -  |
@@ -312,6 +638,7 @@ The OAuth 2.0 Authorize Endpoint
 This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exists.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc6749
 
 ### Example
+
 
 ```python
 import time
@@ -358,6 +685,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
@@ -377,6 +705,7 @@ Revoking a token (both access and refresh) means that the tokens will be invalid
 
 * Basic Authentication (basic):
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import ory_hydra_client
@@ -442,6 +771,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
@@ -460,6 +790,7 @@ This endpoint returns the payload of the ID Token, including the idTokenExtra va
 ### Example
 
 * OAuth Authentication (oauth2):
+
 ```python
 import time
 import ory_hydra_client
@@ -517,6 +848,7 @@ This endpoint does not need any parameter.
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | userinfoResponse |  -  |
@@ -533,6 +865,7 @@ JSON Web Keys Discovery
 This endpoint returns JSON Web Keys to be used as public keys for verifying OpenID Connect ID Tokens and, if enabled, OAuth 2.0 JWT Access Tokens. This endpoint can be used with client libraries like [node-jwks-rsa](https://github.com/auth0/node-jwks-rsa) among others.
 
 ### Example
+
 
 ```python
 import time
@@ -581,6 +914,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | JSONWebKeySet |  -  |

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **acr** | Option<**String**> | ACR represents the Authentication AuthorizationContext Class Reference value for this authentication session. You can use it to express that, for example, a user authenticated using two factor authentication. | [optional]
+**amr** | Option<**Vec<String>**> |  | [optional]
 **challenge** | **String** | ID is the identifier (\"authorization challenge\") of the consent authorization request. It is used to identify the session. | 
 **client** | Option<[**crate::models::OAuth2Client**](oAuth2Client.md)> |  | [optional]
 **context** | Option<[**serde_json::Value**](.md)> |  | [optional]

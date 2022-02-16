@@ -1,14 +1,17 @@
 # Ory.Hydra.Client.Model.HydraGenericError
-Error responses are sent when an error (e.g. unauthorized, bad request, ...) occurred.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Debug** | **string** | Debug contains debug information. This is usually not available and has to be enabled. | [optional] 
-**Error** | **string** | Name is the error name. | 
-**ErrorDescription** | **string** | Description contains further information on the nature of the error. | [optional] 
-**StatusCode** | **long** | Code represents the error status code (404, 403, 401, ...). | [optional] 
+**Code** | **long** | The status code | [optional] 
+**Debug** | **string** | Debug information  This field is often not exposed to protect against leaking sensitive information. | [optional] 
+**Details** | **Dictionary&lt;string, Object&gt;** | Further error details | [optional] 
+**Id** | **string** | The error ID  Useful when trying to identify various errors in application logic. | [optional] 
+**Message** | **string** | Error message  The error&#39;s message. | 
+**Reason** | **string** | A human-readable reason for the error | [optional] 
+**Request** | **string** | The request ID  The request ID is often exposed internally in order to trace errors across service architectures. This is often a UUID. | [optional] 
+**Status** | **string** | The status description | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

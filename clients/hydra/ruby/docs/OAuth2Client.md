@@ -26,6 +26,8 @@
 | **policy_uri** | **String** | PolicyURI is a URL string that points to a human-readable privacy policy document that describes how the deployment organization collects, uses, retains, and discloses personal data. | [optional] |
 | **post_logout_redirect_uris** | **Array&lt;String&gt;** |  | [optional] |
 | **redirect_uris** | **Array&lt;String&gt;** |  | [optional] |
+| **registration_access_token** | **String** | RegistrationAccessToken can be used to update, get, or delete the OAuth2 Client. | [optional] |
+| **registration_client_uri** | **String** | RegistrationClientURI is the URL used to update, get, or delete the OAuth2 Client. | [optional] |
 | **request_object_signing_alg** | **String** | JWS [JWS] alg algorithm [JWA] that MUST be used for signing Request Objects sent to the OP. All Request Objects from this Client MUST be rejected, if not signed with this algorithm. | [optional] |
 | **request_uris** | **Array&lt;String&gt;** |  | [optional] |
 | **response_types** | **Array&lt;String&gt;** |  | [optional] |
@@ -66,6 +68,8 @@ instance = OryHydraClient::OAuth2Client.new(
   policy_uri: null,
   post_logout_redirect_uris: null,
   redirect_uris: null,
+  registration_access_token: null,
+  registration_client_uri: null,
   request_object_signing_alg: null,
   request_uris: null,
   response_types: null,

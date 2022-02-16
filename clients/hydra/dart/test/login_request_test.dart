@@ -1,12 +1,20 @@
-import 'package:ory_hydra_client/api.dart';
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.7
+
+// ignore_for_file: unused_import
+
+import 'package:ory_hydra_client/model/login_request.dart';
 import 'package:test/test.dart';
 
 // tests for LoginRequest
 void main() {
-  final instance = LoginRequest();
+  final instance = LoginRequestBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test LoginRequest', () {
-    // Challenge is the identifier (\"login challenge\") of the login request. It is used to identify the session.
+  group(LoginRequest, () {
+    // ID is the identifier (\"login challenge\") of the login request. It is used to identify the session.
     // String challenge
     test('to test the property `challenge`', () async {
       // TODO
@@ -28,14 +36,12 @@ void main() {
       // TODO
     });
 
-    // RequestedScope contains the access token audience as requested by the OAuth 2.0 Client.
-    // List<String> requestedAccessTokenAudience (default value: const [])
+    // BuiltList<String> requestedAccessTokenAudience
     test('to test the property `requestedAccessTokenAudience`', () async {
       // TODO
     });
 
-    // RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client.
-    // List<String> requestedScope (default value: const [])
+    // BuiltList<String> requestedScope
     test('to test the property `requestedScope`', () async {
       // TODO
     });

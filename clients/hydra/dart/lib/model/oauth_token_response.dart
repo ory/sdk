@@ -1,122 +1,145 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class OauthTokenResponse {
-  /// Returns a new [OauthTokenResponse] instance.
-  OauthTokenResponse({
-    this.accessToken,
-    this.expiresIn,
-    this.idToken,
-    this.refreshToken,
-    this.scope,
-    this.tokenType,
-  });
+part 'oauth_token_response.g.dart';
 
-  /// The access token issued by the authorization server.
-  String accessToken;
+abstract class OauthTokenResponse implements Built<OauthTokenResponse, OauthTokenResponseBuilder> {
 
-  /// The lifetime in seconds of the access token.  For example, the value \"3600\" denotes that the access token will expire in one hour from the time the response was generated.
-  int expiresIn;
+    /// The access token issued by the authorization server.
+    @nullable
+    @BuiltValueField(wireName: r'access_token')
+    String get accessToken;
 
-  /// To retrieve a refresh token request the id_token scope.
-  int idToken;
+    /// The lifetime in seconds of the access token.  For example, the value \"3600\" denotes that the access token will expire in one hour from the time the response was generated.
+    @nullable
+    @BuiltValueField(wireName: r'expires_in')
+    int get expiresIn;
 
-  /// The refresh token, which can be used to obtain new access tokens. To retrieve it add the scope \"offline\" to your access token request.
-  String refreshToken;
+    /// To retrieve a refresh token request the id_token scope.
+    @nullable
+    @BuiltValueField(wireName: r'id_token')
+    int get idToken;
 
-  /// The scope of the access token
-  int scope;
+    /// The refresh token, which can be used to obtain new access tokens. To retrieve it add the scope \"offline\" to your access token request.
+    @nullable
+    @BuiltValueField(wireName: r'refresh_token')
+    String get refreshToken;
 
-  /// The type of the token issued
-  String tokenType;
+    /// The scope of the access token
+    @nullable
+    @BuiltValueField(wireName: r'scope')
+    int get scope;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is OauthTokenResponse &&
-     other.accessToken == accessToken &&
-     other.expiresIn == expiresIn &&
-     other.idToken == idToken &&
-     other.refreshToken == refreshToken &&
-     other.scope == scope &&
-     other.tokenType == tokenType;
+    /// The type of the token issued
+    @nullable
+    @BuiltValueField(wireName: r'token_type')
+    String get tokenType;
 
-  @override
-  int get hashCode =>
-    (accessToken == null ? 0 : accessToken.hashCode) +
-    (expiresIn == null ? 0 : expiresIn.hashCode) +
-    (idToken == null ? 0 : idToken.hashCode) +
-    (refreshToken == null ? 0 : refreshToken.hashCode) +
-    (scope == null ? 0 : scope.hashCode) +
-    (tokenType == null ? 0 : tokenType.hashCode);
+    OauthTokenResponse._();
 
-  @override
-  String toString() => 'OauthTokenResponse[accessToken=$accessToken, expiresIn=$expiresIn, idToken=$idToken, refreshToken=$refreshToken, scope=$scope, tokenType=$tokenType]';
+    static void _initializeBuilder(OauthTokenResponseBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (accessToken != null) {
-      json[r'access_token'] = accessToken;
+    factory OauthTokenResponse([void updates(OauthTokenResponseBuilder b)]) = _$OauthTokenResponse;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<OauthTokenResponse> get serializer => _$OauthTokenResponseSerializer();
+}
+
+class _$OauthTokenResponseSerializer implements StructuredSerializer<OauthTokenResponse> {
+
+    @override
+    final Iterable<Type> types = const [OauthTokenResponse, _$OauthTokenResponse];
+    @override
+    final String wireName = r'OauthTokenResponse';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, OauthTokenResponse object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.accessToken != null) {
+            result
+                ..add(r'access_token')
+                ..add(serializers.serialize(object.accessToken,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.expiresIn != null) {
+            result
+                ..add(r'expires_in')
+                ..add(serializers.serialize(object.expiresIn,
+                    specifiedType: const FullType(int)));
+        }
+        if (object.idToken != null) {
+            result
+                ..add(r'id_token')
+                ..add(serializers.serialize(object.idToken,
+                    specifiedType: const FullType(int)));
+        }
+        if (object.refreshToken != null) {
+            result
+                ..add(r'refresh_token')
+                ..add(serializers.serialize(object.refreshToken,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.scope != null) {
+            result
+                ..add(r'scope')
+                ..add(serializers.serialize(object.scope,
+                    specifiedType: const FullType(int)));
+        }
+        if (object.tokenType != null) {
+            result
+                ..add(r'token_type')
+                ..add(serializers.serialize(object.tokenType,
+                    specifiedType: const FullType(String)));
+        }
+        return result;
     }
-    if (expiresIn != null) {
-      json[r'expires_in'] = expiresIn;
-    }
-    if (idToken != null) {
-      json[r'id_token'] = idToken;
-    }
-    if (refreshToken != null) {
-      json[r'refresh_token'] = refreshToken;
-    }
-    if (scope != null) {
-      json[r'scope'] = scope;
-    }
-    if (tokenType != null) {
-      json[r'token_type'] = tokenType;
-    }
-    return json;
-  }
 
-  /// Returns a new [OauthTokenResponse] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static OauthTokenResponse fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : OauthTokenResponse(
-        accessToken: json[r'access_token'],
-        expiresIn: json[r'expires_in'],
-        idToken: json[r'id_token'],
-        refreshToken: json[r'refresh_token'],
-        scope: json[r'scope'],
-        tokenType: json[r'token_type'],
-    );
+    @override
+    OauthTokenResponse deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = OauthTokenResponseBuilder();
 
-  static List<OauthTokenResponse> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <OauthTokenResponse>[]
-      : json.map((v) => OauthTokenResponse.fromJson(v)).toList(growable: true == growable);
-
-  static Map<String, OauthTokenResponse> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, OauthTokenResponse>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = OauthTokenResponse.fromJson(v));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'access_token':
+                    result.accessToken = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'expires_in':
+                    result.expiresIn = serializers.deserialize(value,
+                        specifiedType: const FullType(int)) as int;
+                    break;
+                case r'id_token':
+                    result.idToken = serializers.deserialize(value,
+                        specifiedType: const FullType(int)) as int;
+                    break;
+                case r'refresh_token':
+                    result.refreshToken = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'scope':
+                    result.scope = serializers.deserialize(value,
+                        specifiedType: const FullType(int)) as int;
+                    break;
+                case r'token_type':
+                    result.tokenType = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of OauthTokenResponse-objects as value to a dart map
-  static Map<String, List<OauthTokenResponse>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<OauthTokenResponse>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = OauthTokenResponse.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
-      });
-    }
-    return map;
-  }
 }
 

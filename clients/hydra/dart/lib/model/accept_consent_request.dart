@@ -1,124 +1,143 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_collection/built_collection.dart';
+import 'package:ory_hydra_client/model/consent_request_session.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class AcceptConsentRequest {
-  /// Returns a new [AcceptConsentRequest] instance.
-  AcceptConsentRequest({
-    this.grantAccessTokenAudience = const [],
-    this.grantScope = const [],
-    this.handledAt,
-    this.remember,
-    this.rememberFor,
-    this.session,
-  });
+part 'accept_consent_request.g.dart';
 
-  List<String> grantAccessTokenAudience;
+abstract class AcceptConsentRequest implements Built<AcceptConsentRequest, AcceptConsentRequestBuilder> {
 
-  List<String> grantScope;
+    @nullable
+    @BuiltValueField(wireName: r'grant_access_token_audience')
+    BuiltList<String> get grantAccessTokenAudience;
 
-  DateTime handledAt;
+    @nullable
+    @BuiltValueField(wireName: r'grant_scope')
+    BuiltList<String> get grantScope;
 
-  /// Remember, if set to true, tells ORY Hydra to remember this consent authorization and reuse it if the same client asks the same user for the same, or a subset of, scope.
-  bool remember;
+    @nullable
+    @BuiltValueField(wireName: r'handled_at')
+    DateTime get handledAt;
 
-  /// RememberFor sets how long the consent authorization should be remembered for in seconds. If set to `0`, the authorization will be remembered indefinitely.
-  int rememberFor;
+    /// Remember, if set to true, tells ORY Hydra to remember this consent authorization and reuse it if the same client asks the same user for the same, or a subset of, scope.
+    @nullable
+    @BuiltValueField(wireName: r'remember')
+    bool get remember;
 
-  ConsentRequestSession session;
+    /// RememberFor sets how long the consent authorization should be remembered for in seconds. If set to `0`, the authorization will be remembered indefinitely.
+    @nullable
+    @BuiltValueField(wireName: r'remember_for')
+    int get rememberFor;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is AcceptConsentRequest &&
-     other.grantAccessTokenAudience == grantAccessTokenAudience &&
-     other.grantScope == grantScope &&
-     other.handledAt == handledAt &&
-     other.remember == remember &&
-     other.rememberFor == rememberFor &&
-     other.session == session;
+    @nullable
+    @BuiltValueField(wireName: r'session')
+    ConsentRequestSession get session;
 
-  @override
-  int get hashCode =>
-    (grantAccessTokenAudience == null ? 0 : grantAccessTokenAudience.hashCode) +
-    (grantScope == null ? 0 : grantScope.hashCode) +
-    (handledAt == null ? 0 : handledAt.hashCode) +
-    (remember == null ? 0 : remember.hashCode) +
-    (rememberFor == null ? 0 : rememberFor.hashCode) +
-    (session == null ? 0 : session.hashCode);
+    AcceptConsentRequest._();
 
-  @override
-  String toString() => 'AcceptConsentRequest[grantAccessTokenAudience=$grantAccessTokenAudience, grantScope=$grantScope, handledAt=$handledAt, remember=$remember, rememberFor=$rememberFor, session=$session]';
+    static void _initializeBuilder(AcceptConsentRequestBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (grantAccessTokenAudience != null) {
-      json[r'grant_access_token_audience'] = grantAccessTokenAudience;
+    factory AcceptConsentRequest([void updates(AcceptConsentRequestBuilder b)]) = _$AcceptConsentRequest;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<AcceptConsentRequest> get serializer => _$AcceptConsentRequestSerializer();
+}
+
+class _$AcceptConsentRequestSerializer implements StructuredSerializer<AcceptConsentRequest> {
+
+    @override
+    final Iterable<Type> types = const [AcceptConsentRequest, _$AcceptConsentRequest];
+    @override
+    final String wireName = r'AcceptConsentRequest';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, AcceptConsentRequest object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.grantAccessTokenAudience != null) {
+            result
+                ..add(r'grant_access_token_audience')
+                ..add(serializers.serialize(object.grantAccessTokenAudience,
+                    specifiedType: const FullType(BuiltList, [FullType(String)])));
+        }
+        if (object.grantScope != null) {
+            result
+                ..add(r'grant_scope')
+                ..add(serializers.serialize(object.grantScope,
+                    specifiedType: const FullType(BuiltList, [FullType(String)])));
+        }
+        if (object.handledAt != null) {
+            result
+                ..add(r'handled_at')
+                ..add(serializers.serialize(object.handledAt,
+                    specifiedType: const FullType(DateTime)));
+        }
+        if (object.remember != null) {
+            result
+                ..add(r'remember')
+                ..add(serializers.serialize(object.remember,
+                    specifiedType: const FullType(bool)));
+        }
+        if (object.rememberFor != null) {
+            result
+                ..add(r'remember_for')
+                ..add(serializers.serialize(object.rememberFor,
+                    specifiedType: const FullType(int)));
+        }
+        if (object.session != null) {
+            result
+                ..add(r'session')
+                ..add(serializers.serialize(object.session,
+                    specifiedType: const FullType(ConsentRequestSession)));
+        }
+        return result;
     }
-    if (grantScope != null) {
-      json[r'grant_scope'] = grantScope;
-    }
-    if (handledAt != null) {
-      json[r'handled_at'] = handledAt.toUtc().toIso8601String();
-    }
-    if (remember != null) {
-      json[r'remember'] = remember;
-    }
-    if (rememberFor != null) {
-      json[r'remember_for'] = rememberFor;
-    }
-    if (session != null) {
-      json[r'session'] = session;
-    }
-    return json;
-  }
 
-  /// Returns a new [AcceptConsentRequest] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static AcceptConsentRequest fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : AcceptConsentRequest(
-        grantAccessTokenAudience: json[r'grant_access_token_audience'] == null
-          ? null
-          : (json[r'grant_access_token_audience'] as List).cast<String>(),
-        grantScope: json[r'grant_scope'] == null
-          ? null
-          : (json[r'grant_scope'] as List).cast<String>(),
-        handledAt: json[r'handled_at'] == null
-          ? null
-          : DateTime.parse(json[r'handled_at']),
-        remember: json[r'remember'],
-        rememberFor: json[r'remember_for'],
-        session: ConsentRequestSession.fromJson(json[r'session']),
-    );
+    @override
+    AcceptConsentRequest deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = AcceptConsentRequestBuilder();
 
-  static List<AcceptConsentRequest> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <AcceptConsentRequest>[]
-      : json.map((dynamic value) => AcceptConsentRequest.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, AcceptConsentRequest> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, AcceptConsentRequest>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = AcceptConsentRequest.fromJson(value));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'grant_access_token_audience':
+                    result.grantAccessTokenAudience.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
+                    break;
+                case r'grant_scope':
+                    result.grantScope.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
+                    break;
+                case r'handled_at':
+                    result.handledAt = serializers.deserialize(value,
+                        specifiedType: const FullType(DateTime)) as DateTime;
+                    break;
+                case r'remember':
+                    result.remember = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
+                case r'remember_for':
+                    result.rememberFor = serializers.deserialize(value,
+                        specifiedType: const FullType(int)) as int;
+                    break;
+                case r'session':
+                    result.session.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(ConsentRequestSession)) as ConsentRequestSession);
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of AcceptConsentRequest-objects as value to a dart map
-  static Map<String, List<AcceptConsentRequest>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<AcceptConsentRequest>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = AcceptConsentRequest.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

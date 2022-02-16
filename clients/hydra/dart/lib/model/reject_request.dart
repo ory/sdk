@@ -1,112 +1,130 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.7
 
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_import
 
-part of openapi.api;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class RejectRequest {
-  /// Returns a new [RejectRequest] instance.
-  RejectRequest({
-    this.error,
-    this.errorDebug,
-    this.errorDescription,
-    this.errorHint,
-    this.statusCode,
-  });
+part 'reject_request.g.dart';
 
-  /// The error should follow the OAuth2 error format (e.g. `invalid_request`, `login_required`).  Defaults to `request_denied`.
-  String error;
+abstract class RejectRequest implements Built<RejectRequest, RejectRequestBuilder> {
 
-  /// Debug contains information to help resolve the problem as a developer. Usually not exposed to the public but only in the server logs.
-  String errorDebug;
+    /// The error should follow the OAuth2 error format (e.g. `invalid_request`, `login_required`).  Defaults to `request_denied`.
+    @nullable
+    @BuiltValueField(wireName: r'error')
+    String get error;
 
-  /// Description of the error in a human readable format.
-  String errorDescription;
+    /// Debug contains information to help resolve the problem as a developer. Usually not exposed to the public but only in the server logs.
+    @nullable
+    @BuiltValueField(wireName: r'error_debug')
+    String get errorDebug;
 
-  /// Hint to help resolve the error.
-  String errorHint;
+    /// Description of the error in a human readable format.
+    @nullable
+    @BuiltValueField(wireName: r'error_description')
+    String get errorDescription;
 
-  /// Represents the HTTP status code of the error (e.g. 401 or 403)  Defaults to 400
-  int statusCode;
+    /// Hint to help resolve the error.
+    @nullable
+    @BuiltValueField(wireName: r'error_hint')
+    String get errorHint;
 
-  @override
-  bool operator ==(Object other) => identical(this, other) || other is RejectRequest &&
-     other.error == error &&
-     other.errorDebug == errorDebug &&
-     other.errorDescription == errorDescription &&
-     other.errorHint == errorHint &&
-     other.statusCode == statusCode;
+    /// Represents the HTTP status code of the error (e.g. 401 or 403)  Defaults to 400
+    @nullable
+    @BuiltValueField(wireName: r'status_code')
+    int get statusCode;
 
-  @override
-  int get hashCode =>
-    (error == null ? 0 : error.hashCode) +
-    (errorDebug == null ? 0 : errorDebug.hashCode) +
-    (errorDescription == null ? 0 : errorDescription.hashCode) +
-    (errorHint == null ? 0 : errorHint.hashCode) +
-    (statusCode == null ? 0 : statusCode.hashCode);
+    RejectRequest._();
 
-  @override
-  String toString() => 'RejectRequest[error=$error, errorDebug=$errorDebug, errorDescription=$errorDescription, errorHint=$errorHint, statusCode=$statusCode]';
+    static void _initializeBuilder(RejectRequestBuilder b) => b;
 
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (error != null) {
-      json[r'error'] = error;
+    factory RejectRequest([void updates(RejectRequestBuilder b)]) = _$RejectRequest;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<RejectRequest> get serializer => _$RejectRequestSerializer();
+}
+
+class _$RejectRequestSerializer implements StructuredSerializer<RejectRequest> {
+
+    @override
+    final Iterable<Type> types = const [RejectRequest, _$RejectRequest];
+    @override
+    final String wireName = r'RejectRequest';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, RejectRequest object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.error != null) {
+            result
+                ..add(r'error')
+                ..add(serializers.serialize(object.error,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.errorDebug != null) {
+            result
+                ..add(r'error_debug')
+                ..add(serializers.serialize(object.errorDebug,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.errorDescription != null) {
+            result
+                ..add(r'error_description')
+                ..add(serializers.serialize(object.errorDescription,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.errorHint != null) {
+            result
+                ..add(r'error_hint')
+                ..add(serializers.serialize(object.errorHint,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.statusCode != null) {
+            result
+                ..add(r'status_code')
+                ..add(serializers.serialize(object.statusCode,
+                    specifiedType: const FullType(int)));
+        }
+        return result;
     }
-    if (errorDebug != null) {
-      json[r'error_debug'] = errorDebug;
-    }
-    if (errorDescription != null) {
-      json[r'error_description'] = errorDescription;
-    }
-    if (errorHint != null) {
-      json[r'error_hint'] = errorHint;
-    }
-    if (statusCode != null) {
-      json[r'status_code'] = statusCode;
-    }
-    return json;
-  }
 
-  /// Returns a new [RejectRequest] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static RejectRequest fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : RejectRequest(
-        error: json[r'error'],
-        errorDebug: json[r'error_debug'],
-        errorDescription: json[r'error_description'],
-        errorHint: json[r'error_hint'],
-        statusCode: json[r'status_code'],
-    );
+    @override
+    RejectRequest deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = RejectRequestBuilder();
 
-  static List<RejectRequest> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <RejectRequest>[]
-      : json.map((dynamic value) => RejectRequest.fromJson(value)).toList(growable: true == growable);
-
-  static Map<String, RejectRequest> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, RejectRequest>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = RejectRequest.fromJson(value));
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'error':
+                    result.error = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'error_debug':
+                    result.errorDebug = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'error_description':
+                    result.errorDescription = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'error_hint':
+                    result.errorHint = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'status_code':
+                    result.statusCode = serializers.deserialize(value,
+                        specifiedType: const FullType(int)) as int;
+                    break;
+            }
+        }
+        return result.build();
     }
-    return map;
-  }
-
-  // maps a json object with a list of RejectRequest-objects as value to a dart map
-  static Map<String, List<RejectRequest>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<RejectRequest>>{};
-    if (json?.isNotEmpty == true) {
-      json.forEach((key, value) {
-        map[key] = RejectRequest.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
-      });
-    }
-    return map;
-  }
 }
 

@@ -6,7 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**DisconnectUser**](PublicApi.md#disconnectuser) | **GET** /oauth2/sessions/logout | OpenID Connect Front-Backchannel Enabled Logout
 [**DiscoverOpenIDConfiguration**](PublicApi.md#discoveropenidconfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
-[**IsInstanceReady**](PublicApi.md#isinstanceready) | **GET** /health/ready | Check Readiness Status
+[**DynamicClientRegistrationCreateOAuth2Client**](PublicApi.md#dynamicclientregistrationcreateoauth2client) | **POST** /connect/register | Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+[**DynamicClientRegistrationDeleteOAuth2Client**](PublicApi.md#dynamicclientregistrationdeleteoauth2client) | **DELETE** /connect/register/{id} | Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+[**DynamicClientRegistrationGetOAuth2Client**](PublicApi.md#dynamicclientregistrationgetoauth2client) | **GET** /connect/register/{id} | Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+[**DynamicClientRegistrationUpdateOAuth2Client**](PublicApi.md#dynamicclientregistrationupdateoauth2client) | **PUT** /connect/register/{id} | Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 [**Oauth2Token**](PublicApi.md#oauth2token) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
 [**OauthAuth**](PublicApi.md#oauthauth) | **GET** /oauth2/auth | The OAuth 2.0 Authorize Endpoint
 [**RevokeOAuth2Token**](PublicApi.md#revokeoauth2token) | **POST** /oauth2/revoke | Revoke OAuth2 Tokens
@@ -20,7 +23,7 @@ Method | HTTP request | Description
 
 OpenID Connect Front-Backchannel Enabled Logout
 
-This endpoint initiates and completes user logout at ORY Hydra and initiates OpenID Connect Front-/Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html
+This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front-/Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html
 
 ### Example
 ```csharp
@@ -149,13 +152,13 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="isinstanceready"></a>
-# **IsInstanceReady**
-> HydraHealthStatus IsInstanceReady ()
+<a name="dynamicclientregistrationcreateoauth2client"></a>
+# **DynamicClientRegistrationCreateOAuth2Client**
+> HydraOAuth2Client DynamicClientRegistrationCreateOAuth2Client (HydraOAuth2Client hydraOAuth2Client)
 
-Check Readiness Status
+Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 
-This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+This endpoint behaves like the administrative counterpart (`createOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  Please note that using this endpoint you are not able to choose the `client_secret` nor the `client_id` as those values will be server generated when specifying `token_endpoint_auth_method` as `client_secret_basic` or `client_secret_post`.  The `client_secret` will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somewhere safe.
 
 ### Example
 ```csharp
@@ -167,23 +170,24 @@ using Ory.Hydra.Client.Model;
 
 namespace Example
 {
-    public class IsInstanceReadyExample
+    public class DynamicClientRegistrationCreateOAuth2ClientExample
     {
         public static void Main()
         {
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
             var apiInstance = new PublicApi(config);
+            var hydraOAuth2Client = new HydraOAuth2Client(); // HydraOAuth2Client | 
 
             try
             {
-                // Check Readiness Status
-                HydraHealthStatus result = apiInstance.IsInstanceReady();
+                // Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+                HydraOAuth2Client result = apiInstance.DynamicClientRegistrationCreateOAuth2Client(hydraOAuth2Client);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling PublicApi.IsInstanceReady: " + e.Message );
+                Debug.Print("Exception when calling PublicApi.DynamicClientRegistrationCreateOAuth2Client: " + e.Message );
                 Debug.Print("Status Code: "+ e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -193,11 +197,85 @@ namespace Example
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **hydraOAuth2Client** | [**HydraOAuth2Client**](HydraOAuth2Client.md)|  | 
 
 ### Return type
 
-[**HydraHealthStatus**](HydraHealthStatus.md)
+[**HydraOAuth2Client**](HydraOAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | oAuth2Client |  -  |
+| **0** | jsonError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="dynamicclientregistrationdeleteoauth2client"></a>
+# **DynamicClientRegistrationDeleteOAuth2Client**
+> void DynamicClientRegistrationDeleteOAuth2Client (string id)
+
+Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+
+This endpoint behaves like the administrative counterpart (`deleteOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Hydra.Client.Api;
+using Ory.Hydra.Client.Client;
+using Ory.Hydra.Client.Model;
+
+namespace Example
+{
+    public class DynamicClientRegistrationDeleteOAuth2ClientExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            var apiInstance = new PublicApi(config);
+            var id = "id_example";  // string | The id of the OAuth 2.0 Client.
+
+            try
+            {
+                // Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+                apiInstance.DynamicClientRegistrationDeleteOAuth2Client(id);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PublicApi.DynamicClientRegistrationDeleteOAuth2Client: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The id of the OAuth 2.0 Client. | 
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 
@@ -212,14 +290,160 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | healthStatus |  -  |
-| **503** | healthNotReadyStatus |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **0** | jsonError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="dynamicclientregistrationgetoauth2client"></a>
+# **DynamicClientRegistrationGetOAuth2Client**
+> HydraOAuth2Client DynamicClientRegistrationGetOAuth2Client (string id)
+
+Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+
+This endpoint behaves like the administrative counterpart (`getOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Hydra.Client.Api;
+using Ory.Hydra.Client.Client;
+using Ory.Hydra.Client.Model;
+
+namespace Example
+{
+    public class DynamicClientRegistrationGetOAuth2ClientExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            var apiInstance = new PublicApi(config);
+            var id = "id_example";  // string | The id of the OAuth 2.0 Client.
+
+            try
+            {
+                // Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+                HydraOAuth2Client result = apiInstance.DynamicClientRegistrationGetOAuth2Client(id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PublicApi.DynamicClientRegistrationGetOAuth2Client: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The id of the OAuth 2.0 Client. | 
+
+### Return type
+
+[**HydraOAuth2Client**](HydraOAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | oAuth2Client |  -  |
+| **0** | jsonError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="dynamicclientregistrationupdateoauth2client"></a>
+# **DynamicClientRegistrationUpdateOAuth2Client**
+> HydraOAuth2Client DynamicClientRegistrationUpdateOAuth2Client (string id, HydraOAuth2Client hydraOAuth2Client)
+
+Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+
+This endpoint behaves like the administrative counterpart (`updateOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Hydra.Client.Api;
+using Ory.Hydra.Client.Client;
+using Ory.Hydra.Client.Model;
+
+namespace Example
+{
+    public class DynamicClientRegistrationUpdateOAuth2ClientExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            var apiInstance = new PublicApi(config);
+            var id = "id_example";  // string | The id of the OAuth 2.0 Client.
+            var hydraOAuth2Client = new HydraOAuth2Client(); // HydraOAuth2Client | 
+
+            try
+            {
+                // Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+                HydraOAuth2Client result = apiInstance.DynamicClientRegistrationUpdateOAuth2Client(id, hydraOAuth2Client);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PublicApi.DynamicClientRegistrationUpdateOAuth2Client: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The id of the OAuth 2.0 Client. | 
+ **hydraOAuth2Client** | [**HydraOAuth2Client**](HydraOAuth2Client.md)|  | 
+
+### Return type
+
+[**HydraOAuth2Client**](HydraOAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | oAuth2Client |  -  |
+| **0** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="oauth2token"></a>
 # **Oauth2Token**
-> HydraOauth2TokenResponse Oauth2Token (string grantType, string code = null, string refreshToken = null, string redirectUri = null, string clientId = null)
+> HydraOauth2TokenResponse Oauth2Token (string grantType, string clientId = null, string code = null, string redirectUri = null, string refreshToken = null)
 
 The OAuth 2.0 Token Endpoint
 
@@ -248,16 +472,16 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new PublicApi(config);
-            var grantType = grantType_example;  // string | 
-            var code = code_example;  // string |  (optional) 
-            var refreshToken = refreshToken_example;  // string |  (optional) 
-            var redirectUri = redirectUri_example;  // string |  (optional) 
-            var clientId = clientId_example;  // string |  (optional) 
+            var grantType = "grantType_example";  // string | 
+            var clientId = "clientId_example";  // string |  (optional) 
+            var code = "code_example";  // string |  (optional) 
+            var redirectUri = "redirectUri_example";  // string |  (optional) 
+            var refreshToken = "refreshToken_example";  // string |  (optional) 
 
             try
             {
                 // The OAuth 2.0 Token Endpoint
-                HydraOauth2TokenResponse result = apiInstance.Oauth2Token(grantType, code, refreshToken, redirectUri, clientId);
+                HydraOauth2TokenResponse result = apiInstance.Oauth2Token(grantType, clientId, code, redirectUri, refreshToken);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -276,10 +500,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **grantType** | **string**|  | 
- **code** | **string**|  | [optional] 
- **refreshToken** | **string**|  | [optional] 
- **redirectUri** | **string**|  | [optional] 
  **clientId** | **string**|  | [optional] 
+ **code** | **string**|  | [optional] 
+ **redirectUri** | **string**|  | [optional] 
+ **refreshToken** | **string**|  | [optional] 
 
 ### Return type
 
@@ -404,7 +628,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new PublicApi(config);
-            var token = token_example;  // string | 
+            var token = "token_example";  // string | 
 
             try
             {

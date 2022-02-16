@@ -1,19 +1,31 @@
-import 'package:ory_hydra_client/api.dart';
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.7
+
+// ignore_for_file: unused_import
+
+import 'package:ory_hydra_client/model/accept_login_request.dart';
 import 'package:test/test.dart';
 
 // tests for AcceptLoginRequest
 void main() {
-  final instance = AcceptLoginRequest();
+  final instance = AcceptLoginRequestBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test AcceptLoginRequest', () {
+  group(AcceptLoginRequest, () {
     // ACR sets the Authentication AuthorizationContext Class Reference value for this authentication session. You can use it to express that, for example, a user authenticated using two factor authentication.
     // String acr
     test('to test the property `acr`', () async {
       // TODO
     });
 
-    // Context is an optional object which can hold arbitrary data. The data will be made available when fetching the consent request under the \"context\" field. This is useful in scenarios where login and consent endpoints share data.
-    // Object context
+    // BuiltList<String> amr
+    test('to test the property `amr`', () async {
+      // TODO
+    });
+
+    // JsonObject context
     test('to test the property `context`', () async {
       // TODO
     });

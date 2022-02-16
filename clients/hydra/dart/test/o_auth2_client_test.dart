@@ -1,19 +1,25 @@
-import 'package:ory_hydra_client/api.dart';
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.7
+
+// ignore_for_file: unused_import
+
+import 'package:ory_hydra_client/model/o_auth2_client.dart';
 import 'package:test/test.dart';
 
 // tests for OAuth2Client
 void main() {
-  final instance = OAuth2Client();
+  final instance = OAuth2ClientBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test OAuth2Client', () {
-    // AllowedCORSOrigins are one or more URLs (scheme://host[:port]) which are allowed to make CORS requests to the /oauth/token endpoint. If this array is empty, the sever's CORS origin configuration (`CORS_ALLOWED_ORIGINS`) will be used instead. If this array is set, the allowed origins are appended to the server's CORS origin configuration. Be aware that environment variable `CORS_ENABLED` MUST be set to `true` for this to work.
-    // List<String> allowedCorsOrigins (default value: const [])
+  group(OAuth2Client, () {
+    // BuiltList<String> allowedCorsOrigins
     test('to test the property `allowedCorsOrigins`', () async {
       // TODO
     });
 
-    // Audience is a whitelist defining the audiences this client is allowed to request tokens for. An audience limits the applicability of an OAuth 2.0 Access Token to, for example, certain API endpoints. The value is a list of URLs. URLs MUST NOT contain whitespaces.
-    // List<String> audience (default value: const [])
+    // BuiltList<String> audience
     test('to test the property `audience`', () async {
       // TODO
     });
@@ -30,7 +36,7 @@ void main() {
       // TODO
     });
 
-    // ClientID  is the id for this client.
+    // ID  is the id for this client.
     // String clientId
     test('to test the property `clientId`', () async {
       // TODO
@@ -60,8 +66,7 @@ void main() {
       // TODO
     });
 
-    // Contacts is a array of strings representing ways to contact people responsible for this client, typically email addresses.
-    // List<String> contacts (default value: const [])
+    // BuiltList<String> contacts
     test('to test the property `contacts`', () async {
       // TODO
     });
@@ -84,13 +89,12 @@ void main() {
       // TODO
     });
 
-    // GrantTypes is an array of grant types the client is allowed to use.
-    // List<String> grantTypes (default value: const [])
+    // BuiltList<String> grantTypes
     test('to test the property `grantTypes`', () async {
       // TODO
     });
 
-    // JSONWebKeySet jwks
+    // JsonObject jwks
     test('to test the property `jwks`', () async {
       // TODO
     });
@@ -107,8 +111,7 @@ void main() {
       // TODO
     });
 
-    // Metadata is arbitrary data.
-    // Object metadata
+    // JsonObject metadata
     test('to test the property `metadata`', () async {
       // TODO
     });
@@ -125,15 +128,25 @@ void main() {
       // TODO
     });
 
-    // Array of URLs supplied by the RP to which it MAY request that the End-User's User Agent be redirected using the post_logout_redirect_uri parameter after a logout has been performed.
-    // List<String> postLogoutRedirectUris (default value: const [])
+    // BuiltList<String> postLogoutRedirectUris
     test('to test the property `postLogoutRedirectUris`', () async {
       // TODO
     });
 
-    // RedirectURIs is an array of allowed redirect urls for the client, for example http://mydomain/oauth/callback .
-    // List<String> redirectUris (default value: const [])
+    // BuiltList<String> redirectUris
     test('to test the property `redirectUris`', () async {
+      // TODO
+    });
+
+    // RegistrationAccessToken can be used to update, get, or delete the OAuth2 Client.
+    // String registrationAccessToken
+    test('to test the property `registrationAccessToken`', () async {
+      // TODO
+    });
+
+    // RegistrationClientURI is the URL used to update, get, or delete the OAuth2 Client.
+    // String registrationClientUri
+    test('to test the property `registrationClientUri`', () async {
       // TODO
     });
 
@@ -143,14 +156,12 @@ void main() {
       // TODO
     });
 
-    // Array of request_uri values that are pre-registered by the RP for use at the OP. Servers MAY cache the contents of the files referenced by these URIs and not retrieve them at the time they are used in a request. OPs can require that request_uri values used be pre-registered with the require_request_uri_registration discovery parameter.
-    // List<String> requestUris (default value: const [])
+    // BuiltList<String> requestUris
     test('to test the property `requestUris`', () async {
       // TODO
     });
 
-    // ResponseTypes is an array of the OAuth 2.0 response type strings that the client can use at the authorization endpoint.
-    // List<String> responseTypes (default value: const [])
+    // BuiltList<String> responseTypes
     test('to test the property `responseTypes`', () async {
       // TODO
     });
@@ -176,6 +187,12 @@ void main() {
     // Requested Client Authentication method for the Token Endpoint. The options are client_secret_post, client_secret_basic, private_key_jwt, and none.
     // String tokenEndpointAuthMethod
     test('to test the property `tokenEndpointAuthMethod`', () async {
+      // TODO
+    });
+
+    // Requested Client Authentication signing algorithm for the Token Endpoint.
+    // String tokenEndpointAuthSigningAlg
+    test('to test the property `tokenEndpointAuthSigningAlg`', () async {
       // TODO
     });
 

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **aud** | **string[]** | Audience contains a list of the token&#39;s intended audiences. | [optional]
 **clientId** | **string** | ID is aclient identifier for the OAuth 2.0 client that requested this token. | [optional]
 **exp** | **int** | Expires at is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token will expire. | [optional]
-**ext** | **object** | Extra is arbitrary data set by the session. | [optional]
+**ext** | **array<string,object>** | Extra is arbitrary data set by the session. | [optional]
 **iat** | **int** | Issued at is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token was originally issued. | [optional]
 **iss** | **string** | IssuerURL is a string representing the issuer of this token | [optional]
 **nbf** | **int** | NotBefore is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token is not to be used before. | [optional]
