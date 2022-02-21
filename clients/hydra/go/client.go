@@ -3,7 +3,7 @@
  *
  * Documentation for all of Ory Oathkeeper's APIs. 
  *
- * API version: v1.11.4
+ * API version: v1.11.5
  * Contact: hi@ory.sh
  */
 
@@ -41,7 +41,7 @@ var (
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 )
 
-// APIClient manages communication with the Ory Oathkeeper API API vv1.11.4
+// APIClient manages communication with the Ory Oathkeeper API API vv1.11.5
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
