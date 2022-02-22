@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **action** | **String** |  | [optional] |
+| **action** | **String** | action | [optional] |
 | **relation_tuple** | [**InternalRelationTuple**](InternalRelationTuple.md) |  | [optional] |
 
 ## Example

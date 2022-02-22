@@ -2,12 +2,13 @@
 
 # PatchDelta
 
+PatchDelta PatchDelta PatchDelta PatchDelta PatchDelta PatchDelta PatchDelta PatchDelta PatchDelta PatchDelta patch delta
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**action** | [**ActionEnum**](#ActionEnum) |  |  [optional]
+**action** | [**ActionEnum**](#ActionEnum) | action |  [optional]
 **relationTuple** | [**InternalRelationTuple**](InternalRelationTuple.md) |  |  [optional]
 
 
@@ -16,8 +17,7 @@ Name | Type | Description | Notes
 
 Name | Value
 ---- | -----
-INSERT | &quot;insert&quot;
-DELETE | &quot;delete&quot;
+_INSERT_DELETE_ | &quot;[[[[[[[[[[insert delete]]]]]]]]]]&quot;
 
 
 

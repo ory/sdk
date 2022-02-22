@@ -1,10 +1,11 @@
 # PatchDelta
 
+PatchDelta PatchDelta PatchDelta PatchDelta PatchDelta PatchDelta PatchDelta PatchDelta PatchDelta PatchDelta patch delta
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**action** | **str** |  | [optional] 
+**action** | **str** | action | [optional]  if omitted the server will use the default value of "[[[[[[[[[[insert delete]]]]]]]]]]"
 **relation_tuple** | [**InternalRelationTuple**](InternalRelationTuple.md) |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

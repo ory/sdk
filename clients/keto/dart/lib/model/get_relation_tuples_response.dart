@@ -19,6 +19,7 @@ abstract class GetRelationTuplesResponse implements Built<GetRelationTuplesRespo
     @BuiltValueField(wireName: r'next_page_token')
     String get nextPageToken;
 
+    /// relation tuples
     @nullable
     @BuiltValueField(wireName: r'relation_tuples')
     BuiltList<InternalRelationTuple> get relationTuples;

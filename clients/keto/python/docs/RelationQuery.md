@@ -1,10 +1,11 @@
 # RelationQuery
 
+RelationQuery RelationQuery RelationQuery RelationQuery RelationQuery RelationQuery RelationQuery RelationQuery RelationQuery RelationQuery relation query
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**namespace** | **str** | Namespace of the Relation Tuple | 
+**namespace** | **str** | Namespace of the Relation Tuple | [optional] 
 **object** | **str** | Object of the Relation Tuple | [optional] 
 **relation** | **str** | Relation of the Relation Tuple | [optional] 
 **subject_id** | **str** | SubjectID of the Relation Tuple  Either SubjectSet or SubjectID can be provided. | [optional] 

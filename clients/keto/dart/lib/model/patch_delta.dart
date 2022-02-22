@@ -14,10 +14,11 @@ part 'patch_delta.g.dart';
 
 abstract class PatchDelta implements Built<PatchDelta, PatchDeltaBuilder> {
 
+    /// action
     @nullable
     @BuiltValueField(wireName: r'action')
     PatchDeltaActionEnum get action;
-    // enum actionEnum {  insert,  delete,  };
+    // enum actionEnum {  [[[[[[[[[[insert delete]]]]]]]]]],  };
 
     @nullable
     @BuiltValueField(wireName: r'relation_tuple')
@@ -86,10 +87,9 @@ class _$PatchDeltaSerializer implements StructuredSerializer<PatchDelta> {
 
 class PatchDeltaActionEnum extends EnumClass {
 
-  @BuiltValueEnumConst(wireName: r'insert')
-  static const PatchDeltaActionEnum insert = _$patchDeltaActionEnum_insert;
-  @BuiltValueEnumConst(wireName: r'delete')
-  static const PatchDeltaActionEnum delete = _$patchDeltaActionEnum_delete;
+  /// action
+  @BuiltValueEnumConst(wireName: r'[[[[[[[[[[insert delete]]]]]]]]]]')
+  static const PatchDeltaActionEnum leftSquareBracketLeftSquareBracketLeftSquareBracketLeftSquareBracketLeftSquareBracketLeftSquareBracketLeftSquareBracketLeftSquareBracketLeftSquareBracketLeftSquareBracketInsertDeleteRightSquareBracketRightSquareBracketRightSquareBracketRightSquareBracketRightSquareBracketRightSquareBracketRightSquareBracketRightSquareBracketRightSquareBracketRightSquareBracket = _$patchDeltaActionEnum_leftSquareBracketLeftSquareBracketLeftSquareBracketLeftSquareBracketLeftSquareBracketLeftSquareBracketLeftSquareBracketLeftSquareBracketLeftSquareBracketLeftSquareBracketInsertDeleteRightSquareBracketRightSquareBracketRightSquareBracketRightSquareBracketRightSquareBracketRightSquareBracketRightSquareBracketRightSquareBracketRightSquareBracketRightSquareBracket;
 
   static Serializer<PatchDeltaActionEnum> get serializer => _$patchDeltaActionEnumSerializer;
 

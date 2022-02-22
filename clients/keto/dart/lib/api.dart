@@ -13,9 +13,8 @@ import 'package:ory_keto_client/serializers.dart';
 import 'package:ory_keto_client/auth/api_key_auth.dart';
 import 'package:ory_keto_client/auth/basic_auth.dart';
 import 'package:ory_keto_client/auth/oauth.dart';
-import 'package:ory_keto_client/api/health_api.dart';
+import 'package:ory_keto_client/api/metadata_api.dart';
 import 'package:ory_keto_client/api/read_api.dart';
-import 'package:ory_keto_client/api/version_api.dart';
 import 'package:ory_keto_client/api/write_api.dart';
 
 
@@ -66,11 +65,11 @@ class OryKetoClient {
 
 
     /**
-    * Get HealthApi instance, base route and serializer can be overridden by a given but be careful,
+    * Get MetadataApi instance, base route and serializer can be overridden by a given but be careful,
     * by doing that all interceptors will not be executed
     */
-    HealthApi getHealthApi() {
-    return HealthApi(dio, serializers);
+    MetadataApi getMetadataApi() {
+    return MetadataApi(dio, serializers);
     }
 
 
@@ -80,15 +79,6 @@ class OryKetoClient {
     */
     ReadApi getReadApi() {
     return ReadApi(dio, serializers);
-    }
-
-
-    /**
-    * Get VersionApi instance, base route and serializer can be overridden by a given but be careful,
-    * by doing that all interceptors will not be executed
-    */
-    VersionApi getVersionApi() {
-    return VersionApi(dio, serializers);
     }
 
 

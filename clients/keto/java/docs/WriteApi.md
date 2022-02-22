@@ -5,13 +5,13 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createRelationTuple**](WriteApi.md#createRelationTuple) | **PUT** /relation-tuples | Create a Relation Tuple
-[**deleteRelationTuple**](WriteApi.md#deleteRelationTuple) | **DELETE** /relation-tuples | Delete a Relation Tuple
+[**deleteRelationTuples**](WriteApi.md#deleteRelationTuples) | **DELETE** /relation-tuples | Delete Relation Tuples
 [**patchRelationTuples**](WriteApi.md#patchRelationTuples) | **PATCH** /relation-tuples | Patch Multiple Relation Tuples
 
 
 <a name="createRelationTuple"></a>
 # **createRelationTuple**
-> RelationQuery createRelationTuple(payload)
+> RelationQuery createRelationTuple(relationQuery)
 
 Create a Relation Tuple
 
@@ -32,9 +32,9 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     WriteApi apiInstance = new WriteApi(defaultClient);
-    RelationQuery payload = new RelationQuery(); // RelationQuery | 
+    RelationQuery relationQuery = new RelationQuery(); // RelationQuery | 
     try {
-      RelationQuery result = apiInstance.createRelationTuple(payload);
+      RelationQuery result = apiInstance.createRelationTuple(relationQuery);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WriteApi#createRelationTuple");
@@ -51,7 +51,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**RelationQuery**](RelationQuery.md)|  | [optional]
+ **relationQuery** | [**RelationQuery**](RelationQuery.md)|  | [optional]
 
 ### Return type
 
@@ -70,16 +70,16 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | RelationQuery |  -  |
-**400** | The standard error format |  -  |
-**500** | The standard error format |  -  |
+**400** | genericError |  -  |
+**500** | genericError |  -  |
 
-<a name="deleteRelationTuple"></a>
-# **deleteRelationTuple**
-> deleteRelationTuple(namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation)
+<a name="deleteRelationTuples"></a>
+# **deleteRelationTuples**
+> deleteRelationTuples(namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation)
 
-Delete a Relation Tuple
+Delete Relation Tuples
 
-Use this endpoint to delete a relation tuple.
+Use this endpoint to delete relation tuples
 
 ### Example
 ```java
@@ -104,9 +104,9 @@ public class Example {
     String subjectSetObject = "subjectSetObject_example"; // String | Object of the Subject Set
     String subjectSetRelation = "subjectSetRelation_example"; // String | Relation of the Subject Set
     try {
-      apiInstance.deleteRelationTuple(namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
+      apiInstance.deleteRelationTuples(namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
     } catch (ApiException e) {
-      System.err.println("Exception when calling WriteApi#deleteRelationTuple");
+      System.err.println("Exception when calling WriteApi#deleteRelationTuples");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -120,9 +120,9 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **String**| Namespace of the Relation Tuple |
- **_object** | **String**| Object of the Relation Tuple |
- **relation** | **String**| Relation of the Relation Tuple |
+ **namespace** | **String**| Namespace of the Relation Tuple | [optional]
+ **_object** | **String**| Object of the Relation Tuple | [optional]
+ **relation** | **String**| Relation of the Relation Tuple | [optional]
  **subjectId** | **String**| SubjectID of the Relation Tuple | [optional]
  **subjectSetNamespace** | **String**| Namespace of the Subject Set | [optional]
  **subjectSetObject** | **String**| Object of the Subject Set | [optional]
@@ -145,12 +145,12 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | The standard error format |  -  |
-**500** | The standard error format |  -  |
+**400** | genericError |  -  |
+**500** | genericError |  -  |
 
 <a name="patchRelationTuples"></a>
 # **patchRelationTuples**
-> patchRelationTuples(payload)
+> patchRelationTuples(patchDelta)
 
 Patch Multiple Relation Tuples
 
@@ -171,9 +171,9 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     WriteApi apiInstance = new WriteApi(defaultClient);
-    List<PatchDelta> payload = Arrays.asList(); // List<PatchDelta> | 
+    List<PatchDelta> patchDelta = Arrays.asList(); // List<PatchDelta> | 
     try {
-      apiInstance.patchRelationTuples(payload);
+      apiInstance.patchRelationTuples(patchDelta);
     } catch (ApiException e) {
       System.err.println("Exception when calling WriteApi#patchRelationTuples");
       System.err.println("Status code: " + e.getCode());
@@ -189,7 +189,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**List&lt;PatchDelta&gt;**](PatchDelta.md)|  | [optional]
+ **patchDelta** | [**List&lt;PatchDelta&gt;**](PatchDelta.md)|  | [optional]
 
 ### Return type
 
@@ -208,7 +208,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | The standard error format |  -  |
-**404** | The standard error format |  -  |
-**500** | The standard error format |  -  |
+**400** | genericError |  -  |
+**404** | genericError |  -  |
+**500** | genericError |  -  |
 

@@ -1,4 +1,5 @@
 # Ory.Keto.Client.Model.KetoHealthStatus
+HealthStatus health status
 
 ## Properties
 

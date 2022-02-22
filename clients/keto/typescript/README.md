@@ -1,4 +1,4 @@
-## @ory/keto-client@v0.7.0-alpha.1
+## @ory/keto-client@v0.8.0-alpha.1
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @ory/keto-client@v0.7.0-alpha.1 --save
+npm install @ory/keto-client@v0.8.0-alpha.1 --save
 ```
 
 _unPublished (not recommended):_

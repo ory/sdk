@@ -10,26 +10,26 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createRelationTuple**](WriteApi.md#createrelationtuple) | **PUT** /relation-tuples | Create a Relation Tuple
-[**deleteRelationTuple**](WriteApi.md#deleterelationtuple) | **DELETE** /relation-tuples | Delete a Relation Tuple
+[**deleteRelationTuples**](WriteApi.md#deleterelationtuples) | **DELETE** /relation-tuples | Delete Relation Tuples
 [**patchRelationTuples**](WriteApi.md#patchrelationtuples) | **PATCH** /relation-tuples | Patch Multiple Relation Tuples
 
 
 # **createRelationTuple**
-> RelationQuery createRelationTuple(payload)
+> RelationQuery createRelationTuple(relationQuery)
 
 Create a Relation Tuple
 
 Use this endpoint to create a relation tuple.
 
-### Example 
+### Example
 ```dart
 import 'package:ory_keto_client/api.dart';
 
 var api_instance = new WriteApi();
-var payload = new RelationQuery(); // RelationQuery | 
+var relationQuery = new RelationQuery(); // RelationQuery | 
 
-try { 
-    var result = api_instance.createRelationTuple(payload);
+try {
+    var result = api_instance.createRelationTuple(relationQuery);
     print(result);
 } catch (e) {
     print('Exception when calling WriteApi->createRelationTuple: $e\n');
@@ -40,7 +40,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**RelationQuery**](RelationQuery.md)|  | [optional] 
+ **relationQuery** | [**RelationQuery**](RelationQuery.md)|  | [optional] 
 
 ### Return type
 
@@ -57,14 +57,14 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **deleteRelationTuple**
-> deleteRelationTuple(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation)
+# **deleteRelationTuples**
+> deleteRelationTuples(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation)
 
-Delete a Relation Tuple
+Delete Relation Tuples
 
-Use this endpoint to delete a relation tuple.
+Use this endpoint to delete relation tuples
 
-### Example 
+### Example
 ```dart
 import 'package:ory_keto_client/api.dart';
 
@@ -77,10 +77,10 @@ var subjectSetPeriodNamespace = subjectSetPeriodNamespace_example; // String | N
 var subjectSetPeriodObject = subjectSetPeriodObject_example; // String | Object of the Subject Set
 var subjectSetPeriodRelation = subjectSetPeriodRelation_example; // String | Relation of the Subject Set
 
-try { 
-    api_instance.deleteRelationTuple(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation);
+try {
+    api_instance.deleteRelationTuples(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation);
 } catch (e) {
-    print('Exception when calling WriteApi->deleteRelationTuple: $e\n');
+    print('Exception when calling WriteApi->deleteRelationTuples: $e\n');
 }
 ```
 
@@ -88,9 +88,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **String**| Namespace of the Relation Tuple | 
- **object** | **String**| Object of the Relation Tuple | 
- **relation** | **String**| Relation of the Relation Tuple | 
+ **namespace** | **String**| Namespace of the Relation Tuple | [optional] 
+ **object** | **String**| Object of the Relation Tuple | [optional] 
+ **relation** | **String**| Relation of the Relation Tuple | [optional] 
  **subjectId** | **String**| SubjectID of the Relation Tuple | [optional] 
  **subjectSetPeriodNamespace** | **String**| Namespace of the Subject Set | [optional] 
  **subjectSetPeriodObject** | **String**| Object of the Subject Set | [optional] 
@@ -112,21 +112,21 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patchRelationTuples**
-> patchRelationTuples(payload)
+> patchRelationTuples(patchDelta)
 
 Patch Multiple Relation Tuples
 
 Use this endpoint to patch one or more relation tuples.
 
-### Example 
+### Example
 ```dart
 import 'package:ory_keto_client/api.dart';
 
 var api_instance = new WriteApi();
-var payload = [new BuiltList<PatchDelta>()]; // BuiltList<PatchDelta> | 
+var patchDelta = [new BuiltList<PatchDelta>()]; // BuiltList<PatchDelta> | 
 
-try { 
-    api_instance.patchRelationTuples(payload);
+try {
+    api_instance.patchRelationTuples(patchDelta);
 } catch (e) {
     print('Exception when calling WriteApi->patchRelationTuples: $e\n');
 }
@@ -136,7 +136,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**BuiltList<PatchDelta>**](PatchDelta.md)|  | [optional] 
+ **patchDelta** | [**BuiltList<PatchDelta>**](PatchDelta.md)|  | [optional] 
 
 ### Return type
 

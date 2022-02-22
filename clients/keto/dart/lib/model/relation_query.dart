@@ -14,6 +14,7 @@ part 'relation_query.g.dart';
 abstract class RelationQuery implements Built<RelationQuery, RelationQueryBuilder> {
 
     /// Namespace of the Relation Tuple
+    @nullable
     @BuiltValueField(wireName: r'namespace')
     String get namespace;
 
@@ -57,10 +58,12 @@ class _$RelationQuerySerializer implements StructuredSerializer<RelationQuery> {
     Iterable<Object> serialize(Serializers serializers, RelationQuery object,
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object>[];
-        result
-            ..add(r'namespace')
-            ..add(serializers.serialize(object.namespace,
-                specifiedType: const FullType(String)));
+        if (object.namespace != null) {
+            result
+                ..add(r'namespace')
+                ..add(serializers.serialize(object.namespace,
+                    specifiedType: const FullType(String)));
+        }
         if (object.object != null) {
             result
                 ..add(r'object')

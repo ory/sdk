@@ -10,9 +10,9 @@ import 'package:dio/dio.dart';
 import 'package:built_value/serializer.dart';
 
 import 'package:ory_keto_client/model/expand_tree.dart';
+import 'package:ory_keto_client/model/generic_error.dart';
 import 'package:ory_keto_client/model/get_check_response.dart';
 import 'package:ory_keto_client/model/get_relation_tuples_response.dart';
-import 'package:ory_keto_client/model/inline_response400.dart';
 import 'package:ory_keto_client/model/relation_query.dart';
 
 class ReadApi {
@@ -26,14 +26,15 @@ class ReadApi {
   /// Check a relation tuple
   ///
   /// To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
-  Future<Response<GetCheckResponse>> getCheck(
+  Future<Response<GetCheckResponse>> getCheck({ 
     String namespace,
     String object,
-    String relation, { 
+    String relation,
     String subjectId,
     String subjectSetPeriodNamespace,
     String subjectSetPeriodObject,
     String subjectSetPeriodRelation,
+    int maxDepth,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -48,13 +49,14 @@ class ReadApi {
         ...?headers,
       },
       queryParameters: <String, dynamic>{
-        r'namespace': namespace,
-        r'object': object,
-        r'relation': relation,
+        if (namespace != null) r'namespace': namespace,
+        if (object != null) r'object': object,
+        if (relation != null) r'relation': relation,
         if (subjectId != null) r'subject_id': subjectId,
         if (subjectSetPeriodNamespace != null) r'subject_set.namespace': subjectSetPeriodNamespace,
         if (subjectSetPeriodObject != null) r'subject_set.object': subjectSetPeriodObject,
         if (subjectSetPeriodRelation != null) r'subject_set.relation': subjectSetPeriodRelation,
+        if (maxDepth != null) r'max-depth': maxDepth,
       },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[],
@@ -99,8 +101,8 @@ class ReadApi {
   Future<Response<ExpandTree>> getExpand(
     String namespace,
     String object,
-    String relation,
-    int maxDepth, { 
+    String relation, { 
+    int maxDepth,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -118,7 +120,7 @@ class ReadApi {
         r'namespace': namespace,
         r'object': object,
         r'relation': relation,
-        r'max-depth': maxDepth,
+        if (maxDepth != null) r'max-depth': maxDepth,
       },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[],
@@ -160,10 +162,10 @@ class ReadApi {
   /// Query relation tuples
   ///
   /// Get all relation tuples that match the query. Only the namespace field is required.
-  Future<Response<GetRelationTuplesResponse>> getRelationTuples(
-    String namespace, { 
+  Future<Response<GetRelationTuplesResponse>> getRelationTuples({ 
     String pageToken,
     int pageSize,
+    String namespace,
     String object,
     String relation,
     String subjectId,
@@ -186,7 +188,7 @@ class ReadApi {
       queryParameters: <String, dynamic>{
         if (pageToken != null) r'page_token': pageToken,
         if (pageSize != null) r'page_size': pageSize,
-        r'namespace': namespace,
+        if (namespace != null) r'namespace': namespace,
         if (object != null) r'object': object,
         if (relation != null) r'relation': relation,
         if (subjectId != null) r'subject_id': subjectId,
@@ -235,7 +237,8 @@ class ReadApi {
   ///
   /// To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
   Future<Response<GetCheckResponse>> postCheck({ 
-    RelationQuery payload,
+    int maxDepth,
+    RelationQuery relationQuery,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -248,6 +251,9 @@ class ReadApi {
       method: 'POST',
       headers: <String, dynamic>{
         ...?headers,
+      },
+      queryParameters: <String, dynamic>{
+        if (maxDepth != null) r'max-depth': maxDepth,
       },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[],
@@ -263,7 +269,7 @@ class ReadApi {
     dynamic _bodyData;
 
     const _type = FullType(RelationQuery);
-    _bodyData = _serializers.serialize(payload, specifiedType: _type);
+    _bodyData = _serializers.serialize(relationQuery, specifiedType: _type);
 
     final _response = await _dio.request<dynamic>(
       _request.path,

@@ -14,11 +14,13 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(ExpandTree, () {
+    // children
     // BuiltList<ExpandTree> children
     test('to test the property `children`', () async {
       // TODO
     });
 
+    // subject id
     // String subjectId
     test('to test the property `subjectId`', () async {
       // TODO
@@ -29,7 +31,7 @@ void main() {
       // TODO
     });
 
-    //  union Union exclusion Exclusion intersection Intersection leaf Leaf
+    // type
     // String type
     test('to test the property `type`', () async {
       // TODO
