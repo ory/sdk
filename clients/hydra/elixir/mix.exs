@@ -1,4 +1,4 @@
-defmodule Ory.Mixfile do
+defmodule Hydra.Mixfile do
   use Mix.Project
 
   def project do

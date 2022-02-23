@@ -1,4 +1,4 @@
-# Ory
+# Hydra
 
 Documentation for all of Ory Oathkeeper&#39;s APIs. 
 

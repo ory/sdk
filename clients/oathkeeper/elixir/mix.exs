@@ -1,4 +1,4 @@
-defmodule Ory.Mixfile do
+defmodule Oathkeeper.Mixfile do
   use Mix.Project
 
   def project do
