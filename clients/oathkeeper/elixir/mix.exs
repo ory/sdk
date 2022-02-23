@@ -3,7 +3,7 @@ defmodule Ory.Mixfile do
 
   def project do
     [app: :ory_oathkeeper,
-     version: "v0.38.20-beta.1",
+     version: "0.38.20-beta.1",
      elixir: "~> 1.6",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
