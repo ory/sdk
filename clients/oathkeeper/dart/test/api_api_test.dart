@@ -24,7 +24,7 @@ void main() {
       // TODO
     });
 
-    // Retrieve a Rule
+    // Retrieve a rule
     //
     // Use this method to retrieve a rule from the storage. If it does not exist you will receive a 404 error.
     //
@@ -33,7 +33,16 @@ void main() {
       // TODO
     });
 
-    // Lists Cryptographic Keys
+    // Get service version
+    //
+    // This endpoint returns the service version typically notated using semantic versioning.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+    //
+    //Future<Version> getVersion() async
+    test('test getVersion', () async {
+      // TODO
+    });
+
+    // Lists cryptographic keys
     //
     // This endpoint returns cryptographic keys that are required to, for example, verify signatures of ID Tokens.
     //
@@ -42,7 +51,25 @@ void main() {
       // TODO
     });
 
-    // List All Rules
+    // Check alive status
+    //
+    // This endpoint returns a 200 status code when the HTTP server is up running. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+    //
+    //Future<HealthStatus> isInstanceAlive() async
+    test('test isInstanceAlive', () async {
+      // TODO
+    });
+
+    // Check readiness status
+    //
+    // This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+    //
+    //Future<HealthStatus> isInstanceReady() async
+    test('test isInstanceReady', () async {
+      // TODO
+    });
+
+    // List all rules
     //
     // This method returns an array of all rules that are stored in the backend. This is useful if you want to get a full view of what rules you have currently in place.
     //

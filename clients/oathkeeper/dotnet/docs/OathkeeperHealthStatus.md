@@ -1,5 +1,4 @@
 # Ory.Oathkeeper.Client.Model.OathkeeperHealthStatus
-HealthStatus health status
 
 ## Properties
 

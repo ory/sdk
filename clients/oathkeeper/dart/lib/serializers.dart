@@ -13,12 +13,9 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/standard_json_plugin.dart';
 
-import 'package:ory_oathkeeper_client/model/generic_error.dart';
 import 'package:ory_oathkeeper_client/model/health_not_ready_status.dart';
 import 'package:ory_oathkeeper_client/model/health_status.dart';
-import 'package:ory_oathkeeper_client/model/inline_response200.dart';
-import 'package:ory_oathkeeper_client/model/inline_response2001.dart';
-import 'package:ory_oathkeeper_client/model/inline_response503.dart';
+import 'package:ory_oathkeeper_client/model/inline_response500.dart';
 import 'package:ory_oathkeeper_client/model/json_web_key.dart';
 import 'package:ory_oathkeeper_client/model/json_web_key_set.dart';
 import 'package:ory_oathkeeper_client/model/rule.dart';
@@ -30,12 +27,9 @@ import 'package:ory_oathkeeper_client/model/version.dart';
 part 'serializers.g.dart';
 
 @SerializersFor(const [
-  GenericError,
   HealthNotReadyStatus,
   HealthStatus,
-  InlineResponse200,
-  InlineResponse2001,
-  InlineResponse503,
+  InlineResponse500,
   JsonWebKey,
   JsonWebKeySet,
   Rule,
