@@ -7,7 +7,7 @@ info:
   license:
     name: Apache 2.0
   title: Ory Oathkeeper API
-  version: v1.11.5
+  version: v1.11.6
 servers:
 - url: /
 paths:
