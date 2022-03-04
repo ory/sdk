@@ -1,9 +1,9 @@
 /*
- * Ory Oathkeeper API
+ * Ory Keto API
  *
- * Documentation for all of Ory Oathkeeper's APIs. 
+ * Documentation for all of Ory Keto's REST APIs. gRPC is documented separately. 
  *
- * API version: v0.8.0-alpha.1
+ * API version: v0.8.0-alpha.2
  * Contact: hi@ory.sh
  */
 
@@ -15,19 +15,13 @@ import (
 	"encoding/json"
 )
 
-// GenericError GenericError The standard error format
+// GenericError The standard error format
 type GenericError struct {
-	// code
 	Code *int64 `json:"code,omitempty"`
-	// details
 	Details []map[string]map[string]interface{} `json:"details,omitempty"`
-	// message
 	Message *string `json:"message,omitempty"`
-	// reason
 	Reason *string `json:"reason,omitempty"`
-	// request
 	Request *string `json:"request,omitempty"`
-	// status
 	Status *string `json:"status,omitempty"`
 }
 

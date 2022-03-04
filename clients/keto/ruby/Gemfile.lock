@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ory-keto-client (0.8.0.alpha1)
+    ory-keto-client (0.8.0.alpha2)
       typhoeus (~> 1.0, >= 1.0.1)
 
 GEM

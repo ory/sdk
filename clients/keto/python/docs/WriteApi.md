@@ -201,7 +201,7 @@ with ory_keto_client.ApiClient() as api_client:
     api_instance = write_api.WriteApi(api_client)
     patch_delta = [
         PatchDelta(
-            action="[[[[[[[[[[insert delete]]]]]]]]]]",
+            action="insert",
             relation_tuple=InternalRelationTuple(
                 namespace="namespace_example",
                 object="object_example",

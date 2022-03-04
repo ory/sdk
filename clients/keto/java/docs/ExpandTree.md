@@ -2,16 +2,15 @@
 
 # ExpandTree
 
-ExpandTree ExpandTree ExpandTree expand tree
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**children** | [**List&lt;ExpandTree&gt;**](ExpandTree.md) | children |  [optional]
-**subjectId** | **String** | subject id |  [optional]
+**children** | [**List&lt;ExpandTree&gt;**](ExpandTree.md) |  |  [optional]
+**subjectId** | **String** |  |  [optional]
 **subjectSet** | [**SubjectSet**](SubjectSet.md) |  |  [optional]
-**type** | [**TypeEnum**](#TypeEnum) | type | 
+**type** | [**TypeEnum**](#TypeEnum) |  | 
 
 
 
@@ -19,7 +18,10 @@ Name | Type | Description | Notes
 
 Name | Value
 ---- | -----
-_UNION_EXCLUSION_INTERSECTION_LEAF_ | &quot;[[[union exclusion intersection leaf]]]&quot;
+UNION | &quot;union&quot;
+EXCLUSION | &quot;exclusion&quot;
+INTERSECTION | &quot;intersection&quot;
+LEAF | &quot;leaf&quot;
 
 
 

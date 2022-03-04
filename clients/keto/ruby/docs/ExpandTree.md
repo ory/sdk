@@ -4,10 +4,10 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **children** | [**Array&lt;ExpandTree&gt;**](ExpandTree.md) | children | [optional] |
-| **subject_id** | **String** | subject id | [optional] |
+| **children** | [**Array&lt;ExpandTree&gt;**](ExpandTree.md) |  | [optional] |
+| **subject_id** | **String** |  | [optional] |
 | **subject_set** | [**SubjectSet**](SubjectSet.md) |  | [optional] |
-| **type** | **String** | type |  |
+| **type** | **String** |  |  |
 
 ## Example
 

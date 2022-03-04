@@ -1,10 +1,10 @@
 # keto-client
 
-Ory Oathkeeper API
-- API version: v0.8.0-alpha.1
-  - Build date: 2022-02-22T14:00:38.482701109Z[Etc/UTC]
+Ory Keto API
+- API version: v0.8.0-alpha.2
+  - Build date: 2022-03-04T10:51:22.321385788Z[Etc/UTC]
 
-Documentation for all of Ory Oathkeeper's APIs.
+Documentation for all of Ory Keto's REST APIs. gRPC is documented separately.
 
 
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.keto</groupId>
   <artifactId>keto-client</artifactId>
-  <version>v0.8.0-alpha.1</version>
+  <version>v0.8.0-alpha.2</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory.keto:keto-client:v0.8.0-alpha.1"
+     implementation "sh.ory.keto:keto-client:v0.8.0-alpha.2"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/keto-client-v0.8.0-alpha.1.jar`
+* `target/keto-client-v0.8.0-alpha.2.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -128,20 +128,9 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [CreateRelationTupleBadRequestBody](docs/CreateRelationTupleBadRequestBody.md)
- - [CreateRelationTupleInternalServerErrorBody](docs/CreateRelationTupleInternalServerErrorBody.md)
- - [DeleteRelationTuplesBadRequestBody](docs/DeleteRelationTuplesBadRequestBody.md)
- - [DeleteRelationTuplesInternalServerErrorBody](docs/DeleteRelationTuplesInternalServerErrorBody.md)
  - [ExpandTree](docs/ExpandTree.md)
  - [GenericError](docs/GenericError.md)
- - [GetCheckBadRequestBody](docs/GetCheckBadRequestBody.md)
- - [GetCheckInternalServerErrorBody](docs/GetCheckInternalServerErrorBody.md)
  - [GetCheckResponse](docs/GetCheckResponse.md)
- - [GetExpandBadRequestBody](docs/GetExpandBadRequestBody.md)
- - [GetExpandInternalServerErrorBody](docs/GetExpandInternalServerErrorBody.md)
- - [GetExpandNotFoundBody](docs/GetExpandNotFoundBody.md)
- - [GetRelationTuplesInternalServerErrorBody](docs/GetRelationTuplesInternalServerErrorBody.md)
- - [GetRelationTuplesNotFoundBody](docs/GetRelationTuplesNotFoundBody.md)
  - [GetRelationTuplesResponse](docs/GetRelationTuplesResponse.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
  - [HealthStatus](docs/HealthStatus.md)
@@ -149,13 +138,7 @@ Class | Method | HTTP request | Description
  - [InlineResponse2001](docs/InlineResponse2001.md)
  - [InlineResponse503](docs/InlineResponse503.md)
  - [InternalRelationTuple](docs/InternalRelationTuple.md)
- - [IsInstanceAliveInternalServerErrorBody](docs/IsInstanceAliveInternalServerErrorBody.md)
  - [PatchDelta](docs/PatchDelta.md)
- - [PatchRelationTuplesBadRequestBody](docs/PatchRelationTuplesBadRequestBody.md)
- - [PatchRelationTuplesInternalServerErrorBody](docs/PatchRelationTuplesInternalServerErrorBody.md)
- - [PatchRelationTuplesNotFoundBody](docs/PatchRelationTuplesNotFoundBody.md)
- - [PostCheckBadRequestBody](docs/PostCheckBadRequestBody.md)
- - [PostCheckInternalServerErrorBody](docs/PostCheckInternalServerErrorBody.md)
  - [RelationQuery](docs/RelationQuery.md)
  - [SubjectSet](docs/SubjectSet.md)
  - [Version](docs/Version.md)

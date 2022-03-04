@@ -2,7 +2,6 @@
 
 # RelationQuery
 
-RelationQuery RelationQuery RelationQuery RelationQuery RelationQuery RelationQuery RelationQuery RelationQuery RelationQuery RelationQuery relation query
 
 ## Properties
 

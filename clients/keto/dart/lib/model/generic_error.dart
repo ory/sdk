@@ -14,32 +14,26 @@ part 'generic_error.g.dart';
 
 abstract class GenericError implements Built<GenericError, GenericErrorBuilder> {
 
-    /// code
     @nullable
     @BuiltValueField(wireName: r'code')
     int get code;
 
-    /// details
     @nullable
     @BuiltValueField(wireName: r'details')
     BuiltList<BuiltMap<String, JsonObject>> get details;
 
-    /// message
     @nullable
     @BuiltValueField(wireName: r'message')
     String get message;
 
-    /// reason
     @nullable
     @BuiltValueField(wireName: r'reason')
     String get reason;
 
-    /// request
     @nullable
     @BuiltValueField(wireName: r'request')
     String get request;
 
-    /// status
     @nullable
     @BuiltValueField(wireName: r'status')
     String get status;

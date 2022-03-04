@@ -1,6 +1,6 @@
 {
   "name": "ory/keto-client",
-  "description": "Documentation for all of Ory Oathkeeper's APIs.",
+  "description": "Documentation for all of Ory Keto's REST APIs. gRPC is documented separately.",
   "keywords": [
     "openapitools",
     "openapi-generator",

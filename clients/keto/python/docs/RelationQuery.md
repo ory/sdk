@@ -1,6 +1,5 @@
 # RelationQuery
 
-RelationQuery RelationQuery RelationQuery RelationQuery RelationQuery RelationQuery RelationQuery RelationQuery RelationQuery RelationQuery relation query
 
 ## Properties
 Name | Type | Description | Notes

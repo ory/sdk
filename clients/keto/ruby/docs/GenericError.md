@@ -4,12 +4,12 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **code** | **Integer** | code | [optional] |
-| **details** | **Array&lt;Hash&lt;String, Object&gt;&gt;** | details | [optional] |
-| **message** | **String** | message | [optional] |
-| **reason** | **String** | reason | [optional] |
-| **request** | **String** | request | [optional] |
-| **status** | **String** | status | [optional] |
+| **code** | **Integer** |  | [optional] |
+| **details** | **Array&lt;Hash&lt;String, Object&gt;&gt;** |  | [optional] |
+| **message** | **String** |  | [optional] |
+| **reason** | **String** |  | [optional] |
+| **request** | **String** |  | [optional] |
+| **status** | **String** |  | [optional] |
 
 ## Example
 

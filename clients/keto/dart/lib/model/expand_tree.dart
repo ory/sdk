@@ -14,12 +14,10 @@ part 'expand_tree.g.dart';
 
 abstract class ExpandTree implements Built<ExpandTree, ExpandTreeBuilder> {
 
-    /// children
     @nullable
     @BuiltValueField(wireName: r'children')
     BuiltList<ExpandTree> get children;
 
-    /// subject id
     @nullable
     @BuiltValueField(wireName: r'subject_id')
     String get subjectId;
@@ -28,10 +26,9 @@ abstract class ExpandTree implements Built<ExpandTree, ExpandTreeBuilder> {
     @BuiltValueField(wireName: r'subject_set')
     SubjectSet get subjectSet;
 
-    /// type
     @BuiltValueField(wireName: r'type')
     ExpandTreeTypeEnum get type;
-    // enum typeEnum {  [[[union exclusion intersection leaf]]],  };
+    // enum typeEnum {  union,  exclusion,  intersection,  leaf,  };
 
     ExpandTree._();
 
@@ -114,9 +111,14 @@ class _$ExpandTreeSerializer implements StructuredSerializer<ExpandTree> {
 
 class ExpandTreeTypeEnum extends EnumClass {
 
-  /// type
-  @BuiltValueEnumConst(wireName: r'[[[union exclusion intersection leaf]]]')
-  static const ExpandTreeTypeEnum leftSquareBracketLeftSquareBracketLeftSquareBracketUnionExclusionIntersectionLeafRightSquareBracketRightSquareBracketRightSquareBracket = _$expandTreeTypeEnum_leftSquareBracketLeftSquareBracketLeftSquareBracketUnionExclusionIntersectionLeafRightSquareBracketRightSquareBracketRightSquareBracket;
+  @BuiltValueEnumConst(wireName: r'union')
+  static const ExpandTreeTypeEnum union = _$expandTreeTypeEnum_union;
+  @BuiltValueEnumConst(wireName: r'exclusion')
+  static const ExpandTreeTypeEnum exclusion = _$expandTreeTypeEnum_exclusion;
+  @BuiltValueEnumConst(wireName: r'intersection')
+  static const ExpandTreeTypeEnum intersection = _$expandTreeTypeEnum_intersection;
+  @BuiltValueEnumConst(wireName: r'leaf')
+  static const ExpandTreeTypeEnum leaf = _$expandTreeTypeEnum_leaf;
 
   static Serializer<ExpandTreeTypeEnum> get serializer => _$expandTreeTypeEnumSerializer;
 

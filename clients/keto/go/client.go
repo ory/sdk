@@ -1,9 +1,9 @@
 /*
- * Ory Oathkeeper API
+ * Ory Keto API
  *
- * Documentation for all of Ory Oathkeeper's APIs. 
+ * Documentation for all of Ory Keto's REST APIs. gRPC is documented separately. 
  *
- * API version: v0.8.0-alpha.1
+ * API version: v0.8.0-alpha.2
  * Contact: hi@ory.sh
  */
 
@@ -41,7 +41,7 @@ var (
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 )
 
-// APIClient manages communication with the Ory Oathkeeper API API vv0.8.0-alpha.1
+// APIClient manages communication with the Ory Keto API API vv0.8.0-alpha.2
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
