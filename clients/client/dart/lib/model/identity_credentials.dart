@@ -32,12 +32,17 @@ abstract class IdentityCredentials implements Built<IdentityCredentials, Identit
     @nullable
     @BuiltValueField(wireName: r'type')
     IdentityCredentialsType get type;
-    // enum typeEnum {  password,  totp,  oidc,  };
+    // enum typeEnum {  password,  totp,  oidc,  webauthn,  lookup_secret,  };
 
     /// UpdatedAt is a helper struct field for gobuffalo.pop.
     @nullable
     @BuiltValueField(wireName: r'updated_at')
     DateTime get updatedAt;
+
+    /// Version refers to the version of the credential. Useful when changing the config schema.
+    @nullable
+    @BuiltValueField(wireName: r'version')
+    int get version;
 
     IdentityCredentials._();
 
@@ -90,6 +95,12 @@ class _$IdentityCredentialsSerializer implements StructuredSerializer<IdentityCr
                 ..add(serializers.serialize(object.updatedAt,
                     specifiedType: const FullType(DateTime)));
         }
+        if (object.version != null) {
+            result
+                ..add(r'version')
+                ..add(serializers.serialize(object.version,
+                    specifiedType: const FullType(int)));
+        }
         return result;
     }
 
@@ -123,6 +134,10 @@ class _$IdentityCredentialsSerializer implements StructuredSerializer<IdentityCr
                 case r'updated_at':
                     result.updatedAt = serializers.deserialize(value,
                         specifiedType: const FullType(DateTime)) as DateTime;
+                    break;
+                case r'version':
+                    result.version = serializers.deserialize(value,
+                        specifiedType: const FullType(int)) as int;
                     break;
             }
         }

@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v0.0.1-alpha.113
-  - Build date: 2022-03-03T09:12:46.105275881Z[Etc/UTC]
+- API version: v0.0.1-alpha.115
+  - Build date: 2022-03-07T07:01:15.259872982Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v0.0.1-alpha.113</version>
+  <version>v0.0.1-alpha.115</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v0.0.1-alpha.113"
+     implementation "sh.ory:client:v0.0.1-alpha.115"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v0.0.1-alpha.113.jar`
+* `target/client-v0.0.1-alpha.115.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -173,7 +173,13 @@ Class | Method | HTTP request | Description
 
  - [ActiveProject](docs/ActiveProject.md)
  - [AdminCreateIdentityBody](docs/AdminCreateIdentityBody.md)
+ - [AdminCreateIdentityImportCredentialsOidc](docs/AdminCreateIdentityImportCredentialsOidc.md)
+ - [AdminCreateIdentityImportCredentialsOidcConfig](docs/AdminCreateIdentityImportCredentialsOidcConfig.md)
+ - [AdminCreateIdentityImportCredentialsOidcProvider](docs/AdminCreateIdentityImportCredentialsOidcProvider.md)
+ - [AdminCreateIdentityImportCredentialsPassword](docs/AdminCreateIdentityImportCredentialsPassword.md)
+ - [AdminCreateIdentityImportCredentialsPasswordConfig](docs/AdminCreateIdentityImportCredentialsPasswordConfig.md)
  - [AdminCreateSelfServiceRecoveryLinkBody](docs/AdminCreateSelfServiceRecoveryLinkBody.md)
+ - [AdminIdentityImportCredentials](docs/AdminIdentityImportCredentials.md)
  - [AdminUpdateIdentityBody](docs/AdminUpdateIdentityBody.md)
  - [ApiToken](docs/ApiToken.md)
  - [AuthenticatorAssuranceLevel](docs/AuthenticatorAssuranceLevel.md)
@@ -187,6 +193,9 @@ Class | Method | HTTP request | Description
  - [HealthStatus](docs/HealthStatus.md)
  - [Identity](docs/Identity.md)
  - [IdentityCredentials](docs/IdentityCredentials.md)
+ - [IdentityCredentialsOidc](docs/IdentityCredentialsOidc.md)
+ - [IdentityCredentialsOidcProvider](docs/IdentityCredentialsOidcProvider.md)
+ - [IdentityCredentialsPassword](docs/IdentityCredentialsPassword.md)
  - [IdentityCredentialsType](docs/IdentityCredentialsType.md)
  - [IdentityPreset](docs/IdentityPreset.md)
  - [IdentitySchema](docs/IdentitySchema.md)
@@ -234,6 +243,7 @@ Class | Method | HTTP request | Description
  - [SessionDevice](docs/SessionDevice.md)
  - [SettingsProfileFormConfig](docs/SettingsProfileFormConfig.md)
  - [StripeCustomerResponse](docs/StripeCustomerResponse.md)
+ - [SubmitSelfServiceFlowWithWebAuthnRegistrationMethod](docs/SubmitSelfServiceFlowWithWebAuthnRegistrationMethod.md)
  - [SubmitSelfServiceLoginFlowBody](docs/SubmitSelfServiceLoginFlowBody.md)
  - [SubmitSelfServiceLoginFlowWithLookupSecretMethodBody](docs/SubmitSelfServiceLoginFlowWithLookupSecretMethodBody.md)
  - [SubmitSelfServiceLoginFlowWithOidcMethodBody](docs/SubmitSelfServiceLoginFlowWithOidcMethodBody.md)
@@ -246,6 +256,7 @@ Class | Method | HTTP request | Description
  - [SubmitSelfServiceRegistrationFlowBody](docs/SubmitSelfServiceRegistrationFlowBody.md)
  - [SubmitSelfServiceRegistrationFlowWithOidcMethodBody](docs/SubmitSelfServiceRegistrationFlowWithOidcMethodBody.md)
  - [SubmitSelfServiceRegistrationFlowWithPasswordMethodBody](docs/SubmitSelfServiceRegistrationFlowWithPasswordMethodBody.md)
+ - [SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody](docs/SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody.md)
  - [SubmitSelfServiceSettingsFlowBody](docs/SubmitSelfServiceSettingsFlowBody.md)
  - [SubmitSelfServiceSettingsFlowWithLookupMethodBody](docs/SubmitSelfServiceSettingsFlowWithLookupMethodBody.md)
  - [SubmitSelfServiceSettingsFlowWithOidcMethodBody](docs/SubmitSelfServiceSettingsFlowWithOidcMethodBody.md)

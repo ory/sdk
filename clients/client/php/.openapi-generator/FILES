@@ -9,7 +9,13 @@ docs/Api/V0alpha0Api.md
 docs/Api/V0alpha2Api.md
 docs/Model/ActiveProject.md
 docs/Model/AdminCreateIdentityBody.md
+docs/Model/AdminCreateIdentityImportCredentialsOidc.md
+docs/Model/AdminCreateIdentityImportCredentialsOidcConfig.md
+docs/Model/AdminCreateIdentityImportCredentialsOidcProvider.md
+docs/Model/AdminCreateIdentityImportCredentialsPassword.md
+docs/Model/AdminCreateIdentityImportCredentialsPasswordConfig.md
 docs/Model/AdminCreateSelfServiceRecoveryLinkBody.md
+docs/Model/AdminIdentityImportCredentials.md
 docs/Model/AdminUpdateIdentityBody.md
 docs/Model/ApiToken.md
 docs/Model/AuthenticatorAssuranceLevel.md
@@ -23,6 +29,9 @@ docs/Model/HealthNotReadyStatus.md
 docs/Model/HealthStatus.md
 docs/Model/Identity.md
 docs/Model/IdentityCredentials.md
+docs/Model/IdentityCredentialsOidc.md
+docs/Model/IdentityCredentialsOidcProvider.md
+docs/Model/IdentityCredentialsPassword.md
 docs/Model/IdentityCredentialsType.md
 docs/Model/IdentityPreset.md
 docs/Model/IdentitySchema.md
@@ -70,6 +79,7 @@ docs/Model/SessionAuthenticationMethod.md
 docs/Model/SessionDevice.md
 docs/Model/SettingsProfileFormConfig.md
 docs/Model/StripeCustomerResponse.md
+docs/Model/SubmitSelfServiceFlowWithWebAuthnRegistrationMethod.md
 docs/Model/SubmitSelfServiceLoginFlowBody.md
 docs/Model/SubmitSelfServiceLoginFlowWithLookupSecretMethodBody.md
 docs/Model/SubmitSelfServiceLoginFlowWithOidcMethodBody.md
@@ -82,6 +92,7 @@ docs/Model/SubmitSelfServiceRecoveryFlowWithLinkMethodBody.md
 docs/Model/SubmitSelfServiceRegistrationFlowBody.md
 docs/Model/SubmitSelfServiceRegistrationFlowWithOidcMethodBody.md
 docs/Model/SubmitSelfServiceRegistrationFlowWithPasswordMethodBody.md
+docs/Model/SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody.md
 docs/Model/SubmitSelfServiceSettingsFlowBody.md
 docs/Model/SubmitSelfServiceSettingsFlowWithLookupMethodBody.md
 docs/Model/SubmitSelfServiceSettingsFlowWithOidcMethodBody.md
@@ -120,7 +131,13 @@ lib/Configuration.php
 lib/HeaderSelector.php
 lib/Model/ActiveProject.php
 lib/Model/AdminCreateIdentityBody.php
+lib/Model/AdminCreateIdentityImportCredentialsOidc.php
+lib/Model/AdminCreateIdentityImportCredentialsOidcConfig.php
+lib/Model/AdminCreateIdentityImportCredentialsOidcProvider.php
+lib/Model/AdminCreateIdentityImportCredentialsPassword.php
+lib/Model/AdminCreateIdentityImportCredentialsPasswordConfig.php
 lib/Model/AdminCreateSelfServiceRecoveryLinkBody.php
+lib/Model/AdminIdentityImportCredentials.php
 lib/Model/AdminUpdateIdentityBody.php
 lib/Model/ApiToken.php
 lib/Model/AuthenticatorAssuranceLevel.php
@@ -134,6 +151,9 @@ lib/Model/HealthNotReadyStatus.php
 lib/Model/HealthStatus.php
 lib/Model/Identity.php
 lib/Model/IdentityCredentials.php
+lib/Model/IdentityCredentialsOidc.php
+lib/Model/IdentityCredentialsOidcProvider.php
+lib/Model/IdentityCredentialsPassword.php
 lib/Model/IdentityCredentialsType.php
 lib/Model/IdentityPreset.php
 lib/Model/IdentitySchema.php
@@ -182,6 +202,7 @@ lib/Model/SessionAuthenticationMethod.php
 lib/Model/SessionDevice.php
 lib/Model/SettingsProfileFormConfig.php
 lib/Model/StripeCustomerResponse.php
+lib/Model/SubmitSelfServiceFlowWithWebAuthnRegistrationMethod.php
 lib/Model/SubmitSelfServiceLoginFlowBody.php
 lib/Model/SubmitSelfServiceLoginFlowWithLookupSecretMethodBody.php
 lib/Model/SubmitSelfServiceLoginFlowWithOidcMethodBody.php
@@ -194,6 +215,7 @@ lib/Model/SubmitSelfServiceRecoveryFlowWithLinkMethodBody.php
 lib/Model/SubmitSelfServiceRegistrationFlowBody.php
 lib/Model/SubmitSelfServiceRegistrationFlowWithOidcMethodBody.php
 lib/Model/SubmitSelfServiceRegistrationFlowWithPasswordMethodBody.php
+lib/Model/SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody.php
 lib/Model/SubmitSelfServiceSettingsFlowBody.php
 lib/Model/SubmitSelfServiceSettingsFlowWithLookupMethodBody.php
 lib/Model/SubmitSelfServiceSettingsFlowWithOidcMethodBody.php
@@ -230,7 +252,13 @@ test/Api/V0alpha0ApiTest.php
 test/Api/V0alpha2ApiTest.php
 test/Model/ActiveProjectTest.php
 test/Model/AdminCreateIdentityBodyTest.php
+test/Model/AdminCreateIdentityImportCredentialsOidcConfigTest.php
+test/Model/AdminCreateIdentityImportCredentialsOidcProviderTest.php
+test/Model/AdminCreateIdentityImportCredentialsOidcTest.php
+test/Model/AdminCreateIdentityImportCredentialsPasswordConfigTest.php
+test/Model/AdminCreateIdentityImportCredentialsPasswordTest.php
 test/Model/AdminCreateSelfServiceRecoveryLinkBodyTest.php
+test/Model/AdminIdentityImportCredentialsTest.php
 test/Model/AdminUpdateIdentityBodyTest.php
 test/Model/ApiTokenTest.php
 test/Model/AuthenticatorAssuranceLevelTest.php
@@ -242,6 +270,9 @@ test/Model/ErrorAuthenticatorAssuranceLevelNotSatisfiedTest.php
 test/Model/GenericErrorTest.php
 test/Model/HealthNotReadyStatusTest.php
 test/Model/HealthStatusTest.php
+test/Model/IdentityCredentialsOidcProviderTest.php
+test/Model/IdentityCredentialsOidcTest.php
+test/Model/IdentityCredentialsPasswordTest.php
 test/Model/IdentityCredentialsTest.php
 test/Model/IdentityCredentialsTypeTest.php
 test/Model/IdentityPresetTest.php
@@ -291,6 +322,7 @@ test/Model/SessionDeviceTest.php
 test/Model/SessionTest.php
 test/Model/SettingsProfileFormConfigTest.php
 test/Model/StripeCustomerResponseTest.php
+test/Model/SubmitSelfServiceFlowWithWebAuthnRegistrationMethodTest.php
 test/Model/SubmitSelfServiceLoginFlowBodyTest.php
 test/Model/SubmitSelfServiceLoginFlowWithLookupSecretMethodBodyTest.php
 test/Model/SubmitSelfServiceLoginFlowWithOidcMethodBodyTest.php
@@ -303,6 +335,7 @@ test/Model/SubmitSelfServiceRecoveryFlowWithLinkMethodBodyTest.php
 test/Model/SubmitSelfServiceRegistrationFlowBodyTest.php
 test/Model/SubmitSelfServiceRegistrationFlowWithOidcMethodBodyTest.php
 test/Model/SubmitSelfServiceRegistrationFlowWithPasswordMethodBodyTest.php
+test/Model/SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBodyTest.php
 test/Model/SubmitSelfServiceSettingsFlowBodyTest.php
 test/Model/SubmitSelfServiceSettingsFlowWithLookupMethodBodyTest.php
 test/Model/SubmitSelfServiceSettingsFlowWithOidcMethodBodyTest.php

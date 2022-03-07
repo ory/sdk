@@ -8,7 +8,13 @@ README.md
 Rakefile
 docs/ActiveProject.md
 docs/AdminCreateIdentityBody.md
+docs/AdminCreateIdentityImportCredentialsOidc.md
+docs/AdminCreateIdentityImportCredentialsOidcConfig.md
+docs/AdminCreateIdentityImportCredentialsOidcProvider.md
+docs/AdminCreateIdentityImportCredentialsPassword.md
+docs/AdminCreateIdentityImportCredentialsPasswordConfig.md
 docs/AdminCreateSelfServiceRecoveryLinkBody.md
+docs/AdminIdentityImportCredentials.md
 docs/AdminUpdateIdentityBody.md
 docs/ApiToken.md
 docs/AuthenticatorAssuranceLevel.md
@@ -22,6 +28,9 @@ docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
 docs/Identity.md
 docs/IdentityCredentials.md
+docs/IdentityCredentialsOidc.md
+docs/IdentityCredentialsOidcProvider.md
+docs/IdentityCredentialsPassword.md
 docs/IdentityCredentialsType.md
 docs/IdentityPreset.md
 docs/IdentitySchema.md
@@ -70,6 +79,7 @@ docs/SessionAuthenticationMethod.md
 docs/SessionDevice.md
 docs/SettingsProfileFormConfig.md
 docs/StripeCustomerResponse.md
+docs/SubmitSelfServiceFlowWithWebAuthnRegistrationMethod.md
 docs/SubmitSelfServiceLoginFlowBody.md
 docs/SubmitSelfServiceLoginFlowWithLookupSecretMethodBody.md
 docs/SubmitSelfServiceLoginFlowWithOidcMethodBody.md
@@ -82,6 +92,7 @@ docs/SubmitSelfServiceRecoveryFlowWithLinkMethodBody.md
 docs/SubmitSelfServiceRegistrationFlowBody.md
 docs/SubmitSelfServiceRegistrationFlowWithOidcMethodBody.md
 docs/SubmitSelfServiceRegistrationFlowWithPasswordMethodBody.md
+docs/SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody.md
 docs/SubmitSelfServiceSettingsFlowBody.md
 docs/SubmitSelfServiceSettingsFlowWithLookupMethodBody.md
 docs/SubmitSelfServiceSettingsFlowWithOidcMethodBody.md
@@ -123,7 +134,13 @@ lib/ory-client/api_error.rb
 lib/ory-client/configuration.rb
 lib/ory-client/models/active_project.rb
 lib/ory-client/models/admin_create_identity_body.rb
+lib/ory-client/models/admin_create_identity_import_credentials_oidc.rb
+lib/ory-client/models/admin_create_identity_import_credentials_oidc_config.rb
+lib/ory-client/models/admin_create_identity_import_credentials_oidc_provider.rb
+lib/ory-client/models/admin_create_identity_import_credentials_password.rb
+lib/ory-client/models/admin_create_identity_import_credentials_password_config.rb
 lib/ory-client/models/admin_create_self_service_recovery_link_body.rb
+lib/ory-client/models/admin_identity_import_credentials.rb
 lib/ory-client/models/admin_update_identity_body.rb
 lib/ory-client/models/api_token.rb
 lib/ory-client/models/authenticator_assurance_level.rb
@@ -137,6 +154,9 @@ lib/ory-client/models/health_not_ready_status.rb
 lib/ory-client/models/health_status.rb
 lib/ory-client/models/identity.rb
 lib/ory-client/models/identity_credentials.rb
+lib/ory-client/models/identity_credentials_oidc.rb
+lib/ory-client/models/identity_credentials_oidc_provider.rb
+lib/ory-client/models/identity_credentials_password.rb
 lib/ory-client/models/identity_credentials_type.rb
 lib/ory-client/models/identity_preset.rb
 lib/ory-client/models/identity_schema.rb
@@ -184,6 +204,7 @@ lib/ory-client/models/session_authentication_method.rb
 lib/ory-client/models/session_device.rb
 lib/ory-client/models/settings_profile_form_config.rb
 lib/ory-client/models/stripe_customer_response.rb
+lib/ory-client/models/submit_self_service_flow_with_web_authn_registration_method.rb
 lib/ory-client/models/submit_self_service_login_flow_body.rb
 lib/ory-client/models/submit_self_service_login_flow_with_lookup_secret_method_body.rb
 lib/ory-client/models/submit_self_service_login_flow_with_oidc_method_body.rb
@@ -196,6 +217,7 @@ lib/ory-client/models/submit_self_service_recovery_flow_with_link_method_body.rb
 lib/ory-client/models/submit_self_service_registration_flow_body.rb
 lib/ory-client/models/submit_self_service_registration_flow_with_oidc_method_body.rb
 lib/ory-client/models/submit_self_service_registration_flow_with_password_method_body.rb
+lib/ory-client/models/submit_self_service_registration_flow_with_web_authn_method_body.rb
 lib/ory-client/models/submit_self_service_settings_flow_body.rb
 lib/ory-client/models/submit_self_service_settings_flow_with_lookup_method_body.rb
 lib/ory-client/models/submit_self_service_settings_flow_with_oidc_method_body.rb
@@ -234,7 +256,13 @@ spec/api_client_spec.rb
 spec/configuration_spec.rb
 spec/models/active_project_spec.rb
 spec/models/admin_create_identity_body_spec.rb
+spec/models/admin_create_identity_import_credentials_oidc_config_spec.rb
+spec/models/admin_create_identity_import_credentials_oidc_provider_spec.rb
+spec/models/admin_create_identity_import_credentials_oidc_spec.rb
+spec/models/admin_create_identity_import_credentials_password_config_spec.rb
+spec/models/admin_create_identity_import_credentials_password_spec.rb
 spec/models/admin_create_self_service_recovery_link_body_spec.rb
+spec/models/admin_identity_import_credentials_spec.rb
 spec/models/admin_update_identity_body_spec.rb
 spec/models/api_token_spec.rb
 spec/models/authenticator_assurance_level_spec.rb
@@ -246,6 +274,9 @@ spec/models/error_authenticator_assurance_level_not_satisfied_spec.rb
 spec/models/generic_error_spec.rb
 spec/models/health_not_ready_status_spec.rb
 spec/models/health_status_spec.rb
+spec/models/identity_credentials_oidc_provider_spec.rb
+spec/models/identity_credentials_oidc_spec.rb
+spec/models/identity_credentials_password_spec.rb
 spec/models/identity_credentials_spec.rb
 spec/models/identity_credentials_type_spec.rb
 spec/models/identity_preset_spec.rb
@@ -295,6 +326,7 @@ spec/models/session_device_spec.rb
 spec/models/session_spec.rb
 spec/models/settings_profile_form_config_spec.rb
 spec/models/stripe_customer_response_spec.rb
+spec/models/submit_self_service_flow_with_web_authn_registration_method_spec.rb
 spec/models/submit_self_service_login_flow_body_spec.rb
 spec/models/submit_self_service_login_flow_with_lookup_secret_method_body_spec.rb
 spec/models/submit_self_service_login_flow_with_oidc_method_body_spec.rb
@@ -307,6 +339,7 @@ spec/models/submit_self_service_recovery_flow_with_link_method_body_spec.rb
 spec/models/submit_self_service_registration_flow_body_spec.rb
 spec/models/submit_self_service_registration_flow_with_oidc_method_body_spec.rb
 spec/models/submit_self_service_registration_flow_with_password_method_body_spec.rb
+spec/models/submit_self_service_registration_flow_with_web_authn_method_body_spec.rb
 spec/models/submit_self_service_settings_flow_body_spec.rb
 spec/models/submit_self_service_settings_flow_with_lookup_method_body_spec.rb
 spec/models/submit_self_service_settings_flow_with_oidc_method_body_spec.rb

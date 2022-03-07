@@ -23,7 +23,7 @@ abstract class Pagination implements Built<Pagination, PaginationBuilder> {
     Pagination._();
 
     static void _initializeBuilder(PaginationBuilder b) => b
-        ..page = 0
+        ..page = 1
         ..perPage = 250;
 
     factory Pagination([void updates(PaginationBuilder b)]) = _$Pagination;

@@ -5,7 +5,13 @@
 README.md
 docs/ActiveProject.md
 docs/AdminCreateIdentityBody.md
+docs/AdminCreateIdentityImportCredentialsOidc.md
+docs/AdminCreateIdentityImportCredentialsOidcConfig.md
+docs/AdminCreateIdentityImportCredentialsOidcProvider.md
+docs/AdminCreateIdentityImportCredentialsPassword.md
+docs/AdminCreateIdentityImportCredentialsPasswordConfig.md
 docs/AdminCreateSelfServiceRecoveryLinkBody.md
+docs/AdminIdentityImportCredentials.md
 docs/AdminUpdateIdentityBody.md
 docs/ApiToken.md
 docs/ApiTokens.md
@@ -21,6 +27,9 @@ docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
 docs/Identity.md
 docs/IdentityCredentials.md
+docs/IdentityCredentialsOidc.md
+docs/IdentityCredentialsOidcProvider.md
+docs/IdentityCredentialsPassword.md
 docs/IdentityCredentialsType.md
 docs/IdentityList.md
 docs/IdentityPreset.md
@@ -84,6 +93,7 @@ docs/SessionList.md
 docs/SettingsProfileFormConfig.md
 docs/StringSliceJSONFormat.md
 docs/StripeCustomerResponse.md
+docs/SubmitSelfServiceFlowWithWebAuthnRegistrationMethod.md
 docs/SubmitSelfServiceLoginFlowBody.md
 docs/SubmitSelfServiceLoginFlowWithLookupSecretMethodBody.md
 docs/SubmitSelfServiceLoginFlowWithOidcMethodBody.md
@@ -96,6 +106,7 @@ docs/SubmitSelfServiceRecoveryFlowWithLinkMethodBody.md
 docs/SubmitSelfServiceRegistrationFlowBody.md
 docs/SubmitSelfServiceRegistrationFlowWithOidcMethodBody.md
 docs/SubmitSelfServiceRegistrationFlowWithPasswordMethodBody.md
+docs/SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody.md
 docs/SubmitSelfServiceSettingsFlowBody.md
 docs/SubmitSelfServiceSettingsFlowWithLookupMethodBody.md
 docs/SubmitSelfServiceSettingsFlowWithOidcMethodBody.md
@@ -142,7 +153,13 @@ ory_client/exceptions.py
 ory_client/model/__init__.py
 ory_client/model/active_project.py
 ory_client/model/admin_create_identity_body.py
+ory_client/model/admin_create_identity_import_credentials_oidc.py
+ory_client/model/admin_create_identity_import_credentials_oidc_config.py
+ory_client/model/admin_create_identity_import_credentials_oidc_provider.py
+ory_client/model/admin_create_identity_import_credentials_password.py
+ory_client/model/admin_create_identity_import_credentials_password_config.py
 ory_client/model/admin_create_self_service_recovery_link_body.py
+ory_client/model/admin_identity_import_credentials.py
 ory_client/model/admin_update_identity_body.py
 ory_client/model/api_token.py
 ory_client/model/api_tokens.py
@@ -158,6 +175,9 @@ ory_client/model/health_not_ready_status.py
 ory_client/model/health_status.py
 ory_client/model/identity.py
 ory_client/model/identity_credentials.py
+ory_client/model/identity_credentials_oidc.py
+ory_client/model/identity_credentials_oidc_provider.py
+ory_client/model/identity_credentials_password.py
 ory_client/model/identity_credentials_type.py
 ory_client/model/identity_list.py
 ory_client/model/identity_preset.py
@@ -220,6 +240,7 @@ ory_client/model/session_list.py
 ory_client/model/settings_profile_form_config.py
 ory_client/model/string_slice_json_format.py
 ory_client/model/stripe_customer_response.py
+ory_client/model/submit_self_service_flow_with_web_authn_registration_method.py
 ory_client/model/submit_self_service_login_flow_body.py
 ory_client/model/submit_self_service_login_flow_with_lookup_secret_method_body.py
 ory_client/model/submit_self_service_login_flow_with_oidc_method_body.py
@@ -232,6 +253,7 @@ ory_client/model/submit_self_service_recovery_flow_with_link_method_body.py
 ory_client/model/submit_self_service_registration_flow_body.py
 ory_client/model/submit_self_service_registration_flow_with_oidc_method_body.py
 ory_client/model/submit_self_service_registration_flow_with_password_method_body.py
+ory_client/model/submit_self_service_registration_flow_with_web_authn_method_body.py
 ory_client/model/submit_self_service_settings_flow_body.py
 ory_client/model/submit_self_service_settings_flow_with_lookup_method_body.py
 ory_client/model/submit_self_service_settings_flow_with_oidc_method_body.py
@@ -273,7 +295,13 @@ test-requirements.txt
 test/__init__.py
 test/test_active_project.py
 test/test_admin_create_identity_body.py
+test/test_admin_create_identity_import_credentials_oidc.py
+test/test_admin_create_identity_import_credentials_oidc_config.py
+test/test_admin_create_identity_import_credentials_oidc_provider.py
+test/test_admin_create_identity_import_credentials_password.py
+test/test_admin_create_identity_import_credentials_password_config.py
 test/test_admin_create_self_service_recovery_link_body.py
+test/test_admin_identity_import_credentials.py
 test/test_admin_update_identity_body.py
 test/test_api_token.py
 test/test_api_tokens.py
@@ -289,6 +317,9 @@ test/test_health_not_ready_status.py
 test/test_health_status.py
 test/test_identity.py
 test/test_identity_credentials.py
+test/test_identity_credentials_oidc.py
+test/test_identity_credentials_oidc_provider.py
+test/test_identity_credentials_password.py
 test/test_identity_credentials_type.py
 test/test_identity_list.py
 test/test_identity_preset.py
@@ -352,6 +383,7 @@ test/test_session_list.py
 test/test_settings_profile_form_config.py
 test/test_string_slice_json_format.py
 test/test_stripe_customer_response.py
+test/test_submit_self_service_flow_with_web_authn_registration_method.py
 test/test_submit_self_service_login_flow_body.py
 test/test_submit_self_service_login_flow_with_lookup_secret_method_body.py
 test/test_submit_self_service_login_flow_with_oidc_method_body.py
@@ -364,6 +396,7 @@ test/test_submit_self_service_recovery_flow_with_link_method_body.py
 test/test_submit_self_service_registration_flow_body.py
 test/test_submit_self_service_registration_flow_with_oidc_method_body.py
 test/test_submit_self_service_registration_flow_with_password_method_body.py
+test/test_submit_self_service_registration_flow_with_web_authn_method_body.py
 test/test_submit_self_service_settings_flow_body.py
 test/test_submit_self_service_settings_flow_with_lookup_method_body.py
 test/test_submit_self_service_settings_flow_with_oidc_method_body.py

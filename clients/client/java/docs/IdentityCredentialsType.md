@@ -11,5 +11,9 @@
 
 * `OIDC` (value: `"oidc"`)
 
+* `WEBAUTHN` (value: `"webauthn"`)
+
+* `LOOKUP_SECRET` (value: `"lookup_secret"`)
+
 
 

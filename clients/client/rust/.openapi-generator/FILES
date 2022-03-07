@@ -5,7 +5,13 @@ Cargo.toml
 README.md
 docs/ActiveProject.md
 docs/AdminCreateIdentityBody.md
+docs/AdminCreateIdentityImportCredentialsOidc.md
+docs/AdminCreateIdentityImportCredentialsOidcConfig.md
+docs/AdminCreateIdentityImportCredentialsOidcProvider.md
+docs/AdminCreateIdentityImportCredentialsPassword.md
+docs/AdminCreateIdentityImportCredentialsPasswordConfig.md
 docs/AdminCreateSelfServiceRecoveryLinkBody.md
+docs/AdminIdentityImportCredentials.md
 docs/AdminUpdateIdentityBody.md
 docs/ApiToken.md
 docs/AuthenticatorAssuranceLevel.md
@@ -19,6 +25,9 @@ docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
 docs/Identity.md
 docs/IdentityCredentials.md
+docs/IdentityCredentialsOidc.md
+docs/IdentityCredentialsOidcProvider.md
+docs/IdentityCredentialsPassword.md
 docs/IdentityCredentialsType.md
 docs/IdentityPreset.md
 docs/IdentitySchema.md
@@ -67,6 +76,7 @@ docs/SessionAuthenticationMethod.md
 docs/SessionDevice.md
 docs/SettingsProfileFormConfig.md
 docs/StripeCustomerResponse.md
+docs/SubmitSelfServiceFlowWithWebAuthnRegistrationMethod.md
 docs/SubmitSelfServiceLoginFlowBody.md
 docs/SubmitSelfServiceLoginFlowWithLookupSecretMethodBody.md
 docs/SubmitSelfServiceLoginFlowWithOidcMethodBody.md
@@ -79,6 +89,7 @@ docs/SubmitSelfServiceRecoveryFlowWithLinkMethodBody.md
 docs/SubmitSelfServiceRegistrationFlowBody.md
 docs/SubmitSelfServiceRegistrationFlowWithOidcMethodBody.md
 docs/SubmitSelfServiceRegistrationFlowWithPasswordMethodBody.md
+docs/SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody.md
 docs/SubmitSelfServiceSettingsFlowBody.md
 docs/SubmitSelfServiceSettingsFlowWithLookupMethodBody.md
 docs/SubmitSelfServiceSettingsFlowWithOidcMethodBody.md
@@ -119,7 +130,13 @@ src/apis/v0alpha2_api.rs
 src/lib.rs
 src/models/active_project.rs
 src/models/admin_create_identity_body.rs
+src/models/admin_create_identity_import_credentials_oidc.rs
+src/models/admin_create_identity_import_credentials_oidc_config.rs
+src/models/admin_create_identity_import_credentials_oidc_provider.rs
+src/models/admin_create_identity_import_credentials_password.rs
+src/models/admin_create_identity_import_credentials_password_config.rs
 src/models/admin_create_self_service_recovery_link_body.rs
+src/models/admin_identity_import_credentials.rs
 src/models/admin_update_identity_body.rs
 src/models/api_token.rs
 src/models/authenticator_assurance_level.rs
@@ -133,6 +150,9 @@ src/models/health_not_ready_status.rs
 src/models/health_status.rs
 src/models/identity.rs
 src/models/identity_credentials.rs
+src/models/identity_credentials_oidc.rs
+src/models/identity_credentials_oidc_provider.rs
+src/models/identity_credentials_password.rs
 src/models/identity_credentials_type.rs
 src/models/identity_preset.rs
 src/models/identity_schema.rs
@@ -181,6 +201,7 @@ src/models/session_authentication_method.rs
 src/models/session_device.rs
 src/models/settings_profile_form_config.rs
 src/models/stripe_customer_response.rs
+src/models/submit_self_service_flow_with_web_authn_registration_method.rs
 src/models/submit_self_service_login_flow_body.rs
 src/models/submit_self_service_login_flow_with_lookup_secret_method_body.rs
 src/models/submit_self_service_login_flow_with_oidc_method_body.rs
@@ -193,6 +214,7 @@ src/models/submit_self_service_recovery_flow_with_link_method_body.rs
 src/models/submit_self_service_registration_flow_body.rs
 src/models/submit_self_service_registration_flow_with_oidc_method_body.rs
 src/models/submit_self_service_registration_flow_with_password_method_body.rs
+src/models/submit_self_service_registration_flow_with_web_authn_method_body.rs
 src/models/submit_self_service_settings_flow_body.rs
 src/models/submit_self_service_settings_flow_with_lookup_method_body.rs
 src/models/submit_self_service_settings_flow_with_oidc_method_body.rs

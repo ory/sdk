@@ -20,6 +20,12 @@ void main() {
       // TODO
     });
 
+    // Identifier is the email or username of the user trying to log in. This field is only required when using WebAuthn for passwordless login. When using WebAuthn for multi-factor authentication, it is not needed.
+    // String identifier
+    test('to test the property `identifier`', () async {
+      // TODO
+    });
+
     // Method should be set to \"webAuthn\" when logging in using the WebAuthn strategy.
     // String method
     test('to test the property `method`', () async {

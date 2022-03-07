@@ -14,6 +14,17 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(AdminCreateIdentityBody, () {
+    // AdminIdentityImportCredentials credentials
+    test('to test the property `credentials`', () async {
+      // TODO
+    });
+
+    // RecoveryAddresses contains all the addresses that can be used to recover an identity.  Use this structure to import recovery addresses for an identity. Please keep in mind that the address needs to be represented in the Identity Schema or this field will be overwritten on the next identity update.
+    // BuiltList<RecoveryAddress> recoveryAddresses
+    test('to test the property `recoveryAddresses`', () async {
+      // TODO
+    });
+
     // SchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
     // String schemaId
     test('to test the property `schemaId`', () async {
@@ -28,6 +39,12 @@ void main() {
     // Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_url`.
     // JsonObject traits
     test('to test the property `traits`', () async {
+      // TODO
+    });
+
+    // VerifiableAddresses contains all the addresses that can be verified by the user.  Use this structure to import verified addresses for an identity. Please keep in mind that the address needs to be represented in the Identity Schema or this field will be overwritten on the next identity update.
+    // BuiltList<VerifiableIdentityAddress> verifiableAddresses
+    test('to test the property `verifiableAddresses`', () async {
       // TODO
     });
 

@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**aal** | [**\Ory\Client\Model\AuthenticatorAssuranceLevel**](AuthenticatorAssuranceLevel.md) |  | [optional]
 **completedAt** | **\DateTime** | When the authentication challenge was completed. | [optional]
 **method** | **string** |  | [optional]
 

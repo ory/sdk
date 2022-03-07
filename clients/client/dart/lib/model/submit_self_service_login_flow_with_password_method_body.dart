@@ -17,6 +17,10 @@ abstract class SubmitSelfServiceLoginFlowWithPasswordMethodBody implements Built
     @BuiltValueField(wireName: r'csrf_token')
     String get csrfToken;
 
+    /// Identifier is the email or username of the user trying to log in.
+    @BuiltValueField(wireName: r'identifier')
+    String get identifier;
+
     /// Method should be set to \"password\" when logging in using the identifier and password strategy.
     @BuiltValueField(wireName: r'method')
     String get method;
@@ -25,7 +29,7 @@ abstract class SubmitSelfServiceLoginFlowWithPasswordMethodBody implements Built
     @BuiltValueField(wireName: r'password')
     String get password;
 
-    /// Identifier is the email or username of the user trying to log in.
+    /// Identifier is the email or username of the user trying to log in. This field is deprecated!
     @BuiltValueField(wireName: r'password_identifier')
     String get passwordIdentifier;
 
@@ -57,6 +61,10 @@ class _$SubmitSelfServiceLoginFlowWithPasswordMethodBodySerializer implements St
                     specifiedType: const FullType(String)));
         }
         result
+            ..add(r'identifier')
+            ..add(serializers.serialize(object.identifier,
+                specifiedType: const FullType(String)));
+        result
             ..add(r'method')
             ..add(serializers.serialize(object.method,
                 specifiedType: const FullType(String)));
@@ -84,6 +92,10 @@ class _$SubmitSelfServiceLoginFlowWithPasswordMethodBodySerializer implements St
             switch (key) {
                 case r'csrf_token':
                     result.csrfToken = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'identifier':
+                    result.identifier = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
                 case r'method':

@@ -14,9 +14,11 @@ require 'ory-client'
 OryClient::SubmitSelfServiceLoginFlowBody.openapi_one_of
 # =>
 # [
+#   :'SubmitSelfServiceLoginFlowWithLookupSecretMethodBody',
 #   :'SubmitSelfServiceLoginFlowWithOidcMethodBody',
 #   :'SubmitSelfServiceLoginFlowWithPasswordMethodBody',
-#   :'SubmitSelfServiceLoginFlowWithTotpMethodBody'
+#   :'SubmitSelfServiceLoginFlowWithTotpMethodBody',
+#   :'SubmitSelfServiceLoginFlowWithWebAuthnMethodBody'
 # ]
 ```
 
@@ -45,9 +47,11 @@ require 'ory-client'
 OryClient::SubmitSelfServiceLoginFlowBody.openapi_discriminator_mapping
 # =>
 # {
+#   :'lookup_secret' => :'SubmitSelfServiceLoginFlowWithLookupSecretMethodBody',
 #   :'oidc' => :'SubmitSelfServiceLoginFlowWithOidcMethodBody',
 #   :'password' => :'SubmitSelfServiceLoginFlowWithPasswordMethodBody',
-#   :'totp' => :'SubmitSelfServiceLoginFlowWithTotpMethodBody'
+#   :'totp' => :'SubmitSelfServiceLoginFlowWithTotpMethodBody',
+#   :'webauthn' => :'SubmitSelfServiceLoginFlowWithWebAuthnMethodBody'
 # }
 
 ### build
@@ -60,7 +64,7 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 require 'ory-client'
 
 OryClient::SubmitSelfServiceLoginFlowBody.build(data)
-# => #<SubmitSelfServiceLoginFlowWithOidcMethodBody:0x00007fdd4aab02a0>
+# => #<SubmitSelfServiceLoginFlowWithLookupSecretMethodBody:0x00007fdd4aab02a0>
 
 OryClient::SubmitSelfServiceLoginFlowBody.build(data_that_doesnt_match)
 # => nil
@@ -74,8 +78,10 @@ OryClient::SubmitSelfServiceLoginFlowBody.build(data_that_doesnt_match)
 
 #### Return type
 
+- `SubmitSelfServiceLoginFlowWithLookupSecretMethodBody`
 - `SubmitSelfServiceLoginFlowWithOidcMethodBody`
 - `SubmitSelfServiceLoginFlowWithPasswordMethodBody`
 - `SubmitSelfServiceLoginFlowWithTotpMethodBody`
+- `SubmitSelfServiceLoginFlowWithWebAuthnMethodBody`
 - `nil` (if no type matches)
 

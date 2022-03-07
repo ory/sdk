@@ -14,6 +14,11 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(SessionAuthenticationMethod, () {
+    // AuthenticatorAssuranceLevel aal
+    test('to test the property `aal`', () async {
+      // TODO
+    });
+
     // When the authentication challenge was completed.
     // DateTime completedAt
     test('to test the property `completedAt`', () async {

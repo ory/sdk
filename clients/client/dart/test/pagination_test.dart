@@ -15,7 +15,7 @@ void main() {
 
   group(Pagination, () {
     // Pagination Page
-    // int page (default value: 0)
+    // int page (default value: 1)
     test('to test the property `page`', () async {
       // TODO
     });

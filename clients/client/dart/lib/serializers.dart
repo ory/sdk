@@ -15,7 +15,13 @@ import 'package:built_value/standard_json_plugin.dart';
 
 import 'package:ory_client/model/active_project.dart';
 import 'package:ory_client/model/admin_create_identity_body.dart';
+import 'package:ory_client/model/admin_create_identity_import_credentials_oidc.dart';
+import 'package:ory_client/model/admin_create_identity_import_credentials_oidc_config.dart';
+import 'package:ory_client/model/admin_create_identity_import_credentials_oidc_provider.dart';
+import 'package:ory_client/model/admin_create_identity_import_credentials_password.dart';
+import 'package:ory_client/model/admin_create_identity_import_credentials_password_config.dart';
 import 'package:ory_client/model/admin_create_self_service_recovery_link_body.dart';
+import 'package:ory_client/model/admin_identity_import_credentials.dart';
 import 'package:ory_client/model/admin_update_identity_body.dart';
 import 'package:ory_client/model/api_token.dart';
 import 'package:ory_client/model/authenticator_assurance_level.dart';
@@ -29,6 +35,9 @@ import 'package:ory_client/model/health_not_ready_status.dart';
 import 'package:ory_client/model/health_status.dart';
 import 'package:ory_client/model/identity.dart';
 import 'package:ory_client/model/identity_credentials.dart';
+import 'package:ory_client/model/identity_credentials_oidc.dart';
+import 'package:ory_client/model/identity_credentials_oidc_provider.dart';
+import 'package:ory_client/model/identity_credentials_password.dart';
 import 'package:ory_client/model/identity_credentials_type.dart';
 import 'package:ory_client/model/identity_preset.dart';
 import 'package:ory_client/model/identity_schema.dart';
@@ -76,6 +85,7 @@ import 'package:ory_client/model/session_authentication_method.dart';
 import 'package:ory_client/model/session_device.dart';
 import 'package:ory_client/model/settings_profile_form_config.dart';
 import 'package:ory_client/model/stripe_customer_response.dart';
+import 'package:ory_client/model/submit_self_service_flow_with_web_authn_registration_method.dart';
 import 'package:ory_client/model/submit_self_service_login_flow_body.dart';
 import 'package:ory_client/model/submit_self_service_login_flow_with_lookup_secret_method_body.dart';
 import 'package:ory_client/model/submit_self_service_login_flow_with_oidc_method_body.dart';
@@ -88,6 +98,7 @@ import 'package:ory_client/model/submit_self_service_recovery_flow_with_link_met
 import 'package:ory_client/model/submit_self_service_registration_flow_body.dart';
 import 'package:ory_client/model/submit_self_service_registration_flow_with_oidc_method_body.dart';
 import 'package:ory_client/model/submit_self_service_registration_flow_with_password_method_body.dart';
+import 'package:ory_client/model/submit_self_service_registration_flow_with_web_authn_method_body.dart';
 import 'package:ory_client/model/submit_self_service_settings_flow_body.dart';
 import 'package:ory_client/model/submit_self_service_settings_flow_with_lookup_method_body.dart';
 import 'package:ory_client/model/submit_self_service_settings_flow_with_oidc_method_body.dart';
@@ -123,7 +134,13 @@ part 'serializers.g.dart';
 @SerializersFor(const [
   ActiveProject,
   AdminCreateIdentityBody,
+  AdminCreateIdentityImportCredentialsOidc,
+  AdminCreateIdentityImportCredentialsOidcConfig,
+  AdminCreateIdentityImportCredentialsOidcProvider,
+  AdminCreateIdentityImportCredentialsPassword,
+  AdminCreateIdentityImportCredentialsPasswordConfig,
   AdminCreateSelfServiceRecoveryLinkBody,
+  AdminIdentityImportCredentials,
   AdminUpdateIdentityBody,
   ApiToken,
   AuthenticatorAssuranceLevel,
@@ -137,6 +154,9 @@ part 'serializers.g.dart';
   HealthStatus,
   Identity,
   IdentityCredentials,
+  IdentityCredentialsOidc,
+  IdentityCredentialsOidcProvider,
+  IdentityCredentialsPassword,
   IdentityCredentialsType,
   IdentityPreset,
   IdentitySchema,
@@ -184,6 +204,7 @@ part 'serializers.g.dart';
   SessionDevice,
   SettingsProfileFormConfig,
   StripeCustomerResponse,
+  SubmitSelfServiceFlowWithWebAuthnRegistrationMethod,
   SubmitSelfServiceLoginFlowBody,
   SubmitSelfServiceLoginFlowWithLookupSecretMethodBody,
   SubmitSelfServiceLoginFlowWithOidcMethodBody,
@@ -196,6 +217,7 @@ part 'serializers.g.dart';
   SubmitSelfServiceRegistrationFlowBody,
   SubmitSelfServiceRegistrationFlowWithOidcMethodBody,
   SubmitSelfServiceRegistrationFlowWithPasswordMethodBody,
+  SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody,
   SubmitSelfServiceSettingsFlowBody,
   SubmitSelfServiceSettingsFlowWithLookupMethodBody,
   SubmitSelfServiceSettingsFlowWithOidcMethodBody,

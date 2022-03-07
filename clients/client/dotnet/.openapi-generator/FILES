@@ -5,7 +5,13 @@ README.md
 appveyor.yml
 docs/ClientActiveProject.md
 docs/ClientAdminCreateIdentityBody.md
+docs/ClientAdminCreateIdentityImportCredentialsOidc.md
+docs/ClientAdminCreateIdentityImportCredentialsOidcConfig.md
+docs/ClientAdminCreateIdentityImportCredentialsOidcProvider.md
+docs/ClientAdminCreateIdentityImportCredentialsPassword.md
+docs/ClientAdminCreateIdentityImportCredentialsPasswordConfig.md
 docs/ClientAdminCreateSelfServiceRecoveryLinkBody.md
+docs/ClientAdminIdentityImportCredentials.md
 docs/ClientAdminUpdateIdentityBody.md
 docs/ClientApiToken.md
 docs/ClientAuthenticatorAssuranceLevel.md
@@ -19,6 +25,9 @@ docs/ClientHealthNotReadyStatus.md
 docs/ClientHealthStatus.md
 docs/ClientIdentity.md
 docs/ClientIdentityCredentials.md
+docs/ClientIdentityCredentialsOidc.md
+docs/ClientIdentityCredentialsOidcProvider.md
+docs/ClientIdentityCredentialsPassword.md
 docs/ClientIdentityCredentialsType.md
 docs/ClientIdentityPreset.md
 docs/ClientIdentitySchema.md
@@ -66,6 +75,7 @@ docs/ClientSessionAuthenticationMethod.md
 docs/ClientSessionDevice.md
 docs/ClientSettingsProfileFormConfig.md
 docs/ClientStripeCustomerResponse.md
+docs/ClientSubmitSelfServiceFlowWithWebAuthnRegistrationMethod.md
 docs/ClientSubmitSelfServiceLoginFlowBody.md
 docs/ClientSubmitSelfServiceLoginFlowWithLookupSecretMethodBody.md
 docs/ClientSubmitSelfServiceLoginFlowWithOidcMethodBody.md
@@ -78,6 +88,7 @@ docs/ClientSubmitSelfServiceRecoveryFlowWithLinkMethodBody.md
 docs/ClientSubmitSelfServiceRegistrationFlowBody.md
 docs/ClientSubmitSelfServiceRegistrationFlowWithOidcMethodBody.md
 docs/ClientSubmitSelfServiceRegistrationFlowWithPasswordMethodBody.md
+docs/ClientSubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody.md
 docs/ClientSubmitSelfServiceSettingsFlowBody.md
 docs/ClientSubmitSelfServiceSettingsFlowWithLookupMethodBody.md
 docs/ClientSubmitSelfServiceSettingsFlowWithOidcMethodBody.md
@@ -116,7 +127,13 @@ src/Ory.Client.Test/Api/V0alpha0ApiTests.cs
 src/Ory.Client.Test/Api/V0alpha2ApiTests.cs
 src/Ory.Client.Test/Model/ClientActiveProjectTests.cs
 src/Ory.Client.Test/Model/ClientAdminCreateIdentityBodyTests.cs
+src/Ory.Client.Test/Model/ClientAdminCreateIdentityImportCredentialsOidcConfigTests.cs
+src/Ory.Client.Test/Model/ClientAdminCreateIdentityImportCredentialsOidcProviderTests.cs
+src/Ory.Client.Test/Model/ClientAdminCreateIdentityImportCredentialsOidcTests.cs
+src/Ory.Client.Test/Model/ClientAdminCreateIdentityImportCredentialsPasswordConfigTests.cs
+src/Ory.Client.Test/Model/ClientAdminCreateIdentityImportCredentialsPasswordTests.cs
 src/Ory.Client.Test/Model/ClientAdminCreateSelfServiceRecoveryLinkBodyTests.cs
+src/Ory.Client.Test/Model/ClientAdminIdentityImportCredentialsTests.cs
 src/Ory.Client.Test/Model/ClientAdminUpdateIdentityBodyTests.cs
 src/Ory.Client.Test/Model/ClientApiTokenTests.cs
 src/Ory.Client.Test/Model/ClientAuthenticatorAssuranceLevelTests.cs
@@ -128,6 +145,9 @@ src/Ory.Client.Test/Model/ClientErrorAuthenticatorAssuranceLevelNotSatisfiedTest
 src/Ory.Client.Test/Model/ClientGenericErrorTests.cs
 src/Ory.Client.Test/Model/ClientHealthNotReadyStatusTests.cs
 src/Ory.Client.Test/Model/ClientHealthStatusTests.cs
+src/Ory.Client.Test/Model/ClientIdentityCredentialsOidcProviderTests.cs
+src/Ory.Client.Test/Model/ClientIdentityCredentialsOidcTests.cs
+src/Ory.Client.Test/Model/ClientIdentityCredentialsPasswordTests.cs
 src/Ory.Client.Test/Model/ClientIdentityCredentialsTests.cs
 src/Ory.Client.Test/Model/ClientIdentityCredentialsTypeTests.cs
 src/Ory.Client.Test/Model/ClientIdentityPresetTests.cs
@@ -177,6 +197,7 @@ src/Ory.Client.Test/Model/ClientSessionDeviceTests.cs
 src/Ory.Client.Test/Model/ClientSessionTests.cs
 src/Ory.Client.Test/Model/ClientSettingsProfileFormConfigTests.cs
 src/Ory.Client.Test/Model/ClientStripeCustomerResponseTests.cs
+src/Ory.Client.Test/Model/ClientSubmitSelfServiceFlowWithWebAuthnRegistrationMethodTests.cs
 src/Ory.Client.Test/Model/ClientSubmitSelfServiceLoginFlowBodyTests.cs
 src/Ory.Client.Test/Model/ClientSubmitSelfServiceLoginFlowWithLookupSecretMethodBodyTests.cs
 src/Ory.Client.Test/Model/ClientSubmitSelfServiceLoginFlowWithOidcMethodBodyTests.cs
@@ -189,6 +210,7 @@ src/Ory.Client.Test/Model/ClientSubmitSelfServiceRecoveryFlowWithLinkMethodBodyT
 src/Ory.Client.Test/Model/ClientSubmitSelfServiceRegistrationFlowBodyTests.cs
 src/Ory.Client.Test/Model/ClientSubmitSelfServiceRegistrationFlowWithOidcMethodBodyTests.cs
 src/Ory.Client.Test/Model/ClientSubmitSelfServiceRegistrationFlowWithPasswordMethodBodyTests.cs
+src/Ory.Client.Test/Model/ClientSubmitSelfServiceRegistrationFlowWithWebAuthnMethodBodyTests.cs
 src/Ory.Client.Test/Model/ClientSubmitSelfServiceSettingsFlowBodyTests.cs
 src/Ory.Client.Test/Model/ClientSubmitSelfServiceSettingsFlowWithLookupMethodBodyTests.cs
 src/Ory.Client.Test/Model/ClientSubmitSelfServiceSettingsFlowWithOidcMethodBodyTests.cs
@@ -241,7 +263,13 @@ src/Ory.Client/Client/RetryConfiguration.cs
 src/Ory.Client/Model/AbstractOpenAPISchema.cs
 src/Ory.Client/Model/ClientActiveProject.cs
 src/Ory.Client/Model/ClientAdminCreateIdentityBody.cs
+src/Ory.Client/Model/ClientAdminCreateIdentityImportCredentialsOidc.cs
+src/Ory.Client/Model/ClientAdminCreateIdentityImportCredentialsOidcConfig.cs
+src/Ory.Client/Model/ClientAdminCreateIdentityImportCredentialsOidcProvider.cs
+src/Ory.Client/Model/ClientAdminCreateIdentityImportCredentialsPassword.cs
+src/Ory.Client/Model/ClientAdminCreateIdentityImportCredentialsPasswordConfig.cs
 src/Ory.Client/Model/ClientAdminCreateSelfServiceRecoveryLinkBody.cs
+src/Ory.Client/Model/ClientAdminIdentityImportCredentials.cs
 src/Ory.Client/Model/ClientAdminUpdateIdentityBody.cs
 src/Ory.Client/Model/ClientApiToken.cs
 src/Ory.Client/Model/ClientAuthenticatorAssuranceLevel.cs
@@ -255,6 +283,9 @@ src/Ory.Client/Model/ClientHealthNotReadyStatus.cs
 src/Ory.Client/Model/ClientHealthStatus.cs
 src/Ory.Client/Model/ClientIdentity.cs
 src/Ory.Client/Model/ClientIdentityCredentials.cs
+src/Ory.Client/Model/ClientIdentityCredentialsOidc.cs
+src/Ory.Client/Model/ClientIdentityCredentialsOidcProvider.cs
+src/Ory.Client/Model/ClientIdentityCredentialsPassword.cs
 src/Ory.Client/Model/ClientIdentityCredentialsType.cs
 src/Ory.Client/Model/ClientIdentityPreset.cs
 src/Ory.Client/Model/ClientIdentitySchema.cs
@@ -302,6 +333,7 @@ src/Ory.Client/Model/ClientSessionAuthenticationMethod.cs
 src/Ory.Client/Model/ClientSessionDevice.cs
 src/Ory.Client/Model/ClientSettingsProfileFormConfig.cs
 src/Ory.Client/Model/ClientStripeCustomerResponse.cs
+src/Ory.Client/Model/ClientSubmitSelfServiceFlowWithWebAuthnRegistrationMethod.cs
 src/Ory.Client/Model/ClientSubmitSelfServiceLoginFlowBody.cs
 src/Ory.Client/Model/ClientSubmitSelfServiceLoginFlowWithLookupSecretMethodBody.cs
 src/Ory.Client/Model/ClientSubmitSelfServiceLoginFlowWithOidcMethodBody.cs
@@ -314,6 +346,7 @@ src/Ory.Client/Model/ClientSubmitSelfServiceRecoveryFlowWithLinkMethodBody.cs
 src/Ory.Client/Model/ClientSubmitSelfServiceRegistrationFlowBody.cs
 src/Ory.Client/Model/ClientSubmitSelfServiceRegistrationFlowWithOidcMethodBody.cs
 src/Ory.Client/Model/ClientSubmitSelfServiceRegistrationFlowWithPasswordMethodBody.cs
+src/Ory.Client/Model/ClientSubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody.cs
 src/Ory.Client/Model/ClientSubmitSelfServiceSettingsFlowBody.cs
 src/Ory.Client/Model/ClientSubmitSelfServiceSettingsFlowWithLookupMethodBody.cs
 src/Ory.Client/Model/ClientSubmitSelfServiceSettingsFlowWithOidcMethodBody.cs
