@@ -56,6 +56,7 @@ docs/ClientProjectSlug.md
 docs/ClientQuotaProjectMemberSeats.md
 docs/ClientRecoveryAddress.md
 docs/ClientRevokedSessions.md
+docs/ClientSQLNullString.md
 docs/ClientSchemaPatch.md
 docs/ClientSelfServiceBrowserLocationChangeRequiredError.md
 docs/ClientSelfServiceError.md
@@ -178,6 +179,7 @@ src/Ory.Client.Test/Model/ClientProjectTests.cs
 src/Ory.Client.Test/Model/ClientQuotaProjectMemberSeatsTests.cs
 src/Ory.Client.Test/Model/ClientRecoveryAddressTests.cs
 src/Ory.Client.Test/Model/ClientRevokedSessionsTests.cs
+src/Ory.Client.Test/Model/ClientSQLNullStringTests.cs
 src/Ory.Client.Test/Model/ClientSchemaPatchTests.cs
 src/Ory.Client.Test/Model/ClientSelfServiceBrowserLocationChangeRequiredErrorTests.cs
 src/Ory.Client.Test/Model/ClientSelfServiceErrorTests.cs
@@ -314,6 +316,7 @@ src/Ory.Client/Model/ClientProjectSlug.cs
 src/Ory.Client/Model/ClientQuotaProjectMemberSeats.cs
 src/Ory.Client/Model/ClientRecoveryAddress.cs
 src/Ory.Client/Model/ClientRevokedSessions.cs
+src/Ory.Client/Model/ClientSQLNullString.cs
 src/Ory.Client/Model/ClientSchemaPatch.cs
 src/Ory.Client/Model/ClientSelfServiceBrowserLocationChangeRequiredError.cs
 src/Ory.Client/Model/ClientSelfServiceError.cs

@@ -56,6 +56,7 @@ doc/ProjectSlug.md
 doc/QuotaProjectMemberSeats.md
 doc/RecoveryAddress.md
 doc/RevokedSessions.md
+doc/SQLNullString.md
 doc/SchemaPatch.md
 doc/SelfServiceBrowserLocationChangeRequiredError.md
 doc/SelfServiceError.md
@@ -200,6 +201,7 @@ lib/model/session.dart
 lib/model/session_authentication_method.dart
 lib/model/session_device.dart
 lib/model/settings_profile_form_config.dart
+lib/model/sql_null_string.dart
 lib/model/stripe_customer_response.dart
 lib/model/submit_self_service_flow_with_web_authn_registration_method.dart
 lib/model/submit_self_service_login_flow_body.dart
@@ -318,6 +320,7 @@ test/session_authentication_method_test.dart
 test/session_device_test.dart
 test/session_test.dart
 test/settings_profile_form_config_test.dart
+test/sql_null_string_test.dart
 test/stripe_customer_response_test.dart
 test/submit_self_service_flow_with_web_authn_registration_method_test.dart
 test/submit_self_service_login_flow_body_test.dart

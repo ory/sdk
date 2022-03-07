@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.115
+ * API version: v0.0.1-alpha.116
  * Contact: support@ory.sh
  */
 
@@ -18,8 +18,7 @@ import (
 
 // ProjectRevisionThirdPartyLoginProvider struct for ProjectRevisionThirdPartyLoginProvider
 type ProjectRevisionThirdPartyLoginProvider struct {
-	// Apple Private Key  Sign In with Apple Private Key needed for generating a JWT token for client secret
-	ApplePrivateKey *string `json:"apple_private_key,omitempty"`
+	ApplePrivateKey *SQLNullString `json:"apple_private_key,omitempty"`
 	// Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret
 	ApplePrivateKeyId *string `json:"apple_private_key_id,omitempty"`
 	// Apple Developer Team ID  Apple Developer Team ID needed for generating a JWT token for client secret
@@ -30,8 +29,7 @@ type ProjectRevisionThirdPartyLoginProvider struct {
 	AzureTenant *string `json:"azure_tenant,omitempty"`
 	// ClientID is the application's Client ID.
 	ClientId *string `json:"client_id,omitempty"`
-	// ClientSecret is the application's secret.
-	ClientSecret *string `json:"client_secret,omitempty"`
+	ClientSecret *SQLNullString `json:"client_secret,omitempty"`
 	// The Project's Revision Creation Date
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	Id *string `json:"id,omitempty"`
@@ -72,9 +70,9 @@ func NewProjectRevisionThirdPartyLoginProviderWithDefaults() *ProjectRevisionThi
 }
 
 // GetApplePrivateKey returns the ApplePrivateKey field value if set, zero value otherwise.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetApplePrivateKey() string {
+func (o *ProjectRevisionThirdPartyLoginProvider) GetApplePrivateKey() SQLNullString {
 	if o == nil || o.ApplePrivateKey == nil {
-		var ret string
+		var ret SQLNullString
 		return ret
 	}
 	return *o.ApplePrivateKey
@@ -82,7 +80,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetApplePrivateKey() string {
 
 // GetApplePrivateKeyOk returns a tuple with the ApplePrivateKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetApplePrivateKeyOk() (*string, bool) {
+func (o *ProjectRevisionThirdPartyLoginProvider) GetApplePrivateKeyOk() (*SQLNullString, bool) {
 	if o == nil || o.ApplePrivateKey == nil {
 		return nil, false
 	}
@@ -98,8 +96,8 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasApplePrivateKey() bool {
 	return false
 }
 
-// SetApplePrivateKey gets a reference to the given string and assigns it to the ApplePrivateKey field.
-func (o *ProjectRevisionThirdPartyLoginProvider) SetApplePrivateKey(v string) {
+// SetApplePrivateKey gets a reference to the given SQLNullString and assigns it to the ApplePrivateKey field.
+func (o *ProjectRevisionThirdPartyLoginProvider) SetApplePrivateKey(v SQLNullString) {
 	o.ApplePrivateKey = &v
 }
 
@@ -264,9 +262,9 @@ func (o *ProjectRevisionThirdPartyLoginProvider) SetClientId(v string) {
 }
 
 // GetClientSecret returns the ClientSecret field value if set, zero value otherwise.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetClientSecret() string {
+func (o *ProjectRevisionThirdPartyLoginProvider) GetClientSecret() SQLNullString {
 	if o == nil || o.ClientSecret == nil {
-		var ret string
+		var ret SQLNullString
 		return ret
 	}
 	return *o.ClientSecret
@@ -274,7 +272,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetClientSecret() string {
 
 // GetClientSecretOk returns a tuple with the ClientSecret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetClientSecretOk() (*string, bool) {
+func (o *ProjectRevisionThirdPartyLoginProvider) GetClientSecretOk() (*SQLNullString, bool) {
 	if o == nil || o.ClientSecret == nil {
 		return nil, false
 	}
@@ -290,8 +288,8 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasClientSecret() bool {
 	return false
 }
 
-// SetClientSecret gets a reference to the given string and assigns it to the ClientSecret field.
-func (o *ProjectRevisionThirdPartyLoginProvider) SetClientSecret(v string) {
+// SetClientSecret gets a reference to the given SQLNullString and assigns it to the ClientSecret field.
+func (o *ProjectRevisionThirdPartyLoginProvider) SetClientSecret(v SQLNullString) {
 	o.ClientSecret = &v
 }
 

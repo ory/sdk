@@ -14,8 +14,7 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(ProjectRevisionThirdPartyLoginProvider, () {
-    // Apple Private Key  Sign In with Apple Private Key needed for generating a JWT token for client secret
-    // String applePrivateKey
+    // SQLNullString applePrivateKey
     test('to test the property `applePrivateKey`', () async {
       // TODO
     });
@@ -50,8 +49,7 @@ void main() {
       // TODO
     });
 
-    // ClientSecret is the application's secret.
-    // String clientSecret
+    // SQLNullString clientSecret
     test('to test the property `clientSecret`', () async {
       // TODO
     });

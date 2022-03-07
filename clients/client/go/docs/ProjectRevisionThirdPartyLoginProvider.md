@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApplePrivateKey** | Pointer to **string** | Apple Private Key  Sign In with Apple Private Key needed for generating a JWT token for client secret | [optional] 
+**ApplePrivateKey** | Pointer to [**SQLNullString**](SQLNullString.md) |  | [optional] 
 **ApplePrivateKeyId** | Pointer to **string** | Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret | [optional] 
 **AppleTeamId** | Pointer to **string** | Apple Developer Team ID  Apple Developer Team ID needed for generating a JWT token for client secret | [optional] 
 **AuthUrl** | Pointer to **string** | AuthURL is the authorize url, typically something like: https://example.org/oauth2/auth Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when &#x60;provider&#x60; is set to &#x60;generic&#x60;. | [optional] 
 **AzureTenant** | Pointer to **string** | Tenant is the Azure AD Tenant to use for authentication, and must be set when &#x60;provider&#x60; is set to &#x60;microsoft&#x60;.  Can be either &#x60;common&#x60;, &#x60;organizations&#x60;, &#x60;consumers&#x60; for a multitenant application or a specific tenant like &#x60;8eaef023-2b34-4da1-9baa-8bc8c9d6a490&#x60; or &#x60;contoso.onmicrosoft.com&#x60;. | [optional] 
 **ClientId** | Pointer to **string** | ClientID is the application&#39;s Client ID. | [optional] 
-**ClientSecret** | Pointer to **string** | ClientSecret is the application&#39;s secret. | [optional] 
+**ClientSecret** | Pointer to [**SQLNullString**](SQLNullString.md) |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
 **Id** | Pointer to **string** |  | [optional] 
 **IssuerUrl** | Pointer to **string** | IssuerURL is the OpenID Connect Server URL. You can leave this empty if &#x60;provider&#x60; is not set to &#x60;generic&#x60;. If set, neither &#x60;auth_url&#x60; nor &#x60;token_url&#x60; are required. | [optional] 
@@ -45,20 +45,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetApplePrivateKey
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetApplePrivateKey() string`
+`func (o *ProjectRevisionThirdPartyLoginProvider) GetApplePrivateKey() SQLNullString`
 
 GetApplePrivateKey returns the ApplePrivateKey field if non-nil, zero value otherwise.
 
 ### GetApplePrivateKeyOk
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetApplePrivateKeyOk() (*string, bool)`
+`func (o *ProjectRevisionThirdPartyLoginProvider) GetApplePrivateKeyOk() (*SQLNullString, bool)`
 
 GetApplePrivateKeyOk returns a tuple with the ApplePrivateKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApplePrivateKey
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetApplePrivateKey(v string)`
+`func (o *ProjectRevisionThirdPartyLoginProvider) SetApplePrivateKey(v SQLNullString)`
 
 SetApplePrivateKey sets ApplePrivateKey field to given value.
 
@@ -195,20 +195,20 @@ HasClientId returns a boolean if a field has been set.
 
 ### GetClientSecret
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetClientSecret() string`
+`func (o *ProjectRevisionThirdPartyLoginProvider) GetClientSecret() SQLNullString`
 
 GetClientSecret returns the ClientSecret field if non-nil, zero value otherwise.
 
 ### GetClientSecretOk
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetClientSecretOk() (*string, bool)`
+`func (o *ProjectRevisionThirdPartyLoginProvider) GetClientSecretOk() (*SQLNullString, bool)`
 
 GetClientSecretOk returns a tuple with the ClientSecret field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetClientSecret
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetClientSecret(v string)`
+`func (o *ProjectRevisionThirdPartyLoginProvider) SetClientSecret(v SQLNullString)`
 
 SetClientSecret sets ClientSecret field to given value.
 

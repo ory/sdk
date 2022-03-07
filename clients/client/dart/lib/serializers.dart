@@ -66,6 +66,7 @@ import 'package:ory_client/model/project_slug.dart';
 import 'package:ory_client/model/quota_project_member_seats.dart';
 import 'package:ory_client/model/recovery_address.dart';
 import 'package:ory_client/model/revoked_sessions.dart';
+import 'package:ory_client/model/sql_null_string.dart';
 import 'package:ory_client/model/schema_patch.dart';
 import 'package:ory_client/model/self_service_browser_location_change_required_error.dart';
 import 'package:ory_client/model/self_service_error.dart';
@@ -185,6 +186,7 @@ part 'serializers.g.dart';
   QuotaProjectMemberSeats,
   RecoveryAddress,
   RevokedSessions,
+  SQLNullString,
   SchemaPatch,
   SelfServiceBrowserLocationChangeRequiredError,
   SelfServiceError,

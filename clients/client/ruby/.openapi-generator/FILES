@@ -60,6 +60,7 @@ docs/ProjectSlug.md
 docs/QuotaProjectMemberSeats.md
 docs/RecoveryAddress.md
 docs/RevokedSessions.md
+docs/SQLNullString.md
 docs/SchemaPatch.md
 docs/SelfServiceBrowserLocationChangeRequiredError.md
 docs/SelfServiceError.md
@@ -203,6 +204,7 @@ lib/ory-client/models/session.rb
 lib/ory-client/models/session_authentication_method.rb
 lib/ory-client/models/session_device.rb
 lib/ory-client/models/settings_profile_form_config.rb
+lib/ory-client/models/sql_null_string.rb
 lib/ory-client/models/stripe_customer_response.rb
 lib/ory-client/models/submit_self_service_flow_with_web_authn_registration_method.rb
 lib/ory-client/models/submit_self_service_login_flow_body.rb
@@ -325,6 +327,7 @@ spec/models/session_authentication_method_spec.rb
 spec/models/session_device_spec.rb
 spec/models/session_spec.rb
 spec/models/settings_profile_form_config_spec.rb
+spec/models/sql_null_string_spec.rb
 spec/models/stripe_customer_response_spec.rb
 spec/models/submit_self_service_flow_with_web_authn_registration_method_spec.rb
 spec/models/submit_self_service_login_flow_body_spec.rb

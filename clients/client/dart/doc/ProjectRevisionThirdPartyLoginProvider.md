@@ -8,13 +8,13 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**applePrivateKey** | **String** | Apple Private Key  Sign In with Apple Private Key needed for generating a JWT token for client secret | [optional] 
+**applePrivateKey** | [**SQLNullString**](SQLNullString.md) |  | [optional] 
 **applePrivateKeyId** | **String** | Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret | [optional] 
 **appleTeamId** | **String** | Apple Developer Team ID  Apple Developer Team ID needed for generating a JWT token for client secret | [optional] 
 **authUrl** | **String** | AuthURL is the authorize url, typically something like: https://example.org/oauth2/auth Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when `provider` is set to `generic`. | [optional] 
 **azureTenant** | **String** | Tenant is the Azure AD Tenant to use for authentication, and must be set when `provider` is set to `microsoft`.  Can be either `common`, `organizations`, `consumers` for a multitenant application or a specific tenant like `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` or `contoso.onmicrosoft.com`. | [optional] 
 **clientId** | **String** | ClientID is the application's Client ID. | [optional] 
-**clientSecret** | **String** | ClientSecret is the application's secret. | [optional] 
+**clientSecret** | [**SQLNullString**](SQLNullString.md) |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) | The Project's Revision Creation Date | [optional] 
 **id** | **String** |  | [optional] 
 **issuerUrl** | **String** | IssuerURL is the OpenID Connect Server URL. You can leave this empty if `provider` is not set to `generic`. If set, neither `auth_url` nor `token_url` are required. | [optional] 

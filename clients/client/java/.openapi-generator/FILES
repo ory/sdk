@@ -59,6 +59,7 @@ docs/ProjectSlug.md
 docs/QuotaProjectMemberSeats.md
 docs/RecoveryAddress.md
 docs/RevokedSessions.md
+docs/SQLNullString.md
 docs/SchemaPatch.md
 docs/SelfServiceBrowserLocationChangeRequiredError.md
 docs/SelfServiceError.md
@@ -205,6 +206,7 @@ src/main/java/sh/ory/model/ProjectSlug.java
 src/main/java/sh/ory/model/QuotaProjectMemberSeats.java
 src/main/java/sh/ory/model/RecoveryAddress.java
 src/main/java/sh/ory/model/RevokedSessions.java
+src/main/java/sh/ory/model/SQLNullString.java
 src/main/java/sh/ory/model/SchemaPatch.java
 src/main/java/sh/ory/model/SelfServiceBrowserLocationChangeRequiredError.java
 src/main/java/sh/ory/model/SelfServiceError.java
@@ -323,6 +325,7 @@ src/test/java/sh/ory/model/ProjectTest.java
 src/test/java/sh/ory/model/QuotaProjectMemberSeatsTest.java
 src/test/java/sh/ory/model/RecoveryAddressTest.java
 src/test/java/sh/ory/model/RevokedSessionsTest.java
+src/test/java/sh/ory/model/SQLNullStringTest.java
 src/test/java/sh/ory/model/SchemaPatchTest.java
 src/test/java/sh/ory/model/SelfServiceBrowserLocationChangeRequiredErrorTest.java
 src/test/java/sh/ory/model/SelfServiceErrorTest.java

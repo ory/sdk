@@ -60,6 +60,7 @@ docs/Model/ProjectSlug.md
 docs/Model/QuotaProjectMemberSeats.md
 docs/Model/RecoveryAddress.md
 docs/Model/RevokedSessions.md
+docs/Model/SQLNullString.md
 docs/Model/SchemaPatch.md
 docs/Model/SelfServiceBrowserLocationChangeRequiredError.md
 docs/Model/SelfServiceError.md
@@ -183,6 +184,7 @@ lib/Model/ProjectSlug.php
 lib/Model/QuotaProjectMemberSeats.php
 lib/Model/RecoveryAddress.php
 lib/Model/RevokedSessions.php
+lib/Model/SQLNullString.php
 lib/Model/SchemaPatch.php
 lib/Model/SelfServiceBrowserLocationChangeRequiredError.php
 lib/Model/SelfServiceError.php
@@ -303,6 +305,7 @@ test/Model/ProjectTest.php
 test/Model/QuotaProjectMemberSeatsTest.php
 test/Model/RecoveryAddressTest.php
 test/Model/RevokedSessionsTest.php
+test/Model/SQLNullStringTest.php
 test/Model/SchemaPatchTest.php
 test/Model/SelfServiceBrowserLocationChangeRequiredErrorTest.php
 test/Model/SelfServiceErrorTest.php
