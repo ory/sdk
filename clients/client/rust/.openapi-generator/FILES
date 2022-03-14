@@ -75,7 +75,6 @@ docs/Session.md
 docs/SessionAuthenticationMethod.md
 docs/SessionDevice.md
 docs/SettingsProfileFormConfig.md
-docs/SqlNullString.md
 docs/StripeCustomerResponse.md
 docs/SubmitSelfServiceFlowWithWebAuthnRegistrationMethod.md
 docs/SubmitSelfServiceLoginFlowBody.md
@@ -201,7 +200,6 @@ src/models/session.rs
 src/models/session_authentication_method.rs
 src/models/session_device.rs
 src/models/settings_profile_form_config.rs
-src/models/sql_null_string.rs
 src/models/stripe_customer_response.rs
 src/models/submit_self_service_flow_with_web_authn_registration_method.rs
 src/models/submit_self_service_login_flow_body.rs

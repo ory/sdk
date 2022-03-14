@@ -76,7 +76,6 @@ from ory_client.model.projects import Projects
 from ory_client.model.quota_project_member_seats import QuotaProjectMemberSeats
 from ory_client.model.recovery_address import RecoveryAddress
 from ory_client.model.revoked_sessions import RevokedSessions
-from ory_client.model.sql_null_string import SQLNullString
 from ory_client.model.schema_patch import SchemaPatch
 from ory_client.model.self_service_browser_location_change_required_error import SelfServiceBrowserLocationChangeRequiredError
 from ory_client.model.self_service_error import SelfServiceError

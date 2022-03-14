@@ -144,19 +144,13 @@ with ory_client.ApiClient(configuration) as api_client:
         kratos_selfservice_methods_lookup_secret_enabled=True,
         kratos_selfservice_methods_oidc_config_providers=ProjectRevisionThirdPartyLoginProviders([
             ProjectRevisionThirdPartyLoginProvider(
-                apple_private_key=SQLNullString(
-                    string="string_example",
-                    valid=True,
-                ),
+                apple_private_key="apple_private_key_example",
                 apple_private_key_id="UX56C66723",
                 apple_team_id="KP76DQS54M",
                 auth_url="https://www.googleapis.com/oauth2/v2/auth",
                 azure_tenant="contoso.onmicrosoft.com",
                 client_id="client_id_example",
-                client_secret=SQLNullString(
-                    string="string_example",
-                    valid=True,
-                ),
+                client_secret="client_secret_example",
                 id="id_example",
                 issuer_url="https://accounts.google.com",
                 label="label_example",
@@ -925,19 +919,13 @@ with ory_client.ApiClient(configuration) as api_client:
         kratos_selfservice_methods_lookup_secret_enabled=True,
         kratos_selfservice_methods_oidc_config_providers=ProjectRevisionThirdPartyLoginProviders([
             ProjectRevisionThirdPartyLoginProvider(
-                apple_private_key=SQLNullString(
-                    string="string_example",
-                    valid=True,
-                ),
+                apple_private_key="apple_private_key_example",
                 apple_private_key_id="UX56C66723",
                 apple_team_id="KP76DQS54M",
                 auth_url="https://www.googleapis.com/oauth2/v2/auth",
                 azure_tenant="contoso.onmicrosoft.com",
                 client_id="client_id_example",
-                client_secret=SQLNullString(
-                    string="string_example",
-                    valid=True,
-                ),
+                client_secret="client_secret_example",
                 id="id_example",
                 issuer_url="https://accounts.google.com",
                 label="label_example",

@@ -62,7 +62,6 @@ docs/ProjectSlug.md
 docs/QuotaProjectMemberSeats.md
 docs/RecoveryAddress.md
 docs/RevokedSessions.md
-docs/SQLNullString.md
 docs/SchemaPatch.md
 docs/SelfServiceBrowserLocationChangeRequiredError.md
 docs/SelfServiceError.md
@@ -201,7 +200,6 @@ model_session.go
 model_session_authentication_method.go
 model_session_device.go
 model_settings_profile_form_config.go
-model_sql_null_string.go
 model_stripe_customer_response.go
 model_submit_self_service_flow_with_web_authn_registration_method.go
 model_submit_self_service_login_flow_body.go

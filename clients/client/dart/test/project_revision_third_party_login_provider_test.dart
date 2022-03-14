@@ -14,7 +14,7 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(ProjectRevisionThirdPartyLoginProvider, () {
-    // SQLNullString applePrivateKey
+    // String applePrivateKey
     test('to test the property `applePrivateKey`', () async {
       // TODO
     });
@@ -49,7 +49,7 @@ void main() {
       // TODO
     });
 
-    // SQLNullString clientSecret
+    // String clientSecret
     test('to test the property `clientSecret`', () async {
       // TODO
     });

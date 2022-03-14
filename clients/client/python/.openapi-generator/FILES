@@ -71,7 +71,6 @@ docs/Projects.md
 docs/QuotaProjectMemberSeats.md
 docs/RecoveryAddress.md
 docs/RevokedSessions.md
-docs/SQLNullString.md
 docs/SchemaPatch.md
 docs/SelfServiceBrowserLocationChangeRequiredError.md
 docs/SelfServiceError.md
@@ -239,7 +238,6 @@ ory_client/model/session_authentication_methods.py
 ory_client/model/session_device.py
 ory_client/model/session_list.py
 ory_client/model/settings_profile_form_config.py
-ory_client/model/sql_null_string.py
 ory_client/model/string_slice_json_format.py
 ory_client/model/stripe_customer_response.py
 ory_client/model/submit_self_service_flow_with_web_authn_registration_method.py
@@ -383,7 +381,6 @@ test/test_session_authentication_methods.py
 test/test_session_device.py
 test/test_session_list.py
 test/test_settings_profile_form_config.py
-test/test_sql_null_string.py
 test/test_string_slice_json_format.py
 test/test_stripe_customer_response.py
 test/test_submit_self_service_flow_with_web_authn_registration_method.py

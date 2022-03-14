@@ -6,7 +6,6 @@
 // ignore_for_file: unused_import
 
 import 'package:built_collection/built_collection.dart';
-import 'package:ory_client/model/sql_null_string.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -17,7 +16,7 @@ abstract class ProjectRevisionThirdPartyLoginProvider implements Built<ProjectRe
 
     @nullable
     @BuiltValueField(wireName: r'apple_private_key')
-    SQLNullString get applePrivateKey;
+    String get applePrivateKey;
 
     /// Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret
     @nullable
@@ -46,7 +45,7 @@ abstract class ProjectRevisionThirdPartyLoginProvider implements Built<ProjectRe
 
     @nullable
     @BuiltValueField(wireName: r'client_secret')
-    SQLNullString get clientSecret;
+    String get clientSecret;
 
     /// The Project's Revision Creation Date
     @nullable
@@ -129,7 +128,7 @@ class _$ProjectRevisionThirdPartyLoginProviderSerializer implements StructuredSe
             result
                 ..add(r'apple_private_key')
                 ..add(serializers.serialize(object.applePrivateKey,
-                    specifiedType: const FullType(SQLNullString)));
+                    specifiedType: const FullType(String)));
         }
         if (object.applePrivateKeyId != null) {
             result
@@ -165,7 +164,7 @@ class _$ProjectRevisionThirdPartyLoginProviderSerializer implements StructuredSe
             result
                 ..add(r'client_secret')
                 ..add(serializers.serialize(object.clientSecret,
-                    specifiedType: const FullType(SQLNullString)));
+                    specifiedType: const FullType(String)));
         }
         if (object.createdAt != null) {
             result
@@ -254,8 +253,8 @@ class _$ProjectRevisionThirdPartyLoginProviderSerializer implements StructuredSe
             final dynamic value = iterator.current;
             switch (key) {
                 case r'apple_private_key':
-                    result.applePrivateKey.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(SQLNullString)) as SQLNullString);
+                    result.applePrivateKey = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
                     break;
                 case r'apple_private_key_id':
                     result.applePrivateKeyId = serializers.deserialize(value,
@@ -278,8 +277,8 @@ class _$ProjectRevisionThirdPartyLoginProviderSerializer implements StructuredSe
                         specifiedType: const FullType(String)) as String;
                     break;
                 case r'client_secret':
-                    result.clientSecret.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(SQLNullString)) as SQLNullString);
+                    result.clientSecret = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
                     break;
                 case r'created_at':
                     result.createdAt = serializers.deserialize(value,

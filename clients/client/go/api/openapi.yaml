@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.0.1-alpha.124
+  version: v0.0.1-alpha.125
 servers:
 - url: https://{project}.projects.oryapis.com/
   variables:
@@ -3233,15 +3233,8 @@ components:
     RecoveryAddressType:
       type: string
     SQLNullString:
-      example:
-        Valid: true
-        String: String
-      properties:
-        String:
-          type: string
-        Valid:
-          type: boolean
-      type: object
+      nullable: true
+      type: string
     String:
       $ref: '#/components/schemas/NullString'
     StringSliceJSONFormat:
@@ -4148,13 +4141,9 @@ components:
             - scope
             - scope
             provider_id: provider_id
-            apple_private_key:
-              Valid: true
-              String: String
+            apple_private_key: apple_private_key
             auth_url: https://www.googleapis.com/oauth2/v2/auth
-            client_secret:
-              Valid: true
-              String: String
+            client_secret: client_secret
             id: id
             token_url: https://www.googleapis.com/oauth2/v4/token
           - issuer_url: https://accounts.google.com
@@ -4173,13 +4162,9 @@ components:
             - scope
             - scope
             provider_id: provider_id
-            apple_private_key:
-              Valid: true
-              String: String
+            apple_private_key: apple_private_key
             auth_url: https://www.googleapis.com/oauth2/v2/auth
-            client_secret:
-              Valid: true
-              String: String
+            client_secret: client_secret
             id: id
             token_url: https://www.googleapis.com/oauth2/v4/token
           kratos_selfservice_methods_webauthn_config_rp_icon: kratos_selfservice_methods_webauthn_config_rp_icon
@@ -4340,13 +4325,9 @@ components:
             - scope
             - scope
             provider_id: provider_id
-            apple_private_key:
-              Valid: true
-              String: String
+            apple_private_key: apple_private_key
             auth_url: https://www.googleapis.com/oauth2/v2/auth
-            client_secret:
-              Valid: true
-              String: String
+            client_secret: client_secret
             id: id
             token_url: https://www.googleapis.com/oauth2/v4/token
           - issuer_url: https://accounts.google.com
@@ -4365,13 +4346,9 @@ components:
             - scope
             - scope
             provider_id: provider_id
-            apple_private_key:
-              Valid: true
-              String: String
+            apple_private_key: apple_private_key
             auth_url: https://www.googleapis.com/oauth2/v2/auth
-            client_secret:
-              Valid: true
-              String: String
+            client_secret: client_secret
             id: id
             token_url: https://www.googleapis.com/oauth2/v4/token
           kratos_selfservice_methods_webauthn_config_rp_icon: kratos_selfservice_methods_webauthn_config_rp_icon
@@ -4530,13 +4507,9 @@ components:
             - scope
             - scope
             provider_id: provider_id
-            apple_private_key:
-              Valid: true
-              String: String
+            apple_private_key: apple_private_key
             auth_url: https://www.googleapis.com/oauth2/v2/auth
-            client_secret:
-              Valid: true
-              String: String
+            client_secret: client_secret
             id: id
             token_url: https://www.googleapis.com/oauth2/v4/token
           - issuer_url: https://accounts.google.com
@@ -4555,13 +4528,9 @@ components:
             - scope
             - scope
             provider_id: provider_id
-            apple_private_key:
-              Valid: true
-              String: String
+            apple_private_key: apple_private_key
             auth_url: https://www.googleapis.com/oauth2/v2/auth
-            client_secret:
-              Valid: true
-              String: String
+            client_secret: client_secret
             id: id
             token_url: https://www.googleapis.com/oauth2/v4/token
           kratos_selfservice_methods_webauthn_config_rp_icon: kratos_selfservice_methods_webauthn_config_rp_icon
@@ -4848,13 +4817,9 @@ components:
           - scope
           - scope
           provider_id: provider_id
-          apple_private_key:
-            Valid: true
-            String: String
+          apple_private_key: apple_private_key
           auth_url: https://www.googleapis.com/oauth2/v2/auth
-          client_secret:
-            Valid: true
-            String: String
+          client_secret: client_secret
           id: id
           token_url: https://www.googleapis.com/oauth2/v4/token
         - issuer_url: https://accounts.google.com
@@ -4873,13 +4838,9 @@ components:
           - scope
           - scope
           provider_id: provider_id
-          apple_private_key:
-            Valid: true
-            String: String
+          apple_private_key: apple_private_key
           auth_url: https://www.googleapis.com/oauth2/v2/auth
-          client_secret:
-            Valid: true
-            String: String
+          client_secret: client_secret
           id: id
           token_url: https://www.googleapis.com/oauth2/v4/token
         kratos_selfservice_methods_webauthn_config_rp_icon: kratos_selfservice_methods_webauthn_config_rp_icon
@@ -5494,18 +5455,15 @@ components:
         - scope
         - scope
         provider_id: provider_id
-        apple_private_key:
-          Valid: true
-          String: String
+        apple_private_key: apple_private_key
         auth_url: https://www.googleapis.com/oauth2/v2/auth
-        client_secret:
-          Valid: true
-          String: String
+        client_secret: client_secret
         id: id
         token_url: https://www.googleapis.com/oauth2/v4/token
       properties:
         apple_private_key:
-          $ref: '#/components/schemas/SQLNullString'
+          nullable: true
+          type: string
         apple_private_key_id:
           description: |-
             Apple Private Key Identifier
@@ -5539,7 +5497,8 @@ components:
           description: ClientID is the application's Client ID.
           type: string
         client_secret:
-          $ref: '#/components/schemas/SQLNullString'
+          nullable: true
+          type: string
         created_at:
           description: The Project's Revision Creation Date
           format: date-time
@@ -7246,13 +7205,9 @@ components:
               - scope
               - scope
               provider_id: provider_id
-              apple_private_key:
-                Valid: true
-                String: String
+              apple_private_key: apple_private_key
               auth_url: https://www.googleapis.com/oauth2/v2/auth
-              client_secret:
-                Valid: true
-                String: String
+              client_secret: client_secret
               id: id
               token_url: https://www.googleapis.com/oauth2/v4/token
             - issuer_url: https://accounts.google.com
@@ -7271,13 +7226,9 @@ components:
               - scope
               - scope
               provider_id: provider_id
-              apple_private_key:
-                Valid: true
-                String: String
+              apple_private_key: apple_private_key
               auth_url: https://www.googleapis.com/oauth2/v2/auth
-              client_secret:
-                Valid: true
-                String: String
+              client_secret: client_secret
               id: id
               token_url: https://www.googleapis.com/oauth2/v4/token
             kratos_selfservice_methods_webauthn_config_rp_icon: kratos_selfservice_methods_webauthn_config_rp_icon
@@ -7438,13 +7389,9 @@ components:
               - scope
               - scope
               provider_id: provider_id
-              apple_private_key:
-                Valid: true
-                String: String
+              apple_private_key: apple_private_key
               auth_url: https://www.googleapis.com/oauth2/v2/auth
-              client_secret:
-                Valid: true
-                String: String
+              client_secret: client_secret
               id: id
               token_url: https://www.googleapis.com/oauth2/v4/token
             - issuer_url: https://accounts.google.com
@@ -7463,13 +7410,9 @@ components:
               - scope
               - scope
               provider_id: provider_id
-              apple_private_key:
-                Valid: true
-                String: String
+              apple_private_key: apple_private_key
               auth_url: https://www.googleapis.com/oauth2/v2/auth
-              client_secret:
-                Valid: true
-                String: String
+              client_secret: client_secret
               id: id
               token_url: https://www.googleapis.com/oauth2/v4/token
             kratos_selfservice_methods_webauthn_config_rp_icon: kratos_selfservice_methods_webauthn_config_rp_icon
@@ -7628,13 +7571,9 @@ components:
               - scope
               - scope
               provider_id: provider_id
-              apple_private_key:
-                Valid: true
-                String: String
+              apple_private_key: apple_private_key
               auth_url: https://www.googleapis.com/oauth2/v2/auth
-              client_secret:
-                Valid: true
-                String: String
+              client_secret: client_secret
               id: id
               token_url: https://www.googleapis.com/oauth2/v4/token
             - issuer_url: https://accounts.google.com
@@ -7653,13 +7592,9 @@ components:
               - scope
               - scope
               provider_id: provider_id
-              apple_private_key:
-                Valid: true
-                String: String
+              apple_private_key: apple_private_key
               auth_url: https://www.googleapis.com/oauth2/v2/auth
-              client_secret:
-                Valid: true
-                String: String
+              client_secret: client_secret
               id: id
               token_url: https://www.googleapis.com/oauth2/v4/token
             kratos_selfservice_methods_webauthn_config_rp_icon: kratos_selfservice_methods_webauthn_config_rp_icon

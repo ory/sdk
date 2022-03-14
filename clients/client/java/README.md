@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v0.0.1-alpha.124
-  - Build date: 2022-03-10T22:50:32.013349235Z[Etc/UTC]
+- API version: v0.0.1-alpha.125
+  - Build date: 2022-03-14T17:16:34.528362018Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v0.0.1-alpha.124</version>
+  <version>v0.0.1-alpha.125</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v0.0.1-alpha.124"
+     implementation "sh.ory:client:v0.0.1-alpha.125"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v0.0.1-alpha.124.jar`
+* `target/client-v0.0.1-alpha.125.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -224,7 +224,6 @@ Class | Method | HTTP request | Description
  - [QuotaProjectMemberSeats](docs/QuotaProjectMemberSeats.md)
  - [RecoveryAddress](docs/RecoveryAddress.md)
  - [RevokedSessions](docs/RevokedSessions.md)
- - [SQLNullString](docs/SQLNullString.md)
  - [SchemaPatch](docs/SchemaPatch.md)
  - [SelfServiceBrowserLocationChangeRequiredError](docs/SelfServiceBrowserLocationChangeRequiredError.md)
  - [SelfServiceError](docs/SelfServiceError.md)

@@ -140,8 +140,6 @@ pub mod session_device;
 pub use self::session_device::SessionDevice;
 pub mod settings_profile_form_config;
 pub use self::settings_profile_form_config::SettingsProfileFormConfig;
-pub mod sql_null_string;
-pub use self::sql_null_string::SqlNullString;
 pub mod stripe_customer_response;
 pub use self::stripe_customer_response::StripeCustomerResponse;
 pub mod submit_self_service_flow_with_web_authn_registration_method;
