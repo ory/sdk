@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.0.1-alpha.133
+  version: v0.0.1-alpha.134
 servers:
 - url: https://{project}.projects.oryapis.com/
   variables:
@@ -4229,7 +4229,6 @@ components:
     normalizedProjectRevisionThirdPartyProvider:
       properties:
         apple_private_key:
-          nullable: true
           type: string
         apple_private_key_id:
           description: |-
@@ -4264,7 +4263,6 @@ components:
           description: ClientID is the application's Client ID.
           type: string
         client_secret:
-          nullable: true
           type: string
         created_at:
           description: The Project's Revision Creation Date
