@@ -68,6 +68,7 @@ import 'package:ory_client/model/project_invite.dart';
 import 'package:ory_client/model/project_service_identity.dart';
 import 'package:ory_client/model/project_services.dart';
 import 'package:ory_client/model/project_slug.dart';
+import 'package:ory_client/model/provision_mock_subscription_payload.dart';
 import 'package:ory_client/model/quota_project_member_seats.dart';
 import 'package:ory_client/model/recovery_address.dart';
 import 'package:ory_client/model/revoked_sessions.dart';
@@ -192,6 +193,7 @@ part 'serializers.g.dart';
   ProjectServiceIdentity,
   ProjectServices,
   ProjectSlug,
+  ProvisionMockSubscriptionPayload,
   QuotaProjectMemberSeats,
   RecoveryAddress,
   RevokedSessions,

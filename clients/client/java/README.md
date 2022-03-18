@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v0.0.1-alpha.132
-  - Build date: 2022-03-18T10:33:16.726197431Z[Etc/UTC]
+- API version: v0.0.1-alpha.133
+  - Build date: 2022-03-18T14:07:53.269111298Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v0.0.1-alpha.132</version>
+  <version>v0.0.1-alpha.133</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v0.0.1-alpha.132"
+     implementation "sh.ory:client:v0.0.1-alpha.133"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v0.0.1-alpha.132.jar`
+* `target/client-v0.0.1-alpha.133.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -216,6 +216,7 @@ Class | Method | HTTP request | Description
  - [ProjectServiceIdentity](docs/ProjectServiceIdentity.md)
  - [ProjectServices](docs/ProjectServices.md)
  - [ProjectSlug](docs/ProjectSlug.md)
+ - [ProvisionMockSubscriptionPayload](docs/ProvisionMockSubscriptionPayload.md)
  - [QuotaProjectMemberSeats](docs/QuotaProjectMemberSeats.md)
  - [RecoveryAddress](docs/RecoveryAddress.md)
  - [RevokedSessions](docs/RevokedSessions.md)

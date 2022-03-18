@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.0.1-alpha.132
+  version: v0.0.1-alpha.133
 servers:
 - url: https://{project}.projects.oryapis.com/
   variables:
@@ -4486,6 +4486,17 @@ components:
       items:
         $ref: '#/components/schemas/project'
       type: array
+    provisionMockSubscriptionPayload:
+      properties:
+        identity_id:
+          format: uuid4
+          type: string
+        plan_or_price:
+          type: string
+      required:
+      - identity_id
+      - plan_or_price
+      type: object
     revokedSessions:
       example:
         count: 0

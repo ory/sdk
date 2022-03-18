@@ -61,6 +61,7 @@ docs/ProjectInvite.md
 docs/ProjectServiceIdentity.md
 docs/ProjectServices.md
 docs/ProjectSlug.md
+docs/ProvisionMockSubscriptionPayload.md
 docs/QuotaProjectMemberSeats.md
 docs/RecoveryAddress.md
 docs/RevokedSessions.md
@@ -210,6 +211,7 @@ src/main/java/sh/ory/model/ProjectInvite.java
 src/main/java/sh/ory/model/ProjectServiceIdentity.java
 src/main/java/sh/ory/model/ProjectServices.java
 src/main/java/sh/ory/model/ProjectSlug.java
+src/main/java/sh/ory/model/ProvisionMockSubscriptionPayload.java
 src/main/java/sh/ory/model/QuotaProjectMemberSeats.java
 src/main/java/sh/ory/model/RecoveryAddress.java
 src/main/java/sh/ory/model/RevokedSessions.java
@@ -332,6 +334,7 @@ src/test/java/sh/ory/model/ProjectServiceIdentityTest.java
 src/test/java/sh/ory/model/ProjectServicesTest.java
 src/test/java/sh/ory/model/ProjectSlugTest.java
 src/test/java/sh/ory/model/ProjectTest.java
+src/test/java/sh/ory/model/ProvisionMockSubscriptionPayloadTest.java
 src/test/java/sh/ory/model/QuotaProjectMemberSeatsTest.java
 src/test/java/sh/ory/model/RecoveryAddressTest.java
 src/test/java/sh/ory/model/RevokedSessionsTest.java

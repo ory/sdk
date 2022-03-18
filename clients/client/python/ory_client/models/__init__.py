@@ -79,6 +79,7 @@ from ory_client.model.project_service_identity import ProjectServiceIdentity
 from ory_client.model.project_services import ProjectServices
 from ory_client.model.project_slug import ProjectSlug
 from ory_client.model.projects import Projects
+from ory_client.model.provision_mock_subscription_payload import ProvisionMockSubscriptionPayload
 from ory_client.model.quota_project_member_seats import QuotaProjectMemberSeats
 from ory_client.model.recovery_address import RecoveryAddress
 from ory_client.model.revoked_sessions import RevokedSessions

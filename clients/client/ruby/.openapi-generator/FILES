@@ -62,6 +62,7 @@ docs/ProjectInvite.md
 docs/ProjectServiceIdentity.md
 docs/ProjectServices.md
 docs/ProjectSlug.md
+docs/ProvisionMockSubscriptionPayload.md
 docs/QuotaProjectMemberSeats.md
 docs/RecoveryAddress.md
 docs/RevokedSessions.md
@@ -190,6 +191,7 @@ lib/ory-client/models/project_invite.rb
 lib/ory-client/models/project_service_identity.rb
 lib/ory-client/models/project_services.rb
 lib/ory-client/models/project_slug.rb
+lib/ory-client/models/provision_mock_subscription_payload.rb
 lib/ory-client/models/quota_project_member_seats.rb
 lib/ory-client/models/recovery_address.rb
 lib/ory-client/models/revoked_sessions.rb
@@ -316,6 +318,7 @@ spec/models/project_service_identity_spec.rb
 spec/models/project_services_spec.rb
 spec/models/project_slug_spec.rb
 spec/models/project_spec.rb
+spec/models/provision_mock_subscription_payload_spec.rb
 spec/models/quota_project_member_seats_spec.rb
 spec/models/recovery_address_spec.rb
 spec/models/revoked_sessions_spec.rb

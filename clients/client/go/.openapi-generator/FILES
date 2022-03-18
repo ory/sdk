@@ -63,6 +63,7 @@ docs/ProjectInvite.md
 docs/ProjectServiceIdentity.md
 docs/ProjectServices.md
 docs/ProjectSlug.md
+docs/ProvisionMockSubscriptionPayload.md
 docs/QuotaProjectMemberSeats.md
 docs/RecoveryAddress.md
 docs/RevokedSessions.md
@@ -187,6 +188,7 @@ model_project_invite.go
 model_project_service_identity.go
 model_project_services.go
 model_project_slug.go
+model_provision_mock_subscription_payload.go
 model_quota_project_member_seats.go
 model_recovery_address.go
 model_revoked_sessions.go

@@ -108,6 +108,8 @@ pub mod project_services;
 pub use self::project_services::ProjectServices;
 pub mod project_slug;
 pub use self::project_slug::ProjectSlug;
+pub mod provision_mock_subscription_payload;
+pub use self::provision_mock_subscription_payload::ProvisionMockSubscriptionPayload;
 pub mod quota_project_member_seats;
 pub use self::quota_project_member_seats::QuotaProjectMemberSeats;
 pub mod recovery_address;

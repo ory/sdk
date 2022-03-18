@@ -58,6 +58,7 @@ docs/ClientProjectInvite.md
 docs/ClientProjectServiceIdentity.md
 docs/ClientProjectServices.md
 docs/ClientProjectSlug.md
+docs/ClientProvisionMockSubscriptionPayload.md
 docs/ClientQuotaProjectMemberSeats.md
 docs/ClientRecoveryAddress.md
 docs/ClientRevokedSessions.md
@@ -183,6 +184,7 @@ src/Ory.Client.Test/Model/ClientProjectServiceIdentityTests.cs
 src/Ory.Client.Test/Model/ClientProjectServicesTests.cs
 src/Ory.Client.Test/Model/ClientProjectSlugTests.cs
 src/Ory.Client.Test/Model/ClientProjectTests.cs
+src/Ory.Client.Test/Model/ClientProvisionMockSubscriptionPayloadTests.cs
 src/Ory.Client.Test/Model/ClientQuotaProjectMemberSeatsTests.cs
 src/Ory.Client.Test/Model/ClientRecoveryAddressTests.cs
 src/Ory.Client.Test/Model/ClientRevokedSessionsTests.cs
@@ -323,6 +325,7 @@ src/Ory.Client/Model/ClientProjectInvite.cs
 src/Ory.Client/Model/ClientProjectServiceIdentity.cs
 src/Ory.Client/Model/ClientProjectServices.cs
 src/Ory.Client/Model/ClientProjectSlug.cs
+src/Ory.Client/Model/ClientProvisionMockSubscriptionPayload.cs
 src/Ory.Client/Model/ClientQuotaProjectMemberSeats.cs
 src/Ory.Client/Model/ClientRecoveryAddress.cs
 src/Ory.Client/Model/ClientRevokedSessions.cs

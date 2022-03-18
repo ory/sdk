@@ -58,6 +58,7 @@ doc/ProjectInvite.md
 doc/ProjectServiceIdentity.md
 doc/ProjectServices.md
 doc/ProjectSlug.md
+doc/ProvisionMockSubscriptionPayload.md
 doc/QuotaProjectMemberSeats.md
 doc/RecoveryAddress.md
 doc/RevokedSessions.md
@@ -187,6 +188,7 @@ lib/model/project_invite.dart
 lib/model/project_service_identity.dart
 lib/model/project_services.dart
 lib/model/project_slug.dart
+lib/model/provision_mock_subscription_payload.dart
 lib/model/quota_project_member_seats.dart
 lib/model/recovery_address.dart
 lib/model/revoked_sessions.dart
@@ -310,6 +312,7 @@ test/project_service_identity_test.dart
 test/project_services_test.dart
 test/project_slug_test.dart
 test/project_test.dart
+test/provision_mock_subscription_payload_test.dart
 test/quota_project_member_seats_test.dart
 test/recovery_address_test.dart
 test/revoked_sessions_test.dart
