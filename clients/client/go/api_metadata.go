@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.131
+ * API version: v0.0.1-alpha.132
  * Contact: support@ory.sh
  */
 
@@ -140,7 +140,7 @@ func (a *MetadataApiService) GetVersionExecute(r MetadataApiApiGetVersionRequest
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/version"
+	localVarPath := localBasePath + "/version"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -249,7 +249,7 @@ func (a *MetadataApiService) IsAliveExecute(r MetadataApiApiIsAliveRequest) (*In
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/health/alive"
+	localVarPath := localBasePath + "/health/alive"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -367,7 +367,7 @@ func (a *MetadataApiService) IsReadyExecute(r MetadataApiApiIsReadyRequest) (*In
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/health/ready"
+	localVarPath := localBasePath + "/health/ready"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

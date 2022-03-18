@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v0.0.1-alpha.131
-  - Build date: 2022-03-17T13:58:21.265267834Z[Etc/UTC]
+- API version: v0.0.1-alpha.132
+  - Build date: 2022-03-18T10:33:16.726197431Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v0.0.1-alpha.131</version>
+  <version>v0.0.1-alpha.132</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v0.0.1-alpha.131"
+     implementation "sh.ory:client:v0.0.1-alpha.132"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v0.0.1-alpha.131.jar`
+* `target/client-v0.0.1-alpha.132.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -115,58 +115,48 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*MetadataApi* | [**getVersion**](docs/MetadataApi.md#getVersion) | **GET** /api/kratos/public/version | Return Running Software Version.
-*MetadataApi* | [**isAlive**](docs/MetadataApi.md#isAlive) | **GET** /api/kratos/public/health/alive | Check HTTP Server Status
-*MetadataApi* | [**isReady**](docs/MetadataApi.md#isReady) | **GET** /api/kratos/public/health/ready | Check HTTP Server and Database Status
-*V0alpha0Api* | [**createProject**](docs/V0alpha0Api.md#createProject) | **POST** /backoffice/public/projects | Create a Project
-*V0alpha0Api* | [**getActiveProject**](docs/V0alpha0Api.md#getActiveProject) | **GET** /backoffice/public/console/projects/active | Returns Your Active Ory Cloud Project
-*V0alpha0Api* | [**getProject**](docs/V0alpha0Api.md#getProject) | **GET** /backoffice/public/projects/{project_id} | Get a Project
-*V0alpha0Api* | [**getProjectMembers**](docs/V0alpha0Api.md#getProjectMembers) | **GET** /backoffice/public/projects/{project_id}/members | Get all members associated with this project.
-*V0alpha0Api* | [**listProjects**](docs/V0alpha0Api.md#listProjects) | **GET** /backoffice/public/projects | List All Projects
-*V0alpha0Api* | [**purgeProject**](docs/V0alpha0Api.md#purgeProject) | **DELETE** /backoffice/public/projects/{project_id} | Irrecoverably Purge a Project
-*V0alpha0Api* | [**removeProjectMember**](docs/V0alpha0Api.md#removeProjectMember) | **DELETE** /backoffice/public/projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to &#x60;REMOVED&#x60;.
-*V0alpha0Api* | [**setActiveProject**](docs/V0alpha0Api.md#setActiveProject) | **PUT** /backoffice/public/console/projects/active | Sets Your Active Project
-*V0alpha0Api* | [**updateProject**](docs/V0alpha0Api.md#updateProject) | **PUT** /backoffice/public/projects/{project_id} | Update a Project
-*V0alpha0Api* | [**updateProjectConfig**](docs/V0alpha0Api.md#updateProjectConfig) | **PUT** /backoffice/public/projects/{project_id}/configs | Update an Ory Cloud Project Configuration
-*V0alpha2Api* | [**adminCreateIdentity**](docs/V0alpha2Api.md#adminCreateIdentity) | **POST** /api/kratos/admin/identities | Create an Identity
-*V0alpha2Api* | [**adminCreateSelfServiceRecoveryLink**](docs/V0alpha2Api.md#adminCreateSelfServiceRecoveryLink) | **POST** /api/kratos/admin/recovery/link | Create a Recovery Link
-*V0alpha2Api* | [**adminDeleteIdentity**](docs/V0alpha2Api.md#adminDeleteIdentity) | **DELETE** /api/kratos/admin/identities/{id} | Delete an Identity
-*V0alpha2Api* | [**adminDeleteIdentitySessions**](docs/V0alpha2Api.md#adminDeleteIdentitySessions) | **DELETE** /api/kratos/admin/identities/{id}/sessions | Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.
-*V0alpha2Api* | [**adminGetIdentity**](docs/V0alpha2Api.md#adminGetIdentity) | **GET** /api/kratos/admin/identities/{id} | Get an Identity
-*V0alpha2Api* | [**adminListIdentities**](docs/V0alpha2Api.md#adminListIdentities) | **GET** /api/kratos/admin/identities | List Identities
-*V0alpha2Api* | [**adminListIdentitySessions**](docs/V0alpha2Api.md#adminListIdentitySessions) | **GET** /api/kratos/admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity.
-*V0alpha2Api* | [**adminUpdateIdentity**](docs/V0alpha2Api.md#adminUpdateIdentity) | **PUT** /api/kratos/admin/identities/{id} | Update an Identity
-*V0alpha2Api* | [**createSelfServiceLogoutFlowUrlForBrowsers**](docs/V0alpha2Api.md#createSelfServiceLogoutFlowUrlForBrowsers) | **GET** /api/kratos/public/self-service/logout/browser | Create a Logout URL for Browsers
-*V0alpha2Api* | [**getJsonSchema**](docs/V0alpha2Api.md#getJsonSchema) | **GET** /api/kratos/public/schemas/{id} | 
-*V0alpha2Api* | [**getSelfServiceError**](docs/V0alpha2Api.md#getSelfServiceError) | **GET** /api/kratos/public/self-service/errors | Get Self-Service Errors
-*V0alpha2Api* | [**getSelfServiceLoginFlow**](docs/V0alpha2Api.md#getSelfServiceLoginFlow) | **GET** /api/kratos/public/self-service/login/flows | Get Login Flow
-*V0alpha2Api* | [**getSelfServiceRecoveryFlow**](docs/V0alpha2Api.md#getSelfServiceRecoveryFlow) | **GET** /api/kratos/public/self-service/recovery/flows | Get Recovery Flow
-*V0alpha2Api* | [**getSelfServiceRegistrationFlow**](docs/V0alpha2Api.md#getSelfServiceRegistrationFlow) | **GET** /api/kratos/public/self-service/registration/flows | Get Registration Flow
-*V0alpha2Api* | [**getSelfServiceSettingsFlow**](docs/V0alpha2Api.md#getSelfServiceSettingsFlow) | **GET** /api/kratos/public/self-service/settings/flows | Get Settings Flow
-*V0alpha2Api* | [**getSelfServiceVerificationFlow**](docs/V0alpha2Api.md#getSelfServiceVerificationFlow) | **GET** /api/kratos/public/self-service/verification/flows | Get Verification Flow
-*V0alpha2Api* | [**getWebAuthnJavaScript**](docs/V0alpha2Api.md#getWebAuthnJavaScript) | **GET** /api/kratos/public/.well-known/ory/webauthn.js | Get WebAuthn JavaScript
-*V0alpha2Api* | [**initializeSelfServiceLoginFlowForBrowsers**](docs/V0alpha2Api.md#initializeSelfServiceLoginFlowForBrowsers) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for Browsers
-*V0alpha2Api* | [**initializeSelfServiceLoginFlowWithoutBrowser**](docs/V0alpha2Api.md#initializeSelfServiceLoginFlowWithoutBrowser) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ...
-*V0alpha2Api* | [**initializeSelfServiceRecoveryFlowForBrowsers**](docs/V0alpha2Api.md#initializeSelfServiceRecoveryFlowForBrowsers) | **GET** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browsers
-*V0alpha2Api* | [**initializeSelfServiceRecoveryFlowWithoutBrowser**](docs/V0alpha2Api.md#initializeSelfServiceRecoveryFlowWithoutBrowser) | **GET** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for APIs, Services, Apps, ...
-*V0alpha2Api* | [**initializeSelfServiceRegistrationFlowForBrowsers**](docs/V0alpha2Api.md#initializeSelfServiceRegistrationFlowForBrowsers) | **GET** /api/kratos/public/self-service/registration/browser | Initialize Registration Flow for Browsers
-*V0alpha2Api* | [**initializeSelfServiceRegistrationFlowWithoutBrowser**](docs/V0alpha2Api.md#initializeSelfServiceRegistrationFlowWithoutBrowser) | **GET** /api/kratos/public/self-service/registration/api | Initialize Registration Flow for APIs, Services, Apps, ...
-*V0alpha2Api* | [**initializeSelfServiceSettingsFlowForBrowsers**](docs/V0alpha2Api.md#initializeSelfServiceSettingsFlowForBrowsers) | **GET** /api/kratos/public/self-service/settings/browser | Initialize Settings Flow for Browsers
-*V0alpha2Api* | [**initializeSelfServiceSettingsFlowWithoutBrowser**](docs/V0alpha2Api.md#initializeSelfServiceSettingsFlowWithoutBrowser) | **GET** /api/kratos/public/self-service/settings/api | Initialize Settings Flow for APIs, Services, Apps, ...
-*V0alpha2Api* | [**initializeSelfServiceVerificationFlowForBrowsers**](docs/V0alpha2Api.md#initializeSelfServiceVerificationFlowForBrowsers) | **GET** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients
-*V0alpha2Api* | [**initializeSelfServiceVerificationFlowWithoutBrowser**](docs/V0alpha2Api.md#initializeSelfServiceVerificationFlowWithoutBrowser) | **GET** /api/kratos/public/self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
-*V0alpha2Api* | [**listIdentitySchemas**](docs/V0alpha2Api.md#listIdentitySchemas) | **GET** /api/kratos/public/schemas | 
-*V0alpha2Api* | [**listSessions**](docs/V0alpha2Api.md#listSessions) | **GET** /api/kratos/public/sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint.
-*V0alpha2Api* | [**revokeSession**](docs/V0alpha2Api.md#revokeSession) | **DELETE** /api/kratos/public/sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
-*V0alpha2Api* | [**revokeSessions**](docs/V0alpha2Api.md#revokeSessions) | **DELETE** /api/kratos/public/sessions | Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
-*V0alpha2Api* | [**submitSelfServiceLoginFlow**](docs/V0alpha2Api.md#submitSelfServiceLoginFlow) | **POST** /api/kratos/public/self-service/login | Submit a Login Flow
-*V0alpha2Api* | [**submitSelfServiceLogoutFlow**](docs/V0alpha2Api.md#submitSelfServiceLogoutFlow) | **GET** /api/kratos/public/self-service/logout | Complete Self-Service Logout
-*V0alpha2Api* | [**submitSelfServiceLogoutFlowWithoutBrowser**](docs/V0alpha2Api.md#submitSelfServiceLogoutFlowWithoutBrowser) | **DELETE** /api/kratos/public/self-service/logout/api | Perform Logout for APIs, Services, Apps, ...
-*V0alpha2Api* | [**submitSelfServiceRecoveryFlow**](docs/V0alpha2Api.md#submitSelfServiceRecoveryFlow) | **POST** /api/kratos/public/self-service/recovery | Complete Recovery Flow
-*V0alpha2Api* | [**submitSelfServiceRegistrationFlow**](docs/V0alpha2Api.md#submitSelfServiceRegistrationFlow) | **POST** /api/kratos/public/self-service/registration | Submit a Registration Flow
-*V0alpha2Api* | [**submitSelfServiceSettingsFlow**](docs/V0alpha2Api.md#submitSelfServiceSettingsFlow) | **POST** /api/kratos/public/self-service/settings | Complete Settings Flow
-*V0alpha2Api* | [**submitSelfServiceVerificationFlow**](docs/V0alpha2Api.md#submitSelfServiceVerificationFlow) | **POST** /api/kratos/public/self-service/verification | Complete Verification Flow
-*V0alpha2Api* | [**toSession**](docs/V0alpha2Api.md#toSession) | **GET** /api/kratos/public/sessions/whoami | Check Who the Current HTTP Session Belongs To
+*MetadataApi* | [**getVersion**](docs/MetadataApi.md#getVersion) | **GET** /version | Return Running Software Version.
+*MetadataApi* | [**isAlive**](docs/MetadataApi.md#isAlive) | **GET** /health/alive | Check HTTP Server Status
+*MetadataApi* | [**isReady**](docs/MetadataApi.md#isReady) | **GET** /health/ready | Check HTTP Server and Database Status
+*V0alpha2Api* | [**adminCreateIdentity**](docs/V0alpha2Api.md#adminCreateIdentity) | **POST** /admin/identities | Create an Identity
+*V0alpha2Api* | [**adminCreateSelfServiceRecoveryLink**](docs/V0alpha2Api.md#adminCreateSelfServiceRecoveryLink) | **POST** /admin/recovery/link | Create a Recovery Link
+*V0alpha2Api* | [**adminDeleteIdentity**](docs/V0alpha2Api.md#adminDeleteIdentity) | **DELETE** /admin/identities/{id} | Delete an Identity
+*V0alpha2Api* | [**adminDeleteIdentitySessions**](docs/V0alpha2Api.md#adminDeleteIdentitySessions) | **DELETE** /admin/identities/{id}/sessions | Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.
+*V0alpha2Api* | [**adminGetIdentity**](docs/V0alpha2Api.md#adminGetIdentity) | **GET** /admin/identities/{id} | Get an Identity
+*V0alpha2Api* | [**adminListIdentities**](docs/V0alpha2Api.md#adminListIdentities) | **GET** /admin/identities | List Identities
+*V0alpha2Api* | [**adminListIdentitySessions**](docs/V0alpha2Api.md#adminListIdentitySessions) | **GET** /admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity.
+*V0alpha2Api* | [**adminUpdateIdentity**](docs/V0alpha2Api.md#adminUpdateIdentity) | **PUT** /admin/identities/{id} | Update an Identity
+*V0alpha2Api* | [**createSelfServiceLogoutFlowUrlForBrowsers**](docs/V0alpha2Api.md#createSelfServiceLogoutFlowUrlForBrowsers) | **GET** /self-service/logout/browser | Create a Logout URL for Browsers
+*V0alpha2Api* | [**getJsonSchema**](docs/V0alpha2Api.md#getJsonSchema) | **GET** /schemas/{id} | 
+*V0alpha2Api* | [**getSelfServiceError**](docs/V0alpha2Api.md#getSelfServiceError) | **GET** /self-service/errors | Get Self-Service Errors
+*V0alpha2Api* | [**getSelfServiceLoginFlow**](docs/V0alpha2Api.md#getSelfServiceLoginFlow) | **GET** /self-service/login/flows | Get Login Flow
+*V0alpha2Api* | [**getSelfServiceRecoveryFlow**](docs/V0alpha2Api.md#getSelfServiceRecoveryFlow) | **GET** /self-service/recovery/flows | Get Recovery Flow
+*V0alpha2Api* | [**getSelfServiceRegistrationFlow**](docs/V0alpha2Api.md#getSelfServiceRegistrationFlow) | **GET** /self-service/registration/flows | Get Registration Flow
+*V0alpha2Api* | [**getSelfServiceSettingsFlow**](docs/V0alpha2Api.md#getSelfServiceSettingsFlow) | **GET** /self-service/settings/flows | Get Settings Flow
+*V0alpha2Api* | [**getSelfServiceVerificationFlow**](docs/V0alpha2Api.md#getSelfServiceVerificationFlow) | **GET** /self-service/verification/flows | Get Verification Flow
+*V0alpha2Api* | [**getWebAuthnJavaScript**](docs/V0alpha2Api.md#getWebAuthnJavaScript) | **GET** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
+*V0alpha2Api* | [**initializeSelfServiceLoginFlowForBrowsers**](docs/V0alpha2Api.md#initializeSelfServiceLoginFlowForBrowsers) | **GET** /self-service/login/browser | Initialize Login Flow for Browsers
+*V0alpha2Api* | [**initializeSelfServiceLoginFlowWithoutBrowser**](docs/V0alpha2Api.md#initializeSelfServiceLoginFlowWithoutBrowser) | **GET** /self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ...
+*V0alpha2Api* | [**initializeSelfServiceRecoveryFlowForBrowsers**](docs/V0alpha2Api.md#initializeSelfServiceRecoveryFlowForBrowsers) | **GET** /self-service/recovery/browser | Initialize Recovery Flow for Browsers
+*V0alpha2Api* | [**initializeSelfServiceRecoveryFlowWithoutBrowser**](docs/V0alpha2Api.md#initializeSelfServiceRecoveryFlowWithoutBrowser) | **GET** /self-service/recovery/api | Initialize Recovery Flow for APIs, Services, Apps, ...
+*V0alpha2Api* | [**initializeSelfServiceRegistrationFlowForBrowsers**](docs/V0alpha2Api.md#initializeSelfServiceRegistrationFlowForBrowsers) | **GET** /self-service/registration/browser | Initialize Registration Flow for Browsers
+*V0alpha2Api* | [**initializeSelfServiceRegistrationFlowWithoutBrowser**](docs/V0alpha2Api.md#initializeSelfServiceRegistrationFlowWithoutBrowser) | **GET** /self-service/registration/api | Initialize Registration Flow for APIs, Services, Apps, ...
+*V0alpha2Api* | [**initializeSelfServiceSettingsFlowForBrowsers**](docs/V0alpha2Api.md#initializeSelfServiceSettingsFlowForBrowsers) | **GET** /self-service/settings/browser | Initialize Settings Flow for Browsers
+*V0alpha2Api* | [**initializeSelfServiceSettingsFlowWithoutBrowser**](docs/V0alpha2Api.md#initializeSelfServiceSettingsFlowWithoutBrowser) | **GET** /self-service/settings/api | Initialize Settings Flow for APIs, Services, Apps, ...
+*V0alpha2Api* | [**initializeSelfServiceVerificationFlowForBrowsers**](docs/V0alpha2Api.md#initializeSelfServiceVerificationFlowForBrowsers) | **GET** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
+*V0alpha2Api* | [**initializeSelfServiceVerificationFlowWithoutBrowser**](docs/V0alpha2Api.md#initializeSelfServiceVerificationFlowWithoutBrowser) | **GET** /self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
+*V0alpha2Api* | [**listIdentitySchemas**](docs/V0alpha2Api.md#listIdentitySchemas) | **GET** /schemas | 
+*V0alpha2Api* | [**listSessions**](docs/V0alpha2Api.md#listSessions) | **GET** /sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint.
+*V0alpha2Api* | [**revokeSession**](docs/V0alpha2Api.md#revokeSession) | **DELETE** /sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
+*V0alpha2Api* | [**revokeSessions**](docs/V0alpha2Api.md#revokeSessions) | **DELETE** /sessions | Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
+*V0alpha2Api* | [**submitSelfServiceLoginFlow**](docs/V0alpha2Api.md#submitSelfServiceLoginFlow) | **POST** /self-service/login | Submit a Login Flow
+*V0alpha2Api* | [**submitSelfServiceLogoutFlow**](docs/V0alpha2Api.md#submitSelfServiceLogoutFlow) | **GET** /self-service/logout | Complete Self-Service Logout
+*V0alpha2Api* | [**submitSelfServiceLogoutFlowWithoutBrowser**](docs/V0alpha2Api.md#submitSelfServiceLogoutFlowWithoutBrowser) | **DELETE** /self-service/logout/api | Perform Logout for APIs, Services, Apps, ...
+*V0alpha2Api* | [**submitSelfServiceRecoveryFlow**](docs/V0alpha2Api.md#submitSelfServiceRecoveryFlow) | **POST** /self-service/recovery | Complete Recovery Flow
+*V0alpha2Api* | [**submitSelfServiceRegistrationFlow**](docs/V0alpha2Api.md#submitSelfServiceRegistrationFlow) | **POST** /self-service/registration | Submit a Registration Flow
+*V0alpha2Api* | [**submitSelfServiceSettingsFlow**](docs/V0alpha2Api.md#submitSelfServiceSettingsFlow) | **POST** /self-service/settings | Complete Settings Flow
+*V0alpha2Api* | [**submitSelfServiceVerificationFlow**](docs/V0alpha2Api.md#submitSelfServiceVerificationFlow) | **POST** /self-service/verification | Complete Verification Flow
+*V0alpha2Api* | [**toSession**](docs/V0alpha2Api.md#toSession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 
 
 ## Documentation for Models
@@ -186,9 +176,11 @@ Class | Method | HTTP request | Description
  - [CloudAccount](docs/CloudAccount.md)
  - [CnameSettings](docs/CnameSettings.md)
  - [CreateCustomHostnameBody](docs/CreateCustomHostnameBody.md)
+ - [CreateProjectBody](docs/CreateProjectBody.md)
  - [CreateSubscriptionPayload](docs/CreateSubscriptionPayload.md)
  - [ErrorAuthenticatorAssuranceLevelNotSatisfied](docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md)
  - [GenericError](docs/GenericError.md)
+ - [GenericErrorContent](docs/GenericErrorContent.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
  - [HealthStatus](docs/HealthStatus.md)
  - [Identity](docs/Identity.md)
@@ -197,12 +189,11 @@ Class | Method | HTTP request | Description
  - [IdentityCredentialsOidcProvider](docs/IdentityCredentialsOidcProvider.md)
  - [IdentityCredentialsPassword](docs/IdentityCredentialsPassword.md)
  - [IdentityCredentialsType](docs/IdentityCredentialsType.md)
- - [IdentityPreset](docs/IdentityPreset.md)
  - [IdentitySchema](docs/IdentitySchema.md)
  - [IdentitySchemaLocation](docs/IdentitySchemaLocation.md)
+ - [IdentitySchemaPreset](docs/IdentitySchemaPreset.md)
  - [IdentitySchemaValidationResult](docs/IdentitySchemaValidationResult.md)
  - [IdentityState](docs/IdentityState.md)
- - [InlineObject](docs/InlineObject.md)
  - [InlineResponse200](docs/InlineResponse200.md)
  - [InlineResponse2001](docs/InlineResponse2001.md)
  - [InlineResponse503](docs/InlineResponse503.md)
@@ -210,16 +201,20 @@ Class | Method | HTTP request | Description
  - [IsOwnerForProjectBySlug](docs/IsOwnerForProjectBySlug.md)
  - [IsOwnerForProjectBySlugPayload](docs/IsOwnerForProjectBySlugPayload.md)
  - [JsonError](docs/JsonError.md)
+ - [JsonPatch](docs/JsonPatch.md)
  - [NeedsPrivilegedSessionError](docs/NeedsPrivilegedSessionError.md)
+ - [NormalizedProject](docs/NormalizedProject.md)
+ - [NormalizedProjectRevision](docs/NormalizedProjectRevision.md)
+ - [NormalizedProjectRevisionHook](docs/NormalizedProjectRevisionHook.md)
+ - [NormalizedProjectRevisionIdentitySchema](docs/NormalizedProjectRevisionIdentitySchema.md)
+ - [NormalizedProjectRevisionThirdPartyProvider](docs/NormalizedProjectRevisionThirdPartyProvider.md)
  - [NullPlan](docs/NullPlan.md)
  - [Pagination](docs/Pagination.md)
  - [Project](docs/Project.md)
  - [ProjectHost](docs/ProjectHost.md)
  - [ProjectInvite](docs/ProjectInvite.md)
- - [ProjectRevision](docs/ProjectRevision.md)
- - [ProjectRevisionHook](docs/ProjectRevisionHook.md)
- - [ProjectRevisionIdentitySchema](docs/ProjectRevisionIdentitySchema.md)
- - [ProjectRevisionThirdPartyLoginProvider](docs/ProjectRevisionThirdPartyLoginProvider.md)
+ - [ProjectServiceIdentity](docs/ProjectServiceIdentity.md)
+ - [ProjectServices](docs/ProjectServices.md)
  - [ProjectSlug](docs/ProjectSlug.md)
  - [QuotaProjectMemberSeats](docs/QuotaProjectMemberSeats.md)
  - [RecoveryAddress](docs/RecoveryAddress.md)
@@ -267,7 +262,7 @@ Class | Method | HTTP request | Description
  - [SubmitSelfServiceVerificationFlowBody](docs/SubmitSelfServiceVerificationFlowBody.md)
  - [SubmitSelfServiceVerificationFlowWithLinkMethodBody](docs/SubmitSelfServiceVerificationFlowWithLinkMethodBody.md)
  - [Subscription](docs/Subscription.md)
- - [SuccessfulProjectConfigUpdate](docs/SuccessfulProjectConfigUpdate.md)
+ - [SuccessfulProjectUpdate](docs/SuccessfulProjectUpdate.md)
  - [SuccessfulSelfServiceLoginWithoutBrowser](docs/SuccessfulSelfServiceLoginWithoutBrowser.md)
  - [SuccessfulSelfServiceRegistrationWithoutBrowser](docs/SuccessfulSelfServiceRegistrationWithoutBrowser.md)
  - [UiContainer](docs/UiContainer.md)
@@ -281,7 +276,7 @@ Class | Method | HTTP request | Description
  - [UiNodeTextAttributes](docs/UiNodeTextAttributes.md)
  - [UiText](docs/UiText.md)
  - [UpdateCustomHostnameBody](docs/UpdateCustomHostnameBody.md)
- - [UpdateProjectConfigConfig](docs/UpdateProjectConfigConfig.md)
+ - [UpdateProject](docs/UpdateProject.md)
  - [UpdateSubscriptionPayload](docs/UpdateSubscriptionPayload.md)
  - [VerifiableIdentityAddress](docs/VerifiableIdentityAddress.md)
  - [Version](docs/Version.md)

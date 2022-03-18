@@ -28,9 +28,11 @@ import 'package:ory_client/model/authenticator_assurance_level.dart';
 import 'package:ory_client/model/cloud_account.dart';
 import 'package:ory_client/model/cname_settings.dart';
 import 'package:ory_client/model/create_custom_hostname_body.dart';
+import 'package:ory_client/model/create_project_body.dart';
 import 'package:ory_client/model/create_subscription_payload.dart';
 import 'package:ory_client/model/error_authenticator_assurance_level_not_satisfied.dart';
 import 'package:ory_client/model/generic_error.dart';
+import 'package:ory_client/model/generic_error_content.dart';
 import 'package:ory_client/model/health_not_ready_status.dart';
 import 'package:ory_client/model/health_status.dart';
 import 'package:ory_client/model/identity.dart';
@@ -39,12 +41,11 @@ import 'package:ory_client/model/identity_credentials_oidc.dart';
 import 'package:ory_client/model/identity_credentials_oidc_provider.dart';
 import 'package:ory_client/model/identity_credentials_password.dart';
 import 'package:ory_client/model/identity_credentials_type.dart';
-import 'package:ory_client/model/identity_preset.dart';
 import 'package:ory_client/model/identity_schema.dart';
 import 'package:ory_client/model/identity_schema_location.dart';
+import 'package:ory_client/model/identity_schema_preset.dart';
 import 'package:ory_client/model/identity_schema_validation_result.dart';
 import 'package:ory_client/model/identity_state.dart';
-import 'package:ory_client/model/inline_object.dart';
 import 'package:ory_client/model/inline_response200.dart';
 import 'package:ory_client/model/inline_response2001.dart';
 import 'package:ory_client/model/inline_response503.dart';
@@ -52,16 +53,20 @@ import 'package:ory_client/model/invite_payload.dart';
 import 'package:ory_client/model/is_owner_for_project_by_slug.dart';
 import 'package:ory_client/model/is_owner_for_project_by_slug_payload.dart';
 import 'package:ory_client/model/json_error.dart';
+import 'package:ory_client/model/json_patch.dart';
 import 'package:ory_client/model/needs_privileged_session_error.dart';
+import 'package:ory_client/model/normalized_project.dart';
+import 'package:ory_client/model/normalized_project_revision.dart';
+import 'package:ory_client/model/normalized_project_revision_hook.dart';
+import 'package:ory_client/model/normalized_project_revision_identity_schema.dart';
+import 'package:ory_client/model/normalized_project_revision_third_party_provider.dart';
 import 'package:ory_client/model/null_plan.dart';
 import 'package:ory_client/model/pagination.dart';
 import 'package:ory_client/model/project.dart';
 import 'package:ory_client/model/project_host.dart';
 import 'package:ory_client/model/project_invite.dart';
-import 'package:ory_client/model/project_revision.dart';
-import 'package:ory_client/model/project_revision_hook.dart';
-import 'package:ory_client/model/project_revision_identity_schema.dart';
-import 'package:ory_client/model/project_revision_third_party_login_provider.dart';
+import 'package:ory_client/model/project_service_identity.dart';
+import 'package:ory_client/model/project_services.dart';
 import 'package:ory_client/model/project_slug.dart';
 import 'package:ory_client/model/quota_project_member_seats.dart';
 import 'package:ory_client/model/recovery_address.dart';
@@ -109,7 +114,7 @@ import 'package:ory_client/model/submit_self_service_settings_flow_with_web_auth
 import 'package:ory_client/model/submit_self_service_verification_flow_body.dart';
 import 'package:ory_client/model/submit_self_service_verification_flow_with_link_method_body.dart';
 import 'package:ory_client/model/subscription.dart';
-import 'package:ory_client/model/successful_project_config_update.dart';
+import 'package:ory_client/model/successful_project_update.dart';
 import 'package:ory_client/model/successful_self_service_login_without_browser.dart';
 import 'package:ory_client/model/successful_self_service_registration_without_browser.dart';
 import 'package:ory_client/model/ui_container.dart';
@@ -123,7 +128,7 @@ import 'package:ory_client/model/ui_node_script_attributes.dart';
 import 'package:ory_client/model/ui_node_text_attributes.dart';
 import 'package:ory_client/model/ui_text.dart';
 import 'package:ory_client/model/update_custom_hostname_body.dart';
-import 'package:ory_client/model/update_project_config_config.dart';
+import 'package:ory_client/model/update_project.dart';
 import 'package:ory_client/model/update_subscription_payload.dart';
 import 'package:ory_client/model/verifiable_identity_address.dart';
 import 'package:ory_client/model/version.dart';
@@ -147,9 +152,11 @@ part 'serializers.g.dart';
   CloudAccount,
   CnameSettings,
   CreateCustomHostnameBody,
+  CreateProjectBody,
   CreateSubscriptionPayload,
   ErrorAuthenticatorAssuranceLevelNotSatisfied,
   GenericError,
+  GenericErrorContent,
   HealthNotReadyStatus,
   HealthStatus,
   Identity,
@@ -158,12 +165,11 @@ part 'serializers.g.dart';
   IdentityCredentialsOidcProvider,
   IdentityCredentialsPassword,
   IdentityCredentialsType,
-  IdentityPreset,
   IdentitySchema,
   IdentitySchemaLocation,
+  IdentitySchemaPreset,
   IdentitySchemaValidationResult,
   IdentityState,
-  InlineObject,
   InlineResponse200,
   InlineResponse2001,
   InlineResponse503,
@@ -171,16 +177,20 @@ part 'serializers.g.dart';
   IsOwnerForProjectBySlug,
   IsOwnerForProjectBySlugPayload,
   JsonError,
+  JsonPatch,
   NeedsPrivilegedSessionError,
+  NormalizedProject,
+  NormalizedProjectRevision,
+  NormalizedProjectRevisionHook,
+  NormalizedProjectRevisionIdentitySchema,
+  NormalizedProjectRevisionThirdPartyProvider,
   NullPlan,
   Pagination,
   Project,
   ProjectHost,
   ProjectInvite,
-  ProjectRevision,
-  ProjectRevisionHook,
-  ProjectRevisionIdentitySchema,
-  ProjectRevisionThirdPartyLoginProvider,
+  ProjectServiceIdentity,
+  ProjectServices,
   ProjectSlug,
   QuotaProjectMemberSeats,
   RecoveryAddress,
@@ -228,7 +238,7 @@ part 'serializers.g.dart';
   SubmitSelfServiceVerificationFlowBody,
   SubmitSelfServiceVerificationFlowWithLinkMethodBody,
   Subscription,
-  SuccessfulProjectConfigUpdate,
+  SuccessfulProjectUpdate,
   SuccessfulSelfServiceLoginWithoutBrowser,
   SuccessfulSelfServiceRegistrationWithoutBrowser,
   UiContainer,
@@ -242,21 +252,13 @@ part 'serializers.g.dart';
   UiNodeTextAttributes,
   UiText,
   UpdateCustomHostnameBody,
-  UpdateProjectConfigConfig,
+  UpdateProject,
   UpdateSubscriptionPayload,
   VerifiableIdentityAddress,
   Version,
   Warning,
 ])
 Serializers serializers = (_$serializers.toBuilder()
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(Project)]),
-        () => ListBuilder<Project>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(CloudAccount)]),
-        () => ListBuilder<CloudAccount>(),
-      )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(Identity)]),
         () => ListBuilder<Identity>(),

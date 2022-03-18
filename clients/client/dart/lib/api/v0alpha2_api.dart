@@ -58,7 +58,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/admin/identities',
+      path: r'/admin/identities',
       method: 'POST',
       headers: <String, dynamic>{
         ...?headers,
@@ -121,7 +121,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/admin/recovery/link',
+      path: r'/admin/recovery/link',
       method: 'POST',
       headers: <String, dynamic>{
         ...?headers,
@@ -184,7 +184,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/admin/identities/{id}'.replaceAll('{' r'id' '}', id.toString()),
+      path: r'/admin/identities/{id}'.replaceAll('{' r'id' '}', id.toString()),
       method: 'DELETE',
       headers: <String, dynamic>{
         ...?headers,
@@ -229,7 +229,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/admin/identities/{id}/sessions'.replaceAll('{' r'id' '}', id.toString()),
+      path: r'/admin/identities/{id}/sessions'.replaceAll('{' r'id' '}', id.toString()),
       method: 'DELETE',
       headers: <String, dynamic>{
         ...?headers,
@@ -275,7 +275,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/admin/identities/{id}'.replaceAll('{' r'id' '}', id.toString()),
+      path: r'/admin/identities/{id}'.replaceAll('{' r'id' '}', id.toString()),
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -339,7 +339,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/admin/identities',
+      path: r'/admin/identities',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -406,7 +406,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/admin/identities/{id}/sessions'.replaceAll('{' r'id' '}', id.toString()),
+      path: r'/admin/identities/{id}/sessions'.replaceAll('{' r'id' '}', id.toString()),
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -472,7 +472,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/admin/identities/{id}'.replaceAll('{' r'id' '}', id.toString()),
+      path: r'/admin/identities/{id}'.replaceAll('{' r'id' '}', id.toString()),
       method: 'PUT',
       headers: <String, dynamic>{
         ...?headers,
@@ -535,7 +535,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/logout/browser',
+      path: r'/self-service/logout/browser',
       method: 'GET',
       headers: <String, dynamic>{
         if (cookie != null) r'cookie': cookie,
@@ -591,7 +591,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/schemas/{id}'.replaceAll('{' r'id' '}', id.toString()),
+      path: r'/schemas/{id}'.replaceAll('{' r'id' '}', id.toString()),
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -646,7 +646,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/errors',
+      path: r'/self-service/errors',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -705,7 +705,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/login/flows',
+      path: r'/self-service/login/flows',
       method: 'GET',
       headers: <String, dynamic>{
         if (cookie != null) r'cookie': cookie,
@@ -753,7 +753,7 @@ class V0alpha2Api {
 
   /// Get Recovery Flow
   ///
-  /// This endpoint returns a recovery flow's context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request's HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  ```js pseudo-code example router.get('/recovery', async function (req, res) { const flow = await client.getSelfServiceRecoveryFlow(req.header('Cookie'), req.query['flow'])  res.render('recovery', flow) }) ```  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+  /// This endpoint returns a recovery flow's context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request's HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  ```js pseudo-code example router.get('/recovery', async function (req, res) { const flow = await client.getSelfServiceRecoveryFlow(req.header('Cookie'), req.query['flow'])  res.render('recovery', flow) }) ```  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
   Future<Response<SelfServiceRecoveryFlow>> getSelfServiceRecoveryFlow(
     String id, { 
     String cookie,
@@ -765,7 +765,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/recovery/flows',
+      path: r'/self-service/recovery/flows',
       method: 'GET',
       headers: <String, dynamic>{
         if (cookie != null) r'cookie': cookie,
@@ -825,7 +825,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/registration/flows',
+      path: r'/self-service/registration/flows',
       method: 'GET',
       headers: <String, dynamic>{
         if (cookie != null) r'cookie': cookie,
@@ -886,7 +886,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/settings/flows',
+      path: r'/self-service/settings/flows',
       method: 'GET',
       headers: <String, dynamic>{
         if (xSessionToken != null) r'X-Session-Token': xSessionToken,
@@ -947,7 +947,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/verification/flows',
+      path: r'/self-service/verification/flows',
       method: 'GET',
       headers: <String, dynamic>{
         if (cookie != null) r'cookie': cookie,
@@ -1005,7 +1005,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/.well-known/ory/webauthn.js',
+      path: r'/.well-known/ory/webauthn.js',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -1058,7 +1058,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/login/browser',
+      path: r'/self-service/login/browser',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -1120,7 +1120,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/login/api',
+      path: r'/self-service/login/api',
       method: 'GET',
       headers: <String, dynamic>{
         if (xSessionToken != null) r'X-Session-Token': xSessionToken,
@@ -1169,7 +1169,7 @@ class V0alpha2Api {
 
   /// Initialize Recovery Flow for Browsers
   ///
-  /// This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to `selfservice.flows.recovery.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists, the browser is returned to the configured return URL.  If this endpoint is called via an AJAX request, the response contains the recovery flow without any redirects or a 400 bad request error if the user is already authenticated.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+  /// This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to `selfservice.flows.recovery.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists, the browser is returned to the configured return URL.  If this endpoint is called via an AJAX request, the response contains the recovery flow without any redirects or a 400 bad request error if the user is already authenticated.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
   Future<Response<SelfServiceRecoveryFlow>> initializeSelfServiceRecoveryFlowForBrowsers({ 
     String returnTo,
     CancelToken cancelToken,
@@ -1180,7 +1180,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/recovery/browser',
+      path: r'/self-service/recovery/browser',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -1227,7 +1227,7 @@ class V0alpha2Api {
 
   /// Initialize Recovery Flow for APIs, Services, Apps, ...
   ///
-  /// This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).   More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+  /// This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).   More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
   Future<Response<SelfServiceRecoveryFlow>> initializeSelfServiceRecoveryFlowWithoutBrowser({ 
     CancelToken cancelToken,
     Map<String, dynamic> headers,
@@ -1237,7 +1237,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/recovery/api',
+      path: r'/self-service/recovery/api',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -1292,7 +1292,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/registration/browser',
+      path: r'/self-service/registration/browser',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -1349,7 +1349,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/registration/api',
+      path: r'/self-service/registration/api',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -1404,7 +1404,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/settings/browser',
+      path: r'/self-service/settings/browser',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -1462,7 +1462,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/settings/api',
+      path: r'/self-service/settings/api',
       method: 'GET',
       headers: <String, dynamic>{
         if (xSessionToken != null) r'X-Session-Token': xSessionToken,
@@ -1518,7 +1518,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/verification/browser',
+      path: r'/self-service/verification/browser',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -1575,7 +1575,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/verification/api',
+      path: r'/self-service/verification/api',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -1631,7 +1631,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/schemas',
+      path: r'/schemas',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -1693,7 +1693,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/sessions',
+      path: r'/sessions',
       method: 'GET',
       headers: <String, dynamic>{
         if (xSessionToken != null) r'X-Session-Token': xSessionToken,
@@ -1754,7 +1754,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/sessions/{id}'.replaceAll('{' r'id' '}', id.toString()),
+      path: r'/sessions/{id}'.replaceAll('{' r'id' '}', id.toString()),
       method: 'DELETE',
       headers: <String, dynamic>{
         ...?headers,
@@ -1795,7 +1795,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/sessions',
+      path: r'/sessions',
       method: 'DELETE',
       headers: <String, dynamic>{
         if (xSessionToken != null) r'X-Session-Token': xSessionToken,
@@ -1854,7 +1854,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/login',
+      path: r'/self-service/login',
       method: 'POST',
       headers: <String, dynamic>{
         if (xSessionToken != null) r'X-Session-Token': xSessionToken,
@@ -1917,7 +1917,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/logout',
+      path: r'/self-service/logout',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -1961,7 +1961,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/logout/api',
+      path: r'/self-service/logout/api',
       method: 'DELETE',
       headers: <String, dynamic>{
         ...?headers,
@@ -1993,7 +1993,7 @@ class V0alpha2Api {
 
   /// Complete Recovery Flow
   ///
-  /// Use this endpoint to complete a recovery flow. This endpoint behaves differently for API and browser flows and has several states:  `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent and works with API- and Browser-initiated flows. For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid. and a HTTP 303 See Other redirect with a fresh recovery flow if the flow was otherwise invalid (e.g. expired). For Browser clients without HTTP Header `Accept` or with `Accept: text/_*` it returns a HTTP 303 See Other redirect to the Recovery UI URL with the Recovery Flow ID appended. `sent_email` is the success state after `choose_method` for the `link` method and allows the user to request another recovery email. It works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state. `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow (\"sending a recovery link\") does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Recover UI URL with a new Recovery Flow ID which contains an error message that the recovery link was invalid.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+  /// Use this endpoint to complete a recovery flow. This endpoint behaves differently for API and browser flows and has several states:  `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent and works with API- and Browser-initiated flows. For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid. and a HTTP 303 See Other redirect with a fresh recovery flow if the flow was otherwise invalid (e.g. expired). For Browser clients without HTTP Header `Accept` or with `Accept: text/_*` it returns a HTTP 303 See Other redirect to the Recovery UI URL with the Recovery Flow ID appended. `sent_email` is the success state after `choose_method` for the `link` method and allows the user to request another recovery email. It works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state. `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow (\"sending a recovery link\") does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Recover UI URL with a new Recovery Flow ID which contains an error message that the recovery link was invalid.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
   Future<Response<SelfServiceRecoveryFlow>> submitSelfServiceRecoveryFlow(
     String flow, { 
     String token,
@@ -2006,7 +2006,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/recovery',
+      path: r'/self-service/recovery',
       method: 'POST',
       headers: <String, dynamic>{
         ...?headers,
@@ -2069,7 +2069,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/registration',
+      path: r'/self-service/registration',
       method: 'POST',
       headers: <String, dynamic>{
         ...?headers,
@@ -2132,7 +2132,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/settings',
+      path: r'/self-service/settings',
       method: 'POST',
       headers: <String, dynamic>{
         if (xSessionToken != null) r'X-Session-Token': xSessionToken,
@@ -2196,7 +2196,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/verification',
+      path: r'/self-service/verification',
       method: 'POST',
       headers: <String, dynamic>{
         ...?headers,
@@ -2259,7 +2259,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/sessions/whoami',
+      path: r'/sessions/whoami',
       method: 'GET',
       headers: <String, dynamic>{
         if (xSessionToken != null) r'X-Session-Token': xSessionToken,

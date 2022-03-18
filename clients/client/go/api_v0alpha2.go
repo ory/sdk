@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.131
+ * API version: v0.0.1-alpha.132
  * Contact: support@ory.sh
  */
 
@@ -275,7 +275,7 @@ res.render('recovery', flow)
 })
 ```
 
-More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return V0alpha2ApiApiGetSelfServiceRecoveryFlowRequest
 	 */
@@ -483,7 +483,7 @@ or a 400 bad request error if the user is already authenticated.
 
 This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.
 
-More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return V0alpha2ApiApiInitializeSelfServiceRecoveryFlowForBrowsersRequest
 	 */
@@ -510,7 +510,7 @@ you vulnerable to a variety of CSRF attacks.
 This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
 
-More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return V0alpha2ApiApiInitializeSelfServiceRecoveryFlowWithoutBrowserRequest
 	 */
@@ -881,7 +881,7 @@ does not have any API capabilities. The server responds with a HTTP 303 See Othe
 (if the link was valid) and instructs the user to update their password, or a redirect to the Recover UI URL with
 a new Recovery Flow ID which contains an error message that the recovery link was invalid.
 
-More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest
 	 */
@@ -1134,7 +1134,7 @@ func (a *V0alpha2ApiService) AdminCreateIdentityExecute(r V0alpha2ApiApiAdminCre
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/admin/identities"
+	localVarPath := localBasePath + "/admin/identities"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1273,7 +1273,7 @@ func (a *V0alpha2ApiService) AdminCreateSelfServiceRecoveryLinkExecute(r V0alpha
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/admin/recovery/link"
+	localVarPath := localBasePath + "/admin/recovery/link"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1411,7 +1411,7 @@ func (a *V0alpha2ApiService) AdminDeleteIdentityExecute(r V0alpha2ApiApiAdminDel
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/admin/identities/{id}"
+	localVarPath := localBasePath + "/admin/identities/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1527,7 +1527,7 @@ func (a *V0alpha2ApiService) AdminDeleteIdentitySessionsExecute(r V0alpha2ApiApi
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/admin/identities/{id}/sessions"
+	localVarPath := localBasePath + "/admin/identities/{id}/sessions"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1668,7 +1668,7 @@ func (a *V0alpha2ApiService) AdminGetIdentityExecute(r V0alpha2ApiApiAdminGetIde
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/admin/identities/{id}"
+	localVarPath := localBasePath + "/admin/identities/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1813,7 +1813,7 @@ func (a *V0alpha2ApiService) AdminListIdentitiesExecute(r V0alpha2ApiApiAdminLis
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/admin/identities"
+	localVarPath := localBasePath + "/admin/identities"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1950,7 +1950,7 @@ func (a *V0alpha2ApiService) AdminListIdentitySessionsExecute(r V0alpha2ApiApiAd
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/admin/identities/{id}/sessions"
+	localVarPath := localBasePath + "/admin/identities/{id}/sessions"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -2114,7 +2114,7 @@ func (a *V0alpha2ApiService) AdminUpdateIdentityExecute(r V0alpha2ApiApiAdminUpd
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/admin/identities/{id}"
+	localVarPath := localBasePath + "/admin/identities/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -2272,7 +2272,7 @@ func (a *V0alpha2ApiService) CreateSelfServiceLogoutFlowUrlForBrowsersExecute(r 
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/logout/browser"
+	localVarPath := localBasePath + "/self-service/logout/browser"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2399,7 +2399,7 @@ func (a *V0alpha2ApiService) GetJsonSchemaExecute(r V0alpha2ApiApiGetJsonSchemaR
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/schemas/{id}"
+	localVarPath := localBasePath + "/schemas/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -2532,7 +2532,7 @@ func (a *V0alpha2ApiService) GetSelfServiceErrorExecute(r V0alpha2ApiApiGetSelfS
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/errors"
+	localVarPath := localBasePath + "/self-service/errors"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2699,7 +2699,7 @@ func (a *V0alpha2ApiService) GetSelfServiceLoginFlowExecute(r V0alpha2ApiApiGetS
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/login/flows"
+	localVarPath := localBasePath + "/self-service/login/flows"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2844,7 +2844,7 @@ res.render('recovery', flow)
 })
 ```
 
-More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return V0alpha2ApiApiGetSelfServiceRecoveryFlowRequest
  */
@@ -2874,7 +2874,7 @@ func (a *V0alpha2ApiService) GetSelfServiceRecoveryFlowExecute(r V0alpha2ApiApiG
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/recovery/flows"
+	localVarPath := localBasePath + "/self-service/recovery/flows"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3044,7 +3044,7 @@ func (a *V0alpha2ApiService) GetSelfServiceRegistrationFlowExecute(r V0alpha2Api
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/registration/flows"
+	localVarPath := localBasePath + "/self-service/registration/flows"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3225,7 +3225,7 @@ func (a *V0alpha2ApiService) GetSelfServiceSettingsFlowExecute(r V0alpha2ApiApiG
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/settings/flows"
+	localVarPath := localBasePath + "/self-service/settings/flows"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3412,7 +3412,7 @@ func (a *V0alpha2ApiService) GetSelfServiceVerificationFlowExecute(r V0alpha2Api
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/verification/flows"
+	localVarPath := localBasePath + "/self-service/verification/flows"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3558,7 +3558,7 @@ func (a *V0alpha2ApiService) GetWebAuthnJavaScriptExecute(r V0alpha2ApiApiGetWeb
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/.well-known/ory/webauthn.js"
+	localVarPath := localBasePath + "/.well-known/ory/webauthn.js"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3693,7 +3693,7 @@ func (a *V0alpha2ApiService) InitializeSelfServiceLoginFlowForBrowsersExecute(r 
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/login/browser"
+	localVarPath := localBasePath + "/self-service/login/browser"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3857,7 +3857,7 @@ func (a *V0alpha2ApiService) InitializeSelfServiceLoginFlowWithoutBrowserExecute
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/login/api"
+	localVarPath := localBasePath + "/self-service/login/api"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3971,7 +3971,7 @@ or a 400 bad request error if the user is already authenticated.
 
 This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.
 
-More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return V0alpha2ApiApiInitializeSelfServiceRecoveryFlowForBrowsersRequest
  */
@@ -4001,7 +4001,7 @@ func (a *V0alpha2ApiService) InitializeSelfServiceRecoveryFlowForBrowsersExecute
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/recovery/browser"
+	localVarPath := localBasePath + "/self-service/recovery/browser"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -4108,7 +4108,7 @@ you vulnerable to a variety of CSRF attacks.
 This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
 
-More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return V0alpha2ApiApiInitializeSelfServiceRecoveryFlowWithoutBrowserRequest
  */
@@ -4138,7 +4138,7 @@ func (a *V0alpha2ApiService) InitializeSelfServiceRecoveryFlowWithoutBrowserExec
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/recovery/api"
+	localVarPath := localBasePath + "/self-service/recovery/api"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -4288,7 +4288,7 @@ func (a *V0alpha2ApiService) InitializeSelfServiceRegistrationFlowForBrowsersExe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/registration/browser"
+	localVarPath := localBasePath + "/self-service/registration/browser"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -4420,7 +4420,7 @@ func (a *V0alpha2ApiService) InitializeSelfServiceRegistrationFlowWithoutBrowser
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/registration/api"
+	localVarPath := localBasePath + "/self-service/registration/api"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -4571,7 +4571,7 @@ func (a *V0alpha2ApiService) InitializeSelfServiceSettingsFlowForBrowsersExecute
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/settings/browser"
+	localVarPath := localBasePath + "/self-service/settings/browser"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -4741,7 +4741,7 @@ func (a *V0alpha2ApiService) InitializeSelfServiceSettingsFlowWithoutBrowserExec
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/settings/api"
+	localVarPath := localBasePath + "/self-service/settings/api"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -4877,7 +4877,7 @@ func (a *V0alpha2ApiService) InitializeSelfServiceVerificationFlowForBrowsersExe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/verification/browser"
+	localVarPath := localBasePath + "/self-service/verification/browser"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -5001,7 +5001,7 @@ func (a *V0alpha2ApiService) InitializeSelfServiceVerificationFlowWithoutBrowser
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/verification/api"
+	localVarPath := localBasePath + "/self-service/verification/api"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -5132,7 +5132,7 @@ func (a *V0alpha2ApiService) ListIdentitySchemasExecute(r V0alpha2ApiApiListIden
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/schemas"
+	localVarPath := localBasePath + "/schemas"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -5271,7 +5271,7 @@ func (a *V0alpha2ApiService) ListSessionsExecute(r V0alpha2ApiApiListSessionsReq
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/sessions"
+	localVarPath := localBasePath + "/sessions"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -5427,7 +5427,7 @@ func (a *V0alpha2ApiService) RevokeSessionExecute(r V0alpha2ApiApiRevokeSessionR
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/sessions/{id}"
+	localVarPath := localBasePath + "/sessions/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -5562,7 +5562,7 @@ func (a *V0alpha2ApiService) RevokeSessionsExecute(r V0alpha2ApiApiRevokeSession
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/sessions"
+	localVarPath := localBasePath + "/sessions"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -5756,7 +5756,7 @@ func (a *V0alpha2ApiService) SubmitSelfServiceLoginFlowExecute(r V0alpha2ApiApiS
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/login"
+	localVarPath := localBasePath + "/self-service/login"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -5916,7 +5916,7 @@ func (a *V0alpha2ApiService) SubmitSelfServiceLogoutFlowExecute(r V0alpha2ApiApi
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/logout"
+	localVarPath := localBasePath + "/self-service/logout"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -6034,7 +6034,7 @@ func (a *V0alpha2ApiService) SubmitSelfServiceLogoutFlowWithoutBrowserExecute(r 
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/logout/api"
+	localVarPath := localBasePath + "/self-service/logout/api"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -6151,7 +6151,7 @@ does not have any API capabilities. The server responds with a HTTP 303 See Othe
 (if the link was valid) and instructs the user to update their password, or a redirect to the Recover UI URL with
 a new Recovery Flow ID which contains an error message that the recovery link was invalid.
 
-More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest
  */
@@ -6181,7 +6181,7 @@ func (a *V0alpha2ApiService) SubmitSelfServiceRecoveryFlowExecute(r V0alpha2ApiA
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/recovery"
+	localVarPath := localBasePath + "/self-service/recovery"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -6348,7 +6348,7 @@ func (a *V0alpha2ApiService) SubmitSelfServiceRegistrationFlowExecute(r V0alpha2
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/registration"
+	localVarPath := localBasePath + "/self-service/registration"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -6542,7 +6542,7 @@ func (a *V0alpha2ApiService) SubmitSelfServiceSettingsFlowExecute(r V0alpha2ApiA
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/settings"
+	localVarPath := localBasePath + "/self-service/settings"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -6732,7 +6732,7 @@ func (a *V0alpha2ApiService) SubmitSelfServiceVerificationFlowExecute(r V0alpha2
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/self-service/verification"
+	localVarPath := localBasePath + "/self-service/verification"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -6919,7 +6919,7 @@ func (a *V0alpha2ApiService) ToSessionExecute(r V0alpha2ApiApiToSessionRequest) 
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/kratos/public/sessions/whoami"
+	localVarPath := localBasePath + "/sessions/whoami"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

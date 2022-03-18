@@ -14,29 +14,24 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(Project, () {
-    // The Project's Creation Date
-    // DateTime createdAt
-    test('to test the property `createdAt`', () async {
-      // TODO
-    });
-
-    // ProjectRevision currentRevision
-    test('to test the property `currentRevision`', () async {
-      // TODO
-    });
-
-    // BuiltList<String> hosts
-    test('to test the property `hosts`', () async {
-      // TODO
-    });
-
     // String id
     test('to test the property `id`', () async {
       // TODO
     });
 
-    // BuiltList<ProjectRevision> revisions
-    test('to test the property `revisions`', () async {
+    // The name of the project.
+    // String name
+    test('to test the property `name`', () async {
+      // TODO
+    });
+
+    // String revisionId
+    test('to test the property `revisionId`', () async {
+      // TODO
+    });
+
+    // ProjectServices services
+    test('to test the property `services`', () async {
       // TODO
     });
 
@@ -49,17 +44,6 @@ void main() {
     // The state of the project.
     // String state
     test('to test the property `state`', () async {
-      // TODO
-    });
-
-    // String subscriptionId
-    test('to test the property `subscriptionId`', () async {
-      // TODO
-    });
-
-    // Last Time Project was Updated
-    // DateTime updatedAt
-    test('to test the property `updatedAt`', () async {
       // TODO
     });
 

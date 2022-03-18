@@ -20,7 +20,7 @@ void main() {
       // TODO
     });
 
-    // Debug contains debug information. This is usually not available and has to be enabled.
+    // Debug information  This field is often not exposed to protect against leaking sensitive information.
     // String debug
     test('to test the property `debug`', () async {
       // TODO
@@ -32,15 +32,8 @@ void main() {
       // TODO
     });
 
-    // Name is the error name.
-    // String error
+    // GenericErrorContent error
     test('to test the property `error`', () async {
-      // TODO
-    });
-
-    // Description contains further information on the nature of the error.
-    // String errorDescription
-    test('to test the property `errorDescription`', () async {
       // TODO
     });
 
@@ -50,7 +43,7 @@ void main() {
       // TODO
     });
 
-    // Message contains the error message.
+    // Error message  The error's message.
     // String message
     test('to test the property `message`', () async {
       // TODO
@@ -71,12 +64,6 @@ void main() {
     // The status description
     // String status
     test('to test the property `status`', () async {
-      // TODO
-    });
-
-    // Code represents the error status code (404, 403, 401, ...).
-    // int statusCode
-    test('to test the property `statusCode`', () async {
       // TODO
     });
 

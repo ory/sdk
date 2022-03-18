@@ -5,16 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Code** | Pointer to **int64** | The status code | [optional] 
-**Debug** | Pointer to **string** | Debug contains debug information. This is usually not available and has to be enabled. | [optional] 
+**Debug** | Pointer to **string** | Debug information  This field is often not exposed to protect against leaking sensitive information. | [optional] 
 **Details** | Pointer to **map[string]interface{}** | Further error details | [optional] 
-**Error** | Pointer to **string** | Name is the error name. | [optional] 
-**ErrorDescription** | Pointer to **string** | Description contains further information on the nature of the error. | [optional] 
+**Error** | Pointer to [**GenericErrorContent**](GenericErrorContent.md) |  | [optional] 
 **Id** | Pointer to **string** | The error ID  Useful when trying to identify various errors in application logic. | [optional] 
-**Message** | **string** | Message contains the error message. | 
+**Message** | **string** | Error message  The error&#39;s message. | 
 **Reason** | Pointer to **string** | A human-readable reason for the error | [optional] 
 **Request** | Pointer to **string** | The request ID  The request ID is often exposed internally in order to trace errors across service architectures. This is often a UUID. | [optional] 
 **Status** | Pointer to **string** | The status description | [optional] 
-**StatusCode** | Pointer to **int64** | Code represents the error status code (404, 403, 401, ...). | [optional] 
 
 ## Methods
 
@@ -112,20 +110,20 @@ HasDetails returns a boolean if a field has been set.
 
 ### GetError
 
-`func (o *GenericError) GetError() string`
+`func (o *GenericError) GetError() GenericErrorContent`
 
 GetError returns the Error field if non-nil, zero value otherwise.
 
 ### GetErrorOk
 
-`func (o *GenericError) GetErrorOk() (*string, bool)`
+`func (o *GenericError) GetErrorOk() (*GenericErrorContent, bool)`
 
 GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetError
 
-`func (o *GenericError) SetError(v string)`
+`func (o *GenericError) SetError(v GenericErrorContent)`
 
 SetError sets Error field to given value.
 
@@ -134,31 +132,6 @@ SetError sets Error field to given value.
 `func (o *GenericError) HasError() bool`
 
 HasError returns a boolean if a field has been set.
-
-### GetErrorDescription
-
-`func (o *GenericError) GetErrorDescription() string`
-
-GetErrorDescription returns the ErrorDescription field if non-nil, zero value otherwise.
-
-### GetErrorDescriptionOk
-
-`func (o *GenericError) GetErrorDescriptionOk() (*string, bool)`
-
-GetErrorDescriptionOk returns a tuple with the ErrorDescription field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetErrorDescription
-
-`func (o *GenericError) SetErrorDescription(v string)`
-
-SetErrorDescription sets ErrorDescription field to given value.
-
-### HasErrorDescription
-
-`func (o *GenericError) HasErrorDescription() bool`
-
-HasErrorDescription returns a boolean if a field has been set.
 
 ### GetId
 
@@ -279,31 +252,6 @@ SetStatus sets Status field to given value.
 `func (o *GenericError) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
-
-### GetStatusCode
-
-`func (o *GenericError) GetStatusCode() int64`
-
-GetStatusCode returns the StatusCode field if non-nil, zero value otherwise.
-
-### GetStatusCodeOk
-
-`func (o *GenericError) GetStatusCodeOk() (*int64, bool)`
-
-GetStatusCodeOk returns a tuple with the StatusCode field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStatusCode
-
-`func (o *GenericError) SetStatusCode(v int64)`
-
-SetStatusCode sets StatusCode field to given value.
-
-### HasStatusCode
-
-`func (o *GenericError) HasStatusCode() bool`
-
-HasStatusCode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

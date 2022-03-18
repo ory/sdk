@@ -4,9 +4,9 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetVersion**](MetadataApi.md#getversion) | **GET** /api/kratos/public/version | Return Running Software Version.
-[**IsAlive**](MetadataApi.md#isalive) | **GET** /api/kratos/public/health/alive | Check HTTP Server Status
-[**IsReady**](MetadataApi.md#isready) | **GET** /api/kratos/public/health/ready | Check HTTP Server and Database Status
+[**GetVersion**](MetadataApi.md#getversion) | **GET** /version | Return Running Software Version.
+[**IsAlive**](MetadataApi.md#isalive) | **GET** /health/alive | Check HTTP Server Status
+[**IsReady**](MetadataApi.md#isready) | **GET** /health/ready | Check HTTP Server and Database Status
 
 
 <a name="getversion"></a>

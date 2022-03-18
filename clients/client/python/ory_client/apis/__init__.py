@@ -15,5 +15,4 @@
 
 # Import APIs into API package:
 from ory_client.api.metadata_api import MetadataApi
-from ory_client.api.v0alpha0_api import V0alpha0Api
 from ory_client.api.v0alpha2_api import V0alpha2Api

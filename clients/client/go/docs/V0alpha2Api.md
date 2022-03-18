@@ -4,45 +4,45 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AdminCreateIdentity**](V0alpha2Api.md#AdminCreateIdentity) | **Post** /api/kratos/admin/identities | Create an Identity
-[**AdminCreateSelfServiceRecoveryLink**](V0alpha2Api.md#AdminCreateSelfServiceRecoveryLink) | **Post** /api/kratos/admin/recovery/link | Create a Recovery Link
-[**AdminDeleteIdentity**](V0alpha2Api.md#AdminDeleteIdentity) | **Delete** /api/kratos/admin/identities/{id} | Delete an Identity
-[**AdminDeleteIdentitySessions**](V0alpha2Api.md#AdminDeleteIdentitySessions) | **Delete** /api/kratos/admin/identities/{id}/sessions | Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.
-[**AdminGetIdentity**](V0alpha2Api.md#AdminGetIdentity) | **Get** /api/kratos/admin/identities/{id} | Get an Identity
-[**AdminListIdentities**](V0alpha2Api.md#AdminListIdentities) | **Get** /api/kratos/admin/identities | List Identities
-[**AdminListIdentitySessions**](V0alpha2Api.md#AdminListIdentitySessions) | **Get** /api/kratos/admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity.
-[**AdminUpdateIdentity**](V0alpha2Api.md#AdminUpdateIdentity) | **Put** /api/kratos/admin/identities/{id} | Update an Identity
-[**CreateSelfServiceLogoutFlowUrlForBrowsers**](V0alpha2Api.md#CreateSelfServiceLogoutFlowUrlForBrowsers) | **Get** /api/kratos/public/self-service/logout/browser | Create a Logout URL for Browsers
-[**GetJsonSchema**](V0alpha2Api.md#GetJsonSchema) | **Get** /api/kratos/public/schemas/{id} | 
-[**GetSelfServiceError**](V0alpha2Api.md#GetSelfServiceError) | **Get** /api/kratos/public/self-service/errors | Get Self-Service Errors
-[**GetSelfServiceLoginFlow**](V0alpha2Api.md#GetSelfServiceLoginFlow) | **Get** /api/kratos/public/self-service/login/flows | Get Login Flow
-[**GetSelfServiceRecoveryFlow**](V0alpha2Api.md#GetSelfServiceRecoveryFlow) | **Get** /api/kratos/public/self-service/recovery/flows | Get Recovery Flow
-[**GetSelfServiceRegistrationFlow**](V0alpha2Api.md#GetSelfServiceRegistrationFlow) | **Get** /api/kratos/public/self-service/registration/flows | Get Registration Flow
-[**GetSelfServiceSettingsFlow**](V0alpha2Api.md#GetSelfServiceSettingsFlow) | **Get** /api/kratos/public/self-service/settings/flows | Get Settings Flow
-[**GetSelfServiceVerificationFlow**](V0alpha2Api.md#GetSelfServiceVerificationFlow) | **Get** /api/kratos/public/self-service/verification/flows | Get Verification Flow
-[**GetWebAuthnJavaScript**](V0alpha2Api.md#GetWebAuthnJavaScript) | **Get** /api/kratos/public/.well-known/ory/webauthn.js | Get WebAuthn JavaScript
-[**InitializeSelfServiceLoginFlowForBrowsers**](V0alpha2Api.md#InitializeSelfServiceLoginFlowForBrowsers) | **Get** /api/kratos/public/self-service/login/browser | Initialize Login Flow for Browsers
-[**InitializeSelfServiceLoginFlowWithoutBrowser**](V0alpha2Api.md#InitializeSelfServiceLoginFlowWithoutBrowser) | **Get** /api/kratos/public/self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ...
-[**InitializeSelfServiceRecoveryFlowForBrowsers**](V0alpha2Api.md#InitializeSelfServiceRecoveryFlowForBrowsers) | **Get** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browsers
-[**InitializeSelfServiceRecoveryFlowWithoutBrowser**](V0alpha2Api.md#InitializeSelfServiceRecoveryFlowWithoutBrowser) | **Get** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for APIs, Services, Apps, ...
-[**InitializeSelfServiceRegistrationFlowForBrowsers**](V0alpha2Api.md#InitializeSelfServiceRegistrationFlowForBrowsers) | **Get** /api/kratos/public/self-service/registration/browser | Initialize Registration Flow for Browsers
-[**InitializeSelfServiceRegistrationFlowWithoutBrowser**](V0alpha2Api.md#InitializeSelfServiceRegistrationFlowWithoutBrowser) | **Get** /api/kratos/public/self-service/registration/api | Initialize Registration Flow for APIs, Services, Apps, ...
-[**InitializeSelfServiceSettingsFlowForBrowsers**](V0alpha2Api.md#InitializeSelfServiceSettingsFlowForBrowsers) | **Get** /api/kratos/public/self-service/settings/browser | Initialize Settings Flow for Browsers
-[**InitializeSelfServiceSettingsFlowWithoutBrowser**](V0alpha2Api.md#InitializeSelfServiceSettingsFlowWithoutBrowser) | **Get** /api/kratos/public/self-service/settings/api | Initialize Settings Flow for APIs, Services, Apps, ...
-[**InitializeSelfServiceVerificationFlowForBrowsers**](V0alpha2Api.md#InitializeSelfServiceVerificationFlowForBrowsers) | **Get** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients
-[**InitializeSelfServiceVerificationFlowWithoutBrowser**](V0alpha2Api.md#InitializeSelfServiceVerificationFlowWithoutBrowser) | **Get** /api/kratos/public/self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
-[**ListIdentitySchemas**](V0alpha2Api.md#ListIdentitySchemas) | **Get** /api/kratos/public/schemas | 
-[**ListSessions**](V0alpha2Api.md#ListSessions) | **Get** /api/kratos/public/sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint.
-[**RevokeSession**](V0alpha2Api.md#RevokeSession) | **Delete** /api/kratos/public/sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
-[**RevokeSessions**](V0alpha2Api.md#RevokeSessions) | **Delete** /api/kratos/public/sessions | Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
-[**SubmitSelfServiceLoginFlow**](V0alpha2Api.md#SubmitSelfServiceLoginFlow) | **Post** /api/kratos/public/self-service/login | Submit a Login Flow
-[**SubmitSelfServiceLogoutFlow**](V0alpha2Api.md#SubmitSelfServiceLogoutFlow) | **Get** /api/kratos/public/self-service/logout | Complete Self-Service Logout
-[**SubmitSelfServiceLogoutFlowWithoutBrowser**](V0alpha2Api.md#SubmitSelfServiceLogoutFlowWithoutBrowser) | **Delete** /api/kratos/public/self-service/logout/api | Perform Logout for APIs, Services, Apps, ...
-[**SubmitSelfServiceRecoveryFlow**](V0alpha2Api.md#SubmitSelfServiceRecoveryFlow) | **Post** /api/kratos/public/self-service/recovery | Complete Recovery Flow
-[**SubmitSelfServiceRegistrationFlow**](V0alpha2Api.md#SubmitSelfServiceRegistrationFlow) | **Post** /api/kratos/public/self-service/registration | Submit a Registration Flow
-[**SubmitSelfServiceSettingsFlow**](V0alpha2Api.md#SubmitSelfServiceSettingsFlow) | **Post** /api/kratos/public/self-service/settings | Complete Settings Flow
-[**SubmitSelfServiceVerificationFlow**](V0alpha2Api.md#SubmitSelfServiceVerificationFlow) | **Post** /api/kratos/public/self-service/verification | Complete Verification Flow
-[**ToSession**](V0alpha2Api.md#ToSession) | **Get** /api/kratos/public/sessions/whoami | Check Who the Current HTTP Session Belongs To
+[**AdminCreateIdentity**](V0alpha2Api.md#AdminCreateIdentity) | **Post** /admin/identities | Create an Identity
+[**AdminCreateSelfServiceRecoveryLink**](V0alpha2Api.md#AdminCreateSelfServiceRecoveryLink) | **Post** /admin/recovery/link | Create a Recovery Link
+[**AdminDeleteIdentity**](V0alpha2Api.md#AdminDeleteIdentity) | **Delete** /admin/identities/{id} | Delete an Identity
+[**AdminDeleteIdentitySessions**](V0alpha2Api.md#AdminDeleteIdentitySessions) | **Delete** /admin/identities/{id}/sessions | Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.
+[**AdminGetIdentity**](V0alpha2Api.md#AdminGetIdentity) | **Get** /admin/identities/{id} | Get an Identity
+[**AdminListIdentities**](V0alpha2Api.md#AdminListIdentities) | **Get** /admin/identities | List Identities
+[**AdminListIdentitySessions**](V0alpha2Api.md#AdminListIdentitySessions) | **Get** /admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity.
+[**AdminUpdateIdentity**](V0alpha2Api.md#AdminUpdateIdentity) | **Put** /admin/identities/{id} | Update an Identity
+[**CreateSelfServiceLogoutFlowUrlForBrowsers**](V0alpha2Api.md#CreateSelfServiceLogoutFlowUrlForBrowsers) | **Get** /self-service/logout/browser | Create a Logout URL for Browsers
+[**GetJsonSchema**](V0alpha2Api.md#GetJsonSchema) | **Get** /schemas/{id} | 
+[**GetSelfServiceError**](V0alpha2Api.md#GetSelfServiceError) | **Get** /self-service/errors | Get Self-Service Errors
+[**GetSelfServiceLoginFlow**](V0alpha2Api.md#GetSelfServiceLoginFlow) | **Get** /self-service/login/flows | Get Login Flow
+[**GetSelfServiceRecoveryFlow**](V0alpha2Api.md#GetSelfServiceRecoveryFlow) | **Get** /self-service/recovery/flows | Get Recovery Flow
+[**GetSelfServiceRegistrationFlow**](V0alpha2Api.md#GetSelfServiceRegistrationFlow) | **Get** /self-service/registration/flows | Get Registration Flow
+[**GetSelfServiceSettingsFlow**](V0alpha2Api.md#GetSelfServiceSettingsFlow) | **Get** /self-service/settings/flows | Get Settings Flow
+[**GetSelfServiceVerificationFlow**](V0alpha2Api.md#GetSelfServiceVerificationFlow) | **Get** /self-service/verification/flows | Get Verification Flow
+[**GetWebAuthnJavaScript**](V0alpha2Api.md#GetWebAuthnJavaScript) | **Get** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
+[**InitializeSelfServiceLoginFlowForBrowsers**](V0alpha2Api.md#InitializeSelfServiceLoginFlowForBrowsers) | **Get** /self-service/login/browser | Initialize Login Flow for Browsers
+[**InitializeSelfServiceLoginFlowWithoutBrowser**](V0alpha2Api.md#InitializeSelfServiceLoginFlowWithoutBrowser) | **Get** /self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ...
+[**InitializeSelfServiceRecoveryFlowForBrowsers**](V0alpha2Api.md#InitializeSelfServiceRecoveryFlowForBrowsers) | **Get** /self-service/recovery/browser | Initialize Recovery Flow for Browsers
+[**InitializeSelfServiceRecoveryFlowWithoutBrowser**](V0alpha2Api.md#InitializeSelfServiceRecoveryFlowWithoutBrowser) | **Get** /self-service/recovery/api | Initialize Recovery Flow for APIs, Services, Apps, ...
+[**InitializeSelfServiceRegistrationFlowForBrowsers**](V0alpha2Api.md#InitializeSelfServiceRegistrationFlowForBrowsers) | **Get** /self-service/registration/browser | Initialize Registration Flow for Browsers
+[**InitializeSelfServiceRegistrationFlowWithoutBrowser**](V0alpha2Api.md#InitializeSelfServiceRegistrationFlowWithoutBrowser) | **Get** /self-service/registration/api | Initialize Registration Flow for APIs, Services, Apps, ...
+[**InitializeSelfServiceSettingsFlowForBrowsers**](V0alpha2Api.md#InitializeSelfServiceSettingsFlowForBrowsers) | **Get** /self-service/settings/browser | Initialize Settings Flow for Browsers
+[**InitializeSelfServiceSettingsFlowWithoutBrowser**](V0alpha2Api.md#InitializeSelfServiceSettingsFlowWithoutBrowser) | **Get** /self-service/settings/api | Initialize Settings Flow for APIs, Services, Apps, ...
+[**InitializeSelfServiceVerificationFlowForBrowsers**](V0alpha2Api.md#InitializeSelfServiceVerificationFlowForBrowsers) | **Get** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
+[**InitializeSelfServiceVerificationFlowWithoutBrowser**](V0alpha2Api.md#InitializeSelfServiceVerificationFlowWithoutBrowser) | **Get** /self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
+[**ListIdentitySchemas**](V0alpha2Api.md#ListIdentitySchemas) | **Get** /schemas | 
+[**ListSessions**](V0alpha2Api.md#ListSessions) | **Get** /sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint.
+[**RevokeSession**](V0alpha2Api.md#RevokeSession) | **Delete** /sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
+[**RevokeSessions**](V0alpha2Api.md#RevokeSessions) | **Delete** /sessions | Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
+[**SubmitSelfServiceLoginFlow**](V0alpha2Api.md#SubmitSelfServiceLoginFlow) | **Post** /self-service/login | Submit a Login Flow
+[**SubmitSelfServiceLogoutFlow**](V0alpha2Api.md#SubmitSelfServiceLogoutFlow) | **Get** /self-service/logout | Complete Self-Service Logout
+[**SubmitSelfServiceLogoutFlowWithoutBrowser**](V0alpha2Api.md#SubmitSelfServiceLogoutFlowWithoutBrowser) | **Delete** /self-service/logout/api | Perform Logout for APIs, Services, Apps, ...
+[**SubmitSelfServiceRecoveryFlow**](V0alpha2Api.md#SubmitSelfServiceRecoveryFlow) | **Post** /self-service/recovery | Complete Recovery Flow
+[**SubmitSelfServiceRegistrationFlow**](V0alpha2Api.md#SubmitSelfServiceRegistrationFlow) | **Post** /self-service/registration | Submit a Registration Flow
+[**SubmitSelfServiceSettingsFlow**](V0alpha2Api.md#SubmitSelfServiceSettingsFlow) | **Post** /self-service/settings | Complete Settings Flow
+[**SubmitSelfServiceVerificationFlow**](V0alpha2Api.md#SubmitSelfServiceVerificationFlow) | **Post** /self-service/verification | Complete Verification Flow
+[**ToSession**](V0alpha2Api.md#ToSession) | **Get** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 
 
 

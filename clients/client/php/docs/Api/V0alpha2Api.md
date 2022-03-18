@@ -4,45 +4,45 @@ All URIs are relative to https://playground.projects.oryapis.com.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**adminCreateIdentity()**](V0alpha2Api.md#adminCreateIdentity) | **POST** /api/kratos/admin/identities | Create an Identity
-[**adminCreateSelfServiceRecoveryLink()**](V0alpha2Api.md#adminCreateSelfServiceRecoveryLink) | **POST** /api/kratos/admin/recovery/link | Create a Recovery Link
-[**adminDeleteIdentity()**](V0alpha2Api.md#adminDeleteIdentity) | **DELETE** /api/kratos/admin/identities/{id} | Delete an Identity
-[**adminDeleteIdentitySessions()**](V0alpha2Api.md#adminDeleteIdentitySessions) | **DELETE** /api/kratos/admin/identities/{id}/sessions | Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.
-[**adminGetIdentity()**](V0alpha2Api.md#adminGetIdentity) | **GET** /api/kratos/admin/identities/{id} | Get an Identity
-[**adminListIdentities()**](V0alpha2Api.md#adminListIdentities) | **GET** /api/kratos/admin/identities | List Identities
-[**adminListIdentitySessions()**](V0alpha2Api.md#adminListIdentitySessions) | **GET** /api/kratos/admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity.
-[**adminUpdateIdentity()**](V0alpha2Api.md#adminUpdateIdentity) | **PUT** /api/kratos/admin/identities/{id} | Update an Identity
-[**createSelfServiceLogoutFlowUrlForBrowsers()**](V0alpha2Api.md#createSelfServiceLogoutFlowUrlForBrowsers) | **GET** /api/kratos/public/self-service/logout/browser | Create a Logout URL for Browsers
-[**getJsonSchema()**](V0alpha2Api.md#getJsonSchema) | **GET** /api/kratos/public/schemas/{id} | 
-[**getSelfServiceError()**](V0alpha2Api.md#getSelfServiceError) | **GET** /api/kratos/public/self-service/errors | Get Self-Service Errors
-[**getSelfServiceLoginFlow()**](V0alpha2Api.md#getSelfServiceLoginFlow) | **GET** /api/kratos/public/self-service/login/flows | Get Login Flow
-[**getSelfServiceRecoveryFlow()**](V0alpha2Api.md#getSelfServiceRecoveryFlow) | **GET** /api/kratos/public/self-service/recovery/flows | Get Recovery Flow
-[**getSelfServiceRegistrationFlow()**](V0alpha2Api.md#getSelfServiceRegistrationFlow) | **GET** /api/kratos/public/self-service/registration/flows | Get Registration Flow
-[**getSelfServiceSettingsFlow()**](V0alpha2Api.md#getSelfServiceSettingsFlow) | **GET** /api/kratos/public/self-service/settings/flows | Get Settings Flow
-[**getSelfServiceVerificationFlow()**](V0alpha2Api.md#getSelfServiceVerificationFlow) | **GET** /api/kratos/public/self-service/verification/flows | Get Verification Flow
-[**getWebAuthnJavaScript()**](V0alpha2Api.md#getWebAuthnJavaScript) | **GET** /api/kratos/public/.well-known/ory/webauthn.js | Get WebAuthn JavaScript
-[**initializeSelfServiceLoginFlowForBrowsers()**](V0alpha2Api.md#initializeSelfServiceLoginFlowForBrowsers) | **GET** /api/kratos/public/self-service/login/browser | Initialize Login Flow for Browsers
-[**initializeSelfServiceLoginFlowWithoutBrowser()**](V0alpha2Api.md#initializeSelfServiceLoginFlowWithoutBrowser) | **GET** /api/kratos/public/self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ...
-[**initializeSelfServiceRecoveryFlowForBrowsers()**](V0alpha2Api.md#initializeSelfServiceRecoveryFlowForBrowsers) | **GET** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browsers
-[**initializeSelfServiceRecoveryFlowWithoutBrowser()**](V0alpha2Api.md#initializeSelfServiceRecoveryFlowWithoutBrowser) | **GET** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for APIs, Services, Apps, ...
-[**initializeSelfServiceRegistrationFlowForBrowsers()**](V0alpha2Api.md#initializeSelfServiceRegistrationFlowForBrowsers) | **GET** /api/kratos/public/self-service/registration/browser | Initialize Registration Flow for Browsers
-[**initializeSelfServiceRegistrationFlowWithoutBrowser()**](V0alpha2Api.md#initializeSelfServiceRegistrationFlowWithoutBrowser) | **GET** /api/kratos/public/self-service/registration/api | Initialize Registration Flow for APIs, Services, Apps, ...
-[**initializeSelfServiceSettingsFlowForBrowsers()**](V0alpha2Api.md#initializeSelfServiceSettingsFlowForBrowsers) | **GET** /api/kratos/public/self-service/settings/browser | Initialize Settings Flow for Browsers
-[**initializeSelfServiceSettingsFlowWithoutBrowser()**](V0alpha2Api.md#initializeSelfServiceSettingsFlowWithoutBrowser) | **GET** /api/kratos/public/self-service/settings/api | Initialize Settings Flow for APIs, Services, Apps, ...
-[**initializeSelfServiceVerificationFlowForBrowsers()**](V0alpha2Api.md#initializeSelfServiceVerificationFlowForBrowsers) | **GET** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients
-[**initializeSelfServiceVerificationFlowWithoutBrowser()**](V0alpha2Api.md#initializeSelfServiceVerificationFlowWithoutBrowser) | **GET** /api/kratos/public/self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
-[**listIdentitySchemas()**](V0alpha2Api.md#listIdentitySchemas) | **GET** /api/kratos/public/schemas | 
-[**listSessions()**](V0alpha2Api.md#listSessions) | **GET** /api/kratos/public/sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint.
-[**revokeSession()**](V0alpha2Api.md#revokeSession) | **DELETE** /api/kratos/public/sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
-[**revokeSessions()**](V0alpha2Api.md#revokeSessions) | **DELETE** /api/kratos/public/sessions | Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
-[**submitSelfServiceLoginFlow()**](V0alpha2Api.md#submitSelfServiceLoginFlow) | **POST** /api/kratos/public/self-service/login | Submit a Login Flow
-[**submitSelfServiceLogoutFlow()**](V0alpha2Api.md#submitSelfServiceLogoutFlow) | **GET** /api/kratos/public/self-service/logout | Complete Self-Service Logout
-[**submitSelfServiceLogoutFlowWithoutBrowser()**](V0alpha2Api.md#submitSelfServiceLogoutFlowWithoutBrowser) | **DELETE** /api/kratos/public/self-service/logout/api | Perform Logout for APIs, Services, Apps, ...
-[**submitSelfServiceRecoveryFlow()**](V0alpha2Api.md#submitSelfServiceRecoveryFlow) | **POST** /api/kratos/public/self-service/recovery | Complete Recovery Flow
-[**submitSelfServiceRegistrationFlow()**](V0alpha2Api.md#submitSelfServiceRegistrationFlow) | **POST** /api/kratos/public/self-service/registration | Submit a Registration Flow
-[**submitSelfServiceSettingsFlow()**](V0alpha2Api.md#submitSelfServiceSettingsFlow) | **POST** /api/kratos/public/self-service/settings | Complete Settings Flow
-[**submitSelfServiceVerificationFlow()**](V0alpha2Api.md#submitSelfServiceVerificationFlow) | **POST** /api/kratos/public/self-service/verification | Complete Verification Flow
-[**toSession()**](V0alpha2Api.md#toSession) | **GET** /api/kratos/public/sessions/whoami | Check Who the Current HTTP Session Belongs To
+[**adminCreateIdentity()**](V0alpha2Api.md#adminCreateIdentity) | **POST** /admin/identities | Create an Identity
+[**adminCreateSelfServiceRecoveryLink()**](V0alpha2Api.md#adminCreateSelfServiceRecoveryLink) | **POST** /admin/recovery/link | Create a Recovery Link
+[**adminDeleteIdentity()**](V0alpha2Api.md#adminDeleteIdentity) | **DELETE** /admin/identities/{id} | Delete an Identity
+[**adminDeleteIdentitySessions()**](V0alpha2Api.md#adminDeleteIdentitySessions) | **DELETE** /admin/identities/{id}/sessions | Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.
+[**adminGetIdentity()**](V0alpha2Api.md#adminGetIdentity) | **GET** /admin/identities/{id} | Get an Identity
+[**adminListIdentities()**](V0alpha2Api.md#adminListIdentities) | **GET** /admin/identities | List Identities
+[**adminListIdentitySessions()**](V0alpha2Api.md#adminListIdentitySessions) | **GET** /admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity.
+[**adminUpdateIdentity()**](V0alpha2Api.md#adminUpdateIdentity) | **PUT** /admin/identities/{id} | Update an Identity
+[**createSelfServiceLogoutFlowUrlForBrowsers()**](V0alpha2Api.md#createSelfServiceLogoutFlowUrlForBrowsers) | **GET** /self-service/logout/browser | Create a Logout URL for Browsers
+[**getJsonSchema()**](V0alpha2Api.md#getJsonSchema) | **GET** /schemas/{id} | 
+[**getSelfServiceError()**](V0alpha2Api.md#getSelfServiceError) | **GET** /self-service/errors | Get Self-Service Errors
+[**getSelfServiceLoginFlow()**](V0alpha2Api.md#getSelfServiceLoginFlow) | **GET** /self-service/login/flows | Get Login Flow
+[**getSelfServiceRecoveryFlow()**](V0alpha2Api.md#getSelfServiceRecoveryFlow) | **GET** /self-service/recovery/flows | Get Recovery Flow
+[**getSelfServiceRegistrationFlow()**](V0alpha2Api.md#getSelfServiceRegistrationFlow) | **GET** /self-service/registration/flows | Get Registration Flow
+[**getSelfServiceSettingsFlow()**](V0alpha2Api.md#getSelfServiceSettingsFlow) | **GET** /self-service/settings/flows | Get Settings Flow
+[**getSelfServiceVerificationFlow()**](V0alpha2Api.md#getSelfServiceVerificationFlow) | **GET** /self-service/verification/flows | Get Verification Flow
+[**getWebAuthnJavaScript()**](V0alpha2Api.md#getWebAuthnJavaScript) | **GET** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
+[**initializeSelfServiceLoginFlowForBrowsers()**](V0alpha2Api.md#initializeSelfServiceLoginFlowForBrowsers) | **GET** /self-service/login/browser | Initialize Login Flow for Browsers
+[**initializeSelfServiceLoginFlowWithoutBrowser()**](V0alpha2Api.md#initializeSelfServiceLoginFlowWithoutBrowser) | **GET** /self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ...
+[**initializeSelfServiceRecoveryFlowForBrowsers()**](V0alpha2Api.md#initializeSelfServiceRecoveryFlowForBrowsers) | **GET** /self-service/recovery/browser | Initialize Recovery Flow for Browsers
+[**initializeSelfServiceRecoveryFlowWithoutBrowser()**](V0alpha2Api.md#initializeSelfServiceRecoveryFlowWithoutBrowser) | **GET** /self-service/recovery/api | Initialize Recovery Flow for APIs, Services, Apps, ...
+[**initializeSelfServiceRegistrationFlowForBrowsers()**](V0alpha2Api.md#initializeSelfServiceRegistrationFlowForBrowsers) | **GET** /self-service/registration/browser | Initialize Registration Flow for Browsers
+[**initializeSelfServiceRegistrationFlowWithoutBrowser()**](V0alpha2Api.md#initializeSelfServiceRegistrationFlowWithoutBrowser) | **GET** /self-service/registration/api | Initialize Registration Flow for APIs, Services, Apps, ...
+[**initializeSelfServiceSettingsFlowForBrowsers()**](V0alpha2Api.md#initializeSelfServiceSettingsFlowForBrowsers) | **GET** /self-service/settings/browser | Initialize Settings Flow for Browsers
+[**initializeSelfServiceSettingsFlowWithoutBrowser()**](V0alpha2Api.md#initializeSelfServiceSettingsFlowWithoutBrowser) | **GET** /self-service/settings/api | Initialize Settings Flow for APIs, Services, Apps, ...
+[**initializeSelfServiceVerificationFlowForBrowsers()**](V0alpha2Api.md#initializeSelfServiceVerificationFlowForBrowsers) | **GET** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
+[**initializeSelfServiceVerificationFlowWithoutBrowser()**](V0alpha2Api.md#initializeSelfServiceVerificationFlowWithoutBrowser) | **GET** /self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
+[**listIdentitySchemas()**](V0alpha2Api.md#listIdentitySchemas) | **GET** /schemas | 
+[**listSessions()**](V0alpha2Api.md#listSessions) | **GET** /sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint.
+[**revokeSession()**](V0alpha2Api.md#revokeSession) | **DELETE** /sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
+[**revokeSessions()**](V0alpha2Api.md#revokeSessions) | **DELETE** /sessions | Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
+[**submitSelfServiceLoginFlow()**](V0alpha2Api.md#submitSelfServiceLoginFlow) | **POST** /self-service/login | Submit a Login Flow
+[**submitSelfServiceLogoutFlow()**](V0alpha2Api.md#submitSelfServiceLogoutFlow) | **GET** /self-service/logout | Complete Self-Service Logout
+[**submitSelfServiceLogoutFlowWithoutBrowser()**](V0alpha2Api.md#submitSelfServiceLogoutFlowWithoutBrowser) | **DELETE** /self-service/logout/api | Perform Logout for APIs, Services, Apps, ...
+[**submitSelfServiceRecoveryFlow()**](V0alpha2Api.md#submitSelfServiceRecoveryFlow) | **POST** /self-service/recovery | Complete Recovery Flow
+[**submitSelfServiceRegistrationFlow()**](V0alpha2Api.md#submitSelfServiceRegistrationFlow) | **POST** /self-service/registration | Submit a Registration Flow
+[**submitSelfServiceSettingsFlow()**](V0alpha2Api.md#submitSelfServiceSettingsFlow) | **POST** /self-service/settings | Complete Settings Flow
+[**submitSelfServiceVerificationFlow()**](V0alpha2Api.md#submitSelfServiceVerificationFlow) | **POST** /self-service/verification | Complete Verification Flow
+[**toSession()**](V0alpha2Api.md#toSession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 
 
 ## `adminCreateIdentity()`
@@ -769,7 +769,7 @@ getSelfServiceRecoveryFlow($id, $cookie): \Ory\Client\Model\SelfServiceRecoveryF
 
 Get Recovery Flow
 
-This endpoint returns a recovery flow's context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request's HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  ```js pseudo-code example router.get('/recovery', async function (req, res) { const flow = await client.getSelfServiceRecoveryFlow(req.header('Cookie'), req.query['flow'])  res.render('recovery', flow) }) ```  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+This endpoint returns a recovery flow's context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request's HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  ```js pseudo-code example router.get('/recovery', async function (req, res) { const flow = await client.getSelfServiceRecoveryFlow(req.header('Cookie'), req.query['flow'])  res.render('recovery', flow) }) ```  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
 
 ### Example
 
@@ -1176,7 +1176,7 @@ initializeSelfServiceRecoveryFlowForBrowsers($returnTo): \Ory\Client\Model\SelfS
 
 Initialize Recovery Flow for Browsers
 
-This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to `selfservice.flows.recovery.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists, the browser is returned to the configured return URL.  If this endpoint is called via an AJAX request, the response contains the recovery flow without any redirects or a 400 bad request error if the user is already authenticated.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to `selfservice.flows.recovery.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists, the browser is returned to the configured return URL.  If this endpoint is called via an AJAX request, the response contains the recovery flow without any redirects or a 400 bad request error if the user is already authenticated.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
 
 ### Example
 
@@ -1232,7 +1232,7 @@ initializeSelfServiceRecoveryFlowWithoutBrowser(): \Ory\Client\Model\SelfService
 
 Initialize Recovery Flow for APIs, Services, Apps, ...
 
-This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).   More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).   More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
 
 ### Example
 
@@ -2020,7 +2020,7 @@ submitSelfServiceRecoveryFlow($flow, $token, $submitSelfServiceRecoveryFlowBody)
 
 Complete Recovery Flow
 
-Use this endpoint to complete a recovery flow. This endpoint behaves differently for API and browser flows and has several states:  `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent and works with API- and Browser-initiated flows. For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid. and a HTTP 303 See Other redirect with a fresh recovery flow if the flow was otherwise invalid (e.g. expired). For Browser clients without HTTP Header `Accept` or with `Accept: text/_*` it returns a HTTP 303 See Other redirect to the Recovery UI URL with the Recovery Flow ID appended. `sent_email` is the success state after `choose_method` for the `link` method and allows the user to request another recovery email. It works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state. `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow (\"sending a recovery link\") does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Recover UI URL with a new Recovery Flow ID which contains an error message that the recovery link was invalid.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+Use this endpoint to complete a recovery flow. This endpoint behaves differently for API and browser flows and has several states:  `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent and works with API- and Browser-initiated flows. For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid. and a HTTP 303 See Other redirect with a fresh recovery flow if the flow was otherwise invalid (e.g. expired). For Browser clients without HTTP Header `Accept` or with `Accept: text/_*` it returns a HTTP 303 See Other redirect to the Recovery UI URL with the Recovery Flow ID appended. `sent_email` is the success state after `choose_method` for the `link` method and allows the user to request another recovery email. It works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state. `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow (\"sending a recovery link\") does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Recover UI URL with a new Recovery Flow ID which contains an error message that the recovery link was invalid.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
 
 ### Example
 
