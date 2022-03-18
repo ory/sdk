@@ -262,6 +262,10 @@ part 'serializers.g.dart';
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Project)]),
+        () => ListBuilder<Project>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(Identity)]),
         () => ListBuilder<Identity>(),
       )
@@ -272,6 +276,14 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(IdentitySchema)]),
         () => ListBuilder<IdentitySchema>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CloudAccount)]),
+        () => ListBuilder<CloudAccount>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(JsonPatch)]),
+        () => ListBuilder<JsonPatch>(),
       )
       ..add(Iso8601DateTimeSerializer()))
     .build();

@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.0.1-alpha.134
+  version: v0.0.1-alpha.138
 servers:
 - url: https://{project}.projects.oryapis.com/
   variables:
@@ -523,6 +523,466 @@ paths:
       summary: Check HTTP Server and Database Status
       tags:
       - metadata
+  /projects:
+    get:
+      description: Lists all projects you have access to.
+      operationId: listProjects
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projects'
+          description: projects
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: List All Projects
+      tags:
+      - v0alpha2
+    post:
+      description: Creates a new project.
+      operationId: createProject
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createProjectBody'
+        x-originalParamName: Body
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/project'
+          description: project
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Create a Project
+      tags:
+      - v0alpha2
+  /projects/{project_id}:
+    delete:
+      description: |-
+        !! Use with extreme caution !!
+
+        Using this API endpoint you can purge (completely delete) a project and its data.
+        This action can not be undone and will delete ALL your data.
+
+        !! Use with extreme caution !!
+      operationId: purgeProject
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Irrecoverably Purge a Project
+      tags:
+      - v0alpha2
+    get:
+      description: Get a projects you have access to by its ID.
+      operationId: getProject
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/project'
+          description: project
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Get a Project
+      tags:
+      - v0alpha2
+    patch:
+      description: |-
+        This endpoints allows you to patch individual Ory Cloud Project configuration keys for
+        Ory's services (identity, permission, ...). The configuration format is fully compatible
+        with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).
+
+        This endpoint expects the `version` key to be set in the payload. If it is unset, it
+        will try to import the config as if it is from the most recent version.
+
+        If you have an older version of a configuration, you should set the version key in the payload!
+
+        While this endpoint is able to process all configuration items related to features (e.g. password reset),
+        it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the
+        open source.
+
+        For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings
+        to help you understand which parts of your config could not be processed.
+      operationId: patchProject
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/jsonPatch'
+              type: array
+        x-originalParamName: Body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successfulProjectUpdate'
+          description: successfulProjectUpdate
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Patch an Ory Cloud Project Configuration
+      tags:
+      - v0alpha2
+    put:
+      description: |-
+        This endpoints allows you to update the Ory Cloud Project configuration for
+        individual services (identity, permission, ...). The configuration is fully compatible
+        with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).
+
+        This endpoint expects the `version` key to be set in the payload. If it is unset, it
+        will try to import the config as if it is from the most recent version.
+
+        If you have an older version of a configuration, you should set the version key in the payload!
+
+        While this endpoint is able to process all configuration items related to features (e.g. password reset),
+        it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the
+        open source.
+
+        For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings
+        to help you understand which parts of your config could not be processed.
+
+        Be aware that updating any service's configuration will completely override your current configuration for that
+        service!
+      operationId: updateProject
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateProject'
+        x-originalParamName: Body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successfulProjectUpdate'
+          description: successfulProjectUpdate
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Update an Ory Cloud Project Configuration
+      tags:
+      - v0alpha2
+  /projects/{project_id}/members:
+    get:
+      description: This endpoint requires the user to be a member of the project with
+        the role `OWNER` or `DEVELOPER`.
+      operationId: getProjectMembers
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projectMembers'
+          description: projectMembers
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Get all members associated with this project.
+      tags:
+      - v0alpha2
+  /projects/{project_id}/members/{member_id}:
+    delete:
+      description: This endpoint requires the user to be a member of the project with
+        the role `OWNER`.
+      operationId: removeProjectMember
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Member ID
+        explode: false
+        in: path
+        name: member_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Remove a member associated with this project. This also sets their
+        invite status to `REMOVED`.
+      tags:
+      - v0alpha2
   /schemas:
     get:
       description: Get all Identity Schemas
@@ -2746,6 +3206,9 @@ components:
       - plan_or_price
       type: object
     Warning:
+      example:
+        code: 0
+        message: message
       properties:
         code:
           format: int64
@@ -4340,6 +4803,15 @@ components:
           type: integer
       type: object
     project:
+      example:
+        name: name
+        id: id
+        services:
+          identity:
+            config: '{}'
+        state: running
+        slug: slug
+        revision_id: revision_id
       properties:
         id:
           format: uuid4
@@ -4461,6 +4933,8 @@ components:
         $ref: '#/components/schemas/normalizedProjectRevision'
       type: array
     projectServiceIdentity:
+      example:
+        config: '{}'
       properties:
         config:
           type: object
@@ -4468,6 +4942,9 @@ components:
       - config
       type: object
     projectServices:
+      example:
+        identity:
+          config: '{}'
       properties:
         identity:
           $ref: '#/components/schemas/projectServiceIdentity'
@@ -6023,6 +6500,21 @@ components:
       - updated_at
       type: object
     successfulProjectUpdate:
+      example:
+        warnings:
+        - code: 0
+          message: message
+        - code: 0
+          message: message
+        project:
+          name: name
+          id: id
+          services:
+            identity:
+              config: '{}'
+          state: running
+          slug: slug
+          revision_id: revision_id
       properties:
         project:
           $ref: '#/components/schemas/project'

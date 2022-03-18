@@ -87,6 +87,15 @@ void main() {
       // TODO
     });
 
+    // Create a Project
+    //
+    // Creates a new project.
+    //
+    //Future<Project> createProject({ CreateProjectBody createProjectBody }) async
+    test('test createProject', () async {
+      // TODO
+    });
+
     // Create a Logout URL for Browsers
     //
     // This endpoint initializes a browser-based user logout flow and a URL which can be used to log out the user.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...). For API clients you can call the `/self-service/logout/api` URL directly with the Ory Session Token.  The URL is only valid for the currently signed in user. If no user is signed in, this endpoint returns a 401 error.  When calling this endpoint from a backend, please ensure to properly forward the HTTP cookies.
@@ -100,6 +109,24 @@ void main() {
     //
     //Future<JsonObject> getJsonSchema(String id) async
     test('test getJsonSchema', () async {
+      // TODO
+    });
+
+    // Get a Project
+    //
+    // Get a projects you have access to by its ID.
+    //
+    //Future<Project> getProject(String projectId) async
+    test('test getProject', () async {
+      // TODO
+    });
+
+    // Get all members associated with this project.
+    //
+    // This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
+    //
+    //Future<BuiltList<CloudAccount>> getProjectMembers(String projectId) async
+    test('test getProjectMembers', () async {
       // TODO
     });
 
@@ -263,12 +290,48 @@ void main() {
       // TODO
     });
 
+    // List All Projects
+    //
+    // Lists all projects you have access to.
+    //
+    //Future<BuiltList<Project>> listProjects() async
+    test('test listProjects', () async {
+      // TODO
+    });
+
     // This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the `/sessions/whoami` endpoint.
     //
     // This endpoint is useful for:  Displaying all other sessions that belong to the logged-in user
     //
     //Future<BuiltList<Session>> listSessions({ String xSessionToken, String cookie, int perPage, int page }) async
     test('test listSessions', () async {
+      // TODO
+    });
+
+    // Patch an Ory Cloud Project Configuration
+    //
+    // This endpoints allows you to patch individual Ory Cloud Project configuration keys for Ory's services (identity, permission, ...). The configuration format is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.
+    //
+    //Future<SuccessfulProjectUpdate> patchProject(String projectId, { BuiltList<JsonPatch> jsonPatch }) async
+    test('test patchProject', () async {
+      // TODO
+    });
+
+    // Irrecoverably Purge a Project
+    //
+    // !! Use with extreme caution !!  Using this API endpoint you can purge (completely delete) a project and its data. This action can not be undone and will delete ALL your data.  !! Use with extreme caution !!
+    //
+    //Future purgeProject(String projectId) async
+    test('test purgeProject', () async {
+      // TODO
+    });
+
+    // Remove a member associated with this project. This also sets their invite status to `REMOVED`.
+    //
+    // This endpoint requires the user to be a member of the project with the role `OWNER`.
+    //
+    //Future removeProjectMember(String projectId, String memberId) async
+    test('test removeProjectMember', () async {
       // TODO
     });
 
@@ -359,6 +422,15 @@ void main() {
     //
     //Future<Session> toSession({ String xSessionToken, String cookie }) async
     test('test toSession', () async {
+      // TODO
+    });
+
+    // Update an Ory Cloud Project Configuration
+    //
+    // This endpoints allows you to update the Ory Cloud Project configuration for individual services (identity, permission, ...). The configuration is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.  Be aware that updating any service's configuration will completely override your current configuration for that service!
+    //
+    //Future<SuccessfulProjectUpdate> updateProject(String projectId, { UpdateProject updateProject }) async
+    test('test updateProject', () async {
       // TODO
     });
 
