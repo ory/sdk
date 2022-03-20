@@ -55,6 +55,7 @@ docs/ClientPagination.md
 docs/ClientProject.md
 docs/ClientProjectHost.md
 docs/ClientProjectInvite.md
+docs/ClientProjectMetadata.md
 docs/ClientProjectServiceIdentity.md
 docs/ClientProjectServices.md
 docs/ClientProjectSlug.md
@@ -180,6 +181,7 @@ src/Ory.Client.Test/Model/ClientNullPlanTests.cs
 src/Ory.Client.Test/Model/ClientPaginationTests.cs
 src/Ory.Client.Test/Model/ClientProjectHostTests.cs
 src/Ory.Client.Test/Model/ClientProjectInviteTests.cs
+src/Ory.Client.Test/Model/ClientProjectMetadataTests.cs
 src/Ory.Client.Test/Model/ClientProjectServiceIdentityTests.cs
 src/Ory.Client.Test/Model/ClientProjectServicesTests.cs
 src/Ory.Client.Test/Model/ClientProjectSlugTests.cs
@@ -322,6 +324,7 @@ src/Ory.Client/Model/ClientPagination.cs
 src/Ory.Client/Model/ClientProject.cs
 src/Ory.Client/Model/ClientProjectHost.cs
 src/Ory.Client/Model/ClientProjectInvite.cs
+src/Ory.Client/Model/ClientProjectMetadata.cs
 src/Ory.Client/Model/ClientProjectServiceIdentity.cs
 src/Ory.Client/Model/ClientProjectServices.cs
 src/Ory.Client/Model/ClientProjectSlug.cs

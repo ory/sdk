@@ -180,16 +180,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "2.1.0",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "089edd38f5b8abba6cb01567c2a8aaa47cec4c72"
+                "reference": "6565c7e0db3231e92dd5ca3bed448b30fbc89eb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/089edd38f5b8abba6cb01567c2a8aaa47cec4c72",
-                "reference": "089edd38f5b8abba6cb01567c2a8aaa47cec4c72",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/6565c7e0db3231e92dd5ca3bed448b30fbc89eb1",
+                "reference": "6565c7e0db3231e92dd5ca3bed448b30fbc89eb1",
                 "shasum": ""
             },
             "require": {
@@ -213,7 +213,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1-dev"
+                    "dev-master": "2.2-dev"
                 }
             },
             "autoload": {
@@ -273,7 +273,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2021-10-06T17:43:30+00:00"
+            "time": "2022-03-20T13:51:08+00:00"
         },
         {
             "name": "psr/http-client",

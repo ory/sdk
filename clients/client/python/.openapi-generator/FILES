@@ -56,6 +56,7 @@ docs/NormalizedProject.md
 docs/NormalizedProjectRevision.md
 docs/NormalizedProjectRevisionHook.md
 docs/NormalizedProjectRevisionIdentitySchema.md
+docs/NormalizedProjectRevisionIdentitySchemas.md
 docs/NormalizedProjectRevisionThirdPartyProvider.md
 docs/NormalizedProjects.md
 docs/NullPlan.md
@@ -66,6 +67,8 @@ docs/ProjectInvite.md
 docs/ProjectInvites.md
 docs/ProjectMember.md
 docs/ProjectMembers.md
+docs/ProjectMetadata.md
+docs/ProjectMetadataList.md
 docs/ProjectRevisionHooks.md
 docs/ProjectRevisionIdentitySchemas.md
 docs/ProjectRevisionThirdPartyLoginProviders.md
@@ -208,6 +211,7 @@ ory_client/model/normalized_project.py
 ory_client/model/normalized_project_revision.py
 ory_client/model/normalized_project_revision_hook.py
 ory_client/model/normalized_project_revision_identity_schema.py
+ory_client/model/normalized_project_revision_identity_schemas.py
 ory_client/model/normalized_project_revision_third_party_provider.py
 ory_client/model/normalized_projects.py
 ory_client/model/null_plan.py
@@ -218,6 +222,8 @@ ory_client/model/project_invite.py
 ory_client/model/project_invites.py
 ory_client/model/project_member.py
 ory_client/model/project_members.py
+ory_client/model/project_metadata.py
+ory_client/model/project_metadata_list.py
 ory_client/model/project_revision_hooks.py
 ory_client/model/project_revision_identity_schemas.py
 ory_client/model/project_revision_third_party_login_providers.py
@@ -358,6 +364,7 @@ test/test_normalized_project.py
 test/test_normalized_project_revision.py
 test/test_normalized_project_revision_hook.py
 test/test_normalized_project_revision_identity_schema.py
+test/test_normalized_project_revision_identity_schemas.py
 test/test_normalized_project_revision_third_party_provider.py
 test/test_normalized_projects.py
 test/test_null_plan.py
@@ -368,6 +375,8 @@ test/test_project_invite.py
 test/test_project_invites.py
 test/test_project_member.py
 test/test_project_members.py
+test/test_project_metadata.py
+test/test_project_metadata_list.py
 test/test_project_revision_hooks.py
 test/test_project_revision_identity_schemas.py
 test/test_project_revision_third_party_login_providers.py

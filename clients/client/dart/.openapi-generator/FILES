@@ -55,6 +55,7 @@ doc/Pagination.md
 doc/Project.md
 doc/ProjectHost.md
 doc/ProjectInvite.md
+doc/ProjectMetadata.md
 doc/ProjectServiceIdentity.md
 doc/ProjectServices.md
 doc/ProjectSlug.md
@@ -185,6 +186,7 @@ lib/model/pagination.dart
 lib/model/project.dart
 lib/model/project_host.dart
 lib/model/project_invite.dart
+lib/model/project_metadata.dart
 lib/model/project_service_identity.dart
 lib/model/project_services.dart
 lib/model/project_slug.dart
@@ -308,6 +310,7 @@ test/null_plan_test.dart
 test/pagination_test.dart
 test/project_host_test.dart
 test/project_invite_test.dart
+test/project_metadata_test.dart
 test/project_service_identity_test.dart
 test/project_services_test.dart
 test/project_slug_test.dart

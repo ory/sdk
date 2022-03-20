@@ -65,6 +65,7 @@ import 'package:ory_client/model/pagination.dart';
 import 'package:ory_client/model/project.dart';
 import 'package:ory_client/model/project_host.dart';
 import 'package:ory_client/model/project_invite.dart';
+import 'package:ory_client/model/project_metadata.dart';
 import 'package:ory_client/model/project_service_identity.dart';
 import 'package:ory_client/model/project_services.dart';
 import 'package:ory_client/model/project_slug.dart';
@@ -190,6 +191,7 @@ part 'serializers.g.dart';
   Project,
   ProjectHost,
   ProjectInvite,
+  ProjectMetadata,
   ProjectServiceIdentity,
   ProjectServices,
   ProjectSlug,
@@ -262,8 +264,8 @@ part 'serializers.g.dart';
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(Project)]),
-        () => ListBuilder<Project>(),
+        const FullType(BuiltList, [FullType(ProjectMetadata)]),
+        () => ListBuilder<ProjectMetadata>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(Identity)]),

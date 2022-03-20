@@ -102,6 +102,8 @@ pub mod project_host;
 pub use self::project_host::ProjectHost;
 pub mod project_invite;
 pub use self::project_invite::ProjectInvite;
+pub mod project_metadata;
+pub use self::project_metadata::ProjectMetadata;
 pub mod project_service_identity;
 pub use self::project_service_identity::ProjectServiceIdentity;
 pub mod project_services;

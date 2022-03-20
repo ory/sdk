@@ -2514,7 +2514,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_projects**
-> Projects list_projects()
+> ProjectMetadataList list_projects()
 
 List All Projects
 
@@ -2528,7 +2528,7 @@ Lists all projects you have access to.
 import time
 import ory_client
 from ory_client.api import v0alpha2_api
-from ory_client.model.projects import Projects
+from ory_client.model.project_metadata_list import ProjectMetadataList
 from ory_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
@@ -2567,7 +2567,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Projects**](Projects.md)
+[**ProjectMetadataList**](ProjectMetadataList.md)
 
 ### Authorization
 
@@ -2583,7 +2583,7 @@ This endpoint does not need any parameter.
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | projects |  -  |
+**200** | projectMetadataList |  -  |
 **401** | genericError |  -  |
 **403** | genericError |  -  |
 **404** | genericError |  -  |

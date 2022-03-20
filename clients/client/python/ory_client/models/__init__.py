@@ -61,6 +61,7 @@ from ory_client.model.normalized_project import NormalizedProject
 from ory_client.model.normalized_project_revision import NormalizedProjectRevision
 from ory_client.model.normalized_project_revision_hook import NormalizedProjectRevisionHook
 from ory_client.model.normalized_project_revision_identity_schema import NormalizedProjectRevisionIdentitySchema
+from ory_client.model.normalized_project_revision_identity_schemas import NormalizedProjectRevisionIdentitySchemas
 from ory_client.model.normalized_project_revision_third_party_provider import NormalizedProjectRevisionThirdPartyProvider
 from ory_client.model.normalized_projects import NormalizedProjects
 from ory_client.model.null_plan import NullPlan
@@ -71,6 +72,8 @@ from ory_client.model.project_invite import ProjectInvite
 from ory_client.model.project_invites import ProjectInvites
 from ory_client.model.project_member import ProjectMember
 from ory_client.model.project_members import ProjectMembers
+from ory_client.model.project_metadata import ProjectMetadata
+from ory_client.model.project_metadata_list import ProjectMetadataList
 from ory_client.model.project_revision_hooks import ProjectRevisionHooks
 from ory_client.model.project_revision_identity_schemas import ProjectRevisionIdentitySchemas
 from ory_client.model.project_revision_third_party_login_providers import ProjectRevisionThirdPartyLoginProviders

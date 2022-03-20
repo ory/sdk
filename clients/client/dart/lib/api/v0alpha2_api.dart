@@ -22,6 +22,7 @@ import 'package:ory_client/model/identity_schema.dart';
 import 'package:ory_client/model/json_error.dart';
 import 'package:ory_client/model/json_patch.dart';
 import 'package:ory_client/model/project.dart';
+import 'package:ory_client/model/project_metadata.dart';
 import 'package:ory_client/model/revoked_sessions.dart';
 import 'package:ory_client/model/self_service_browser_location_change_required_error.dart';
 import 'package:ory_client/model/self_service_error.dart';
@@ -1870,7 +1871,7 @@ class V0alpha2Api {
   /// List All Projects
   ///
   /// Lists all projects you have access to.
-  Future<Response<BuiltList<Project>>> listProjects({ 
+  Future<Response<BuiltList<ProjectMetadata>>> listProjects({ 
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -1908,13 +1909,13 @@ class V0alpha2Api {
       options: _request,
     );
 
-    const _responseType = FullType(BuiltList, [FullType(Project)]);
-    final BuiltList<Project> _responseData = _serializers.deserialize(
+    const _responseType = FullType(BuiltList, [FullType(ProjectMetadata)]);
+    final BuiltList<ProjectMetadata> _responseData = _serializers.deserialize(
       _response.data,
       specifiedType: _responseType,
-    ) as BuiltList<Project>;
+    ) as BuiltList<ProjectMetadata>;
 
-    return Response<BuiltList<Project>>(
+    return Response<BuiltList<ProjectMetadata>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

@@ -1856,7 +1856,7 @@ No authorization required
 ## `listProjects()`
 
 ```php
-listProjects(): \Ory\Client\Model\Project[]
+listProjects(): \Ory\Client\Model\ProjectMetadata[]
 ```
 
 List All Projects
@@ -1895,7 +1895,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Ory\Client\Model\Project[]**](../Model/Project.md)
+[**\Ory\Client\Model\ProjectMetadata[]**](../Model/ProjectMetadata.md)
 
 ### Authorization
 

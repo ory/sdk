@@ -991,7 +991,7 @@ No authorization required
 
 ## list_projects
 
-> Vec<crate::models::Project> list_projects()
+> Vec<crate::models::ProjectMetadata> list_projects()
 List All Projects
 
 Lists all projects you have access to.
@@ -1002,7 +1002,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::Project>**](project.md)
+[**Vec<crate::models::ProjectMetadata>**](projectMetadata.md)
 
 ### Authorization
 

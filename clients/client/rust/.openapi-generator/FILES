@@ -56,6 +56,7 @@ docs/Pagination.md
 docs/Project.md
 docs/ProjectHost.md
 docs/ProjectInvite.md
+docs/ProjectMetadata.md
 docs/ProjectServiceIdentity.md
 docs/ProjectServices.md
 docs/ProjectSlug.md
@@ -185,6 +186,7 @@ src/models/pagination.rs
 src/models/project.rs
 src/models/project_host.rs
 src/models/project_invite.rs
+src/models/project_metadata.rs
 src/models/project_service_identity.rs
 src/models/project_services.rs
 src/models/project_slug.rs

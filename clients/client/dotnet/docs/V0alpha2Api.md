@@ -2389,7 +2389,7 @@ No authorization required
 
 <a name="listprojects"></a>
 # **ListProjects**
-> List&lt;ClientProject&gt; ListProjects ()
+> List&lt;ClientProjectMetadata&gt; ListProjects ()
 
 List All Projects
 
@@ -2419,7 +2419,7 @@ namespace Example
             try
             {
                 // List All Projects
-                List<ClientProject> result = apiInstance.ListProjects();
+                List<ClientProjectMetadata> result = apiInstance.ListProjects();
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2438,7 +2438,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List&lt;ClientProject&gt;**](ClientProject.md)
+[**List&lt;ClientProjectMetadata&gt;**](ClientProjectMetadata.md)
 
 ### Authorization
 
@@ -2453,7 +2453,7 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | projects |  -  |
+| **200** | projectMetadataList |  -  |
 | **401** | genericError |  -  |
 | **403** | genericError |  -  |
 | **404** | genericError |  -  |

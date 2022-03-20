@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.138
+ * API version: v0.0.1-alpha.139
  * Contact: support@ory.sh
  */
 
@@ -779,9 +779,9 @@ More information can be found at [Ory Kratos Email and Phone Verification Docume
 
 	/*
 	 * ListProjectsExecute executes the request
-	 * @return []Project
+	 * @return []ProjectMetadata
 	 */
-	ListProjectsExecute(r V0alpha2ApiApiListProjectsRequest) ([]Project, *http.Response, error)
+	ListProjectsExecute(r V0alpha2ApiApiListProjectsRequest) ([]ProjectMetadata, *http.Response, error)
 
 	/*
 	 * ListSessions This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the `/sessions/whoami` endpoint.
@@ -5790,7 +5790,7 @@ type V0alpha2ApiApiListProjectsRequest struct {
 }
 
 
-func (r V0alpha2ApiApiListProjectsRequest) Execute() ([]Project, *http.Response, error) {
+func (r V0alpha2ApiApiListProjectsRequest) Execute() ([]ProjectMetadata, *http.Response, error) {
 	return r.ApiService.ListProjectsExecute(r)
 }
 
@@ -5809,16 +5809,16 @@ func (a *V0alpha2ApiService) ListProjects(ctx context.Context) V0alpha2ApiApiLis
 
 /*
  * Execute executes the request
- * @return []Project
+ * @return []ProjectMetadata
  */
-func (a *V0alpha2ApiService) ListProjectsExecute(r V0alpha2ApiApiListProjectsRequest) ([]Project, *http.Response, error) {
+func (a *V0alpha2ApiService) ListProjectsExecute(r V0alpha2ApiApiListProjectsRequest) ([]ProjectMetadata, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []Project
+		localVarReturnValue  []ProjectMetadata
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.ListProjects")

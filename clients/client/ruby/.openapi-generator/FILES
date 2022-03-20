@@ -59,6 +59,7 @@ docs/Pagination.md
 docs/Project.md
 docs/ProjectHost.md
 docs/ProjectInvite.md
+docs/ProjectMetadata.md
 docs/ProjectServiceIdentity.md
 docs/ProjectServices.md
 docs/ProjectSlug.md
@@ -188,6 +189,7 @@ lib/ory-client/models/pagination.rb
 lib/ory-client/models/project.rb
 lib/ory-client/models/project_host.rb
 lib/ory-client/models/project_invite.rb
+lib/ory-client/models/project_metadata.rb
 lib/ory-client/models/project_service_identity.rb
 lib/ory-client/models/project_services.rb
 lib/ory-client/models/project_slug.rb
@@ -314,6 +316,7 @@ spec/models/null_plan_spec.rb
 spec/models/pagination_spec.rb
 spec/models/project_host_spec.rb
 spec/models/project_invite_spec.rb
+spec/models/project_metadata_spec.rb
 spec/models/project_service_identity_spec.rb
 spec/models/project_services_spec.rb
 spec/models/project_slug_spec.rb

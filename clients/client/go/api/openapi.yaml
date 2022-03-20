@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.0.1-alpha.138
+  version: v0.0.1-alpha.139
 servers:
 - url: https://{project}.projects.oryapis.com/
   variables:
@@ -532,8 +532,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/projects'
-          description: projects
+                $ref: '#/components/schemas/projectMetadataList'
+          description: projectMetadataList
         "401":
           content:
             application/json:
@@ -4662,6 +4662,10 @@ components:
           readOnly: true
           type: string
       type: object
+    normalizedProjectRevisionIdentitySchemas:
+      items:
+        $ref: '#/components/schemas/normalizedProjectRevisionIdentitySchema'
+      type: array
     normalizedProjectRevisionThirdPartyProvider:
       properties:
         apple_private_key:
@@ -4915,6 +4919,64 @@ components:
     projectMembers:
       items:
         $ref: '#/components/schemas/projectMember'
+      type: array
+    projectMetadata:
+      example:
+        subscription_id: subscription_id
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        hosts:
+        - hosts
+        - hosts
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: id
+        state: running
+        slug: slug
+      properties:
+        created_at:
+          description: The Project's Creation Date
+          format: date-time
+          type: string
+        hosts:
+          items:
+            type: string
+          title: StringSliceJSONFormat represents []string{} which is encoded to/from
+            JSON for SQL storage.
+          type: array
+        id:
+          format: uuid4
+          type: string
+        name:
+          description: The project's name if set
+          type: string
+        slug:
+          description: The project's slug
+          readOnly: true
+          type: string
+        state:
+          description: The state of the project.
+          enum:
+          - running
+          - halted
+          type: string
+        subscription_id:
+          format: uuid4
+          type: string
+        updated_at:
+          description: Last Time Project was Updated
+          format: date-time
+          type: string
+      required:
+      - created_at
+      - hosts
+      - id
+      - name
+      - state
+      - updated_at
+      type: object
+    projectMetadataList:
+      items:
+        $ref: '#/components/schemas/projectMetadata'
       type: array
     projectRevisionHooks:
       items:

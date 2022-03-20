@@ -2144,7 +2144,7 @@ No authorization required
 
 ## ListProjects
 
-> []Project ListProjects(ctx).Execute()
+> []ProjectMetadata ListProjects(ctx).Execute()
 
 List All Projects
 
@@ -2171,7 +2171,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.ListProjects``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListProjects`: []Project
+    // response from `ListProjects`: []ProjectMetadata
     fmt.Fprintf(os.Stdout, "Response from `V0alpha2Api.ListProjects`: %v\n", resp)
 }
 ```
@@ -2187,7 +2187,7 @@ Other parameters are passed through a pointer to a apiListProjectsRequest struct
 
 ### Return type
 
-[**[]Project**](Project.md)
+[**[]ProjectMetadata**](ProjectMetadata.md)
 
 ### Authorization
 

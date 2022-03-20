@@ -294,7 +294,7 @@ void main() {
     //
     // Lists all projects you have access to.
     //
-    //Future<BuiltList<Project>> listProjects() async
+    //Future<BuiltList<ProjectMetadata>> listProjects() async
     test('test listProjects', () async {
       // TODO
     });

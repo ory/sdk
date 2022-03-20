@@ -2134,7 +2134,7 @@ No authorization required
 
 <a name="listProjects"></a>
 # **listProjects**
-> List&lt;Project&gt; listProjects()
+> List&lt;ProjectMetadata&gt; listProjects()
 
 List All Projects
 
@@ -2161,7 +2161,7 @@ public class Example {
 
     V0alpha2Api apiInstance = new V0alpha2Api(defaultClient);
     try {
-      List<Project> result = apiInstance.listProjects();
+      List<ProjectMetadata> result = apiInstance.listProjects();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling V0alpha2Api#listProjects");
@@ -2179,7 +2179,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List&lt;Project&gt;**](Project.md)
+[**List&lt;ProjectMetadata&gt;**](ProjectMetadata.md)
 
 ### Authorization
 
@@ -2193,7 +2193,7 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | projects |  -  |
+**200** | projectMetadataList |  -  |
 **401** | genericError |  -  |
 **403** | genericError |  -  |
 **404** | genericError |  -  |

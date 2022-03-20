@@ -2156,7 +2156,7 @@ No authorization required
 
 ## list_projects
 
-> <Array<Project>> list_projects
+> <Array<ProjectMetadata>> list_projects
 
 List All Projects
 
@@ -2188,7 +2188,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<Array<Project>>, Integer, Hash)> list_projects_with_http_info
+> <Array(<Array<ProjectMetadata>>, Integer, Hash)> list_projects_with_http_info
 
 ```ruby
 begin
@@ -2196,7 +2196,7 @@ begin
   data, status_code, headers = api_instance.list_projects_with_http_info
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <Array<Project>>
+  p data # => <Array<ProjectMetadata>>
 rescue OryClient::ApiError => e
   puts "Error when calling V0alpha2Api->list_projects_with_http_info: #{e}"
 end
@@ -2208,7 +2208,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Array&lt;Project&gt;**](Project.md)
+[**Array&lt;ProjectMetadata&gt;**](ProjectMetadata.md)
 
 ### Authorization
 
