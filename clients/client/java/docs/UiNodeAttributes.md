@@ -18,9 +18,9 @@ Name | Type | Description | Notes
 **value** | **Object** | The input&#39;s value. |  [optional]
 **id** | **String** | A unique identifier | 
 **text** | [**UiText**](UiText.md) |  | 
-**height** | **Long** | Height of the image |  [optional]
+**height** | **Long** | Height of the image | 
 **src** | **String** | The script source | 
-**width** | **Long** | Width of the image |  [optional]
+**width** | **Long** | Width of the image | 
 **href** | **String** | The link&#39;s href (destination) URL.  format: uri | 
 **title** | [**UiText**](UiText.md) |  | 
 **async** | **Boolean** | The script async type | 

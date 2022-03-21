@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 **Value** | **Object** | The input&#39;s value. | [optional] 
 **Id** | **string** | A unique identifier | 
 **Text** | [**ClientUiText**](ClientUiText.md) |  | 
-**Height** | **long** | Height of the image | [optional] 
+**Height** | **long** | Height of the image | 
 **Src** | **string** | The script source | 
-**Width** | **long** | Width of the image | [optional] 
+**Width** | **long** | Width of the image | 
 **Href** | **string** | The link&#39;s href (destination) URL.  format: uri | 
 **Title** | [**ClientUiText**](ClientUiText.md) |  | 
 **Async** | **bool** | The script async type | 

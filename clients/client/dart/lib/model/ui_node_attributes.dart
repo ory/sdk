@@ -66,7 +66,6 @@ abstract class UiNodeAttributes implements Built<UiNodeAttributes, UiNodeAttribu
     UiText get text;
 
     /// Height of the image
-    @nullable
     @BuiltValueField(wireName: r'height')
     int get height;
 
@@ -75,7 +74,6 @@ abstract class UiNodeAttributes implements Built<UiNodeAttributes, UiNodeAttribu
     String get src;
 
     /// Width of the image
-    @nullable
     @BuiltValueField(wireName: r'width')
     int get width;
 
@@ -181,22 +179,18 @@ class _$UiNodeAttributesSerializer implements StructuredSerializer<UiNodeAttribu
             ..add(r'text')
             ..add(serializers.serialize(object.text,
                 specifiedType: const FullType(UiText)));
-        if (object.height != null) {
-            result
-                ..add(r'height')
-                ..add(serializers.serialize(object.height,
-                    specifiedType: const FullType(int)));
-        }
+        result
+            ..add(r'height')
+            ..add(serializers.serialize(object.height,
+                specifiedType: const FullType(int)));
         result
             ..add(r'src')
             ..add(serializers.serialize(object.src,
                 specifiedType: const FullType(String)));
-        if (object.width != null) {
-            result
-                ..add(r'width')
-                ..add(serializers.serialize(object.width,
-                    specifiedType: const FullType(int)));
-        }
+        result
+            ..add(r'width')
+            ..add(serializers.serialize(object.width,
+                specifiedType: const FullType(int)));
         result
             ..add(r'href')
             ..add(serializers.serialize(object.href,

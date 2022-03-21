@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 **value** | **mixed** | The input&#39;s value. | [optional]
 **id** | **string** | A unique identifier |
 **text** | [**\Ory\Client\Model\UiText**](UiText.md) |  |
-**height** | **int** | Height of the image | [optional]
+**height** | **int** | Height of the image |
 **src** | **string** | The script source |
-**width** | **int** | Width of the image | [optional]
+**width** | **int** | Width of the image |
 **href** | **string** | The link&#39;s href (destination) URL.  format: uri |
 **title** | [**\Ory\Client\Model\UiText**](UiText.md) |  |
 **async** | **bool** | The script async type |
