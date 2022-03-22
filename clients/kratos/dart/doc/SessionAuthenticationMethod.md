@@ -8,6 +8,7 @@ import 'package:ory_kratos_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**aal** | [**AuthenticatorAssuranceLevel**](AuthenticatorAssuranceLevel.md) |  | [optional] 
 **completedAt** | [**DateTime**](DateTime.md) | When the authentication challenge was completed. | [optional] 
 **method** | **String** |  | [optional] 
 

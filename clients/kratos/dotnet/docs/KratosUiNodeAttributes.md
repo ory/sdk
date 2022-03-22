@@ -15,14 +15,15 @@ Name | Type | Description | Notes
 **Value** | **Object** | The input&#39;s value. | [optional] 
 **Id** | **string** | A unique identifier | 
 **Text** | [**KratosUiText**](KratosUiText.md) |  | 
-**Height** | **long** | Height of the image | [optional] 
+**Height** | **long** | Height of the image | 
 **Src** | **string** | The script source | 
-**Width** | **long** | Width of the image | [optional] 
+**Width** | **long** | Width of the image | 
 **Href** | **string** | The link&#39;s href (destination) URL.  format: uri | 
 **Title** | [**KratosUiText**](KratosUiText.md) |  | 
 **Async** | **bool** | The script async type | 
 **Crossorigin** | **string** | The script cross origin policy | 
 **Integrity** | **string** | The script&#39;s integrity hash | 
+**Nonce** | **string** | Nonce for CSP  A nonce you may want to use to improve your Content Security Policy. You do not have to use this value but if you want to improve your CSP policies you may use it. You can also choose to use your own nonce value! | 
 **Referrerpolicy** | **string** | The script referrer policy | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

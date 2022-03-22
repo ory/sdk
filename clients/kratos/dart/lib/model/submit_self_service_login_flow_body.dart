@@ -5,6 +5,8 @@
 
 // ignore_for_file: unused_import
 
+import 'package:ory_kratos_client/model/submit_self_service_login_flow_with_web_authn_method_body.dart';
+import 'package:ory_kratos_client/model/submit_self_service_login_flow_with_lookup_secret_method_body.dart';
 import 'package:ory_kratos_client/model/submit_self_service_login_flow_with_totp_method_body.dart';
 import 'package:ory_kratos_client/model/submit_self_service_login_flow_with_oidc_method_body.dart';
 import 'package:ory_kratos_client/model/submit_self_service_login_flow_with_password_method_body.dart';
@@ -21,7 +23,11 @@ abstract class SubmitSelfServiceLoginFlowBody implements Built<SubmitSelfService
     @BuiltValueField(wireName: r'csrf_token')
     String get csrfToken;
 
-    /// Method should be set to \"totp\" when logging in using the TOTP strategy.
+    /// Identifier is the email or username of the user trying to log in. This field is only required when using WebAuthn for passwordless login. When using WebAuthn for multi-factor authentication, it is not needed.
+    @BuiltValueField(wireName: r'identifier')
+    String get identifier;
+
+    /// Method should be set to \"lookup_secret\" when logging in using the lookup_secret strategy.
     @BuiltValueField(wireName: r'method')
     String get method;
 
@@ -29,7 +35,7 @@ abstract class SubmitSelfServiceLoginFlowBody implements Built<SubmitSelfService
     @BuiltValueField(wireName: r'password')
     String get password;
 
-    /// Identifier is the email or username of the user trying to log in.
+    /// Identifier is the email or username of the user trying to log in. This field is deprecated!
     @BuiltValueField(wireName: r'password_identifier')
     String get passwordIdentifier;
 
@@ -45,6 +51,15 @@ abstract class SubmitSelfServiceLoginFlowBody implements Built<SubmitSelfService
     /// The TOTP code.
     @BuiltValueField(wireName: r'totp_code')
     String get totpCode;
+
+    /// Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection.
+    @nullable
+    @BuiltValueField(wireName: r'webauthn_login')
+    String get webauthnLogin;
+
+    /// The lookup secret.
+    @BuiltValueField(wireName: r'lookup_secret')
+    String get lookupSecret;
 
     SubmitSelfServiceLoginFlowBody._();
 
@@ -74,6 +89,10 @@ class _$SubmitSelfServiceLoginFlowBodySerializer implements StructuredSerializer
                     specifiedType: const FullType(String)));
         }
         result
+            ..add(r'identifier')
+            ..add(serializers.serialize(object.identifier,
+                specifiedType: const FullType(String)));
+        result
             ..add(r'method')
             ..add(serializers.serialize(object.method,
                 specifiedType: const FullType(String)));
@@ -99,6 +118,16 @@ class _$SubmitSelfServiceLoginFlowBodySerializer implements StructuredSerializer
             ..add(r'totp_code')
             ..add(serializers.serialize(object.totpCode,
                 specifiedType: const FullType(String)));
+        if (object.webauthnLogin != null) {
+            result
+                ..add(r'webauthn_login')
+                ..add(serializers.serialize(object.webauthnLogin,
+                    specifiedType: const FullType(String)));
+        }
+        result
+            ..add(r'lookup_secret')
+            ..add(serializers.serialize(object.lookupSecret,
+                specifiedType: const FullType(String)));
         return result;
     }
 
@@ -115,6 +144,10 @@ class _$SubmitSelfServiceLoginFlowBodySerializer implements StructuredSerializer
             switch (key) {
                 case r'csrf_token':
                     result.csrfToken = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'identifier':
+                    result.identifier = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
                 case r'method':
@@ -139,6 +172,14 @@ class _$SubmitSelfServiceLoginFlowBodySerializer implements StructuredSerializer
                     break;
                 case r'totp_code':
                     result.totpCode = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'webauthn_login':
+                    result.webauthnLogin = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'lookup_secret':
+                    result.lookupSecret = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
             }

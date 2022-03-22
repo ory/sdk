@@ -18,14 +18,15 @@ Name | Type | Description | Notes
 **value** | **Object** | The input&#39;s value. |  [optional]
 **id** | **String** | A unique identifier | 
 **text** | [**UiText**](UiText.md) |  | 
-**height** | **Long** | Height of the image |  [optional]
+**height** | **Long** | Height of the image | 
 **src** | **String** | The script source | 
-**width** | **Long** | Width of the image |  [optional]
+**width** | **Long** | Width of the image | 
 **href** | **String** | The link&#39;s href (destination) URL.  format: uri | 
 **title** | [**UiText**](UiText.md) |  | 
 **async** | **Boolean** | The script async type | 
 **crossorigin** | **String** | The script cross origin policy | 
 **integrity** | **String** | The script&#39;s integrity hash | 
+**nonce** | **String** | Nonce for CSP  A nonce you may want to use to improve your Content Security Policy. You do not have to use this value but if you want to improve your CSP policies you may use it. You can also choose to use your own nonce value! | 
 **referrerpolicy** | **String** | The script referrer policy | 
 
 

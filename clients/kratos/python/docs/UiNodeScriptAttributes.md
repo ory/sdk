@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **id** | **str** | A unique identifier | 
 **integrity** | **str** | The script&#39;s integrity hash | 
 **node_type** | **str** |  | 
+**nonce** | **str** | Nonce for CSP  A nonce you may want to use to improve your Content Security Policy. You do not have to use this value but if you want to improve your CSP policies you may use it. You can also choose to use your own nonce value! | 
 **referrerpolicy** | **str** | The script referrer policy | 
 **src** | **str** | The script source | 
 **type** | **str** | The script MIME type | 

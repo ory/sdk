@@ -1,6 +1,6 @@
 {
   "name": "@ory/kratos-client",
-  "version": "v0.8.2-alpha.1",
+  "version": "v0.9.0-alpha.2",
   "description": "OpenAPI client for @ory/kratos-client",
   "author": "ORY GmbH",
   "keywords": [
@@ -15,10 +15,10 @@
   "typings": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc --outDir dist/",
-    "prepublishOnly": "npm run build"
+    "prepare": "npm run build"
   },
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.21.4"
   },
   "devDependencies": {
     "@types/node": "^12.11.5",

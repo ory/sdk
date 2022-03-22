@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **identifiers** | Option<**Vec<String>**> | Identifiers represents a list of unique identifiers this credential type matches. | [optional]
 **_type** | Option<[**crate::models::IdentityCredentialsType**](identityCredentialsType.md)> |  | [optional]
 **updated_at** | Option<**String**> | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional]
+**version** | Option<**i64**> | Version refers to the version of the credential. Useful when changing the config schema. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

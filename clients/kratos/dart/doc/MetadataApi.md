@@ -21,13 +21,13 @@ Return Running Software Version.
 
 This endpoint returns the version of Ory Kratos.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the version will never refer to the cluster state, only to a single instance.
 
-### Example 
+### Example
 ```dart
 import 'package:ory_kratos_client/api.dart';
 
 var api_instance = new MetadataApi();
 
-try { 
+try {
     var result = api_instance.getVersion();
     print(result);
 } catch (e) {
@@ -60,13 +60,13 @@ Check HTTP Server Status
 
 This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incoming HTTP requests. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
 
-### Example 
+### Example
 ```dart
 import 'package:ory_kratos_client/api.dart';
 
 var api_instance = new MetadataApi();
 
-try { 
+try {
     var result = api_instance.isAlive();
     print(result);
 } catch (e) {
@@ -99,13 +99,13 @@ Check HTTP Server and Database Status
 
 This endpoint returns a HTTP 200 status code when Ory Kratos is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of Ory Kratos, the health status will never refer to the cluster state, only to a single instance.
 
-### Example 
+### Example
 ```dart
 import 'package:ory_kratos_client/api.dart';
 
 var api_instance = new MetadataApi();
 
-try { 
+try {
     var result = api_instance.isReady();
     print(result);
 } catch (e) {

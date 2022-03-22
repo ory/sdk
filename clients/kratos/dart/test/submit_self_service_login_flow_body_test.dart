@@ -20,7 +20,13 @@ void main() {
       // TODO
     });
 
-    // Method should be set to \"totp\" when logging in using the TOTP strategy.
+    // Identifier is the email or username of the user trying to log in. This field is only required when using WebAuthn for passwordless login. When using WebAuthn for multi-factor authentication, it is not needed.
+    // String identifier
+    test('to test the property `identifier`', () async {
+      // TODO
+    });
+
+    // Method should be set to \"lookup_secret\" when logging in using the lookup_secret strategy.
     // String method
     test('to test the property `method`', () async {
       // TODO
@@ -32,7 +38,7 @@ void main() {
       // TODO
     });
 
-    // Identifier is the email or username of the user trying to log in.
+    // Identifier is the email or username of the user trying to log in. This field is deprecated!
     // String passwordIdentifier
     test('to test the property `passwordIdentifier`', () async {
       // TODO
@@ -53,6 +59,18 @@ void main() {
     // The TOTP code.
     // String totpCode
     test('to test the property `totpCode`', () async {
+      // TODO
+    });
+
+    // Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection.
+    // String webauthnLogin
+    test('to test the property `webauthnLogin`', () async {
+      // TODO
+    });
+
+    // The lookup secret.
+    // String lookupSecret
+    test('to test the property `lookupSecret`', () async {
       // TODO
     });
 

@@ -12,7 +12,7 @@
 | **schema_url** | **String** | SchemaURL is the URL of the endpoint where the identity&#39;s traits schema can be fetched from.  format: url |  |
 | **state** | [**IdentityState**](IdentityState.md) |  | [optional] |
 | **state_changed_at** | **Time** |  | [optional] |
-| **traits** | [**AnyType**](.md) | Traits represent an identity&#39;s traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in &#x60;schema_url&#x60;. |  |
+| **traits** | **Object** | Traits represent an identity&#39;s traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in &#x60;schema_url&#x60;. |  |
 | **updated_at** | **Time** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] |
 | **verifiable_addresses** | [**Array&lt;VerifiableIdentityAddress&gt;**](VerifiableIdentityAddress.md) | VerifiableAddresses contains all the addresses that can be verified by the user. | [optional] |
 

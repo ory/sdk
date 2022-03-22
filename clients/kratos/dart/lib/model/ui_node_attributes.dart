@@ -66,7 +66,6 @@ abstract class UiNodeAttributes implements Built<UiNodeAttributes, UiNodeAttribu
     UiText get text;
 
     /// Height of the image
-    @nullable
     @BuiltValueField(wireName: r'height')
     int get height;
 
@@ -75,7 +74,6 @@ abstract class UiNodeAttributes implements Built<UiNodeAttributes, UiNodeAttribu
     String get src;
 
     /// Width of the image
-    @nullable
     @BuiltValueField(wireName: r'width')
     int get width;
 
@@ -97,6 +95,10 @@ abstract class UiNodeAttributes implements Built<UiNodeAttributes, UiNodeAttribu
     /// The script's integrity hash
     @BuiltValueField(wireName: r'integrity')
     String get integrity;
+
+    /// Nonce for CSP  A nonce you may want to use to improve your Content Security Policy. You do not have to use this value but if you want to improve your CSP policies you may use it. You can also choose to use your own nonce value!
+    @BuiltValueField(wireName: r'nonce')
+    String get nonce;
 
     /// The script referrer policy
     @BuiltValueField(wireName: r'referrerpolicy')
@@ -177,22 +179,18 @@ class _$UiNodeAttributesSerializer implements StructuredSerializer<UiNodeAttribu
             ..add(r'text')
             ..add(serializers.serialize(object.text,
                 specifiedType: const FullType(UiText)));
-        if (object.height != null) {
-            result
-                ..add(r'height')
-                ..add(serializers.serialize(object.height,
-                    specifiedType: const FullType(int)));
-        }
+        result
+            ..add(r'height')
+            ..add(serializers.serialize(object.height,
+                specifiedType: const FullType(int)));
         result
             ..add(r'src')
             ..add(serializers.serialize(object.src,
                 specifiedType: const FullType(String)));
-        if (object.width != null) {
-            result
-                ..add(r'width')
-                ..add(serializers.serialize(object.width,
-                    specifiedType: const FullType(int)));
-        }
+        result
+            ..add(r'width')
+            ..add(serializers.serialize(object.width,
+                specifiedType: const FullType(int)));
         result
             ..add(r'href')
             ..add(serializers.serialize(object.href,
@@ -212,6 +210,10 @@ class _$UiNodeAttributesSerializer implements StructuredSerializer<UiNodeAttribu
         result
             ..add(r'integrity')
             ..add(serializers.serialize(object.integrity,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'nonce')
+            ..add(serializers.serialize(object.nonce,
                 specifiedType: const FullType(String)));
         result
             ..add(r'referrerpolicy')
@@ -305,6 +307,10 @@ class _$UiNodeAttributesSerializer implements StructuredSerializer<UiNodeAttribu
                     break;
                 case r'integrity':
                     result.integrity = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'nonce':
+                    result.nonce = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
                 case r'referrerpolicy':

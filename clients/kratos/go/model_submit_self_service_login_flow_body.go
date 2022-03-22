@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory Kratos APIs. Public and administrative APIs are exposed on different ports. Public APIs can face the public internet without any protection while administrative APIs should never be exposed without prior authorization. To protect the administative API port you should use something like Nginx, Ory Oathkeeper, or any other technology capable of authorizing incoming requests. 
  *
- * API version: v0.8.2-alpha.1
+ * API version: v0.9.0-alpha.2
  * Contact: hi@ory.sh
  */
 
@@ -18,9 +18,18 @@ import (
 
 // SubmitSelfServiceLoginFlowBody - struct for SubmitSelfServiceLoginFlowBody
 type SubmitSelfServiceLoginFlowBody struct {
+	SubmitSelfServiceLoginFlowWithLookupSecretMethodBody *SubmitSelfServiceLoginFlowWithLookupSecretMethodBody
 	SubmitSelfServiceLoginFlowWithOidcMethodBody *SubmitSelfServiceLoginFlowWithOidcMethodBody
 	SubmitSelfServiceLoginFlowWithPasswordMethodBody *SubmitSelfServiceLoginFlowWithPasswordMethodBody
 	SubmitSelfServiceLoginFlowWithTotpMethodBody *SubmitSelfServiceLoginFlowWithTotpMethodBody
+	SubmitSelfServiceLoginFlowWithWebAuthnMethodBody *SubmitSelfServiceLoginFlowWithWebAuthnMethodBody
+}
+
+// SubmitSelfServiceLoginFlowWithLookupSecretMethodBodyAsSubmitSelfServiceLoginFlowBody is a convenience function that returns SubmitSelfServiceLoginFlowWithLookupSecretMethodBody wrapped in SubmitSelfServiceLoginFlowBody
+func SubmitSelfServiceLoginFlowWithLookupSecretMethodBodyAsSubmitSelfServiceLoginFlowBody(v *SubmitSelfServiceLoginFlowWithLookupSecretMethodBody) SubmitSelfServiceLoginFlowBody {
+	return SubmitSelfServiceLoginFlowBody{
+		SubmitSelfServiceLoginFlowWithLookupSecretMethodBody: v,
+	}
 }
 
 // SubmitSelfServiceLoginFlowWithOidcMethodBodyAsSubmitSelfServiceLoginFlowBody is a convenience function that returns SubmitSelfServiceLoginFlowWithOidcMethodBody wrapped in SubmitSelfServiceLoginFlowBody
@@ -44,11 +53,31 @@ func SubmitSelfServiceLoginFlowWithTotpMethodBodyAsSubmitSelfServiceLoginFlowBod
 	}
 }
 
+// SubmitSelfServiceLoginFlowWithWebAuthnMethodBodyAsSubmitSelfServiceLoginFlowBody is a convenience function that returns SubmitSelfServiceLoginFlowWithWebAuthnMethodBody wrapped in SubmitSelfServiceLoginFlowBody
+func SubmitSelfServiceLoginFlowWithWebAuthnMethodBodyAsSubmitSelfServiceLoginFlowBody(v *SubmitSelfServiceLoginFlowWithWebAuthnMethodBody) SubmitSelfServiceLoginFlowBody {
+	return SubmitSelfServiceLoginFlowBody{
+		SubmitSelfServiceLoginFlowWithWebAuthnMethodBody: v,
+	}
+}
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *SubmitSelfServiceLoginFlowBody) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
+	// try to unmarshal data into SubmitSelfServiceLoginFlowWithLookupSecretMethodBody
+	err = newStrictDecoder(data).Decode(&dst.SubmitSelfServiceLoginFlowWithLookupSecretMethodBody)
+	if err == nil {
+		jsonSubmitSelfServiceLoginFlowWithLookupSecretMethodBody, _ := json.Marshal(dst.SubmitSelfServiceLoginFlowWithLookupSecretMethodBody)
+		if string(jsonSubmitSelfServiceLoginFlowWithLookupSecretMethodBody) == "{}" { // empty struct
+			dst.SubmitSelfServiceLoginFlowWithLookupSecretMethodBody = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.SubmitSelfServiceLoginFlowWithLookupSecretMethodBody = nil
+	}
+
 	// try to unmarshal data into SubmitSelfServiceLoginFlowWithOidcMethodBody
 	err = newStrictDecoder(data).Decode(&dst.SubmitSelfServiceLoginFlowWithOidcMethodBody)
 	if err == nil {
@@ -88,11 +117,26 @@ func (dst *SubmitSelfServiceLoginFlowBody) UnmarshalJSON(data []byte) error {
 		dst.SubmitSelfServiceLoginFlowWithTotpMethodBody = nil
 	}
 
+	// try to unmarshal data into SubmitSelfServiceLoginFlowWithWebAuthnMethodBody
+	err = newStrictDecoder(data).Decode(&dst.SubmitSelfServiceLoginFlowWithWebAuthnMethodBody)
+	if err == nil {
+		jsonSubmitSelfServiceLoginFlowWithWebAuthnMethodBody, _ := json.Marshal(dst.SubmitSelfServiceLoginFlowWithWebAuthnMethodBody)
+		if string(jsonSubmitSelfServiceLoginFlowWithWebAuthnMethodBody) == "{}" { // empty struct
+			dst.SubmitSelfServiceLoginFlowWithWebAuthnMethodBody = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.SubmitSelfServiceLoginFlowWithWebAuthnMethodBody = nil
+	}
+
 	if match > 1 { // more than 1 match
 		// reset to nil
+		dst.SubmitSelfServiceLoginFlowWithLookupSecretMethodBody = nil
 		dst.SubmitSelfServiceLoginFlowWithOidcMethodBody = nil
 		dst.SubmitSelfServiceLoginFlowWithPasswordMethodBody = nil
 		dst.SubmitSelfServiceLoginFlowWithTotpMethodBody = nil
+		dst.SubmitSelfServiceLoginFlowWithWebAuthnMethodBody = nil
 
 		return fmt.Errorf("Data matches more than one schema in oneOf(SubmitSelfServiceLoginFlowBody)")
 	} else if match == 1 {
@@ -104,6 +148,10 @@ func (dst *SubmitSelfServiceLoginFlowBody) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src SubmitSelfServiceLoginFlowBody) MarshalJSON() ([]byte, error) {
+	if src.SubmitSelfServiceLoginFlowWithLookupSecretMethodBody != nil {
+		return json.Marshal(&src.SubmitSelfServiceLoginFlowWithLookupSecretMethodBody)
+	}
+
 	if src.SubmitSelfServiceLoginFlowWithOidcMethodBody != nil {
 		return json.Marshal(&src.SubmitSelfServiceLoginFlowWithOidcMethodBody)
 	}
@@ -116,6 +164,10 @@ func (src SubmitSelfServiceLoginFlowBody) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.SubmitSelfServiceLoginFlowWithTotpMethodBody)
 	}
 
+	if src.SubmitSelfServiceLoginFlowWithWebAuthnMethodBody != nil {
+		return json.Marshal(&src.SubmitSelfServiceLoginFlowWithWebAuthnMethodBody)
+	}
+
 	return nil, nil // no data in oneOf schemas
 }
 
@@ -124,6 +176,10 @@ func (obj *SubmitSelfServiceLoginFlowBody) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
+	if obj.SubmitSelfServiceLoginFlowWithLookupSecretMethodBody != nil {
+		return obj.SubmitSelfServiceLoginFlowWithLookupSecretMethodBody
+	}
+
 	if obj.SubmitSelfServiceLoginFlowWithOidcMethodBody != nil {
 		return obj.SubmitSelfServiceLoginFlowWithOidcMethodBody
 	}
@@ -134,6 +190,10 @@ func (obj *SubmitSelfServiceLoginFlowBody) GetActualInstance() (interface{}) {
 
 	if obj.SubmitSelfServiceLoginFlowWithTotpMethodBody != nil {
 		return obj.SubmitSelfServiceLoginFlowWithTotpMethodBody
+	}
+
+	if obj.SubmitSelfServiceLoginFlowWithWebAuthnMethodBody != nil {
+		return obj.SubmitSelfServiceLoginFlowWithWebAuthnMethodBody
 	}
 
 	// all schemas are nil

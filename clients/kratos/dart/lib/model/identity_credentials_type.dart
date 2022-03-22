@@ -22,6 +22,12 @@ class IdentityCredentialsType extends EnumClass {
   /// and so on.
   @BuiltValueEnumConst(wireName: r'oidc')
   static const IdentityCredentialsType oidc = _$oidc;
+  /// and so on.
+  @BuiltValueEnumConst(wireName: r'webauthn')
+  static const IdentityCredentialsType webauthn = _$webauthn;
+  /// and so on.
+  @BuiltValueEnumConst(wireName: r'lookup_secret')
+  static const IdentityCredentialsType lookupSecret = _$lookupSecret;
 
   static Serializer<IdentityCredentialsType> get serializer => _$identityCredentialsTypeSerializer;
 

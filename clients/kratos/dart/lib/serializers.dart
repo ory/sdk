@@ -14,7 +14,13 @@ import 'package:built_value/json_object.dart';
 import 'package:built_value/standard_json_plugin.dart';
 
 import 'package:ory_kratos_client/model/admin_create_identity_body.dart';
+import 'package:ory_kratos_client/model/admin_create_identity_import_credentials_oidc.dart';
+import 'package:ory_kratos_client/model/admin_create_identity_import_credentials_oidc_config.dart';
+import 'package:ory_kratos_client/model/admin_create_identity_import_credentials_oidc_provider.dart';
+import 'package:ory_kratos_client/model/admin_create_identity_import_credentials_password.dart';
+import 'package:ory_kratos_client/model/admin_create_identity_import_credentials_password_config.dart';
 import 'package:ory_kratos_client/model/admin_create_self_service_recovery_link_body.dart';
+import 'package:ory_kratos_client/model/admin_identity_import_credentials.dart';
 import 'package:ory_kratos_client/model/admin_update_identity_body.dart';
 import 'package:ory_kratos_client/model/authenticator_assurance_level.dart';
 import 'package:ory_kratos_client/model/error_authenticator_assurance_level_not_satisfied.dart';
@@ -23,6 +29,9 @@ import 'package:ory_kratos_client/model/health_not_ready_status.dart';
 import 'package:ory_kratos_client/model/health_status.dart';
 import 'package:ory_kratos_client/model/identity.dart';
 import 'package:ory_kratos_client/model/identity_credentials.dart';
+import 'package:ory_kratos_client/model/identity_credentials_oidc.dart';
+import 'package:ory_kratos_client/model/identity_credentials_oidc_provider.dart';
+import 'package:ory_kratos_client/model/identity_credentials_password.dart';
 import 'package:ory_kratos_client/model/identity_credentials_type.dart';
 import 'package:ory_kratos_client/model/identity_schema.dart';
 import 'package:ory_kratos_client/model/identity_state.dart';
@@ -31,7 +40,9 @@ import 'package:ory_kratos_client/model/inline_response2001.dart';
 import 'package:ory_kratos_client/model/inline_response503.dart';
 import 'package:ory_kratos_client/model/json_error.dart';
 import 'package:ory_kratos_client/model/needs_privileged_session_error.dart';
+import 'package:ory_kratos_client/model/pagination.dart';
 import 'package:ory_kratos_client/model/recovery_address.dart';
+import 'package:ory_kratos_client/model/revoked_sessions.dart';
 import 'package:ory_kratos_client/model/self_service_browser_location_change_required_error.dart';
 import 'package:ory_kratos_client/model/self_service_error.dart';
 import 'package:ory_kratos_client/model/self_service_flow_expired_error.dart';
@@ -49,6 +60,7 @@ import 'package:ory_kratos_client/model/session.dart';
 import 'package:ory_kratos_client/model/session_authentication_method.dart';
 import 'package:ory_kratos_client/model/session_device.dart';
 import 'package:ory_kratos_client/model/settings_profile_form_config.dart';
+import 'package:ory_kratos_client/model/submit_self_service_flow_with_web_authn_registration_method.dart';
 import 'package:ory_kratos_client/model/submit_self_service_login_flow_body.dart';
 import 'package:ory_kratos_client/model/submit_self_service_login_flow_with_lookup_secret_method_body.dart';
 import 'package:ory_kratos_client/model/submit_self_service_login_flow_with_oidc_method_body.dart';
@@ -61,6 +73,7 @@ import 'package:ory_kratos_client/model/submit_self_service_recovery_flow_with_l
 import 'package:ory_kratos_client/model/submit_self_service_registration_flow_body.dart';
 import 'package:ory_kratos_client/model/submit_self_service_registration_flow_with_oidc_method_body.dart';
 import 'package:ory_kratos_client/model/submit_self_service_registration_flow_with_password_method_body.dart';
+import 'package:ory_kratos_client/model/submit_self_service_registration_flow_with_web_authn_method_body.dart';
 import 'package:ory_kratos_client/model/submit_self_service_settings_flow_body.dart';
 import 'package:ory_kratos_client/model/submit_self_service_settings_flow_with_lookup_method_body.dart';
 import 'package:ory_kratos_client/model/submit_self_service_settings_flow_with_oidc_method_body.dart';
@@ -89,7 +102,13 @@ part 'serializers.g.dart';
 
 @SerializersFor(const [
   AdminCreateIdentityBody,
+  AdminCreateIdentityImportCredentialsOidc,
+  AdminCreateIdentityImportCredentialsOidcConfig,
+  AdminCreateIdentityImportCredentialsOidcProvider,
+  AdminCreateIdentityImportCredentialsPassword,
+  AdminCreateIdentityImportCredentialsPasswordConfig,
   AdminCreateSelfServiceRecoveryLinkBody,
+  AdminIdentityImportCredentials,
   AdminUpdateIdentityBody,
   AuthenticatorAssuranceLevel,
   ErrorAuthenticatorAssuranceLevelNotSatisfied,
@@ -98,6 +117,9 @@ part 'serializers.g.dart';
   HealthStatus,
   Identity,
   IdentityCredentials,
+  IdentityCredentialsOidc,
+  IdentityCredentialsOidcProvider,
+  IdentityCredentialsPassword,
   IdentityCredentialsType,
   IdentitySchema,
   IdentityState,
@@ -106,7 +128,9 @@ part 'serializers.g.dart';
   InlineResponse503,
   JsonError,
   NeedsPrivilegedSessionError,
+  Pagination,
   RecoveryAddress,
+  RevokedSessions,
   SelfServiceBrowserLocationChangeRequiredError,
   SelfServiceError,
   SelfServiceFlowExpiredError,
@@ -124,6 +148,7 @@ part 'serializers.g.dart';
   SessionAuthenticationMethod,
   SessionDevice,
   SettingsProfileFormConfig,
+  SubmitSelfServiceFlowWithWebAuthnRegistrationMethod,
   SubmitSelfServiceLoginFlowBody,
   SubmitSelfServiceLoginFlowWithLookupSecretMethodBody,
   SubmitSelfServiceLoginFlowWithOidcMethodBody,
@@ -136,6 +161,7 @@ part 'serializers.g.dart';
   SubmitSelfServiceRegistrationFlowBody,
   SubmitSelfServiceRegistrationFlowWithOidcMethodBody,
   SubmitSelfServiceRegistrationFlowWithPasswordMethodBody,
+  SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody,
   SubmitSelfServiceSettingsFlowBody,
   SubmitSelfServiceSettingsFlowWithLookupMethodBody,
   SubmitSelfServiceSettingsFlowWithOidcMethodBody,
@@ -164,6 +190,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(Identity)]),
         () => ListBuilder<Identity>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Session)]),
+        () => ListBuilder<Session>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(IdentitySchema)]),

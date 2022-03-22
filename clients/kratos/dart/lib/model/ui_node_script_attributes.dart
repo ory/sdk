@@ -31,6 +31,10 @@ abstract class UiNodeScriptAttributes implements Built<UiNodeScriptAttributes, U
     @BuiltValueField(wireName: r'node_type')
     String get nodeType;
 
+    /// Nonce for CSP  A nonce you may want to use to improve your Content Security Policy. You do not have to use this value but if you want to improve your CSP policies you may use it. You can also choose to use your own nonce value!
+    @BuiltValueField(wireName: r'nonce')
+    String get nonce;
+
     /// The script referrer policy
     @BuiltValueField(wireName: r'referrerpolicy')
     String get referrerpolicy;
@@ -85,6 +89,10 @@ class _$UiNodeScriptAttributesSerializer implements StructuredSerializer<UiNodeS
             ..add(serializers.serialize(object.nodeType,
                 specifiedType: const FullType(String)));
         result
+            ..add(r'nonce')
+            ..add(serializers.serialize(object.nonce,
+                specifiedType: const FullType(String)));
+        result
             ..add(r'referrerpolicy')
             ..add(serializers.serialize(object.referrerpolicy,
                 specifiedType: const FullType(String)));
@@ -128,6 +136,10 @@ class _$UiNodeScriptAttributesSerializer implements StructuredSerializer<UiNodeS
                     break;
                 case r'node_type':
                     result.nodeType = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'nonce':
+                    result.nonce = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
                 case r'referrerpolicy':
