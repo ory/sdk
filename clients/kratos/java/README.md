@@ -1,8 +1,8 @@
 # kratos-client
 
 Ory Kratos API
-- API version: v0.9.0-alpha.2
-  - Build date: 2022-03-22T10:24:25.107698988Z[Etc/UTC]
+- API version: v0.9.0-alpha.3
+  - Build date: 2022-03-25T10:07:13.198367564Z[Etc/UTC]
 
 Documentation for all public and administrative Ory Kratos APIs. Public and administrative APIs
 are exposed on different ports. Public APIs can face the public internet without any protection
@@ -45,7 +45,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.kratos</groupId>
   <artifactId>kratos-client</artifactId>
-  <version>v0.9.0-alpha.2</version>
+  <version>v0.9.0-alpha.3</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -61,7 +61,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory.kratos:kratos-client:v0.9.0-alpha.2"
+     implementation "sh.ory.kratos:kratos-client:v0.9.0-alpha.3"
   }
 ```
 
@@ -75,7 +75,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/kratos-client-v0.9.0-alpha.2.jar`
+* `target/kratos-client-v0.9.0-alpha.3.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
