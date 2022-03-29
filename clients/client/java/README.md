@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v0.0.1-alpha.146
-  - Build date: 2022-03-23T13:19:25.192284411Z[Etc/UTC]
+- API version: v0.0.1-alpha.147
+  - Build date: 2022-03-29T11:39:25.698867098Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v0.0.1-alpha.146</version>
+  <version>v0.0.1-alpha.147</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v0.0.1-alpha.146"
+     implementation "sh.ory:client:v0.0.1-alpha.147"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v0.0.1-alpha.146.jar`
+* `target/client-v0.0.1-alpha.147.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
