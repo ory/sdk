@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ory-client (0.0.1.alpha151)
+    ory-client (0.0.1.alpha152)
       typhoeus (~> 1.0, >= 1.0.1)
 
 GEM
@@ -38,7 +38,7 @@ GEM
     rspec-expectations (3.11.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.11.0)
-    rspec-mocks (3.11.0)
+    rspec-mocks (3.11.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.11.0)
     rspec-support (3.11.0)

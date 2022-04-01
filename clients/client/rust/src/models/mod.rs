@@ -108,8 +108,6 @@ pub mod project_service_identity;
 pub use self::project_service_identity::ProjectServiceIdentity;
 pub mod project_services;
 pub use self::project_services::ProjectServices;
-pub mod project_slug;
-pub use self::project_slug::ProjectSlug;
 pub mod provision_mock_subscription_payload;
 pub use self::provision_mock_subscription_payload::ProvisionMockSubscriptionPayload;
 pub mod quota_project_member_seats;

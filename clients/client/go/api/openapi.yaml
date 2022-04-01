@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.0.1-alpha.151
+  version: v0.0.1-alpha.152
 servers:
 - url: https://{project}.projects.oryapis.com/
   variables:
@@ -5089,12 +5089,6 @@ components:
           $ref: '#/components/schemas/projectServiceIdentity'
       required:
       - identity
-      type: object
-    projectSlug:
-      properties:
-        slug:
-          description: The Project Slug
-          type: string
       type: object
     projects:
       items:

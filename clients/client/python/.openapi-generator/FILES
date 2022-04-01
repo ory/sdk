@@ -75,7 +75,6 @@ docs/ProjectRevisionThirdPartyLoginProviders.md
 docs/ProjectRevisions.md
 docs/ProjectServiceIdentity.md
 docs/ProjectServices.md
-docs/ProjectSlug.md
 docs/Projects.md
 docs/ProvisionMockSubscriptionPayload.md
 docs/QuotaProjectMemberSeats.md
@@ -230,7 +229,6 @@ ory_client/model/project_revision_third_party_login_providers.py
 ory_client/model/project_revisions.py
 ory_client/model/project_service_identity.py
 ory_client/model/project_services.py
-ory_client/model/project_slug.py
 ory_client/model/projects.py
 ory_client/model/provision_mock_subscription_payload.py
 ory_client/model/quota_project_member_seats.py
@@ -383,7 +381,6 @@ test/test_project_revision_third_party_login_providers.py
 test/test_project_revisions.py
 test/test_project_service_identity.py
 test/test_project_services.py
-test/test_project_slug.py
 test/test_projects.py
 test/test_provision_mock_subscription_payload.py
 test/test_quota_project_member_seats.py

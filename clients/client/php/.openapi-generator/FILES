@@ -61,7 +61,6 @@ docs/Model/ProjectInvite.md
 docs/Model/ProjectMetadata.md
 docs/Model/ProjectServiceIdentity.md
 docs/Model/ProjectServices.md
-docs/Model/ProjectSlug.md
 docs/Model/ProvisionMockSubscriptionPayload.md
 docs/Model/QuotaProjectMemberSeats.md
 docs/Model/RecoveryAddress.md
@@ -190,7 +189,6 @@ lib/Model/ProjectInvite.php
 lib/Model/ProjectMetadata.php
 lib/Model/ProjectServiceIdentity.php
 lib/Model/ProjectServices.php
-lib/Model/ProjectSlug.php
 lib/Model/ProvisionMockSubscriptionPayload.php
 lib/Model/QuotaProjectMemberSeats.php
 lib/Model/RecoveryAddress.php
@@ -315,7 +313,6 @@ test/Model/ProjectInviteTest.php
 test/Model/ProjectMetadataTest.php
 test/Model/ProjectServiceIdentityTest.php
 test/Model/ProjectServicesTest.php
-test/Model/ProjectSlugTest.php
 test/Model/ProjectTest.php
 test/Model/ProvisionMockSubscriptionPayloadTest.php
 test/Model/QuotaProjectMemberSeatsTest.php
