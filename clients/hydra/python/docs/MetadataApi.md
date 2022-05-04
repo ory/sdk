@@ -73,7 +73,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **is_alive**
-> InlineResponse200 is_alive()
+> HealthStatus is_alive()
 
 Check HTTP Server Status
 
@@ -86,8 +86,8 @@ This endpoint returns a HTTP 200 status code when Ory Hydra is accepting incomin
 import time
 import ory_hydra_client
 from ory_hydra_client.api import metadata_api
-from ory_hydra_client.model.inline_response200 import InlineResponse200
 from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.model.health_status import HealthStatus
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -116,7 +116,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**HealthStatus**](HealthStatus.md)
 
 ### Authorization
 

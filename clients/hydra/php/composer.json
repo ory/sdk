@@ -1,6 +1,6 @@
 {
   "name": "ory/hydra-client",
-  "description": "Documentation for all of Ory Oathkeeper's APIs.",
+  "description": "Documentation for all of Ory Hydra's APIs.",
   "keywords": [
     "openapitools",
     "openapi-generator",

@@ -4,6 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
+| **allow_any_subject** | **Boolean** | The \&quot;allow_any_subject\&quot; indicates that the issuer is allowed to have any principal as the subject of the JWT. | [optional] |
 | **created_at** | **Time** | The \&quot;created_at\&quot; indicates, when grant was created. | [optional] |
 | **expires_at** | **Time** | The \&quot;expires_at\&quot; indicates, when grant will expire, so we will reject assertion from \&quot;issuer\&quot; targeting \&quot;subject\&quot;. | [optional] |
 | **id** | **String** |  | [optional] |
@@ -18,6 +19,7 @@
 require 'ory-hydra-client'
 
 instance = OryHydraClient::TrustedJwtGrantIssuer.new(
+  allow_any_subject: null,
   created_at: null,
   expires_at: null,
   id: 9edc811f-4e28-453c-9b46-4de65f00217f,

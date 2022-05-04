@@ -8,6 +8,7 @@ import 'package:ory_hydra_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**allowAnySubject** | **bool** | The \"allow_any_subject\" indicates that the issuer is allowed to have any principal as the subject of the JWT. | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) | The \"created_at\" indicates, when grant was created. | [optional] 
 **expiresAt** | [**DateTime**](DateTime.md) | The \"expires_at\" indicates, when grant will expire, so we will reject assertion from \"issuer\" targeting \"subject\". | [optional] 
 **id** | **String** |  | [optional] 

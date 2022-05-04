@@ -13,6 +13,7 @@ part 'inline_response200.g.dart';
 abstract class InlineResponse200 implements Built<InlineResponse200, InlineResponse200Builder> {
 
     /// Always \"ok\".
+    @nullable
     @BuiltValueField(wireName: r'status')
     String get status;
 
@@ -37,10 +38,12 @@ class _$InlineResponse200Serializer implements StructuredSerializer<InlineRespon
     Iterable<Object> serialize(Serializers serializers, InlineResponse200 object,
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object>[];
-        result
-            ..add(r'status')
-            ..add(serializers.serialize(object.status,
-                specifiedType: const FullType(String)));
+        if (object.status != null) {
+            result
+                ..add(r'status')
+                ..add(serializers.serialize(object.status,
+                    specifiedType: const FullType(String)));
+        }
         return result;
     }
 

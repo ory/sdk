@@ -79,8 +79,8 @@ with ory_hydra_client.ApiClient() as api_client:
         remember=True,
         remember_for=1,
         session=ConsentRequestSession(
-            access_token={},
-            id_token={},
+            access_token=None,
+            id_token=None,
         ),
     ) # AcceptConsentRequest |  (optional)
 
@@ -1606,11 +1606,22 @@ with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = admin_api.AdminApi(api_client)
     subject = "subject_example" # str | 
+    limit = 1 # int | The maximum amount of consent sessions to be returned, upper bound is 500 sessions. (optional)
+    offset = 1 # int | The offset from where to start looking. (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Lists All Consent Sessions of a Subject
         api_response = api_instance.list_subject_consent_sessions(subject)
+        pprint(api_response)
+    except ory_hydra_client.ApiException as e:
+        print("Exception when calling AdminApi->list_subject_consent_sessions: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Lists All Consent Sessions of a Subject
+        api_response = api_instance.list_subject_consent_sessions(subject, limit=limit, offset=offset)
         pprint(api_response)
     except ory_hydra_client.ApiException as e:
         print("Exception when calling AdminApi->list_subject_consent_sessions: %s\n" % e)
@@ -1622,6 +1633,8 @@ with ory_hydra_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **str**|  |
+ **limit** | **int**| The maximum amount of consent sessions to be returned, upper bound is 500 sessions. | [optional]
+ **offset** | **int**| The offset from where to start looking. | [optional]
 
 ### Return type
 
@@ -2241,6 +2254,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = admin_api.AdminApi(api_client)
     trust_jwt_grant_issuer_body = TrustJwtGrantIssuerBody(
+        allow_any_subject=True,
         expires_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
         issuer="https://jwt-idp.example.com",
         jwk=JSONWebKey(

@@ -14,6 +14,7 @@ part 'inline_response503.g.dart';
 abstract class InlineResponse503 implements Built<InlineResponse503, InlineResponse503Builder> {
 
     /// Errors contains a list of errors that caused the not ready status.
+    @nullable
     @BuiltValueField(wireName: r'errors')
     BuiltMap<String, String> get errors;
 
@@ -38,10 +39,12 @@ class _$InlineResponse503Serializer implements StructuredSerializer<InlineRespon
     Iterable<Object> serialize(Serializers serializers, InlineResponse503 object,
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object>[];
-        result
-            ..add(r'errors')
-            ..add(serializers.serialize(object.errors,
-                specifiedType: const FullType(BuiltMap, [FullType(String), FullType(String)])));
+        if (object.errors != null) {
+            result
+                ..add(r'errors')
+                ..add(serializers.serialize(object.errors,
+                    specifiedType: const FullType(BuiltMap, [FullType(String), FullType(String)])));
+        }
         return result;
     }
 

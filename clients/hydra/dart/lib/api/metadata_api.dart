@@ -10,6 +10,7 @@ import 'package:dio/dio.dart';
 import 'package:built_value/serializer.dart';
 
 import 'package:ory_hydra_client/model/generic_error.dart';
+import 'package:ory_hydra_client/model/health_status.dart';
 import 'package:ory_hydra_client/model/inline_response200.dart';
 import 'package:ory_hydra_client/model/inline_response2001.dart';
 import 'package:ory_hydra_client/model/inline_response503.dart';
@@ -79,7 +80,7 @@ class MetadataApi {
   /// Check HTTP Server Status
   ///
   /// This endpoint returns a HTTP 200 status code when Ory Hydra is accepting incoming HTTP requests. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
-  Future<Response<InlineResponse200>> isAlive({ 
+  Future<Response<HealthStatus>> isAlive({ 
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -112,13 +113,13 @@ class MetadataApi {
       options: _request,
     );
 
-    const _responseType = FullType(InlineResponse200);
+    const _responseType = FullType(HealthStatus);
     final _responseData = _serializers.deserialize(
       _response.data,
       specifiedType: _responseType,
-    ) as InlineResponse200;
+    ) as HealthStatus;
 
-    return Response<InlineResponse200>(
+    return Response<HealthStatus>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

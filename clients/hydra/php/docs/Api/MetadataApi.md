@@ -65,7 +65,7 @@ No authorization required
 ## `isAlive()`
 
 ```php
-isAlive(): \Ory\Hydra\Client\Model\InlineResponse200
+isAlive(): \Ory\Hydra\Client\Model\HealthStatus
 ```
 
 Check HTTP Server Status
@@ -100,7 +100,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\InlineResponse200**](../Model/InlineResponse200.md)
+[**\Ory\Hydra\Client\Model\HealthStatus**](../Model/HealthStatus.md)
 
 ### Authorization
 

@@ -78,7 +78,7 @@ No authorization required
 
 <a name="isalive"></a>
 # **IsAlive**
-> HydraInlineResponse200 IsAlive ()
+> HydraHealthStatus IsAlive ()
 
 Check HTTP Server Status
 
@@ -105,7 +105,7 @@ namespace Example
             try
             {
                 // Check HTTP Server Status
-                HydraInlineResponse200 result = apiInstance.IsAlive();
+                HydraHealthStatus result = apiInstance.IsAlive();
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -124,7 +124,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HydraInlineResponse200**](HydraInlineResponse200.md)
+[**HydraHealthStatus**](HydraHealthStatus.md)
 
 ### Authorization
 

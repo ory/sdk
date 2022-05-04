@@ -916,7 +916,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listSubjectConsentSessions**
-> BuiltList<PreviousConsentSession> listSubjectConsentSessions(subject)
+> BuiltList<PreviousConsentSession> listSubjectConsentSessions(subject, limit, offset)
 
 Lists All Consent Sessions of a Subject
 
@@ -928,9 +928,11 @@ import 'package:ory_hydra_client/api.dart';
 
 var api_instance = new AdminApi();
 var subject = subject_example; // String | 
+var limit = 789; // int | The maximum amount of consent sessions to be returned, upper bound is 500 sessions.
+var offset = 789; // int | The offset from where to start looking.
 
 try {
-    var result = api_instance.listSubjectConsentSessions(subject);
+    var result = api_instance.listSubjectConsentSessions(subject, limit, offset);
     print(result);
 } catch (e) {
     print('Exception when calling AdminApi->listSubjectConsentSessions: $e\n');
@@ -942,6 +944,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **String**|  | 
+ **limit** | **int**| The maximum amount of consent sessions to be returned, upper bound is 500 sessions. | [optional] 
+ **offset** | **int**| The offset from where to start looking. | [optional] 
 
 ### Return type
 

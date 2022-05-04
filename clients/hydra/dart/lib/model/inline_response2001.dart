@@ -13,6 +13,7 @@ part 'inline_response2001.g.dart';
 abstract class InlineResponse2001 implements Built<InlineResponse2001, InlineResponse2001Builder> {
 
     /// The version of Ory Hydra.
+    @nullable
     @BuiltValueField(wireName: r'version')
     String get version;
 
@@ -37,10 +38,12 @@ class _$InlineResponse2001Serializer implements StructuredSerializer<InlineRespo
     Iterable<Object> serialize(Serializers serializers, InlineResponse2001 object,
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object>[];
-        result
-            ..add(r'version')
-            ..add(serializers.serialize(object.version,
-                specifiedType: const FullType(String)));
+        if (object.version != null) {
+            result
+                ..add(r'version')
+                ..add(serializers.serialize(object.version,
+                    specifiedType: const FullType(String)));
+        }
         return result;
     }
 

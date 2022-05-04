@@ -1344,7 +1344,7 @@ No authorization required
 
 ## list_subject_consent_sessions
 
-> <Array<PreviousConsentSession>> list_subject_consent_sessions(subject)
+> <Array<PreviousConsentSession>> list_subject_consent_sessions(subject, opts)
 
 Lists All Consent Sessions of a Subject
 
@@ -1358,10 +1358,14 @@ require 'ory-hydra-client'
 
 api_instance = OryHydraClient::AdminApi.new
 subject = 'subject_example' # String | 
+opts = {
+  limit: 789, # Integer | The maximum amount of consent sessions to be returned, upper bound is 500 sessions.
+  offset: 789 # Integer | The offset from where to start looking.
+}
 
 begin
   # Lists All Consent Sessions of a Subject
-  result = api_instance.list_subject_consent_sessions(subject)
+  result = api_instance.list_subject_consent_sessions(subject, opts)
   p result
 rescue OryHydraClient::ApiError => e
   puts "Error when calling AdminApi->list_subject_consent_sessions: #{e}"
@@ -1372,12 +1376,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<Array<PreviousConsentSession>>, Integer, Hash)> list_subject_consent_sessions_with_http_info(subject)
+> <Array(<Array<PreviousConsentSession>>, Integer, Hash)> list_subject_consent_sessions_with_http_info(subject, opts)
 
 ```ruby
 begin
   # Lists All Consent Sessions of a Subject
-  data, status_code, headers = api_instance.list_subject_consent_sessions_with_http_info(subject)
+  data, status_code, headers = api_instance.list_subject_consent_sessions_with_http_info(subject, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <Array<PreviousConsentSession>>
@@ -1391,6 +1395,8 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **subject** | **String** |  |  |
+| **limit** | **Integer** | The maximum amount of consent sessions to be returned, upper bound is 500 sessions. | [optional] |
+| **offset** | **Integer** | The offset from where to start looking. | [optional] |
 
 ### Return type
 
@@ -1893,7 +1899,7 @@ require 'ory-hydra-client'
 
 api_instance = OryHydraClient::AdminApi.new
 opts = {
-  trust_jwt_grant_issuer_body: OryHydraClient::TrustJwtGrantIssuerBody.new({expires_at: Time.now, issuer: 'https://jwt-idp.example.com', jwk: OryHydraClient::JSONWebKey.new({alg: 'RS256', kid: '1603dfe0af8f4596', kty: 'RSA', use: 'sig'}), scope: ["openid", "offline"], subject: 'mike@example.com'}) # TrustJwtGrantIssuerBody | 
+  trust_jwt_grant_issuer_body: OryHydraClient::TrustJwtGrantIssuerBody.new({expires_at: Time.now, issuer: 'https://jwt-idp.example.com', jwk: OryHydraClient::JSONWebKey.new({alg: 'RS256', kid: '1603dfe0af8f4596', kty: 'RSA', use: 'sig'}), scope: ["openid", "offline"]}) # TrustJwtGrantIssuerBody | 
 }
 
 begin
