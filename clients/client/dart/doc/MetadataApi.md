@@ -24,6 +24,9 @@ This endpoint returns the version of Ory Kratos.  If the service supports TLS Ed
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 var api_instance = new MetadataApi();
 
@@ -44,7 +47,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -63,6 +66,9 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incomi
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 var api_instance = new MetadataApi();
 
@@ -83,7 +89,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -102,6 +108,9 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is up running and t
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 var api_instance = new MetadataApi();
 
@@ -122,7 +131,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 

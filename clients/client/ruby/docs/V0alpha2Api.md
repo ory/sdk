@@ -60,7 +60,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Create an Identity
 
-This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint creates an identity. Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Examples
 
@@ -630,7 +630,7 @@ end
 
 Update an Identity
 
-This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint updates an identity. The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Examples
 
@@ -2722,6 +2722,7 @@ api_instance = OryClient::V0alpha2Api.new
 flow = 'flow_example' # String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
 opts = {
   x_session_token: 'x_session_token_example', # String | The Session Token of the Identity performing the settings flow.
+  cookie: 'cookie_example', # String | CSRF Cookie  The CSRF cookie for browsers flow.
   submit_self_service_login_flow_body: OryClient::SubmitSelfServiceLoginFlowWithLookupSecretMethodBody.new({lookup_secret: 'lookup_secret_example', method: 'method_example'}) # SubmitSelfServiceLoginFlowBody | 
 }
 
@@ -2758,6 +2759,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **flow** | **String** | The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). |  |
 | **x_session_token** | **String** | The Session Token of the Identity performing the settings flow. | [optional] |
+| **cookie** | **String** | CSRF Cookie  The CSRF cookie for browsers flow. | [optional] |
 | **submit_self_service_login_flow_body** | [**SubmitSelfServiceLoginFlowBody**](SubmitSelfServiceLoginFlowBody.md) |  | [optional] |
 
 ### Return type
@@ -3272,7 +3274,7 @@ end
 api_instance = OryClient::V0alpha2Api.new
 project_id = 'project_id_example' # String | Project ID  The project's ID.
 opts = {
-  update_project: OryClient::UpdateProject.new({name: 'name_example', services: OryClient::ProjectServices.new({identity: OryClient::ProjectServiceIdentity.new({config: 3.56})})}) # UpdateProject | 
+  update_project: OryClient::UpdateProject.new({name: 'name_example', services: OryClient::ProjectServices.new}) # UpdateProject | 
 }
 
 begin

@@ -30,6 +30,7 @@ abstract class SubmitSelfServiceLoginFlowWithPasswordMethodBody implements Built
     String get password;
 
     /// Identifier is the email or username of the user trying to log in. This field is deprecated!
+    @nullable
     @BuiltValueField(wireName: r'password_identifier')
     String get passwordIdentifier;
 
@@ -72,10 +73,12 @@ class _$SubmitSelfServiceLoginFlowWithPasswordMethodBodySerializer implements St
             ..add(r'password')
             ..add(serializers.serialize(object.password,
                 specifiedType: const FullType(String)));
-        result
-            ..add(r'password_identifier')
-            ..add(serializers.serialize(object.passwordIdentifier,
-                specifiedType: const FullType(String)));
+        if (object.passwordIdentifier != null) {
+            result
+                ..add(r'password_identifier')
+                ..add(serializers.serialize(object.passwordIdentifier,
+                    specifiedType: const FullType(String)));
+        }
         return result;
     }
 

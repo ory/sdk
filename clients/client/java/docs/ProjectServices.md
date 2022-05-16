@@ -7,7 +7,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**identity** | [**ProjectServiceIdentity**](ProjectServiceIdentity.md) |  | 
+**identity** | [**ProjectServiceIdentity**](ProjectServiceIdentity.md) |  |  [optional]
+**permission** | [**ProjectServicePermission**](ProjectServicePermission.md) |  |  [optional]
 
 
 

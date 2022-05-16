@@ -8,6 +8,7 @@
 import 'package:ory_client/model/normalized_project_revision_hook.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/model/normalized_project_revision_identity_schema.dart';
+import 'package:ory_client/model/keto_namespace.dart';
 import 'package:ory_client/model/normalized_project_revision_third_party_provider.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
@@ -25,6 +26,14 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
     @nullable
     @BuiltValueField(wireName: r'id')
     String get id;
+
+    @nullable
+    @BuiltValueField(wireName: r'keto_namespaces')
+    BuiltList<KetoNamespace> get ketoNamespaces;
+
+    @nullable
+    @BuiltValueField(wireName: r'keto_read_max_depth')
+    int get ketoReadMaxDepth;
 
     /// Configures the Ory Kratos Cookie SameSite Attribute  This governs the \"cookies.same_site\" setting.
     @nullable
@@ -453,6 +462,18 @@ class _$NormalizedProjectRevisionSerializer implements StructuredSerializer<Norm
                 ..add(r'id')
                 ..add(serializers.serialize(object.id,
                     specifiedType: const FullType(String)));
+        }
+        if (object.ketoNamespaces != null) {
+            result
+                ..add(r'keto_namespaces')
+                ..add(serializers.serialize(object.ketoNamespaces,
+                    specifiedType: const FullType(BuiltList, [FullType(KetoNamespace)])));
+        }
+        if (object.ketoReadMaxDepth != null) {
+            result
+                ..add(r'keto_read_max_depth')
+                ..add(serializers.serialize(object.ketoReadMaxDepth,
+                    specifiedType: const FullType(int)));
         }
         if (object.kratosCookiesSameSite != null) {
             result
@@ -971,6 +992,14 @@ class _$NormalizedProjectRevisionSerializer implements StructuredSerializer<Norm
                 case r'id':
                     result.id = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
+                    break;
+                case r'keto_namespaces':
+                    result.ketoNamespaces.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(KetoNamespace)])) as BuiltList<KetoNamespace>);
+                    break;
+                case r'keto_read_max_depth':
+                    result.ketoReadMaxDepth = serializers.deserialize(value,
+                        specifiedType: const FullType(int)) as int;
                     break;
                 case r'kratos_cookies_same_site':
                     result.kratosCookiesSameSite = serializers.deserialize(value,

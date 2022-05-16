@@ -59,7 +59,7 @@ Method | HTTP request | Description
 
 Create an Identity
 
-This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint creates an identity. Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 
@@ -116,6 +116,8 @@ with ory_client.ApiClient(configuration) as api_client:
                 ),
             ),
         ),
+        metadata_admin=None,
+        metadata_public=None,
         recovery_addresses=[
             RecoveryAddress(
                 created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
@@ -786,7 +788,7 @@ Name | Type | Description  | Notes
 
 Update an Identity
 
-This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint updates an identity. The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 
@@ -822,6 +824,8 @@ with ory_client.ApiClient(configuration) as api_client:
     api_instance = v0alpha2_api.V0alpha2Api(api_client)
     id = "id_example" # str | ID must be set to the ID of identity you want to update
     admin_update_identity_body = AdminUpdateIdentityBody(
+        metadata_admin=None,
+        metadata_public=None,
         schema_id="schema_id_example",
         state=IdentityState("active"),
         traits={},
@@ -3192,6 +3196,7 @@ with ory_client.ApiClient() as api_client:
     api_instance = v0alpha2_api.V0alpha2Api(api_client)
     flow = "flow_example" # str | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
     x_session_token = "X-Session-Token_example" # str | The Session Token of the Identity performing the settings flow. (optional)
+    cookie = "cookie_example" # str | CSRF Cookie  The CSRF cookie for browsers flow. (optional)
     submit_self_service_login_flow_body = SubmitSelfServiceLoginFlowBody(None) # SubmitSelfServiceLoginFlowBody |  (optional)
 
     # example passing only required values which don't have defaults set
@@ -3206,7 +3211,7 @@ with ory_client.ApiClient() as api_client:
     # and optional values
     try:
         # Submit a Login Flow
-        api_response = api_instance.submit_self_service_login_flow(flow, x_session_token=x_session_token, submit_self_service_login_flow_body=submit_self_service_login_flow_body)
+        api_response = api_instance.submit_self_service_login_flow(flow, x_session_token=x_session_token, cookie=cookie, submit_self_service_login_flow_body=submit_self_service_login_flow_body)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling V0alpha2Api->submit_self_service_login_flow: %s\n" % e)
@@ -3219,6 +3224,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **str**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). |
  **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional]
+ **cookie** | **str**| CSRF Cookie  The CSRF cookie for browsers flow. | [optional]
  **submit_self_service_login_flow_body** | [**SubmitSelfServiceLoginFlowBody**](SubmitSelfServiceLoginFlowBody.md)|  | [optional]
 
 ### Return type
@@ -3857,6 +3863,9 @@ with ory_client.ApiClient(configuration) as api_client:
         name="name_example",
         services=ProjectServices(
             identity=ProjectServiceIdentity(
+                config={},
+            ),
+            permission=ProjectServicePermission(
                 config={},
             ),
         ),

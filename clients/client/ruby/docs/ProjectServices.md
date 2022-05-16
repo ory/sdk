@@ -4,7 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **identity** | [**ProjectServiceIdentity**](ProjectServiceIdentity.md) |  |  |
+| **identity** | [**ProjectServiceIdentity**](ProjectServiceIdentity.md) |  | [optional] |
+| **permission** | [**ProjectServicePermission**](ProjectServicePermission.md) |  | [optional] |
 
 ## Example
 
@@ -12,7 +13,8 @@
 require 'ory-client'
 
 instance = OryClient::ProjectServices.new(
-  identity: null
+  identity: null,
+  permission: null
 )
 ```
 

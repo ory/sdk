@@ -22,6 +22,16 @@ abstract class AdminCreateIdentityBody implements Built<AdminCreateIdentityBody,
     @BuiltValueField(wireName: r'credentials')
     AdminIdentityImportCredentials get credentials;
 
+    /// Store metadata about the user which is only accessible through admin APIs such as `GET /admin/identities/<id>`.
+    @nullable
+    @BuiltValueField(wireName: r'metadata_admin')
+    JsonObject get metadataAdmin;
+
+    /// Store metadata about the identity which the identity itself can see when calling for example the session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field.
+    @nullable
+    @BuiltValueField(wireName: r'metadata_public')
+    JsonObject get metadataPublic;
+
     /// RecoveryAddresses contains all the addresses that can be used to recover an identity.  Use this structure to import recovery addresses for an identity. Please keep in mind that the address needs to be represented in the Identity Schema or this field will be overwritten on the next identity update.
     @nullable
     @BuiltValueField(wireName: r'recovery_addresses')
@@ -72,6 +82,18 @@ class _$AdminCreateIdentityBodySerializer implements StructuredSerializer<AdminC
                 ..add(serializers.serialize(object.credentials,
                     specifiedType: const FullType(AdminIdentityImportCredentials)));
         }
+        if (object.metadataAdmin != null) {
+            result
+                ..add(r'metadata_admin')
+                ..add(serializers.serialize(object.metadataAdmin,
+                    specifiedType: const FullType(JsonObject)));
+        }
+        if (object.metadataPublic != null) {
+            result
+                ..add(r'metadata_public')
+                ..add(serializers.serialize(object.metadataPublic,
+                    specifiedType: const FullType(JsonObject)));
+        }
         if (object.recoveryAddresses != null) {
             result
                 ..add(r'recovery_addresses')
@@ -115,6 +137,14 @@ class _$AdminCreateIdentityBodySerializer implements StructuredSerializer<AdminC
                 case r'credentials':
                     result.credentials.replace(serializers.deserialize(value,
                         specifiedType: const FullType(AdminIdentityImportCredentials)) as AdminIdentityImportCredentials);
+                    break;
+                case r'metadata_admin':
+                    result.metadataAdmin = serializers.deserialize(value,
+                        specifiedType: const FullType(JsonObject)) as JsonObject;
+                    break;
+                case r'metadata_public':
+                    result.metadataPublic = serializers.deserialize(value,
+                        specifiedType: const FullType(JsonObject)) as JsonObject;
                     break;
                 case r'recovery_addresses':
                     result.recoveryAddresses.replace(serializers.deserialize(value,

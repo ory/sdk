@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Id** | **string** |  | 
 **Revisions** | [**List&lt;ClientNormalizedProjectRevision&gt;**](ClientNormalizedProjectRevision.md) |  | 
 **Slug** | **string** | The project&#39;s slug | [readonly] 
-**State** | **string** | The state of the project. | [readonly] 
+**State** | **string** | The state of the project. running Running halted Halted | [readonly] 
 **SubscriptionId** | **string** |  | [optional] 
 **UpdatedAt** | **DateTime** | Last Time Project was Updated | [readonly] 
 

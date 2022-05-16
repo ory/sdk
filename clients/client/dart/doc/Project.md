@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **revisionId** | **String** |  | 
 **services** | [**ProjectServices**](ProjectServices.md) |  | 
 **slug** | **String** | The project's slug | 
-**state** | **String** | The state of the project. | 
+**state** | **String** | The state of the project. running Running halted Halted | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

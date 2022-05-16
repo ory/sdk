@@ -47,8 +47,8 @@ require 'ory-client'
 OryClient::UiNodeAttributes.openapi_discriminator_mapping
 # =>
 # {
-#   :'anchor' => :'UiNodeAnchorAttributes',
-#   :'image' => :'UiNodeImageAttributes',
+#   :'a' => :'UiNodeAnchorAttributes',
+#   :'img' => :'UiNodeImageAttributes',
 #   :'input' => :'UiNodeInputAttributes',
 #   :'script' => :'UiNodeScriptAttributes',
 #   :'text' => :'UiNodeTextAttributes'

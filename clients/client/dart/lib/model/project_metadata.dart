@@ -32,7 +32,7 @@ abstract class ProjectMetadata implements Built<ProjectMetadata, ProjectMetadata
     @BuiltValueField(wireName: r'slug')
     String get slug;
 
-    /// The state of the project.
+    /// The state of the project. running Running halted Halted
     @BuiltValueField(wireName: r'state')
     ProjectMetadataStateEnum get state;
     // enum stateEnum {  running,  halted,  };
@@ -156,10 +156,10 @@ class _$ProjectMetadataSerializer implements StructuredSerializer<ProjectMetadat
 
 class ProjectMetadataStateEnum extends EnumClass {
 
-  /// The state of the project.
+  /// The state of the project. running Running halted Halted
   @BuiltValueEnumConst(wireName: r'running')
   static const ProjectMetadataStateEnum running = _$projectMetadataStateEnum_running;
-  /// The state of the project.
+  /// The state of the project. running Running halted Halted
   @BuiltValueEnumConst(wireName: r'halted')
   static const ProjectMetadataStateEnum halted = _$projectMetadataStateEnum_halted;
 

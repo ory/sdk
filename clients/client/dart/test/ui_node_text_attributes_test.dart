@@ -20,6 +20,7 @@ void main() {
       // TODO
     });
 
+    // NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\".
     // String nodeType
     test('to test the property `nodeType`', () async {
       // TODO

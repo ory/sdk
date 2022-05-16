@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **id** | **UUID** |  | 
 **name** | **String** | The project&#39;s name if set | 
 **slug** | **String** | The project&#39;s slug |  [optional] [readonly]
-**state** | [**StateEnum**](#StateEnum) | The state of the project. | 
+**state** | [**StateEnum**](#StateEnum) | The state of the project. running Running halted Halted | 
 **subscriptionId** | **String** |  |  [optional]
 **updatedAt** | **OffsetDateTime** | Last Time Project was Updated | 
 

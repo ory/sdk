@@ -34,7 +34,7 @@ abstract class NormalizedProject implements Built<NormalizedProject, NormalizedP
     @BuiltValueField(wireName: r'slug')
     String get slug;
 
-    /// The state of the project.
+    /// The state of the project. running Running halted Halted
     @BuiltValueField(wireName: r'state')
     NormalizedProjectStateEnum get state;
     // enum stateEnum {  running,  halted,  };
@@ -164,10 +164,10 @@ class _$NormalizedProjectSerializer implements StructuredSerializer<NormalizedPr
 
 class NormalizedProjectStateEnum extends EnumClass {
 
-  /// The state of the project.
+  /// The state of the project. running Running halted Halted
   @BuiltValueEnumConst(wireName: r'running')
   static const NormalizedProjectStateEnum running = _$normalizedProjectStateEnum_running;
-  /// The state of the project.
+  /// The state of the project. running Running halted Halted
   @BuiltValueEnumConst(wireName: r'halted')
   static const NormalizedProjectStateEnum halted = _$normalizedProjectStateEnum_halted;
 

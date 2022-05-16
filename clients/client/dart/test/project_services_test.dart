@@ -19,6 +19,11 @@ void main() {
       // TODO
     });
 
+    // ProjectServicePermission permission
+    test('to test the property `permission`', () async {
+      // TODO
+    });
+
 
   });
 

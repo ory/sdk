@@ -26,11 +26,15 @@ This endpoint returns the version of Ory Kratos.  If the service supports TLS Ed
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
 
 $apiInstance = new Ory\Client\Api\MetadataApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 
 try {
@@ -51,7 +55,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -79,11 +83,15 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incomi
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
 
 $apiInstance = new Ory\Client\Api\MetadataApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 
 try {
@@ -104,7 +112,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -132,11 +140,15 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is up running and t
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
 
 $apiInstance = new Ory\Client\Api\MetadataApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 
 try {
@@ -157,7 +169,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../../README.md#oryAccessToken)
 
 ### HTTP request headers
 

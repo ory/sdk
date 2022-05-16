@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **time.Time** |  | [readonly] 
-**CurrentPlan** | **string** | The currently active plan of the subscription | [readonly] 
+**CurrentPlan** | **string** | The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom | [readonly] 
 **CustomerId** | **string** | The ID of the stripe customer | [readonly] 
 **Id** | **string** |  | 
-**OngoingStripeCheckoutId** | Pointer to **string** |  | [optional] 
+**OngoingStripeCheckoutId** | Pointer to **NullableString** |  | [optional] 
 **PayedUntil** | **time.Time** | Until when the subscription is payed | [readonly] 
 **PlanChangesAt** | Pointer to **time.Time** |  | [optional] 
 **PlanChangesTo** | [**NullPlan**](NullPlan.md) |  | 
@@ -139,6 +139,16 @@ SetOngoingStripeCheckoutId sets OngoingStripeCheckoutId field to given value.
 
 HasOngoingStripeCheckoutId returns a boolean if a field has been set.
 
+### SetOngoingStripeCheckoutIdNil
+
+`func (o *Subscription) SetOngoingStripeCheckoutIdNil(b bool)`
+
+ SetOngoingStripeCheckoutIdNil sets the value for OngoingStripeCheckoutId to be an explicit nil
+
+### UnsetOngoingStripeCheckoutId
+`func (o *Subscription) UnsetOngoingStripeCheckoutId()`
+
+UnsetOngoingStripeCheckoutId ensures that no value is present for OngoingStripeCheckoutId, not even an explicit nil
 ### GetPayedUntil
 
 `func (o *Subscription) GetPayedUntil() time.Time`

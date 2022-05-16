@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **id** | **String** |  | 
 **name** | **String** | The project's name if set | 
 **slug** | **String** | The project's slug | [optional] 
-**state** | **String** | The state of the project. | 
+**state** | **String** | The state of the project. running Running halted Halted | 
 **subscriptionId** | **String** |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) | Last Time Project was Updated | 
 

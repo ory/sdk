@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **id** | **String** |  | 
 **revisions** | [**Vec<crate::models::NormalizedProjectRevision>**](normalizedProjectRevision.md) |  | 
 **slug** | **String** | The project's slug | [readonly]
-**state** | **String** | The state of the project. | [readonly]
+**state** | **String** | The state of the project. running Running halted Halted | [readonly]
 **subscription_id** | Option<**String**> |  | [optional]
 **updated_at** | **String** | Last Time Project was Updated | [readonly]
 

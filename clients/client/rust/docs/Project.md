@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **revision_id** | **String** |  | 
 **services** | [**crate::models::ProjectServices**](projectServices.md) |  | 
 **slug** | **String** | The project's slug | [readonly]
-**state** | **String** | The state of the project. | [readonly]
+**state** | **String** | The state of the project. running Running halted Halted | [readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

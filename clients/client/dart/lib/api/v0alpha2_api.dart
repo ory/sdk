@@ -55,7 +55,7 @@ class V0alpha2Api {
 
   /// Create an Identity
   ///
-  /// This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+  /// This endpoint creates an identity. Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
   Future<Response<Identity>> adminCreateIdentity({ 
     AdminCreateIdentityBody adminCreateIdentityBody,
     CancelToken cancelToken,
@@ -528,7 +528,7 @@ class V0alpha2Api {
 
   /// Update an Identity
   ///
-  /// This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+  /// This endpoint updates an identity. The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
   Future<Response<Identity>> adminUpdateIdentity(
     String id, { 
     AdminUpdateIdentityBody adminUpdateIdentityBody,
@@ -2310,6 +2310,7 @@ class V0alpha2Api {
   Future<Response<SuccessfulSelfServiceLoginWithoutBrowser>> submitSelfServiceLoginFlow(
     String flow, { 
     String xSessionToken,
+    String cookie,
     SubmitSelfServiceLoginFlowBody submitSelfServiceLoginFlowBody,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
@@ -2323,6 +2324,7 @@ class V0alpha2Api {
       method: 'POST',
       headers: <String, dynamic>{
         if (xSessionToken != null) r'X-Session-Token': xSessionToken,
+        if (cookie != null) r'cookie': cookie,
         ...?headers,
       },
       queryParameters: <String, dynamic>{

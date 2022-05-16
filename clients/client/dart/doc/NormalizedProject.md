@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **id** | **String** |  | 
 **revisions** | [**BuiltList<NormalizedProjectRevision>**](NormalizedProjectRevision.md) |  | 
 **slug** | **String** | The project's slug | 
-**state** | **String** | The state of the project. | 
+**state** | **String** | The state of the project. running Running halted Halted | 
 **subscriptionId** | **String** |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) | Last Time Project was Updated | 
 

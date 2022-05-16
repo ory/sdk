@@ -17,7 +17,7 @@ void main() {
   group(V0alpha2Api, () {
     // Create an Identity
     //
-    // This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+    // This endpoint creates an identity. Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
     //
     //Future<Identity> adminCreateIdentity({ AdminCreateIdentityBody adminCreateIdentityBody }) async
     test('test adminCreateIdentity', () async {
@@ -89,7 +89,7 @@ void main() {
 
     // Update an Identity
     //
-    // This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+    // This endpoint updates an identity. The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
     //
     //Future<Identity> adminUpdateIdentity(String id, { AdminUpdateIdentityBody adminUpdateIdentityBody }) async
     test('test adminUpdateIdentity', () async {
@@ -366,7 +366,7 @@ void main() {
     //
     // :::info  This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.  :::  Use this endpoint to complete a login flow. This endpoint behaves differently for API and browser flows.  API flows expect `application/json` to be sent in the body and responds with HTTP 200 and a application/json body with the session token on success; HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body; HTTP 400 on form validation errors.  Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with a HTTP 303 redirect to the post/after login URL or the `return_to` value if it was set and if the login succeeded; a HTTP 303 redirect to the login UI URL with the flow ID containing the validation errors otherwise.  Browser flows with an accept header of `application/json` will not redirect but instead respond with HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success; HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration! `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL. Most likely used in Social Sign In flows.  More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
     //
-    //Future<SuccessfulSelfServiceLoginWithoutBrowser> submitSelfServiceLoginFlow(String flow, { String xSessionToken, SubmitSelfServiceLoginFlowBody submitSelfServiceLoginFlowBody }) async
+    //Future<SuccessfulSelfServiceLoginWithoutBrowser> submitSelfServiceLoginFlow(String flow, { String xSessionToken, String cookie, SubmitSelfServiceLoginFlowBody submitSelfServiceLoginFlowBody }) async
     test('test submitSelfServiceLoginFlow', () async {
       // TODO
     });

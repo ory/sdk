@@ -5,6 +5,8 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **cookie_domain** | **String** |  | [optional] |
+| **cors_allowed_origins** | **Array&lt;String&gt;** |  | [optional] |
+| **cors_enabled** | **Boolean** |  | [optional] |
 | **created_at** | **Time** |  | [optional] |
 | **hostname** | **String** |  | [optional] |
 | **id** | **String** |  | [optional] |
@@ -19,6 +21,8 @@ require 'ory-client'
 
 instance = OryClient::CnameSettings.new(
   cookie_domain: null,
+  cors_allowed_origins: null,
+  cors_enabled: null,
   created_at: null,
   hostname: null,
   id: null,

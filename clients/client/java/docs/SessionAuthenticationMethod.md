@@ -24,6 +24,7 @@ TOTP | &quot;totp&quot;
 OIDC | &quot;oidc&quot;
 WEBAUTHN | &quot;webauthn&quot;
 LOOKUP_SECRET | &quot;lookup_secret&quot;
+V0_6_LEGACY_SESSION | &quot;v0.6_legacy_session&quot;
 
 
 

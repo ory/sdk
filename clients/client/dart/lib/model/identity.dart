@@ -31,6 +31,16 @@ abstract class Identity implements Built<Identity, IdentityBuilder> {
     @BuiltValueField(wireName: r'id')
     String get id;
 
+    /// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+    @nullable
+    @BuiltValueField(wireName: r'metadata_admin')
+    JsonObject get metadataAdmin;
+
+    /// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+    @nullable
+    @BuiltValueField(wireName: r'metadata_public')
+    JsonObject get metadataPublic;
+
     /// RecoveryAddresses contains all the addresses that can be used to recover an identity.
     @nullable
     @BuiltValueField(wireName: r'recovery_addresses')
@@ -105,6 +115,18 @@ class _$IdentitySerializer implements StructuredSerializer<Identity> {
             ..add(r'id')
             ..add(serializers.serialize(object.id,
                 specifiedType: const FullType(String)));
+        if (object.metadataAdmin != null) {
+            result
+                ..add(r'metadata_admin')
+                ..add(serializers.serialize(object.metadataAdmin,
+                    specifiedType: const FullType(JsonObject)));
+        }
+        if (object.metadataPublic != null) {
+            result
+                ..add(r'metadata_public')
+                ..add(serializers.serialize(object.metadataPublic,
+                    specifiedType: const FullType(JsonObject)));
+        }
         if (object.recoveryAddresses != null) {
             result
                 ..add(r'recovery_addresses')
@@ -172,6 +194,14 @@ class _$IdentitySerializer implements StructuredSerializer<Identity> {
                 case r'id':
                     result.id = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
+                    break;
+                case r'metadata_admin':
+                    result.metadataAdmin = serializers.deserialize(value,
+                        specifiedType: const FullType(JsonObject)) as JsonObject;
+                    break;
+                case r'metadata_public':
+                    result.metadataPublic = serializers.deserialize(value,
+                        specifiedType: const FullType(JsonObject)) as JsonObject;
                     break;
                 case r'recovery_addresses':
                     result.recoveryAddresses.replace(serializers.deserialize(value,

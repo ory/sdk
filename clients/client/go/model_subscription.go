@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.169
+ * API version: v0.0.1-alpha.175
  * Contact: support@ory.sh
  */
 
@@ -19,12 +19,12 @@ import (
 // Subscription struct for Subscription
 type Subscription struct {
 	CreatedAt time.Time `json:"created_at"`
-	// The currently active plan of the subscription
+	// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
 	CurrentPlan string `json:"current_plan"`
 	// The ID of the stripe customer
 	CustomerId string `json:"customer_id"`
 	Id string `json:"id"`
-	OngoingStripeCheckoutId *string `json:"ongoing_stripe_checkout_id,omitempty"`
+	OngoingStripeCheckoutId NullableString `json:"ongoing_stripe_checkout_id,omitempty"`
 	// Until when the subscription is payed
 	PayedUntil time.Time `json:"payed_until"`
 	PlanChangesAt *time.Time `json:"plan_changes_at,omitempty"`
@@ -154,36 +154,46 @@ func (o *Subscription) SetId(v string) {
 	o.Id = v
 }
 
-// GetOngoingStripeCheckoutId returns the OngoingStripeCheckoutId field value if set, zero value otherwise.
+// GetOngoingStripeCheckoutId returns the OngoingStripeCheckoutId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Subscription) GetOngoingStripeCheckoutId() string {
-	if o == nil || o.OngoingStripeCheckoutId == nil {
+	if o == nil || o.OngoingStripeCheckoutId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.OngoingStripeCheckoutId
+	return *o.OngoingStripeCheckoutId.Get()
 }
 
 // GetOngoingStripeCheckoutIdOk returns a tuple with the OngoingStripeCheckoutId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Subscription) GetOngoingStripeCheckoutIdOk() (*string, bool) {
-	if o == nil || o.OngoingStripeCheckoutId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.OngoingStripeCheckoutId, true
+	return o.OngoingStripeCheckoutId.Get(), o.OngoingStripeCheckoutId.IsSet()
 }
 
 // HasOngoingStripeCheckoutId returns a boolean if a field has been set.
 func (o *Subscription) HasOngoingStripeCheckoutId() bool {
-	if o != nil && o.OngoingStripeCheckoutId != nil {
+	if o != nil && o.OngoingStripeCheckoutId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetOngoingStripeCheckoutId gets a reference to the given string and assigns it to the OngoingStripeCheckoutId field.
+// SetOngoingStripeCheckoutId gets a reference to the given NullableString and assigns it to the OngoingStripeCheckoutId field.
 func (o *Subscription) SetOngoingStripeCheckoutId(v string) {
-	o.OngoingStripeCheckoutId = &v
+	o.OngoingStripeCheckoutId.Set(&v)
+}
+// SetOngoingStripeCheckoutIdNil sets the value for OngoingStripeCheckoutId to be an explicit nil
+func (o *Subscription) SetOngoingStripeCheckoutIdNil() {
+	o.OngoingStripeCheckoutId.Set(nil)
+}
+
+// UnsetOngoingStripeCheckoutId ensures that no value is present for OngoingStripeCheckoutId, not even an explicit nil
+func (o *Subscription) UnsetOngoingStripeCheckoutId() {
+	o.OngoingStripeCheckoutId.Unset()
 }
 
 // GetPayedUntil returns the PayedUntil field value
@@ -328,8 +338,8 @@ func (o Subscription) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["id"] = o.Id
 	}
-	if o.OngoingStripeCheckoutId != nil {
-		toSerialize["ongoing_stripe_checkout_id"] = o.OngoingStripeCheckoutId
+	if o.OngoingStripeCheckoutId.IsSet() {
+		toSerialize["ongoing_stripe_checkout_id"] = o.OngoingStripeCheckoutId.Get()
 	}
 	if true {
 		toSerialize["payed_until"] = o.PayedUntil

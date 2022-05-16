@@ -60,7 +60,7 @@ Method | HTTP request | Description
 
 Create an Identity
 
-This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint creates an identity. Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 ```csharp
@@ -682,7 +682,7 @@ Name | Type | Description  | Notes
 
 Update an Identity
 
-This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint updates an identity. The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 ```csharp
@@ -3009,7 +3009,7 @@ No authorization required
 
 <a name="submitselfserviceloginflow"></a>
 # **SubmitSelfServiceLoginFlow**
-> ClientSuccessfulSelfServiceLoginWithoutBrowser SubmitSelfServiceLoginFlow (string flow, string xSessionToken = null, ClientSubmitSelfServiceLoginFlowBody clientSubmitSelfServiceLoginFlowBody = null)
+> ClientSuccessfulSelfServiceLoginWithoutBrowser SubmitSelfServiceLoginFlow (string flow, string xSessionToken = null, string cookie = null, ClientSubmitSelfServiceLoginFlowBody clientSubmitSelfServiceLoginFlowBody = null)
 
 Submit a Login Flow
 
@@ -3034,12 +3034,13 @@ namespace Example
             var apiInstance = new V0alpha2Api(config);
             var flow = "flow_example";  // string | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
             var xSessionToken = "xSessionToken_example";  // string | The Session Token of the Identity performing the settings flow. (optional) 
+            var cookie = "cookie_example";  // string | CSRF Cookie  The CSRF cookie for browsers flow. (optional) 
             var clientSubmitSelfServiceLoginFlowBody = new ClientSubmitSelfServiceLoginFlowBody(); // ClientSubmitSelfServiceLoginFlowBody |  (optional) 
 
             try
             {
                 // Submit a Login Flow
-                ClientSuccessfulSelfServiceLoginWithoutBrowser result = apiInstance.SubmitSelfServiceLoginFlow(flow, xSessionToken, clientSubmitSelfServiceLoginFlowBody);
+                ClientSuccessfulSelfServiceLoginWithoutBrowser result = apiInstance.SubmitSelfServiceLoginFlow(flow, xSessionToken, cookie, clientSubmitSelfServiceLoginFlowBody);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -3059,6 +3060,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **string**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). | 
  **xSessionToken** | **string**| The Session Token of the Identity performing the settings flow. | [optional] 
+ **cookie** | **string**| CSRF Cookie  The CSRF cookie for browsers flow. | [optional] 
  **clientSubmitSelfServiceLoginFlowBody** | [**ClientSubmitSelfServiceLoginFlowBody**](ClientSubmitSelfServiceLoginFlowBody.md)|  | [optional] 
 
 ### Return type

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
 **Id** | Pointer to **string** |  | [optional] 
 **IdentitySchema** | Pointer to [**IdentitySchema**](IdentitySchema.md) |  | [optional] 
-**IdentitySchemaId** | Pointer to **string** |  | [optional] 
+**IdentitySchemaId** | Pointer to **NullableString** |  | [optional] 
 **ImportId** | Pointer to **string** | The imported (named) ID of the Identity Schema referenced in the Ory Kratos config. | [optional] 
 **ImportUrl** | Pointer to **string** | The ImportURL can be used to import an Identity Schema from a bse64 encoded string. In the future, this key also support HTTPS and other sources!  If you import an Ory Kratos configuration, this would be akin to the &#x60;identity.schemas.#.url&#x60; key.  The configuration will always return the import URL when you fetch it from the API. | [optional] 
 **IsDefault** | Pointer to **bool** | If true sets the default schema for identities  Only one schema can ever be the default schema. If you try to add two schemas with default to true, the request will fail. | [optional] 
@@ -134,6 +134,16 @@ SetIdentitySchemaId sets IdentitySchemaId field to given value.
 
 HasIdentitySchemaId returns a boolean if a field has been set.
 
+### SetIdentitySchemaIdNil
+
+`func (o *NormalizedProjectRevisionIdentitySchema) SetIdentitySchemaIdNil(b bool)`
+
+ SetIdentitySchemaIdNil sets the value for IdentitySchemaId to be an explicit nil
+
+### UnsetIdentitySchemaId
+`func (o *NormalizedProjectRevisionIdentitySchema) UnsetIdentitySchemaId()`
+
+UnsetIdentitySchemaId ensures that no value is present for IdentitySchemaId, not even an explicit nil
 ### GetImportId
 
 `func (o *NormalizedProjectRevisionIdentitySchema) GetImportId() string`

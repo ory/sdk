@@ -9,7 +9,7 @@
 | **id** | **String** |  |  |
 | **name** | **String** | The project&#39;s name if set |  |
 | **slug** | **String** | The project&#39;s slug | [optional][readonly] |
-| **state** | **String** | The state of the project. |  |
+| **state** | **String** | The state of the project. running Running halted Halted |  |
 | **subscription_id** | **String** |  | [optional] |
 | **updated_at** | **Time** | Last Time Project was Updated |  |
 

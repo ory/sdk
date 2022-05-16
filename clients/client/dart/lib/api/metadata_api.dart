@@ -40,7 +40,12 @@ class MetadataApi {
         ...?headers,
       },
       extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'name': 'oryAccessToken',
+          },
+        ],
         ...?extra,
       },
       validateStatus: validateStatus,
@@ -94,7 +99,12 @@ class MetadataApi {
         ...?headers,
       },
       extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'name': 'oryAccessToken',
+          },
+        ],
         ...?extra,
       },
       validateStatus: validateStatus,
@@ -148,7 +158,12 @@ class MetadataApi {
         ...?headers,
       },
       extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'name': 'oryAccessToken',
+          },
+        ],
         ...?extra,
       },
       validateStatus: validateStatus,

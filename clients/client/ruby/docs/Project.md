@@ -9,7 +9,7 @@
 | **revision_id** | **String** |  |  |
 | **services** | [**ProjectServices**](ProjectServices.md) |  |  |
 | **slug** | **String** | The project&#39;s slug | [readonly] |
-| **state** | **String** | The state of the project. | [readonly] |
+| **state** | **String** | The state of the project. running Running halted Halted | [readonly] |
 
 ## Example
 

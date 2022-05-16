@@ -62,7 +62,7 @@ adminCreateIdentity($adminCreateIdentityBody): \Ory\Client\Model\Identity
 
 Create an Identity
 
-This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint creates an identity. Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 
@@ -550,7 +550,7 @@ adminUpdateIdentity($id, $adminUpdateIdentityBody): \Ory\Client\Model\Identity
 
 Update an Identity
 
-This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint updates an identity. The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 
@@ -2331,7 +2331,7 @@ No authorization required
 ## `submitSelfServiceLoginFlow()`
 
 ```php
-submitSelfServiceLoginFlow($flow, $xSessionToken, $submitSelfServiceLoginFlowBody): \Ory\Client\Model\SuccessfulSelfServiceLoginWithoutBrowser
+submitSelfServiceLoginFlow($flow, $xSessionToken, $cookie, $submitSelfServiceLoginFlowBody): \Ory\Client\Model\SuccessfulSelfServiceLoginWithoutBrowser
 ```
 
 Submit a Login Flow
@@ -2353,10 +2353,11 @@ $apiInstance = new Ory\Client\Api\V0alpha2Api(
 );
 $flow = 'flow_example'; // string | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
 $xSessionToken = 'xSessionToken_example'; // string | The Session Token of the Identity performing the settings flow.
+$cookie = 'cookie_example'; // string | CSRF Cookie  The CSRF cookie for browsers flow.
 $submitSelfServiceLoginFlowBody = new \Ory\Client\Model\SubmitSelfServiceLoginFlowBody(); // \Ory\Client\Model\SubmitSelfServiceLoginFlowBody
 
 try {
-    $result = $apiInstance->submitSelfServiceLoginFlow($flow, $xSessionToken, $submitSelfServiceLoginFlowBody);
+    $result = $apiInstance->submitSelfServiceLoginFlow($flow, $xSessionToken, $cookie, $submitSelfServiceLoginFlowBody);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling V0alpha2Api->submitSelfServiceLoginFlow: ', $e->getMessage(), PHP_EOL;
@@ -2369,6 +2370,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **string**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). |
  **xSessionToken** | **string**| The Session Token of the Identity performing the settings flow. | [optional]
+ **cookie** | **string**| CSRF Cookie  The CSRF cookie for browsers flow. | [optional]
  **submitSelfServiceLoginFlowBody** | [**\Ory\Client\Model\SubmitSelfServiceLoginFlowBody**](../Model/SubmitSelfServiceLoginFlowBody.md)|  | [optional]
 
 ### Return type

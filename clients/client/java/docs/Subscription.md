@@ -8,7 +8,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdAt** | **OffsetDateTime** |  |  [readonly]
-**currentPlan** | [**CurrentPlanEnum**](#CurrentPlanEnum) | The currently active plan of the subscription |  [readonly]
+**currentPlan** | [**CurrentPlanEnum**](#CurrentPlanEnum) | The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom |  [readonly]
 **customerId** | **String** | The ID of the stripe customer |  [readonly]
 **id** | **UUID** |  | 
 **ongoingStripeCheckoutId** | **String** |  |  [optional]

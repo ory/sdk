@@ -40,7 +40,6 @@ abstract class SelfServiceRegistrationFlow implements Built<SelfServiceRegistrat
     String get returnTo;
 
     /// The flow type can either be `api` or `browser`.
-    @nullable
     @BuiltValueField(wireName: r'type')
     String get type;
 
@@ -96,12 +95,10 @@ class _$SelfServiceRegistrationFlowSerializer implements StructuredSerializer<Se
                 ..add(serializers.serialize(object.returnTo,
                     specifiedType: const FullType(String)));
         }
-        if (object.type != null) {
-            result
-                ..add(r'type')
-                ..add(serializers.serialize(object.type,
-                    specifiedType: const FullType(String)));
-        }
+        result
+            ..add(r'type')
+            ..add(serializers.serialize(object.type,
+                specifiedType: const FullType(String)));
         result
             ..add(r'ui')
             ..add(serializers.serialize(object.ui,

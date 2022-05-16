@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.169
+ * API version: v0.0.1-alpha.175
  * Contact: support@ory.sh
  */
 
@@ -29,7 +29,7 @@ type SelfServiceRegistrationFlow struct {
 	// ReturnTo contains the requested return_to URL.
 	ReturnTo *string `json:"return_to,omitempty"`
 	// The flow type can either be `api` or `browser`.
-	Type *string `json:"type,omitempty"`
+	Type string `json:"type"`
 	Ui UiContainer `json:"ui"`
 }
 
@@ -37,12 +37,13 @@ type SelfServiceRegistrationFlow struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSelfServiceRegistrationFlow(expiresAt time.Time, id string, issuedAt time.Time, requestUrl string, ui UiContainer) *SelfServiceRegistrationFlow {
+func NewSelfServiceRegistrationFlow(expiresAt time.Time, id string, issuedAt time.Time, requestUrl string, type_ string, ui UiContainer) *SelfServiceRegistrationFlow {
 	this := SelfServiceRegistrationFlow{}
 	this.ExpiresAt = expiresAt
 	this.Id = id
 	this.IssuedAt = issuedAt
 	this.RequestUrl = requestUrl
+	this.Type = type_
 	this.Ui = ui
 	return &this
 }
@@ -215,36 +216,28 @@ func (o *SelfServiceRegistrationFlow) SetReturnTo(v string) {
 	o.ReturnTo = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value
 func (o *SelfServiceRegistrationFlow) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Type
+
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SelfServiceRegistrationFlow) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *SelfServiceRegistrationFlow) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
+// SetType sets field value
 func (o *SelfServiceRegistrationFlow) SetType(v string) {
-	o.Type = &v
+	o.Type = v
 }
 
 // GetUi returns the Ui field value
@@ -291,7 +284,7 @@ func (o SelfServiceRegistrationFlow) MarshalJSON() ([]byte, error) {
 	if o.ReturnTo != nil {
 		toSerialize["return_to"] = o.ReturnTo
 	}
-	if o.Type != nil {
+	if true {
 		toSerialize["type"] = o.Type
 	}
 	if true {

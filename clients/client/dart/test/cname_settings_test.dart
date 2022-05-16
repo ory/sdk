@@ -19,6 +19,16 @@ void main() {
       // TODO
     });
 
+    // BuiltList<String> corsAllowedOrigins
+    test('to test the property `corsAllowedOrigins`', () async {
+      // TODO
+    });
+
+    // bool corsEnabled
+    test('to test the property `corsEnabled`', () async {
+      // TODO
+    });
+
     // DateTime createdAt
     test('to test the property `createdAt`', () async {
       // TODO

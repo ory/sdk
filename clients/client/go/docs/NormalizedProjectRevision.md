@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **time.Time** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
 **Id** | Pointer to **string** |  | [optional] 
+**KetoNamespaces** | Pointer to [**[]KetoNamespace**](KetoNamespace.md) |  | [optional] 
+**KetoReadMaxDepth** | Pointer to **NullableInt32** |  | [optional] 
 **KratosCookiesSameSite** | Pointer to **string** | Configures the Ory Kratos Cookie SameSite Attribute  This governs the \&quot;cookies.same_site\&quot; setting. | [optional] 
 **KratosCourierSmtpConnectionUri** | Pointer to **string** | Configures the Ory Kratos SMTP Connection URI  This governs the \&quot;courier.smtp.connection_uri\&quot; setting. | [optional] 
 **KratosCourierSmtpFromAddress** | Pointer to **string** | Configures the Ory Kratos SMTP From Address  This governs the \&quot;courier.smtp.from_address\&quot; setting. | [optional] 
@@ -159,6 +161,66 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
+### GetKetoNamespaces
+
+`func (o *NormalizedProjectRevision) GetKetoNamespaces() []KetoNamespace`
+
+GetKetoNamespaces returns the KetoNamespaces field if non-nil, zero value otherwise.
+
+### GetKetoNamespacesOk
+
+`func (o *NormalizedProjectRevision) GetKetoNamespacesOk() (*[]KetoNamespace, bool)`
+
+GetKetoNamespacesOk returns a tuple with the KetoNamespaces field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKetoNamespaces
+
+`func (o *NormalizedProjectRevision) SetKetoNamespaces(v []KetoNamespace)`
+
+SetKetoNamespaces sets KetoNamespaces field to given value.
+
+### HasKetoNamespaces
+
+`func (o *NormalizedProjectRevision) HasKetoNamespaces() bool`
+
+HasKetoNamespaces returns a boolean if a field has been set.
+
+### GetKetoReadMaxDepth
+
+`func (o *NormalizedProjectRevision) GetKetoReadMaxDepth() int32`
+
+GetKetoReadMaxDepth returns the KetoReadMaxDepth field if non-nil, zero value otherwise.
+
+### GetKetoReadMaxDepthOk
+
+`func (o *NormalizedProjectRevision) GetKetoReadMaxDepthOk() (*int32, bool)`
+
+GetKetoReadMaxDepthOk returns a tuple with the KetoReadMaxDepth field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKetoReadMaxDepth
+
+`func (o *NormalizedProjectRevision) SetKetoReadMaxDepth(v int32)`
+
+SetKetoReadMaxDepth sets KetoReadMaxDepth field to given value.
+
+### HasKetoReadMaxDepth
+
+`func (o *NormalizedProjectRevision) HasKetoReadMaxDepth() bool`
+
+HasKetoReadMaxDepth returns a boolean if a field has been set.
+
+### SetKetoReadMaxDepthNil
+
+`func (o *NormalizedProjectRevision) SetKetoReadMaxDepthNil(b bool)`
+
+ SetKetoReadMaxDepthNil sets the value for KetoReadMaxDepth to be an explicit nil
+
+### UnsetKetoReadMaxDepth
+`func (o *NormalizedProjectRevision) UnsetKetoReadMaxDepth()`
+
+UnsetKetoReadMaxDepth ensures that no value is present for KetoReadMaxDepth, not even an explicit nil
 ### GetKratosCookiesSameSite
 
 `func (o *NormalizedProjectRevision) GetKratosCookiesSameSite() string`

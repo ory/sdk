@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Identifier** | **string** | Identifier is the email or username of the user trying to log in. This field is only required when using WebAuthn for passwordless login. When using WebAuthn for multi-factor authentication, it is not needed. | 
 **Method** | **string** | Method should be set to \&quot;lookup_secret\&quot; when logging in using the lookup_secret strategy. | 
 **Password** | **string** | The user&#39;s password. | 
-**PasswordIdentifier** | **string** | Identifier is the email or username of the user trying to log in. This field is deprecated! | 
+**PasswordIdentifier** | **string** | Identifier is the email or username of the user trying to log in. This field is deprecated! | [optional] 
 **Provider** | **string** | The provider to register with | 
 **Traits** | **Object** | The identity traits. This is a placeholder for the registration flow. | [optional] 
 **TotpCode** | **string** | The TOTP code. | 

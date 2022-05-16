@@ -25,6 +25,16 @@ void main() {
       // TODO
     });
 
+    // BuiltList<KetoNamespace> ketoNamespaces
+    test('to test the property `ketoNamespaces`', () async {
+      // TODO
+    });
+
+    // int ketoReadMaxDepth
+    test('to test the property `ketoReadMaxDepth`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Cookie SameSite Attribute  This governs the \"cookies.same_site\" setting.
     // String kratosCookiesSameSite
     test('to test the property `kratosCookiesSameSite`', () async {

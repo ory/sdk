@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **disabled** | **bool** | Sets the input&#39;s disabled field to true or false. | 
 **name** | **str** | The input&#39;s element name. | 
-**node_type** | **str** |  | 
+**node_type** | **str** | NodeType represents this node&#39;s types. It is a mirror of &#x60;node.type&#x60; and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \&quot;input\&quot;. | 
 **type** | **str** |  | 
 **label** | [**UiText**](UiText.md) |  | [optional] 
 **onclick** | **str** | OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn. | [optional] 

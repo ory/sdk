@@ -5,6 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cookie_domain** | **str** |  | [optional] 
+**cors_allowed_origins** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
+**cors_enabled** | **bool** |  | [optional] 
 **created_at** | **datetime** |  | [optional] 
 **hostname** | **str** |  | [optional] 
 **id** | **str** |  | [optional] 

@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.169
+ * API version: v0.0.1-alpha.175
  * Contact: support@ory.sh
  */
 
@@ -19,6 +19,8 @@ import (
 // CnameSettings struct for CnameSettings
 type CnameSettings struct {
 	CookieDomain *string `json:"cookie_domain,omitempty"`
+	CorsAllowedOrigins []string `json:"cors_allowed_origins,omitempty"`
+	CorsEnabled *bool `json:"cors_enabled,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	Hostname *string `json:"hostname,omitempty"`
 	Id *string `json:"id,omitempty"`
@@ -75,6 +77,70 @@ func (o *CnameSettings) HasCookieDomain() bool {
 // SetCookieDomain gets a reference to the given string and assigns it to the CookieDomain field.
 func (o *CnameSettings) SetCookieDomain(v string) {
 	o.CookieDomain = &v
+}
+
+// GetCorsAllowedOrigins returns the CorsAllowedOrigins field value if set, zero value otherwise.
+func (o *CnameSettings) GetCorsAllowedOrigins() []string {
+	if o == nil || o.CorsAllowedOrigins == nil {
+		var ret []string
+		return ret
+	}
+	return o.CorsAllowedOrigins
+}
+
+// GetCorsAllowedOriginsOk returns a tuple with the CorsAllowedOrigins field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CnameSettings) GetCorsAllowedOriginsOk() ([]string, bool) {
+	if o == nil || o.CorsAllowedOrigins == nil {
+		return nil, false
+	}
+	return o.CorsAllowedOrigins, true
+}
+
+// HasCorsAllowedOrigins returns a boolean if a field has been set.
+func (o *CnameSettings) HasCorsAllowedOrigins() bool {
+	if o != nil && o.CorsAllowedOrigins != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCorsAllowedOrigins gets a reference to the given []string and assigns it to the CorsAllowedOrigins field.
+func (o *CnameSettings) SetCorsAllowedOrigins(v []string) {
+	o.CorsAllowedOrigins = v
+}
+
+// GetCorsEnabled returns the CorsEnabled field value if set, zero value otherwise.
+func (o *CnameSettings) GetCorsEnabled() bool {
+	if o == nil || o.CorsEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.CorsEnabled
+}
+
+// GetCorsEnabledOk returns a tuple with the CorsEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CnameSettings) GetCorsEnabledOk() (*bool, bool) {
+	if o == nil || o.CorsEnabled == nil {
+		return nil, false
+	}
+	return o.CorsEnabled, true
+}
+
+// HasCorsEnabled returns a boolean if a field has been set.
+func (o *CnameSettings) HasCorsEnabled() bool {
+	if o != nil && o.CorsEnabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCorsEnabled gets a reference to the given bool and assigns it to the CorsEnabled field.
+func (o *CnameSettings) SetCorsEnabled(v bool) {
+	o.CorsEnabled = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -273,6 +339,12 @@ func (o CnameSettings) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.CookieDomain != nil {
 		toSerialize["cookie_domain"] = o.CookieDomain
+	}
+	if o.CorsAllowedOrigins != nil {
+		toSerialize["cors_allowed_origins"] = o.CorsAllowedOrigins
+	}
+	if o.CorsEnabled != nil {
+		toSerialize["cors_enabled"] = o.CorsEnabled
 	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt

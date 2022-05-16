@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.169
+ * API version: v0.0.1-alpha.175
  * Contact: support@ory.sh
  */
 
@@ -23,6 +23,10 @@ type Identity struct {
 	// Credentials represents all credentials that can be used for authenticating this identity.
 	Credentials *map[string]IdentityCredentials `json:"credentials,omitempty"`
 	Id string `json:"id"`
+	// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+	MetadataAdmin map[string]interface{} `json:"metadata_admin,omitempty"`
+	// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+	MetadataPublic map[string]interface{} `json:"metadata_public,omitempty"`
 	// RecoveryAddresses contains all the addresses that can be used to recover an identity.
 	RecoveryAddresses []RecoveryAddress `json:"recovery_addresses,omitempty"`
 	// SchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
@@ -146,6 +150,70 @@ func (o *Identity) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *Identity) SetId(v string) {
 	o.Id = v
+}
+
+// GetMetadataAdmin returns the MetadataAdmin field value if set, zero value otherwise.
+func (o *Identity) GetMetadataAdmin() map[string]interface{} {
+	if o == nil || o.MetadataAdmin == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.MetadataAdmin
+}
+
+// GetMetadataAdminOk returns a tuple with the MetadataAdmin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Identity) GetMetadataAdminOk() (map[string]interface{}, bool) {
+	if o == nil || o.MetadataAdmin == nil {
+		return nil, false
+	}
+	return o.MetadataAdmin, true
+}
+
+// HasMetadataAdmin returns a boolean if a field has been set.
+func (o *Identity) HasMetadataAdmin() bool {
+	if o != nil && o.MetadataAdmin != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadataAdmin gets a reference to the given map[string]interface{} and assigns it to the MetadataAdmin field.
+func (o *Identity) SetMetadataAdmin(v map[string]interface{}) {
+	o.MetadataAdmin = v
+}
+
+// GetMetadataPublic returns the MetadataPublic field value if set, zero value otherwise.
+func (o *Identity) GetMetadataPublic() map[string]interface{} {
+	if o == nil || o.MetadataPublic == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.MetadataPublic
+}
+
+// GetMetadataPublicOk returns a tuple with the MetadataPublic field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Identity) GetMetadataPublicOk() (map[string]interface{}, bool) {
+	if o == nil || o.MetadataPublic == nil {
+		return nil, false
+	}
+	return o.MetadataPublic, true
+}
+
+// HasMetadataPublic returns a boolean if a field has been set.
+func (o *Identity) HasMetadataPublic() bool {
+	if o != nil && o.MetadataPublic != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadataPublic gets a reference to the given map[string]interface{} and assigns it to the MetadataPublic field.
+func (o *Identity) SetMetadataPublic(v map[string]interface{}) {
+	o.MetadataPublic = v
 }
 
 // GetRecoveryAddresses returns the RecoveryAddresses field value if set, zero value otherwise.
@@ -392,6 +460,12 @@ func (o Identity) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["id"] = o.Id
+	}
+	if o.MetadataAdmin != nil {
+		toSerialize["metadata_admin"] = o.MetadataAdmin
+	}
+	if o.MetadataPublic != nil {
+		toSerialize["metadata_public"] = o.MetadataPublic
 	}
 	if o.RecoveryAddresses != nil {
 		toSerialize["recovery_addresses"] = o.RecoveryAddresses

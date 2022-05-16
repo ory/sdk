@@ -28,9 +28,12 @@ from ory_client.model.create_custom_hostname_body import CreateCustomHostnameBod
 from ory_client.model.create_project_body import CreateProjectBody
 from ory_client.model.create_subscription_payload import CreateSubscriptionPayload
 from ory_client.model.error_authenticator_assurance_level_not_satisfied import ErrorAuthenticatorAssuranceLevelNotSatisfied
+from ory_client.model.expand_tree import ExpandTree
 from ory_client.model.generic_error import GenericError
 from ory_client.model.generic_error_content import GenericErrorContent
+from ory_client.model.get_check_response import GetCheckResponse
 from ory_client.model.get_project_access_response import GetProjectAccessResponse
+from ory_client.model.get_relation_tuples_response import GetRelationTuplesResponse
 from ory_client.model.health_not_ready_status import HealthNotReadyStatus
 from ory_client.model.health_status import HealthStatus
 from ory_client.model.identity import Identity
@@ -50,11 +53,14 @@ from ory_client.model.identity_state import IdentityState
 from ory_client.model.inline_response200 import InlineResponse200
 from ory_client.model.inline_response2001 import InlineResponse2001
 from ory_client.model.inline_response503 import InlineResponse503
+from ory_client.model.internal_relation_tuple import InternalRelationTuple
 from ory_client.model.invite_payload import InvitePayload
 from ory_client.model.is_owner_for_project_by_slug import IsOwnerForProjectBySlug
 from ory_client.model.is_owner_for_project_by_slug_payload import IsOwnerForProjectBySlugPayload
 from ory_client.model.json_error import JsonError
 from ory_client.model.json_patch import JsonPatch
+from ory_client.model.keto_namespace import KetoNamespace
+from ory_client.model.keto_namespaces import KetoNamespaces
 from ory_client.model.list_custom_hostnames_response import ListCustomHostnamesResponse
 from ory_client.model.needs_privileged_session_error import NeedsPrivilegedSessionError
 from ory_client.model.normalized_project import NormalizedProject
@@ -66,6 +72,7 @@ from ory_client.model.normalized_project_revision_third_party_provider import No
 from ory_client.model.normalized_projects import NormalizedProjects
 from ory_client.model.null_plan import NullPlan
 from ory_client.model.pagination import Pagination
+from ory_client.model.patch_delta import PatchDelta
 from ory_client.model.project import Project
 from ory_client.model.project_host import ProjectHost
 from ory_client.model.project_invite import ProjectInvite
@@ -79,11 +86,13 @@ from ory_client.model.project_revision_identity_schemas import ProjectRevisionId
 from ory_client.model.project_revision_third_party_login_providers import ProjectRevisionThirdPartyLoginProviders
 from ory_client.model.project_revisions import ProjectRevisions
 from ory_client.model.project_service_identity import ProjectServiceIdentity
+from ory_client.model.project_service_permission import ProjectServicePermission
 from ory_client.model.project_services import ProjectServices
 from ory_client.model.projects import Projects
 from ory_client.model.provision_mock_subscription_payload import ProvisionMockSubscriptionPayload
 from ory_client.model.quota_project_member_seats import QuotaProjectMemberSeats
 from ory_client.model.recovery_address import RecoveryAddress
+from ory_client.model.relation_query import RelationQuery
 from ory_client.model.revoked_sessions import RevokedSessions
 from ory_client.model.schema_patch import SchemaPatch
 from ory_client.model.self_service_browser_location_change_required_error import SelfServiceBrowserLocationChangeRequiredError
@@ -107,6 +116,7 @@ from ory_client.model.session_list import SessionList
 from ory_client.model.settings_profile_form_config import SettingsProfileFormConfig
 from ory_client.model.string_slice_json_format import StringSliceJSONFormat
 from ory_client.model.stripe_customer_response import StripeCustomerResponse
+from ory_client.model.subject_set import SubjectSet
 from ory_client.model.submit_self_service_flow_with_web_authn_registration_method import SubmitSelfServiceFlowWithWebAuthnRegistrationMethod
 from ory_client.model.submit_self_service_login_flow_body import SubmitSelfServiceLoginFlowBody
 from ory_client.model.submit_self_service_login_flow_with_lookup_secret_method_body import SubmitSelfServiceLoginFlowWithLookupSecretMethodBody

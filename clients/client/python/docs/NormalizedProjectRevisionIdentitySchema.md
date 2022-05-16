@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **created_at** | **datetime** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
 **id** | **str** |  | [optional] 
 **identity_schema** | [**IdentitySchema**](IdentitySchema.md) |  | [optional] 
-**identity_schema_id** | **str** |  | [optional] 
+**identity_schema_id** | **str, none_type** |  | [optional] 
 **import_id** | **str** | The imported (named) ID of the Identity Schema referenced in the Ory Kratos config. | [optional] 
 **import_url** | **str** | The ImportURL can be used to import an Identity Schema from a bse64 encoded string. In the future, this key also support HTTPS and other sources!  If you import an Ory Kratos configuration, this would be akin to the &#x60;identity.schemas.#.url&#x60; key.  The configuration will always return the import URL when you fetch it from the API. | [optional] 
 **is_default** | **bool** | If true sets the default schema for identities  Only one schema can ever be the default schema. If you try to add two schemas with default to true, the request will fail. | [optional] 

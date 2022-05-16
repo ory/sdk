@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 **id** | **str** |  | 
 **revisions** | [**ProjectRevisions**](ProjectRevisions.md) |  | 
 **slug** | **str** | The project&#39;s slug | [readonly] 
-**state** | **str** | The state of the project. | [readonly] 
+**state** | **str** | The state of the project. running Running halted Halted | [readonly] 
 **updated_at** | **datetime** | Last Time Project was Updated | [readonly] 
-**subscription_id** | **str** |  | [optional] 
+**subscription_id** | **str, none_type** |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

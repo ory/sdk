@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.169
+ * API version: v0.0.1-alpha.175
  * Contact: support@ory.sh
  */
 
@@ -23,7 +23,7 @@ type ProjectInvite struct {
 	Id string `json:"id"`
 	// The invitee's email
 	InviteeEmail string `json:"invitee_email"`
-	InviteeId *string `json:"invitee_id,omitempty"`
+	InviteeId NullableString `json:"invitee_id,omitempty"`
 	// The invite owner's email Usually the project's owner email
 	OwnerEmail string `json:"owner_email"`
 	OwnerId string `json:"owner_id"`
@@ -131,36 +131,46 @@ func (o *ProjectInvite) SetInviteeEmail(v string) {
 	o.InviteeEmail = v
 }
 
-// GetInviteeId returns the InviteeId field value if set, zero value otherwise.
+// GetInviteeId returns the InviteeId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProjectInvite) GetInviteeId() string {
-	if o == nil || o.InviteeId == nil {
+	if o == nil || o.InviteeId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.InviteeId
+	return *o.InviteeId.Get()
 }
 
 // GetInviteeIdOk returns a tuple with the InviteeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectInvite) GetInviteeIdOk() (*string, bool) {
-	if o == nil || o.InviteeId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.InviteeId, true
+	return o.InviteeId.Get(), o.InviteeId.IsSet()
 }
 
 // HasInviteeId returns a boolean if a field has been set.
 func (o *ProjectInvite) HasInviteeId() bool {
-	if o != nil && o.InviteeId != nil {
+	if o != nil && o.InviteeId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetInviteeId gets a reference to the given string and assigns it to the InviteeId field.
+// SetInviteeId gets a reference to the given NullableString and assigns it to the InviteeId field.
 func (o *ProjectInvite) SetInviteeId(v string) {
-	o.InviteeId = &v
+	o.InviteeId.Set(&v)
+}
+// SetInviteeIdNil sets the value for InviteeId to be an explicit nil
+func (o *ProjectInvite) SetInviteeIdNil() {
+	o.InviteeId.Set(nil)
+}
+
+// UnsetInviteeId ensures that no value is present for InviteeId, not even an explicit nil
+func (o *ProjectInvite) UnsetInviteeId() {
+	o.InviteeId.Unset()
 }
 
 // GetOwnerEmail returns the OwnerEmail field value
@@ -294,8 +304,8 @@ func (o ProjectInvite) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["invitee_email"] = o.InviteeEmail
 	}
-	if o.InviteeId != nil {
-		toSerialize["invitee_id"] = o.InviteeId
+	if o.InviteeId.IsSet() {
+		toSerialize["invitee_id"] = o.InviteeId.Get()
 	}
 	if true {
 		toSerialize["owner_email"] = o.OwnerEmail

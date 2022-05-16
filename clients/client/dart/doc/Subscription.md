@@ -9,7 +9,7 @@ import 'package:ory_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdAt** | [**DateTime**](DateTime.md) |  | 
-**currentPlan** | **String** | The currently active plan of the subscription | 
+**currentPlan** | **String** | The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom | 
 **customerId** | **String** | The ID of the stripe customer | 
 **id** | **String** |  | 
 **ongoingStripeCheckoutId** | **String** |  | [optional] 

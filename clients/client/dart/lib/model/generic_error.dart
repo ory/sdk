@@ -6,6 +6,7 @@
 // ignore_for_file: unused_import
 
 import 'package:ory_client/model/generic_error_content.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -27,7 +28,7 @@ abstract class GenericError implements Built<GenericError, GenericErrorBuilder> 
     /// Further error details
     @nullable
     @BuiltValueField(wireName: r'details')
-    JsonObject get details;
+    BuiltList<BuiltMap<String, JsonObject>> get details;
 
     @nullable
     @BuiltValueField(wireName: r'error')
@@ -94,7 +95,7 @@ class _$GenericErrorSerializer implements StructuredSerializer<GenericError> {
             result
                 ..add(r'details')
                 ..add(serializers.serialize(object.details,
-                    specifiedType: const FullType(JsonObject)));
+                    specifiedType: const FullType(BuiltList, [FullType(BuiltMap, [FullType(String), FullType(JsonObject)])])));
         }
         if (object.error != null) {
             result
@@ -153,8 +154,8 @@ class _$GenericErrorSerializer implements StructuredSerializer<GenericError> {
                         specifiedType: const FullType(String)) as String;
                     break;
                 case r'details':
-                    result.details = serializers.deserialize(value,
-                        specifiedType: const FullType(JsonObject)) as JsonObject;
+                    result.details.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(BuiltMap, [FullType(String), FullType(JsonObject)])])) as BuiltList<BuiltMap<String, JsonObject>>);
                     break;
                 case r'error':
                     result.error.replace(serializers.deserialize(value,

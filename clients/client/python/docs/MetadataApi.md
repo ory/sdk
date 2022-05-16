@@ -18,6 +18,7 @@ This endpoint returns the version of Ory Kratos.  If the service supports TLS Ed
 
 ### Example
 
+* Bearer Authentication (oryAccessToken):
 
 ```python
 import time
@@ -31,9 +32,18 @@ configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryAccessToken
+configuration = ory_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = metadata_api.MetadataApi(api_client)
 
@@ -56,7 +66,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -81,6 +91,7 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incomi
 
 ### Example
 
+* Bearer Authentication (oryAccessToken):
 
 ```python
 import time
@@ -95,9 +106,18 @@ configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryAccessToken
+configuration = ory_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = metadata_api.MetadataApi(api_client)
 
@@ -120,7 +140,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -146,6 +166,7 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is up running and t
 
 ### Example
 
+* Bearer Authentication (oryAccessToken):
 
 ```python
 import time
@@ -160,9 +181,18 @@ configuration = ory_client.Configuration(
     host = "https://playground.projects.oryapis.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryAccessToken
+configuration = ory_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = metadata_api.MetadataApi(api_client)
 
@@ -185,7 +215,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 

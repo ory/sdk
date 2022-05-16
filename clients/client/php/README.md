@@ -51,11 +51,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
 
 $apiInstance = new Ory\Client\Api\MetadataApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 
 try {
@@ -76,6 +80,10 @@ Class | Method | HTTP request | Description
 *MetadataApi* | [**getVersion**](docs/Api/MetadataApi.md#getversion) | **GET** /version | Return Running Software Version.
 *MetadataApi* | [**isAlive**](docs/Api/MetadataApi.md#isalive) | **GET** /health/alive | Check HTTP Server Status
 *MetadataApi* | [**isReady**](docs/Api/MetadataApi.md#isready) | **GET** /health/ready | Check HTTP Server and Database Status
+*ReadApi* | [**getCheck**](docs/Api/ReadApi.md#getcheck) | **GET** /relation-tuples/check | Check a relation tuple
+*ReadApi* | [**getExpand**](docs/Api/ReadApi.md#getexpand) | **GET** /relation-tuples/expand | Expand a Relation Tuple
+*ReadApi* | [**getRelationTuples**](docs/Api/ReadApi.md#getrelationtuples) | **GET** /relation-tuples | Query relation tuples
+*ReadApi* | [**postCheck**](docs/Api/ReadApi.md#postcheck) | **POST** /relation-tuples/check | Check a relation tuple
 *V0alpha2Api* | [**adminCreateIdentity**](docs/Api/V0alpha2Api.md#admincreateidentity) | **POST** /admin/identities | Create an Identity
 *V0alpha2Api* | [**adminCreateSelfServiceRecoveryLink**](docs/Api/V0alpha2Api.md#admincreateselfservicerecoverylink) | **POST** /admin/recovery/link | Create a Recovery Link
 *V0alpha2Api* | [**adminDeleteIdentity**](docs/Api/V0alpha2Api.md#admindeleteidentity) | **DELETE** /admin/identities/{id} | Delete an Identity
@@ -124,6 +132,9 @@ Class | Method | HTTP request | Description
 *V0alpha2Api* | [**submitSelfServiceVerificationFlow**](docs/Api/V0alpha2Api.md#submitselfserviceverificationflow) | **POST** /self-service/verification | Complete Verification Flow
 *V0alpha2Api* | [**toSession**](docs/Api/V0alpha2Api.md#tosession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 *V0alpha2Api* | [**updateProject**](docs/Api/V0alpha2Api.md#updateproject) | **PUT** /projects/{project_id} | Update an Ory Cloud Project Configuration
+*WriteApi* | [**createRelationTuple**](docs/Api/WriteApi.md#createrelationtuple) | **PUT** /admin/relation-tuples | Create a Relation Tuple
+*WriteApi* | [**deleteRelationTuples**](docs/Api/WriteApi.md#deleterelationtuples) | **DELETE** /admin/relation-tuples | Delete Relation Tuples
+*WriteApi* | [**patchRelationTuples**](docs/Api/WriteApi.md#patchrelationtuples) | **PATCH** /admin/relation-tuples | Patch Multiple Relation Tuples
 
 ## Models
 
@@ -145,8 +156,11 @@ Class | Method | HTTP request | Description
 - [CreateProjectBody](docs/Model/CreateProjectBody.md)
 - [CreateSubscriptionPayload](docs/Model/CreateSubscriptionPayload.md)
 - [ErrorAuthenticatorAssuranceLevelNotSatisfied](docs/Model/ErrorAuthenticatorAssuranceLevelNotSatisfied.md)
+- [ExpandTree](docs/Model/ExpandTree.md)
 - [GenericError](docs/Model/GenericError.md)
 - [GenericErrorContent](docs/Model/GenericErrorContent.md)
+- [GetCheckResponse](docs/Model/GetCheckResponse.md)
+- [GetRelationTuplesResponse](docs/Model/GetRelationTuplesResponse.md)
 - [HealthNotReadyStatus](docs/Model/HealthNotReadyStatus.md)
 - [HealthStatus](docs/Model/HealthStatus.md)
 - [Identity](docs/Model/Identity.md)
@@ -163,11 +177,13 @@ Class | Method | HTTP request | Description
 - [InlineResponse200](docs/Model/InlineResponse200.md)
 - [InlineResponse2001](docs/Model/InlineResponse2001.md)
 - [InlineResponse503](docs/Model/InlineResponse503.md)
+- [InternalRelationTuple](docs/Model/InternalRelationTuple.md)
 - [InvitePayload](docs/Model/InvitePayload.md)
 - [IsOwnerForProjectBySlug](docs/Model/IsOwnerForProjectBySlug.md)
 - [IsOwnerForProjectBySlugPayload](docs/Model/IsOwnerForProjectBySlugPayload.md)
 - [JsonError](docs/Model/JsonError.md)
 - [JsonPatch](docs/Model/JsonPatch.md)
+- [KetoNamespace](docs/Model/KetoNamespace.md)
 - [NeedsPrivilegedSessionError](docs/Model/NeedsPrivilegedSessionError.md)
 - [NormalizedProject](docs/Model/NormalizedProject.md)
 - [NormalizedProjectRevision](docs/Model/NormalizedProjectRevision.md)
@@ -176,15 +192,18 @@ Class | Method | HTTP request | Description
 - [NormalizedProjectRevisionThirdPartyProvider](docs/Model/NormalizedProjectRevisionThirdPartyProvider.md)
 - [NullPlan](docs/Model/NullPlan.md)
 - [Pagination](docs/Model/Pagination.md)
+- [PatchDelta](docs/Model/PatchDelta.md)
 - [Project](docs/Model/Project.md)
 - [ProjectHost](docs/Model/ProjectHost.md)
 - [ProjectInvite](docs/Model/ProjectInvite.md)
 - [ProjectMetadata](docs/Model/ProjectMetadata.md)
 - [ProjectServiceIdentity](docs/Model/ProjectServiceIdentity.md)
+- [ProjectServicePermission](docs/Model/ProjectServicePermission.md)
 - [ProjectServices](docs/Model/ProjectServices.md)
 - [ProvisionMockSubscriptionPayload](docs/Model/ProvisionMockSubscriptionPayload.md)
 - [QuotaProjectMemberSeats](docs/Model/QuotaProjectMemberSeats.md)
 - [RecoveryAddress](docs/Model/RecoveryAddress.md)
+- [RelationQuery](docs/Model/RelationQuery.md)
 - [RevokedSessions](docs/Model/RevokedSessions.md)
 - [SchemaPatch](docs/Model/SchemaPatch.md)
 - [SelfServiceBrowserLocationChangeRequiredError](docs/Model/SelfServiceBrowserLocationChangeRequiredError.md)
@@ -205,6 +224,7 @@ Class | Method | HTTP request | Description
 - [SessionDevice](docs/Model/SessionDevice.md)
 - [SettingsProfileFormConfig](docs/Model/SettingsProfileFormConfig.md)
 - [StripeCustomerResponse](docs/Model/StripeCustomerResponse.md)
+- [SubjectSet](docs/Model/SubjectSet.md)
 - [SubmitSelfServiceFlowWithWebAuthnRegistrationMethod](docs/Model/SubmitSelfServiceFlowWithWebAuthnRegistrationMethod.md)
 - [SubmitSelfServiceLoginFlowBody](docs/Model/SubmitSelfServiceLoginFlowBody.md)
 - [SubmitSelfServiceLoginFlowWithLookupSecretMethodBody](docs/Model/SubmitSelfServiceLoginFlowWithLookupSecretMethodBody.md)
@@ -272,5 +292,5 @@ support@ory.sh
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `v0.0.1-alpha.169`
+- API version: `v0.0.1-alpha.175`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

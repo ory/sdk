@@ -9,6 +9,8 @@ import 'package:ory_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cookieDomain** | **String** |  | [optional] 
+**corsAllowedOrigins** | **BuiltList<String>** |  | [optional] 
+**corsEnabled** | **bool** |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **hostname** | **String** |  | [optional] 
 **id** | **String** |  | [optional] 

@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.169
+ * API version: v0.0.1-alpha.175
  * Contact: support@ory.sh
  */
 
@@ -19,6 +19,10 @@ import (
 type UpdateCustomHostnameBody struct {
 	// The domain where cookies will be set. Has to be a parent domain of the custom hostname to work.
 	CookieDomain *string `json:"cookie_domain,omitempty"`
+	// Cors Allowed origins for the custom hostname.
+	CorsAllowedOrigins []string `json:"cors_allowed_origins,omitempty"`
+	// Cors Enabled for the custom hostname.
+	CorsEnabled *bool `json:"cors_enabled,omitempty"`
 	// The custom hostname where the API will be exposed.
 	Hostname *string `json:"hostname,omitempty"`
 }
@@ -72,6 +76,70 @@ func (o *UpdateCustomHostnameBody) SetCookieDomain(v string) {
 	o.CookieDomain = &v
 }
 
+// GetCorsAllowedOrigins returns the CorsAllowedOrigins field value if set, zero value otherwise.
+func (o *UpdateCustomHostnameBody) GetCorsAllowedOrigins() []string {
+	if o == nil || o.CorsAllowedOrigins == nil {
+		var ret []string
+		return ret
+	}
+	return o.CorsAllowedOrigins
+}
+
+// GetCorsAllowedOriginsOk returns a tuple with the CorsAllowedOrigins field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateCustomHostnameBody) GetCorsAllowedOriginsOk() ([]string, bool) {
+	if o == nil || o.CorsAllowedOrigins == nil {
+		return nil, false
+	}
+	return o.CorsAllowedOrigins, true
+}
+
+// HasCorsAllowedOrigins returns a boolean if a field has been set.
+func (o *UpdateCustomHostnameBody) HasCorsAllowedOrigins() bool {
+	if o != nil && o.CorsAllowedOrigins != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCorsAllowedOrigins gets a reference to the given []string and assigns it to the CorsAllowedOrigins field.
+func (o *UpdateCustomHostnameBody) SetCorsAllowedOrigins(v []string) {
+	o.CorsAllowedOrigins = v
+}
+
+// GetCorsEnabled returns the CorsEnabled field value if set, zero value otherwise.
+func (o *UpdateCustomHostnameBody) GetCorsEnabled() bool {
+	if o == nil || o.CorsEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.CorsEnabled
+}
+
+// GetCorsEnabledOk returns a tuple with the CorsEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateCustomHostnameBody) GetCorsEnabledOk() (*bool, bool) {
+	if o == nil || o.CorsEnabled == nil {
+		return nil, false
+	}
+	return o.CorsEnabled, true
+}
+
+// HasCorsEnabled returns a boolean if a field has been set.
+func (o *UpdateCustomHostnameBody) HasCorsEnabled() bool {
+	if o != nil && o.CorsEnabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCorsEnabled gets a reference to the given bool and assigns it to the CorsEnabled field.
+func (o *UpdateCustomHostnameBody) SetCorsEnabled(v bool) {
+	o.CorsEnabled = &v
+}
+
 // GetHostname returns the Hostname field value if set, zero value otherwise.
 func (o *UpdateCustomHostnameBody) GetHostname() string {
 	if o == nil || o.Hostname == nil {
@@ -108,6 +176,12 @@ func (o UpdateCustomHostnameBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.CookieDomain != nil {
 		toSerialize["cookie_domain"] = o.CookieDomain
+	}
+	if o.CorsAllowedOrigins != nil {
+		toSerialize["cors_allowed_origins"] = o.CorsAllowedOrigins
+	}
+	if o.CorsEnabled != nil {
+		toSerialize["cors_enabled"] = o.CorsEnabled
 	}
 	if o.Hostname != nil {
 		toSerialize["hostname"] = o.Hostname

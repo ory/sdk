@@ -17,7 +17,7 @@ abstract class Subscription implements Built<Subscription, SubscriptionBuilder> 
     @BuiltValueField(wireName: r'created_at')
     DateTime get createdAt;
 
-    /// The currently active plan of the subscription
+    /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
     @BuiltValueField(wireName: r'current_plan')
     SubscriptionCurrentPlanEnum get currentPlan;
     // enum currentPlanEnum {  unknown,  free,  start_up_monthly,  start_up_yearly,  custom,  };
@@ -178,19 +178,19 @@ class _$SubscriptionSerializer implements StructuredSerializer<Subscription> {
 
 class SubscriptionCurrentPlanEnum extends EnumClass {
 
-  /// The currently active plan of the subscription
+  /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
   @BuiltValueEnumConst(wireName: r'unknown')
   static const SubscriptionCurrentPlanEnum unknown = _$subscriptionCurrentPlanEnum_unknown;
-  /// The currently active plan of the subscription
+  /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
   @BuiltValueEnumConst(wireName: r'free')
   static const SubscriptionCurrentPlanEnum free = _$subscriptionCurrentPlanEnum_free;
-  /// The currently active plan of the subscription
+  /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
   @BuiltValueEnumConst(wireName: r'start_up_monthly')
   static const SubscriptionCurrentPlanEnum startUpMonthly = _$subscriptionCurrentPlanEnum_startUpMonthly;
-  /// The currently active plan of the subscription
+  /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
   @BuiltValueEnumConst(wireName: r'start_up_yearly')
   static const SubscriptionCurrentPlanEnum startUpYearly = _$subscriptionCurrentPlanEnum_startUpYearly;
-  /// The currently active plan of the subscription
+  /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
   @BuiltValueEnumConst(wireName: r'custom')
   static const SubscriptionCurrentPlanEnum custom = _$subscriptionCurrentPlanEnum_custom;
 

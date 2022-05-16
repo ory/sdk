@@ -31,7 +31,7 @@ abstract class Project implements Built<Project, ProjectBuilder> {
     @BuiltValueField(wireName: r'slug')
     String get slug;
 
-    /// The state of the project.
+    /// The state of the project. running Running halted Halted
     @BuiltValueField(wireName: r'state')
     ProjectStateEnum get state;
     // enum stateEnum {  running,  halted,  };
@@ -127,10 +127,10 @@ class _$ProjectSerializer implements StructuredSerializer<Project> {
 
 class ProjectStateEnum extends EnumClass {
 
-  /// The state of the project.
+  /// The state of the project. running Running halted Halted
   @BuiltValueEnumConst(wireName: r'running')
   static const ProjectStateEnum running = _$projectStateEnum_running;
-  /// The state of the project.
+  /// The state of the project. running Running halted Halted
   @BuiltValueEnumConst(wireName: r'halted')
   static const ProjectStateEnum halted = _$projectStateEnum_halted;
 
