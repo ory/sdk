@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ory-client (0.0.1.alpha175)
+    ory-client (0.0.1.alpha176)
       typhoeus (~> 1.0, >= 1.0.1)
 
 GEM
@@ -25,7 +25,7 @@ GEM
     pry-byebug (3.9.0)
       byebug (~> 11.0)
       pry (~> 0.13.0)
-    psych (4.0.3)
+    psych (4.0.4)
       stringio
     rainbow (3.1.1)
     rake (13.0.6)
