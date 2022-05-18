@@ -959,7 +959,7 @@ class V0alpha2Api {
       path: r'/self-service/login/flows',
       method: 'GET',
       headers: <String, dynamic>{
-        if (cookie != null) r'cookie': cookie,
+        if (cookie != null) r'Cookie': cookie,
         ...?headers,
       },
       queryParameters: <String, dynamic>{
@@ -1019,7 +1019,7 @@ class V0alpha2Api {
       path: r'/self-service/recovery/flows',
       method: 'GET',
       headers: <String, dynamic>{
-        if (cookie != null) r'cookie': cookie,
+        if (cookie != null) r'Cookie': cookie,
         ...?headers,
       },
       queryParameters: <String, dynamic>{
@@ -1079,7 +1079,7 @@ class V0alpha2Api {
       path: r'/self-service/registration/flows',
       method: 'GET',
       headers: <String, dynamic>{
-        if (cookie != null) r'cookie': cookie,
+        if (cookie != null) r'Cookie': cookie,
         ...?headers,
       },
       queryParameters: <String, dynamic>{
@@ -1141,7 +1141,7 @@ class V0alpha2Api {
       method: 'GET',
       headers: <String, dynamic>{
         if (xSessionToken != null) r'X-Session-Token': xSessionToken,
-        if (cookie != null) r'cookie': cookie,
+        if (cookie != null) r'Cookie': cookie,
         ...?headers,
       },
       queryParameters: <String, dynamic>{
@@ -2324,7 +2324,7 @@ class V0alpha2Api {
       method: 'POST',
       headers: <String, dynamic>{
         if (xSessionToken != null) r'X-Session-Token': xSessionToken,
-        if (cookie != null) r'cookie': cookie,
+        if (cookie != null) r'Cookie': cookie,
         ...?headers,
       },
       queryParameters: <String, dynamic>{
@@ -2464,6 +2464,7 @@ class V0alpha2Api {
   Future<Response<SelfServiceRecoveryFlow>> submitSelfServiceRecoveryFlow(
     String flow, { 
     String token,
+    String cookie,
     SubmitSelfServiceRecoveryFlowBody submitSelfServiceRecoveryFlowBody,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
@@ -2476,6 +2477,7 @@ class V0alpha2Api {
       path: r'/self-service/recovery',
       method: 'POST',
       headers: <String, dynamic>{
+        if (cookie != null) r'Cookie': cookie,
         ...?headers,
       },
       queryParameters: <String, dynamic>{
@@ -2527,6 +2529,7 @@ class V0alpha2Api {
   /// Use this endpoint to complete a registration flow by sending an identity's traits and password. This endpoint behaves differently for API and browser flows.  API flows expect `application/json` to be sent in the body and respond with HTTP 200 and a application/json body with the created identity success - if the session hook is configured the `session` and `session_token` will also be included; HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body; HTTP 400 on form validation errors.  Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with a HTTP 303 redirect to the post/after registration URL or the `return_to` value if it was set and if the registration succeeded; a HTTP 303 redirect to the registration UI URL with the flow ID containing the validation errors otherwise.  Browser flows with an accept header of `application/json` will not redirect but instead respond with HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success; HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration! `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL. Most likely used in Social Sign In flows.  More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
   Future<Response<SuccessfulSelfServiceRegistrationWithoutBrowser>> submitSelfServiceRegistrationFlow(
     String flow, { 
+    String cookie,
     SubmitSelfServiceRegistrationFlowBody submitSelfServiceRegistrationFlowBody,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
@@ -2539,6 +2542,7 @@ class V0alpha2Api {
       path: r'/self-service/registration',
       method: 'POST',
       headers: <String, dynamic>{
+        if (cookie != null) r'Cookie': cookie,
         ...?headers,
       },
       queryParameters: <String, dynamic>{
@@ -2590,6 +2594,7 @@ class V0alpha2Api {
   Future<Response<SelfServiceSettingsFlow>> submitSelfServiceSettingsFlow(
     String flow, { 
     String xSessionToken,
+    String cookie,
     SubmitSelfServiceSettingsFlowBody submitSelfServiceSettingsFlowBody,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
@@ -2603,6 +2608,7 @@ class V0alpha2Api {
       method: 'POST',
       headers: <String, dynamic>{
         if (xSessionToken != null) r'X-Session-Token': xSessionToken,
+        if (cookie != null) r'Cookie': cookie,
         ...?headers,
       },
       queryParameters: <String, dynamic>{
@@ -2654,6 +2660,7 @@ class V0alpha2Api {
   Future<Response<SelfServiceVerificationFlow>> submitSelfServiceVerificationFlow(
     String flow, { 
     String token,
+    String cookie,
     SubmitSelfServiceVerificationFlowBody submitSelfServiceVerificationFlowBody,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
@@ -2666,6 +2673,7 @@ class V0alpha2Api {
       path: r'/self-service/verification',
       method: 'POST',
       headers: <String, dynamic>{
+        if (cookie != null) r'Cookie': cookie,
         ...?headers,
       },
       queryParameters: <String, dynamic>{

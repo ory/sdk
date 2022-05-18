@@ -1122,7 +1122,7 @@ public class Example {
 
     V0alpha2Api apiInstance = new V0alpha2Api(defaultClient);
     String id = "id_example"; // String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
-    String cookie = "cookie_example"; // String | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here.
+    String cookie = "cookie_example"; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
     try {
       SelfServiceLoginFlow result = apiInstance.getSelfServiceLoginFlow(id, cookie);
       System.out.println(result);
@@ -1142,7 +1142,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). |
- **cookie** | **String**| HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. | [optional]
+ **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
 
 ### Return type
 
@@ -1190,7 +1190,7 @@ public class Example {
 
     V0alpha2Api apiInstance = new V0alpha2Api(defaultClient);
     String id = "id_example"; // String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
-    String cookie = "cookie_example"; // String | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here.
+    String cookie = "cookie_example"; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
     try {
       SelfServiceRecoveryFlow result = apiInstance.getSelfServiceRecoveryFlow(id, cookie);
       System.out.println(result);
@@ -1210,7 +1210,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). |
- **cookie** | **String**| HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. | [optional]
+ **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
 
 ### Return type
 
@@ -1257,7 +1257,7 @@ public class Example {
 
     V0alpha2Api apiInstance = new V0alpha2Api(defaultClient);
     String id = "id_example"; // String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
-    String cookie = "cookie_example"; // String | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here.
+    String cookie = "cookie_example"; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
     try {
       SelfServiceRegistrationFlow result = apiInstance.getSelfServiceRegistrationFlow(id, cookie);
       System.out.println(result);
@@ -1277,7 +1277,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). |
- **cookie** | **String**| HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. | [optional]
+ **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
 
 ### Return type
 
@@ -1326,7 +1326,7 @@ public class Example {
     V0alpha2Api apiInstance = new V0alpha2Api(defaultClient);
     String id = "id_example"; // String | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
     String xSessionToken = "xSessionToken_example"; // String | The Session Token  When using the SDK in an app without a browser, please include the session token here.
-    String cookie = "cookie_example"; // String | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. You only need to do this for browser- based flows.
+    String cookie = "cookie_example"; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
     try {
       SelfServiceSettingsFlow result = apiInstance.getSelfServiceSettingsFlow(id, xSessionToken, cookie);
       System.out.println(result);
@@ -1347,7 +1347,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
  **xSessionToken** | **String**| The Session Token  When using the SDK in an app without a browser, please include the session token here. | [optional]
- **cookie** | **String**| HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. You only need to do this for browser- based flows. | [optional]
+ **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
 
 ### Return type
 
@@ -2715,7 +2715,7 @@ public class Example {
     V0alpha2Api apiInstance = new V0alpha2Api(defaultClient);
     String flow = "flow_example"; // String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
     String xSessionToken = "xSessionToken_example"; // String | The Session Token of the Identity performing the settings flow.
-    String cookie = "cookie_example"; // String | CSRF Cookie  The CSRF cookie for browsers flow.
+    String cookie = "cookie_example"; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
     SubmitSelfServiceLoginFlowBody submitSelfServiceLoginFlowBody = new SubmitSelfServiceLoginFlowBody(); // SubmitSelfServiceLoginFlowBody | 
     try {
       SuccessfulSelfServiceLoginWithoutBrowser result = apiInstance.submitSelfServiceLoginFlow(flow, xSessionToken, cookie, submitSelfServiceLoginFlowBody);
@@ -2737,7 +2737,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **String**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). |
  **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional]
- **cookie** | **String**| CSRF Cookie  The CSRF cookie for browsers flow. | [optional]
+ **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
  **submitSelfServiceLoginFlowBody** | [**SubmitSelfServiceLoginFlowBody**](SubmitSelfServiceLoginFlowBody.md)|  | [optional]
 
 ### Return type
@@ -2893,7 +2893,7 @@ No authorization required
 
 <a name="submitSelfServiceRecoveryFlow"></a>
 # **submitSelfServiceRecoveryFlow**
-> SelfServiceRecoveryFlow submitSelfServiceRecoveryFlow(flow, token, submitSelfServiceRecoveryFlowBody)
+> SelfServiceRecoveryFlow submitSelfServiceRecoveryFlow(flow, token, cookie, submitSelfServiceRecoveryFlowBody)
 
 Complete Recovery Flow
 
@@ -2916,9 +2916,10 @@ public class Example {
     V0alpha2Api apiInstance = new V0alpha2Api(defaultClient);
     String flow = "flow_example"; // String | The Recovery Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
     String token = "token_example"; // String | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
+    String cookie = "cookie_example"; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
     SubmitSelfServiceRecoveryFlowBody submitSelfServiceRecoveryFlowBody = new SubmitSelfServiceRecoveryFlowBody(); // SubmitSelfServiceRecoveryFlowBody | 
     try {
-      SelfServiceRecoveryFlow result = apiInstance.submitSelfServiceRecoveryFlow(flow, token, submitSelfServiceRecoveryFlowBody);
+      SelfServiceRecoveryFlow result = apiInstance.submitSelfServiceRecoveryFlow(flow, token, cookie, submitSelfServiceRecoveryFlowBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling V0alpha2Api#submitSelfServiceRecoveryFlow");
@@ -2937,6 +2938,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **String**| The Recovery Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). |
  **token** | **String**| Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. | [optional]
+ **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
  **submitSelfServiceRecoveryFlowBody** | [**SubmitSelfServiceRecoveryFlowBody**](SubmitSelfServiceRecoveryFlowBody.md)|  | [optional]
 
 ### Return type
@@ -2963,7 +2965,7 @@ No authorization required
 
 <a name="submitSelfServiceRegistrationFlow"></a>
 # **submitSelfServiceRegistrationFlow**
-> SuccessfulSelfServiceRegistrationWithoutBrowser submitSelfServiceRegistrationFlow(flow, submitSelfServiceRegistrationFlowBody)
+> SuccessfulSelfServiceRegistrationWithoutBrowser submitSelfServiceRegistrationFlow(flow, cookie, submitSelfServiceRegistrationFlowBody)
 
 Submit a Registration Flow
 
@@ -2985,9 +2987,10 @@ public class Example {
 
     V0alpha2Api apiInstance = new V0alpha2Api(defaultClient);
     String flow = "flow_example"; // String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
+    String cookie = "cookie_example"; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
     SubmitSelfServiceRegistrationFlowBody submitSelfServiceRegistrationFlowBody = new SubmitSelfServiceRegistrationFlowBody(); // SubmitSelfServiceRegistrationFlowBody | 
     try {
-      SuccessfulSelfServiceRegistrationWithoutBrowser result = apiInstance.submitSelfServiceRegistrationFlow(flow, submitSelfServiceRegistrationFlowBody);
+      SuccessfulSelfServiceRegistrationWithoutBrowser result = apiInstance.submitSelfServiceRegistrationFlow(flow, cookie, submitSelfServiceRegistrationFlowBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling V0alpha2Api#submitSelfServiceRegistrationFlow");
@@ -3005,6 +3008,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **String**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). |
+ **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
  **submitSelfServiceRegistrationFlowBody** | [**SubmitSelfServiceRegistrationFlowBody**](SubmitSelfServiceRegistrationFlowBody.md)|  | [optional]
 
 ### Return type
@@ -3032,7 +3036,7 @@ No authorization required
 
 <a name="submitSelfServiceSettingsFlow"></a>
 # **submitSelfServiceSettingsFlow**
-> SelfServiceSettingsFlow submitSelfServiceSettingsFlow(flow, xSessionToken, submitSelfServiceSettingsFlowBody)
+> SelfServiceSettingsFlow submitSelfServiceSettingsFlow(flow, xSessionToken, cookie, submitSelfServiceSettingsFlowBody)
 
 Complete Settings Flow
 
@@ -3055,9 +3059,10 @@ public class Example {
     V0alpha2Api apiInstance = new V0alpha2Api(defaultClient);
     String flow = "flow_example"; // String | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
     String xSessionToken = "xSessionToken_example"; // String | The Session Token of the Identity performing the settings flow.
+    String cookie = "cookie_example"; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
     SubmitSelfServiceSettingsFlowBody submitSelfServiceSettingsFlowBody = new SubmitSelfServiceSettingsFlowBody(); // SubmitSelfServiceSettingsFlowBody | 
     try {
-      SelfServiceSettingsFlow result = apiInstance.submitSelfServiceSettingsFlow(flow, xSessionToken, submitSelfServiceSettingsFlowBody);
+      SelfServiceSettingsFlow result = apiInstance.submitSelfServiceSettingsFlow(flow, xSessionToken, cookie, submitSelfServiceSettingsFlowBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling V0alpha2Api#submitSelfServiceSettingsFlow");
@@ -3076,6 +3081,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **String**| The Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
  **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional]
+ **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
  **submitSelfServiceSettingsFlowBody** | [**SubmitSelfServiceSettingsFlowBody**](SubmitSelfServiceSettingsFlowBody.md)|  | [optional]
 
 ### Return type
@@ -3105,7 +3111,7 @@ No authorization required
 
 <a name="submitSelfServiceVerificationFlow"></a>
 # **submitSelfServiceVerificationFlow**
-> SelfServiceVerificationFlow submitSelfServiceVerificationFlow(flow, token, submitSelfServiceVerificationFlowBody)
+> SelfServiceVerificationFlow submitSelfServiceVerificationFlow(flow, token, cookie, submitSelfServiceVerificationFlowBody)
 
 Complete Verification Flow
 
@@ -3128,9 +3134,10 @@ public class Example {
     V0alpha2Api apiInstance = new V0alpha2Api(defaultClient);
     String flow = "flow_example"; // String | The Verification Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
     String token = "token_example"; // String | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
+    String cookie = "cookie_example"; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
     SubmitSelfServiceVerificationFlowBody submitSelfServiceVerificationFlowBody = new SubmitSelfServiceVerificationFlowBody(); // SubmitSelfServiceVerificationFlowBody | 
     try {
-      SelfServiceVerificationFlow result = apiInstance.submitSelfServiceVerificationFlow(flow, token, submitSelfServiceVerificationFlowBody);
+      SelfServiceVerificationFlow result = apiInstance.submitSelfServiceVerificationFlow(flow, token, cookie, submitSelfServiceVerificationFlowBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling V0alpha2Api#submitSelfServiceVerificationFlow");
@@ -3149,6 +3156,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **String**| The Verification Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/verification?flow&#x3D;abcde&#x60;). |
  **token** | **String**| Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. | [optional]
+ **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
  **submitSelfServiceVerificationFlowBody** | [**SubmitSelfServiceVerificationFlowBody**](SubmitSelfServiceVerificationFlowBody.md)|  | [optional]
 
 ### Return type

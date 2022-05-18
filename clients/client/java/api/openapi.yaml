@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.0.1-alpha.177
+  version: v0.0.1-alpha.178
 servers:
 - url: https://{project}.projects.oryapis.com/
   variables:
@@ -1725,12 +1725,13 @@ paths:
           type: string
         style: simple
       - description: |-
-          CSRF Cookie
+          HTTP Cookies
 
-          The CSRF cookie for browsers flow.
+          When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header
+          sent by the client to your server here. This ensures that CSRF and session cookies are respected.
         explode: false
         in: header
-        name: cookie
+        name: Cookie
         required: false
         schema:
           type: string
@@ -1996,11 +1997,11 @@ paths:
       - description: |-
           HTTP Cookies
 
-          When using the SDK on the server side you must include the HTTP Cookie Header
-          originally sent to your HTTP handler here.
+          When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header
+          sent by the client to your server here. This ensures that CSRF and session cookies are respected.
         explode: false
         in: header
-        name: cookie
+        name: Cookie
         required: false
         schema:
           type: string
@@ -2235,6 +2236,18 @@ paths:
         schema:
           type: string
         style: form
+      - description: |-
+          HTTP Cookies
+
+          When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header
+          sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+        explode: false
+        in: header
+        name: Cookie
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -2407,11 +2420,11 @@ paths:
       - description: |-
           HTTP Cookies
 
-          When using the SDK on the server side you must include the HTTP Cookie Header
-          originally sent to your HTTP handler here.
+          When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header
+          sent by the client to your server here. This ensures that CSRF and session cookies are respected.
         explode: false
         in: header
-        name: cookie
+        name: Cookie
         required: false
         schema:
           type: string
@@ -2490,6 +2503,18 @@ paths:
         schema:
           type: string
         style: form
+      - description: |-
+          HTTP Cookies
+
+          When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header
+          sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+        explode: false
+        in: header
+        name: Cookie
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -2687,11 +2712,11 @@ paths:
       - description: |-
           HTTP Cookies
 
-          When using the SDK on the server side you must include the HTTP Cookie Header
-          originally sent to your HTTP handler here.
+          When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header
+          sent by the client to your server here. This ensures that CSRF and session cookies are respected.
         explode: false
         in: header
-        name: cookie
+        name: Cookie
         required: false
         schema:
           type: string
@@ -2795,6 +2820,18 @@ paths:
         explode: false
         in: header
         name: X-Session-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          HTTP Cookies
+
+          When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header
+          sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+        explode: false
+        in: header
+        name: Cookie
         required: false
         schema:
           type: string
@@ -3049,12 +3086,11 @@ paths:
       - description: |-
           HTTP Cookies
 
-          When using the SDK on the server side you must include the HTTP Cookie Header
-          originally sent to your HTTP handler here. You only need to do this for browser-
-          based flows.
+          When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header
+          sent by the client to your server here. This ensures that CSRF and session cookies are respected.
         explode: false
         in: header
-        name: cookie
+        name: Cookie
         required: false
         schema:
           type: string
@@ -3147,6 +3183,18 @@ paths:
         schema:
           type: string
         style: form
+      - description: |-
+          HTTP Cookies
+
+          When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header
+          sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+        explode: false
+        in: header
+        name: Cookie
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
