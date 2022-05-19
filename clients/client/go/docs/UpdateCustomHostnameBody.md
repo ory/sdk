@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CookieDomain** | Pointer to **string** | The domain where cookies will be set. Has to be a parent domain of the custom hostname to work. | [optional] 
-**CorsAllowedOrigins** | Pointer to **[]string** | Cors Allowed origins for the custom hostname. | [optional] 
-**CorsEnabled** | Pointer to **bool** | Cors Enabled for the custom hostname. | [optional] 
+**CorsAllowedOrigins** | Pointer to **[]string** | CORS Allowed origins for the custom hostname. | [optional] 
+**CorsEnabled** | Pointer to **bool** | CORS Enabled for the custom hostname. | [optional] 
 **Hostname** | Pointer to **string** | The custom hostname where the API will be exposed. | [optional] 
 
 ## Methods

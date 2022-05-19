@@ -18,12 +18,12 @@ abstract class UpdateCustomHostnameBody implements Built<UpdateCustomHostnameBod
     @BuiltValueField(wireName: r'cookie_domain')
     String get cookieDomain;
 
-    /// Cors Allowed origins for the custom hostname.
+    /// CORS Allowed origins for the custom hostname.
     @nullable
     @BuiltValueField(wireName: r'cors_allowed_origins')
     BuiltList<String> get corsAllowedOrigins;
 
-    /// Cors Enabled for the custom hostname.
+    /// CORS Enabled for the custom hostname.
     @nullable
     @BuiltValueField(wireName: r'cors_enabled')
     bool get corsEnabled;

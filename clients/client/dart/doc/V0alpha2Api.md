@@ -1806,7 +1806,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **submitSelfServiceLoginFlow**
-> SuccessfulSelfServiceLoginWithoutBrowser submitSelfServiceLoginFlow(flow, xSessionToken, cookie, submitSelfServiceLoginFlowBody)
+> SuccessfulSelfServiceLoginWithoutBrowser submitSelfServiceLoginFlow(flow, submitSelfServiceLoginFlowBody, xSessionToken, cookie)
 
 Submit a Login Flow
 
@@ -1818,12 +1818,12 @@ import 'package:ory_client/api.dart';
 
 var api_instance = new V0alpha2Api();
 var flow = flow_example; // String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
+var submitSelfServiceLoginFlowBody = new SubmitSelfServiceLoginFlowBody(); // SubmitSelfServiceLoginFlowBody | 
 var xSessionToken = xSessionToken_example; // String | The Session Token of the Identity performing the settings flow.
 var cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
-var submitSelfServiceLoginFlowBody = new SubmitSelfServiceLoginFlowBody(); // SubmitSelfServiceLoginFlowBody | 
 
 try {
-    var result = api_instance.submitSelfServiceLoginFlow(flow, xSessionToken, cookie, submitSelfServiceLoginFlowBody);
+    var result = api_instance.submitSelfServiceLoginFlow(flow, submitSelfServiceLoginFlowBody, xSessionToken, cookie);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->submitSelfServiceLoginFlow: $e\n');
@@ -1835,9 +1835,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **String**| The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`). | 
+ **submitSelfServiceLoginFlowBody** | [**SubmitSelfServiceLoginFlowBody**](SubmitSelfServiceLoginFlowBody.md)|  | 
  **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional] 
  **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
- **submitSelfServiceLoginFlowBody** | [**SubmitSelfServiceLoginFlowBody**](SubmitSelfServiceLoginFlowBody.md)|  | [optional] 
 
 ### Return type
 
@@ -1941,7 +1941,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **submitSelfServiceRecoveryFlow**
-> SelfServiceRecoveryFlow submitSelfServiceRecoveryFlow(flow, token, cookie, submitSelfServiceRecoveryFlowBody)
+> SelfServiceRecoveryFlow submitSelfServiceRecoveryFlow(flow, submitSelfServiceRecoveryFlowBody, token, cookie)
 
 Complete Recovery Flow
 
@@ -1953,12 +1953,12 @@ import 'package:ory_client/api.dart';
 
 var api_instance = new V0alpha2Api();
 var flow = flow_example; // String | The Recovery Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
+var submitSelfServiceRecoveryFlowBody = new SubmitSelfServiceRecoveryFlowBody(); // SubmitSelfServiceRecoveryFlowBody | 
 var token = token_example; // String | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
 var cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
-var submitSelfServiceRecoveryFlowBody = new SubmitSelfServiceRecoveryFlowBody(); // SubmitSelfServiceRecoveryFlowBody | 
 
 try {
-    var result = api_instance.submitSelfServiceRecoveryFlow(flow, token, cookie, submitSelfServiceRecoveryFlowBody);
+    var result = api_instance.submitSelfServiceRecoveryFlow(flow, submitSelfServiceRecoveryFlowBody, token, cookie);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->submitSelfServiceRecoveryFlow: $e\n');
@@ -1970,9 +1970,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **String**| The Recovery Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`). | 
+ **submitSelfServiceRecoveryFlowBody** | [**SubmitSelfServiceRecoveryFlowBody**](SubmitSelfServiceRecoveryFlowBody.md)|  | 
  **token** | **String**| Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. | [optional] 
  **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
- **submitSelfServiceRecoveryFlowBody** | [**SubmitSelfServiceRecoveryFlowBody**](SubmitSelfServiceRecoveryFlowBody.md)|  | [optional] 
 
 ### Return type
 
@@ -1990,7 +1990,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **submitSelfServiceRegistrationFlow**
-> SuccessfulSelfServiceRegistrationWithoutBrowser submitSelfServiceRegistrationFlow(flow, cookie, submitSelfServiceRegistrationFlowBody)
+> SuccessfulSelfServiceRegistrationWithoutBrowser submitSelfServiceRegistrationFlow(flow, submitSelfServiceRegistrationFlowBody, cookie)
 
 Submit a Registration Flow
 
@@ -2002,11 +2002,11 @@ import 'package:ory_client/api.dart';
 
 var api_instance = new V0alpha2Api();
 var flow = flow_example; // String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
-var cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 var submitSelfServiceRegistrationFlowBody = new SubmitSelfServiceRegistrationFlowBody(); // SubmitSelfServiceRegistrationFlowBody | 
+var cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
-    var result = api_instance.submitSelfServiceRegistrationFlow(flow, cookie, submitSelfServiceRegistrationFlowBody);
+    var result = api_instance.submitSelfServiceRegistrationFlow(flow, submitSelfServiceRegistrationFlowBody, cookie);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->submitSelfServiceRegistrationFlow: $e\n');
@@ -2018,8 +2018,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **String**| The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`). | 
+ **submitSelfServiceRegistrationFlowBody** | [**SubmitSelfServiceRegistrationFlowBody**](SubmitSelfServiceRegistrationFlowBody.md)|  | 
  **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
- **submitSelfServiceRegistrationFlowBody** | [**SubmitSelfServiceRegistrationFlowBody**](SubmitSelfServiceRegistrationFlowBody.md)|  | [optional] 
 
 ### Return type
 
@@ -2037,7 +2037,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **submitSelfServiceSettingsFlow**
-> SelfServiceSettingsFlow submitSelfServiceSettingsFlow(flow, xSessionToken, cookie, submitSelfServiceSettingsFlowBody)
+> SelfServiceSettingsFlow submitSelfServiceSettingsFlow(flow, submitSelfServiceSettingsFlowBody, xSessionToken, cookie)
 
 Complete Settings Flow
 
@@ -2049,12 +2049,12 @@ import 'package:ory_client/api.dart';
 
 var api_instance = new V0alpha2Api();
 var flow = flow_example; // String | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+var submitSelfServiceSettingsFlowBody = new SubmitSelfServiceSettingsFlowBody(); // SubmitSelfServiceSettingsFlowBody | 
 var xSessionToken = xSessionToken_example; // String | The Session Token of the Identity performing the settings flow.
 var cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
-var submitSelfServiceSettingsFlowBody = new SubmitSelfServiceSettingsFlowBody(); // SubmitSelfServiceSettingsFlowBody | 
 
 try {
-    var result = api_instance.submitSelfServiceSettingsFlow(flow, xSessionToken, cookie, submitSelfServiceSettingsFlowBody);
+    var result = api_instance.submitSelfServiceSettingsFlow(flow, submitSelfServiceSettingsFlowBody, xSessionToken, cookie);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->submitSelfServiceSettingsFlow: $e\n');
@@ -2066,9 +2066,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **String**| The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`). | 
+ **submitSelfServiceSettingsFlowBody** | [**SubmitSelfServiceSettingsFlowBody**](SubmitSelfServiceSettingsFlowBody.md)|  | 
  **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional] 
  **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
- **submitSelfServiceSettingsFlowBody** | [**SubmitSelfServiceSettingsFlowBody**](SubmitSelfServiceSettingsFlowBody.md)|  | [optional] 
 
 ### Return type
 
@@ -2086,7 +2086,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **submitSelfServiceVerificationFlow**
-> SelfServiceVerificationFlow submitSelfServiceVerificationFlow(flow, token, cookie, submitSelfServiceVerificationFlowBody)
+> SelfServiceVerificationFlow submitSelfServiceVerificationFlow(flow, submitSelfServiceVerificationFlowBody, token, cookie)
 
 Complete Verification Flow
 
@@ -2098,12 +2098,12 @@ import 'package:ory_client/api.dart';
 
 var api_instance = new V0alpha2Api();
 var flow = flow_example; // String | The Verification Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
+var submitSelfServiceVerificationFlowBody = new SubmitSelfServiceVerificationFlowBody(); // SubmitSelfServiceVerificationFlowBody | 
 var token = token_example; // String | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
 var cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
-var submitSelfServiceVerificationFlowBody = new SubmitSelfServiceVerificationFlowBody(); // SubmitSelfServiceVerificationFlowBody | 
 
 try {
-    var result = api_instance.submitSelfServiceVerificationFlow(flow, token, cookie, submitSelfServiceVerificationFlowBody);
+    var result = api_instance.submitSelfServiceVerificationFlow(flow, submitSelfServiceVerificationFlowBody, token, cookie);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->submitSelfServiceVerificationFlow: $e\n');
@@ -2115,9 +2115,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **String**| The Verification Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`). | 
+ **submitSelfServiceVerificationFlowBody** | [**SubmitSelfServiceVerificationFlowBody**](SubmitSelfServiceVerificationFlowBody.md)|  | 
  **token** | **String**| Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. | [optional] 
  **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
- **submitSelfServiceVerificationFlowBody** | [**SubmitSelfServiceVerificationFlowBody**](SubmitSelfServiceVerificationFlowBody.md)|  | [optional] 
 
 ### Return type
 

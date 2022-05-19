@@ -3164,7 +3164,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **submit_self_service_login_flow**
-> SuccessfulSelfServiceLoginWithoutBrowser submit_self_service_login_flow(flow)
+> SuccessfulSelfServiceLoginWithoutBrowser submit_self_service_login_flow(flow, submit_self_service_login_flow_body)
 
 Submit a Login Flow
 
@@ -3195,14 +3195,14 @@ with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = v0alpha2_api.V0alpha2Api(api_client)
     flow = "flow_example" # str | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
+    submit_self_service_login_flow_body = SubmitSelfServiceLoginFlowBody(None) # SubmitSelfServiceLoginFlowBody | 
     x_session_token = "X-Session-Token_example" # str | The Session Token of the Identity performing the settings flow. (optional)
     cookie = "Cookie_example" # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
-    submit_self_service_login_flow_body = SubmitSelfServiceLoginFlowBody(None) # SubmitSelfServiceLoginFlowBody |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Submit a Login Flow
-        api_response = api_instance.submit_self_service_login_flow(flow)
+        api_response = api_instance.submit_self_service_login_flow(flow, submit_self_service_login_flow_body)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling V0alpha2Api->submit_self_service_login_flow: %s\n" % e)
@@ -3211,7 +3211,7 @@ with ory_client.ApiClient() as api_client:
     # and optional values
     try:
         # Submit a Login Flow
-        api_response = api_instance.submit_self_service_login_flow(flow, x_session_token=x_session_token, cookie=cookie, submit_self_service_login_flow_body=submit_self_service_login_flow_body)
+        api_response = api_instance.submit_self_service_login_flow(flow, submit_self_service_login_flow_body, x_session_token=x_session_token, cookie=cookie)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling V0alpha2Api->submit_self_service_login_flow: %s\n" % e)
@@ -3223,9 +3223,9 @@ with ory_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **str**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). |
+ **submit_self_service_login_flow_body** | [**SubmitSelfServiceLoginFlowBody**](SubmitSelfServiceLoginFlowBody.md)|  |
  **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional]
  **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
- **submit_self_service_login_flow_body** | [**SubmitSelfServiceLoginFlowBody**](SubmitSelfServiceLoginFlowBody.md)|  | [optional]
 
 ### Return type
 
@@ -3397,7 +3397,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **submit_self_service_recovery_flow**
-> SelfServiceRecoveryFlow submit_self_service_recovery_flow(flow)
+> SelfServiceRecoveryFlow submit_self_service_recovery_flow(flow, submit_self_service_recovery_flow_body)
 
 Complete Recovery Flow
 
@@ -3426,14 +3426,14 @@ with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = v0alpha2_api.V0alpha2Api(api_client)
     flow = "flow_example" # str | The Recovery Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
+    submit_self_service_recovery_flow_body = SubmitSelfServiceRecoveryFlowBody(None) # SubmitSelfServiceRecoveryFlowBody | 
     token = "token_example" # str | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. (optional)
     cookie = "Cookie_example" # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
-    submit_self_service_recovery_flow_body = SubmitSelfServiceRecoveryFlowBody(None) # SubmitSelfServiceRecoveryFlowBody |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Complete Recovery Flow
-        api_response = api_instance.submit_self_service_recovery_flow(flow)
+        api_response = api_instance.submit_self_service_recovery_flow(flow, submit_self_service_recovery_flow_body)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling V0alpha2Api->submit_self_service_recovery_flow: %s\n" % e)
@@ -3442,7 +3442,7 @@ with ory_client.ApiClient() as api_client:
     # and optional values
     try:
         # Complete Recovery Flow
-        api_response = api_instance.submit_self_service_recovery_flow(flow, token=token, cookie=cookie, submit_self_service_recovery_flow_body=submit_self_service_recovery_flow_body)
+        api_response = api_instance.submit_self_service_recovery_flow(flow, submit_self_service_recovery_flow_body, token=token, cookie=cookie)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling V0alpha2Api->submit_self_service_recovery_flow: %s\n" % e)
@@ -3454,9 +3454,9 @@ with ory_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **str**| The Recovery Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). |
+ **submit_self_service_recovery_flow_body** | [**SubmitSelfServiceRecoveryFlowBody**](SubmitSelfServiceRecoveryFlowBody.md)|  |
  **token** | **str**| Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. | [optional]
  **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
- **submit_self_service_recovery_flow_body** | [**SubmitSelfServiceRecoveryFlowBody**](SubmitSelfServiceRecoveryFlowBody.md)|  | [optional]
 
 ### Return type
 
@@ -3485,7 +3485,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **submit_self_service_registration_flow**
-> SuccessfulSelfServiceRegistrationWithoutBrowser submit_self_service_registration_flow(flow)
+> SuccessfulSelfServiceRegistrationWithoutBrowser submit_self_service_registration_flow(flow, submit_self_service_registration_flow_body)
 
 Submit a Registration Flow
 
@@ -3516,13 +3516,13 @@ with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = v0alpha2_api.V0alpha2Api(api_client)
     flow = "flow_example" # str | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
+    submit_self_service_registration_flow_body = SubmitSelfServiceRegistrationFlowBody(None) # SubmitSelfServiceRegistrationFlowBody | 
     cookie = "Cookie_example" # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
-    submit_self_service_registration_flow_body = SubmitSelfServiceRegistrationFlowBody(None) # SubmitSelfServiceRegistrationFlowBody |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Submit a Registration Flow
-        api_response = api_instance.submit_self_service_registration_flow(flow)
+        api_response = api_instance.submit_self_service_registration_flow(flow, submit_self_service_registration_flow_body)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling V0alpha2Api->submit_self_service_registration_flow: %s\n" % e)
@@ -3531,7 +3531,7 @@ with ory_client.ApiClient() as api_client:
     # and optional values
     try:
         # Submit a Registration Flow
-        api_response = api_instance.submit_self_service_registration_flow(flow, cookie=cookie, submit_self_service_registration_flow_body=submit_self_service_registration_flow_body)
+        api_response = api_instance.submit_self_service_registration_flow(flow, submit_self_service_registration_flow_body, cookie=cookie)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling V0alpha2Api->submit_self_service_registration_flow: %s\n" % e)
@@ -3543,8 +3543,8 @@ with ory_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **str**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). |
+ **submit_self_service_registration_flow_body** | [**SubmitSelfServiceRegistrationFlowBody**](SubmitSelfServiceRegistrationFlowBody.md)|  |
  **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
- **submit_self_service_registration_flow_body** | [**SubmitSelfServiceRegistrationFlowBody**](SubmitSelfServiceRegistrationFlowBody.md)|  | [optional]
 
 ### Return type
 
@@ -3574,7 +3574,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **submit_self_service_settings_flow**
-> SelfServiceSettingsFlow submit_self_service_settings_flow(flow)
+> SelfServiceSettingsFlow submit_self_service_settings_flow(flow, submit_self_service_settings_flow_body)
 
 Complete Settings Flow
 
@@ -3604,14 +3604,14 @@ with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = v0alpha2_api.V0alpha2Api(api_client)
     flow = "flow_example" # str | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+    submit_self_service_settings_flow_body = SubmitSelfServiceSettingsFlowBody(None) # SubmitSelfServiceSettingsFlowBody | 
     x_session_token = "X-Session-Token_example" # str | The Session Token of the Identity performing the settings flow. (optional)
     cookie = "Cookie_example" # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
-    submit_self_service_settings_flow_body = SubmitSelfServiceSettingsFlowBody(None) # SubmitSelfServiceSettingsFlowBody |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Complete Settings Flow
-        api_response = api_instance.submit_self_service_settings_flow(flow)
+        api_response = api_instance.submit_self_service_settings_flow(flow, submit_self_service_settings_flow_body)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling V0alpha2Api->submit_self_service_settings_flow: %s\n" % e)
@@ -3620,7 +3620,7 @@ with ory_client.ApiClient() as api_client:
     # and optional values
     try:
         # Complete Settings Flow
-        api_response = api_instance.submit_self_service_settings_flow(flow, x_session_token=x_session_token, cookie=cookie, submit_self_service_settings_flow_body=submit_self_service_settings_flow_body)
+        api_response = api_instance.submit_self_service_settings_flow(flow, submit_self_service_settings_flow_body, x_session_token=x_session_token, cookie=cookie)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling V0alpha2Api->submit_self_service_settings_flow: %s\n" % e)
@@ -3632,9 +3632,9 @@ with ory_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **str**| The Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
+ **submit_self_service_settings_flow_body** | [**SubmitSelfServiceSettingsFlowBody**](SubmitSelfServiceSettingsFlowBody.md)|  |
  **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional]
  **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
- **submit_self_service_settings_flow_body** | [**SubmitSelfServiceSettingsFlowBody**](SubmitSelfServiceSettingsFlowBody.md)|  | [optional]
 
 ### Return type
 
@@ -3666,7 +3666,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **submit_self_service_verification_flow**
-> SelfServiceVerificationFlow submit_self_service_verification_flow(flow)
+> SelfServiceVerificationFlow submit_self_service_verification_flow(flow, submit_self_service_verification_flow_body)
 
 Complete Verification Flow
 
@@ -3695,14 +3695,14 @@ with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = v0alpha2_api.V0alpha2Api(api_client)
     flow = "flow_example" # str | The Verification Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
+    submit_self_service_verification_flow_body = SubmitSelfServiceVerificationFlowBody(None) # SubmitSelfServiceVerificationFlowBody | 
     token = "token_example" # str | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. (optional)
     cookie = "Cookie_example" # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
-    submit_self_service_verification_flow_body = SubmitSelfServiceVerificationFlowBody(None) # SubmitSelfServiceVerificationFlowBody |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Complete Verification Flow
-        api_response = api_instance.submit_self_service_verification_flow(flow)
+        api_response = api_instance.submit_self_service_verification_flow(flow, submit_self_service_verification_flow_body)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling V0alpha2Api->submit_self_service_verification_flow: %s\n" % e)
@@ -3711,7 +3711,7 @@ with ory_client.ApiClient() as api_client:
     # and optional values
     try:
         # Complete Verification Flow
-        api_response = api_instance.submit_self_service_verification_flow(flow, token=token, cookie=cookie, submit_self_service_verification_flow_body=submit_self_service_verification_flow_body)
+        api_response = api_instance.submit_self_service_verification_flow(flow, submit_self_service_verification_flow_body, token=token, cookie=cookie)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling V0alpha2Api->submit_self_service_verification_flow: %s\n" % e)
@@ -3723,9 +3723,9 @@ with ory_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **str**| The Verification Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/verification?flow&#x3D;abcde&#x60;). |
+ **submit_self_service_verification_flow_body** | [**SubmitSelfServiceVerificationFlowBody**](SubmitSelfServiceVerificationFlowBody.md)|  |
  **token** | **str**| Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. | [optional]
  **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
- **submit_self_service_verification_flow_body** | [**SubmitSelfServiceVerificationFlowBody**](SubmitSelfServiceVerificationFlowBody.md)|  | [optional]
 
 ### Return type
 

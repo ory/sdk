@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.0.1-alpha.179
+  version: v0.0.1-alpha.180
 servers:
 - url: https://{project}.projects.oryapis.com/
   variables:
@@ -1705,6 +1705,7 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/submitSelfServiceLoginFlowBody'
+        required: true
         x-originalParamName: Body
       responses:
         "200":
@@ -2208,6 +2209,7 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/submitSelfServiceRecoveryFlowBody'
+        required: true
         x-originalParamName: Body
       responses:
         "200":
@@ -2470,6 +2472,7 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/submitSelfServiceRegistrationFlowBody'
+        required: true
         x-originalParamName: Body
       responses:
         "200":
@@ -2786,6 +2789,7 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/submitSelfServiceSettingsFlowBody'
+        required: true
         x-originalParamName: Body
       responses:
         "200":
@@ -3140,6 +3144,7 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/submitSelfServiceVerificationFlowBody'
+        required: true
         x-originalParamName: Body
       responses:
         "200":
@@ -4181,12 +4186,12 @@ components:
             of the custom hostname to work.
           type: string
         cors_allowed_origins:
-          description: Cors Allowed origins for the custom hostname.
+          description: CORS Allowed origins for the custom hostname.
           items:
             type: string
           type: array
         cors_enabled:
-          description: Cors Enabled for the custom hostname.
+          description: CORS Enabled for the custom hostname.
           type: boolean
         hostname:
           description: The custom hostname where the API will be exposed.
@@ -8093,12 +8098,12 @@ components:
             of the custom hostname to work.
           type: string
         cors_allowed_origins:
-          description: Cors Allowed origins for the custom hostname.
+          description: CORS Allowed origins for the custom hostname.
           items:
             type: string
           type: array
         cors_enabled:
-          description: Cors Enabled for the custom hostname.
+          description: CORS Enabled for the custom hostname.
           type: boolean
         hostname:
           description: The custom hostname where the API will be exposed.

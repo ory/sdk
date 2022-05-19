@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.179
+ * API version: v0.0.1-alpha.180
  * Contact: support@ory.sh
  */
 
@@ -19,9 +19,9 @@ import (
 type UpdateCustomHostnameBody struct {
 	// The domain where cookies will be set. Has to be a parent domain of the custom hostname to work.
 	CookieDomain *string `json:"cookie_domain,omitempty"`
-	// Cors Allowed origins for the custom hostname.
+	// CORS Allowed origins for the custom hostname.
 	CorsAllowedOrigins []string `json:"cors_allowed_origins,omitempty"`
-	// Cors Enabled for the custom hostname.
+	// CORS Enabled for the custom hostname.
 	CorsEnabled *bool `json:"cors_enabled,omitempty"`
 	// The custom hostname where the API will be exposed.
 	Hostname *string `json:"hostname,omitempty"`
