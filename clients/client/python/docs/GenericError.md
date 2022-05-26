@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **message** | **str** | Error message  The error&#39;s message. | 
 **code** | **int** | The status code | [optional] 
 **debug** | **str** | Debug information  This field is often not exposed to protect against leaking sensitive information. | [optional] 
-**details** | **dict** | Further error details | [optional] 
+**details** | **[{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]** | Further error details | [optional] 
 **error** | [**GenericErrorContent**](GenericErrorContent.md) |  | [optional] 
 **id** | **str** | The error ID  Useful when trying to identify various errors in application logic. | [optional] 
 **reason** | **str** | A human-readable reason for the error | [optional] 

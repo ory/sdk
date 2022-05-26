@@ -33,6 +33,9 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://playground.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryAccessToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
             var apiInstance = new MetadataApi(config);
 
             try
@@ -61,7 +64,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -100,6 +103,9 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://playground.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryAccessToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
             var apiInstance = new MetadataApi(config);
 
             try
@@ -128,7 +134,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -168,6 +174,9 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://playground.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryAccessToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
             var apiInstance = new MetadataApi(config);
 
             try
@@ -196,7 +205,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 

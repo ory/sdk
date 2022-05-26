@@ -1173,7 +1173,7 @@ No authorization required
 ## `listSubjectConsentSessions()`
 
 ```php
-listSubjectConsentSessions($subject): \Ory\Hydra\Client\Model\PreviousConsentSession[]
+listSubjectConsentSessions($subject, $limit, $offset): \Ory\Hydra\Client\Model\PreviousConsentSession[]
 ```
 
 Lists All Consent Sessions of a Subject
@@ -1194,9 +1194,11 @@ $apiInstance = new Ory\Hydra\Client\Api\AdminApi(
     new GuzzleHttp\Client()
 );
 $subject = 'subject_example'; // string
+$limit = 56; // int | The maximum amount of consent sessions to be returned, upper bound is 500 sessions.
+$offset = 56; // int | The offset from where to start looking.
 
 try {
-    $result = $apiInstance->listSubjectConsentSessions($subject);
+    $result = $apiInstance->listSubjectConsentSessions($subject, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->listSubjectConsentSessions: ', $e->getMessage(), PHP_EOL;
@@ -1208,6 +1210,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **string**|  |
+ **limit** | **int**| The maximum amount of consent sessions to be returned, upper bound is 500 sessions. | [optional]
+ **offset** | **int**| The offset from where to start looking. | [optional]
 
 ### Return type
 

@@ -1338,7 +1338,7 @@ No authorization required
 
 <a name="listSubjectConsentSessions"></a>
 # **listSubjectConsentSessions**
-> List&lt;PreviousConsentSession&gt; listSubjectConsentSessions(subject)
+> List&lt;PreviousConsentSession&gt; listSubjectConsentSessions(subject, limit, offset)
 
 Lists All Consent Sessions of a Subject
 
@@ -1360,8 +1360,10 @@ public class Example {
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String subject = "subject_example"; // String | 
+    Long limit = 56L; // Long | The maximum amount of consent sessions to be returned, upper bound is 500 sessions.
+    Long offset = 56L; // Long | The offset from where to start looking.
     try {
-      List<PreviousConsentSession> result = apiInstance.listSubjectConsentSessions(subject);
+      List<PreviousConsentSession> result = apiInstance.listSubjectConsentSessions(subject, limit, offset);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#listSubjectConsentSessions");
@@ -1379,6 +1381,8 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **String**|  |
+ **limit** | **Long**| The maximum amount of consent sessions to be returned, upper bound is 500 sessions. | [optional]
+ **offset** | **Long**| The offset from where to start looking. | [optional]
 
 ### Return type
 

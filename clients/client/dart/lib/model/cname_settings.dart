@@ -18,6 +18,14 @@ abstract class CnameSettings implements Built<CnameSettings, CnameSettingsBuilde
     String get cookieDomain;
 
     @nullable
+    @BuiltValueField(wireName: r'cors_allowed_origins')
+    BuiltList<String> get corsAllowedOrigins;
+
+    @nullable
+    @BuiltValueField(wireName: r'cors_enabled')
+    bool get corsEnabled;
+
+    @nullable
     @BuiltValueField(wireName: r'created_at')
     DateTime get createdAt;
 
@@ -68,6 +76,18 @@ class _$CnameSettingsSerializer implements StructuredSerializer<CnameSettings> {
                 ..add(r'cookie_domain')
                 ..add(serializers.serialize(object.cookieDomain,
                     specifiedType: const FullType(String)));
+        }
+        if (object.corsAllowedOrigins != null) {
+            result
+                ..add(r'cors_allowed_origins')
+                ..add(serializers.serialize(object.corsAllowedOrigins,
+                    specifiedType: const FullType(BuiltList, [FullType(String)])));
+        }
+        if (object.corsEnabled != null) {
+            result
+                ..add(r'cors_enabled')
+                ..add(serializers.serialize(object.corsEnabled,
+                    specifiedType: const FullType(bool)));
         }
         if (object.createdAt != null) {
             result
@@ -122,6 +142,14 @@ class _$CnameSettingsSerializer implements StructuredSerializer<CnameSettings> {
                 case r'cookie_domain':
                     result.cookieDomain = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
+                    break;
+                case r'cors_allowed_origins':
+                    result.corsAllowedOrigins.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
+                    break;
+                case r'cors_enabled':
+                    result.corsEnabled = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
                     break;
                 case r'created_at':
                     result.createdAt = serializers.deserialize(value,

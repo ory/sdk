@@ -8,6 +8,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cookieDomain** | **String** |  |  [optional]
+**corsAllowedOrigins** | **List&lt;String&gt;** |  |  [optional]
+**corsEnabled** | **Boolean** |  |  [optional]
 **createdAt** | **OffsetDateTime** |  |  [optional]
 **hostname** | **String** |  |  [optional]
 **id** | **UUID** |  |  [optional]

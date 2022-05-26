@@ -1518,7 +1518,7 @@ No authorization required
 
 <a name="listsubjectconsentsessions"></a>
 # **ListSubjectConsentSessions**
-> List&lt;HydraPreviousConsentSession&gt; ListSubjectConsentSessions (string subject)
+> List&lt;HydraPreviousConsentSession&gt; ListSubjectConsentSessions (string subject, long? limit = null, long? offset = null)
 
 Lists All Consent Sessions of a Subject
 
@@ -1542,11 +1542,13 @@ namespace Example
             config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var subject = "subject_example";  // string | 
+            var limit = 789L;  // long? | The maximum amount of consent sessions to be returned, upper bound is 500 sessions. (optional) 
+            var offset = 789L;  // long? | The offset from where to start looking. (optional) 
 
             try
             {
                 // Lists All Consent Sessions of a Subject
-                List<HydraPreviousConsentSession> result = apiInstance.ListSubjectConsentSessions(subject);
+                List<HydraPreviousConsentSession> result = apiInstance.ListSubjectConsentSessions(subject, limit, offset);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1565,6 +1567,8 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **string**|  | 
+ **limit** | **long?**| The maximum amount of consent sessions to be returned, upper bound is 500 sessions. | [optional] 
+ **offset** | **long?**| The offset from where to start looking. | [optional] 
 
 ### Return type
 

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **RevisionId** | **string** |  | 
 **Services** | [**ProjectServices**](ProjectServices.md) |  | 
 **Slug** | **string** | The project&#39;s slug | [readonly] 
-**State** | **string** | The state of the project. | [readonly] 
+**State** | **string** | The state of the project. running Running halted Halted | [readonly] 
 
 ## Methods
 

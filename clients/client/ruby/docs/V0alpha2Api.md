@@ -60,7 +60,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Create an Identity
 
-This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint creates an identity. Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Examples
 
@@ -630,7 +630,7 @@ end
 
 Update an Identity
 
-This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint updates an identity. The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Examples
 
@@ -1117,7 +1117,7 @@ require 'ory-client'
 api_instance = OryClient::V0alpha2Api.new
 id = 'id_example' # String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
 opts = {
-  cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here.
+  cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 }
 
 begin
@@ -1152,7 +1152,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). |  |
-| **cookie** | **String** | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. | [optional] |
+| **cookie** | **String** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 
 ### Return type
 
@@ -1185,7 +1185,7 @@ require 'ory-client'
 api_instance = OryClient::V0alpha2Api.new
 id = 'id_example' # String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
 opts = {
-  cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here.
+  cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 }
 
 begin
@@ -1220,7 +1220,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). |  |
-| **cookie** | **String** | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. | [optional] |
+| **cookie** | **String** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 
 ### Return type
 
@@ -1253,7 +1253,7 @@ require 'ory-client'
 api_instance = OryClient::V0alpha2Api.new
 id = 'id_example' # String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
 opts = {
-  cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here.
+  cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 }
 
 begin
@@ -1288,7 +1288,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). |  |
-| **cookie** | **String** | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. | [optional] |
+| **cookie** | **String** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 
 ### Return type
 
@@ -1322,7 +1322,7 @@ api_instance = OryClient::V0alpha2Api.new
 id = 'id_example' # String | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
 opts = {
   x_session_token: 'x_session_token_example', # String | The Session Token  When using the SDK in an app without a browser, please include the session token here.
-  cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. You only need to do this for browser- based flows.
+  cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 }
 
 begin
@@ -1358,7 +1358,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |  |
 | **x_session_token** | **String** | The Session Token  When using the SDK in an app without a browser, please include the session token here. | [optional] |
-| **cookie** | **String** | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. You only need to do this for browser- based flows. | [optional] |
+| **cookie** | **String** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 
 ### Return type
 
@@ -2706,7 +2706,7 @@ No authorization required
 
 ## submit_self_service_login_flow
 
-> <SuccessfulSelfServiceLoginWithoutBrowser> submit_self_service_login_flow(flow, opts)
+> <SuccessfulSelfServiceLoginWithoutBrowser> submit_self_service_login_flow(flow, submit_self_service_login_flow_body, opts)
 
 Submit a Login Flow
 
@@ -2720,14 +2720,15 @@ require 'ory-client'
 
 api_instance = OryClient::V0alpha2Api.new
 flow = 'flow_example' # String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
+submit_self_service_login_flow_body = OryClient::SubmitSelfServiceLoginFlowWithLookupSecretMethodBody.new({lookup_secret: 'lookup_secret_example', method: 'method_example'}) # SubmitSelfServiceLoginFlowBody | 
 opts = {
   x_session_token: 'x_session_token_example', # String | The Session Token of the Identity performing the settings flow.
-  submit_self_service_login_flow_body: OryClient::SubmitSelfServiceLoginFlowWithLookupSecretMethodBody.new({lookup_secret: 'lookup_secret_example', method: 'method_example'}) # SubmitSelfServiceLoginFlowBody | 
+  cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 }
 
 begin
   # Submit a Login Flow
-  result = api_instance.submit_self_service_login_flow(flow, opts)
+  result = api_instance.submit_self_service_login_flow(flow, submit_self_service_login_flow_body, opts)
   p result
 rescue OryClient::ApiError => e
   puts "Error when calling V0alpha2Api->submit_self_service_login_flow: #{e}"
@@ -2738,12 +2739,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<SuccessfulSelfServiceLoginWithoutBrowser>, Integer, Hash)> submit_self_service_login_flow_with_http_info(flow, opts)
+> <Array(<SuccessfulSelfServiceLoginWithoutBrowser>, Integer, Hash)> submit_self_service_login_flow_with_http_info(flow, submit_self_service_login_flow_body, opts)
 
 ```ruby
 begin
   # Submit a Login Flow
-  data, status_code, headers = api_instance.submit_self_service_login_flow_with_http_info(flow, opts)
+  data, status_code, headers = api_instance.submit_self_service_login_flow_with_http_info(flow, submit_self_service_login_flow_body, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SuccessfulSelfServiceLoginWithoutBrowser>
@@ -2757,8 +2758,9 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **flow** | **String** | The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). |  |
+| **submit_self_service_login_flow_body** | [**SubmitSelfServiceLoginFlowBody**](SubmitSelfServiceLoginFlowBody.md) |  |  |
 | **x_session_token** | **String** | The Session Token of the Identity performing the settings flow. | [optional] |
-| **submit_self_service_login_flow_body** | [**SubmitSelfServiceLoginFlowBody**](SubmitSelfServiceLoginFlowBody.md) |  | [optional] |
+| **cookie** | **String** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 
 ### Return type
 
@@ -2906,7 +2908,7 @@ No authorization required
 
 ## submit_self_service_recovery_flow
 
-> <SelfServiceRecoveryFlow> submit_self_service_recovery_flow(flow, opts)
+> <SelfServiceRecoveryFlow> submit_self_service_recovery_flow(flow, submit_self_service_recovery_flow_body, opts)
 
 Complete Recovery Flow
 
@@ -2920,14 +2922,15 @@ require 'ory-client'
 
 api_instance = OryClient::V0alpha2Api.new
 flow = 'flow_example' # String | The Recovery Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
+submit_self_service_recovery_flow_body = OryClient::SubmitSelfServiceRecoveryFlowWithLinkMethodBody.new({email: 'email_example', method: 'method_example'}) # SubmitSelfServiceRecoveryFlowBody | 
 opts = {
   token: 'token_example', # String | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
-  submit_self_service_recovery_flow_body: OryClient::SubmitSelfServiceRecoveryFlowWithLinkMethodBody.new({email: 'email_example', method: 'method_example'}) # SubmitSelfServiceRecoveryFlowBody | 
+  cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 }
 
 begin
   # Complete Recovery Flow
-  result = api_instance.submit_self_service_recovery_flow(flow, opts)
+  result = api_instance.submit_self_service_recovery_flow(flow, submit_self_service_recovery_flow_body, opts)
   p result
 rescue OryClient::ApiError => e
   puts "Error when calling V0alpha2Api->submit_self_service_recovery_flow: #{e}"
@@ -2938,12 +2941,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<SelfServiceRecoveryFlow>, Integer, Hash)> submit_self_service_recovery_flow_with_http_info(flow, opts)
+> <Array(<SelfServiceRecoveryFlow>, Integer, Hash)> submit_self_service_recovery_flow_with_http_info(flow, submit_self_service_recovery_flow_body, opts)
 
 ```ruby
 begin
   # Complete Recovery Flow
-  data, status_code, headers = api_instance.submit_self_service_recovery_flow_with_http_info(flow, opts)
+  data, status_code, headers = api_instance.submit_self_service_recovery_flow_with_http_info(flow, submit_self_service_recovery_flow_body, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceRecoveryFlow>
@@ -2957,8 +2960,9 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **flow** | **String** | The Recovery Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). |  |
+| **submit_self_service_recovery_flow_body** | [**SubmitSelfServiceRecoveryFlowBody**](SubmitSelfServiceRecoveryFlowBody.md) |  |  |
 | **token** | **String** | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. | [optional] |
-| **submit_self_service_recovery_flow_body** | [**SubmitSelfServiceRecoveryFlowBody**](SubmitSelfServiceRecoveryFlowBody.md) |  | [optional] |
+| **cookie** | **String** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 
 ### Return type
 
@@ -2976,7 +2980,7 @@ No authorization required
 
 ## submit_self_service_registration_flow
 
-> <SuccessfulSelfServiceRegistrationWithoutBrowser> submit_self_service_registration_flow(flow, opts)
+> <SuccessfulSelfServiceRegistrationWithoutBrowser> submit_self_service_registration_flow(flow, submit_self_service_registration_flow_body, opts)
 
 Submit a Registration Flow
 
@@ -2990,13 +2994,14 @@ require 'ory-client'
 
 api_instance = OryClient::V0alpha2Api.new
 flow = 'flow_example' # String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
+submit_self_service_registration_flow_body = OryClient::SubmitSelfServiceRegistrationFlowWithOidcMethodBody.new({method: 'method_example', provider: 'provider_example'}) # SubmitSelfServiceRegistrationFlowBody | 
 opts = {
-  submit_self_service_registration_flow_body: OryClient::SubmitSelfServiceRegistrationFlowWithOidcMethodBody.new({method: 'method_example', provider: 'provider_example'}) # SubmitSelfServiceRegistrationFlowBody | 
+  cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 }
 
 begin
   # Submit a Registration Flow
-  result = api_instance.submit_self_service_registration_flow(flow, opts)
+  result = api_instance.submit_self_service_registration_flow(flow, submit_self_service_registration_flow_body, opts)
   p result
 rescue OryClient::ApiError => e
   puts "Error when calling V0alpha2Api->submit_self_service_registration_flow: #{e}"
@@ -3007,12 +3012,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<SuccessfulSelfServiceRegistrationWithoutBrowser>, Integer, Hash)> submit_self_service_registration_flow_with_http_info(flow, opts)
+> <Array(<SuccessfulSelfServiceRegistrationWithoutBrowser>, Integer, Hash)> submit_self_service_registration_flow_with_http_info(flow, submit_self_service_registration_flow_body, opts)
 
 ```ruby
 begin
   # Submit a Registration Flow
-  data, status_code, headers = api_instance.submit_self_service_registration_flow_with_http_info(flow, opts)
+  data, status_code, headers = api_instance.submit_self_service_registration_flow_with_http_info(flow, submit_self_service_registration_flow_body, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SuccessfulSelfServiceRegistrationWithoutBrowser>
@@ -3026,7 +3031,8 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **flow** | **String** | The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). |  |
-| **submit_self_service_registration_flow_body** | [**SubmitSelfServiceRegistrationFlowBody**](SubmitSelfServiceRegistrationFlowBody.md) |  | [optional] |
+| **submit_self_service_registration_flow_body** | [**SubmitSelfServiceRegistrationFlowBody**](SubmitSelfServiceRegistrationFlowBody.md) |  |  |
+| **cookie** | **String** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 
 ### Return type
 
@@ -3044,7 +3050,7 @@ No authorization required
 
 ## submit_self_service_settings_flow
 
-> <SelfServiceSettingsFlow> submit_self_service_settings_flow(flow, opts)
+> <SelfServiceSettingsFlow> submit_self_service_settings_flow(flow, submit_self_service_settings_flow_body, opts)
 
 Complete Settings Flow
 
@@ -3058,14 +3064,15 @@ require 'ory-client'
 
 api_instance = OryClient::V0alpha2Api.new
 flow = 'flow_example' # String | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+submit_self_service_settings_flow_body = OryClient::SubmitSelfServiceSettingsFlowWithLookupMethodBody.new({method: 'method_example'}) # SubmitSelfServiceSettingsFlowBody | 
 opts = {
   x_session_token: 'x_session_token_example', # String | The Session Token of the Identity performing the settings flow.
-  submit_self_service_settings_flow_body: OryClient::SubmitSelfServiceSettingsFlowWithLookupMethodBody.new({method: 'method_example'}) # SubmitSelfServiceSettingsFlowBody | 
+  cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 }
 
 begin
   # Complete Settings Flow
-  result = api_instance.submit_self_service_settings_flow(flow, opts)
+  result = api_instance.submit_self_service_settings_flow(flow, submit_self_service_settings_flow_body, opts)
   p result
 rescue OryClient::ApiError => e
   puts "Error when calling V0alpha2Api->submit_self_service_settings_flow: #{e}"
@@ -3076,12 +3083,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<SelfServiceSettingsFlow>, Integer, Hash)> submit_self_service_settings_flow_with_http_info(flow, opts)
+> <Array(<SelfServiceSettingsFlow>, Integer, Hash)> submit_self_service_settings_flow_with_http_info(flow, submit_self_service_settings_flow_body, opts)
 
 ```ruby
 begin
   # Complete Settings Flow
-  data, status_code, headers = api_instance.submit_self_service_settings_flow_with_http_info(flow, opts)
+  data, status_code, headers = api_instance.submit_self_service_settings_flow_with_http_info(flow, submit_self_service_settings_flow_body, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceSettingsFlow>
@@ -3095,8 +3102,9 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **flow** | **String** | The Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |  |
+| **submit_self_service_settings_flow_body** | [**SubmitSelfServiceSettingsFlowBody**](SubmitSelfServiceSettingsFlowBody.md) |  |  |
 | **x_session_token** | **String** | The Session Token of the Identity performing the settings flow. | [optional] |
-| **submit_self_service_settings_flow_body** | [**SubmitSelfServiceSettingsFlowBody**](SubmitSelfServiceSettingsFlowBody.md) |  | [optional] |
+| **cookie** | **String** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 
 ### Return type
 
@@ -3114,7 +3122,7 @@ No authorization required
 
 ## submit_self_service_verification_flow
 
-> <SelfServiceVerificationFlow> submit_self_service_verification_flow(flow, opts)
+> <SelfServiceVerificationFlow> submit_self_service_verification_flow(flow, submit_self_service_verification_flow_body, opts)
 
 Complete Verification Flow
 
@@ -3128,14 +3136,15 @@ require 'ory-client'
 
 api_instance = OryClient::V0alpha2Api.new
 flow = 'flow_example' # String | The Verification Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
+submit_self_service_verification_flow_body = OryClient::SubmitSelfServiceVerificationFlowWithLinkMethodBody.new({email: 'email_example', method: 'method_example'}) # SubmitSelfServiceVerificationFlowBody | 
 opts = {
   token: 'token_example', # String | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
-  submit_self_service_verification_flow_body: OryClient::SubmitSelfServiceVerificationFlowWithLinkMethodBody.new({email: 'email_example', method: 'method_example'}) # SubmitSelfServiceVerificationFlowBody | 
+  cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 }
 
 begin
   # Complete Verification Flow
-  result = api_instance.submit_self_service_verification_flow(flow, opts)
+  result = api_instance.submit_self_service_verification_flow(flow, submit_self_service_verification_flow_body, opts)
   p result
 rescue OryClient::ApiError => e
   puts "Error when calling V0alpha2Api->submit_self_service_verification_flow: #{e}"
@@ -3146,12 +3155,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<SelfServiceVerificationFlow>, Integer, Hash)> submit_self_service_verification_flow_with_http_info(flow, opts)
+> <Array(<SelfServiceVerificationFlow>, Integer, Hash)> submit_self_service_verification_flow_with_http_info(flow, submit_self_service_verification_flow_body, opts)
 
 ```ruby
 begin
   # Complete Verification Flow
-  data, status_code, headers = api_instance.submit_self_service_verification_flow_with_http_info(flow, opts)
+  data, status_code, headers = api_instance.submit_self_service_verification_flow_with_http_info(flow, submit_self_service_verification_flow_body, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SelfServiceVerificationFlow>
@@ -3165,8 +3174,9 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **flow** | **String** | The Verification Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/verification?flow&#x3D;abcde&#x60;). |  |
+| **submit_self_service_verification_flow_body** | [**SubmitSelfServiceVerificationFlowBody**](SubmitSelfServiceVerificationFlowBody.md) |  |  |
 | **token** | **String** | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. | [optional] |
-| **submit_self_service_verification_flow_body** | [**SubmitSelfServiceVerificationFlowBody**](SubmitSelfServiceVerificationFlowBody.md) |  | [optional] |
+| **cookie** | **String** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 
 ### Return type
 
@@ -3272,7 +3282,7 @@ end
 api_instance = OryClient::V0alpha2Api.new
 project_id = 'project_id_example' # String | Project ID  The project's ID.
 opts = {
-  update_project: OryClient::UpdateProject.new({name: 'name_example', services: OryClient::ProjectServices.new({identity: OryClient::ProjectServiceIdentity.new({config: 3.56})})}) # UpdateProject | 
+  update_project: OryClient::UpdateProject.new({name: 'name_example', services: OryClient::ProjectServices.new}) # UpdateProject | 
 }
 
 begin

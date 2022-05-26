@@ -69,7 +69,7 @@ No authorization required
 
 <a name="isAlive"></a>
 # **isAlive**
-> InlineResponse200 isAlive()
+> HealthStatus isAlive()
 
 Check HTTP Server Status
 
@@ -91,7 +91,7 @@ public class Example {
 
     MetadataApi apiInstance = new MetadataApi(defaultClient);
     try {
-      InlineResponse200 result = apiInstance.isAlive();
+      HealthStatus result = apiInstance.isAlive();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling MetadataApi#isAlive");
@@ -109,7 +109,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**HealthStatus**](HealthStatus.md)
 
 ### Authorization
 

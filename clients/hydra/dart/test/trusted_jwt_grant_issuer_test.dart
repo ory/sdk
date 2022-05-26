@@ -14,6 +14,12 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(TrustedJwtGrantIssuer, () {
+    // The \"allow_any_subject\" indicates that the issuer is allowed to have any principal as the subject of the JWT.
+    // bool allowAnySubject
+    test('to test the property `allowAnySubject`', () async {
+      // TODO
+    });
+
     // The \"created_at\" indicates, when grant was created.
     // DateTime createdAt
     test('to test the property `createdAt`', () async {

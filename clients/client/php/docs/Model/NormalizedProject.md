@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **id** | **string** |  |
 **revisions** | [**\Ory\Client\Model\NormalizedProjectRevision[]**](NormalizedProjectRevision.md) |  |
 **slug** | **string** | The project&#39;s slug | [readonly]
-**state** | **string** | The state of the project. | [readonly]
+**state** | **string** | The state of the project. running Running halted Halted | [readonly]
 **subscriptionId** | **string** |  | [optional]
 **updatedAt** | **\DateTime** | Last Time Project was Updated | [readonly]
 

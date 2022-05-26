@@ -28,7 +28,7 @@ void main() {
     //
     // This endpoint returns a HTTP 200 status code when Ory Hydra is accepting incoming HTTP requests. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
     //
-    //Future<InlineResponse200> isAlive() async
+    //Future<HealthStatus> isAlive() async
     test('test isAlive', () async {
       // TODO
     });

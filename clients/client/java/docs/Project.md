@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **revisionId** | **UUID** |  | 
 **services** | [**ProjectServices**](ProjectServices.md) |  | 
 **slug** | **String** | The project&#39;s slug |  [readonly]
-**state** | [**StateEnum**](#StateEnum) | The state of the project. |  [readonly]
+**state** | [**StateEnum**](#StateEnum) | The state of the project. running Running halted Halted |  [readonly]
 
 
 

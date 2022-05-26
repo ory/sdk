@@ -6,6 +6,8 @@
 | ---- | ---- | ----------- | ----- |
 | **created_at** | **Time** | The Project&#39;s Revision Creation Date | [optional][readonly] |
 | **id** | **String** |  | [optional] |
+| **keto_namespaces** | [**Array&lt;KetoNamespace&gt;**](KetoNamespace.md) |  | [optional] |
+| **keto_read_max_depth** | **Integer** |  | [optional] |
 | **kratos_cookies_same_site** | **String** | Configures the Ory Kratos Cookie SameSite Attribute  This governs the \&quot;cookies.same_site\&quot; setting. | [optional] |
 | **kratos_courier_smtp_connection_uri** | **String** | Configures the Ory Kratos SMTP Connection URI  This governs the \&quot;courier.smtp.connection_uri\&quot; setting. | [optional] |
 | **kratos_courier_smtp_from_address** | **String** | Configures the Ory Kratos SMTP From Address  This governs the \&quot;courier.smtp.from_address\&quot; setting. | [optional] |
@@ -98,6 +100,8 @@ require 'ory-client'
 instance = OryClient::NormalizedProjectRevision.new(
   created_at: null,
   id: null,
+  keto_namespaces: null,
+  keto_read_max_depth: null,
   kratos_cookies_same_site: null,
   kratos_courier_smtp_connection_uri: null,
   kratos_courier_smtp_from_address: null,

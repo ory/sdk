@@ -22,6 +22,11 @@ This endpoint returns the version of Ory Kratos.  If the service supports TLS Ed
 ```ruby
 require 'time'
 require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
 
 api_instance = OryClient::MetadataApi.new
 
@@ -62,7 +67,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -83,6 +88,11 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incomi
 ```ruby
 require 'time'
 require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
 
 api_instance = OryClient::MetadataApi.new
 
@@ -123,7 +133,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -144,6 +154,11 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is up running and t
 ```ruby
 require 'time'
 require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
 
 api_instance = OryClient::MetadataApi.new
 
@@ -184,7 +199,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 

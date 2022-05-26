@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.0.1-alpha.152
+  version: v0.0.1-alpha.183
 servers:
 - url: https://{project}.projects.oryapis.com/
   variables:
@@ -97,11 +97,8 @@ paths:
       - v0alpha2
       x-accepts: application/json
     post:
-      description: |-
-        This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...)
-        using this method! A way to achieve that will be introduced in the future.
-
-        Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+      description: This endpoint creates an identity. Learn how identities work in
+        [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
       operationId: adminCreateIdentity
       requestBody:
         content:
@@ -236,10 +233,7 @@ paths:
       x-accepts: application/json
     put:
       description: |-
-        This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...)
-        using this method! A way to achieve that will be introduced in the future.
-
-        The full identity payload (except credentials) is expected. This endpoint does not support patching.
+        This endpoint updates an identity. The full identity payload (except credentials) is expected. This endpoint does not support patching.
 
         Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
       operationId: adminUpdateIdentity
@@ -479,6 +473,166 @@ paths:
       - v0alpha2
       x-contentType: application/json
       x-accepts: application/json
+  /admin/relation-tuples:
+    delete:
+      description: Use this endpoint to delete relation tuples
+      operationId: deleteRelationTuples
+      parameters:
+      - description: Namespace of the Relation Tuple
+        explode: true
+        in: query
+        name: namespace
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Object of the Relation Tuple
+        explode: true
+        in: query
+        name: object
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Relation of the Relation Tuple
+        explode: true
+        in: query
+        name: relation
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: SubjectID of the Relation Tuple
+        explode: true
+        in: query
+        name: subject_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Namespace of the Subject Set
+        explode: true
+        in: query
+        name: subject_set.namespace
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Object of the Subject Set
+        explode: true
+        in: query
+        name: subject_set.object
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Relation of the Subject Set
+        explode: true
+        in: query
+        name: subject_set.relation
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "204":
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Delete Relation Tuples
+      tags:
+      - write
+      x-accepts: application/json
+    patch:
+      description: Use this endpoint to patch one or more relation tuples.
+      operationId: patchRelationTuples
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/PatchDelta'
+              type: array
+        x-originalParamName: Payload
+      responses:
+        "204":
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Patch Multiple Relation Tuples
+      tags:
+      - write
+      x-contentType: application/json
+      x-accepts: application/json
+    put:
+      description: Use this endpoint to create a relation tuple.
+      operationId: createRelationTuple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelationQuery'
+        x-originalParamName: Payload
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RelationQuery'
+          description: RelationQuery
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Create a Relation Tuple
+      tags:
+      - write
+      x-contentType: application/json
+      x-accepts: application/json
   /admin/sessions/{id}/extend:
     patch:
       description: Retrieve the session ID from the `/sessions/whoami` endpoint /
@@ -551,6 +705,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/genericError'
           description: genericError
+      security:
+      - oryAccessToken: []
       summary: Check HTTP Server Status
       tags:
       - metadata
@@ -580,6 +736,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/inline_response_503'
           description: Ory Kratos is not yet ready to accept requests.
+      security:
+      - oryAccessToken: []
       summary: Check HTTP Server and Database Status
       tags:
       - metadata
@@ -1055,6 +1213,328 @@ paths:
       tags:
       - v0alpha2
       x-accepts: application/json
+  /relation-tuples:
+    get:
+      description: Get all relation tuples that match the query. Only the namespace
+        field is required.
+      operationId: getRelationTuples
+      parameters:
+      - explode: true
+        in: query
+        name: page_token
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Namespace of the Relation Tuple
+        explode: true
+        in: query
+        name: namespace
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Object of the Relation Tuple
+        explode: true
+        in: query
+        name: object
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Relation of the Relation Tuple
+        explode: true
+        in: query
+        name: relation
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: SubjectID of the Relation Tuple
+        explode: true
+        in: query
+        name: subject_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Namespace of the Subject Set
+        explode: true
+        in: query
+        name: subject_set.namespace
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Object of the Subject Set
+        explode: true
+        in: query
+        name: subject_set.object
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Relation of the Subject Set
+        explode: true
+        in: query
+        name: subject_set.relation
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getRelationTuplesResponse'
+          description: getRelationTuplesResponse
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Query relation tuples
+      tags:
+      - read
+      x-accepts: application/json
+  /relation-tuples/check:
+    get:
+      description: To learn how relation tuples and the check works, head over to
+        [the documentation](../concepts/relation-tuples.mdx).
+      operationId: getCheck
+      parameters:
+      - description: Namespace of the Relation Tuple
+        explode: true
+        in: query
+        name: namespace
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Object of the Relation Tuple
+        explode: true
+        in: query
+        name: object
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Relation of the Relation Tuple
+        explode: true
+        in: query
+        name: relation
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: SubjectID of the Relation Tuple
+        explode: true
+        in: query
+        name: subject_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Namespace of the Subject Set
+        explode: true
+        in: query
+        name: subject_set.namespace
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Object of the Subject Set
+        explode: true
+        in: query
+        name: subject_set.object
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Relation of the Subject Set
+        explode: true
+        in: query
+        name: subject_set.relation
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: max-depth
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getCheckResponse'
+          description: getCheckResponse
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getCheckResponse'
+          description: getCheckResponse
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Check a relation tuple
+      tags:
+      - read
+      x-accepts: application/json
+    post:
+      description: To learn how relation tuples and the check works, head over to
+        [the documentation](../concepts/relation-tuples.mdx).
+      operationId: postCheck
+      parameters:
+      - explode: true
+        in: query
+        name: max-depth
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelationQuery'
+        x-originalParamName: Payload
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getCheckResponse'
+          description: getCheckResponse
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getCheckResponse'
+          description: getCheckResponse
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Check a relation tuple
+      tags:
+      - read
+      x-contentType: application/json
+      x-accepts: application/json
+  /relation-tuples/expand:
+    get:
+      description: Use this endpoint to expand a relation tuple.
+      operationId: getExpand
+      parameters:
+      - description: Namespace of the Subject Set
+        explode: true
+        in: query
+        name: namespace
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Object of the Subject Set
+        explode: true
+        in: query
+        name: object
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Relation of the Subject Set
+        explode: true
+        in: query
+        name: relation
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: max-depth
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/expandTree'
+          description: expandTree
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Expand a Relation Tuple
+      tags:
+      - read
+      x-accepts: application/json
   /schemas:
     get:
       description: Get all Identity Schemas
@@ -1244,6 +1724,18 @@ paths:
         schema:
           type: string
         style: simple
+      - description: |-
+          HTTP Cookies
+
+          When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header
+          sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+        explode: false
+        in: header
+        name: Cookie
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -1252,6 +1744,7 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/submitSelfServiceLoginFlowBody'
+        required: true
         x-originalParamName: Body
       responses:
         "200":
@@ -1505,11 +1998,11 @@ paths:
       - description: |-
           HTTP Cookies
 
-          When using the SDK on the server side you must include the HTTP Cookie Header
-          originally sent to your HTTP handler here.
+          When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header
+          sent by the client to your server here. This ensures that CSRF and session cookies are respected.
         explode: false
         in: header
-        name: cookie
+        name: Cookie
         required: false
         schema:
           type: string
@@ -1744,6 +2237,18 @@ paths:
         schema:
           type: string
         style: form
+      - description: |-
+          HTTP Cookies
+
+          When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header
+          sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+        explode: false
+        in: header
+        name: Cookie
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -1752,6 +2257,7 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/submitSelfServiceRecoveryFlowBody'
+        required: true
         x-originalParamName: Body
       responses:
         "200":
@@ -1916,11 +2422,11 @@ paths:
       - description: |-
           HTTP Cookies
 
-          When using the SDK on the server side you must include the HTTP Cookie Header
-          originally sent to your HTTP handler here.
+          When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header
+          sent by the client to your server here. This ensures that CSRF and session cookies are respected.
         explode: false
         in: header
-        name: cookie
+        name: Cookie
         required: false
         schema:
           type: string
@@ -1999,6 +2505,18 @@ paths:
         schema:
           type: string
         style: form
+      - description: |-
+          HTTP Cookies
+
+          When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header
+          sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+        explode: false
+        in: header
+        name: Cookie
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -2007,6 +2525,7 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/submitSelfServiceRegistrationFlowBody'
+        required: true
         x-originalParamName: Body
       responses:
         "200":
@@ -2196,11 +2715,11 @@ paths:
       - description: |-
           HTTP Cookies
 
-          When using the SDK on the server side you must include the HTTP Cookie Header
-          originally sent to your HTTP handler here.
+          When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header
+          sent by the client to your server here. This ensures that CSRF and session cookies are respected.
         explode: false
         in: header
-        name: cookie
+        name: Cookie
         required: false
         schema:
           type: string
@@ -2308,6 +2827,18 @@ paths:
         schema:
           type: string
         style: simple
+      - description: |-
+          HTTP Cookies
+
+          When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header
+          sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+        explode: false
+        in: header
+        name: Cookie
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -2316,6 +2847,7 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/submitSelfServiceSettingsFlowBody'
+        required: true
         x-originalParamName: Body
       responses:
         "200":
@@ -2558,12 +3090,11 @@ paths:
       - description: |-
           HTTP Cookies
 
-          When using the SDK on the server side you must include the HTTP Cookie Header
-          originally sent to your HTTP handler here. You only need to do this for browser-
-          based flows.
+          When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header
+          sent by the client to your server here. This ensures that CSRF and session cookies are respected.
         explode: false
         in: header
-        name: cookie
+        name: Cookie
         required: false
         schema:
           type: string
@@ -2656,6 +3187,18 @@ paths:
         schema:
           type: string
         style: form
+      - description: |-
+          HTTP Cookies
+
+          When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header
+          sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+        explode: false
+        in: header
+        name: Cookie
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -2664,6 +3207,7 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/submitSelfServiceVerificationFlowBody'
+        required: true
         x-originalParamName: Body
       responses:
         "200":
@@ -3183,6 +3727,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/inline_response_200_1'
           description: Returns the Ory Kratos version.
+      security:
+      - oryAccessToken: []
       summary: Return Running Software Version.
       tags:
       - metadata
@@ -3196,9 +3742,18 @@ components:
   schemas:
     AdminUpdateIdentityBody:
       example:
+        metadata_admin: ""
         traits: '{}'
         schema_id: schema_id
+        metadata_public: ""
       properties:
+        metadata_admin:
+          description: Store metadata about the user which is only accessible through
+            admin APIs such as `GET /admin/identities/<id>`.
+        metadata_public:
+          description: |-
+            Store metadata about the identity which the identity itself can see when calling for example the
+            session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field.
         schema_id:
           description: |-
             SchemaID is the ID of the JSON Schema to be used for validating the identity's traits. If set
@@ -3243,6 +3798,39 @@ components:
     ID:
       format: int64
       type: integer
+    InternalRelationTuple:
+      example:
+        subject_id: subject_id
+        namespace: namespace
+        object: object
+        relation: relation
+        subject_set:
+          namespace: namespace
+          object: object
+          relation: relation
+      properties:
+        namespace:
+          description: Namespace of the Relation Tuple
+          type: string
+        object:
+          description: Object of the Relation Tuple
+          type: string
+        relation:
+          description: Relation of the Relation Tuple
+          type: string
+        subject_id:
+          description: |-
+            SubjectID of the Relation Tuple
+
+            Either SubjectSet or SubjectID are required.
+          type: string
+        subject_set:
+          $ref: '#/components/schemas/SubjectSet'
+      required:
+      - namespace
+      - object
+      - relation
+      type: object
     InvitePayload:
       properties:
         invitee_email:
@@ -3252,10 +3840,32 @@ components:
       title: JSONRawMessage represents a json.RawMessage that works well with JSON,
         SQL, and Swagger.
       type: object
+    KetoNamespace:
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          type: string
+      type: object
+    KetoNamespaces:
+      items:
+        $ref: '#/components/schemas/KetoNamespace'
+      type: array
     NullBool:
       nullable: true
       type: boolean
+    NullInt:
+      nullable: true
+      type: integer
     NullPlan:
+      description: |2-
+
+        unknown Unknown
+        free Free
+        start_up_monthly StartUpMonthly
+        start_up_yearly StartUpYearly
+        custom Custom
       enum:
       - unknown
       - free
@@ -3263,7 +3873,14 @@ components:
       - start_up_yearly
       - custom
       type: string
+      x-go-enum-desc: |-
+        unknown Unknown
+        free Free
+        start_up_monthly StartUpMonthly
+        start_up_yearly StartUpYearly
+        custom Custom
     NullString:
+      nullable: true
       type: string
     NullTime:
       format: date-time
@@ -3271,7 +3888,29 @@ components:
       type: string
     NullUUID:
       format: uuid4
+      nullable: true
       type: string
+    PatchDelta:
+      example:
+        relation_tuple:
+          subject_id: subject_id
+          namespace: namespace
+          object: object
+          relation: relation
+          subject_set:
+            namespace: namespace
+            object: object
+            relation: relation
+        action: insert
+      properties:
+        action:
+          enum:
+          - insert
+          - delete
+          type: string
+        relation_tuple:
+          $ref: '#/components/schemas/InternalRelationTuple'
+      type: object
     QuotaProjectMemberSeats:
       properties:
         project_id:
@@ -3311,9 +3950,35 @@ components:
       type: object
     RecoveryAddressType:
       type: string
-    SQLNullString:
-      nullable: true
-      type: string
+    RelationQuery:
+      example:
+        subject_id: subject_id
+        namespace: namespace
+        object: object
+        relation: relation
+        subject_set:
+          namespace: namespace
+          object: object
+          relation: relation
+      properties:
+        namespace:
+          description: Namespace of the Relation Tuple
+          type: string
+        object:
+          description: Object of the Relation Tuple
+          type: string
+        relation:
+          description: Relation of the Relation Tuple
+          type: string
+        subject_id:
+          description: |-
+            SubjectID of the Relation Tuple
+
+            Either SubjectSet or SubjectID can be provided.
+          type: string
+        subject_set:
+          $ref: '#/components/schemas/SubjectSet'
+      type: object
     String:
       $ref: '#/components/schemas/NullString'
     StringSliceJSONFormat:
@@ -3322,6 +3987,26 @@ components:
       title: StringSliceJSONFormat represents []string{} which is encoded to/from
         JSON for SQL storage.
       type: array
+    SubjectSet:
+      example:
+        namespace: namespace
+        object: object
+        relation: relation
+      properties:
+        namespace:
+          description: Namespace of the Subject Set
+          type: string
+        object:
+          description: Object of the Subject Set
+          type: string
+        relation:
+          description: Relation of the Subject Set
+          type: string
+      required:
+      - namespace
+      - object
+      - relation
+      type: object
     SubscriptionStatus:
       title: SubscriptionStatus is the list of allowed values for the subscription's
         status.
@@ -3366,6 +4051,13 @@ components:
       properties:
         credentials:
           $ref: '#/components/schemas/adminIdentityImportCredentials'
+        metadata_admin:
+          description: Store metadata about the user which is only accessible through
+            admin APIs such as `GET /admin/identities/<id>`.
+        metadata_public:
+          description: |-
+            Store metadata about the identity which the identity itself can see when calling for example the
+            session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field.
         recovery_addresses:
           description: |-
             RecoveryAddresses contains all the addresses that can be used to recover an identity.
@@ -3523,6 +4215,14 @@ components:
       properties:
         cookie_domain:
           type: string
+        cors_allowed_origins:
+          items:
+            type: string
+          title: StringSliceJSONFormat represents []string{} which is encoded to/from
+            JSON for SQL storage.
+          type: array
+        cors_enabled:
+          type: boolean
         created_at:
           format: date-time
           type: string
@@ -3548,6 +4248,14 @@ components:
           description: The domain where cookies will be set. Has to be a parent domain
             of the custom hostname to work.
           type: string
+        cors_allowed_origins:
+          description: CORS Allowed origins for the custom hostname.
+          items:
+            type: string
+          type: array
+        cors_enabled:
+          description: CORS Enabled for the custom hostname.
+          type: boolean
         hostname:
           description: The custom hostname where the API will be exposed.
           type: string
@@ -3615,6 +4323,36 @@ components:
       title: ErrAALNotSatisfied is returned when an active session was found but the
         requested AAL is not satisfied.
       type: object
+    expandTree:
+      example:
+        subject_id: subject_id
+        children:
+        - null
+        - null
+        type: union
+        subject_set:
+          namespace: namespace
+          object: object
+          relation: relation
+      properties:
+        children:
+          items:
+            $ref: '#/components/schemas/expandTree'
+          type: array
+        subject_id:
+          type: string
+        subject_set:
+          $ref: '#/components/schemas/SubjectSet'
+        type:
+          enum:
+          - union
+          - exclusion
+          - intersection
+          - leaf
+          type: string
+      required:
+      - type
+      type: object
     genericError:
       description: Error responses are sent when an error (e.g. unauthorized, bad
         request, ...) occurred.
@@ -3635,7 +4373,10 @@ components:
         details:
           additionalProperties: false
           description: Further error details
-          type: object
+          items:
+            additionalProperties: true
+            type: object
+          type: array
         error:
           $ref: '#/components/schemas/genericErrorContent'
         id:
@@ -3697,9 +4438,54 @@ components:
           format: int64
           type: integer
       type: object
+    getCheckResponse:
+      description: The content of the allowed field is mirrored in the HTTP status
+        code.
+      example:
+        allowed: true
+      properties:
+        allowed:
+          description: whether the relation tuple is allowed
+          type: boolean
+      required:
+      - allowed
+      title: RESTResponse is the response for a check request.
+      type: object
     getProjectAccessResponse:
       additionalProperties:
         type: boolean
+      type: object
+    getRelationTuplesResponse:
+      example:
+        next_page_token: next_page_token
+        relation_tuples:
+        - subject_id: subject_id
+          namespace: namespace
+          object: object
+          relation: relation
+          subject_set:
+            namespace: namespace
+            object: object
+            relation: relation
+        - subject_id: subject_id
+          namespace: namespace
+          object: object
+          relation: relation
+          subject_set:
+            namespace: namespace
+            object: object
+            relation: relation
+      properties:
+        next_page_token:
+          description: |-
+            The opaque token to provide in a subsequent request
+            to get the next page. It is the empty string iff this is
+            the last page.
+          type: string
+        relation_tuples:
+          items:
+            $ref: '#/components/schemas/InternalRelationTuple'
+          type: array
       type: object
     healthNotReadyStatus:
       properties:
@@ -3721,17 +4507,7 @@ components:
         An identity can be a real human, a service, an IoT device - everything that
         can be described as an "actor" in a system.
       example:
-        recovery_addresses:
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          created_at: 2000-01-23T04:56:07.000+00:00
-          value: value
-          via: via
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          created_at: 2000-01-23T04:56:07.000+00:00
-          value: value
-          via: via
         traits: ""
-        updated_at: 2000-01-23T04:56:07.000+00:00
         credentials:
           key:
             updated_at: 2000-01-23T04:56:07.000+00:00
@@ -3741,6 +4517,19 @@ components:
             created_at: 2000-01-23T04:56:07.000+00:00
             config: '{}'
             version: 0
+        state_changed_at: 2000-01-23T04:56:07.000+00:00
+        created_at: 2000-01-23T04:56:07.000+00:00
+        recovery_addresses:
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
+          value: value
+          via: via
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
+          value: value
+          via: via
+        metadata_admin: '{}'
+        updated_at: 2000-01-23T04:56:07.000+00:00
         verifiable_addresses:
         - updated_at: 2014-01-01T23:28:56.782Z
           verified_at: 2000-01-23T04:56:07.000+00:00
@@ -3757,9 +4546,8 @@ components:
           status: status
           via: via
         schema_id: schema_id
-        state_changed_at: 2000-01-23T04:56:07.000+00:00
-        created_at: 2000-01-23T04:56:07.000+00:00
         schema_url: schema_url
+        metadata_public: '{}'
       properties:
         created_at:
           description: CreatedAt is a helper struct field for gobuffalo.pop.
@@ -3773,6 +4561,14 @@ components:
           type: object
         id:
           $ref: '#/components/schemas/UUID'
+        metadata_admin:
+          description: NullJSONRawMessage represents a json.RawMessage that works
+            well with JSON, SQL, and Swagger and is NULLable-
+          type: object
+        metadata_public:
+          description: NullJSONRawMessage represents a json.RawMessage that works
+            well with JSON, SQL, and Swagger and is NULLable-
+          type: object
         recovery_addresses:
           description: RecoveryAddresses contains all the addresses that can be used
             to recover an identity.
@@ -4176,14 +4972,21 @@ components:
           readOnly: true
           type: string
         state:
-          description: The state of the project.
+          description: |-
+            The state of the project.
+            running Running
+            halted Halted
           enum:
           - running
           - halted
           readOnly: true
           type: string
+          x-go-enum-desc: |-
+            running Running
+            halted Halted
         subscription_id:
           format: uuid4
+          nullable: true
           type: string
         updated_at:
           description: Last Time Project was Updated
@@ -4209,6 +5012,13 @@ components:
           type: string
         id:
           $ref: '#/components/schemas/UUID'
+        keto_namespaces:
+          items:
+            $ref: '#/components/schemas/KetoNamespace'
+          type: array
+        keto_read_max_depth:
+          nullable: true
+          type: integer
         kratos_cookies_same_site:
           description: |-
             Configures the Ory Kratos Cookie SameSite Attribute
@@ -4744,6 +5554,7 @@ components:
           $ref: '#/components/schemas/identitySchema'
         identity_schema_id:
           format: uuid4
+          nullable: true
           type: string
         import_id:
           description: The imported (named) ID of the Identity Schema referenced in
@@ -4785,6 +5596,7 @@ components:
     normalizedProjectRevisionThirdPartyProvider:
       properties:
         apple_private_key:
+          nullable: true
           type: string
         apple_private_key_id:
           description: |-
@@ -4819,6 +5631,7 @@ components:
           description: ClientID is the application's Client ID.
           type: string
         client_secret:
+          nullable: true
           type: string
         created_at:
           description: The Project's Revision Creation Date
@@ -4926,6 +5739,8 @@ components:
         services:
           identity:
             config: '{}'
+          permission:
+            config: '{}'
         state: running
         slug: slug
       properties:
@@ -4943,12 +5758,18 @@ components:
           readOnly: true
           type: string
         state:
-          description: The state of the project.
+          description: |-
+            The state of the project.
+            running Running
+            halted Halted
           enum:
           - running
           - halted
           readOnly: true
           type: string
+          x-go-enum-desc: |-
+            running Running
+            halted Halted
       required:
       - id
       - name
@@ -4985,6 +5806,7 @@ components:
           type: string
         invitee_id:
           format: uuid4
+          nullable: true
           type: string
         owner_email:
           description: |-
@@ -5057,13 +5879,20 @@ components:
           readOnly: true
           type: string
         state:
-          description: The state of the project.
+          description: |-
+            The state of the project.
+            running Running
+            halted Halted
           enum:
           - running
           - halted
           type: string
+          x-go-enum-desc: |-
+            running Running
+            halted Halted
         subscription_id:
           format: uuid4
+          nullable: true
           type: string
         updated_at:
           description: Last Time Project was Updated
@@ -5106,15 +5935,26 @@ components:
       required:
       - config
       type: object
+    projectServicePermission:
+      example:
+        config: '{}'
+      properties:
+        config:
+          type: object
+      required:
+      - config
+      type: object
     projectServices:
       example:
         identity:
           config: '{}'
+        permission:
+          config: '{}'
       properties:
         identity:
           $ref: '#/components/schemas/projectServiceIdentity'
-      required:
-      - identity
+        permission:
+          $ref: '#/components/schemas/projectServicePermission'
       type: object
     projects:
       items:
@@ -5317,8 +6157,8 @@ components:
               id: 0
               text: text
               type: type
-            type: type
-            group: group
+            type: text
+            group: default
           - meta:
               label:
                 context: '{}'
@@ -5334,8 +6174,8 @@ components:
               id: 0
               text: text
               type: type
-            type: type
-            group: group
+            type: text
+            group: default
           method: method
           action: action
           messages:
@@ -5447,8 +6287,8 @@ components:
               id: 0
               text: text
               type: type
-            type: type
-            group: group
+            type: text
+            group: default
           - meta:
               label:
                 context: '{}'
@@ -5464,8 +6304,8 @@ components:
               id: 0
               text: text
               type: type
-            type: type
-            group: group
+            type: text
+            group: default
           method: method
           action: action
           messages:
@@ -5522,6 +6362,7 @@ components:
       - issued_at
       - request_url
       - state
+      - type
       - ui
       title: A Recovery Flow
       type: object
@@ -5579,8 +6420,8 @@ components:
               id: 0
               text: text
               type: type
-            type: type
-            group: group
+            type: text
+            group: default
           - meta:
               label:
                 context: '{}'
@@ -5596,8 +6437,8 @@ components:
               id: 0
               text: text
               type: type
-            type: type
-            group: group
+            type: text
+            group: default
           method: method
           action: action
           messages:
@@ -5647,6 +6488,7 @@ components:
       - id
       - issued_at
       - request_url
+      - type
       - ui
       type: object
     selfServiceSettingsFlow:
@@ -5674,8 +6516,8 @@ components:
               id: 0
               text: text
               type: type
-            type: type
-            group: group
+            type: text
+            group: default
           - meta:
               label:
                 context: '{}'
@@ -5691,8 +6533,8 @@ components:
               id: 0
               text: text
               type: type
-            type: type
-            group: group
+            type: text
+            group: default
           method: method
           action: action
           messages:
@@ -5705,17 +6547,7 @@ components:
             text: text
             type: type
         identity:
-          recovery_addresses:
-          - updated_at: 2000-01-23T04:56:07.000+00:00
-            created_at: 2000-01-23T04:56:07.000+00:00
-            value: value
-            via: via
-          - updated_at: 2000-01-23T04:56:07.000+00:00
-            created_at: 2000-01-23T04:56:07.000+00:00
-            value: value
-            via: via
           traits: ""
-          updated_at: 2000-01-23T04:56:07.000+00:00
           credentials:
             key:
               updated_at: 2000-01-23T04:56:07.000+00:00
@@ -5725,6 +6557,19 @@ components:
               created_at: 2000-01-23T04:56:07.000+00:00
               config: '{}'
               version: 0
+          state_changed_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
+          recovery_addresses:
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            created_at: 2000-01-23T04:56:07.000+00:00
+            value: value
+            via: via
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            created_at: 2000-01-23T04:56:07.000+00:00
+            value: value
+            via: via
+          metadata_admin: '{}'
+          updated_at: 2000-01-23T04:56:07.000+00:00
           verifiable_addresses:
           - updated_at: 2014-01-01T23:28:56.782Z
             verified_at: 2000-01-23T04:56:07.000+00:00
@@ -5741,9 +6586,8 @@ components:
             status: status
             via: via
           schema_id: schema_id
-          state_changed_at: 2000-01-23T04:56:07.000+00:00
-          created_at: 2000-01-23T04:56:07.000+00:00
           schema_url: schema_url
+          metadata_public: '{}'
         active: active
         return_to: return_to
         type: type
@@ -5792,6 +6636,7 @@ components:
       - issued_at
       - request_url
       - state
+      - type
       - ui
       title: Flow represents a Settings Flow
       type: object
@@ -5831,8 +6676,8 @@ components:
               id: 0
               text: text
               type: type
-            type: type
-            group: group
+            type: text
+            group: default
           - meta:
               label:
                 context: '{}'
@@ -5848,8 +6693,8 @@ components:
               id: 0
               text: text
               type: type
-            type: type
-            group: group
+            type: text
+            group: default
           method: method
           action: action
           messages:
@@ -5930,17 +6775,7 @@ components:
         - completed_at: 2000-01-23T04:56:07.000+00:00
           method: link_recovery
         identity:
-          recovery_addresses:
-          - updated_at: 2000-01-23T04:56:07.000+00:00
-            created_at: 2000-01-23T04:56:07.000+00:00
-            value: value
-            via: via
-          - updated_at: 2000-01-23T04:56:07.000+00:00
-            created_at: 2000-01-23T04:56:07.000+00:00
-            value: value
-            via: via
           traits: ""
-          updated_at: 2000-01-23T04:56:07.000+00:00
           credentials:
             key:
               updated_at: 2000-01-23T04:56:07.000+00:00
@@ -5950,6 +6785,19 @@ components:
               created_at: 2000-01-23T04:56:07.000+00:00
               config: '{}'
               version: 0
+          state_changed_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
+          recovery_addresses:
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            created_at: 2000-01-23T04:56:07.000+00:00
+            value: value
+            via: via
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            created_at: 2000-01-23T04:56:07.000+00:00
+            value: value
+            via: via
+          metadata_admin: '{}'
+          updated_at: 2000-01-23T04:56:07.000+00:00
           verifiable_addresses:
           - updated_at: 2014-01-01T23:28:56.782Z
             verified_at: 2000-01-23T04:56:07.000+00:00
@@ -5966,9 +6814,8 @@ components:
             status: status
             via: via
           schema_id: schema_id
-          state_changed_at: 2000-01-23T04:56:07.000+00:00
-          created_at: 2000-01-23T04:56:07.000+00:00
           schema_url: schema_url
+          metadata_public: '{}'
         authenticated_at: 2000-01-23T04:56:07.000+00:00
         active: true
         issued_at: 2000-01-23T04:56:07.000+00:00
@@ -6035,6 +6882,7 @@ components:
           - oidc
           - webauthn
           - lookup_secret
+          - v0.6_legacy_session
           title: The method used
           type: string
       title: AuthenticationMethod identifies an authentication method
@@ -6081,6 +6929,8 @@ components:
       properties:
         id:
           type: string
+      type: object
+    subject:
       type: object
     submitSelfServiceFlowWithWebAuthnRegistrationMethod:
       properties:
@@ -6183,7 +7033,6 @@ components:
       - identifier
       - method
       - password
-      - password_identifier
       title: submitSelfServiceLoginFlowWithPasswordMethodBody is used to decode the
         login form payload.
       type: object
@@ -6586,7 +7435,13 @@ components:
           readOnly: true
           type: string
         current_plan:
-          description: The currently active plan of the subscription
+          description: |-
+            The currently active plan of the subscription
+            unknown Unknown
+            free Free
+            start_up_monthly StartUpMonthly
+            start_up_yearly StartUpYearly
+            custom Custom
           enum:
           - unknown
           - free
@@ -6595,6 +7450,12 @@ components:
           - custom
           readOnly: true
           type: string
+          x-go-enum-desc: |-
+            unknown Unknown
+            free Free
+            start_up_monthly StartUpMonthly
+            start_up_yearly StartUpYearly
+            custom Custom
         customer_id:
           description: The ID of the stripe customer
           readOnly: true
@@ -6602,6 +7463,7 @@ components:
         id:
           $ref: '#/components/schemas/UUID'
         ongoing_stripe_checkout_id:
+          nullable: true
           type: string
         payed_until:
           description: Until when the subscription is payed
@@ -6643,6 +7505,8 @@ components:
           services:
             identity:
               config: '{}'
+            permission:
+              config: '{}'
           state: running
           slug: slug
       properties:
@@ -6678,17 +7542,7 @@ components:
           - completed_at: 2000-01-23T04:56:07.000+00:00
             method: link_recovery
           identity:
-            recovery_addresses:
-            - updated_at: 2000-01-23T04:56:07.000+00:00
-              created_at: 2000-01-23T04:56:07.000+00:00
-              value: value
-              via: via
-            - updated_at: 2000-01-23T04:56:07.000+00:00
-              created_at: 2000-01-23T04:56:07.000+00:00
-              value: value
-              via: via
             traits: ""
-            updated_at: 2000-01-23T04:56:07.000+00:00
             credentials:
               key:
                 updated_at: 2000-01-23T04:56:07.000+00:00
@@ -6698,6 +7552,19 @@ components:
                 created_at: 2000-01-23T04:56:07.000+00:00
                 config: '{}'
                 version: 0
+            state_changed_at: 2000-01-23T04:56:07.000+00:00
+            created_at: 2000-01-23T04:56:07.000+00:00
+            recovery_addresses:
+            - updated_at: 2000-01-23T04:56:07.000+00:00
+              created_at: 2000-01-23T04:56:07.000+00:00
+              value: value
+              via: via
+            - updated_at: 2000-01-23T04:56:07.000+00:00
+              created_at: 2000-01-23T04:56:07.000+00:00
+              value: value
+              via: via
+            metadata_admin: '{}'
+            updated_at: 2000-01-23T04:56:07.000+00:00
             verifiable_addresses:
             - updated_at: 2014-01-01T23:28:56.782Z
               verified_at: 2000-01-23T04:56:07.000+00:00
@@ -6714,9 +7581,8 @@ components:
               status: status
               via: via
             schema_id: schema_id
-            state_changed_at: 2000-01-23T04:56:07.000+00:00
-            created_at: 2000-01-23T04:56:07.000+00:00
             schema_url: schema_url
+            metadata_public: '{}'
           authenticated_at: 2000-01-23T04:56:07.000+00:00
           active: true
           issued_at: 2000-01-23T04:56:07.000+00:00
@@ -6742,17 +7608,7 @@ components:
       example:
         session_token: session_token
         identity:
-          recovery_addresses:
-          - updated_at: 2000-01-23T04:56:07.000+00:00
-            created_at: 2000-01-23T04:56:07.000+00:00
-            value: value
-            via: via
-          - updated_at: 2000-01-23T04:56:07.000+00:00
-            created_at: 2000-01-23T04:56:07.000+00:00
-            value: value
-            via: via
           traits: ""
-          updated_at: 2000-01-23T04:56:07.000+00:00
           credentials:
             key:
               updated_at: 2000-01-23T04:56:07.000+00:00
@@ -6762,6 +7618,19 @@ components:
               created_at: 2000-01-23T04:56:07.000+00:00
               config: '{}'
               version: 0
+          state_changed_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
+          recovery_addresses:
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            created_at: 2000-01-23T04:56:07.000+00:00
+            value: value
+            via: via
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            created_at: 2000-01-23T04:56:07.000+00:00
+            value: value
+            via: via
+          metadata_admin: '{}'
+          updated_at: 2000-01-23T04:56:07.000+00:00
           verifiable_addresses:
           - updated_at: 2014-01-01T23:28:56.782Z
             verified_at: 2000-01-23T04:56:07.000+00:00
@@ -6778,9 +7647,8 @@ components:
             status: status
             via: via
           schema_id: schema_id
-          state_changed_at: 2000-01-23T04:56:07.000+00:00
-          created_at: 2000-01-23T04:56:07.000+00:00
           schema_url: schema_url
+          metadata_public: '{}'
         session:
           expires_at: 2000-01-23T04:56:07.000+00:00
           authentication_methods:
@@ -6789,17 +7657,7 @@ components:
           - completed_at: 2000-01-23T04:56:07.000+00:00
             method: link_recovery
           identity:
-            recovery_addresses:
-            - updated_at: 2000-01-23T04:56:07.000+00:00
-              created_at: 2000-01-23T04:56:07.000+00:00
-              value: value
-              via: via
-            - updated_at: 2000-01-23T04:56:07.000+00:00
-              created_at: 2000-01-23T04:56:07.000+00:00
-              value: value
-              via: via
             traits: ""
-            updated_at: 2000-01-23T04:56:07.000+00:00
             credentials:
               key:
                 updated_at: 2000-01-23T04:56:07.000+00:00
@@ -6809,6 +7667,19 @@ components:
                 created_at: 2000-01-23T04:56:07.000+00:00
                 config: '{}'
                 version: 0
+            state_changed_at: 2000-01-23T04:56:07.000+00:00
+            created_at: 2000-01-23T04:56:07.000+00:00
+            recovery_addresses:
+            - updated_at: 2000-01-23T04:56:07.000+00:00
+              created_at: 2000-01-23T04:56:07.000+00:00
+              value: value
+              via: via
+            - updated_at: 2000-01-23T04:56:07.000+00:00
+              created_at: 2000-01-23T04:56:07.000+00:00
+              value: value
+              via: via
+            metadata_admin: '{}'
+            updated_at: 2000-01-23T04:56:07.000+00:00
             verifiable_addresses:
             - updated_at: 2014-01-01T23:28:56.782Z
               verified_at: 2000-01-23T04:56:07.000+00:00
@@ -6825,9 +7696,8 @@ components:
               status: status
               via: via
             schema_id: schema_id
-            state_changed_at: 2000-01-23T04:56:07.000+00:00
-            created_at: 2000-01-23T04:56:07.000+00:00
             schema_url: schema_url
+            metadata_public: '{}'
           authenticated_at: 2000-01-23T04:56:07.000+00:00
           active: true
           issued_at: 2000-01-23T04:56:07.000+00:00
@@ -6872,8 +7742,8 @@ components:
             id: 0
             text: text
             type: type
-          type: type
-          group: group
+          type: text
+          group: default
         - meta:
             label:
               context: '{}'
@@ -6889,8 +7759,8 @@ components:
             id: 0
             text: text
             type: type
-          type: type
-          group: group
+          type: text
+          group: default
         method: method
         action: action
         messages:
@@ -6943,12 +7813,23 @@ components:
           id: 0
           text: text
           type: type
-        type: type
-        group: group
+        type: text
+        group: default
       properties:
         attributes:
           $ref: '#/components/schemas/uiNodeAttributes'
         group:
+          description: Group specifies which group (e.g. password authenticator) this
+            node belongs to.
+          enum:
+          - default
+          - password
+          - oidc
+          - profile
+          - link
+          - totp
+          - lookup_secret
+          - webauthn
           type: string
         messages:
           items:
@@ -6957,6 +7838,13 @@ components:
         meta:
           $ref: '#/components/schemas/uiNodeMeta'
         type:
+          description: The node's type
+          enum:
+          - text
+          - input
+          - img
+          - a
+          - script
           type: string
       required:
       - attributes
@@ -6978,6 +7866,9 @@ components:
           description: A unique identifier
           type: string
         node_type:
+          description: |-
+            NodeType represents this node's types. It is a mirror of `node.type` and
+            is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is "a".
           type: string
         title:
           $ref: '#/components/schemas/uiText'
@@ -6991,8 +7882,8 @@ components:
     uiNodeAttributes:
       discriminator:
         mapping:
-          anchor: '#/components/schemas/uiNodeAnchorAttributes'
-          image: '#/components/schemas/uiNodeImageAttributes'
+          a: '#/components/schemas/uiNodeAnchorAttributes'
+          img: '#/components/schemas/uiNodeImageAttributes'
           input: '#/components/schemas/uiNodeInputAttributes'
           script: '#/components/schemas/uiNodeScriptAttributes'
           text: '#/components/schemas/uiNodeTextAttributes'
@@ -7004,8 +7895,6 @@ components:
       - $ref: '#/components/schemas/uiNodeAnchorAttributes'
       - $ref: '#/components/schemas/uiNodeScriptAttributes'
       title: Attributes represents a list of attributes (e.g. `href="foo"` for links).
-    uiNodeGroup:
-      type: string
     uiNodeImageAttributes:
       properties:
         height:
@@ -7016,6 +7905,9 @@ components:
           description: A unique identifier
           type: string
         node_type:
+          description: |-
+            NodeType represents this node's types. It is a mirror of `node.type` and
+            is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is "img".
           type: string
         src:
           description: |-
@@ -7049,6 +7941,9 @@ components:
           description: The input's element name.
           type: string
         node_type:
+          description: |-
+            NodeType represents this node's types. It is a mirror of `node.type` and
+            is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is "input".
           type: string
         onclick:
           description: |-
@@ -7102,6 +7997,9 @@ components:
           description: The script's integrity hash
           type: string
         node_type:
+          description: |-
+            NodeType represents this node's types. It is a mirror of `node.type` and
+            is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is "script".
           type: string
         nonce:
           description: |-
@@ -7138,6 +8036,9 @@ components:
           description: A unique identifier
           type: string
         node_type:
+          description: |-
+            NodeType represents this node's types. It is a mirror of `node.type` and
+            is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is "text".
           type: string
         text:
           $ref: '#/components/schemas/uiText'
@@ -7147,8 +8048,6 @@ components:
       - text
       title: TextAttributes represents the attributes of a text node.
       type: object
-    uiNodeType:
-      type: string
     uiNodes:
       items:
         $ref: '#/components/schemas/uiNode'
@@ -7188,6 +8087,14 @@ components:
           description: The domain where cookies will be set. Has to be a parent domain
             of the custom hostname to work.
           type: string
+        cors_allowed_origins:
+          description: CORS Allowed origins for the custom hostname.
+          items:
+            type: string
+          type: array
+        cors_enabled:
+          description: CORS Enabled for the custom hostname.
+          type: boolean
         hostname:
           description: The custom hostname where the API will be exposed.
           type: string

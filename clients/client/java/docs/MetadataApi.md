@@ -23,6 +23,7 @@ This endpoint returns the version of Ory Kratos.  If the service supports TLS Ed
 import sh.ory.ApiClient;
 import sh.ory.ApiException;
 import sh.ory.Configuration;
+import sh.ory.auth.*;
 import sh.ory.models.*;
 import sh.ory.api.MetadataApi;
 
@@ -30,6 +31,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryAccessToken
+    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setBearerToken("BEARER TOKEN");
 
     MetadataApi apiInstance = new MetadataApi(defaultClient);
     try {
@@ -55,7 +60,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -81,6 +86,7 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incomi
 import sh.ory.ApiClient;
 import sh.ory.ApiException;
 import sh.ory.Configuration;
+import sh.ory.auth.*;
 import sh.ory.models.*;
 import sh.ory.api.MetadataApi;
 
@@ -88,6 +94,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryAccessToken
+    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setBearerToken("BEARER TOKEN");
 
     MetadataApi apiInstance = new MetadataApi(defaultClient);
     try {
@@ -113,7 +123,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -140,6 +150,7 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is up running and t
 import sh.ory.ApiClient;
 import sh.ory.ApiException;
 import sh.ory.Configuration;
+import sh.ory.auth.*;
 import sh.ory.models.*;
 import sh.ory.api.MetadataApi;
 
@@ -147,6 +158,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryAccessToken
+    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setBearerToken("BEARER TOKEN");
 
     MetadataApi apiInstance = new MetadataApi(defaultClient);
     try {
@@ -172,7 +187,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 

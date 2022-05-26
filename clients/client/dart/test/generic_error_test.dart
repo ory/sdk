@@ -27,7 +27,7 @@ void main() {
     });
 
     // Further error details
-    // JsonObject details
+    // BuiltList<BuiltMap<String, JsonObject>> details
     test('to test the property `details`', () async {
       // TODO
     });

@@ -8,10 +8,10 @@ Name | Type | Description | Notes
 **hosts** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | 
 **id** | **str** |  | 
 **name** | **str** | The project&#39;s name if set | 
-**state** | **str** | The state of the project. | 
+**state** | **str** | The state of the project. running Running halted Halted | 
 **updated_at** | **datetime** | Last Time Project was Updated | 
 **slug** | **str** | The project&#39;s slug | [optional] [readonly] 
-**subscription_id** | **str** |  | [optional] 
+**subscription_id** | **str, none_type** |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

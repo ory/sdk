@@ -14,6 +14,11 @@ part 'trust_jwt_grant_issuer_body.g.dart';
 
 abstract class TrustJwtGrantIssuerBody implements Built<TrustJwtGrantIssuerBody, TrustJwtGrantIssuerBodyBuilder> {
 
+    /// The \"allow_any_subject\" indicates that the issuer is allowed to have any principal as the subject of the JWT.
+    @nullable
+    @BuiltValueField(wireName: r'allow_any_subject')
+    bool get allowAnySubject;
+
     /// The \"expires_at\" indicates, when grant will expire, so we will reject assertion from \"issuer\" targeting \"subject\".
     @BuiltValueField(wireName: r'expires_at')
     DateTime get expiresAt;
@@ -30,6 +35,7 @@ abstract class TrustJwtGrantIssuerBody implements Built<TrustJwtGrantIssuerBody,
     BuiltList<String> get scope;
 
     /// The \"subject\" identifies the principal that is the subject of the JWT.
+    @nullable
     @BuiltValueField(wireName: r'subject')
     String get subject;
 
@@ -54,6 +60,12 @@ class _$TrustJwtGrantIssuerBodySerializer implements StructuredSerializer<TrustJ
     Iterable<Object> serialize(Serializers serializers, TrustJwtGrantIssuerBody object,
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object>[];
+        if (object.allowAnySubject != null) {
+            result
+                ..add(r'allow_any_subject')
+                ..add(serializers.serialize(object.allowAnySubject,
+                    specifiedType: const FullType(bool)));
+        }
         result
             ..add(r'expires_at')
             ..add(serializers.serialize(object.expiresAt,
@@ -70,10 +82,12 @@ class _$TrustJwtGrantIssuerBodySerializer implements StructuredSerializer<TrustJ
             ..add(r'scope')
             ..add(serializers.serialize(object.scope,
                 specifiedType: const FullType(BuiltList, [FullType(String)])));
-        result
-            ..add(r'subject')
-            ..add(serializers.serialize(object.subject,
-                specifiedType: const FullType(String)));
+        if (object.subject != null) {
+            result
+                ..add(r'subject')
+                ..add(serializers.serialize(object.subject,
+                    specifiedType: const FullType(String)));
+        }
         return result;
     }
 
@@ -88,6 +102,10 @@ class _$TrustJwtGrantIssuerBodySerializer implements StructuredSerializer<TrustJ
             iterator.moveNext();
             final dynamic value = iterator.current;
             switch (key) {
+                case r'allow_any_subject':
+                    result.allowAnySubject = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
                 case r'expires_at':
                     result.expiresAt = serializers.deserialize(value,
                         specifiedType: const FullType(DateTime)) as DateTime;

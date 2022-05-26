@@ -5,6 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CookieDomain** | **string** |  | [optional] 
+**CorsAllowedOrigins** | **List&lt;string&gt;** |  | [optional] 
+**CorsEnabled** | **bool** |  | [optional] 
 **CreatedAt** | **DateTime** |  | [optional] 
 **Hostname** | **string** |  | [optional] 
 **Id** | **string** |  | [optional] 

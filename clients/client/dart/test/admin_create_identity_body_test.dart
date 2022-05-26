@@ -19,6 +19,18 @@ void main() {
       // TODO
     });
 
+    // Store metadata about the user which is only accessible through admin APIs such as `GET /admin/identities/<id>`.
+    // JsonObject metadataAdmin
+    test('to test the property `metadataAdmin`', () async {
+      // TODO
+    });
+
+    // Store metadata about the identity which the identity itself can see when calling for example the session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field.
+    // JsonObject metadataPublic
+    test('to test the property `metadataPublic`', () async {
+      // TODO
+    });
+
     // RecoveryAddresses contains all the addresses that can be used to recover an identity.  Use this structure to import recovery addresses for an identity. Please keep in mind that the address needs to be represented in the Identity Schema or this field will be overwritten on the next identity update.
     // BuiltList<RecoveryAddress> recoveryAddresses
     test('to test the property `recoveryAddresses`', () async {

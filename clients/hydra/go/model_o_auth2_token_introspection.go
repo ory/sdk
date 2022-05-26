@@ -1,9 +1,9 @@
 /*
- * Ory Oathkeeper API
+ * Ory Hydra API
  *
- * Documentation for all of Ory Oathkeeper's APIs. 
+ * Documentation for all of Ory Hydra's APIs. 
  *
- * API version: v1.11.6
+ * API version: v1.11.8
  * Contact: hi@ory.sh
  */
 

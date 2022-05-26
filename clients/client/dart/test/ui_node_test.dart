@@ -19,6 +19,7 @@ void main() {
       // TODO
     });
 
+    // Group specifies which group (e.g. password authenticator) this node belongs to.
     // String group
     test('to test the property `group`', () async {
       // TODO
@@ -34,6 +35,7 @@ void main() {
       // TODO
     });
 
+    // The node's type
     // String type
     test('to test the property `type`', () async {
       // TODO

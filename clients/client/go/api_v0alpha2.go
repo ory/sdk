@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.152
+ * API version: v0.0.1-alpha.183
  * Contact: support@ory.sh
  */
 
@@ -30,10 +30,7 @@ type V0alpha2Api interface {
 
 	/*
 	 * AdminCreateIdentity Create an Identity
-	 * This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...)
-using this method! A way to achieve that will be introduced in the future.
-
-Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+	 * This endpoint creates an identity. Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return V0alpha2ApiApiAdminCreateIdentityRequest
 	 */
@@ -159,10 +156,7 @@ Listing all sessions that belong to an Identity in an administrative context.
 
 	/*
 	 * AdminUpdateIdentity Update an Identity
-	 * This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...)
-using this method! A way to achieve that will be introduced in the future.
-
-The full identity payload (except credentials) is expected. This endpoint does not support patching.
+	 * This endpoint updates an identity. The full identity payload (except credentials) is expected. This endpoint does not support patching.
 
 Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1270,10 +1264,7 @@ func (r V0alpha2ApiApiAdminCreateIdentityRequest) Execute() (*Identity, *http.Re
 
 /*
  * AdminCreateIdentity Create an Identity
- * This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...)
-using this method! A way to achieve that will be introduced in the future.
-
-Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+ * This endpoint creates an identity. Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return V0alpha2ApiApiAdminCreateIdentityRequest
  */
@@ -2381,10 +2372,7 @@ func (r V0alpha2ApiApiAdminUpdateIdentityRequest) Execute() (*Identity, *http.Re
 
 /*
  * AdminUpdateIdentity Update an Identity
- * This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...)
-using this method! A way to achieve that will be introduced in the future.
-
-The full identity payload (except credentials) is expected. This endpoint does not support patching.
+ * This endpoint updates an identity. The full identity payload (except credentials) is expected. This endpoint does not support patching.
 
 Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -3455,7 +3443,7 @@ func (a *V0alpha2ApiService) GetSelfServiceLoginFlowExecute(r V0alpha2ApiApiGetS
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.cookie != nil {
-		localVarHeaderParams["cookie"] = parameterToString(*r.cookie, "")
+		localVarHeaderParams["Cookie"] = parameterToString(*r.cookie, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3630,7 +3618,7 @@ func (a *V0alpha2ApiService) GetSelfServiceRecoveryFlowExecute(r V0alpha2ApiApiG
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.cookie != nil {
-		localVarHeaderParams["cookie"] = parameterToString(*r.cookie, "")
+		localVarHeaderParams["Cookie"] = parameterToString(*r.cookie, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3800,7 +3788,7 @@ func (a *V0alpha2ApiService) GetSelfServiceRegistrationFlowExecute(r V0alpha2Api
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.cookie != nil {
-		localVarHeaderParams["cookie"] = parameterToString(*r.cookie, "")
+		localVarHeaderParams["Cookie"] = parameterToString(*r.cookie, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3984,7 +3972,7 @@ func (a *V0alpha2ApiService) GetSelfServiceSettingsFlowExecute(r V0alpha2ApiApiG
 		localVarHeaderParams["X-Session-Token"] = parameterToString(*r.xSessionToken, "")
 	}
 	if r.cookie != nil {
-		localVarHeaderParams["cookie"] = parameterToString(*r.cookie, "")
+		localVarHeaderParams["Cookie"] = parameterToString(*r.cookie, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -6987,20 +6975,25 @@ type V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest struct {
 	ctx context.Context
 	ApiService V0alpha2Api
 	flow *string
-	xSessionToken *string
 	submitSelfServiceLoginFlowBody *SubmitSelfServiceLoginFlowBody
+	xSessionToken *string
+	cookie *string
 }
 
 func (r V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest) Flow(flow string) V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest {
 	r.flow = &flow
 	return r
 }
+func (r V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest) SubmitSelfServiceLoginFlowBody(submitSelfServiceLoginFlowBody SubmitSelfServiceLoginFlowBody) V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest {
+	r.submitSelfServiceLoginFlowBody = &submitSelfServiceLoginFlowBody
+	return r
+}
 func (r V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest) XSessionToken(xSessionToken string) V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest {
 	r.xSessionToken = &xSessionToken
 	return r
 }
-func (r V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest) SubmitSelfServiceLoginFlowBody(submitSelfServiceLoginFlowBody SubmitSelfServiceLoginFlowBody) V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest {
-	r.submitSelfServiceLoginFlowBody = &submitSelfServiceLoginFlowBody
+func (r V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest) Cookie(cookie string) V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest {
+	r.cookie = &cookie
 	return r
 }
 
@@ -7080,6 +7073,9 @@ func (a *V0alpha2ApiService) SubmitSelfServiceLoginFlowExecute(r V0alpha2ApiApiS
 	if r.flow == nil {
 		return localVarReturnValue, nil, reportError("flow is required and must be specified")
 	}
+	if r.submitSelfServiceLoginFlowBody == nil {
+		return localVarReturnValue, nil, reportError("submitSelfServiceLoginFlowBody is required and must be specified")
+	}
 
 	localVarQueryParams.Add("flow", parameterToString(*r.flow, ""))
 	// to determine the Content-Type header
@@ -7101,6 +7097,9 @@ func (a *V0alpha2ApiService) SubmitSelfServiceLoginFlowExecute(r V0alpha2ApiApiS
 	}
 	if r.xSessionToken != nil {
 		localVarHeaderParams["X-Session-Token"] = parameterToString(*r.xSessionToken, "")
+	}
+	if r.cookie != nil {
+		localVarHeaderParams["Cookie"] = parameterToString(*r.cookie, "")
 	}
 	// body params
 	localVarPostBody = r.submitSelfServiceLoginFlowBody
@@ -7439,20 +7438,25 @@ type V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest struct {
 	ctx context.Context
 	ApiService V0alpha2Api
 	flow *string
-	token *string
 	submitSelfServiceRecoveryFlowBody *SubmitSelfServiceRecoveryFlowBody
+	token *string
+	cookie *string
 }
 
 func (r V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest) Flow(flow string) V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest {
 	r.flow = &flow
 	return r
 }
+func (r V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest) SubmitSelfServiceRecoveryFlowBody(submitSelfServiceRecoveryFlowBody SubmitSelfServiceRecoveryFlowBody) V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest {
+	r.submitSelfServiceRecoveryFlowBody = &submitSelfServiceRecoveryFlowBody
+	return r
+}
 func (r V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest) Token(token string) V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest {
 	r.token = &token
 	return r
 }
-func (r V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest) SubmitSelfServiceRecoveryFlowBody(submitSelfServiceRecoveryFlowBody SubmitSelfServiceRecoveryFlowBody) V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest {
-	r.submitSelfServiceRecoveryFlowBody = &submitSelfServiceRecoveryFlowBody
+func (r V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest) Cookie(cookie string) V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest {
+	r.cookie = &cookie
 	return r
 }
 
@@ -7515,6 +7519,9 @@ func (a *V0alpha2ApiService) SubmitSelfServiceRecoveryFlowExecute(r V0alpha2ApiA
 	if r.flow == nil {
 		return localVarReturnValue, nil, reportError("flow is required and must be specified")
 	}
+	if r.submitSelfServiceRecoveryFlowBody == nil {
+		return localVarReturnValue, nil, reportError("submitSelfServiceRecoveryFlowBody is required and must be specified")
+	}
 
 	localVarQueryParams.Add("flow", parameterToString(*r.flow, ""))
 	if r.token != nil {
@@ -7536,6 +7543,9 @@ func (a *V0alpha2ApiService) SubmitSelfServiceRecoveryFlowExecute(r V0alpha2ApiA
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.cookie != nil {
+		localVarHeaderParams["Cookie"] = parameterToString(*r.cookie, "")
 	}
 	// body params
 	localVarPostBody = r.submitSelfServiceRecoveryFlowBody
@@ -7610,6 +7620,7 @@ type V0alpha2ApiApiSubmitSelfServiceRegistrationFlowRequest struct {
 	ApiService V0alpha2Api
 	flow *string
 	submitSelfServiceRegistrationFlowBody *SubmitSelfServiceRegistrationFlowBody
+	cookie *string
 }
 
 func (r V0alpha2ApiApiSubmitSelfServiceRegistrationFlowRequest) Flow(flow string) V0alpha2ApiApiSubmitSelfServiceRegistrationFlowRequest {
@@ -7618,6 +7629,10 @@ func (r V0alpha2ApiApiSubmitSelfServiceRegistrationFlowRequest) Flow(flow string
 }
 func (r V0alpha2ApiApiSubmitSelfServiceRegistrationFlowRequest) SubmitSelfServiceRegistrationFlowBody(submitSelfServiceRegistrationFlowBody SubmitSelfServiceRegistrationFlowBody) V0alpha2ApiApiSubmitSelfServiceRegistrationFlowRequest {
 	r.submitSelfServiceRegistrationFlowBody = &submitSelfServiceRegistrationFlowBody
+	return r
+}
+func (r V0alpha2ApiApiSubmitSelfServiceRegistrationFlowRequest) Cookie(cookie string) V0alpha2ApiApiSubmitSelfServiceRegistrationFlowRequest {
+	r.cookie = &cookie
 	return r
 }
 
@@ -7692,6 +7707,9 @@ func (a *V0alpha2ApiService) SubmitSelfServiceRegistrationFlowExecute(r V0alpha2
 	if r.flow == nil {
 		return localVarReturnValue, nil, reportError("flow is required and must be specified")
 	}
+	if r.submitSelfServiceRegistrationFlowBody == nil {
+		return localVarReturnValue, nil, reportError("submitSelfServiceRegistrationFlowBody is required and must be specified")
+	}
 
 	localVarQueryParams.Add("flow", parameterToString(*r.flow, ""))
 	// to determine the Content-Type header
@@ -7710,6 +7728,9 @@ func (a *V0alpha2ApiService) SubmitSelfServiceRegistrationFlowExecute(r V0alpha2
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.cookie != nil {
+		localVarHeaderParams["Cookie"] = parameterToString(*r.cookie, "")
 	}
 	// body params
 	localVarPostBody = r.submitSelfServiceRegistrationFlowBody
@@ -7793,20 +7814,25 @@ type V0alpha2ApiApiSubmitSelfServiceSettingsFlowRequest struct {
 	ctx context.Context
 	ApiService V0alpha2Api
 	flow *string
-	xSessionToken *string
 	submitSelfServiceSettingsFlowBody *SubmitSelfServiceSettingsFlowBody
+	xSessionToken *string
+	cookie *string
 }
 
 func (r V0alpha2ApiApiSubmitSelfServiceSettingsFlowRequest) Flow(flow string) V0alpha2ApiApiSubmitSelfServiceSettingsFlowRequest {
 	r.flow = &flow
 	return r
 }
+func (r V0alpha2ApiApiSubmitSelfServiceSettingsFlowRequest) SubmitSelfServiceSettingsFlowBody(submitSelfServiceSettingsFlowBody SubmitSelfServiceSettingsFlowBody) V0alpha2ApiApiSubmitSelfServiceSettingsFlowRequest {
+	r.submitSelfServiceSettingsFlowBody = &submitSelfServiceSettingsFlowBody
+	return r
+}
 func (r V0alpha2ApiApiSubmitSelfServiceSettingsFlowRequest) XSessionToken(xSessionToken string) V0alpha2ApiApiSubmitSelfServiceSettingsFlowRequest {
 	r.xSessionToken = &xSessionToken
 	return r
 }
-func (r V0alpha2ApiApiSubmitSelfServiceSettingsFlowRequest) SubmitSelfServiceSettingsFlowBody(submitSelfServiceSettingsFlowBody SubmitSelfServiceSettingsFlowBody) V0alpha2ApiApiSubmitSelfServiceSettingsFlowRequest {
-	r.submitSelfServiceSettingsFlowBody = &submitSelfServiceSettingsFlowBody
+func (r V0alpha2ApiApiSubmitSelfServiceSettingsFlowRequest) Cookie(cookie string) V0alpha2ApiApiSubmitSelfServiceSettingsFlowRequest {
+	r.cookie = &cookie
 	return r
 }
 
@@ -7896,6 +7922,9 @@ func (a *V0alpha2ApiService) SubmitSelfServiceSettingsFlowExecute(r V0alpha2ApiA
 	if r.flow == nil {
 		return localVarReturnValue, nil, reportError("flow is required and must be specified")
 	}
+	if r.submitSelfServiceSettingsFlowBody == nil {
+		return localVarReturnValue, nil, reportError("submitSelfServiceSettingsFlowBody is required and must be specified")
+	}
 
 	localVarQueryParams.Add("flow", parameterToString(*r.flow, ""))
 	// to determine the Content-Type header
@@ -7917,6 +7946,9 @@ func (a *V0alpha2ApiService) SubmitSelfServiceSettingsFlowExecute(r V0alpha2ApiA
 	}
 	if r.xSessionToken != nil {
 		localVarHeaderParams["X-Session-Token"] = parameterToString(*r.xSessionToken, "")
+	}
+	if r.cookie != nil {
+		localVarHeaderParams["Cookie"] = parameterToString(*r.cookie, "")
 	}
 	// body params
 	localVarPostBody = r.submitSelfServiceSettingsFlowBody
@@ -8020,20 +8052,25 @@ type V0alpha2ApiApiSubmitSelfServiceVerificationFlowRequest struct {
 	ctx context.Context
 	ApiService V0alpha2Api
 	flow *string
-	token *string
 	submitSelfServiceVerificationFlowBody *SubmitSelfServiceVerificationFlowBody
+	token *string
+	cookie *string
 }
 
 func (r V0alpha2ApiApiSubmitSelfServiceVerificationFlowRequest) Flow(flow string) V0alpha2ApiApiSubmitSelfServiceVerificationFlowRequest {
 	r.flow = &flow
 	return r
 }
+func (r V0alpha2ApiApiSubmitSelfServiceVerificationFlowRequest) SubmitSelfServiceVerificationFlowBody(submitSelfServiceVerificationFlowBody SubmitSelfServiceVerificationFlowBody) V0alpha2ApiApiSubmitSelfServiceVerificationFlowRequest {
+	r.submitSelfServiceVerificationFlowBody = &submitSelfServiceVerificationFlowBody
+	return r
+}
 func (r V0alpha2ApiApiSubmitSelfServiceVerificationFlowRequest) Token(token string) V0alpha2ApiApiSubmitSelfServiceVerificationFlowRequest {
 	r.token = &token
 	return r
 }
-func (r V0alpha2ApiApiSubmitSelfServiceVerificationFlowRequest) SubmitSelfServiceVerificationFlowBody(submitSelfServiceVerificationFlowBody SubmitSelfServiceVerificationFlowBody) V0alpha2ApiApiSubmitSelfServiceVerificationFlowRequest {
-	r.submitSelfServiceVerificationFlowBody = &submitSelfServiceVerificationFlowBody
+func (r V0alpha2ApiApiSubmitSelfServiceVerificationFlowRequest) Cookie(cookie string) V0alpha2ApiApiSubmitSelfServiceVerificationFlowRequest {
+	r.cookie = &cookie
 	return r
 }
 
@@ -8096,6 +8133,9 @@ func (a *V0alpha2ApiService) SubmitSelfServiceVerificationFlowExecute(r V0alpha2
 	if r.flow == nil {
 		return localVarReturnValue, nil, reportError("flow is required and must be specified")
 	}
+	if r.submitSelfServiceVerificationFlowBody == nil {
+		return localVarReturnValue, nil, reportError("submitSelfServiceVerificationFlowBody is required and must be specified")
+	}
 
 	localVarQueryParams.Add("flow", parameterToString(*r.flow, ""))
 	if r.token != nil {
@@ -8117,6 +8157,9 @@ func (a *V0alpha2ApiService) SubmitSelfServiceVerificationFlowExecute(r V0alpha2
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.cookie != nil {
+		localVarHeaderParams["Cookie"] = parameterToString(*r.cookie, "")
 	}
 	// body params
 	localVarPostBody = r.submitSelfServiceVerificationFlowBody

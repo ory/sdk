@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **id** | **UUID** |  | 
 **revisions** | [**List&lt;NormalizedProjectRevision&gt;**](NormalizedProjectRevision.md) |  | 
 **slug** | **String** | The project&#39;s slug |  [readonly]
-**state** | [**StateEnum**](#StateEnum) | The state of the project. |  [readonly]
+**state** | [**StateEnum**](#StateEnum) | The state of the project. running Running halted Halted |  [readonly]
 **subscriptionId** | **String** |  |  [optional]
 **updatedAt** | **OffsetDateTime** | Last Time Project was Updated |  [readonly]
 

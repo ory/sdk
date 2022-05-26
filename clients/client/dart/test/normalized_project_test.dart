@@ -46,7 +46,7 @@ void main() {
       // TODO
     });
 
-    // The state of the project.
+    // The state of the project. running Running halted Halted
     // String state
     test('to test the property `state`', () async {
       // TODO

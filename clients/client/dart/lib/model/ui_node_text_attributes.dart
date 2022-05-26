@@ -17,6 +17,7 @@ abstract class UiNodeTextAttributes implements Built<UiNodeTextAttributes, UiNod
     @BuiltValueField(wireName: r'id')
     String get id;
 
+    /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\".
     @BuiltValueField(wireName: r'node_type')
     String get nodeType;
 

@@ -5,7 +5,6 @@
 
 // ignore_for_file: unused_import
 
-import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -17,12 +16,12 @@ abstract class ConsentRequestSession implements Built<ConsentRequestSession, Con
     /// AccessToken sets session data for the access and refresh token, as well as any future tokens issued by the refresh grant. Keep in mind that this data will be available to anyone performing OAuth 2.0 Challenge Introspection. If only your services can perform OAuth 2.0 Challenge Introspection, this is usually fine. But if third parties can access that endpoint as well, sensitive data from the session might be exposed to them. Use with care!
     @nullable
     @BuiltValueField(wireName: r'access_token')
-    BuiltMap<String, JsonObject> get accessToken;
+    JsonObject get accessToken;
 
     /// IDToken sets session data for the OpenID Connect ID token. Keep in mind that the session'id payloads are readable by anyone that has access to the ID Challenge. Use with care!
     @nullable
     @BuiltValueField(wireName: r'id_token')
-    BuiltMap<String, JsonObject> get idToken;
+    JsonObject get idToken;
 
     ConsentRequestSession._();
 
@@ -49,13 +48,13 @@ class _$ConsentRequestSessionSerializer implements StructuredSerializer<ConsentR
             result
                 ..add(r'access_token')
                 ..add(serializers.serialize(object.accessToken,
-                    specifiedType: const FullType(BuiltMap, [FullType(String), FullType(JsonObject)])));
+                    specifiedType: const FullType(JsonObject)));
         }
         if (object.idToken != null) {
             result
                 ..add(r'id_token')
                 ..add(serializers.serialize(object.idToken,
-                    specifiedType: const FullType(BuiltMap, [FullType(String), FullType(JsonObject)])));
+                    specifiedType: const FullType(JsonObject)));
         }
         return result;
     }
@@ -72,12 +71,12 @@ class _$ConsentRequestSessionSerializer implements StructuredSerializer<ConsentR
             final dynamic value = iterator.current;
             switch (key) {
                 case r'access_token':
-                    result.accessToken.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltMap, [FullType(String), FullType(JsonObject)])) as BuiltMap<String, JsonObject>);
+                    result.accessToken = serializers.deserialize(value,
+                        specifiedType: const FullType(JsonObject)) as JsonObject;
                     break;
                 case r'id_token':
-                    result.idToken.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltMap, [FullType(String), FullType(JsonObject)])) as BuiltMap<String, JsonObject>);
+                    result.idToken = serializers.deserialize(value,
+                        specifiedType: const FullType(JsonObject)) as JsonObject;
                     break;
             }
         }

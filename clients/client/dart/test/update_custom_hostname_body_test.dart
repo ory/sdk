@@ -20,6 +20,18 @@ void main() {
       // TODO
     });
 
+    // CORS Allowed origins for the custom hostname.
+    // BuiltList<String> corsAllowedOrigins
+    test('to test the property `corsAllowedOrigins`', () async {
+      // TODO
+    });
+
+    // CORS Enabled for the custom hostname.
+    // bool corsEnabled
+    test('to test the property `corsEnabled`', () async {
+      // TODO
+    });
+
     // The custom hostname where the API will be exposed.
     // String hostname
     test('to test the property `hostname`', () async {

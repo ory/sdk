@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v0.0.1-alpha.152
-  - Build date: 2022-04-01T09:37:48.222948429Z[Etc/UTC]
+- API version: v0.0.1-alpha.183
+  - Build date: 2022-05-26T13:14:27.382370198Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v0.0.1-alpha.152</version>
+  <version>v0.0.1-alpha.183</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v0.0.1-alpha.152"
+     implementation "sh.ory:client:v0.0.1-alpha.183"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v0.0.1-alpha.152.jar`
+* `target/client-v0.0.1-alpha.183.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -85,6 +85,7 @@ Please follow the [installation](#installation) instruction and execute the foll
 import sh.ory.ApiClient;
 import sh.ory.ApiException;
 import sh.ory.Configuration;
+import sh.ory.auth.*;
 import sh.ory.models.*;
 import sh.ory.api.MetadataApi;
 
@@ -92,6 +93,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryAccessToken
+    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setBearerToken("BEARER TOKEN");
 
     MetadataApi apiInstance = new MetadataApi(defaultClient);
     try {
@@ -118,6 +123,10 @@ Class | Method | HTTP request | Description
 *MetadataApi* | [**getVersion**](docs/MetadataApi.md#getVersion) | **GET** /version | Return Running Software Version.
 *MetadataApi* | [**isAlive**](docs/MetadataApi.md#isAlive) | **GET** /health/alive | Check HTTP Server Status
 *MetadataApi* | [**isReady**](docs/MetadataApi.md#isReady) | **GET** /health/ready | Check HTTP Server and Database Status
+*ReadApi* | [**getCheck**](docs/ReadApi.md#getCheck) | **GET** /relation-tuples/check | Check a relation tuple
+*ReadApi* | [**getExpand**](docs/ReadApi.md#getExpand) | **GET** /relation-tuples/expand | Expand a Relation Tuple
+*ReadApi* | [**getRelationTuples**](docs/ReadApi.md#getRelationTuples) | **GET** /relation-tuples | Query relation tuples
+*ReadApi* | [**postCheck**](docs/ReadApi.md#postCheck) | **POST** /relation-tuples/check | Check a relation tuple
 *V0alpha2Api* | [**adminCreateIdentity**](docs/V0alpha2Api.md#adminCreateIdentity) | **POST** /admin/identities | Create an Identity
 *V0alpha2Api* | [**adminCreateSelfServiceRecoveryLink**](docs/V0alpha2Api.md#adminCreateSelfServiceRecoveryLink) | **POST** /admin/recovery/link | Create a Recovery Link
 *V0alpha2Api* | [**adminDeleteIdentity**](docs/V0alpha2Api.md#adminDeleteIdentity) | **DELETE** /admin/identities/{id} | Delete an Identity
@@ -166,6 +175,9 @@ Class | Method | HTTP request | Description
 *V0alpha2Api* | [**submitSelfServiceVerificationFlow**](docs/V0alpha2Api.md#submitSelfServiceVerificationFlow) | **POST** /self-service/verification | Complete Verification Flow
 *V0alpha2Api* | [**toSession**](docs/V0alpha2Api.md#toSession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 *V0alpha2Api* | [**updateProject**](docs/V0alpha2Api.md#updateProject) | **PUT** /projects/{project_id} | Update an Ory Cloud Project Configuration
+*WriteApi* | [**createRelationTuple**](docs/WriteApi.md#createRelationTuple) | **PUT** /admin/relation-tuples | Create a Relation Tuple
+*WriteApi* | [**deleteRelationTuples**](docs/WriteApi.md#deleteRelationTuples) | **DELETE** /admin/relation-tuples | Delete Relation Tuples
+*WriteApi* | [**patchRelationTuples**](docs/WriteApi.md#patchRelationTuples) | **PATCH** /admin/relation-tuples | Patch Multiple Relation Tuples
 
 
 ## Documentation for Models
@@ -188,8 +200,11 @@ Class | Method | HTTP request | Description
  - [CreateProjectBody](docs/CreateProjectBody.md)
  - [CreateSubscriptionPayload](docs/CreateSubscriptionPayload.md)
  - [ErrorAuthenticatorAssuranceLevelNotSatisfied](docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md)
+ - [ExpandTree](docs/ExpandTree.md)
  - [GenericError](docs/GenericError.md)
  - [GenericErrorContent](docs/GenericErrorContent.md)
+ - [GetCheckResponse](docs/GetCheckResponse.md)
+ - [GetRelationTuplesResponse](docs/GetRelationTuplesResponse.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
  - [HealthStatus](docs/HealthStatus.md)
  - [Identity](docs/Identity.md)
@@ -206,11 +221,13 @@ Class | Method | HTTP request | Description
  - [InlineResponse200](docs/InlineResponse200.md)
  - [InlineResponse2001](docs/InlineResponse2001.md)
  - [InlineResponse503](docs/InlineResponse503.md)
+ - [InternalRelationTuple](docs/InternalRelationTuple.md)
  - [InvitePayload](docs/InvitePayload.md)
  - [IsOwnerForProjectBySlug](docs/IsOwnerForProjectBySlug.md)
  - [IsOwnerForProjectBySlugPayload](docs/IsOwnerForProjectBySlugPayload.md)
  - [JsonError](docs/JsonError.md)
  - [JsonPatch](docs/JsonPatch.md)
+ - [KetoNamespace](docs/KetoNamespace.md)
  - [NeedsPrivilegedSessionError](docs/NeedsPrivilegedSessionError.md)
  - [NormalizedProject](docs/NormalizedProject.md)
  - [NormalizedProjectRevision](docs/NormalizedProjectRevision.md)
@@ -219,15 +236,18 @@ Class | Method | HTTP request | Description
  - [NormalizedProjectRevisionThirdPartyProvider](docs/NormalizedProjectRevisionThirdPartyProvider.md)
  - [NullPlan](docs/NullPlan.md)
  - [Pagination](docs/Pagination.md)
+ - [PatchDelta](docs/PatchDelta.md)
  - [Project](docs/Project.md)
  - [ProjectHost](docs/ProjectHost.md)
  - [ProjectInvite](docs/ProjectInvite.md)
  - [ProjectMetadata](docs/ProjectMetadata.md)
  - [ProjectServiceIdentity](docs/ProjectServiceIdentity.md)
+ - [ProjectServicePermission](docs/ProjectServicePermission.md)
  - [ProjectServices](docs/ProjectServices.md)
  - [ProvisionMockSubscriptionPayload](docs/ProvisionMockSubscriptionPayload.md)
  - [QuotaProjectMemberSeats](docs/QuotaProjectMemberSeats.md)
  - [RecoveryAddress](docs/RecoveryAddress.md)
+ - [RelationQuery](docs/RelationQuery.md)
  - [RevokedSessions](docs/RevokedSessions.md)
  - [SchemaPatch](docs/SchemaPatch.md)
  - [SelfServiceBrowserLocationChangeRequiredError](docs/SelfServiceBrowserLocationChangeRequiredError.md)
@@ -248,6 +268,7 @@ Class | Method | HTTP request | Description
  - [SessionDevice](docs/SessionDevice.md)
  - [SettingsProfileFormConfig](docs/SettingsProfileFormConfig.md)
  - [StripeCustomerResponse](docs/StripeCustomerResponse.md)
+ - [SubjectSet](docs/SubjectSet.md)
  - [SubmitSelfServiceFlowWithWebAuthnRegistrationMethod](docs/SubmitSelfServiceFlowWithWebAuthnRegistrationMethod.md)
  - [SubmitSelfServiceLoginFlowBody](docs/SubmitSelfServiceLoginFlowBody.md)
  - [SubmitSelfServiceLoginFlowWithLookupSecretMethodBody](docs/SubmitSelfServiceLoginFlowWithLookupSecretMethodBody.md)

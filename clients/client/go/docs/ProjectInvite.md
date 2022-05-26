@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **CreatedAt** | **time.Time** | The Project&#39;s Revision Creation Date | [readonly] 
 **Id** | **string** |  | 
 **InviteeEmail** | **string** | The invitee&#39;s email | 
-**InviteeId** | Pointer to **string** |  | [optional] 
+**InviteeId** | Pointer to **NullableString** |  | [optional] 
 **OwnerEmail** | **string** | The invite owner&#39;s email Usually the project&#39;s owner email | 
 **OwnerId** | **string** |  | 
 **ProjectId** | **string** |  | 
@@ -118,6 +118,16 @@ SetInviteeId sets InviteeId field to given value.
 
 HasInviteeId returns a boolean if a field has been set.
 
+### SetInviteeIdNil
+
+`func (o *ProjectInvite) SetInviteeIdNil(b bool)`
+
+ SetInviteeIdNil sets the value for InviteeId to be an explicit nil
+
+### UnsetInviteeId
+`func (o *ProjectInvite) UnsetInviteeId()`
+
+UnsetInviteeId ensures that no value is present for InviteeId, not even an explicit nil
 ### GetOwnerEmail
 
 `func (o *ProjectInvite) GetOwnerEmail() string`

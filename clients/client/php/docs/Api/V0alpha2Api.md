@@ -62,7 +62,7 @@ adminCreateIdentity($adminCreateIdentityBody): \Ory\Client\Model\Identity
 
 Create an Identity
 
-This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint creates an identity. Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 
@@ -550,7 +550,7 @@ adminUpdateIdentity($id, $adminUpdateIdentityBody): \Ory\Client\Model\Identity
 
 Update an Identity
 
-This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint updates an identity. The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 
@@ -976,7 +976,7 @@ $apiInstance = new Ory\Client\Api\V0alpha2Api(
     new GuzzleHttp\Client()
 );
 $id = 'id_example'; // string | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
-$cookie = 'cookie_example'; // string | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here.
+$cookie = 'cookie_example'; // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
     $result = $apiInstance->getSelfServiceLoginFlow($id, $cookie);
@@ -991,7 +991,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). |
- **cookie** | **string**| HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. | [optional]
+ **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
 
 ### Return type
 
@@ -1034,7 +1034,7 @@ $apiInstance = new Ory\Client\Api\V0alpha2Api(
     new GuzzleHttp\Client()
 );
 $id = 'id_example'; // string | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
-$cookie = 'cookie_example'; // string | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here.
+$cookie = 'cookie_example'; // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
     $result = $apiInstance->getSelfServiceRecoveryFlow($id, $cookie);
@@ -1049,7 +1049,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). |
- **cookie** | **string**| HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. | [optional]
+ **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
 
 ### Return type
 
@@ -1092,7 +1092,7 @@ $apiInstance = new Ory\Client\Api\V0alpha2Api(
     new GuzzleHttp\Client()
 );
 $id = 'id_example'; // string | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
-$cookie = 'cookie_example'; // string | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here.
+$cookie = 'cookie_example'; // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
     $result = $apiInstance->getSelfServiceRegistrationFlow($id, $cookie);
@@ -1107,7 +1107,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). |
- **cookie** | **string**| HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. | [optional]
+ **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
 
 ### Return type
 
@@ -1151,7 +1151,7 @@ $apiInstance = new Ory\Client\Api\V0alpha2Api(
 );
 $id = 'id_example'; // string | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
 $xSessionToken = 'xSessionToken_example'; // string | The Session Token  When using the SDK in an app without a browser, please include the session token here.
-$cookie = 'cookie_example'; // string | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. You only need to do this for browser- based flows.
+$cookie = 'cookie_example'; // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
     $result = $apiInstance->getSelfServiceSettingsFlow($id, $xSessionToken, $cookie);
@@ -1167,7 +1167,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
  **xSessionToken** | **string**| The Session Token  When using the SDK in an app without a browser, please include the session token here. | [optional]
- **cookie** | **string**| HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. You only need to do this for browser- based flows. | [optional]
+ **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
 
 ### Return type
 
@@ -2331,7 +2331,7 @@ No authorization required
 ## `submitSelfServiceLoginFlow()`
 
 ```php
-submitSelfServiceLoginFlow($flow, $xSessionToken, $submitSelfServiceLoginFlowBody): \Ory\Client\Model\SuccessfulSelfServiceLoginWithoutBrowser
+submitSelfServiceLoginFlow($flow, $submitSelfServiceLoginFlowBody, $xSessionToken, $cookie): \Ory\Client\Model\SuccessfulSelfServiceLoginWithoutBrowser
 ```
 
 Submit a Login Flow
@@ -2352,11 +2352,12 @@ $apiInstance = new Ory\Client\Api\V0alpha2Api(
     new GuzzleHttp\Client()
 );
 $flow = 'flow_example'; // string | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
-$xSessionToken = 'xSessionToken_example'; // string | The Session Token of the Identity performing the settings flow.
 $submitSelfServiceLoginFlowBody = new \Ory\Client\Model\SubmitSelfServiceLoginFlowBody(); // \Ory\Client\Model\SubmitSelfServiceLoginFlowBody
+$xSessionToken = 'xSessionToken_example'; // string | The Session Token of the Identity performing the settings flow.
+$cookie = 'cookie_example'; // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
-    $result = $apiInstance->submitSelfServiceLoginFlow($flow, $xSessionToken, $submitSelfServiceLoginFlowBody);
+    $result = $apiInstance->submitSelfServiceLoginFlow($flow, $submitSelfServiceLoginFlowBody, $xSessionToken, $cookie);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling V0alpha2Api->submitSelfServiceLoginFlow: ', $e->getMessage(), PHP_EOL;
@@ -2368,8 +2369,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **string**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). |
+ **submitSelfServiceLoginFlowBody** | [**\Ory\Client\Model\SubmitSelfServiceLoginFlowBody**](../Model/SubmitSelfServiceLoginFlowBody.md)|  |
  **xSessionToken** | **string**| The Session Token of the Identity performing the settings flow. | [optional]
- **submitSelfServiceLoginFlowBody** | [**\Ory\Client\Model\SubmitSelfServiceLoginFlowBody**](../Model/SubmitSelfServiceLoginFlowBody.md)|  | [optional]
+ **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
 
 ### Return type
 
@@ -2503,7 +2505,7 @@ No authorization required
 ## `submitSelfServiceRecoveryFlow()`
 
 ```php
-submitSelfServiceRecoveryFlow($flow, $token, $submitSelfServiceRecoveryFlowBody): \Ory\Client\Model\SelfServiceRecoveryFlow
+submitSelfServiceRecoveryFlow($flow, $submitSelfServiceRecoveryFlowBody, $token, $cookie): \Ory\Client\Model\SelfServiceRecoveryFlow
 ```
 
 Complete Recovery Flow
@@ -2524,11 +2526,12 @@ $apiInstance = new Ory\Client\Api\V0alpha2Api(
     new GuzzleHttp\Client()
 );
 $flow = 'flow_example'; // string | The Recovery Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
-$token = 'token_example'; // string | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
 $submitSelfServiceRecoveryFlowBody = new \Ory\Client\Model\SubmitSelfServiceRecoveryFlowBody(); // \Ory\Client\Model\SubmitSelfServiceRecoveryFlowBody
+$token = 'token_example'; // string | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
+$cookie = 'cookie_example'; // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
-    $result = $apiInstance->submitSelfServiceRecoveryFlow($flow, $token, $submitSelfServiceRecoveryFlowBody);
+    $result = $apiInstance->submitSelfServiceRecoveryFlow($flow, $submitSelfServiceRecoveryFlowBody, $token, $cookie);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling V0alpha2Api->submitSelfServiceRecoveryFlow: ', $e->getMessage(), PHP_EOL;
@@ -2540,8 +2543,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **string**| The Recovery Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). |
+ **submitSelfServiceRecoveryFlowBody** | [**\Ory\Client\Model\SubmitSelfServiceRecoveryFlowBody**](../Model/SubmitSelfServiceRecoveryFlowBody.md)|  |
  **token** | **string**| Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. | [optional]
- **submitSelfServiceRecoveryFlowBody** | [**\Ory\Client\Model\SubmitSelfServiceRecoveryFlowBody**](../Model/SubmitSelfServiceRecoveryFlowBody.md)|  | [optional]
+ **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
 
 ### Return type
 
@@ -2563,7 +2567,7 @@ No authorization required
 ## `submitSelfServiceRegistrationFlow()`
 
 ```php
-submitSelfServiceRegistrationFlow($flow, $submitSelfServiceRegistrationFlowBody): \Ory\Client\Model\SuccessfulSelfServiceRegistrationWithoutBrowser
+submitSelfServiceRegistrationFlow($flow, $submitSelfServiceRegistrationFlowBody, $cookie): \Ory\Client\Model\SuccessfulSelfServiceRegistrationWithoutBrowser
 ```
 
 Submit a Registration Flow
@@ -2585,9 +2589,10 @@ $apiInstance = new Ory\Client\Api\V0alpha2Api(
 );
 $flow = 'flow_example'; // string | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
 $submitSelfServiceRegistrationFlowBody = new \Ory\Client\Model\SubmitSelfServiceRegistrationFlowBody(); // \Ory\Client\Model\SubmitSelfServiceRegistrationFlowBody
+$cookie = 'cookie_example'; // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
-    $result = $apiInstance->submitSelfServiceRegistrationFlow($flow, $submitSelfServiceRegistrationFlowBody);
+    $result = $apiInstance->submitSelfServiceRegistrationFlow($flow, $submitSelfServiceRegistrationFlowBody, $cookie);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling V0alpha2Api->submitSelfServiceRegistrationFlow: ', $e->getMessage(), PHP_EOL;
@@ -2599,7 +2604,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **string**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). |
- **submitSelfServiceRegistrationFlowBody** | [**\Ory\Client\Model\SubmitSelfServiceRegistrationFlowBody**](../Model/SubmitSelfServiceRegistrationFlowBody.md)|  | [optional]
+ **submitSelfServiceRegistrationFlowBody** | [**\Ory\Client\Model\SubmitSelfServiceRegistrationFlowBody**](../Model/SubmitSelfServiceRegistrationFlowBody.md)|  |
+ **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
 
 ### Return type
 
@@ -2621,7 +2627,7 @@ No authorization required
 ## `submitSelfServiceSettingsFlow()`
 
 ```php
-submitSelfServiceSettingsFlow($flow, $xSessionToken, $submitSelfServiceSettingsFlowBody): \Ory\Client\Model\SelfServiceSettingsFlow
+submitSelfServiceSettingsFlow($flow, $submitSelfServiceSettingsFlowBody, $xSessionToken, $cookie): \Ory\Client\Model\SelfServiceSettingsFlow
 ```
 
 Complete Settings Flow
@@ -2642,11 +2648,12 @@ $apiInstance = new Ory\Client\Api\V0alpha2Api(
     new GuzzleHttp\Client()
 );
 $flow = 'flow_example'; // string | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
-$xSessionToken = 'xSessionToken_example'; // string | The Session Token of the Identity performing the settings flow.
 $submitSelfServiceSettingsFlowBody = new \Ory\Client\Model\SubmitSelfServiceSettingsFlowBody(); // \Ory\Client\Model\SubmitSelfServiceSettingsFlowBody
+$xSessionToken = 'xSessionToken_example'; // string | The Session Token of the Identity performing the settings flow.
+$cookie = 'cookie_example'; // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
-    $result = $apiInstance->submitSelfServiceSettingsFlow($flow, $xSessionToken, $submitSelfServiceSettingsFlowBody);
+    $result = $apiInstance->submitSelfServiceSettingsFlow($flow, $submitSelfServiceSettingsFlowBody, $xSessionToken, $cookie);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling V0alpha2Api->submitSelfServiceSettingsFlow: ', $e->getMessage(), PHP_EOL;
@@ -2658,8 +2665,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **string**| The Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
+ **submitSelfServiceSettingsFlowBody** | [**\Ory\Client\Model\SubmitSelfServiceSettingsFlowBody**](../Model/SubmitSelfServiceSettingsFlowBody.md)|  |
  **xSessionToken** | **string**| The Session Token of the Identity performing the settings flow. | [optional]
- **submitSelfServiceSettingsFlowBody** | [**\Ory\Client\Model\SubmitSelfServiceSettingsFlowBody**](../Model/SubmitSelfServiceSettingsFlowBody.md)|  | [optional]
+ **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
 
 ### Return type
 
@@ -2681,7 +2689,7 @@ No authorization required
 ## `submitSelfServiceVerificationFlow()`
 
 ```php
-submitSelfServiceVerificationFlow($flow, $token, $submitSelfServiceVerificationFlowBody): \Ory\Client\Model\SelfServiceVerificationFlow
+submitSelfServiceVerificationFlow($flow, $submitSelfServiceVerificationFlowBody, $token, $cookie): \Ory\Client\Model\SelfServiceVerificationFlow
 ```
 
 Complete Verification Flow
@@ -2702,11 +2710,12 @@ $apiInstance = new Ory\Client\Api\V0alpha2Api(
     new GuzzleHttp\Client()
 );
 $flow = 'flow_example'; // string | The Verification Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
-$token = 'token_example'; // string | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
 $submitSelfServiceVerificationFlowBody = new \Ory\Client\Model\SubmitSelfServiceVerificationFlowBody(); // \Ory\Client\Model\SubmitSelfServiceVerificationFlowBody
+$token = 'token_example'; // string | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
+$cookie = 'cookie_example'; // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
-    $result = $apiInstance->submitSelfServiceVerificationFlow($flow, $token, $submitSelfServiceVerificationFlowBody);
+    $result = $apiInstance->submitSelfServiceVerificationFlow($flow, $submitSelfServiceVerificationFlowBody, $token, $cookie);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling V0alpha2Api->submitSelfServiceVerificationFlow: ', $e->getMessage(), PHP_EOL;
@@ -2718,8 +2727,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **string**| The Verification Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/verification?flow&#x3D;abcde&#x60;). |
+ **submitSelfServiceVerificationFlowBody** | [**\Ory\Client\Model\SubmitSelfServiceVerificationFlowBody**](../Model/SubmitSelfServiceVerificationFlowBody.md)|  |
  **token** | **string**| Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. | [optional]
- **submitSelfServiceVerificationFlowBody** | [**\Ory\Client\Model\SubmitSelfServiceVerificationFlowBody**](../Model/SubmitSelfServiceVerificationFlowBody.md)|  | [optional]
+ **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
 
 ### Return type
 

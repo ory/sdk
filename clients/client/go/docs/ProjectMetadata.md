@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **Id** | **string** |  | 
 **Name** | **string** | The project&#39;s name if set | 
 **Slug** | Pointer to **string** | The project&#39;s slug | [optional] [readonly] 
-**State** | **string** | The state of the project. | 
-**SubscriptionId** | Pointer to **string** |  | [optional] 
+**State** | **string** | The state of the project. running Running halted Halted | 
+**SubscriptionId** | Pointer to **NullableString** |  | [optional] 
 **UpdatedAt** | **time.Time** | Last Time Project was Updated | 
 
 ## Methods
@@ -182,6 +182,16 @@ SetSubscriptionId sets SubscriptionId field to given value.
 
 HasSubscriptionId returns a boolean if a field has been set.
 
+### SetSubscriptionIdNil
+
+`func (o *ProjectMetadata) SetSubscriptionIdNil(b bool)`
+
+ SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
+
+### UnsetSubscriptionId
+`func (o *ProjectMetadata) UnsetSubscriptionId()`
+
+UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
 ### GetUpdatedAt
 
 `func (o *ProjectMetadata) GetUpdatedAt() time.Time`

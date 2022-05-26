@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **Id** | **string** |  | 
 **Revisions** | [**[]NormalizedProjectRevision**](NormalizedProjectRevision.md) |  | 
 **Slug** | **string** | The project&#39;s slug | [readonly] 
-**State** | **string** | The state of the project. | [readonly] 
-**SubscriptionId** | Pointer to **string** |  | [optional] 
+**State** | **string** | The state of the project. running Running halted Halted | [readonly] 
+**SubscriptionId** | Pointer to **NullableString** |  | [optional] 
 **UpdatedAt** | **time.Time** | Last Time Project was Updated | [readonly] 
 
 ## Methods
@@ -198,6 +198,16 @@ SetSubscriptionId sets SubscriptionId field to given value.
 
 HasSubscriptionId returns a boolean if a field has been set.
 
+### SetSubscriptionIdNil
+
+`func (o *NormalizedProject) SetSubscriptionIdNil(b bool)`
+
+ SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
+
+### UnsetSubscriptionId
+`func (o *NormalizedProject) UnsetSubscriptionId()`
+
+UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
 ### GetUpdatedAt
 
 `func (o *NormalizedProject) GetUpdatedAt() time.Time`

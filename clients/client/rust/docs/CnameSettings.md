@@ -5,6 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cookie_domain** | Option<**String**> |  | [optional]
+**cors_allowed_origins** | Option<**Vec<String>**> |  | [optional]
+**cors_enabled** | Option<**bool**> |  | [optional]
 **created_at** | Option<**String**> |  | [optional]
 **hostname** | Option<**String**> |  | [optional]
 **id** | Option<**String**> |  | [optional]

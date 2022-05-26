@@ -5,6 +5,7 @@
 
 // ignore_for_file: unused_import
 
+import 'package:ory_client/model/project_service_permission.dart';
 import 'package:ory_client/model/project_service_identity.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -13,8 +14,13 @@ part 'project_services.g.dart';
 
 abstract class ProjectServices implements Built<ProjectServices, ProjectServicesBuilder> {
 
+    @nullable
     @BuiltValueField(wireName: r'identity')
     ProjectServiceIdentity get identity;
+
+    @nullable
+    @BuiltValueField(wireName: r'permission')
+    ProjectServicePermission get permission;
 
     ProjectServices._();
 
@@ -37,10 +43,18 @@ class _$ProjectServicesSerializer implements StructuredSerializer<ProjectService
     Iterable<Object> serialize(Serializers serializers, ProjectServices object,
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object>[];
-        result
-            ..add(r'identity')
-            ..add(serializers.serialize(object.identity,
-                specifiedType: const FullType(ProjectServiceIdentity)));
+        if (object.identity != null) {
+            result
+                ..add(r'identity')
+                ..add(serializers.serialize(object.identity,
+                    specifiedType: const FullType(ProjectServiceIdentity)));
+        }
+        if (object.permission != null) {
+            result
+                ..add(r'permission')
+                ..add(serializers.serialize(object.permission,
+                    specifiedType: const FullType(ProjectServicePermission)));
+        }
         return result;
     }
 
@@ -58,6 +72,10 @@ class _$ProjectServicesSerializer implements StructuredSerializer<ProjectService
                 case r'identity':
                     result.identity.replace(serializers.deserialize(value,
                         specifiedType: const FullType(ProjectServiceIdentity)) as ProjectServiceIdentity);
+                    break;
+                case r'permission':
+                    result.permission.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(ProjectServicePermission)) as ProjectServicePermission);
                     break;
             }
         }

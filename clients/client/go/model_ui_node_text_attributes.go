@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.152
+ * API version: v0.0.1-alpha.183
  * Contact: support@ory.sh
  */
 
@@ -19,6 +19,7 @@ import (
 type UiNodeTextAttributes struct {
 	// A unique identifier
 	Id string `json:"id"`
+	// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\".
 	NodeType string `json:"node_type"`
 	Text UiText `json:"text"`
 }

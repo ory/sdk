@@ -5,6 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CookieDomain** | Pointer to **string** | The domain where cookies will be set. Has to be a parent domain of the custom hostname to work. | [optional] 
+**CorsAllowedOrigins** | Pointer to **[]string** | CORS Allowed origins for the custom hostname. | [optional] 
+**CorsEnabled** | Pointer to **bool** | CORS Enabled for the custom hostname. | [optional] 
 **Hostname** | Pointer to **string** | The custom hostname where the API will be exposed. | [optional] 
 
 ## Methods
@@ -50,6 +52,56 @@ SetCookieDomain sets CookieDomain field to given value.
 `func (o *UpdateCustomHostnameBody) HasCookieDomain() bool`
 
 HasCookieDomain returns a boolean if a field has been set.
+
+### GetCorsAllowedOrigins
+
+`func (o *UpdateCustomHostnameBody) GetCorsAllowedOrigins() []string`
+
+GetCorsAllowedOrigins returns the CorsAllowedOrigins field if non-nil, zero value otherwise.
+
+### GetCorsAllowedOriginsOk
+
+`func (o *UpdateCustomHostnameBody) GetCorsAllowedOriginsOk() (*[]string, bool)`
+
+GetCorsAllowedOriginsOk returns a tuple with the CorsAllowedOrigins field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCorsAllowedOrigins
+
+`func (o *UpdateCustomHostnameBody) SetCorsAllowedOrigins(v []string)`
+
+SetCorsAllowedOrigins sets CorsAllowedOrigins field to given value.
+
+### HasCorsAllowedOrigins
+
+`func (o *UpdateCustomHostnameBody) HasCorsAllowedOrigins() bool`
+
+HasCorsAllowedOrigins returns a boolean if a field has been set.
+
+### GetCorsEnabled
+
+`func (o *UpdateCustomHostnameBody) GetCorsEnabled() bool`
+
+GetCorsEnabled returns the CorsEnabled field if non-nil, zero value otherwise.
+
+### GetCorsEnabledOk
+
+`func (o *UpdateCustomHostnameBody) GetCorsEnabledOk() (*bool, bool)`
+
+GetCorsEnabledOk returns a tuple with the CorsEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCorsEnabled
+
+`func (o *UpdateCustomHostnameBody) SetCorsEnabled(v bool)`
+
+SetCorsEnabled sets CorsEnabled field to given value.
+
+### HasCorsEnabled
+
+`func (o *UpdateCustomHostnameBody) HasCorsEnabled() bool`
+
+HasCorsEnabled returns a boolean if a field has been set.
 
 ### GetHostname
 

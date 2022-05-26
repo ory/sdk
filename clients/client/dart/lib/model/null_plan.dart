@@ -13,14 +13,19 @@ part 'null_plan.g.dart';
 
 class NullPlan extends EnumClass {
 
+  ///  unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
   @BuiltValueEnumConst(wireName: r'unknown')
   static const NullPlan unknown = _$unknown;
+  ///  unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
   @BuiltValueEnumConst(wireName: r'free')
   static const NullPlan free = _$free;
+  ///  unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
   @BuiltValueEnumConst(wireName: r'start_up_monthly')
   static const NullPlan startUpMonthly = _$startUpMonthly;
+  ///  unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
   @BuiltValueEnumConst(wireName: r'start_up_yearly')
   static const NullPlan startUpYearly = _$startUpYearly;
+  ///  unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
   @BuiltValueEnumConst(wireName: r'custom')
   static const NullPlan custom = _$custom;
 

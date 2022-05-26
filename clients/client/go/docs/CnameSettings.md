@@ -5,6 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CookieDomain** | Pointer to **string** |  | [optional] 
+**CorsAllowedOrigins** | Pointer to **[]string** |  | [optional] 
+**CorsEnabled** | Pointer to **bool** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Hostname** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
@@ -55,6 +57,56 @@ SetCookieDomain sets CookieDomain field to given value.
 `func (o *CnameSettings) HasCookieDomain() bool`
 
 HasCookieDomain returns a boolean if a field has been set.
+
+### GetCorsAllowedOrigins
+
+`func (o *CnameSettings) GetCorsAllowedOrigins() []string`
+
+GetCorsAllowedOrigins returns the CorsAllowedOrigins field if non-nil, zero value otherwise.
+
+### GetCorsAllowedOriginsOk
+
+`func (o *CnameSettings) GetCorsAllowedOriginsOk() (*[]string, bool)`
+
+GetCorsAllowedOriginsOk returns a tuple with the CorsAllowedOrigins field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCorsAllowedOrigins
+
+`func (o *CnameSettings) SetCorsAllowedOrigins(v []string)`
+
+SetCorsAllowedOrigins sets CorsAllowedOrigins field to given value.
+
+### HasCorsAllowedOrigins
+
+`func (o *CnameSettings) HasCorsAllowedOrigins() bool`
+
+HasCorsAllowedOrigins returns a boolean if a field has been set.
+
+### GetCorsEnabled
+
+`func (o *CnameSettings) GetCorsEnabled() bool`
+
+GetCorsEnabled returns the CorsEnabled field if non-nil, zero value otherwise.
+
+### GetCorsEnabledOk
+
+`func (o *CnameSettings) GetCorsEnabledOk() (*bool, bool)`
+
+GetCorsEnabledOk returns a tuple with the CorsEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCorsEnabled
+
+`func (o *CnameSettings) SetCorsEnabled(v bool)`
+
+SetCorsEnabled sets CorsEnabled field to given value.
+
+### HasCorsEnabled
+
+`func (o *CnameSettings) HasCorsEnabled() bool`
+
+HasCorsEnabled returns a boolean if a field has been set.
 
 ### GetCreatedAt
 

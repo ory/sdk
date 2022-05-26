@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **DateTime** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
 **Id** | **string** |  | [optional] 
+**KetoNamespaces** | [**List&lt;ClientKetoNamespace&gt;**](ClientKetoNamespace.md) |  | [optional] 
+**KetoReadMaxDepth** | **int?** |  | [optional] 
 **KratosCookiesSameSite** | **string** | Configures the Ory Kratos Cookie SameSite Attribute  This governs the \&quot;cookies.same_site\&quot; setting. | [optional] 
 **KratosCourierSmtpConnectionUri** | **string** | Configures the Ory Kratos SMTP Connection URI  This governs the \&quot;courier.smtp.connection_uri\&quot; setting. | [optional] 
 **KratosCourierSmtpFromAddress** | **string** | Configures the Ory Kratos SMTP From Address  This governs the \&quot;courier.smtp.from_address\&quot; setting. | [optional] 

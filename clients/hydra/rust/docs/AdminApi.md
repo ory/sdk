@@ -650,7 +650,7 @@ No authorization required
 
 ## list_subject_consent_sessions
 
-> Vec<crate::models::PreviousConsentSession> list_subject_consent_sessions(subject)
+> Vec<crate::models::PreviousConsentSession> list_subject_consent_sessions(subject, limit, offset)
 Lists All Consent Sessions of a Subject
 
 This endpoint lists all subject's granted consent sessions, including client and granted scope. If the subject is unknown or has not granted any consent sessions yet, the endpoint returns an empty JSON array with status code 200 OK.   The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/oauth2/auth/sessions/consent?subject={user}&limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
@@ -661,6 +661,8 @@ This endpoint lists all subject's granted consent sessions, including client and
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **subject** | **String** |  | [required] |
+**limit** | Option<**i64**> | The maximum amount of consent sessions to be returned, upper bound is 500 sessions. |  |
+**offset** | Option<**i64**> | The offset from where to start looking. |  |
 
 ### Return type
 

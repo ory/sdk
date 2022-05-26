@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.152
+ * API version: v0.0.1-alpha.183
  * Contact: support@ory.sh
  */
 
@@ -21,6 +21,8 @@ type NormalizedProjectRevision struct {
 	// The Project's Revision Creation Date
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	Id *string `json:"id,omitempty"`
+	KetoNamespaces []KetoNamespace `json:"keto_namespaces,omitempty"`
+	KetoReadMaxDepth NullableInt32 `json:"keto_read_max_depth,omitempty"`
 	// Configures the Ory Kratos Cookie SameSite Attribute  This governs the \"cookies.same_site\" setting.
 	KratosCookiesSameSite *string `json:"kratos_cookies_same_site,omitempty"`
 	// Configures the Ory Kratos SMTP Connection URI  This governs the \"courier.smtp.connection_uri\" setting.
@@ -250,6 +252,80 @@ func (o *NormalizedProjectRevision) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *NormalizedProjectRevision) SetId(v string) {
 	o.Id = &v
+}
+
+// GetKetoNamespaces returns the KetoNamespaces field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKetoNamespaces() []KetoNamespace {
+	if o == nil || o.KetoNamespaces == nil {
+		var ret []KetoNamespace
+		return ret
+	}
+	return o.KetoNamespaces
+}
+
+// GetKetoNamespacesOk returns a tuple with the KetoNamespaces field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKetoNamespacesOk() ([]KetoNamespace, bool) {
+	if o == nil || o.KetoNamespaces == nil {
+		return nil, false
+	}
+	return o.KetoNamespaces, true
+}
+
+// HasKetoNamespaces returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKetoNamespaces() bool {
+	if o != nil && o.KetoNamespaces != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKetoNamespaces gets a reference to the given []KetoNamespace and assigns it to the KetoNamespaces field.
+func (o *NormalizedProjectRevision) SetKetoNamespaces(v []KetoNamespace) {
+	o.KetoNamespaces = v
+}
+
+// GetKetoReadMaxDepth returns the KetoReadMaxDepth field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevision) GetKetoReadMaxDepth() int32 {
+	if o == nil || o.KetoReadMaxDepth.Get() == nil {
+		var ret int32
+		return ret
+	}
+	return *o.KetoReadMaxDepth.Get()
+}
+
+// GetKetoReadMaxDepthOk returns a tuple with the KetoReadMaxDepth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevision) GetKetoReadMaxDepthOk() (*int32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.KetoReadMaxDepth.Get(), o.KetoReadMaxDepth.IsSet()
+}
+
+// HasKetoReadMaxDepth returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKetoReadMaxDepth() bool {
+	if o != nil && o.KetoReadMaxDepth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetKetoReadMaxDepth gets a reference to the given NullableInt32 and assigns it to the KetoReadMaxDepth field.
+func (o *NormalizedProjectRevision) SetKetoReadMaxDepth(v int32) {
+	o.KetoReadMaxDepth.Set(&v)
+}
+// SetKetoReadMaxDepthNil sets the value for KetoReadMaxDepth to be an explicit nil
+func (o *NormalizedProjectRevision) SetKetoReadMaxDepthNil() {
+	o.KetoReadMaxDepth.Set(nil)
+}
+
+// UnsetKetoReadMaxDepth ensures that no value is present for KetoReadMaxDepth, not even an explicit nil
+func (o *NormalizedProjectRevision) UnsetKetoReadMaxDepth() {
+	o.KetoReadMaxDepth.Unset()
 }
 
 // GetKratosCookiesSameSite returns the KratosCookiesSameSite field value if set, zero value otherwise.
@@ -3017,6 +3093,12 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
+	}
+	if o.KetoNamespaces != nil {
+		toSerialize["keto_namespaces"] = o.KetoNamespaces
+	}
+	if o.KetoReadMaxDepth.IsSet() {
+		toSerialize["keto_read_max_depth"] = o.KetoReadMaxDepth.Get()
 	}
 	if o.KratosCookiesSameSite != nil {
 		toSerialize["kratos_cookies_same_site"] = o.KratosCookiesSameSite

@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.152
+ * API version: v0.0.1-alpha.183
  * Contact: support@ory.sh
  */
 
@@ -26,9 +26,9 @@ type ProjectMetadata struct {
 	Name string `json:"name"`
 	// The project's slug
 	Slug *string `json:"slug,omitempty"`
-	// The state of the project.
+	// The state of the project. running Running halted Halted
 	State string `json:"state"`
-	SubscriptionId *string `json:"subscription_id,omitempty"`
+	SubscriptionId NullableString `json:"subscription_id,omitempty"`
 	// Last Time Project was Updated
 	UpdatedAt time.Time `json:"updated_at"`
 }
@@ -208,36 +208,46 @@ func (o *ProjectMetadata) SetState(v string) {
 	o.State = v
 }
 
-// GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise.
+// GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProjectMetadata) GetSubscriptionId() string {
-	if o == nil || o.SubscriptionId == nil {
+	if o == nil || o.SubscriptionId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.SubscriptionId
+	return *o.SubscriptionId.Get()
 }
 
 // GetSubscriptionIdOk returns a tuple with the SubscriptionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectMetadata) GetSubscriptionIdOk() (*string, bool) {
-	if o == nil || o.SubscriptionId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.SubscriptionId, true
+	return o.SubscriptionId.Get(), o.SubscriptionId.IsSet()
 }
 
 // HasSubscriptionId returns a boolean if a field has been set.
 func (o *ProjectMetadata) HasSubscriptionId() bool {
-	if o != nil && o.SubscriptionId != nil {
+	if o != nil && o.SubscriptionId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSubscriptionId gets a reference to the given string and assigns it to the SubscriptionId field.
+// SetSubscriptionId gets a reference to the given NullableString and assigns it to the SubscriptionId field.
 func (o *ProjectMetadata) SetSubscriptionId(v string) {
-	o.SubscriptionId = &v
+	o.SubscriptionId.Set(&v)
+}
+// SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
+func (o *ProjectMetadata) SetSubscriptionIdNil() {
+	o.SubscriptionId.Set(nil)
+}
+
+// UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
+func (o *ProjectMetadata) UnsetSubscriptionId() {
+	o.SubscriptionId.Unset()
 }
 
 // GetUpdatedAt returns the UpdatedAt field value
@@ -284,8 +294,8 @@ func (o ProjectMetadata) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["state"] = o.State
 	}
-	if o.SubscriptionId != nil {
-		toSerialize["subscription_id"] = o.SubscriptionId
+	if o.SubscriptionId.IsSet() {
+		toSerialize["subscription_id"] = o.SubscriptionId.Get()
 	}
 	if true {
 		toSerialize["updated_at"] = o.UpdatedAt

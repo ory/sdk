@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **status** | **String** | Always \&quot;ok\&quot;. |  |
+| **status** | **String** | Always \&quot;ok\&quot;. | [optional] |
 
 ## Example
 

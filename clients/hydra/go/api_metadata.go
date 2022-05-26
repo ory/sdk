@@ -1,9 +1,9 @@
 /*
- * Ory Oathkeeper API
+ * Ory Hydra API
  *
- * Documentation for all of Ory Oathkeeper's APIs. 
+ * Documentation for all of Ory Hydra's APIs. 
  *
- * API version: v1.11.6
+ * API version: v1.11.8
  * Contact: hi@ory.sh
  */
 
@@ -63,9 +63,9 @@ refer to the cluster state, only to a single instance.
 
 	/*
 	 * IsAliveExecute executes the request
-	 * @return InlineResponse200
+	 * @return HealthStatus
 	 */
-	IsAliveExecute(r MetadataApiApiIsAliveRequest) (*InlineResponse200, *http.Response, error)
+	IsAliveExecute(r MetadataApiApiIsAliveRequest) (*HealthStatus, *http.Response, error)
 
 	/*
 	 * IsReady Check HTTP Server and Database Status
@@ -206,7 +206,7 @@ type MetadataApiApiIsAliveRequest struct {
 }
 
 
-func (r MetadataApiApiIsAliveRequest) Execute() (*InlineResponse200, *http.Response, error) {
+func (r MetadataApiApiIsAliveRequest) Execute() (*HealthStatus, *http.Response, error) {
 	return r.ApiService.IsAliveExecute(r)
 }
 
@@ -232,16 +232,16 @@ func (a *MetadataApiService) IsAlive(ctx context.Context) MetadataApiApiIsAliveR
 
 /*
  * Execute executes the request
- * @return InlineResponse200
+ * @return HealthStatus
  */
-func (a *MetadataApiService) IsAliveExecute(r MetadataApiApiIsAliveRequest) (*InlineResponse200, *http.Response, error) {
+func (a *MetadataApiService) IsAliveExecute(r MetadataApiApiIsAliveRequest) (*HealthStatus, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  *InlineResponse200
+		localVarReturnValue  *HealthStatus
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetadataApiService.IsAlive")

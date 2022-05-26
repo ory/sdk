@@ -14,6 +14,12 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(TrustJwtGrantIssuerBody, () {
+    // The \"allow_any_subject\" indicates that the issuer is allowed to have any principal as the subject of the JWT.
+    // bool allowAnySubject
+    test('to test the property `allowAnySubject`', () async {
+      // TODO
+    });
+
     // The \"expires_at\" indicates, when grant will expire, so we will reject assertion from \"issuer\" targeting \"subject\".
     // DateTime expiresAt
     test('to test the property `expiresAt`', () async {

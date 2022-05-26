@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.152
+ * API version: v0.0.1-alpha.183
  * Contact: support@ory.sh
  */
 
@@ -18,9 +18,11 @@ import (
 // UiNode Nodes are represented as HTML elements or their native UI equivalents. For example, a node can be an `<img>` tag, or an `<input element>` but also `some plain text`.
 type UiNode struct {
 	Attributes UiNodeAttributes `json:"attributes"`
+	// Group specifies which group (e.g. password authenticator) this node belongs to.
 	Group string `json:"group"`
 	Messages []UiText `json:"messages"`
 	Meta UiNodeMeta `json:"meta"`
+	// The node's type
 	Type string `json:"type"`
 }
 

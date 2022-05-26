@@ -14,6 +14,11 @@ part 'trusted_jwt_grant_issuer.g.dart';
 
 abstract class TrustedJwtGrantIssuer implements Built<TrustedJwtGrantIssuer, TrustedJwtGrantIssuerBuilder> {
 
+    /// The \"allow_any_subject\" indicates that the issuer is allowed to have any principal as the subject of the JWT.
+    @nullable
+    @BuiltValueField(wireName: r'allow_any_subject')
+    bool get allowAnySubject;
+
     /// The \"created_at\" indicates, when grant was created.
     @nullable
     @BuiltValueField(wireName: r'created_at')
@@ -68,6 +73,12 @@ class _$TrustedJwtGrantIssuerSerializer implements StructuredSerializer<TrustedJ
     Iterable<Object> serialize(Serializers serializers, TrustedJwtGrantIssuer object,
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object>[];
+        if (object.allowAnySubject != null) {
+            result
+                ..add(r'allow_any_subject')
+                ..add(serializers.serialize(object.allowAnySubject,
+                    specifiedType: const FullType(bool)));
+        }
         if (object.createdAt != null) {
             result
                 ..add(r'created_at')
@@ -124,6 +135,10 @@ class _$TrustedJwtGrantIssuerSerializer implements StructuredSerializer<TrustedJ
             iterator.moveNext();
             final dynamic value = iterator.current;
             switch (key) {
+                case r'allow_any_subject':
+                    result.allowAnySubject = serializers.deserialize(value,
+                        specifiedType: const FullType(bool)) as bool;
+                    break;
                 case r'created_at':
                     result.createdAt = serializers.deserialize(value,
                         specifiedType: const FullType(DateTime)) as DateTime;
