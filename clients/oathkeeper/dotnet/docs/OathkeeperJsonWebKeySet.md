@@ -1,5 +1,4 @@
 # Ory.Oathkeeper.Client.Model.OathkeeperJsonWebKeySet
-JSONWebKeySet JSONWebKeySet JSONWebKeySet JSONWebKeySet json web key set
 
 ## Properties
 

@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 <a name="getCheck"></a>
 # **getCheck**
-> GetCheckResponse getCheck(namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation)
+> GetCheckResponse getCheck(namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation, maxDepth)
 
 Check a relation tuple
 
@@ -40,8 +40,9 @@ public class Example {
     String subjectSetNamespace = "subjectSetNamespace_example"; // String | Namespace of the Subject Set
     String subjectSetObject = "subjectSetObject_example"; // String | Object of the Subject Set
     String subjectSetRelation = "subjectSetRelation_example"; // String | Relation of the Subject Set
+    Long maxDepth = 56L; // Long | 
     try {
-      GetCheckResponse result = apiInstance.getCheck(namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
+      GetCheckResponse result = apiInstance.getCheck(namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation, maxDepth);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReadApi#getCheck");
@@ -58,13 +59,14 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **String**| Namespace of the Relation Tuple |
- **_object** | **String**| Object of the Relation Tuple |
- **relation** | **String**| Relation of the Relation Tuple |
+ **namespace** | **String**| Namespace of the Relation Tuple | [optional]
+ **_object** | **String**| Object of the Relation Tuple | [optional]
+ **relation** | **String**| Relation of the Relation Tuple | [optional]
  **subjectId** | **String**| SubjectID of the Relation Tuple | [optional]
  **subjectSetNamespace** | **String**| Namespace of the Subject Set | [optional]
  **subjectSetObject** | **String**| Object of the Subject Set | [optional]
  **subjectSetRelation** | **String**| Relation of the Subject Set | [optional]
+ **maxDepth** | **Long**|  | [optional]
 
 ### Return type
 
@@ -83,9 +85,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | getCheckResponse |  -  |
-**400** | The standard error format |  -  |
+**400** | genericError |  -  |
 **403** | getCheckResponse |  -  |
-**500** | The standard error format |  -  |
+**500** | genericError |  -  |
 
 <a name="getExpand"></a>
 # **getExpand**
@@ -135,7 +137,7 @@ Name | Type | Description  | Notes
  **namespace** | **String**| Namespace of the Subject Set |
  **_object** | **String**| Object of the Subject Set |
  **relation** | **String**| Relation of the Subject Set |
- **maxDepth** | **Long**|  |
+ **maxDepth** | **Long**|  | [optional]
 
 ### Return type
 
@@ -154,13 +156,13 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | expandTree |  -  |
-**400** | The standard error format |  -  |
-**404** | The standard error format |  -  |
-**500** | The standard error format |  -  |
+**400** | genericError |  -  |
+**404** | genericError |  -  |
+**500** | genericError |  -  |
 
 <a name="getRelationTuples"></a>
 # **getRelationTuples**
-> GetRelationTuplesResponse getRelationTuples(namespace, pageToken, pageSize, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation)
+> GetRelationTuplesResponse getRelationTuples(pageToken, pageSize, namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation)
 
 Query relation tuples
 
@@ -181,9 +183,9 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     ReadApi apiInstance = new ReadApi(defaultClient);
-    String namespace = "namespace_example"; // String | Namespace of the Relation Tuple
     String pageToken = "pageToken_example"; // String | 
     Long pageSize = 56L; // Long | 
+    String namespace = "namespace_example"; // String | Namespace of the Relation Tuple
     String _object = "_object_example"; // String | Object of the Relation Tuple
     String relation = "relation_example"; // String | Relation of the Relation Tuple
     String subjectId = "subjectId_example"; // String | SubjectID of the Relation Tuple
@@ -191,7 +193,7 @@ public class Example {
     String subjectSetObject = "subjectSetObject_example"; // String | Object of the Subject Set
     String subjectSetRelation = "subjectSetRelation_example"; // String | Relation of the Subject Set
     try {
-      GetRelationTuplesResponse result = apiInstance.getRelationTuples(namespace, pageToken, pageSize, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
+      GetRelationTuplesResponse result = apiInstance.getRelationTuples(pageToken, pageSize, namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReadApi#getRelationTuples");
@@ -208,9 +210,9 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **String**| Namespace of the Relation Tuple |
  **pageToken** | **String**|  | [optional]
  **pageSize** | **Long**|  | [optional]
+ **namespace** | **String**| Namespace of the Relation Tuple | [optional]
  **_object** | **String**| Object of the Relation Tuple | [optional]
  **relation** | **String**| Relation of the Relation Tuple | [optional]
  **subjectId** | **String**| SubjectID of the Relation Tuple | [optional]
@@ -235,12 +237,12 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | getRelationTuplesResponse |  -  |
-**404** | The standard error format |  -  |
-**500** | The standard error format |  -  |
+**404** | genericError |  -  |
+**500** | genericError |  -  |
 
 <a name="postCheck"></a>
 # **postCheck**
-> GetCheckResponse postCheck(payload)
+> GetCheckResponse postCheck(maxDepth, relationQuery)
 
 Check a relation tuple
 
@@ -261,9 +263,10 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     ReadApi apiInstance = new ReadApi(defaultClient);
-    RelationQuery payload = new RelationQuery(); // RelationQuery | 
+    Long maxDepth = 56L; // Long | 
+    RelationQuery relationQuery = new RelationQuery(); // RelationQuery | 
     try {
-      GetCheckResponse result = apiInstance.postCheck(payload);
+      GetCheckResponse result = apiInstance.postCheck(maxDepth, relationQuery);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReadApi#postCheck");
@@ -280,7 +283,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**RelationQuery**](RelationQuery.md)|  | [optional]
+ **maxDepth** | **Long**|  | [optional]
+ **relationQuery** | [**RelationQuery**](RelationQuery.md)|  | [optional]
 
 ### Return type
 
@@ -299,7 +303,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | getCheckResponse |  -  |
-**400** | The standard error format |  -  |
+**400** | genericError |  -  |
 **403** | getCheckResponse |  -  |
-**500** | The standard error format |  -  |
+**500** | genericError |  -  |
 

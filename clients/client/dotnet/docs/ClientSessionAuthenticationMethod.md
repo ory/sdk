@@ -5,6 +5,7 @@ A singular authenticator used during authentication / login.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Aal** | [**ClientAuthenticatorAssuranceLevel**](ClientAuthenticatorAssuranceLevel.md) |  | [optional] 
 **CompletedAt** | **DateTime** | When the authentication challenge was completed. | [optional] 
 **Method** | **string** |  | [optional] 
 

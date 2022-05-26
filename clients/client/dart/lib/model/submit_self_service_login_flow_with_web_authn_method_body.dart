@@ -17,6 +17,11 @@ abstract class SubmitSelfServiceLoginFlowWithWebAuthnMethodBody implements Built
     @BuiltValueField(wireName: r'csrf_token')
     String get csrfToken;
 
+    /// Identifier is the email or username of the user trying to log in. This field is only required when using WebAuthn for passwordless login. When using WebAuthn for multi-factor authentication, it is not needed.
+    @nullable
+    @BuiltValueField(wireName: r'identifier')
+    String get identifier;
+
     /// Method should be set to \"webAuthn\" when logging in using the WebAuthn strategy.
     @BuiltValueField(wireName: r'method')
     String get method;
@@ -53,6 +58,12 @@ class _$SubmitSelfServiceLoginFlowWithWebAuthnMethodBodySerializer implements St
                 ..add(serializers.serialize(object.csrfToken,
                     specifiedType: const FullType(String)));
         }
+        if (object.identifier != null) {
+            result
+                ..add(r'identifier')
+                ..add(serializers.serialize(object.identifier,
+                    specifiedType: const FullType(String)));
+        }
         result
             ..add(r'method')
             ..add(serializers.serialize(object.method,
@@ -79,6 +90,10 @@ class _$SubmitSelfServiceLoginFlowWithWebAuthnMethodBodySerializer implements St
             switch (key) {
                 case r'csrf_token':
                     result.csrfToken = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'identifier':
+                    result.identifier = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
                 case r'method':

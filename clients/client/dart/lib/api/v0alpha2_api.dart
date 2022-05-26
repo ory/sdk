@@ -14,9 +14,15 @@ import 'package:built_value/json_object.dart';
 import 'package:ory_client/model/admin_create_identity_body.dart';
 import 'package:ory_client/model/admin_create_self_service_recovery_link_body.dart';
 import 'package:ory_client/model/admin_update_identity_body.dart';
+import 'package:ory_client/model/cloud_account.dart';
+import 'package:ory_client/model/create_project_body.dart';
+import 'package:ory_client/model/generic_error.dart';
 import 'package:ory_client/model/identity.dart';
 import 'package:ory_client/model/identity_schema.dart';
 import 'package:ory_client/model/json_error.dart';
+import 'package:ory_client/model/json_patch.dart';
+import 'package:ory_client/model/project.dart';
+import 'package:ory_client/model/project_metadata.dart';
 import 'package:ory_client/model/revoked_sessions.dart';
 import 'package:ory_client/model/self_service_browser_location_change_required_error.dart';
 import 'package:ory_client/model/self_service_error.dart';
@@ -34,8 +40,10 @@ import 'package:ory_client/model/submit_self_service_recovery_flow_body.dart';
 import 'package:ory_client/model/submit_self_service_registration_flow_body.dart';
 import 'package:ory_client/model/submit_self_service_settings_flow_body.dart';
 import 'package:ory_client/model/submit_self_service_verification_flow_body.dart';
+import 'package:ory_client/model/successful_project_update.dart';
 import 'package:ory_client/model/successful_self_service_login_without_browser.dart';
 import 'package:ory_client/model/successful_self_service_registration_without_browser.dart';
+import 'package:ory_client/model/update_project.dart';
 
 class V0alpha2Api {
 
@@ -58,7 +66,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/admin/identities',
+      path: r'/admin/identities',
       method: 'POST',
       headers: <String, dynamic>{
         ...?headers,
@@ -121,7 +129,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/admin/recovery/link',
+      path: r'/admin/recovery/link',
       method: 'POST',
       headers: <String, dynamic>{
         ...?headers,
@@ -184,7 +192,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/admin/identities/{id}'.replaceAll('{' r'id' '}', id.toString()),
+      path: r'/admin/identities/{id}'.replaceAll('{' r'id' '}', id.toString()),
       method: 'DELETE',
       headers: <String, dynamic>{
         ...?headers,
@@ -229,7 +237,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/admin/identities/{id}/sessions'.replaceAll('{' r'id' '}', id.toString()),
+      path: r'/admin/identities/{id}/sessions'.replaceAll('{' r'id' '}', id.toString()),
       method: 'DELETE',
       headers: <String, dynamic>{
         ...?headers,
@@ -261,6 +269,66 @@ class V0alpha2Api {
     return _response;
   }
 
+  /// Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.
+  ///
+  /// Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
+  Future<Response<Session>> adminExtendSession(
+    String id, { 
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/admin/sessions/{id}/extend'.replaceAll('{' r'id' '}', id.toString()),
+      method: 'PATCH',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'name': 'oryAccessToken',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    const _responseType = FullType(Session);
+    final _responseData = _serializers.deserialize(
+      _response.data,
+      specifiedType: _responseType,
+    ) as Session;
+
+    return Response<Session>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      request: _response.request,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
   /// Get an Identity
   ///
   /// Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
@@ -275,7 +343,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/admin/identities/{id}'.replaceAll('{' r'id' '}', id.toString()),
+      path: r'/admin/identities/{id}'.replaceAll('{' r'id' '}', id.toString()),
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -339,7 +407,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/admin/identities',
+      path: r'/admin/identities',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -406,7 +474,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/admin/identities/{id}/sessions'.replaceAll('{' r'id' '}', id.toString()),
+      path: r'/admin/identities/{id}/sessions'.replaceAll('{' r'id' '}', id.toString()),
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -472,7 +540,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/admin/identities/{id}'.replaceAll('{' r'id' '}', id.toString()),
+      path: r'/admin/identities/{id}'.replaceAll('{' r'id' '}', id.toString()),
       method: 'PUT',
       headers: <String, dynamic>{
         ...?headers,
@@ -522,6 +590,69 @@ class V0alpha2Api {
     );
   }
 
+  /// Create a Project
+  ///
+  /// Creates a new project.
+  Future<Response<Project>> createProject({ 
+    CreateProjectBody createProjectBody,
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/projects',
+      method: 'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'name': 'oryAccessToken',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    const _type = FullType(CreateProjectBody);
+    _bodyData = _serializers.serialize(createProjectBody, specifiedType: _type);
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    const _responseType = FullType(Project);
+    final _responseData = _serializers.deserialize(
+      _response.data,
+      specifiedType: _responseType,
+    ) as Project;
+
+    return Response<Project>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      request: _response.request,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
   /// Create a Logout URL for Browsers
   ///
   /// This endpoint initializes a browser-based user logout flow and a URL which can be used to log out the user.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...). For API clients you can call the `/self-service/logout/api` URL directly with the Ory Session Token.  The URL is only valid for the currently signed in user. If no user is signed in, this endpoint returns a 401 error.  When calling this endpoint from a backend, please ensure to properly forward the HTTP cookies.
@@ -535,7 +666,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/logout/browser',
+      path: r'/self-service/logout/browser',
       method: 'GET',
       headers: <String, dynamic>{
         if (cookie != null) r'cookie': cookie,
@@ -591,7 +722,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/schemas/{id}'.replaceAll('{' r'id' '}', id.toString()),
+      path: r'/schemas/{id}'.replaceAll('{' r'id' '}', id.toString()),
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -633,6 +764,126 @@ class V0alpha2Api {
     );
   }
 
+  /// Get a Project
+  ///
+  /// Get a projects you have access to by its ID.
+  Future<Response<Project>> getProject(
+    String projectId, { 
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/projects/{project_id}'.replaceAll('{' r'project_id' '}', projectId.toString()),
+      method: 'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'name': 'oryAccessToken',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    const _responseType = FullType(Project);
+    final _responseData = _serializers.deserialize(
+      _response.data,
+      specifiedType: _responseType,
+    ) as Project;
+
+    return Response<Project>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      request: _response.request,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Get all members associated with this project.
+  ///
+  /// This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
+  Future<Response<BuiltList<CloudAccount>>> getProjectMembers(
+    String projectId, { 
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/projects/{project_id}/members'.replaceAll('{' r'project_id' '}', projectId.toString()),
+      method: 'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'name': 'oryAccessToken',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    const _responseType = FullType(BuiltList, [FullType(CloudAccount)]);
+    final BuiltList<CloudAccount> _responseData = _serializers.deserialize(
+      _response.data,
+      specifiedType: _responseType,
+    ) as BuiltList<CloudAccount>;
+
+    return Response<BuiltList<CloudAccount>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      request: _response.request,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
   /// Get Self-Service Errors
   ///
   /// This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?id=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
@@ -646,7 +897,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/errors',
+      path: r'/self-service/errors',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -693,7 +944,7 @@ class V0alpha2Api {
 
   /// Get Login Flow
   ///
-  /// This endpoint returns a login flow's context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request's HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  ```js pseudo-code example router.get('/login', async function (req, res) { const flow = await client.getSelfServiceLoginFlow(req.header('cookie'), req.query['flow'])  res.render('login', flow) }) ```  This request may fail due to several reasons. The `error.id` can be one of:  `session_already_available`: The user is already signed in. `self_service_flow_expired`: The flow is expired and you should request a new one.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+  /// This endpoint returns a login flow's context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request's HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  ```js pseudo-code example router.get('/login', async function (req, res) { const flow = await client.getSelfServiceLoginFlow(req.header('cookie'), req.query['flow'])  res.render('login', flow) }) ```  This request may fail due to several reasons. The `error.id` can be one of:  `session_already_available`: The user is already signed in. `self_service_flow_expired`: The flow is expired and you should request a new one.  More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
   Future<Response<SelfServiceLoginFlow>> getSelfServiceLoginFlow(
     String id, { 
     String cookie,
@@ -705,7 +956,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/login/flows',
+      path: r'/self-service/login/flows',
       method: 'GET',
       headers: <String, dynamic>{
         if (cookie != null) r'cookie': cookie,
@@ -753,7 +1004,7 @@ class V0alpha2Api {
 
   /// Get Recovery Flow
   ///
-  /// This endpoint returns a recovery flow's context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request's HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  ```js pseudo-code example router.get('/recovery', async function (req, res) { const flow = await client.getSelfServiceRecoveryFlow(req.header('Cookie'), req.query['flow'])  res.render('recovery', flow) }) ```  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+  /// This endpoint returns a recovery flow's context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request's HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  ```js pseudo-code example router.get('/recovery', async function (req, res) { const flow = await client.getSelfServiceRecoveryFlow(req.header('Cookie'), req.query['flow'])  res.render('recovery', flow) }) ```  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
   Future<Response<SelfServiceRecoveryFlow>> getSelfServiceRecoveryFlow(
     String id, { 
     String cookie,
@@ -765,7 +1016,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/recovery/flows',
+      path: r'/self-service/recovery/flows',
       method: 'GET',
       headers: <String, dynamic>{
         if (cookie != null) r'cookie': cookie,
@@ -813,7 +1064,7 @@ class V0alpha2Api {
 
   /// Get Registration Flow
   ///
-  /// This endpoint returns a registration flow's context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request's HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  ```js pseudo-code example router.get('/registration', async function (req, res) { const flow = await client.getSelfServiceRegistrationFlow(req.header('cookie'), req.query['flow'])  res.render('registration', flow) }) ```  This request may fail due to several reasons. The `error.id` can be one of:  `session_already_available`: The user is already signed in. `self_service_flow_expired`: The flow is expired and you should request a new one.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+  /// This endpoint returns a registration flow's context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request's HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  ```js pseudo-code example router.get('/registration', async function (req, res) { const flow = await client.getSelfServiceRegistrationFlow(req.header('cookie'), req.query['flow'])  res.render('registration', flow) }) ```  This request may fail due to several reasons. The `error.id` can be one of:  `session_already_available`: The user is already signed in. `self_service_flow_expired`: The flow is expired and you should request a new one.  More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
   Future<Response<SelfServiceRegistrationFlow>> getSelfServiceRegistrationFlow(
     String id, { 
     String cookie,
@@ -825,7 +1076,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/registration/flows',
+      path: r'/self-service/registration/flows',
       method: 'GET',
       headers: <String, dynamic>{
         if (cookie != null) r'cookie': cookie,
@@ -886,7 +1137,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/settings/flows',
+      path: r'/self-service/settings/flows',
       method: 'GET',
       headers: <String, dynamic>{
         if (xSessionToken != null) r'X-Session-Token': xSessionToken,
@@ -947,7 +1198,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/verification/flows',
+      path: r'/self-service/verification/flows',
       method: 'GET',
       headers: <String, dynamic>{
         if (cookie != null) r'cookie': cookie,
@@ -995,7 +1246,7 @@ class V0alpha2Api {
 
   /// Get WebAuthn JavaScript
   ///
-  /// This endpoint provides JavaScript which is needed in order to perform WebAuthn login and registration.  If you are building a JavaScript Browser App (e.g. in ReactJS or AngularJS) you will need to load this file:  ```html <script src=\"https://public-kratos.example.org/.well-known/ory/webauthn.js\" type=\"script\" async /> ```  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+  /// This endpoint provides JavaScript which is needed in order to perform WebAuthn login and registration.  If you are building a JavaScript Browser App (e.g. in ReactJS or AngularJS) you will need to load this file:  ```html <script src=\"https://public-kratos.example.org/.well-known/ory/webauthn.js\" type=\"script\" async /> ```  More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
   Future<Response<String>> getWebAuthnJavaScript({ 
     CancelToken cancelToken,
     Map<String, dynamic> headers,
@@ -1005,7 +1256,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/.well-known/ory/webauthn.js',
+      path: r'/.well-known/ory/webauthn.js',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -1045,7 +1296,7 @@ class V0alpha2Api {
 
   /// Initialize Login Flow for Browsers
   ///
-  /// This endpoint initializes a browser-based user login flow. This endpoint will set the appropriate cookies and anti-CSRF measures required for browser-based flows.  If this endpoint is opened as a link in the browser, it will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+  /// This endpoint initializes a browser-based user login flow. This endpoint will set the appropriate cookies and anti-CSRF measures required for browser-based flows.  If this endpoint is opened as a link in the browser, it will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
   Future<Response<SelfServiceLoginFlow>> initializeSelfServiceLoginFlowForBrowsers({ 
     bool refresh,
     String aal,
@@ -1058,7 +1309,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/login/browser',
+      path: r'/self-service/login/browser',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -1107,7 +1358,7 @@ class V0alpha2Api {
 
   /// Initialize Login Flow for APIs, Services, Apps, ...
   ///
-  /// This endpoint initiates a login flow for API clients that do not use a browser, such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+  /// This endpoint initiates a login flow for API clients that do not use a browser, such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
   Future<Response<SelfServiceLoginFlow>> initializeSelfServiceLoginFlowWithoutBrowser({ 
     bool refresh,
     String aal,
@@ -1120,7 +1371,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/login/api',
+      path: r'/self-service/login/api',
       method: 'GET',
       headers: <String, dynamic>{
         if (xSessionToken != null) r'X-Session-Token': xSessionToken,
@@ -1169,7 +1420,7 @@ class V0alpha2Api {
 
   /// Initialize Recovery Flow for Browsers
   ///
-  /// This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to `selfservice.flows.recovery.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists, the browser is returned to the configured return URL.  If this endpoint is called via an AJAX request, the response contains the recovery flow without any redirects or a 400 bad request error if the user is already authenticated.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+  /// This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to `selfservice.flows.recovery.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists, the browser is returned to the configured return URL.  If this endpoint is called via an AJAX request, the response contains the recovery flow without any redirects or a 400 bad request error if the user is already authenticated.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
   Future<Response<SelfServiceRecoveryFlow>> initializeSelfServiceRecoveryFlowForBrowsers({ 
     String returnTo,
     CancelToken cancelToken,
@@ -1180,7 +1431,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/recovery/browser',
+      path: r'/self-service/recovery/browser',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -1227,7 +1478,7 @@ class V0alpha2Api {
 
   /// Initialize Recovery Flow for APIs, Services, Apps, ...
   ///
-  /// This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).   More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+  /// This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).   More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
   Future<Response<SelfServiceRecoveryFlow>> initializeSelfServiceRecoveryFlowWithoutBrowser({ 
     CancelToken cancelToken,
     Map<String, dynamic> headers,
@@ -1237,7 +1488,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/recovery/api',
+      path: r'/self-service/recovery/api',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -1281,7 +1532,7 @@ class V0alpha2Api {
 
   /// Initialize Registration Flow for Browsers
   ///
-  /// This endpoint initializes a browser-based user registration flow. This endpoint will set the appropriate cookies and anti-CSRF measures required for browser-based flows.  :::info  This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.  :::  If this endpoint is opened as a link in the browser, it will be redirected to `selfservice.flows.registration.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url`.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!  If this endpoint is called via an AJAX request, the response contains the registration flow without a redirect.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+  /// This endpoint initializes a browser-based user registration flow. This endpoint will set the appropriate cookies and anti-CSRF measures required for browser-based flows.  :::info  This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.  :::  If this endpoint is opened as a link in the browser, it will be redirected to `selfservice.flows.registration.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url`.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!  If this endpoint is called via an AJAX request, the response contains the registration flow without a redirect.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
   Future<Response<SelfServiceRegistrationFlow>> initializeSelfServiceRegistrationFlowForBrowsers({ 
     String returnTo,
     CancelToken cancelToken,
@@ -1292,7 +1543,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/registration/browser',
+      path: r'/self-service/registration/browser',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -1339,7 +1590,7 @@ class V0alpha2Api {
 
   /// Initialize Registration Flow for APIs, Services, Apps, ...
   ///
-  /// This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing registration flow call `/self-service/registration/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+  /// This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing registration flow call `/self-service/registration/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
   Future<Response<SelfServiceRegistrationFlow>> initializeSelfServiceRegistrationFlowWithoutBrowser({ 
     CancelToken cancelToken,
     Map<String, dynamic> headers,
@@ -1349,7 +1600,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/registration/api',
+      path: r'/self-service/registration/api',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -1404,7 +1655,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/settings/browser',
+      path: r'/self-service/settings/browser',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -1462,7 +1713,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/settings/api',
+      path: r'/self-service/settings/api',
       method: 'GET',
       headers: <String, dynamic>{
         if (xSessionToken != null) r'X-Session-Token': xSessionToken,
@@ -1518,7 +1769,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/verification/browser',
+      path: r'/self-service/verification/browser',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -1575,7 +1826,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/verification/api',
+      path: r'/self-service/verification/api',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -1631,7 +1882,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/schemas',
+      path: r'/schemas',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -1677,6 +1928,65 @@ class V0alpha2Api {
     );
   }
 
+  /// List All Projects
+  ///
+  /// Lists all projects you have access to.
+  Future<Response<BuiltList<ProjectMetadata>>> listProjects({ 
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/projects',
+      method: 'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'name': 'oryAccessToken',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    const _responseType = FullType(BuiltList, [FullType(ProjectMetadata)]);
+    final BuiltList<ProjectMetadata> _responseData = _serializers.deserialize(
+      _response.data,
+      specifiedType: _responseType,
+    ) as BuiltList<ProjectMetadata>;
+
+    return Response<BuiltList<ProjectMetadata>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      request: _response.request,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
   /// This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the `/sessions/whoami` endpoint.
   ///
   /// This endpoint is useful for:  Displaying all other sessions that belong to the logged-in user
@@ -1693,7 +2003,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/sessions',
+      path: r'/sessions',
       method: 'GET',
       headers: <String, dynamic>{
         if (xSessionToken != null) r'X-Session-Token': xSessionToken,
@@ -1741,6 +2051,161 @@ class V0alpha2Api {
     );
   }
 
+  /// Patch an Ory Cloud Project Configuration
+  ///
+  /// This endpoints allows you to patch individual Ory Cloud Project configuration keys for Ory's services (identity, permission, ...). The configuration format is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.
+  Future<Response<SuccessfulProjectUpdate>> patchProject(
+    String projectId, { 
+    BuiltList<JsonPatch> jsonPatch,
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/projects/{project_id}'.replaceAll('{' r'project_id' '}', projectId.toString()),
+      method: 'PATCH',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'name': 'oryAccessToken',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    const _type = FullType(BuiltList, [FullType(JsonPatch)]);
+    _bodyData = _serializers.serialize(jsonPatch, specifiedType: _type);
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    const _responseType = FullType(SuccessfulProjectUpdate);
+    final _responseData = _serializers.deserialize(
+      _response.data,
+      specifiedType: _responseType,
+    ) as SuccessfulProjectUpdate;
+
+    return Response<SuccessfulProjectUpdate>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      request: _response.request,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Irrecoverably Purge a Project
+  ///
+  /// !! Use with extreme caution !!  Using this API endpoint you can purge (completely delete) a project and its data. This action can not be undone and will delete ALL your data.  !! Use with extreme caution !!
+  Future<Response<void>> purgeProject(
+    String projectId, { 
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/projects/{project_id}'.replaceAll('{' r'project_id' '}', projectId.toString()),
+      method: 'DELETE',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'name': 'oryAccessToken',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    return _response;
+  }
+
+  /// Remove a member associated with this project. This also sets their invite status to `REMOVED`.
+  ///
+  /// This endpoint requires the user to be a member of the project with the role `OWNER`.
+  Future<Response<void>> removeProjectMember(
+    String projectId,
+    String memberId, { 
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/projects/{project_id}/members/{member_id}'.replaceAll('{' r'project_id' '}', projectId.toString()).replaceAll('{' r'member_id' '}', memberId.toString()),
+      method: 'DELETE',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'name': 'oryAccessToken',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    return _response;
+  }
+
   /// Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
   ///
   /// This endpoint is useful for:  To forcefully logout the current user from another device or session
@@ -1754,7 +2219,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/sessions/{id}'.replaceAll('{' r'id' '}', id.toString()),
+      path: r'/sessions/{id}'.replaceAll('{' r'id' '}', id.toString()),
       method: 'DELETE',
       headers: <String, dynamic>{
         ...?headers,
@@ -1795,7 +2260,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/sessions',
+      path: r'/sessions',
       method: 'DELETE',
       headers: <String, dynamic>{
         if (xSessionToken != null) r'X-Session-Token': xSessionToken,
@@ -1841,7 +2306,7 @@ class V0alpha2Api {
 
   /// Submit a Login Flow
   ///
-  /// :::info  This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.  :::  Use this endpoint to complete a login flow. This endpoint behaves differently for API and browser flows.  API flows expect `application/json` to be sent in the body and responds with HTTP 200 and a application/json body with the session token on success; HTTP 302 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with a HTTP 302 redirect to the post/after login URL or the `return_to` value if it was set and if the login succeeded; a HTTP 302 redirect to the login UI URL with the flow ID containing the validation errors otherwise.  Browser flows with an accept header of `application/json` will not redirect but instead respond with HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success; HTTP 302 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration! `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL. Most likely used in Social Sign In flows.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+  /// :::info  This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.  :::  Use this endpoint to complete a login flow. This endpoint behaves differently for API and browser flows.  API flows expect `application/json` to be sent in the body and responds with HTTP 200 and a application/json body with the session token on success; HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body; HTTP 400 on form validation errors.  Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with a HTTP 303 redirect to the post/after login URL or the `return_to` value if it was set and if the login succeeded; a HTTP 303 redirect to the login UI URL with the flow ID containing the validation errors otherwise.  Browser flows with an accept header of `application/json` will not redirect but instead respond with HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success; HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration! `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL. Most likely used in Social Sign In flows.  More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
   Future<Response<SuccessfulSelfServiceLoginWithoutBrowser>> submitSelfServiceLoginFlow(
     String flow, { 
     String xSessionToken,
@@ -1854,7 +2319,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/login',
+      path: r'/self-service/login',
       method: 'POST',
       headers: <String, dynamic>{
         if (xSessionToken != null) r'X-Session-Token': xSessionToken,
@@ -1905,7 +2370,7 @@ class V0alpha2Api {
 
   /// Complete Self-Service Logout
   ///
-  /// This endpoint logs out an identity in a self-service manner.  If the `Accept` HTTP header is not set to `application/json`, the browser will be redirected (HTTP 302 Found) to the `return_to` parameter of the initial request or fall back to `urls.default_return_to`.  If the `Accept` HTTP header is set to `application/json`, a 204 No Content response will be sent on successful logout instead.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...). For API clients you can call the `/self-service/logout/api` URL directly with the Ory Session Token.  More information can be found at [Ory Kratos User Logout Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-logout).
+  /// This endpoint logs out an identity in a self-service manner.  If the `Accept` HTTP header is not set to `application/json`, the browser will be redirected (HTTP 303 See Other) to the `return_to` parameter of the initial request or fall back to `urls.default_return_to`.  If the `Accept` HTTP header is set to `application/json`, a 204 No Content response will be sent on successful logout instead.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...). For API clients you can call the `/self-service/logout/api` URL directly with the Ory Session Token.  More information can be found at [Ory Kratos User Logout Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-logout).
   Future<Response<void>> submitSelfServiceLogoutFlow({ 
     String token,
     String returnTo,
@@ -1917,7 +2382,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/logout',
+      path: r'/self-service/logout',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -1961,7 +2426,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/logout/api',
+      path: r'/self-service/logout/api',
       method: 'DELETE',
       headers: <String, dynamic>{
         ...?headers,
@@ -1993,7 +2458,7 @@ class V0alpha2Api {
 
   /// Complete Recovery Flow
   ///
-  /// Use this endpoint to complete a recovery flow. This endpoint behaves differently for API and browser flows and has several states:  `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent and works with API- and Browser-initiated flows. For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid. and a HTTP 302 Found redirect with a fresh recovery flow if the flow was otherwise invalid (e.g. expired). For Browser clients without HTTP Header `Accept` or with `Accept: text/_*` it returns a HTTP 302 Found redirect to the Recovery UI URL with the Recovery Flow ID appended. `sent_email` is the success state after `choose_method` for the `link` method and allows the user to request another recovery email. It works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state. `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow (\"sending a recovery link\") does not have any API capabilities. The server responds with a HTTP 302 Found redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Recover UI URL with a new Recovery Flow ID which contains an error message that the recovery link was invalid.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery.mdx).
+  /// Use this endpoint to complete a recovery flow. This endpoint behaves differently for API and browser flows and has several states:  `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent and works with API- and Browser-initiated flows. For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid. and a HTTP 303 See Other redirect with a fresh recovery flow if the flow was otherwise invalid (e.g. expired). For Browser clients without HTTP Header `Accept` or with `Accept: text/_*` it returns a HTTP 303 See Other redirect to the Recovery UI URL with the Recovery Flow ID appended. `sent_email` is the success state after `choose_method` for the `link` method and allows the user to request another recovery email. It works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state. `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow (\"sending a recovery link\") does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Recover UI URL with a new Recovery Flow ID which contains an error message that the recovery link was invalid.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
   Future<Response<SelfServiceRecoveryFlow>> submitSelfServiceRecoveryFlow(
     String flow, { 
     String token,
@@ -2006,7 +2471,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/recovery',
+      path: r'/self-service/recovery',
       method: 'POST',
       headers: <String, dynamic>{
         ...?headers,
@@ -2057,7 +2522,7 @@ class V0alpha2Api {
 
   /// Submit a Registration Flow
   ///
-  /// Use this endpoint to complete a registration flow by sending an identity's traits and password. This endpoint behaves differently for API and browser flows.  API flows expect `application/json` to be sent in the body and respond with HTTP 200 and a application/json body with the created identity success - if the session hook is configured the `session` and `session_token` will also be included; HTTP 302 redirect to a fresh registration flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with a HTTP 302 redirect to the post/after registration URL or the `return_to` value if it was set and if the registration succeeded; a HTTP 302 redirect to the registration UI URL with the flow ID containing the validation errors otherwise.  Browser flows with an accept header of `application/json` will not redirect but instead respond with HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success; HTTP 302 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration! `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL. Most likely used in Social Sign In flows.  More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+  /// Use this endpoint to complete a registration flow by sending an identity's traits and password. This endpoint behaves differently for API and browser flows.  API flows expect `application/json` to be sent in the body and respond with HTTP 200 and a application/json body with the created identity success - if the session hook is configured the `session` and `session_token` will also be included; HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body; HTTP 400 on form validation errors.  Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with a HTTP 303 redirect to the post/after registration URL or the `return_to` value if it was set and if the registration succeeded; a HTTP 303 redirect to the registration UI URL with the flow ID containing the validation errors otherwise.  Browser flows with an accept header of `application/json` will not redirect but instead respond with HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success; HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration! `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL. Most likely used in Social Sign In flows.  More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
   Future<Response<SuccessfulSelfServiceRegistrationWithoutBrowser>> submitSelfServiceRegistrationFlow(
     String flow, { 
     SubmitSelfServiceRegistrationFlowBody submitSelfServiceRegistrationFlowBody,
@@ -2069,7 +2534,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/registration',
+      path: r'/self-service/registration',
       method: 'POST',
       headers: <String, dynamic>{
         ...?headers,
@@ -2119,7 +2584,7 @@ class V0alpha2Api {
 
   /// Complete Settings Flow
   ///
-  /// Use this endpoint to complete a settings flow by sending an identity's updated password. This endpoint behaves differently for API and browser flows.  API-initiated flows expect `application/json` to be sent in the body and respond with HTTP 200 and an application/json body with the session token on success; HTTP 302 redirect to a fresh settings flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors. HTTP 401 when the endpoint is called without a valid session token. HTTP 403 when `selfservice.flows.settings.privileged_session_max_age` was reached or the session's AAL is too low. Implies that the user needs to re-authenticate.  Browser flows without HTTP Header `Accept` or with `Accept: text/_*` respond with a HTTP 302 redirect to the post/after settings URL or the `return_to` value if it was set and if the flow succeeded; a HTTP 302 redirect to the Settings UI URL with the flow ID containing the validation errors otherwise. a HTTP 302 redirect to the login endpoint when `selfservice.flows.settings.privileged_session_max_age` was reached or the session's AAL is too low.  Browser flows with HTTP Header `Accept: application/json` respond with HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success; HTTP 302 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 401 when the endpoint is called without a valid session cookie. HTTP 403 when the page is accessed without a session cookie or the session's AAL is too low. HTTP 400 on form validation errors.  Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor (happens automatically for server-side browser flows) or change the configuration.  If this endpoint is called with a `Accept: application/json` HTTP header, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_refresh_required`: The identity requested to change something that needs a privileged session. Redirect the identity to the login init endpoint with query parameters `?refresh=true&return_to=<the-current-browser-url>`, or initiate a refresh login flow otherwise. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `session_inactive`: No Ory Session was found - sign in a user first. `security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other identity logged in instead. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration! `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL. Most likely used in Social Sign In flows.  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
+  /// Use this endpoint to complete a settings flow by sending an identity's updated password. This endpoint behaves differently for API and browser flows.  API-initiated flows expect `application/json` to be sent in the body and respond with HTTP 200 and an application/json body with the session token on success; HTTP 303 redirect to a fresh settings flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors. HTTP 401 when the endpoint is called without a valid session token. HTTP 403 when `selfservice.flows.settings.privileged_session_max_age` was reached or the session's AAL is too low. Implies that the user needs to re-authenticate.  Browser flows without HTTP Header `Accept` or with `Accept: text/_*` respond with a HTTP 303 redirect to the post/after settings URL or the `return_to` value if it was set and if the flow succeeded; a HTTP 303 redirect to the Settings UI URL with the flow ID containing the validation errors otherwise. a HTTP 303 redirect to the login endpoint when `selfservice.flows.settings.privileged_session_max_age` was reached or the session's AAL is too low.  Browser flows with HTTP Header `Accept: application/json` respond with HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success; HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 401 when the endpoint is called without a valid session cookie. HTTP 403 when the page is accessed without a session cookie or the session's AAL is too low. HTTP 400 on form validation errors.  Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor (happens automatically for server-side browser flows) or change the configuration.  If this endpoint is called with a `Accept: application/json` HTTP header, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_refresh_required`: The identity requested to change something that needs a privileged session. Redirect the identity to the login init endpoint with query parameters `?refresh=true&return_to=<the-current-browser-url>`, or initiate a refresh login flow otherwise. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `session_inactive`: No Ory Session was found - sign in a user first. `security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other identity logged in instead. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration! `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL. Most likely used in Social Sign In flows.  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
   Future<Response<SelfServiceSettingsFlow>> submitSelfServiceSettingsFlow(
     String flow, { 
     String xSessionToken,
@@ -2132,7 +2597,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/settings',
+      path: r'/self-service/settings',
       method: 'POST',
       headers: <String, dynamic>{
         if (xSessionToken != null) r'X-Session-Token': xSessionToken,
@@ -2183,7 +2648,7 @@ class V0alpha2Api {
 
   /// Complete Verification Flow
   ///
-  /// Use this endpoint to complete a verification flow. This endpoint behaves differently for API and browser flows and has several states:  `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent and works with API- and Browser-initiated flows. For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid and a HTTP 302 Found redirect with a fresh verification flow if the flow was otherwise invalid (e.g. expired). For Browser clients without HTTP Header `Accept` or with `Accept: text/_*` it returns a HTTP 302 Found redirect to the Verification UI URL with the Verification Flow ID appended. `sent_email` is the success state after `choose_method` when using the `link` method and allows the user to request another verification email. It works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state. `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow (\"sending a verification link\") does not have any API capabilities. The server responds with a HTTP 302 Found redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Verification UI URL with a new Verification Flow ID which contains an error message that the verification link was invalid.  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+  /// Use this endpoint to complete a verification flow. This endpoint behaves differently for API and browser flows and has several states:  `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent and works with API- and Browser-initiated flows. For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid and a HTTP 303 See Other redirect with a fresh verification flow if the flow was otherwise invalid (e.g. expired). For Browser clients without HTTP Header `Accept` or with `Accept: text/_*` it returns a HTTP 303 See Other redirect to the Verification UI URL with the Verification Flow ID appended. `sent_email` is the success state after `choose_method` when using the `link` method and allows the user to request another verification email. It works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state. `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow (\"sending a verification link\") does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Verification UI URL with a new Verification Flow ID which contains an error message that the verification link was invalid.  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
   Future<Response<SelfServiceVerificationFlow>> submitSelfServiceVerificationFlow(
     String flow, { 
     String token,
@@ -2196,7 +2661,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/self-service/verification',
+      path: r'/self-service/verification',
       method: 'POST',
       headers: <String, dynamic>{
         ...?headers,
@@ -2259,7 +2724,7 @@ class V0alpha2Api {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/sessions/whoami',
+      path: r'/sessions/whoami',
       method: 'GET',
       headers: <String, dynamic>{
         if (xSessionToken != null) r'X-Session-Token': xSessionToken,
@@ -2292,6 +2757,70 @@ class V0alpha2Api {
     ) as Session;
 
     return Response<Session>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      request: _response.request,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Update an Ory Cloud Project Configuration
+  ///
+  /// This endpoints allows you to update the Ory Cloud Project configuration for individual services (identity, permission, ...). The configuration is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.  Be aware that updating any service's configuration will completely override your current configuration for that service!
+  Future<Response<SuccessfulProjectUpdate>> updateProject(
+    String projectId, { 
+    UpdateProject updateProject,
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/projects/{project_id}'.replaceAll('{' r'project_id' '}', projectId.toString()),
+      method: 'PUT',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'name': 'oryAccessToken',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    const _type = FullType(UpdateProject);
+    _bodyData = _serializers.serialize(updateProject, specifiedType: _type);
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    const _responseType = FullType(SuccessfulProjectUpdate);
+    final _responseData = _serializers.deserialize(
+      _response.data,
+      specifiedType: _responseType,
+    ) as SuccessfulProjectUpdate;
+
+    return Response<SuccessfulProjectUpdate>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

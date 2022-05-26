@@ -6,7 +6,7 @@
 # raise a `RecursionError`.
 # In order to avoid this, import only the API that you directly need like:
 #
-#   from .api.health_api import HealthApi
+#   from .api.metadata_api import MetadataApi
 #
 # or import this package, but before doing it, use:
 #
@@ -14,7 +14,6 @@
 #   sys.setrecursionlimit(n)
 
 # Import APIs into API package:
-from ory_keto_client.api.health_api import HealthApi
+from ory_keto_client.api.metadata_api import MetadataApi
 from ory_keto_client.api.read_api import ReadApi
-from ory_keto_client.api.version_api import VersionApi
 from ory_keto_client.api.write_api import WriteApi

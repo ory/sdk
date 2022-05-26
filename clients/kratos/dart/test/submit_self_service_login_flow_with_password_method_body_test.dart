@@ -20,6 +20,12 @@ void main() {
       // TODO
     });
 
+    // Identifier is the email or username of the user trying to log in.
+    // String identifier
+    test('to test the property `identifier`', () async {
+      // TODO
+    });
+
     // Method should be set to \"password\" when logging in using the identifier and password strategy.
     // String method
     test('to test the property `method`', () async {
@@ -32,7 +38,7 @@ void main() {
       // TODO
     });
 
-    // Identifier is the email or username of the user trying to log in.
+    // Identifier is the email or username of the user trying to log in. This field is deprecated!
     // String passwordIdentifier
     test('to test the property `passwordIdentifier`', () async {
       // TODO

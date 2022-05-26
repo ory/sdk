@@ -14,10 +14,12 @@ require 'ory-client'
 OryClient::SubmitSelfServiceSettingsFlowBody.openapi_one_of
 # =>
 # [
+#   :'SubmitSelfServiceSettingsFlowWithLookupMethodBody',
 #   :'SubmitSelfServiceSettingsFlowWithOidcMethodBody',
 #   :'SubmitSelfServiceSettingsFlowWithPasswordMethodBody',
 #   :'SubmitSelfServiceSettingsFlowWithProfileMethodBody',
-#   :'SubmitSelfServiceSettingsFlowWithTotpMethodBody'
+#   :'SubmitSelfServiceSettingsFlowWithTotpMethodBody',
+#   :'SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody'
 # ]
 ```
 
@@ -46,10 +48,12 @@ require 'ory-client'
 OryClient::SubmitSelfServiceSettingsFlowBody.openapi_discriminator_mapping
 # =>
 # {
+#   :'lookup_secret' => :'SubmitSelfServiceSettingsFlowWithLookupMethodBody',
 #   :'oidc' => :'SubmitSelfServiceSettingsFlowWithOidcMethodBody',
 #   :'password' => :'SubmitSelfServiceSettingsFlowWithPasswordMethodBody',
 #   :'profile' => :'SubmitSelfServiceSettingsFlowWithProfileMethodBody',
-#   :'totp' => :'SubmitSelfServiceSettingsFlowWithTotpMethodBody'
+#   :'totp' => :'SubmitSelfServiceSettingsFlowWithTotpMethodBody',
+#   :'webauthn' => :'SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody'
 # }
 
 ### build
@@ -62,7 +66,7 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 require 'ory-client'
 
 OryClient::SubmitSelfServiceSettingsFlowBody.build(data)
-# => #<SubmitSelfServiceSettingsFlowWithOidcMethodBody:0x00007fdd4aab02a0>
+# => #<SubmitSelfServiceSettingsFlowWithLookupMethodBody:0x00007fdd4aab02a0>
 
 OryClient::SubmitSelfServiceSettingsFlowBody.build(data_that_doesnt_match)
 # => nil
@@ -76,9 +80,11 @@ OryClient::SubmitSelfServiceSettingsFlowBody.build(data_that_doesnt_match)
 
 #### Return type
 
+- `SubmitSelfServiceSettingsFlowWithLookupMethodBody`
 - `SubmitSelfServiceSettingsFlowWithOidcMethodBody`
 - `SubmitSelfServiceSettingsFlowWithPasswordMethodBody`
 - `SubmitSelfServiceSettingsFlowWithProfileMethodBody`
 - `SubmitSelfServiceSettingsFlowWithTotpMethodBody`
+- `SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody`
 - `nil` (if no type matches)
 

@@ -5,14 +5,14 @@ All URIs are relative to http://localhost.
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createRelationTuple()**](WriteApi.md#createRelationTuple) | **PUT** /relation-tuples | Create a Relation Tuple
-[**deleteRelationTuple()**](WriteApi.md#deleteRelationTuple) | **DELETE** /relation-tuples | Delete a Relation Tuple
+[**deleteRelationTuples()**](WriteApi.md#deleteRelationTuples) | **DELETE** /relation-tuples | Delete Relation Tuples
 [**patchRelationTuples()**](WriteApi.md#patchRelationTuples) | **PATCH** /relation-tuples | Patch Multiple Relation Tuples
 
 
 ## `createRelationTuple()`
 
 ```php
-createRelationTuple($payload): \Ory\Keto\Client\Model\RelationQuery
+createRelationTuple($relationQuery): \Ory\Keto\Client\Model\RelationQuery
 ```
 
 Create a Relation Tuple
@@ -32,10 +32,10 @@ $apiInstance = new Ory\Keto\Client\Api\WriteApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$payload = new \Ory\Keto\Client\Model\RelationQuery(); // \Ory\Keto\Client\Model\RelationQuery
+$relationQuery = new \Ory\Keto\Client\Model\RelationQuery(); // \Ory\Keto\Client\Model\RelationQuery
 
 try {
-    $result = $apiInstance->createRelationTuple($payload);
+    $result = $apiInstance->createRelationTuple($relationQuery);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling WriteApi->createRelationTuple: ', $e->getMessage(), PHP_EOL;
@@ -46,7 +46,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**\Ory\Keto\Client\Model\RelationQuery**](../Model/RelationQuery.md)|  | [optional]
+ **relationQuery** | [**\Ory\Keto\Client\Model\RelationQuery**](../Model/RelationQuery.md)|  | [optional]
 
 ### Return type
 
@@ -65,15 +65,15 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `deleteRelationTuple()`
+## `deleteRelationTuples()`
 
 ```php
-deleteRelationTuple($namespace, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation)
+deleteRelationTuples($namespace, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation)
 ```
 
-Delete a Relation Tuple
+Delete Relation Tuples
 
-Use this endpoint to delete a relation tuple.
+Use this endpoint to delete relation tuples
 
 ### Example
 
@@ -97,9 +97,9 @@ $subjectSetObject = 'subjectSetObject_example'; // string | Object of the Subjec
 $subjectSetRelation = 'subjectSetRelation_example'; // string | Relation of the Subject Set
 
 try {
-    $apiInstance->deleteRelationTuple($namespace, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation);
+    $apiInstance->deleteRelationTuples($namespace, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation);
 } catch (Exception $e) {
-    echo 'Exception when calling WriteApi->deleteRelationTuple: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling WriteApi->deleteRelationTuples: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -107,9 +107,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **string**| Namespace of the Relation Tuple |
- **object** | **string**| Object of the Relation Tuple |
- **relation** | **string**| Relation of the Relation Tuple |
+ **namespace** | **string**| Namespace of the Relation Tuple | [optional]
+ **object** | **string**| Object of the Relation Tuple | [optional]
+ **relation** | **string**| Relation of the Relation Tuple | [optional]
  **subjectId** | **string**| SubjectID of the Relation Tuple | [optional]
  **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional]
  **subjectSetObject** | **string**| Object of the Subject Set | [optional]
@@ -135,7 +135,7 @@ No authorization required
 ## `patchRelationTuples()`
 
 ```php
-patchRelationTuples($payload)
+patchRelationTuples($patchDelta)
 ```
 
 Patch Multiple Relation Tuples
@@ -155,10 +155,10 @@ $apiInstance = new Ory\Keto\Client\Api\WriteApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$payload = array(new \Ory\Keto\Client\Model\PatchDelta()); // \Ory\Keto\Client\Model\PatchDelta[]
+$patchDelta = array(new \Ory\Keto\Client\Model\PatchDelta()); // \Ory\Keto\Client\Model\PatchDelta[]
 
 try {
-    $apiInstance->patchRelationTuples($payload);
+    $apiInstance->patchRelationTuples($patchDelta);
 } catch (Exception $e) {
     echo 'Exception when calling WriteApi->patchRelationTuples: ', $e->getMessage(), PHP_EOL;
 }
@@ -168,7 +168,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**\Ory\Keto\Client\Model\PatchDelta[]**](../Model/PatchDelta.md)|  | [optional]
+ **patchDelta** | [**\Ory\Keto\Client\Model\PatchDelta[]**](../Model/PatchDelta.md)|  | [optional]
 
 ### Return type
 

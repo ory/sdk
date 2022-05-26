@@ -5,13 +5,13 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateRelationTuple**](WriteApi.md#createrelationtuple) | **PUT** /relation-tuples | Create a Relation Tuple
-[**DeleteRelationTuple**](WriteApi.md#deleterelationtuple) | **DELETE** /relation-tuples | Delete a Relation Tuple
+[**DeleteRelationTuples**](WriteApi.md#deleterelationtuples) | **DELETE** /relation-tuples | Delete Relation Tuples
 [**PatchRelationTuples**](WriteApi.md#patchrelationtuples) | **PATCH** /relation-tuples | Patch Multiple Relation Tuples
 
 
 <a name="createrelationtuple"></a>
 # **CreateRelationTuple**
-> KetoRelationQuery CreateRelationTuple (KetoRelationQuery payload = null)
+> KetoRelationQuery CreateRelationTuple (KetoRelationQuery ketoRelationQuery = null)
 
 Create a Relation Tuple
 
@@ -34,12 +34,12 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
             var apiInstance = new WriteApi(config);
-            var payload = new KetoRelationQuery(); // KetoRelationQuery |  (optional) 
+            var ketoRelationQuery = new KetoRelationQuery(); // KetoRelationQuery |  (optional) 
 
             try
             {
                 // Create a Relation Tuple
-                KetoRelationQuery result = apiInstance.CreateRelationTuple(payload);
+                KetoRelationQuery result = apiInstance.CreateRelationTuple(ketoRelationQuery);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -57,7 +57,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**KetoRelationQuery**](KetoRelationQuery.md)|  | [optional] 
+ **ketoRelationQuery** | [**KetoRelationQuery**](KetoRelationQuery.md)|  | [optional] 
 
 ### Return type
 
@@ -77,18 +77,18 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | RelationQuery |  -  |
-| **400** | The standard error format |  -  |
-| **500** | The standard error format |  -  |
+| **400** | genericError |  -  |
+| **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deleterelationtuple"></a>
-# **DeleteRelationTuple**
-> void DeleteRelationTuple (string _namespace, string _object, string relation, string subjectId = null, string subjectSetNamespace = null, string subjectSetObject = null, string subjectSetRelation = null)
+<a name="deleterelationtuples"></a>
+# **DeleteRelationTuples**
+> void DeleteRelationTuples (string _namespace = null, string _object = null, string relation = null, string subjectId = null, string subjectSetNamespace = null, string subjectSetObject = null, string subjectSetRelation = null)
 
-Delete a Relation Tuple
+Delete Relation Tuples
 
-Use this endpoint to delete a relation tuple.
+Use this endpoint to delete relation tuples
 
 ### Example
 ```csharp
@@ -100,29 +100,29 @@ using Ory.Keto.Client.Model;
 
 namespace Example
 {
-    public class DeleteRelationTupleExample
+    public class DeleteRelationTuplesExample
     {
         public static void Main()
         {
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
             var apiInstance = new WriteApi(config);
-            var _namespace = _namespace_example;  // string | Namespace of the Relation Tuple
-            var _object = _object_example;  // string | Object of the Relation Tuple
-            var relation = relation_example;  // string | Relation of the Relation Tuple
-            var subjectId = subjectId_example;  // string | SubjectID of the Relation Tuple (optional) 
-            var subjectSetNamespace = subjectSetNamespace_example;  // string | Namespace of the Subject Set (optional) 
-            var subjectSetObject = subjectSetObject_example;  // string | Object of the Subject Set (optional) 
-            var subjectSetRelation = subjectSetRelation_example;  // string | Relation of the Subject Set (optional) 
+            var _namespace = "_namespace_example";  // string | Namespace of the Relation Tuple (optional) 
+            var _object = "_object_example";  // string | Object of the Relation Tuple (optional) 
+            var relation = "relation_example";  // string | Relation of the Relation Tuple (optional) 
+            var subjectId = "subjectId_example";  // string | SubjectID of the Relation Tuple (optional) 
+            var subjectSetNamespace = "subjectSetNamespace_example";  // string | Namespace of the Subject Set (optional) 
+            var subjectSetObject = "subjectSetObject_example";  // string | Object of the Subject Set (optional) 
+            var subjectSetRelation = "subjectSetRelation_example";  // string | Relation of the Subject Set (optional) 
 
             try
             {
-                // Delete a Relation Tuple
-                apiInstance.DeleteRelationTuple(_namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
+                // Delete Relation Tuples
+                apiInstance.DeleteRelationTuples(_namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling WriteApi.DeleteRelationTuple: " + e.Message );
+                Debug.Print("Exception when calling WriteApi.DeleteRelationTuples: " + e.Message );
                 Debug.Print("Status Code: "+ e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -135,9 +135,9 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **_namespace** | **string**| Namespace of the Relation Tuple | 
- **_object** | **string**| Object of the Relation Tuple | 
- **relation** | **string**| Relation of the Relation Tuple | 
+ **_namespace** | **string**| Namespace of the Relation Tuple | [optional] 
+ **_object** | **string**| Object of the Relation Tuple | [optional] 
+ **relation** | **string**| Relation of the Relation Tuple | [optional] 
  **subjectId** | **string**| SubjectID of the Relation Tuple | [optional] 
  **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional] 
  **subjectSetObject** | **string**| Object of the Subject Set | [optional] 
@@ -161,14 +161,14 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | The standard error format |  -  |
-| **500** | The standard error format |  -  |
+| **400** | genericError |  -  |
+| **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="patchrelationtuples"></a>
 # **PatchRelationTuples**
-> void PatchRelationTuples (List<KetoPatchDelta> payload = null)
+> void PatchRelationTuples (List<KetoPatchDelta> ketoPatchDelta = null)
 
 Patch Multiple Relation Tuples
 
@@ -191,12 +191,12 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
             var apiInstance = new WriteApi(config);
-            var payload = new List<KetoPatchDelta>(); // List<KetoPatchDelta> |  (optional) 
+            var ketoPatchDelta = new List<KetoPatchDelta>(); // List<KetoPatchDelta> |  (optional) 
 
             try
             {
                 // Patch Multiple Relation Tuples
-                apiInstance.PatchRelationTuples(payload);
+                apiInstance.PatchRelationTuples(ketoPatchDelta);
             }
             catch (ApiException  e)
             {
@@ -213,7 +213,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**List&lt;KetoPatchDelta&gt;**](KetoPatchDelta.md)|  | [optional] 
+ **ketoPatchDelta** | [**List&lt;KetoPatchDelta&gt;**](KetoPatchDelta.md)|  | [optional] 
 
 ### Return type
 
@@ -233,9 +233,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | The standard error format |  -  |
-| **404** | The standard error format |  -  |
-| **500** | The standard error format |  -  |
+| **400** | genericError |  -  |
+| **404** | genericError |  -  |
+| **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

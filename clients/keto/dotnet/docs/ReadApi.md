@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 <a name="getcheck"></a>
 # **GetCheck**
-> KetoGetCheckResponse GetCheck (string _namespace, string _object, string relation, string subjectId = null, string subjectSetNamespace = null, string subjectSetObject = null, string subjectSetRelation = null)
+> KetoGetCheckResponse GetCheck (string _namespace = null, string _object = null, string relation = null, string subjectId = null, string subjectSetNamespace = null, string subjectSetObject = null, string subjectSetRelation = null, long? maxDepth = null)
 
 Check a relation tuple
 
@@ -35,18 +35,19 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
             var apiInstance = new ReadApi(config);
-            var _namespace = _namespace_example;  // string | Namespace of the Relation Tuple
-            var _object = _object_example;  // string | Object of the Relation Tuple
-            var relation = relation_example;  // string | Relation of the Relation Tuple
-            var subjectId = subjectId_example;  // string | SubjectID of the Relation Tuple (optional) 
-            var subjectSetNamespace = subjectSetNamespace_example;  // string | Namespace of the Subject Set (optional) 
-            var subjectSetObject = subjectSetObject_example;  // string | Object of the Subject Set (optional) 
-            var subjectSetRelation = subjectSetRelation_example;  // string | Relation of the Subject Set (optional) 
+            var _namespace = "_namespace_example";  // string | Namespace of the Relation Tuple (optional) 
+            var _object = "_object_example";  // string | Object of the Relation Tuple (optional) 
+            var relation = "relation_example";  // string | Relation of the Relation Tuple (optional) 
+            var subjectId = "subjectId_example";  // string | SubjectID of the Relation Tuple (optional) 
+            var subjectSetNamespace = "subjectSetNamespace_example";  // string | Namespace of the Subject Set (optional) 
+            var subjectSetObject = "subjectSetObject_example";  // string | Object of the Subject Set (optional) 
+            var subjectSetRelation = "subjectSetRelation_example";  // string | Relation of the Subject Set (optional) 
+            var maxDepth = 789L;  // long? |  (optional) 
 
             try
             {
                 // Check a relation tuple
-                KetoGetCheckResponse result = apiInstance.GetCheck(_namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
+                KetoGetCheckResponse result = apiInstance.GetCheck(_namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation, maxDepth);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -64,13 +65,14 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **_namespace** | **string**| Namespace of the Relation Tuple | 
- **_object** | **string**| Object of the Relation Tuple | 
- **relation** | **string**| Relation of the Relation Tuple | 
+ **_namespace** | **string**| Namespace of the Relation Tuple | [optional] 
+ **_object** | **string**| Object of the Relation Tuple | [optional] 
+ **relation** | **string**| Relation of the Relation Tuple | [optional] 
  **subjectId** | **string**| SubjectID of the Relation Tuple | [optional] 
  **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional] 
  **subjectSetObject** | **string**| Object of the Subject Set | [optional] 
  **subjectSetRelation** | **string**| Relation of the Subject Set | [optional] 
+ **maxDepth** | **long?**|  | [optional] 
 
 ### Return type
 
@@ -90,15 +92,15 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | getCheckResponse |  -  |
-| **400** | The standard error format |  -  |
+| **400** | genericError |  -  |
 | **403** | getCheckResponse |  -  |
-| **500** | The standard error format |  -  |
+| **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="getexpand"></a>
 # **GetExpand**
-> KetoExpandTree GetExpand (string _namespace, string _object, string relation, long maxDepth)
+> KetoExpandTree GetExpand (string _namespace, string _object, string relation, long? maxDepth = null)
 
 Expand a Relation Tuple
 
@@ -121,10 +123,10 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
             var apiInstance = new ReadApi(config);
-            var _namespace = _namespace_example;  // string | Namespace of the Subject Set
-            var _object = _object_example;  // string | Object of the Subject Set
-            var relation = relation_example;  // string | Relation of the Subject Set
-            var maxDepth = 789;  // long | 
+            var _namespace = "_namespace_example";  // string | Namespace of the Subject Set
+            var _object = "_object_example";  // string | Object of the Subject Set
+            var relation = "relation_example";  // string | Relation of the Subject Set
+            var maxDepth = 789L;  // long? |  (optional) 
 
             try
             {
@@ -150,7 +152,7 @@ Name | Type | Description  | Notes
  **_namespace** | **string**| Namespace of the Subject Set | 
  **_object** | **string**| Object of the Subject Set | 
  **relation** | **string**| Relation of the Subject Set | 
- **maxDepth** | **long**|  | 
+ **maxDepth** | **long?**|  | [optional] 
 
 ### Return type
 
@@ -170,15 +172,15 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | expandTree |  -  |
-| **400** | The standard error format |  -  |
-| **404** | The standard error format |  -  |
-| **500** | The standard error format |  -  |
+| **400** | genericError |  -  |
+| **404** | genericError |  -  |
+| **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="getrelationtuples"></a>
 # **GetRelationTuples**
-> KetoGetRelationTuplesResponse GetRelationTuples (string _namespace, string pageToken = null, long? pageSize = null, string _object = null, string relation = null, string subjectId = null, string subjectSetNamespace = null, string subjectSetObject = null, string subjectSetRelation = null)
+> KetoGetRelationTuplesResponse GetRelationTuples (string pageToken = null, long? pageSize = null, string _namespace = null, string _object = null, string relation = null, string subjectId = null, string subjectSetNamespace = null, string subjectSetObject = null, string subjectSetRelation = null)
 
 Query relation tuples
 
@@ -201,20 +203,20 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
             var apiInstance = new ReadApi(config);
-            var _namespace = _namespace_example;  // string | Namespace of the Relation Tuple
-            var pageToken = pageToken_example;  // string |  (optional) 
-            var pageSize = 789;  // long? |  (optional) 
-            var _object = _object_example;  // string | Object of the Relation Tuple (optional) 
-            var relation = relation_example;  // string | Relation of the Relation Tuple (optional) 
-            var subjectId = subjectId_example;  // string | SubjectID of the Relation Tuple (optional) 
-            var subjectSetNamespace = subjectSetNamespace_example;  // string | Namespace of the Subject Set (optional) 
-            var subjectSetObject = subjectSetObject_example;  // string | Object of the Subject Set (optional) 
-            var subjectSetRelation = subjectSetRelation_example;  // string | Relation of the Subject Set (optional) 
+            var pageToken = "pageToken_example";  // string |  (optional) 
+            var pageSize = 789L;  // long? |  (optional) 
+            var _namespace = "_namespace_example";  // string | Namespace of the Relation Tuple (optional) 
+            var _object = "_object_example";  // string | Object of the Relation Tuple (optional) 
+            var relation = "relation_example";  // string | Relation of the Relation Tuple (optional) 
+            var subjectId = "subjectId_example";  // string | SubjectID of the Relation Tuple (optional) 
+            var subjectSetNamespace = "subjectSetNamespace_example";  // string | Namespace of the Subject Set (optional) 
+            var subjectSetObject = "subjectSetObject_example";  // string | Object of the Subject Set (optional) 
+            var subjectSetRelation = "subjectSetRelation_example";  // string | Relation of the Subject Set (optional) 
 
             try
             {
                 // Query relation tuples
-                KetoGetRelationTuplesResponse result = apiInstance.GetRelationTuples(_namespace, pageToken, pageSize, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
+                KetoGetRelationTuplesResponse result = apiInstance.GetRelationTuples(pageToken, pageSize, _namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -232,9 +234,9 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **_namespace** | **string**| Namespace of the Relation Tuple | 
  **pageToken** | **string**|  | [optional] 
  **pageSize** | **long?**|  | [optional] 
+ **_namespace** | **string**| Namespace of the Relation Tuple | [optional] 
  **_object** | **string**| Object of the Relation Tuple | [optional] 
  **relation** | **string**| Relation of the Relation Tuple | [optional] 
  **subjectId** | **string**| SubjectID of the Relation Tuple | [optional] 
@@ -260,14 +262,14 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | getRelationTuplesResponse |  -  |
-| **404** | The standard error format |  -  |
-| **500** | The standard error format |  -  |
+| **404** | genericError |  -  |
+| **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="postcheck"></a>
 # **PostCheck**
-> KetoGetCheckResponse PostCheck (KetoRelationQuery payload = null)
+> KetoGetCheckResponse PostCheck (long? maxDepth = null, KetoRelationQuery ketoRelationQuery = null)
 
 Check a relation tuple
 
@@ -290,12 +292,13 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
             var apiInstance = new ReadApi(config);
-            var payload = new KetoRelationQuery(); // KetoRelationQuery |  (optional) 
+            var maxDepth = 789L;  // long? |  (optional) 
+            var ketoRelationQuery = new KetoRelationQuery(); // KetoRelationQuery |  (optional) 
 
             try
             {
                 // Check a relation tuple
-                KetoGetCheckResponse result = apiInstance.PostCheck(payload);
+                KetoGetCheckResponse result = apiInstance.PostCheck(maxDepth, ketoRelationQuery);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -313,7 +316,8 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**KetoRelationQuery**](KetoRelationQuery.md)|  | [optional] 
+ **maxDepth** | **long?**|  | [optional] 
+ **ketoRelationQuery** | [**KetoRelationQuery**](KetoRelationQuery.md)|  | [optional] 
 
 ### Return type
 
@@ -333,9 +337,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | getCheckResponse |  -  |
-| **400** | The standard error format |  -  |
+| **400** | genericError |  -  |
 | **403** | getCheckResponse |  -  |
-| **500** | The standard error format |  -  |
+| **500** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

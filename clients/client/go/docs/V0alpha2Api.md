@@ -4,45 +4,54 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AdminCreateIdentity**](V0alpha2Api.md#AdminCreateIdentity) | **Post** /api/kratos/admin/identities | Create an Identity
-[**AdminCreateSelfServiceRecoveryLink**](V0alpha2Api.md#AdminCreateSelfServiceRecoveryLink) | **Post** /api/kratos/admin/recovery/link | Create a Recovery Link
-[**AdminDeleteIdentity**](V0alpha2Api.md#AdminDeleteIdentity) | **Delete** /api/kratos/admin/identities/{id} | Delete an Identity
-[**AdminDeleteIdentitySessions**](V0alpha2Api.md#AdminDeleteIdentitySessions) | **Delete** /api/kratos/admin/identities/{id}/sessions | Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.
-[**AdminGetIdentity**](V0alpha2Api.md#AdminGetIdentity) | **Get** /api/kratos/admin/identities/{id} | Get an Identity
-[**AdminListIdentities**](V0alpha2Api.md#AdminListIdentities) | **Get** /api/kratos/admin/identities | List Identities
-[**AdminListIdentitySessions**](V0alpha2Api.md#AdminListIdentitySessions) | **Get** /api/kratos/admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity.
-[**AdminUpdateIdentity**](V0alpha2Api.md#AdminUpdateIdentity) | **Put** /api/kratos/admin/identities/{id} | Update an Identity
-[**CreateSelfServiceLogoutFlowUrlForBrowsers**](V0alpha2Api.md#CreateSelfServiceLogoutFlowUrlForBrowsers) | **Get** /api/kratos/public/self-service/logout/browser | Create a Logout URL for Browsers
-[**GetJsonSchema**](V0alpha2Api.md#GetJsonSchema) | **Get** /api/kratos/public/schemas/{id} | 
-[**GetSelfServiceError**](V0alpha2Api.md#GetSelfServiceError) | **Get** /api/kratos/public/self-service/errors | Get Self-Service Errors
-[**GetSelfServiceLoginFlow**](V0alpha2Api.md#GetSelfServiceLoginFlow) | **Get** /api/kratos/public/self-service/login/flows | Get Login Flow
-[**GetSelfServiceRecoveryFlow**](V0alpha2Api.md#GetSelfServiceRecoveryFlow) | **Get** /api/kratos/public/self-service/recovery/flows | Get Recovery Flow
-[**GetSelfServiceRegistrationFlow**](V0alpha2Api.md#GetSelfServiceRegistrationFlow) | **Get** /api/kratos/public/self-service/registration/flows | Get Registration Flow
-[**GetSelfServiceSettingsFlow**](V0alpha2Api.md#GetSelfServiceSettingsFlow) | **Get** /api/kratos/public/self-service/settings/flows | Get Settings Flow
-[**GetSelfServiceVerificationFlow**](V0alpha2Api.md#GetSelfServiceVerificationFlow) | **Get** /api/kratos/public/self-service/verification/flows | Get Verification Flow
-[**GetWebAuthnJavaScript**](V0alpha2Api.md#GetWebAuthnJavaScript) | **Get** /api/kratos/public/.well-known/ory/webauthn.js | Get WebAuthn JavaScript
-[**InitializeSelfServiceLoginFlowForBrowsers**](V0alpha2Api.md#InitializeSelfServiceLoginFlowForBrowsers) | **Get** /api/kratos/public/self-service/login/browser | Initialize Login Flow for Browsers
-[**InitializeSelfServiceLoginFlowWithoutBrowser**](V0alpha2Api.md#InitializeSelfServiceLoginFlowWithoutBrowser) | **Get** /api/kratos/public/self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ...
-[**InitializeSelfServiceRecoveryFlowForBrowsers**](V0alpha2Api.md#InitializeSelfServiceRecoveryFlowForBrowsers) | **Get** /api/kratos/public/self-service/recovery/browser | Initialize Recovery Flow for Browsers
-[**InitializeSelfServiceRecoveryFlowWithoutBrowser**](V0alpha2Api.md#InitializeSelfServiceRecoveryFlowWithoutBrowser) | **Get** /api/kratos/public/self-service/recovery/api | Initialize Recovery Flow for APIs, Services, Apps, ...
-[**InitializeSelfServiceRegistrationFlowForBrowsers**](V0alpha2Api.md#InitializeSelfServiceRegistrationFlowForBrowsers) | **Get** /api/kratos/public/self-service/registration/browser | Initialize Registration Flow for Browsers
-[**InitializeSelfServiceRegistrationFlowWithoutBrowser**](V0alpha2Api.md#InitializeSelfServiceRegistrationFlowWithoutBrowser) | **Get** /api/kratos/public/self-service/registration/api | Initialize Registration Flow for APIs, Services, Apps, ...
-[**InitializeSelfServiceSettingsFlowForBrowsers**](V0alpha2Api.md#InitializeSelfServiceSettingsFlowForBrowsers) | **Get** /api/kratos/public/self-service/settings/browser | Initialize Settings Flow for Browsers
-[**InitializeSelfServiceSettingsFlowWithoutBrowser**](V0alpha2Api.md#InitializeSelfServiceSettingsFlowWithoutBrowser) | **Get** /api/kratos/public/self-service/settings/api | Initialize Settings Flow for APIs, Services, Apps, ...
-[**InitializeSelfServiceVerificationFlowForBrowsers**](V0alpha2Api.md#InitializeSelfServiceVerificationFlowForBrowsers) | **Get** /api/kratos/public/self-service/verification/browser | Initialize Verification Flow for Browser Clients
-[**InitializeSelfServiceVerificationFlowWithoutBrowser**](V0alpha2Api.md#InitializeSelfServiceVerificationFlowWithoutBrowser) | **Get** /api/kratos/public/self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
-[**ListIdentitySchemas**](V0alpha2Api.md#ListIdentitySchemas) | **Get** /api/kratos/public/schemas | 
-[**ListSessions**](V0alpha2Api.md#ListSessions) | **Get** /api/kratos/public/sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint.
-[**RevokeSession**](V0alpha2Api.md#RevokeSession) | **Delete** /api/kratos/public/sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
-[**RevokeSessions**](V0alpha2Api.md#RevokeSessions) | **Delete** /api/kratos/public/sessions | Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
-[**SubmitSelfServiceLoginFlow**](V0alpha2Api.md#SubmitSelfServiceLoginFlow) | **Post** /api/kratos/public/self-service/login | Submit a Login Flow
-[**SubmitSelfServiceLogoutFlow**](V0alpha2Api.md#SubmitSelfServiceLogoutFlow) | **Get** /api/kratos/public/self-service/logout | Complete Self-Service Logout
-[**SubmitSelfServiceLogoutFlowWithoutBrowser**](V0alpha2Api.md#SubmitSelfServiceLogoutFlowWithoutBrowser) | **Delete** /api/kratos/public/self-service/logout/api | Perform Logout for APIs, Services, Apps, ...
-[**SubmitSelfServiceRecoveryFlow**](V0alpha2Api.md#SubmitSelfServiceRecoveryFlow) | **Post** /api/kratos/public/self-service/recovery | Complete Recovery Flow
-[**SubmitSelfServiceRegistrationFlow**](V0alpha2Api.md#SubmitSelfServiceRegistrationFlow) | **Post** /api/kratos/public/self-service/registration | Submit a Registration Flow
-[**SubmitSelfServiceSettingsFlow**](V0alpha2Api.md#SubmitSelfServiceSettingsFlow) | **Post** /api/kratos/public/self-service/settings | Complete Settings Flow
-[**SubmitSelfServiceVerificationFlow**](V0alpha2Api.md#SubmitSelfServiceVerificationFlow) | **Post** /api/kratos/public/self-service/verification | Complete Verification Flow
-[**ToSession**](V0alpha2Api.md#ToSession) | **Get** /api/kratos/public/sessions/whoami | Check Who the Current HTTP Session Belongs To
+[**AdminCreateIdentity**](V0alpha2Api.md#AdminCreateIdentity) | **Post** /admin/identities | Create an Identity
+[**AdminCreateSelfServiceRecoveryLink**](V0alpha2Api.md#AdminCreateSelfServiceRecoveryLink) | **Post** /admin/recovery/link | Create a Recovery Link
+[**AdminDeleteIdentity**](V0alpha2Api.md#AdminDeleteIdentity) | **Delete** /admin/identities/{id} | Delete an Identity
+[**AdminDeleteIdentitySessions**](V0alpha2Api.md#AdminDeleteIdentitySessions) | **Delete** /admin/identities/{id}/sessions | Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.
+[**AdminExtendSession**](V0alpha2Api.md#AdminExtendSession) | **Patch** /admin/sessions/{id}/extend | Calling this endpoint extends the given session ID. If &#x60;session.earliest_possible_extend&#x60; is set it will only extend the session after the specified time has passed.
+[**AdminGetIdentity**](V0alpha2Api.md#AdminGetIdentity) | **Get** /admin/identities/{id} | Get an Identity
+[**AdminListIdentities**](V0alpha2Api.md#AdminListIdentities) | **Get** /admin/identities | List Identities
+[**AdminListIdentitySessions**](V0alpha2Api.md#AdminListIdentitySessions) | **Get** /admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity.
+[**AdminUpdateIdentity**](V0alpha2Api.md#AdminUpdateIdentity) | **Put** /admin/identities/{id} | Update an Identity
+[**CreateProject**](V0alpha2Api.md#CreateProject) | **Post** /projects | Create a Project
+[**CreateSelfServiceLogoutFlowUrlForBrowsers**](V0alpha2Api.md#CreateSelfServiceLogoutFlowUrlForBrowsers) | **Get** /self-service/logout/browser | Create a Logout URL for Browsers
+[**GetJsonSchema**](V0alpha2Api.md#GetJsonSchema) | **Get** /schemas/{id} | 
+[**GetProject**](V0alpha2Api.md#GetProject) | **Get** /projects/{project_id} | Get a Project
+[**GetProjectMembers**](V0alpha2Api.md#GetProjectMembers) | **Get** /projects/{project_id}/members | Get all members associated with this project.
+[**GetSelfServiceError**](V0alpha2Api.md#GetSelfServiceError) | **Get** /self-service/errors | Get Self-Service Errors
+[**GetSelfServiceLoginFlow**](V0alpha2Api.md#GetSelfServiceLoginFlow) | **Get** /self-service/login/flows | Get Login Flow
+[**GetSelfServiceRecoveryFlow**](V0alpha2Api.md#GetSelfServiceRecoveryFlow) | **Get** /self-service/recovery/flows | Get Recovery Flow
+[**GetSelfServiceRegistrationFlow**](V0alpha2Api.md#GetSelfServiceRegistrationFlow) | **Get** /self-service/registration/flows | Get Registration Flow
+[**GetSelfServiceSettingsFlow**](V0alpha2Api.md#GetSelfServiceSettingsFlow) | **Get** /self-service/settings/flows | Get Settings Flow
+[**GetSelfServiceVerificationFlow**](V0alpha2Api.md#GetSelfServiceVerificationFlow) | **Get** /self-service/verification/flows | Get Verification Flow
+[**GetWebAuthnJavaScript**](V0alpha2Api.md#GetWebAuthnJavaScript) | **Get** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
+[**InitializeSelfServiceLoginFlowForBrowsers**](V0alpha2Api.md#InitializeSelfServiceLoginFlowForBrowsers) | **Get** /self-service/login/browser | Initialize Login Flow for Browsers
+[**InitializeSelfServiceLoginFlowWithoutBrowser**](V0alpha2Api.md#InitializeSelfServiceLoginFlowWithoutBrowser) | **Get** /self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ...
+[**InitializeSelfServiceRecoveryFlowForBrowsers**](V0alpha2Api.md#InitializeSelfServiceRecoveryFlowForBrowsers) | **Get** /self-service/recovery/browser | Initialize Recovery Flow for Browsers
+[**InitializeSelfServiceRecoveryFlowWithoutBrowser**](V0alpha2Api.md#InitializeSelfServiceRecoveryFlowWithoutBrowser) | **Get** /self-service/recovery/api | Initialize Recovery Flow for APIs, Services, Apps, ...
+[**InitializeSelfServiceRegistrationFlowForBrowsers**](V0alpha2Api.md#InitializeSelfServiceRegistrationFlowForBrowsers) | **Get** /self-service/registration/browser | Initialize Registration Flow for Browsers
+[**InitializeSelfServiceRegistrationFlowWithoutBrowser**](V0alpha2Api.md#InitializeSelfServiceRegistrationFlowWithoutBrowser) | **Get** /self-service/registration/api | Initialize Registration Flow for APIs, Services, Apps, ...
+[**InitializeSelfServiceSettingsFlowForBrowsers**](V0alpha2Api.md#InitializeSelfServiceSettingsFlowForBrowsers) | **Get** /self-service/settings/browser | Initialize Settings Flow for Browsers
+[**InitializeSelfServiceSettingsFlowWithoutBrowser**](V0alpha2Api.md#InitializeSelfServiceSettingsFlowWithoutBrowser) | **Get** /self-service/settings/api | Initialize Settings Flow for APIs, Services, Apps, ...
+[**InitializeSelfServiceVerificationFlowForBrowsers**](V0alpha2Api.md#InitializeSelfServiceVerificationFlowForBrowsers) | **Get** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
+[**InitializeSelfServiceVerificationFlowWithoutBrowser**](V0alpha2Api.md#InitializeSelfServiceVerificationFlowWithoutBrowser) | **Get** /self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
+[**ListIdentitySchemas**](V0alpha2Api.md#ListIdentitySchemas) | **Get** /schemas | 
+[**ListProjects**](V0alpha2Api.md#ListProjects) | **Get** /projects | List All Projects
+[**ListSessions**](V0alpha2Api.md#ListSessions) | **Get** /sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint.
+[**PatchProject**](V0alpha2Api.md#PatchProject) | **Patch** /projects/{project_id} | Patch an Ory Cloud Project Configuration
+[**PurgeProject**](V0alpha2Api.md#PurgeProject) | **Delete** /projects/{project_id} | Irrecoverably Purge a Project
+[**RemoveProjectMember**](V0alpha2Api.md#RemoveProjectMember) | **Delete** /projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to &#x60;REMOVED&#x60;.
+[**RevokeSession**](V0alpha2Api.md#RevokeSession) | **Delete** /sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
+[**RevokeSessions**](V0alpha2Api.md#RevokeSessions) | **Delete** /sessions | Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
+[**SubmitSelfServiceLoginFlow**](V0alpha2Api.md#SubmitSelfServiceLoginFlow) | **Post** /self-service/login | Submit a Login Flow
+[**SubmitSelfServiceLogoutFlow**](V0alpha2Api.md#SubmitSelfServiceLogoutFlow) | **Get** /self-service/logout | Complete Self-Service Logout
+[**SubmitSelfServiceLogoutFlowWithoutBrowser**](V0alpha2Api.md#SubmitSelfServiceLogoutFlowWithoutBrowser) | **Delete** /self-service/logout/api | Perform Logout for APIs, Services, Apps, ...
+[**SubmitSelfServiceRecoveryFlow**](V0alpha2Api.md#SubmitSelfServiceRecoveryFlow) | **Post** /self-service/recovery | Complete Recovery Flow
+[**SubmitSelfServiceRegistrationFlow**](V0alpha2Api.md#SubmitSelfServiceRegistrationFlow) | **Post** /self-service/registration | Submit a Registration Flow
+[**SubmitSelfServiceSettingsFlow**](V0alpha2Api.md#SubmitSelfServiceSettingsFlow) | **Post** /self-service/settings | Complete Settings Flow
+[**SubmitSelfServiceVerificationFlow**](V0alpha2Api.md#SubmitSelfServiceVerificationFlow) | **Post** /self-service/verification | Complete Verification Flow
+[**ToSession**](V0alpha2Api.md#ToSession) | **Get** /sessions/whoami | Check Who the Current HTTP Session Belongs To
+[**UpdateProject**](V0alpha2Api.md#UpdateProject) | **Put** /projects/{project_id} | Update an Ory Cloud Project Configuration
 
 
 
@@ -314,6 +323,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## AdminExtendSession
+
+> Session AdminExtendSession(ctx, id).Execute()
+
+Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | ID is the session's ID.
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.AdminExtendSession(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.AdminExtendSession``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AdminExtendSession`: Session
+    fmt.Fprintf(os.Stdout, "Response from `V0alpha2Api.AdminExtendSession`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | ID is the session&#39;s ID. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAdminExtendSessionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**Session**](Session.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## AdminGetIdentity
 
 > Identity AdminGetIdentity(ctx, id).IncludeCredential(includeCredential).Execute()
@@ -408,7 +487,7 @@ import (
 
 func main() {
     perPage := int64(789) // int64 | Items per Page  This is the number of items per page. (optional) (default to 250)
-    page := int64(789) // int64 | Pagination Page (optional) (default to 0)
+    page := int64(789) // int64 | Pagination Page (optional) (default to 1)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -434,7 +513,7 @@ Other parameters are passed through a pointer to a apiAdminListIdentitiesRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **perPage** | **int64** | Items per Page  This is the number of items per page. | [default to 250]
- **page** | **int64** | Pagination Page | [default to 0]
+ **page** | **int64** | Pagination Page | [default to 1]
 
 ### Return type
 
@@ -477,7 +556,7 @@ import (
 func main() {
     id := "id_example" // string | ID is the identity's ID.
     perPage := int64(789) // int64 | Items per Page  This is the number of items per page. (optional) (default to 250)
-    page := int64(789) // int64 | Pagination Page (optional) (default to 0)
+    page := int64(789) // int64 | Pagination Page (optional) (default to 1)
     active := true // bool | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. (optional)
 
     configuration := openapiclient.NewConfiguration()
@@ -509,7 +588,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **perPage** | **int64** | Items per Page  This is the number of items per page. | [default to 250]
- **page** | **int64** | Pagination Page | [default to 0]
+ **page** | **int64** | Pagination Page | [default to 1]
  **active** | **bool** | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | 
 
 ### Return type
@@ -552,7 +631,7 @@ import (
 
 func main() {
     id := "id_example" // string | ID must be set to the ID of identity you want to update
-    adminUpdateIdentityBody := *openapiclient.NewAdminUpdateIdentityBody(openapiclient.identityState("active"), map[string]interface{}(123)) // AdminUpdateIdentityBody |  (optional)
+    adminUpdateIdentityBody := *openapiclient.NewAdminUpdateIdentityBody("SchemaId_example", openapiclient.identityState("active"), map[string]interface{}(123)) // AdminUpdateIdentityBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -587,6 +666,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Identity**](Identity.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateProject
+
+> Project CreateProject(ctx).CreateProjectBody(createProjectBody).Execute()
+
+Create a Project
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    createProjectBody := *openapiclient.NewCreateProjectBody("Name_example") // CreateProjectBody |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.CreateProject(context.Background()).CreateProjectBody(createProjectBody).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.CreateProject``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateProject`: Project
+    fmt.Fprintf(os.Stdout, "Response from `V0alpha2Api.CreateProject`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateProjectRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createProjectBody** | [**CreateProjectBody**](CreateProjectBody.md) |  | 
+
+### Return type
+
+[**Project**](Project.md)
 
 ### Authorization
 
@@ -727,6 +872,146 @@ Name | Type | Description  | Notes
 ### Authorization
 
 No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetProject
+
+> Project GetProject(ctx, projectId).Execute()
+
+Get a Project
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    projectId := "projectId_example" // string | Project ID  The project's ID.
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.GetProject(context.Background(), projectId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.GetProject``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetProject`: Project
+    fmt.Fprintf(os.Stdout, "Response from `V0alpha2Api.GetProject`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectId** | **string** | Project ID  The project&#39;s ID. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetProjectRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**Project**](Project.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetProjectMembers
+
+> []CloudAccount GetProjectMembers(ctx, projectId).Execute()
+
+Get all members associated with this project.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    projectId := "projectId_example" // string | Project ID  The project's ID.
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.GetProjectMembers(context.Background(), projectId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.GetProjectMembers``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetProjectMembers`: []CloudAccount
+    fmt.Fprintf(os.Stdout, "Response from `V0alpha2Api.GetProjectMembers`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectId** | **string** | Project ID  The project&#39;s ID. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetProjectMembersRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**[]CloudAccount**](CloudAccount.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -1882,7 +2167,7 @@ import (
 
 func main() {
     perPage := int64(789) // int64 | Items per Page  This is the number of items per page. (optional) (default to 250)
-    page := int64(789) // int64 | Pagination Page (optional) (default to 0)
+    page := int64(789) // int64 | Pagination Page (optional) (default to 1)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -1908,7 +2193,7 @@ Other parameters are passed through a pointer to a apiListIdentitySchemasRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **perPage** | **int64** | Items per Page  This is the number of items per page. | [default to 250]
- **page** | **int64** | Pagination Page | [default to 0]
+ **page** | **int64** | Pagination Page | [default to 1]
 
 ### Return type
 
@@ -1917,6 +2202,67 @@ Name | Type | Description  | Notes
 ### Authorization
 
 No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListProjects
+
+> []ProjectMetadata ListProjects(ctx).Execute()
+
+List All Projects
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.ListProjects(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.ListProjects``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListProjects`: []ProjectMetadata
+    fmt.Fprintf(os.Stdout, "Response from `V0alpha2Api.ListProjects`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListProjectsRequest struct via the builder pattern
+
+
+### Return type
+
+[**[]ProjectMetadata**](ProjectMetadata.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -1952,7 +2298,7 @@ func main() {
     xSessionToken := "xSessionToken_example" // string | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`. (optional)
     cookie := "cookie_example" // string | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored. (optional)
     perPage := int64(789) // int64 | Items per Page  This is the number of items per page. (optional) (default to 250)
-    page := int64(789) // int64 | Pagination Page (optional) (default to 0)
+    page := int64(789) // int64 | Pagination Page (optional) (default to 1)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -1980,7 +2326,7 @@ Name | Type | Description  | Notes
  **xSessionToken** | **string** | Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;. | 
  **cookie** | **string** | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored. | 
  **perPage** | **int64** | Items per Page  This is the number of items per page. | [default to 250]
- **page** | **int64** | Pagination Page | [default to 0]
+ **page** | **int64** | Pagination Page | [default to 1]
 
 ### Return type
 
@@ -1989,6 +2335,217 @@ Name | Type | Description  | Notes
 ### Authorization
 
 No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PatchProject
+
+> SuccessfulProjectUpdate PatchProject(ctx, projectId).JsonPatch(jsonPatch).Execute()
+
+Patch an Ory Cloud Project Configuration
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    projectId := "projectId_example" // string | Project ID  The project's ID.
+    jsonPatch := []openapiclient.JsonPatch{*openapiclient.NewJsonPatch("Op_example", "/services/identity/config/smtp/from_name")} // []JsonPatch |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.PatchProject(context.Background(), projectId).JsonPatch(jsonPatch).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.PatchProject``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PatchProject`: SuccessfulProjectUpdate
+    fmt.Fprintf(os.Stdout, "Response from `V0alpha2Api.PatchProject`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectId** | **string** | Project ID  The project&#39;s ID. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPatchProjectRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **jsonPatch** | [**[]JsonPatch**](JsonPatch.md) |  | 
+
+### Return type
+
+[**SuccessfulProjectUpdate**](SuccessfulProjectUpdate.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PurgeProject
+
+> PurgeProject(ctx, projectId).Execute()
+
+Irrecoverably Purge a Project
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    projectId := "projectId_example" // string | Project ID  The project's ID.
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.PurgeProject(context.Background(), projectId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.PurgeProject``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectId** | **string** | Project ID  The project&#39;s ID. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPurgeProjectRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RemoveProjectMember
+
+> RemoveProjectMember(ctx, projectId, memberId).Execute()
+
+Remove a member associated with this project. This also sets their invite status to `REMOVED`.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    projectId := "projectId_example" // string | Project ID  The project's ID.
+    memberId := "memberId_example" // string | Member ID
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.RemoveProjectMember(context.Background(), projectId, memberId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.RemoveProjectMember``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectId** | **string** | Project ID  The project&#39;s ID. | 
+**memberId** | **string** | Member ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRemoveProjectMemberRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -2159,7 +2716,7 @@ import (
 func main() {
     flow := "flow_example" // string | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
     xSessionToken := "xSessionToken_example" // string | The Session Token of the Identity performing the settings flow. (optional)
-    submitSelfServiceLoginFlowBody := openapiclient.submitSelfServiceLoginFlowBody{SubmitSelfServiceLoginFlowWithOidcMethodBody: openapiclient.NewSubmitSelfServiceLoginFlowWithOidcMethodBody("Method_example", "Provider_example")} // SubmitSelfServiceLoginFlowBody |  (optional)
+    submitSelfServiceLoginFlowBody := openapiclient.submitSelfServiceLoginFlowBody{SubmitSelfServiceLoginFlowWithLookupSecretMethodBody: openapiclient.NewSubmitSelfServiceLoginFlowWithLookupSecretMethodBody("LookupSecret_example", "Method_example")} // SubmitSelfServiceLoginFlowBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -2497,7 +3054,7 @@ import (
 func main() {
     flow := "flow_example" // string | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
     xSessionToken := "xSessionToken_example" // string | The Session Token of the Identity performing the settings flow. (optional)
-    submitSelfServiceSettingsFlowBody := openapiclient.submitSelfServiceSettingsFlowBody{SubmitSelfServiceSettingsFlowWithOidcMethodBody: openapiclient.NewSubmitSelfServiceSettingsFlowWithOidcMethodBody("Method_example")} // SubmitSelfServiceSettingsFlowBody |  (optional)
+    submitSelfServiceSettingsFlowBody := openapiclient.submitSelfServiceSettingsFlowBody{SubmitSelfServiceSettingsFlowWithLookupMethodBody: openapiclient.NewSubmitSelfServiceSettingsFlowWithLookupMethodBody("Method_example")} // SubmitSelfServiceSettingsFlowBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -2675,6 +3232,78 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateProject
+
+> SuccessfulProjectUpdate UpdateProject(ctx, projectId).UpdateProject(updateProject).Execute()
+
+Update an Ory Cloud Project Configuration
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    projectId := "projectId_example" // string | Project ID  The project's ID.
+    updateProject := *openapiclient.NewUpdateProject("Name_example", *openapiclient.NewProjectServices(*openapiclient.NewProjectServiceIdentity(map[string]interface{}(123)))) // UpdateProject |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.UpdateProject(context.Background(), projectId).UpdateProject(updateProject).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.UpdateProject``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateProject`: SuccessfulProjectUpdate
+    fmt.Fprintf(os.Stdout, "Response from `V0alpha2Api.UpdateProject`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectId** | **string** | Project ID  The project&#39;s ID. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateProjectRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **updateProject** | [**UpdateProject**](UpdateProject.md) |  | 
+
+### Return type
+
+[**SuccessfulProjectUpdate**](SuccessfulProjectUpdate.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

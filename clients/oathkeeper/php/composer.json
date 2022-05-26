@@ -1,6 +1,6 @@
 {
   "name": "ory/oathkeeper-client",
-  "description": "Documentation for all of Ory Oathkeeper's APIs.",
+  "description": "ORY Oathkeeper is a reverse proxy that checks the HTTP Authorization for validity against a set of rules. This service uses Hydra to validate access tokens and policies.",
   "keywords": [
     "openapitools",
     "openapi-generator",

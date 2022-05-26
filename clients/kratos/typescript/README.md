@@ -1,4 +1,4 @@
-## @ory/kratos-client@v0.8.2-alpha.1
+## @ory/kratos-client@v0.9.0-alpha.3
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @ory/kratos-client@v0.8.2-alpha.1 --save
+npm install @ory/kratos-client@v0.9.0-alpha.3 --save
 ```
 
 _unPublished (not recommended):_

@@ -19,9 +19,9 @@ Name | Type | Description | Notes
 **value** | [**JsonObject**](.md) | The input's value. | [optional] 
 **id** | **String** | A unique identifier | 
 **text** | [**UiText**](UiText.md) |  | 
-**height** | **int** | Height of the image | [optional] 
+**height** | **int** | Height of the image | 
 **src** | **String** | The script source | 
-**width** | **int** | Width of the image | [optional] 
+**width** | **int** | Width of the image | 
 **href** | **String** | The link's href (destination) URL.  format: uri | 
 **title** | [**UiText**](UiText.md) |  | 
 **async_** | **bool** | The script async type | 

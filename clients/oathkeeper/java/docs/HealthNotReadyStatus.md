@@ -2,7 +2,6 @@
 
 # HealthNotReadyStatus
 
-HealthNotReadyStatus HealthNotReadyStatus health not ready status
 
 ## Properties
 

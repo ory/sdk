@@ -18,7 +18,7 @@ abstract class SelfServiceLoginFlow implements Built<SelfServiceLoginFlow, SelfS
     @nullable
     @BuiltValueField(wireName: r'active')
     IdentityCredentialsType get active;
-    // enum activeEnum {  password,  totp,  oidc,  };
+    // enum activeEnum {  password,  totp,  oidc,  webauthn,  lookup_secret,  };
 
     /// CreatedAt is a helper struct field for gobuffalo.pop.
     @nullable

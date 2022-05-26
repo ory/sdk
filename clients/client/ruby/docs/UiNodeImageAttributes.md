@@ -4,11 +4,11 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **height** | **Integer** | Height of the image | [optional] |
+| **height** | **Integer** | Height of the image |  |
 | **id** | **String** | A unique identifier |  |
 | **node_type** | **String** |  |  |
 | **src** | **String** | The image&#39;s source URL.  format: uri |  |
-| **width** | **Integer** | Width of the image | [optional] |
+| **width** | **Integer** | Width of the image |  |
 
 ## Example
 

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **children** | [**List&lt;ExpandTree&gt;**](ExpandTree.md) |  |  [optional]
 **subjectId** | **String** |  |  [optional]
 **subjectSet** | [**SubjectSet**](SubjectSet.md) |  |  [optional]
-**type** | [**TypeEnum**](#TypeEnum) |  union Union exclusion Exclusion intersection Intersection leaf Leaf | 
+**type** | [**TypeEnum**](#TypeEnum) |  | 
 
 
 

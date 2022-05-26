@@ -2,7 +2,6 @@
 
 # RuleHandler
 
-RuleHandler RuleHandler RuleHandler rule handler
 
 ## Properties
 

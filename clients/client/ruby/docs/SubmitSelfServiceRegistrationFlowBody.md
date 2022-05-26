@@ -15,7 +15,8 @@ OryClient::SubmitSelfServiceRegistrationFlowBody.openapi_one_of
 # =>
 # [
 #   :'SubmitSelfServiceRegistrationFlowWithOidcMethodBody',
-#   :'SubmitSelfServiceRegistrationFlowWithPasswordMethodBody'
+#   :'SubmitSelfServiceRegistrationFlowWithPasswordMethodBody',
+#   :'SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody'
 # ]
 ```
 
@@ -45,7 +46,8 @@ OryClient::SubmitSelfServiceRegistrationFlowBody.openapi_discriminator_mapping
 # =>
 # {
 #   :'oidc' => :'SubmitSelfServiceRegistrationFlowWithOidcMethodBody',
-#   :'password' => :'SubmitSelfServiceRegistrationFlowWithPasswordMethodBody'
+#   :'password' => :'SubmitSelfServiceRegistrationFlowWithPasswordMethodBody',
+#   :'webauthn' => :'SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody'
 # }
 
 ### build
@@ -74,5 +76,6 @@ OryClient::SubmitSelfServiceRegistrationFlowBody.build(data_that_doesnt_match)
 
 - `SubmitSelfServiceRegistrationFlowWithOidcMethodBody`
 - `SubmitSelfServiceRegistrationFlowWithPasswordMethodBody`
+- `SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody`
 - `nil` (if no type matches)
 

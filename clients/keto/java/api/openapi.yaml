@@ -1,16 +1,13 @@
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   contact:
     email: hi@ory.sh
-    name: ORY
-    url: https://www.ory.sh
-  description: Ory Keto is a cloud native access control server providing best-practice
-    patterns (RBAC, ABAC, ACL, AWS IAM Policies, Kubernetes Roles, ...) via REST APIs.
+  description: |
+    Documentation for all of Ory Keto's REST APIs. gRPC is documented separately.
   license:
     name: Apache 2.0
-    url: https://github.com/ory/keto/blob/master/LICENSE
-  title: ORY Keto
-  version: v0.7.0-alpha.1
+  title: Ory Keto API
+  version: v0.8.0-alpha.2
 servers:
 - url: /
 paths:
@@ -21,43 +18,69 @@ paths:
       operationId: getCheck
       parameters:
       - description: Namespace of the Relation Tuple
+        explode: true
         in: query
         name: namespace
-        required: true
+        required: false
         schema:
           type: string
+        style: form
       - description: Object of the Relation Tuple
+        explode: true
         in: query
         name: object
-        required: true
+        required: false
         schema:
           type: string
+        style: form
       - description: Relation of the Relation Tuple
+        explode: true
         in: query
         name: relation
-        required: true
+        required: false
         schema:
           type: string
+        style: form
       - description: SubjectID of the Relation Tuple
+        explode: true
         in: query
         name: subject_id
+        required: false
         schema:
           type: string
+        style: form
       - description: Namespace of the Subject Set
+        explode: true
         in: query
         name: subject_set.namespace
+        required: false
         schema:
           type: string
+        style: form
       - description: Object of the Subject Set
+        explode: true
         in: query
         name: subject_set.object
+        required: false
         schema:
           type: string
+        style: form
       - description: Relation of the Subject Set
+        explode: true
         in: query
         name: subject_set.relation
+        required: false
         schema:
           type: string
+        style: form
+      - explode: true
+        in: query
+        name: max-depth
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -69,8 +92,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
         "403":
           content:
             application/json:
@@ -81,8 +104,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
       summary: Check a relation tuple
       tags:
       - read
@@ -91,12 +114,21 @@ paths:
       description: To learn how relation tuples and the check works, head over to
         [the documentation](../concepts/relation-tuples.mdx).
       operationId: postCheck
+      parameters:
+      - explode: true
+        in: query
+        name: max-depth
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/RelationQuery'
-        required: false
+        x-originalParamName: Payload
       responses:
         "200":
           content:
@@ -108,8 +140,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
         "403":
           content:
             application/json:
@@ -120,12 +152,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
       summary: Check a relation tuple
       tags:
       - read
-      x-codegen-request-body-name: Payload
       x-contentType: application/json
       x-accepts: application/json
   /expand:
@@ -134,29 +165,37 @@ paths:
       operationId: getExpand
       parameters:
       - description: Namespace of the Subject Set
+        explode: true
         in: query
         name: namespace
         required: true
         schema:
           type: string
+        style: form
       - description: Object of the Subject Set
+        explode: true
         in: query
         name: object
         required: true
         schema:
           type: string
+        style: form
       - description: Relation of the Subject Set
+        explode: true
         in: query
         name: relation
         required: true
         schema:
           type: string
-      - in: query
+        style: form
+      - explode: true
+        in: query
         name: max-depth
-        required: true
+        required: false
         schema:
           format: int64
           type: integer
+        style: form
       responses:
         "200":
           content:
@@ -168,20 +207,20 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
       summary: Expand a Relation Tuple
       tags:
       - read
@@ -189,122 +228,139 @@ paths:
   /health/alive:
     get:
       description: |-
-        This endpoint returns a 200 status code when the HTTP server is up running.
-        This status does currently not include checks whether the database connection is working.
+        This endpoint returns a HTTP 200 status code when Ory Keto is accepting incoming
+        HTTP requests. This status does currently not include checks whether the database connection is working.
 
         If the service supports TLS Edge Termination, this endpoint does not require the
         `X-Forwarded-Proto` header to be set.
 
         Be aware that if you are running multiple nodes of this service, the health status will never
         refer to the cluster state, only to a single instance.
-      operationId: isInstanceAlive
+      operationId: isAlive
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/healthStatus'
-          description: healthStatus
+                $ref: '#/components/schemas/inline_response_200'
+          description: Ory Keto is ready to accept connections.
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
-          description: The standard error format
-      summary: Check alive status
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      summary: Check HTTP Server Status
       tags:
-      - health
+      - metadata
       x-accepts: application/json
   /health/ready:
     get:
       description: |-
-        This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g.
+        This endpoint returns a HTTP 200 status code when Ory Keto is up running and the environment dependencies (e.g.
         the database) are responsive as well.
 
         If the service supports TLS Edge Termination, this endpoint does not require the
         `X-Forwarded-Proto` header to be set.
 
-        Be aware that if you are running multiple nodes of this service, the health status will never
+        Be aware that if you are running multiple nodes of Ory Keto, the health status will never
         refer to the cluster state, only to a single instance.
-      operationId: isInstanceReady
+      operationId: isReady
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/healthStatus'
-          description: healthStatus
+                $ref: '#/components/schemas/inline_response_200'
+          description: Ory Keto is ready to accept requests.
         "503":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/healthNotReadyStatus'
-          description: healthNotReadyStatus
-      summary: Check readiness status
+                $ref: '#/components/schemas/inline_response_503'
+          description: Ory Kratos is not yet ready to accept requests.
+      summary: Check HTTP Server and Database Status
       tags:
-      - health
+      - metadata
       x-accepts: application/json
   /relation-tuples:
     delete:
-      description: Use this endpoint to delete a relation tuple.
-      operationId: deleteRelationTuple
+      description: Use this endpoint to delete relation tuples
+      operationId: deleteRelationTuples
       parameters:
       - description: Namespace of the Relation Tuple
+        explode: true
         in: query
         name: namespace
-        required: true
+        required: false
         schema:
           type: string
+        style: form
       - description: Object of the Relation Tuple
+        explode: true
         in: query
         name: object
-        required: true
+        required: false
         schema:
           type: string
+        style: form
       - description: Relation of the Relation Tuple
+        explode: true
         in: query
         name: relation
-        required: true
+        required: false
         schema:
           type: string
+        style: form
       - description: SubjectID of the Relation Tuple
+        explode: true
         in: query
         name: subject_id
+        required: false
         schema:
           type: string
+        style: form
       - description: Namespace of the Subject Set
+        explode: true
         in: query
         name: subject_set.namespace
+        required: false
         schema:
           type: string
+        style: form
       - description: Object of the Subject Set
+        explode: true
         in: query
         name: subject_set.object
+        required: false
         schema:
           type: string
+        style: form
       - description: Relation of the Subject Set
+        explode: true
         in: query
         name: subject_set.relation
+        required: false
         schema:
           type: string
+        style: form
       responses:
         "204":
-          content: {}
           description: Empty responses are sent when, for example, resources are deleted.
             The HTTP status code for empty responses is typically 201.
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
-          description: The standard error format
-      summary: Delete a Relation Tuple
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      summary: Delete Relation Tuples
       tags:
       - write
       x-accepts: application/json
@@ -313,51 +369,77 @@ paths:
         field is required.
       operationId: getRelationTuples
       parameters:
-      - in: query
+      - explode: true
+        in: query
         name: page_token
+        required: false
         schema:
           type: string
-      - in: query
+        style: form
+      - explode: true
+        in: query
         name: page_size
+        required: false
         schema:
           format: int64
           type: integer
+        style: form
       - description: Namespace of the Relation Tuple
+        explode: true
         in: query
         name: namespace
-        required: true
+        required: false
         schema:
           type: string
+        style: form
       - description: Object of the Relation Tuple
+        explode: true
         in: query
         name: object
+        required: false
         schema:
           type: string
+        style: form
       - description: Relation of the Relation Tuple
+        explode: true
         in: query
         name: relation
+        required: false
         schema:
           type: string
+        style: form
       - description: SubjectID of the Relation Tuple
+        explode: true
         in: query
         name: subject_id
+        required: false
         schema:
           type: string
+        style: form
       - description: Namespace of the Subject Set
+        explode: true
         in: query
         name: subject_set.namespace
+        required: false
         schema:
           type: string
+        style: form
       - description: Object of the Subject Set
+        explode: true
         in: query
         name: subject_set.object
+        required: false
         schema:
           type: string
+        style: form
       - description: Relation of the Subject Set
+        explode: true
         in: query
         name: subject_set.relation
+        required: false
         schema:
           type: string
+        style: form
       responses:
         "200":
           content:
@@ -369,14 +451,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
       summary: Query relation tuples
       tags:
       - read
@@ -391,34 +473,32 @@ paths:
               items:
                 $ref: '#/components/schemas/PatchDelta'
               type: array
-        required: false
+        x-originalParamName: Payload
       responses:
         "204":
-          content: {}
           description: Empty responses are sent when, for example, resources are deleted.
             The HTTP status code for empty responses is typically 201.
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
       summary: Patch Multiple Relation Tuples
       tags:
       - write
-      x-codegen-request-body-name: Payload
       x-contentType: application/json
       x-accepts: application/json
     put:
@@ -429,7 +509,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RelationQuery'
-        required: false
+        x-originalParamName: Payload
       responses:
         "201":
           content:
@@ -441,29 +521,28 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
       summary: Create a Relation Tuple
       tags:
       - write
-      x-codegen-request-body-name: Payload
       x-contentType: application/json
       x-accepts: application/json
   /version:
     get:
       description: |-
-        This endpoint returns the service version typically notated using semantic versioning.
+        This endpoint returns the version of Ory Keto.
 
         If the service supports TLS Edge Termination, this endpoint does not require the
         `X-Forwarded-Proto` header to be set.
 
-        Be aware that if you are running multiple nodes of this service, the health status will never
+        Be aware that if you are running multiple nodes of this service, the version will never
         refer to the cluster state, only to a single instance.
       operationId: getVersion
       responses:
@@ -471,17 +550,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/version'
-          description: version
-      summary: Get service version
+                $ref: '#/components/schemas/inline_response_200_1'
+          description: Returns the Ory Keto version.
+      summary: Return Running Software Version.
       tags:
-      - version
+      - metadata
       x-accepts: application/json
 components:
+  responses:
+    emptyResponse:
+      description: Empty responses are sent when, for example, resources are deleted.
+        The HTTP status code for empty responses is typically 201.
   schemas:
-    UUID:
-      format: uuid4
-      type: string
     InternalRelationTuple:
       example:
         subject_id: subject_id
@@ -533,9 +613,6 @@ components:
           - insert
           - delete
           type: string
-          x-go-enum-desc: |-
-            insert ActionInsert
-            delete ActionDelete
         relation_tuple:
           $ref: '#/components/schemas/InternalRelationTuple'
       type: object
@@ -567,8 +644,6 @@ components:
           type: string
         subject_set:
           $ref: '#/components/schemas/SubjectSet'
-      required:
-      - namespace
       type: object
     SubjectSet:
       example:
@@ -590,6 +665,9 @@ components:
       - object
       - relation
       type: object
+    UUID:
+      format: uuid4
+      type: string
     expandTree:
       example:
         subject_id: subject_id
@@ -611,25 +689,34 @@ components:
         subject_set:
           $ref: '#/components/schemas/SubjectSet'
         type:
-          description: |2-
-
-            union Union
-            exclusion Exclusion
-            intersection Intersection
-            leaf Leaf
           enum:
           - union
           - exclusion
           - intersection
           - leaf
           type: string
-          x-go-enum-desc: |-
-            union Union
-            exclusion Exclusion
-            intersection Intersection
-            leaf Leaf
       required:
       - type
+      type: object
+    genericError:
+      description: The standard error format
+      properties:
+        code:
+          format: int64
+          type: integer
+        details:
+          items:
+            additionalProperties: true
+            type: object
+          type: array
+        message:
+          type: string
+        reason:
+          type: string
+        request:
+          type: string
+        status:
+          type: string
       type: object
     getCheckResponse:
       description: The content of the allowed field is mirrored in the HTTP status
@@ -686,39 +773,48 @@ components:
           type: object
       type: object
     healthStatus:
-      example:
-        status: status
       properties:
         status:
           description: Status always contains "ok".
           type: string
       type: object
+    subject:
+      type: object
     version:
-      example:
-        version: version
       properties:
         version:
           description: Version is the service's version.
           type: string
       type: object
-    inline_response_400:
+    inline_response_200:
+      example:
+        status: status
       properties:
-        code:
-          format: int64
-          type: integer
-        details:
-          items:
-            properties: {}
-            type: object
-          type: array
-        message:
-          type: string
-        reason:
-          type: string
-        request:
-          type: string
         status:
+          description: Always "ok".
           type: string
+      required:
+      - status
       type: object
-x-original-swagger-version: "2.0"
+    inline_response_503:
+      properties:
+        errors:
+          additionalProperties:
+            type: string
+          description: Errors contains a list of errors that caused the not ready
+            status.
+          type: object
+      required:
+      - errors
+      type: object
+    inline_response_200_1:
+      example:
+        version: version
+      properties:
+        version:
+          description: The version of Ory Keto.
+          type: string
+      required:
+      - version
+      type: object
 

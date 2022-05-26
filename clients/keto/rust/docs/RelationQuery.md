@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**namespace** | **String** | Namespace of the Relation Tuple | 
+**namespace** | Option<**String**> | Namespace of the Relation Tuple | [optional]
 **object** | Option<**String**> | Object of the Relation Tuple | [optional]
 **relation** | Option<**String**> | Relation of the Relation Tuple | [optional]
 **subject_id** | Option<**String**> | SubjectID of the Relation Tuple  Either SubjectSet or SubjectID can be provided. | [optional]

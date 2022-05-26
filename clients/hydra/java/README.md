@@ -1,8 +1,8 @@
 # hydra-client
 
 Ory Oathkeeper API
-- API version: v1.11.4
-  - Build date: 2022-02-16T12:20:34.884357721Z[Etc/UTC]
+- API version: v1.11.6
+  - Build date: 2022-02-23T08:12:00.883126307Z[Etc/UTC]
 
 Documentation for all of Ory Oathkeeper's APIs.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.hydra</groupId>
   <artifactId>hydra-client</artifactId>
-  <version>v1.11.4</version>
+  <version>v1.11.6</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory.hydra:hydra-client:v1.11.4"
+     implementation "sh.ory.hydra:hydra-client:v1.11.6"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/hydra-client-v1.11.4.jar`
+* `target/hydra-client-v1.11.6.jar`
 * `target/lib/*.jar`
 
 ## Getting Started

@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.101
+ * API version: v0.0.1-alpha.152
  * Contact: support@ory.sh
  */
 
@@ -19,17 +19,14 @@ import (
 type GenericError struct {
 	// The status code
 	Code *int64 `json:"code,omitempty"`
-	// Debug contains debug information. This is usually not available and has to be enabled.
+	// Debug information  This field is often not exposed to protect against leaking sensitive information.
 	Debug *string `json:"debug,omitempty"`
 	// Further error details
 	Details map[string]interface{} `json:"details,omitempty"`
-	// Name is the error name.
-	Error *string `json:"error,omitempty"`
-	// Description contains further information on the nature of the error.
-	ErrorDescription *string `json:"error_description,omitempty"`
+	Error *GenericErrorContent `json:"error,omitempty"`
 	// The error ID  Useful when trying to identify various errors in application logic.
 	Id *string `json:"id,omitempty"`
-	// Message contains the error message.
+	// Error message  The error's message.
 	Message string `json:"message"`
 	// A human-readable reason for the error
 	Reason *string `json:"reason,omitempty"`
@@ -37,8 +34,6 @@ type GenericError struct {
 	Request *string `json:"request,omitempty"`
 	// The status description
 	Status *string `json:"status,omitempty"`
-	// Code represents the error status code (404, 403, 401, ...).
-	StatusCode *int64 `json:"status_code,omitempty"`
 }
 
 // NewGenericError instantiates a new GenericError object
@@ -156,9 +151,9 @@ func (o *GenericError) SetDetails(v map[string]interface{}) {
 }
 
 // GetError returns the Error field value if set, zero value otherwise.
-func (o *GenericError) GetError() string {
+func (o *GenericError) GetError() GenericErrorContent {
 	if o == nil || o.Error == nil {
-		var ret string
+		var ret GenericErrorContent
 		return ret
 	}
 	return *o.Error
@@ -166,7 +161,7 @@ func (o *GenericError) GetError() string {
 
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GenericError) GetErrorOk() (*string, bool) {
+func (o *GenericError) GetErrorOk() (*GenericErrorContent, bool) {
 	if o == nil || o.Error == nil {
 		return nil, false
 	}
@@ -182,41 +177,9 @@ func (o *GenericError) HasError() bool {
 	return false
 }
 
-// SetError gets a reference to the given string and assigns it to the Error field.
-func (o *GenericError) SetError(v string) {
+// SetError gets a reference to the given GenericErrorContent and assigns it to the Error field.
+func (o *GenericError) SetError(v GenericErrorContent) {
 	o.Error = &v
-}
-
-// GetErrorDescription returns the ErrorDescription field value if set, zero value otherwise.
-func (o *GenericError) GetErrorDescription() string {
-	if o == nil || o.ErrorDescription == nil {
-		var ret string
-		return ret
-	}
-	return *o.ErrorDescription
-}
-
-// GetErrorDescriptionOk returns a tuple with the ErrorDescription field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GenericError) GetErrorDescriptionOk() (*string, bool) {
-	if o == nil || o.ErrorDescription == nil {
-		return nil, false
-	}
-	return o.ErrorDescription, true
-}
-
-// HasErrorDescription returns a boolean if a field has been set.
-func (o *GenericError) HasErrorDescription() bool {
-	if o != nil && o.ErrorDescription != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetErrorDescription gets a reference to the given string and assigns it to the ErrorDescription field.
-func (o *GenericError) SetErrorDescription(v string) {
-	o.ErrorDescription = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -371,38 +334,6 @@ func (o *GenericError) SetStatus(v string) {
 	o.Status = &v
 }
 
-// GetStatusCode returns the StatusCode field value if set, zero value otherwise.
-func (o *GenericError) GetStatusCode() int64 {
-	if o == nil || o.StatusCode == nil {
-		var ret int64
-		return ret
-	}
-	return *o.StatusCode
-}
-
-// GetStatusCodeOk returns a tuple with the StatusCode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GenericError) GetStatusCodeOk() (*int64, bool) {
-	if o == nil || o.StatusCode == nil {
-		return nil, false
-	}
-	return o.StatusCode, true
-}
-
-// HasStatusCode returns a boolean if a field has been set.
-func (o *GenericError) HasStatusCode() bool {
-	if o != nil && o.StatusCode != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetStatusCode gets a reference to the given int64 and assigns it to the StatusCode field.
-func (o *GenericError) SetStatusCode(v int64) {
-	o.StatusCode = &v
-}
-
 func (o GenericError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Code != nil {
@@ -416,9 +347,6 @@ func (o GenericError) MarshalJSON() ([]byte, error) {
 	}
 	if o.Error != nil {
 		toSerialize["error"] = o.Error
-	}
-	if o.ErrorDescription != nil {
-		toSerialize["error_description"] = o.ErrorDescription
 	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
@@ -434,9 +362,6 @@ func (o GenericError) MarshalJSON() ([]byte, error) {
 	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
-	}
-	if o.StatusCode != nil {
-		toSerialize["status_code"] = o.StatusCode
 	}
 	return json.Marshal(toSerialize)
 }

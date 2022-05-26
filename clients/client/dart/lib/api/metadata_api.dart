@@ -34,7 +34,7 @@ class MetadataApi {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/version',
+      path: r'/version',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -88,7 +88,7 @@ class MetadataApi {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/health/alive',
+      path: r'/health/alive',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
@@ -142,7 +142,7 @@ class MetadataApi {
     ProgressCallback onReceiveProgress,
   }) async {
     final _request = RequestOptions(
-      path: r'/api/kratos/public/health/ready',
+      path: r'/health/ready',
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,

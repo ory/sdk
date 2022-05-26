@@ -42,6 +42,12 @@ void main() {
       // TODO
     });
 
+    // Version refers to the version of the credential. Useful when changing the config schema.
+    // int version
+    test('to test the property `version`', () async {
+      // TODO
+    });
+
 
   });
 

@@ -17,7 +17,7 @@ abstract class SelfServiceRegistrationFlow implements Built<SelfServiceRegistrat
     @nullable
     @BuiltValueField(wireName: r'active')
     IdentityCredentialsType get active;
-    // enum activeEnum {  password,  totp,  oidc,  };
+    // enum activeEnum {  password,  totp,  oidc,  webauthn,  lookup_secret,  };
 
     /// ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated.
     @BuiltValueField(wireName: r'expires_at')

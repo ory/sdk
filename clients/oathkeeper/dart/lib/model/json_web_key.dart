@@ -18,32 +18,26 @@ abstract class JsonWebKey implements Built<JsonWebKey, JsonWebKeyBuilder> {
     @BuiltValueField(wireName: r'alg')
     String get alg;
 
-    /// crv
     @nullable
     @BuiltValueField(wireName: r'crv')
     String get crv;
 
-    /// d
     @nullable
     @BuiltValueField(wireName: r'd')
     String get d;
 
-    /// dp
     @nullable
     @BuiltValueField(wireName: r'dp')
     String get dp;
 
-    /// dq
     @nullable
     @BuiltValueField(wireName: r'dq')
     String get dq;
 
-    /// e
     @nullable
     @BuiltValueField(wireName: r'e')
     String get e;
 
-    /// k
     @nullable
     @BuiltValueField(wireName: r'k')
     String get k;
@@ -58,22 +52,18 @@ abstract class JsonWebKey implements Built<JsonWebKey, JsonWebKeyBuilder> {
     @BuiltValueField(wireName: r'kty')
     String get kty;
 
-    /// n
     @nullable
     @BuiltValueField(wireName: r'n')
     String get n;
 
-    /// p
     @nullable
     @BuiltValueField(wireName: r'p')
     String get p;
 
-    /// q
     @nullable
     @BuiltValueField(wireName: r'q')
     String get q;
 
-    /// qi
     @nullable
     @BuiltValueField(wireName: r'qi')
     String get qi;
@@ -83,7 +73,6 @@ abstract class JsonWebKey implements Built<JsonWebKey, JsonWebKeyBuilder> {
     @BuiltValueField(wireName: r'use')
     String get use;
 
-    /// x
     @nullable
     @BuiltValueField(wireName: r'x')
     String get x;
@@ -93,7 +82,6 @@ abstract class JsonWebKey implements Built<JsonWebKey, JsonWebKeyBuilder> {
     @BuiltValueField(wireName: r'x5c')
     BuiltList<String> get x5c;
 
-    /// y
     @nullable
     @BuiltValueField(wireName: r'y')
     String get y;

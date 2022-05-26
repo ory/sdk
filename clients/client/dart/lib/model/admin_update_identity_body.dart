@@ -15,7 +15,6 @@ part 'admin_update_identity_body.g.dart';
 abstract class AdminUpdateIdentityBody implements Built<AdminUpdateIdentityBody, AdminUpdateIdentityBodyBuilder> {
 
     /// SchemaID is the ID of the JSON Schema to be used for validating the identity's traits. If set will update the Identity's SchemaID.
-    @nullable
     @BuiltValueField(wireName: r'schema_id')
     String get schemaId;
 
@@ -48,12 +47,10 @@ class _$AdminUpdateIdentityBodySerializer implements StructuredSerializer<AdminU
     Iterable<Object> serialize(Serializers serializers, AdminUpdateIdentityBody object,
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object>[];
-        if (object.schemaId != null) {
-            result
-                ..add(r'schema_id')
-                ..add(serializers.serialize(object.schemaId,
-                    specifiedType: const FullType(String)));
-        }
+        result
+            ..add(r'schema_id')
+            ..add(serializers.serialize(object.schemaId,
+                specifiedType: const FullType(String)));
         result
             ..add(r'state')
             ..add(serializers.serialize(object.state,

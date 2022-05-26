@@ -14,11 +14,14 @@ import 'package:built_value/json_object.dart';
 import 'package:built_value/standard_json_plugin.dart';
 
 import 'package:ory_keto_client/model/expand_tree.dart';
+import 'package:ory_keto_client/model/generic_error.dart';
 import 'package:ory_keto_client/model/get_check_response.dart';
 import 'package:ory_keto_client/model/get_relation_tuples_response.dart';
 import 'package:ory_keto_client/model/health_not_ready_status.dart';
 import 'package:ory_keto_client/model/health_status.dart';
-import 'package:ory_keto_client/model/inline_response400.dart';
+import 'package:ory_keto_client/model/inline_response200.dart';
+import 'package:ory_keto_client/model/inline_response2001.dart';
+import 'package:ory_keto_client/model/inline_response503.dart';
 import 'package:ory_keto_client/model/internal_relation_tuple.dart';
 import 'package:ory_keto_client/model/patch_delta.dart';
 import 'package:ory_keto_client/model/relation_query.dart';
@@ -29,11 +32,14 @@ part 'serializers.g.dart';
 
 @SerializersFor(const [
   ExpandTree,
+  GenericError,
   GetCheckResponse,
   GetRelationTuplesResponse,
   HealthNotReadyStatus,
   HealthStatus,
-  InlineResponse400,
+  InlineResponse200,
+  InlineResponse2001,
+  InlineResponse503,
   InternalRelationTuple,
   PatchDelta,
   RelationQuery,

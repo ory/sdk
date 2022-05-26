@@ -8,6 +8,7 @@
 import 'package:ory_kratos_client/model/submit_self_service_registration_flow_with_password_method_body.dart';
 import 'package:built_value/json_object.dart';
 import 'package:ory_kratos_client/model/submit_self_service_registration_flow_with_oidc_method_body.dart';
+import 'package:ory_kratos_client/model/submit_self_service_registration_flow_with_web_authn_method_body.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -15,12 +16,12 @@ part 'submit_self_service_registration_flow_body.g.dart';
 
 abstract class SubmitSelfServiceRegistrationFlowBody implements Built<SubmitSelfServiceRegistrationFlowBody, SubmitSelfServiceRegistrationFlowBodyBuilder> {
 
-    /// The CSRF Token
+    /// CSRFToken is the anti-CSRF token
     @nullable
     @BuiltValueField(wireName: r'csrf_token')
     String get csrfToken;
 
-    /// Method to use  This field must be set to `oidc` when using the oidc method.
+    /// Method  Should be set to \"webauthn\" when trying to add, update, or remove a webAuthn pairing.
     @BuiltValueField(wireName: r'method')
     String get method;
 
@@ -28,13 +29,23 @@ abstract class SubmitSelfServiceRegistrationFlowBody implements Built<SubmitSelf
     @BuiltValueField(wireName: r'password')
     String get password;
 
-    /// The identity traits
+    /// The identity's traits
     @BuiltValueField(wireName: r'traits')
     JsonObject get traits;
 
     /// The provider to register with
     @BuiltValueField(wireName: r'provider')
     String get provider;
+
+    /// Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here.
+    @nullable
+    @BuiltValueField(wireName: r'webauthn_register')
+    String get webauthnRegister;
+
+    /// Name of the WebAuthn Security Key to be Added  A human-readable name for the security key which will be added.
+    @nullable
+    @BuiltValueField(wireName: r'webauthn_register_displayname')
+    String get webauthnRegisterDisplayname;
 
     SubmitSelfServiceRegistrationFlowBody._();
 
@@ -79,6 +90,18 @@ class _$SubmitSelfServiceRegistrationFlowBodySerializer implements StructuredSer
             ..add(r'provider')
             ..add(serializers.serialize(object.provider,
                 specifiedType: const FullType(String)));
+        if (object.webauthnRegister != null) {
+            result
+                ..add(r'webauthn_register')
+                ..add(serializers.serialize(object.webauthnRegister,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.webauthnRegisterDisplayname != null) {
+            result
+                ..add(r'webauthn_register_displayname')
+                ..add(serializers.serialize(object.webauthnRegisterDisplayname,
+                    specifiedType: const FullType(String)));
+        }
         return result;
     }
 
@@ -111,6 +134,14 @@ class _$SubmitSelfServiceRegistrationFlowBodySerializer implements StructuredSer
                     break;
                 case r'provider':
                     result.provider = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'webauthn_register':
+                    result.webauthnRegister = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'webauthn_register_displayname':
+                    result.webauthnRegisterDisplayname = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
             }

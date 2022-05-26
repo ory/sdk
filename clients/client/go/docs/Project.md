@@ -4,21 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | **time.Time** | The Project&#39;s Creation Date | [readonly] 
-**CurrentRevision** | [**ProjectRevision**](ProjectRevision.md) |  | 
-**Hosts** | **[]string** |  | 
 **Id** | **string** |  | 
-**Revisions** | [**[]ProjectRevision**](ProjectRevision.md) |  | 
+**Name** | **string** | The name of the project. | 
+**RevisionId** | **string** |  | 
+**Services** | [**ProjectServices**](ProjectServices.md) |  | 
 **Slug** | **string** | The project&#39;s slug | [readonly] 
 **State** | **string** | The state of the project. | [readonly] 
-**SubscriptionId** | Pointer to **string** |  | [optional] 
-**UpdatedAt** | **time.Time** | Last Time Project was Updated | [readonly] 
 
 ## Methods
 
 ### NewProject
 
-`func NewProject(createdAt time.Time, currentRevision ProjectRevision, hosts []string, id string, revisions []ProjectRevision, slug string, state string, updatedAt time.Time, ) *Project`
+`func NewProject(id string, name string, revisionId string, services ProjectServices, slug string, state string, ) *Project`
 
 NewProject instantiates a new Project object
 This constructor will assign default values to properties that have it defined,
@@ -32,66 +29,6 @@ will change when the set of required properties is changed
 NewProjectWithDefaults instantiates a new Project object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetCreatedAt
-
-`func (o *Project) GetCreatedAt() time.Time`
-
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
-
-### GetCreatedAtOk
-
-`func (o *Project) GetCreatedAtOk() (*time.Time, bool)`
-
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatedAt
-
-`func (o *Project) SetCreatedAt(v time.Time)`
-
-SetCreatedAt sets CreatedAt field to given value.
-
-
-### GetCurrentRevision
-
-`func (o *Project) GetCurrentRevision() ProjectRevision`
-
-GetCurrentRevision returns the CurrentRevision field if non-nil, zero value otherwise.
-
-### GetCurrentRevisionOk
-
-`func (o *Project) GetCurrentRevisionOk() (*ProjectRevision, bool)`
-
-GetCurrentRevisionOk returns a tuple with the CurrentRevision field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCurrentRevision
-
-`func (o *Project) SetCurrentRevision(v ProjectRevision)`
-
-SetCurrentRevision sets CurrentRevision field to given value.
-
-
-### GetHosts
-
-`func (o *Project) GetHosts() []string`
-
-GetHosts returns the Hosts field if non-nil, zero value otherwise.
-
-### GetHostsOk
-
-`func (o *Project) GetHostsOk() (*[]string, bool)`
-
-GetHostsOk returns a tuple with the Hosts field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHosts
-
-`func (o *Project) SetHosts(v []string)`
-
-SetHosts sets Hosts field to given value.
-
 
 ### GetId
 
@@ -113,24 +50,64 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetRevisions
+### GetName
 
-`func (o *Project) GetRevisions() []ProjectRevision`
+`func (o *Project) GetName() string`
 
-GetRevisions returns the Revisions field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetRevisionsOk
+### GetNameOk
 
-`func (o *Project) GetRevisionsOk() (*[]ProjectRevision, bool)`
+`func (o *Project) GetNameOk() (*string, bool)`
 
-GetRevisionsOk returns a tuple with the Revisions field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRevisions
+### SetName
 
-`func (o *Project) SetRevisions(v []ProjectRevision)`
+`func (o *Project) SetName(v string)`
 
-SetRevisions sets Revisions field to given value.
+SetName sets Name field to given value.
+
+
+### GetRevisionId
+
+`func (o *Project) GetRevisionId() string`
+
+GetRevisionId returns the RevisionId field if non-nil, zero value otherwise.
+
+### GetRevisionIdOk
+
+`func (o *Project) GetRevisionIdOk() (*string, bool)`
+
+GetRevisionIdOk returns a tuple with the RevisionId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRevisionId
+
+`func (o *Project) SetRevisionId(v string)`
+
+SetRevisionId sets RevisionId field to given value.
+
+
+### GetServices
+
+`func (o *Project) GetServices() ProjectServices`
+
+GetServices returns the Services field if non-nil, zero value otherwise.
+
+### GetServicesOk
+
+`func (o *Project) GetServicesOk() (*ProjectServices, bool)`
+
+GetServicesOk returns a tuple with the Services field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServices
+
+`func (o *Project) SetServices(v ProjectServices)`
+
+SetServices sets Services field to given value.
 
 
 ### GetSlug
@@ -171,51 +148,6 @@ and a boolean to check if the value has been set.
 `func (o *Project) SetState(v string)`
 
 SetState sets State field to given value.
-
-
-### GetSubscriptionId
-
-`func (o *Project) GetSubscriptionId() string`
-
-GetSubscriptionId returns the SubscriptionId field if non-nil, zero value otherwise.
-
-### GetSubscriptionIdOk
-
-`func (o *Project) GetSubscriptionIdOk() (*string, bool)`
-
-GetSubscriptionIdOk returns a tuple with the SubscriptionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSubscriptionId
-
-`func (o *Project) SetSubscriptionId(v string)`
-
-SetSubscriptionId sets SubscriptionId field to given value.
-
-### HasSubscriptionId
-
-`func (o *Project) HasSubscriptionId() bool`
-
-HasSubscriptionId returns a boolean if a field has been set.
-
-### GetUpdatedAt
-
-`func (o *Project) GetUpdatedAt() time.Time`
-
-GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
-
-### GetUpdatedAtOk
-
-`func (o *Project) GetUpdatedAtOk() (*time.Time, bool)`
-
-GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUpdatedAt
-
-`func (o *Project) SetUpdatedAt(v time.Time)`
-
-SetUpdatedAt sets UpdatedAt field to given value.
 
 
 

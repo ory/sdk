@@ -13,7 +13,6 @@ part 'ui_node_image_attributes.g.dart';
 abstract class UiNodeImageAttributes implements Built<UiNodeImageAttributes, UiNodeImageAttributesBuilder> {
 
     /// Height of the image
-    @nullable
     @BuiltValueField(wireName: r'height')
     int get height;
 
@@ -29,7 +28,6 @@ abstract class UiNodeImageAttributes implements Built<UiNodeImageAttributes, UiN
     String get src;
 
     /// Width of the image
-    @nullable
     @BuiltValueField(wireName: r'width')
     int get width;
 
@@ -54,12 +52,10 @@ class _$UiNodeImageAttributesSerializer implements StructuredSerializer<UiNodeIm
     Iterable<Object> serialize(Serializers serializers, UiNodeImageAttributes object,
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object>[];
-        if (object.height != null) {
-            result
-                ..add(r'height')
-                ..add(serializers.serialize(object.height,
-                    specifiedType: const FullType(int)));
-        }
+        result
+            ..add(r'height')
+            ..add(serializers.serialize(object.height,
+                specifiedType: const FullType(int)));
         result
             ..add(r'id')
             ..add(serializers.serialize(object.id,
@@ -72,12 +68,10 @@ class _$UiNodeImageAttributesSerializer implements StructuredSerializer<UiNodeIm
             ..add(r'src')
             ..add(serializers.serialize(object.src,
                 specifiedType: const FullType(String)));
-        if (object.width != null) {
-            result
-                ..add(r'width')
-                ..add(serializers.serialize(object.width,
-                    specifiedType: const FullType(int)));
-        }
+        result
+            ..add(r'width')
+            ..add(serializers.serialize(object.width,
+                specifiedType: const FullType(int)));
         return result;
     }
 

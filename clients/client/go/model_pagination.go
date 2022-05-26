@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.101
+ * API version: v0.0.1-alpha.152
  * Contact: support@ory.sh
  */
 
@@ -29,7 +29,7 @@ type Pagination struct {
 // will change when the set of required properties is changed
 func NewPagination() *Pagination {
 	this := Pagination{}
-	var page int64 = 0
+	var page int64 = 1
 	this.Page = &page
 	var perPage int64 = 250
 	this.PerPage = &perPage
@@ -41,7 +41,7 @@ func NewPagination() *Pagination {
 // but it doesn't guarantee that properties required by API are set
 func NewPaginationWithDefaults() *Pagination {
 	this := Pagination{}
-	var page int64 = 0
+	var page int64 = 1
 	this.Page = &page
 	var perPage int64 = 250
 	this.PerPage = &perPage

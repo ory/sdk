@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 **value** | Option<[**serde_json::Value**](.md)> | The input's value. | [optional]
 **id** | **String** | A unique identifier | 
 **text** | [**crate::models::UiText**](uiText.md) |  | 
-**height** | Option<**i64**> | Height of the image | [optional]
+**height** | **i64** | Height of the image | 
 **src** | **String** | The script source | 
-**width** | Option<**i64**> | Width of the image | [optional]
+**width** | **i64** | Width of the image | 
 **href** | **String** | The link's href (destination) URL.  format: uri | 
 **title** | [**crate::models::UiText**](uiText.md) |  | 
 **_async** | **bool** | The script async type | 

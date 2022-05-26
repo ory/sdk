@@ -5,7 +5,7 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
 | [**create_relation_tuple**](WriteApi.md#create_relation_tuple) | **PUT** /relation-tuples | Create a Relation Tuple |
-| [**delete_relation_tuple**](WriteApi.md#delete_relation_tuple) | **DELETE** /relation-tuples | Delete a Relation Tuple |
+| [**delete_relation_tuples**](WriteApi.md#delete_relation_tuples) | **DELETE** /relation-tuples | Delete Relation Tuples |
 | [**patch_relation_tuples**](WriteApi.md#patch_relation_tuples) | **PATCH** /relation-tuples | Patch Multiple Relation Tuples |
 
 
@@ -25,7 +25,7 @@ require 'ory-keto-client'
 
 api_instance = OryKetoClient::WriteApi.new
 opts = {
-  payload: OryKetoClient::RelationQuery.new({namespace: 'namespace_example'}) # RelationQuery | 
+  relation_query: OryKetoClient::RelationQuery.new # RelationQuery | 
 }
 
 begin
@@ -59,7 +59,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **payload** | [**RelationQuery**](RelationQuery.md) |  | [optional] |
+| **relation_query** | [**RelationQuery**](RelationQuery.md) |  | [optional] |
 
 ### Return type
 
@@ -75,13 +75,13 @@ No authorization required
 - **Accept**: application/json
 
 
-## delete_relation_tuple
+## delete_relation_tuples
 
-> delete_relation_tuple(namespace, object, relation, opts)
+> delete_relation_tuples(opts)
 
-Delete a Relation Tuple
+Delete Relation Tuples
 
-Use this endpoint to delete a relation tuple.
+Use this endpoint to delete relation tuples
 
 ### Examples
 
@@ -90,10 +90,10 @@ require 'time'
 require 'ory-keto-client'
 
 api_instance = OryKetoClient::WriteApi.new
-namespace = 'namespace_example' # String | Namespace of the Relation Tuple
-object = 'object_example' # String | Object of the Relation Tuple
-relation = 'relation_example' # String | Relation of the Relation Tuple
 opts = {
+  namespace: 'namespace_example', # String | Namespace of the Relation Tuple
+  object: 'object_example', # String | Object of the Relation Tuple
+  relation: 'relation_example', # String | Relation of the Relation Tuple
   subject_id: 'subject_id_example', # String | SubjectID of the Relation Tuple
   subject_set_namespace: 'subject_set_namespace_example', # String | Namespace of the Subject Set
   subject_set_object: 'subject_set_object_example', # String | Object of the Subject Set
@@ -101,28 +101,28 @@ opts = {
 }
 
 begin
-  # Delete a Relation Tuple
-  api_instance.delete_relation_tuple(namespace, object, relation, opts)
+  # Delete Relation Tuples
+  api_instance.delete_relation_tuples(opts)
 rescue OryKetoClient::ApiError => e
-  puts "Error when calling WriteApi->delete_relation_tuple: #{e}"
+  puts "Error when calling WriteApi->delete_relation_tuples: #{e}"
 end
 ```
 
-#### Using the delete_relation_tuple_with_http_info variant
+#### Using the delete_relation_tuples_with_http_info variant
 
 This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(nil, Integer, Hash)> delete_relation_tuple_with_http_info(namespace, object, relation, opts)
+> <Array(nil, Integer, Hash)> delete_relation_tuples_with_http_info(opts)
 
 ```ruby
 begin
-  # Delete a Relation Tuple
-  data, status_code, headers = api_instance.delete_relation_tuple_with_http_info(namespace, object, relation, opts)
+  # Delete Relation Tuples
+  data, status_code, headers = api_instance.delete_relation_tuples_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
 rescue OryKetoClient::ApiError => e
-  puts "Error when calling WriteApi->delete_relation_tuple_with_http_info: #{e}"
+  puts "Error when calling WriteApi->delete_relation_tuples_with_http_info: #{e}"
 end
 ```
 
@@ -130,9 +130,9 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **namespace** | **String** | Namespace of the Relation Tuple |  |
-| **object** | **String** | Object of the Relation Tuple |  |
-| **relation** | **String** | Relation of the Relation Tuple |  |
+| **namespace** | **String** | Namespace of the Relation Tuple | [optional] |
+| **object** | **String** | Object of the Relation Tuple | [optional] |
+| **relation** | **String** | Relation of the Relation Tuple | [optional] |
 | **subject_id** | **String** | SubjectID of the Relation Tuple | [optional] |
 | **subject_set_namespace** | **String** | Namespace of the Subject Set | [optional] |
 | **subject_set_object** | **String** | Object of the Subject Set | [optional] |
@@ -168,7 +168,7 @@ require 'ory-keto-client'
 
 api_instance = OryKetoClient::WriteApi.new
 opts = {
-  payload: [OryKetoClient::PatchDelta.new] # Array<PatchDelta> | 
+  patch_delta: [OryKetoClient::PatchDelta.new] # Array<PatchDelta> | 
 }
 
 begin
@@ -201,7 +201,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **payload** | [**Array&lt;PatchDelta&gt;**](PatchDelta.md) |  | [optional] |
+| **patch_delta** | [**Array&lt;PatchDelta&gt;**](PatchDelta.md) |  | [optional] |
 
 ### Return type
 

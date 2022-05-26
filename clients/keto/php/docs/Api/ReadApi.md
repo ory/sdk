@@ -13,7 +13,7 @@ Method | HTTP request | Description
 ## `getCheck()`
 
 ```php
-getCheck($namespace, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation): \Ory\Keto\Client\Model\GetCheckResponse
+getCheck($namespace, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation, $maxDepth): \Ory\Keto\Client\Model\GetCheckResponse
 ```
 
 Check a relation tuple
@@ -40,9 +40,10 @@ $subjectId = 'subjectId_example'; // string | SubjectID of the Relation Tuple
 $subjectSetNamespace = 'subjectSetNamespace_example'; // string | Namespace of the Subject Set
 $subjectSetObject = 'subjectSetObject_example'; // string | Object of the Subject Set
 $subjectSetRelation = 'subjectSetRelation_example'; // string | Relation of the Subject Set
+$maxDepth = 56; // int
 
 try {
-    $result = $apiInstance->getCheck($namespace, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation);
+    $result = $apiInstance->getCheck($namespace, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation, $maxDepth);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ReadApi->getCheck: ', $e->getMessage(), PHP_EOL;
@@ -53,13 +54,14 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **string**| Namespace of the Relation Tuple |
- **object** | **string**| Object of the Relation Tuple |
- **relation** | **string**| Relation of the Relation Tuple |
+ **namespace** | **string**| Namespace of the Relation Tuple | [optional]
+ **object** | **string**| Object of the Relation Tuple | [optional]
+ **relation** | **string**| Relation of the Relation Tuple | [optional]
  **subjectId** | **string**| SubjectID of the Relation Tuple | [optional]
  **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional]
  **subjectSetObject** | **string**| Object of the Subject Set | [optional]
  **subjectSetRelation** | **string**| Relation of the Subject Set | [optional]
+ **maxDepth** | **int**|  | [optional]
 
 ### Return type
 
@@ -121,7 +123,7 @@ Name | Type | Description  | Notes
  **namespace** | **string**| Namespace of the Subject Set |
  **object** | **string**| Object of the Subject Set |
  **relation** | **string**| Relation of the Subject Set |
- **maxDepth** | **int**|  |
+ **maxDepth** | **int**|  | [optional]
 
 ### Return type
 
@@ -143,7 +145,7 @@ No authorization required
 ## `getRelationTuples()`
 
 ```php
-getRelationTuples($namespace, $pageToken, $pageSize, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation): \Ory\Keto\Client\Model\GetRelationTuplesResponse
+getRelationTuples($pageToken, $pageSize, $namespace, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation): \Ory\Keto\Client\Model\GetRelationTuplesResponse
 ```
 
 Query relation tuples
@@ -163,9 +165,9 @@ $apiInstance = new Ory\Keto\Client\Api\ReadApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$namespace = 'namespace_example'; // string | Namespace of the Relation Tuple
 $pageToken = 'pageToken_example'; // string
 $pageSize = 56; // int
+$namespace = 'namespace_example'; // string | Namespace of the Relation Tuple
 $object = 'object_example'; // string | Object of the Relation Tuple
 $relation = 'relation_example'; // string | Relation of the Relation Tuple
 $subjectId = 'subjectId_example'; // string | SubjectID of the Relation Tuple
@@ -174,7 +176,7 @@ $subjectSetObject = 'subjectSetObject_example'; // string | Object of the Subjec
 $subjectSetRelation = 'subjectSetRelation_example'; // string | Relation of the Subject Set
 
 try {
-    $result = $apiInstance->getRelationTuples($namespace, $pageToken, $pageSize, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation);
+    $result = $apiInstance->getRelationTuples($pageToken, $pageSize, $namespace, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ReadApi->getRelationTuples: ', $e->getMessage(), PHP_EOL;
@@ -185,9 +187,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **string**| Namespace of the Relation Tuple |
  **pageToken** | **string**|  | [optional]
  **pageSize** | **int**|  | [optional]
+ **namespace** | **string**| Namespace of the Relation Tuple | [optional]
  **object** | **string**| Object of the Relation Tuple | [optional]
  **relation** | **string**| Relation of the Relation Tuple | [optional]
  **subjectId** | **string**| SubjectID of the Relation Tuple | [optional]
@@ -215,7 +217,7 @@ No authorization required
 ## `postCheck()`
 
 ```php
-postCheck($payload): \Ory\Keto\Client\Model\GetCheckResponse
+postCheck($maxDepth, $relationQuery): \Ory\Keto\Client\Model\GetCheckResponse
 ```
 
 Check a relation tuple
@@ -235,10 +237,11 @@ $apiInstance = new Ory\Keto\Client\Api\ReadApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$payload = new \Ory\Keto\Client\Model\RelationQuery(); // \Ory\Keto\Client\Model\RelationQuery
+$maxDepth = 56; // int
+$relationQuery = new \Ory\Keto\Client\Model\RelationQuery(); // \Ory\Keto\Client\Model\RelationQuery
 
 try {
-    $result = $apiInstance->postCheck($payload);
+    $result = $apiInstance->postCheck($maxDepth, $relationQuery);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ReadApi->postCheck: ', $e->getMessage(), PHP_EOL;
@@ -249,7 +252,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**\Ory\Keto\Client\Model\RelationQuery**](../Model/RelationQuery.md)|  | [optional]
+ **maxDepth** | **int**|  | [optional]
+ **relationQuery** | [**\Ory\Keto\Client\Model\RelationQuery**](../Model/RelationQuery.md)|  | [optional]
 
 ### Return type
 

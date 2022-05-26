@@ -55,6 +55,7 @@ typescript () {
      > tmp.$$.json && mv tmp.$$.json "${file}"
 
   cat "${file}"
+  cp "LICENSE" "clients/${PROJECT}/typescript"
 }
 
 java () {
@@ -120,6 +121,7 @@ java () {
   #  tail -n +2 < "${pom}" > tmp.$$.xml && mv tmp.$$.xml "${pom}"
   #
   # cat  "${pom}"
+  cp "LICENSE" "clients/${PROJECT}/java"
 }
 
 php() {
@@ -144,6 +146,7 @@ php() {
      > tmp.$$.json && mv tmp.$$.json "${file}"
 
   cat "${file}"
+  cp "LICENSE" "clients/${PROJECT}/php"
 }
 
 python () {
@@ -161,6 +164,7 @@ python () {
     --git-repo-id sdk \
     --git-host github.com \
     -c ./config/client/python.yml.proc.yml
+  cp "LICENSE" "clients/${PROJECT}/python"
 }
 
 ruby () {
@@ -186,6 +190,7 @@ ruby () {
   (sed "s/${VERSION}/${GEM_VERSION}/g" < "${file}") > tmp.$$.rb && mv tmp.$$.rb "${file}"
 
   cat "${file}"
+  cp "LICENSE" "clients/${PROJECT}/ruby"
 }
 
 golang () {
@@ -207,6 +212,7 @@ golang () {
     --git-host github.com \
     -t openapi/templates/go \
     -c ./config/client/go.yml.proc.yml
+  cp "LICENSE" "clients/${PROJECT}/go"
 }
 
 dotnet () {
@@ -225,6 +231,7 @@ dotnet () {
     --git-repo-id sdk \
     --git-host github.com \
     -c ./config/client/dotnet.yml.proc.yml
+  cp "LICENSE" "clients/${PROJECT}/dotnet"
 }
 
 dart () {
@@ -269,6 +276,7 @@ rust () {
   else
     (sed "s/${VERSION}/${RAW_VERSION}"'"\ndescription = "SDK Client for Ory"\ndocumentation = "https:\/\/www.ory.sh\/docs\/sdk"\nhomepage = "https:\/\/www.ory.sh"\nlicense = "Apache-2.0/g' < "${file}") > tmp.$$.rb && mv tmp.$$.rb "${file}"
   fi
+  cp "LICENSE" "clients/${PROJECT}/rust"
 }
 
 elixir () {

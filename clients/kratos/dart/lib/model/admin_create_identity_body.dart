@@ -5,6 +5,10 @@
 
 // ignore_for_file: unused_import
 
+import 'package:ory_kratos_client/model/admin_identity_import_credentials.dart';
+import 'package:ory_kratos_client/model/verifiable_identity_address.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:ory_kratos_client/model/recovery_address.dart';
 import 'package:ory_kratos_client/model/identity_state.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
@@ -13,6 +17,15 @@ import 'package:built_value/serializer.dart';
 part 'admin_create_identity_body.g.dart';
 
 abstract class AdminCreateIdentityBody implements Built<AdminCreateIdentityBody, AdminCreateIdentityBodyBuilder> {
+
+    @nullable
+    @BuiltValueField(wireName: r'credentials')
+    AdminIdentityImportCredentials get credentials;
+
+    /// RecoveryAddresses contains all the addresses that can be used to recover an identity.  Use this structure to import recovery addresses for an identity. Please keep in mind that the address needs to be represented in the Identity Schema or this field will be overwritten on the next identity update.
+    @nullable
+    @BuiltValueField(wireName: r'recovery_addresses')
+    BuiltList<RecoveryAddress> get recoveryAddresses;
 
     /// SchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
     @BuiltValueField(wireName: r'schema_id')
@@ -26,6 +39,11 @@ abstract class AdminCreateIdentityBody implements Built<AdminCreateIdentityBody,
     /// Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_url`.
     @BuiltValueField(wireName: r'traits')
     JsonObject get traits;
+
+    /// VerifiableAddresses contains all the addresses that can be verified by the user.  Use this structure to import verified addresses for an identity. Please keep in mind that the address needs to be represented in the Identity Schema or this field will be overwritten on the next identity update.
+    @nullable
+    @BuiltValueField(wireName: r'verifiable_addresses')
+    BuiltList<VerifiableIdentityAddress> get verifiableAddresses;
 
     AdminCreateIdentityBody._();
 
@@ -48,6 +66,18 @@ class _$AdminCreateIdentityBodySerializer implements StructuredSerializer<AdminC
     Iterable<Object> serialize(Serializers serializers, AdminCreateIdentityBody object,
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object>[];
+        if (object.credentials != null) {
+            result
+                ..add(r'credentials')
+                ..add(serializers.serialize(object.credentials,
+                    specifiedType: const FullType(AdminIdentityImportCredentials)));
+        }
+        if (object.recoveryAddresses != null) {
+            result
+                ..add(r'recovery_addresses')
+                ..add(serializers.serialize(object.recoveryAddresses,
+                    specifiedType: const FullType(BuiltList, [FullType(RecoveryAddress)])));
+        }
         result
             ..add(r'schema_id')
             ..add(serializers.serialize(object.schemaId,
@@ -62,6 +92,12 @@ class _$AdminCreateIdentityBodySerializer implements StructuredSerializer<AdminC
             ..add(r'traits')
             ..add(serializers.serialize(object.traits,
                 specifiedType: const FullType(JsonObject)));
+        if (object.verifiableAddresses != null) {
+            result
+                ..add(r'verifiable_addresses')
+                ..add(serializers.serialize(object.verifiableAddresses,
+                    specifiedType: const FullType(BuiltList, [FullType(VerifiableIdentityAddress)])));
+        }
         return result;
     }
 
@@ -76,6 +112,14 @@ class _$AdminCreateIdentityBodySerializer implements StructuredSerializer<AdminC
             iterator.moveNext();
             final dynamic value = iterator.current;
             switch (key) {
+                case r'credentials':
+                    result.credentials.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(AdminIdentityImportCredentials)) as AdminIdentityImportCredentials);
+                    break;
+                case r'recovery_addresses':
+                    result.recoveryAddresses.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(RecoveryAddress)])) as BuiltList<RecoveryAddress>);
+                    break;
                 case r'schema_id':
                     result.schemaId = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
@@ -87,6 +131,10 @@ class _$AdminCreateIdentityBodySerializer implements StructuredSerializer<AdminC
                 case r'traits':
                     result.traits = serializers.deserialize(value,
                         specifiedType: const FullType(JsonObject)) as JsonObject;
+                    break;
+                case r'verifiable_addresses':
+                    result.verifiableAddresses.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(VerifiableIdentityAddress)])) as BuiltList<VerifiableIdentityAddress>);
                     break;
             }
         }

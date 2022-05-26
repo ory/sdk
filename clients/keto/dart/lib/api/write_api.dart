@@ -10,7 +10,7 @@ import 'package:dio/dio.dart';
 import 'package:built_value/serializer.dart';
 
 import 'package:built_collection/built_collection.dart';
-import 'package:ory_keto_client/model/inline_response400.dart';
+import 'package:ory_keto_client/model/generic_error.dart';
 import 'package:ory_keto_client/model/patch_delta.dart';
 import 'package:ory_keto_client/model/relation_query.dart';
 
@@ -26,7 +26,7 @@ class WriteApi {
   ///
   /// Use this endpoint to create a relation tuple.
   Future<Response<RelationQuery>> createRelationTuple({ 
-    RelationQuery payload,
+    RelationQuery relationQuery,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -54,7 +54,7 @@ class WriteApi {
     dynamic _bodyData;
 
     const _type = FullType(RelationQuery);
-    _bodyData = _serializers.serialize(payload, specifiedType: _type);
+    _bodyData = _serializers.serialize(relationQuery, specifiedType: _type);
 
     final _response = await _dio.request<dynamic>(
       _request.path,
@@ -80,13 +80,13 @@ class WriteApi {
     );
   }
 
-  /// Delete a Relation Tuple
+  /// Delete Relation Tuples
   ///
-  /// Use this endpoint to delete a relation tuple.
-  Future<Response<void>> deleteRelationTuple(
+  /// Use this endpoint to delete relation tuples
+  Future<Response<void>> deleteRelationTuples({ 
     String namespace,
     String object,
-    String relation, { 
+    String relation,
     String subjectId,
     String subjectSetPeriodNamespace,
     String subjectSetPeriodObject,
@@ -105,9 +105,9 @@ class WriteApi {
         ...?headers,
       },
       queryParameters: <String, dynamic>{
-        r'namespace': namespace,
-        r'object': object,
-        r'relation': relation,
+        if (namespace != null) r'namespace': namespace,
+        if (object != null) r'object': object,
+        if (relation != null) r'relation': relation,
         if (subjectId != null) r'subject_id': subjectId,
         if (subjectSetPeriodNamespace != null) r'subject_set.namespace': subjectSetPeriodNamespace,
         if (subjectSetPeriodObject != null) r'subject_set.object': subjectSetPeriodObject,
@@ -139,7 +139,7 @@ class WriteApi {
   ///
   /// Use this endpoint to patch one or more relation tuples.
   Future<Response<void>> patchRelationTuples({ 
-    BuiltList<PatchDelta> payload,
+    BuiltList<PatchDelta> patchDelta,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -167,7 +167,7 @@ class WriteApi {
     dynamic _bodyData;
 
     const _type = FullType(BuiltList, [FullType(PatchDelta)]);
-    _bodyData = _serializers.serialize(payload, specifiedType: _type);
+    _bodyData = _serializers.serialize(patchDelta, specifiedType: _type);
 
     final _response = await _dio.request<dynamic>(
       _request.path,
