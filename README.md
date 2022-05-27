@@ -20,7 +20,7 @@ docker push oryd/sdk:v0.0.34
 If you wish to debug some generators or build steps, you can run the image locally:
 
 ```shell script
-docker run --platform linux/amd64 --mount type=bind,source="$(pwd)",target=/sdk --name sdk --user "$(id -u):$(id -g)" -it oryd/sdk:v0.0.47 /bin/sh
+docker run --platform linux/amd64 --mount type=bind,source="$(pwd)",target=/sdk --name sdk --user "$(id -u):$(id -g)" -it oryd/sdk:latest /bin/sh
 ```
 
 ### Debugging Failing CircleCI Tests
@@ -35,7 +35,6 @@ export FORCE_VERSION=v1.11.0
 export FORCE_PROJECT=hydra # or hydra or something else
 cd /project
 
-cp spec/api.json "/sdk/spec/${CIRCLE_PROJECT_REPONAME}/v0.0.1-test.0.json"
 ./scripts/generate.sh
 ./scripts/test.sh
 ```

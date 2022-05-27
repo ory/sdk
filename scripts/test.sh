@@ -84,12 +84,16 @@ elixir () {
 
   dir="clients/${PROJECT}/elixir"
   export MIX_ENV=prod
-  (cd "$dir" && mix deps.get && mix deps.compile && mix compile && mix test)
+
+  (cd "${dir}"; mix local.rebar --force)
+  (cd "${dir}"; mix local.hex --force)
+  (cd "${dir}"; mix deps.get)
+  (cd "${dir}"; mix deps.compile)
+  (cd "${dir}"; mix compile)
+  (cd "${dir}"; mix test)
 }
 
 elixir
-exit 0
-
 typescript
 rust
 golang

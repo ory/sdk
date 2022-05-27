@@ -298,19 +298,19 @@ elixir () {
 	    --git-host github.com \
 	    -c ./config/client/elixir.yml.proc.yml
 
-  (sed "s/${VERSION}/${RAW_VERSION}/g" < "${file}") > tmp.$$.rb && mv tmp.$$.rb "${file}"
+  (sed "s/${VERSION}/${RAW_VERSION}/g" < "${file}") > tmp.$$.exs && mv tmp.$$.exs "${file}"
+  cp "LICENSE" "clients/${PROJECT}/elixir"
 }
 
-
 elixir
-# typescript
-# rust
-# golang
-# java
-# php
-# python
-# ruby
-# dotnet
-# dart
+typescript
+rust
+golang
+java
+php
+python
+ruby
+dotnet
+dart
 
 cleanup
