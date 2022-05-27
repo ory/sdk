@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ory-client (0.0.1.alpha184)
+    ory-client (0.0.1.alpha186)
       typhoeus (~> 1.0, >= 1.0.1)
 
 GEM
@@ -67,4 +67,4 @@ DEPENDENCIES
   rubocop (~> 0.66.0)
 
 BUNDLED WITH
-   2.2.30
+   2.3.14

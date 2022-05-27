@@ -1,4 +1,4 @@
-# Client
+# Ory
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
@@ -24,3 +24,11 @@ end
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/ory_client](https://hexdocs.pm/ory_client).
+
+
+## Configuration
+
+You can override the URL of your server (e.g. if you have a separate development and production server in your configuration files.
+```elixir
+config :ory_apis, base_url: "https://playground.projects.oryapis.com"
+```
