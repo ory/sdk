@@ -1,13 +1,9 @@
-openapi: 3.0.3
+openapi: 3.0.1
 info:
-  contact:
-    email: hi@ory.sh
-  description: |
-    Documentation for all of Ory Hydra's APIs.
-  license:
-    name: Apache 2.0
-  title: Ory Hydra API
-  version: v1.11.8
+  description: Welcome to the ORY Hydra HTTP API documentation. You will find documentation
+    for all HTTP APIs here.
+  title: ORY Hydra
+  version: v1.11.0
 servers:
 - url: /
 paths:
@@ -82,39 +78,27 @@ paths:
       parameters:
       - description: The maximum amount of clients to returned, upper bound is 500
           clients.
-        explode: true
         in: query
         name: limit
-        required: false
         schema:
           format: int64
           type: integer
-        style: form
       - description: The offset from where to start looking.
-        explode: true
         in: query
         name: offset
-        required: false
         schema:
           format: int64
           type: integer
-        style: form
       - description: The name of the clients to filter by.
-        explode: true
         in: query
         name: client_name
-        required: false
         schema:
           type: string
-        style: form
       - description: The owner of the clients to filter by.
-        explode: true
         in: query
         name: owner
-        required: false
         schema:
           type: string
-        style: form
       responses:
         "200":
           content:
@@ -148,7 +132,6 @@ paths:
             schema:
               $ref: '#/components/schemas/oAuth2Client'
         required: true
-        x-originalParamName: Body
       responses:
         "201":
           content:
@@ -165,6 +148,7 @@ paths:
       summary: Create an OAuth 2.0 Client
       tags:
       - admin
+      x-codegen-request-body-name: Body
   /clients/{id}:
     delete:
       description: |-
@@ -177,15 +161,14 @@ paths:
       operationId: deleteOAuth2Client
       parameters:
       - description: The id of the OAuth 2.0 Client.
-        explode: false
         in: path
         name: id
         required: true
         schema:
           type: string
-        style: simple
       responses:
         "204":
+          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -207,13 +190,11 @@ paths:
       operationId: getOAuth2Client
       parameters:
       - description: The id of the OAuth 2.0 Client.
-        explode: false
         in: path
         name: id
         required: true
         schema:
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -241,20 +222,17 @@ paths:
       operationId: patchOAuth2Client
       parameters:
       - description: The id of the OAuth 2.0 Client.
-        explode: false
         in: path
         name: id
         required: true
         schema:
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/patchRequest'
         required: true
-        x-originalParamName: Body
       responses:
         "200":
           content:
@@ -271,6 +249,7 @@ paths:
       summary: Patch an OAuth 2.0 Client
       tags:
       - admin
+      x-codegen-request-body-name: Body
     put:
       description: |-
         Update an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API.
@@ -281,20 +260,17 @@ paths:
       operationId: updateOAuth2Client
       parameters:
       - description: The id of the OAuth 2.0 Client.
-        explode: false
         in: path
         name: id
         required: true
         schema:
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/oAuth2Client'
         required: true
-        x-originalParamName: Body
       responses:
         "200":
           content:
@@ -311,6 +287,7 @@ paths:
       summary: Update an OAuth 2.0 Client
       tags:
       - admin
+      x-codegen-request-body-name: Body
   /connect/register:
     post:
       description: |-
@@ -332,7 +309,6 @@ paths:
             schema:
               $ref: '#/components/schemas/oAuth2Client'
         required: true
-        x-originalParamName: Body
       responses:
         "201":
           content:
@@ -350,6 +326,7 @@ paths:
         Registration Management Protocol
       tags:
       - public
+      x-codegen-request-body-name: Body
   /connect/register/{id}:
     delete:
       description: |-
@@ -367,15 +344,14 @@ paths:
       operationId: dynamicClientRegistrationDeleteOAuth2Client
       parameters:
       - description: The id of the OAuth 2.0 Client.
-        explode: false
         in: path
         name: id
         required: true
         schema:
           type: string
-        style: simple
       responses:
         "204":
+          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -405,13 +381,11 @@ paths:
       operationId: dynamicClientRegistrationGetOAuth2Client
       parameters:
       - description: The id of the OAuth 2.0 Client.
-        explode: false
         in: path
         name: id
         required: true
         schema:
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -448,20 +422,17 @@ paths:
       operationId: dynamicClientRegistrationUpdateOAuth2Client
       parameters:
       - description: The id of the OAuth 2.0 Client.
-        explode: false
         in: path
         name: id
         required: true
         schema:
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/oAuth2Client'
         required: true
-        x-originalParamName: Body
       responses:
         "200":
           content:
@@ -479,62 +450,63 @@ paths:
         Registration Management Protocol
       tags:
       - public
+      x-codegen-request-body-name: Body
   /health/alive:
     get:
       description: |-
-        This endpoint returns a HTTP 200 status code when Ory Hydra is accepting incoming
-        HTTP requests. This status does currently not include checks whether the database connection is working.
+        This endpoint returns a 200 status code when the HTTP server is up running.
+        This status does currently not include checks whether the database connection is working.
 
         If the service supports TLS Edge Termination, this endpoint does not require the
         `X-Forwarded-Proto` header to be set.
 
         Be aware that if you are running multiple nodes of this service, the health status will never
         refer to the cluster state, only to a single instance.
-      operationId: isAlive
+      operationId: isInstanceAlive
       responses:
         "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/healthStatus'
-          description: Ory Hydra is ready to accept connections.
+          description: healthStatus
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
-      summary: Check HTTP Server Status
+                $ref: '#/components/schemas/jsonError'
+          description: jsonError
+      summary: Check Alive Status
       tags:
-      - metadata
+      - admin
   /health/ready:
     get:
       description: |-
-        This endpoint returns a HTTP 200 status code when Ory Hydra is up running and the environment dependencies (e.g.
+        This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g.
         the database) are responsive as well.
 
         If the service supports TLS Edge Termination, this endpoint does not require the
         `X-Forwarded-Proto` header to be set.
 
-        Be aware that if you are running multiple nodes of Ory Hydra, the health status will never
+        Be aware that if you are running multiple nodes of this service, the health status will never
         refer to the cluster state, only to a single instance.
-      operationId: isReady
+      operationId: isInstanceReady
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200'
-          description: Ory Hydra is ready to accept requests.
+                $ref: '#/components/schemas/healthStatus'
+          description: healthStatus
         "503":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_503'
-          description: Ory Kratos is not yet ready to accept requests.
-      summary: Check HTTP Server and Database Status
+                $ref: '#/components/schemas/healthNotReadyStatus'
+          description: healthNotReadyStatus
+      summary: Check Readiness Status
       tags:
-      - metadata
+      - public
   /keys/{set}:
     delete:
       description: |-
@@ -544,15 +516,14 @@ paths:
       operationId: deleteJsonWebKeySet
       parameters:
       - description: The set
-        explode: false
         in: path
         name: set
         required: true
         schema:
           type: string
-        style: simple
       responses:
         "204":
+          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -585,13 +556,11 @@ paths:
       operationId: getJsonWebKeySet
       parameters:
       - description: The set
-        explode: false
         in: path
         name: set
         required: true
         schema:
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -628,19 +597,17 @@ paths:
       operationId: createJsonWebKeySet
       parameters:
       - description: The set
-        explode: false
         in: path
         name: set
         required: true
         schema:
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/jsonWebKeySetGeneratorRequest'
-        x-originalParamName: Body
+        required: false
       responses:
         "201":
           content:
@@ -669,6 +636,7 @@ paths:
       summary: Generate a New JSON Web Key
       tags:
       - admin
+      x-codegen-request-body-name: Body
     put:
       description: |-
         Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.
@@ -677,19 +645,17 @@ paths:
       operationId: updateJsonWebKeySet
       parameters:
       - description: The set
-        explode: false
         in: path
         name: set
         required: true
         schema:
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/JSONWebKeySet'
-        x-originalParamName: Body
+        required: false
       responses:
         "200":
           content:
@@ -718,6 +684,7 @@ paths:
       summary: Update a JSON Web Key Set
       tags:
       - admin
+      x-codegen-request-body-name: Body
   /keys/{set}/{kid}:
     delete:
       description: |-
@@ -727,23 +694,20 @@ paths:
       operationId: deleteJsonWebKey
       parameters:
       - description: The kid of the desired key
-        explode: false
         in: path
         name: kid
         required: true
         schema:
           type: string
-        style: simple
       - description: The set
-        explode: false
         in: path
         name: set
         required: true
         schema:
           type: string
-        style: simple
       responses:
         "204":
+          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -774,21 +738,17 @@ paths:
       operationId: getJsonWebKey
       parameters:
       - description: The kid of the desired key
-        explode: false
         in: path
         name: kid
         required: true
         schema:
           type: string
-        style: simple
       - description: The set
-        explode: false
         in: path
         name: set
         required: true
         schema:
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -819,27 +779,23 @@ paths:
       operationId: updateJsonWebKey
       parameters:
       - description: The kid of the desired key
-        explode: false
         in: path
         name: kid
         required: true
         schema:
           type: string
-        style: simple
       - description: The set
-        explode: false
         in: path
         name: set
         required: true
         schema:
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/JSONWebKey'
-        x-originalParamName: Body
+        required: false
       responses:
         "200":
           content:
@@ -868,6 +824,28 @@ paths:
       summary: Update a JSON Web Key
       tags:
       - admin
+      x-codegen-request-body-name: Body
+  /metrics/prometheus:
+    get:
+      description: |-
+        ```
+        metadata:
+        annotations:
+        prometheus.io/port: "4434"
+        prometheus.io/path: "/metrics/prometheus"
+        ```
+      operationId: prometheus
+      responses:
+        "200":
+          content: {}
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
+      summary: |-
+        Get snapshot metrics from the service. If you're using k8s, you can then add annotations to
+        your deployment like so:
+      tags:
+      - metadata
   /oauth2/auth:
     get:
       description: |-
@@ -878,6 +856,7 @@ paths:
       operationId: oauthAuth
       responses:
         "302":
+          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -911,13 +890,11 @@ paths:
         or rejected the request.
       operationId: getConsentRequest
       parameters:
-      - explode: true
-        in: query
+      - in: query
         name: consent_challenge
         required: true
         schema:
           type: string
-        style: form
       responses:
         "200":
           content:
@@ -967,19 +944,17 @@ paths:
         The response contains a redirect URL which the consent provider should redirect the user-agent to.
       operationId: acceptConsentRequest
       parameters:
-      - explode: true
-        in: query
+      - in: query
         name: consent_challenge
         required: true
         schema:
           type: string
-        style: form
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/acceptConsentRequest'
-        x-originalParamName: Body
+        required: false
       responses:
         "200":
           content:
@@ -1002,6 +977,7 @@ paths:
       summary: Accept a Consent Request
       tags:
       - admin
+      x-codegen-request-body-name: Body
   /oauth2/auth/requests/consent/reject:
     put:
       description: |-
@@ -1022,19 +998,17 @@ paths:
         The response contains a redirect URL which the consent provider should redirect the user-agent to.
       operationId: rejectConsentRequest
       parameters:
-      - explode: true
-        in: query
+      - in: query
         name: consent_challenge
         required: true
         schema:
           type: string
-        style: form
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/rejectRequest'
-        x-originalParamName: Body
+        required: false
       responses:
         "200":
           content:
@@ -1057,6 +1031,7 @@ paths:
       summary: Reject a Consent Request
       tags:
       - admin
+      x-codegen-request-body-name: Body
   /oauth2/auth/requests/login:
     get:
       description: |-
@@ -1069,13 +1044,11 @@ paths:
         provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.
       operationId: getLoginRequest
       parameters:
-      - explode: true
-        in: query
+      - in: query
         name: login_challenge
         required: true
         schema:
           type: string
-        style: form
       responses:
         "200":
           content:
@@ -1128,19 +1101,17 @@ paths:
         The response contains a redirect URL which the login provider should redirect the user-agent to.
       operationId: acceptLoginRequest
       parameters:
-      - explode: true
-        in: query
+      - in: query
         name: login_challenge
         required: true
         schema:
           type: string
-        style: form
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/acceptLoginRequest'
-        x-originalParamName: Body
+        required: false
       responses:
         "200":
           content:
@@ -1175,6 +1146,7 @@ paths:
       summary: Accept a Login Request
       tags:
       - admin
+      x-codegen-request-body-name: Body
   /oauth2/auth/requests/login/reject:
     put:
       description: |-
@@ -1192,19 +1164,17 @@ paths:
         The response contains a redirect URL which the login provider should redirect the user-agent to.
       operationId: rejectLoginRequest
       parameters:
-      - explode: true
-        in: query
+      - in: query
         name: login_challenge
         required: true
         schema:
           type: string
-        style: form
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/rejectRequest'
-        x-originalParamName: Body
+        required: false
       responses:
         "200":
           content:
@@ -1239,18 +1209,17 @@ paths:
       summary: Reject a Login Request
       tags:
       - admin
+      x-codegen-request-body-name: Body
   /oauth2/auth/requests/logout:
     get:
       description: Use this endpoint to fetch a logout request.
       operationId: getLogoutRequest
       parameters:
-      - explode: true
-        in: query
+      - in: query
         name: logout_challenge
         required: true
         schema:
           type: string
-        style: form
       responses:
         "200":
           content:
@@ -1288,13 +1257,11 @@ paths:
         The response contains a redirect URL which the consent provider should redirect the user-agent to.
       operationId: acceptLogoutRequest
       parameters:
-      - explode: true
-        in: query
+      - in: query
         name: logout_challenge
         required: true
         schema:
           type: string
-        style: form
       responses:
         "200":
           content:
@@ -1326,13 +1293,11 @@ paths:
         The response is empty as the logout provider has to chose what action to perform next.
       operationId: rejectLogoutRequest
       parameters:
-      - explode: true
-        in: query
+      - in: query
         name: logout_challenge
         required: true
         schema:
           type: string
-        style: form
       requestBody:
         content:
           application/json:
@@ -1341,9 +1306,10 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/rejectRequest'
-        x-originalParamName: Body
+        required: false
       responses:
         "204":
+          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -1362,6 +1328,7 @@ paths:
       summary: Reject a Logout Request
       tags:
       - admin
+      x-codegen-request-body-name: Body
   /oauth2/auth/sessions/consent:
     delete:
       description: |-
@@ -1370,33 +1337,26 @@ paths:
       operationId: revokeConsentSessions
       parameters:
       - description: The subject (Subject) who's consent sessions should be deleted.
-        explode: true
         in: query
         name: subject
         required: true
         schema:
           type: string
-        style: form
       - description: If set, deletes only those consent sessions by the Subject that
           have been granted to the specified OAuth 2.0 Client ID
-        explode: true
         in: query
         name: client
-        required: false
         schema:
           type: string
-        style: form
       - description: If set to `?all=true`, deletes all consent sessions by the Subject
           that have been granted.
-        explode: true
         in: query
         name: all
-        required: false
         schema:
           type: boolean
-        style: form
       responses:
         "204":
+          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -1426,32 +1386,11 @@ paths:
         Multiple links can be included in this header, and will be separated by a comma.
       operationId: listSubjectConsentSessions
       parameters:
-      - explode: true
-        in: query
+      - in: query
         name: subject
         required: true
         schema:
           type: string
-        style: form
-      - description: The maximum amount of consent sessions to be returned, upper
-          bound is 500 sessions.
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
-      - description: The offset from where to start looking.
-        explode: true
-        in: query
-        name: offset
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
       responses:
         "200":
           content:
@@ -1484,15 +1423,14 @@ paths:
         Front- or Back-channel logout.
       operationId: revokeAuthenticationSession
       parameters:
-      - explode: true
-        in: query
+      - in: query
         name: subject
         required: true
         schema:
           type: string
-        style: form
       responses:
         "204":
+          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -1525,9 +1463,10 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/flushInactiveOAuth2TokensRequest'
-        x-originalParamName: Body
+        required: false
       responses:
         "204":
+          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -1546,6 +1485,7 @@ paths:
       summary: Flush Expired OAuth2 Access Tokens
       tags:
       - admin
+      x-codegen-request-body-name: Body
   /oauth2/introspect:
     post:
       description: |-
@@ -1556,30 +1496,25 @@ paths:
         For more information [read this blog post](https://www.oauth.com/oauth2-servers/token-introspection-endpoint/).
       operationId: introspectOAuth2Token
       requestBody:
-        $ref: '#/components/requestBodies/inline_object'
         content:
           application/x-www-form-urlencoded:
             schema:
               properties:
-                scope:
-                  description: |-
-                    An optional, space separated list of required scopes. If the access token was not granted one of the
-                    scopes, the result of active will be false.
-                  type: string
-                  x-formData-name: scope
                 token:
                   description: |-
                     The string value of the token. For access tokens, this
                     is the "access_token" value returned from the token endpoint
                     defined in OAuth 2.0. For refresh tokens, this is the "refresh_token"
                     value returned.
-                  required:
-                  - token
                   type: string
-                  x-formData-name: token
+                scope:
+                  description: |-
+                    An optional, space separated list of required scopes. If the access token was not granted one of the
+                    scopes, the result of active will be false.
+                  type: string
               required:
               - token
-              type: object
+        required: true
       responses:
         "200":
           content:
@@ -1611,21 +1546,18 @@ paths:
         the client the token was generated for.
       operationId: revokeOAuth2Token
       requestBody:
-        $ref: '#/components/requestBodies/inline_object_1'
         content:
           application/x-www-form-urlencoded:
             schema:
               properties:
                 token:
-                  required:
-                  - token
                   type: string
-                  x-formData-name: token
               required:
               - token
-              type: object
+        required: true
       responses:
         "200":
+          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -1654,11 +1586,10 @@ paths:
 
         https://openid.net/specs/openid-connect-frontchannel-1_0.html
         https://openid.net/specs/openid-connect-backchannel-1_0.html
-
-        Back-channel logout is performed asynchronously and does not affect logout flow.
       operationId: disconnectUser
       responses:
         "302":
+          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -1678,31 +1609,23 @@ paths:
         > Do note that Hydra SDK does not implement this endpoint properly. Use one of the libraries listed above!
       operationId: oauth2Token
       requestBody:
-        $ref: '#/components/requestBodies/inline_object_2'
         content:
           application/x-www-form-urlencoded:
             schema:
               properties:
-                client_id:
+                grant_type:
                   type: string
-                  x-formData-name: client_id
                 code:
                   type: string
-                  x-formData-name: code
-                grant_type:
-                  required:
-                  - grant_type
-                  type: string
-                  x-formData-name: grant_type
-                redirect_uri:
-                  type: string
-                  x-formData-name: redirect_uri
                 refresh_token:
                   type: string
-                  x-formData-name: refresh_token
+                redirect_uri:
+                  type: string
+                client_id:
+                  type: string
               required:
               - grant_type
-              type: object
+        required: true
       responses:
         "200":
           content:
@@ -1740,15 +1663,14 @@ paths:
         from the database
       operationId: deleteOAuth2Token
       parameters:
-      - explode: true
-        in: query
+      - in: query
         name: client_id
         required: true
         schema:
           type: string
-        style: form
       responses:
         "204":
+          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -1774,31 +1696,22 @@ paths:
       parameters:
       - description: If optional "issuer" is supplied, only jwt-bearer grants with
           this issuer will be returned.
-        explode: true
         in: query
         name: issuer
-        required: false
         schema:
           type: string
-        style: form
       - description: The maximum amount of policies returned, upper bound is 500 policies
-        explode: true
         in: query
         name: limit
-        required: false
         schema:
           format: int64
           type: integer
-        style: form
       - description: The offset from where to start looking.
-        explode: true
         in: query
         name: offset
-        required: false
         schema:
           format: int64
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -1826,7 +1739,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/trustJwtGrantIssuerBody'
-        x-originalParamName: Body
+        required: false
       responses:
         "201":
           content:
@@ -1855,6 +1768,7 @@ paths:
       summary: Trust an OAuth2 JWT Bearer Grant Type Issuer
       tags:
       - admin
+      x-codegen-request-body-name: Body
   /trust/grants/jwt-bearer/issuers/{id}:
     delete:
       description: |-
@@ -1866,15 +1780,14 @@ paths:
       operationId: deleteTrustedJwtGrantIssuer
       parameters:
       - description: The id of the desired grant
-        explode: false
         in: path
         name: id
         required: true
         schema:
           type: string
-        style: simple
       responses:
         "204":
+          content: {}
           description: |-
             Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
             typically 201.
@@ -1900,13 +1813,11 @@ paths:
       operationId: getTrustedJwtGrantIssuer
       parameters:
       - description: The id of the desired grant
-        explode: false
         in: path
         name: id
         required: true
         schema:
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -1968,63 +1879,30 @@ paths:
   /version:
     get:
       description: |-
-        This endpoint returns the version of Ory Hydra.
+        This endpoint returns the service version typically notated using semantic versioning.
 
         If the service supports TLS Edge Termination, this endpoint does not require the
         `X-Forwarded-Proto` header to be set.
-
-        Be aware that if you are running multiple nodes of this service, the version will never
-        refer to the cluster state, only to a single instance.
       operationId: getVersion
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_1'
-          description: Returns the Ory Hydra version.
-      summary: Return Running Software Version.
+                $ref: '#/components/schemas/version'
+          description: version
+      summary: Get Service Version
       tags:
-      - metadata
+      - admin
 components:
-  requestBodies:
-    inline_object_1:
-      content:
-        application/x-www-form-urlencoded:
-          schema:
-            $ref: '#/components/schemas/inline_object_1'
-    inline_object:
-      content:
-        application/x-www-form-urlencoded:
-          schema:
-            $ref: '#/components/schemas/inline_object'
-    inline_object_2:
-      content:
-        application/x-www-form-urlencoded:
-          schema:
-            $ref: '#/components/schemas/inline_object_2'
-  responses:
-    emptyResponse:
-      description: |-
-        Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
-        typically 201.
-    handledConsentRequestList:
-      content:
-        application/json:
-          schema:
-            items:
-              $ref: '#/components/schemas/PreviousConsentSession'
-            type: array
-      description: A list of used consent requests.
-    oAuth2ClientList:
-      content:
-        application/json:
-          schema:
-            items:
-              $ref: '#/components/schemas/oAuth2Client'
-            type: array
-      description: A list of clients.
   schemas:
+    ContainerWaitOKBodyError:
+      description: ContainerWaitOKBodyError container waiting error, if any
+      properties:
+        Message:
+          description: Details of an error
+          type: string
+      type: object
     JSONRawMessage:
       title: JSONRawMessage represents a json.RawMessage that works well with JSON,
         SQL, and Swagger.
@@ -2209,6 +2087,298 @@ components:
       type: object
     JoseJSONWebKeySet:
       type: object
+    PluginConfig:
+      properties:
+        Args:
+          $ref: '#/components/schemas/PluginConfigArgs'
+        Description:
+          description: description
+          type: string
+        DockerVersion:
+          description: Docker Version used to create the plugin
+          type: string
+        Documentation:
+          description: documentation
+          type: string
+        Entrypoint:
+          description: entrypoint
+          items:
+            type: string
+          type: array
+        Env:
+          description: env
+          items:
+            $ref: '#/components/schemas/PluginEnv'
+          type: array
+        Interface:
+          $ref: '#/components/schemas/PluginConfigInterface'
+        IpcHost:
+          description: ipc host
+          type: boolean
+        Linux:
+          $ref: '#/components/schemas/PluginConfigLinux'
+        Mounts:
+          description: mounts
+          items:
+            $ref: '#/components/schemas/PluginMount'
+          type: array
+        Network:
+          $ref: '#/components/schemas/PluginConfigNetwork'
+        PidHost:
+          description: pid host
+          type: boolean
+        PropagatedMount:
+          description: propagated mount
+          type: string
+        User:
+          $ref: '#/components/schemas/PluginConfigUser'
+        WorkDir:
+          description: work dir
+          type: string
+        rootfs:
+          $ref: '#/components/schemas/PluginConfigRootfs'
+      required:
+      - Args
+      - Description
+      - Documentation
+      - Entrypoint
+      - Env
+      - Interface
+      - IpcHost
+      - Linux
+      - Mounts
+      - Network
+      - PidHost
+      - PropagatedMount
+      - WorkDir
+      title: PluginConfig The config of a plugin.
+      type: object
+    PluginConfigArgs:
+      description: PluginConfigArgs plugin config args
+      properties:
+        Description:
+          description: description
+          type: string
+        Name:
+          description: name
+          type: string
+        Settable:
+          description: settable
+          items:
+            type: string
+          type: array
+        Value:
+          description: value
+          items:
+            type: string
+          type: array
+      required:
+      - Description
+      - Name
+      - Settable
+      - Value
+      type: object
+    PluginConfigInterface:
+      description: PluginConfigInterface The interface between Docker and the plugin
+      properties:
+        ProtocolScheme:
+          description: Protocol to use for clients connecting to the plugin.
+          type: string
+        Socket:
+          description: socket
+          type: string
+        Types:
+          description: types
+          items:
+            $ref: '#/components/schemas/PluginInterfaceType'
+          type: array
+      required:
+      - Socket
+      - Types
+      type: object
+    PluginConfigLinux:
+      description: PluginConfigLinux plugin config linux
+      properties:
+        AllowAllDevices:
+          description: allow all devices
+          type: boolean
+        Capabilities:
+          description: capabilities
+          items:
+            type: string
+          type: array
+        Devices:
+          description: devices
+          items:
+            $ref: '#/components/schemas/PluginDevice'
+          type: array
+      required:
+      - AllowAllDevices
+      - Capabilities
+      - Devices
+      type: object
+    PluginConfigNetwork:
+      description: PluginConfigNetwork plugin config network
+      properties:
+        Type:
+          description: type
+          type: string
+      required:
+      - Type
+      type: object
+    PluginConfigRootfs:
+      description: PluginConfigRootfs plugin config rootfs
+      properties:
+        diff_ids:
+          description: diff ids
+          items:
+            type: string
+          type: array
+        type:
+          description: type
+          type: string
+      type: object
+    PluginConfigUser:
+      description: PluginConfigUser plugin config user
+      properties:
+        GID:
+          description: g ID
+          format: uint32
+          type: integer
+        UID:
+          description: UID
+          format: uint32
+          type: integer
+      type: object
+    PluginDevice:
+      description: PluginDevice plugin device
+      properties:
+        Description:
+          description: description
+          type: string
+        Name:
+          description: name
+          type: string
+        Path:
+          description: path
+          type: string
+        Settable:
+          description: settable
+          items:
+            type: string
+          type: array
+      required:
+      - Description
+      - Name
+      - Path
+      - Settable
+      type: object
+    PluginEnv:
+      description: PluginEnv plugin env
+      properties:
+        Description:
+          description: description
+          type: string
+        Name:
+          description: name
+          type: string
+        Settable:
+          description: settable
+          items:
+            type: string
+          type: array
+        Value:
+          description: value
+          type: string
+      required:
+      - Description
+      - Name
+      - Settable
+      - Value
+      type: object
+    PluginInterfaceType:
+      description: PluginInterfaceType plugin interface type
+      properties:
+        Capability:
+          description: capability
+          type: string
+        Prefix:
+          description: prefix
+          type: string
+        Version:
+          description: version
+          type: string
+      required:
+      - Capability
+      - Prefix
+      - Version
+      type: object
+    PluginMount:
+      description: PluginMount plugin mount
+      properties:
+        Description:
+          description: description
+          type: string
+        Destination:
+          description: destination
+          type: string
+        Name:
+          description: name
+          type: string
+        Options:
+          description: options
+          items:
+            type: string
+          type: array
+        Settable:
+          description: settable
+          items:
+            type: string
+          type: array
+        Source:
+          description: source
+          type: string
+        Type:
+          description: type
+          type: string
+      required:
+      - Description
+      - Destination
+      - Name
+      - Options
+      - Settable
+      - Source
+      - Type
+      type: object
+    PluginSettings:
+      properties:
+        Args:
+          description: args
+          items:
+            type: string
+          type: array
+        Devices:
+          description: devices
+          items:
+            $ref: '#/components/schemas/PluginDevice'
+          type: array
+        Env:
+          description: env
+          items:
+            type: string
+          type: array
+        Mounts:
+          description: mounts
+          items:
+            $ref: '#/components/schemas/PluginMount'
+          type: array
+      required:
+      - Args
+      - Devices
+      - Env
+      - Mounts
+      title: PluginSettings Settings that can be modified by users.
+      type: object
     PreviousConsentSession:
       description: |-
         The response used to return used consent requests
@@ -2229,8 +2399,7 @@ components:
             ui_locales:
             - ui_locales
             - ui_locales
-            id_token_hint_claims:
-              key: '{}'
+            id_token_hint_claims: '{}'
             acr_values:
             - acr_values
             - acr_values
@@ -2297,8 +2466,8 @@ components:
           - requested_scope
           - requested_scope
         session:
-          access_token: ""
-          id_token: ""
+          access_token: '{}'
+          id_token: '{}'
         grant_access_token_audience:
         - grant_access_token_audience
         - grant_access_token_audience
@@ -2345,9 +2514,78 @@ components:
         type: string
       title: StringSlicePipeDelimiter de/encodes the string slice to/from a SQL string.
       type: array
-    UUID:
-      format: uuid4
-      type: string
+    Volume:
+      description: Volume volume
+      properties:
+        CreatedAt:
+          description: Date/Time the volume was created.
+          type: string
+        Driver:
+          description: Name of the volume driver used by the volume.
+          type: string
+        Labels:
+          additionalProperties:
+            type: string
+          description: User-defined key/value metadata.
+          type: object
+        Mountpoint:
+          description: Mount path of the volume on the host.
+          type: string
+        Name:
+          description: Name of the volume.
+          type: string
+        Options:
+          additionalProperties:
+            type: string
+          description: The driver specific options used when creating the volume.
+          type: object
+        Scope:
+          description: The level at which the volume exists. Either `global` for cluster-wide,
+            or `local` for machine level.
+          type: string
+        Status:
+          description: |-
+            Low-level details about the volume, provided by the volume driver.
+            Details are returned as a map with key/value pairs:
+            `{"key":"value","key2":"value2"}`.
+
+            The `Status` field is optional, and is omitted if the volume driver
+            does not support this feature.
+          properties: {}
+          type: object
+        UsageData:
+          $ref: '#/components/schemas/VolumeUsageData'
+      required:
+      - Driver
+      - Labels
+      - Mountpoint
+      - Name
+      - Options
+      - Scope
+      type: object
+    VolumeUsageData:
+      description: |-
+        VolumeUsageData Usage details about the volume. This information is used by the
+        `GET /system/df` endpoint, and omitted in other endpoints.
+      properties:
+        RefCount:
+          description: |-
+            The number of containers referencing this volume. This field
+            is set to `-1` if the reference-count is not available.
+          format: int64
+          type: integer
+        Size:
+          description: |-
+            Amount of disk space used by the volume (in bytes). This information
+            is only available for volumes created with the `"local"` volume
+            driver. For volumes created with other volume drivers, this field
+            is set to `-1` ("not available")
+          format: int64
+          type: integer
+      required:
+      - RefCount
+      - Size
+      type: object
     acceptConsentRequest:
       properties:
         grant_access_token_audience:
@@ -2465,8 +2703,7 @@ components:
           ui_locales:
           - ui_locales
           - ui_locales
-          id_token_hint_claims:
-            key: '{}'
+          id_token_hint_claims: '{}'
           acr_values:
           - acr_values
           - acr_values
@@ -2604,8 +2841,8 @@ components:
       type: object
     consentRequestSession:
       example:
-        access_token: ""
-        id_token: ""
+        access_token: '{}'
+        id_token: '{}'
       properties:
         access_token:
           description: |-
@@ -2613,10 +2850,14 @@ components:
             refresh grant. Keep in mind that this data will be available to anyone performing OAuth 2.0 Challenge Introspection.
             If only your services can perform OAuth 2.0 Challenge Introspection, this is usually fine. But if third parties
             can access that endpoint as well, sensitive data from the session might be exposed to them. Use with care!
+          properties: {}
+          type: object
         id_token:
           description: |-
             IDToken sets session data for the OpenID Connect ID token. Keep in mind that the session'id payloads are readable
             by anyone that has access to the ID Challenge. Use with care!
+          properties: {}
+          type: object
       title: Used to pass session data to a consent request.
       type: object
     flushInactiveOAuth2TokensRequest:
@@ -2625,15 +2866,6 @@ components:
           description: |-
             NotAfter sets after which point tokens should not be flushed. This is useful when you want to keep a history
             of recently issued tokens for auditing.
-          format: date-time
-          type: string
-      type: object
-    flushLoginConsentRequest:
-      properties:
-        notAfter:
-          description: |-
-            NotAfter sets after which point tokens should not be flushed. This is useful when you want to keep a history
-            of recent login and consent database entries for auditing.
           format: date-time
           type: string
       type: object
@@ -2653,8 +2885,8 @@ components:
           example: SQL field "foo" is not a bool.
           type: string
         details:
-          additionalProperties: true
           description: Further error details
+          properties: {}
           type: object
         id:
           description: |-
@@ -2762,8 +2994,7 @@ components:
           ui_locales:
           - ui_locales
           - ui_locales
-          id_token_hint_claims:
-            key: '{}'
+          id_token_hint_claims: '{}'
           acr_values:
           - acr_values
           - acr_values
@@ -3222,8 +3453,7 @@ components:
     oAuth2TokenIntrospection:
       description: https://tools.ietf.org/html/rfc7662
       example:
-        ext:
-          key: '{}'
+        ext: '{}'
         sub: sub
         iss: iss
         active: true
@@ -3269,8 +3499,8 @@ components:
           format: int64
           type: integer
         ext:
-          additionalProperties: true
           description: Extra is arbitrary data set by the session.
+          properties: {}
           type: object
         iat:
           description: |-
@@ -3346,44 +3576,13 @@ components:
         token_type:
           type: string
       type: object
-    oauthTokenResponse:
-      description: The token response
-      properties:
-        access_token:
-          description: The access token issued by the authorization server.
-          type: string
-        expires_in:
-          description: |-
-            The lifetime in seconds of the access token.  For
-            example, the value "3600" denotes that the access token will
-            expire in one hour from the time the response was generated.
-          format: int64
-          type: integer
-        id_token:
-          description: To retrieve a refresh token request the id_token scope.
-          format: int64
-          type: integer
-        refresh_token:
-          description: |-
-            The refresh token, which can be used to obtain new
-            access tokens. To retrieve it add the scope "offline" to your access token request.
-          type: string
-        scope:
-          description: The scope of the access token
-          format: int64
-          type: integer
-        token_type:
-          description: The type of the token issued
-          type: string
-      type: object
     openIDConnectContext:
       example:
         login_hint: login_hint
         ui_locales:
         - ui_locales
         - ui_locales
-        id_token_hint_claims:
-          key: '{}'
+        id_token_hint_claims: '{}'
         acr_values:
         - acr_values
         - acr_values
@@ -3415,10 +3614,10 @@ components:
             The Authorization Server MAY also attempt to detect the capabilities of the User Agent and present an appropriate display.
           type: string
         id_token_hint_claims:
-          additionalProperties: true
           description: |-
             IDTokenHintClaims are the claims of the ID Token previously issued by the Authorization Server being passed as a hint about the
             End-User's current or past authenticated session with the Client.
+          properties: {}
           type: object
         login_hint:
           description: |-
@@ -3455,6 +3654,7 @@ components:
           type: string
         value:
           description: The value to be used within the operations
+          properties: {}
           type: object
       required:
       - op
@@ -3465,36 +3665,6 @@ components:
       items:
         $ref: '#/components/schemas/patchDocument'
       type: array
-    refreshTokenHookRequest:
-      properties:
-        client_id:
-          description: ClientID is the identifier of the OAuth 2.0 client.
-          type: string
-        granted_audience:
-          description: GrantedAudience is the list of audiences granted to the OAuth
-            2.0 client.
-          items:
-            type: string
-          type: array
-        granted_scopes:
-          description: GrantedScopes is the list of scopes granted to the OAuth 2.0
-            client.
-          items:
-            type: string
-          type: array
-        subject:
-          description: Subject is the identifier of the authenticated end-user.
-          type: string
-      title: RefreshTokenHookRequest is the request body sent to the refresh token
-        hook.
-      type: object
-    refreshTokenHookResponse:
-      properties:
-        session:
-          $ref: '#/components/schemas/consentRequestSession'
-      title: RefreshTokenHookResponse is the response body received from the refresh
-        token hook.
-      type: object
     rejectRequest:
       properties:
         error:
@@ -3536,10 +3706,6 @@ components:
       type: object
     trustJwtGrantIssuerBody:
       properties:
-        allow_any_subject:
-          description: The "allow_any_subject" indicates that the issuer is allowed
-            to have any principal as the subject of the JWT.
-          type: boolean
         expires_at:
           description: The "expires_at" indicates, when grant will expire, so we will
             reject assertion from "issuer" targeting "subject".
@@ -3571,6 +3737,7 @@ components:
       - issuer
       - jwk
       - scope
+      - subject
       type: object
     trustedJsonWebKey:
       example:
@@ -3600,13 +3767,8 @@ components:
         - offline
         created_at: 2000-01-23T04:56:07.000+00:00
         id: 9edc811f-4e28-453c-9b46-4de65f00217f
-        allow_any_subject: true
         issuer: https://jwt-idp.example.com
       properties:
-        allow_any_subject:
-          description: The "allow_any_subject" indicates that the issuer is allowed
-            to have any principal as the subject of the JWT.
-          type: boolean
         created_at:
           description: The "created_at" indicates, when grant was created.
           format: date-time
@@ -3782,6 +3944,8 @@ components:
           type: string
       type: object
     version:
+      example:
+        version: version
       properties:
         version:
           description: Version is the service's version.
@@ -4005,84 +4169,6 @@ components:
       - token_endpoint
       title: WellKnown represents important OpenID Connect discovery metadata
       type: object
-    inline_response_200:
-      example:
-        status: status
-      properties:
-        status:
-          description: Always "ok".
-          type: string
-      type: object
-    inline_response_503:
-      properties:
-        errors:
-          additionalProperties:
-            type: string
-          description: Errors contains a list of errors that caused the not ready
-            status.
-          type: object
-      type: object
-    inline_object:
-      properties:
-        scope:
-          description: |-
-            An optional, space separated list of required scopes. If the access token was not granted one of the
-            scopes, the result of active will be false.
-          type: string
-          x-formData-name: scope
-        token:
-          description: |-
-            The string value of the token. For access tokens, this
-            is the "access_token" value returned from the token endpoint
-            defined in OAuth 2.0. For refresh tokens, this is the "refresh_token"
-            value returned.
-          required:
-          - token
-          type: string
-          x-formData-name: token
-      required:
-      - token
-      type: object
-    inline_object_1:
-      properties:
-        token:
-          required:
-          - token
-          type: string
-          x-formData-name: token
-      required:
-      - token
-      type: object
-    inline_object_2:
-      properties:
-        client_id:
-          type: string
-          x-formData-name: client_id
-        code:
-          type: string
-          x-formData-name: code
-        grant_type:
-          required:
-          - grant_type
-          type: string
-          x-formData-name: grant_type
-        redirect_uri:
-          type: string
-          x-formData-name: redirect_uri
-        refresh_token:
-          type: string
-          x-formData-name: refresh_token
-      required:
-      - grant_type
-      type: object
-    inline_response_200_1:
-      example:
-        version: version
-      properties:
-        version:
-          description: The version of Ory Hydra.
-          type: string
-      type: object
   securitySchemes:
     basic:
       scheme: basic
@@ -4099,3 +4185,4 @@ components:
       type: oauth2
 x-forwarded-proto: string
 x-request-id: string
+x-original-swagger-version: "2.0"

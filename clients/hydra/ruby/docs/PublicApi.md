@@ -10,6 +10,7 @@ All URIs are relative to *http://localhost*
 | [**dynamic_client_registration_delete_o_auth2_client**](PublicApi.md#dynamic_client_registration_delete_o_auth2_client) | **DELETE** /connect/register/{id} | Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol |
 | [**dynamic_client_registration_get_o_auth2_client**](PublicApi.md#dynamic_client_registration_get_o_auth2_client) | **GET** /connect/register/{id} | Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol |
 | [**dynamic_client_registration_update_o_auth2_client**](PublicApi.md#dynamic_client_registration_update_o_auth2_client) | **PUT** /connect/register/{id} | Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol |
+| [**is_instance_ready**](PublicApi.md#is_instance_ready) | **GET** /health/ready | Check Readiness Status |
 | [**oauth2_token**](PublicApi.md#oauth2_token) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint |
 | [**oauth_auth**](PublicApi.md#oauth_auth) | **GET** /oauth2/auth | The OAuth 2.0 Authorize Endpoint |
 | [**revoke_o_auth2_token**](PublicApi.md#revoke_o_auth2_token) | **POST** /oauth2/revoke | Revoke OAuth2 Tokens |
@@ -23,7 +24,7 @@ All URIs are relative to *http://localhost*
 
 OpenID Connect Front-Backchannel Enabled Logout
 
-This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front-/Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html  Back-channel logout is performed asynchronously and does not affect logout flow.
+This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front-/Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html
 
 ### Examples
 
@@ -140,7 +141,7 @@ No authorization required
 
 ## dynamic_client_registration_create_o_auth2_client
 
-> <OAuth2Client> dynamic_client_registration_create_o_auth2_client(o_auth2_client)
+> <OAuth2Client> dynamic_client_registration_create_o_auth2_client(body)
 
 Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 
@@ -153,11 +154,11 @@ require 'time'
 require 'ory-hydra-client'
 
 api_instance = OryHydraClient::PublicApi.new
-o_auth2_client = OryHydraClient::OAuth2Client.new # OAuth2Client | 
+body = OryHydraClient::OAuth2Client.new # OAuth2Client | 
 
 begin
   # Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-  result = api_instance.dynamic_client_registration_create_o_auth2_client(o_auth2_client)
+  result = api_instance.dynamic_client_registration_create_o_auth2_client(body)
   p result
 rescue OryHydraClient::ApiError => e
   puts "Error when calling PublicApi->dynamic_client_registration_create_o_auth2_client: #{e}"
@@ -168,12 +169,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<OAuth2Client>, Integer, Hash)> dynamic_client_registration_create_o_auth2_client_with_http_info(o_auth2_client)
+> <Array(<OAuth2Client>, Integer, Hash)> dynamic_client_registration_create_o_auth2_client_with_http_info(body)
 
 ```ruby
 begin
   # Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-  data, status_code, headers = api_instance.dynamic_client_registration_create_o_auth2_client_with_http_info(o_auth2_client)
+  data, status_code, headers = api_instance.dynamic_client_registration_create_o_auth2_client_with_http_info(body)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <OAuth2Client>
@@ -186,7 +187,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md) |  |  |
+| **body** | [**OAuth2Client**](OAuth2Client.md) |  |  |
 
 ### Return type
 
@@ -331,7 +332,7 @@ No authorization required
 
 ## dynamic_client_registration_update_o_auth2_client
 
-> <OAuth2Client> dynamic_client_registration_update_o_auth2_client(id, o_auth2_client)
+> <OAuth2Client> dynamic_client_registration_update_o_auth2_client(id, body)
 
 Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 
@@ -345,11 +346,11 @@ require 'ory-hydra-client'
 
 api_instance = OryHydraClient::PublicApi.new
 id = 'id_example' # String | The id of the OAuth 2.0 Client.
-o_auth2_client = OryHydraClient::OAuth2Client.new # OAuth2Client | 
+body = OryHydraClient::OAuth2Client.new # OAuth2Client | 
 
 begin
   # Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-  result = api_instance.dynamic_client_registration_update_o_auth2_client(id, o_auth2_client)
+  result = api_instance.dynamic_client_registration_update_o_auth2_client(id, body)
   p result
 rescue OryHydraClient::ApiError => e
   puts "Error when calling PublicApi->dynamic_client_registration_update_o_auth2_client: #{e}"
@@ -360,12 +361,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<OAuth2Client>, Integer, Hash)> dynamic_client_registration_update_o_auth2_client_with_http_info(id, o_auth2_client)
+> <Array(<OAuth2Client>, Integer, Hash)> dynamic_client_registration_update_o_auth2_client_with_http_info(id, body)
 
 ```ruby
 begin
   # Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-  data, status_code, headers = api_instance.dynamic_client_registration_update_o_auth2_client_with_http_info(id, o_auth2_client)
+  data, status_code, headers = api_instance.dynamic_client_registration_update_o_auth2_client_with_http_info(id, body)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <OAuth2Client>
@@ -379,7 +380,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The id of the OAuth 2.0 Client. |  |
-| **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md) |  |  |
+| **body** | [**OAuth2Client**](OAuth2Client.md) |  |  |
 
 ### Return type
 
@@ -392,6 +393,67 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## is_instance_ready
+
+> <HealthStatus> is_instance_ready
+
+Check Readiness Status
+
+This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-hydra-client'
+
+api_instance = OryHydraClient::PublicApi.new
+
+begin
+  # Check Readiness Status
+  result = api_instance.is_instance_ready
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling PublicApi->is_instance_ready: #{e}"
+end
+```
+
+#### Using the is_instance_ready_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<HealthStatus>, Integer, Hash)> is_instance_ready_with_http_info
+
+```ruby
+begin
+  # Check Readiness Status
+  data, status_code, headers = api_instance.is_instance_ready_with_http_info
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <HealthStatus>
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling PublicApi->is_instance_ready_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**HealthStatus**](HealthStatus.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 
@@ -421,10 +483,10 @@ end
 api_instance = OryHydraClient::PublicApi.new
 grant_type = 'grant_type_example' # String | 
 opts = {
-  client_id: 'client_id_example', # String | 
   code: 'code_example', # String | 
+  refresh_token: 'refresh_token_example', # String | 
   redirect_uri: 'redirect_uri_example', # String | 
-  refresh_token: 'refresh_token_example' # String | 
+  client_id: 'client_id_example' # String | 
 }
 
 begin
@@ -459,10 +521,10 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **grant_type** | **String** |  |  |
-| **client_id** | **String** |  | [optional] |
 | **code** | **String** |  | [optional] |
-| **redirect_uri** | **String** |  | [optional] |
 | **refresh_token** | **String** |  | [optional] |
+| **redirect_uri** | **String** |  | [optional] |
+| **client_id** | **String** |  | [optional] |
 
 ### Return type
 

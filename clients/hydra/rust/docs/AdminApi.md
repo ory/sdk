@@ -22,7 +22,9 @@ Method | HTTP request | Description
 [**get_logout_request**](AdminApi.md#get_logout_request) | **GET** /oauth2/auth/requests/logout | Get a Logout Request
 [**get_o_auth2_client**](AdminApi.md#get_o_auth2_client) | **GET** /clients/{id} | Get an OAuth 2.0 Client
 [**get_trusted_jwt_grant_issuer**](AdminApi.md#get_trusted_jwt_grant_issuer) | **GET** /trust/grants/jwt-bearer/issuers/{id} | Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
+[**get_version**](AdminApi.md#get_version) | **GET** /version | Get Service Version
 [**introspect_o_auth2_token**](AdminApi.md#introspect_o_auth2_token) | **POST** /oauth2/introspect | Introspect OAuth2 Tokens
+[**is_instance_alive**](AdminApi.md#is_instance_alive) | **GET** /health/alive | Check Alive Status
 [**list_o_auth2_clients**](AdminApi.md#list_o_auth2_clients) | **GET** /clients | List OAuth 2.0 Clients
 [**list_subject_consent_sessions**](AdminApi.md#list_subject_consent_sessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject
 [**list_trusted_jwt_grant_issuers**](AdminApi.md#list_trusted_jwt_grant_issuers) | **GET** /trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
@@ -41,7 +43,7 @@ Method | HTTP request | Description
 
 ## accept_consent_request
 
-> crate::models::CompletedRequest accept_consent_request(consent_challenge, accept_consent_request)
+> crate::models::CompletedRequest accept_consent_request(consent_challenge, body)
 Accept a Consent Request
 
 When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.  This endpoint tells ORY Hydra that the subject has authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider includes additional information, such as session data for access and ID tokens, and if the consent request should be used as basis for future requests.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
@@ -52,7 +54,7 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **consent_challenge** | **String** |  | [required] |
-**accept_consent_request** | Option<[**AcceptConsentRequest**](AcceptConsentRequest.md)> |  |  |
+**body** | Option<[**AcceptConsentRequest**](AcceptConsentRequest.md)> |  |  |
 
 ### Return type
 
@@ -72,7 +74,7 @@ No authorization required
 
 ## accept_login_request
 
-> crate::models::CompletedRequest accept_login_request(login_challenge, accept_login_request)
+> crate::models::CompletedRequest accept_login_request(login_challenge, body)
 Accept a Login Request
 
 When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell ORY Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells ORY Hydra that the subject has successfully authenticated and includes additional information such as the subject's ID and if ORY Hydra should remember the subject's subject agent for future authentication attempts by setting a cookie.  The response contains a redirect URL which the login provider should redirect the user-agent to.
@@ -83,7 +85,7 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **login_challenge** | **String** |  | [required] |
-**accept_login_request** | Option<[**AcceptLoginRequest**](AcceptLoginRequest.md)> |  |  |
+**body** | Option<[**AcceptLoginRequest**](AcceptLoginRequest.md)> |  |  |
 
 ### Return type
 
@@ -133,7 +135,7 @@ No authorization required
 
 ## create_json_web_key_set
 
-> crate::models::JsonWebKeySet create_json_web_key_set(set, json_web_key_set_generator_request)
+> crate::models::JsonWebKeySet create_json_web_key_set(set, body)
 Generate a New JSON Web Key
 
 This endpoint is capable of generating JSON Web Key Sets for you. There a different strategies available, such as symmetric cryptographic keys (HS256, HS512) and asymetric cryptographic keys (RS256, ECDSA). If the specified JSON Web Key Set does not exist, it will be created.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
@@ -144,7 +146,7 @@ This endpoint is capable of generating JSON Web Key Sets for you. There a differ
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **set** | **String** | The set | [required] |
-**json_web_key_set_generator_request** | Option<[**JsonWebKeySetGeneratorRequest**](JsonWebKeySetGeneratorRequest.md)> |  |  |
+**body** | Option<[**JsonWebKeySetGeneratorRequest**](JsonWebKeySetGeneratorRequest.md)> |  |  |
 
 ### Return type
 
@@ -164,7 +166,7 @@ No authorization required
 
 ## create_o_auth2_client
 
-> crate::models::OAuth2Client create_o_auth2_client(o_auth2_client)
+> crate::models::OAuth2Client create_o_auth2_client(body)
 Create an OAuth 2.0 Client
 
 Create a new OAuth 2.0 client If you pass `client_secret` the secret will be used, otherwise a random secret will be generated. The secret will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somwhere safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
@@ -174,7 +176,7 @@ Create a new OAuth 2.0 client If you pass `client_secret` the secret will be use
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**o_auth2_client** | [**OAuth2Client**](OAuth2Client.md) |  | [required] |
+**body** | [**OAuth2Client**](OAuth2Client.md) |  | [required] |
 
 ### Return type
 
@@ -345,7 +347,7 @@ No authorization required
 
 ## flush_inactive_o_auth2_tokens
 
-> flush_inactive_o_auth2_tokens(flush_inactive_o_auth2_tokens_request)
+> flush_inactive_o_auth2_tokens(body)
 Flush Expired OAuth2 Access Tokens
 
 This endpoint flushes expired OAuth2 access tokens from the database. You can set a time after which no tokens will be not be touched, in case you want to keep recent tokens for auditing. Refresh tokens can not be flushed as they are deleted automatically when performing the refresh flow.
@@ -355,7 +357,7 @@ This endpoint flushes expired OAuth2 access tokens from the database. You can se
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**flush_inactive_o_auth2_tokens_request** | Option<[**FlushInactiveOAuth2TokensRequest**](FlushInactiveOAuth2TokensRequest.md)> |  |  |
+**body** | Option<[**FlushInactiveOAuth2TokensRequest**](FlushInactiveOAuth2TokensRequest.md)> |  |  |
 
 ### Return type
 
@@ -584,6 +586,33 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_version
+
+> crate::models::Version get_version()
+Get Service Version
+
+This endpoint returns the service version typically notated using semantic versioning.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**crate::models::Version**](version.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## introspect_o_auth2_token
 
 > crate::models::OAuth2TokenIntrospection introspect_o_auth2_token(token, scope)
@@ -610,6 +639,33 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/x-www-form-urlencoded
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## is_instance_alive
+
+> crate::models::HealthStatus is_instance_alive()
+Check Alive Status
+
+This endpoint returns a 200 status code when the HTTP server is up running. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**crate::models::HealthStatus**](healthStatus.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -650,7 +706,7 @@ No authorization required
 
 ## list_subject_consent_sessions
 
-> Vec<crate::models::PreviousConsentSession> list_subject_consent_sessions(subject, limit, offset)
+> Vec<crate::models::PreviousConsentSession> list_subject_consent_sessions(subject)
 Lists All Consent Sessions of a Subject
 
 This endpoint lists all subject's granted consent sessions, including client and granted scope. If the subject is unknown or has not granted any consent sessions yet, the endpoint returns an empty JSON array with status code 200 OK.   The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/oauth2/auth/sessions/consent?subject={user}&limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
@@ -661,8 +717,6 @@ This endpoint lists all subject's granted consent sessions, including client and
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **subject** | **String** |  | [required] |
-**limit** | Option<**i64**> | The maximum amount of consent sessions to be returned, upper bound is 500 sessions. |  |
-**offset** | Option<**i64**> | The offset from where to start looking. |  |
 
 ### Return type
 
@@ -714,7 +768,7 @@ No authorization required
 
 ## patch_o_auth2_client
 
-> crate::models::OAuth2Client patch_o_auth2_client(id, patch_document)
+> crate::models::OAuth2Client patch_o_auth2_client(id, body)
 Patch an OAuth 2.0 Client
 
 Patch an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
@@ -725,7 +779,7 @@ Patch an existing OAuth 2.0 Client. If you pass `client_secret` the secret will 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | The id of the OAuth 2.0 Client. | [required] |
-**patch_document** | [**Vec<crate::models::PatchDocument>**](patchDocument.md) |  | [required] |
+**body** | [**Vec<crate::models::PatchDocument>**](patchDocument.md) |  | [required] |
 
 ### Return type
 
@@ -745,7 +799,7 @@ No authorization required
 
 ## reject_consent_request
 
-> crate::models::CompletedRequest reject_consent_request(consent_challenge, reject_request)
+> crate::models::CompletedRequest reject_consent_request(consent_challenge, body)
 Reject a Consent Request
 
 When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.  This endpoint tells ORY Hydra that the subject has not authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider must include a reason why the consent was not granted.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
@@ -756,7 +810,7 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **consent_challenge** | **String** |  | [required] |
-**reject_request** | Option<[**RejectRequest**](RejectRequest.md)> |  |  |
+**body** | Option<[**RejectRequest**](RejectRequest.md)> |  |  |
 
 ### Return type
 
@@ -776,7 +830,7 @@ No authorization required
 
 ## reject_login_request
 
-> crate::models::CompletedRequest reject_login_request(login_challenge, reject_request)
+> crate::models::CompletedRequest reject_login_request(login_challenge, body)
 Reject a Login Request
 
 When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell ORY Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells ORY Hydra that the subject has not authenticated and includes a reason why the authentication was be denied.  The response contains a redirect URL which the login provider should redirect the user-agent to.
@@ -787,7 +841,7 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **login_challenge** | **String** |  | [required] |
-**reject_request** | Option<[**RejectRequest**](RejectRequest.md)> |  |  |
+**body** | Option<[**RejectRequest**](RejectRequest.md)> |  |  |
 
 ### Return type
 
@@ -807,7 +861,7 @@ No authorization required
 
 ## reject_logout_request
 
-> reject_logout_request(logout_challenge, reject_request)
+> reject_logout_request(logout_challenge, body)
 Reject a Logout Request
 
 When a user or an application requests ORY Hydra to log out a user, this endpoint is used to deny that logout request. No body is required.  The response is empty as the logout provider has to chose what action to perform next.
@@ -818,7 +872,7 @@ When a user or an application requests ORY Hydra to log out a user, this endpoin
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **logout_challenge** | **String** |  | [required] |
-**reject_request** | Option<[**RejectRequest**](RejectRequest.md)> |  |  |
+**body** | Option<[**RejectRequest**](RejectRequest.md)> |  |  |
 
 ### Return type
 
@@ -900,7 +954,7 @@ No authorization required
 
 ## trust_jwt_grant_issuer
 
-> crate::models::TrustedJwtGrantIssuer trust_jwt_grant_issuer(trust_jwt_grant_issuer_body)
+> crate::models::TrustedJwtGrantIssuer trust_jwt_grant_issuer(body)
 Trust an OAuth2 JWT Bearer Grant Type Issuer
 
 Use this endpoint to establish a trust relationship for a JWT issuer to perform JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants [RFC7523](https://datatracker.ietf.org/doc/html/rfc7523).
@@ -910,7 +964,7 @@ Use this endpoint to establish a trust relationship for a JWT issuer to perform 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**trust_jwt_grant_issuer_body** | Option<[**TrustJwtGrantIssuerBody**](TrustJwtGrantIssuerBody.md)> |  |  |
+**body** | Option<[**TrustJwtGrantIssuerBody**](TrustJwtGrantIssuerBody.md)> |  |  |
 
 ### Return type
 
@@ -930,7 +984,7 @@ No authorization required
 
 ## update_json_web_key
 
-> crate::models::JsonWebKey update_json_web_key(kid, set, json_web_key)
+> crate::models::JsonWebKey update_json_web_key(kid, set, body)
 Update a JSON Web Key
 
 Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
@@ -942,7 +996,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **kid** | **String** | The kid of the desired key | [required] |
 **set** | **String** | The set | [required] |
-**json_web_key** | Option<[**JsonWebKey**](JsonWebKey.md)> |  |  |
+**body** | Option<[**JsonWebKey**](JsonWebKey.md)> |  |  |
 
 ### Return type
 
@@ -962,7 +1016,7 @@ No authorization required
 
 ## update_json_web_key_set
 
-> crate::models::JsonWebKeySet update_json_web_key_set(set, json_web_key_set)
+> crate::models::JsonWebKeySet update_json_web_key_set(set, body)
 Update a JSON Web Key Set
 
 Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
@@ -973,7 +1027,7 @@ Use this method if you do not want to let Hydra generate the JWKs for you, but i
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **set** | **String** | The set | [required] |
-**json_web_key_set** | Option<[**JsonWebKeySet**](JsonWebKeySet.md)> |  |  |
+**body** | Option<[**JsonWebKeySet**](JsonWebKeySet.md)> |  |  |
 
 ### Return type
 
@@ -993,7 +1047,7 @@ No authorization required
 
 ## update_o_auth2_client
 
-> crate::models::OAuth2Client update_o_auth2_client(id, o_auth2_client)
+> crate::models::OAuth2Client update_o_auth2_client(id, body)
 Update an OAuth 2.0 Client
 
 Update an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
@@ -1004,7 +1058,7 @@ Update an existing OAuth 2.0 Client. If you pass `client_secret` the secret will
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | The id of the OAuth 2.0 Client. | [required] |
-**o_auth2_client** | [**OAuth2Client**](OAuth2Client.md) |  | [required] |
+**body** | [**OAuth2Client**](OAuth2Client.md) |  | [required] |
 
 ### Return type
 

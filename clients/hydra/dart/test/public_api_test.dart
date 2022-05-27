@@ -17,7 +17,7 @@ void main() {
   group(PublicApi, () {
     // OpenID Connect Front-Backchannel Enabled Logout
     //
-    // This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front-/Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html  Back-channel logout is performed asynchronously and does not affect logout flow.
+    // This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front-/Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html
     //
     //Future disconnectUser() async
     test('test disconnectUser', () async {
@@ -37,7 +37,7 @@ void main() {
     //
     // This endpoint behaves like the administrative counterpart (`createOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  Please note that using this endpoint you are not able to choose the `client_secret` nor the `client_id` as those values will be server generated when specifying `token_endpoint_auth_method` as `client_secret_basic` or `client_secret_post`.  The `client_secret` will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somewhere safe.
     //
-    //Future<OAuth2Client> dynamicClientRegistrationCreateOAuth2Client(OAuth2Client oAuth2Client) async
+    //Future<OAuth2Client> dynamicClientRegistrationCreateOAuth2Client(OAuth2Client body) async
     test('test dynamicClientRegistrationCreateOAuth2Client', () async {
       // TODO
     });
@@ -64,8 +64,17 @@ void main() {
     //
     // This endpoint behaves like the administrative counterpart (`updateOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
     //
-    //Future<OAuth2Client> dynamicClientRegistrationUpdateOAuth2Client(String id, OAuth2Client oAuth2Client) async
+    //Future<OAuth2Client> dynamicClientRegistrationUpdateOAuth2Client(String id, OAuth2Client body) async
     test('test dynamicClientRegistrationUpdateOAuth2Client', () async {
+      // TODO
+    });
+
+    // Check Readiness Status
+    //
+    // This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+    //
+    //Future<HealthStatus> isInstanceReady() async
+    test('test isInstanceReady', () async {
       // TODO
     });
 
@@ -73,7 +82,7 @@ void main() {
     //
     // The client makes a request to the token endpoint by sending the following parameters using the \"application/x-www-form-urlencoded\" HTTP request entity-body.  > Do not implement a client for this endpoint yourself. Use a library. There are many libraries > available for any programming language. You can find a list of libraries here: https://oauth.net/code/ > > Do note that Hydra SDK does not implement this endpoint properly. Use one of the libraries listed above!
     //
-    //Future<Oauth2TokenResponse> oauth2Token(String grantType, { String clientId, String code, String redirectUri, String refreshToken }) async
+    //Future<Oauth2TokenResponse> oauth2Token(String grantType, { String code, String refreshToken, String redirectUri, String clientId }) async
     test('test oauth2Token', () async {
       // TODO
     });

@@ -15,6 +15,7 @@ Method | HTTP request | Description
 [**dynamicClientRegistrationDeleteOAuth2Client**](PublicApi.md#dynamicclientregistrationdeleteoauth2client) | **DELETE** /connect/register/{id} | Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 [**dynamicClientRegistrationGetOAuth2Client**](PublicApi.md#dynamicclientregistrationgetoauth2client) | **GET** /connect/register/{id} | Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 [**dynamicClientRegistrationUpdateOAuth2Client**](PublicApi.md#dynamicclientregistrationupdateoauth2client) | **PUT** /connect/register/{id} | Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+[**isInstanceReady**](PublicApi.md#isinstanceready) | **GET** /health/ready | Check Readiness Status
 [**oauth2Token**](PublicApi.md#oauth2token) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
 [**oauthAuth**](PublicApi.md#oauthauth) | **GET** /oauth2/auth | The OAuth 2.0 Authorize Endpoint
 [**revokeOAuth2Token**](PublicApi.md#revokeoauth2token) | **POST** /oauth2/revoke | Revoke OAuth2 Tokens
@@ -27,7 +28,7 @@ Method | HTTP request | Description
 
 OpenID Connect Front-Backchannel Enabled Logout
 
-This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front-/Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html  Back-channel logout is performed asynchronously and does not affect logout flow.
+This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front-/Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html
 
 ### Example
 ```dart
@@ -100,7 +101,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **dynamicClientRegistrationCreateOAuth2Client**
-> OAuth2Client dynamicClientRegistrationCreateOAuth2Client(oAuth2Client)
+> OAuth2Client dynamicClientRegistrationCreateOAuth2Client(body)
 
 Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 
@@ -111,10 +112,10 @@ This endpoint behaves like the administrative counterpart (`createOAuth2Client`)
 import 'package:ory_hydra_client/api.dart';
 
 var api_instance = new PublicApi();
-var oAuth2Client = new OAuth2Client(); // OAuth2Client | 
+var body = new OAuth2Client(); // OAuth2Client | 
 
 try {
-    var result = api_instance.dynamicClientRegistrationCreateOAuth2Client(oAuth2Client);
+    var result = api_instance.dynamicClientRegistrationCreateOAuth2Client(body);
     print(result);
 } catch (e) {
     print('Exception when calling PublicApi->dynamicClientRegistrationCreateOAuth2Client: $e\n');
@@ -125,7 +126,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **oAuth2Client** | [**OAuth2Client**](OAuth2Client.md)|  | 
+ **body** | [**OAuth2Client**](OAuth2Client.md)|  | 
 
 ### Return type
 
@@ -228,7 +229,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **dynamicClientRegistrationUpdateOAuth2Client**
-> OAuth2Client dynamicClientRegistrationUpdateOAuth2Client(id, oAuth2Client)
+> OAuth2Client dynamicClientRegistrationUpdateOAuth2Client(id, body)
 
 Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 
@@ -240,10 +241,10 @@ import 'package:ory_hydra_client/api.dart';
 
 var api_instance = new PublicApi();
 var id = id_example; // String | The id of the OAuth 2.0 Client.
-var oAuth2Client = new OAuth2Client(); // OAuth2Client | 
+var body = new OAuth2Client(); // OAuth2Client | 
 
 try {
-    var result = api_instance.dynamicClientRegistrationUpdateOAuth2Client(id, oAuth2Client);
+    var result = api_instance.dynamicClientRegistrationUpdateOAuth2Client(id, body);
     print(result);
 } catch (e) {
     print('Exception when calling PublicApi->dynamicClientRegistrationUpdateOAuth2Client: $e\n');
@@ -255,7 +256,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| The id of the OAuth 2.0 Client. | 
- **oAuth2Client** | [**OAuth2Client**](OAuth2Client.md)|  | 
+ **body** | [**OAuth2Client**](OAuth2Client.md)|  | 
 
 ### Return type
 
@@ -272,8 +273,47 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **isInstanceReady**
+> HealthStatus isInstanceReady()
+
+Check Readiness Status
+
+This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+
+### Example
+```dart
+import 'package:ory_hydra_client/api.dart';
+
+var api_instance = new PublicApi();
+
+try {
+    var result = api_instance.isInstanceReady();
+    print(result);
+} catch (e) {
+    print('Exception when calling PublicApi->isInstanceReady: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**HealthStatus**](HealthStatus.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **oauth2Token**
-> Oauth2TokenResponse oauth2Token(grantType, clientId, code, redirectUri, refreshToken)
+> Oauth2TokenResponse oauth2Token(grantType, code, refreshToken, redirectUri, clientId)
 
 The OAuth 2.0 Token Endpoint
 
@@ -290,13 +330,13 @@ import 'package:ory_hydra_client/api.dart';
 
 var api_instance = new PublicApi();
 var grantType = grantType_example; // String | 
-var clientId = clientId_example; // String | 
 var code = code_example; // String | 
-var redirectUri = redirectUri_example; // String | 
 var refreshToken = refreshToken_example; // String | 
+var redirectUri = redirectUri_example; // String | 
+var clientId = clientId_example; // String | 
 
 try {
-    var result = api_instance.oauth2Token(grantType, clientId, code, redirectUri, refreshToken);
+    var result = api_instance.oauth2Token(grantType, code, refreshToken, redirectUri, clientId);
     print(result);
 } catch (e) {
     print('Exception when calling PublicApi->oauth2Token: $e\n');
@@ -308,10 +348,10 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **grantType** | **String**|  | 
- **clientId** | **String**|  | [optional] 
  **code** | **String**|  | [optional] 
- **redirectUri** | **String**|  | [optional] 
  **refreshToken** | **String**|  | [optional] 
+ **redirectUri** | **String**|  | [optional] 
+ **clientId** | **String**|  | [optional] 
 
 ### Return type
 

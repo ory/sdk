@@ -10,7 +10,7 @@ desired version.
 You may also manually build and publish this image using:
 
 ```shell script
-docker build -t oryd/sdk:latest .
+docker build --platform linux/amd64 -t oryd/sdk:latest .
 docker tag oryd/sdk:latest oryd/sdk:v0.0.34
 docker push oryd/sdk:v0.0.34
 ```
@@ -20,7 +20,7 @@ docker push oryd/sdk:v0.0.34
 If you wish to debug some generators or build steps, you can run the image locally:
 
 ```shell script
-docker run --mount type=bind,source="$(pwd)",target=/sdk --name sdk --user "$(id -u):$(id -g)" -it oryd/sdk:v0.0.47 /bin/sh
+docker run --platform linux/amd64 --mount type=bind,source="$(pwd)",target=/sdk --name sdk --user "$(id -u):$(id -g)" -it oryd/sdk:latest /bin/sh
 ```
 
 ### Debugging Failing CircleCI Tests
@@ -29,13 +29,12 @@ If a CircleCI tests fails ([see example](https://app.circleci.com/pipelines/gith
 you may run the following code snippet to reproduce the failure locally:
 
 ```shell script
-docker run --mount type=bind,source="$(pwd)",target=/project -it oryd/sdk:v0.0.47 /bin/sh
+docker run --platform linux/amd64 --mount type=bind,source="$(pwd)",target=/project -it oryd/sdk:latest /bin/sh
 
 export FORCE_VERSION=v1.11.0
 export FORCE_PROJECT=hydra # or hydra or something else
 cd /project
 
-cp spec/api.json "/sdk/spec/${CIRCLE_PROJECT_REPONAME}/v0.0.1-test.0.json"
 ./scripts/generate.sh
 ./scripts/test.sh
 ```

@@ -22,7 +22,9 @@ All URIs are relative to *http://localhost*
 | [**get_logout_request**](AdminApi.md#get_logout_request) | **GET** /oauth2/auth/requests/logout | Get a Logout Request |
 | [**get_o_auth2_client**](AdminApi.md#get_o_auth2_client) | **GET** /clients/{id} | Get an OAuth 2.0 Client |
 | [**get_trusted_jwt_grant_issuer**](AdminApi.md#get_trusted_jwt_grant_issuer) | **GET** /trust/grants/jwt-bearer/issuers/{id} | Get a Trusted OAuth2 JWT Bearer Grant Type Issuer |
+| [**get_version**](AdminApi.md#get_version) | **GET** /version | Get Service Version |
 | [**introspect_o_auth2_token**](AdminApi.md#introspect_o_auth2_token) | **POST** /oauth2/introspect | Introspect OAuth2 Tokens |
+| [**is_instance_alive**](AdminApi.md#is_instance_alive) | **GET** /health/alive | Check Alive Status |
 | [**list_o_auth2_clients**](AdminApi.md#list_o_auth2_clients) | **GET** /clients | List OAuth 2.0 Clients |
 | [**list_subject_consent_sessions**](AdminApi.md#list_subject_consent_sessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject |
 | [**list_trusted_jwt_grant_issuers**](AdminApi.md#list_trusted_jwt_grant_issuers) | **GET** /trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers |
@@ -55,7 +57,7 @@ require 'ory-hydra-client'
 api_instance = OryHydraClient::AdminApi.new
 consent_challenge = 'consent_challenge_example' # String | 
 opts = {
-  accept_consent_request: OryHydraClient::AcceptConsentRequest.new # AcceptConsentRequest | 
+  body: OryHydraClient::AcceptConsentRequest.new # AcceptConsentRequest | 
 }
 
 begin
@@ -90,7 +92,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **consent_challenge** | **String** |  |  |
-| **accept_consent_request** | [**AcceptConsentRequest**](AcceptConsentRequest.md) |  | [optional] |
+| **body** | [**AcceptConsentRequest**](AcceptConsentRequest.md) |  | [optional] |
 
 ### Return type
 
@@ -123,7 +125,7 @@ require 'ory-hydra-client'
 api_instance = OryHydraClient::AdminApi.new
 login_challenge = 'login_challenge_example' # String | 
 opts = {
-  accept_login_request: OryHydraClient::AcceptLoginRequest.new({subject: 'subject_example'}) # AcceptLoginRequest | 
+  body: OryHydraClient::AcceptLoginRequest.new({subject: 'subject_example'}) # AcceptLoginRequest | 
 }
 
 begin
@@ -158,7 +160,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **login_challenge** | **String** |  |  |
-| **accept_login_request** | [**AcceptLoginRequest**](AcceptLoginRequest.md) |  | [optional] |
+| **body** | [**AcceptLoginRequest**](AcceptLoginRequest.md) |  | [optional] |
 
 ### Return type
 
@@ -255,7 +257,7 @@ require 'ory-hydra-client'
 api_instance = OryHydraClient::AdminApi.new
 set = 'set_example' # String | The set
 opts = {
-  json_web_key_set_generator_request: OryHydraClient::JsonWebKeySetGeneratorRequest.new({alg: 'alg_example', kid: 'kid_example', use: 'use_example'}) # JsonWebKeySetGeneratorRequest | 
+  body: OryHydraClient::JsonWebKeySetGeneratorRequest.new({alg: 'alg_example', kid: 'kid_example', use: 'use_example'}) # JsonWebKeySetGeneratorRequest | 
 }
 
 begin
@@ -290,7 +292,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **set** | **String** | The set |  |
-| **json_web_key_set_generator_request** | [**JsonWebKeySetGeneratorRequest**](JsonWebKeySetGeneratorRequest.md) |  | [optional] |
+| **body** | [**JsonWebKeySetGeneratorRequest**](JsonWebKeySetGeneratorRequest.md) |  | [optional] |
 
 ### Return type
 
@@ -308,7 +310,7 @@ No authorization required
 
 ## create_o_auth2_client
 
-> <OAuth2Client> create_o_auth2_client(o_auth2_client)
+> <OAuth2Client> create_o_auth2_client(body)
 
 Create an OAuth 2.0 Client
 
@@ -321,11 +323,11 @@ require 'time'
 require 'ory-hydra-client'
 
 api_instance = OryHydraClient::AdminApi.new
-o_auth2_client = OryHydraClient::OAuth2Client.new # OAuth2Client | 
+body = OryHydraClient::OAuth2Client.new # OAuth2Client | 
 
 begin
   # Create an OAuth 2.0 Client
-  result = api_instance.create_o_auth2_client(o_auth2_client)
+  result = api_instance.create_o_auth2_client(body)
   p result
 rescue OryHydraClient::ApiError => e
   puts "Error when calling AdminApi->create_o_auth2_client: #{e}"
@@ -336,12 +338,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<OAuth2Client>, Integer, Hash)> create_o_auth2_client_with_http_info(o_auth2_client)
+> <Array(<OAuth2Client>, Integer, Hash)> create_o_auth2_client_with_http_info(body)
 
 ```ruby
 begin
   # Create an OAuth 2.0 Client
-  data, status_code, headers = api_instance.create_o_auth2_client_with_http_info(o_auth2_client)
+  data, status_code, headers = api_instance.create_o_auth2_client_with_http_info(body)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <OAuth2Client>
@@ -354,7 +356,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md) |  |  |
+| **body** | [**OAuth2Client**](OAuth2Client.md) |  |  |
 
 ### Return type
 
@@ -703,7 +705,7 @@ require 'ory-hydra-client'
 
 api_instance = OryHydraClient::AdminApi.new
 opts = {
-  flush_inactive_o_auth2_tokens_request: OryHydraClient::FlushInactiveOAuth2TokensRequest.new # FlushInactiveOAuth2TokensRequest | 
+  body: OryHydraClient::FlushInactiveOAuth2TokensRequest.new # FlushInactiveOAuth2TokensRequest | 
 }
 
 begin
@@ -736,7 +738,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **flush_inactive_o_auth2_tokens_request** | [**FlushInactiveOAuth2TokensRequest**](FlushInactiveOAuth2TokensRequest.md) |  | [optional] |
+| **body** | [**FlushInactiveOAuth2TokensRequest**](FlushInactiveOAuth2TokensRequest.md) |  | [optional] |
 
 ### Return type
 
@@ -1202,6 +1204,67 @@ No authorization required
 - **Accept**: application/json
 
 
+## get_version
+
+> <Version> get_version
+
+Get Service Version
+
+This endpoint returns the service version typically notated using semantic versioning.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-hydra-client'
+
+api_instance = OryHydraClient::AdminApi.new
+
+begin
+  # Get Service Version
+  result = api_instance.get_version
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling AdminApi->get_version: #{e}"
+end
+```
+
+#### Using the get_version_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Version>, Integer, Hash)> get_version_with_http_info
+
+```ruby
+begin
+  # Get Service Version
+  data, status_code, headers = api_instance.get_version_with_http_info
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Version>
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling AdminApi->get_version_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**Version**](Version.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## introspect_o_auth2_token
 
 > <OAuth2TokenIntrospection> introspect_o_auth2_token(token, opts)
@@ -1267,6 +1330,67 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/x-www-form-urlencoded
+- **Accept**: application/json
+
+
+## is_instance_alive
+
+> <HealthStatus> is_instance_alive
+
+Check Alive Status
+
+This endpoint returns a 200 status code when the HTTP server is up running. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-hydra-client'
+
+api_instance = OryHydraClient::AdminApi.new
+
+begin
+  # Check Alive Status
+  result = api_instance.is_instance_alive
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling AdminApi->is_instance_alive: #{e}"
+end
+```
+
+#### Using the is_instance_alive_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<HealthStatus>, Integer, Hash)> is_instance_alive_with_http_info
+
+```ruby
+begin
+  # Check Alive Status
+  data, status_code, headers = api_instance.is_instance_alive_with_http_info
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <HealthStatus>
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling AdminApi->is_instance_alive_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**HealthStatus**](HealthStatus.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 
@@ -1344,7 +1468,7 @@ No authorization required
 
 ## list_subject_consent_sessions
 
-> <Array<PreviousConsentSession>> list_subject_consent_sessions(subject, opts)
+> <Array<PreviousConsentSession>> list_subject_consent_sessions(subject)
 
 Lists All Consent Sessions of a Subject
 
@@ -1358,14 +1482,10 @@ require 'ory-hydra-client'
 
 api_instance = OryHydraClient::AdminApi.new
 subject = 'subject_example' # String | 
-opts = {
-  limit: 789, # Integer | The maximum amount of consent sessions to be returned, upper bound is 500 sessions.
-  offset: 789 # Integer | The offset from where to start looking.
-}
 
 begin
   # Lists All Consent Sessions of a Subject
-  result = api_instance.list_subject_consent_sessions(subject, opts)
+  result = api_instance.list_subject_consent_sessions(subject)
   p result
 rescue OryHydraClient::ApiError => e
   puts "Error when calling AdminApi->list_subject_consent_sessions: #{e}"
@@ -1376,12 +1496,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<Array<PreviousConsentSession>>, Integer, Hash)> list_subject_consent_sessions_with_http_info(subject, opts)
+> <Array(<Array<PreviousConsentSession>>, Integer, Hash)> list_subject_consent_sessions_with_http_info(subject)
 
 ```ruby
 begin
   # Lists All Consent Sessions of a Subject
-  data, status_code, headers = api_instance.list_subject_consent_sessions_with_http_info(subject, opts)
+  data, status_code, headers = api_instance.list_subject_consent_sessions_with_http_info(subject)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <Array<PreviousConsentSession>>
@@ -1395,8 +1515,6 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **subject** | **String** |  |  |
-| **limit** | **Integer** | The maximum amount of consent sessions to be returned, upper bound is 500 sessions. | [optional] |
-| **offset** | **Integer** | The offset from where to start looking. | [optional] |
 
 ### Return type
 
@@ -1484,7 +1602,7 @@ No authorization required
 
 ## patch_o_auth2_client
 
-> <OAuth2Client> patch_o_auth2_client(id, patch_document)
+> <OAuth2Client> patch_o_auth2_client(id, body)
 
 Patch an OAuth 2.0 Client
 
@@ -1498,11 +1616,11 @@ require 'ory-hydra-client'
 
 api_instance = OryHydraClient::AdminApi.new
 id = 'id_example' # String | The id of the OAuth 2.0 Client.
-patch_document = [OryHydraClient::PatchDocument.new({op: '"replace"', path: '"/name"'})] # Array<PatchDocument> | 
+body = [OryHydraClient::PatchDocument.new({op: '"replace"', path: '"/name"'})] # Array<PatchDocument> | 
 
 begin
   # Patch an OAuth 2.0 Client
-  result = api_instance.patch_o_auth2_client(id, patch_document)
+  result = api_instance.patch_o_auth2_client(id, body)
   p result
 rescue OryHydraClient::ApiError => e
   puts "Error when calling AdminApi->patch_o_auth2_client: #{e}"
@@ -1513,12 +1631,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<OAuth2Client>, Integer, Hash)> patch_o_auth2_client_with_http_info(id, patch_document)
+> <Array(<OAuth2Client>, Integer, Hash)> patch_o_auth2_client_with_http_info(id, body)
 
 ```ruby
 begin
   # Patch an OAuth 2.0 Client
-  data, status_code, headers = api_instance.patch_o_auth2_client_with_http_info(id, patch_document)
+  data, status_code, headers = api_instance.patch_o_auth2_client_with_http_info(id, body)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <OAuth2Client>
@@ -1532,7 +1650,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The id of the OAuth 2.0 Client. |  |
-| **patch_document** | [**Array&lt;PatchDocument&gt;**](PatchDocument.md) |  |  |
+| **body** | [**Array&lt;PatchDocument&gt;**](PatchDocument.md) |  |  |
 
 ### Return type
 
@@ -1565,7 +1683,7 @@ require 'ory-hydra-client'
 api_instance = OryHydraClient::AdminApi.new
 consent_challenge = 'consent_challenge_example' # String | 
 opts = {
-  reject_request: OryHydraClient::RejectRequest.new # RejectRequest | 
+  body: OryHydraClient::RejectRequest.new # RejectRequest | 
 }
 
 begin
@@ -1600,7 +1718,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **consent_challenge** | **String** |  |  |
-| **reject_request** | [**RejectRequest**](RejectRequest.md) |  | [optional] |
+| **body** | [**RejectRequest**](RejectRequest.md) |  | [optional] |
 
 ### Return type
 
@@ -1633,7 +1751,7 @@ require 'ory-hydra-client'
 api_instance = OryHydraClient::AdminApi.new
 login_challenge = 'login_challenge_example' # String | 
 opts = {
-  reject_request: OryHydraClient::RejectRequest.new # RejectRequest | 
+  body: OryHydraClient::RejectRequest.new # RejectRequest | 
 }
 
 begin
@@ -1668,7 +1786,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **login_challenge** | **String** |  |  |
-| **reject_request** | [**RejectRequest**](RejectRequest.md) |  | [optional] |
+| **body** | [**RejectRequest**](RejectRequest.md) |  | [optional] |
 
 ### Return type
 
@@ -1701,7 +1819,7 @@ require 'ory-hydra-client'
 api_instance = OryHydraClient::AdminApi.new
 logout_challenge = 'logout_challenge_example' # String | 
 opts = {
-  reject_request: OryHydraClient::RejectRequest.new # RejectRequest | 
+  body: OryHydraClient::RejectRequest.new # RejectRequest | 
 }
 
 begin
@@ -1735,7 +1853,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **logout_challenge** | **String** |  |  |
-| **reject_request** | [**RejectRequest**](RejectRequest.md) |  | [optional] |
+| **body** | [**RejectRequest**](RejectRequest.md) |  | [optional] |
 
 ### Return type
 
@@ -1899,7 +2017,7 @@ require 'ory-hydra-client'
 
 api_instance = OryHydraClient::AdminApi.new
 opts = {
-  trust_jwt_grant_issuer_body: OryHydraClient::TrustJwtGrantIssuerBody.new({expires_at: Time.now, issuer: 'https://jwt-idp.example.com', jwk: OryHydraClient::JSONWebKey.new({alg: 'RS256', kid: '1603dfe0af8f4596', kty: 'RSA', use: 'sig'}), scope: ["openid", "offline"]}) # TrustJwtGrantIssuerBody | 
+  body: OryHydraClient::TrustJwtGrantIssuerBody.new({expires_at: Time.now, issuer: 'https://jwt-idp.example.com', jwk: OryHydraClient::JSONWebKey.new({alg: 'RS256', kid: '1603dfe0af8f4596', kty: 'RSA', use: 'sig'}), scope: [openid,  offline], subject: 'mike@example.com'}) # TrustJwtGrantIssuerBody | 
 }
 
 begin
@@ -1933,7 +2051,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **trust_jwt_grant_issuer_body** | [**TrustJwtGrantIssuerBody**](TrustJwtGrantIssuerBody.md) |  | [optional] |
+| **body** | [**TrustJwtGrantIssuerBody**](TrustJwtGrantIssuerBody.md) |  | [optional] |
 
 ### Return type
 
@@ -1967,7 +2085,7 @@ api_instance = OryHydraClient::AdminApi.new
 kid = 'kid_example' # String | The kid of the desired key
 set = 'set_example' # String | The set
 opts = {
-  json_web_key: OryHydraClient::JSONWebKey.new({alg: 'RS256', kid: '1603dfe0af8f4596', kty: 'RSA', use: 'sig'}) # JSONWebKey | 
+  body: OryHydraClient::JSONWebKey.new({alg: 'RS256', kid: '1603dfe0af8f4596', kty: 'RSA', use: 'sig'}) # JSONWebKey | 
 }
 
 begin
@@ -2003,7 +2121,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **kid** | **String** | The kid of the desired key |  |
 | **set** | **String** | The set |  |
-| **json_web_key** | [**JSONWebKey**](JSONWebKey.md) |  | [optional] |
+| **body** | [**JSONWebKey**](JSONWebKey.md) |  | [optional] |
 
 ### Return type
 
@@ -2036,7 +2154,7 @@ require 'ory-hydra-client'
 api_instance = OryHydraClient::AdminApi.new
 set = 'set_example' # String | The set
 opts = {
-  json_web_key_set: OryHydraClient::JSONWebKeySet.new # JSONWebKeySet | 
+  body: OryHydraClient::JSONWebKeySet.new # JSONWebKeySet | 
 }
 
 begin
@@ -2071,7 +2189,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **set** | **String** | The set |  |
-| **json_web_key_set** | [**JSONWebKeySet**](JSONWebKeySet.md) |  | [optional] |
+| **body** | [**JSONWebKeySet**](JSONWebKeySet.md) |  | [optional] |
 
 ### Return type
 
@@ -2089,7 +2207,7 @@ No authorization required
 
 ## update_o_auth2_client
 
-> <OAuth2Client> update_o_auth2_client(id, o_auth2_client)
+> <OAuth2Client> update_o_auth2_client(id, body)
 
 Update an OAuth 2.0 Client
 
@@ -2103,11 +2221,11 @@ require 'ory-hydra-client'
 
 api_instance = OryHydraClient::AdminApi.new
 id = 'id_example' # String | The id of the OAuth 2.0 Client.
-o_auth2_client = OryHydraClient::OAuth2Client.new # OAuth2Client | 
+body = OryHydraClient::OAuth2Client.new # OAuth2Client | 
 
 begin
   # Update an OAuth 2.0 Client
-  result = api_instance.update_o_auth2_client(id, o_auth2_client)
+  result = api_instance.update_o_auth2_client(id, body)
   p result
 rescue OryHydraClient::ApiError => e
   puts "Error when calling AdminApi->update_o_auth2_client: #{e}"
@@ -2118,12 +2236,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<OAuth2Client>, Integer, Hash)> update_o_auth2_client_with_http_info(id, o_auth2_client)
+> <Array(<OAuth2Client>, Integer, Hash)> update_o_auth2_client_with_http_info(id, body)
 
 ```ruby
 begin
   # Update an OAuth 2.0 Client
-  data, status_code, headers = api_instance.update_o_auth2_client_with_http_info(id, o_auth2_client)
+  data, status_code, headers = api_instance.update_o_auth2_client_with_http_info(id, body)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <OAuth2Client>
@@ -2137,7 +2255,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The id of the OAuth 2.0 Client. |  |
-| **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md) |  |  |
+| **body** | [**OAuth2Client**](OAuth2Client.md) |  |  |
 
 ### Return type
 

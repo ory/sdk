@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**DynamicClientRegistrationDeleteOAuth2Client**](PublicApi.md#dynamicclientregistrationdeleteoauth2client) | **DELETE** /connect/register/{id} | Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 [**DynamicClientRegistrationGetOAuth2Client**](PublicApi.md#dynamicclientregistrationgetoauth2client) | **GET** /connect/register/{id} | Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 [**DynamicClientRegistrationUpdateOAuth2Client**](PublicApi.md#dynamicclientregistrationupdateoauth2client) | **PUT** /connect/register/{id} | Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+[**IsInstanceReady**](PublicApi.md#isinstanceready) | **GET** /health/ready | Check Readiness Status
 [**Oauth2Token**](PublicApi.md#oauth2token) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
 [**OauthAuth**](PublicApi.md#oauthauth) | **GET** /oauth2/auth | The OAuth 2.0 Authorize Endpoint
 [**RevokeOAuth2Token**](PublicApi.md#revokeoauth2token) | **POST** /oauth2/revoke | Revoke OAuth2 Tokens
@@ -23,7 +24,7 @@ Method | HTTP request | Description
 
 OpenID Connect Front-Backchannel Enabled Logout
 
-This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front-/Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html  Back-channel logout is performed asynchronously and does not affect logout flow.
+This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front-/Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html
 
 ### Example
 ```csharp
@@ -154,7 +155,7 @@ No authorization required
 
 <a name="dynamicclientregistrationcreateoauth2client"></a>
 # **DynamicClientRegistrationCreateOAuth2Client**
-> HydraOAuth2Client DynamicClientRegistrationCreateOAuth2Client (HydraOAuth2Client hydraOAuth2Client)
+> HydraOAuth2Client DynamicClientRegistrationCreateOAuth2Client (HydraOAuth2Client body)
 
 Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 
@@ -177,12 +178,12 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
             var apiInstance = new PublicApi(config);
-            var hydraOAuth2Client = new HydraOAuth2Client(); // HydraOAuth2Client | 
+            var body = new HydraOAuth2Client(); // HydraOAuth2Client | 
 
             try
             {
                 // Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-                HydraOAuth2Client result = apiInstance.DynamicClientRegistrationCreateOAuth2Client(hydraOAuth2Client);
+                HydraOAuth2Client result = apiInstance.DynamicClientRegistrationCreateOAuth2Client(body);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -200,7 +201,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **hydraOAuth2Client** | [**HydraOAuth2Client**](HydraOAuth2Client.md)|  | 
+ **body** | [**HydraOAuth2Client**](HydraOAuth2Client.md)|  | 
 
 ### Return type
 
@@ -369,7 +370,7 @@ No authorization required
 
 <a name="dynamicclientregistrationupdateoauth2client"></a>
 # **DynamicClientRegistrationUpdateOAuth2Client**
-> HydraOAuth2Client DynamicClientRegistrationUpdateOAuth2Client (string id, HydraOAuth2Client hydraOAuth2Client)
+> HydraOAuth2Client DynamicClientRegistrationUpdateOAuth2Client (string id, HydraOAuth2Client body)
 
 Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 
@@ -393,12 +394,12 @@ namespace Example
             config.BasePath = "http://localhost";
             var apiInstance = new PublicApi(config);
             var id = "id_example";  // string | The id of the OAuth 2.0 Client.
-            var hydraOAuth2Client = new HydraOAuth2Client(); // HydraOAuth2Client | 
+            var body = new HydraOAuth2Client(); // HydraOAuth2Client | 
 
             try
             {
                 // Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-                HydraOAuth2Client result = apiInstance.DynamicClientRegistrationUpdateOAuth2Client(id, hydraOAuth2Client);
+                HydraOAuth2Client result = apiInstance.DynamicClientRegistrationUpdateOAuth2Client(id, body);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -417,7 +418,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| The id of the OAuth 2.0 Client. | 
- **hydraOAuth2Client** | [**HydraOAuth2Client**](HydraOAuth2Client.md)|  | 
+ **body** | [**HydraOAuth2Client**](HydraOAuth2Client.md)|  | 
 
 ### Return type
 
@@ -441,9 +442,77 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="isinstanceready"></a>
+# **IsInstanceReady**
+> HydraHealthStatus IsInstanceReady ()
+
+Check Readiness Status
+
+This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Hydra.Client.Api;
+using Ory.Hydra.Client.Client;
+using Ory.Hydra.Client.Model;
+
+namespace Example
+{
+    public class IsInstanceReadyExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            var apiInstance = new PublicApi(config);
+
+            try
+            {
+                // Check Readiness Status
+                HydraHealthStatus result = apiInstance.IsInstanceReady();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PublicApi.IsInstanceReady: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**HydraHealthStatus**](HydraHealthStatus.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | healthStatus |  -  |
+| **503** | healthNotReadyStatus |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="oauth2token"></a>
 # **Oauth2Token**
-> HydraOauth2TokenResponse Oauth2Token (string grantType, string clientId = null, string code = null, string redirectUri = null, string refreshToken = null)
+> HydraOauth2TokenResponse Oauth2Token (string grantType, string code = null, string refreshToken = null, string redirectUri = null, string clientId = null)
 
 The OAuth 2.0 Token Endpoint
 
@@ -473,15 +542,15 @@ namespace Example
 
             var apiInstance = new PublicApi(config);
             var grantType = "grantType_example";  // string | 
-            var clientId = "clientId_example";  // string |  (optional) 
             var code = "code_example";  // string |  (optional) 
-            var redirectUri = "redirectUri_example";  // string |  (optional) 
             var refreshToken = "refreshToken_example";  // string |  (optional) 
+            var redirectUri = "redirectUri_example";  // string |  (optional) 
+            var clientId = "clientId_example";  // string |  (optional) 
 
             try
             {
                 // The OAuth 2.0 Token Endpoint
-                HydraOauth2TokenResponse result = apiInstance.Oauth2Token(grantType, clientId, code, redirectUri, refreshToken);
+                HydraOauth2TokenResponse result = apiInstance.Oauth2Token(grantType, code, refreshToken, redirectUri, clientId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -500,10 +569,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **grantType** | **string**|  | 
- **clientId** | **string**|  | [optional] 
  **code** | **string**|  | [optional] 
- **redirectUri** | **string**|  | [optional] 
  **refreshToken** | **string**|  | [optional] 
+ **redirectUri** | **string**|  | [optional] 
+ **clientId** | **string**|  | [optional] 
 
 ### Return type
 

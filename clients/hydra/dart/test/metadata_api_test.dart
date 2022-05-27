@@ -15,30 +15,12 @@ void main() {
   final instance = OryHydraClient().getMetadataApi();
 
   group(MetadataApi, () {
-    // Return Running Software Version.
+    // Get snapshot metrics from the service. If you're using k8s, you can then add annotations to your deployment like so:
     //
-    // This endpoint returns the version of Ory Hydra.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the version will never refer to the cluster state, only to a single instance.
+    // ``` metadata: annotations: prometheus.io/port: \"4434\" prometheus.io/path: \"/metrics/prometheus\" ```
     //
-    //Future<InlineResponse2001> getVersion() async
-    test('test getVersion', () async {
-      // TODO
-    });
-
-    // Check HTTP Server Status
-    //
-    // This endpoint returns a HTTP 200 status code when Ory Hydra is accepting incoming HTTP requests. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
-    //
-    //Future<HealthStatus> isAlive() async
-    test('test isAlive', () async {
-      // TODO
-    });
-
-    // Check HTTP Server and Database Status
-    //
-    // This endpoint returns a HTTP 200 status code when Ory Hydra is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of Ory Hydra, the health status will never refer to the cluster state, only to a single instance.
-    //
-    //Future<InlineResponse200> isReady() async
-    test('test isReady', () async {
+    //Future prometheus() async
+    test('test prometheus', () async {
       // TODO
     });
 

@@ -95,6 +95,14 @@ RUN \
   apt-get update && \
   apt-get install dart=2.13.4-1
 
+# elixir
+RUN \
+  wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && \
+  dpkg -i erlang-solutions_2.0_all.deb && \
+  apt-get -q update && apt-get install --no-install-recommends -y -q esl-erlang elixir && \
+  rm erlang-solutions_2.0_all.deb && \
+  mix local.hex --force
+
 # rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 

@@ -36,7 +36,7 @@ abstract class OAuth2TokenIntrospection implements Built<OAuth2TokenIntrospectio
     /// Extra is arbitrary data set by the session.
     @nullable
     @BuiltValueField(wireName: r'ext')
-    BuiltMap<String, JsonObject> get ext;
+    JsonObject get ext;
 
     /// Issued at is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token was originally issued.
     @nullable
@@ -130,7 +130,7 @@ class _$OAuth2TokenIntrospectionSerializer implements StructuredSerializer<OAuth
             result
                 ..add(r'ext')
                 ..add(serializers.serialize(object.ext,
-                    specifiedType: const FullType(BuiltMap, [FullType(String), FullType(JsonObject)])));
+                    specifiedType: const FullType(JsonObject)));
         }
         if (object.iat != null) {
             result
@@ -217,8 +217,8 @@ class _$OAuth2TokenIntrospectionSerializer implements StructuredSerializer<OAuth
                         specifiedType: const FullType(int)) as int;
                     break;
                 case r'ext':
-                    result.ext.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltMap, [FullType(String), FullType(JsonObject)])) as BuiltMap<String, JsonObject>);
+                    result.ext = serializers.deserialize(value,
+                        specifiedType: const FullType(JsonObject)) as JsonObject;
                     break;
                 case r'iat':
                     result.iat = serializers.deserialize(value,

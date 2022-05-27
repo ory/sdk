@@ -1,7 +1,6 @@
 # ory/hydra-client-php
 
-Documentation for all of Ory Hydra's APIs.
-
+Welcome to the ORY Hydra HTTP API documentation. You will find documentation for all HTTP APIs here.
 
 
 ## Installation & Usage
@@ -57,10 +56,10 @@ $apiInstance = new Ory\Hydra\Client\Api\AdminApi(
     new GuzzleHttp\Client()
 );
 $consentChallenge = 'consentChallenge_example'; // string
-$acceptConsentRequest = new \Ory\Hydra\Client\Model\AcceptConsentRequest(); // \Ory\Hydra\Client\Model\AcceptConsentRequest
+$body = new \Ory\Hydra\Client\Model\AcceptConsentRequest(); // \Ory\Hydra\Client\Model\AcceptConsentRequest
 
 try {
-    $result = $apiInstance->acceptConsentRequest($consentChallenge, $acceptConsentRequest);
+    $result = $apiInstance->acceptConsentRequest($consentChallenge, $body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AdminApi->acceptConsentRequest: ', $e->getMessage(), PHP_EOL;
@@ -92,7 +91,9 @@ Class | Method | HTTP request | Description
 *AdminApi* | [**getLogoutRequest**](docs/Api/AdminApi.md#getlogoutrequest) | **GET** /oauth2/auth/requests/logout | Get a Logout Request
 *AdminApi* | [**getOAuth2Client**](docs/Api/AdminApi.md#getoauth2client) | **GET** /clients/{id} | Get an OAuth 2.0 Client
 *AdminApi* | [**getTrustedJwtGrantIssuer**](docs/Api/AdminApi.md#gettrustedjwtgrantissuer) | **GET** /trust/grants/jwt-bearer/issuers/{id} | Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
+*AdminApi* | [**getVersion**](docs/Api/AdminApi.md#getversion) | **GET** /version | Get Service Version
 *AdminApi* | [**introspectOAuth2Token**](docs/Api/AdminApi.md#introspectoauth2token) | **POST** /oauth2/introspect | Introspect OAuth2 Tokens
+*AdminApi* | [**isInstanceAlive**](docs/Api/AdminApi.md#isinstancealive) | **GET** /health/alive | Check Alive Status
 *AdminApi* | [**listOAuth2Clients**](docs/Api/AdminApi.md#listoauth2clients) | **GET** /clients | List OAuth 2.0 Clients
 *AdminApi* | [**listSubjectConsentSessions**](docs/Api/AdminApi.md#listsubjectconsentsessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject
 *AdminApi* | [**listTrustedJwtGrantIssuers**](docs/Api/AdminApi.md#listtrustedjwtgrantissuers) | **GET** /trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
@@ -106,15 +107,14 @@ Class | Method | HTTP request | Description
 *AdminApi* | [**updateJsonWebKey**](docs/Api/AdminApi.md#updatejsonwebkey) | **PUT** /keys/{set}/{kid} | Update a JSON Web Key
 *AdminApi* | [**updateJsonWebKeySet**](docs/Api/AdminApi.md#updatejsonwebkeyset) | **PUT** /keys/{set} | Update a JSON Web Key Set
 *AdminApi* | [**updateOAuth2Client**](docs/Api/AdminApi.md#updateoauth2client) | **PUT** /clients/{id} | Update an OAuth 2.0 Client
-*MetadataApi* | [**getVersion**](docs/Api/MetadataApi.md#getversion) | **GET** /version | Return Running Software Version.
-*MetadataApi* | [**isAlive**](docs/Api/MetadataApi.md#isalive) | **GET** /health/alive | Check HTTP Server Status
-*MetadataApi* | [**isReady**](docs/Api/MetadataApi.md#isready) | **GET** /health/ready | Check HTTP Server and Database Status
+*MetadataApi* | [**prometheus**](docs/Api/MetadataApi.md#prometheus) | **GET** /metrics/prometheus | Get snapshot metrics from the service. If you&#39;re using k8s, you can then add annotations to your deployment like so:
 *PublicApi* | [**disconnectUser**](docs/Api/PublicApi.md#disconnectuser) | **GET** /oauth2/sessions/logout | OpenID Connect Front-Backchannel Enabled Logout
 *PublicApi* | [**discoverOpenIDConfiguration**](docs/Api/PublicApi.md#discoveropenidconfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
 *PublicApi* | [**dynamicClientRegistrationCreateOAuth2Client**](docs/Api/PublicApi.md#dynamicclientregistrationcreateoauth2client) | **POST** /connect/register | Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 *PublicApi* | [**dynamicClientRegistrationDeleteOAuth2Client**](docs/Api/PublicApi.md#dynamicclientregistrationdeleteoauth2client) | **DELETE** /connect/register/{id} | Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 *PublicApi* | [**dynamicClientRegistrationGetOAuth2Client**](docs/Api/PublicApi.md#dynamicclientregistrationgetoauth2client) | **GET** /connect/register/{id} | Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 *PublicApi* | [**dynamicClientRegistrationUpdateOAuth2Client**](docs/Api/PublicApi.md#dynamicclientregistrationupdateoauth2client) | **PUT** /connect/register/{id} | Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+*PublicApi* | [**isInstanceReady**](docs/Api/PublicApi.md#isinstanceready) | **GET** /health/ready | Check Readiness Status
 *PublicApi* | [**oauth2Token**](docs/Api/PublicApi.md#oauth2token) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
 *PublicApi* | [**oauthAuth**](docs/Api/PublicApi.md#oauthauth) | **GET** /oauth2/auth | The OAuth 2.0 Authorize Endpoint
 *PublicApi* | [**revokeOAuth2Token**](docs/Api/PublicApi.md#revokeoauth2token) | **POST** /oauth2/revoke | Revoke OAuth2 Tokens
@@ -128,14 +128,11 @@ Class | Method | HTTP request | Description
 - [CompletedRequest](docs/Model/CompletedRequest.md)
 - [ConsentRequest](docs/Model/ConsentRequest.md)
 - [ConsentRequestSession](docs/Model/ConsentRequestSession.md)
+- [ContainerWaitOKBodyError](docs/Model/ContainerWaitOKBodyError.md)
 - [FlushInactiveOAuth2TokensRequest](docs/Model/FlushInactiveOAuth2TokensRequest.md)
-- [FlushLoginConsentRequest](docs/Model/FlushLoginConsentRequest.md)
 - [GenericError](docs/Model/GenericError.md)
 - [HealthNotReadyStatus](docs/Model/HealthNotReadyStatus.md)
 - [HealthStatus](docs/Model/HealthStatus.md)
-- [InlineResponse200](docs/Model/InlineResponse200.md)
-- [InlineResponse2001](docs/Model/InlineResponse2001.md)
-- [InlineResponse503](docs/Model/InlineResponse503.md)
 - [JSONWebKey](docs/Model/JSONWebKey.md)
 - [JSONWebKeySet](docs/Model/JSONWebKeySet.md)
 - [JsonError](docs/Model/JsonError.md)
@@ -145,12 +142,21 @@ Class | Method | HTTP request | Description
 - [OAuth2Client](docs/Model/OAuth2Client.md)
 - [OAuth2TokenIntrospection](docs/Model/OAuth2TokenIntrospection.md)
 - [Oauth2TokenResponse](docs/Model/Oauth2TokenResponse.md)
-- [OauthTokenResponse](docs/Model/OauthTokenResponse.md)
 - [OpenIDConnectContext](docs/Model/OpenIDConnectContext.md)
 - [PatchDocument](docs/Model/PatchDocument.md)
+- [PluginConfig](docs/Model/PluginConfig.md)
+- [PluginConfigArgs](docs/Model/PluginConfigArgs.md)
+- [PluginConfigInterface](docs/Model/PluginConfigInterface.md)
+- [PluginConfigLinux](docs/Model/PluginConfigLinux.md)
+- [PluginConfigNetwork](docs/Model/PluginConfigNetwork.md)
+- [PluginConfigRootfs](docs/Model/PluginConfigRootfs.md)
+- [PluginConfigUser](docs/Model/PluginConfigUser.md)
+- [PluginDevice](docs/Model/PluginDevice.md)
+- [PluginEnv](docs/Model/PluginEnv.md)
+- [PluginInterfaceType](docs/Model/PluginInterfaceType.md)
+- [PluginMount](docs/Model/PluginMount.md)
+- [PluginSettings](docs/Model/PluginSettings.md)
 - [PreviousConsentSession](docs/Model/PreviousConsentSession.md)
-- [RefreshTokenHookRequest](docs/Model/RefreshTokenHookRequest.md)
-- [RefreshTokenHookResponse](docs/Model/RefreshTokenHookResponse.md)
 - [RejectRequest](docs/Model/RejectRequest.md)
 - [RequestWasHandledResponse](docs/Model/RequestWasHandledResponse.md)
 - [TrustJwtGrantIssuerBody](docs/Model/TrustJwtGrantIssuerBody.md)
@@ -158,6 +164,8 @@ Class | Method | HTTP request | Description
 - [TrustedJwtGrantIssuer](docs/Model/TrustedJwtGrantIssuer.md)
 - [UserinfoResponse](docs/Model/UserinfoResponse.md)
 - [Version](docs/Model/Version.md)
+- [Volume](docs/Model/Volume.md)
+- [VolumeUsageData](docs/Model/VolumeUsageData.md)
 - [WellKnown](docs/Model/WellKnown.md)
 
 ## Authorization
@@ -188,11 +196,11 @@ vendor/bin/phpunit
 
 ## Author
 
-hi@ory.sh
+
 
 ## About this package
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `v1.11.8`
+- API version: `v1.11.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

@@ -82,6 +82,8 @@ export RUST_PACKAGE_NAME="ory-${PROJECT}-client"
 
 export NPM_NAME="@ory/$PROJECT-client"
 
+export ELIXIR_PACKAGE_NAME="ory_${PROJECT}"
+
 export GIT_REPO="${PROJECT}-client"
 
 if [ $project == "client" ]; then
@@ -103,6 +105,8 @@ if [ $project == "client" ]; then
   export RUST_PACKAGE_NAME="ory-client"
 
   export NPM_NAME="@ory/client"
+
+  export ELIXIR_PACKAGE_NAME="ory_client"
 
   export GIT_REPO="client"
 fi

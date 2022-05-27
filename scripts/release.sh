@@ -63,6 +63,9 @@ npm i ${NPM_NAME}
     rust)
       export INSTALL="[Rust (Crate)](https://crates.io/crates/${RUST_PACKAGE_NAME}/)"
       ;;
+    elixir)
+      export INSTALL="[Elixir (Hex)](https://hex.io/crates/${ELIXIR_PACKAGE_NAME}/)"
+      ;;
     PATTERN_N)
       STATEMENTS
       ;;
@@ -213,6 +216,17 @@ rust() {
   to_git "rust" "yes"
 }
 
+elixir() {
+  dir="clients/${PROJECT}/elixir"
+
+  (cd "${dir}"; mix local.rebar --force)
+  (cd "${dir}"; mix local.hex --force)
+  (cd "${dir}"; mix deps.get)
+
+  (cd "${dir}"; mix hex.publish --yes package)
+}
+
+
 FAIL=0
 
 echo "starting"
@@ -224,6 +238,7 @@ php || let "FAIL+=1"
 typescript || let "FAIL+=1"
 dart || let "FAIL+=1"
 rust || let "FAIL+=1"
+elixir || let "FAIL+=1"
 java || let "FAIL+=1"
 dotnet || let "FAIL+=1"
 upstream || let "FAIL+=1"

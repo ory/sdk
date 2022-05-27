@@ -17,6 +17,7 @@ import 'package:ory_hydra_client/model/completed_request.dart';
 import 'package:ory_hydra_client/model/consent_request.dart';
 import 'package:ory_hydra_client/model/flush_inactive_o_auth2_tokens_request.dart';
 import 'package:ory_hydra_client/model/generic_error.dart';
+import 'package:ory_hydra_client/model/health_status.dart';
 import 'package:ory_hydra_client/model/json_error.dart';
 import 'package:ory_hydra_client/model/json_web_key.dart';
 import 'package:ory_hydra_client/model/json_web_key_set.dart';
@@ -31,6 +32,7 @@ import 'package:ory_hydra_client/model/reject_request.dart';
 import 'package:ory_hydra_client/model/request_was_handled_response.dart';
 import 'package:ory_hydra_client/model/trust_jwt_grant_issuer_body.dart';
 import 'package:ory_hydra_client/model/trusted_jwt_grant_issuer.dart';
+import 'package:ory_hydra_client/model/version.dart';
 
 class AdminApi {
 
@@ -45,7 +47,7 @@ class AdminApi {
   /// When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.  This endpoint tells ORY Hydra that the subject has authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider includes additional information, such as session data for access and ID tokens, and if the consent request should be used as basis for future requests.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
   Future<Response<CompletedRequest>> acceptConsentRequest(
     String consentChallenge, { 
-    AcceptConsentRequest acceptConsentRequest,
+    AcceptConsentRequest body,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -76,7 +78,7 @@ class AdminApi {
     dynamic _bodyData;
 
     const _type = FullType(AcceptConsentRequest);
-    _bodyData = _serializers.serialize(acceptConsentRequest, specifiedType: _type);
+    _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     final _response = await _dio.request<dynamic>(
       _request.path,
@@ -107,7 +109,7 @@ class AdminApi {
   /// When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell ORY Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells ORY Hydra that the subject has successfully authenticated and includes additional information such as the subject's ID and if ORY Hydra should remember the subject's subject agent for future authentication attempts by setting a cookie.  The response contains a redirect URL which the login provider should redirect the user-agent to.
   Future<Response<CompletedRequest>> acceptLoginRequest(
     String loginChallenge, { 
-    AcceptLoginRequest acceptLoginRequest,
+    AcceptLoginRequest body,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -138,7 +140,7 @@ class AdminApi {
     dynamic _bodyData;
 
     const _type = FullType(AcceptLoginRequest);
-    _bodyData = _serializers.serialize(acceptLoginRequest, specifiedType: _type);
+    _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     final _response = await _dio.request<dynamic>(
       _request.path,
@@ -227,7 +229,7 @@ class AdminApi {
   /// This endpoint is capable of generating JSON Web Key Sets for you. There a different strategies available, such as symmetric cryptographic keys (HS256, HS512) and asymetric cryptographic keys (RS256, ECDSA). If the specified JSON Web Key Set does not exist, it will be created.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
   Future<Response<JSONWebKeySet>> createJsonWebKeySet(
     String set_, { 
-    JsonWebKeySetGeneratorRequest jsonWebKeySetGeneratorRequest,
+    JsonWebKeySetGeneratorRequest body,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -255,7 +257,7 @@ class AdminApi {
     dynamic _bodyData;
 
     const _type = FullType(JsonWebKeySetGeneratorRequest);
-    _bodyData = _serializers.serialize(jsonWebKeySetGeneratorRequest, specifiedType: _type);
+    _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     final _response = await _dio.request<dynamic>(
       _request.path,
@@ -285,7 +287,7 @@ class AdminApi {
   ///
   /// Create a new OAuth 2.0 client If you pass `client_secret` the secret will be used, otherwise a random secret will be generated. The secret will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somwhere safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
   Future<Response<OAuth2Client>> createOAuth2Client(
-    OAuth2Client oAuth2Client, { 
+    OAuth2Client body, { 
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -313,7 +315,7 @@ class AdminApi {
     dynamic _bodyData;
 
     const _type = FullType(OAuth2Client);
-    _bodyData = _serializers.serialize(oAuth2Client, specifiedType: _type);
+    _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     final _response = await _dio.request<dynamic>(
       _request.path,
@@ -547,7 +549,7 @@ class AdminApi {
   ///
   /// This endpoint flushes expired OAuth2 access tokens from the database. You can set a time after which no tokens will be not be touched, in case you want to keep recent tokens for auditing. Refresh tokens can not be flushed as they are deleted automatically when performing the refresh flow.
   Future<Response<void>> flushInactiveOAuth2Tokens({ 
-    FlushInactiveOAuth2TokensRequest flushInactiveOAuth2TokensRequest,
+    FlushInactiveOAuth2TokensRequest body,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -575,7 +577,7 @@ class AdminApi {
     dynamic _bodyData;
 
     const _type = FullType(FlushInactiveOAuth2TokensRequest);
-    _bodyData = _serializers.serialize(flushInactiveOAuth2TokensRequest, specifiedType: _type);
+    _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     final _response = await _dio.request<dynamic>(
       _request.path,
@@ -981,6 +983,60 @@ class AdminApi {
     );
   }
 
+  /// Get Service Version
+  ///
+  /// This endpoint returns the service version typically notated using semantic versioning.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
+  Future<Response<Version>> getVersion({ 
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/version',
+      method: 'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    const _responseType = FullType(Version);
+    final _responseData = _serializers.deserialize(
+      _response.data,
+      specifiedType: _responseType,
+    ) as Version;
+
+    return Response<Version>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      request: _response.request,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
   /// Introspect OAuth2 Tokens
   ///
   /// The introspection endpoint allows to check if a token (both refresh and access) is active or not. An active token is neither expired nor revoked. If a token is active, additional information on the token will be included. You can set additional data for a token by setting `accessTokenExtra` during the consent flow.  For more information [read this blog post](https://www.oauth.com/oauth2-servers/token-introspection-endpoint/).
@@ -1014,8 +1070,8 @@ class AdminApi {
     dynamic _bodyData;
 
     _bodyData = <String, dynamic>{
-      if (scope != null) r'scope': encodeFormParameter(_serializers, scope, const FullType(String)),
       r'token': encodeFormParameter(_serializers, token, const FullType(String)),
+      if (scope != null) r'scope': encodeFormParameter(_serializers, scope, const FullType(String)),
     };
 
     final _response = await _dio.request<dynamic>(
@@ -1031,6 +1087,60 @@ class AdminApi {
     ) as OAuth2TokenIntrospection;
 
     return Response<OAuth2TokenIntrospection>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      request: _response.request,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Check Alive Status
+  ///
+  /// This endpoint returns a 200 status code when the HTTP server is up running. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+  Future<Response<HealthStatus>> isInstanceAlive({ 
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/health/alive',
+      method: 'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    const _responseType = FullType(HealthStatus);
+    final _responseData = _serializers.deserialize(
+      _response.data,
+      specifiedType: _responseType,
+    ) as HealthStatus;
+
+    return Response<HealthStatus>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -1111,8 +1221,6 @@ class AdminApi {
   /// This endpoint lists all subject's granted consent sessions, including client and granted scope. If the subject is unknown or has not granted any consent sessions yet, the endpoint returns an empty JSON array with status code 200 OK.   The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/oauth2/auth/sessions/consent?subject={user}&limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
   Future<Response<BuiltList<PreviousConsentSession>>> listSubjectConsentSessions(
     String subject, { 
-    int limit,
-    int offset,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -1128,8 +1236,6 @@ class AdminApi {
       },
       queryParameters: <String, dynamic>{
         r'subject': subject,
-        if (limit != null) r'limit': limit,
-        if (offset != null) r'offset': offset,
       },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[],
@@ -1235,7 +1341,7 @@ class AdminApi {
   /// Patch an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
   Future<Response<OAuth2Client>> patchOAuth2Client(
     String id,
-    BuiltList<PatchDocument> patchDocument, { 
+    BuiltList<PatchDocument> body, { 
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -1263,7 +1369,7 @@ class AdminApi {
     dynamic _bodyData;
 
     const _type = FullType(BuiltList, [FullType(PatchDocument)]);
-    _bodyData = _serializers.serialize(patchDocument, specifiedType: _type);
+    _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     final _response = await _dio.request<dynamic>(
       _request.path,
@@ -1294,7 +1400,7 @@ class AdminApi {
   /// When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.  This endpoint tells ORY Hydra that the subject has not authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider must include a reason why the consent was not granted.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
   Future<Response<CompletedRequest>> rejectConsentRequest(
     String consentChallenge, { 
-    RejectRequest rejectRequest,
+    RejectRequest body,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -1325,7 +1431,7 @@ class AdminApi {
     dynamic _bodyData;
 
     const _type = FullType(RejectRequest);
-    _bodyData = _serializers.serialize(rejectRequest, specifiedType: _type);
+    _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     final _response = await _dio.request<dynamic>(
       _request.path,
@@ -1356,7 +1462,7 @@ class AdminApi {
   /// When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell ORY Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells ORY Hydra that the subject has not authenticated and includes a reason why the authentication was be denied.  The response contains a redirect URL which the login provider should redirect the user-agent to.
   Future<Response<CompletedRequest>> rejectLoginRequest(
     String loginChallenge, { 
-    RejectRequest rejectRequest,
+    RejectRequest body,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -1387,7 +1493,7 @@ class AdminApi {
     dynamic _bodyData;
 
     const _type = FullType(RejectRequest);
-    _bodyData = _serializers.serialize(rejectRequest, specifiedType: _type);
+    _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     final _response = await _dio.request<dynamic>(
       _request.path,
@@ -1418,7 +1524,7 @@ class AdminApi {
   /// When a user or an application requests ORY Hydra to log out a user, this endpoint is used to deny that logout request. No body is required.  The response is empty as the logout provider has to chose what action to perform next.
   Future<Response<void>> rejectLogoutRequest(
     String logoutChallenge, { 
-    RejectRequest rejectRequest,
+    RejectRequest body,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -1449,7 +1555,7 @@ class AdminApi {
     dynamic _bodyData;
 
     const _type = FullType(RejectRequest);
-    _bodyData = _serializers.serialize(rejectRequest, specifiedType: _type);
+    _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     final _response = await _dio.request<dynamic>(
       _request.path,
@@ -1554,7 +1660,7 @@ class AdminApi {
   ///
   /// Use this endpoint to establish a trust relationship for a JWT issuer to perform JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants [RFC7523](https://datatracker.ietf.org/doc/html/rfc7523).
   Future<Response<TrustedJwtGrantIssuer>> trustJwtGrantIssuer({ 
-    TrustJwtGrantIssuerBody trustJwtGrantIssuerBody,
+    TrustJwtGrantIssuerBody body,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -1582,7 +1688,7 @@ class AdminApi {
     dynamic _bodyData;
 
     const _type = FullType(TrustJwtGrantIssuerBody);
-    _bodyData = _serializers.serialize(trustJwtGrantIssuerBody, specifiedType: _type);
+    _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     final _response = await _dio.request<dynamic>(
       _request.path,
@@ -1614,7 +1720,7 @@ class AdminApi {
   Future<Response<JSONWebKey>> updateJsonWebKey(
     String kid,
     String set_, { 
-    JSONWebKey jSONWebKey,
+    JSONWebKey body,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -1642,7 +1748,7 @@ class AdminApi {
     dynamic _bodyData;
 
     const _type = FullType(JSONWebKey);
-    _bodyData = _serializers.serialize(jSONWebKey, specifiedType: _type);
+    _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     final _response = await _dio.request<dynamic>(
       _request.path,
@@ -1673,7 +1779,7 @@ class AdminApi {
   /// Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
   Future<Response<JSONWebKeySet>> updateJsonWebKeySet(
     String set_, { 
-    JSONWebKeySet jSONWebKeySet,
+    JSONWebKeySet body,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -1701,7 +1807,7 @@ class AdminApi {
     dynamic _bodyData;
 
     const _type = FullType(JSONWebKeySet);
-    _bodyData = _serializers.serialize(jSONWebKeySet, specifiedType: _type);
+    _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     final _response = await _dio.request<dynamic>(
       _request.path,
@@ -1732,7 +1838,7 @@ class AdminApi {
   /// Update an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
   Future<Response<OAuth2Client>> updateOAuth2Client(
     String id,
-    OAuth2Client oAuth2Client, { 
+    OAuth2Client body, { 
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -1760,7 +1866,7 @@ class AdminApi {
     dynamic _bodyData;
 
     const _type = FullType(OAuth2Client);
-    _bodyData = _serializers.serialize(oAuth2Client, specifiedType: _type);
+    _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     final _response = await _dio.request<dynamic>(
       _request.path,

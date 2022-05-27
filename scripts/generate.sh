@@ -279,6 +279,30 @@ rust () {
   cp "LICENSE" "clients/${PROJECT}/rust"
 }
 
+elixir () {
+  echo "Generating Elixir..."
+  
+  dir="clients/${PROJECT}/elixir"
+  rm -rf "$dir" || true
+  mkdir -p "$dir"
+
+
+  file="${dir}/mix.exs"
+
+  openapi-generator-cli version-manager set 6.0.0
+  openapi-generator-cli generate -i "${SPEC_FILE}" \
+    	-g elixir \
+	    -o "$dir" \
+	    --git-user-id ory \
+	    --git-repo-id sdk \
+	    --git-host github.com \
+	    -c ./config/client/elixir.yml.proc.yml
+
+  (sed "s/${VERSION}/${RAW_VERSION}/g" < "${file}") > tmp.$$.exs && mv tmp.$$.exs "${file}"
+  cp "LICENSE" "clients/${PROJECT}/elixir"
+}
+
+elixir
 typescript
 rust
 golang

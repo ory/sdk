@@ -27,7 +27,7 @@ void main() {
     });
 
     // IDTokenHintClaims are the claims of the ID Token previously issued by the Authorization Server being passed as a hint about the End-User's current or past authenticated session with the Client.
-    // BuiltMap<String, JsonObject> idTokenHintClaims
+    // JsonObject idTokenHintClaims
     test('to test the property `idTokenHintClaims`', () async {
       // TODO
     });

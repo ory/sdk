@@ -10,6 +10,8 @@ import 'package:dio/dio.dart';
 import 'package:built_value/serializer.dart';
 
 import 'package:ory_hydra_client/api_util.dart';
+import 'package:ory_hydra_client/model/health_not_ready_status.dart';
+import 'package:ory_hydra_client/model/health_status.dart';
 import 'package:ory_hydra_client/model/json_error.dart';
 import 'package:ory_hydra_client/model/json_web_key_set.dart';
 import 'package:ory_hydra_client/model/o_auth2_client.dart';
@@ -27,7 +29,7 @@ class PublicApi {
 
   /// OpenID Connect Front-Backchannel Enabled Logout
   ///
-  /// This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front-/Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html  Back-channel logout is performed asynchronously and does not affect logout flow.
+  /// This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front-/Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html
   Future<Response<void>> disconnectUser({ 
     CancelToken cancelToken,
     Map<String, dynamic> headers,
@@ -122,7 +124,7 @@ class PublicApi {
   ///
   /// This endpoint behaves like the administrative counterpart (`createOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  Please note that using this endpoint you are not able to choose the `client_secret` nor the `client_id` as those values will be server generated when specifying `token_endpoint_auth_method` as `client_secret_basic` or `client_secret_post`.  The `client_secret` will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somewhere safe.
   Future<Response<OAuth2Client>> dynamicClientRegistrationCreateOAuth2Client(
-    OAuth2Client oAuth2Client, { 
+    OAuth2Client body, { 
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -150,7 +152,7 @@ class PublicApi {
     dynamic _bodyData;
 
     const _type = FullType(OAuth2Client);
-    _bodyData = _serializers.serialize(oAuth2Client, specifiedType: _type);
+    _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     final _response = await _dio.request<dynamic>(
       _request.path,
@@ -276,7 +278,7 @@ class PublicApi {
   /// This endpoint behaves like the administrative counterpart (`updateOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
   Future<Response<OAuth2Client>> dynamicClientRegistrationUpdateOAuth2Client(
     String id,
-    OAuth2Client oAuth2Client, { 
+    OAuth2Client body, { 
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -304,7 +306,7 @@ class PublicApi {
     dynamic _bodyData;
 
     const _type = FullType(OAuth2Client);
-    _bodyData = _serializers.serialize(oAuth2Client, specifiedType: _type);
+    _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     final _response = await _dio.request<dynamic>(
       _request.path,
@@ -330,15 +332,69 @@ class PublicApi {
     );
   }
 
+  /// Check Readiness Status
+  ///
+  /// This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+  Future<Response<HealthStatus>> isInstanceReady({ 
+    CancelToken cancelToken,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> extra,
+    ValidateStatus validateStatus,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final _request = RequestOptions(
+      path: r'/health/ready',
+      method: 'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+      contentType: 'application/json',
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    dynamic _bodyData;
+
+    final _response = await _dio.request<dynamic>(
+      _request.path,
+      data: _bodyData,
+      options: _request,
+    );
+
+    const _responseType = FullType(HealthStatus);
+    final _responseData = _serializers.deserialize(
+      _response.data,
+      specifiedType: _responseType,
+    ) as HealthStatus;
+
+    return Response<HealthStatus>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      request: _response.request,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
   /// The OAuth 2.0 Token Endpoint
   ///
   /// The client makes a request to the token endpoint by sending the following parameters using the \"application/x-www-form-urlencoded\" HTTP request entity-body.  > Do not implement a client for this endpoint yourself. Use a library. There are many libraries > available for any programming language. You can find a list of libraries here: https://oauth.net/code/ > > Do note that Hydra SDK does not implement this endpoint properly. Use one of the libraries listed above!
   Future<Response<Oauth2TokenResponse>> oauth2Token(
     String grantType, { 
-    String clientId,
     String code,
-    String redirectUri,
     String refreshToken,
+    String redirectUri,
+    String clientId,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -374,11 +430,11 @@ class PublicApi {
     dynamic _bodyData;
 
     _bodyData = <String, dynamic>{
-      if (clientId != null) r'client_id': encodeFormParameter(_serializers, clientId, const FullType(String)),
-      if (code != null) r'code': encodeFormParameter(_serializers, code, const FullType(String)),
       r'grant_type': encodeFormParameter(_serializers, grantType, const FullType(String)),
-      if (redirectUri != null) r'redirect_uri': encodeFormParameter(_serializers, redirectUri, const FullType(String)),
+      if (code != null) r'code': encodeFormParameter(_serializers, code, const FullType(String)),
       if (refreshToken != null) r'refresh_token': encodeFormParameter(_serializers, refreshToken, const FullType(String)),
+      if (redirectUri != null) r'redirect_uri': encodeFormParameter(_serializers, redirectUri, const FullType(String)),
+      if (clientId != null) r'client_id': encodeFormParameter(_serializers, clientId, const FullType(String)),
     };
 
     final _response = await _dio.request<dynamic>(
