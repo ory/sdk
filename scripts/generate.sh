@@ -298,11 +298,12 @@ elixir () {
 	    --git-host github.com \
 	    -c ./config/client/elixir.yml.proc.yml
 
-  (sed "s/${VERSION}/${RAW_VERSION}/g" < "${file}") > tmp.$$.exs && mv tmp.$$.exs "${file}"
+  (sed "s/licenses:.*$/licenses: [\"Apache-2.0\"],\n      links: %{\n        \"GitHub\" => \"https:\/\/github.com\/ory\/sdk\",\n        \"Website\" => \"https:\/\/www.ory.sh\",\n        \"Documentation\" => \"https:\/\/www.ory.sh\/docs\",\n        \"Product\" => \"https:\/\/console.ory.sh\"\n      }/g" < "${file}") > tmp.$$.exs && mv tmp.$$.exs "${file}"
   cp "LICENSE" "clients/${PROJECT}/elixir"
 }
 
 elixir
+exit 0
 typescript
 rust
 golang
