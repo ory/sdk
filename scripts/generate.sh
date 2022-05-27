@@ -305,7 +305,6 @@ elixir () {
 }
 
 elixir
-exit 0
 typescript
 rust
 golang
