@@ -5,7 +5,6 @@
 
 // ignore_for_file: unused_import
 
-import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -27,7 +26,7 @@ abstract class GenericError implements Built<GenericError, GenericErrorBuilder> 
     /// Further error details
     @nullable
     @BuiltValueField(wireName: r'details')
-    BuiltMap<String, JsonObject> get details;
+    JsonObject get details;
 
     /// The error ID  Useful when trying to identify various errors in application logic.
     @nullable
@@ -90,7 +89,7 @@ class _$GenericErrorSerializer implements StructuredSerializer<GenericError> {
             result
                 ..add(r'details')
                 ..add(serializers.serialize(object.details,
-                    specifiedType: const FullType(BuiltMap, [FullType(String), FullType(JsonObject)])));
+                    specifiedType: const FullType(JsonObject)));
         }
         if (object.id != null) {
             result
@@ -143,8 +142,8 @@ class _$GenericErrorSerializer implements StructuredSerializer<GenericError> {
                         specifiedType: const FullType(String)) as String;
                     break;
                 case r'details':
-                    result.details.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltMap, [FullType(String), FullType(JsonObject)])) as BuiltMap<String, JsonObject>);
+                    result.details = serializers.deserialize(value,
+                        specifiedType: const FullType(JsonObject)) as JsonObject;
                     break;
                 case r'id':
                     result.id = serializers.deserialize(value,

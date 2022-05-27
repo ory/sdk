@@ -22,7 +22,9 @@ Method | HTTP request | Description
 [**GetLogoutRequest**](AdminApi.md#GetLogoutRequest) | **Get** /oauth2/auth/requests/logout | Get a Logout Request
 [**GetOAuth2Client**](AdminApi.md#GetOAuth2Client) | **Get** /clients/{id} | Get an OAuth 2.0 Client
 [**GetTrustedJwtGrantIssuer**](AdminApi.md#GetTrustedJwtGrantIssuer) | **Get** /trust/grants/jwt-bearer/issuers/{id} | Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
+[**GetVersion**](AdminApi.md#GetVersion) | **Get** /version | Get Service Version
 [**IntrospectOAuth2Token**](AdminApi.md#IntrospectOAuth2Token) | **Post** /oauth2/introspect | Introspect OAuth2 Tokens
+[**IsInstanceAlive**](AdminApi.md#IsInstanceAlive) | **Get** /health/alive | Check Alive Status
 [**ListOAuth2Clients**](AdminApi.md#ListOAuth2Clients) | **Get** /clients | List OAuth 2.0 Clients
 [**ListSubjectConsentSessions**](AdminApi.md#ListSubjectConsentSessions) | **Get** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject
 [**ListTrustedJwtGrantIssuers**](AdminApi.md#ListTrustedJwtGrantIssuers) | **Get** /trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
@@ -41,7 +43,7 @@ Method | HTTP request | Description
 
 ## AcceptConsentRequest
 
-> CompletedRequest AcceptConsentRequest(ctx).ConsentChallenge(consentChallenge).AcceptConsentRequest(acceptConsentRequest).Execute()
+> CompletedRequest AcceptConsentRequest(ctx).ConsentChallenge(consentChallenge).Body(body).Execute()
 
 Accept a Consent Request
 
@@ -61,11 +63,11 @@ import (
 
 func main() {
     consentChallenge := "consentChallenge_example" // string | 
-    acceptConsentRequest := *openapiclient.NewAcceptConsentRequest() // AcceptConsentRequest |  (optional)
+    body := *openapiclient.NewAcceptConsentRequest() // AcceptConsentRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.AcceptConsentRequest(context.Background()).ConsentChallenge(consentChallenge).AcceptConsentRequest(acceptConsentRequest).Execute()
+    resp, r, err := apiClient.AdminApi.AcceptConsentRequest(context.Background()).ConsentChallenge(consentChallenge).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AcceptConsentRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -87,7 +89,7 @@ Other parameters are passed through a pointer to a apiAcceptConsentRequestReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **consentChallenge** | **string** |  | 
- **acceptConsentRequest** | [**AcceptConsentRequest**](AcceptConsentRequest.md) |  | 
+ **body** | [**AcceptConsentRequest**](AcceptConsentRequest.md) |  | 
 
 ### Return type
 
@@ -109,7 +111,7 @@ No authorization required
 
 ## AcceptLoginRequest
 
-> CompletedRequest AcceptLoginRequest(ctx).LoginChallenge(loginChallenge).AcceptLoginRequest(acceptLoginRequest).Execute()
+> CompletedRequest AcceptLoginRequest(ctx).LoginChallenge(loginChallenge).Body(body).Execute()
 
 Accept a Login Request
 
@@ -129,11 +131,11 @@ import (
 
 func main() {
     loginChallenge := "loginChallenge_example" // string | 
-    acceptLoginRequest := *openapiclient.NewAcceptLoginRequest("Subject_example") // AcceptLoginRequest |  (optional)
+    body := *openapiclient.NewAcceptLoginRequest("Subject_example") // AcceptLoginRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.AcceptLoginRequest(context.Background()).LoginChallenge(loginChallenge).AcceptLoginRequest(acceptLoginRequest).Execute()
+    resp, r, err := apiClient.AdminApi.AcceptLoginRequest(context.Background()).LoginChallenge(loginChallenge).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AcceptLoginRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -155,7 +157,7 @@ Other parameters are passed through a pointer to a apiAcceptLoginRequestRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **loginChallenge** | **string** |  | 
- **acceptLoginRequest** | [**AcceptLoginRequest**](AcceptLoginRequest.md) |  | 
+ **body** | [**AcceptLoginRequest**](AcceptLoginRequest.md) |  | 
 
 ### Return type
 
@@ -243,7 +245,7 @@ No authorization required
 
 ## CreateJsonWebKeySet
 
-> JSONWebKeySet CreateJsonWebKeySet(ctx, set).JsonWebKeySetGeneratorRequest(jsonWebKeySetGeneratorRequest).Execute()
+> JSONWebKeySet CreateJsonWebKeySet(ctx, set).Body(body).Execute()
 
 Generate a New JSON Web Key
 
@@ -263,11 +265,11 @@ import (
 
 func main() {
     set := "set_example" // string | The set
-    jsonWebKeySetGeneratorRequest := *openapiclient.NewJsonWebKeySetGeneratorRequest("Alg_example", "Kid_example", "Use_example") // JsonWebKeySetGeneratorRequest |  (optional)
+    body := *openapiclient.NewJsonWebKeySetGeneratorRequest("Alg_example", "Kid_example", "Use_example") // JsonWebKeySetGeneratorRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.CreateJsonWebKeySet(context.Background(), set).JsonWebKeySetGeneratorRequest(jsonWebKeySetGeneratorRequest).Execute()
+    resp, r, err := apiClient.AdminApi.CreateJsonWebKeySet(context.Background(), set).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.CreateJsonWebKeySet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -293,7 +295,7 @@ Other parameters are passed through a pointer to a apiCreateJsonWebKeySetRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **jsonWebKeySetGeneratorRequest** | [**JsonWebKeySetGeneratorRequest**](JsonWebKeySetGeneratorRequest.md) |  | 
+ **body** | [**JsonWebKeySetGeneratorRequest**](JsonWebKeySetGeneratorRequest.md) |  | 
 
 ### Return type
 
@@ -315,7 +317,7 @@ No authorization required
 
 ## CreateOAuth2Client
 
-> OAuth2Client CreateOAuth2Client(ctx).OAuth2Client(oAuth2Client).Execute()
+> OAuth2Client CreateOAuth2Client(ctx).Body(body).Execute()
 
 Create an OAuth 2.0 Client
 
@@ -334,11 +336,11 @@ import (
 )
 
 func main() {
-    oAuth2Client := *openapiclient.NewOAuth2Client() // OAuth2Client | 
+    body := *openapiclient.NewOAuth2Client() // OAuth2Client | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.CreateOAuth2Client(context.Background()).OAuth2Client(oAuth2Client).Execute()
+    resp, r, err := apiClient.AdminApi.CreateOAuth2Client(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.CreateOAuth2Client``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -359,7 +361,7 @@ Other parameters are passed through a pointer to a apiCreateOAuth2ClientRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **oAuth2Client** | [**OAuth2Client**](OAuth2Client.md) |  | 
+ **body** | [**OAuth2Client**](OAuth2Client.md) |  | 
 
 ### Return type
 
@@ -720,7 +722,7 @@ No authorization required
 
 ## FlushInactiveOAuth2Tokens
 
-> FlushInactiveOAuth2Tokens(ctx).FlushInactiveOAuth2TokensRequest(flushInactiveOAuth2TokensRequest).Execute()
+> FlushInactiveOAuth2Tokens(ctx).Body(body).Execute()
 
 Flush Expired OAuth2 Access Tokens
 
@@ -739,11 +741,11 @@ import (
 )
 
 func main() {
-    flushInactiveOAuth2TokensRequest := *openapiclient.NewFlushInactiveOAuth2TokensRequest() // FlushInactiveOAuth2TokensRequest |  (optional)
+    body := *openapiclient.NewFlushInactiveOAuth2TokensRequest() // FlushInactiveOAuth2TokensRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.FlushInactiveOAuth2Tokens(context.Background()).FlushInactiveOAuth2TokensRequest(flushInactiveOAuth2TokensRequest).Execute()
+    resp, r, err := apiClient.AdminApi.FlushInactiveOAuth2Tokens(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.FlushInactiveOAuth2Tokens``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -762,7 +764,7 @@ Other parameters are passed through a pointer to a apiFlushInactiveOAuth2TokensR
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flushInactiveOAuth2TokensRequest** | [**FlushInactiveOAuth2TokensRequest**](FlushInactiveOAuth2TokensRequest.md) |  | 
+ **body** | [**FlushInactiveOAuth2TokensRequest**](FlushInactiveOAuth2TokensRequest.md) |  | 
 
 ### Return type
 
@@ -1263,6 +1265,67 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## GetVersion
+
+> Version GetVersion(ctx).Execute()
+
+Get Service Version
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AdminApi.GetVersion(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.GetVersion``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVersion`: Version
+    fmt.Fprintf(os.Stdout, "Response from `AdminApi.GetVersion`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVersionRequest struct via the builder pattern
+
+
+### Return type
+
+[**Version**](Version.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## IntrospectOAuth2Token
 
 > OAuth2TokenIntrospection IntrospectOAuth2Token(ctx).Token(token).Scope(scope).Execute()
@@ -1324,6 +1387,67 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/x-www-form-urlencoded
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## IsInstanceAlive
+
+> HealthStatus IsInstanceAlive(ctx).Execute()
+
+Check Alive Status
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AdminApi.IsInstanceAlive(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.IsInstanceAlive``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `IsInstanceAlive`: HealthStatus
+    fmt.Fprintf(os.Stdout, "Response from `AdminApi.IsInstanceAlive`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiIsInstanceAliveRequest struct via the builder pattern
+
+
+### Return type
+
+[**HealthStatus**](HealthStatus.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -1405,7 +1529,7 @@ No authorization required
 
 ## ListSubjectConsentSessions
 
-> []PreviousConsentSession ListSubjectConsentSessions(ctx).Subject(subject).Limit(limit).Offset(offset).Execute()
+> []PreviousConsentSession ListSubjectConsentSessions(ctx).Subject(subject).Execute()
 
 Lists All Consent Sessions of a Subject
 
@@ -1425,12 +1549,10 @@ import (
 
 func main() {
     subject := "subject_example" // string | 
-    limit := int64(789) // int64 | The maximum amount of consent sessions to be returned, upper bound is 500 sessions. (optional)
-    offset := int64(789) // int64 | The offset from where to start looking. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.ListSubjectConsentSessions(context.Background()).Subject(subject).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.AdminApi.ListSubjectConsentSessions(context.Background()).Subject(subject).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.ListSubjectConsentSessions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1452,8 +1574,6 @@ Other parameters are passed through a pointer to a apiListSubjectConsentSessions
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **string** |  | 
- **limit** | **int64** | The maximum amount of consent sessions to be returned, upper bound is 500 sessions. | 
- **offset** | **int64** | The offset from where to start looking. | 
 
 ### Return type
 
@@ -1545,7 +1665,7 @@ No authorization required
 
 ## PatchOAuth2Client
 
-> OAuth2Client PatchOAuth2Client(ctx, id).PatchDocument(patchDocument).Execute()
+> OAuth2Client PatchOAuth2Client(ctx, id).Body(body).Execute()
 
 Patch an OAuth 2.0 Client
 
@@ -1565,11 +1685,11 @@ import (
 
 func main() {
     id := "id_example" // string | The id of the OAuth 2.0 Client.
-    patchDocument := []openapiclient.PatchDocument{*openapiclient.NewPatchDocument(""replace"", ""/name"")} // []PatchDocument | 
+    body := []openapiclient.PatchDocument{*openapiclient.NewPatchDocument(""replace"", ""/name"")} // []PatchDocument | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.PatchOAuth2Client(context.Background(), id).PatchDocument(patchDocument).Execute()
+    resp, r, err := apiClient.AdminApi.PatchOAuth2Client(context.Background(), id).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.PatchOAuth2Client``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1595,7 +1715,7 @@ Other parameters are passed through a pointer to a apiPatchOAuth2ClientRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **patchDocument** | [**[]PatchDocument**](PatchDocument.md) |  | 
+ **body** | [**[]PatchDocument**](PatchDocument.md) |  | 
 
 ### Return type
 
@@ -1617,7 +1737,7 @@ No authorization required
 
 ## RejectConsentRequest
 
-> CompletedRequest RejectConsentRequest(ctx).ConsentChallenge(consentChallenge).RejectRequest(rejectRequest).Execute()
+> CompletedRequest RejectConsentRequest(ctx).ConsentChallenge(consentChallenge).Body(body).Execute()
 
 Reject a Consent Request
 
@@ -1637,11 +1757,11 @@ import (
 
 func main() {
     consentChallenge := "consentChallenge_example" // string | 
-    rejectRequest := *openapiclient.NewRejectRequest() // RejectRequest |  (optional)
+    body := *openapiclient.NewRejectRequest() // RejectRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.RejectConsentRequest(context.Background()).ConsentChallenge(consentChallenge).RejectRequest(rejectRequest).Execute()
+    resp, r, err := apiClient.AdminApi.RejectConsentRequest(context.Background()).ConsentChallenge(consentChallenge).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.RejectConsentRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1663,7 +1783,7 @@ Other parameters are passed through a pointer to a apiRejectConsentRequestReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **consentChallenge** | **string** |  | 
- **rejectRequest** | [**RejectRequest**](RejectRequest.md) |  | 
+ **body** | [**RejectRequest**](RejectRequest.md) |  | 
 
 ### Return type
 
@@ -1685,7 +1805,7 @@ No authorization required
 
 ## RejectLoginRequest
 
-> CompletedRequest RejectLoginRequest(ctx).LoginChallenge(loginChallenge).RejectRequest(rejectRequest).Execute()
+> CompletedRequest RejectLoginRequest(ctx).LoginChallenge(loginChallenge).Body(body).Execute()
 
 Reject a Login Request
 
@@ -1705,11 +1825,11 @@ import (
 
 func main() {
     loginChallenge := "loginChallenge_example" // string | 
-    rejectRequest := *openapiclient.NewRejectRequest() // RejectRequest |  (optional)
+    body := *openapiclient.NewRejectRequest() // RejectRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.RejectLoginRequest(context.Background()).LoginChallenge(loginChallenge).RejectRequest(rejectRequest).Execute()
+    resp, r, err := apiClient.AdminApi.RejectLoginRequest(context.Background()).LoginChallenge(loginChallenge).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.RejectLoginRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1731,7 +1851,7 @@ Other parameters are passed through a pointer to a apiRejectLoginRequestRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **loginChallenge** | **string** |  | 
- **rejectRequest** | [**RejectRequest**](RejectRequest.md) |  | 
+ **body** | [**RejectRequest**](RejectRequest.md) |  | 
 
 ### Return type
 
@@ -1753,7 +1873,7 @@ No authorization required
 
 ## RejectLogoutRequest
 
-> RejectLogoutRequest(ctx).LogoutChallenge(logoutChallenge).RejectRequest(rejectRequest).Execute()
+> RejectLogoutRequest(ctx).LogoutChallenge(logoutChallenge).Body(body).Execute()
 
 Reject a Logout Request
 
@@ -1773,11 +1893,11 @@ import (
 
 func main() {
     logoutChallenge := "logoutChallenge_example" // string | 
-    rejectRequest := *openapiclient.NewRejectRequest() // RejectRequest |  (optional)
+    body := *openapiclient.NewRejectRequest() // RejectRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.RejectLogoutRequest(context.Background()).LogoutChallenge(logoutChallenge).RejectRequest(rejectRequest).Execute()
+    resp, r, err := apiClient.AdminApi.RejectLogoutRequest(context.Background()).LogoutChallenge(logoutChallenge).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.RejectLogoutRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1797,7 +1917,7 @@ Other parameters are passed through a pointer to a apiRejectLogoutRequestRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **logoutChallenge** | **string** |  | 
- **rejectRequest** | [**RejectRequest**](RejectRequest.md) |  | 
+ **body** | [**RejectRequest**](RejectRequest.md) |  | 
 
 ### Return type
 
@@ -1951,7 +2071,7 @@ No authorization required
 
 ## TrustJwtGrantIssuer
 
-> TrustedJwtGrantIssuer TrustJwtGrantIssuer(ctx).TrustJwtGrantIssuerBody(trustJwtGrantIssuerBody).Execute()
+> TrustedJwtGrantIssuer TrustJwtGrantIssuer(ctx).Body(body).Execute()
 
 Trust an OAuth2 JWT Bearer Grant Type Issuer
 
@@ -1971,11 +2091,11 @@ import (
 )
 
 func main() {
-    trustJwtGrantIssuerBody := *openapiclient.NewTrustJwtGrantIssuerBody(time.Now(), "https://jwt-idp.example.com", *openapiclient.NewJSONWebKey("RS256", "1603dfe0af8f4596", "RSA", "sig"), []string{"Scope_example"}) // TrustJwtGrantIssuerBody |  (optional)
+    body := *openapiclient.NewTrustJwtGrantIssuerBody(time.Now(), "https://jwt-idp.example.com", *openapiclient.NewJSONWebKey("RS256", "1603dfe0af8f4596", "RSA", "sig"), []string{"Scope_example"}, "mike@example.com") // TrustJwtGrantIssuerBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.TrustJwtGrantIssuer(context.Background()).TrustJwtGrantIssuerBody(trustJwtGrantIssuerBody).Execute()
+    resp, r, err := apiClient.AdminApi.TrustJwtGrantIssuer(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.TrustJwtGrantIssuer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1996,7 +2116,7 @@ Other parameters are passed through a pointer to a apiTrustJwtGrantIssuerRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **trustJwtGrantIssuerBody** | [**TrustJwtGrantIssuerBody**](TrustJwtGrantIssuerBody.md) |  | 
+ **body** | [**TrustJwtGrantIssuerBody**](TrustJwtGrantIssuerBody.md) |  | 
 
 ### Return type
 
@@ -2018,7 +2138,7 @@ No authorization required
 
 ## UpdateJsonWebKey
 
-> JSONWebKey UpdateJsonWebKey(ctx, kid, set).JSONWebKey(jSONWebKey).Execute()
+> JSONWebKey UpdateJsonWebKey(ctx, kid, set).Body(body).Execute()
 
 Update a JSON Web Key
 
@@ -2039,11 +2159,11 @@ import (
 func main() {
     kid := "kid_example" // string | The kid of the desired key
     set := "set_example" // string | The set
-    jSONWebKey := *openapiclient.NewJSONWebKey("RS256", "1603dfe0af8f4596", "RSA", "sig") // JSONWebKey |  (optional)
+    body := *openapiclient.NewJSONWebKey("RS256", "1603dfe0af8f4596", "RSA", "sig") // JSONWebKey |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.UpdateJsonWebKey(context.Background(), kid, set).JSONWebKey(jSONWebKey).Execute()
+    resp, r, err := apiClient.AdminApi.UpdateJsonWebKey(context.Background(), kid, set).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.UpdateJsonWebKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2071,7 +2191,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **jSONWebKey** | [**JSONWebKey**](JSONWebKey.md) |  | 
+ **body** | [**JSONWebKey**](JSONWebKey.md) |  | 
 
 ### Return type
 
@@ -2093,7 +2213,7 @@ No authorization required
 
 ## UpdateJsonWebKeySet
 
-> JSONWebKeySet UpdateJsonWebKeySet(ctx, set).JSONWebKeySet(jSONWebKeySet).Execute()
+> JSONWebKeySet UpdateJsonWebKeySet(ctx, set).Body(body).Execute()
 
 Update a JSON Web Key Set
 
@@ -2113,11 +2233,11 @@ import (
 
 func main() {
     set := "set_example" // string | The set
-    jSONWebKeySet := *openapiclient.NewJSONWebKeySet() // JSONWebKeySet |  (optional)
+    body := *openapiclient.NewJSONWebKeySet() // JSONWebKeySet |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.UpdateJsonWebKeySet(context.Background(), set).JSONWebKeySet(jSONWebKeySet).Execute()
+    resp, r, err := apiClient.AdminApi.UpdateJsonWebKeySet(context.Background(), set).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.UpdateJsonWebKeySet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2143,7 +2263,7 @@ Other parameters are passed through a pointer to a apiUpdateJsonWebKeySetRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **jSONWebKeySet** | [**JSONWebKeySet**](JSONWebKeySet.md) |  | 
+ **body** | [**JSONWebKeySet**](JSONWebKeySet.md) |  | 
 
 ### Return type
 
@@ -2165,7 +2285,7 @@ No authorization required
 
 ## UpdateOAuth2Client
 
-> OAuth2Client UpdateOAuth2Client(ctx, id).OAuth2Client(oAuth2Client).Execute()
+> OAuth2Client UpdateOAuth2Client(ctx, id).Body(body).Execute()
 
 Update an OAuth 2.0 Client
 
@@ -2185,11 +2305,11 @@ import (
 
 func main() {
     id := "id_example" // string | The id of the OAuth 2.0 Client.
-    oAuth2Client := *openapiclient.NewOAuth2Client() // OAuth2Client | 
+    body := *openapiclient.NewOAuth2Client() // OAuth2Client | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.UpdateOAuth2Client(context.Background(), id).OAuth2Client(oAuth2Client).Execute()
+    resp, r, err := apiClient.AdminApi.UpdateOAuth2Client(context.Background(), id).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.UpdateOAuth2Client``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2215,7 +2335,7 @@ Other parameters are passed through a pointer to a apiUpdateOAuth2ClientRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **oAuth2Client** | [**OAuth2Client**](OAuth2Client.md) |  | 
+ **body** | [**OAuth2Client**](OAuth2Client.md) |  | 
 
 ### Return type
 

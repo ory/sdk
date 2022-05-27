@@ -22,7 +22,9 @@ Method | HTTP request | Description
 [**get_logout_request**](AdminApi.md#get_logout_request) | **GET** /oauth2/auth/requests/logout | Get a Logout Request
 [**get_o_auth2_client**](AdminApi.md#get_o_auth2_client) | **GET** /clients/{id} | Get an OAuth 2.0 Client
 [**get_trusted_jwt_grant_issuer**](AdminApi.md#get_trusted_jwt_grant_issuer) | **GET** /trust/grants/jwt-bearer/issuers/{id} | Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
+[**get_version**](AdminApi.md#get_version) | **GET** /version | Get Service Version
 [**introspect_o_auth2_token**](AdminApi.md#introspect_o_auth2_token) | **POST** /oauth2/introspect | Introspect OAuth2 Tokens
+[**is_instance_alive**](AdminApi.md#is_instance_alive) | **GET** /health/alive | Check Alive Status
 [**list_o_auth2_clients**](AdminApi.md#list_o_auth2_clients) | **GET** /clients | List OAuth 2.0 Clients
 [**list_subject_consent_sessions**](AdminApi.md#list_subject_consent_sessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject
 [**list_trusted_jwt_grant_issuers**](AdminApi.md#list_trusted_jwt_grant_issuers) | **GET** /trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
@@ -68,7 +70,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = admin_api.AdminApi(api_client)
     consent_challenge = "consent_challenge_example" # str | 
-    accept_consent_request = AcceptConsentRequest(
+    body = AcceptConsentRequest(
         grant_access_token_audience=StringSlicePipeDelimiter([
             "grant_access_token_audience_example",
         ]),
@@ -79,8 +81,8 @@ with ory_hydra_client.ApiClient() as api_client:
         remember=True,
         remember_for=1,
         session=ConsentRequestSession(
-            access_token=None,
-            id_token=None,
+            access_token={},
+            id_token={},
         ),
     ) # AcceptConsentRequest |  (optional)
 
@@ -96,7 +98,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # and optional values
     try:
         # Accept a Consent Request
-        api_response = api_instance.accept_consent_request(consent_challenge, accept_consent_request=accept_consent_request)
+        api_response = api_instance.accept_consent_request(consent_challenge, body=body)
         pprint(api_response)
     except ory_hydra_client.ApiException as e:
         print("Exception when calling AdminApi->accept_consent_request: %s\n" % e)
@@ -108,7 +110,7 @@ with ory_hydra_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **consent_challenge** | **str**|  |
- **accept_consent_request** | [**AcceptConsentRequest**](AcceptConsentRequest.md)|  | [optional]
+ **body** | [**AcceptConsentRequest**](AcceptConsentRequest.md)|  | [optional]
 
 ### Return type
 
@@ -164,7 +166,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = admin_api.AdminApi(api_client)
     login_challenge = "login_challenge_example" # str | 
-    accept_login_request = AcceptLoginRequest(
+    body = AcceptLoginRequest(
         acr="acr_example",
         amr=StringSlicePipeDelimiter([
             "amr_example",
@@ -188,7 +190,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # and optional values
     try:
         # Accept a Login Request
-        api_response = api_instance.accept_login_request(login_challenge, accept_login_request=accept_login_request)
+        api_response = api_instance.accept_login_request(login_challenge, body=body)
         pprint(api_response)
     except ory_hydra_client.ApiException as e:
         print("Exception when calling AdminApi->accept_login_request: %s\n" % e)
@@ -200,7 +202,7 @@ with ory_hydra_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **login_challenge** | **str**|  |
- **accept_login_request** | [**AcceptLoginRequest**](AcceptLoginRequest.md)|  | [optional]
+ **body** | [**AcceptLoginRequest**](AcceptLoginRequest.md)|  | [optional]
 
 ### Return type
 
@@ -328,7 +330,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = admin_api.AdminApi(api_client)
     set = "set_example" # str | The set
-    json_web_key_set_generator_request = JsonWebKeySetGeneratorRequest(
+    body = JsonWebKeySetGeneratorRequest(
         alg="alg_example",
         kid="kid_example",
         use="use_example",
@@ -346,7 +348,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # and optional values
     try:
         # Generate a New JSON Web Key
-        api_response = api_instance.create_json_web_key_set(set, json_web_key_set_generator_request=json_web_key_set_generator_request)
+        api_response = api_instance.create_json_web_key_set(set, body=body)
         pprint(api_response)
     except ory_hydra_client.ApiException as e:
         print("Exception when calling AdminApi->create_json_web_key_set: %s\n" % e)
@@ -358,7 +360,7 @@ with ory_hydra_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **set** | **str**| The set |
- **json_web_key_set_generator_request** | [**JsonWebKeySetGeneratorRequest**](JsonWebKeySetGeneratorRequest.md)|  | [optional]
+ **body** | [**JsonWebKeySetGeneratorRequest**](JsonWebKeySetGeneratorRequest.md)|  | [optional]
 
 ### Return type
 
@@ -386,7 +388,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_o_auth2_client**
-> OAuth2Client create_o_auth2_client(o_auth2_client)
+> OAuth2Client create_o_auth2_client(body)
 
 Create an OAuth 2.0 Client
 
@@ -413,7 +415,7 @@ configuration = ory_hydra_client.Configuration(
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = admin_api.AdminApi(api_client)
-    o_auth2_client = OAuth2Client(
+    body = OAuth2Client(
         allowed_cors_origins=StringSlicePipeDelimiter([
             "allowed_cors_origins_example",
         ]),
@@ -470,7 +472,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Create an OAuth 2.0 Client
-        api_response = api_instance.create_o_auth2_client(o_auth2_client)
+        api_response = api_instance.create_o_auth2_client(body)
         pprint(api_response)
     except ory_hydra_client.ApiException as e:
         print("Exception when calling AdminApi->create_o_auth2_client: %s\n" % e)
@@ -481,7 +483,7 @@ with ory_hydra_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md)|  |
+ **body** | [**OAuth2Client**](OAuth2Client.md)|  |
 
 ### Return type
 
@@ -877,7 +879,7 @@ configuration = ory_hydra_client.Configuration(
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = admin_api.AdminApi(api_client)
-    flush_inactive_o_auth2_tokens_request = FlushInactiveOAuth2TokensRequest(
+    body = FlushInactiveOAuth2TokensRequest(
         not_after=dateutil_parser('1970-01-01T00:00:00.00Z'),
     ) # FlushInactiveOAuth2TokensRequest |  (optional)
 
@@ -885,7 +887,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # and optional values
     try:
         # Flush Expired OAuth2 Access Tokens
-        api_instance.flush_inactive_o_auth2_tokens(flush_inactive_o_auth2_tokens_request=flush_inactive_o_auth2_tokens_request)
+        api_instance.flush_inactive_o_auth2_tokens(body=body)
     except ory_hydra_client.ApiException as e:
         print("Exception when calling AdminApi->flush_inactive_o_auth2_tokens: %s\n" % e)
 ```
@@ -895,7 +897,7 @@ with ory_hydra_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flush_inactive_o_auth2_tokens_request** | [**FlushInactiveOAuth2TokensRequest**](FlushInactiveOAuth2TokensRequest.md)|  | [optional]
+ **body** | [**FlushInactiveOAuth2TokensRequest**](FlushInactiveOAuth2TokensRequest.md)|  | [optional]
 
 ### Return type
 
@@ -1420,6 +1422,69 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_version**
+> Version get_version()
+
+Get Service Version
+
+This endpoint returns the service version typically notated using semantic versioning.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
+
+### Example
+
+
+```python
+import time
+import ory_hydra_client
+from ory_hydra_client.api import admin_api
+from ory_hydra_client.model.version import Version
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_hydra_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = admin_api.AdminApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        # Get Service Version
+        api_response = api_instance.get_version()
+        pprint(api_response)
+    except ory_hydra_client.ApiException as e:
+        print("Exception when calling AdminApi->get_version: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**Version**](Version.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | version |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **introspect_o_auth2_token**
 > OAuth2TokenIntrospection introspect_o_auth2_token(token)
 
@@ -1497,6 +1562,71 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | oAuth2TokenIntrospection |  -  |
 **401** | jsonError |  -  |
+**500** | jsonError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **is_instance_alive**
+> HealthStatus is_instance_alive()
+
+Check Alive Status
+
+This endpoint returns a 200 status code when the HTTP server is up running. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+
+### Example
+
+
+```python
+import time
+import ory_hydra_client
+from ory_hydra_client.api import admin_api
+from ory_hydra_client.model.health_status import HealthStatus
+from ory_hydra_client.model.json_error import JsonError
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_hydra_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = admin_api.AdminApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        # Check Alive Status
+        api_response = api_instance.is_instance_alive()
+        pprint(api_response)
+    except ory_hydra_client.ApiException as e:
+        print("Exception when calling AdminApi->is_instance_alive: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**HealthStatus**](HealthStatus.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | healthStatus |  -  |
 **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1606,22 +1736,11 @@ with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = admin_api.AdminApi(api_client)
     subject = "subject_example" # str | 
-    limit = 1 # int | The maximum amount of consent sessions to be returned, upper bound is 500 sessions. (optional)
-    offset = 1 # int | The offset from where to start looking. (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Lists All Consent Sessions of a Subject
         api_response = api_instance.list_subject_consent_sessions(subject)
-        pprint(api_response)
-    except ory_hydra_client.ApiException as e:
-        print("Exception when calling AdminApi->list_subject_consent_sessions: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Lists All Consent Sessions of a Subject
-        api_response = api_instance.list_subject_consent_sessions(subject, limit=limit, offset=offset)
         pprint(api_response)
     except ory_hydra_client.ApiException as e:
         print("Exception when calling AdminApi->list_subject_consent_sessions: %s\n" % e)
@@ -1633,8 +1752,6 @@ with ory_hydra_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **str**|  |
- **limit** | **int**| The maximum amount of consent sessions to be returned, upper bound is 500 sessions. | [optional]
- **offset** | **int**| The offset from where to start looking. | [optional]
 
 ### Return type
 
@@ -1735,7 +1852,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_o_auth2_client**
-> OAuth2Client patch_o_auth2_client(id, patch_request)
+> OAuth2Client patch_o_auth2_client(id, body)
 
 Patch an OAuth 2.0 Client
 
@@ -1764,7 +1881,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = admin_api.AdminApi(api_client)
     id = "id_example" # str | The id of the OAuth 2.0 Client.
-    patch_request = PatchRequest([
+    body = PatchRequest([
         PatchDocument(
             _from="_from_example",
             op="replace",
@@ -1776,7 +1893,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Patch an OAuth 2.0 Client
-        api_response = api_instance.patch_o_auth2_client(id, patch_request)
+        api_response = api_instance.patch_o_auth2_client(id, body)
         pprint(api_response)
     except ory_hydra_client.ApiException as e:
         print("Exception when calling AdminApi->patch_o_auth2_client: %s\n" % e)
@@ -1788,7 +1905,7 @@ with ory_hydra_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The id of the OAuth 2.0 Client. |
- **patch_request** | [**PatchRequest**](PatchRequest.md)|  |
+ **body** | [**PatchRequest**](PatchRequest.md)|  |
 
 ### Return type
 
@@ -1843,7 +1960,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = admin_api.AdminApi(api_client)
     consent_challenge = "consent_challenge_example" # str | 
-    reject_request = RejectRequest(
+    body = RejectRequest(
         error="error_example",
         error_debug="error_debug_example",
         error_description="error_description_example",
@@ -1863,7 +1980,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # and optional values
     try:
         # Reject a Consent Request
-        api_response = api_instance.reject_consent_request(consent_challenge, reject_request=reject_request)
+        api_response = api_instance.reject_consent_request(consent_challenge, body=body)
         pprint(api_response)
     except ory_hydra_client.ApiException as e:
         print("Exception when calling AdminApi->reject_consent_request: %s\n" % e)
@@ -1875,7 +1992,7 @@ with ory_hydra_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **consent_challenge** | **str**|  |
- **reject_request** | [**RejectRequest**](RejectRequest.md)|  | [optional]
+ **body** | [**RejectRequest**](RejectRequest.md)|  | [optional]
 
 ### Return type
 
@@ -1931,7 +2048,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = admin_api.AdminApi(api_client)
     login_challenge = "login_challenge_example" # str | 
-    reject_request = RejectRequest(
+    body = RejectRequest(
         error="error_example",
         error_debug="error_debug_example",
         error_description="error_description_example",
@@ -1951,7 +2068,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # and optional values
     try:
         # Reject a Login Request
-        api_response = api_instance.reject_login_request(login_challenge, reject_request=reject_request)
+        api_response = api_instance.reject_login_request(login_challenge, body=body)
         pprint(api_response)
     except ory_hydra_client.ApiException as e:
         print("Exception when calling AdminApi->reject_login_request: %s\n" % e)
@@ -1963,7 +2080,7 @@ with ory_hydra_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **login_challenge** | **str**|  |
- **reject_request** | [**RejectRequest**](RejectRequest.md)|  | [optional]
+ **body** | [**RejectRequest**](RejectRequest.md)|  | [optional]
 
 ### Return type
 
@@ -2020,7 +2137,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = admin_api.AdminApi(api_client)
     logout_challenge = "logout_challenge_example" # str | 
-    reject_request = RejectRequest(
+    body = RejectRequest(
         error="error_example",
         error_debug="error_debug_example",
         error_description="error_description_example",
@@ -2039,7 +2156,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # and optional values
     try:
         # Reject a Logout Request
-        api_instance.reject_logout_request(logout_challenge, reject_request=reject_request)
+        api_instance.reject_logout_request(logout_challenge, body=body)
     except ory_hydra_client.ApiException as e:
         print("Exception when calling AdminApi->reject_logout_request: %s\n" % e)
 ```
@@ -2050,7 +2167,7 @@ with ory_hydra_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **logout_challenge** | **str**|  |
- **reject_request** | [**RejectRequest**](RejectRequest.md)|  | [optional]
+ **body** | [**RejectRequest**](RejectRequest.md)|  | [optional]
 
 ### Return type
 
@@ -2253,8 +2370,7 @@ configuration = ory_hydra_client.Configuration(
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = admin_api.AdminApi(api_client)
-    trust_jwt_grant_issuer_body = TrustJwtGrantIssuerBody(
-        allow_any_subject=True,
+    body = TrustJwtGrantIssuerBody(
         expires_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
         issuer="https://jwt-idp.example.com",
         jwk=JSONWebKey(
@@ -2278,7 +2394,7 @@ with ory_hydra_client.ApiClient() as api_client:
             ],
             y="x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0",
         ),
-        scope=["openid","offline"],
+        scope=[openid, offline],
         subject="mike@example.com",
     ) # TrustJwtGrantIssuerBody |  (optional)
 
@@ -2286,7 +2402,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # and optional values
     try:
         # Trust an OAuth2 JWT Bearer Grant Type Issuer
-        api_response = api_instance.trust_jwt_grant_issuer(trust_jwt_grant_issuer_body=trust_jwt_grant_issuer_body)
+        api_response = api_instance.trust_jwt_grant_issuer(body=body)
         pprint(api_response)
     except ory_hydra_client.ApiException as e:
         print("Exception when calling AdminApi->trust_jwt_grant_issuer: %s\n" % e)
@@ -2297,7 +2413,7 @@ with ory_hydra_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **trust_jwt_grant_issuer_body** | [**TrustJwtGrantIssuerBody**](TrustJwtGrantIssuerBody.md)|  | [optional]
+ **body** | [**TrustJwtGrantIssuerBody**](TrustJwtGrantIssuerBody.md)|  | [optional]
 
 ### Return type
 
@@ -2354,7 +2470,7 @@ with ory_hydra_client.ApiClient() as api_client:
     api_instance = admin_api.AdminApi(api_client)
     kid = "kid_example" # str | The kid of the desired key
     set = "set_example" # str | The set
-    json_web_key = JSONWebKey(
+    body = JSONWebKey(
         alg="RS256",
         crv="P-256",
         d="T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE",
@@ -2388,7 +2504,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # and optional values
     try:
         # Update a JSON Web Key
-        api_response = api_instance.update_json_web_key(kid, set, json_web_key=json_web_key)
+        api_response = api_instance.update_json_web_key(kid, set, body=body)
         pprint(api_response)
     except ory_hydra_client.ApiException as e:
         print("Exception when calling AdminApi->update_json_web_key: %s\n" % e)
@@ -2401,7 +2517,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **kid** | **str**| The kid of the desired key |
  **set** | **str**| The set |
- **json_web_key** | [**JSONWebKey**](JSONWebKey.md)|  | [optional]
+ **body** | [**JSONWebKey**](JSONWebKey.md)|  | [optional]
 
 ### Return type
 
@@ -2457,7 +2573,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = admin_api.AdminApi(api_client)
     set = "set_example" # str | The set
-    json_web_key_set = JSONWebKeySet(
+    body = JSONWebKeySet(
         keys=[
             JSONWebKey(
                 alg="RS256",
@@ -2495,7 +2611,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # and optional values
     try:
         # Update a JSON Web Key Set
-        api_response = api_instance.update_json_web_key_set(set, json_web_key_set=json_web_key_set)
+        api_response = api_instance.update_json_web_key_set(set, body=body)
         pprint(api_response)
     except ory_hydra_client.ApiException as e:
         print("Exception when calling AdminApi->update_json_web_key_set: %s\n" % e)
@@ -2507,7 +2623,7 @@ with ory_hydra_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **set** | **str**| The set |
- **json_web_key_set** | [**JSONWebKeySet**](JSONWebKeySet.md)|  | [optional]
+ **body** | [**JSONWebKeySet**](JSONWebKeySet.md)|  | [optional]
 
 ### Return type
 
@@ -2535,7 +2651,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_o_auth2_client**
-> OAuth2Client update_o_auth2_client(id, o_auth2_client)
+> OAuth2Client update_o_auth2_client(id, body)
 
 Update an OAuth 2.0 Client
 
@@ -2563,7 +2679,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = admin_api.AdminApi(api_client)
     id = "id_example" # str | The id of the OAuth 2.0 Client.
-    o_auth2_client = OAuth2Client(
+    body = OAuth2Client(
         allowed_cors_origins=StringSlicePipeDelimiter([
             "allowed_cors_origins_example",
         ]),
@@ -2620,7 +2736,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Update an OAuth 2.0 Client
-        api_response = api_instance.update_o_auth2_client(id, o_auth2_client)
+        api_response = api_instance.update_o_auth2_client(id, body)
         pprint(api_response)
     except ory_hydra_client.ApiException as e:
         print("Exception when calling AdminApi->update_o_auth2_client: %s\n" % e)
@@ -2632,7 +2748,7 @@ with ory_hydra_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The id of the OAuth 2.0 Client. |
- **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md)|  |
+ **body** | [**OAuth2Client**](OAuth2Client.md)|  |
 
 ### Return type
 

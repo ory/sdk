@@ -19,7 +19,7 @@ void main() {
     //
     // When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.  This endpoint tells ORY Hydra that the subject has authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider includes additional information, such as session data for access and ID tokens, and if the consent request should be used as basis for future requests.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
     //
-    //Future<CompletedRequest> acceptConsentRequest(String consentChallenge, { AcceptConsentRequest acceptConsentRequest }) async
+    //Future<CompletedRequest> acceptConsentRequest(String consentChallenge, { AcceptConsentRequest body }) async
     test('test acceptConsentRequest', () async {
       // TODO
     });
@@ -28,7 +28,7 @@ void main() {
     //
     // When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell ORY Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells ORY Hydra that the subject has successfully authenticated and includes additional information such as the subject's ID and if ORY Hydra should remember the subject's subject agent for future authentication attempts by setting a cookie.  The response contains a redirect URL which the login provider should redirect the user-agent to.
     //
-    //Future<CompletedRequest> acceptLoginRequest(String loginChallenge, { AcceptLoginRequest acceptLoginRequest }) async
+    //Future<CompletedRequest> acceptLoginRequest(String loginChallenge, { AcceptLoginRequest body }) async
     test('test acceptLoginRequest', () async {
       // TODO
     });
@@ -46,7 +46,7 @@ void main() {
     //
     // This endpoint is capable of generating JSON Web Key Sets for you. There a different strategies available, such as symmetric cryptographic keys (HS256, HS512) and asymetric cryptographic keys (RS256, ECDSA). If the specified JSON Web Key Set does not exist, it will be created.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
     //
-    //Future<JSONWebKeySet> createJsonWebKeySet(String set_, { JsonWebKeySetGeneratorRequest jsonWebKeySetGeneratorRequest }) async
+    //Future<JSONWebKeySet> createJsonWebKeySet(String set_, { JsonWebKeySetGeneratorRequest body }) async
     test('test createJsonWebKeySet', () async {
       // TODO
     });
@@ -55,7 +55,7 @@ void main() {
     //
     // Create a new OAuth 2.0 client If you pass `client_secret` the secret will be used, otherwise a random secret will be generated. The secret will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somwhere safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
     //
-    //Future<OAuth2Client> createOAuth2Client(OAuth2Client oAuth2Client) async
+    //Future<OAuth2Client> createOAuth2Client(OAuth2Client body) async
     test('test createOAuth2Client', () async {
       // TODO
     });
@@ -109,7 +109,7 @@ void main() {
     //
     // This endpoint flushes expired OAuth2 access tokens from the database. You can set a time after which no tokens will be not be touched, in case you want to keep recent tokens for auditing. Refresh tokens can not be flushed as they are deleted automatically when performing the refresh flow.
     //
-    //Future flushInactiveOAuth2Tokens({ FlushInactiveOAuth2TokensRequest flushInactiveOAuth2TokensRequest }) async
+    //Future flushInactiveOAuth2Tokens({ FlushInactiveOAuth2TokensRequest body }) async
     test('test flushInactiveOAuth2Tokens', () async {
       // TODO
     });
@@ -177,12 +177,30 @@ void main() {
       // TODO
     });
 
+    // Get Service Version
+    //
+    // This endpoint returns the service version typically notated using semantic versioning.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
+    //
+    //Future<Version> getVersion() async
+    test('test getVersion', () async {
+      // TODO
+    });
+
     // Introspect OAuth2 Tokens
     //
     // The introspection endpoint allows to check if a token (both refresh and access) is active or not. An active token is neither expired nor revoked. If a token is active, additional information on the token will be included. You can set additional data for a token by setting `accessTokenExtra` during the consent flow.  For more information [read this blog post](https://www.oauth.com/oauth2-servers/token-introspection-endpoint/).
     //
     //Future<OAuth2TokenIntrospection> introspectOAuth2Token(String token, { String scope }) async
     test('test introspectOAuth2Token', () async {
+      // TODO
+    });
+
+    // Check Alive Status
+    //
+    // This endpoint returns a 200 status code when the HTTP server is up running. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+    //
+    //Future<HealthStatus> isInstanceAlive() async
+    test('test isInstanceAlive', () async {
       // TODO
     });
 
@@ -199,7 +217,7 @@ void main() {
     //
     // This endpoint lists all subject's granted consent sessions, including client and granted scope. If the subject is unknown or has not granted any consent sessions yet, the endpoint returns an empty JSON array with status code 200 OK.   The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/oauth2/auth/sessions/consent?subject={user}&limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
     //
-    //Future<BuiltList<PreviousConsentSession>> listSubjectConsentSessions(String subject, { int limit, int offset }) async
+    //Future<BuiltList<PreviousConsentSession>> listSubjectConsentSessions(String subject) async
     test('test listSubjectConsentSessions', () async {
       // TODO
     });
@@ -217,7 +235,7 @@ void main() {
     //
     // Patch an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
     //
-    //Future<OAuth2Client> patchOAuth2Client(String id, BuiltList<PatchDocument> patchDocument) async
+    //Future<OAuth2Client> patchOAuth2Client(String id, BuiltList<PatchDocument> body) async
     test('test patchOAuth2Client', () async {
       // TODO
     });
@@ -226,7 +244,7 @@ void main() {
     //
     // When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.  This endpoint tells ORY Hydra that the subject has not authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider must include a reason why the consent was not granted.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
     //
-    //Future<CompletedRequest> rejectConsentRequest(String consentChallenge, { RejectRequest rejectRequest }) async
+    //Future<CompletedRequest> rejectConsentRequest(String consentChallenge, { RejectRequest body }) async
     test('test rejectConsentRequest', () async {
       // TODO
     });
@@ -235,7 +253,7 @@ void main() {
     //
     // When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell ORY Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells ORY Hydra that the subject has not authenticated and includes a reason why the authentication was be denied.  The response contains a redirect URL which the login provider should redirect the user-agent to.
     //
-    //Future<CompletedRequest> rejectLoginRequest(String loginChallenge, { RejectRequest rejectRequest }) async
+    //Future<CompletedRequest> rejectLoginRequest(String loginChallenge, { RejectRequest body }) async
     test('test rejectLoginRequest', () async {
       // TODO
     });
@@ -244,7 +262,7 @@ void main() {
     //
     // When a user or an application requests ORY Hydra to log out a user, this endpoint is used to deny that logout request. No body is required.  The response is empty as the logout provider has to chose what action to perform next.
     //
-    //Future rejectLogoutRequest(String logoutChallenge, { RejectRequest rejectRequest }) async
+    //Future rejectLogoutRequest(String logoutChallenge, { RejectRequest body }) async
     test('test rejectLogoutRequest', () async {
       // TODO
     });
@@ -271,7 +289,7 @@ void main() {
     //
     // Use this endpoint to establish a trust relationship for a JWT issuer to perform JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants [RFC7523](https://datatracker.ietf.org/doc/html/rfc7523).
     //
-    //Future<TrustedJwtGrantIssuer> trustJwtGrantIssuer({ TrustJwtGrantIssuerBody trustJwtGrantIssuerBody }) async
+    //Future<TrustedJwtGrantIssuer> trustJwtGrantIssuer({ TrustJwtGrantIssuerBody body }) async
     test('test trustJwtGrantIssuer', () async {
       // TODO
     });
@@ -280,7 +298,7 @@ void main() {
     //
     // Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
     //
-    //Future<JSONWebKey> updateJsonWebKey(String kid, String set_, { JSONWebKey jSONWebKey }) async
+    //Future<JSONWebKey> updateJsonWebKey(String kid, String set_, { JSONWebKey body }) async
     test('test updateJsonWebKey', () async {
       // TODO
     });
@@ -289,7 +307,7 @@ void main() {
     //
     // Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
     //
-    //Future<JSONWebKeySet> updateJsonWebKeySet(String set_, { JSONWebKeySet jSONWebKeySet }) async
+    //Future<JSONWebKeySet> updateJsonWebKeySet(String set_, { JSONWebKeySet body }) async
     test('test updateJsonWebKeySet', () async {
       // TODO
     });
@@ -298,7 +316,7 @@ void main() {
     //
     // Update an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
     //
-    //Future<OAuth2Client> updateOAuth2Client(String id, OAuth2Client oAuth2Client) async
+    //Future<OAuth2Client> updateOAuth2Client(String id, OAuth2Client body) async
     test('test updateOAuth2Client', () async {
       // TODO
     });

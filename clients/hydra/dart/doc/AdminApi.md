@@ -27,7 +27,9 @@ Method | HTTP request | Description
 [**getLogoutRequest**](AdminApi.md#getlogoutrequest) | **GET** /oauth2/auth/requests/logout | Get a Logout Request
 [**getOAuth2Client**](AdminApi.md#getoauth2client) | **GET** /clients/{id} | Get an OAuth 2.0 Client
 [**getTrustedJwtGrantIssuer**](AdminApi.md#gettrustedjwtgrantissuer) | **GET** /trust/grants/jwt-bearer/issuers/{id} | Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
+[**getVersion**](AdminApi.md#getversion) | **GET** /version | Get Service Version
 [**introspectOAuth2Token**](AdminApi.md#introspectoauth2token) | **POST** /oauth2/introspect | Introspect OAuth2 Tokens
+[**isInstanceAlive**](AdminApi.md#isinstancealive) | **GET** /health/alive | Check Alive Status
 [**listOAuth2Clients**](AdminApi.md#listoauth2clients) | **GET** /clients | List OAuth 2.0 Clients
 [**listSubjectConsentSessions**](AdminApi.md#listsubjectconsentsessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject
 [**listTrustedJwtGrantIssuers**](AdminApi.md#listtrustedjwtgrantissuers) | **GET** /trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
@@ -44,7 +46,7 @@ Method | HTTP request | Description
 
 
 # **acceptConsentRequest**
-> CompletedRequest acceptConsentRequest(consentChallenge, acceptConsentRequest)
+> CompletedRequest acceptConsentRequest(consentChallenge, body)
 
 Accept a Consent Request
 
@@ -56,10 +58,10 @@ import 'package:ory_hydra_client/api.dart';
 
 var api_instance = new AdminApi();
 var consentChallenge = consentChallenge_example; // String | 
-var acceptConsentRequest = new AcceptConsentRequest(); // AcceptConsentRequest | 
+var body = new AcceptConsentRequest(); // AcceptConsentRequest | 
 
 try {
-    var result = api_instance.acceptConsentRequest(consentChallenge, acceptConsentRequest);
+    var result = api_instance.acceptConsentRequest(consentChallenge, body);
     print(result);
 } catch (e) {
     print('Exception when calling AdminApi->acceptConsentRequest: $e\n');
@@ -71,7 +73,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **consentChallenge** | **String**|  | 
- **acceptConsentRequest** | [**AcceptConsentRequest**](AcceptConsentRequest.md)|  | [optional] 
+ **body** | [**AcceptConsentRequest**](AcceptConsentRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -89,7 +91,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **acceptLoginRequest**
-> CompletedRequest acceptLoginRequest(loginChallenge, acceptLoginRequest)
+> CompletedRequest acceptLoginRequest(loginChallenge, body)
 
 Accept a Login Request
 
@@ -101,10 +103,10 @@ import 'package:ory_hydra_client/api.dart';
 
 var api_instance = new AdminApi();
 var loginChallenge = loginChallenge_example; // String | 
-var acceptLoginRequest = new AcceptLoginRequest(); // AcceptLoginRequest | 
+var body = new AcceptLoginRequest(); // AcceptLoginRequest | 
 
 try {
-    var result = api_instance.acceptLoginRequest(loginChallenge, acceptLoginRequest);
+    var result = api_instance.acceptLoginRequest(loginChallenge, body);
     print(result);
 } catch (e) {
     print('Exception when calling AdminApi->acceptLoginRequest: $e\n');
@@ -116,7 +118,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **loginChallenge** | **String**|  | 
- **acceptLoginRequest** | [**AcceptLoginRequest**](AcceptLoginRequest.md)|  | [optional] 
+ **body** | [**AcceptLoginRequest**](AcceptLoginRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -177,7 +179,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createJsonWebKeySet**
-> JSONWebKeySet createJsonWebKeySet(set_, jsonWebKeySetGeneratorRequest)
+> JSONWebKeySet createJsonWebKeySet(set_, body)
 
 Generate a New JSON Web Key
 
@@ -189,10 +191,10 @@ import 'package:ory_hydra_client/api.dart';
 
 var api_instance = new AdminApi();
 var set_ = set__example; // String | The set
-var jsonWebKeySetGeneratorRequest = new JsonWebKeySetGeneratorRequest(); // JsonWebKeySetGeneratorRequest | 
+var body = new JsonWebKeySetGeneratorRequest(); // JsonWebKeySetGeneratorRequest | 
 
 try {
-    var result = api_instance.createJsonWebKeySet(set_, jsonWebKeySetGeneratorRequest);
+    var result = api_instance.createJsonWebKeySet(set_, body);
     print(result);
 } catch (e) {
     print('Exception when calling AdminApi->createJsonWebKeySet: $e\n');
@@ -204,7 +206,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **set_** | **String**| The set | 
- **jsonWebKeySetGeneratorRequest** | [**JsonWebKeySetGeneratorRequest**](JsonWebKeySetGeneratorRequest.md)|  | [optional] 
+ **body** | [**JsonWebKeySetGeneratorRequest**](JsonWebKeySetGeneratorRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -222,7 +224,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createOAuth2Client**
-> OAuth2Client createOAuth2Client(oAuth2Client)
+> OAuth2Client createOAuth2Client(body)
 
 Create an OAuth 2.0 Client
 
@@ -233,10 +235,10 @@ Create a new OAuth 2.0 client If you pass `client_secret` the secret will be use
 import 'package:ory_hydra_client/api.dart';
 
 var api_instance = new AdminApi();
-var oAuth2Client = new OAuth2Client(); // OAuth2Client | 
+var body = new OAuth2Client(); // OAuth2Client | 
 
 try {
-    var result = api_instance.createOAuth2Client(oAuth2Client);
+    var result = api_instance.createOAuth2Client(body);
     print(result);
 } catch (e) {
     print('Exception when calling AdminApi->createOAuth2Client: $e\n');
@@ -247,7 +249,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **oAuth2Client** | [**OAuth2Client**](OAuth2Client.md)|  | 
+ **body** | [**OAuth2Client**](OAuth2Client.md)|  | 
 
 ### Return type
 
@@ -477,7 +479,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **flushInactiveOAuth2Tokens**
-> flushInactiveOAuth2Tokens(flushInactiveOAuth2TokensRequest)
+> flushInactiveOAuth2Tokens(body)
 
 Flush Expired OAuth2 Access Tokens
 
@@ -488,10 +490,10 @@ This endpoint flushes expired OAuth2 access tokens from the database. You can se
 import 'package:ory_hydra_client/api.dart';
 
 var api_instance = new AdminApi();
-var flushInactiveOAuth2TokensRequest = new FlushInactiveOAuth2TokensRequest(); // FlushInactiveOAuth2TokensRequest | 
+var body = new FlushInactiveOAuth2TokensRequest(); // FlushInactiveOAuth2TokensRequest | 
 
 try {
-    api_instance.flushInactiveOAuth2Tokens(flushInactiveOAuth2TokensRequest);
+    api_instance.flushInactiveOAuth2Tokens(body);
 } catch (e) {
     print('Exception when calling AdminApi->flushInactiveOAuth2Tokens: $e\n');
 }
@@ -501,7 +503,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flushInactiveOAuth2TokensRequest** | [**FlushInactiveOAuth2TokensRequest**](FlushInactiveOAuth2TokensRequest.md)|  | [optional] 
+ **body** | [**FlushInactiveOAuth2TokensRequest**](FlushInactiveOAuth2TokensRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -821,6 +823,45 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getVersion**
+> Version getVersion()
+
+Get Service Version
+
+This endpoint returns the service version typically notated using semantic versioning.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
+
+### Example
+```dart
+import 'package:ory_hydra_client/api.dart';
+
+var api_instance = new AdminApi();
+
+try {
+    var result = api_instance.getVersion();
+    print(result);
+} catch (e) {
+    print('Exception when calling AdminApi->getVersion: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**Version**](Version.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **introspectOAuth2Token**
 > OAuth2TokenIntrospection introspectOAuth2Token(token, scope)
 
@@ -862,6 +903,45 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **isInstanceAlive**
+> HealthStatus isInstanceAlive()
+
+Check Alive Status
+
+This endpoint returns a 200 status code when the HTTP server is up running. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+
+### Example
+```dart
+import 'package:ory_hydra_client/api.dart';
+
+var api_instance = new AdminApi();
+
+try {
+    var result = api_instance.isInstanceAlive();
+    print(result);
+} catch (e) {
+    print('Exception when calling AdminApi->isInstanceAlive: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**HealthStatus**](HealthStatus.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -916,7 +996,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listSubjectConsentSessions**
-> BuiltList<PreviousConsentSession> listSubjectConsentSessions(subject, limit, offset)
+> BuiltList<PreviousConsentSession> listSubjectConsentSessions(subject)
 
 Lists All Consent Sessions of a Subject
 
@@ -928,11 +1008,9 @@ import 'package:ory_hydra_client/api.dart';
 
 var api_instance = new AdminApi();
 var subject = subject_example; // String | 
-var limit = 789; // int | The maximum amount of consent sessions to be returned, upper bound is 500 sessions.
-var offset = 789; // int | The offset from where to start looking.
 
 try {
-    var result = api_instance.listSubjectConsentSessions(subject, limit, offset);
+    var result = api_instance.listSubjectConsentSessions(subject);
     print(result);
 } catch (e) {
     print('Exception when calling AdminApi->listSubjectConsentSessions: $e\n');
@@ -944,8 +1022,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **String**|  | 
- **limit** | **int**| The maximum amount of consent sessions to be returned, upper bound is 500 sessions. | [optional] 
- **offset** | **int**| The offset from where to start looking. | [optional] 
 
 ### Return type
 
@@ -1010,7 +1086,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patchOAuth2Client**
-> OAuth2Client patchOAuth2Client(id, patchDocument)
+> OAuth2Client patchOAuth2Client(id, body)
 
 Patch an OAuth 2.0 Client
 
@@ -1022,10 +1098,10 @@ import 'package:ory_hydra_client/api.dart';
 
 var api_instance = new AdminApi();
 var id = id_example; // String | The id of the OAuth 2.0 Client.
-var patchDocument = [new BuiltList<PatchDocument>()]; // BuiltList<PatchDocument> | 
+var body = [new BuiltList<PatchDocument>()]; // BuiltList<PatchDocument> | 
 
 try {
-    var result = api_instance.patchOAuth2Client(id, patchDocument);
+    var result = api_instance.patchOAuth2Client(id, body);
     print(result);
 } catch (e) {
     print('Exception when calling AdminApi->patchOAuth2Client: $e\n');
@@ -1037,7 +1113,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| The id of the OAuth 2.0 Client. | 
- **patchDocument** | [**BuiltList<PatchDocument>**](PatchDocument.md)|  | 
+ **body** | [**BuiltList<PatchDocument>**](PatchDocument.md)|  | 
 
 ### Return type
 
@@ -1055,7 +1131,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **rejectConsentRequest**
-> CompletedRequest rejectConsentRequest(consentChallenge, rejectRequest)
+> CompletedRequest rejectConsentRequest(consentChallenge, body)
 
 Reject a Consent Request
 
@@ -1067,10 +1143,10 @@ import 'package:ory_hydra_client/api.dart';
 
 var api_instance = new AdminApi();
 var consentChallenge = consentChallenge_example; // String | 
-var rejectRequest = new RejectRequest(); // RejectRequest | 
+var body = new RejectRequest(); // RejectRequest | 
 
 try {
-    var result = api_instance.rejectConsentRequest(consentChallenge, rejectRequest);
+    var result = api_instance.rejectConsentRequest(consentChallenge, body);
     print(result);
 } catch (e) {
     print('Exception when calling AdminApi->rejectConsentRequest: $e\n');
@@ -1082,7 +1158,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **consentChallenge** | **String**|  | 
- **rejectRequest** | [**RejectRequest**](RejectRequest.md)|  | [optional] 
+ **body** | [**RejectRequest**](RejectRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -1100,7 +1176,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **rejectLoginRequest**
-> CompletedRequest rejectLoginRequest(loginChallenge, rejectRequest)
+> CompletedRequest rejectLoginRequest(loginChallenge, body)
 
 Reject a Login Request
 
@@ -1112,10 +1188,10 @@ import 'package:ory_hydra_client/api.dart';
 
 var api_instance = new AdminApi();
 var loginChallenge = loginChallenge_example; // String | 
-var rejectRequest = new RejectRequest(); // RejectRequest | 
+var body = new RejectRequest(); // RejectRequest | 
 
 try {
-    var result = api_instance.rejectLoginRequest(loginChallenge, rejectRequest);
+    var result = api_instance.rejectLoginRequest(loginChallenge, body);
     print(result);
 } catch (e) {
     print('Exception when calling AdminApi->rejectLoginRequest: $e\n');
@@ -1127,7 +1203,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **loginChallenge** | **String**|  | 
- **rejectRequest** | [**RejectRequest**](RejectRequest.md)|  | [optional] 
+ **body** | [**RejectRequest**](RejectRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -1145,7 +1221,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **rejectLogoutRequest**
-> rejectLogoutRequest(logoutChallenge, rejectRequest)
+> rejectLogoutRequest(logoutChallenge, body)
 
 Reject a Logout Request
 
@@ -1157,10 +1233,10 @@ import 'package:ory_hydra_client/api.dart';
 
 var api_instance = new AdminApi();
 var logoutChallenge = logoutChallenge_example; // String | 
-var rejectRequest = new RejectRequest(); // RejectRequest | 
+var body = new RejectRequest(); // RejectRequest | 
 
 try {
-    api_instance.rejectLogoutRequest(logoutChallenge, rejectRequest);
+    api_instance.rejectLogoutRequest(logoutChallenge, body);
 } catch (e) {
     print('Exception when calling AdminApi->rejectLogoutRequest: $e\n');
 }
@@ -1171,7 +1247,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **logoutChallenge** | **String**|  | 
- **rejectRequest** | [**RejectRequest**](RejectRequest.md)|  | [optional] 
+ **body** | [**RejectRequest**](RejectRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -1277,7 +1353,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **trustJwtGrantIssuer**
-> TrustedJwtGrantIssuer trustJwtGrantIssuer(trustJwtGrantIssuerBody)
+> TrustedJwtGrantIssuer trustJwtGrantIssuer(body)
 
 Trust an OAuth2 JWT Bearer Grant Type Issuer
 
@@ -1288,10 +1364,10 @@ Use this endpoint to establish a trust relationship for a JWT issuer to perform 
 import 'package:ory_hydra_client/api.dart';
 
 var api_instance = new AdminApi();
-var trustJwtGrantIssuerBody = new TrustJwtGrantIssuerBody(); // TrustJwtGrantIssuerBody | 
+var body = new TrustJwtGrantIssuerBody(); // TrustJwtGrantIssuerBody | 
 
 try {
-    var result = api_instance.trustJwtGrantIssuer(trustJwtGrantIssuerBody);
+    var result = api_instance.trustJwtGrantIssuer(body);
     print(result);
 } catch (e) {
     print('Exception when calling AdminApi->trustJwtGrantIssuer: $e\n');
@@ -1302,7 +1378,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **trustJwtGrantIssuerBody** | [**TrustJwtGrantIssuerBody**](TrustJwtGrantIssuerBody.md)|  | [optional] 
+ **body** | [**TrustJwtGrantIssuerBody**](TrustJwtGrantIssuerBody.md)|  | [optional] 
 
 ### Return type
 
@@ -1320,7 +1396,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateJsonWebKey**
-> JSONWebKey updateJsonWebKey(kid, set_, jSONWebKey)
+> JSONWebKey updateJsonWebKey(kid, set_, body)
 
 Update a JSON Web Key
 
@@ -1333,10 +1409,10 @@ import 'package:ory_hydra_client/api.dart';
 var api_instance = new AdminApi();
 var kid = kid_example; // String | The kid of the desired key
 var set_ = set__example; // String | The set
-var jSONWebKey = new JSONWebKey(); // JSONWebKey | 
+var body = new JSONWebKey(); // JSONWebKey | 
 
 try {
-    var result = api_instance.updateJsonWebKey(kid, set_, jSONWebKey);
+    var result = api_instance.updateJsonWebKey(kid, set_, body);
     print(result);
 } catch (e) {
     print('Exception when calling AdminApi->updateJsonWebKey: $e\n');
@@ -1349,7 +1425,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **kid** | **String**| The kid of the desired key | 
  **set_** | **String**| The set | 
- **jSONWebKey** | [**JSONWebKey**](JSONWebKey.md)|  | [optional] 
+ **body** | [**JSONWebKey**](JSONWebKey.md)|  | [optional] 
 
 ### Return type
 
@@ -1367,7 +1443,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateJsonWebKeySet**
-> JSONWebKeySet updateJsonWebKeySet(set_, jSONWebKeySet)
+> JSONWebKeySet updateJsonWebKeySet(set_, body)
 
 Update a JSON Web Key Set
 
@@ -1379,10 +1455,10 @@ import 'package:ory_hydra_client/api.dart';
 
 var api_instance = new AdminApi();
 var set_ = set__example; // String | The set
-var jSONWebKeySet = new JSONWebKeySet(); // JSONWebKeySet | 
+var body = new JSONWebKeySet(); // JSONWebKeySet | 
 
 try {
-    var result = api_instance.updateJsonWebKeySet(set_, jSONWebKeySet);
+    var result = api_instance.updateJsonWebKeySet(set_, body);
     print(result);
 } catch (e) {
     print('Exception when calling AdminApi->updateJsonWebKeySet: $e\n');
@@ -1394,7 +1470,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **set_** | **String**| The set | 
- **jSONWebKeySet** | [**JSONWebKeySet**](JSONWebKeySet.md)|  | [optional] 
+ **body** | [**JSONWebKeySet**](JSONWebKeySet.md)|  | [optional] 
 
 ### Return type
 
@@ -1412,7 +1488,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateOAuth2Client**
-> OAuth2Client updateOAuth2Client(id, oAuth2Client)
+> OAuth2Client updateOAuth2Client(id, body)
 
 Update an OAuth 2.0 Client
 
@@ -1424,10 +1500,10 @@ import 'package:ory_hydra_client/api.dart';
 
 var api_instance = new AdminApi();
 var id = id_example; // String | The id of the OAuth 2.0 Client.
-var oAuth2Client = new OAuth2Client(); // OAuth2Client | 
+var body = new OAuth2Client(); // OAuth2Client | 
 
 try {
-    var result = api_instance.updateOAuth2Client(id, oAuth2Client);
+    var result = api_instance.updateOAuth2Client(id, body);
     print(result);
 } catch (e) {
     print('Exception when calling AdminApi->updateOAuth2Client: $e\n');
@@ -1439,7 +1515,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| The id of the OAuth 2.0 Client. | 
- **oAuth2Client** | [**OAuth2Client**](OAuth2Client.md)|  | 
+ **body** | [**OAuth2Client**](OAuth2Client.md)|  | 
 
 ### Return type
 

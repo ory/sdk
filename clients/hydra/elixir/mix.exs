@@ -1,14 +1,14 @@
-defmodule Hydra.Mixfile do
+defmodule Ory.Mixfile do
   use Mix.Project
 
   def project do
     [app: :ory_hydra,
-     version: "1.11.4",
+     version: "1.11.0",
      elixir: "~> 1.6",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      package: package(),
-     description: "Documentation for all of Ory Oathkeeper&#39;s APIs. ",
+     description: "Welcome to the ORY Hydra HTTP API documentation. You will find documentation for all HTTP APIs here.",
      deps: deps()]
   end
 
@@ -40,7 +40,8 @@ defmodule Hydra.Mixfile do
     [
       name: "ory_hydra",
       files: ~w(lib mix.exs README* LICENSE*),
-      licenses: [""]
+      licenses: [""],
+      links: %{"GitHub" => "https://github.com/ory/sdk"}
     ]
   end
 end

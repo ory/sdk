@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**dynamicClientRegistrationDeleteOAuth2Client()**](PublicApi.md#dynamicClientRegistrationDeleteOAuth2Client) | **DELETE** /connect/register/{id} | Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 [**dynamicClientRegistrationGetOAuth2Client()**](PublicApi.md#dynamicClientRegistrationGetOAuth2Client) | **GET** /connect/register/{id} | Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 [**dynamicClientRegistrationUpdateOAuth2Client()**](PublicApi.md#dynamicClientRegistrationUpdateOAuth2Client) | **PUT** /connect/register/{id} | Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+[**isInstanceReady()**](PublicApi.md#isInstanceReady) | **GET** /health/ready | Check Readiness Status
 [**oauth2Token()**](PublicApi.md#oauth2Token) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
 [**oauthAuth()**](PublicApi.md#oauthAuth) | **GET** /oauth2/auth | The OAuth 2.0 Authorize Endpoint
 [**revokeOAuth2Token()**](PublicApi.md#revokeOAuth2Token) | **POST** /oauth2/revoke | Revoke OAuth2 Tokens
@@ -25,7 +26,7 @@ disconnectUser()
 
 OpenID Connect Front-Backchannel Enabled Logout
 
-This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front-/Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html  Back-channel logout is performed asynchronously and does not affect logout flow.
+This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front-/Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html
 
 ### Example
 
@@ -125,7 +126,7 @@ No authorization required
 ## `dynamicClientRegistrationCreateOAuth2Client()`
 
 ```php
-dynamicClientRegistrationCreateOAuth2Client($oAuth2Client): \Ory\Hydra\Client\Model\OAuth2Client
+dynamicClientRegistrationCreateOAuth2Client($body): \Ory\Hydra\Client\Model\OAuth2Client
 ```
 
 Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
@@ -145,10 +146,10 @@ $apiInstance = new Ory\Hydra\Client\Api\PublicApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$oAuth2Client = new \Ory\Hydra\Client\Model\OAuth2Client(); // \Ory\Hydra\Client\Model\OAuth2Client
+$body = new \Ory\Hydra\Client\Model\OAuth2Client(); // \Ory\Hydra\Client\Model\OAuth2Client
 
 try {
-    $result = $apiInstance->dynamicClientRegistrationCreateOAuth2Client($oAuth2Client);
+    $result = $apiInstance->dynamicClientRegistrationCreateOAuth2Client($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->dynamicClientRegistrationCreateOAuth2Client: ', $e->getMessage(), PHP_EOL;
@@ -159,7 +160,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **oAuth2Client** | [**\Ory\Hydra\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)|  |
+ **body** | [**\Ory\Hydra\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)|  |
 
 ### Return type
 
@@ -292,7 +293,7 @@ No authorization required
 ## `dynamicClientRegistrationUpdateOAuth2Client()`
 
 ```php
-dynamicClientRegistrationUpdateOAuth2Client($id, $oAuth2Client): \Ory\Hydra\Client\Model\OAuth2Client
+dynamicClientRegistrationUpdateOAuth2Client($id, $body): \Ory\Hydra\Client\Model\OAuth2Client
 ```
 
 Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
@@ -313,10 +314,10 @@ $apiInstance = new Ory\Hydra\Client\Api\PublicApi(
     new GuzzleHttp\Client()
 );
 $id = 'id_example'; // string | The id of the OAuth 2.0 Client.
-$oAuth2Client = new \Ory\Hydra\Client\Model\OAuth2Client(); // \Ory\Hydra\Client\Model\OAuth2Client
+$body = new \Ory\Hydra\Client\Model\OAuth2Client(); // \Ory\Hydra\Client\Model\OAuth2Client
 
 try {
-    $result = $apiInstance->dynamicClientRegistrationUpdateOAuth2Client($id, $oAuth2Client);
+    $result = $apiInstance->dynamicClientRegistrationUpdateOAuth2Client($id, $body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->dynamicClientRegistrationUpdateOAuth2Client: ', $e->getMessage(), PHP_EOL;
@@ -328,7 +329,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| The id of the OAuth 2.0 Client. |
- **oAuth2Client** | [**\Ory\Hydra\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)|  |
+ **body** | [**\Ory\Hydra\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)|  |
 
 ### Return type
 
@@ -347,10 +348,63 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `isInstanceReady()`
+
+```php
+isInstanceReady(): \Ory\Hydra\Client\Model\HealthStatus
+```
+
+Check Readiness Status
+
+This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Hydra\Client\Api\PublicApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $result = $apiInstance->isInstanceReady();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PublicApi->isInstanceReady: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Ory\Hydra\Client\Model\HealthStatus**](../Model/HealthStatus.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `oauth2Token()`
 
 ```php
-oauth2Token($grantType, $clientId, $code, $redirectUri, $refreshToken): \Ory\Hydra\Client\Model\Oauth2TokenResponse
+oauth2Token($grantType, $code, $refreshToken, $redirectUri, $clientId): \Ory\Hydra\Client\Model\Oauth2TokenResponse
 ```
 
 The OAuth 2.0 Token Endpoint
@@ -380,13 +434,13 @@ $apiInstance = new Ory\Hydra\Client\Api\PublicApi(
     $config
 );
 $grantType = 'grantType_example'; // string
-$clientId = 'clientId_example'; // string
 $code = 'code_example'; // string
-$redirectUri = 'redirectUri_example'; // string
 $refreshToken = 'refreshToken_example'; // string
+$redirectUri = 'redirectUri_example'; // string
+$clientId = 'clientId_example'; // string
 
 try {
-    $result = $apiInstance->oauth2Token($grantType, $clientId, $code, $redirectUri, $refreshToken);
+    $result = $apiInstance->oauth2Token($grantType, $code, $refreshToken, $redirectUri, $clientId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PublicApi->oauth2Token: ', $e->getMessage(), PHP_EOL;
@@ -398,10 +452,10 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **grantType** | **string**|  |
- **clientId** | **string**|  | [optional]
  **code** | **string**|  | [optional]
- **redirectUri** | **string**|  | [optional]
  **refreshToken** | **string**|  | [optional]
+ **redirectUri** | **string**|  | [optional]
+ **clientId** | **string**|  | [optional]
 
 ### Return type
 

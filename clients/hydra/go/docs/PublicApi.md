@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**DynamicClientRegistrationDeleteOAuth2Client**](PublicApi.md#DynamicClientRegistrationDeleteOAuth2Client) | **Delete** /connect/register/{id} | Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 [**DynamicClientRegistrationGetOAuth2Client**](PublicApi.md#DynamicClientRegistrationGetOAuth2Client) | **Get** /connect/register/{id} | Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 [**DynamicClientRegistrationUpdateOAuth2Client**](PublicApi.md#DynamicClientRegistrationUpdateOAuth2Client) | **Put** /connect/register/{id} | Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+[**IsInstanceReady**](PublicApi.md#IsInstanceReady) | **Get** /health/ready | Check Readiness Status
 [**Oauth2Token**](PublicApi.md#Oauth2Token) | **Post** /oauth2/token | The OAuth 2.0 Token Endpoint
 [**OauthAuth**](PublicApi.md#OauthAuth) | **Get** /oauth2/auth | The OAuth 2.0 Authorize Endpoint
 [**RevokeOAuth2Token**](PublicApi.md#RevokeOAuth2Token) | **Post** /oauth2/revoke | Revoke OAuth2 Tokens
@@ -140,7 +141,7 @@ No authorization required
 
 ## DynamicClientRegistrationCreateOAuth2Client
 
-> OAuth2Client DynamicClientRegistrationCreateOAuth2Client(ctx).OAuth2Client(oAuth2Client).Execute()
+> OAuth2Client DynamicClientRegistrationCreateOAuth2Client(ctx).Body(body).Execute()
 
 Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 
@@ -159,11 +160,11 @@ import (
 )
 
 func main() {
-    oAuth2Client := *openapiclient.NewOAuth2Client() // OAuth2Client | 
+    body := *openapiclient.NewOAuth2Client() // OAuth2Client | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PublicApi.DynamicClientRegistrationCreateOAuth2Client(context.Background()).OAuth2Client(oAuth2Client).Execute()
+    resp, r, err := apiClient.PublicApi.DynamicClientRegistrationCreateOAuth2Client(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PublicApi.DynamicClientRegistrationCreateOAuth2Client``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -184,7 +185,7 @@ Other parameters are passed through a pointer to a apiDynamicClientRegistrationC
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **oAuth2Client** | [**OAuth2Client**](OAuth2Client.md) |  | 
+ **body** | [**OAuth2Client**](OAuth2Client.md) |  | 
 
 ### Return type
 
@@ -344,7 +345,7 @@ No authorization required
 
 ## DynamicClientRegistrationUpdateOAuth2Client
 
-> OAuth2Client DynamicClientRegistrationUpdateOAuth2Client(ctx, id).OAuth2Client(oAuth2Client).Execute()
+> OAuth2Client DynamicClientRegistrationUpdateOAuth2Client(ctx, id).Body(body).Execute()
 
 Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 
@@ -364,11 +365,11 @@ import (
 
 func main() {
     id := "id_example" // string | The id of the OAuth 2.0 Client.
-    oAuth2Client := *openapiclient.NewOAuth2Client() // OAuth2Client | 
+    body := *openapiclient.NewOAuth2Client() // OAuth2Client | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PublicApi.DynamicClientRegistrationUpdateOAuth2Client(context.Background(), id).OAuth2Client(oAuth2Client).Execute()
+    resp, r, err := apiClient.PublicApi.DynamicClientRegistrationUpdateOAuth2Client(context.Background(), id).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PublicApi.DynamicClientRegistrationUpdateOAuth2Client``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -394,7 +395,7 @@ Other parameters are passed through a pointer to a apiDynamicClientRegistrationU
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **oAuth2Client** | [**OAuth2Client**](OAuth2Client.md) |  | 
+ **body** | [**OAuth2Client**](OAuth2Client.md) |  | 
 
 ### Return type
 
@@ -414,9 +415,70 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## IsInstanceReady
+
+> HealthStatus IsInstanceReady(ctx).Execute()
+
+Check Readiness Status
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PublicApi.IsInstanceReady(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PublicApi.IsInstanceReady``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `IsInstanceReady`: HealthStatus
+    fmt.Fprintf(os.Stdout, "Response from `PublicApi.IsInstanceReady`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiIsInstanceReadyRequest struct via the builder pattern
+
+
+### Return type
+
+[**HealthStatus**](HealthStatus.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## Oauth2Token
 
-> Oauth2TokenResponse Oauth2Token(ctx).GrantType(grantType).ClientId(clientId).Code(code).RedirectUri(redirectUri).RefreshToken(refreshToken).Execute()
+> Oauth2TokenResponse Oauth2Token(ctx).GrantType(grantType).Code(code).RefreshToken(refreshToken).RedirectUri(redirectUri).ClientId(clientId).Execute()
 
 The OAuth 2.0 Token Endpoint
 
@@ -436,14 +498,14 @@ import (
 
 func main() {
     grantType := "grantType_example" // string | 
-    clientId := "clientId_example" // string |  (optional)
     code := "code_example" // string |  (optional)
-    redirectUri := "redirectUri_example" // string |  (optional)
     refreshToken := "refreshToken_example" // string |  (optional)
+    redirectUri := "redirectUri_example" // string |  (optional)
+    clientId := "clientId_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PublicApi.Oauth2Token(context.Background()).GrantType(grantType).ClientId(clientId).Code(code).RedirectUri(redirectUri).RefreshToken(refreshToken).Execute()
+    resp, r, err := apiClient.PublicApi.Oauth2Token(context.Background()).GrantType(grantType).Code(code).RefreshToken(refreshToken).RedirectUri(redirectUri).ClientId(clientId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PublicApi.Oauth2Token``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -465,10 +527,10 @@ Other parameters are passed through a pointer to a apiOauth2TokenRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **grantType** | **string** |  | 
- **clientId** | **string** |  | 
  **code** | **string** |  | 
- **redirectUri** | **string** |  | 
  **refreshToken** | **string** |  | 
+ **redirectUri** | **string** |  | 
+ **clientId** | **string** |  | 
 
 ### Return type
 

@@ -7,7 +7,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**allowAnySubject** | **Boolean** | The \&quot;allow_any_subject\&quot; indicates that the issuer is allowed to have any principal as the subject of the JWT. |  [optional]
 **createdAt** | **OffsetDateTime** | The \&quot;created_at\&quot; indicates, when grant was created. |  [optional]
 **expiresAt** | **OffsetDateTime** | The \&quot;expires_at\&quot; indicates, when grant will expire, so we will reject assertion from \&quot;issuer\&quot; targeting \&quot;subject\&quot;. |  [optional]
 **id** | **String** |  |  [optional]

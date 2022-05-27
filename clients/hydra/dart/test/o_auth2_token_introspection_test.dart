@@ -39,7 +39,7 @@ void main() {
     });
 
     // Extra is arbitrary data set by the session.
-    // BuiltMap<String, JsonObject> ext
+    // JsonObject ext
     test('to test the property `ext`', () async {
       // TODO
     });

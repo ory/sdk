@@ -22,7 +22,9 @@ Method | HTTP request | Description
 [**GetLogoutRequest**](AdminApi.md#getlogoutrequest) | **GET** /oauth2/auth/requests/logout | Get a Logout Request
 [**GetOAuth2Client**](AdminApi.md#getoauth2client) | **GET** /clients/{id} | Get an OAuth 2.0 Client
 [**GetTrustedJwtGrantIssuer**](AdminApi.md#gettrustedjwtgrantissuer) | **GET** /trust/grants/jwt-bearer/issuers/{id} | Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
+[**GetVersion**](AdminApi.md#getversion) | **GET** /version | Get Service Version
 [**IntrospectOAuth2Token**](AdminApi.md#introspectoauth2token) | **POST** /oauth2/introspect | Introspect OAuth2 Tokens
+[**IsInstanceAlive**](AdminApi.md#isinstancealive) | **GET** /health/alive | Check Alive Status
 [**ListOAuth2Clients**](AdminApi.md#listoauth2clients) | **GET** /clients | List OAuth 2.0 Clients
 [**ListSubjectConsentSessions**](AdminApi.md#listsubjectconsentsessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject
 [**ListTrustedJwtGrantIssuers**](AdminApi.md#listtrustedjwtgrantissuers) | **GET** /trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
@@ -40,7 +42,7 @@ Method | HTTP request | Description
 
 <a name="acceptconsentrequest"></a>
 # **AcceptConsentRequest**
-> HydraCompletedRequest AcceptConsentRequest (string consentChallenge, HydraAcceptConsentRequest hydraAcceptConsentRequest = null)
+> HydraCompletedRequest AcceptConsentRequest (string consentChallenge, HydraAcceptConsentRequest body = null)
 
 Accept a Consent Request
 
@@ -64,12 +66,12 @@ namespace Example
             config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var consentChallenge = "consentChallenge_example";  // string | 
-            var hydraAcceptConsentRequest = new HydraAcceptConsentRequest(); // HydraAcceptConsentRequest |  (optional) 
+            var body = new HydraAcceptConsentRequest(); // HydraAcceptConsentRequest |  (optional) 
 
             try
             {
                 // Accept a Consent Request
-                HydraCompletedRequest result = apiInstance.AcceptConsentRequest(consentChallenge, hydraAcceptConsentRequest);
+                HydraCompletedRequest result = apiInstance.AcceptConsentRequest(consentChallenge, body);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -88,7 +90,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **consentChallenge** | **string**|  | 
- **hydraAcceptConsentRequest** | [**HydraAcceptConsentRequest**](HydraAcceptConsentRequest.md)|  | [optional] 
+ **body** | [**HydraAcceptConsentRequest**](HydraAcceptConsentRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -115,7 +117,7 @@ No authorization required
 
 <a name="acceptloginrequest"></a>
 # **AcceptLoginRequest**
-> HydraCompletedRequest AcceptLoginRequest (string loginChallenge, HydraAcceptLoginRequest hydraAcceptLoginRequest = null)
+> HydraCompletedRequest AcceptLoginRequest (string loginChallenge, HydraAcceptLoginRequest body = null)
 
 Accept a Login Request
 
@@ -139,12 +141,12 @@ namespace Example
             config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var loginChallenge = "loginChallenge_example";  // string | 
-            var hydraAcceptLoginRequest = new HydraAcceptLoginRequest(); // HydraAcceptLoginRequest |  (optional) 
+            var body = new HydraAcceptLoginRequest(); // HydraAcceptLoginRequest |  (optional) 
 
             try
             {
                 // Accept a Login Request
-                HydraCompletedRequest result = apiInstance.AcceptLoginRequest(loginChallenge, hydraAcceptLoginRequest);
+                HydraCompletedRequest result = apiInstance.AcceptLoginRequest(loginChallenge, body);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -163,7 +165,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **loginChallenge** | **string**|  | 
- **hydraAcceptLoginRequest** | [**HydraAcceptLoginRequest**](HydraAcceptLoginRequest.md)|  | [optional] 
+ **body** | [**HydraAcceptLoginRequest**](HydraAcceptLoginRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -265,7 +267,7 @@ No authorization required
 
 <a name="createjsonwebkeyset"></a>
 # **CreateJsonWebKeySet**
-> HydraJSONWebKeySet CreateJsonWebKeySet (string set, HydraJsonWebKeySetGeneratorRequest hydraJsonWebKeySetGeneratorRequest = null)
+> HydraJSONWebKeySet CreateJsonWebKeySet (string set, HydraJsonWebKeySetGeneratorRequest body = null)
 
 Generate a New JSON Web Key
 
@@ -289,12 +291,12 @@ namespace Example
             config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var set = "set_example";  // string | The set
-            var hydraJsonWebKeySetGeneratorRequest = new HydraJsonWebKeySetGeneratorRequest(); // HydraJsonWebKeySetGeneratorRequest |  (optional) 
+            var body = new HydraJsonWebKeySetGeneratorRequest(); // HydraJsonWebKeySetGeneratorRequest |  (optional) 
 
             try
             {
                 // Generate a New JSON Web Key
-                HydraJSONWebKeySet result = apiInstance.CreateJsonWebKeySet(set, hydraJsonWebKeySetGeneratorRequest);
+                HydraJSONWebKeySet result = apiInstance.CreateJsonWebKeySet(set, body);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -313,7 +315,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **set** | **string**| The set | 
- **hydraJsonWebKeySetGeneratorRequest** | [**HydraJsonWebKeySetGeneratorRequest**](HydraJsonWebKeySetGeneratorRequest.md)|  | [optional] 
+ **body** | [**HydraJsonWebKeySetGeneratorRequest**](HydraJsonWebKeySetGeneratorRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -341,7 +343,7 @@ No authorization required
 
 <a name="createoauth2client"></a>
 # **CreateOAuth2Client**
-> HydraOAuth2Client CreateOAuth2Client (HydraOAuth2Client hydraOAuth2Client)
+> HydraOAuth2Client CreateOAuth2Client (HydraOAuth2Client body)
 
 Create an OAuth 2.0 Client
 
@@ -364,12 +366,12 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
-            var hydraOAuth2Client = new HydraOAuth2Client(); // HydraOAuth2Client | 
+            var body = new HydraOAuth2Client(); // HydraOAuth2Client | 
 
             try
             {
                 // Create an OAuth 2.0 Client
-                HydraOAuth2Client result = apiInstance.CreateOAuth2Client(hydraOAuth2Client);
+                HydraOAuth2Client result = apiInstance.CreateOAuth2Client(body);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -387,7 +389,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **hydraOAuth2Client** | [**HydraOAuth2Client**](HydraOAuth2Client.md)|  | 
+ **body** | [**HydraOAuth2Client**](HydraOAuth2Client.md)|  | 
 
 ### Return type
 
@@ -776,7 +778,7 @@ No authorization required
 
 <a name="flushinactiveoauth2tokens"></a>
 # **FlushInactiveOAuth2Tokens**
-> void FlushInactiveOAuth2Tokens (HydraFlushInactiveOAuth2TokensRequest hydraFlushInactiveOAuth2TokensRequest = null)
+> void FlushInactiveOAuth2Tokens (HydraFlushInactiveOAuth2TokensRequest body = null)
 
 Flush Expired OAuth2 Access Tokens
 
@@ -799,12 +801,12 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
-            var hydraFlushInactiveOAuth2TokensRequest = new HydraFlushInactiveOAuth2TokensRequest(); // HydraFlushInactiveOAuth2TokensRequest |  (optional) 
+            var body = new HydraFlushInactiveOAuth2TokensRequest(); // HydraFlushInactiveOAuth2TokensRequest |  (optional) 
 
             try
             {
                 // Flush Expired OAuth2 Access Tokens
-                apiInstance.FlushInactiveOAuth2Tokens(hydraFlushInactiveOAuth2TokensRequest);
+                apiInstance.FlushInactiveOAuth2Tokens(body);
             }
             catch (ApiException  e)
             {
@@ -821,7 +823,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **hydraFlushInactiveOAuth2TokensRequest** | [**HydraFlushInactiveOAuth2TokensRequest**](HydraFlushInactiveOAuth2TokensRequest.md)|  | [optional] 
+ **body** | [**HydraFlushInactiveOAuth2TokensRequest**](HydraFlushInactiveOAuth2TokensRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -1363,6 +1365,73 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="getversion"></a>
+# **GetVersion**
+> HydraVersion GetVersion ()
+
+Get Service Version
+
+This endpoint returns the service version typically notated using semantic versioning.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Hydra.Client.Api;
+using Ory.Hydra.Client.Client;
+using Ory.Hydra.Client.Model;
+
+namespace Example
+{
+    public class GetVersionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            var apiInstance = new AdminApi(config);
+
+            try
+            {
+                // Get Service Version
+                HydraVersion result = apiInstance.GetVersion();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdminApi.GetVersion: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**HydraVersion**](HydraVersion.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | version |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="introspectoauth2token"></a>
 # **IntrospectOAuth2Token**
 > HydraOAuth2TokenIntrospection IntrospectOAuth2Token (string token, string scope = null)
@@ -1434,6 +1503,74 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | oAuth2TokenIntrospection |  -  |
 | **401** | jsonError |  -  |
+| **500** | jsonError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="isinstancealive"></a>
+# **IsInstanceAlive**
+> HydraHealthStatus IsInstanceAlive ()
+
+Check Alive Status
+
+This endpoint returns a 200 status code when the HTTP server is up running. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Hydra.Client.Api;
+using Ory.Hydra.Client.Client;
+using Ory.Hydra.Client.Model;
+
+namespace Example
+{
+    public class IsInstanceAliveExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            var apiInstance = new AdminApi(config);
+
+            try
+            {
+                // Check Alive Status
+                HydraHealthStatus result = apiInstance.IsInstanceAlive();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdminApi.IsInstanceAlive: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**HydraHealthStatus**](HydraHealthStatus.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | healthStatus |  -  |
 | **500** | jsonError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1518,7 +1655,7 @@ No authorization required
 
 <a name="listsubjectconsentsessions"></a>
 # **ListSubjectConsentSessions**
-> List&lt;HydraPreviousConsentSession&gt; ListSubjectConsentSessions (string subject, long? limit = null, long? offset = null)
+> List&lt;HydraPreviousConsentSession&gt; ListSubjectConsentSessions (string subject)
 
 Lists All Consent Sessions of a Subject
 
@@ -1542,13 +1679,11 @@ namespace Example
             config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var subject = "subject_example";  // string | 
-            var limit = 789L;  // long? | The maximum amount of consent sessions to be returned, upper bound is 500 sessions. (optional) 
-            var offset = 789L;  // long? | The offset from where to start looking. (optional) 
 
             try
             {
                 // Lists All Consent Sessions of a Subject
-                List<HydraPreviousConsentSession> result = apiInstance.ListSubjectConsentSessions(subject, limit, offset);
+                List<HydraPreviousConsentSession> result = apiInstance.ListSubjectConsentSessions(subject);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1567,8 +1702,6 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **string**|  | 
- **limit** | **long?**| The maximum amount of consent sessions to be returned, upper bound is 500 sessions. | [optional] 
- **offset** | **long?**| The offset from where to start looking. | [optional] 
 
 ### Return type
 
@@ -1671,7 +1804,7 @@ No authorization required
 
 <a name="patchoauth2client"></a>
 # **PatchOAuth2Client**
-> HydraOAuth2Client PatchOAuth2Client (string id, List<HydraPatchDocument> hydraPatchDocument)
+> HydraOAuth2Client PatchOAuth2Client (string id, List<HydraPatchDocument> body)
 
 Patch an OAuth 2.0 Client
 
@@ -1695,12 +1828,12 @@ namespace Example
             config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var id = "id_example";  // string | The id of the OAuth 2.0 Client.
-            var hydraPatchDocument = new List<HydraPatchDocument>(); // List<HydraPatchDocument> | 
+            var body = new List<HydraPatchDocument>(); // List<HydraPatchDocument> | 
 
             try
             {
                 // Patch an OAuth 2.0 Client
-                HydraOAuth2Client result = apiInstance.PatchOAuth2Client(id, hydraPatchDocument);
+                HydraOAuth2Client result = apiInstance.PatchOAuth2Client(id, body);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1719,7 +1852,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| The id of the OAuth 2.0 Client. | 
- **hydraPatchDocument** | [**List&lt;HydraPatchDocument&gt;**](HydraPatchDocument.md)|  | 
+ **body** | [**List&lt;HydraPatchDocument&gt;**](HydraPatchDocument.md)|  | 
 
 ### Return type
 
@@ -1745,7 +1878,7 @@ No authorization required
 
 <a name="rejectconsentrequest"></a>
 # **RejectConsentRequest**
-> HydraCompletedRequest RejectConsentRequest (string consentChallenge, HydraRejectRequest hydraRejectRequest = null)
+> HydraCompletedRequest RejectConsentRequest (string consentChallenge, HydraRejectRequest body = null)
 
 Reject a Consent Request
 
@@ -1769,12 +1902,12 @@ namespace Example
             config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var consentChallenge = "consentChallenge_example";  // string | 
-            var hydraRejectRequest = new HydraRejectRequest(); // HydraRejectRequest |  (optional) 
+            var body = new HydraRejectRequest(); // HydraRejectRequest |  (optional) 
 
             try
             {
                 // Reject a Consent Request
-                HydraCompletedRequest result = apiInstance.RejectConsentRequest(consentChallenge, hydraRejectRequest);
+                HydraCompletedRequest result = apiInstance.RejectConsentRequest(consentChallenge, body);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1793,7 +1926,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **consentChallenge** | **string**|  | 
- **hydraRejectRequest** | [**HydraRejectRequest**](HydraRejectRequest.md)|  | [optional] 
+ **body** | [**HydraRejectRequest**](HydraRejectRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -1820,7 +1953,7 @@ No authorization required
 
 <a name="rejectloginrequest"></a>
 # **RejectLoginRequest**
-> HydraCompletedRequest RejectLoginRequest (string loginChallenge, HydraRejectRequest hydraRejectRequest = null)
+> HydraCompletedRequest RejectLoginRequest (string loginChallenge, HydraRejectRequest body = null)
 
 Reject a Login Request
 
@@ -1844,12 +1977,12 @@ namespace Example
             config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var loginChallenge = "loginChallenge_example";  // string | 
-            var hydraRejectRequest = new HydraRejectRequest(); // HydraRejectRequest |  (optional) 
+            var body = new HydraRejectRequest(); // HydraRejectRequest |  (optional) 
 
             try
             {
                 // Reject a Login Request
-                HydraCompletedRequest result = apiInstance.RejectLoginRequest(loginChallenge, hydraRejectRequest);
+                HydraCompletedRequest result = apiInstance.RejectLoginRequest(loginChallenge, body);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1868,7 +2001,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **loginChallenge** | **string**|  | 
- **hydraRejectRequest** | [**HydraRejectRequest**](HydraRejectRequest.md)|  | [optional] 
+ **body** | [**HydraRejectRequest**](HydraRejectRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -1897,7 +2030,7 @@ No authorization required
 
 <a name="rejectlogoutrequest"></a>
 # **RejectLogoutRequest**
-> void RejectLogoutRequest (string logoutChallenge, HydraRejectRequest hydraRejectRequest = null)
+> void RejectLogoutRequest (string logoutChallenge, HydraRejectRequest body = null)
 
 Reject a Logout Request
 
@@ -1921,12 +2054,12 @@ namespace Example
             config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var logoutChallenge = "logoutChallenge_example";  // string | 
-            var hydraRejectRequest = new HydraRejectRequest(); // HydraRejectRequest |  (optional) 
+            var body = new HydraRejectRequest(); // HydraRejectRequest |  (optional) 
 
             try
             {
                 // Reject a Logout Request
-                apiInstance.RejectLogoutRequest(logoutChallenge, hydraRejectRequest);
+                apiInstance.RejectLogoutRequest(logoutChallenge, body);
             }
             catch (ApiException  e)
             {
@@ -1944,7 +2077,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **logoutChallenge** | **string**|  | 
- **hydraRejectRequest** | [**HydraRejectRequest**](HydraRejectRequest.md)|  | [optional] 
+ **body** | [**HydraRejectRequest**](HydraRejectRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -2119,7 +2252,7 @@ No authorization required
 
 <a name="trustjwtgrantissuer"></a>
 # **TrustJwtGrantIssuer**
-> HydraTrustedJwtGrantIssuer TrustJwtGrantIssuer (HydraTrustJwtGrantIssuerBody hydraTrustJwtGrantIssuerBody = null)
+> HydraTrustedJwtGrantIssuer TrustJwtGrantIssuer (HydraTrustJwtGrantIssuerBody body = null)
 
 Trust an OAuth2 JWT Bearer Grant Type Issuer
 
@@ -2142,12 +2275,12 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
-            var hydraTrustJwtGrantIssuerBody = new HydraTrustJwtGrantIssuerBody(); // HydraTrustJwtGrantIssuerBody |  (optional) 
+            var body = new HydraTrustJwtGrantIssuerBody(); // HydraTrustJwtGrantIssuerBody |  (optional) 
 
             try
             {
                 // Trust an OAuth2 JWT Bearer Grant Type Issuer
-                HydraTrustedJwtGrantIssuer result = apiInstance.TrustJwtGrantIssuer(hydraTrustJwtGrantIssuerBody);
+                HydraTrustedJwtGrantIssuer result = apiInstance.TrustJwtGrantIssuer(body);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2165,7 +2298,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **hydraTrustJwtGrantIssuerBody** | [**HydraTrustJwtGrantIssuerBody**](HydraTrustJwtGrantIssuerBody.md)|  | [optional] 
+ **body** | [**HydraTrustJwtGrantIssuerBody**](HydraTrustJwtGrantIssuerBody.md)|  | [optional] 
 
 ### Return type
 
@@ -2193,7 +2326,7 @@ No authorization required
 
 <a name="updatejsonwebkey"></a>
 # **UpdateJsonWebKey**
-> HydraJSONWebKey UpdateJsonWebKey (string kid, string set, HydraJSONWebKey hydraJSONWebKey = null)
+> HydraJSONWebKey UpdateJsonWebKey (string kid, string set, HydraJSONWebKey body = null)
 
 Update a JSON Web Key
 
@@ -2218,12 +2351,12 @@ namespace Example
             var apiInstance = new AdminApi(config);
             var kid = "kid_example";  // string | The kid of the desired key
             var set = "set_example";  // string | The set
-            var hydraJSONWebKey = new HydraJSONWebKey(); // HydraJSONWebKey |  (optional) 
+            var body = new HydraJSONWebKey(); // HydraJSONWebKey |  (optional) 
 
             try
             {
                 // Update a JSON Web Key
-                HydraJSONWebKey result = apiInstance.UpdateJsonWebKey(kid, set, hydraJSONWebKey);
+                HydraJSONWebKey result = apiInstance.UpdateJsonWebKey(kid, set, body);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2243,7 +2376,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **kid** | **string**| The kid of the desired key | 
  **set** | **string**| The set | 
- **hydraJSONWebKey** | [**HydraJSONWebKey**](HydraJSONWebKey.md)|  | [optional] 
+ **body** | [**HydraJSONWebKey**](HydraJSONWebKey.md)|  | [optional] 
 
 ### Return type
 
@@ -2271,7 +2404,7 @@ No authorization required
 
 <a name="updatejsonwebkeyset"></a>
 # **UpdateJsonWebKeySet**
-> HydraJSONWebKeySet UpdateJsonWebKeySet (string set, HydraJSONWebKeySet hydraJSONWebKeySet = null)
+> HydraJSONWebKeySet UpdateJsonWebKeySet (string set, HydraJSONWebKeySet body = null)
 
 Update a JSON Web Key Set
 
@@ -2295,12 +2428,12 @@ namespace Example
             config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var set = "set_example";  // string | The set
-            var hydraJSONWebKeySet = new HydraJSONWebKeySet(); // HydraJSONWebKeySet |  (optional) 
+            var body = new HydraJSONWebKeySet(); // HydraJSONWebKeySet |  (optional) 
 
             try
             {
                 // Update a JSON Web Key Set
-                HydraJSONWebKeySet result = apiInstance.UpdateJsonWebKeySet(set, hydraJSONWebKeySet);
+                HydraJSONWebKeySet result = apiInstance.UpdateJsonWebKeySet(set, body);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2319,7 +2452,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **set** | **string**| The set | 
- **hydraJSONWebKeySet** | [**HydraJSONWebKeySet**](HydraJSONWebKeySet.md)|  | [optional] 
+ **body** | [**HydraJSONWebKeySet**](HydraJSONWebKeySet.md)|  | [optional] 
 
 ### Return type
 
@@ -2347,7 +2480,7 @@ No authorization required
 
 <a name="updateoauth2client"></a>
 # **UpdateOAuth2Client**
-> HydraOAuth2Client UpdateOAuth2Client (string id, HydraOAuth2Client hydraOAuth2Client)
+> HydraOAuth2Client UpdateOAuth2Client (string id, HydraOAuth2Client body)
 
 Update an OAuth 2.0 Client
 
@@ -2371,12 +2504,12 @@ namespace Example
             config.BasePath = "http://localhost";
             var apiInstance = new AdminApi(config);
             var id = "id_example";  // string | The id of the OAuth 2.0 Client.
-            var hydraOAuth2Client = new HydraOAuth2Client(); // HydraOAuth2Client | 
+            var body = new HydraOAuth2Client(); // HydraOAuth2Client | 
 
             try
             {
                 // Update an OAuth 2.0 Client
-                HydraOAuth2Client result = apiInstance.UpdateOAuth2Client(id, hydraOAuth2Client);
+                HydraOAuth2Client result = apiInstance.UpdateOAuth2Client(id, body);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2395,7 +2528,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| The id of the OAuth 2.0 Client. | 
- **hydraOAuth2Client** | [**HydraOAuth2Client**](HydraOAuth2Client.md)|  | 
+ **body** | [**HydraOAuth2Client**](HydraOAuth2Client.md)|  | 
 
 ### Return type
 

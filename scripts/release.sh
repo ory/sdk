@@ -219,8 +219,6 @@ rust() {
 elixir() {
   dir="clients/${PROJECT}/elixir"
 
-  mix hex.user auth
-
   (cd "${dir}"; mix local.rebar --force)
   (cd "${dir}"; mix local.hex --force)
   (cd "${dir}"; mix deps.get)

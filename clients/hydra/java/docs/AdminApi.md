@@ -22,7 +22,9 @@ Method | HTTP request | Description
 [**getLogoutRequest**](AdminApi.md#getLogoutRequest) | **GET** /oauth2/auth/requests/logout | Get a Logout Request
 [**getOAuth2Client**](AdminApi.md#getOAuth2Client) | **GET** /clients/{id} | Get an OAuth 2.0 Client
 [**getTrustedJwtGrantIssuer**](AdminApi.md#getTrustedJwtGrantIssuer) | **GET** /trust/grants/jwt-bearer/issuers/{id} | Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
+[**getVersion**](AdminApi.md#getVersion) | **GET** /version | Get Service Version
 [**introspectOAuth2Token**](AdminApi.md#introspectOAuth2Token) | **POST** /oauth2/introspect | Introspect OAuth2 Tokens
+[**isInstanceAlive**](AdminApi.md#isInstanceAlive) | **GET** /health/alive | Check Alive Status
 [**listOAuth2Clients**](AdminApi.md#listOAuth2Clients) | **GET** /clients | List OAuth 2.0 Clients
 [**listSubjectConsentSessions**](AdminApi.md#listSubjectConsentSessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject
 [**listTrustedJwtGrantIssuers**](AdminApi.md#listTrustedJwtGrantIssuers) | **GET** /trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
@@ -40,7 +42,7 @@ Method | HTTP request | Description
 
 <a name="acceptConsentRequest"></a>
 # **acceptConsentRequest**
-> CompletedRequest acceptConsentRequest(consentChallenge, acceptConsentRequest)
+> CompletedRequest acceptConsentRequest(consentChallenge, body)
 
 Accept a Consent Request
 
@@ -62,9 +64,9 @@ public class Example {
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String consentChallenge = "consentChallenge_example"; // String | 
-    AcceptConsentRequest acceptConsentRequest = new AcceptConsentRequest(); // AcceptConsentRequest | 
+    AcceptConsentRequest body = new AcceptConsentRequest(); // AcceptConsentRequest | 
     try {
-      CompletedRequest result = apiInstance.acceptConsentRequest(consentChallenge, acceptConsentRequest);
+      CompletedRequest result = apiInstance.acceptConsentRequest(consentChallenge, body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#acceptConsentRequest");
@@ -82,7 +84,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **consentChallenge** | **String**|  |
- **acceptConsentRequest** | [**AcceptConsentRequest**](AcceptConsentRequest.md)|  | [optional]
+ **body** | [**AcceptConsentRequest**](AcceptConsentRequest.md)|  | [optional]
 
 ### Return type
 
@@ -106,7 +108,7 @@ No authorization required
 
 <a name="acceptLoginRequest"></a>
 # **acceptLoginRequest**
-> CompletedRequest acceptLoginRequest(loginChallenge, acceptLoginRequest)
+> CompletedRequest acceptLoginRequest(loginChallenge, body)
 
 Accept a Login Request
 
@@ -128,9 +130,9 @@ public class Example {
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String loginChallenge = "loginChallenge_example"; // String | 
-    AcceptLoginRequest acceptLoginRequest = new AcceptLoginRequest(); // AcceptLoginRequest | 
+    AcceptLoginRequest body = new AcceptLoginRequest(); // AcceptLoginRequest | 
     try {
-      CompletedRequest result = apiInstance.acceptLoginRequest(loginChallenge, acceptLoginRequest);
+      CompletedRequest result = apiInstance.acceptLoginRequest(loginChallenge, body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#acceptLoginRequest");
@@ -148,7 +150,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **loginChallenge** | **String**|  |
- **acceptLoginRequest** | [**AcceptLoginRequest**](AcceptLoginRequest.md)|  | [optional]
+ **body** | [**AcceptLoginRequest**](AcceptLoginRequest.md)|  | [optional]
 
 ### Return type
 
@@ -238,7 +240,7 @@ No authorization required
 
 <a name="createJsonWebKeySet"></a>
 # **createJsonWebKeySet**
-> JSONWebKeySet createJsonWebKeySet(set, jsonWebKeySetGeneratorRequest)
+> JSONWebKeySet createJsonWebKeySet(set, body)
 
 Generate a New JSON Web Key
 
@@ -260,9 +262,9 @@ public class Example {
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String set = "set_example"; // String | The set
-    JsonWebKeySetGeneratorRequest jsonWebKeySetGeneratorRequest = new JsonWebKeySetGeneratorRequest(); // JsonWebKeySetGeneratorRequest | 
+    JsonWebKeySetGeneratorRequest body = new JsonWebKeySetGeneratorRequest(); // JsonWebKeySetGeneratorRequest | 
     try {
-      JSONWebKeySet result = apiInstance.createJsonWebKeySet(set, jsonWebKeySetGeneratorRequest);
+      JSONWebKeySet result = apiInstance.createJsonWebKeySet(set, body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#createJsonWebKeySet");
@@ -280,7 +282,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **set** | **String**| The set |
- **jsonWebKeySetGeneratorRequest** | [**JsonWebKeySetGeneratorRequest**](JsonWebKeySetGeneratorRequest.md)|  | [optional]
+ **body** | [**JsonWebKeySetGeneratorRequest**](JsonWebKeySetGeneratorRequest.md)|  | [optional]
 
 ### Return type
 
@@ -305,7 +307,7 @@ No authorization required
 
 <a name="createOAuth2Client"></a>
 # **createOAuth2Client**
-> OAuth2Client createOAuth2Client(oauth2Client)
+> OAuth2Client createOAuth2Client(body)
 
 Create an OAuth 2.0 Client
 
@@ -326,9 +328,9 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
-    OAuth2Client oauth2Client = new OAuth2Client(); // OAuth2Client | 
+    OAuth2Client body = new OAuth2Client(); // OAuth2Client | 
     try {
-      OAuth2Client result = apiInstance.createOAuth2Client(oauth2Client);
+      OAuth2Client result = apiInstance.createOAuth2Client(body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#createOAuth2Client");
@@ -345,7 +347,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **oauth2Client** | [**OAuth2Client**](OAuth2Client.md)|  |
+ **body** | [**OAuth2Client**](OAuth2Client.md)|  |
 
 ### Return type
 
@@ -686,7 +688,7 @@ No authorization required
 
 <a name="flushInactiveOAuth2Tokens"></a>
 # **flushInactiveOAuth2Tokens**
-> flushInactiveOAuth2Tokens(flushInactiveOAuth2TokensRequest)
+> flushInactiveOAuth2Tokens(body)
 
 Flush Expired OAuth2 Access Tokens
 
@@ -707,9 +709,9 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
-    FlushInactiveOAuth2TokensRequest flushInactiveOAuth2TokensRequest = new FlushInactiveOAuth2TokensRequest(); // FlushInactiveOAuth2TokensRequest | 
+    FlushInactiveOAuth2TokensRequest body = new FlushInactiveOAuth2TokensRequest(); // FlushInactiveOAuth2TokensRequest | 
     try {
-      apiInstance.flushInactiveOAuth2Tokens(flushInactiveOAuth2TokensRequest);
+      apiInstance.flushInactiveOAuth2Tokens(body);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#flushInactiveOAuth2Tokens");
       System.err.println("Status code: " + e.getCode());
@@ -725,7 +727,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flushInactiveOAuth2TokensRequest** | [**FlushInactiveOAuth2TokensRequest**](FlushInactiveOAuth2TokensRequest.md)|  | [optional]
+ **body** | [**FlushInactiveOAuth2TokensRequest**](FlushInactiveOAuth2TokensRequest.md)|  | [optional]
 
 ### Return type
 
@@ -1201,6 +1203,64 @@ No authorization required
 **404** | genericError |  -  |
 **500** | genericError |  -  |
 
+<a name="getVersion"></a>
+# **getVersion**
+> Version getVersion()
+
+Get Service Version
+
+This endpoint returns the service version typically notated using semantic versioning.  If the service supports TLS Edge Termination, this endpoint does not require the &#x60;X-Forwarded-Proto&#x60; header to be set.
+
+### Example
+```java
+// Import classes:
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    AdminApi apiInstance = new AdminApi(defaultClient);
+    try {
+      Version result = apiInstance.getVersion();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AdminApi#getVersion");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**Version**](Version.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | version |  -  |
+
 <a name="introspectOAuth2Token"></a>
 # **introspectOAuth2Token**
 > OAuth2TokenIntrospection introspectOAuth2Token(token, scope)
@@ -1265,6 +1325,65 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | oAuth2TokenIntrospection |  -  |
 **401** | jsonError |  -  |
+**500** | jsonError |  -  |
+
+<a name="isInstanceAlive"></a>
+# **isInstanceAlive**
+> HealthStatus isInstanceAlive()
+
+Check Alive Status
+
+This endpoint returns a 200 status code when the HTTP server is up running. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the &#x60;X-Forwarded-Proto&#x60; header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+
+### Example
+```java
+// Import classes:
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.AdminApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    AdminApi apiInstance = new AdminApi(defaultClient);
+    try {
+      HealthStatus result = apiInstance.isInstanceAlive();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AdminApi#isInstanceAlive");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**HealthStatus**](HealthStatus.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | healthStatus |  -  |
 **500** | jsonError |  -  |
 
 <a name="listOAuth2Clients"></a>
@@ -1338,7 +1457,7 @@ No authorization required
 
 <a name="listSubjectConsentSessions"></a>
 # **listSubjectConsentSessions**
-> List&lt;PreviousConsentSession&gt; listSubjectConsentSessions(subject, limit, offset)
+> List&lt;PreviousConsentSession&gt; listSubjectConsentSessions(subject)
 
 Lists All Consent Sessions of a Subject
 
@@ -1360,10 +1479,8 @@ public class Example {
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String subject = "subject_example"; // String | 
-    Long limit = 56L; // Long | The maximum amount of consent sessions to be returned, upper bound is 500 sessions.
-    Long offset = 56L; // Long | The offset from where to start looking.
     try {
-      List<PreviousConsentSession> result = apiInstance.listSubjectConsentSessions(subject, limit, offset);
+      List<PreviousConsentSession> result = apiInstance.listSubjectConsentSessions(subject);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#listSubjectConsentSessions");
@@ -1381,8 +1498,6 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **String**|  |
- **limit** | **Long**| The maximum amount of consent sessions to be returned, upper bound is 500 sessions. | [optional]
- **offset** | **Long**| The offset from where to start looking. | [optional]
 
 ### Return type
 
@@ -1473,7 +1588,7 @@ No authorization required
 
 <a name="patchOAuth2Client"></a>
 # **patchOAuth2Client**
-> OAuth2Client patchOAuth2Client(id, patchDocument)
+> OAuth2Client patchOAuth2Client(id, body)
 
 Patch an OAuth 2.0 Client
 
@@ -1495,9 +1610,9 @@ public class Example {
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String id = "id_example"; // String | The id of the OAuth 2.0 Client.
-    List<PatchDocument> patchDocument = Arrays.asList(); // List<PatchDocument> | 
+    List<PatchDocument> body = Arrays.asList(); // List<PatchDocument> | 
     try {
-      OAuth2Client result = apiInstance.patchOAuth2Client(id, patchDocument);
+      OAuth2Client result = apiInstance.patchOAuth2Client(id, body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#patchOAuth2Client");
@@ -1515,7 +1630,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| The id of the OAuth 2.0 Client. |
- **patchDocument** | [**List&lt;PatchDocument&gt;**](PatchDocument.md)|  |
+ **body** | [**List&lt;PatchDocument&gt;**](PatchDocument.md)|  |
 
 ### Return type
 
@@ -1538,7 +1653,7 @@ No authorization required
 
 <a name="rejectConsentRequest"></a>
 # **rejectConsentRequest**
-> CompletedRequest rejectConsentRequest(consentChallenge, rejectRequest)
+> CompletedRequest rejectConsentRequest(consentChallenge, body)
 
 Reject a Consent Request
 
@@ -1560,9 +1675,9 @@ public class Example {
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String consentChallenge = "consentChallenge_example"; // String | 
-    RejectRequest rejectRequest = new RejectRequest(); // RejectRequest | 
+    RejectRequest body = new RejectRequest(); // RejectRequest | 
     try {
-      CompletedRequest result = apiInstance.rejectConsentRequest(consentChallenge, rejectRequest);
+      CompletedRequest result = apiInstance.rejectConsentRequest(consentChallenge, body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#rejectConsentRequest");
@@ -1580,7 +1695,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **consentChallenge** | **String**|  |
- **rejectRequest** | [**RejectRequest**](RejectRequest.md)|  | [optional]
+ **body** | [**RejectRequest**](RejectRequest.md)|  | [optional]
 
 ### Return type
 
@@ -1604,7 +1719,7 @@ No authorization required
 
 <a name="rejectLoginRequest"></a>
 # **rejectLoginRequest**
-> CompletedRequest rejectLoginRequest(loginChallenge, rejectRequest)
+> CompletedRequest rejectLoginRequest(loginChallenge, body)
 
 Reject a Login Request
 
@@ -1626,9 +1741,9 @@ public class Example {
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String loginChallenge = "loginChallenge_example"; // String | 
-    RejectRequest rejectRequest = new RejectRequest(); // RejectRequest | 
+    RejectRequest body = new RejectRequest(); // RejectRequest | 
     try {
-      CompletedRequest result = apiInstance.rejectLoginRequest(loginChallenge, rejectRequest);
+      CompletedRequest result = apiInstance.rejectLoginRequest(loginChallenge, body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#rejectLoginRequest");
@@ -1646,7 +1761,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **loginChallenge** | **String**|  |
- **rejectRequest** | [**RejectRequest**](RejectRequest.md)|  | [optional]
+ **body** | [**RejectRequest**](RejectRequest.md)|  | [optional]
 
 ### Return type
 
@@ -1672,7 +1787,7 @@ No authorization required
 
 <a name="rejectLogoutRequest"></a>
 # **rejectLogoutRequest**
-> rejectLogoutRequest(logoutChallenge, rejectRequest)
+> rejectLogoutRequest(logoutChallenge, body)
 
 Reject a Logout Request
 
@@ -1694,9 +1809,9 @@ public class Example {
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String logoutChallenge = "logoutChallenge_example"; // String | 
-    RejectRequest rejectRequest = new RejectRequest(); // RejectRequest | 
+    RejectRequest body = new RejectRequest(); // RejectRequest | 
     try {
-      apiInstance.rejectLogoutRequest(logoutChallenge, rejectRequest);
+      apiInstance.rejectLogoutRequest(logoutChallenge, body);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#rejectLogoutRequest");
       System.err.println("Status code: " + e.getCode());
@@ -1713,7 +1828,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **logoutChallenge** | **String**|  |
- **rejectRequest** | [**RejectRequest**](RejectRequest.md)|  | [optional]
+ **body** | [**RejectRequest**](RejectRequest.md)|  | [optional]
 
 ### Return type
 
@@ -1867,7 +1982,7 @@ No authorization required
 
 <a name="trustJwtGrantIssuer"></a>
 # **trustJwtGrantIssuer**
-> TrustedJwtGrantIssuer trustJwtGrantIssuer(trustJwtGrantIssuerBody)
+> TrustedJwtGrantIssuer trustJwtGrantIssuer(body)
 
 Trust an OAuth2 JWT Bearer Grant Type Issuer
 
@@ -1888,9 +2003,9 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     AdminApi apiInstance = new AdminApi(defaultClient);
-    TrustJwtGrantIssuerBody trustJwtGrantIssuerBody = new TrustJwtGrantIssuerBody(); // TrustJwtGrantIssuerBody | 
+    TrustJwtGrantIssuerBody body = new TrustJwtGrantIssuerBody(); // TrustJwtGrantIssuerBody | 
     try {
-      TrustedJwtGrantIssuer result = apiInstance.trustJwtGrantIssuer(trustJwtGrantIssuerBody);
+      TrustedJwtGrantIssuer result = apiInstance.trustJwtGrantIssuer(body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#trustJwtGrantIssuer");
@@ -1907,7 +2022,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **trustJwtGrantIssuerBody** | [**TrustJwtGrantIssuerBody**](TrustJwtGrantIssuerBody.md)|  | [optional]
+ **body** | [**TrustJwtGrantIssuerBody**](TrustJwtGrantIssuerBody.md)|  | [optional]
 
 ### Return type
 
@@ -1932,7 +2047,7 @@ No authorization required
 
 <a name="updateJsonWebKey"></a>
 # **updateJsonWebKey**
-> JSONWebKey updateJsonWebKey(kid, set, jsONWebKey)
+> JSONWebKey updateJsonWebKey(kid, set, body)
 
 Update a JSON Web Key
 
@@ -1955,9 +2070,9 @@ public class Example {
     AdminApi apiInstance = new AdminApi(defaultClient);
     String kid = "kid_example"; // String | The kid of the desired key
     String set = "set_example"; // String | The set
-    JSONWebKey jsONWebKey = new JSONWebKey(); // JSONWebKey | 
+    JSONWebKey body = new JSONWebKey(); // JSONWebKey | 
     try {
-      JSONWebKey result = apiInstance.updateJsonWebKey(kid, set, jsONWebKey);
+      JSONWebKey result = apiInstance.updateJsonWebKey(kid, set, body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#updateJsonWebKey");
@@ -1976,7 +2091,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **kid** | **String**| The kid of the desired key |
  **set** | **String**| The set |
- **jsONWebKey** | [**JSONWebKey**](JSONWebKey.md)|  | [optional]
+ **body** | [**JSONWebKey**](JSONWebKey.md)|  | [optional]
 
 ### Return type
 
@@ -2001,7 +2116,7 @@ No authorization required
 
 <a name="updateJsonWebKeySet"></a>
 # **updateJsonWebKeySet**
-> JSONWebKeySet updateJsonWebKeySet(set, jsONWebKeySet)
+> JSONWebKeySet updateJsonWebKeySet(set, body)
 
 Update a JSON Web Key Set
 
@@ -2023,9 +2138,9 @@ public class Example {
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String set = "set_example"; // String | The set
-    JSONWebKeySet jsONWebKeySet = new JSONWebKeySet(); // JSONWebKeySet | 
+    JSONWebKeySet body = new JSONWebKeySet(); // JSONWebKeySet | 
     try {
-      JSONWebKeySet result = apiInstance.updateJsonWebKeySet(set, jsONWebKeySet);
+      JSONWebKeySet result = apiInstance.updateJsonWebKeySet(set, body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#updateJsonWebKeySet");
@@ -2043,7 +2158,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **set** | **String**| The set |
- **jsONWebKeySet** | [**JSONWebKeySet**](JSONWebKeySet.md)|  | [optional]
+ **body** | [**JSONWebKeySet**](JSONWebKeySet.md)|  | [optional]
 
 ### Return type
 
@@ -2068,7 +2183,7 @@ No authorization required
 
 <a name="updateOAuth2Client"></a>
 # **updateOAuth2Client**
-> OAuth2Client updateOAuth2Client(id, oauth2Client)
+> OAuth2Client updateOAuth2Client(id, body)
 
 Update an OAuth 2.0 Client
 
@@ -2090,9 +2205,9 @@ public class Example {
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     String id = "id_example"; // String | The id of the OAuth 2.0 Client.
-    OAuth2Client oauth2Client = new OAuth2Client(); // OAuth2Client | 
+    OAuth2Client body = new OAuth2Client(); // OAuth2Client | 
     try {
-      OAuth2Client result = apiInstance.updateOAuth2Client(id, oauth2Client);
+      OAuth2Client result = apiInstance.updateOAuth2Client(id, body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminApi#updateOAuth2Client");
@@ -2110,7 +2225,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| The id of the OAuth 2.0 Client. |
- **oauth2Client** | [**OAuth2Client**](OAuth2Client.md)|  |
+ **body** | [**OAuth2Client**](OAuth2Client.md)|  |
 
 ### Return type
 
