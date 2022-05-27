@@ -97,9 +97,10 @@ RUN \
 
 # elixir
 RUN \
-  curl https://packages.erlang-solutions.com/debian/erlang_solutions.asc | apt-key add - && \
-  echo "deb https://packages.erlang-solutions.com/debian buster contrib" | tee /etc/apt/sources.list.d/erlang-solutions.list && \
-  apt-get -q update && apt-get install --no-install-recommends -y -q esl-erlang elixir
+  wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && \
+  dpkg -i erlang-solutions_2.0_all.deb && \
+  apt-get -q update && apt-get install --no-install-recommends -y -q esl-erlang elixir && \
+  rm erlang-solutions_2.0_all.deb
 
 # rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y

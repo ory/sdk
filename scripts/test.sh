@@ -79,6 +79,17 @@ rust () {
   (cd "$dir" && cargo test)
 }
 
+elixir () {
+  echo "Testing Elixir..."
+
+  dir="clients/${PROJECT}/elixir"
+  export MIX_ENV=prod
+  (cd "$dir" && mix deps.get && mix deps.compile && mix compile && mix test)
+}
+
+elixir
+exit 0
+
 typescript
 rust
 golang
