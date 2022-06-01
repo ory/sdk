@@ -48,7 +48,6 @@ abstract class SelfServiceSettingsFlow implements Built<SelfServiceSettingsFlow,
     // enum stateEnum {  show_form,  success,  };
 
     /// The flow type can either be `api` or `browser`.
-    @nullable
     @BuiltValueField(wireName: r'type')
     String get type;
 
@@ -112,12 +111,10 @@ class _$SelfServiceSettingsFlowSerializer implements StructuredSerializer<SelfSe
             ..add(r'state')
             ..add(serializers.serialize(object.state,
                 specifiedType: const FullType(SelfServiceSettingsFlowState)));
-        if (object.type != null) {
-            result
-                ..add(r'type')
-                ..add(serializers.serialize(object.type,
-                    specifiedType: const FullType(String)));
-        }
+        result
+            ..add(r'type')
+            ..add(serializers.serialize(object.type,
+                specifiedType: const FullType(String)));
         result
             ..add(r'ui')
             ..add(serializers.serialize(object.ui,

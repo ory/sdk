@@ -44,7 +44,6 @@ abstract class SelfServiceRecoveryFlow implements Built<SelfServiceRecoveryFlow,
     // enum stateEnum {  choose_method,  sent_email,  passed_challenge,  };
 
     /// The flow type can either be `api` or `browser`.
-    @nullable
     @BuiltValueField(wireName: r'type')
     String get type;
 
@@ -104,12 +103,10 @@ class _$SelfServiceRecoveryFlowSerializer implements StructuredSerializer<SelfSe
             ..add(r'state')
             ..add(serializers.serialize(object.state,
                 specifiedType: const FullType(SelfServiceRecoveryFlowState)));
-        if (object.type != null) {
-            result
-                ..add(r'type')
-                ..add(serializers.serialize(object.type,
-                    specifiedType: const FullType(String)));
-        }
+        result
+            ..add(r'type')
+            ..add(serializers.serialize(object.type,
+                specifiedType: const FullType(String)));
         result
             ..add(r'ui')
             ..add(serializers.serialize(object.ui,

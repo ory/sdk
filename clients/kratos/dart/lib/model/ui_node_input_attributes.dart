@@ -26,6 +26,7 @@ abstract class UiNodeInputAttributes implements Built<UiNodeInputAttributes, UiN
     @BuiltValueField(wireName: r'name')
     String get name;
 
+    /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\".
     @BuiltValueField(wireName: r'node_type')
     String get nodeType;
 

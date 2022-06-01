@@ -14,6 +14,16 @@ part 'admin_update_identity_body.g.dart';
 
 abstract class AdminUpdateIdentityBody implements Built<AdminUpdateIdentityBody, AdminUpdateIdentityBodyBuilder> {
 
+    /// Store metadata about the user which is only accessible through admin APIs such as `GET /admin/identities/<id>`.
+    @nullable
+    @BuiltValueField(wireName: r'metadata_admin')
+    JsonObject get metadataAdmin;
+
+    /// Store metadata about the identity which the identity itself can see when calling for example the session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field.
+    @nullable
+    @BuiltValueField(wireName: r'metadata_public')
+    JsonObject get metadataPublic;
+
     /// SchemaID is the ID of the JSON Schema to be used for validating the identity's traits. If set will update the Identity's SchemaID.
     @BuiltValueField(wireName: r'schema_id')
     String get schemaId;
@@ -47,6 +57,18 @@ class _$AdminUpdateIdentityBodySerializer implements StructuredSerializer<AdminU
     Iterable<Object> serialize(Serializers serializers, AdminUpdateIdentityBody object,
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object>[];
+        if (object.metadataAdmin != null) {
+            result
+                ..add(r'metadata_admin')
+                ..add(serializers.serialize(object.metadataAdmin,
+                    specifiedType: const FullType(JsonObject)));
+        }
+        if (object.metadataPublic != null) {
+            result
+                ..add(r'metadata_public')
+                ..add(serializers.serialize(object.metadataPublic,
+                    specifiedType: const FullType(JsonObject)));
+        }
         result
             ..add(r'schema_id')
             ..add(serializers.serialize(object.schemaId,
@@ -73,6 +95,14 @@ class _$AdminUpdateIdentityBodySerializer implements StructuredSerializer<AdminU
             iterator.moveNext();
             final dynamic value = iterator.current;
             switch (key) {
+                case r'metadata_admin':
+                    result.metadataAdmin = serializers.deserialize(value,
+                        specifiedType: const FullType(JsonObject)) as JsonObject;
+                    break;
+                case r'metadata_public':
+                    result.metadataPublic = serializers.deserialize(value,
+                        specifiedType: const FullType(JsonObject)) as JsonObject;
+                    break;
                 case r'schema_id':
                     result.schemaId = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;

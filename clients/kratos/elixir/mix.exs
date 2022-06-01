@@ -1,9 +1,9 @@
-defmodule Kratos.Mixfile do
+defmodule Ory.Mixfile do
   use Mix.Project
 
   def project do
     [app: :ory_kratos,
-     version: "0.8.2-alpha.1",
+     version: "0.10.1",
      elixir: "~> 1.6",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -40,7 +40,13 @@ defmodule Kratos.Mixfile do
     [
       name: "ory_kratos",
       files: ~w(lib mix.exs README* LICENSE*),
-      licenses: [""]
+      licenses: ["Apache-2.0"],
+      links: %{
+        "GitHub" => "https://github.com/ory/sdk",
+        "Website" => "https://www.ory.sh",
+        "Documentation" => "https://www.ory.sh/docs",
+        "Product" => "https://console.ory.sh"
+      }
     ]
   end
 end

@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory Kratos APIs. Public and administrative APIs are exposed on different ports. Public APIs can face the public internet without any protection while administrative APIs should never be exposed without prior authorization. To protect the administative API port you should use something like Nginx, Ory Oathkeeper, or any other technology capable of authorizing incoming requests. 
  *
- * API version: v0.9.0-alpha.3
+ * API version: v0.10.1
  * Contact: hi@ory.sh
  */
 
@@ -22,6 +22,7 @@ type UiNodeInputAttributes struct {
 	Label *UiText `json:"label,omitempty"`
 	// The input's element name.
 	Name string `json:"name"`
+	// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\".
 	NodeType string `json:"node_type"`
 	// OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.
 	Onclick *string `json:"onclick,omitempty"`

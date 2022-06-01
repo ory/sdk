@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **height** | **int** | Height of the image | 
 **id** | **String** | A unique identifier | 
-**nodeType** | **String** |  | 
+**nodeType** | **String** | NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"img\". | 
 **src** | **String** | The image's source URL.  format: uri | 
 **width** | **int** | Width of the image | 
 

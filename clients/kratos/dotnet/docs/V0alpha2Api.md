@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**AdminCreateSelfServiceRecoveryLink**](V0alpha2Api.md#admincreateselfservicerecoverylink) | **POST** /admin/recovery/link | Create a Recovery Link
 [**AdminDeleteIdentity**](V0alpha2Api.md#admindeleteidentity) | **DELETE** /admin/identities/{id} | Delete an Identity
 [**AdminDeleteIdentitySessions**](V0alpha2Api.md#admindeleteidentitysessions) | **DELETE** /admin/identities/{id}/sessions | Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.
+[**AdminExtendSession**](V0alpha2Api.md#adminextendsession) | **PATCH** /admin/sessions/{id}/extend | Calling this endpoint extends the given session ID. If &#x60;session.earliest_possible_extend&#x60; is set it will only extend the session after the specified time has passed.
 [**AdminGetIdentity**](V0alpha2Api.md#admingetidentity) | **GET** /admin/identities/{id} | Get an Identity
 [**AdminListIdentities**](V0alpha2Api.md#adminlistidentities) | **GET** /admin/identities | List Identities
 [**AdminListIdentitySessions**](V0alpha2Api.md#adminlistidentitysessions) | **GET** /admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity.
@@ -51,7 +52,7 @@ Method | HTTP request | Description
 
 Create an Identity
 
-This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint creates an identity. Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 ```csharp
@@ -354,6 +355,85 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="adminextendsession"></a>
+# **AdminExtendSession**
+> KratosSession AdminExtendSession (string id)
+
+Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.
+
+Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Kratos.Client.Api;
+using Ory.Kratos.Client.Client;
+using Ory.Kratos.Client.Model;
+
+namespace Example
+{
+    public class AdminExtendSessionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: oryAccessToken
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+
+            var apiInstance = new V0alpha2Api(config);
+            var id = "id_example";  // string | ID is the session's ID.
+
+            try
+            {
+                // Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.
+                KratosSession result = apiInstance.AdminExtendSession(id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling V0alpha2Api.AdminExtendSession: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| ID is the session&#39;s ID. | 
+
+### Return type
+
+[**KratosSession**](KratosSession.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | session |  -  |
+| **400** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="admingetidentity"></a>
 # **AdminGetIdentity**
 > KratosIdentity AdminGetIdentity (string id, List<string> includeCredential = null)
@@ -605,7 +685,7 @@ Name | Type | Description  | Notes
 
 Update an Identity
 
-This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...) using this method! A way to achieve that will be introduced in the future.  The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+This endpoint updates an identity. The full identity payload (except credentials) is expected. This endpoint does not support patching.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
 ### Example
 ```csharp
@@ -926,7 +1006,7 @@ namespace Example
             config.BasePath = "http://localhost";
             var apiInstance = new V0alpha2Api(config);
             var id = "id_example";  // string | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
-            var cookie = "cookie_example";  // string | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. (optional) 
+            var cookie = "cookie_example";  // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional) 
 
             try
             {
@@ -950,7 +1030,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). | 
- **cookie** | **string**| HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. | [optional] 
+ **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 
@@ -1003,7 +1083,7 @@ namespace Example
             config.BasePath = "http://localhost";
             var apiInstance = new V0alpha2Api(config);
             var id = "id_example";  // string | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
-            var cookie = "cookie_example";  // string | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. (optional) 
+            var cookie = "cookie_example";  // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional) 
 
             try
             {
@@ -1027,7 +1107,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). | 
- **cookie** | **string**| HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. | [optional] 
+ **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 
@@ -1079,7 +1159,7 @@ namespace Example
             config.BasePath = "http://localhost";
             var apiInstance = new V0alpha2Api(config);
             var id = "id_example";  // string | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
-            var cookie = "cookie_example";  // string | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. (optional) 
+            var cookie = "cookie_example";  // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional) 
 
             try
             {
@@ -1103,7 +1183,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). | 
- **cookie** | **string**| HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. | [optional] 
+ **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 
@@ -1157,7 +1237,7 @@ namespace Example
             var apiInstance = new V0alpha2Api(config);
             var id = "id_example";  // string | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
             var xSessionToken = "xSessionToken_example";  // string | The Session Token  When using the SDK in an app without a browser, please include the session token here. (optional) 
-            var cookie = "cookie_example";  // string | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. You only need to do this for browser- based flows. (optional) 
+            var cookie = "cookie_example";  // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional) 
 
             try
             {
@@ -1182,7 +1262,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). | 
  **xSessionToken** | **string**| The Session Token  When using the SDK in an app without a browser, please include the session token here. | [optional] 
- **cookie** | **string**| HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. You only need to do this for browser- based flows. | [optional] 
+ **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 
@@ -2390,7 +2470,7 @@ No authorization required
 
 <a name="submitselfserviceloginflow"></a>
 # **SubmitSelfServiceLoginFlow**
-> KratosSuccessfulSelfServiceLoginWithoutBrowser SubmitSelfServiceLoginFlow (string flow, string xSessionToken = null, KratosSubmitSelfServiceLoginFlowBody kratosSubmitSelfServiceLoginFlowBody = null)
+> KratosSuccessfulSelfServiceLoginWithoutBrowser SubmitSelfServiceLoginFlow (string flow, KratosSubmitSelfServiceLoginFlowBody kratosSubmitSelfServiceLoginFlowBody, string xSessionToken = null, string cookie = null)
 
 Submit a Login Flow
 
@@ -2414,13 +2494,14 @@ namespace Example
             config.BasePath = "http://localhost";
             var apiInstance = new V0alpha2Api(config);
             var flow = "flow_example";  // string | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
+            var kratosSubmitSelfServiceLoginFlowBody = new KratosSubmitSelfServiceLoginFlowBody(); // KratosSubmitSelfServiceLoginFlowBody | 
             var xSessionToken = "xSessionToken_example";  // string | The Session Token of the Identity performing the settings flow. (optional) 
-            var kratosSubmitSelfServiceLoginFlowBody = new KratosSubmitSelfServiceLoginFlowBody(); // KratosSubmitSelfServiceLoginFlowBody |  (optional) 
+            var cookie = "cookie_example";  // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional) 
 
             try
             {
                 // Submit a Login Flow
-                KratosSuccessfulSelfServiceLoginWithoutBrowser result = apiInstance.SubmitSelfServiceLoginFlow(flow, xSessionToken, kratosSubmitSelfServiceLoginFlowBody);
+                KratosSuccessfulSelfServiceLoginWithoutBrowser result = apiInstance.SubmitSelfServiceLoginFlow(flow, kratosSubmitSelfServiceLoginFlowBody, xSessionToken, cookie);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2439,8 +2520,9 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **string**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). | 
+ **kratosSubmitSelfServiceLoginFlowBody** | [**KratosSubmitSelfServiceLoginFlowBody**](KratosSubmitSelfServiceLoginFlowBody.md)|  | 
  **xSessionToken** | **string**| The Session Token of the Identity performing the settings flow. | [optional] 
- **kratosSubmitSelfServiceLoginFlowBody** | [**KratosSubmitSelfServiceLoginFlowBody**](KratosSubmitSelfServiceLoginFlowBody.md)|  | [optional] 
+ **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 
@@ -2616,7 +2698,7 @@ No authorization required
 
 <a name="submitselfservicerecoveryflow"></a>
 # **SubmitSelfServiceRecoveryFlow**
-> KratosSelfServiceRecoveryFlow SubmitSelfServiceRecoveryFlow (string flow, string token = null, KratosSubmitSelfServiceRecoveryFlowBody kratosSubmitSelfServiceRecoveryFlowBody = null)
+> KratosSelfServiceRecoveryFlow SubmitSelfServiceRecoveryFlow (string flow, KratosSubmitSelfServiceRecoveryFlowBody kratosSubmitSelfServiceRecoveryFlowBody, string token = null, string cookie = null)
 
 Complete Recovery Flow
 
@@ -2640,13 +2722,14 @@ namespace Example
             config.BasePath = "http://localhost";
             var apiInstance = new V0alpha2Api(config);
             var flow = "flow_example";  // string | The Recovery Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
+            var kratosSubmitSelfServiceRecoveryFlowBody = new KratosSubmitSelfServiceRecoveryFlowBody(); // KratosSubmitSelfServiceRecoveryFlowBody | 
             var token = "token_example";  // string | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. (optional) 
-            var kratosSubmitSelfServiceRecoveryFlowBody = new KratosSubmitSelfServiceRecoveryFlowBody(); // KratosSubmitSelfServiceRecoveryFlowBody |  (optional) 
+            var cookie = "cookie_example";  // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional) 
 
             try
             {
                 // Complete Recovery Flow
-                KratosSelfServiceRecoveryFlow result = apiInstance.SubmitSelfServiceRecoveryFlow(flow, token, kratosSubmitSelfServiceRecoveryFlowBody);
+                KratosSelfServiceRecoveryFlow result = apiInstance.SubmitSelfServiceRecoveryFlow(flow, kratosSubmitSelfServiceRecoveryFlowBody, token, cookie);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2665,8 +2748,9 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **string**| The Recovery Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). | 
+ **kratosSubmitSelfServiceRecoveryFlowBody** | [**KratosSubmitSelfServiceRecoveryFlowBody**](KratosSubmitSelfServiceRecoveryFlowBody.md)|  | 
  **token** | **string**| Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. | [optional] 
- **kratosSubmitSelfServiceRecoveryFlowBody** | [**KratosSubmitSelfServiceRecoveryFlowBody**](KratosSubmitSelfServiceRecoveryFlowBody.md)|  | [optional] 
+ **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 
@@ -2695,7 +2779,7 @@ No authorization required
 
 <a name="submitselfserviceregistrationflow"></a>
 # **SubmitSelfServiceRegistrationFlow**
-> KratosSuccessfulSelfServiceRegistrationWithoutBrowser SubmitSelfServiceRegistrationFlow (string flow, KratosSubmitSelfServiceRegistrationFlowBody kratosSubmitSelfServiceRegistrationFlowBody = null)
+> KratosSuccessfulSelfServiceRegistrationWithoutBrowser SubmitSelfServiceRegistrationFlow (string flow, KratosSubmitSelfServiceRegistrationFlowBody kratosSubmitSelfServiceRegistrationFlowBody, string cookie = null)
 
 Submit a Registration Flow
 
@@ -2719,12 +2803,13 @@ namespace Example
             config.BasePath = "http://localhost";
             var apiInstance = new V0alpha2Api(config);
             var flow = "flow_example";  // string | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
-            var kratosSubmitSelfServiceRegistrationFlowBody = new KratosSubmitSelfServiceRegistrationFlowBody(); // KratosSubmitSelfServiceRegistrationFlowBody |  (optional) 
+            var kratosSubmitSelfServiceRegistrationFlowBody = new KratosSubmitSelfServiceRegistrationFlowBody(); // KratosSubmitSelfServiceRegistrationFlowBody | 
+            var cookie = "cookie_example";  // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional) 
 
             try
             {
                 // Submit a Registration Flow
-                KratosSuccessfulSelfServiceRegistrationWithoutBrowser result = apiInstance.SubmitSelfServiceRegistrationFlow(flow, kratosSubmitSelfServiceRegistrationFlowBody);
+                KratosSuccessfulSelfServiceRegistrationWithoutBrowser result = apiInstance.SubmitSelfServiceRegistrationFlow(flow, kratosSubmitSelfServiceRegistrationFlowBody, cookie);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2743,7 +2828,8 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **string**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). | 
- **kratosSubmitSelfServiceRegistrationFlowBody** | [**KratosSubmitSelfServiceRegistrationFlowBody**](KratosSubmitSelfServiceRegistrationFlowBody.md)|  | [optional] 
+ **kratosSubmitSelfServiceRegistrationFlowBody** | [**KratosSubmitSelfServiceRegistrationFlowBody**](KratosSubmitSelfServiceRegistrationFlowBody.md)|  | 
+ **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 
@@ -2773,7 +2859,7 @@ No authorization required
 
 <a name="submitselfservicesettingsflow"></a>
 # **SubmitSelfServiceSettingsFlow**
-> KratosSelfServiceSettingsFlow SubmitSelfServiceSettingsFlow (string flow, string xSessionToken = null, KratosSubmitSelfServiceSettingsFlowBody kratosSubmitSelfServiceSettingsFlowBody = null)
+> KratosSelfServiceSettingsFlow SubmitSelfServiceSettingsFlow (string flow, KratosSubmitSelfServiceSettingsFlowBody kratosSubmitSelfServiceSettingsFlowBody, string xSessionToken = null, string cookie = null)
 
 Complete Settings Flow
 
@@ -2797,13 +2883,14 @@ namespace Example
             config.BasePath = "http://localhost";
             var apiInstance = new V0alpha2Api(config);
             var flow = "flow_example";  // string | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+            var kratosSubmitSelfServiceSettingsFlowBody = new KratosSubmitSelfServiceSettingsFlowBody(); // KratosSubmitSelfServiceSettingsFlowBody | 
             var xSessionToken = "xSessionToken_example";  // string | The Session Token of the Identity performing the settings flow. (optional) 
-            var kratosSubmitSelfServiceSettingsFlowBody = new KratosSubmitSelfServiceSettingsFlowBody(); // KratosSubmitSelfServiceSettingsFlowBody |  (optional) 
+            var cookie = "cookie_example";  // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional) 
 
             try
             {
                 // Complete Settings Flow
-                KratosSelfServiceSettingsFlow result = apiInstance.SubmitSelfServiceSettingsFlow(flow, xSessionToken, kratosSubmitSelfServiceSettingsFlowBody);
+                KratosSelfServiceSettingsFlow result = apiInstance.SubmitSelfServiceSettingsFlow(flow, kratosSubmitSelfServiceSettingsFlowBody, xSessionToken, cookie);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2822,8 +2909,9 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **string**| The Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). | 
+ **kratosSubmitSelfServiceSettingsFlowBody** | [**KratosSubmitSelfServiceSettingsFlowBody**](KratosSubmitSelfServiceSettingsFlowBody.md)|  | 
  **xSessionToken** | **string**| The Session Token of the Identity performing the settings flow. | [optional] 
- **kratosSubmitSelfServiceSettingsFlowBody** | [**KratosSubmitSelfServiceSettingsFlowBody**](KratosSubmitSelfServiceSettingsFlowBody.md)|  | [optional] 
+ **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 
@@ -2855,7 +2943,7 @@ No authorization required
 
 <a name="submitselfserviceverificationflow"></a>
 # **SubmitSelfServiceVerificationFlow**
-> KratosSelfServiceVerificationFlow SubmitSelfServiceVerificationFlow (string flow, string token = null, KratosSubmitSelfServiceVerificationFlowBody kratosSubmitSelfServiceVerificationFlowBody = null)
+> KratosSelfServiceVerificationFlow SubmitSelfServiceVerificationFlow (string flow, KratosSubmitSelfServiceVerificationFlowBody kratosSubmitSelfServiceVerificationFlowBody, string token = null, string cookie = null)
 
 Complete Verification Flow
 
@@ -2879,13 +2967,14 @@ namespace Example
             config.BasePath = "http://localhost";
             var apiInstance = new V0alpha2Api(config);
             var flow = "flow_example";  // string | The Verification Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
+            var kratosSubmitSelfServiceVerificationFlowBody = new KratosSubmitSelfServiceVerificationFlowBody(); // KratosSubmitSelfServiceVerificationFlowBody | 
             var token = "token_example";  // string | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. (optional) 
-            var kratosSubmitSelfServiceVerificationFlowBody = new KratosSubmitSelfServiceVerificationFlowBody(); // KratosSubmitSelfServiceVerificationFlowBody |  (optional) 
+            var cookie = "cookie_example";  // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional) 
 
             try
             {
                 // Complete Verification Flow
-                KratosSelfServiceVerificationFlow result = apiInstance.SubmitSelfServiceVerificationFlow(flow, token, kratosSubmitSelfServiceVerificationFlowBody);
+                KratosSelfServiceVerificationFlow result = apiInstance.SubmitSelfServiceVerificationFlow(flow, kratosSubmitSelfServiceVerificationFlowBody, token, cookie);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2904,8 +2993,9 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **flow** | **string**| The Verification Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/verification?flow&#x3D;abcde&#x60;). | 
+ **kratosSubmitSelfServiceVerificationFlowBody** | [**KratosSubmitSelfServiceVerificationFlowBody**](KratosSubmitSelfServiceVerificationFlowBody.md)|  | 
  **token** | **string**| Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. | [optional] 
- **kratosSubmitSelfServiceVerificationFlowBody** | [**KratosSubmitSelfServiceVerificationFlowBody**](KratosSubmitSelfServiceVerificationFlowBody.md)|  | [optional] 
+ **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 

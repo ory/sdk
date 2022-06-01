@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **requestUrl** | **String** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example. | 
 **returnTo** | **String** | ReturnTo contains the requested return_to URL. | [optional] 
 **state** | [**SelfServiceSettingsFlowState**](SelfServiceSettingsFlowState.md) |  | 
-**type** | **String** | The flow type can either be `api` or `browser`. | [optional] 
+**type** | **String** | The flow type can either be `api` or `browser`. | 
 **ui** | [**UiContainer**](UiContainer.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

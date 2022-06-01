@@ -31,6 +31,18 @@ void main() {
       // TODO
     });
 
+    // NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+    // JsonObject metadataAdmin
+    test('to test the property `metadataAdmin`', () async {
+      // TODO
+    });
+
+    // NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+    // JsonObject metadataPublic
+    test('to test the property `metadataPublic`', () async {
+      // TODO
+    });
+
     // RecoveryAddresses contains all the addresses that can be used to recover an identity.
     // BuiltList<RecoveryAddress> recoveryAddresses
     test('to test the property `recoveryAddresses`', () async {

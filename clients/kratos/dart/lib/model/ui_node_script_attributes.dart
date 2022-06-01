@@ -28,6 +28,7 @@ abstract class UiNodeScriptAttributes implements Built<UiNodeScriptAttributes, U
     @BuiltValueField(wireName: r'integrity')
     String get integrity;
 
+    /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\".
     @BuiltValueField(wireName: r'node_type')
     String get nodeType;
 

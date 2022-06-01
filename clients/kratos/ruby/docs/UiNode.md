@@ -5,10 +5,10 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **attributes** | [**UiNodeAttributes**](UiNodeAttributes.md) |  |  |
-| **group** | **String** |  |  |
+| **group** | **String** | Group specifies which group (e.g. password authenticator) this node belongs to. |  |
 | **messages** | [**Array&lt;UiText&gt;**](UiText.md) |  |  |
 | **meta** | [**UiNodeMeta**](UiNodeMeta.md) |  |  |
-| **type** | **String** |  |  |
+| **type** | **String** | The node&#39;s type |  |
 
 ## Example
 
