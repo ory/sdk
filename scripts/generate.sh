@@ -142,7 +142,7 @@ php() {
 
   file="${dir}/composer.json"
 
-  jq -r ".name=\"${PHP_PACKAGE_NAME}\" | .homepage = \"https://github.com/ory/${GIT_REPO}-php\" | .authors[0].name = \"Ory GmbH\" | .authors[0].homepage = \"https://www.ory.sh\" | .license = \"Apache-2.0\"" "${file}" \
+  jq -r ".name=\"${PHP_PACKAGE_NAME}-php\" | .homepage = \"https://github.com/ory/${GIT_REPO}-php\" | .authors[0].name = \"Ory GmbH\" | .authors[0].homepage = \"https://www.ory.sh\" | .license = \"Apache-2.0\"" "${file}" \
      > tmp.$$.json && mv tmp.$$.json "${file}"
 
   cat "${file}"
@@ -281,7 +281,7 @@ rust () {
 
 elixir () {
   echo "Generating Elixir..."
-  
+
   dir="clients/${PROJECT}/elixir"
   rm -rf "$dir" || true
   mkdir -p "$dir"
