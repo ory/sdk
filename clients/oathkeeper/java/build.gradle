@@ -4,7 +4,7 @@ apply plugin: 'java'
 apply plugin: 'com.diffplug.spotless'
 
 group = 'sh.ory.oathkeeper'
-version = 'v0.38.25-beta.1'
+version = 'v0.39.0'
 
 buildscript {
     repositories {

@@ -1,6 +1,6 @@
-# Oathkeeper
+# Ory
 
-Documentation for all of Ory Oathkeeper&#39;s APIs. 
+ORY Oathkeeper is a reverse proxy that checks the HTTP Authorization for validity against a set of rules. This service uses Hydra to validate access tokens and policies.
 
 ### Building
 
@@ -24,3 +24,11 @@ end
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/ory_oathkeeper](https://hexdocs.pm/ory_oathkeeper).
+
+
+## Configuration
+
+You can override the URL of your server (e.g. if you have a separate development and production server in your configuration files.
+```elixir
+config :ory_oathkeeper, base_url: "http://localhost"
+```

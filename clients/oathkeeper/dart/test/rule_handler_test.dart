@@ -1,12 +1,5 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.7
-
-// ignore_for_file: unused_import
-
-import 'package:ory_oathkeeper_client/model/rule_handler.dart';
 import 'package:test/test.dart';
+import 'package:ory_oathkeeper_client/ory_oathkeeper_client.dart';
 
 // tests for RuleHandler
 void main() {
@@ -26,7 +19,5 @@ void main() {
       // TODO
     });
 
-
   });
-
 }

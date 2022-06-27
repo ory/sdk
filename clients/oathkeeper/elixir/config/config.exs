@@ -10,16 +10,18 @@ use Mix.Config
 
 # You can configure for your application as:
 #
-#     config :ory_oathkeeper_api, key: :value
+#     config :ory_oathkeeper, key: :value
 #
 # And access this configuration in your application as:
 #
-#     Application.get_env(:ory_oathkeeper_api, :key)
+#     Application.get_env(:ory_oathkeeper, :key)
 #
 # Or configure a 3rd-party app:
 #
 #     config :logger, level: :info
 #
+
+config :ory_oathkeeper, base_url: "http://localhost"
 
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment
