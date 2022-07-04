@@ -64,7 +64,7 @@ npm i ${NPM_NAME}
       export INSTALL="[Rust (Crate)](https://crates.io/crates/${RUST_PACKAGE_NAME}/)"
       ;;
     elixir)
-      export INSTALL="[Elixir (Hex)](https://hex.io/crates/${ELIXIR_PACKAGE_NAME}/)"
+      export INSTALL="[Elixir (Hex)](https://hex.pm/packages/${ELIXIR_PACKAGE_NAME}/)"
       ;;
     PATTERN_N)
       STATEMENTS
