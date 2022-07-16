@@ -243,7 +243,7 @@ dart () {
 
   openapi-generator-cli version-manager set 6.0.1
   openapi-generator-cli generate -i "${SPEC_FILE}" \
-    -g dart-dio \
+    -g dart \
     -o "$dir" \
     --git-user-id ory \
     --git-repo-id sdk \
