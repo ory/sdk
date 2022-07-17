@@ -3,8 +3,8 @@ defmodule Ory.Mixfile do
 
   def project do
     [app: :ory_client,
-     version: "0.0.1-alpha.188",
-     elixir: "~> 1.6",
+     version: "0.1.0-alpha.1",
+     elixir: "~> 1.10",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      package: package(),
@@ -31,15 +31,16 @@ defmodule Ory.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:tesla, "~> 1.2"},
-      {:poison, "~> 3.0"}
+      {:tesla, "~> 1.4"},
+      {:poison, "~> 3.0"},
+      {:ex_doc, "~> 0.28", only: :dev, runtime: false}
     ]
   end
 
    defp package() do
     [
       name: "ory_client",
-      files: ~w(lib mix.exs README* LICENSE*),
+      files: ~w(.formatter.exs config lib mix.exs README* LICENSE*),
       licenses: ["Apache-2.0"],
       links: %{
         "GitHub" => "https://github.com/ory/sdk",

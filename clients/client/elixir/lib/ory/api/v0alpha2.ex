@@ -185,7 +185,7 @@ defmodule Ory.Api.V0alpha2 do
   @spec admin_get_identity(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.JsonError.t} | {:ok, Ory.Model.Identity.t} | {:error, Tesla.Env.t}
   def admin_get_identity(connection, id, opts \\ []) do
     optional_params = %{
-      :"include_credential" => :query
+      :include_credential => :query
     }
     %{}
     |> method(:get)
@@ -218,8 +218,8 @@ defmodule Ory.Api.V0alpha2 do
   @spec admin_list_identities(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.JsonError.t} | {:ok, list(Ory.Model.Identity.t)} | {:error, Tesla.Env.t}
   def admin_list_identities(connection, opts \\ []) do
     optional_params = %{
-      :"per_page" => :query,
-      :"page" => :query
+      :per_page => :query,
+      :page => :query
     }
     %{}
     |> method(:get)
@@ -253,9 +253,9 @@ defmodule Ory.Api.V0alpha2 do
   @spec admin_list_identity_sessions(Tesla.Env.client, String.t, keyword()) :: {:ok, list(Ory.Model.Session.t)} | {:ok, Ory.Model.JsonError.t} | {:error, Tesla.Env.t}
   def admin_list_identity_sessions(connection, id, opts \\ []) do
     optional_params = %{
-      :"per_page" => :query,
-      :"page" => :query,
-      :"active" => :query
+      :per_page => :query,
+      :page => :query,
+      :active => :query
     }
     %{}
     |> method(:get)
@@ -360,7 +360,7 @@ defmodule Ory.Api.V0alpha2 do
   @spec create_self_service_logout_flow_url_for_browsers(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.JsonError.t} | {:ok, Ory.Model.SelfServiceLogoutUrl.t} | {:error, Tesla.Env.t}
   def create_self_service_logout_flow_url_for_browsers(connection, opts \\ []) do
     optional_params = %{
-      :"cookie" => :headers
+      :cookie => :headers
     }
     %{}
     |> method(:get)
@@ -480,7 +480,7 @@ defmodule Ory.Api.V0alpha2 do
     %{}
     |> method(:get)
     |> url("/self-service/errors")
-    |> add_param(:query, :"id", id)
+    |> add_param(:query, :id, id)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
@@ -509,12 +509,12 @@ defmodule Ory.Api.V0alpha2 do
   @spec get_self_service_login_flow(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.JsonError.t} | {:ok, Ory.Model.SelfServiceLoginFlow.t} | {:error, Tesla.Env.t}
   def get_self_service_login_flow(connection, id, opts \\ []) do
     optional_params = %{
-      :"Cookie" => :headers
+      :Cookie => :headers
     }
     %{}
     |> method(:get)
     |> url("/self-service/login/flows")
-    |> add_param(:query, :"id", id)
+    |> add_param(:query, :id, id)
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
@@ -545,12 +545,12 @@ defmodule Ory.Api.V0alpha2 do
   @spec get_self_service_recovery_flow(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.JsonError.t} | {:ok, Ory.Model.SelfServiceRecoveryFlow.t} | {:error, Tesla.Env.t}
   def get_self_service_recovery_flow(connection, id, opts \\ []) do
     optional_params = %{
-      :"Cookie" => :headers
+      :Cookie => :headers
     }
     %{}
     |> method(:get)
     |> url("/self-service/recovery/flows")
-    |> add_param(:query, :"id", id)
+    |> add_param(:query, :id, id)
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
@@ -580,12 +580,12 @@ defmodule Ory.Api.V0alpha2 do
   @spec get_self_service_registration_flow(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.JsonError.t} | {:ok, Ory.Model.SelfServiceRegistrationFlow.t} | {:error, Tesla.Env.t}
   def get_self_service_registration_flow(connection, id, opts \\ []) do
     optional_params = %{
-      :"Cookie" => :headers
+      :Cookie => :headers
     }
     %{}
     |> method(:get)
     |> url("/self-service/registration/flows")
-    |> add_param(:query, :"id", id)
+    |> add_param(:query, :id, id)
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
@@ -618,12 +618,12 @@ defmodule Ory.Api.V0alpha2 do
   def get_self_service_settings_flow(connection, id, opts \\ []) do
     optional_params = %{
       :"X-Session-Token" => :headers,
-      :"Cookie" => :headers
+      :Cookie => :headers
     }
     %{}
     |> method(:get)
     |> url("/self-service/settings/flows")
-    |> add_param(:query, :"id", id)
+    |> add_param(:query, :id, id)
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
@@ -655,12 +655,12 @@ defmodule Ory.Api.V0alpha2 do
   @spec get_self_service_verification_flow(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.JsonError.t} | {:ok, Ory.Model.SelfServiceVerificationFlow.t} | {:error, Tesla.Env.t}
   def get_self_service_verification_flow(connection, id, opts \\ []) do
     optional_params = %{
-      :"cookie" => :headers
+      :cookie => :headers
     }
     %{}
     |> method(:get)
     |> url("/self-service/verification/flows")
-    |> add_param(:query, :"id", id)
+    |> add_param(:query, :id, id)
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
@@ -716,9 +716,9 @@ defmodule Ory.Api.V0alpha2 do
   @spec initialize_self_service_login_flow_for_browsers(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, Ory.Model.JsonError.t} | {:ok, Ory.Model.SelfServiceLoginFlow.t} | {:error, Tesla.Env.t}
   def initialize_self_service_login_flow_for_browsers(connection, opts \\ []) do
     optional_params = %{
-      :"refresh" => :query,
-      :"aal" => :query,
-      :"return_to" => :query
+      :refresh => :query,
+      :aal => :query,
+      :return_to => :query
     }
     %{}
     |> method(:get)
@@ -753,8 +753,8 @@ defmodule Ory.Api.V0alpha2 do
   @spec initialize_self_service_login_flow_without_browser(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.JsonError.t} | {:ok, Ory.Model.SelfServiceLoginFlow.t} | {:error, Tesla.Env.t}
   def initialize_self_service_login_flow_without_browser(connection, opts \\ []) do
     optional_params = %{
-      :"refresh" => :query,
-      :"aal" => :query,
+      :refresh => :query,
+      :aal => :query,
       :"X-Session-Token" => :headers
     }
     %{}
@@ -787,7 +787,7 @@ defmodule Ory.Api.V0alpha2 do
   @spec initialize_self_service_recovery_flow_for_browsers(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, Ory.Model.JsonError.t} | {:ok, Ory.Model.SelfServiceRecoveryFlow.t} | {:error, Tesla.Env.t}
   def initialize_self_service_recovery_flow_for_browsers(connection, opts \\ []) do
     optional_params = %{
-      :"return_to" => :query
+      :return_to => :query
     }
     %{}
     |> method(:get)
@@ -847,7 +847,7 @@ defmodule Ory.Api.V0alpha2 do
   @spec initialize_self_service_registration_flow_for_browsers(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, Ory.Model.JsonError.t} | {:ok, Ory.Model.SelfServiceRegistrationFlow.t} | {:error, Tesla.Env.t}
   def initialize_self_service_registration_flow_for_browsers(connection, opts \\ []) do
     optional_params = %{
-      :"return_to" => :query
+      :return_to => :query
     }
     %{}
     |> method(:get)
@@ -906,7 +906,7 @@ defmodule Ory.Api.V0alpha2 do
   @spec initialize_self_service_settings_flow_for_browsers(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, Ory.Model.JsonError.t} | {:ok, Ory.Model.SelfServiceSettingsFlow.t} | {:error, Tesla.Env.t}
   def initialize_self_service_settings_flow_for_browsers(connection, opts \\ []) do
     optional_params = %{
-      :"return_to" => :query
+      :return_to => :query
     }
     %{}
     |> method(:get)
@@ -973,7 +973,7 @@ defmodule Ory.Api.V0alpha2 do
   @spec initialize_self_service_verification_flow_for_browsers(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, Ory.Model.JsonError.t} | {:ok, Ory.Model.SelfServiceVerificationFlow.t} | {:error, Tesla.Env.t}
   def initialize_self_service_verification_flow_for_browsers(connection, opts \\ []) do
     optional_params = %{
-      :"return_to" => :query
+      :return_to => :query
     }
     %{}
     |> method(:get)
@@ -1032,8 +1032,8 @@ defmodule Ory.Api.V0alpha2 do
   @spec list_identity_schemas(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.JsonError.t} | {:ok, list(Ory.Model.IdentitySchema.t)} | {:error, Tesla.Env.t}
   def list_identity_schemas(connection, opts \\ []) do
     optional_params = %{
-      :"per_page" => :query,
-      :"page" => :query
+      :per_page => :query,
+      :page => :query
     }
     %{}
     |> method(:get)
@@ -1097,9 +1097,9 @@ defmodule Ory.Api.V0alpha2 do
   def list_sessions(connection, opts \\ []) do
     optional_params = %{
       :"X-Session-Token" => :headers,
-      :"Cookie" => :headers,
-      :"per_page" => :query,
-      :"page" => :query
+      :Cookie => :headers,
+      :per_page => :query,
+      :page => :query
     }
     %{}
     |> method(:get)
@@ -1262,7 +1262,7 @@ defmodule Ory.Api.V0alpha2 do
   def revoke_sessions(connection, opts \\ []) do
     optional_params = %{
       :"X-Session-Token" => :headers,
-      :"Cookie" => :headers
+      :Cookie => :headers
     }
     %{}
     |> method(:delete)
@@ -1300,12 +1300,12 @@ defmodule Ory.Api.V0alpha2 do
   def submit_self_service_login_flow(connection, flow, submit_self_service_login_flow_body, opts \\ []) do
     optional_params = %{
       :"X-Session-Token" => :headers,
-      :"Cookie" => :headers
+      :Cookie => :headers
     }
     %{}
     |> method(:post)
     |> url("/self-service/login")
-    |> add_param(:query, :"flow", flow)
+    |> add_param(:query, :flow, flow)
     |> add_param(:body, :body, submit_self_service_login_flow_body)
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
@@ -1338,8 +1338,8 @@ defmodule Ory.Api.V0alpha2 do
   @spec submit_self_service_logout_flow(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, Ory.Model.JsonError.t} | {:error, Tesla.Env.t}
   def submit_self_service_logout_flow(connection, opts \\ []) do
     optional_params = %{
-      :"token" => :query,
-      :"return_to" => :query
+      :token => :query,
+      :return_to => :query
     }
     %{}
     |> method(:get)
@@ -1403,13 +1403,13 @@ defmodule Ory.Api.V0alpha2 do
   @spec submit_self_service_recovery_flow(Tesla.Env.client, String.t, Ory.Model.SubmitSelfServiceRecoveryFlowBody.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.JsonError.t} | {:ok, Ory.Model.SelfServiceRecoveryFlow.t} | {:error, Tesla.Env.t}
   def submit_self_service_recovery_flow(connection, flow, submit_self_service_recovery_flow_body, opts \\ []) do
     optional_params = %{
-      :"token" => :query,
-      :"Cookie" => :headers
+      :token => :query,
+      :Cookie => :headers
     }
     %{}
     |> method(:post)
     |> url("/self-service/recovery")
-    |> add_param(:query, :"flow", flow)
+    |> add_param(:query, :flow, flow)
     |> add_param(:body, :body, submit_self_service_recovery_flow_body)
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
@@ -1442,12 +1442,12 @@ defmodule Ory.Api.V0alpha2 do
   @spec submit_self_service_registration_flow(Tesla.Env.client, String.t, Ory.Model.SubmitSelfServiceRegistrationFlowBody.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.JsonError.t} | {:ok, Ory.Model.SelfServiceBrowserLocationChangeRequiredError.t} | {:ok, Ory.Model.SelfServiceRegistrationFlow.t} | {:ok, Ory.Model.SuccessfulSelfServiceRegistrationWithoutBrowser.t} | {:error, Tesla.Env.t}
   def submit_self_service_registration_flow(connection, flow, submit_self_service_registration_flow_body, opts \\ []) do
     optional_params = %{
-      :"Cookie" => :headers
+      :Cookie => :headers
     }
     %{}
     |> method(:post)
     |> url("/self-service/registration")
-    |> add_param(:query, :"flow", flow)
+    |> add_param(:query, :flow, flow)
     |> add_param(:body, :body, submit_self_service_registration_flow_body)
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
@@ -1483,12 +1483,12 @@ defmodule Ory.Api.V0alpha2 do
   def submit_self_service_settings_flow(connection, flow, submit_self_service_settings_flow_body, opts \\ []) do
     optional_params = %{
       :"X-Session-Token" => :headers,
-      :"Cookie" => :headers
+      :Cookie => :headers
     }
     %{}
     |> method(:post)
     |> url("/self-service/settings")
-    |> add_param(:query, :"flow", flow)
+    |> add_param(:query, :flow, flow)
     |> add_param(:body, :body, submit_self_service_settings_flow_body)
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
@@ -1525,13 +1525,13 @@ defmodule Ory.Api.V0alpha2 do
   @spec submit_self_service_verification_flow(Tesla.Env.client, String.t, Ory.Model.SubmitSelfServiceVerificationFlowBody.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.JsonError.t} | {:ok, Ory.Model.SelfServiceVerificationFlow.t} | {:error, Tesla.Env.t}
   def submit_self_service_verification_flow(connection, flow, submit_self_service_verification_flow_body, opts \\ []) do
     optional_params = %{
-      :"token" => :query,
-      :"Cookie" => :headers
+      :token => :query,
+      :Cookie => :headers
     }
     %{}
     |> method(:post)
     |> url("/self-service/verification")
-    |> add_param(:query, :"flow", flow)
+    |> add_param(:query, :flow, flow)
     |> add_param(:body, :body, submit_self_service_verification_flow_body)
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
@@ -1564,7 +1564,7 @@ defmodule Ory.Api.V0alpha2 do
   def to_session(connection, opts \\ []) do
     optional_params = %{
       :"X-Session-Token" => :headers,
-      :"Cookie" => :headers
+      :Cookie => :headers
     }
     %{}
     |> method(:get)

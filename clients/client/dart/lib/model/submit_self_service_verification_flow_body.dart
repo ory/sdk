@@ -1,95 +1,139 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:ory_client/model/submit_self_service_verification_flow_with_link_method_body.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'submit_self_service_verification_flow_body.g.dart';
+class SubmitSelfServiceVerificationFlowBody {
+  /// Returns a new [SubmitSelfServiceVerificationFlowBody] instance.
+  SubmitSelfServiceVerificationFlowBody({
+    this.csrfToken,
+    required this.email,
+    required this.method,
+  });
 
-abstract class SubmitSelfServiceVerificationFlowBody implements Built<SubmitSelfServiceVerificationFlowBody, SubmitSelfServiceVerificationFlowBodyBuilder> {
+  /// Sending the anti-csrf token is only required for browser login flows.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? csrfToken;
 
-    /// Sending the anti-csrf token is only required for browser login flows.
-    @nullable
-    @BuiltValueField(wireName: r'csrf_token')
-    String get csrfToken;
+  /// Email to Verify  Needs to be set when initiating the flow. If the email is a registered verification email, a verification link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
+  String email;
 
-    /// Email to Verify  Needs to be set when initiating the flow. If the email is a registered verification email, a verification link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
-    @BuiltValueField(wireName: r'email')
-    String get email;
+  /// Method supports `link` only right now.
+  String method;
 
-    /// Method supports `link` only right now.
-    @BuiltValueField(wireName: r'method')
-    String get method;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is SubmitSelfServiceVerificationFlowBody &&
+     other.csrfToken == csrfToken &&
+     other.email == email &&
+     other.method == method;
 
-    SubmitSelfServiceVerificationFlowBody._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (csrfToken == null ? 0 : csrfToken!.hashCode) +
+    (email.hashCode) +
+    (method.hashCode);
 
-    static void _initializeBuilder(SubmitSelfServiceVerificationFlowBodyBuilder b) => b;
+  @override
+  String toString() => 'SubmitSelfServiceVerificationFlowBody[csrfToken=$csrfToken, email=$email, method=$method]';
 
-    factory SubmitSelfServiceVerificationFlowBody([void updates(SubmitSelfServiceVerificationFlowBodyBuilder b)]) = _$SubmitSelfServiceVerificationFlowBody;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<SubmitSelfServiceVerificationFlowBody> get serializer => _$SubmitSelfServiceVerificationFlowBodySerializer();
-}
-
-class _$SubmitSelfServiceVerificationFlowBodySerializer implements StructuredSerializer<SubmitSelfServiceVerificationFlowBody> {
-
-    @override
-    final Iterable<Type> types = const [SubmitSelfServiceVerificationFlowBody, _$SubmitSelfServiceVerificationFlowBody];
-    @override
-    final String wireName = r'SubmitSelfServiceVerificationFlowBody';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, SubmitSelfServiceVerificationFlowBody object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.csrfToken != null) {
-            result
-                ..add(r'csrf_token')
-                ..add(serializers.serialize(object.csrfToken,
-                    specifiedType: const FullType(String)));
-        }
-        result
-            ..add(r'email')
-            ..add(serializers.serialize(object.email,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'method')
-            ..add(serializers.serialize(object.method,
-                specifiedType: const FullType(String)));
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+    if (csrfToken != null) {
+      _json[r'csrf_token'] = csrfToken;
+    } else {
+      _json[r'csrf_token'] = null;
     }
+      _json[r'email'] = email;
+      _json[r'method'] = method;
+    return _json;
+  }
 
-    @override
-    SubmitSelfServiceVerificationFlowBody deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = SubmitSelfServiceVerificationFlowBodyBuilder();
+  /// Returns a new [SubmitSelfServiceVerificationFlowBody] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static SubmitSelfServiceVerificationFlowBody? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'csrf_token':
-                    result.csrfToken = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'email':
-                    result.email = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'method':
-                    result.method = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
-        }
-        return result.build();
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "SubmitSelfServiceVerificationFlowBody[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "SubmitSelfServiceVerificationFlowBody[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return SubmitSelfServiceVerificationFlowBody(
+        csrfToken: mapValueOfType<String>(json, r'csrf_token'),
+        email: mapValueOfType<String>(json, r'email')!,
+        method: mapValueOfType<String>(json, r'method')!,
+      );
     }
+    return null;
+  }
+
+  static List<SubmitSelfServiceVerificationFlowBody>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <SubmitSelfServiceVerificationFlowBody>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = SubmitSelfServiceVerificationFlowBody.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, SubmitSelfServiceVerificationFlowBody> mapFromJson(dynamic json) {
+    final map = <String, SubmitSelfServiceVerificationFlowBody>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SubmitSelfServiceVerificationFlowBody.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of SubmitSelfServiceVerificationFlowBody-objects as value to a dart map
+  static Map<String, List<SubmitSelfServiceVerificationFlowBody>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<SubmitSelfServiceVerificationFlowBody>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SubmitSelfServiceVerificationFlowBody.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'email',
+    'method',
+  };
 }
 

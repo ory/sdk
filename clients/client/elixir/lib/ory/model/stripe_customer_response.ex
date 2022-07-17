@@ -9,11 +9,11 @@ defmodule Ory.Model.StripeCustomerResponse do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"id"
+    :id
   ]
 
   @type t :: %__MODULE__{
-    :"id" => String.t | nil
+    :id => String.t | nil
   }
 end
 

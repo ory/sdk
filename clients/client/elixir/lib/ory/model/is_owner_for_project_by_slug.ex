@@ -9,13 +9,13 @@ defmodule Ory.Model.IsOwnerForProjectBySlug do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"ProjectSlug",
-    :"Subject"
+    :ProjectSlug,
+    :Subject
   ]
 
   @type t :: %__MODULE__{
-    :"ProjectSlug" => String.t,
-    :"Subject" => String.t
+    :ProjectSlug => String.t,
+    :Subject => String.t
   }
 end
 

@@ -1,79 +1,121 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'is_owner_for_project_by_slug.g.dart';
+class IsOwnerForProjectBySlug {
+  /// Returns a new [IsOwnerForProjectBySlug] instance.
+  IsOwnerForProjectBySlug({
+    required this.projectSlug,
+    required this.subject,
+  });
 
-abstract class IsOwnerForProjectBySlug implements Built<IsOwnerForProjectBySlug, IsOwnerForProjectBySlugBuilder> {
+  /// ProjectSlug is the project's slug.
+  String projectSlug;
 
-    /// ProjectSlug is the project's slug.
-    @BuiltValueField(wireName: r'ProjectSlug')
-    String get projectSlug;
+  /// Subject is the subject from the API Token.
+  String subject;
 
-    /// Subject is the subject from the API Token.
-    @BuiltValueField(wireName: r'Subject')
-    String get subject;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is IsOwnerForProjectBySlug &&
+     other.projectSlug == projectSlug &&
+     other.subject == subject;
 
-    IsOwnerForProjectBySlug._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (projectSlug.hashCode) +
+    (subject.hashCode);
 
-    static void _initializeBuilder(IsOwnerForProjectBySlugBuilder b) => b;
+  @override
+  String toString() => 'IsOwnerForProjectBySlug[projectSlug=$projectSlug, subject=$subject]';
 
-    factory IsOwnerForProjectBySlug([void updates(IsOwnerForProjectBySlugBuilder b)]) = _$IsOwnerForProjectBySlug;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'ProjectSlug'] = projectSlug;
+      _json[r'Subject'] = subject;
+    return _json;
+  }
 
-    @BuiltValueSerializer(custom: true)
-    static Serializer<IsOwnerForProjectBySlug> get serializer => _$IsOwnerForProjectBySlugSerializer();
-}
+  /// Returns a new [IsOwnerForProjectBySlug] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static IsOwnerForProjectBySlug? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-class _$IsOwnerForProjectBySlugSerializer implements StructuredSerializer<IsOwnerForProjectBySlug> {
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "IsOwnerForProjectBySlug[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "IsOwnerForProjectBySlug[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
 
-    @override
-    final Iterable<Type> types = const [IsOwnerForProjectBySlug, _$IsOwnerForProjectBySlug];
-    @override
-    final String wireName = r'IsOwnerForProjectBySlug';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, IsOwnerForProjectBySlug object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'ProjectSlug')
-            ..add(serializers.serialize(object.projectSlug,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'Subject')
-            ..add(serializers.serialize(object.subject,
-                specifiedType: const FullType(String)));
-        return result;
+      return IsOwnerForProjectBySlug(
+        projectSlug: mapValueOfType<String>(json, r'ProjectSlug')!,
+        subject: mapValueOfType<String>(json, r'Subject')!,
+      );
     }
+    return null;
+  }
 
-    @override
-    IsOwnerForProjectBySlug deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = IsOwnerForProjectBySlugBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'ProjectSlug':
-                    result.projectSlug = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'Subject':
-                    result.subject = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
+  static List<IsOwnerForProjectBySlug>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <IsOwnerForProjectBySlug>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = IsOwnerForProjectBySlug.fromJson(row);
+        if (value != null) {
+          result.add(value);
         }
-        return result.build();
+      }
     }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, IsOwnerForProjectBySlug> mapFromJson(dynamic json) {
+    final map = <String, IsOwnerForProjectBySlug>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = IsOwnerForProjectBySlug.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of IsOwnerForProjectBySlug-objects as value to a dart map
+  static Map<String, List<IsOwnerForProjectBySlug>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<IsOwnerForProjectBySlug>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = IsOwnerForProjectBySlug.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'ProjectSlug',
+    'Subject',
+  };
 }
 

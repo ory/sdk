@@ -9,13 +9,13 @@ defmodule Ory.Model.GetRelationTuplesResponse do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"next_page_token",
-    :"relation_tuples"
+    :next_page_token,
+    :relation_tuples
   ]
 
   @type t :: %__MODULE__{
-    :"next_page_token" => String.t | nil,
-    :"relation_tuples" => [Ory.Model.InternalRelationTuple.t] | nil
+    :next_page_token => String.t | nil,
+    :relation_tuples => [Ory.Model.InternalRelationTuple.t] | nil
   }
 end
 
@@ -23,7 +23,7 @@ defimpl Poison.Decoder, for: Ory.Model.GetRelationTuplesResponse do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"relation_tuples", :list, Ory.Model.InternalRelationTuple, options)
+    |> deserialize(:relation_tuples, :list, Ory.Model.InternalRelationTuple, options)
   end
 end
 

@@ -9,19 +9,19 @@ defmodule Ory.Model.RecoveryAddress do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"created_at",
-    :"id",
-    :"updated_at",
-    :"value",
-    :"via"
+    :created_at,
+    :id,
+    :updated_at,
+    :value,
+    :via
   ]
 
   @type t :: %__MODULE__{
-    :"created_at" => DateTime.t | nil,
-    :"id" => String.t,
-    :"updated_at" => DateTime.t | nil,
-    :"value" => String.t,
-    :"via" => String.t
+    :created_at => DateTime.t | nil,
+    :id => String.t,
+    :updated_at => DateTime.t | nil,
+    :value => String.t,
+    :via => String.t
   }
 end
 

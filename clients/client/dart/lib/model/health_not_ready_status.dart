@@ -1,71 +1,111 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'health_not_ready_status.g.dart';
+class HealthNotReadyStatus {
+  /// Returns a new [HealthNotReadyStatus] instance.
+  HealthNotReadyStatus({
+    this.errors = const {},
+  });
 
-abstract class HealthNotReadyStatus implements Built<HealthNotReadyStatus, HealthNotReadyStatusBuilder> {
+  /// Errors contains a list of errors that caused the not ready status.
+  Map<String, String> errors;
 
-    /// Errors contains a list of errors that caused the not ready status.
-    @nullable
-    @BuiltValueField(wireName: r'errors')
-    BuiltMap<String, String> get errors;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is HealthNotReadyStatus &&
+     other.errors == errors;
 
-    HealthNotReadyStatus._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (errors.hashCode);
 
-    static void _initializeBuilder(HealthNotReadyStatusBuilder b) => b;
+  @override
+  String toString() => 'HealthNotReadyStatus[errors=$errors]';
 
-    factory HealthNotReadyStatus([void updates(HealthNotReadyStatusBuilder b)]) = _$HealthNotReadyStatus;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'errors'] = errors;
+    return _json;
+  }
 
-    @BuiltValueSerializer(custom: true)
-    static Serializer<HealthNotReadyStatus> get serializer => _$HealthNotReadyStatusSerializer();
-}
+  /// Returns a new [HealthNotReadyStatus] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static HealthNotReadyStatus? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-class _$HealthNotReadyStatusSerializer implements StructuredSerializer<HealthNotReadyStatus> {
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "HealthNotReadyStatus[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "HealthNotReadyStatus[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
 
-    @override
-    final Iterable<Type> types = const [HealthNotReadyStatus, _$HealthNotReadyStatus];
-    @override
-    final String wireName = r'HealthNotReadyStatus';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, HealthNotReadyStatus object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.errors != null) {
-            result
-                ..add(r'errors')
-                ..add(serializers.serialize(object.errors,
-                    specifiedType: const FullType(BuiltMap, [FullType(String), FullType(String)])));
-        }
-        return result;
+      return HealthNotReadyStatus(
+        errors: mapCastOfType<String, String>(json, r'errors') ?? const {},
+      );
     }
+    return null;
+  }
 
-    @override
-    HealthNotReadyStatus deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = HealthNotReadyStatusBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'errors':
-                    result.errors.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltMap, [FullType(String), FullType(String)])) as BuiltMap<String, String>);
-                    break;
-            }
+  static List<HealthNotReadyStatus>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <HealthNotReadyStatus>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = HealthNotReadyStatus.fromJson(row);
+        if (value != null) {
+          result.add(value);
         }
-        return result.build();
+      }
     }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, HealthNotReadyStatus> mapFromJson(dynamic json) {
+    final map = <String, HealthNotReadyStatus>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = HealthNotReadyStatus.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of HealthNotReadyStatus-objects as value to a dart map
+  static Map<String, List<HealthNotReadyStatus>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<HealthNotReadyStatus>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = HealthNotReadyStatus.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

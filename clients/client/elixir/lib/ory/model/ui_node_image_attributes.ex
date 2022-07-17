@@ -9,19 +9,19 @@ defmodule Ory.Model.UiNodeImageAttributes do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"height",
-    :"id",
-    :"node_type",
-    :"src",
-    :"width"
+    :height,
+    :id,
+    :node_type,
+    :src,
+    :width
   ]
 
   @type t :: %__MODULE__{
-    :"height" => integer(),
-    :"id" => String.t,
-    :"node_type" => String.t,
-    :"src" => String.t,
-    :"width" => integer()
+    :height => integer(),
+    :id => String.t,
+    :node_type => String.t,
+    :src => String.t,
+    :width => integer()
   }
 end
 

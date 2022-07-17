@@ -9,13 +9,13 @@ defmodule Ory.Model.SubmitSelfServiceFlowWithWebAuthnRegistrationMethod do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"webauthn_register",
-    :"webauthn_register_displayname"
+    :webauthn_register,
+    :webauthn_register_displayname
   ]
 
   @type t :: %__MODULE__{
-    :"webauthn_register" => String.t | nil,
-    :"webauthn_register_displayname" => String.t | nil
+    :webauthn_register => String.t | nil,
+    :webauthn_register_displayname => String.t | nil
   }
 end
 

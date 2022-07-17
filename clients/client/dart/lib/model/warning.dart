@@ -1,83 +1,137 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'warning.g.dart';
+class Warning {
+  /// Returns a new [Warning] instance.
+  Warning({
+    this.code,
+    this.message,
+  });
 
-abstract class Warning implements Built<Warning, WarningBuilder> {
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? code;
 
-    @nullable
-    @BuiltValueField(wireName: r'code')
-    int get code;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? message;
 
-    @nullable
-    @BuiltValueField(wireName: r'message')
-    String get message;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is Warning &&
+     other.code == code &&
+     other.message == message;
 
-    Warning._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (code == null ? 0 : code!.hashCode) +
+    (message == null ? 0 : message!.hashCode);
 
-    static void _initializeBuilder(WarningBuilder b) => b;
+  @override
+  String toString() => 'Warning[code=$code, message=$message]';
 
-    factory Warning([void updates(WarningBuilder b)]) = _$Warning;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<Warning> get serializer => _$WarningSerializer();
-}
-
-class _$WarningSerializer implements StructuredSerializer<Warning> {
-
-    @override
-    final Iterable<Type> types = const [Warning, _$Warning];
-    @override
-    final String wireName = r'Warning';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, Warning object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.code != null) {
-            result
-                ..add(r'code')
-                ..add(serializers.serialize(object.code,
-                    specifiedType: const FullType(int)));
-        }
-        if (object.message != null) {
-            result
-                ..add(r'message')
-                ..add(serializers.serialize(object.message,
-                    specifiedType: const FullType(String)));
-        }
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+    if (code != null) {
+      _json[r'code'] = code;
+    } else {
+      _json[r'code'] = null;
     }
-
-    @override
-    Warning deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = WarningBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'code':
-                    result.code = serializers.deserialize(value,
-                        specifiedType: const FullType(int)) as int;
-                    break;
-                case r'message':
-                    result.message = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
-        }
-        return result.build();
+    if (message != null) {
+      _json[r'message'] = message;
+    } else {
+      _json[r'message'] = null;
     }
+    return _json;
+  }
+
+  /// Returns a new [Warning] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static Warning? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "Warning[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "Warning[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return Warning(
+        code: mapValueOfType<int>(json, r'code'),
+        message: mapValueOfType<String>(json, r'message'),
+      );
+    }
+    return null;
+  }
+
+  static List<Warning>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <Warning>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = Warning.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, Warning> mapFromJson(dynamic json) {
+    final map = <String, Warning>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = Warning.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of Warning-objects as value to a dart map
+  static Map<String, List<Warning>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<Warning>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = Warning.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

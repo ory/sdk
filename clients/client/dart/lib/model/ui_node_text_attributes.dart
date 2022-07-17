@@ -1,91 +1,129 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:ory_client/model/ui_text.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'ui_node_text_attributes.g.dart';
+class UiNodeTextAttributes {
+  /// Returns a new [UiNodeTextAttributes] instance.
+  UiNodeTextAttributes({
+    required this.id,
+    required this.nodeType,
+    required this.text,
+  });
 
-abstract class UiNodeTextAttributes implements Built<UiNodeTextAttributes, UiNodeTextAttributesBuilder> {
+  /// A unique identifier
+  String id;
 
-    /// A unique identifier
-    @BuiltValueField(wireName: r'id')
-    String get id;
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\".
+  String nodeType;
 
-    /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\".
-    @BuiltValueField(wireName: r'node_type')
-    String get nodeType;
+  UiText text;
 
-    @BuiltValueField(wireName: r'text')
-    UiText get text;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is UiNodeTextAttributes &&
+     other.id == id &&
+     other.nodeType == nodeType &&
+     other.text == text;
 
-    UiNodeTextAttributes._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (id.hashCode) +
+    (nodeType.hashCode) +
+    (text.hashCode);
 
-    static void _initializeBuilder(UiNodeTextAttributesBuilder b) => b;
+  @override
+  String toString() => 'UiNodeTextAttributes[id=$id, nodeType=$nodeType, text=$text]';
 
-    factory UiNodeTextAttributes([void updates(UiNodeTextAttributesBuilder b)]) = _$UiNodeTextAttributes;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'id'] = id;
+      _json[r'node_type'] = nodeType;
+      _json[r'text'] = text;
+    return _json;
+  }
 
-    @BuiltValueSerializer(custom: true)
-    static Serializer<UiNodeTextAttributes> get serializer => _$UiNodeTextAttributesSerializer();
-}
+  /// Returns a new [UiNodeTextAttributes] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static UiNodeTextAttributes? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-class _$UiNodeTextAttributesSerializer implements StructuredSerializer<UiNodeTextAttributes> {
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "UiNodeTextAttributes[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "UiNodeTextAttributes[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
 
-    @override
-    final Iterable<Type> types = const [UiNodeTextAttributes, _$UiNodeTextAttributes];
-    @override
-    final String wireName = r'UiNodeTextAttributes';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, UiNodeTextAttributes object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'id')
-            ..add(serializers.serialize(object.id,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'node_type')
-            ..add(serializers.serialize(object.nodeType,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'text')
-            ..add(serializers.serialize(object.text,
-                specifiedType: const FullType(UiText)));
-        return result;
+      return UiNodeTextAttributes(
+        id: mapValueOfType<String>(json, r'id')!,
+        nodeType: mapValueOfType<String>(json, r'node_type')!,
+        text: UiText.fromJson(json[r'text'])!,
+      );
     }
+    return null;
+  }
 
-    @override
-    UiNodeTextAttributes deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = UiNodeTextAttributesBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'id':
-                    result.id = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'node_type':
-                    result.nodeType = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'text':
-                    result.text.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(UiText)) as UiText);
-                    break;
-            }
+  static List<UiNodeTextAttributes>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <UiNodeTextAttributes>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = UiNodeTextAttributes.fromJson(row);
+        if (value != null) {
+          result.add(value);
         }
-        return result.build();
+      }
     }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, UiNodeTextAttributes> mapFromJson(dynamic json) {
+    final map = <String, UiNodeTextAttributes>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = UiNodeTextAttributes.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of UiNodeTextAttributes-objects as value to a dart map
+  static Map<String, List<UiNodeTextAttributes>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<UiNodeTextAttributes>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = UiNodeTextAttributes.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'id',
+    'node_type',
+    'text',
+  };
 }
 

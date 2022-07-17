@@ -9,29 +9,29 @@ defmodule Ory.Model.Subscription do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"created_at",
-    :"current_plan",
-    :"customer_id",
-    :"id",
-    :"ongoing_stripe_checkout_id",
-    :"payed_until",
-    :"plan_changes_at",
-    :"plan_changes_to",
-    :"status",
-    :"updated_at"
+    :created_at,
+    :current_plan,
+    :customer_id,
+    :id,
+    :ongoing_stripe_checkout_id,
+    :payed_until,
+    :plan_changes_at,
+    :plan_changes_to,
+    :status,
+    :updated_at
   ]
 
   @type t :: %__MODULE__{
-    :"created_at" => DateTime.t,
-    :"current_plan" => String.t,
-    :"customer_id" => String.t,
-    :"id" => String.t,
-    :"ongoing_stripe_checkout_id" => String.t | nil,
-    :"payed_until" => DateTime.t,
-    :"plan_changes_at" => DateTime.t | nil,
-    :"plan_changes_to" => Ory.Model.NullPlan.t,
-    :"status" => String.t,
-    :"updated_at" => DateTime.t
+    :created_at => DateTime.t,
+    :current_plan => String.t,
+    :customer_id => String.t,
+    :id => String.t,
+    :ongoing_stripe_checkout_id => String.t | nil,
+    :payed_until => DateTime.t,
+    :plan_changes_at => DateTime.t | nil,
+    :plan_changes_to => Ory.Model.NullPlan.t,
+    :status => String.t,
+    :updated_at => DateTime.t
   }
 end
 
@@ -39,7 +39,7 @@ defimpl Poison.Decoder, for: Ory.Model.Subscription do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"plan_changes_to", :struct, Ory.Model.NullPlan, options)
+    |> deserialize(:plan_changes_to, :struct, Ory.Model.NullPlan, options)
   end
 end
 

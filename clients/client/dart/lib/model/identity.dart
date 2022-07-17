@@ -1,243 +1,272 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:ory_client/model/identity_credentials.dart';
-import 'package:built_collection/built_collection.dart';
-import 'package:ory_client/model/identity_state.dart';
-import 'package:ory_client/model/recovery_address.dart';
-import 'package:ory_client/model/verifiable_identity_address.dart';
-import 'package:built_value/json_object.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'identity.g.dart';
+class Identity {
+  /// Returns a new [Identity] instance.
+  Identity({
+    this.createdAt,
+    this.credentials = const {},
+    required this.id,
+    this.metadataAdmin,
+    this.metadataPublic,
+    this.recoveryAddresses = const [],
+    required this.schemaId,
+    required this.schemaUrl,
+    this.state,
+    this.stateChangedAt,
+    required this.traits,
+    this.updatedAt,
+    this.verifiableAddresses = const [],
+  });
 
-abstract class Identity implements Built<Identity, IdentityBuilder> {
+  /// CreatedAt is a helper struct field for gobuffalo.pop.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? createdAt;
 
-    /// CreatedAt is a helper struct field for gobuffalo.pop.
-    @nullable
-    @BuiltValueField(wireName: r'created_at')
-    DateTime get createdAt;
+  /// Credentials represents all credentials that can be used for authenticating this identity.
+  Map<String, IdentityCredentials> credentials;
 
-    /// Credentials represents all credentials that can be used for authenticating this identity.
-    @nullable
-    @BuiltValueField(wireName: r'credentials')
-    BuiltMap<String, IdentityCredentials> get credentials;
+  String id;
 
-    @BuiltValueField(wireName: r'id')
-    String get id;
+  /// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  Object? metadataAdmin;
 
-    /// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
-    @nullable
-    @BuiltValueField(wireName: r'metadata_admin')
-    JsonObject get metadataAdmin;
+  /// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  Object? metadataPublic;
 
-    /// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
-    @nullable
-    @BuiltValueField(wireName: r'metadata_public')
-    JsonObject get metadataPublic;
+  /// RecoveryAddresses contains all the addresses that can be used to recover an identity.
+  List<RecoveryAddress> recoveryAddresses;
 
-    /// RecoveryAddresses contains all the addresses that can be used to recover an identity.
-    @nullable
-    @BuiltValueField(wireName: r'recovery_addresses')
-    BuiltList<RecoveryAddress> get recoveryAddresses;
+  /// SchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
+  String schemaId;
 
-    /// SchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
-    @BuiltValueField(wireName: r'schema_id')
-    String get schemaId;
+  /// SchemaURL is the URL of the endpoint where the identity's traits schema can be fetched from.  format: url
+  String schemaUrl;
 
-    /// SchemaURL is the URL of the endpoint where the identity's traits schema can be fetched from.  format: url
-    @BuiltValueField(wireName: r'schema_url')
-    String get schemaUrl;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  IdentityState? state;
 
-    @nullable
-    @BuiltValueField(wireName: r'state')
-    IdentityState get state;
-    // enum stateEnum {  active,  inactive,  };
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? stateChangedAt;
 
-    @nullable
-    @BuiltValueField(wireName: r'state_changed_at')
-    DateTime get stateChangedAt;
+  /// Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_url`.
+  Object? traits;
 
-    /// Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_url`.
-    @nullable
-    @BuiltValueField(wireName: r'traits')
-    JsonObject get traits;
+  /// UpdatedAt is a helper struct field for gobuffalo.pop.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? updatedAt;
 
-    /// UpdatedAt is a helper struct field for gobuffalo.pop.
-    @nullable
-    @BuiltValueField(wireName: r'updated_at')
-    DateTime get updatedAt;
+  /// VerifiableAddresses contains all the addresses that can be verified by the user.
+  List<VerifiableIdentityAddress> verifiableAddresses;
 
-    /// VerifiableAddresses contains all the addresses that can be verified by the user.
-    @nullable
-    @BuiltValueField(wireName: r'verifiable_addresses')
-    BuiltList<VerifiableIdentityAddress> get verifiableAddresses;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is Identity &&
+     other.createdAt == createdAt &&
+     other.credentials == credentials &&
+     other.id == id &&
+     other.metadataAdmin == metadataAdmin &&
+     other.metadataPublic == metadataPublic &&
+     other.recoveryAddresses == recoveryAddresses &&
+     other.schemaId == schemaId &&
+     other.schemaUrl == schemaUrl &&
+     other.state == state &&
+     other.stateChangedAt == stateChangedAt &&
+     other.traits == traits &&
+     other.updatedAt == updatedAt &&
+     other.verifiableAddresses == verifiableAddresses;
 
-    Identity._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (createdAt == null ? 0 : createdAt!.hashCode) +
+    (credentials.hashCode) +
+    (id.hashCode) +
+    (metadataAdmin == null ? 0 : metadataAdmin!.hashCode) +
+    (metadataPublic == null ? 0 : metadataPublic!.hashCode) +
+    (recoveryAddresses.hashCode) +
+    (schemaId.hashCode) +
+    (schemaUrl.hashCode) +
+    (state == null ? 0 : state!.hashCode) +
+    (stateChangedAt == null ? 0 : stateChangedAt!.hashCode) +
+    (traits == null ? 0 : traits!.hashCode) +
+    (updatedAt == null ? 0 : updatedAt!.hashCode) +
+    (verifiableAddresses.hashCode);
 
-    static void _initializeBuilder(IdentityBuilder b) => b;
+  @override
+  String toString() => 'Identity[createdAt=$createdAt, credentials=$credentials, id=$id, metadataAdmin=$metadataAdmin, metadataPublic=$metadataPublic, recoveryAddresses=$recoveryAddresses, schemaId=$schemaId, schemaUrl=$schemaUrl, state=$state, stateChangedAt=$stateChangedAt, traits=$traits, updatedAt=$updatedAt, verifiableAddresses=$verifiableAddresses]';
 
-    factory Identity([void updates(IdentityBuilder b)]) = _$Identity;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<Identity> get serializer => _$IdentitySerializer();
-}
-
-class _$IdentitySerializer implements StructuredSerializer<Identity> {
-
-    @override
-    final Iterable<Type> types = const [Identity, _$Identity];
-    @override
-    final String wireName = r'Identity';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, Identity object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.createdAt != null) {
-            result
-                ..add(r'created_at')
-                ..add(serializers.serialize(object.createdAt,
-                    specifiedType: const FullType(DateTime)));
-        }
-        if (object.credentials != null) {
-            result
-                ..add(r'credentials')
-                ..add(serializers.serialize(object.credentials,
-                    specifiedType: const FullType(BuiltMap, [FullType(String), FullType(IdentityCredentials)])));
-        }
-        result
-            ..add(r'id')
-            ..add(serializers.serialize(object.id,
-                specifiedType: const FullType(String)));
-        if (object.metadataAdmin != null) {
-            result
-                ..add(r'metadata_admin')
-                ..add(serializers.serialize(object.metadataAdmin,
-                    specifiedType: const FullType(JsonObject)));
-        }
-        if (object.metadataPublic != null) {
-            result
-                ..add(r'metadata_public')
-                ..add(serializers.serialize(object.metadataPublic,
-                    specifiedType: const FullType(JsonObject)));
-        }
-        if (object.recoveryAddresses != null) {
-            result
-                ..add(r'recovery_addresses')
-                ..add(serializers.serialize(object.recoveryAddresses,
-                    specifiedType: const FullType(BuiltList, [FullType(RecoveryAddress)])));
-        }
-        result
-            ..add(r'schema_id')
-            ..add(serializers.serialize(object.schemaId,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'schema_url')
-            ..add(serializers.serialize(object.schemaUrl,
-                specifiedType: const FullType(String)));
-        if (object.state != null) {
-            result
-                ..add(r'state')
-                ..add(serializers.serialize(object.state,
-                    specifiedType: const FullType(IdentityState)));
-        }
-        if (object.stateChangedAt != null) {
-            result
-                ..add(r'state_changed_at')
-                ..add(serializers.serialize(object.stateChangedAt,
-                    specifiedType: const FullType(DateTime)));
-        }
-        result
-            ..add(r'traits')
-            ..add(object.traits == null ? null : serializers.serialize(object.traits,
-                specifiedType: const FullType(JsonObject)));
-        if (object.updatedAt != null) {
-            result
-                ..add(r'updated_at')
-                ..add(serializers.serialize(object.updatedAt,
-                    specifiedType: const FullType(DateTime)));
-        }
-        if (object.verifiableAddresses != null) {
-            result
-                ..add(r'verifiable_addresses')
-                ..add(serializers.serialize(object.verifiableAddresses,
-                    specifiedType: const FullType(BuiltList, [FullType(VerifiableIdentityAddress)])));
-        }
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+    if (createdAt != null) {
+      _json[r'created_at'] = createdAt!.toUtc().toIso8601String();
+    } else {
+      _json[r'created_at'] = null;
     }
-
-    @override
-    Identity deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = IdentityBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'created_at':
-                    result.createdAt = serializers.deserialize(value,
-                        specifiedType: const FullType(DateTime)) as DateTime;
-                    break;
-                case r'credentials':
-                    result.credentials.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltMap, [FullType(String), FullType(IdentityCredentials)])) as BuiltMap<String, IdentityCredentials>);
-                    break;
-                case r'id':
-                    result.id = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'metadata_admin':
-                    result.metadataAdmin = serializers.deserialize(value,
-                        specifiedType: const FullType(JsonObject)) as JsonObject;
-                    break;
-                case r'metadata_public':
-                    result.metadataPublic = serializers.deserialize(value,
-                        specifiedType: const FullType(JsonObject)) as JsonObject;
-                    break;
-                case r'recovery_addresses':
-                    result.recoveryAddresses.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltList, [FullType(RecoveryAddress)])) as BuiltList<RecoveryAddress>);
-                    break;
-                case r'schema_id':
-                    result.schemaId = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'schema_url':
-                    result.schemaUrl = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'state':
-                    result.state = serializers.deserialize(value,
-                        specifiedType: const FullType(IdentityState)) as IdentityState;
-                    break;
-                case r'state_changed_at':
-                    result.stateChangedAt = serializers.deserialize(value,
-                        specifiedType: const FullType(DateTime)) as DateTime;
-                    break;
-                case r'traits':
-                    result.traits = serializers.deserialize(value,
-                        specifiedType: const FullType(JsonObject)) as JsonObject;
-                    break;
-                case r'updated_at':
-                    result.updatedAt = serializers.deserialize(value,
-                        specifiedType: const FullType(DateTime)) as DateTime;
-                    break;
-                case r'verifiable_addresses':
-                    result.verifiableAddresses.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltList, [FullType(VerifiableIdentityAddress)])) as BuiltList<VerifiableIdentityAddress>);
-                    break;
-            }
-        }
-        return result.build();
+      _json[r'credentials'] = credentials;
+      _json[r'id'] = id;
+    if (metadataAdmin != null) {
+      _json[r'metadata_admin'] = metadataAdmin;
+    } else {
+      _json[r'metadata_admin'] = null;
     }
+    if (metadataPublic != null) {
+      _json[r'metadata_public'] = metadataPublic;
+    } else {
+      _json[r'metadata_public'] = null;
+    }
+      _json[r'recovery_addresses'] = recoveryAddresses;
+      _json[r'schema_id'] = schemaId;
+      _json[r'schema_url'] = schemaUrl;
+    if (state != null) {
+      _json[r'state'] = state;
+    } else {
+      _json[r'state'] = null;
+    }
+    if (stateChangedAt != null) {
+      _json[r'state_changed_at'] = stateChangedAt!.toUtc().toIso8601String();
+    } else {
+      _json[r'state_changed_at'] = null;
+    }
+    if (traits != null) {
+      _json[r'traits'] = traits;
+    } else {
+      _json[r'traits'] = null;
+    }
+    if (updatedAt != null) {
+      _json[r'updated_at'] = updatedAt!.toUtc().toIso8601String();
+    } else {
+      _json[r'updated_at'] = null;
+    }
+      _json[r'verifiable_addresses'] = verifiableAddresses;
+    return _json;
+  }
+
+  /// Returns a new [Identity] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static Identity? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "Identity[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "Identity[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return Identity(
+        createdAt: mapDateTime(json, r'created_at', ''),
+        credentials: IdentityCredentials.mapFromJson(json[r'credentials']) ?? const {},
+        id: mapValueOfType<String>(json, r'id')!,
+        metadataAdmin: mapValueOfType<Object>(json, r'metadata_admin'),
+        metadataPublic: mapValueOfType<Object>(json, r'metadata_public'),
+        recoveryAddresses: RecoveryAddress.listFromJson(json[r'recovery_addresses']) ?? const [],
+        schemaId: mapValueOfType<String>(json, r'schema_id')!,
+        schemaUrl: mapValueOfType<String>(json, r'schema_url')!,
+        state: IdentityState.fromJson(json[r'state']),
+        stateChangedAt: mapDateTime(json, r'state_changed_at', ''),
+        traits: mapValueOfType<Object>(json, r'traits'),
+        updatedAt: mapDateTime(json, r'updated_at', ''),
+        verifiableAddresses: VerifiableIdentityAddress.listFromJson(json[r'verifiable_addresses']) ?? const [],
+      );
+    }
+    return null;
+  }
+
+  static List<Identity>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <Identity>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = Identity.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, Identity> mapFromJson(dynamic json) {
+    final map = <String, Identity>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = Identity.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of Identity-objects as value to a dart map
+  static Map<String, List<Identity>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<Identity>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = Identity.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'id',
+    'schema_id',
+    'schema_url',
+    'traits',
+  };
 }
 

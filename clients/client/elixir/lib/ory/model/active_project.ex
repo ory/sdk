@@ -9,11 +9,11 @@ defmodule Ory.Model.ActiveProject do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"project_id"
+    :project_id
   ]
 
   @type t :: %__MODULE__{
-    :"project_id" => String.t | nil
+    :project_id => String.t | nil
   }
 end
 

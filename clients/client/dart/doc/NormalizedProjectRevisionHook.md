@@ -9,11 +9,11 @@ import 'package:ory_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **configKey** | **String** | The Hooks Config Key | 
-**createdAt** | [**DateTime**](DateTime.md) | The Project's Revision Creation Date | [optional] 
+**createdAt** | [**DateTime**](DateTime.md) | The Project's Revision Creation Date | [optional] [readonly] 
 **hook** | **String** | The Hook Type | 
 **id** | **String** |  | [optional] 
 **projectRevisionId** | **String** |  | [optional] 
-**updatedAt** | [**DateTime**](DateTime.md) | Last Time Project's Revision was Updated | [optional] 
+**updatedAt** | [**DateTime**](DateTime.md) | Last Time Project's Revision was Updated | [optional] [readonly] 
 **webHookConfigAuthApiKeyIn** | **String** | Whether to send the API Key in the HTTP Header or as a HTTP Cookie | [optional] 
 **webHookConfigAuthApiKeyName** | **String** | The name of the api key | [optional] 
 **webHookConfigAuthApiKeyValue** | **String** | The value of the api key | [optional] 

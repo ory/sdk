@@ -1,107 +1,136 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_collection/built_collection.dart';
-import 'package:ory_client/model/ui_text.dart';
-import 'package:ory_client/model/ui_node.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'ui_container.g.dart';
+class UiContainer {
+  /// Returns a new [UiContainer] instance.
+  UiContainer({
+    required this.action,
+    this.messages = const [],
+    required this.method,
+    this.nodes = const [],
+  });
 
-abstract class UiContainer implements Built<UiContainer, UiContainerBuilder> {
+  /// Action should be used as the form action URL `<form action=\"{{ .Action }}\" method=\"post\">`.
+  String action;
 
-    /// Action should be used as the form action URL `<form action=\"{{ .Action }}\" method=\"post\">`.
-    @BuiltValueField(wireName: r'action')
-    String get action;
+  List<UiText> messages;
 
-    @nullable
-    @BuiltValueField(wireName: r'messages')
-    BuiltList<UiText> get messages;
+  /// Method is the form method (e.g. POST)
+  String method;
 
-    /// Method is the form method (e.g. POST)
-    @BuiltValueField(wireName: r'method')
-    String get method;
+  List<UiNode> nodes;
 
-    @BuiltValueField(wireName: r'nodes')
-    BuiltList<UiNode> get nodes;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is UiContainer &&
+     other.action == action &&
+     other.messages == messages &&
+     other.method == method &&
+     other.nodes == nodes;
 
-    UiContainer._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (action.hashCode) +
+    (messages.hashCode) +
+    (method.hashCode) +
+    (nodes.hashCode);
 
-    static void _initializeBuilder(UiContainerBuilder b) => b;
+  @override
+  String toString() => 'UiContainer[action=$action, messages=$messages, method=$method, nodes=$nodes]';
 
-    factory UiContainer([void updates(UiContainerBuilder b)]) = _$UiContainer;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'action'] = action;
+      _json[r'messages'] = messages;
+      _json[r'method'] = method;
+      _json[r'nodes'] = nodes;
+    return _json;
+  }
 
-    @BuiltValueSerializer(custom: true)
-    static Serializer<UiContainer> get serializer => _$UiContainerSerializer();
-}
+  /// Returns a new [UiContainer] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static UiContainer? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-class _$UiContainerSerializer implements StructuredSerializer<UiContainer> {
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "UiContainer[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "UiContainer[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
 
-    @override
-    final Iterable<Type> types = const [UiContainer, _$UiContainer];
-    @override
-    final String wireName = r'UiContainer';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, UiContainer object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'action')
-            ..add(serializers.serialize(object.action,
-                specifiedType: const FullType(String)));
-        if (object.messages != null) {
-            result
-                ..add(r'messages')
-                ..add(serializers.serialize(object.messages,
-                    specifiedType: const FullType(BuiltList, [FullType(UiText)])));
-        }
-        result
-            ..add(r'method')
-            ..add(serializers.serialize(object.method,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'nodes')
-            ..add(serializers.serialize(object.nodes,
-                specifiedType: const FullType(BuiltList, [FullType(UiNode)])));
-        return result;
+      return UiContainer(
+        action: mapValueOfType<String>(json, r'action')!,
+        messages: UiText.listFromJson(json[r'messages']) ?? const [],
+        method: mapValueOfType<String>(json, r'method')!,
+        nodes: UiNode.listFromJson(json[r'nodes'])!,
+      );
     }
+    return null;
+  }
 
-    @override
-    UiContainer deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = UiContainerBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'action':
-                    result.action = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'messages':
-                    result.messages.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltList, [FullType(UiText)])) as BuiltList<UiText>);
-                    break;
-                case r'method':
-                    result.method = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'nodes':
-                    result.nodes.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltList, [FullType(UiNode)])) as BuiltList<UiNode>);
-                    break;
-            }
+  static List<UiContainer>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <UiContainer>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = UiContainer.fromJson(row);
+        if (value != null) {
+          result.add(value);
         }
-        return result.build();
+      }
     }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, UiContainer> mapFromJson(dynamic json) {
+    final map = <String, UiContainer>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = UiContainer.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of UiContainer-objects as value to a dart map
+  static Map<String, List<UiContainer>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<UiContainer>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = UiContainer.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'action',
+    'method',
+    'nodes',
+  };
 }
 

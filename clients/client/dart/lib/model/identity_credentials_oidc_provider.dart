@@ -1,125 +1,188 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'identity_credentials_oidc_provider.g.dart';
+class IdentityCredentialsOidcProvider {
+  /// Returns a new [IdentityCredentialsOidcProvider] instance.
+  IdentityCredentialsOidcProvider({
+    this.initialAccessToken,
+    this.initialIdToken,
+    this.initialRefreshToken,
+    this.provider,
+    this.subject,
+  });
 
-abstract class IdentityCredentialsOidcProvider implements Built<IdentityCredentialsOidcProvider, IdentityCredentialsOidcProviderBuilder> {
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? initialAccessToken;
 
-    @nullable
-    @BuiltValueField(wireName: r'initial_access_token')
-    String get initialAccessToken;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? initialIdToken;
 
-    @nullable
-    @BuiltValueField(wireName: r'initial_id_token')
-    String get initialIdToken;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? initialRefreshToken;
 
-    @nullable
-    @BuiltValueField(wireName: r'initial_refresh_token')
-    String get initialRefreshToken;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? provider;
 
-    @nullable
-    @BuiltValueField(wireName: r'provider')
-    String get provider;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? subject;
 
-    @nullable
-    @BuiltValueField(wireName: r'subject')
-    String get subject;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is IdentityCredentialsOidcProvider &&
+     other.initialAccessToken == initialAccessToken &&
+     other.initialIdToken == initialIdToken &&
+     other.initialRefreshToken == initialRefreshToken &&
+     other.provider == provider &&
+     other.subject == subject;
 
-    IdentityCredentialsOidcProvider._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (initialAccessToken == null ? 0 : initialAccessToken!.hashCode) +
+    (initialIdToken == null ? 0 : initialIdToken!.hashCode) +
+    (initialRefreshToken == null ? 0 : initialRefreshToken!.hashCode) +
+    (provider == null ? 0 : provider!.hashCode) +
+    (subject == null ? 0 : subject!.hashCode);
 
-    static void _initializeBuilder(IdentityCredentialsOidcProviderBuilder b) => b;
+  @override
+  String toString() => 'IdentityCredentialsOidcProvider[initialAccessToken=$initialAccessToken, initialIdToken=$initialIdToken, initialRefreshToken=$initialRefreshToken, provider=$provider, subject=$subject]';
 
-    factory IdentityCredentialsOidcProvider([void updates(IdentityCredentialsOidcProviderBuilder b)]) = _$IdentityCredentialsOidcProvider;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<IdentityCredentialsOidcProvider> get serializer => _$IdentityCredentialsOidcProviderSerializer();
-}
-
-class _$IdentityCredentialsOidcProviderSerializer implements StructuredSerializer<IdentityCredentialsOidcProvider> {
-
-    @override
-    final Iterable<Type> types = const [IdentityCredentialsOidcProvider, _$IdentityCredentialsOidcProvider];
-    @override
-    final String wireName = r'IdentityCredentialsOidcProvider';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, IdentityCredentialsOidcProvider object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.initialAccessToken != null) {
-            result
-                ..add(r'initial_access_token')
-                ..add(serializers.serialize(object.initialAccessToken,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.initialIdToken != null) {
-            result
-                ..add(r'initial_id_token')
-                ..add(serializers.serialize(object.initialIdToken,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.initialRefreshToken != null) {
-            result
-                ..add(r'initial_refresh_token')
-                ..add(serializers.serialize(object.initialRefreshToken,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.provider != null) {
-            result
-                ..add(r'provider')
-                ..add(serializers.serialize(object.provider,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.subject != null) {
-            result
-                ..add(r'subject')
-                ..add(serializers.serialize(object.subject,
-                    specifiedType: const FullType(String)));
-        }
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+    if (initialAccessToken != null) {
+      _json[r'initial_access_token'] = initialAccessToken;
+    } else {
+      _json[r'initial_access_token'] = null;
     }
-
-    @override
-    IdentityCredentialsOidcProvider deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = IdentityCredentialsOidcProviderBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'initial_access_token':
-                    result.initialAccessToken = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'initial_id_token':
-                    result.initialIdToken = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'initial_refresh_token':
-                    result.initialRefreshToken = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'provider':
-                    result.provider = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'subject':
-                    result.subject = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
-        }
-        return result.build();
+    if (initialIdToken != null) {
+      _json[r'initial_id_token'] = initialIdToken;
+    } else {
+      _json[r'initial_id_token'] = null;
     }
+    if (initialRefreshToken != null) {
+      _json[r'initial_refresh_token'] = initialRefreshToken;
+    } else {
+      _json[r'initial_refresh_token'] = null;
+    }
+    if (provider != null) {
+      _json[r'provider'] = provider;
+    } else {
+      _json[r'provider'] = null;
+    }
+    if (subject != null) {
+      _json[r'subject'] = subject;
+    } else {
+      _json[r'subject'] = null;
+    }
+    return _json;
+  }
+
+  /// Returns a new [IdentityCredentialsOidcProvider] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static IdentityCredentialsOidcProvider? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "IdentityCredentialsOidcProvider[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "IdentityCredentialsOidcProvider[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return IdentityCredentialsOidcProvider(
+        initialAccessToken: mapValueOfType<String>(json, r'initial_access_token'),
+        initialIdToken: mapValueOfType<String>(json, r'initial_id_token'),
+        initialRefreshToken: mapValueOfType<String>(json, r'initial_refresh_token'),
+        provider: mapValueOfType<String>(json, r'provider'),
+        subject: mapValueOfType<String>(json, r'subject'),
+      );
+    }
+    return null;
+  }
+
+  static List<IdentityCredentialsOidcProvider>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <IdentityCredentialsOidcProvider>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = IdentityCredentialsOidcProvider.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, IdentityCredentialsOidcProvider> mapFromJson(dynamic json) {
+    final map = <String, IdentityCredentialsOidcProvider>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = IdentityCredentialsOidcProvider.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of IdentityCredentialsOidcProvider-objects as value to a dart map
+  static Map<String, List<IdentityCredentialsOidcProvider>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<IdentityCredentialsOidcProvider>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = IdentityCredentialsOidcProvider.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

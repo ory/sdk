@@ -9,13 +9,13 @@ defmodule Ory.Model.SuccessfulProjectUpdate do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"project",
-    :"warnings"
+    :project,
+    :warnings
   ]
 
   @type t :: %__MODULE__{
-    :"project" => Ory.Model.Project.t,
-    :"warnings" => [Ory.Model.Warning.t]
+    :project => Ory.Model.Project.t,
+    :warnings => [Ory.Model.Warning.t]
   }
 end
 
@@ -23,8 +23,8 @@ defimpl Poison.Decoder, for: Ory.Model.SuccessfulProjectUpdate do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"project", :struct, Ory.Model.Project, options)
-    |> deserialize(:"warnings", :list, Ory.Model.Warning, options)
+    |> deserialize(:project, :struct, Ory.Model.Project, options)
+    |> deserialize(:warnings, :list, Ory.Model.Warning, options)
   end
 end
 

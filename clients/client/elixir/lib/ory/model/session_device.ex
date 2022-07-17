@@ -9,11 +9,11 @@ defmodule Ory.Model.SessionDevice do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"user_agent"
+    :user_agent
   ]
 
   @type t :: %__MODULE__{
-    :"user_agent" => String.t | nil
+    :user_agent => String.t | nil
   }
 end
 

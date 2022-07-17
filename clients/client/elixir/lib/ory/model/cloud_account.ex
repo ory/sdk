@@ -9,15 +9,15 @@ defmodule Ory.Model.CloudAccount do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"email",
-    :"id",
-    :"name"
+    :email,
+    :id,
+    :name
   ]
 
   @type t :: %__MODULE__{
-    :"email" => String.t | nil,
-    :"id" => String.t | nil,
-    :"name" => String.t | nil
+    :email => String.t | nil,
+    :id => String.t | nil,
+    :name => String.t | nil
   }
 end
 

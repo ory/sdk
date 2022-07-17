@@ -1,89 +1,128 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'project_host.g.dart';
+class ProjectHost {
+  /// Returns a new [ProjectHost] instance.
+  ProjectHost({
+    required this.host,
+    required this.id,
+    required this.projectId,
+  });
 
-abstract class ProjectHost implements Built<ProjectHost, ProjectHostBuilder> {
+  /// The project's host.
+  String host;
 
-    /// The project's host.
-    @BuiltValueField(wireName: r'host')
-    String get host;
+  String id;
 
-    @BuiltValueField(wireName: r'id')
-    String get id;
+  String projectId;
 
-    @BuiltValueField(wireName: r'project_id')
-    String get projectId;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is ProjectHost &&
+     other.host == host &&
+     other.id == id &&
+     other.projectId == projectId;
 
-    ProjectHost._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (host.hashCode) +
+    (id.hashCode) +
+    (projectId.hashCode);
 
-    static void _initializeBuilder(ProjectHostBuilder b) => b;
+  @override
+  String toString() => 'ProjectHost[host=$host, id=$id, projectId=$projectId]';
 
-    factory ProjectHost([void updates(ProjectHostBuilder b)]) = _$ProjectHost;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'host'] = host;
+      _json[r'id'] = id;
+      _json[r'project_id'] = projectId;
+    return _json;
+  }
 
-    @BuiltValueSerializer(custom: true)
-    static Serializer<ProjectHost> get serializer => _$ProjectHostSerializer();
-}
+  /// Returns a new [ProjectHost] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static ProjectHost? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-class _$ProjectHostSerializer implements StructuredSerializer<ProjectHost> {
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "ProjectHost[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "ProjectHost[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
 
-    @override
-    final Iterable<Type> types = const [ProjectHost, _$ProjectHost];
-    @override
-    final String wireName = r'ProjectHost';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, ProjectHost object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'host')
-            ..add(serializers.serialize(object.host,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'id')
-            ..add(serializers.serialize(object.id,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'project_id')
-            ..add(serializers.serialize(object.projectId,
-                specifiedType: const FullType(String)));
-        return result;
+      return ProjectHost(
+        host: mapValueOfType<String>(json, r'host')!,
+        id: mapValueOfType<String>(json, r'id')!,
+        projectId: mapValueOfType<String>(json, r'project_id')!,
+      );
     }
+    return null;
+  }
 
-    @override
-    ProjectHost deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = ProjectHostBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'host':
-                    result.host = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'id':
-                    result.id = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'project_id':
-                    result.projectId = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
+  static List<ProjectHost>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <ProjectHost>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = ProjectHost.fromJson(row);
+        if (value != null) {
+          result.add(value);
         }
-        return result.build();
+      }
     }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, ProjectHost> mapFromJson(dynamic json) {
+    final map = <String, ProjectHost>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = ProjectHost.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of ProjectHost-objects as value to a dart map
+  static Map<String, List<ProjectHost>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<ProjectHost>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = ProjectHost.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'host',
+    'id',
+    'project_id',
+  };
 }
 

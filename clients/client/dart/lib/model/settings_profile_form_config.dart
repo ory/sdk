@@ -1,107 +1,136 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_collection/built_collection.dart';
-import 'package:ory_client/model/ui_text.dart';
-import 'package:ory_client/model/ui_node.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'settings_profile_form_config.g.dart';
+class SettingsProfileFormConfig {
+  /// Returns a new [SettingsProfileFormConfig] instance.
+  SettingsProfileFormConfig({
+    required this.action,
+    this.messages = const [],
+    required this.method,
+    this.nodes = const [],
+  });
 
-abstract class SettingsProfileFormConfig implements Built<SettingsProfileFormConfig, SettingsProfileFormConfigBuilder> {
+  /// Action should be used as the form action URL `<form action=\"{{ .Action }}\" method=\"post\">`.
+  String action;
 
-    /// Action should be used as the form action URL `<form action=\"{{ .Action }}\" method=\"post\">`.
-    @BuiltValueField(wireName: r'action')
-    String get action;
+  List<UiText> messages;
 
-    @nullable
-    @BuiltValueField(wireName: r'messages')
-    BuiltList<UiText> get messages;
+  /// Method is the form method (e.g. POST)
+  String method;
 
-    /// Method is the form method (e.g. POST)
-    @BuiltValueField(wireName: r'method')
-    String get method;
+  List<UiNode> nodes;
 
-    @BuiltValueField(wireName: r'nodes')
-    BuiltList<UiNode> get nodes;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is SettingsProfileFormConfig &&
+     other.action == action &&
+     other.messages == messages &&
+     other.method == method &&
+     other.nodes == nodes;
 
-    SettingsProfileFormConfig._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (action.hashCode) +
+    (messages.hashCode) +
+    (method.hashCode) +
+    (nodes.hashCode);
 
-    static void _initializeBuilder(SettingsProfileFormConfigBuilder b) => b;
+  @override
+  String toString() => 'SettingsProfileFormConfig[action=$action, messages=$messages, method=$method, nodes=$nodes]';
 
-    factory SettingsProfileFormConfig([void updates(SettingsProfileFormConfigBuilder b)]) = _$SettingsProfileFormConfig;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'action'] = action;
+      _json[r'messages'] = messages;
+      _json[r'method'] = method;
+      _json[r'nodes'] = nodes;
+    return _json;
+  }
 
-    @BuiltValueSerializer(custom: true)
-    static Serializer<SettingsProfileFormConfig> get serializer => _$SettingsProfileFormConfigSerializer();
-}
+  /// Returns a new [SettingsProfileFormConfig] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static SettingsProfileFormConfig? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-class _$SettingsProfileFormConfigSerializer implements StructuredSerializer<SettingsProfileFormConfig> {
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "SettingsProfileFormConfig[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "SettingsProfileFormConfig[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
 
-    @override
-    final Iterable<Type> types = const [SettingsProfileFormConfig, _$SettingsProfileFormConfig];
-    @override
-    final String wireName = r'SettingsProfileFormConfig';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, SettingsProfileFormConfig object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'action')
-            ..add(serializers.serialize(object.action,
-                specifiedType: const FullType(String)));
-        if (object.messages != null) {
-            result
-                ..add(r'messages')
-                ..add(serializers.serialize(object.messages,
-                    specifiedType: const FullType(BuiltList, [FullType(UiText)])));
-        }
-        result
-            ..add(r'method')
-            ..add(serializers.serialize(object.method,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'nodes')
-            ..add(serializers.serialize(object.nodes,
-                specifiedType: const FullType(BuiltList, [FullType(UiNode)])));
-        return result;
+      return SettingsProfileFormConfig(
+        action: mapValueOfType<String>(json, r'action')!,
+        messages: UiText.listFromJson(json[r'messages']) ?? const [],
+        method: mapValueOfType<String>(json, r'method')!,
+        nodes: UiNode.listFromJson(json[r'nodes'])!,
+      );
     }
+    return null;
+  }
 
-    @override
-    SettingsProfileFormConfig deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = SettingsProfileFormConfigBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'action':
-                    result.action = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'messages':
-                    result.messages.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltList, [FullType(UiText)])) as BuiltList<UiText>);
-                    break;
-                case r'method':
-                    result.method = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'nodes':
-                    result.nodes.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltList, [FullType(UiNode)])) as BuiltList<UiNode>);
-                    break;
-            }
+  static List<SettingsProfileFormConfig>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <SettingsProfileFormConfig>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = SettingsProfileFormConfig.fromJson(row);
+        if (value != null) {
+          result.add(value);
         }
-        return result.build();
+      }
     }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, SettingsProfileFormConfig> mapFromJson(dynamic json) {
+    final map = <String, SettingsProfileFormConfig>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SettingsProfileFormConfig.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of SettingsProfileFormConfig-objects as value to a dart map
+  static Map<String, List<SettingsProfileFormConfig>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<SettingsProfileFormConfig>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SettingsProfileFormConfig.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'action',
+    'method',
+    'nodes',
+  };
 }
 

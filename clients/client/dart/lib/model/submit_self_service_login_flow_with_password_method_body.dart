@@ -1,121 +1,166 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'submit_self_service_login_flow_with_password_method_body.g.dart';
+class SubmitSelfServiceLoginFlowWithPasswordMethodBody {
+  /// Returns a new [SubmitSelfServiceLoginFlowWithPasswordMethodBody] instance.
+  SubmitSelfServiceLoginFlowWithPasswordMethodBody({
+    this.csrfToken,
+    required this.identifier,
+    required this.method,
+    required this.password,
+    this.passwordIdentifier,
+  });
 
-abstract class SubmitSelfServiceLoginFlowWithPasswordMethodBody implements Built<SubmitSelfServiceLoginFlowWithPasswordMethodBody, SubmitSelfServiceLoginFlowWithPasswordMethodBodyBuilder> {
+  /// Sending the anti-csrf token is only required for browser login flows.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? csrfToken;
 
-    /// Sending the anti-csrf token is only required for browser login flows.
-    @nullable
-    @BuiltValueField(wireName: r'csrf_token')
-    String get csrfToken;
+  /// Identifier is the email or username of the user trying to log in.
+  String identifier;
 
-    /// Identifier is the email or username of the user trying to log in.
-    @BuiltValueField(wireName: r'identifier')
-    String get identifier;
+  /// Method should be set to \"password\" when logging in using the identifier and password strategy.
+  String method;
 
-    /// Method should be set to \"password\" when logging in using the identifier and password strategy.
-    @BuiltValueField(wireName: r'method')
-    String get method;
+  /// The user's password.
+  String password;
 
-    /// The user's password.
-    @BuiltValueField(wireName: r'password')
-    String get password;
+  /// Identifier is the email or username of the user trying to log in. This field is deprecated!
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? passwordIdentifier;
 
-    /// Identifier is the email or username of the user trying to log in. This field is deprecated!
-    @nullable
-    @BuiltValueField(wireName: r'password_identifier')
-    String get passwordIdentifier;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is SubmitSelfServiceLoginFlowWithPasswordMethodBody &&
+     other.csrfToken == csrfToken &&
+     other.identifier == identifier &&
+     other.method == method &&
+     other.password == password &&
+     other.passwordIdentifier == passwordIdentifier;
 
-    SubmitSelfServiceLoginFlowWithPasswordMethodBody._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (csrfToken == null ? 0 : csrfToken!.hashCode) +
+    (identifier.hashCode) +
+    (method.hashCode) +
+    (password.hashCode) +
+    (passwordIdentifier == null ? 0 : passwordIdentifier!.hashCode);
 
-    static void _initializeBuilder(SubmitSelfServiceLoginFlowWithPasswordMethodBodyBuilder b) => b;
+  @override
+  String toString() => 'SubmitSelfServiceLoginFlowWithPasswordMethodBody[csrfToken=$csrfToken, identifier=$identifier, method=$method, password=$password, passwordIdentifier=$passwordIdentifier]';
 
-    factory SubmitSelfServiceLoginFlowWithPasswordMethodBody([void updates(SubmitSelfServiceLoginFlowWithPasswordMethodBodyBuilder b)]) = _$SubmitSelfServiceLoginFlowWithPasswordMethodBody;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<SubmitSelfServiceLoginFlowWithPasswordMethodBody> get serializer => _$SubmitSelfServiceLoginFlowWithPasswordMethodBodySerializer();
-}
-
-class _$SubmitSelfServiceLoginFlowWithPasswordMethodBodySerializer implements StructuredSerializer<SubmitSelfServiceLoginFlowWithPasswordMethodBody> {
-
-    @override
-    final Iterable<Type> types = const [SubmitSelfServiceLoginFlowWithPasswordMethodBody, _$SubmitSelfServiceLoginFlowWithPasswordMethodBody];
-    @override
-    final String wireName = r'SubmitSelfServiceLoginFlowWithPasswordMethodBody';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, SubmitSelfServiceLoginFlowWithPasswordMethodBody object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.csrfToken != null) {
-            result
-                ..add(r'csrf_token')
-                ..add(serializers.serialize(object.csrfToken,
-                    specifiedType: const FullType(String)));
-        }
-        result
-            ..add(r'identifier')
-            ..add(serializers.serialize(object.identifier,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'method')
-            ..add(serializers.serialize(object.method,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'password')
-            ..add(serializers.serialize(object.password,
-                specifiedType: const FullType(String)));
-        if (object.passwordIdentifier != null) {
-            result
-                ..add(r'password_identifier')
-                ..add(serializers.serialize(object.passwordIdentifier,
-                    specifiedType: const FullType(String)));
-        }
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+    if (csrfToken != null) {
+      _json[r'csrf_token'] = csrfToken;
+    } else {
+      _json[r'csrf_token'] = null;
     }
-
-    @override
-    SubmitSelfServiceLoginFlowWithPasswordMethodBody deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = SubmitSelfServiceLoginFlowWithPasswordMethodBodyBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'csrf_token':
-                    result.csrfToken = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'identifier':
-                    result.identifier = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'method':
-                    result.method = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'password':
-                    result.password = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'password_identifier':
-                    result.passwordIdentifier = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
-        }
-        return result.build();
+      _json[r'identifier'] = identifier;
+      _json[r'method'] = method;
+      _json[r'password'] = password;
+    if (passwordIdentifier != null) {
+      _json[r'password_identifier'] = passwordIdentifier;
+    } else {
+      _json[r'password_identifier'] = null;
     }
+    return _json;
+  }
+
+  /// Returns a new [SubmitSelfServiceLoginFlowWithPasswordMethodBody] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static SubmitSelfServiceLoginFlowWithPasswordMethodBody? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "SubmitSelfServiceLoginFlowWithPasswordMethodBody[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "SubmitSelfServiceLoginFlowWithPasswordMethodBody[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return SubmitSelfServiceLoginFlowWithPasswordMethodBody(
+        csrfToken: mapValueOfType<String>(json, r'csrf_token'),
+        identifier: mapValueOfType<String>(json, r'identifier')!,
+        method: mapValueOfType<String>(json, r'method')!,
+        password: mapValueOfType<String>(json, r'password')!,
+        passwordIdentifier: mapValueOfType<String>(json, r'password_identifier'),
+      );
+    }
+    return null;
+  }
+
+  static List<SubmitSelfServiceLoginFlowWithPasswordMethodBody>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <SubmitSelfServiceLoginFlowWithPasswordMethodBody>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = SubmitSelfServiceLoginFlowWithPasswordMethodBody.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, SubmitSelfServiceLoginFlowWithPasswordMethodBody> mapFromJson(dynamic json) {
+    final map = <String, SubmitSelfServiceLoginFlowWithPasswordMethodBody>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SubmitSelfServiceLoginFlowWithPasswordMethodBody.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of SubmitSelfServiceLoginFlowWithPasswordMethodBody-objects as value to a dart map
+  static Map<String, List<SubmitSelfServiceLoginFlowWithPasswordMethodBody>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<SubmitSelfServiceLoginFlowWithPasswordMethodBody>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SubmitSelfServiceLoginFlowWithPasswordMethodBody.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'identifier',
+    'method',
+    'password',
+  };
 }
 

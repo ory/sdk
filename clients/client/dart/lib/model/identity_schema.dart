@@ -1,157 +1,192 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/json_object.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'identity_schema.g.dart';
+class IdentitySchema {
+  /// Returns a new [IdentitySchema] instance.
+  IdentitySchema({
+    required this.blobName,
+    required this.blobUrl,
+    this.contentHash,
+    required this.createdAt,
+    required this.id,
+    required this.name,
+    this.schema,
+    required this.updatedAt,
+  });
 
-abstract class IdentitySchema implements Built<IdentitySchema, IdentitySchemaBuilder> {
+  /// The gcs file name  This is a randomly generated name which is used to uniquely identify the file on the blob storage
+  String blobName;
 
-    /// The gcs file name  This is a randomly generated name which is used to uniquely identify the file on the blob storage
-    @BuiltValueField(wireName: r'blob_name')
-    String get blobName;
+  /// The publicly accessible url of the schema
+  String blobUrl;
 
-    /// The publicly accessible url of the schema
-    @BuiltValueField(wireName: r'blob_url')
-    String get blobUrl;
+  /// The Content Hash  Contains a hash of the schema's content.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? contentHash;
 
-    /// The Content Hash  Contains a hash of the schema's content.
-    @nullable
-    @BuiltValueField(wireName: r'content_hash')
-    String get contentHash;
+  /// The Schema's Creation Date
+  DateTime createdAt;
 
-    /// The Schema's Creation Date
-    @BuiltValueField(wireName: r'created_at')
-    DateTime get createdAt;
+  String id;
 
-    @BuiltValueField(wireName: r'id')
-    String get id;
+  /// The schema name  This is set by the user and is for them to easily recognise their schema
+  String name;
 
-    /// The schema name  This is set by the user and is for them to easily recognise their schema
-    @BuiltValueField(wireName: r'name')
-    String get name;
+  /// The actual Identity JSON Schema
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  Object? schema;
 
-    /// The actual Identity JSON Schema
-    @nullable
-    @BuiltValueField(wireName: r'schema')
-    JsonObject get schema;
+  /// Last Time Schema was Updated
+  DateTime updatedAt;
 
-    /// Last Time Schema was Updated
-    @BuiltValueField(wireName: r'updated_at')
-    DateTime get updatedAt;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is IdentitySchema &&
+     other.blobName == blobName &&
+     other.blobUrl == blobUrl &&
+     other.contentHash == contentHash &&
+     other.createdAt == createdAt &&
+     other.id == id &&
+     other.name == name &&
+     other.schema == schema &&
+     other.updatedAt == updatedAt;
 
-    IdentitySchema._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (blobName.hashCode) +
+    (blobUrl.hashCode) +
+    (contentHash == null ? 0 : contentHash!.hashCode) +
+    (createdAt.hashCode) +
+    (id.hashCode) +
+    (name.hashCode) +
+    (schema == null ? 0 : schema!.hashCode) +
+    (updatedAt.hashCode);
 
-    static void _initializeBuilder(IdentitySchemaBuilder b) => b;
+  @override
+  String toString() => 'IdentitySchema[blobName=$blobName, blobUrl=$blobUrl, contentHash=$contentHash, createdAt=$createdAt, id=$id, name=$name, schema=$schema, updatedAt=$updatedAt]';
 
-    factory IdentitySchema([void updates(IdentitySchemaBuilder b)]) = _$IdentitySchema;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<IdentitySchema> get serializer => _$IdentitySchemaSerializer();
-}
-
-class _$IdentitySchemaSerializer implements StructuredSerializer<IdentitySchema> {
-
-    @override
-    final Iterable<Type> types = const [IdentitySchema, _$IdentitySchema];
-    @override
-    final String wireName = r'IdentitySchema';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, IdentitySchema object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'blob_name')
-            ..add(serializers.serialize(object.blobName,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'blob_url')
-            ..add(serializers.serialize(object.blobUrl,
-                specifiedType: const FullType(String)));
-        if (object.contentHash != null) {
-            result
-                ..add(r'content_hash')
-                ..add(serializers.serialize(object.contentHash,
-                    specifiedType: const FullType(String)));
-        }
-        result
-            ..add(r'created_at')
-            ..add(serializers.serialize(object.createdAt,
-                specifiedType: const FullType(DateTime)));
-        result
-            ..add(r'id')
-            ..add(serializers.serialize(object.id,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'name')
-            ..add(serializers.serialize(object.name,
-                specifiedType: const FullType(String)));
-        if (object.schema != null) {
-            result
-                ..add(r'schema')
-                ..add(serializers.serialize(object.schema,
-                    specifiedType: const FullType(JsonObject)));
-        }
-        result
-            ..add(r'updated_at')
-            ..add(serializers.serialize(object.updatedAt,
-                specifiedType: const FullType(DateTime)));
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'blob_name'] = blobName;
+      _json[r'blob_url'] = blobUrl;
+    if (contentHash != null) {
+      _json[r'content_hash'] = contentHash;
+    } else {
+      _json[r'content_hash'] = null;
     }
-
-    @override
-    IdentitySchema deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = IdentitySchemaBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'blob_name':
-                    result.blobName = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'blob_url':
-                    result.blobUrl = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'content_hash':
-                    result.contentHash = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'created_at':
-                    result.createdAt = serializers.deserialize(value,
-                        specifiedType: const FullType(DateTime)) as DateTime;
-                    break;
-                case r'id':
-                    result.id = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'name':
-                    result.name = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'schema':
-                    result.schema = serializers.deserialize(value,
-                        specifiedType: const FullType(JsonObject)) as JsonObject;
-                    break;
-                case r'updated_at':
-                    result.updatedAt = serializers.deserialize(value,
-                        specifiedType: const FullType(DateTime)) as DateTime;
-                    break;
-            }
-        }
-        return result.build();
+      _json[r'created_at'] = createdAt.toUtc().toIso8601String();
+      _json[r'id'] = id;
+      _json[r'name'] = name;
+    if (schema != null) {
+      _json[r'schema'] = schema;
+    } else {
+      _json[r'schema'] = null;
     }
+      _json[r'updated_at'] = updatedAt.toUtc().toIso8601String();
+    return _json;
+  }
+
+  /// Returns a new [IdentitySchema] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static IdentitySchema? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "IdentitySchema[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "IdentitySchema[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return IdentitySchema(
+        blobName: mapValueOfType<String>(json, r'blob_name')!,
+        blobUrl: mapValueOfType<String>(json, r'blob_url')!,
+        contentHash: mapValueOfType<String>(json, r'content_hash'),
+        createdAt: mapDateTime(json, r'created_at', '')!,
+        id: mapValueOfType<String>(json, r'id')!,
+        name: mapValueOfType<String>(json, r'name')!,
+        schema: mapValueOfType<Object>(json, r'schema'),
+        updatedAt: mapDateTime(json, r'updated_at', '')!,
+      );
+    }
+    return null;
+  }
+
+  static List<IdentitySchema>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <IdentitySchema>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = IdentitySchema.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, IdentitySchema> mapFromJson(dynamic json) {
+    final map = <String, IdentitySchema>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = IdentitySchema.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of IdentitySchema-objects as value to a dart map
+  static Map<String, List<IdentitySchema>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<IdentitySchema>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = IdentitySchema.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'blob_name',
+    'blob_url',
+    'created_at',
+    'id',
+    'name',
+    'updated_at',
+  };
 }
 

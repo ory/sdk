@@ -1,103 +1,138 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:ory_client/model/ui_text.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'ui_node_anchor_attributes.g.dart';
+class UiNodeAnchorAttributes {
+  /// Returns a new [UiNodeAnchorAttributes] instance.
+  UiNodeAnchorAttributes({
+    required this.href,
+    required this.id,
+    required this.nodeType,
+    required this.title,
+  });
 
-abstract class UiNodeAnchorAttributes implements Built<UiNodeAnchorAttributes, UiNodeAnchorAttributesBuilder> {
+  /// The link's href (destination) URL.  format: uri
+  String href;
 
-    /// The link's href (destination) URL.  format: uri
-    @BuiltValueField(wireName: r'href')
-    String get href;
+  /// A unique identifier
+  String id;
 
-    /// A unique identifier
-    @BuiltValueField(wireName: r'id')
-    String get id;
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"a\".
+  String nodeType;
 
-    /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"a\".
-    @BuiltValueField(wireName: r'node_type')
-    String get nodeType;
+  UiText title;
 
-    @BuiltValueField(wireName: r'title')
-    UiText get title;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is UiNodeAnchorAttributes &&
+     other.href == href &&
+     other.id == id &&
+     other.nodeType == nodeType &&
+     other.title == title;
 
-    UiNodeAnchorAttributes._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (href.hashCode) +
+    (id.hashCode) +
+    (nodeType.hashCode) +
+    (title.hashCode);
 
-    static void _initializeBuilder(UiNodeAnchorAttributesBuilder b) => b;
+  @override
+  String toString() => 'UiNodeAnchorAttributes[href=$href, id=$id, nodeType=$nodeType, title=$title]';
 
-    factory UiNodeAnchorAttributes([void updates(UiNodeAnchorAttributesBuilder b)]) = _$UiNodeAnchorAttributes;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'href'] = href;
+      _json[r'id'] = id;
+      _json[r'node_type'] = nodeType;
+      _json[r'title'] = title;
+    return _json;
+  }
 
-    @BuiltValueSerializer(custom: true)
-    static Serializer<UiNodeAnchorAttributes> get serializer => _$UiNodeAnchorAttributesSerializer();
-}
+  /// Returns a new [UiNodeAnchorAttributes] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static UiNodeAnchorAttributes? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-class _$UiNodeAnchorAttributesSerializer implements StructuredSerializer<UiNodeAnchorAttributes> {
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "UiNodeAnchorAttributes[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "UiNodeAnchorAttributes[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
 
-    @override
-    final Iterable<Type> types = const [UiNodeAnchorAttributes, _$UiNodeAnchorAttributes];
-    @override
-    final String wireName = r'UiNodeAnchorAttributes';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, UiNodeAnchorAttributes object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'href')
-            ..add(serializers.serialize(object.href,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'id')
-            ..add(serializers.serialize(object.id,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'node_type')
-            ..add(serializers.serialize(object.nodeType,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'title')
-            ..add(serializers.serialize(object.title,
-                specifiedType: const FullType(UiText)));
-        return result;
+      return UiNodeAnchorAttributes(
+        href: mapValueOfType<String>(json, r'href')!,
+        id: mapValueOfType<String>(json, r'id')!,
+        nodeType: mapValueOfType<String>(json, r'node_type')!,
+        title: UiText.fromJson(json[r'title'])!,
+      );
     }
+    return null;
+  }
 
-    @override
-    UiNodeAnchorAttributes deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = UiNodeAnchorAttributesBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'href':
-                    result.href = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'id':
-                    result.id = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'node_type':
-                    result.nodeType = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'title':
-                    result.title.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(UiText)) as UiText);
-                    break;
-            }
+  static List<UiNodeAnchorAttributes>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <UiNodeAnchorAttributes>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = UiNodeAnchorAttributes.fromJson(row);
+        if (value != null) {
+          result.add(value);
         }
-        return result.build();
+      }
     }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, UiNodeAnchorAttributes> mapFromJson(dynamic json) {
+    final map = <String, UiNodeAnchorAttributes>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = UiNodeAnchorAttributes.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of UiNodeAnchorAttributes-objects as value to a dart map
+  static Map<String, List<UiNodeAnchorAttributes>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<UiNodeAnchorAttributes>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = UiNodeAnchorAttributes.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'href',
+    'id',
+    'node_type',
+    'title',
+  };
 }
 

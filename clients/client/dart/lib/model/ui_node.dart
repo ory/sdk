@@ -1,179 +1,320 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_collection/built_collection.dart';
-import 'package:ory_client/model/ui_text.dart';
-import 'package:ory_client/model/ui_node_meta.dart';
-import 'package:ory_client/model/ui_node_attributes.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'ui_node.g.dart';
+class UiNode {
+  /// Returns a new [UiNode] instance.
+  UiNode({
+    required this.attributes,
+    required this.group,
+    this.messages = const [],
+    required this.meta,
+    required this.type,
+  });
 
-abstract class UiNode implements Built<UiNode, UiNodeBuilder> {
+  UiNodeAttributes attributes;
 
-    @BuiltValueField(wireName: r'attributes')
-    UiNodeAttributes get attributes;
+  /// Group specifies which group (e.g. password authenticator) this node belongs to.
+  UiNodeGroupEnum group;
 
-    /// Group specifies which group (e.g. password authenticator) this node belongs to.
-    @BuiltValueField(wireName: r'group')
-    UiNodeGroupEnum get group;
-    // enum groupEnum {  default,  password,  oidc,  profile,  link,  totp,  lookup_secret,  webauthn,  };
+  List<UiText> messages;
 
-    @BuiltValueField(wireName: r'messages')
-    BuiltList<UiText> get messages;
+  UiNodeMeta meta;
 
-    @BuiltValueField(wireName: r'meta')
-    UiNodeMeta get meta;
+  /// The node's type
+  UiNodeTypeEnum type;
 
-    /// The node's type
-    @BuiltValueField(wireName: r'type')
-    UiNodeTypeEnum get type;
-    // enum typeEnum {  text,  input,  img,  a,  script,  };
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is UiNode &&
+     other.attributes == attributes &&
+     other.group == group &&
+     other.messages == messages &&
+     other.meta == meta &&
+     other.type == type;
 
-    UiNode._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (attributes.hashCode) +
+    (group.hashCode) +
+    (messages.hashCode) +
+    (meta.hashCode) +
+    (type.hashCode);
 
-    static void _initializeBuilder(UiNodeBuilder b) => b;
+  @override
+  String toString() => 'UiNode[attributes=$attributes, group=$group, messages=$messages, meta=$meta, type=$type]';
 
-    factory UiNode([void updates(UiNodeBuilder b)]) = _$UiNode;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'attributes'] = attributes;
+      _json[r'group'] = group;
+      _json[r'messages'] = messages;
+      _json[r'meta'] = meta;
+      _json[r'type'] = type;
+    return _json;
+  }
 
-    @BuiltValueSerializer(custom: true)
-    static Serializer<UiNode> get serializer => _$UiNodeSerializer();
-}
+  /// Returns a new [UiNode] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static UiNode? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-class _$UiNodeSerializer implements StructuredSerializer<UiNode> {
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "UiNode[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "UiNode[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
 
-    @override
-    final Iterable<Type> types = const [UiNode, _$UiNode];
-    @override
-    final String wireName = r'UiNode';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, UiNode object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'attributes')
-            ..add(serializers.serialize(object.attributes,
-                specifiedType: const FullType(UiNodeAttributes)));
-        result
-            ..add(r'group')
-            ..add(serializers.serialize(object.group,
-                specifiedType: const FullType(UiNodeGroupEnum)));
-        result
-            ..add(r'messages')
-            ..add(serializers.serialize(object.messages,
-                specifiedType: const FullType(BuiltList, [FullType(UiText)])));
-        result
-            ..add(r'meta')
-            ..add(serializers.serialize(object.meta,
-                specifiedType: const FullType(UiNodeMeta)));
-        result
-            ..add(r'type')
-            ..add(serializers.serialize(object.type,
-                specifiedType: const FullType(UiNodeTypeEnum)));
-        return result;
+      return UiNode(
+        attributes: UiNodeAttributes.fromJson(json[r'attributes'])!,
+        group: UiNodeGroupEnum.fromJson(json[r'group'])!,
+        messages: UiText.listFromJson(json[r'messages'])!,
+        meta: UiNodeMeta.fromJson(json[r'meta'])!,
+        type: UiNodeTypeEnum.fromJson(json[r'type'])!,
+      );
     }
+    return null;
+  }
 
-    @override
-    UiNode deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = UiNodeBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'attributes':
-                    result.attributes.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(UiNodeAttributes)) as UiNodeAttributes);
-                    break;
-                case r'group':
-                    result.group = serializers.deserialize(value,
-                        specifiedType: const FullType(UiNodeGroupEnum)) as UiNodeGroupEnum;
-                    break;
-                case r'messages':
-                    result.messages.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltList, [FullType(UiText)])) as BuiltList<UiText>);
-                    break;
-                case r'meta':
-                    result.meta.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(UiNodeMeta)) as UiNodeMeta);
-                    break;
-                case r'type':
-                    result.type = serializers.deserialize(value,
-                        specifiedType: const FullType(UiNodeTypeEnum)) as UiNodeTypeEnum;
-                    break;
-            }
+  static List<UiNode>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <UiNode>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = UiNode.fromJson(row);
+        if (value != null) {
+          result.add(value);
         }
-        return result.build();
+      }
     }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, UiNode> mapFromJson(dynamic json) {
+    final map = <String, UiNode>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = UiNode.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of UiNode-objects as value to a dart map
+  static Map<String, List<UiNode>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<UiNode>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = UiNode.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'attributes',
+    'group',
+    'messages',
+    'meta',
+    'type',
+  };
 }
 
-class UiNodeGroupEnum extends EnumClass {
+/// Group specifies which group (e.g. password authenticator) this node belongs to.
+class UiNodeGroupEnum {
+  /// Instantiate a new enum with the provided [value].
+  const UiNodeGroupEnum._(this.value);
 
-  /// Group specifies which group (e.g. password authenticator) this node belongs to.
-  @BuiltValueEnumConst(wireName: r'default')
-  static const UiNodeGroupEnum default_ = _$uiNodeGroupEnum_default_;
-  /// Group specifies which group (e.g. password authenticator) this node belongs to.
-  @BuiltValueEnumConst(wireName: r'password')
-  static const UiNodeGroupEnum password = _$uiNodeGroupEnum_password;
-  /// Group specifies which group (e.g. password authenticator) this node belongs to.
-  @BuiltValueEnumConst(wireName: r'oidc')
-  static const UiNodeGroupEnum oidc = _$uiNodeGroupEnum_oidc;
-  /// Group specifies which group (e.g. password authenticator) this node belongs to.
-  @BuiltValueEnumConst(wireName: r'profile')
-  static const UiNodeGroupEnum profile = _$uiNodeGroupEnum_profile;
-  /// Group specifies which group (e.g. password authenticator) this node belongs to.
-  @BuiltValueEnumConst(wireName: r'link')
-  static const UiNodeGroupEnum link = _$uiNodeGroupEnum_link;
-  /// Group specifies which group (e.g. password authenticator) this node belongs to.
-  @BuiltValueEnumConst(wireName: r'totp')
-  static const UiNodeGroupEnum totp = _$uiNodeGroupEnum_totp;
-  /// Group specifies which group (e.g. password authenticator) this node belongs to.
-  @BuiltValueEnumConst(wireName: r'lookup_secret')
-  static const UiNodeGroupEnum lookupSecret = _$uiNodeGroupEnum_lookupSecret;
-  /// Group specifies which group (e.g. password authenticator) this node belongs to.
-  @BuiltValueEnumConst(wireName: r'webauthn')
-  static const UiNodeGroupEnum webauthn = _$uiNodeGroupEnum_webauthn;
+  /// The underlying value of this enum member.
+  final String value;
 
-  static Serializer<UiNodeGroupEnum> get serializer => _$uiNodeGroupEnumSerializer;
+  @override
+  String toString() => value;
 
-  const UiNodeGroupEnum._(String name): super(name);
+  String toJson() => value;
 
-  static BuiltSet<UiNodeGroupEnum> get values => _$uiNodeGroupEnumValues;
-  static UiNodeGroupEnum valueOf(String name) => _$uiNodeGroupEnumValueOf(name);
+  static const default_ = UiNodeGroupEnum._(r'default');
+  static const password = UiNodeGroupEnum._(r'password');
+  static const oidc = UiNodeGroupEnum._(r'oidc');
+  static const profile = UiNodeGroupEnum._(r'profile');
+  static const link = UiNodeGroupEnum._(r'link');
+  static const totp = UiNodeGroupEnum._(r'totp');
+  static const lookupSecret = UiNodeGroupEnum._(r'lookup_secret');
+  static const webauthn = UiNodeGroupEnum._(r'webauthn');
+
+  /// List of all possible values in this [enum][UiNodeGroupEnum].
+  static const values = <UiNodeGroupEnum>[
+    default_,
+    password,
+    oidc,
+    profile,
+    link,
+    totp,
+    lookupSecret,
+    webauthn,
+  ];
+
+  static UiNodeGroupEnum? fromJson(dynamic value) => UiNodeGroupEnumTypeTransformer().decode(value);
+
+  static List<UiNodeGroupEnum>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <UiNodeGroupEnum>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = UiNodeGroupEnum.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
 }
 
-class UiNodeTypeEnum extends EnumClass {
+/// Transformation class that can [encode] an instance of [UiNodeGroupEnum] to String,
+/// and [decode] dynamic data back to [UiNodeGroupEnum].
+class UiNodeGroupEnumTypeTransformer {
+  factory UiNodeGroupEnumTypeTransformer() => _instance ??= const UiNodeGroupEnumTypeTransformer._();
 
-  /// The node's type
-  @BuiltValueEnumConst(wireName: r'text')
-  static const UiNodeTypeEnum text = _$uiNodeTypeEnum_text;
-  /// The node's type
-  @BuiltValueEnumConst(wireName: r'input')
-  static const UiNodeTypeEnum input = _$uiNodeTypeEnum_input;
-  /// The node's type
-  @BuiltValueEnumConst(wireName: r'img')
-  static const UiNodeTypeEnum img = _$uiNodeTypeEnum_img;
-  /// The node's type
-  @BuiltValueEnumConst(wireName: r'a')
-  static const UiNodeTypeEnum a = _$uiNodeTypeEnum_a;
-  /// The node's type
-  @BuiltValueEnumConst(wireName: r'script')
-  static const UiNodeTypeEnum script = _$uiNodeTypeEnum_script;
+  const UiNodeGroupEnumTypeTransformer._();
 
-  static Serializer<UiNodeTypeEnum> get serializer => _$uiNodeTypeEnumSerializer;
+  String encode(UiNodeGroupEnum data) => data.value;
 
-  const UiNodeTypeEnum._(String name): super(name);
+  /// Decodes a [dynamic value][data] to a UiNodeGroupEnum.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  UiNodeGroupEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data != null) {
+      switch (data.toString()) {
+        case r'default': return UiNodeGroupEnum.default_;
+        case r'password': return UiNodeGroupEnum.password;
+        case r'oidc': return UiNodeGroupEnum.oidc;
+        case r'profile': return UiNodeGroupEnum.profile;
+        case r'link': return UiNodeGroupEnum.link;
+        case r'totp': return UiNodeGroupEnum.totp;
+        case r'lookup_secret': return UiNodeGroupEnum.lookupSecret;
+        case r'webauthn': return UiNodeGroupEnum.webauthn;
+        default:
+          if (!allowNull) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
 
-  static BuiltSet<UiNodeTypeEnum> get values => _$uiNodeTypeEnumValues;
-  static UiNodeTypeEnum valueOf(String name) => _$uiNodeTypeEnumValueOf(name);
+  /// Singleton [UiNodeGroupEnumTypeTransformer] instance.
+  static UiNodeGroupEnumTypeTransformer? _instance;
 }
+
+
+/// The node's type
+class UiNodeTypeEnum {
+  /// Instantiate a new enum with the provided [value].
+  const UiNodeTypeEnum._(this.value);
+
+  /// The underlying value of this enum member.
+  final String value;
+
+  @override
+  String toString() => value;
+
+  String toJson() => value;
+
+  static const text = UiNodeTypeEnum._(r'text');
+  static const input = UiNodeTypeEnum._(r'input');
+  static const img = UiNodeTypeEnum._(r'img');
+  static const a = UiNodeTypeEnum._(r'a');
+  static const script = UiNodeTypeEnum._(r'script');
+
+  /// List of all possible values in this [enum][UiNodeTypeEnum].
+  static const values = <UiNodeTypeEnum>[
+    text,
+    input,
+    img,
+    a,
+    script,
+  ];
+
+  static UiNodeTypeEnum? fromJson(dynamic value) => UiNodeTypeEnumTypeTransformer().decode(value);
+
+  static List<UiNodeTypeEnum>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <UiNodeTypeEnum>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = UiNodeTypeEnum.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+}
+
+/// Transformation class that can [encode] an instance of [UiNodeTypeEnum] to String,
+/// and [decode] dynamic data back to [UiNodeTypeEnum].
+class UiNodeTypeEnumTypeTransformer {
+  factory UiNodeTypeEnumTypeTransformer() => _instance ??= const UiNodeTypeEnumTypeTransformer._();
+
+  const UiNodeTypeEnumTypeTransformer._();
+
+  String encode(UiNodeTypeEnum data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a UiNodeTypeEnum.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  UiNodeTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data != null) {
+      switch (data.toString()) {
+        case r'text': return UiNodeTypeEnum.text;
+        case r'input': return UiNodeTypeEnum.input;
+        case r'img': return UiNodeTypeEnum.img;
+        case r'a': return UiNodeTypeEnum.a;
+        case r'script': return UiNodeTypeEnum.script;
+        default:
+          if (!allowNull) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [UiNodeTypeEnumTypeTransformer] instance.
+  static UiNodeTypeEnumTypeTransformer? _instance;
+}
+
 

@@ -1,144 +1,228 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_collection/built_collection.dart';
-import 'package:ory_client/model/project_services.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'project.g.dart';
+class Project {
+  /// Returns a new [Project] instance.
+  Project({
+    required this.id,
+    required this.name,
+    required this.revisionId,
+    required this.services,
+    required this.slug,
+    required this.state,
+  });
 
-abstract class Project implements Built<Project, ProjectBuilder> {
+  String id;
 
-    @BuiltValueField(wireName: r'id')
-    String get id;
+  /// The name of the project.
+  String name;
 
-    /// The name of the project.
-    @BuiltValueField(wireName: r'name')
-    String get name;
+  String revisionId;
 
-    @BuiltValueField(wireName: r'revision_id')
-    String get revisionId;
+  ProjectServices services;
 
-    @BuiltValueField(wireName: r'services')
-    ProjectServices get services;
+  /// The project's slug
+  String slug;
 
-    /// The project's slug
-    @BuiltValueField(wireName: r'slug')
-    String get slug;
+  /// The state of the project. running Running halted Halted
+  ProjectStateEnum state;
 
-    /// The state of the project. running Running halted Halted
-    @BuiltValueField(wireName: r'state')
-    ProjectStateEnum get state;
-    // enum stateEnum {  running,  halted,  };
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is Project &&
+     other.id == id &&
+     other.name == name &&
+     other.revisionId == revisionId &&
+     other.services == services &&
+     other.slug == slug &&
+     other.state == state;
 
-    Project._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (id.hashCode) +
+    (name.hashCode) +
+    (revisionId.hashCode) +
+    (services.hashCode) +
+    (slug.hashCode) +
+    (state.hashCode);
 
-    static void _initializeBuilder(ProjectBuilder b) => b;
+  @override
+  String toString() => 'Project[id=$id, name=$name, revisionId=$revisionId, services=$services, slug=$slug, state=$state]';
 
-    factory Project([void updates(ProjectBuilder b)]) = _$Project;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'id'] = id;
+      _json[r'name'] = name;
+      _json[r'revision_id'] = revisionId;
+      _json[r'services'] = services;
+      _json[r'slug'] = slug;
+      _json[r'state'] = state;
+    return _json;
+  }
 
-    @BuiltValueSerializer(custom: true)
-    static Serializer<Project> get serializer => _$ProjectSerializer();
-}
+  /// Returns a new [Project] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static Project? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-class _$ProjectSerializer implements StructuredSerializer<Project> {
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "Project[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "Project[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
 
-    @override
-    final Iterable<Type> types = const [Project, _$Project];
-    @override
-    final String wireName = r'Project';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, Project object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'id')
-            ..add(serializers.serialize(object.id,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'name')
-            ..add(serializers.serialize(object.name,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'revision_id')
-            ..add(serializers.serialize(object.revisionId,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'services')
-            ..add(serializers.serialize(object.services,
-                specifiedType: const FullType(ProjectServices)));
-        result
-            ..add(r'slug')
-            ..add(serializers.serialize(object.slug,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'state')
-            ..add(serializers.serialize(object.state,
-                specifiedType: const FullType(ProjectStateEnum)));
-        return result;
+      return Project(
+        id: mapValueOfType<String>(json, r'id')!,
+        name: mapValueOfType<String>(json, r'name')!,
+        revisionId: mapValueOfType<String>(json, r'revision_id')!,
+        services: ProjectServices.fromJson(json[r'services'])!,
+        slug: mapValueOfType<String>(json, r'slug')!,
+        state: ProjectStateEnum.fromJson(json[r'state'])!,
+      );
     }
+    return null;
+  }
 
-    @override
-    Project deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = ProjectBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'id':
-                    result.id = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'name':
-                    result.name = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'revision_id':
-                    result.revisionId = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'services':
-                    result.services.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(ProjectServices)) as ProjectServices);
-                    break;
-                case r'slug':
-                    result.slug = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'state':
-                    result.state = serializers.deserialize(value,
-                        specifiedType: const FullType(ProjectStateEnum)) as ProjectStateEnum;
-                    break;
-            }
+  static List<Project>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <Project>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = Project.fromJson(row);
+        if (value != null) {
+          result.add(value);
         }
-        return result.build();
+      }
     }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, Project> mapFromJson(dynamic json) {
+    final map = <String, Project>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = Project.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of Project-objects as value to a dart map
+  static Map<String, List<Project>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<Project>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = Project.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'id',
+    'name',
+    'revision_id',
+    'services',
+    'slug',
+    'state',
+  };
 }
 
-class ProjectStateEnum extends EnumClass {
+/// The state of the project. running Running halted Halted
+class ProjectStateEnum {
+  /// Instantiate a new enum with the provided [value].
+  const ProjectStateEnum._(this.value);
 
-  /// The state of the project. running Running halted Halted
-  @BuiltValueEnumConst(wireName: r'running')
-  static const ProjectStateEnum running = _$projectStateEnum_running;
-  /// The state of the project. running Running halted Halted
-  @BuiltValueEnumConst(wireName: r'halted')
-  static const ProjectStateEnum halted = _$projectStateEnum_halted;
+  /// The underlying value of this enum member.
+  final String value;
 
-  static Serializer<ProjectStateEnum> get serializer => _$projectStateEnumSerializer;
+  @override
+  String toString() => value;
 
-  const ProjectStateEnum._(String name): super(name);
+  String toJson() => value;
 
-  static BuiltSet<ProjectStateEnum> get values => _$projectStateEnumValues;
-  static ProjectStateEnum valueOf(String name) => _$projectStateEnumValueOf(name);
+  static const running = ProjectStateEnum._(r'running');
+  static const halted = ProjectStateEnum._(r'halted');
+
+  /// List of all possible values in this [enum][ProjectStateEnum].
+  static const values = <ProjectStateEnum>[
+    running,
+    halted,
+  ];
+
+  static ProjectStateEnum? fromJson(dynamic value) => ProjectStateEnumTypeTransformer().decode(value);
+
+  static List<ProjectStateEnum>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <ProjectStateEnum>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = ProjectStateEnum.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
 }
+
+/// Transformation class that can [encode] an instance of [ProjectStateEnum] to String,
+/// and [decode] dynamic data back to [ProjectStateEnum].
+class ProjectStateEnumTypeTransformer {
+  factory ProjectStateEnumTypeTransformer() => _instance ??= const ProjectStateEnumTypeTransformer._();
+
+  const ProjectStateEnumTypeTransformer._();
+
+  String encode(ProjectStateEnum data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a ProjectStateEnum.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  ProjectStateEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data != null) {
+      switch (data.toString()) {
+        case r'running': return ProjectStateEnum.running;
+        case r'halted': return ProjectStateEnum.halted;
+        default:
+          if (!allowNull) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [ProjectStateEnumTypeTransformer] instance.
+  static ProjectStateEnumTypeTransformer? _instance;
+}
+
 

@@ -9,11 +9,11 @@ defmodule Ory.Model.InvitePayload do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"invitee_email"
+    :invitee_email
   ]
 
   @type t :: %__MODULE__{
-    :"invitee_email" => String.t | nil
+    :invitee_email => String.t | nil
   }
 end
 

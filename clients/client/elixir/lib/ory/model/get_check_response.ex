@@ -9,11 +9,11 @@ defmodule Ory.Model.GetCheckResponse do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"allowed"
+    :allowed
   ]
 
   @type t :: %__MODULE__{
-    :"allowed" => boolean()
+    :allowed => boolean()
   }
 end
 

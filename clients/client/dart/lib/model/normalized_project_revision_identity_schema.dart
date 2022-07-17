@@ -1,202 +1,273 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:ory_client/model/identity_schema.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'normalized_project_revision_identity_schema.g.dart';
+class NormalizedProjectRevisionIdentitySchema {
+  /// Returns a new [NormalizedProjectRevisionIdentitySchema] instance.
+  NormalizedProjectRevisionIdentitySchema({
+    this.createdAt,
+    this.id,
+    this.identitySchema,
+    this.identitySchemaId,
+    this.importId,
+    this.importUrl,
+    this.isDefault,
+    this.preset,
+    this.projectRevisionId,
+    this.updatedAt,
+  });
 
-abstract class NormalizedProjectRevisionIdentitySchema implements Built<NormalizedProjectRevisionIdentitySchema, NormalizedProjectRevisionIdentitySchemaBuilder> {
+  /// The Project's Revision Creation Date
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? createdAt;
 
-    /// The Project's Revision Creation Date
-    @nullable
-    @BuiltValueField(wireName: r'created_at')
-    DateTime get createdAt;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? id;
 
-    @nullable
-    @BuiltValueField(wireName: r'id')
-    String get id;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  IdentitySchema? identitySchema;
 
-    @nullable
-    @BuiltValueField(wireName: r'identity_schema')
-    IdentitySchema get identitySchema;
+  String? identitySchemaId;
 
-    @nullable
-    @BuiltValueField(wireName: r'identity_schema_id')
-    String get identitySchemaId;
+  /// The imported (named) ID of the Identity Schema referenced in the Ory Kratos config.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? importId;
 
-    /// The imported (named) ID of the Identity Schema referenced in the Ory Kratos config.
-    @nullable
-    @BuiltValueField(wireName: r'import_id')
-    String get importId;
+  /// The ImportURL can be used to import an Identity Schema from a bse64 encoded string. In the future, this key also support HTTPS and other sources!  If you import an Ory Kratos configuration, this would be akin to the `identity.schemas.#.url` key.  The configuration will always return the import URL when you fetch it from the API.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? importUrl;
 
-    /// The ImportURL can be used to import an Identity Schema from a bse64 encoded string. In the future, this key also support HTTPS and other sources!  If you import an Ory Kratos configuration, this would be akin to the `identity.schemas.#.url` key.  The configuration will always return the import URL when you fetch it from the API.
-    @nullable
-    @BuiltValueField(wireName: r'import_url')
-    String get importUrl;
+  /// If true sets the default schema for identities  Only one schema can ever be the default schema. If you try to add two schemas with default to true, the request will fail.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? isDefault;
 
-    /// If true sets the default schema for identities  Only one schema can ever be the default schema. If you try to add two schemas with default to true, the request will fail.
-    @nullable
-    @BuiltValueField(wireName: r'is_default')
-    bool get isDefault;
+  /// Use a preset instead of a custom identity schema.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? preset;
 
-    /// Use a preset instead of a custom identity schema.
-    @nullable
-    @BuiltValueField(wireName: r'preset')
-    String get preset;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? projectRevisionId;
 
-    @nullable
-    @BuiltValueField(wireName: r'project_revision_id')
-    String get projectRevisionId;
+  /// Last Time Project's Revision was Updated
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? updatedAt;
 
-    /// Last Time Project's Revision was Updated
-    @nullable
-    @BuiltValueField(wireName: r'updated_at')
-    DateTime get updatedAt;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is NormalizedProjectRevisionIdentitySchema &&
+     other.createdAt == createdAt &&
+     other.id == id &&
+     other.identitySchema == identitySchema &&
+     other.identitySchemaId == identitySchemaId &&
+     other.importId == importId &&
+     other.importUrl == importUrl &&
+     other.isDefault == isDefault &&
+     other.preset == preset &&
+     other.projectRevisionId == projectRevisionId &&
+     other.updatedAt == updatedAt;
 
-    NormalizedProjectRevisionIdentitySchema._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (createdAt == null ? 0 : createdAt!.hashCode) +
+    (id == null ? 0 : id!.hashCode) +
+    (identitySchema == null ? 0 : identitySchema!.hashCode) +
+    (identitySchemaId == null ? 0 : identitySchemaId!.hashCode) +
+    (importId == null ? 0 : importId!.hashCode) +
+    (importUrl == null ? 0 : importUrl!.hashCode) +
+    (isDefault == null ? 0 : isDefault!.hashCode) +
+    (preset == null ? 0 : preset!.hashCode) +
+    (projectRevisionId == null ? 0 : projectRevisionId!.hashCode) +
+    (updatedAt == null ? 0 : updatedAt!.hashCode);
 
-    static void _initializeBuilder(NormalizedProjectRevisionIdentitySchemaBuilder b) => b;
+  @override
+  String toString() => 'NormalizedProjectRevisionIdentitySchema[createdAt=$createdAt, id=$id, identitySchema=$identitySchema, identitySchemaId=$identitySchemaId, importId=$importId, importUrl=$importUrl, isDefault=$isDefault, preset=$preset, projectRevisionId=$projectRevisionId, updatedAt=$updatedAt]';
 
-    factory NormalizedProjectRevisionIdentitySchema([void updates(NormalizedProjectRevisionIdentitySchemaBuilder b)]) = _$NormalizedProjectRevisionIdentitySchema;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<NormalizedProjectRevisionIdentitySchema> get serializer => _$NormalizedProjectRevisionIdentitySchemaSerializer();
-}
-
-class _$NormalizedProjectRevisionIdentitySchemaSerializer implements StructuredSerializer<NormalizedProjectRevisionIdentitySchema> {
-
-    @override
-    final Iterable<Type> types = const [NormalizedProjectRevisionIdentitySchema, _$NormalizedProjectRevisionIdentitySchema];
-    @override
-    final String wireName = r'NormalizedProjectRevisionIdentitySchema';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, NormalizedProjectRevisionIdentitySchema object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.createdAt != null) {
-            result
-                ..add(r'created_at')
-                ..add(serializers.serialize(object.createdAt,
-                    specifiedType: const FullType(DateTime)));
-        }
-        if (object.id != null) {
-            result
-                ..add(r'id')
-                ..add(serializers.serialize(object.id,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.identitySchema != null) {
-            result
-                ..add(r'identity_schema')
-                ..add(serializers.serialize(object.identitySchema,
-                    specifiedType: const FullType(IdentitySchema)));
-        }
-        if (object.identitySchemaId != null) {
-            result
-                ..add(r'identity_schema_id')
-                ..add(serializers.serialize(object.identitySchemaId,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.importId != null) {
-            result
-                ..add(r'import_id')
-                ..add(serializers.serialize(object.importId,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.importUrl != null) {
-            result
-                ..add(r'import_url')
-                ..add(serializers.serialize(object.importUrl,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.isDefault != null) {
-            result
-                ..add(r'is_default')
-                ..add(serializers.serialize(object.isDefault,
-                    specifiedType: const FullType(bool)));
-        }
-        if (object.preset != null) {
-            result
-                ..add(r'preset')
-                ..add(serializers.serialize(object.preset,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.projectRevisionId != null) {
-            result
-                ..add(r'project_revision_id')
-                ..add(serializers.serialize(object.projectRevisionId,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.updatedAt != null) {
-            result
-                ..add(r'updated_at')
-                ..add(serializers.serialize(object.updatedAt,
-                    specifiedType: const FullType(DateTime)));
-        }
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+    if (createdAt != null) {
+      _json[r'created_at'] = createdAt!.toUtc().toIso8601String();
+    } else {
+      _json[r'created_at'] = null;
     }
-
-    @override
-    NormalizedProjectRevisionIdentitySchema deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = NormalizedProjectRevisionIdentitySchemaBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'created_at':
-                    result.createdAt = serializers.deserialize(value,
-                        specifiedType: const FullType(DateTime)) as DateTime;
-                    break;
-                case r'id':
-                    result.id = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'identity_schema':
-                    result.identitySchema.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(IdentitySchema)) as IdentitySchema);
-                    break;
-                case r'identity_schema_id':
-                    result.identitySchemaId = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'import_id':
-                    result.importId = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'import_url':
-                    result.importUrl = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'is_default':
-                    result.isDefault = serializers.deserialize(value,
-                        specifiedType: const FullType(bool)) as bool;
-                    break;
-                case r'preset':
-                    result.preset = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'project_revision_id':
-                    result.projectRevisionId = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'updated_at':
-                    result.updatedAt = serializers.deserialize(value,
-                        specifiedType: const FullType(DateTime)) as DateTime;
-                    break;
-            }
-        }
-        return result.build();
+    if (id != null) {
+      _json[r'id'] = id;
+    } else {
+      _json[r'id'] = null;
     }
+    if (identitySchema != null) {
+      _json[r'identity_schema'] = identitySchema;
+    } else {
+      _json[r'identity_schema'] = null;
+    }
+    if (identitySchemaId != null) {
+      _json[r'identity_schema_id'] = identitySchemaId;
+    } else {
+      _json[r'identity_schema_id'] = null;
+    }
+    if (importId != null) {
+      _json[r'import_id'] = importId;
+    } else {
+      _json[r'import_id'] = null;
+    }
+    if (importUrl != null) {
+      _json[r'import_url'] = importUrl;
+    } else {
+      _json[r'import_url'] = null;
+    }
+    if (isDefault != null) {
+      _json[r'is_default'] = isDefault;
+    } else {
+      _json[r'is_default'] = null;
+    }
+    if (preset != null) {
+      _json[r'preset'] = preset;
+    } else {
+      _json[r'preset'] = null;
+    }
+    if (projectRevisionId != null) {
+      _json[r'project_revision_id'] = projectRevisionId;
+    } else {
+      _json[r'project_revision_id'] = null;
+    }
+    if (updatedAt != null) {
+      _json[r'updated_at'] = updatedAt!.toUtc().toIso8601String();
+    } else {
+      _json[r'updated_at'] = null;
+    }
+    return _json;
+  }
+
+  /// Returns a new [NormalizedProjectRevisionIdentitySchema] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static NormalizedProjectRevisionIdentitySchema? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "NormalizedProjectRevisionIdentitySchema[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "NormalizedProjectRevisionIdentitySchema[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return NormalizedProjectRevisionIdentitySchema(
+        createdAt: mapDateTime(json, r'created_at', ''),
+        id: mapValueOfType<String>(json, r'id'),
+        identitySchema: IdentitySchema.fromJson(json[r'identity_schema']),
+        identitySchemaId: mapValueOfType<String>(json, r'identity_schema_id'),
+        importId: mapValueOfType<String>(json, r'import_id'),
+        importUrl: mapValueOfType<String>(json, r'import_url'),
+        isDefault: mapValueOfType<bool>(json, r'is_default'),
+        preset: mapValueOfType<String>(json, r'preset'),
+        projectRevisionId: mapValueOfType<String>(json, r'project_revision_id'),
+        updatedAt: mapDateTime(json, r'updated_at', ''),
+      );
+    }
+    return null;
+  }
+
+  static List<NormalizedProjectRevisionIdentitySchema>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <NormalizedProjectRevisionIdentitySchema>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = NormalizedProjectRevisionIdentitySchema.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, NormalizedProjectRevisionIdentitySchema> mapFromJson(dynamic json) {
+    final map = <String, NormalizedProjectRevisionIdentitySchema>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = NormalizedProjectRevisionIdentitySchema.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of NormalizedProjectRevisionIdentitySchema-objects as value to a dart map
+  static Map<String, List<NormalizedProjectRevisionIdentitySchema>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<NormalizedProjectRevisionIdentitySchema>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = NormalizedProjectRevisionIdentitySchema.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

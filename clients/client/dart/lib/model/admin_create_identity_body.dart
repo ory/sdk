@@ -1,174 +1,195 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:ory_client/model/admin_identity_import_credentials.dart';
-import 'package:built_collection/built_collection.dart';
-import 'package:ory_client/model/identity_state.dart';
-import 'package:ory_client/model/recovery_address.dart';
-import 'package:ory_client/model/verifiable_identity_address.dart';
-import 'package:built_value/json_object.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'admin_create_identity_body.g.dart';
+class AdminCreateIdentityBody {
+  /// Returns a new [AdminCreateIdentityBody] instance.
+  AdminCreateIdentityBody({
+    this.credentials,
+    this.metadataAdmin,
+    this.metadataPublic,
+    this.recoveryAddresses = const [],
+    required this.schemaId,
+    this.state,
+    required this.traits,
+    this.verifiableAddresses = const [],
+  });
 
-abstract class AdminCreateIdentityBody implements Built<AdminCreateIdentityBody, AdminCreateIdentityBodyBuilder> {
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  AdminIdentityImportCredentials? credentials;
 
-    @nullable
-    @BuiltValueField(wireName: r'credentials')
-    AdminIdentityImportCredentials get credentials;
+  /// Store metadata about the user which is only accessible through admin APIs such as `GET /admin/identities/<id>`.
+  Object? metadataAdmin;
 
-    /// Store metadata about the user which is only accessible through admin APIs such as `GET /admin/identities/<id>`.
-    @nullable
-    @BuiltValueField(wireName: r'metadata_admin')
-    JsonObject get metadataAdmin;
+  /// Store metadata about the identity which the identity itself can see when calling for example the session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field.
+  Object? metadataPublic;
 
-    /// Store metadata about the identity which the identity itself can see when calling for example the session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field.
-    @nullable
-    @BuiltValueField(wireName: r'metadata_public')
-    JsonObject get metadataPublic;
+  /// RecoveryAddresses contains all the addresses that can be used to recover an identity.  Use this structure to import recovery addresses for an identity. Please keep in mind that the address needs to be represented in the Identity Schema or this field will be overwritten on the next identity update.
+  List<RecoveryAddress> recoveryAddresses;
 
-    /// RecoveryAddresses contains all the addresses that can be used to recover an identity.  Use this structure to import recovery addresses for an identity. Please keep in mind that the address needs to be represented in the Identity Schema or this field will be overwritten on the next identity update.
-    @nullable
-    @BuiltValueField(wireName: r'recovery_addresses')
-    BuiltList<RecoveryAddress> get recoveryAddresses;
+  /// SchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
+  String schemaId;
 
-    /// SchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
-    @BuiltValueField(wireName: r'schema_id')
-    String get schemaId;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  IdentityState? state;
 
-    @nullable
-    @BuiltValueField(wireName: r'state')
-    IdentityState get state;
-    // enum stateEnum {  active,  inactive,  };
+  /// Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_url`.
+  Object traits;
 
-    /// Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_url`.
-    @BuiltValueField(wireName: r'traits')
-    JsonObject get traits;
+  /// VerifiableAddresses contains all the addresses that can be verified by the user.  Use this structure to import verified addresses for an identity. Please keep in mind that the address needs to be represented in the Identity Schema or this field will be overwritten on the next identity update.
+  List<VerifiableIdentityAddress> verifiableAddresses;
 
-    /// VerifiableAddresses contains all the addresses that can be verified by the user.  Use this structure to import verified addresses for an identity. Please keep in mind that the address needs to be represented in the Identity Schema or this field will be overwritten on the next identity update.
-    @nullable
-    @BuiltValueField(wireName: r'verifiable_addresses')
-    BuiltList<VerifiableIdentityAddress> get verifiableAddresses;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is AdminCreateIdentityBody &&
+     other.credentials == credentials &&
+     other.metadataAdmin == metadataAdmin &&
+     other.metadataPublic == metadataPublic &&
+     other.recoveryAddresses == recoveryAddresses &&
+     other.schemaId == schemaId &&
+     other.state == state &&
+     other.traits == traits &&
+     other.verifiableAddresses == verifiableAddresses;
 
-    AdminCreateIdentityBody._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (credentials == null ? 0 : credentials!.hashCode) +
+    (metadataAdmin == null ? 0 : metadataAdmin!.hashCode) +
+    (metadataPublic == null ? 0 : metadataPublic!.hashCode) +
+    (recoveryAddresses.hashCode) +
+    (schemaId.hashCode) +
+    (state == null ? 0 : state!.hashCode) +
+    (traits.hashCode) +
+    (verifiableAddresses.hashCode);
 
-    static void _initializeBuilder(AdminCreateIdentityBodyBuilder b) => b;
+  @override
+  String toString() => 'AdminCreateIdentityBody[credentials=$credentials, metadataAdmin=$metadataAdmin, metadataPublic=$metadataPublic, recoveryAddresses=$recoveryAddresses, schemaId=$schemaId, state=$state, traits=$traits, verifiableAddresses=$verifiableAddresses]';
 
-    factory AdminCreateIdentityBody([void updates(AdminCreateIdentityBodyBuilder b)]) = _$AdminCreateIdentityBody;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<AdminCreateIdentityBody> get serializer => _$AdminCreateIdentityBodySerializer();
-}
-
-class _$AdminCreateIdentityBodySerializer implements StructuredSerializer<AdminCreateIdentityBody> {
-
-    @override
-    final Iterable<Type> types = const [AdminCreateIdentityBody, _$AdminCreateIdentityBody];
-    @override
-    final String wireName = r'AdminCreateIdentityBody';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, AdminCreateIdentityBody object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.credentials != null) {
-            result
-                ..add(r'credentials')
-                ..add(serializers.serialize(object.credentials,
-                    specifiedType: const FullType(AdminIdentityImportCredentials)));
-        }
-        if (object.metadataAdmin != null) {
-            result
-                ..add(r'metadata_admin')
-                ..add(serializers.serialize(object.metadataAdmin,
-                    specifiedType: const FullType(JsonObject)));
-        }
-        if (object.metadataPublic != null) {
-            result
-                ..add(r'metadata_public')
-                ..add(serializers.serialize(object.metadataPublic,
-                    specifiedType: const FullType(JsonObject)));
-        }
-        if (object.recoveryAddresses != null) {
-            result
-                ..add(r'recovery_addresses')
-                ..add(serializers.serialize(object.recoveryAddresses,
-                    specifiedType: const FullType(BuiltList, [FullType(RecoveryAddress)])));
-        }
-        result
-            ..add(r'schema_id')
-            ..add(serializers.serialize(object.schemaId,
-                specifiedType: const FullType(String)));
-        if (object.state != null) {
-            result
-                ..add(r'state')
-                ..add(serializers.serialize(object.state,
-                    specifiedType: const FullType(IdentityState)));
-        }
-        result
-            ..add(r'traits')
-            ..add(serializers.serialize(object.traits,
-                specifiedType: const FullType(JsonObject)));
-        if (object.verifiableAddresses != null) {
-            result
-                ..add(r'verifiable_addresses')
-                ..add(serializers.serialize(object.verifiableAddresses,
-                    specifiedType: const FullType(BuiltList, [FullType(VerifiableIdentityAddress)])));
-        }
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+    if (credentials != null) {
+      _json[r'credentials'] = credentials;
+    } else {
+      _json[r'credentials'] = null;
     }
-
-    @override
-    AdminCreateIdentityBody deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = AdminCreateIdentityBodyBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'credentials':
-                    result.credentials.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(AdminIdentityImportCredentials)) as AdminIdentityImportCredentials);
-                    break;
-                case r'metadata_admin':
-                    result.metadataAdmin = serializers.deserialize(value,
-                        specifiedType: const FullType(JsonObject)) as JsonObject;
-                    break;
-                case r'metadata_public':
-                    result.metadataPublic = serializers.deserialize(value,
-                        specifiedType: const FullType(JsonObject)) as JsonObject;
-                    break;
-                case r'recovery_addresses':
-                    result.recoveryAddresses.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltList, [FullType(RecoveryAddress)])) as BuiltList<RecoveryAddress>);
-                    break;
-                case r'schema_id':
-                    result.schemaId = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'state':
-                    result.state = serializers.deserialize(value,
-                        specifiedType: const FullType(IdentityState)) as IdentityState;
-                    break;
-                case r'traits':
-                    result.traits = serializers.deserialize(value,
-                        specifiedType: const FullType(JsonObject)) as JsonObject;
-                    break;
-                case r'verifiable_addresses':
-                    result.verifiableAddresses.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltList, [FullType(VerifiableIdentityAddress)])) as BuiltList<VerifiableIdentityAddress>);
-                    break;
-            }
-        }
-        return result.build();
+    if (metadataAdmin != null) {
+      _json[r'metadata_admin'] = metadataAdmin;
+    } else {
+      _json[r'metadata_admin'] = null;
     }
+    if (metadataPublic != null) {
+      _json[r'metadata_public'] = metadataPublic;
+    } else {
+      _json[r'metadata_public'] = null;
+    }
+      _json[r'recovery_addresses'] = recoveryAddresses;
+      _json[r'schema_id'] = schemaId;
+    if (state != null) {
+      _json[r'state'] = state;
+    } else {
+      _json[r'state'] = null;
+    }
+      _json[r'traits'] = traits;
+      _json[r'verifiable_addresses'] = verifiableAddresses;
+    return _json;
+  }
+
+  /// Returns a new [AdminCreateIdentityBody] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static AdminCreateIdentityBody? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "AdminCreateIdentityBody[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "AdminCreateIdentityBody[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return AdminCreateIdentityBody(
+        credentials: AdminIdentityImportCredentials.fromJson(json[r'credentials']),
+        metadataAdmin: mapValueOfType<Object>(json, r'metadata_admin'),
+        metadataPublic: mapValueOfType<Object>(json, r'metadata_public'),
+        recoveryAddresses: RecoveryAddress.listFromJson(json[r'recovery_addresses']) ?? const [],
+        schemaId: mapValueOfType<String>(json, r'schema_id')!,
+        state: IdentityState.fromJson(json[r'state']),
+        traits: mapValueOfType<Object>(json, r'traits')!,
+        verifiableAddresses: VerifiableIdentityAddress.listFromJson(json[r'verifiable_addresses']) ?? const [],
+      );
+    }
+    return null;
+  }
+
+  static List<AdminCreateIdentityBody>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <AdminCreateIdentityBody>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = AdminCreateIdentityBody.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, AdminCreateIdentityBody> mapFromJson(dynamic json) {
+    final map = <String, AdminCreateIdentityBody>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = AdminCreateIdentityBody.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of AdminCreateIdentityBody-objects as value to a dart map
+  static Map<String, List<AdminCreateIdentityBody>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<AdminCreateIdentityBody>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = AdminCreateIdentityBody.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'schema_id',
+    'traits',
+  };
 }
 

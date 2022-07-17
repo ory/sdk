@@ -9,19 +9,19 @@ defmodule Ory.Model.SubmitSelfServiceLoginFlowWithPasswordMethodBody do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"csrf_token",
-    :"identifier",
-    :"method",
-    :"password",
-    :"password_identifier"
+    :csrf_token,
+    :identifier,
+    :method,
+    :password,
+    :password_identifier
   ]
 
   @type t :: %__MODULE__{
-    :"csrf_token" => String.t | nil,
-    :"identifier" => String.t,
-    :"method" => String.t,
-    :"password" => String.t,
-    :"password_identifier" => String.t | nil
+    :csrf_token => String.t | nil,
+    :identifier => String.t,
+    :method => String.t,
+    :password => String.t,
+    :password_identifier => String.t | nil
   }
 end
 

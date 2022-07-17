@@ -9,19 +9,19 @@ defmodule Ory.Model.SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"csrf_token",
-    :"method",
-    :"traits",
-    :"webauthn_register",
-    :"webauthn_register_displayname"
+    :csrf_token,
+    :method,
+    :traits,
+    :webauthn_register,
+    :webauthn_register_displayname
   ]
 
   @type t :: %__MODULE__{
-    :"csrf_token" => String.t | nil,
-    :"method" => String.t,
-    :"traits" => map(),
-    :"webauthn_register" => String.t | nil,
-    :"webauthn_register_displayname" => String.t | nil
+    :csrf_token => String.t | nil,
+    :method => String.t,
+    :traits => map(),
+    :webauthn_register => String.t | nil,
+    :webauthn_register_displayname => String.t | nil
   }
 end
 

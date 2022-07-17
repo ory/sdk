@@ -9,13 +9,13 @@ defmodule Ory.Model.IdentitySchemaValidationResult do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"message",
-    :"valid"
+    :message,
+    :valid
   ]
 
   @type t :: %__MODULE__{
-    :"message" => String.t | nil,
-    :"valid" => boolean() | nil
+    :message => String.t | nil,
+    :valid => boolean() | nil
   }
 end
 

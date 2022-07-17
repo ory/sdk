@@ -25,22 +25,25 @@ To learn how relation tuples and the check works, head over to [the documentatio
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
 
-var api_instance = new ReadApi();
-var namespace = namespace_example; // String | Namespace of the Relation Tuple
-var object = object_example; // String | Object of the Relation Tuple
-var relation = relation_example; // String | Relation of the Relation Tuple
-var subjectId = subjectId_example; // String | SubjectID of the Relation Tuple
-var subjectSetPeriodNamespace = subjectSetPeriodNamespace_example; // String | Namespace of the Subject Set
-var subjectSetPeriodObject = subjectSetPeriodObject_example; // String | Object of the Subject Set
-var subjectSetPeriodRelation = subjectSetPeriodRelation_example; // String | Relation of the Subject Set
-var maxDepth = 789; // int | 
+final api_instance = ReadApi();
+final namespace = namespace_example; // String | Namespace of the Relation Tuple
+final object = object_example; // String | Object of the Relation Tuple
+final relation = relation_example; // String | Relation of the Relation Tuple
+final subjectId = subjectId_example; // String | SubjectID of the Relation Tuple
+final subjectSetPeriodNamespace = subjectSetPeriodNamespace_example; // String | Namespace of the Subject Set
+final subjectSetPeriodObject = subjectSetPeriodObject_example; // String | Object of the Subject Set
+final subjectSetPeriodRelation = subjectSetPeriodRelation_example; // String | Relation of the Subject Set
+final maxDepth = 789; // int | 
 
 try {
-    var result = api_instance.getCheck(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation, maxDepth);
+    final result = api_instance.getCheck(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation, maxDepth);
     print(result);
 } catch (e) {
     print('Exception when calling ReadApi->getCheck: $e\n');
@@ -85,18 +88,21 @@ Use this endpoint to expand a relation tuple.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
 
-var api_instance = new ReadApi();
-var namespace = namespace_example; // String | Namespace of the Subject Set
-var object = object_example; // String | Object of the Subject Set
-var relation = relation_example; // String | Relation of the Subject Set
-var maxDepth = 789; // int | 
+final api_instance = ReadApi();
+final namespace = namespace_example; // String | Namespace of the Subject Set
+final object = object_example; // String | Object of the Subject Set
+final relation = relation_example; // String | Relation of the Subject Set
+final maxDepth = 789; // int | 
 
 try {
-    var result = api_instance.getExpand(namespace, object, relation, maxDepth);
+    final result = api_instance.getExpand(namespace, object, relation, maxDepth);
     print(result);
 } catch (e) {
     print('Exception when calling ReadApi->getExpand: $e\n');
@@ -137,23 +143,26 @@ Get all relation tuples that match the query. Only the namespace field is requir
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
 
-var api_instance = new ReadApi();
-var pageToken = pageToken_example; // String | 
-var pageSize = 789; // int | 
-var namespace = namespace_example; // String | Namespace of the Relation Tuple
-var object = object_example; // String | Object of the Relation Tuple
-var relation = relation_example; // String | Relation of the Relation Tuple
-var subjectId = subjectId_example; // String | SubjectID of the Relation Tuple
-var subjectSetPeriodNamespace = subjectSetPeriodNamespace_example; // String | Namespace of the Subject Set
-var subjectSetPeriodObject = subjectSetPeriodObject_example; // String | Object of the Subject Set
-var subjectSetPeriodRelation = subjectSetPeriodRelation_example; // String | Relation of the Subject Set
+final api_instance = ReadApi();
+final pageToken = pageToken_example; // String | 
+final pageSize = 789; // int | 
+final namespace = namespace_example; // String | Namespace of the Relation Tuple
+final object = object_example; // String | Object of the Relation Tuple
+final relation = relation_example; // String | Relation of the Relation Tuple
+final subjectId = subjectId_example; // String | SubjectID of the Relation Tuple
+final subjectSetPeriodNamespace = subjectSetPeriodNamespace_example; // String | Namespace of the Subject Set
+final subjectSetPeriodObject = subjectSetPeriodObject_example; // String | Object of the Subject Set
+final subjectSetPeriodRelation = subjectSetPeriodRelation_example; // String | Relation of the Subject Set
 
 try {
-    var result = api_instance.getRelationTuples(pageToken, pageSize, namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation);
+    final result = api_instance.getRelationTuples(pageToken, pageSize, namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation);
     print(result);
 } catch (e) {
     print('Exception when calling ReadApi->getRelationTuples: $e\n');
@@ -199,16 +208,19 @@ To learn how relation tuples and the check works, head over to [the documentatio
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
 
-var api_instance = new ReadApi();
-var maxDepth = 789; // int | 
-var relationQuery = new RelationQuery(); // RelationQuery | 
+final api_instance = ReadApi();
+final maxDepth = 789; // int | 
+final relationQuery = RelationQuery(); // RelationQuery | 
 
 try {
-    var result = api_instance.postCheck(maxDepth, relationQuery);
+    final result = api_instance.postCheck(maxDepth, relationQuery);
     print(result);
 } catch (e) {
     print('Exception when calling ReadApi->postCheck: $e\n');

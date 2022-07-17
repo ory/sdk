@@ -9,11 +9,11 @@ defmodule Ory.Model.HealthNotReadyStatus do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"errors"
+    :errors
   ]
 
   @type t :: %__MODULE__{
-    :"errors" => %{optional(String.t) => String.t} | nil
+    :errors => %{optional(String.t) => String.t} | nil
   }
 end
 

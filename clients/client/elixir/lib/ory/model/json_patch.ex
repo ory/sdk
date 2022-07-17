@@ -9,15 +9,15 @@ defmodule Ory.Model.JsonPatch do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"op",
-    :"path",
-    :"value"
+    :op,
+    :path,
+    :value
   ]
 
   @type t :: %__MODULE__{
-    :"op" => String.t,
-    :"path" => String.t,
-    :"value" => AnyType | nil
+    :op => String.t,
+    :path => String.t,
+    :value => AnyType | nil
   }
 end
 
@@ -25,7 +25,7 @@ defimpl Poison.Decoder, for: Ory.Model.JsonPatch do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"value", :struct, Ory.Model.AnyType, options)
+    |> deserialize(:value, :struct, Ory.Model.AnyType, options)
   end
 end
 

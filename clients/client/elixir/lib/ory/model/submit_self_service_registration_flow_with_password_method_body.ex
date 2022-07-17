@@ -9,17 +9,17 @@ defmodule Ory.Model.SubmitSelfServiceRegistrationFlowWithPasswordMethodBody do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"csrf_token",
-    :"method",
-    :"password",
-    :"traits"
+    :csrf_token,
+    :method,
+    :password,
+    :traits
   ]
 
   @type t :: %__MODULE__{
-    :"csrf_token" => String.t | nil,
-    :"method" => String.t,
-    :"password" => String.t,
-    :"traits" => map()
+    :csrf_token => String.t | nil,
+    :method => String.t,
+    :password => String.t,
+    :traits => map()
   }
 end
 

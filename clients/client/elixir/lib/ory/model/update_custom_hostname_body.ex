@@ -9,17 +9,17 @@ defmodule Ory.Model.UpdateCustomHostnameBody do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"cookie_domain",
-    :"cors_allowed_origins",
-    :"cors_enabled",
-    :"hostname"
+    :cookie_domain,
+    :cors_allowed_origins,
+    :cors_enabled,
+    :hostname
   ]
 
   @type t :: %__MODULE__{
-    :"cookie_domain" => String.t | nil,
-    :"cors_allowed_origins" => [String.t] | nil,
-    :"cors_enabled" => boolean() | nil,
-    :"hostname" => String.t | nil
+    :cookie_domain => String.t | nil,
+    :cors_allowed_origins => [String.t] | nil,
+    :cors_enabled => boolean() | nil,
+    :hostname => String.t | nil
   }
 end
 

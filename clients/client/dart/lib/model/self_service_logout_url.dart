@@ -1,79 +1,121 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'self_service_logout_url.g.dart';
+class SelfServiceLogoutUrl {
+  /// Returns a new [SelfServiceLogoutUrl] instance.
+  SelfServiceLogoutUrl({
+    required this.logoutToken,
+    required this.logoutUrl,
+  });
 
-abstract class SelfServiceLogoutUrl implements Built<SelfServiceLogoutUrl, SelfServiceLogoutUrlBuilder> {
+  /// LogoutToken can be used to perform logout using AJAX.
+  String logoutToken;
 
-    /// LogoutToken can be used to perform logout using AJAX.
-    @BuiltValueField(wireName: r'logout_token')
-    String get logoutToken;
+  /// LogoutURL can be opened in a browser to sign the user out.  format: uri
+  String logoutUrl;
 
-    /// LogoutURL can be opened in a browser to sign the user out.  format: uri
-    @BuiltValueField(wireName: r'logout_url')
-    String get logoutUrl;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is SelfServiceLogoutUrl &&
+     other.logoutToken == logoutToken &&
+     other.logoutUrl == logoutUrl;
 
-    SelfServiceLogoutUrl._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (logoutToken.hashCode) +
+    (logoutUrl.hashCode);
 
-    static void _initializeBuilder(SelfServiceLogoutUrlBuilder b) => b;
+  @override
+  String toString() => 'SelfServiceLogoutUrl[logoutToken=$logoutToken, logoutUrl=$logoutUrl]';
 
-    factory SelfServiceLogoutUrl([void updates(SelfServiceLogoutUrlBuilder b)]) = _$SelfServiceLogoutUrl;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'logout_token'] = logoutToken;
+      _json[r'logout_url'] = logoutUrl;
+    return _json;
+  }
 
-    @BuiltValueSerializer(custom: true)
-    static Serializer<SelfServiceLogoutUrl> get serializer => _$SelfServiceLogoutUrlSerializer();
-}
+  /// Returns a new [SelfServiceLogoutUrl] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static SelfServiceLogoutUrl? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-class _$SelfServiceLogoutUrlSerializer implements StructuredSerializer<SelfServiceLogoutUrl> {
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "SelfServiceLogoutUrl[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "SelfServiceLogoutUrl[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
 
-    @override
-    final Iterable<Type> types = const [SelfServiceLogoutUrl, _$SelfServiceLogoutUrl];
-    @override
-    final String wireName = r'SelfServiceLogoutUrl';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, SelfServiceLogoutUrl object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'logout_token')
-            ..add(serializers.serialize(object.logoutToken,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'logout_url')
-            ..add(serializers.serialize(object.logoutUrl,
-                specifiedType: const FullType(String)));
-        return result;
+      return SelfServiceLogoutUrl(
+        logoutToken: mapValueOfType<String>(json, r'logout_token')!,
+        logoutUrl: mapValueOfType<String>(json, r'logout_url')!,
+      );
     }
+    return null;
+  }
 
-    @override
-    SelfServiceLogoutUrl deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = SelfServiceLogoutUrlBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'logout_token':
-                    result.logoutToken = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'logout_url':
-                    result.logoutUrl = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
+  static List<SelfServiceLogoutUrl>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <SelfServiceLogoutUrl>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = SelfServiceLogoutUrl.fromJson(row);
+        if (value != null) {
+          result.add(value);
         }
-        return result.build();
+      }
     }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, SelfServiceLogoutUrl> mapFromJson(dynamic json) {
+    final map = <String, SelfServiceLogoutUrl>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SelfServiceLogoutUrl.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of SelfServiceLogoutUrl-objects as value to a dart map
+  static Map<String, List<SelfServiceLogoutUrl>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<SelfServiceLogoutUrl>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SelfServiceLogoutUrl.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'logout_token',
+    'logout_url',
+  };
 }
 

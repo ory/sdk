@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active** | **bool** | Active state. If false the session is no longer active. | [optional] 
 **authenticatedAt** | [**DateTime**](DateTime.md) | The Session Authentication Timestamp  When this session was authenticated at. If multi-factor authentication was used this is the time when the last factor was authenticated (e.g. the TOTP code challenge was completed). | [optional] 
-**authenticationMethods** | [**BuiltList<SessionAuthenticationMethod>**](SessionAuthenticationMethod.md) | A list of authenticators which were used to authenticate the session. | [optional] 
+**authenticationMethods** | [**List<SessionAuthenticationMethod>**](SessionAuthenticationMethod.md) | A list of authenticators which were used to authenticate the session. | [optional] [default to const []]
 **authenticatorAssuranceLevel** | [**AuthenticatorAssuranceLevel**](AuthenticatorAssuranceLevel.md) |  | [optional] 
 **expiresAt** | [**DateTime**](DateTime.md) | The Session Expiry  When this session expires at. | [optional] 
 **id** | **String** |  | 

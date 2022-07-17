@@ -9,11 +9,11 @@ defmodule Ory.Model.IdentitySchemaLocation do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"location"
+    :location
   ]
 
   @type t :: %__MODULE__{
-    :"location" => String.t | nil
+    :location => String.t | nil
   }
 end
 

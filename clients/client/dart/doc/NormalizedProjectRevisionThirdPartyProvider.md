@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **azureTenant** | **String** | Tenant is the Azure AD Tenant to use for authentication, and must be set when `provider` is set to `microsoft`.  Can be either `common`, `organizations`, `consumers` for a multitenant application or a specific tenant like `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` or `contoso.onmicrosoft.com`. | [optional] 
 **clientId** | **String** | ClientID is the application's Client ID. | [optional] 
 **clientSecret** | **String** |  | [optional] 
-**createdAt** | [**DateTime**](DateTime.md) | The Project's Revision Creation Date | [optional] 
+**createdAt** | [**DateTime**](DateTime.md) | The Project's Revision Creation Date | [optional] [readonly] 
 **id** | **String** |  | [optional] 
 **issuerUrl** | **String** | IssuerURL is the OpenID Connect Server URL. You can leave this empty if `provider` is not set to `generic`. If set, neither `auth_url` nor `token_url` are required. | [optional] 
 **label** | **String** | Label represents an optional label which can be used in the UI generation. | [optional] 
@@ -23,10 +23,10 @@ Name | Type | Description | Notes
 **projectRevisionId** | **String** |  | [optional] 
 **provider** | **String** | Provider is either \"generic\" for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple | [optional] 
 **providerId** | **String** | ID is the provider's ID | [optional] 
-**requestedClaims** | [**JsonObject**](.md) |  | [optional] 
-**scope** | **BuiltList<String>** |  | [optional] 
+**requestedClaims** | [**Object**](.md) |  | [optional] 
+**scope** | **List<String>** |  | [optional] [default to const []]
 **tokenUrl** | **String** | TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when `provider` is set to `generic`. | [optional] 
-**updatedAt** | [**DateTime**](DateTime.md) | Last Time Project's Revision was Updated | [optional] 
+**updatedAt** | [**DateTime**](DateTime.md) | Last Time Project's Revision was Updated | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -9,13 +9,13 @@ defmodule Ory.Model.UpdateSubscriptionPayload do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"plan_or_price",
-    :"return_to"
+    :plan_or_price,
+    :return_to
   ]
 
   @type t :: %__MODULE__{
-    :"plan_or_price" => String.t,
-    :"return_to" => String.t | nil
+    :plan_or_price => String.t,
+    :return_to => String.t | nil
   }
 end
 

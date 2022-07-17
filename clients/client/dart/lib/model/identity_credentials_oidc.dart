@@ -1,71 +1,110 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_collection/built_collection.dart';
-import 'package:ory_client/model/identity_credentials_oidc_provider.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'identity_credentials_oidc.g.dart';
+class IdentityCredentialsOidc {
+  /// Returns a new [IdentityCredentialsOidc] instance.
+  IdentityCredentialsOidc({
+    this.providers = const [],
+  });
 
-abstract class IdentityCredentialsOidc implements Built<IdentityCredentialsOidc, IdentityCredentialsOidcBuilder> {
+  List<IdentityCredentialsOidcProvider> providers;
 
-    @nullable
-    @BuiltValueField(wireName: r'providers')
-    BuiltList<IdentityCredentialsOidcProvider> get providers;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is IdentityCredentialsOidc &&
+     other.providers == providers;
 
-    IdentityCredentialsOidc._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (providers.hashCode);
 
-    static void _initializeBuilder(IdentityCredentialsOidcBuilder b) => b;
+  @override
+  String toString() => 'IdentityCredentialsOidc[providers=$providers]';
 
-    factory IdentityCredentialsOidc([void updates(IdentityCredentialsOidcBuilder b)]) = _$IdentityCredentialsOidc;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'providers'] = providers;
+    return _json;
+  }
 
-    @BuiltValueSerializer(custom: true)
-    static Serializer<IdentityCredentialsOidc> get serializer => _$IdentityCredentialsOidcSerializer();
-}
+  /// Returns a new [IdentityCredentialsOidc] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static IdentityCredentialsOidc? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-class _$IdentityCredentialsOidcSerializer implements StructuredSerializer<IdentityCredentialsOidc> {
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "IdentityCredentialsOidc[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "IdentityCredentialsOidc[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
 
-    @override
-    final Iterable<Type> types = const [IdentityCredentialsOidc, _$IdentityCredentialsOidc];
-    @override
-    final String wireName = r'IdentityCredentialsOidc';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, IdentityCredentialsOidc object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.providers != null) {
-            result
-                ..add(r'providers')
-                ..add(serializers.serialize(object.providers,
-                    specifiedType: const FullType(BuiltList, [FullType(IdentityCredentialsOidcProvider)])));
-        }
-        return result;
+      return IdentityCredentialsOidc(
+        providers: IdentityCredentialsOidcProvider.listFromJson(json[r'providers']) ?? const [],
+      );
     }
+    return null;
+  }
 
-    @override
-    IdentityCredentialsOidc deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = IdentityCredentialsOidcBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'providers':
-                    result.providers.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltList, [FullType(IdentityCredentialsOidcProvider)])) as BuiltList<IdentityCredentialsOidcProvider>);
-                    break;
-            }
+  static List<IdentityCredentialsOidc>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <IdentityCredentialsOidc>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = IdentityCredentialsOidc.fromJson(row);
+        if (value != null) {
+          result.add(value);
         }
-        return result.build();
+      }
     }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, IdentityCredentialsOidc> mapFromJson(dynamic json) {
+    final map = <String, IdentityCredentialsOidc>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = IdentityCredentialsOidc.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of IdentityCredentialsOidc-objects as value to a dart map
+  static Map<String, List<IdentityCredentialsOidc>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<IdentityCredentialsOidc>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = IdentityCredentialsOidc.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

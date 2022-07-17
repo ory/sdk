@@ -9,15 +9,15 @@ defmodule Ory.Model.SubmitSelfServiceSettingsFlowWithProfileMethodBody do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"csrf_token",
-    :"method",
-    :"traits"
+    :csrf_token,
+    :method,
+    :traits
   ]
 
   @type t :: %__MODULE__{
-    :"csrf_token" => String.t | nil,
-    :"method" => String.t,
-    :"traits" => map()
+    :csrf_token => String.t | nil,
+    :method => String.t,
+    :traits => map()
   }
 end
 

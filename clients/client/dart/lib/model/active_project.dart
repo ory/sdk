@@ -1,70 +1,121 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'active_project.g.dart';
+class ActiveProject {
+  /// Returns a new [ActiveProject] instance.
+  ActiveProject({
+    this.projectId,
+  });
 
-abstract class ActiveProject implements Built<ActiveProject, ActiveProjectBuilder> {
+  /// The Active Project ID  format: uuid
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? projectId;
 
-    /// The Active Project ID  format: uuid
-    @nullable
-    @BuiltValueField(wireName: r'project_id')
-    String get projectId;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is ActiveProject &&
+     other.projectId == projectId;
 
-    ActiveProject._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (projectId == null ? 0 : projectId!.hashCode);
 
-    static void _initializeBuilder(ActiveProjectBuilder b) => b;
+  @override
+  String toString() => 'ActiveProject[projectId=$projectId]';
 
-    factory ActiveProject([void updates(ActiveProjectBuilder b)]) = _$ActiveProject;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<ActiveProject> get serializer => _$ActiveProjectSerializer();
-}
-
-class _$ActiveProjectSerializer implements StructuredSerializer<ActiveProject> {
-
-    @override
-    final Iterable<Type> types = const [ActiveProject, _$ActiveProject];
-    @override
-    final String wireName = r'ActiveProject';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, ActiveProject object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.projectId != null) {
-            result
-                ..add(r'project_id')
-                ..add(serializers.serialize(object.projectId,
-                    specifiedType: const FullType(String)));
-        }
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+    if (projectId != null) {
+      _json[r'project_id'] = projectId;
+    } else {
+      _json[r'project_id'] = null;
     }
+    return _json;
+  }
 
-    @override
-    ActiveProject deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = ActiveProjectBuilder();
+  /// Returns a new [ActiveProject] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static ActiveProject? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'project_id':
-                    result.projectId = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
-        }
-        return result.build();
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "ActiveProject[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "ActiveProject[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return ActiveProject(
+        projectId: mapValueOfType<String>(json, r'project_id'),
+      );
     }
+    return null;
+  }
+
+  static List<ActiveProject>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <ActiveProject>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = ActiveProject.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, ActiveProject> mapFromJson(dynamic json) {
+    final map = <String, ActiveProject>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = ActiveProject.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of ActiveProject-objects as value to a dart map
+  static Map<String, List<ActiveProject>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<ActiveProject>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = ActiveProject.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

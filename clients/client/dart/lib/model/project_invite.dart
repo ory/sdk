@@ -1,162 +1,183 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'project_invite.g.dart';
+class ProjectInvite {
+  /// Returns a new [ProjectInvite] instance.
+  ProjectInvite({
+    required this.createdAt,
+    required this.id,
+    required this.inviteeEmail,
+    this.inviteeId,
+    required this.ownerEmail,
+    required this.ownerId,
+    required this.projectId,
+    required this.status,
+    required this.updatedAt,
+  });
 
-abstract class ProjectInvite implements Built<ProjectInvite, ProjectInviteBuilder> {
+  /// The Project's Revision Creation Date
+  DateTime createdAt;
 
-    /// The Project's Revision Creation Date
-    @BuiltValueField(wireName: r'created_at')
-    DateTime get createdAt;
+  String id;
 
-    @BuiltValueField(wireName: r'id')
-    String get id;
+  /// The invitee's email
+  String inviteeEmail;
 
-    /// The invitee's email
-    @BuiltValueField(wireName: r'invitee_email')
-    String get inviteeEmail;
+  String? inviteeId;
 
-    @nullable
-    @BuiltValueField(wireName: r'invitee_id')
-    String get inviteeId;
+  /// The invite owner's email Usually the project's owner email
+  String ownerEmail;
 
-    /// The invite owner's email Usually the project's owner email
-    @BuiltValueField(wireName: r'owner_email')
-    String get ownerEmail;
+  String ownerId;
 
-    @BuiltValueField(wireName: r'owner_id')
-    String get ownerId;
+  String projectId;
 
-    @BuiltValueField(wireName: r'project_id')
-    String get projectId;
+  /// The invite's status Keeps track of the invites status such as pending, accepted, declined, expired
+  String status;
 
-    /// The invite's status Keeps track of the invites status such as pending, accepted, declined, expired
-    @BuiltValueField(wireName: r'status')
-    String get status;
+  /// Last Time Project's Revision was Updated
+  DateTime updatedAt;
 
-    /// Last Time Project's Revision was Updated
-    @BuiltValueField(wireName: r'updated_at')
-    DateTime get updatedAt;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is ProjectInvite &&
+     other.createdAt == createdAt &&
+     other.id == id &&
+     other.inviteeEmail == inviteeEmail &&
+     other.inviteeId == inviteeId &&
+     other.ownerEmail == ownerEmail &&
+     other.ownerId == ownerId &&
+     other.projectId == projectId &&
+     other.status == status &&
+     other.updatedAt == updatedAt;
 
-    ProjectInvite._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (createdAt.hashCode) +
+    (id.hashCode) +
+    (inviteeEmail.hashCode) +
+    (inviteeId == null ? 0 : inviteeId!.hashCode) +
+    (ownerEmail.hashCode) +
+    (ownerId.hashCode) +
+    (projectId.hashCode) +
+    (status.hashCode) +
+    (updatedAt.hashCode);
 
-    static void _initializeBuilder(ProjectInviteBuilder b) => b;
+  @override
+  String toString() => 'ProjectInvite[createdAt=$createdAt, id=$id, inviteeEmail=$inviteeEmail, inviteeId=$inviteeId, ownerEmail=$ownerEmail, ownerId=$ownerId, projectId=$projectId, status=$status, updatedAt=$updatedAt]';
 
-    factory ProjectInvite([void updates(ProjectInviteBuilder b)]) = _$ProjectInvite;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<ProjectInvite> get serializer => _$ProjectInviteSerializer();
-}
-
-class _$ProjectInviteSerializer implements StructuredSerializer<ProjectInvite> {
-
-    @override
-    final Iterable<Type> types = const [ProjectInvite, _$ProjectInvite];
-    @override
-    final String wireName = r'ProjectInvite';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, ProjectInvite object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'created_at')
-            ..add(serializers.serialize(object.createdAt,
-                specifiedType: const FullType(DateTime)));
-        result
-            ..add(r'id')
-            ..add(serializers.serialize(object.id,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'invitee_email')
-            ..add(serializers.serialize(object.inviteeEmail,
-                specifiedType: const FullType(String)));
-        if (object.inviteeId != null) {
-            result
-                ..add(r'invitee_id')
-                ..add(serializers.serialize(object.inviteeId,
-                    specifiedType: const FullType(String)));
-        }
-        result
-            ..add(r'owner_email')
-            ..add(serializers.serialize(object.ownerEmail,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'owner_id')
-            ..add(serializers.serialize(object.ownerId,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'project_id')
-            ..add(serializers.serialize(object.projectId,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'status')
-            ..add(serializers.serialize(object.status,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'updated_at')
-            ..add(serializers.serialize(object.updatedAt,
-                specifiedType: const FullType(DateTime)));
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'created_at'] = createdAt.toUtc().toIso8601String();
+      _json[r'id'] = id;
+      _json[r'invitee_email'] = inviteeEmail;
+    if (inviteeId != null) {
+      _json[r'invitee_id'] = inviteeId;
+    } else {
+      _json[r'invitee_id'] = null;
     }
+      _json[r'owner_email'] = ownerEmail;
+      _json[r'owner_id'] = ownerId;
+      _json[r'project_id'] = projectId;
+      _json[r'status'] = status;
+      _json[r'updated_at'] = updatedAt.toUtc().toIso8601String();
+    return _json;
+  }
 
-    @override
-    ProjectInvite deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = ProjectInviteBuilder();
+  /// Returns a new [ProjectInvite] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static ProjectInvite? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'created_at':
-                    result.createdAt = serializers.deserialize(value,
-                        specifiedType: const FullType(DateTime)) as DateTime;
-                    break;
-                case r'id':
-                    result.id = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'invitee_email':
-                    result.inviteeEmail = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'invitee_id':
-                    result.inviteeId = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'owner_email':
-                    result.ownerEmail = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'owner_id':
-                    result.ownerId = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'project_id':
-                    result.projectId = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'status':
-                    result.status = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'updated_at':
-                    result.updatedAt = serializers.deserialize(value,
-                        specifiedType: const FullType(DateTime)) as DateTime;
-                    break;
-            }
-        }
-        return result.build();
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "ProjectInvite[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "ProjectInvite[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return ProjectInvite(
+        createdAt: mapDateTime(json, r'created_at', '')!,
+        id: mapValueOfType<String>(json, r'id')!,
+        inviteeEmail: mapValueOfType<String>(json, r'invitee_email')!,
+        inviteeId: mapValueOfType<String>(json, r'invitee_id'),
+        ownerEmail: mapValueOfType<String>(json, r'owner_email')!,
+        ownerId: mapValueOfType<String>(json, r'owner_id')!,
+        projectId: mapValueOfType<String>(json, r'project_id')!,
+        status: mapValueOfType<String>(json, r'status')!,
+        updatedAt: mapDateTime(json, r'updated_at', '')!,
+      );
     }
+    return null;
+  }
+
+  static List<ProjectInvite>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <ProjectInvite>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = ProjectInvite.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, ProjectInvite> mapFromJson(dynamic json) {
+    final map = <String, ProjectInvite>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = ProjectInvite.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of ProjectInvite-objects as value to a dart map
+  static Map<String, List<ProjectInvite>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<ProjectInvite>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = ProjectInvite.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'created_at',
+    'id',
+    'invitee_email',
+    'owner_email',
+    'owner_id',
+    'project_id',
+    'status',
+    'updated_at',
+  };
 }
 

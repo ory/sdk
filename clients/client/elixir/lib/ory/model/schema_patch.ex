@@ -9,13 +9,13 @@ defmodule Ory.Model.SchemaPatch do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"data",
-    :"name"
+    :data,
+    :name
   ]
 
   @type t :: %__MODULE__{
-    :"data" => map(),
-    :"name" => String.t
+    :data => map(),
+    :name => String.t
   }
 end
 

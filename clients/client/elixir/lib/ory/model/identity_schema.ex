@@ -9,25 +9,25 @@ defmodule Ory.Model.IdentitySchema do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"blob_name",
-    :"blob_url",
-    :"content_hash",
-    :"created_at",
-    :"id",
-    :"name",
-    :"schema",
-    :"updated_at"
+    :blob_name,
+    :blob_url,
+    :content_hash,
+    :created_at,
+    :id,
+    :name,
+    :schema,
+    :updated_at
   ]
 
   @type t :: %__MODULE__{
-    :"blob_name" => String.t,
-    :"blob_url" => String.t,
-    :"content_hash" => String.t | nil,
-    :"created_at" => DateTime.t,
-    :"id" => String.t,
-    :"name" => String.t,
-    :"schema" => map() | nil,
-    :"updated_at" => DateTime.t
+    :blob_name => String.t,
+    :blob_url => String.t,
+    :content_hash => String.t | nil,
+    :created_at => DateTime.t,
+    :id => String.t,
+    :name => String.t,
+    :schema => map() | nil,
+    :updated_at => DateTime.t
   }
 end
 

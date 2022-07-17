@@ -8,7 +8,7 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**context** | [**JsonObject**](.md) | The message's context. Useful when customizing messages. | [optional] 
+**context** | [**Object**](.md) | The message's context. Useful when customizing messages. | [optional] 
 **id** | **int** |  | 
 **text** | **String** | The message text. Written in american english. | 
 **type** | **String** |  | 

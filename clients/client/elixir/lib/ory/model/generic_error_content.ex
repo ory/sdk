@@ -9,19 +9,19 @@ defmodule Ory.Model.GenericErrorContent do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"debug",
-    :"error",
-    :"error_description",
-    :"message",
-    :"status_code"
+    :debug,
+    :error,
+    :error_description,
+    :message,
+    :status_code
   ]
 
   @type t :: %__MODULE__{
-    :"debug" => String.t | nil,
-    :"error" => String.t | nil,
-    :"error_description" => String.t | nil,
-    :"message" => String.t | nil,
-    :"status_code" => integer() | nil
+    :debug => String.t | nil,
+    :error => String.t | nil,
+    :error_description => String.t | nil,
+    :message => String.t | nil,
+    :status_code => integer() | nil
   }
 end
 

@@ -9,13 +9,13 @@ defmodule Ory.Model.AdminCreateSelfServiceRecoveryLinkBody do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"expires_in",
-    :"identity_id"
+    :expires_in,
+    :identity_id
   ]
 
   @type t :: %__MODULE__{
-    :"expires_in" => String.t | nil,
-    :"identity_id" => String.t
+    :expires_in => String.t | nil,
+    :identity_id => String.t
   }
 end
 

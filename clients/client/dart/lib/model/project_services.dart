@@ -1,85 +1,137 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:ory_client/model/project_service_permission.dart';
-import 'package:ory_client/model/project_service_identity.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'project_services.g.dart';
+class ProjectServices {
+  /// Returns a new [ProjectServices] instance.
+  ProjectServices({
+    this.identity,
+    this.permission,
+  });
 
-abstract class ProjectServices implements Built<ProjectServices, ProjectServicesBuilder> {
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  ProjectServiceIdentity? identity;
 
-    @nullable
-    @BuiltValueField(wireName: r'identity')
-    ProjectServiceIdentity get identity;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  ProjectServicePermission? permission;
 
-    @nullable
-    @BuiltValueField(wireName: r'permission')
-    ProjectServicePermission get permission;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is ProjectServices &&
+     other.identity == identity &&
+     other.permission == permission;
 
-    ProjectServices._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (identity == null ? 0 : identity!.hashCode) +
+    (permission == null ? 0 : permission!.hashCode);
 
-    static void _initializeBuilder(ProjectServicesBuilder b) => b;
+  @override
+  String toString() => 'ProjectServices[identity=$identity, permission=$permission]';
 
-    factory ProjectServices([void updates(ProjectServicesBuilder b)]) = _$ProjectServices;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<ProjectServices> get serializer => _$ProjectServicesSerializer();
-}
-
-class _$ProjectServicesSerializer implements StructuredSerializer<ProjectServices> {
-
-    @override
-    final Iterable<Type> types = const [ProjectServices, _$ProjectServices];
-    @override
-    final String wireName = r'ProjectServices';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, ProjectServices object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.identity != null) {
-            result
-                ..add(r'identity')
-                ..add(serializers.serialize(object.identity,
-                    specifiedType: const FullType(ProjectServiceIdentity)));
-        }
-        if (object.permission != null) {
-            result
-                ..add(r'permission')
-                ..add(serializers.serialize(object.permission,
-                    specifiedType: const FullType(ProjectServicePermission)));
-        }
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+    if (identity != null) {
+      _json[r'identity'] = identity;
+    } else {
+      _json[r'identity'] = null;
     }
-
-    @override
-    ProjectServices deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = ProjectServicesBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'identity':
-                    result.identity.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(ProjectServiceIdentity)) as ProjectServiceIdentity);
-                    break;
-                case r'permission':
-                    result.permission.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(ProjectServicePermission)) as ProjectServicePermission);
-                    break;
-            }
-        }
-        return result.build();
+    if (permission != null) {
+      _json[r'permission'] = permission;
+    } else {
+      _json[r'permission'] = null;
     }
+    return _json;
+  }
+
+  /// Returns a new [ProjectServices] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static ProjectServices? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "ProjectServices[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "ProjectServices[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return ProjectServices(
+        identity: ProjectServiceIdentity.fromJson(json[r'identity']),
+        permission: ProjectServicePermission.fromJson(json[r'permission']),
+      );
+    }
+    return null;
+  }
+
+  static List<ProjectServices>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <ProjectServices>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = ProjectServices.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, ProjectServices> mapFromJson(dynamic json) {
+    final map = <String, ProjectServices>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = ProjectServices.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of ProjectServices-objects as value to a dart map
+  static Map<String, List<ProjectServices>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<ProjectServices>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = ProjectServices.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

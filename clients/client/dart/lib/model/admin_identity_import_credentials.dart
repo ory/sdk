@@ -1,85 +1,137 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:ory_client/model/admin_create_identity_import_credentials_password.dart';
-import 'package:ory_client/model/admin_create_identity_import_credentials_oidc.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'admin_identity_import_credentials.g.dart';
+class AdminIdentityImportCredentials {
+  /// Returns a new [AdminIdentityImportCredentials] instance.
+  AdminIdentityImportCredentials({
+    this.oidc,
+    this.password,
+  });
 
-abstract class AdminIdentityImportCredentials implements Built<AdminIdentityImportCredentials, AdminIdentityImportCredentialsBuilder> {
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  AdminCreateIdentityImportCredentialsOidc? oidc;
 
-    @nullable
-    @BuiltValueField(wireName: r'oidc')
-    AdminCreateIdentityImportCredentialsOidc get oidc;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  AdminCreateIdentityImportCredentialsPassword? password;
 
-    @nullable
-    @BuiltValueField(wireName: r'password')
-    AdminCreateIdentityImportCredentialsPassword get password;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is AdminIdentityImportCredentials &&
+     other.oidc == oidc &&
+     other.password == password;
 
-    AdminIdentityImportCredentials._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (oidc == null ? 0 : oidc!.hashCode) +
+    (password == null ? 0 : password!.hashCode);
 
-    static void _initializeBuilder(AdminIdentityImportCredentialsBuilder b) => b;
+  @override
+  String toString() => 'AdminIdentityImportCredentials[oidc=$oidc, password=$password]';
 
-    factory AdminIdentityImportCredentials([void updates(AdminIdentityImportCredentialsBuilder b)]) = _$AdminIdentityImportCredentials;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<AdminIdentityImportCredentials> get serializer => _$AdminIdentityImportCredentialsSerializer();
-}
-
-class _$AdminIdentityImportCredentialsSerializer implements StructuredSerializer<AdminIdentityImportCredentials> {
-
-    @override
-    final Iterable<Type> types = const [AdminIdentityImportCredentials, _$AdminIdentityImportCredentials];
-    @override
-    final String wireName = r'AdminIdentityImportCredentials';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, AdminIdentityImportCredentials object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.oidc != null) {
-            result
-                ..add(r'oidc')
-                ..add(serializers.serialize(object.oidc,
-                    specifiedType: const FullType(AdminCreateIdentityImportCredentialsOidc)));
-        }
-        if (object.password != null) {
-            result
-                ..add(r'password')
-                ..add(serializers.serialize(object.password,
-                    specifiedType: const FullType(AdminCreateIdentityImportCredentialsPassword)));
-        }
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+    if (oidc != null) {
+      _json[r'oidc'] = oidc;
+    } else {
+      _json[r'oidc'] = null;
     }
-
-    @override
-    AdminIdentityImportCredentials deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = AdminIdentityImportCredentialsBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'oidc':
-                    result.oidc.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(AdminCreateIdentityImportCredentialsOidc)) as AdminCreateIdentityImportCredentialsOidc);
-                    break;
-                case r'password':
-                    result.password.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(AdminCreateIdentityImportCredentialsPassword)) as AdminCreateIdentityImportCredentialsPassword);
-                    break;
-            }
-        }
-        return result.build();
+    if (password != null) {
+      _json[r'password'] = password;
+    } else {
+      _json[r'password'] = null;
     }
+    return _json;
+  }
+
+  /// Returns a new [AdminIdentityImportCredentials] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static AdminIdentityImportCredentials? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "AdminIdentityImportCredentials[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "AdminIdentityImportCredentials[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return AdminIdentityImportCredentials(
+        oidc: AdminCreateIdentityImportCredentialsOidc.fromJson(json[r'oidc']),
+        password: AdminCreateIdentityImportCredentialsPassword.fromJson(json[r'password']),
+      );
+    }
+    return null;
+  }
+
+  static List<AdminIdentityImportCredentials>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <AdminIdentityImportCredentials>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = AdminIdentityImportCredentials.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, AdminIdentityImportCredentials> mapFromJson(dynamic json) {
+    final map = <String, AdminIdentityImportCredentials>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = AdminIdentityImportCredentials.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of AdminIdentityImportCredentials-objects as value to a dart map
+  static Map<String, List<AdminIdentityImportCredentials>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<AdminIdentityImportCredentials>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = AdminIdentityImportCredentials.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

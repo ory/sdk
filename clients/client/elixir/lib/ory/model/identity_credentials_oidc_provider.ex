@@ -9,19 +9,19 @@ defmodule Ory.Model.IdentityCredentialsOidcProvider do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"initial_access_token",
-    :"initial_id_token",
-    :"initial_refresh_token",
-    :"provider",
-    :"subject"
+    :initial_access_token,
+    :initial_id_token,
+    :initial_refresh_token,
+    :provider,
+    :subject
   ]
 
   @type t :: %__MODULE__{
-    :"initial_access_token" => String.t | nil,
-    :"initial_id_token" => String.t | nil,
-    :"initial_refresh_token" => String.t | nil,
-    :"provider" => String.t | nil,
-    :"subject" => String.t | nil
+    :initial_access_token => String.t | nil,
+    :initial_id_token => String.t | nil,
+    :initial_refresh_token => String.t | nil,
+    :provider => String.t | nil,
+    :subject => String.t | nil
   }
 end
 

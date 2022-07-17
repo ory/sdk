@@ -35,10 +35,10 @@ defmodule Ory.Api.Read do
   @spec get_check(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, Ory.Model.GetCheckResponse.t} | {:error, Tesla.Env.t}
   def get_check(connection, opts \\ []) do
     optional_params = %{
-      :"namespace" => :query,
-      :"object" => :query,
-      :"relation" => :query,
-      :"subject_id" => :query,
+      :namespace => :query,
+      :object => :query,
+      :relation => :query,
+      :subject_id => :query,
       :"subject_set.namespace" => :query,
       :"subject_set.object" => :query,
       :"subject_set.relation" => :query,
@@ -83,9 +83,9 @@ defmodule Ory.Api.Read do
     %{}
     |> method(:get)
     |> url("/relation-tuples/expand")
-    |> add_param(:query, :"namespace", namespace)
-    |> add_param(:query, :"object", object)
-    |> add_param(:query, :"relation", relation)
+    |> add_param(:query, :namespace, namespace)
+    |> add_param(:query, :object, object)
+    |> add_param(:query, :relation, relation)
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
@@ -122,12 +122,12 @@ defmodule Ory.Api.Read do
   @spec get_relation_tuples(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.GetRelationTuplesResponse.t} | {:ok, Ory.Model.GenericError.t} | {:error, Tesla.Env.t}
   def get_relation_tuples(connection, opts \\ []) do
     optional_params = %{
-      :"page_token" => :query,
-      :"page_size" => :query,
-      :"namespace" => :query,
-      :"object" => :query,
-      :"relation" => :query,
-      :"subject_id" => :query,
+      :page_token => :query,
+      :page_size => :query,
+      :namespace => :query,
+      :object => :query,
+      :relation => :query,
+      :subject_id => :query,
       :"subject_set.namespace" => :query,
       :"subject_set.object" => :query,
       :"subject_set.relation" => :query

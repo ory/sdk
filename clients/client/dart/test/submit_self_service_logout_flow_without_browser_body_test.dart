@@ -1,19 +1,21 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:ory_client/model/submit_self_service_logout_flow_without_browser_body.dart';
+import 'package:ory_client/api.dart';
 import 'package:test/test.dart';
 
 // tests for SubmitSelfServiceLogoutFlowWithoutBrowserBody
 void main() {
-  final instance = SubmitSelfServiceLogoutFlowWithoutBrowserBodyBuilder();
-  // TODO add properties to the builder and call build()
+  // final instance = SubmitSelfServiceLogoutFlowWithoutBrowserBody();
 
-  group(SubmitSelfServiceLogoutFlowWithoutBrowserBody, () {
+  group('test SubmitSelfServiceLogoutFlowWithoutBrowserBody', () {
     // The Session Token  Invalidate this session token.
     // String sessionToken
     test('to test the property `sessionToken`', () async {

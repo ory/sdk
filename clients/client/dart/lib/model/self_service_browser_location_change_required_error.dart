@@ -1,189 +1,246 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/json_object.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'self_service_browser_location_change_required_error.g.dart';
+class SelfServiceBrowserLocationChangeRequiredError {
+  /// Returns a new [SelfServiceBrowserLocationChangeRequiredError] instance.
+  SelfServiceBrowserLocationChangeRequiredError({
+    this.code,
+    this.debug,
+    this.details = const {},
+    this.id,
+    required this.message,
+    this.reason,
+    this.redirectBrowserTo,
+    this.request,
+    this.status,
+  });
 
-abstract class SelfServiceBrowserLocationChangeRequiredError implements Built<SelfServiceBrowserLocationChangeRequiredError, SelfServiceBrowserLocationChangeRequiredErrorBuilder> {
+  /// The status code
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? code;
 
-    /// The status code
-    @nullable
-    @BuiltValueField(wireName: r'code')
-    int get code;
+  /// Debug information  This field is often not exposed to protect against leaking sensitive information.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? debug;
 
-    /// Debug information  This field is often not exposed to protect against leaking sensitive information.
-    @nullable
-    @BuiltValueField(wireName: r'debug')
-    String get debug;
+  /// Further error details
+  Map<String, Object> details;
 
-    /// Further error details
-    @nullable
-    @BuiltValueField(wireName: r'details')
-    BuiltMap<String, JsonObject> get details;
+  /// The error ID  Useful when trying to identify various errors in application logic.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? id;
 
-    /// The error ID  Useful when trying to identify various errors in application logic.
-    @nullable
-    @BuiltValueField(wireName: r'id')
-    String get id;
+  /// Error message  The error's message.
+  String message;
 
-    /// Error message  The error's message.
-    @BuiltValueField(wireName: r'message')
-    String get message;
+  /// A human-readable reason for the error
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? reason;
 
-    /// A human-readable reason for the error
-    @nullable
-    @BuiltValueField(wireName: r'reason')
-    String get reason;
+  /// Since when the flow has expired
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? redirectBrowserTo;
 
-    /// Since when the flow has expired
-    @nullable
-    @BuiltValueField(wireName: r'redirect_browser_to')
-    String get redirectBrowserTo;
+  /// The request ID  The request ID is often exposed internally in order to trace errors across service architectures. This is often a UUID.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? request;
 
-    /// The request ID  The request ID is often exposed internally in order to trace errors across service architectures. This is often a UUID.
-    @nullable
-    @BuiltValueField(wireName: r'request')
-    String get request;
+  /// The status description
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? status;
 
-    /// The status description
-    @nullable
-    @BuiltValueField(wireName: r'status')
-    String get status;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is SelfServiceBrowserLocationChangeRequiredError &&
+     other.code == code &&
+     other.debug == debug &&
+     other.details == details &&
+     other.id == id &&
+     other.message == message &&
+     other.reason == reason &&
+     other.redirectBrowserTo == redirectBrowserTo &&
+     other.request == request &&
+     other.status == status;
 
-    SelfServiceBrowserLocationChangeRequiredError._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (code == null ? 0 : code!.hashCode) +
+    (debug == null ? 0 : debug!.hashCode) +
+    (details.hashCode) +
+    (id == null ? 0 : id!.hashCode) +
+    (message.hashCode) +
+    (reason == null ? 0 : reason!.hashCode) +
+    (redirectBrowserTo == null ? 0 : redirectBrowserTo!.hashCode) +
+    (request == null ? 0 : request!.hashCode) +
+    (status == null ? 0 : status!.hashCode);
 
-    static void _initializeBuilder(SelfServiceBrowserLocationChangeRequiredErrorBuilder b) => b;
+  @override
+  String toString() => 'SelfServiceBrowserLocationChangeRequiredError[code=$code, debug=$debug, details=$details, id=$id, message=$message, reason=$reason, redirectBrowserTo=$redirectBrowserTo, request=$request, status=$status]';
 
-    factory SelfServiceBrowserLocationChangeRequiredError([void updates(SelfServiceBrowserLocationChangeRequiredErrorBuilder b)]) = _$SelfServiceBrowserLocationChangeRequiredError;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<SelfServiceBrowserLocationChangeRequiredError> get serializer => _$SelfServiceBrowserLocationChangeRequiredErrorSerializer();
-}
-
-class _$SelfServiceBrowserLocationChangeRequiredErrorSerializer implements StructuredSerializer<SelfServiceBrowserLocationChangeRequiredError> {
-
-    @override
-    final Iterable<Type> types = const [SelfServiceBrowserLocationChangeRequiredError, _$SelfServiceBrowserLocationChangeRequiredError];
-    @override
-    final String wireName = r'SelfServiceBrowserLocationChangeRequiredError';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, SelfServiceBrowserLocationChangeRequiredError object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.code != null) {
-            result
-                ..add(r'code')
-                ..add(serializers.serialize(object.code,
-                    specifiedType: const FullType(int)));
-        }
-        if (object.debug != null) {
-            result
-                ..add(r'debug')
-                ..add(serializers.serialize(object.debug,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.details != null) {
-            result
-                ..add(r'details')
-                ..add(serializers.serialize(object.details,
-                    specifiedType: const FullType(BuiltMap, [FullType(String), FullType(JsonObject)])));
-        }
-        if (object.id != null) {
-            result
-                ..add(r'id')
-                ..add(serializers.serialize(object.id,
-                    specifiedType: const FullType(String)));
-        }
-        result
-            ..add(r'message')
-            ..add(serializers.serialize(object.message,
-                specifiedType: const FullType(String)));
-        if (object.reason != null) {
-            result
-                ..add(r'reason')
-                ..add(serializers.serialize(object.reason,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.redirectBrowserTo != null) {
-            result
-                ..add(r'redirect_browser_to')
-                ..add(serializers.serialize(object.redirectBrowserTo,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.request != null) {
-            result
-                ..add(r'request')
-                ..add(serializers.serialize(object.request,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.status != null) {
-            result
-                ..add(r'status')
-                ..add(serializers.serialize(object.status,
-                    specifiedType: const FullType(String)));
-        }
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+    if (code != null) {
+      _json[r'code'] = code;
+    } else {
+      _json[r'code'] = null;
     }
-
-    @override
-    SelfServiceBrowserLocationChangeRequiredError deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = SelfServiceBrowserLocationChangeRequiredErrorBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'code':
-                    result.code = serializers.deserialize(value,
-                        specifiedType: const FullType(int)) as int;
-                    break;
-                case r'debug':
-                    result.debug = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'details':
-                    result.details.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltMap, [FullType(String), FullType(JsonObject)])) as BuiltMap<String, JsonObject>);
-                    break;
-                case r'id':
-                    result.id = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'message':
-                    result.message = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'reason':
-                    result.reason = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'redirect_browser_to':
-                    result.redirectBrowserTo = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'request':
-                    result.request = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'status':
-                    result.status = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
-        }
-        return result.build();
+    if (debug != null) {
+      _json[r'debug'] = debug;
+    } else {
+      _json[r'debug'] = null;
     }
+      _json[r'details'] = details;
+    if (id != null) {
+      _json[r'id'] = id;
+    } else {
+      _json[r'id'] = null;
+    }
+      _json[r'message'] = message;
+    if (reason != null) {
+      _json[r'reason'] = reason;
+    } else {
+      _json[r'reason'] = null;
+    }
+    if (redirectBrowserTo != null) {
+      _json[r'redirect_browser_to'] = redirectBrowserTo;
+    } else {
+      _json[r'redirect_browser_to'] = null;
+    }
+    if (request != null) {
+      _json[r'request'] = request;
+    } else {
+      _json[r'request'] = null;
+    }
+    if (status != null) {
+      _json[r'status'] = status;
+    } else {
+      _json[r'status'] = null;
+    }
+    return _json;
+  }
+
+  /// Returns a new [SelfServiceBrowserLocationChangeRequiredError] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static SelfServiceBrowserLocationChangeRequiredError? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "SelfServiceBrowserLocationChangeRequiredError[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "SelfServiceBrowserLocationChangeRequiredError[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return SelfServiceBrowserLocationChangeRequiredError(
+        code: mapValueOfType<int>(json, r'code'),
+        debug: mapValueOfType<String>(json, r'debug'),
+        details: mapCastOfType<String, Object>(json, r'details') ?? const {},
+        id: mapValueOfType<String>(json, r'id'),
+        message: mapValueOfType<String>(json, r'message')!,
+        reason: mapValueOfType<String>(json, r'reason'),
+        redirectBrowserTo: mapValueOfType<String>(json, r'redirect_browser_to'),
+        request: mapValueOfType<String>(json, r'request'),
+        status: mapValueOfType<String>(json, r'status'),
+      );
+    }
+    return null;
+  }
+
+  static List<SelfServiceBrowserLocationChangeRequiredError>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <SelfServiceBrowserLocationChangeRequiredError>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = SelfServiceBrowserLocationChangeRequiredError.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, SelfServiceBrowserLocationChangeRequiredError> mapFromJson(dynamic json) {
+    final map = <String, SelfServiceBrowserLocationChangeRequiredError>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SelfServiceBrowserLocationChangeRequiredError.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of SelfServiceBrowserLocationChangeRequiredError-objects as value to a dart map
+  static Map<String, List<SelfServiceBrowserLocationChangeRequiredError>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<SelfServiceBrowserLocationChangeRequiredError>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SelfServiceBrowserLocationChangeRequiredError.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'message',
+  };
 }
 

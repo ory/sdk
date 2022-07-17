@@ -1,95 +1,139 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/json_object.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'submit_self_service_settings_flow_with_profile_method_body.g.dart';
+class SubmitSelfServiceSettingsFlowWithProfileMethodBody {
+  /// Returns a new [SubmitSelfServiceSettingsFlowWithProfileMethodBody] instance.
+  SubmitSelfServiceSettingsFlowWithProfileMethodBody({
+    this.csrfToken,
+    required this.method,
+    required this.traits,
+  });
 
-abstract class SubmitSelfServiceSettingsFlowWithProfileMethodBody implements Built<SubmitSelfServiceSettingsFlowWithProfileMethodBody, SubmitSelfServiceSettingsFlowWithProfileMethodBodyBuilder> {
+  /// The Anti-CSRF Token  This token is only required when performing browser flows.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? csrfToken;
 
-    /// The Anti-CSRF Token  This token is only required when performing browser flows.
-    @nullable
-    @BuiltValueField(wireName: r'csrf_token')
-    String get csrfToken;
+  /// Method  Should be set to profile when trying to update a profile.
+  String method;
 
-    /// Method  Should be set to profile when trying to update a profile.
-    @BuiltValueField(wireName: r'method')
-    String get method;
+  /// Traits contains all of the identity's traits.
+  Object traits;
 
-    /// Traits contains all of the identity's traits.
-    @BuiltValueField(wireName: r'traits')
-    JsonObject get traits;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is SubmitSelfServiceSettingsFlowWithProfileMethodBody &&
+     other.csrfToken == csrfToken &&
+     other.method == method &&
+     other.traits == traits;
 
-    SubmitSelfServiceSettingsFlowWithProfileMethodBody._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (csrfToken == null ? 0 : csrfToken!.hashCode) +
+    (method.hashCode) +
+    (traits.hashCode);
 
-    static void _initializeBuilder(SubmitSelfServiceSettingsFlowWithProfileMethodBodyBuilder b) => b;
+  @override
+  String toString() => 'SubmitSelfServiceSettingsFlowWithProfileMethodBody[csrfToken=$csrfToken, method=$method, traits=$traits]';
 
-    factory SubmitSelfServiceSettingsFlowWithProfileMethodBody([void updates(SubmitSelfServiceSettingsFlowWithProfileMethodBodyBuilder b)]) = _$SubmitSelfServiceSettingsFlowWithProfileMethodBody;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<SubmitSelfServiceSettingsFlowWithProfileMethodBody> get serializer => _$SubmitSelfServiceSettingsFlowWithProfileMethodBodySerializer();
-}
-
-class _$SubmitSelfServiceSettingsFlowWithProfileMethodBodySerializer implements StructuredSerializer<SubmitSelfServiceSettingsFlowWithProfileMethodBody> {
-
-    @override
-    final Iterable<Type> types = const [SubmitSelfServiceSettingsFlowWithProfileMethodBody, _$SubmitSelfServiceSettingsFlowWithProfileMethodBody];
-    @override
-    final String wireName = r'SubmitSelfServiceSettingsFlowWithProfileMethodBody';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, SubmitSelfServiceSettingsFlowWithProfileMethodBody object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.csrfToken != null) {
-            result
-                ..add(r'csrf_token')
-                ..add(serializers.serialize(object.csrfToken,
-                    specifiedType: const FullType(String)));
-        }
-        result
-            ..add(r'method')
-            ..add(serializers.serialize(object.method,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'traits')
-            ..add(serializers.serialize(object.traits,
-                specifiedType: const FullType(JsonObject)));
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+    if (csrfToken != null) {
+      _json[r'csrf_token'] = csrfToken;
+    } else {
+      _json[r'csrf_token'] = null;
     }
+      _json[r'method'] = method;
+      _json[r'traits'] = traits;
+    return _json;
+  }
 
-    @override
-    SubmitSelfServiceSettingsFlowWithProfileMethodBody deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = SubmitSelfServiceSettingsFlowWithProfileMethodBodyBuilder();
+  /// Returns a new [SubmitSelfServiceSettingsFlowWithProfileMethodBody] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static SubmitSelfServiceSettingsFlowWithProfileMethodBody? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'csrf_token':
-                    result.csrfToken = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'method':
-                    result.method = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'traits':
-                    result.traits = serializers.deserialize(value,
-                        specifiedType: const FullType(JsonObject)) as JsonObject;
-                    break;
-            }
-        }
-        return result.build();
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "SubmitSelfServiceSettingsFlowWithProfileMethodBody[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "SubmitSelfServiceSettingsFlowWithProfileMethodBody[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return SubmitSelfServiceSettingsFlowWithProfileMethodBody(
+        csrfToken: mapValueOfType<String>(json, r'csrf_token'),
+        method: mapValueOfType<String>(json, r'method')!,
+        traits: mapValueOfType<Object>(json, r'traits')!,
+      );
     }
+    return null;
+  }
+
+  static List<SubmitSelfServiceSettingsFlowWithProfileMethodBody>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <SubmitSelfServiceSettingsFlowWithProfileMethodBody>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = SubmitSelfServiceSettingsFlowWithProfileMethodBody.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, SubmitSelfServiceSettingsFlowWithProfileMethodBody> mapFromJson(dynamic json) {
+    final map = <String, SubmitSelfServiceSettingsFlowWithProfileMethodBody>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SubmitSelfServiceSettingsFlowWithProfileMethodBody.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of SubmitSelfServiceSettingsFlowWithProfileMethodBody-objects as value to a dart map
+  static Map<String, List<SubmitSelfServiceSettingsFlowWithProfileMethodBody>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<SubmitSelfServiceSettingsFlowWithProfileMethodBody>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SubmitSelfServiceSettingsFlowWithProfileMethodBody.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'method',
+    'traits',
+  };
 }
 

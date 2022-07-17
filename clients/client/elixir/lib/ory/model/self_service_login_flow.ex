@@ -9,33 +9,33 @@ defmodule Ory.Model.SelfServiceLoginFlow do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"active",
-    :"created_at",
-    :"expires_at",
-    :"id",
-    :"issued_at",
-    :"refresh",
-    :"request_url",
-    :"requested_aal",
-    :"return_to",
-    :"type",
-    :"ui",
-    :"updated_at"
+    :active,
+    :created_at,
+    :expires_at,
+    :id,
+    :issued_at,
+    :refresh,
+    :request_url,
+    :requested_aal,
+    :return_to,
+    :type,
+    :ui,
+    :updated_at
   ]
 
   @type t :: %__MODULE__{
-    :"active" => Ory.Model.IdentityCredentialsType.t | nil,
-    :"created_at" => DateTime.t | nil,
-    :"expires_at" => DateTime.t,
-    :"id" => String.t,
-    :"issued_at" => DateTime.t,
-    :"refresh" => boolean() | nil,
-    :"request_url" => String.t,
-    :"requested_aal" => Ory.Model.AuthenticatorAssuranceLevel.t | nil,
-    :"return_to" => String.t | nil,
-    :"type" => String.t,
-    :"ui" => Ory.Model.UiContainer.t,
-    :"updated_at" => DateTime.t | nil
+    :active => Ory.Model.IdentityCredentialsType.t | nil,
+    :created_at => DateTime.t | nil,
+    :expires_at => DateTime.t,
+    :id => String.t,
+    :issued_at => DateTime.t,
+    :refresh => boolean() | nil,
+    :request_url => String.t,
+    :requested_aal => Ory.Model.AuthenticatorAssuranceLevel.t | nil,
+    :return_to => String.t | nil,
+    :type => String.t,
+    :ui => Ory.Model.UiContainer.t,
+    :updated_at => DateTime.t | nil
   }
 end
 
@@ -43,9 +43,9 @@ defimpl Poison.Decoder, for: Ory.Model.SelfServiceLoginFlow do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"active", :struct, Ory.Model.IdentityCredentialsType, options)
-    |> deserialize(:"requested_aal", :struct, Ory.Model.AuthenticatorAssuranceLevel, options)
-    |> deserialize(:"ui", :struct, Ory.Model.UiContainer, options)
+    |> deserialize(:active, :struct, Ory.Model.IdentityCredentialsType, options)
+    |> deserialize(:requested_aal, :struct, Ory.Model.AuthenticatorAssuranceLevel, options)
+    |> deserialize(:ui, :struct, Ory.Model.UiContainer, options)
   end
 end
 

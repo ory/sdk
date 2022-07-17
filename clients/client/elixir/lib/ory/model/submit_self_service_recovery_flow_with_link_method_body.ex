@@ -9,15 +9,15 @@ defmodule Ory.Model.SubmitSelfServiceRecoveryFlowWithLinkMethodBody do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"csrf_token",
-    :"email",
-    :"method"
+    :csrf_token,
+    :email,
+    :method
   ]
 
   @type t :: %__MODULE__{
-    :"csrf_token" => String.t | nil,
-    :"email" => String.t,
-    :"method" => String.t
+    :csrf_token => String.t | nil,
+    :email => String.t,
+    :method => String.t
   }
 end
 

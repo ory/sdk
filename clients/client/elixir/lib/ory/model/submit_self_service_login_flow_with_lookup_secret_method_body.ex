@@ -9,15 +9,15 @@ defmodule Ory.Model.SubmitSelfServiceLoginFlowWithLookupSecretMethodBody do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"csrf_token",
-    :"lookup_secret",
-    :"method"
+    :csrf_token,
+    :lookup_secret,
+    :method
   ]
 
   @type t :: %__MODULE__{
-    :"csrf_token" => String.t | nil,
-    :"lookup_secret" => String.t,
-    :"method" => String.t
+    :csrf_token => String.t | nil,
+    :lookup_secret => String.t,
+    :method => String.t
   }
 end
 

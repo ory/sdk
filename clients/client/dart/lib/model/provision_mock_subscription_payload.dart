@@ -1,77 +1,119 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'provision_mock_subscription_payload.g.dart';
+class ProvisionMockSubscriptionPayload {
+  /// Returns a new [ProvisionMockSubscriptionPayload] instance.
+  ProvisionMockSubscriptionPayload({
+    required this.identityId,
+    required this.planOrPrice,
+  });
 
-abstract class ProvisionMockSubscriptionPayload implements Built<ProvisionMockSubscriptionPayload, ProvisionMockSubscriptionPayloadBuilder> {
+  String identityId;
 
-    @BuiltValueField(wireName: r'identity_id')
-    String get identityId;
+  String planOrPrice;
 
-    @BuiltValueField(wireName: r'plan_or_price')
-    String get planOrPrice;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is ProvisionMockSubscriptionPayload &&
+     other.identityId == identityId &&
+     other.planOrPrice == planOrPrice;
 
-    ProvisionMockSubscriptionPayload._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (identityId.hashCode) +
+    (planOrPrice.hashCode);
 
-    static void _initializeBuilder(ProvisionMockSubscriptionPayloadBuilder b) => b;
+  @override
+  String toString() => 'ProvisionMockSubscriptionPayload[identityId=$identityId, planOrPrice=$planOrPrice]';
 
-    factory ProvisionMockSubscriptionPayload([void updates(ProvisionMockSubscriptionPayloadBuilder b)]) = _$ProvisionMockSubscriptionPayload;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'identity_id'] = identityId;
+      _json[r'plan_or_price'] = planOrPrice;
+    return _json;
+  }
 
-    @BuiltValueSerializer(custom: true)
-    static Serializer<ProvisionMockSubscriptionPayload> get serializer => _$ProvisionMockSubscriptionPayloadSerializer();
-}
+  /// Returns a new [ProvisionMockSubscriptionPayload] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static ProvisionMockSubscriptionPayload? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-class _$ProvisionMockSubscriptionPayloadSerializer implements StructuredSerializer<ProvisionMockSubscriptionPayload> {
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "ProvisionMockSubscriptionPayload[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "ProvisionMockSubscriptionPayload[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
 
-    @override
-    final Iterable<Type> types = const [ProvisionMockSubscriptionPayload, _$ProvisionMockSubscriptionPayload];
-    @override
-    final String wireName = r'ProvisionMockSubscriptionPayload';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, ProvisionMockSubscriptionPayload object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'identity_id')
-            ..add(serializers.serialize(object.identityId,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'plan_or_price')
-            ..add(serializers.serialize(object.planOrPrice,
-                specifiedType: const FullType(String)));
-        return result;
+      return ProvisionMockSubscriptionPayload(
+        identityId: mapValueOfType<String>(json, r'identity_id')!,
+        planOrPrice: mapValueOfType<String>(json, r'plan_or_price')!,
+      );
     }
+    return null;
+  }
 
-    @override
-    ProvisionMockSubscriptionPayload deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = ProvisionMockSubscriptionPayloadBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'identity_id':
-                    result.identityId = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'plan_or_price':
-                    result.planOrPrice = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
+  static List<ProvisionMockSubscriptionPayload>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <ProvisionMockSubscriptionPayload>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = ProvisionMockSubscriptionPayload.fromJson(row);
+        if (value != null) {
+          result.add(value);
         }
-        return result.build();
+      }
     }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, ProvisionMockSubscriptionPayload> mapFromJson(dynamic json) {
+    final map = <String, ProvisionMockSubscriptionPayload>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = ProvisionMockSubscriptionPayload.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of ProvisionMockSubscriptionPayload-objects as value to a dart map
+  static Map<String, List<ProvisionMockSubscriptionPayload>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<ProvisionMockSubscriptionPayload>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = ProvisionMockSubscriptionPayload.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'identity_id',
+    'plan_or_price',
+  };
 }
 

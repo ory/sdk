@@ -13,7 +13,7 @@ Method | HTTP request | Description
 [**adminCreateSelfServiceRecoveryLink**](V0alpha2Api.md#admincreateselfservicerecoverylink) | **POST** /admin/recovery/link | Create a Recovery Link
 [**adminDeleteIdentity**](V0alpha2Api.md#admindeleteidentity) | **DELETE** /admin/identities/{id} | Delete an Identity
 [**adminDeleteIdentitySessions**](V0alpha2Api.md#admindeleteidentitysessions) | **DELETE** /admin/identities/{id}/sessions | Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.
-[**adminExtendSession**](V0alpha2Api.md#adminextendsession) | **PATCH** /admin/sessions/{id}/extend | Calling this endpoint extends the given session ID. If &#x60;session.earliest_possible_extend&#x60; is set it will only extend the session after the specified time has passed.
+[**adminExtendSession**](V0alpha2Api.md#adminextendsession) | **PATCH** /admin/sessions/{id}/extend | Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.
 [**adminGetIdentity**](V0alpha2Api.md#admingetidentity) | **GET** /admin/identities/{id} | Get an Identity
 [**adminListIdentities**](V0alpha2Api.md#adminlistidentities) | **GET** /admin/identities | List Identities
 [**adminListIdentitySessions**](V0alpha2Api.md#adminlistidentitysessions) | **GET** /admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity.
@@ -42,10 +42,10 @@ Method | HTTP request | Description
 [**initializeSelfServiceVerificationFlowWithoutBrowser**](V0alpha2Api.md#initializeselfserviceverificationflowwithoutbrowser) | **GET** /self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
 [**listIdentitySchemas**](V0alpha2Api.md#listidentityschemas) | **GET** /schemas | 
 [**listProjects**](V0alpha2Api.md#listprojects) | **GET** /projects | List All Projects
-[**listSessions**](V0alpha2Api.md#listsessions) | **GET** /sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint.
+[**listSessions**](V0alpha2Api.md#listsessions) | **GET** /sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the `/sessions/whoami` endpoint.
 [**patchProject**](V0alpha2Api.md#patchproject) | **PATCH** /projects/{project_id} | Patch an Ory Cloud Project Configuration
 [**purgeProject**](V0alpha2Api.md#purgeproject) | **DELETE** /projects/{project_id} | Irrecoverably Purge a Project
-[**removeProjectMember**](V0alpha2Api.md#removeprojectmember) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to &#x60;REMOVED&#x60;.
+[**removeProjectMember**](V0alpha2Api.md#removeprojectmember) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to `REMOVED`.
 [**revokeSession**](V0alpha2Api.md#revokesession) | **DELETE** /sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
 [**revokeSessions**](V0alpha2Api.md#revokesessions) | **DELETE** /sessions | Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
 [**submitSelfServiceLoginFlow**](V0alpha2Api.md#submitselfserviceloginflow) | **POST** /self-service/login | Submit a Login Flow
@@ -69,15 +69,18 @@ This endpoint creates an identity. Learn how identities work in [Ory Kratos' Use
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
 
-var api_instance = new V0alpha2Api();
-var adminCreateIdentityBody = new AdminCreateIdentityBody(); // AdminCreateIdentityBody | 
+final api_instance = V0alpha2Api();
+final adminCreateIdentityBody = AdminCreateIdentityBody(); // AdminCreateIdentityBody | 
 
 try {
-    var result = api_instance.adminCreateIdentity(adminCreateIdentityBody);
+    final result = api_instance.adminCreateIdentity(adminCreateIdentityBody);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->adminCreateIdentity: $e\n');
@@ -115,15 +118,18 @@ This endpoint creates a recovery link which should be given to the user in order
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
 
-var api_instance = new V0alpha2Api();
-var adminCreateSelfServiceRecoveryLinkBody = new AdminCreateSelfServiceRecoveryLinkBody(); // AdminCreateSelfServiceRecoveryLinkBody | 
+final api_instance = V0alpha2Api();
+final adminCreateSelfServiceRecoveryLinkBody = AdminCreateSelfServiceRecoveryLinkBody(); // AdminCreateSelfServiceRecoveryLinkBody | 
 
 try {
-    var result = api_instance.adminCreateSelfServiceRecoveryLink(adminCreateSelfServiceRecoveryLinkBody);
+    final result = api_instance.adminCreateSelfServiceRecoveryLink(adminCreateSelfServiceRecoveryLinkBody);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->adminCreateSelfServiceRecoveryLink: $e\n');
@@ -161,12 +167,15 @@ Calling this endpoint irrecoverably and permanently deletes the identity given i
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
 
-var api_instance = new V0alpha2Api();
-var id = id_example; // String | ID is the identity's ID.
+final api_instance = V0alpha2Api();
+final id = id_example; // String | ID is the identity's ID.
 
 try {
     api_instance.adminDeleteIdentity(id);
@@ -206,12 +215,15 @@ This endpoint is useful for:  To forcefully logout Identity from all devices and
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
 
-var api_instance = new V0alpha2Api();
-var id = id_example; // String | ID is the identity's ID.
+final api_instance = V0alpha2Api();
+final id = id_example; // String | ID is the identity's ID.
 
 try {
     api_instance.adminDeleteIdentitySessions(id);
@@ -251,15 +263,18 @@ Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK m
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
 
-var api_instance = new V0alpha2Api();
-var id = id_example; // String | ID is the session's ID.
+final api_instance = V0alpha2Api();
+final id = id_example; // String | ID is the session's ID.
 
 try {
-    var result = api_instance.adminExtendSession(id);
+    final result = api_instance.adminExtendSession(id);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->adminExtendSession: $e\n');
@@ -297,16 +312,19 @@ Learn how identities work in [Ory Kratos' User And Identity Model Documentation]
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
 
-var api_instance = new V0alpha2Api();
-var id = id_example; // String | ID must be set to the ID of identity you want to get
-var includeCredential = []; // BuiltList<String> | DeclassifyCredentials will declassify one or more identity's credentials  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token.
+final api_instance = V0alpha2Api();
+final id = id_example; // String | ID must be set to the ID of identity you want to get
+final includeCredential = []; // List<String> | DeclassifyCredentials will declassify one or more identity's credentials  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token.
 
 try {
-    var result = api_instance.adminGetIdentity(id, includeCredential);
+    final result = api_instance.adminGetIdentity(id, includeCredential);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->adminGetIdentity: $e\n');
@@ -318,7 +336,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID must be set to the ID of identity you want to get | 
- **includeCredential** | [**BuiltList<String>**](String.md)| DeclassifyCredentials will declassify one or more identity's credentials  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token. | [optional] 
+ **includeCredential** | [**List<String>**](String.md)| DeclassifyCredentials will declassify one or more identity's credentials  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token. | [optional] [default to const []]
 
 ### Return type
 
@@ -336,7 +354,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **adminListIdentities**
-> BuiltList<Identity> adminListIdentities(perPage, page)
+> List<Identity> adminListIdentities(perPage, page)
 
 List Identities
 
@@ -345,16 +363,19 @@ Lists all identities. Does not support search at the moment.  Learn how identiti
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
 
-var api_instance = new V0alpha2Api();
-var perPage = 789; // int | Items per Page  This is the number of items per page.
-var page = 789; // int | Pagination Page
+final api_instance = V0alpha2Api();
+final perPage = 789; // int | Items per Page  This is the number of items per page.
+final page = 789; // int | Pagination Page
 
 try {
-    var result = api_instance.adminListIdentities(perPage, page);
+    final result = api_instance.adminListIdentities(perPage, page);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->adminListIdentities: $e\n');
@@ -370,7 +391,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BuiltList<Identity>**](Identity.md)
+[**List<Identity>**](Identity.md)
 
 ### Authorization
 
@@ -384,7 +405,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **adminListIdentitySessions**
-> BuiltList<Session> adminListIdentitySessions(id, perPage, page, active)
+> List<Session> adminListIdentitySessions(id, perPage, page, active)
 
 This endpoint returns all sessions that belong to the given Identity.
 
@@ -393,18 +414,21 @@ This endpoint is useful for:  Listing all sessions that belong to an Identity in
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
 
-var api_instance = new V0alpha2Api();
-var id = id_example; // String | ID is the identity's ID.
-var perPage = 789; // int | Items per Page  This is the number of items per page.
-var page = 789; // int | Pagination Page
-var active = true; // bool | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
+final api_instance = V0alpha2Api();
+final id = id_example; // String | ID is the identity's ID.
+final perPage = 789; // int | Items per Page  This is the number of items per page.
+final page = 789; // int | Pagination Page
+final active = true; // bool | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
 
 try {
-    var result = api_instance.adminListIdentitySessions(id, perPage, page, active);
+    final result = api_instance.adminListIdentitySessions(id, perPage, page, active);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->adminListIdentitySessions: $e\n');
@@ -422,7 +446,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BuiltList<Session>**](Session.md)
+[**List<Session>**](Session.md)
 
 ### Authorization
 
@@ -445,16 +469,19 @@ This endpoint updates an identity. The full identity payload (except credentials
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
 
-var api_instance = new V0alpha2Api();
-var id = id_example; // String | ID must be set to the ID of identity you want to update
-var adminUpdateIdentityBody = new AdminUpdateIdentityBody(); // AdminUpdateIdentityBody | 
+final api_instance = V0alpha2Api();
+final id = id_example; // String | ID must be set to the ID of identity you want to update
+final adminUpdateIdentityBody = AdminUpdateIdentityBody(); // AdminUpdateIdentityBody | 
 
 try {
-    var result = api_instance.adminUpdateIdentity(id, adminUpdateIdentityBody);
+    final result = api_instance.adminUpdateIdentity(id, adminUpdateIdentityBody);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->adminUpdateIdentity: $e\n');
@@ -493,15 +520,18 @@ Creates a new project.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
 
-var api_instance = new V0alpha2Api();
-var createProjectBody = new CreateProjectBody(); // CreateProjectBody | 
+final api_instance = V0alpha2Api();
+final createProjectBody = CreateProjectBody(); // CreateProjectBody | 
 
 try {
-    var result = api_instance.createProject(createProjectBody);
+    final result = api_instance.createProject(createProjectBody);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->createProject: $e\n');
@@ -540,11 +570,11 @@ This endpoint initializes a browser-based user logout flow and a URL which can b
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var cookie = cookie_example; // String | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request.
+final api_instance = V0alpha2Api();
+final cookie = cookie_example; // String | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request.
 
 try {
-    var result = api_instance.createSelfServiceLogoutFlowUrlForBrowsers(cookie);
+    final result = api_instance.createSelfServiceLogoutFlowUrlForBrowsers(cookie);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->createSelfServiceLogoutFlowUrlForBrowsers: $e\n');
@@ -573,7 +603,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getJsonSchema**
-> JsonObject getJsonSchema(id)
+> Object getJsonSchema(id)
 
 
 
@@ -583,11 +613,11 @@ Get a JSON Schema
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var id = id_example; // String | ID must be set to the ID of schema you want to get
+final api_instance = V0alpha2Api();
+final id = id_example; // String | ID must be set to the ID of schema you want to get
 
 try {
-    var result = api_instance.getJsonSchema(id);
+    final result = api_instance.getJsonSchema(id);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->getJsonSchema: $e\n');
@@ -602,7 +632,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**JsonObject**](JsonObject.md)
+[**Object**](Object.md)
 
 ### Authorization
 
@@ -625,15 +655,18 @@ Get a projects you have access to by its ID.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
 
-var api_instance = new V0alpha2Api();
-var projectId = projectId_example; // String | Project ID  The project's ID.
+final api_instance = V0alpha2Api();
+final projectId = projectId_example; // String | Project ID  The project's ID.
 
 try {
-    var result = api_instance.getProject(projectId);
+    final result = api_instance.getProject(projectId);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->getProject: $e\n');
@@ -662,7 +695,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getProjectMembers**
-> BuiltList<CloudAccount> getProjectMembers(projectId)
+> List<CloudAccount> getProjectMembers(projectId)
 
 Get all members associated with this project.
 
@@ -671,15 +704,18 @@ This endpoint requires the user to be a member of the project with the role `OWN
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
 
-var api_instance = new V0alpha2Api();
-var projectId = projectId_example; // String | Project ID  The project's ID.
+final api_instance = V0alpha2Api();
+final projectId = projectId_example; // String | Project ID  The project's ID.
 
 try {
-    var result = api_instance.getProjectMembers(projectId);
+    final result = api_instance.getProjectMembers(projectId);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->getProjectMembers: $e\n');
@@ -694,7 +730,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BuiltList<CloudAccount>**](CloudAccount.md)
+[**List<CloudAccount>**](CloudAccount.md)
 
 ### Authorization
 
@@ -718,11 +754,11 @@ This endpoint returns the error associated with a user-facing self service error
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var id = id_example; // String | Error is the error's ID
+final api_instance = V0alpha2Api();
+final id = id_example; // String | Error is the error's ID
 
 try {
-    var result = api_instance.getSelfServiceError(id);
+    final result = api_instance.getSelfServiceError(id);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->getSelfServiceError: $e\n');
@@ -761,12 +797,12 @@ This endpoint returns a login flow's context with, for example, error details an
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var id = id_example; // String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
-var cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+final api_instance = V0alpha2Api();
+final id = id_example; // String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
+final cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
-    var result = api_instance.getSelfServiceLoginFlow(id, cookie);
+    final result = api_instance.getSelfServiceLoginFlow(id, cookie);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->getSelfServiceLoginFlow: $e\n');
@@ -806,12 +842,12 @@ This endpoint returns a recovery flow's context with, for example, error details
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var id = id_example; // String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
-var cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+final api_instance = V0alpha2Api();
+final id = id_example; // String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
+final cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
-    var result = api_instance.getSelfServiceRecoveryFlow(id, cookie);
+    final result = api_instance.getSelfServiceRecoveryFlow(id, cookie);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->getSelfServiceRecoveryFlow: $e\n');
@@ -851,12 +887,12 @@ This endpoint returns a registration flow's context with, for example, error det
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var id = id_example; // String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
-var cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+final api_instance = V0alpha2Api();
+final id = id_example; // String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
+final cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
-    var result = api_instance.getSelfServiceRegistrationFlow(id, cookie);
+    final result = api_instance.getSelfServiceRegistrationFlow(id, cookie);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->getSelfServiceRegistrationFlow: $e\n');
@@ -896,13 +932,13 @@ When accessing this endpoint through Ory Kratos' Public API you must ensure that
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var id = id_example; // String | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
-var xSessionToken = xSessionToken_example; // String | The Session Token  When using the SDK in an app without a browser, please include the session token here.
-var cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+final api_instance = V0alpha2Api();
+final id = id_example; // String | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+final xSessionToken = xSessionToken_example; // String | The Session Token  When using the SDK in an app without a browser, please include the session token here.
+final cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
-    var result = api_instance.getSelfServiceSettingsFlow(id, xSessionToken, cookie);
+    final result = api_instance.getSelfServiceSettingsFlow(id, xSessionToken, cookie);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->getSelfServiceSettingsFlow: $e\n');
@@ -943,12 +979,12 @@ This endpoint returns a verification flow's context with, for example, error det
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var id = id_example; // String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
-var cookie = cookie_example; // String | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here.
+final api_instance = V0alpha2Api();
+final id = id_example; // String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
+final cookie = cookie_example; // String | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here.
 
 try {
-    var result = api_instance.getSelfServiceVerificationFlow(id, cookie);
+    final result = api_instance.getSelfServiceVerificationFlow(id, cookie);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->getSelfServiceVerificationFlow: $e\n');
@@ -988,10 +1024,10 @@ This endpoint provides JavaScript which is needed in order to perform WebAuthn l
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
+final api_instance = V0alpha2Api();
 
 try {
-    var result = api_instance.getWebAuthnJavaScript();
+    final result = api_instance.getWebAuthnJavaScript();
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->getWebAuthnJavaScript: $e\n');
@@ -1027,13 +1063,13 @@ This endpoint initializes a browser-based user login flow. This endpoint will se
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var refresh = true; // bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
-var aal = aal_example; // String | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\".
-var returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
+final api_instance = V0alpha2Api();
+final refresh = true; // bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
+final aal = aal_example; // String | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\".
+final returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
 
 try {
-    var result = api_instance.initializeSelfServiceLoginFlowForBrowsers(refresh, aal, returnTo);
+    final result = api_instance.initializeSelfServiceLoginFlowForBrowsers(refresh, aal, returnTo);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->initializeSelfServiceLoginFlowForBrowsers: $e\n');
@@ -1074,13 +1110,13 @@ This endpoint initiates a login flow for API clients that do not use a browser, 
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var refresh = true; // bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
-var aal = aal_example; // String | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\".
-var xSessionToken = xSessionToken_example; // String | The Session Token of the Identity performing the settings flow.
+final api_instance = V0alpha2Api();
+final refresh = true; // bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
+final aal = aal_example; // String | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\".
+final xSessionToken = xSessionToken_example; // String | The Session Token of the Identity performing the settings flow.
 
 try {
-    var result = api_instance.initializeSelfServiceLoginFlowWithoutBrowser(refresh, aal, xSessionToken);
+    final result = api_instance.initializeSelfServiceLoginFlowWithoutBrowser(refresh, aal, xSessionToken);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->initializeSelfServiceLoginFlowWithoutBrowser: $e\n');
@@ -1121,11 +1157,11 @@ This endpoint initializes a browser-based account recovery flow. Once initialize
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
+final api_instance = V0alpha2Api();
+final returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
 
 try {
-    var result = api_instance.initializeSelfServiceRecoveryFlowForBrowsers(returnTo);
+    final result = api_instance.initializeSelfServiceRecoveryFlowForBrowsers(returnTo);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->initializeSelfServiceRecoveryFlowForBrowsers: $e\n');
@@ -1164,10 +1200,10 @@ This endpoint initiates a recovery flow for API clients such as mobile devices, 
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
+final api_instance = V0alpha2Api();
 
 try {
-    var result = api_instance.initializeSelfServiceRecoveryFlowWithoutBrowser();
+    final result = api_instance.initializeSelfServiceRecoveryFlowWithoutBrowser();
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->initializeSelfServiceRecoveryFlowWithoutBrowser: $e\n');
@@ -1203,11 +1239,11 @@ This endpoint initializes a browser-based user registration flow. This endpoint 
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
+final api_instance = V0alpha2Api();
+final returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
 
 try {
-    var result = api_instance.initializeSelfServiceRegistrationFlowForBrowsers(returnTo);
+    final result = api_instance.initializeSelfServiceRegistrationFlowForBrowsers(returnTo);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->initializeSelfServiceRegistrationFlowForBrowsers: $e\n');
@@ -1246,10 +1282,10 @@ This endpoint initiates a registration flow for API clients such as mobile devic
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
+final api_instance = V0alpha2Api();
 
 try {
-    var result = api_instance.initializeSelfServiceRegistrationFlowWithoutBrowser();
+    final result = api_instance.initializeSelfServiceRegistrationFlowWithoutBrowser();
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->initializeSelfServiceRegistrationFlowWithoutBrowser: $e\n');
@@ -1285,11 +1321,11 @@ This endpoint initializes a browser-based user settings flow. Once initialized, 
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
+final api_instance = V0alpha2Api();
+final returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
 
 try {
-    var result = api_instance.initializeSelfServiceSettingsFlowForBrowsers(returnTo);
+    final result = api_instance.initializeSelfServiceSettingsFlowForBrowsers(returnTo);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->initializeSelfServiceSettingsFlowForBrowsers: $e\n');
@@ -1328,11 +1364,11 @@ This endpoint initiates a settings flow for API clients such as mobile devices, 
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var xSessionToken = xSessionToken_example; // String | The Session Token of the Identity performing the settings flow.
+final api_instance = V0alpha2Api();
+final xSessionToken = xSessionToken_example; // String | The Session Token of the Identity performing the settings flow.
 
 try {
-    var result = api_instance.initializeSelfServiceSettingsFlowWithoutBrowser(xSessionToken);
+    final result = api_instance.initializeSelfServiceSettingsFlowWithoutBrowser(xSessionToken);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->initializeSelfServiceSettingsFlowWithoutBrowser: $e\n');
@@ -1371,11 +1407,11 @@ This endpoint initializes a browser-based account verification flow. Once initia
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
+final api_instance = V0alpha2Api();
+final returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
 
 try {
-    var result = api_instance.initializeSelfServiceVerificationFlowForBrowsers(returnTo);
+    final result = api_instance.initializeSelfServiceVerificationFlowForBrowsers(returnTo);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->initializeSelfServiceVerificationFlowForBrowsers: $e\n');
@@ -1414,10 +1450,10 @@ This endpoint initiates a verification flow for API clients such as mobile devic
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
+final api_instance = V0alpha2Api();
 
 try {
-    var result = api_instance.initializeSelfServiceVerificationFlowWithoutBrowser();
+    final result = api_instance.initializeSelfServiceVerificationFlowWithoutBrowser();
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->initializeSelfServiceVerificationFlowWithoutBrowser: $e\n');
@@ -1443,7 +1479,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listIdentitySchemas**
-> BuiltList<IdentitySchema> listIdentitySchemas(perPage, page)
+> List<IdentitySchema> listIdentitySchemas(perPage, page)
 
 
 
@@ -1453,12 +1489,12 @@ Get all Identity Schemas
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var perPage = 789; // int | Items per Page  This is the number of items per page.
-var page = 789; // int | Pagination Page
+final api_instance = V0alpha2Api();
+final perPage = 789; // int | Items per Page  This is the number of items per page.
+final page = 789; // int | Pagination Page
 
 try {
-    var result = api_instance.listIdentitySchemas(perPage, page);
+    final result = api_instance.listIdentitySchemas(perPage, page);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->listIdentitySchemas: $e\n');
@@ -1474,7 +1510,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BuiltList<IdentitySchema>**](IdentitySchema.md)
+[**List<IdentitySchema>**](IdentitySchema.md)
 
 ### Authorization
 
@@ -1488,7 +1524,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listProjects**
-> BuiltList<ProjectMetadata> listProjects()
+> List<ProjectMetadata> listProjects()
 
 List All Projects
 
@@ -1497,14 +1533,17 @@ Lists all projects you have access to.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
 
-var api_instance = new V0alpha2Api();
+final api_instance = V0alpha2Api();
 
 try {
-    var result = api_instance.listProjects();
+    final result = api_instance.listProjects();
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->listProjects: $e\n');
@@ -1516,7 +1555,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**BuiltList<ProjectMetadata>**](ProjectMetadata.md)
+[**List<ProjectMetadata>**](ProjectMetadata.md)
 
 ### Authorization
 
@@ -1530,7 +1569,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listSessions**
-> BuiltList<Session> listSessions(xSessionToken, cookie, perPage, page)
+> List<Session> listSessions(xSessionToken, cookie, perPage, page)
 
 This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the `/sessions/whoami` endpoint.
 
@@ -1540,14 +1579,14 @@ This endpoint is useful for:  Displaying all other sessions that belong to the l
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var xSessionToken = xSessionToken_example; // String | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`.
-var cookie = cookie_example; // String | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored.
-var perPage = 789; // int | Items per Page  This is the number of items per page.
-var page = 789; // int | Pagination Page
+final api_instance = V0alpha2Api();
+final xSessionToken = xSessionToken_example; // String | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`.
+final cookie = cookie_example; // String | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored.
+final perPage = 789; // int | Items per Page  This is the number of items per page.
+final page = 789; // int | Pagination Page
 
 try {
-    var result = api_instance.listSessions(xSessionToken, cookie, perPage, page);
+    final result = api_instance.listSessions(xSessionToken, cookie, perPage, page);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->listSessions: $e\n');
@@ -1565,7 +1604,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BuiltList<Session>**](Session.md)
+[**List<Session>**](Session.md)
 
 ### Authorization
 
@@ -1588,16 +1627,19 @@ This endpoints allows you to patch individual Ory Cloud Project configuration ke
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
 
-var api_instance = new V0alpha2Api();
-var projectId = projectId_example; // String | Project ID  The project's ID.
-var jsonPatch = [new BuiltList<JsonPatch>()]; // BuiltList<JsonPatch> | 
+final api_instance = V0alpha2Api();
+final projectId = projectId_example; // String | Project ID  The project's ID.
+final jsonPatch = [List<JsonPatch>()]; // List<JsonPatch> | 
 
 try {
-    var result = api_instance.patchProject(projectId, jsonPatch);
+    final result = api_instance.patchProject(projectId, jsonPatch);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->patchProject: $e\n');
@@ -1609,7 +1651,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **String**| Project ID  The project's ID. | 
- **jsonPatch** | [**BuiltList<JsonPatch>**](JsonPatch.md)|  | [optional] 
+ **jsonPatch** | [**List<JsonPatch>**](JsonPatch.md)|  | [optional] 
 
 ### Return type
 
@@ -1636,12 +1678,15 @@ Irrecoverably Purge a Project
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
 
-var api_instance = new V0alpha2Api();
-var projectId = projectId_example; // String | Project ID  The project's ID.
+final api_instance = V0alpha2Api();
+final projectId = projectId_example; // String | Project ID  The project's ID.
 
 try {
     api_instance.purgeProject(projectId);
@@ -1681,13 +1726,16 @@ This endpoint requires the user to be a member of the project with the role `OWN
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
 
-var api_instance = new V0alpha2Api();
-var projectId = projectId_example; // String | Project ID  The project's ID.
-var memberId = memberId_example; // String | Member ID
+final api_instance = V0alpha2Api();
+final projectId = projectId_example; // String | Project ID  The project's ID.
+final memberId = memberId_example; // String | Member ID
 
 try {
     api_instance.removeProjectMember(projectId, memberId);
@@ -1729,8 +1777,8 @@ This endpoint is useful for:  To forcefully logout the current user from another
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var id = id_example; // String | ID is the session's ID.
+final api_instance = V0alpha2Api();
+final id = id_example; // String | ID is the session's ID.
 
 try {
     api_instance.revokeSession(id);
@@ -1771,12 +1819,12 @@ This endpoint is useful for:  To forcefully logout the current user from all oth
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var xSessionToken = xSessionToken_example; // String | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`.
-var cookie = cookie_example; // String | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored.
+final api_instance = V0alpha2Api();
+final xSessionToken = xSessionToken_example; // String | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`.
+final cookie = cookie_example; // String | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored.
 
 try {
-    var result = api_instance.revokeSessions(xSessionToken, cookie);
+    final result = api_instance.revokeSessions(xSessionToken, cookie);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->revokeSessions: $e\n');
@@ -1816,14 +1864,14 @@ Submit a Login Flow
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var flow = flow_example; // String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
-var submitSelfServiceLoginFlowBody = new SubmitSelfServiceLoginFlowBody(); // SubmitSelfServiceLoginFlowBody | 
-var xSessionToken = xSessionToken_example; // String | The Session Token of the Identity performing the settings flow.
-var cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+final api_instance = V0alpha2Api();
+final flow = flow_example; // String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
+final submitSelfServiceLoginFlowBody = SubmitSelfServiceLoginFlowBody(); // SubmitSelfServiceLoginFlowBody | 
+final xSessionToken = xSessionToken_example; // String | The Session Token of the Identity performing the settings flow.
+final cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
-    var result = api_instance.submitSelfServiceLoginFlow(flow, submitSelfServiceLoginFlowBody, xSessionToken, cookie);
+    final result = api_instance.submitSelfServiceLoginFlow(flow, submitSelfServiceLoginFlowBody, xSessionToken, cookie);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->submitSelfServiceLoginFlow: $e\n');
@@ -1865,9 +1913,9 @@ This endpoint logs out an identity in a self-service manner.  If the `Accept` HT
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var token = token_example; // String | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/urls` to generate a URL for this endpoint.
-var returnTo = returnTo_example; // String | The URL to return to after the logout was completed.
+final api_instance = V0alpha2Api();
+final token = token_example; // String | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/urls` to generate a URL for this endpoint.
+final returnTo = returnTo_example; // String | The URL to return to after the logout was completed.
 
 try {
     api_instance.submitSelfServiceLogoutFlow(token, returnTo);
@@ -1909,8 +1957,8 @@ Use this endpoint to log out an identity using an Ory Session Token. If the Ory 
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var submitSelfServiceLogoutFlowWithoutBrowserBody = new SubmitSelfServiceLogoutFlowWithoutBrowserBody(); // SubmitSelfServiceLogoutFlowWithoutBrowserBody | 
+final api_instance = V0alpha2Api();
+final submitSelfServiceLogoutFlowWithoutBrowserBody = SubmitSelfServiceLogoutFlowWithoutBrowserBody(); // SubmitSelfServiceLogoutFlowWithoutBrowserBody | 
 
 try {
     api_instance.submitSelfServiceLogoutFlowWithoutBrowser(submitSelfServiceLogoutFlowWithoutBrowserBody);
@@ -1951,14 +1999,14 @@ Use this endpoint to complete a recovery flow. This endpoint behaves differently
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var flow = flow_example; // String | The Recovery Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
-var submitSelfServiceRecoveryFlowBody = new SubmitSelfServiceRecoveryFlowBody(); // SubmitSelfServiceRecoveryFlowBody | 
-var token = token_example; // String | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
-var cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+final api_instance = V0alpha2Api();
+final flow = flow_example; // String | The Recovery Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
+final submitSelfServiceRecoveryFlowBody = SubmitSelfServiceRecoveryFlowBody(); // SubmitSelfServiceRecoveryFlowBody | 
+final token = token_example; // String | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
+final cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
-    var result = api_instance.submitSelfServiceRecoveryFlow(flow, submitSelfServiceRecoveryFlowBody, token, cookie);
+    final result = api_instance.submitSelfServiceRecoveryFlow(flow, submitSelfServiceRecoveryFlowBody, token, cookie);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->submitSelfServiceRecoveryFlow: $e\n');
@@ -2000,13 +2048,13 @@ Use this endpoint to complete a registration flow by sending an identity's trait
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var flow = flow_example; // String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
-var submitSelfServiceRegistrationFlowBody = new SubmitSelfServiceRegistrationFlowBody(); // SubmitSelfServiceRegistrationFlowBody | 
-var cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+final api_instance = V0alpha2Api();
+final flow = flow_example; // String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
+final submitSelfServiceRegistrationFlowBody = SubmitSelfServiceRegistrationFlowBody(); // SubmitSelfServiceRegistrationFlowBody | 
+final cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
-    var result = api_instance.submitSelfServiceRegistrationFlow(flow, submitSelfServiceRegistrationFlowBody, cookie);
+    final result = api_instance.submitSelfServiceRegistrationFlow(flow, submitSelfServiceRegistrationFlowBody, cookie);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->submitSelfServiceRegistrationFlow: $e\n');
@@ -2047,14 +2095,14 @@ Use this endpoint to complete a settings flow by sending an identity's updated p
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var flow = flow_example; // String | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
-var submitSelfServiceSettingsFlowBody = new SubmitSelfServiceSettingsFlowBody(); // SubmitSelfServiceSettingsFlowBody | 
-var xSessionToken = xSessionToken_example; // String | The Session Token of the Identity performing the settings flow.
-var cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+final api_instance = V0alpha2Api();
+final flow = flow_example; // String | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+final submitSelfServiceSettingsFlowBody = SubmitSelfServiceSettingsFlowBody(); // SubmitSelfServiceSettingsFlowBody | 
+final xSessionToken = xSessionToken_example; // String | The Session Token of the Identity performing the settings flow.
+final cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
-    var result = api_instance.submitSelfServiceSettingsFlow(flow, submitSelfServiceSettingsFlowBody, xSessionToken, cookie);
+    final result = api_instance.submitSelfServiceSettingsFlow(flow, submitSelfServiceSettingsFlowBody, xSessionToken, cookie);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->submitSelfServiceSettingsFlow: $e\n');
@@ -2096,14 +2144,14 @@ Use this endpoint to complete a verification flow. This endpoint behaves differe
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var flow = flow_example; // String | The Verification Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
-var submitSelfServiceVerificationFlowBody = new SubmitSelfServiceVerificationFlowBody(); // SubmitSelfServiceVerificationFlowBody | 
-var token = token_example; // String | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
-var cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+final api_instance = V0alpha2Api();
+final flow = flow_example; // String | The Verification Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
+final submitSelfServiceVerificationFlowBody = SubmitSelfServiceVerificationFlowBody(); // SubmitSelfServiceVerificationFlowBody | 
+final token = token_example; // String | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
+final cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
-    var result = api_instance.submitSelfServiceVerificationFlow(flow, submitSelfServiceVerificationFlowBody, token, cookie);
+    final result = api_instance.submitSelfServiceVerificationFlow(flow, submitSelfServiceVerificationFlowBody, token, cookie);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->submitSelfServiceVerificationFlow: $e\n');
@@ -2145,12 +2193,12 @@ Uses the HTTP Headers in the GET request to determine (e.g. by using checking th
 ```dart
 import 'package:ory_client/api.dart';
 
-var api_instance = new V0alpha2Api();
-var xSessionToken = MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj; // String | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`.
-var cookie = ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==; // String | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored.
+final api_instance = V0alpha2Api();
+final xSessionToken = MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj; // String | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`.
+final cookie = ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==; // String | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored.
 
 try {
-    var result = api_instance.toSession(xSessionToken, cookie);
+    final result = api_instance.toSession(xSessionToken, cookie);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->toSession: $e\n');
@@ -2189,16 +2237,19 @@ This endpoints allows you to update the Ory Cloud Project configuration for indi
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
 
-var api_instance = new V0alpha2Api();
-var projectId = projectId_example; // String | Project ID  The project's ID.
-var updateProject = new UpdateProject(); // UpdateProject | 
+final api_instance = V0alpha2Api();
+final projectId = projectId_example; // String | Project ID  The project's ID.
+final updateProject = UpdateProject(); // UpdateProject | 
 
 try {
-    var result = api_instance.updateProject(projectId, updateProject);
+    final result = api_instance.updateProject(projectId, updateProject);
     print(result);
 } catch (e) {
     print('Exception when calling V0alpha2Api->updateProject: $e\n');

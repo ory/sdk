@@ -1,115 +1,148 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'ui_node_image_attributes.g.dart';
+class UiNodeImageAttributes {
+  /// Returns a new [UiNodeImageAttributes] instance.
+  UiNodeImageAttributes({
+    required this.height,
+    required this.id,
+    required this.nodeType,
+    required this.src,
+    required this.width,
+  });
 
-abstract class UiNodeImageAttributes implements Built<UiNodeImageAttributes, UiNodeImageAttributesBuilder> {
+  /// Height of the image
+  int height;
 
-    /// Height of the image
-    @BuiltValueField(wireName: r'height')
-    int get height;
+  /// A unique identifier
+  String id;
 
-    /// A unique identifier
-    @BuiltValueField(wireName: r'id')
-    String get id;
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"img\".
+  String nodeType;
 
-    /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"img\".
-    @BuiltValueField(wireName: r'node_type')
-    String get nodeType;
+  /// The image's source URL.  format: uri
+  String src;
 
-    /// The image's source URL.  format: uri
-    @BuiltValueField(wireName: r'src')
-    String get src;
+  /// Width of the image
+  int width;
 
-    /// Width of the image
-    @BuiltValueField(wireName: r'width')
-    int get width;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is UiNodeImageAttributes &&
+     other.height == height &&
+     other.id == id &&
+     other.nodeType == nodeType &&
+     other.src == src &&
+     other.width == width;
 
-    UiNodeImageAttributes._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (height.hashCode) +
+    (id.hashCode) +
+    (nodeType.hashCode) +
+    (src.hashCode) +
+    (width.hashCode);
 
-    static void _initializeBuilder(UiNodeImageAttributesBuilder b) => b;
+  @override
+  String toString() => 'UiNodeImageAttributes[height=$height, id=$id, nodeType=$nodeType, src=$src, width=$width]';
 
-    factory UiNodeImageAttributes([void updates(UiNodeImageAttributesBuilder b)]) = _$UiNodeImageAttributes;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'height'] = height;
+      _json[r'id'] = id;
+      _json[r'node_type'] = nodeType;
+      _json[r'src'] = src;
+      _json[r'width'] = width;
+    return _json;
+  }
 
-    @BuiltValueSerializer(custom: true)
-    static Serializer<UiNodeImageAttributes> get serializer => _$UiNodeImageAttributesSerializer();
-}
+  /// Returns a new [UiNodeImageAttributes] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static UiNodeImageAttributes? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-class _$UiNodeImageAttributesSerializer implements StructuredSerializer<UiNodeImageAttributes> {
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "UiNodeImageAttributes[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "UiNodeImageAttributes[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
 
-    @override
-    final Iterable<Type> types = const [UiNodeImageAttributes, _$UiNodeImageAttributes];
-    @override
-    final String wireName = r'UiNodeImageAttributes';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, UiNodeImageAttributes object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'height')
-            ..add(serializers.serialize(object.height,
-                specifiedType: const FullType(int)));
-        result
-            ..add(r'id')
-            ..add(serializers.serialize(object.id,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'node_type')
-            ..add(serializers.serialize(object.nodeType,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'src')
-            ..add(serializers.serialize(object.src,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'width')
-            ..add(serializers.serialize(object.width,
-                specifiedType: const FullType(int)));
-        return result;
+      return UiNodeImageAttributes(
+        height: mapValueOfType<int>(json, r'height')!,
+        id: mapValueOfType<String>(json, r'id')!,
+        nodeType: mapValueOfType<String>(json, r'node_type')!,
+        src: mapValueOfType<String>(json, r'src')!,
+        width: mapValueOfType<int>(json, r'width')!,
+      );
     }
+    return null;
+  }
 
-    @override
-    UiNodeImageAttributes deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = UiNodeImageAttributesBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'height':
-                    result.height = serializers.deserialize(value,
-                        specifiedType: const FullType(int)) as int;
-                    break;
-                case r'id':
-                    result.id = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'node_type':
-                    result.nodeType = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'src':
-                    result.src = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'width':
-                    result.width = serializers.deserialize(value,
-                        specifiedType: const FullType(int)) as int;
-                    break;
-            }
+  static List<UiNodeImageAttributes>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <UiNodeImageAttributes>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = UiNodeImageAttributes.fromJson(row);
+        if (value != null) {
+          result.add(value);
         }
-        return result.build();
+      }
     }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, UiNodeImageAttributes> mapFromJson(dynamic json) {
+    final map = <String, UiNodeImageAttributes>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = UiNodeImageAttributes.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of UiNodeImageAttributes-objects as value to a dart map
+  static Map<String, List<UiNodeImageAttributes>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<UiNodeImageAttributes>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = UiNodeImageAttributes.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'height',
+    'id',
+    'node_type',
+    'src',
+    'width',
+  };
 }
 

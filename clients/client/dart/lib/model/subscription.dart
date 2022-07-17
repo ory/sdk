@@ -1,204 +1,281 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_collection/built_collection.dart';
-import 'package:ory_client/model/null_plan.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'subscription.g.dart';
+class Subscription {
+  /// Returns a new [Subscription] instance.
+  Subscription({
+    required this.createdAt,
+    required this.currentPlan,
+    required this.customerId,
+    required this.id,
+    this.ongoingStripeCheckoutId,
+    required this.payedUntil,
+    this.planChangesAt,
+    required this.planChangesTo,
+    required this.status,
+    required this.updatedAt,
+  });
 
-abstract class Subscription implements Built<Subscription, SubscriptionBuilder> {
+  DateTime createdAt;
 
-    @BuiltValueField(wireName: r'created_at')
-    DateTime get createdAt;
+  /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
+  SubscriptionCurrentPlanEnum currentPlan;
 
-    /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
-    @BuiltValueField(wireName: r'current_plan')
-    SubscriptionCurrentPlanEnum get currentPlan;
-    // enum currentPlanEnum {  unknown,  free,  start_up_monthly,  start_up_yearly,  custom,  };
+  /// The ID of the stripe customer
+  String customerId;
 
-    /// The ID of the stripe customer
-    @BuiltValueField(wireName: r'customer_id')
-    String get customerId;
+  String id;
 
-    @BuiltValueField(wireName: r'id')
-    String get id;
+  String? ongoingStripeCheckoutId;
 
-    @nullable
-    @BuiltValueField(wireName: r'ongoing_stripe_checkout_id')
-    String get ongoingStripeCheckoutId;
+  /// Until when the subscription is payed
+  DateTime payedUntil;
 
-    /// Until when the subscription is payed
-    @BuiltValueField(wireName: r'payed_until')
-    DateTime get payedUntil;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? planChangesAt;
 
-    @nullable
-    @BuiltValueField(wireName: r'plan_changes_at')
-    DateTime get planChangesAt;
+  NullPlan planChangesTo;
 
-    @BuiltValueField(wireName: r'plan_changes_to')
-    NullPlan get planChangesTo;
-    // enum planChangesToEnum {  unknown,  free,  start_up_monthly,  start_up_yearly,  custom,  };
+  String status;
 
-    @BuiltValueField(wireName: r'status')
-    String get status;
+  DateTime updatedAt;
 
-    @BuiltValueField(wireName: r'updated_at')
-    DateTime get updatedAt;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is Subscription &&
+     other.createdAt == createdAt &&
+     other.currentPlan == currentPlan &&
+     other.customerId == customerId &&
+     other.id == id &&
+     other.ongoingStripeCheckoutId == ongoingStripeCheckoutId &&
+     other.payedUntil == payedUntil &&
+     other.planChangesAt == planChangesAt &&
+     other.planChangesTo == planChangesTo &&
+     other.status == status &&
+     other.updatedAt == updatedAt;
 
-    Subscription._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (createdAt.hashCode) +
+    (currentPlan.hashCode) +
+    (customerId.hashCode) +
+    (id.hashCode) +
+    (ongoingStripeCheckoutId == null ? 0 : ongoingStripeCheckoutId!.hashCode) +
+    (payedUntil.hashCode) +
+    (planChangesAt == null ? 0 : planChangesAt!.hashCode) +
+    (planChangesTo.hashCode) +
+    (status.hashCode) +
+    (updatedAt.hashCode);
 
-    static void _initializeBuilder(SubscriptionBuilder b) => b;
+  @override
+  String toString() => 'Subscription[createdAt=$createdAt, currentPlan=$currentPlan, customerId=$customerId, id=$id, ongoingStripeCheckoutId=$ongoingStripeCheckoutId, payedUntil=$payedUntil, planChangesAt=$planChangesAt, planChangesTo=$planChangesTo, status=$status, updatedAt=$updatedAt]';
 
-    factory Subscription([void updates(SubscriptionBuilder b)]) = _$Subscription;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<Subscription> get serializer => _$SubscriptionSerializer();
-}
-
-class _$SubscriptionSerializer implements StructuredSerializer<Subscription> {
-
-    @override
-    final Iterable<Type> types = const [Subscription, _$Subscription];
-    @override
-    final String wireName = r'Subscription';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, Subscription object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'created_at')
-            ..add(serializers.serialize(object.createdAt,
-                specifiedType: const FullType(DateTime)));
-        result
-            ..add(r'current_plan')
-            ..add(serializers.serialize(object.currentPlan,
-                specifiedType: const FullType(SubscriptionCurrentPlanEnum)));
-        result
-            ..add(r'customer_id')
-            ..add(serializers.serialize(object.customerId,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'id')
-            ..add(serializers.serialize(object.id,
-                specifiedType: const FullType(String)));
-        if (object.ongoingStripeCheckoutId != null) {
-            result
-                ..add(r'ongoing_stripe_checkout_id')
-                ..add(serializers.serialize(object.ongoingStripeCheckoutId,
-                    specifiedType: const FullType(String)));
-        }
-        result
-            ..add(r'payed_until')
-            ..add(serializers.serialize(object.payedUntil,
-                specifiedType: const FullType(DateTime)));
-        if (object.planChangesAt != null) {
-            result
-                ..add(r'plan_changes_at')
-                ..add(serializers.serialize(object.planChangesAt,
-                    specifiedType: const FullType(DateTime)));
-        }
-        result
-            ..add(r'plan_changes_to')
-            ..add(serializers.serialize(object.planChangesTo,
-                specifiedType: const FullType(NullPlan)));
-        result
-            ..add(r'status')
-            ..add(serializers.serialize(object.status,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'updated_at')
-            ..add(serializers.serialize(object.updatedAt,
-                specifiedType: const FullType(DateTime)));
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'created_at'] = createdAt.toUtc().toIso8601String();
+      _json[r'current_plan'] = currentPlan;
+      _json[r'customer_id'] = customerId;
+      _json[r'id'] = id;
+    if (ongoingStripeCheckoutId != null) {
+      _json[r'ongoing_stripe_checkout_id'] = ongoingStripeCheckoutId;
+    } else {
+      _json[r'ongoing_stripe_checkout_id'] = null;
     }
-
-    @override
-    Subscription deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = SubscriptionBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'created_at':
-                    result.createdAt = serializers.deserialize(value,
-                        specifiedType: const FullType(DateTime)) as DateTime;
-                    break;
-                case r'current_plan':
-                    result.currentPlan = serializers.deserialize(value,
-                        specifiedType: const FullType(SubscriptionCurrentPlanEnum)) as SubscriptionCurrentPlanEnum;
-                    break;
-                case r'customer_id':
-                    result.customerId = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'id':
-                    result.id = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'ongoing_stripe_checkout_id':
-                    result.ongoingStripeCheckoutId = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'payed_until':
-                    result.payedUntil = serializers.deserialize(value,
-                        specifiedType: const FullType(DateTime)) as DateTime;
-                    break;
-                case r'plan_changes_at':
-                    result.planChangesAt = serializers.deserialize(value,
-                        specifiedType: const FullType(DateTime)) as DateTime;
-                    break;
-                case r'plan_changes_to':
-                    result.planChangesTo = serializers.deserialize(value,
-                        specifiedType: const FullType(NullPlan)) as NullPlan;
-                    break;
-                case r'status':
-                    result.status = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'updated_at':
-                    result.updatedAt = serializers.deserialize(value,
-                        specifiedType: const FullType(DateTime)) as DateTime;
-                    break;
-            }
-        }
-        return result.build();
+      _json[r'payed_until'] = payedUntil.toUtc().toIso8601String();
+    if (planChangesAt != null) {
+      _json[r'plan_changes_at'] = planChangesAt!.toUtc().toIso8601String();
+    } else {
+      _json[r'plan_changes_at'] = null;
     }
+      _json[r'plan_changes_to'] = planChangesTo;
+      _json[r'status'] = status;
+      _json[r'updated_at'] = updatedAt.toUtc().toIso8601String();
+    return _json;
+  }
+
+  /// Returns a new [Subscription] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static Subscription? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "Subscription[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "Subscription[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return Subscription(
+        createdAt: mapDateTime(json, r'created_at', '')!,
+        currentPlan: SubscriptionCurrentPlanEnum.fromJson(json[r'current_plan'])!,
+        customerId: mapValueOfType<String>(json, r'customer_id')!,
+        id: mapValueOfType<String>(json, r'id')!,
+        ongoingStripeCheckoutId: mapValueOfType<String>(json, r'ongoing_stripe_checkout_id'),
+        payedUntil: mapDateTime(json, r'payed_until', '')!,
+        planChangesAt: mapDateTime(json, r'plan_changes_at', ''),
+        planChangesTo: NullPlan.fromJson(json[r'plan_changes_to'])!,
+        status: mapValueOfType<String>(json, r'status')!,
+        updatedAt: mapDateTime(json, r'updated_at', '')!,
+      );
+    }
+    return null;
+  }
+
+  static List<Subscription>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <Subscription>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = Subscription.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, Subscription> mapFromJson(dynamic json) {
+    final map = <String, Subscription>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = Subscription.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of Subscription-objects as value to a dart map
+  static Map<String, List<Subscription>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<Subscription>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = Subscription.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'created_at',
+    'current_plan',
+    'customer_id',
+    'id',
+    'payed_until',
+    'plan_changes_to',
+    'status',
+    'updated_at',
+  };
 }
 
-class SubscriptionCurrentPlanEnum extends EnumClass {
+/// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
+class SubscriptionCurrentPlanEnum {
+  /// Instantiate a new enum with the provided [value].
+  const SubscriptionCurrentPlanEnum._(this.value);
 
-  /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
-  @BuiltValueEnumConst(wireName: r'unknown')
-  static const SubscriptionCurrentPlanEnum unknown = _$subscriptionCurrentPlanEnum_unknown;
-  /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
-  @BuiltValueEnumConst(wireName: r'free')
-  static const SubscriptionCurrentPlanEnum free = _$subscriptionCurrentPlanEnum_free;
-  /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
-  @BuiltValueEnumConst(wireName: r'start_up_monthly')
-  static const SubscriptionCurrentPlanEnum startUpMonthly = _$subscriptionCurrentPlanEnum_startUpMonthly;
-  /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
-  @BuiltValueEnumConst(wireName: r'start_up_yearly')
-  static const SubscriptionCurrentPlanEnum startUpYearly = _$subscriptionCurrentPlanEnum_startUpYearly;
-  /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
-  @BuiltValueEnumConst(wireName: r'custom')
-  static const SubscriptionCurrentPlanEnum custom = _$subscriptionCurrentPlanEnum_custom;
+  /// The underlying value of this enum member.
+  final String value;
 
-  static Serializer<SubscriptionCurrentPlanEnum> get serializer => _$subscriptionCurrentPlanEnumSerializer;
+  @override
+  String toString() => value;
 
-  const SubscriptionCurrentPlanEnum._(String name): super(name);
+  String toJson() => value;
 
-  static BuiltSet<SubscriptionCurrentPlanEnum> get values => _$subscriptionCurrentPlanEnumValues;
-  static SubscriptionCurrentPlanEnum valueOf(String name) => _$subscriptionCurrentPlanEnumValueOf(name);
+  static const unknown = SubscriptionCurrentPlanEnum._(r'unknown');
+  static const free = SubscriptionCurrentPlanEnum._(r'free');
+  static const startUpMonthly = SubscriptionCurrentPlanEnum._(r'start_up_monthly');
+  static const startUpYearly = SubscriptionCurrentPlanEnum._(r'start_up_yearly');
+  static const custom = SubscriptionCurrentPlanEnum._(r'custom');
+
+  /// List of all possible values in this [enum][SubscriptionCurrentPlanEnum].
+  static const values = <SubscriptionCurrentPlanEnum>[
+    unknown,
+    free,
+    startUpMonthly,
+    startUpYearly,
+    custom,
+  ];
+
+  static SubscriptionCurrentPlanEnum? fromJson(dynamic value) => SubscriptionCurrentPlanEnumTypeTransformer().decode(value);
+
+  static List<SubscriptionCurrentPlanEnum>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <SubscriptionCurrentPlanEnum>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = SubscriptionCurrentPlanEnum.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
 }
+
+/// Transformation class that can [encode] an instance of [SubscriptionCurrentPlanEnum] to String,
+/// and [decode] dynamic data back to [SubscriptionCurrentPlanEnum].
+class SubscriptionCurrentPlanEnumTypeTransformer {
+  factory SubscriptionCurrentPlanEnumTypeTransformer() => _instance ??= const SubscriptionCurrentPlanEnumTypeTransformer._();
+
+  const SubscriptionCurrentPlanEnumTypeTransformer._();
+
+  String encode(SubscriptionCurrentPlanEnum data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a SubscriptionCurrentPlanEnum.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  SubscriptionCurrentPlanEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data != null) {
+      switch (data.toString()) {
+        case r'unknown': return SubscriptionCurrentPlanEnum.unknown;
+        case r'free': return SubscriptionCurrentPlanEnum.free;
+        case r'start_up_monthly': return SubscriptionCurrentPlanEnum.startUpMonthly;
+        case r'start_up_yearly': return SubscriptionCurrentPlanEnum.startUpYearly;
+        case r'custom': return SubscriptionCurrentPlanEnum.custom;
+        default:
+          if (!allowNull) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [SubscriptionCurrentPlanEnumTypeTransformer] instance.
+  static SubscriptionCurrentPlanEnumTypeTransformer? _instance;
+}
+
 

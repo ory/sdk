@@ -9,13 +9,13 @@ defmodule Ory.Model.IdentitySchemaPreset do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"schema",
-    :"url"
+    :schema,
+    :url
   ]
 
   @type t :: %__MODULE__{
-    :"schema" => map(),
-    :"url" => String.t
+    :schema => map(),
+    :url => String.t
   }
 end
 

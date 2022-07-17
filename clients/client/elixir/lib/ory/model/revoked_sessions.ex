@@ -9,11 +9,11 @@ defmodule Ory.Model.RevokedSessions do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"count"
+    :count
   ]
 
   @type t :: %__MODULE__{
-    :"count" => integer() | nil
+    :count => integer() | nil
   }
 end
 

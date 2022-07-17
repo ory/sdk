@@ -1,152 +1,193 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:ory_client/model/submit_self_service_registration_flow_with_password_method_body.dart';
-import 'package:ory_client/model/submit_self_service_registration_flow_with_oidc_method_body.dart';
-import 'package:ory_client/model/submit_self_service_registration_flow_with_web_authn_method_body.dart';
-import 'package:built_value/json_object.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'submit_self_service_registration_flow_body.g.dart';
+class SubmitSelfServiceRegistrationFlowBody {
+  /// Returns a new [SubmitSelfServiceRegistrationFlowBody] instance.
+  SubmitSelfServiceRegistrationFlowBody({
+    this.csrfToken,
+    required this.method,
+    required this.password,
+    required this.traits,
+    required this.provider,
+    this.webauthnRegister,
+    this.webauthnRegisterDisplayname,
+  });
 
-abstract class SubmitSelfServiceRegistrationFlowBody implements Built<SubmitSelfServiceRegistrationFlowBody, SubmitSelfServiceRegistrationFlowBodyBuilder> {
+  /// CSRFToken is the anti-CSRF token
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? csrfToken;
 
-    /// CSRFToken is the anti-CSRF token
-    @nullable
-    @BuiltValueField(wireName: r'csrf_token')
-    String get csrfToken;
+  /// Method  Should be set to \"webauthn\" when trying to add, update, or remove a webAuthn pairing.
+  String method;
 
-    /// Method  Should be set to \"webauthn\" when trying to add, update, or remove a webAuthn pairing.
-    @BuiltValueField(wireName: r'method')
-    String get method;
+  /// Password to sign the user up with
+  String password;
 
-    /// Password to sign the user up with
-    @BuiltValueField(wireName: r'password')
-    String get password;
+  /// The identity's traits
+  Object traits;
 
-    /// The identity's traits
-    @BuiltValueField(wireName: r'traits')
-    JsonObject get traits;
+  /// The provider to register with
+  String provider;
 
-    /// The provider to register with
-    @BuiltValueField(wireName: r'provider')
-    String get provider;
+  /// Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? webauthnRegister;
 
-    /// Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here.
-    @nullable
-    @BuiltValueField(wireName: r'webauthn_register')
-    String get webauthnRegister;
+  /// Name of the WebAuthn Security Key to be Added  A human-readable name for the security key which will be added.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? webauthnRegisterDisplayname;
 
-    /// Name of the WebAuthn Security Key to be Added  A human-readable name for the security key which will be added.
-    @nullable
-    @BuiltValueField(wireName: r'webauthn_register_displayname')
-    String get webauthnRegisterDisplayname;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is SubmitSelfServiceRegistrationFlowBody &&
+     other.csrfToken == csrfToken &&
+     other.method == method &&
+     other.password == password &&
+     other.traits == traits &&
+     other.provider == provider &&
+     other.webauthnRegister == webauthnRegister &&
+     other.webauthnRegisterDisplayname == webauthnRegisterDisplayname;
 
-    SubmitSelfServiceRegistrationFlowBody._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (csrfToken == null ? 0 : csrfToken!.hashCode) +
+    (method.hashCode) +
+    (password.hashCode) +
+    (traits.hashCode) +
+    (provider.hashCode) +
+    (webauthnRegister == null ? 0 : webauthnRegister!.hashCode) +
+    (webauthnRegisterDisplayname == null ? 0 : webauthnRegisterDisplayname!.hashCode);
 
-    static void _initializeBuilder(SubmitSelfServiceRegistrationFlowBodyBuilder b) => b;
+  @override
+  String toString() => 'SubmitSelfServiceRegistrationFlowBody[csrfToken=$csrfToken, method=$method, password=$password, traits=$traits, provider=$provider, webauthnRegister=$webauthnRegister, webauthnRegisterDisplayname=$webauthnRegisterDisplayname]';
 
-    factory SubmitSelfServiceRegistrationFlowBody([void updates(SubmitSelfServiceRegistrationFlowBodyBuilder b)]) = _$SubmitSelfServiceRegistrationFlowBody;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<SubmitSelfServiceRegistrationFlowBody> get serializer => _$SubmitSelfServiceRegistrationFlowBodySerializer();
-}
-
-class _$SubmitSelfServiceRegistrationFlowBodySerializer implements StructuredSerializer<SubmitSelfServiceRegistrationFlowBody> {
-
-    @override
-    final Iterable<Type> types = const [SubmitSelfServiceRegistrationFlowBody, _$SubmitSelfServiceRegistrationFlowBody];
-    @override
-    final String wireName = r'SubmitSelfServiceRegistrationFlowBody';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, SubmitSelfServiceRegistrationFlowBody object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.csrfToken != null) {
-            result
-                ..add(r'csrf_token')
-                ..add(serializers.serialize(object.csrfToken,
-                    specifiedType: const FullType(String)));
-        }
-        result
-            ..add(r'method')
-            ..add(serializers.serialize(object.method,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'password')
-            ..add(serializers.serialize(object.password,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'traits')
-            ..add(serializers.serialize(object.traits,
-                specifiedType: const FullType(JsonObject)));
-        result
-            ..add(r'provider')
-            ..add(serializers.serialize(object.provider,
-                specifiedType: const FullType(String)));
-        if (object.webauthnRegister != null) {
-            result
-                ..add(r'webauthn_register')
-                ..add(serializers.serialize(object.webauthnRegister,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.webauthnRegisterDisplayname != null) {
-            result
-                ..add(r'webauthn_register_displayname')
-                ..add(serializers.serialize(object.webauthnRegisterDisplayname,
-                    specifiedType: const FullType(String)));
-        }
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+    if (csrfToken != null) {
+      _json[r'csrf_token'] = csrfToken;
+    } else {
+      _json[r'csrf_token'] = null;
     }
-
-    @override
-    SubmitSelfServiceRegistrationFlowBody deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = SubmitSelfServiceRegistrationFlowBodyBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'csrf_token':
-                    result.csrfToken = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'method':
-                    result.method = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'password':
-                    result.password = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'traits':
-                    result.traits = serializers.deserialize(value,
-                        specifiedType: const FullType(JsonObject)) as JsonObject;
-                    break;
-                case r'provider':
-                    result.provider = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'webauthn_register':
-                    result.webauthnRegister = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'webauthn_register_displayname':
-                    result.webauthnRegisterDisplayname = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
-        }
-        return result.build();
+      _json[r'method'] = method;
+      _json[r'password'] = password;
+      _json[r'traits'] = traits;
+      _json[r'provider'] = provider;
+    if (webauthnRegister != null) {
+      _json[r'webauthn_register'] = webauthnRegister;
+    } else {
+      _json[r'webauthn_register'] = null;
     }
+    if (webauthnRegisterDisplayname != null) {
+      _json[r'webauthn_register_displayname'] = webauthnRegisterDisplayname;
+    } else {
+      _json[r'webauthn_register_displayname'] = null;
+    }
+    return _json;
+  }
+
+  /// Returns a new [SubmitSelfServiceRegistrationFlowBody] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static SubmitSelfServiceRegistrationFlowBody? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "SubmitSelfServiceRegistrationFlowBody[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "SubmitSelfServiceRegistrationFlowBody[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return SubmitSelfServiceRegistrationFlowBody(
+        csrfToken: mapValueOfType<String>(json, r'csrf_token'),
+        method: mapValueOfType<String>(json, r'method')!,
+        password: mapValueOfType<String>(json, r'password')!,
+        traits: mapValueOfType<Object>(json, r'traits')!,
+        provider: mapValueOfType<String>(json, r'provider')!,
+        webauthnRegister: mapValueOfType<String>(json, r'webauthn_register'),
+        webauthnRegisterDisplayname: mapValueOfType<String>(json, r'webauthn_register_displayname'),
+      );
+    }
+    return null;
+  }
+
+  static List<SubmitSelfServiceRegistrationFlowBody>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <SubmitSelfServiceRegistrationFlowBody>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = SubmitSelfServiceRegistrationFlowBody.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, SubmitSelfServiceRegistrationFlowBody> mapFromJson(dynamic json) {
+    final map = <String, SubmitSelfServiceRegistrationFlowBody>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SubmitSelfServiceRegistrationFlowBody.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of SubmitSelfServiceRegistrationFlowBody-objects as value to a dart map
+  static Map<String, List<SubmitSelfServiceRegistrationFlowBody>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<SubmitSelfServiceRegistrationFlowBody>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SubmitSelfServiceRegistrationFlowBody.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'method',
+    'password',
+    'traits',
+    'provider',
+  };
 }
 

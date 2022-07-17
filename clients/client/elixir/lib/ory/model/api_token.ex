@@ -9,19 +9,19 @@ defmodule Ory.Model.ApiToken do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"id",
-    :"name",
-    :"owner_id",
-    :"project_id",
-    :"value"
+    :id,
+    :name,
+    :owner_id,
+    :project_id,
+    :value
   ]
 
   @type t :: %__MODULE__{
-    :"id" => String.t,
-    :"name" => String.t,
-    :"owner_id" => String.t,
-    :"project_id" => String.t | nil,
-    :"value" => String.t | nil
+    :id => String.t,
+    :name => String.t,
+    :owner_id => String.t,
+    :project_id => String.t | nil,
+    :value => String.t | nil
   }
 end
 

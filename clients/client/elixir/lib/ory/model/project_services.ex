@@ -9,13 +9,13 @@ defmodule Ory.Model.ProjectServices do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"identity",
-    :"permission"
+    :identity,
+    :permission
   ]
 
   @type t :: %__MODULE__{
-    :"identity" => Ory.Model.ProjectServiceIdentity.t | nil,
-    :"permission" => Ory.Model.ProjectServicePermission.t | nil
+    :identity => Ory.Model.ProjectServiceIdentity.t | nil,
+    :permission => Ory.Model.ProjectServicePermission.t | nil
   }
 end
 
@@ -23,8 +23,8 @@ defimpl Poison.Decoder, for: Ory.Model.ProjectServices do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"identity", :struct, Ory.Model.ProjectServiceIdentity, options)
-    |> deserialize(:"permission", :struct, Ory.Model.ProjectServicePermission, options)
+    |> deserialize(:identity, :struct, Ory.Model.ProjectServiceIdentity, options)
+    |> deserialize(:permission, :struct, Ory.Model.ProjectServicePermission, options)
   end
 end
 

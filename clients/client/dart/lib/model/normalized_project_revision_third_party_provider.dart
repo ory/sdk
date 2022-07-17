@@ -1,336 +1,419 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/json_object.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'normalized_project_revision_third_party_provider.g.dart';
+class NormalizedProjectRevisionThirdPartyProvider {
+  /// Returns a new [NormalizedProjectRevisionThirdPartyProvider] instance.
+  NormalizedProjectRevisionThirdPartyProvider({
+    this.applePrivateKey,
+    this.applePrivateKeyId,
+    this.appleTeamId,
+    this.authUrl,
+    this.azureTenant,
+    this.clientId,
+    this.clientSecret,
+    this.createdAt,
+    this.id,
+    this.issuerUrl,
+    this.label,
+    this.mapperUrl,
+    this.projectRevisionId,
+    this.provider,
+    this.providerId,
+    this.requestedClaims,
+    this.scope = const [],
+    this.tokenUrl,
+    this.updatedAt,
+  });
 
-abstract class NormalizedProjectRevisionThirdPartyProvider implements Built<NormalizedProjectRevisionThirdPartyProvider, NormalizedProjectRevisionThirdPartyProviderBuilder> {
+  String? applePrivateKey;
 
-    @nullable
-    @BuiltValueField(wireName: r'apple_private_key')
-    String get applePrivateKey;
+  /// Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? applePrivateKeyId;
 
-    /// Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret
-    @nullable
-    @BuiltValueField(wireName: r'apple_private_key_id')
-    String get applePrivateKeyId;
+  /// Apple Developer Team ID  Apple Developer Team ID needed for generating a JWT token for client secret
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? appleTeamId;
 
-    /// Apple Developer Team ID  Apple Developer Team ID needed for generating a JWT token for client secret
-    @nullable
-    @BuiltValueField(wireName: r'apple_team_id')
-    String get appleTeamId;
+  /// AuthURL is the authorize url, typically something like: https://example.org/oauth2/auth Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when `provider` is set to `generic`.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? authUrl;
 
-    /// AuthURL is the authorize url, typically something like: https://example.org/oauth2/auth Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when `provider` is set to `generic`.
-    @nullable
-    @BuiltValueField(wireName: r'auth_url')
-    String get authUrl;
+  /// Tenant is the Azure AD Tenant to use for authentication, and must be set when `provider` is set to `microsoft`.  Can be either `common`, `organizations`, `consumers` for a multitenant application or a specific tenant like `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` or `contoso.onmicrosoft.com`.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? azureTenant;
 
-    /// Tenant is the Azure AD Tenant to use for authentication, and must be set when `provider` is set to `microsoft`.  Can be either `common`, `organizations`, `consumers` for a multitenant application or a specific tenant like `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` or `contoso.onmicrosoft.com`.
-    @nullable
-    @BuiltValueField(wireName: r'azure_tenant')
-    String get azureTenant;
+  /// ClientID is the application's Client ID.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? clientId;
 
-    /// ClientID is the application's Client ID.
-    @nullable
-    @BuiltValueField(wireName: r'client_id')
-    String get clientId;
+  String? clientSecret;
 
-    @nullable
-    @BuiltValueField(wireName: r'client_secret')
-    String get clientSecret;
+  /// The Project's Revision Creation Date
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? createdAt;
 
-    /// The Project's Revision Creation Date
-    @nullable
-    @BuiltValueField(wireName: r'created_at')
-    DateTime get createdAt;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? id;
 
-    @nullable
-    @BuiltValueField(wireName: r'id')
-    String get id;
+  /// IssuerURL is the OpenID Connect Server URL. You can leave this empty if `provider` is not set to `generic`. If set, neither `auth_url` nor `token_url` are required.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? issuerUrl;
 
-    /// IssuerURL is the OpenID Connect Server URL. You can leave this empty if `provider` is not set to `generic`. If set, neither `auth_url` nor `token_url` are required.
-    @nullable
-    @BuiltValueField(wireName: r'issuer_url')
-    String get issuerUrl;
+  /// Label represents an optional label which can be used in the UI generation.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? label;
 
-    /// Label represents an optional label which can be used in the UI generation.
-    @nullable
-    @BuiltValueField(wireName: r'label')
-    String get label;
+  /// Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.  It can be either a URL (file://, http(s)://, base64://) or an inline JSONNet code snippet.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? mapperUrl;
 
-    /// Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.  It can be either a URL (file://, http(s)://, base64://) or an inline JSONNet code snippet.
-    @nullable
-    @BuiltValueField(wireName: r'mapper_url')
-    String get mapperUrl;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? projectRevisionId;
 
-    @nullable
-    @BuiltValueField(wireName: r'project_revision_id')
-    String get projectRevisionId;
+  /// Provider is either \"generic\" for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? provider;
 
-    /// Provider is either \"generic\" for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple
-    @nullable
-    @BuiltValueField(wireName: r'provider')
-    String get provider;
+  /// ID is the provider's ID
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? providerId;
 
-    /// ID is the provider's ID
-    @nullable
-    @BuiltValueField(wireName: r'provider_id')
-    String get providerId;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  Object? requestedClaims;
 
-    @nullable
-    @BuiltValueField(wireName: r'requested_claims')
-    JsonObject get requestedClaims;
+  List<String> scope;
 
-    @nullable
-    @BuiltValueField(wireName: r'scope')
-    BuiltList<String> get scope;
+  /// TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when `provider` is set to `generic`.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? tokenUrl;
 
-    /// TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when `provider` is set to `generic`.
-    @nullable
-    @BuiltValueField(wireName: r'token_url')
-    String get tokenUrl;
+  /// Last Time Project's Revision was Updated
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? updatedAt;
 
-    /// Last Time Project's Revision was Updated
-    @nullable
-    @BuiltValueField(wireName: r'updated_at')
-    DateTime get updatedAt;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is NormalizedProjectRevisionThirdPartyProvider &&
+     other.applePrivateKey == applePrivateKey &&
+     other.applePrivateKeyId == applePrivateKeyId &&
+     other.appleTeamId == appleTeamId &&
+     other.authUrl == authUrl &&
+     other.azureTenant == azureTenant &&
+     other.clientId == clientId &&
+     other.clientSecret == clientSecret &&
+     other.createdAt == createdAt &&
+     other.id == id &&
+     other.issuerUrl == issuerUrl &&
+     other.label == label &&
+     other.mapperUrl == mapperUrl &&
+     other.projectRevisionId == projectRevisionId &&
+     other.provider == provider &&
+     other.providerId == providerId &&
+     other.requestedClaims == requestedClaims &&
+     other.scope == scope &&
+     other.tokenUrl == tokenUrl &&
+     other.updatedAt == updatedAt;
 
-    NormalizedProjectRevisionThirdPartyProvider._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (applePrivateKey == null ? 0 : applePrivateKey!.hashCode) +
+    (applePrivateKeyId == null ? 0 : applePrivateKeyId!.hashCode) +
+    (appleTeamId == null ? 0 : appleTeamId!.hashCode) +
+    (authUrl == null ? 0 : authUrl!.hashCode) +
+    (azureTenant == null ? 0 : azureTenant!.hashCode) +
+    (clientId == null ? 0 : clientId!.hashCode) +
+    (clientSecret == null ? 0 : clientSecret!.hashCode) +
+    (createdAt == null ? 0 : createdAt!.hashCode) +
+    (id == null ? 0 : id!.hashCode) +
+    (issuerUrl == null ? 0 : issuerUrl!.hashCode) +
+    (label == null ? 0 : label!.hashCode) +
+    (mapperUrl == null ? 0 : mapperUrl!.hashCode) +
+    (projectRevisionId == null ? 0 : projectRevisionId!.hashCode) +
+    (provider == null ? 0 : provider!.hashCode) +
+    (providerId == null ? 0 : providerId!.hashCode) +
+    (requestedClaims == null ? 0 : requestedClaims!.hashCode) +
+    (scope.hashCode) +
+    (tokenUrl == null ? 0 : tokenUrl!.hashCode) +
+    (updatedAt == null ? 0 : updatedAt!.hashCode);
 
-    static void _initializeBuilder(NormalizedProjectRevisionThirdPartyProviderBuilder b) => b;
+  @override
+  String toString() => 'NormalizedProjectRevisionThirdPartyProvider[applePrivateKey=$applePrivateKey, applePrivateKeyId=$applePrivateKeyId, appleTeamId=$appleTeamId, authUrl=$authUrl, azureTenant=$azureTenant, clientId=$clientId, clientSecret=$clientSecret, createdAt=$createdAt, id=$id, issuerUrl=$issuerUrl, label=$label, mapperUrl=$mapperUrl, projectRevisionId=$projectRevisionId, provider=$provider, providerId=$providerId, requestedClaims=$requestedClaims, scope=$scope, tokenUrl=$tokenUrl, updatedAt=$updatedAt]';
 
-    factory NormalizedProjectRevisionThirdPartyProvider([void updates(NormalizedProjectRevisionThirdPartyProviderBuilder b)]) = _$NormalizedProjectRevisionThirdPartyProvider;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<NormalizedProjectRevisionThirdPartyProvider> get serializer => _$NormalizedProjectRevisionThirdPartyProviderSerializer();
-}
-
-class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements StructuredSerializer<NormalizedProjectRevisionThirdPartyProvider> {
-
-    @override
-    final Iterable<Type> types = const [NormalizedProjectRevisionThirdPartyProvider, _$NormalizedProjectRevisionThirdPartyProvider];
-    @override
-    final String wireName = r'NormalizedProjectRevisionThirdPartyProvider';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, NormalizedProjectRevisionThirdPartyProvider object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.applePrivateKey != null) {
-            result
-                ..add(r'apple_private_key')
-                ..add(serializers.serialize(object.applePrivateKey,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.applePrivateKeyId != null) {
-            result
-                ..add(r'apple_private_key_id')
-                ..add(serializers.serialize(object.applePrivateKeyId,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.appleTeamId != null) {
-            result
-                ..add(r'apple_team_id')
-                ..add(serializers.serialize(object.appleTeamId,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.authUrl != null) {
-            result
-                ..add(r'auth_url')
-                ..add(serializers.serialize(object.authUrl,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.azureTenant != null) {
-            result
-                ..add(r'azure_tenant')
-                ..add(serializers.serialize(object.azureTenant,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.clientId != null) {
-            result
-                ..add(r'client_id')
-                ..add(serializers.serialize(object.clientId,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.clientSecret != null) {
-            result
-                ..add(r'client_secret')
-                ..add(serializers.serialize(object.clientSecret,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.createdAt != null) {
-            result
-                ..add(r'created_at')
-                ..add(serializers.serialize(object.createdAt,
-                    specifiedType: const FullType(DateTime)));
-        }
-        if (object.id != null) {
-            result
-                ..add(r'id')
-                ..add(serializers.serialize(object.id,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.issuerUrl != null) {
-            result
-                ..add(r'issuer_url')
-                ..add(serializers.serialize(object.issuerUrl,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.label != null) {
-            result
-                ..add(r'label')
-                ..add(serializers.serialize(object.label,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.mapperUrl != null) {
-            result
-                ..add(r'mapper_url')
-                ..add(serializers.serialize(object.mapperUrl,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.projectRevisionId != null) {
-            result
-                ..add(r'project_revision_id')
-                ..add(serializers.serialize(object.projectRevisionId,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.provider != null) {
-            result
-                ..add(r'provider')
-                ..add(serializers.serialize(object.provider,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.providerId != null) {
-            result
-                ..add(r'provider_id')
-                ..add(serializers.serialize(object.providerId,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.requestedClaims != null) {
-            result
-                ..add(r'requested_claims')
-                ..add(serializers.serialize(object.requestedClaims,
-                    specifiedType: const FullType(JsonObject)));
-        }
-        if (object.scope != null) {
-            result
-                ..add(r'scope')
-                ..add(serializers.serialize(object.scope,
-                    specifiedType: const FullType(BuiltList, [FullType(String)])));
-        }
-        if (object.tokenUrl != null) {
-            result
-                ..add(r'token_url')
-                ..add(serializers.serialize(object.tokenUrl,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.updatedAt != null) {
-            result
-                ..add(r'updated_at')
-                ..add(serializers.serialize(object.updatedAt,
-                    specifiedType: const FullType(DateTime)));
-        }
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+    if (applePrivateKey != null) {
+      _json[r'apple_private_key'] = applePrivateKey;
+    } else {
+      _json[r'apple_private_key'] = null;
     }
-
-    @override
-    NormalizedProjectRevisionThirdPartyProvider deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = NormalizedProjectRevisionThirdPartyProviderBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'apple_private_key':
-                    result.applePrivateKey = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'apple_private_key_id':
-                    result.applePrivateKeyId = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'apple_team_id':
-                    result.appleTeamId = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'auth_url':
-                    result.authUrl = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'azure_tenant':
-                    result.azureTenant = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'client_id':
-                    result.clientId = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'client_secret':
-                    result.clientSecret = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'created_at':
-                    result.createdAt = serializers.deserialize(value,
-                        specifiedType: const FullType(DateTime)) as DateTime;
-                    break;
-                case r'id':
-                    result.id = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'issuer_url':
-                    result.issuerUrl = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'label':
-                    result.label = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'mapper_url':
-                    result.mapperUrl = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'project_revision_id':
-                    result.projectRevisionId = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'provider':
-                    result.provider = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'provider_id':
-                    result.providerId = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'requested_claims':
-                    result.requestedClaims = serializers.deserialize(value,
-                        specifiedType: const FullType(JsonObject)) as JsonObject;
-                    break;
-                case r'scope':
-                    result.scope.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
-                    break;
-                case r'token_url':
-                    result.tokenUrl = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'updated_at':
-                    result.updatedAt = serializers.deserialize(value,
-                        specifiedType: const FullType(DateTime)) as DateTime;
-                    break;
-            }
-        }
-        return result.build();
+    if (applePrivateKeyId != null) {
+      _json[r'apple_private_key_id'] = applePrivateKeyId;
+    } else {
+      _json[r'apple_private_key_id'] = null;
     }
+    if (appleTeamId != null) {
+      _json[r'apple_team_id'] = appleTeamId;
+    } else {
+      _json[r'apple_team_id'] = null;
+    }
+    if (authUrl != null) {
+      _json[r'auth_url'] = authUrl;
+    } else {
+      _json[r'auth_url'] = null;
+    }
+    if (azureTenant != null) {
+      _json[r'azure_tenant'] = azureTenant;
+    } else {
+      _json[r'azure_tenant'] = null;
+    }
+    if (clientId != null) {
+      _json[r'client_id'] = clientId;
+    } else {
+      _json[r'client_id'] = null;
+    }
+    if (clientSecret != null) {
+      _json[r'client_secret'] = clientSecret;
+    } else {
+      _json[r'client_secret'] = null;
+    }
+    if (createdAt != null) {
+      _json[r'created_at'] = createdAt!.toUtc().toIso8601String();
+    } else {
+      _json[r'created_at'] = null;
+    }
+    if (id != null) {
+      _json[r'id'] = id;
+    } else {
+      _json[r'id'] = null;
+    }
+    if (issuerUrl != null) {
+      _json[r'issuer_url'] = issuerUrl;
+    } else {
+      _json[r'issuer_url'] = null;
+    }
+    if (label != null) {
+      _json[r'label'] = label;
+    } else {
+      _json[r'label'] = null;
+    }
+    if (mapperUrl != null) {
+      _json[r'mapper_url'] = mapperUrl;
+    } else {
+      _json[r'mapper_url'] = null;
+    }
+    if (projectRevisionId != null) {
+      _json[r'project_revision_id'] = projectRevisionId;
+    } else {
+      _json[r'project_revision_id'] = null;
+    }
+    if (provider != null) {
+      _json[r'provider'] = provider;
+    } else {
+      _json[r'provider'] = null;
+    }
+    if (providerId != null) {
+      _json[r'provider_id'] = providerId;
+    } else {
+      _json[r'provider_id'] = null;
+    }
+    if (requestedClaims != null) {
+      _json[r'requested_claims'] = requestedClaims;
+    } else {
+      _json[r'requested_claims'] = null;
+    }
+      _json[r'scope'] = scope;
+    if (tokenUrl != null) {
+      _json[r'token_url'] = tokenUrl;
+    } else {
+      _json[r'token_url'] = null;
+    }
+    if (updatedAt != null) {
+      _json[r'updated_at'] = updatedAt!.toUtc().toIso8601String();
+    } else {
+      _json[r'updated_at'] = null;
+    }
+    return _json;
+  }
+
+  /// Returns a new [NormalizedProjectRevisionThirdPartyProvider] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static NormalizedProjectRevisionThirdPartyProvider? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "NormalizedProjectRevisionThirdPartyProvider[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "NormalizedProjectRevisionThirdPartyProvider[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return NormalizedProjectRevisionThirdPartyProvider(
+        applePrivateKey: mapValueOfType<String>(json, r'apple_private_key'),
+        applePrivateKeyId: mapValueOfType<String>(json, r'apple_private_key_id'),
+        appleTeamId: mapValueOfType<String>(json, r'apple_team_id'),
+        authUrl: mapValueOfType<String>(json, r'auth_url'),
+        azureTenant: mapValueOfType<String>(json, r'azure_tenant'),
+        clientId: mapValueOfType<String>(json, r'client_id'),
+        clientSecret: mapValueOfType<String>(json, r'client_secret'),
+        createdAt: mapDateTime(json, r'created_at', ''),
+        id: mapValueOfType<String>(json, r'id'),
+        issuerUrl: mapValueOfType<String>(json, r'issuer_url'),
+        label: mapValueOfType<String>(json, r'label'),
+        mapperUrl: mapValueOfType<String>(json, r'mapper_url'),
+        projectRevisionId: mapValueOfType<String>(json, r'project_revision_id'),
+        provider: mapValueOfType<String>(json, r'provider'),
+        providerId: mapValueOfType<String>(json, r'provider_id'),
+        requestedClaims: mapValueOfType<Object>(json, r'requested_claims'),
+        scope: json[r'scope'] is List
+            ? (json[r'scope'] as List).cast<String>()
+            : const [],
+        tokenUrl: mapValueOfType<String>(json, r'token_url'),
+        updatedAt: mapDateTime(json, r'updated_at', ''),
+      );
+    }
+    return null;
+  }
+
+  static List<NormalizedProjectRevisionThirdPartyProvider>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <NormalizedProjectRevisionThirdPartyProvider>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = NormalizedProjectRevisionThirdPartyProvider.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, NormalizedProjectRevisionThirdPartyProvider> mapFromJson(dynamic json) {
+    final map = <String, NormalizedProjectRevisionThirdPartyProvider>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = NormalizedProjectRevisionThirdPartyProvider.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of NormalizedProjectRevisionThirdPartyProvider-objects as value to a dart map
+  static Map<String, List<NormalizedProjectRevisionThirdPartyProvider>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<NormalizedProjectRevisionThirdPartyProvider>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = NormalizedProjectRevisionThirdPartyProvider.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

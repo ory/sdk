@@ -1,95 +1,139 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:ory_client/model/submit_self_service_recovery_flow_with_link_method_body.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'submit_self_service_recovery_flow_body.g.dart';
+class SubmitSelfServiceRecoveryFlowBody {
+  /// Returns a new [SubmitSelfServiceRecoveryFlowBody] instance.
+  SubmitSelfServiceRecoveryFlowBody({
+    this.csrfToken,
+    required this.email,
+    required this.method,
+  });
 
-abstract class SubmitSelfServiceRecoveryFlowBody implements Built<SubmitSelfServiceRecoveryFlowBody, SubmitSelfServiceRecoveryFlowBodyBuilder> {
+  /// Sending the anti-csrf token is only required for browser login flows.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? csrfToken;
 
-    /// Sending the anti-csrf token is only required for browser login flows.
-    @nullable
-    @BuiltValueField(wireName: r'csrf_token')
-    String get csrfToken;
+  /// Email to Recover  Needs to be set when initiating the flow. If the email is a registered recovery email, a recovery link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
+  String email;
 
-    /// Email to Recover  Needs to be set when initiating the flow. If the email is a registered recovery email, a recovery link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
-    @BuiltValueField(wireName: r'email')
-    String get email;
+  /// Method supports `link` only right now.
+  String method;
 
-    /// Method supports `link` only right now.
-    @BuiltValueField(wireName: r'method')
-    String get method;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is SubmitSelfServiceRecoveryFlowBody &&
+     other.csrfToken == csrfToken &&
+     other.email == email &&
+     other.method == method;
 
-    SubmitSelfServiceRecoveryFlowBody._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (csrfToken == null ? 0 : csrfToken!.hashCode) +
+    (email.hashCode) +
+    (method.hashCode);
 
-    static void _initializeBuilder(SubmitSelfServiceRecoveryFlowBodyBuilder b) => b;
+  @override
+  String toString() => 'SubmitSelfServiceRecoveryFlowBody[csrfToken=$csrfToken, email=$email, method=$method]';
 
-    factory SubmitSelfServiceRecoveryFlowBody([void updates(SubmitSelfServiceRecoveryFlowBodyBuilder b)]) = _$SubmitSelfServiceRecoveryFlowBody;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<SubmitSelfServiceRecoveryFlowBody> get serializer => _$SubmitSelfServiceRecoveryFlowBodySerializer();
-}
-
-class _$SubmitSelfServiceRecoveryFlowBodySerializer implements StructuredSerializer<SubmitSelfServiceRecoveryFlowBody> {
-
-    @override
-    final Iterable<Type> types = const [SubmitSelfServiceRecoveryFlowBody, _$SubmitSelfServiceRecoveryFlowBody];
-    @override
-    final String wireName = r'SubmitSelfServiceRecoveryFlowBody';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, SubmitSelfServiceRecoveryFlowBody object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.csrfToken != null) {
-            result
-                ..add(r'csrf_token')
-                ..add(serializers.serialize(object.csrfToken,
-                    specifiedType: const FullType(String)));
-        }
-        result
-            ..add(r'email')
-            ..add(serializers.serialize(object.email,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'method')
-            ..add(serializers.serialize(object.method,
-                specifiedType: const FullType(String)));
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+    if (csrfToken != null) {
+      _json[r'csrf_token'] = csrfToken;
+    } else {
+      _json[r'csrf_token'] = null;
     }
+      _json[r'email'] = email;
+      _json[r'method'] = method;
+    return _json;
+  }
 
-    @override
-    SubmitSelfServiceRecoveryFlowBody deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = SubmitSelfServiceRecoveryFlowBodyBuilder();
+  /// Returns a new [SubmitSelfServiceRecoveryFlowBody] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static SubmitSelfServiceRecoveryFlowBody? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'csrf_token':
-                    result.csrfToken = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'email':
-                    result.email = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'method':
-                    result.method = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
-        }
-        return result.build();
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "SubmitSelfServiceRecoveryFlowBody[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "SubmitSelfServiceRecoveryFlowBody[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return SubmitSelfServiceRecoveryFlowBody(
+        csrfToken: mapValueOfType<String>(json, r'csrf_token'),
+        email: mapValueOfType<String>(json, r'email')!,
+        method: mapValueOfType<String>(json, r'method')!,
+      );
     }
+    return null;
+  }
+
+  static List<SubmitSelfServiceRecoveryFlowBody>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <SubmitSelfServiceRecoveryFlowBody>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = SubmitSelfServiceRecoveryFlowBody.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, SubmitSelfServiceRecoveryFlowBody> mapFromJson(dynamic json) {
+    final map = <String, SubmitSelfServiceRecoveryFlowBody>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SubmitSelfServiceRecoveryFlowBody.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of SubmitSelfServiceRecoveryFlowBody-objects as value to a dart map
+  static Map<String, List<SubmitSelfServiceRecoveryFlowBody>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<SubmitSelfServiceRecoveryFlowBody>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SubmitSelfServiceRecoveryFlowBody.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'email',
+    'method',
+  };
 }
 

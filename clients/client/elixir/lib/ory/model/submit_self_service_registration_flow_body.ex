@@ -9,23 +9,23 @@ defmodule Ory.Model.SubmitSelfServiceRegistrationFlowBody do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"csrf_token",
-    :"method",
-    :"password",
-    :"traits",
-    :"provider",
-    :"webauthn_register",
-    :"webauthn_register_displayname"
+    :csrf_token,
+    :method,
+    :password,
+    :traits,
+    :provider,
+    :webauthn_register,
+    :webauthn_register_displayname
   ]
 
   @type t :: %__MODULE__{
-    :"csrf_token" => String.t | nil,
-    :"method" => String.t,
-    :"password" => String.t,
-    :"traits" => map(),
-    :"provider" => String.t,
-    :"webauthn_register" => String.t | nil,
-    :"webauthn_register_displayname" => String.t | nil
+    :csrf_token => String.t | nil,
+    :method => String.t,
+    :password => String.t,
+    :traits => map(),
+    :provider => String.t,
+    :webauthn_register => String.t | nil,
+    :webauthn_register_displayname => String.t | nil
   }
 end
 

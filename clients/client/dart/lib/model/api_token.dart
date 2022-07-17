@@ -1,118 +1,163 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'api_token.g.dart';
+class ApiToken {
+  /// Returns a new [ApiToken] instance.
+  ApiToken({
+    required this.id,
+    required this.name,
+    required this.ownerId,
+    this.projectId,
+    this.value,
+  });
 
-abstract class ApiToken implements Built<ApiToken, ApiTokenBuilder> {
+  String id;
 
-    @BuiltValueField(wireName: r'id')
-    String get id;
+  /// The Token's Name  Set this to help you remember, for example, where you use the token.
+  String name;
 
-    /// The Token's Name  Set this to help you remember, for example, where you use the token.
-    @BuiltValueField(wireName: r'name')
-    String get name;
+  String ownerId;
 
-    @BuiltValueField(wireName: r'owner_id')
-    String get ownerId;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? projectId;
 
-    @nullable
-    @BuiltValueField(wireName: r'project_id')
-    String get projectId;
+  /// The token's value
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? value;
 
-    /// The token's value
-    @nullable
-    @BuiltValueField(wireName: r'value')
-    String get value;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is ApiToken &&
+     other.id == id &&
+     other.name == name &&
+     other.ownerId == ownerId &&
+     other.projectId == projectId &&
+     other.value == value;
 
-    ApiToken._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (id.hashCode) +
+    (name.hashCode) +
+    (ownerId.hashCode) +
+    (projectId == null ? 0 : projectId!.hashCode) +
+    (value == null ? 0 : value!.hashCode);
 
-    static void _initializeBuilder(ApiTokenBuilder b) => b;
+  @override
+  String toString() => 'ApiToken[id=$id, name=$name, ownerId=$ownerId, projectId=$projectId, value=$value]';
 
-    factory ApiToken([void updates(ApiTokenBuilder b)]) = _$ApiToken;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<ApiToken> get serializer => _$ApiTokenSerializer();
-}
-
-class _$ApiTokenSerializer implements StructuredSerializer<ApiToken> {
-
-    @override
-    final Iterable<Type> types = const [ApiToken, _$ApiToken];
-    @override
-    final String wireName = r'ApiToken';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, ApiToken object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'id')
-            ..add(serializers.serialize(object.id,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'name')
-            ..add(serializers.serialize(object.name,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'owner_id')
-            ..add(serializers.serialize(object.ownerId,
-                specifiedType: const FullType(String)));
-        if (object.projectId != null) {
-            result
-                ..add(r'project_id')
-                ..add(serializers.serialize(object.projectId,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.value != null) {
-            result
-                ..add(r'value')
-                ..add(serializers.serialize(object.value,
-                    specifiedType: const FullType(String)));
-        }
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'id'] = id;
+      _json[r'name'] = name;
+      _json[r'owner_id'] = ownerId;
+    if (projectId != null) {
+      _json[r'project_id'] = projectId;
+    } else {
+      _json[r'project_id'] = null;
     }
-
-    @override
-    ApiToken deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = ApiTokenBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'id':
-                    result.id = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'name':
-                    result.name = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'owner_id':
-                    result.ownerId = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'project_id':
-                    result.projectId = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'value':
-                    result.value = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
-        }
-        return result.build();
+    if (value != null) {
+      _json[r'value'] = value;
+    } else {
+      _json[r'value'] = null;
     }
+    return _json;
+  }
+
+  /// Returns a new [ApiToken] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static ApiToken? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "ApiToken[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "ApiToken[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return ApiToken(
+        id: mapValueOfType<String>(json, r'id')!,
+        name: mapValueOfType<String>(json, r'name')!,
+        ownerId: mapValueOfType<String>(json, r'owner_id')!,
+        projectId: mapValueOfType<String>(json, r'project_id'),
+        value: mapValueOfType<String>(json, r'value'),
+      );
+    }
+    return null;
+  }
+
+  static List<ApiToken>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <ApiToken>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = ApiToken.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, ApiToken> mapFromJson(dynamic json) {
+    final map = <String, ApiToken>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = ApiToken.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of ApiToken-objects as value to a dart map
+  static Map<String, List<ApiToken>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<ApiToken>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = ApiToken.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'id',
+    'name',
+    'owner_id',
+  };
 }
 

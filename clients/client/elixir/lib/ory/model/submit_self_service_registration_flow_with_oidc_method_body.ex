@@ -9,17 +9,17 @@ defmodule Ory.Model.SubmitSelfServiceRegistrationFlowWithOidcMethodBody do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"csrf_token",
-    :"method",
-    :"provider",
-    :"traits"
+    :csrf_token,
+    :method,
+    :provider,
+    :traits
   ]
 
   @type t :: %__MODULE__{
-    :"csrf_token" => String.t | nil,
-    :"method" => String.t,
-    :"provider" => String.t,
-    :"traits" => map() | nil
+    :csrf_token => String.t | nil,
+    :method => String.t,
+    :provider => String.t,
+    :traits => map() | nil
   }
 end
 

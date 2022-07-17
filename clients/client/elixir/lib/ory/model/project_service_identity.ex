@@ -9,11 +9,11 @@ defmodule Ory.Model.ProjectServiceIdentity do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"config"
+    :config
   ]
 
   @type t :: %__MODULE__{
-    :"config" => map()
+    :config => map()
   }
 end
 

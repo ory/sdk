@@ -9,17 +9,17 @@ defmodule Ory.Model.ExpandTree do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"children",
-    :"subject_id",
-    :"subject_set",
-    :"type"
+    :children,
+    :subject_id,
+    :subject_set,
+    :type
   ]
 
   @type t :: %__MODULE__{
-    :"children" => [Ory.Model.ExpandTree.t] | nil,
-    :"subject_id" => String.t | nil,
-    :"subject_set" => Ory.Model.SubjectSet.t | nil,
-    :"type" => String.t
+    :children => [Ory.Model.ExpandTree.t] | nil,
+    :subject_id => String.t | nil,
+    :subject_set => Ory.Model.SubjectSet.t | nil,
+    :type => String.t
   }
 end
 
@@ -27,8 +27,8 @@ defimpl Poison.Decoder, for: Ory.Model.ExpandTree do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"children", :list, Ory.Model.ExpandTree, options)
-    |> deserialize(:"subject_set", :struct, Ory.Model.SubjectSet, options)
+    |> deserialize(:children, :list, Ory.Model.ExpandTree, options)
+    |> deserialize(:subject_set, :struct, Ory.Model.SubjectSet, options)
   end
 end
 

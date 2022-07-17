@@ -1,128 +1,184 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/json_object.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'submit_self_service_settings_flow_with_oidc_method_body.g.dart';
+class SubmitSelfServiceSettingsFlowWithOidcMethodBody {
+  /// Returns a new [SubmitSelfServiceSettingsFlowWithOidcMethodBody] instance.
+  SubmitSelfServiceSettingsFlowWithOidcMethodBody({
+    this.flow,
+    this.link,
+    required this.method,
+    this.traits,
+    this.unlink,
+  });
 
-abstract class SubmitSelfServiceSettingsFlowWithOidcMethodBody implements Built<SubmitSelfServiceSettingsFlowWithOidcMethodBody, SubmitSelfServiceSettingsFlowWithOidcMethodBodyBuilder> {
+  /// Flow ID is the flow's ID.  in: query
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? flow;
 
-    /// Flow ID is the flow's ID.  in: query
-    @nullable
-    @BuiltValueField(wireName: r'flow')
-    String get flow;
+  /// Link this provider  Either this or `unlink` must be set.  type: string in: body
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? link;
 
-    /// Link this provider  Either this or `unlink` must be set.  type: string in: body
-    @nullable
-    @BuiltValueField(wireName: r'link')
-    String get link;
+  /// Method  Should be set to profile when trying to update a profile.
+  String method;
 
-    /// Method  Should be set to profile when trying to update a profile.
-    @BuiltValueField(wireName: r'method')
-    String get method;
+  /// The identity's traits  in: body
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  Object? traits;
 
-    /// The identity's traits  in: body
-    @nullable
-    @BuiltValueField(wireName: r'traits')
-    JsonObject get traits;
+  /// Unlink this provider  Either this or `link` must be set.  type: string in: body
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? unlink;
 
-    /// Unlink this provider  Either this or `link` must be set.  type: string in: body
-    @nullable
-    @BuiltValueField(wireName: r'unlink')
-    String get unlink;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is SubmitSelfServiceSettingsFlowWithOidcMethodBody &&
+     other.flow == flow &&
+     other.link == link &&
+     other.method == method &&
+     other.traits == traits &&
+     other.unlink == unlink;
 
-    SubmitSelfServiceSettingsFlowWithOidcMethodBody._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (flow == null ? 0 : flow!.hashCode) +
+    (link == null ? 0 : link!.hashCode) +
+    (method.hashCode) +
+    (traits == null ? 0 : traits!.hashCode) +
+    (unlink == null ? 0 : unlink!.hashCode);
 
-    static void _initializeBuilder(SubmitSelfServiceSettingsFlowWithOidcMethodBodyBuilder b) => b;
+  @override
+  String toString() => 'SubmitSelfServiceSettingsFlowWithOidcMethodBody[flow=$flow, link=$link, method=$method, traits=$traits, unlink=$unlink]';
 
-    factory SubmitSelfServiceSettingsFlowWithOidcMethodBody([void updates(SubmitSelfServiceSettingsFlowWithOidcMethodBodyBuilder b)]) = _$SubmitSelfServiceSettingsFlowWithOidcMethodBody;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<SubmitSelfServiceSettingsFlowWithOidcMethodBody> get serializer => _$SubmitSelfServiceSettingsFlowWithOidcMethodBodySerializer();
-}
-
-class _$SubmitSelfServiceSettingsFlowWithOidcMethodBodySerializer implements StructuredSerializer<SubmitSelfServiceSettingsFlowWithOidcMethodBody> {
-
-    @override
-    final Iterable<Type> types = const [SubmitSelfServiceSettingsFlowWithOidcMethodBody, _$SubmitSelfServiceSettingsFlowWithOidcMethodBody];
-    @override
-    final String wireName = r'SubmitSelfServiceSettingsFlowWithOidcMethodBody';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, SubmitSelfServiceSettingsFlowWithOidcMethodBody object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.flow != null) {
-            result
-                ..add(r'flow')
-                ..add(serializers.serialize(object.flow,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.link != null) {
-            result
-                ..add(r'link')
-                ..add(serializers.serialize(object.link,
-                    specifiedType: const FullType(String)));
-        }
-        result
-            ..add(r'method')
-            ..add(serializers.serialize(object.method,
-                specifiedType: const FullType(String)));
-        if (object.traits != null) {
-            result
-                ..add(r'traits')
-                ..add(serializers.serialize(object.traits,
-                    specifiedType: const FullType(JsonObject)));
-        }
-        if (object.unlink != null) {
-            result
-                ..add(r'unlink')
-                ..add(serializers.serialize(object.unlink,
-                    specifiedType: const FullType(String)));
-        }
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+    if (flow != null) {
+      _json[r'flow'] = flow;
+    } else {
+      _json[r'flow'] = null;
     }
-
-    @override
-    SubmitSelfServiceSettingsFlowWithOidcMethodBody deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = SubmitSelfServiceSettingsFlowWithOidcMethodBodyBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'flow':
-                    result.flow = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'link':
-                    result.link = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'method':
-                    result.method = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'traits':
-                    result.traits = serializers.deserialize(value,
-                        specifiedType: const FullType(JsonObject)) as JsonObject;
-                    break;
-                case r'unlink':
-                    result.unlink = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
-        }
-        return result.build();
+    if (link != null) {
+      _json[r'link'] = link;
+    } else {
+      _json[r'link'] = null;
     }
+      _json[r'method'] = method;
+    if (traits != null) {
+      _json[r'traits'] = traits;
+    } else {
+      _json[r'traits'] = null;
+    }
+    if (unlink != null) {
+      _json[r'unlink'] = unlink;
+    } else {
+      _json[r'unlink'] = null;
+    }
+    return _json;
+  }
+
+  /// Returns a new [SubmitSelfServiceSettingsFlowWithOidcMethodBody] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static SubmitSelfServiceSettingsFlowWithOidcMethodBody? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "SubmitSelfServiceSettingsFlowWithOidcMethodBody[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "SubmitSelfServiceSettingsFlowWithOidcMethodBody[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return SubmitSelfServiceSettingsFlowWithOidcMethodBody(
+        flow: mapValueOfType<String>(json, r'flow'),
+        link: mapValueOfType<String>(json, r'link'),
+        method: mapValueOfType<String>(json, r'method')!,
+        traits: mapValueOfType<Object>(json, r'traits'),
+        unlink: mapValueOfType<String>(json, r'unlink'),
+      );
+    }
+    return null;
+  }
+
+  static List<SubmitSelfServiceSettingsFlowWithOidcMethodBody>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <SubmitSelfServiceSettingsFlowWithOidcMethodBody>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = SubmitSelfServiceSettingsFlowWithOidcMethodBody.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, SubmitSelfServiceSettingsFlowWithOidcMethodBody> mapFromJson(dynamic json) {
+    final map = <String, SubmitSelfServiceSettingsFlowWithOidcMethodBody>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SubmitSelfServiceSettingsFlowWithOidcMethodBody.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of SubmitSelfServiceSettingsFlowWithOidcMethodBody-objects as value to a dart map
+  static Map<String, List<SubmitSelfServiceSettingsFlowWithOidcMethodBody>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<SubmitSelfServiceSettingsFlowWithOidcMethodBody>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SubmitSelfServiceSettingsFlowWithOidcMethodBody.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'method',
+  };
 }
 

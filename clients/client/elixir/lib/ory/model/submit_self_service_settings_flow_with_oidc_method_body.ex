@@ -9,19 +9,19 @@ defmodule Ory.Model.SubmitSelfServiceSettingsFlowWithOidcMethodBody do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"flow",
-    :"link",
-    :"method",
-    :"traits",
-    :"unlink"
+    :flow,
+    :link,
+    :method,
+    :traits,
+    :unlink
   ]
 
   @type t :: %__MODULE__{
-    :"flow" => String.t | nil,
-    :"link" => String.t | nil,
-    :"method" => String.t,
-    :"traits" => map() | nil,
-    :"unlink" => String.t | nil
+    :flow => String.t | nil,
+    :link => String.t | nil,
+    :method => String.t,
+    :traits => map() | nil,
+    :unlink => String.t | nil
   }
 end
 

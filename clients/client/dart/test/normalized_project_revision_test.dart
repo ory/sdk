@@ -1,19 +1,21 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:ory_client/model/normalized_project_revision.dart';
+import 'package:ory_client/api.dart';
 import 'package:test/test.dart';
 
 // tests for NormalizedProjectRevision
 void main() {
-  final instance = NormalizedProjectRevisionBuilder();
-  // TODO add properties to the builder and call build()
+  // final instance = NormalizedProjectRevision();
 
-  group(NormalizedProjectRevision, () {
+  group('test NormalizedProjectRevision', () {
     // The Project's Revision Creation Date
     // DateTime createdAt
     test('to test the property `createdAt`', () async {
@@ -25,7 +27,7 @@ void main() {
       // TODO
     });
 
-    // BuiltList<KetoNamespace> ketoNamespaces
+    // List<KetoNamespace> ketoNamespaces (default value: const [])
     test('to test the property `ketoNamespaces`', () async {
       // TODO
     });
@@ -60,7 +62,7 @@ void main() {
     });
 
     // NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
-    // JsonObject kratosCourierSmtpHeaders
+    // Object kratosCourierSmtpHeaders
     test('to test the property `kratosCourierSmtpHeaders`', () async {
       // TODO
     });
@@ -137,27 +139,27 @@ void main() {
       // TODO
     });
 
-    // BuiltList<NormalizedProjectRevisionIdentitySchema> kratosIdentitySchemas
+    // List<NormalizedProjectRevisionIdentitySchema> kratosIdentitySchemas (default value: const [])
     test('to test the property `kratosIdentitySchemas`', () async {
       // TODO
     });
 
-    // BuiltList<String> kratosSecretsCipher
+    // List<String> kratosSecretsCipher (default value: const [])
     test('to test the property `kratosSecretsCipher`', () async {
       // TODO
     });
 
-    // BuiltList<String> kratosSecretsCookie
+    // List<String> kratosSecretsCookie (default value: const [])
     test('to test the property `kratosSecretsCookie`', () async {
       // TODO
     });
 
-    // BuiltList<String> kratosSecretsDefault
+    // List<String> kratosSecretsDefault (default value: const [])
     test('to test the property `kratosSecretsDefault`', () async {
       // TODO
     });
 
-    // BuiltList<String> kratosSelfserviceAllowedReturnUrls
+    // List<String> kratosSelfserviceAllowedReturnUrls (default value: const [])
     test('to test the property `kratosSelfserviceAllowedReturnUrls`', () async {
       // TODO
     });
@@ -174,7 +176,7 @@ void main() {
       // TODO
     });
 
-    // BuiltList<NormalizedProjectRevisionHook> kratosSelfserviceFlowsHooks
+    // List<NormalizedProjectRevisionHook> kratosSelfserviceFlowsHooks (default value: const [])
     test('to test the property `kratosSelfserviceFlowsHooks`', () async {
       // TODO
     });
@@ -380,7 +382,7 @@ void main() {
       // TODO
     });
 
-    // BuiltList<NormalizedProjectRevisionThirdPartyProvider> kratosSelfserviceMethodsOidcConfigProviders
+    // List<NormalizedProjectRevisionThirdPartyProvider> kratosSelfserviceMethodsOidcConfigProviders (default value: const [])
     test('to test the property `kratosSelfserviceMethodsOidcConfigProviders`', () async {
       // TODO
     });

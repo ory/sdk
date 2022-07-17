@@ -9,13 +9,13 @@ defmodule Ory.Model.AdminIdentityImportCredentials do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"oidc",
-    :"password"
+    :oidc,
+    :password
   ]
 
   @type t :: %__MODULE__{
-    :"oidc" => Ory.Model.AdminCreateIdentityImportCredentialsOidc.t | nil,
-    :"password" => Ory.Model.AdminCreateIdentityImportCredentialsPassword.t | nil
+    :oidc => Ory.Model.AdminCreateIdentityImportCredentialsOidc.t | nil,
+    :password => Ory.Model.AdminCreateIdentityImportCredentialsPassword.t | nil
   }
 end
 
@@ -23,8 +23,8 @@ defimpl Poison.Decoder, for: Ory.Model.AdminIdentityImportCredentials do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"oidc", :struct, Ory.Model.AdminCreateIdentityImportCredentialsOidc, options)
-    |> deserialize(:"password", :struct, Ory.Model.AdminCreateIdentityImportCredentialsPassword, options)
+    |> deserialize(:oidc, :struct, Ory.Model.AdminCreateIdentityImportCredentialsOidc, options)
+    |> deserialize(:password, :struct, Ory.Model.AdminCreateIdentityImportCredentialsPassword, options)
   end
 end
 

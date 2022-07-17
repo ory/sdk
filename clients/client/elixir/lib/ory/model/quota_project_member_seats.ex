@@ -9,15 +9,15 @@ defmodule Ory.Model.QuotaProjectMemberSeats do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"project_id",
-    :"remaining_seats",
-    :"total_seats"
+    :project_id,
+    :remaining_seats,
+    :total_seats
   ]
 
   @type t :: %__MODULE__{
-    :"project_id" => String.t | nil,
-    :"remaining_seats" => integer() | nil,
-    :"total_seats" => integer() | nil
+    :project_id => String.t | nil,
+    :remaining_seats => integer() | nil,
+    :total_seats => integer() | nil
   }
 end
 

@@ -1,20 +1,22 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
 import 'package:ory_client/api.dart';
-import 'package:ory_client/api/v0alpha2_api.dart';
 import 'package:test/test.dart';
 
 
 /// tests for V0alpha2Api
 void main() {
-  final instance = OryClient().getV0alpha2Api();
+  // final instance = V0alpha2Api();
 
-  group(V0alpha2Api, () {
+  group('tests for V0alpha2Api', () {
     // Create an Identity
     //
     // This endpoint creates an identity. Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
@@ -64,7 +66,7 @@ void main() {
     //
     // Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
     //
-    //Future<Identity> adminGetIdentity(String id, { BuiltList<String> includeCredential }) async
+    //Future<Identity> adminGetIdentity(String id, { List<String> includeCredential }) async
     test('test adminGetIdentity', () async {
       // TODO
     });
@@ -73,7 +75,7 @@ void main() {
     //
     // Lists all identities. Does not support search at the moment.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
     //
-    //Future<BuiltList<Identity>> adminListIdentities({ int perPage, int page }) async
+    //Future<List<Identity>> adminListIdentities({ int perPage, int page }) async
     test('test adminListIdentities', () async {
       // TODO
     });
@@ -82,7 +84,7 @@ void main() {
     //
     // This endpoint is useful for:  Listing all sessions that belong to an Identity in an administrative context.
     //
-    //Future<BuiltList<Session>> adminListIdentitySessions(String id, { int perPage, int page, bool active }) async
+    //Future<List<Session>> adminListIdentitySessions(String id, { int perPage, int page, bool active }) async
     test('test adminListIdentitySessions', () async {
       // TODO
     });
@@ -116,7 +118,7 @@ void main() {
 
     // Get a JSON Schema
     //
-    //Future<JsonObject> getJsonSchema(String id) async
+    //Future<Object> getJsonSchema(String id) async
     test('test getJsonSchema', () async {
       // TODO
     });
@@ -134,7 +136,7 @@ void main() {
     //
     // This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
     //
-    //Future<BuiltList<CloudAccount>> getProjectMembers(String projectId) async
+    //Future<List<CloudAccount>> getProjectMembers(String projectId) async
     test('test getProjectMembers', () async {
       // TODO
     });
@@ -294,7 +296,7 @@ void main() {
 
     // Get all Identity Schemas
     //
-    //Future<BuiltList<IdentitySchema>> listIdentitySchemas({ int perPage, int page }) async
+    //Future<List<IdentitySchema>> listIdentitySchemas({ int perPage, int page }) async
     test('test listIdentitySchemas', () async {
       // TODO
     });
@@ -303,7 +305,7 @@ void main() {
     //
     // Lists all projects you have access to.
     //
-    //Future<BuiltList<ProjectMetadata>> listProjects() async
+    //Future<List<ProjectMetadata>> listProjects() async
     test('test listProjects', () async {
       // TODO
     });
@@ -312,7 +314,7 @@ void main() {
     //
     // This endpoint is useful for:  Displaying all other sessions that belong to the logged-in user
     //
-    //Future<BuiltList<Session>> listSessions({ String xSessionToken, String cookie, int perPage, int page }) async
+    //Future<List<Session>> listSessions({ String xSessionToken, String cookie, int perPage, int page }) async
     test('test listSessions', () async {
       // TODO
     });
@@ -321,7 +323,7 @@ void main() {
     //
     // This endpoints allows you to patch individual Ory Cloud Project configuration keys for Ory's services (identity, permission, ...). The configuration format is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.
     //
-    //Future<SuccessfulProjectUpdate> patchProject(String projectId, { BuiltList<JsonPatch> jsonPatch }) async
+    //Future<SuccessfulProjectUpdate> patchProject(String projectId, { List<JsonPatch> jsonPatch }) async
     test('test patchProject', () async {
       // TODO
     });

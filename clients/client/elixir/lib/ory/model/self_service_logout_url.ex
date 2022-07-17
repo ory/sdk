@@ -9,13 +9,13 @@ defmodule Ory.Model.SelfServiceLogoutUrl do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"logout_token",
-    :"logout_url"
+    :logout_token,
+    :logout_url
   ]
 
   @type t :: %__MODULE__{
-    :"logout_token" => String.t,
-    :"logout_url" => String.t
+    :logout_token => String.t,
+    :logout_url => String.t
   }
 end
 

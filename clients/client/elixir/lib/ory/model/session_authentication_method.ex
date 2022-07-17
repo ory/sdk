@@ -9,15 +9,15 @@ defmodule Ory.Model.SessionAuthenticationMethod do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"aal",
-    :"completed_at",
-    :"method"
+    :aal,
+    :completed_at,
+    :method
   ]
 
   @type t :: %__MODULE__{
-    :"aal" => Ory.Model.AuthenticatorAssuranceLevel.t | nil,
-    :"completed_at" => DateTime.t | nil,
-    :"method" => String.t | nil
+    :aal => Ory.Model.AuthenticatorAssuranceLevel.t | nil,
+    :completed_at => DateTime.t | nil,
+    :method => String.t | nil
   }
 end
 
@@ -25,7 +25,7 @@ defimpl Poison.Decoder, for: Ory.Model.SessionAuthenticationMethod do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"aal", :struct, Ory.Model.AuthenticatorAssuranceLevel, options)
+    |> deserialize(:aal, :struct, Ory.Model.AuthenticatorAssuranceLevel, options)
   end
 end
 

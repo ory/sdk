@@ -9,15 +9,15 @@ defmodule Ory.Model.SubjectSet do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"namespace",
-    :"object",
-    :"relation"
+    :namespace,
+    :object,
+    :relation
   ]
 
   @type t :: %__MODULE__{
-    :"namespace" => String.t,
-    :"object" => String.t,
-    :"relation" => String.t
+    :namespace => String.t,
+    :object => String.t,
+    :relation => String.t
   }
 end
 

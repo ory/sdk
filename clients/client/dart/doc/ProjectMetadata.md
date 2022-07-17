@@ -9,10 +9,10 @@ import 'package:ory_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdAt** | [**DateTime**](DateTime.md) | The Project's Creation Date | 
-**hosts** | **BuiltList<String>** |  | 
+**hosts** | **List<String>** |  | [default to const []]
 **id** | **String** |  | 
 **name** | **String** | The project's name if set | 
-**slug** | **String** | The project's slug | [optional] 
+**slug** | **String** | The project's slug | [optional] [readonly] 
 **state** | **String** | The state of the project. running Running halted Halted | 
 **subscriptionId** | **String** |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) | Last Time Project was Updated | 

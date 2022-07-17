@@ -9,19 +9,19 @@ defmodule Ory.Model.AdminUpdateIdentityBody do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"metadata_admin",
-    :"metadata_public",
-    :"schema_id",
-    :"state",
-    :"traits"
+    :metadata_admin,
+    :metadata_public,
+    :schema_id,
+    :state,
+    :traits
   ]
 
   @type t :: %__MODULE__{
-    :"metadata_admin" => AnyType | nil,
-    :"metadata_public" => AnyType | nil,
-    :"schema_id" => String.t,
-    :"state" => Ory.Model.IdentityState.t,
-    :"traits" => map()
+    :metadata_admin => AnyType | nil,
+    :metadata_public => AnyType | nil,
+    :schema_id => String.t,
+    :state => Ory.Model.IdentityState.t,
+    :traits => map()
   }
 end
 
@@ -29,9 +29,9 @@ defimpl Poison.Decoder, for: Ory.Model.AdminUpdateIdentityBody do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"metadata_admin", :struct, Ory.Model.AnyType, options)
-    |> deserialize(:"metadata_public", :struct, Ory.Model.AnyType, options)
-    |> deserialize(:"state", :struct, Ory.Model.IdentityState, options)
+    |> deserialize(:metadata_admin, :struct, Ory.Model.AnyType, options)
+    |> deserialize(:metadata_public, :struct, Ory.Model.AnyType, options)
+    |> deserialize(:state, :struct, Ory.Model.IdentityState, options)
   end
 end
 

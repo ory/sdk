@@ -1,126 +1,219 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/json_object.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'json_patch.g.dart';
+class JsonPatch {
+  /// Returns a new [JsonPatch] instance.
+  JsonPatch({
+    required this.op,
+    required this.path,
+    this.value,
+  });
 
-abstract class JsonPatch implements Built<JsonPatch, JsonPatchBuilder> {
+  /// The JSON Patch operation
+  JsonPatchOpEnum op;
 
-    /// The JSON Patch operation
-    @BuiltValueField(wireName: r'op')
-    JsonPatchOpEnum get op;
-    // enum opEnum {  add,  remove,  replace,  move,  copy,  test,  };
+  /// The JSON Pointer to the target key
+  String path;
 
-    /// The JSON Pointer to the target key
-    @BuiltValueField(wireName: r'path')
-    String get path;
+  /// The value to be used. Only available for `add` and `replace` operations.
+  Object? value;
 
-    /// The value to be used. Only available for `add` and `replace` operations.
-    @nullable
-    @BuiltValueField(wireName: r'value')
-    JsonObject get value;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is JsonPatch &&
+     other.op == op &&
+     other.path == path &&
+     other.value == value;
 
-    JsonPatch._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (op.hashCode) +
+    (path.hashCode) +
+    (value == null ? 0 : value!.hashCode);
 
-    static void _initializeBuilder(JsonPatchBuilder b) => b;
+  @override
+  String toString() => 'JsonPatch[op=$op, path=$path, value=$value]';
 
-    factory JsonPatch([void updates(JsonPatchBuilder b)]) = _$JsonPatch;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<JsonPatch> get serializer => _$JsonPatchSerializer();
-}
-
-class _$JsonPatchSerializer implements StructuredSerializer<JsonPatch> {
-
-    @override
-    final Iterable<Type> types = const [JsonPatch, _$JsonPatch];
-    @override
-    final String wireName = r'JsonPatch';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, JsonPatch object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'op')
-            ..add(serializers.serialize(object.op,
-                specifiedType: const FullType(JsonPatchOpEnum)));
-        result
-            ..add(r'path')
-            ..add(serializers.serialize(object.path,
-                specifiedType: const FullType(String)));
-        if (object.value != null) {
-            result
-                ..add(r'value')
-                ..add(serializers.serialize(object.value,
-                    specifiedType: const FullType(JsonObject)));
-        }
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'op'] = op;
+      _json[r'path'] = path;
+    if (value != null) {
+      _json[r'value'] = value;
+    } else {
+      _json[r'value'] = null;
     }
+    return _json;
+  }
 
-    @override
-    JsonPatch deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = JsonPatchBuilder();
+  /// Returns a new [JsonPatch] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static JsonPatch? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'op':
-                    result.op = serializers.deserialize(value,
-                        specifiedType: const FullType(JsonPatchOpEnum)) as JsonPatchOpEnum;
-                    break;
-                case r'path':
-                    result.path = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'value':
-                    result.value = serializers.deserialize(value,
-                        specifiedType: const FullType(JsonObject)) as JsonObject;
-                    break;
-            }
-        }
-        return result.build();
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "JsonPatch[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "JsonPatch[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return JsonPatch(
+        op: JsonPatchOpEnum.fromJson(json[r'op'])!,
+        path: mapValueOfType<String>(json, r'path')!,
+        value: mapValueOfType<Object>(json, r'value'),
+      );
     }
+    return null;
+  }
+
+  static List<JsonPatch>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <JsonPatch>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = JsonPatch.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, JsonPatch> mapFromJson(dynamic json) {
+    final map = <String, JsonPatch>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = JsonPatch.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of JsonPatch-objects as value to a dart map
+  static Map<String, List<JsonPatch>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<JsonPatch>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = JsonPatch.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'op',
+    'path',
+  };
 }
 
-class JsonPatchOpEnum extends EnumClass {
+/// The JSON Patch operation
+class JsonPatchOpEnum {
+  /// Instantiate a new enum with the provided [value].
+  const JsonPatchOpEnum._(this.value);
 
-  /// The JSON Patch operation
-  @BuiltValueEnumConst(wireName: r'add')
-  static const JsonPatchOpEnum add = _$jsonPatchOpEnum_add;
-  /// The JSON Patch operation
-  @BuiltValueEnumConst(wireName: r'remove')
-  static const JsonPatchOpEnum remove = _$jsonPatchOpEnum_remove;
-  /// The JSON Patch operation
-  @BuiltValueEnumConst(wireName: r'replace')
-  static const JsonPatchOpEnum replace = _$jsonPatchOpEnum_replace;
-  /// The JSON Patch operation
-  @BuiltValueEnumConst(wireName: r'move')
-  static const JsonPatchOpEnum move = _$jsonPatchOpEnum_move;
-  /// The JSON Patch operation
-  @BuiltValueEnumConst(wireName: r'copy')
-  static const JsonPatchOpEnum copy = _$jsonPatchOpEnum_copy;
-  /// The JSON Patch operation
-  @BuiltValueEnumConst(wireName: r'test')
-  static const JsonPatchOpEnum test = _$jsonPatchOpEnum_test;
+  /// The underlying value of this enum member.
+  final String value;
 
-  static Serializer<JsonPatchOpEnum> get serializer => _$jsonPatchOpEnumSerializer;
+  @override
+  String toString() => value;
 
-  const JsonPatchOpEnum._(String name): super(name);
+  String toJson() => value;
 
-  static BuiltSet<JsonPatchOpEnum> get values => _$jsonPatchOpEnumValues;
-  static JsonPatchOpEnum valueOf(String name) => _$jsonPatchOpEnumValueOf(name);
+  static const add = JsonPatchOpEnum._(r'add');
+  static const remove = JsonPatchOpEnum._(r'remove');
+  static const replace = JsonPatchOpEnum._(r'replace');
+  static const move = JsonPatchOpEnum._(r'move');
+  static const copy = JsonPatchOpEnum._(r'copy');
+  static const test = JsonPatchOpEnum._(r'test');
+
+  /// List of all possible values in this [enum][JsonPatchOpEnum].
+  static const values = <JsonPatchOpEnum>[
+    add,
+    remove,
+    replace,
+    move,
+    copy,
+    test,
+  ];
+
+  static JsonPatchOpEnum? fromJson(dynamic value) => JsonPatchOpEnumTypeTransformer().decode(value);
+
+  static List<JsonPatchOpEnum>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <JsonPatchOpEnum>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = JsonPatchOpEnum.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
 }
+
+/// Transformation class that can [encode] an instance of [JsonPatchOpEnum] to String,
+/// and [decode] dynamic data back to [JsonPatchOpEnum].
+class JsonPatchOpEnumTypeTransformer {
+  factory JsonPatchOpEnumTypeTransformer() => _instance ??= const JsonPatchOpEnumTypeTransformer._();
+
+  const JsonPatchOpEnumTypeTransformer._();
+
+  String encode(JsonPatchOpEnum data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a JsonPatchOpEnum.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  JsonPatchOpEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data != null) {
+      switch (data.toString()) {
+        case r'add': return JsonPatchOpEnum.add;
+        case r'remove': return JsonPatchOpEnum.remove;
+        case r'replace': return JsonPatchOpEnum.replace;
+        case r'move': return JsonPatchOpEnum.move;
+        case r'copy': return JsonPatchOpEnum.copy;
+        case r'test': return JsonPatchOpEnum.test;
+        default:
+          if (!allowNull) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [JsonPatchOpEnumTypeTransformer] instance.
+  static JsonPatchOpEnumTypeTransformer? _instance;
+}
+
 

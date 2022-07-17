@@ -9,13 +9,13 @@ defmodule Ory.Model.Warning do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"code",
-    :"message"
+    :code,
+    :message
   ]
 
   @type t :: %__MODULE__{
-    :"code" => integer() | nil,
-    :"message" => String.t | nil
+    :code => integer() | nil,
+    :message => String.t | nil
   }
 end
 

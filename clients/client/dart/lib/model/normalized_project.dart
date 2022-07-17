@@ -1,181 +1,258 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_collection/built_collection.dart';
-import 'package:ory_client/model/normalized_project_revision.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'normalized_project.g.dart';
+class NormalizedProject {
+  /// Returns a new [NormalizedProject] instance.
+  NormalizedProject({
+    required this.createdAt,
+    required this.currentRevision,
+    this.hosts = const [],
+    required this.id,
+    this.revisions = const [],
+    required this.slug,
+    required this.state,
+    this.subscriptionId,
+    required this.updatedAt,
+  });
 
-abstract class NormalizedProject implements Built<NormalizedProject, NormalizedProjectBuilder> {
+  /// The Project's Creation Date
+  DateTime createdAt;
 
-    /// The Project's Creation Date
-    @BuiltValueField(wireName: r'created_at')
-    DateTime get createdAt;
+  NormalizedProjectRevision currentRevision;
 
-    @BuiltValueField(wireName: r'current_revision')
-    NormalizedProjectRevision get currentRevision;
+  List<String> hosts;
 
-    @BuiltValueField(wireName: r'hosts')
-    BuiltList<String> get hosts;
+  String id;
 
-    @BuiltValueField(wireName: r'id')
-    String get id;
+  List<NormalizedProjectRevision> revisions;
 
-    @BuiltValueField(wireName: r'revisions')
-    BuiltList<NormalizedProjectRevision> get revisions;
-
-    /// The project's slug
-    @BuiltValueField(wireName: r'slug')
-    String get slug;
-
-    /// The state of the project. running Running halted Halted
-    @BuiltValueField(wireName: r'state')
-    NormalizedProjectStateEnum get state;
-    // enum stateEnum {  running,  halted,  };
-
-    @nullable
-    @BuiltValueField(wireName: r'subscription_id')
-    String get subscriptionId;
-
-    /// Last Time Project was Updated
-    @BuiltValueField(wireName: r'updated_at')
-    DateTime get updatedAt;
-
-    NormalizedProject._();
-
-    static void _initializeBuilder(NormalizedProjectBuilder b) => b;
-
-    factory NormalizedProject([void updates(NormalizedProjectBuilder b)]) = _$NormalizedProject;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<NormalizedProject> get serializer => _$NormalizedProjectSerializer();
-}
-
-class _$NormalizedProjectSerializer implements StructuredSerializer<NormalizedProject> {
-
-    @override
-    final Iterable<Type> types = const [NormalizedProject, _$NormalizedProject];
-    @override
-    final String wireName = r'NormalizedProject';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, NormalizedProject object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'created_at')
-            ..add(serializers.serialize(object.createdAt,
-                specifiedType: const FullType(DateTime)));
-        result
-            ..add(r'current_revision')
-            ..add(serializers.serialize(object.currentRevision,
-                specifiedType: const FullType(NormalizedProjectRevision)));
-        result
-            ..add(r'hosts')
-            ..add(serializers.serialize(object.hosts,
-                specifiedType: const FullType(BuiltList, [FullType(String)])));
-        result
-            ..add(r'id')
-            ..add(serializers.serialize(object.id,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'revisions')
-            ..add(serializers.serialize(object.revisions,
-                specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevision)])));
-        result
-            ..add(r'slug')
-            ..add(serializers.serialize(object.slug,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'state')
-            ..add(serializers.serialize(object.state,
-                specifiedType: const FullType(NormalizedProjectStateEnum)));
-        if (object.subscriptionId != null) {
-            result
-                ..add(r'subscription_id')
-                ..add(serializers.serialize(object.subscriptionId,
-                    specifiedType: const FullType(String)));
-        }
-        result
-            ..add(r'updated_at')
-            ..add(serializers.serialize(object.updatedAt,
-                specifiedType: const FullType(DateTime)));
-        return result;
-    }
-
-    @override
-    NormalizedProject deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = NormalizedProjectBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'created_at':
-                    result.createdAt = serializers.deserialize(value,
-                        specifiedType: const FullType(DateTime)) as DateTime;
-                    break;
-                case r'current_revision':
-                    result.currentRevision.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(NormalizedProjectRevision)) as NormalizedProjectRevision);
-                    break;
-                case r'hosts':
-                    result.hosts.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>);
-                    break;
-                case r'id':
-                    result.id = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'revisions':
-                    result.revisions.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevision)])) as BuiltList<NormalizedProjectRevision>);
-                    break;
-                case r'slug':
-                    result.slug = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'state':
-                    result.state = serializers.deserialize(value,
-                        specifiedType: const FullType(NormalizedProjectStateEnum)) as NormalizedProjectStateEnum;
-                    break;
-                case r'subscription_id':
-                    result.subscriptionId = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'updated_at':
-                    result.updatedAt = serializers.deserialize(value,
-                        specifiedType: const FullType(DateTime)) as DateTime;
-                    break;
-            }
-        }
-        return result.build();
-    }
-}
-
-class NormalizedProjectStateEnum extends EnumClass {
+  /// The project's slug
+  String slug;
 
   /// The state of the project. running Running halted Halted
-  @BuiltValueEnumConst(wireName: r'running')
-  static const NormalizedProjectStateEnum running = _$normalizedProjectStateEnum_running;
-  /// The state of the project. running Running halted Halted
-  @BuiltValueEnumConst(wireName: r'halted')
-  static const NormalizedProjectStateEnum halted = _$normalizedProjectStateEnum_halted;
+  NormalizedProjectStateEnum state;
 
-  static Serializer<NormalizedProjectStateEnum> get serializer => _$normalizedProjectStateEnumSerializer;
+  String? subscriptionId;
 
-  const NormalizedProjectStateEnum._(String name): super(name);
+  /// Last Time Project was Updated
+  DateTime updatedAt;
 
-  static BuiltSet<NormalizedProjectStateEnum> get values => _$normalizedProjectStateEnumValues;
-  static NormalizedProjectStateEnum valueOf(String name) => _$normalizedProjectStateEnumValueOf(name);
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is NormalizedProject &&
+     other.createdAt == createdAt &&
+     other.currentRevision == currentRevision &&
+     other.hosts == hosts &&
+     other.id == id &&
+     other.revisions == revisions &&
+     other.slug == slug &&
+     other.state == state &&
+     other.subscriptionId == subscriptionId &&
+     other.updatedAt == updatedAt;
+
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (createdAt.hashCode) +
+    (currentRevision.hashCode) +
+    (hosts.hashCode) +
+    (id.hashCode) +
+    (revisions.hashCode) +
+    (slug.hashCode) +
+    (state.hashCode) +
+    (subscriptionId == null ? 0 : subscriptionId!.hashCode) +
+    (updatedAt.hashCode);
+
+  @override
+  String toString() => 'NormalizedProject[createdAt=$createdAt, currentRevision=$currentRevision, hosts=$hosts, id=$id, revisions=$revisions, slug=$slug, state=$state, subscriptionId=$subscriptionId, updatedAt=$updatedAt]';
+
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'created_at'] = createdAt.toUtc().toIso8601String();
+      _json[r'current_revision'] = currentRevision;
+      _json[r'hosts'] = hosts;
+      _json[r'id'] = id;
+      _json[r'revisions'] = revisions;
+      _json[r'slug'] = slug;
+      _json[r'state'] = state;
+    if (subscriptionId != null) {
+      _json[r'subscription_id'] = subscriptionId;
+    } else {
+      _json[r'subscription_id'] = null;
+    }
+      _json[r'updated_at'] = updatedAt.toUtc().toIso8601String();
+    return _json;
+  }
+
+  /// Returns a new [NormalizedProject] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static NormalizedProject? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "NormalizedProject[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "NormalizedProject[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return NormalizedProject(
+        createdAt: mapDateTime(json, r'created_at', '')!,
+        currentRevision: NormalizedProjectRevision.fromJson(json[r'current_revision'])!,
+        hosts: json[r'hosts'] is List
+            ? (json[r'hosts'] as List).cast<String>()
+            : const [],
+        id: mapValueOfType<String>(json, r'id')!,
+        revisions: NormalizedProjectRevision.listFromJson(json[r'revisions'])!,
+        slug: mapValueOfType<String>(json, r'slug')!,
+        state: NormalizedProjectStateEnum.fromJson(json[r'state'])!,
+        subscriptionId: mapValueOfType<String>(json, r'subscription_id'),
+        updatedAt: mapDateTime(json, r'updated_at', '')!,
+      );
+    }
+    return null;
+  }
+
+  static List<NormalizedProject>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <NormalizedProject>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = NormalizedProject.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, NormalizedProject> mapFromJson(dynamic json) {
+    final map = <String, NormalizedProject>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = NormalizedProject.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of NormalizedProject-objects as value to a dart map
+  static Map<String, List<NormalizedProject>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<NormalizedProject>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = NormalizedProject.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'created_at',
+    'current_revision',
+    'hosts',
+    'id',
+    'revisions',
+    'slug',
+    'state',
+    'updated_at',
+  };
 }
+
+/// The state of the project. running Running halted Halted
+class NormalizedProjectStateEnum {
+  /// Instantiate a new enum with the provided [value].
+  const NormalizedProjectStateEnum._(this.value);
+
+  /// The underlying value of this enum member.
+  final String value;
+
+  @override
+  String toString() => value;
+
+  String toJson() => value;
+
+  static const running = NormalizedProjectStateEnum._(r'running');
+  static const halted = NormalizedProjectStateEnum._(r'halted');
+
+  /// List of all possible values in this [enum][NormalizedProjectStateEnum].
+  static const values = <NormalizedProjectStateEnum>[
+    running,
+    halted,
+  ];
+
+  static NormalizedProjectStateEnum? fromJson(dynamic value) => NormalizedProjectStateEnumTypeTransformer().decode(value);
+
+  static List<NormalizedProjectStateEnum>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <NormalizedProjectStateEnum>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = NormalizedProjectStateEnum.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+}
+
+/// Transformation class that can [encode] an instance of [NormalizedProjectStateEnum] to String,
+/// and [decode] dynamic data back to [NormalizedProjectStateEnum].
+class NormalizedProjectStateEnumTypeTransformer {
+  factory NormalizedProjectStateEnumTypeTransformer() => _instance ??= const NormalizedProjectStateEnumTypeTransformer._();
+
+  const NormalizedProjectStateEnumTypeTransformer._();
+
+  String encode(NormalizedProjectStateEnum data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a NormalizedProjectStateEnum.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  NormalizedProjectStateEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data != null) {
+      switch (data.toString()) {
+        case r'running': return NormalizedProjectStateEnum.running;
+        case r'halted': return NormalizedProjectStateEnum.halted;
+        default:
+          if (!allowNull) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [NormalizedProjectStateEnumTypeTransformer] instance.
+  static NormalizedProjectStateEnumTypeTransformer? _instance;
+}
+
 

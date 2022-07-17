@@ -9,17 +9,17 @@ defmodule Ory.Model.SubmitSelfServiceSettingsFlowWithTotpMethodBody do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"csrf_token",
-    :"method",
-    :"totp_code",
-    :"totp_unlink"
+    :csrf_token,
+    :method,
+    :totp_code,
+    :totp_unlink
   ]
 
   @type t :: %__MODULE__{
-    :"csrf_token" => String.t | nil,
-    :"method" => String.t,
-    :"totp_code" => String.t | nil,
-    :"totp_unlink" => boolean() | nil
+    :csrf_token => String.t | nil,
+    :method => String.t,
+    :totp_code => String.t | nil,
+    :totp_unlink => boolean() | nil
   }
 end
 

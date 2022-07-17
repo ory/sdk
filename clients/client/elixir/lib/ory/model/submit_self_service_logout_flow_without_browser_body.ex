@@ -9,11 +9,11 @@ defmodule Ory.Model.SubmitSelfServiceLogoutFlowWithoutBrowserBody do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"session_token"
+    :session_token
   ]
 
   @type t :: %__MODULE__{
-    :"session_token" => String.t
+    :session_token => String.t
   }
 end
 

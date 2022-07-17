@@ -1,70 +1,121 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'revoked_sessions.g.dart';
+class RevokedSessions {
+  /// Returns a new [RevokedSessions] instance.
+  RevokedSessions({
+    this.count,
+  });
 
-abstract class RevokedSessions implements Built<RevokedSessions, RevokedSessionsBuilder> {
+  /// The number of sessions that were revoked.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? count;
 
-    /// The number of sessions that were revoked.
-    @nullable
-    @BuiltValueField(wireName: r'count')
-    int get count;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is RevokedSessions &&
+     other.count == count;
 
-    RevokedSessions._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (count == null ? 0 : count!.hashCode);
 
-    static void _initializeBuilder(RevokedSessionsBuilder b) => b;
+  @override
+  String toString() => 'RevokedSessions[count=$count]';
 
-    factory RevokedSessions([void updates(RevokedSessionsBuilder b)]) = _$RevokedSessions;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<RevokedSessions> get serializer => _$RevokedSessionsSerializer();
-}
-
-class _$RevokedSessionsSerializer implements StructuredSerializer<RevokedSessions> {
-
-    @override
-    final Iterable<Type> types = const [RevokedSessions, _$RevokedSessions];
-    @override
-    final String wireName = r'RevokedSessions';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, RevokedSessions object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.count != null) {
-            result
-                ..add(r'count')
-                ..add(serializers.serialize(object.count,
-                    specifiedType: const FullType(int)));
-        }
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+    if (count != null) {
+      _json[r'count'] = count;
+    } else {
+      _json[r'count'] = null;
     }
+    return _json;
+  }
 
-    @override
-    RevokedSessions deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = RevokedSessionsBuilder();
+  /// Returns a new [RevokedSessions] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static RevokedSessions? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'count':
-                    result.count = serializers.deserialize(value,
-                        specifiedType: const FullType(int)) as int;
-                    break;
-            }
-        }
-        return result.build();
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "RevokedSessions[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "RevokedSessions[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return RevokedSessions(
+        count: mapValueOfType<int>(json, r'count'),
+      );
     }
+    return null;
+  }
+
+  static List<RevokedSessions>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <RevokedSessions>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = RevokedSessions.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, RevokedSessions> mapFromJson(dynamic json) {
+    final map = <String, RevokedSessions>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = RevokedSessions.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of RevokedSessions-objects as value to a dart map
+  static Map<String, List<RevokedSessions>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<RevokedSessions>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = RevokedSessions.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

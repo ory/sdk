@@ -9,13 +9,13 @@ defmodule Ory.Model.AdminCreateIdentityImportCredentialsPasswordConfig do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"hashed_password",
-    :"password"
+    :hashed_password,
+    :password
   ]
 
   @type t :: %__MODULE__{
-    :"hashed_password" => String.t | nil,
-    :"password" => String.t | nil
+    :hashed_password => String.t | nil,
+    :password => String.t | nil
   }
 end
 

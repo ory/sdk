@@ -9,17 +9,17 @@ defmodule Ory.Model.SubmitSelfServiceLoginFlowWithWebAuthnMethodBody do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"csrf_token",
-    :"identifier",
-    :"method",
-    :"webauthn_login"
+    :csrf_token,
+    :identifier,
+    :method,
+    :webauthn_login
   ]
 
   @type t :: %__MODULE__{
-    :"csrf_token" => String.t | nil,
-    :"identifier" => String.t | nil,
-    :"method" => String.t,
-    :"webauthn_login" => String.t | nil
+    :csrf_token => String.t | nil,
+    :identifier => String.t | nil,
+    :method => String.t,
+    :webauthn_login => String.t | nil
   }
 end
 

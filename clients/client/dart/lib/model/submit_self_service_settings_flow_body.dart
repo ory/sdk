@@ -1,293 +1,364 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:ory_client/model/submit_self_service_settings_flow_with_profile_method_body.dart';
-import 'package:ory_client/model/submit_self_service_settings_flow_with_oidc_method_body.dart';
-import 'package:ory_client/model/submit_self_service_settings_flow_with_password_method_body.dart';
-import 'package:ory_client/model/submit_self_service_settings_flow_with_totp_method_body.dart';
-import 'package:ory_client/model/submit_self_service_settings_flow_with_web_authn_method_body.dart';
-import 'package:ory_client/model/submit_self_service_settings_flow_with_lookup_method_body.dart';
-import 'package:built_value/json_object.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'submit_self_service_settings_flow_body.g.dart';
+class SubmitSelfServiceSettingsFlowBody {
+  /// Returns a new [SubmitSelfServiceSettingsFlowBody] instance.
+  SubmitSelfServiceSettingsFlowBody({
+    this.csrfToken,
+    required this.method,
+    required this.password,
+    required this.traits,
+    this.flow,
+    this.link,
+    this.unlink,
+    this.totpCode,
+    this.totpUnlink,
+    this.webauthnRegister,
+    this.webauthnRegisterDisplayname,
+    this.webauthnRemove,
+    this.lookupSecretConfirm,
+    this.lookupSecretDisable,
+    this.lookupSecretRegenerate,
+    this.lookupSecretReveal,
+  });
 
-abstract class SubmitSelfServiceSettingsFlowBody implements Built<SubmitSelfServiceSettingsFlowBody, SubmitSelfServiceSettingsFlowBodyBuilder> {
+  /// CSRFToken is the anti-CSRF token
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? csrfToken;
 
-    /// CSRFToken is the anti-CSRF token
-    @nullable
-    @BuiltValueField(wireName: r'csrf_token')
-    String get csrfToken;
+  /// Method  Should be set to \"lookup\" when trying to add, update, or remove a lookup pairing.
+  String method;
 
-    /// Method  Should be set to \"lookup\" when trying to add, update, or remove a lookup pairing.
-    @BuiltValueField(wireName: r'method')
-    String get method;
+  /// Password is the updated password
+  String password;
 
-    /// Password is the updated password
-    @BuiltValueField(wireName: r'password')
-    String get password;
+  /// The identity's traits  in: body
+  Object traits;
 
-    /// The identity's traits  in: body
-    @BuiltValueField(wireName: r'traits')
-    JsonObject get traits;
+  /// Flow ID is the flow's ID.  in: query
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? flow;
 
-    /// Flow ID is the flow's ID.  in: query
-    @nullable
-    @BuiltValueField(wireName: r'flow')
-    String get flow;
+  /// Link this provider  Either this or `unlink` must be set.  type: string in: body
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? link;
 
-    /// Link this provider  Either this or `unlink` must be set.  type: string in: body
-    @nullable
-    @BuiltValueField(wireName: r'link')
-    String get link;
+  /// Unlink this provider  Either this or `link` must be set.  type: string in: body
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? unlink;
 
-    /// Unlink this provider  Either this or `link` must be set.  type: string in: body
-    @nullable
-    @BuiltValueField(wireName: r'unlink')
-    String get unlink;
+  /// ValidationTOTP must contain a valid TOTP based on the
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? totpCode;
 
-    /// ValidationTOTP must contain a valid TOTP based on the
-    @nullable
-    @BuiltValueField(wireName: r'totp_code')
-    String get totpCode;
+  /// UnlinkTOTP if true will remove the TOTP pairing, effectively removing the credential. This can be used to set up a new TOTP device.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? totpUnlink;
 
-    /// UnlinkTOTP if true will remove the TOTP pairing, effectively removing the credential. This can be used to set up a new TOTP device.
-    @nullable
-    @BuiltValueField(wireName: r'totp_unlink')
-    bool get totpUnlink;
+  /// Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? webauthnRegister;
 
-    /// Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here.
-    @nullable
-    @BuiltValueField(wireName: r'webauthn_register')
-    String get webauthnRegister;
+  /// Name of the WebAuthn Security Key to be Added  A human-readable name for the security key which will be added.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? webauthnRegisterDisplayname;
 
-    /// Name of the WebAuthn Security Key to be Added  A human-readable name for the security key which will be added.
-    @nullable
-    @BuiltValueField(wireName: r'webauthn_register_displayname')
-    String get webauthnRegisterDisplayname;
+  /// Remove a WebAuthn Security Key  This must contain the ID of the WebAuthN connection.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? webauthnRemove;
 
-    /// Remove a WebAuthn Security Key  This must contain the ID of the WebAuthN connection.
-    @nullable
-    @BuiltValueField(wireName: r'webauthn_remove')
-    String get webauthnRemove;
+  /// If set to true will save the regenerated lookup secrets
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? lookupSecretConfirm;
 
-    /// If set to true will save the regenerated lookup secrets
-    @nullable
-    @BuiltValueField(wireName: r'lookup_secret_confirm')
-    bool get lookupSecretConfirm;
+  /// Disables this method if true.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? lookupSecretDisable;
 
-    /// Disables this method if true.
-    @nullable
-    @BuiltValueField(wireName: r'lookup_secret_disable')
-    bool get lookupSecretDisable;
+  /// If set to true will regenerate the lookup secrets
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? lookupSecretRegenerate;
 
-    /// If set to true will regenerate the lookup secrets
-    @nullable
-    @BuiltValueField(wireName: r'lookup_secret_regenerate')
-    bool get lookupSecretRegenerate;
+  /// If set to true will reveal the lookup secrets
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? lookupSecretReveal;
 
-    /// If set to true will reveal the lookup secrets
-    @nullable
-    @BuiltValueField(wireName: r'lookup_secret_reveal')
-    bool get lookupSecretReveal;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is SubmitSelfServiceSettingsFlowBody &&
+     other.csrfToken == csrfToken &&
+     other.method == method &&
+     other.password == password &&
+     other.traits == traits &&
+     other.flow == flow &&
+     other.link == link &&
+     other.unlink == unlink &&
+     other.totpCode == totpCode &&
+     other.totpUnlink == totpUnlink &&
+     other.webauthnRegister == webauthnRegister &&
+     other.webauthnRegisterDisplayname == webauthnRegisterDisplayname &&
+     other.webauthnRemove == webauthnRemove &&
+     other.lookupSecretConfirm == lookupSecretConfirm &&
+     other.lookupSecretDisable == lookupSecretDisable &&
+     other.lookupSecretRegenerate == lookupSecretRegenerate &&
+     other.lookupSecretReveal == lookupSecretReveal;
 
-    SubmitSelfServiceSettingsFlowBody._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (csrfToken == null ? 0 : csrfToken!.hashCode) +
+    (method.hashCode) +
+    (password.hashCode) +
+    (traits.hashCode) +
+    (flow == null ? 0 : flow!.hashCode) +
+    (link == null ? 0 : link!.hashCode) +
+    (unlink == null ? 0 : unlink!.hashCode) +
+    (totpCode == null ? 0 : totpCode!.hashCode) +
+    (totpUnlink == null ? 0 : totpUnlink!.hashCode) +
+    (webauthnRegister == null ? 0 : webauthnRegister!.hashCode) +
+    (webauthnRegisterDisplayname == null ? 0 : webauthnRegisterDisplayname!.hashCode) +
+    (webauthnRemove == null ? 0 : webauthnRemove!.hashCode) +
+    (lookupSecretConfirm == null ? 0 : lookupSecretConfirm!.hashCode) +
+    (lookupSecretDisable == null ? 0 : lookupSecretDisable!.hashCode) +
+    (lookupSecretRegenerate == null ? 0 : lookupSecretRegenerate!.hashCode) +
+    (lookupSecretReveal == null ? 0 : lookupSecretReveal!.hashCode);
 
-    static void _initializeBuilder(SubmitSelfServiceSettingsFlowBodyBuilder b) => b;
+  @override
+  String toString() => 'SubmitSelfServiceSettingsFlowBody[csrfToken=$csrfToken, method=$method, password=$password, traits=$traits, flow=$flow, link=$link, unlink=$unlink, totpCode=$totpCode, totpUnlink=$totpUnlink, webauthnRegister=$webauthnRegister, webauthnRegisterDisplayname=$webauthnRegisterDisplayname, webauthnRemove=$webauthnRemove, lookupSecretConfirm=$lookupSecretConfirm, lookupSecretDisable=$lookupSecretDisable, lookupSecretRegenerate=$lookupSecretRegenerate, lookupSecretReveal=$lookupSecretReveal]';
 
-    factory SubmitSelfServiceSettingsFlowBody([void updates(SubmitSelfServiceSettingsFlowBodyBuilder b)]) = _$SubmitSelfServiceSettingsFlowBody;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<SubmitSelfServiceSettingsFlowBody> get serializer => _$SubmitSelfServiceSettingsFlowBodySerializer();
-}
-
-class _$SubmitSelfServiceSettingsFlowBodySerializer implements StructuredSerializer<SubmitSelfServiceSettingsFlowBody> {
-
-    @override
-    final Iterable<Type> types = const [SubmitSelfServiceSettingsFlowBody, _$SubmitSelfServiceSettingsFlowBody];
-    @override
-    final String wireName = r'SubmitSelfServiceSettingsFlowBody';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, SubmitSelfServiceSettingsFlowBody object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.csrfToken != null) {
-            result
-                ..add(r'csrf_token')
-                ..add(serializers.serialize(object.csrfToken,
-                    specifiedType: const FullType(String)));
-        }
-        result
-            ..add(r'method')
-            ..add(serializers.serialize(object.method,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'password')
-            ..add(serializers.serialize(object.password,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'traits')
-            ..add(serializers.serialize(object.traits,
-                specifiedType: const FullType(JsonObject)));
-        if (object.flow != null) {
-            result
-                ..add(r'flow')
-                ..add(serializers.serialize(object.flow,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.link != null) {
-            result
-                ..add(r'link')
-                ..add(serializers.serialize(object.link,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.unlink != null) {
-            result
-                ..add(r'unlink')
-                ..add(serializers.serialize(object.unlink,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.totpCode != null) {
-            result
-                ..add(r'totp_code')
-                ..add(serializers.serialize(object.totpCode,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.totpUnlink != null) {
-            result
-                ..add(r'totp_unlink')
-                ..add(serializers.serialize(object.totpUnlink,
-                    specifiedType: const FullType(bool)));
-        }
-        if (object.webauthnRegister != null) {
-            result
-                ..add(r'webauthn_register')
-                ..add(serializers.serialize(object.webauthnRegister,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.webauthnRegisterDisplayname != null) {
-            result
-                ..add(r'webauthn_register_displayname')
-                ..add(serializers.serialize(object.webauthnRegisterDisplayname,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.webauthnRemove != null) {
-            result
-                ..add(r'webauthn_remove')
-                ..add(serializers.serialize(object.webauthnRemove,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.lookupSecretConfirm != null) {
-            result
-                ..add(r'lookup_secret_confirm')
-                ..add(serializers.serialize(object.lookupSecretConfirm,
-                    specifiedType: const FullType(bool)));
-        }
-        if (object.lookupSecretDisable != null) {
-            result
-                ..add(r'lookup_secret_disable')
-                ..add(serializers.serialize(object.lookupSecretDisable,
-                    specifiedType: const FullType(bool)));
-        }
-        if (object.lookupSecretRegenerate != null) {
-            result
-                ..add(r'lookup_secret_regenerate')
-                ..add(serializers.serialize(object.lookupSecretRegenerate,
-                    specifiedType: const FullType(bool)));
-        }
-        if (object.lookupSecretReveal != null) {
-            result
-                ..add(r'lookup_secret_reveal')
-                ..add(serializers.serialize(object.lookupSecretReveal,
-                    specifiedType: const FullType(bool)));
-        }
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+    if (csrfToken != null) {
+      _json[r'csrf_token'] = csrfToken;
+    } else {
+      _json[r'csrf_token'] = null;
     }
-
-    @override
-    SubmitSelfServiceSettingsFlowBody deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = SubmitSelfServiceSettingsFlowBodyBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'csrf_token':
-                    result.csrfToken = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'method':
-                    result.method = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'password':
-                    result.password = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'traits':
-                    result.traits = serializers.deserialize(value,
-                        specifiedType: const FullType(JsonObject)) as JsonObject;
-                    break;
-                case r'flow':
-                    result.flow = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'link':
-                    result.link = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'unlink':
-                    result.unlink = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'totp_code':
-                    result.totpCode = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'totp_unlink':
-                    result.totpUnlink = serializers.deserialize(value,
-                        specifiedType: const FullType(bool)) as bool;
-                    break;
-                case r'webauthn_register':
-                    result.webauthnRegister = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'webauthn_register_displayname':
-                    result.webauthnRegisterDisplayname = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'webauthn_remove':
-                    result.webauthnRemove = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'lookup_secret_confirm':
-                    result.lookupSecretConfirm = serializers.deserialize(value,
-                        specifiedType: const FullType(bool)) as bool;
-                    break;
-                case r'lookup_secret_disable':
-                    result.lookupSecretDisable = serializers.deserialize(value,
-                        specifiedType: const FullType(bool)) as bool;
-                    break;
-                case r'lookup_secret_regenerate':
-                    result.lookupSecretRegenerate = serializers.deserialize(value,
-                        specifiedType: const FullType(bool)) as bool;
-                    break;
-                case r'lookup_secret_reveal':
-                    result.lookupSecretReveal = serializers.deserialize(value,
-                        specifiedType: const FullType(bool)) as bool;
-                    break;
-            }
-        }
-        return result.build();
+      _json[r'method'] = method;
+      _json[r'password'] = password;
+      _json[r'traits'] = traits;
+    if (flow != null) {
+      _json[r'flow'] = flow;
+    } else {
+      _json[r'flow'] = null;
     }
+    if (link != null) {
+      _json[r'link'] = link;
+    } else {
+      _json[r'link'] = null;
+    }
+    if (unlink != null) {
+      _json[r'unlink'] = unlink;
+    } else {
+      _json[r'unlink'] = null;
+    }
+    if (totpCode != null) {
+      _json[r'totp_code'] = totpCode;
+    } else {
+      _json[r'totp_code'] = null;
+    }
+    if (totpUnlink != null) {
+      _json[r'totp_unlink'] = totpUnlink;
+    } else {
+      _json[r'totp_unlink'] = null;
+    }
+    if (webauthnRegister != null) {
+      _json[r'webauthn_register'] = webauthnRegister;
+    } else {
+      _json[r'webauthn_register'] = null;
+    }
+    if (webauthnRegisterDisplayname != null) {
+      _json[r'webauthn_register_displayname'] = webauthnRegisterDisplayname;
+    } else {
+      _json[r'webauthn_register_displayname'] = null;
+    }
+    if (webauthnRemove != null) {
+      _json[r'webauthn_remove'] = webauthnRemove;
+    } else {
+      _json[r'webauthn_remove'] = null;
+    }
+    if (lookupSecretConfirm != null) {
+      _json[r'lookup_secret_confirm'] = lookupSecretConfirm;
+    } else {
+      _json[r'lookup_secret_confirm'] = null;
+    }
+    if (lookupSecretDisable != null) {
+      _json[r'lookup_secret_disable'] = lookupSecretDisable;
+    } else {
+      _json[r'lookup_secret_disable'] = null;
+    }
+    if (lookupSecretRegenerate != null) {
+      _json[r'lookup_secret_regenerate'] = lookupSecretRegenerate;
+    } else {
+      _json[r'lookup_secret_regenerate'] = null;
+    }
+    if (lookupSecretReveal != null) {
+      _json[r'lookup_secret_reveal'] = lookupSecretReveal;
+    } else {
+      _json[r'lookup_secret_reveal'] = null;
+    }
+    return _json;
+  }
+
+  /// Returns a new [SubmitSelfServiceSettingsFlowBody] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static SubmitSelfServiceSettingsFlowBody? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "SubmitSelfServiceSettingsFlowBody[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "SubmitSelfServiceSettingsFlowBody[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return SubmitSelfServiceSettingsFlowBody(
+        csrfToken: mapValueOfType<String>(json, r'csrf_token'),
+        method: mapValueOfType<String>(json, r'method')!,
+        password: mapValueOfType<String>(json, r'password')!,
+        traits: mapValueOfType<Object>(json, r'traits')!,
+        flow: mapValueOfType<String>(json, r'flow'),
+        link: mapValueOfType<String>(json, r'link'),
+        unlink: mapValueOfType<String>(json, r'unlink'),
+        totpCode: mapValueOfType<String>(json, r'totp_code'),
+        totpUnlink: mapValueOfType<bool>(json, r'totp_unlink'),
+        webauthnRegister: mapValueOfType<String>(json, r'webauthn_register'),
+        webauthnRegisterDisplayname: mapValueOfType<String>(json, r'webauthn_register_displayname'),
+        webauthnRemove: mapValueOfType<String>(json, r'webauthn_remove'),
+        lookupSecretConfirm: mapValueOfType<bool>(json, r'lookup_secret_confirm'),
+        lookupSecretDisable: mapValueOfType<bool>(json, r'lookup_secret_disable'),
+        lookupSecretRegenerate: mapValueOfType<bool>(json, r'lookup_secret_regenerate'),
+        lookupSecretReveal: mapValueOfType<bool>(json, r'lookup_secret_reveal'),
+      );
+    }
+    return null;
+  }
+
+  static List<SubmitSelfServiceSettingsFlowBody>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <SubmitSelfServiceSettingsFlowBody>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = SubmitSelfServiceSettingsFlowBody.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, SubmitSelfServiceSettingsFlowBody> mapFromJson(dynamic json) {
+    final map = <String, SubmitSelfServiceSettingsFlowBody>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SubmitSelfServiceSettingsFlowBody.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of SubmitSelfServiceSettingsFlowBody-objects as value to a dart map
+  static Map<String, List<SubmitSelfServiceSettingsFlowBody>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<SubmitSelfServiceSettingsFlowBody>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SubmitSelfServiceSettingsFlowBody.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'method',
+    'password',
+    'traits',
+  };
 }
 

@@ -1,69 +1,120 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'stripe_customer_response.g.dart';
+class StripeCustomerResponse {
+  /// Returns a new [StripeCustomerResponse] instance.
+  StripeCustomerResponse({
+    this.id,
+  });
 
-abstract class StripeCustomerResponse implements Built<StripeCustomerResponse, StripeCustomerResponseBuilder> {
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? id;
 
-    @nullable
-    @BuiltValueField(wireName: r'id')
-    String get id;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is StripeCustomerResponse &&
+     other.id == id;
 
-    StripeCustomerResponse._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (id == null ? 0 : id!.hashCode);
 
-    static void _initializeBuilder(StripeCustomerResponseBuilder b) => b;
+  @override
+  String toString() => 'StripeCustomerResponse[id=$id]';
 
-    factory StripeCustomerResponse([void updates(StripeCustomerResponseBuilder b)]) = _$StripeCustomerResponse;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<StripeCustomerResponse> get serializer => _$StripeCustomerResponseSerializer();
-}
-
-class _$StripeCustomerResponseSerializer implements StructuredSerializer<StripeCustomerResponse> {
-
-    @override
-    final Iterable<Type> types = const [StripeCustomerResponse, _$StripeCustomerResponse];
-    @override
-    final String wireName = r'StripeCustomerResponse';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, StripeCustomerResponse object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.id != null) {
-            result
-                ..add(r'id')
-                ..add(serializers.serialize(object.id,
-                    specifiedType: const FullType(String)));
-        }
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+    if (id != null) {
+      _json[r'id'] = id;
+    } else {
+      _json[r'id'] = null;
     }
+    return _json;
+  }
 
-    @override
-    StripeCustomerResponse deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = StripeCustomerResponseBuilder();
+  /// Returns a new [StripeCustomerResponse] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static StripeCustomerResponse? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'id':
-                    result.id = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
-        }
-        return result.build();
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "StripeCustomerResponse[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "StripeCustomerResponse[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return StripeCustomerResponse(
+        id: mapValueOfType<String>(json, r'id'),
+      );
     }
+    return null;
+  }
+
+  static List<StripeCustomerResponse>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <StripeCustomerResponse>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = StripeCustomerResponse.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, StripeCustomerResponse> mapFromJson(dynamic json) {
+    final map = <String, StripeCustomerResponse>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = StripeCustomerResponse.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of StripeCustomerResponse-objects as value to a dart map
+  static Map<String, List<StripeCustomerResponse>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<StripeCustomerResponse>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = StripeCustomerResponse.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

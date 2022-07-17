@@ -9,29 +9,29 @@ defmodule Ory.Model.SelfServiceSettingsFlow do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"active",
-    :"expires_at",
-    :"id",
-    :"identity",
-    :"issued_at",
-    :"request_url",
-    :"return_to",
-    :"state",
-    :"type",
-    :"ui"
+    :active,
+    :expires_at,
+    :id,
+    :identity,
+    :issued_at,
+    :request_url,
+    :return_to,
+    :state,
+    :type,
+    :ui
   ]
 
   @type t :: %__MODULE__{
-    :"active" => String.t | nil,
-    :"expires_at" => DateTime.t,
-    :"id" => String.t,
-    :"identity" => Ory.Model.Identity.t,
-    :"issued_at" => DateTime.t,
-    :"request_url" => String.t,
-    :"return_to" => String.t | nil,
-    :"state" => Ory.Model.SelfServiceSettingsFlowState.t,
-    :"type" => String.t,
-    :"ui" => Ory.Model.UiContainer.t
+    :active => String.t | nil,
+    :expires_at => DateTime.t,
+    :id => String.t,
+    :identity => Ory.Model.Identity.t,
+    :issued_at => DateTime.t,
+    :request_url => String.t,
+    :return_to => String.t | nil,
+    :state => Ory.Model.SelfServiceSettingsFlowState.t,
+    :type => String.t,
+    :ui => Ory.Model.UiContainer.t
   }
 end
 
@@ -39,9 +39,9 @@ defimpl Poison.Decoder, for: Ory.Model.SelfServiceSettingsFlow do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"identity", :struct, Ory.Model.Identity, options)
-    |> deserialize(:"state", :struct, Ory.Model.SelfServiceSettingsFlowState, options)
-    |> deserialize(:"ui", :struct, Ory.Model.UiContainer, options)
+    |> deserialize(:identity, :struct, Ory.Model.Identity, options)
+    |> deserialize(:state, :struct, Ory.Model.SelfServiceSettingsFlowState, options)
+    |> deserialize(:ui, :struct, Ory.Model.UiContainer, options)
   end
 end
 

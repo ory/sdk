@@ -67,10 +67,10 @@ defmodule Ory.Api.Write do
   @spec delete_relation_tuples(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, Ory.Model.GenericError.t} | {:error, Tesla.Env.t}
   def delete_relation_tuples(connection, opts \\ []) do
     optional_params = %{
-      :"namespace" => :query,
-      :"object" => :query,
-      :"relation" => :query,
-      :"subject_id" => :query,
+      :namespace => :query,
+      :object => :query,
+      :relation => :query,
+      :subject_id => :query,
       :"subject_set.namespace" => :query,
       :"subject_set.object" => :query,
       :"subject_set.relation" => :query

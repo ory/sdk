@@ -9,15 +9,15 @@ defmodule Ory.Model.IsOwnerForProjectBySlugPayload do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"project_scope",
-    :"project_slug",
-    :"subject"
+    :project_scope,
+    :project_slug,
+    :subject
   ]
 
   @type t :: %__MODULE__{
-    :"project_scope" => String.t | nil,
-    :"project_slug" => String.t,
-    :"subject" => String.t
+    :project_scope => String.t | nil,
+    :project_slug => String.t,
+    :subject => String.t
   }
 end
 

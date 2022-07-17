@@ -8,15 +8,15 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**createdAt** | [**DateTime**](DateTime.md) | The Project's Revision Creation Date | [optional] 
+**createdAt** | [**DateTime**](DateTime.md) | The Project's Revision Creation Date | [optional] [readonly] 
 **id** | **String** |  | [optional] 
-**ketoNamespaces** | [**BuiltList<KetoNamespace>**](KetoNamespace.md) |  | [optional] 
+**ketoNamespaces** | [**List<KetoNamespace>**](KetoNamespace.md) |  | [optional] [default to const []]
 **ketoReadMaxDepth** | **int** |  | [optional] 
 **kratosCookiesSameSite** | **String** | Configures the Ory Kratos Cookie SameSite Attribute  This governs the \"cookies.same_site\" setting. | [optional] 
 **kratosCourierSmtpConnectionUri** | **String** | Configures the Ory Kratos SMTP Connection URI  This governs the \"courier.smtp.connection_uri\" setting. | [optional] 
 **kratosCourierSmtpFromAddress** | **String** | Configures the Ory Kratos SMTP From Address  This governs the \"courier.smtp.from_address\" setting. | [optional] 
 **kratosCourierSmtpFromName** | **String** | Configures the Ory Kratos SMTP From Name  This governs the \"courier.smtp.from_name\" setting. | [optional] 
-**kratosCourierSmtpHeaders** | [**JsonObject**](.md) | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
+**kratosCourierSmtpHeaders** | [**Object**](.md) | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
 **kratosCourierTemplatesRecoveryInvalidEmailBodyHtml** | **String** | Configures the Ory Kratos Invalid Recovery Email Body HTML Template  This governs the \"courier.smtp.templates.recovery.invalid.email.body.html\" setting. | [optional] 
 **kratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext** | **String** | Configures the Ory Kratos Invalid Recovery Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery.invalid.email.body.plaintext\" setting. | [optional] 
 **kratosCourierTemplatesRecoveryInvalidEmailSubject** | **String** | Configures the Ory Kratos Invalid Recovery Email Subject Template  This governs the \"courier.smtp.templates.recovery.invalid.email.body.html\" setting. | [optional] 
@@ -29,14 +29,14 @@ Name | Type | Description | Notes
 **kratosCourierTemplatesVerificationValidEmailBodyHtml** | **String** | Configures the Ory Kratos Valid Verification Email Body HTML Template  This governs the \"courier.smtp.templates.verification.valid.email.body.html\" setting. | [optional] 
 **kratosCourierTemplatesVerificationValidEmailBodyPlaintext** | **String** | Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery.valid.email.body.plaintext\" setting. | [optional] 
 **kratosCourierTemplatesVerificationValidEmailSubject** | **String** | Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \"courier.smtp.templates.verification.valid.email.subject\" setting. | [optional] 
-**kratosIdentitySchemas** | [**BuiltList<NormalizedProjectRevisionIdentitySchema>**](NormalizedProjectRevisionIdentitySchema.md) |  | [optional] 
-**kratosSecretsCipher** | **BuiltList<String>** |  | [optional] 
-**kratosSecretsCookie** | **BuiltList<String>** |  | [optional] 
-**kratosSecretsDefault** | **BuiltList<String>** |  | [optional] 
-**kratosSelfserviceAllowedReturnUrls** | **BuiltList<String>** |  | [optional] 
+**kratosIdentitySchemas** | [**List<NormalizedProjectRevisionIdentitySchema>**](NormalizedProjectRevisionIdentitySchema.md) |  | [optional] [default to const []]
+**kratosSecretsCipher** | **List<String>** |  | [optional] [default to const []]
+**kratosSecretsCookie** | **List<String>** |  | [optional] [default to const []]
+**kratosSecretsDefault** | **List<String>** |  | [optional] [default to const []]
+**kratosSelfserviceAllowedReturnUrls** | **List<String>** |  | [optional] [default to const []]
 **kratosSelfserviceDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Default Return URL  This governs the \"selfservice.allowed_return_urls\" setting. | [optional] 
 **kratosSelfserviceFlowsErrorUiUrl** | **String** | Configures the Ory Kratos Error UI URL  This governs the \"selfservice.flows.error.ui_url\" setting. | [optional] 
-**kratosSelfserviceFlowsHooks** | [**BuiltList<NormalizedProjectRevisionHook>**](NormalizedProjectRevisionHook.md) |  | [optional] 
+**kratosSelfserviceFlowsHooks** | [**List<NormalizedProjectRevisionHook>**](NormalizedProjectRevisionHook.md) |  | [optional] [default to const []]
 **kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Login Default Return URL  This governs the \"selfservice.flows.login.after.default_browser_return_url\" setting. | [optional] 
 **kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Login After OIDC Default Return URL  This governs the \"selfservice.flows.login.after.oidc.default_browser_return_url\" setting. | [optional] 
 **kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.login.after.password.default_browser_return_url\" setting. | [optional] 
@@ -71,7 +71,7 @@ Name | Type | Description | Notes
 **kratosSelfserviceMethodsLinkEnabled** | **bool** |  | [optional] 
 **kratosSelfserviceMethodsLookupSecretEnabled** | **bool** |  | [optional] 
 **kratosSelfserviceMethodsOidcConfigBaseRedirectUri** | **String** | Configures the Ory Kratos Third Party / OpenID Connect base redirect URI  This governs the \"selfservice.methods.oidc.config.base_redirect_uri\" setting. | [optional] 
-**kratosSelfserviceMethodsOidcConfigProviders** | [**BuiltList<NormalizedProjectRevisionThirdPartyProvider>**](NormalizedProjectRevisionThirdPartyProvider.md) |  | [optional] 
+**kratosSelfserviceMethodsOidcConfigProviders** | [**List<NormalizedProjectRevisionThirdPartyProvider>**](NormalizedProjectRevisionThirdPartyProvider.md) |  | [optional] [default to const []]
 **kratosSelfserviceMethodsOidcEnabled** | **bool** | Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \"selfservice.methods.oidc.enabled\" setting. | [optional] 
 **kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled** | **bool** |  | [optional] 
 **kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled** | **bool** |  | [optional] 
@@ -94,7 +94,7 @@ Name | Type | Description | Notes
 **kratosSessionWhoamiRequiredAal** | **String** | Configures the Ory Kratos Session Whoami AAL requirement  This governs the \"session.whoami.required_aal\" setting. | [optional] 
 **name** | **String** | The project's name. | 
 **projectId** | **String** |  | [optional] 
-**updatedAt** | [**DateTime**](DateTime.md) | Last Time Project's Revision was Updated | [optional] 
+**updatedAt** | [**DateTime**](DateTime.md) | Last Time Project's Revision was Updated | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

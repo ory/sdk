@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **pattern** | **String** | The input's pattern. | [optional] 
 **required_** | **bool** | Mark this input field as required. | [optional] 
 **type** | **String** | The script MIME type | 
-**value** | [**JsonObject**](.md) | The input's value. | [optional] 
+**value** | [**Object**](.md) | The input's value. | [optional] 
 **id** | **String** | A unique identifier | 
 **text** | [**UiText**](UiText.md) |  | 
 **height** | **int** | Height of the image | 

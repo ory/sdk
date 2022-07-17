@@ -1,19 +1,21 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:ory_client/model/ui_node_attributes.dart';
+import 'package:ory_client/api.dart';
 import 'package:test/test.dart';
 
 // tests for UiNodeAttributes
 void main() {
-  final instance = UiNodeAttributesBuilder();
-  // TODO add properties to the builder and call build()
+  // final instance = UiNodeAttributes();
 
-  group(UiNodeAttributes, () {
+  group('test UiNodeAttributes', () {
     // Sets the input's disabled field to true or false.
     // bool disabled
     test('to test the property `disabled`', () async {
@@ -62,7 +64,7 @@ void main() {
     });
 
     // The input's value.
-    // JsonObject value
+    // Object value
     test('to test the property `value`', () async {
       // TODO
     });

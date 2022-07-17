@@ -9,27 +9,27 @@ defmodule Ory.Model.ProjectInvite do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"created_at",
-    :"id",
-    :"invitee_email",
-    :"invitee_id",
-    :"owner_email",
-    :"owner_id",
-    :"project_id",
-    :"status",
-    :"updated_at"
+    :created_at,
+    :id,
+    :invitee_email,
+    :invitee_id,
+    :owner_email,
+    :owner_id,
+    :project_id,
+    :status,
+    :updated_at
   ]
 
   @type t :: %__MODULE__{
-    :"created_at" => DateTime.t,
-    :"id" => String.t,
-    :"invitee_email" => String.t,
-    :"invitee_id" => String.t | nil,
-    :"owner_email" => String.t,
-    :"owner_id" => String.t,
-    :"project_id" => String.t,
-    :"status" => String.t,
-    :"updated_at" => DateTime.t
+    :created_at => DateTime.t,
+    :id => String.t,
+    :invitee_email => String.t,
+    :invitee_id => String.t | nil,
+    :owner_email => String.t,
+    :owner_id => String.t,
+    :project_id => String.t,
+    :status => String.t,
+    :updated_at => DateTime.t
   }
 end
 

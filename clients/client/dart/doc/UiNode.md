@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **attributes** | [**UiNodeAttributes**](UiNodeAttributes.md) |  | 
 **group** | **String** | Group specifies which group (e.g. password authenticator) this node belongs to. | 
-**messages** | [**BuiltList<UiText>**](UiText.md) |  | 
+**messages** | [**List<UiText>**](UiText.md) |  | [default to const []]
 **meta** | [**UiNodeMeta**](UiNodeMeta.md) |  | 
 **type** | **String** | The node's type | 
 

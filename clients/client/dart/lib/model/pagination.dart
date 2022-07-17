@@ -1,85 +1,124 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'pagination.g.dart';
+class Pagination {
+  /// Returns a new [Pagination] instance.
+  Pagination({
+    this.page = 1,
+    this.perPage = 250,
+  });
 
-abstract class Pagination implements Built<Pagination, PaginationBuilder> {
+  /// Pagination Page
+  ///
+  /// Minimum value: 1
+  int page;
 
-    /// Pagination Page
-    @BuiltValueField(wireName: r'page')
-    int get page;
+  /// Items per Page  This is the number of items per page.
+  ///
+  /// Minimum value: 1
+  /// Maximum value: 1000
+  int perPage;
 
-    /// Items per Page  This is the number of items per page.
-    @BuiltValueField(wireName: r'per_page')
-    int get perPage;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is Pagination &&
+     other.page == page &&
+     other.perPage == perPage;
 
-    Pagination._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (page.hashCode) +
+    (perPage.hashCode);
 
-    static void _initializeBuilder(PaginationBuilder b) => b
-        ..page = 1
-        ..perPage = 250;
+  @override
+  String toString() => 'Pagination[page=$page, perPage=$perPage]';
 
-    factory Pagination([void updates(PaginationBuilder b)]) = _$Pagination;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'page'] = page;
+      _json[r'per_page'] = perPage;
+    return _json;
+  }
 
-    @BuiltValueSerializer(custom: true)
-    static Serializer<Pagination> get serializer => _$PaginationSerializer();
-}
+  /// Returns a new [Pagination] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static Pagination? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-class _$PaginationSerializer implements StructuredSerializer<Pagination> {
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "Pagination[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "Pagination[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
 
-    @override
-    final Iterable<Type> types = const [Pagination, _$Pagination];
-    @override
-    final String wireName = r'Pagination';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, Pagination object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.page != null) {
-            result
-                ..add(r'page')
-                ..add(serializers.serialize(object.page,
-                    specifiedType: const FullType(int)));
-        }
-        if (object.perPage != null) {
-            result
-                ..add(r'per_page')
-                ..add(serializers.serialize(object.perPage,
-                    specifiedType: const FullType(int)));
-        }
-        return result;
+      return Pagination(
+        page: mapValueOfType<int>(json, r'page') ?? 1,
+        perPage: mapValueOfType<int>(json, r'per_page') ?? 250,
+      );
     }
+    return null;
+  }
 
-    @override
-    Pagination deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = PaginationBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'page':
-                    result.page = serializers.deserialize(value,
-                        specifiedType: const FullType(int)) as int;
-                    break;
-                case r'per_page':
-                    result.perPage = serializers.deserialize(value,
-                        specifiedType: const FullType(int)) as int;
-                    break;
-            }
+  static List<Pagination>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <Pagination>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = Pagination.fromJson(row);
+        if (value != null) {
+          result.add(value);
         }
-        return result.build();
+      }
     }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, Pagination> mapFromJson(dynamic json) {
+    final map = <String, Pagination>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = Pagination.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of Pagination-objects as value to a dart map
+  static Map<String, List<Pagination>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<Pagination>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = Pagination.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

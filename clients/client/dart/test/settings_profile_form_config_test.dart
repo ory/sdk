@@ -1,26 +1,28 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:ory_client/model/settings_profile_form_config.dart';
+import 'package:ory_client/api.dart';
 import 'package:test/test.dart';
 
 // tests for SettingsProfileFormConfig
 void main() {
-  final instance = SettingsProfileFormConfigBuilder();
-  // TODO add properties to the builder and call build()
+  // final instance = SettingsProfileFormConfig();
 
-  group(SettingsProfileFormConfig, () {
+  group('test SettingsProfileFormConfig', () {
     // Action should be used as the form action URL `<form action=\"{{ .Action }}\" method=\"post\">`.
     // String action
     test('to test the property `action`', () async {
       // TODO
     });
 
-    // BuiltList<UiText> messages
+    // List<UiText> messages (default value: const [])
     test('to test the property `messages`', () async {
       // TODO
     });
@@ -31,7 +33,7 @@ void main() {
       // TODO
     });
 
-    // BuiltList<UiNode> nodes
+    // List<UiNode> nodes (default value: const [])
     test('to test the property `nodes`', () async {
       // TODO
     });

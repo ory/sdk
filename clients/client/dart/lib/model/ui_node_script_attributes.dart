@@ -1,163 +1,184 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'ui_node_script_attributes.g.dart';
+class UiNodeScriptAttributes {
+  /// Returns a new [UiNodeScriptAttributes] instance.
+  UiNodeScriptAttributes({
+    required this.async_,
+    required this.crossorigin,
+    required this.id,
+    required this.integrity,
+    required this.nodeType,
+    required this.nonce,
+    required this.referrerpolicy,
+    required this.src,
+    required this.type,
+  });
 
-abstract class UiNodeScriptAttributes implements Built<UiNodeScriptAttributes, UiNodeScriptAttributesBuilder> {
+  /// The script async type
+  bool async_;
 
-    /// The script async type
-    @BuiltValueField(wireName: r'async')
-    bool get async_;
+  /// The script cross origin policy
+  String crossorigin;
 
-    /// The script cross origin policy
-    @BuiltValueField(wireName: r'crossorigin')
-    String get crossorigin;
+  /// A unique identifier
+  String id;
 
-    /// A unique identifier
-    @BuiltValueField(wireName: r'id')
-    String get id;
+  /// The script's integrity hash
+  String integrity;
 
-    /// The script's integrity hash
-    @BuiltValueField(wireName: r'integrity')
-    String get integrity;
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\".
+  String nodeType;
 
-    /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\".
-    @BuiltValueField(wireName: r'node_type')
-    String get nodeType;
+  /// Nonce for CSP  A nonce you may want to use to improve your Content Security Policy. You do not have to use this value but if you want to improve your CSP policies you may use it. You can also choose to use your own nonce value!
+  String nonce;
 
-    /// Nonce for CSP  A nonce you may want to use to improve your Content Security Policy. You do not have to use this value but if you want to improve your CSP policies you may use it. You can also choose to use your own nonce value!
-    @BuiltValueField(wireName: r'nonce')
-    String get nonce;
+  /// The script referrer policy
+  String referrerpolicy;
 
-    /// The script referrer policy
-    @BuiltValueField(wireName: r'referrerpolicy')
-    String get referrerpolicy;
+  /// The script source
+  String src;
 
-    /// The script source
-    @BuiltValueField(wireName: r'src')
-    String get src;
+  /// The script MIME type
+  String type;
 
-    /// The script MIME type
-    @BuiltValueField(wireName: r'type')
-    String get type;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is UiNodeScriptAttributes &&
+     other.async_ == async_ &&
+     other.crossorigin == crossorigin &&
+     other.id == id &&
+     other.integrity == integrity &&
+     other.nodeType == nodeType &&
+     other.nonce == nonce &&
+     other.referrerpolicy == referrerpolicy &&
+     other.src == src &&
+     other.type == type;
 
-    UiNodeScriptAttributes._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (async_.hashCode) +
+    (crossorigin.hashCode) +
+    (id.hashCode) +
+    (integrity.hashCode) +
+    (nodeType.hashCode) +
+    (nonce.hashCode) +
+    (referrerpolicy.hashCode) +
+    (src.hashCode) +
+    (type.hashCode);
 
-    static void _initializeBuilder(UiNodeScriptAttributesBuilder b) => b;
+  @override
+  String toString() => 'UiNodeScriptAttributes[async_=$async_, crossorigin=$crossorigin, id=$id, integrity=$integrity, nodeType=$nodeType, nonce=$nonce, referrerpolicy=$referrerpolicy, src=$src, type=$type]';
 
-    factory UiNodeScriptAttributes([void updates(UiNodeScriptAttributesBuilder b)]) = _$UiNodeScriptAttributes;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'async'] = async_;
+      _json[r'crossorigin'] = crossorigin;
+      _json[r'id'] = id;
+      _json[r'integrity'] = integrity;
+      _json[r'node_type'] = nodeType;
+      _json[r'nonce'] = nonce;
+      _json[r'referrerpolicy'] = referrerpolicy;
+      _json[r'src'] = src;
+      _json[r'type'] = type;
+    return _json;
+  }
 
-    @BuiltValueSerializer(custom: true)
-    static Serializer<UiNodeScriptAttributes> get serializer => _$UiNodeScriptAttributesSerializer();
-}
+  /// Returns a new [UiNodeScriptAttributes] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static UiNodeScriptAttributes? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-class _$UiNodeScriptAttributesSerializer implements StructuredSerializer<UiNodeScriptAttributes> {
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "UiNodeScriptAttributes[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "UiNodeScriptAttributes[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
 
-    @override
-    final Iterable<Type> types = const [UiNodeScriptAttributes, _$UiNodeScriptAttributes];
-    @override
-    final String wireName = r'UiNodeScriptAttributes';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, UiNodeScriptAttributes object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'async')
-            ..add(serializers.serialize(object.async_,
-                specifiedType: const FullType(bool)));
-        result
-            ..add(r'crossorigin')
-            ..add(serializers.serialize(object.crossorigin,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'id')
-            ..add(serializers.serialize(object.id,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'integrity')
-            ..add(serializers.serialize(object.integrity,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'node_type')
-            ..add(serializers.serialize(object.nodeType,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'nonce')
-            ..add(serializers.serialize(object.nonce,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'referrerpolicy')
-            ..add(serializers.serialize(object.referrerpolicy,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'src')
-            ..add(serializers.serialize(object.src,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'type')
-            ..add(serializers.serialize(object.type,
-                specifiedType: const FullType(String)));
-        return result;
+      return UiNodeScriptAttributes(
+        async_: mapValueOfType<bool>(json, r'async')!,
+        crossorigin: mapValueOfType<String>(json, r'crossorigin')!,
+        id: mapValueOfType<String>(json, r'id')!,
+        integrity: mapValueOfType<String>(json, r'integrity')!,
+        nodeType: mapValueOfType<String>(json, r'node_type')!,
+        nonce: mapValueOfType<String>(json, r'nonce')!,
+        referrerpolicy: mapValueOfType<String>(json, r'referrerpolicy')!,
+        src: mapValueOfType<String>(json, r'src')!,
+        type: mapValueOfType<String>(json, r'type')!,
+      );
     }
+    return null;
+  }
 
-    @override
-    UiNodeScriptAttributes deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = UiNodeScriptAttributesBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'async':
-                    result.async_ = serializers.deserialize(value,
-                        specifiedType: const FullType(bool)) as bool;
-                    break;
-                case r'crossorigin':
-                    result.crossorigin = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'id':
-                    result.id = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'integrity':
-                    result.integrity = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'node_type':
-                    result.nodeType = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'nonce':
-                    result.nonce = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'referrerpolicy':
-                    result.referrerpolicy = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'src':
-                    result.src = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'type':
-                    result.type = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
+  static List<UiNodeScriptAttributes>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <UiNodeScriptAttributes>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = UiNodeScriptAttributes.fromJson(row);
+        if (value != null) {
+          result.add(value);
         }
-        return result.build();
+      }
     }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, UiNodeScriptAttributes> mapFromJson(dynamic json) {
+    final map = <String, UiNodeScriptAttributes>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = UiNodeScriptAttributes.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of UiNodeScriptAttributes-objects as value to a dart map
+  static Map<String, List<UiNodeScriptAttributes>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<UiNodeScriptAttributes>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = UiNodeScriptAttributes.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'async',
+    'crossorigin',
+    'id',
+    'integrity',
+    'node_type',
+    'nonce',
+    'referrerpolicy',
+    'src',
+    'type',
+  };
 }
 

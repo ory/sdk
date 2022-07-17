@@ -1,69 +1,120 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'identity_schema_location.g.dart';
+class IdentitySchemaLocation {
+  /// Returns a new [IdentitySchemaLocation] instance.
+  IdentitySchemaLocation({
+    this.location,
+  });
 
-abstract class IdentitySchemaLocation implements Built<IdentitySchemaLocation, IdentitySchemaLocationBuilder> {
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? location;
 
-    @nullable
-    @BuiltValueField(wireName: r'location')
-    String get location;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is IdentitySchemaLocation &&
+     other.location == location;
 
-    IdentitySchemaLocation._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (location == null ? 0 : location!.hashCode);
 
-    static void _initializeBuilder(IdentitySchemaLocationBuilder b) => b;
+  @override
+  String toString() => 'IdentitySchemaLocation[location=$location]';
 
-    factory IdentitySchemaLocation([void updates(IdentitySchemaLocationBuilder b)]) = _$IdentitySchemaLocation;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<IdentitySchemaLocation> get serializer => _$IdentitySchemaLocationSerializer();
-}
-
-class _$IdentitySchemaLocationSerializer implements StructuredSerializer<IdentitySchemaLocation> {
-
-    @override
-    final Iterable<Type> types = const [IdentitySchemaLocation, _$IdentitySchemaLocation];
-    @override
-    final String wireName = r'IdentitySchemaLocation';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, IdentitySchemaLocation object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.location != null) {
-            result
-                ..add(r'location')
-                ..add(serializers.serialize(object.location,
-                    specifiedType: const FullType(String)));
-        }
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+    if (location != null) {
+      _json[r'location'] = location;
+    } else {
+      _json[r'location'] = null;
     }
+    return _json;
+  }
 
-    @override
-    IdentitySchemaLocation deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = IdentitySchemaLocationBuilder();
+  /// Returns a new [IdentitySchemaLocation] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static IdentitySchemaLocation? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'location':
-                    result.location = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
-        }
-        return result.build();
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "IdentitySchemaLocation[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "IdentitySchemaLocation[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return IdentitySchemaLocation(
+        location: mapValueOfType<String>(json, r'location'),
+      );
     }
+    return null;
+  }
+
+  static List<IdentitySchemaLocation>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <IdentitySchemaLocation>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = IdentitySchemaLocation.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, IdentitySchemaLocation> mapFromJson(dynamic json) {
+    final map = <String, IdentitySchemaLocation>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = IdentitySchemaLocation.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of IdentitySchemaLocation-objects as value to a dart map
+  static Map<String, List<IdentitySchemaLocation>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<IdentitySchemaLocation>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = IdentitySchemaLocation.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

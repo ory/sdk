@@ -9,13 +9,13 @@ defmodule Ory.Model.AdminCreateIdentityImportCredentialsOidcProvider do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"provider",
-    :"subject"
+    :provider,
+    :subject
   ]
 
   @type t :: %__MODULE__{
-    :"provider" => String.t,
-    :"subject" => String.t
+    :provider => String.t,
+    :subject => String.t
   }
 end
 

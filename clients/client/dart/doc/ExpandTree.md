@@ -8,7 +8,7 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**children** | [**BuiltList<ExpandTree>**](ExpandTree.md) |  | [optional] 
+**children** | [**List<ExpandTree>**](ExpandTree.md) |  | [optional] [default to const []]
 **subjectId** | **String** |  | [optional] 
 **subjectSet** | [**SubjectSet**](SubjectSet.md) |  | [optional] 
 **type** | **String** |  | 

@@ -9,15 +9,15 @@ defmodule Ory.Model.ProjectHost do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"host",
-    :"id",
-    :"project_id"
+    :host,
+    :id,
+    :project_id
   ]
 
   @type t :: %__MODULE__{
-    :"host" => String.t,
-    :"id" => String.t,
-    :"project_id" => String.t
+    :host => String.t,
+    :id => String.t,
+    :project_id => String.t
   }
 end
 

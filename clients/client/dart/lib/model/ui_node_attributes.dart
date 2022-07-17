@@ -1,326 +1,328 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:ory_client/model/ui_node_image_attributes.dart';
-import 'package:ory_client/model/ui_node_anchor_attributes.dart';
-import 'package:ory_client/model/ui_node_text_attributes.dart';
-import 'package:ory_client/model/ui_text.dart';
-import 'package:built_value/json_object.dart';
-import 'package:ory_client/model/ui_node_input_attributes.dart';
-import 'package:ory_client/model/ui_node_script_attributes.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'ui_node_attributes.g.dart';
+class UiNodeAttributes {
+  /// Returns a new [UiNodeAttributes] instance.
+  UiNodeAttributes({
+    required this.disabled,
+    this.label,
+    required this.name,
+    required this.nodeType,
+    this.onclick,
+    this.pattern,
+    this.required_,
+    required this.type,
+    this.value,
+    required this.id,
+    required this.text,
+    required this.height,
+    required this.src,
+    required this.width,
+    required this.href,
+    required this.title,
+    required this.async_,
+    required this.crossorigin,
+    required this.integrity,
+    required this.nonce,
+    required this.referrerpolicy,
+  });
 
-abstract class UiNodeAttributes implements Built<UiNodeAttributes, UiNodeAttributesBuilder> {
+  /// Sets the input's disabled field to true or false.
+  bool disabled;
 
-    /// Sets the input's disabled field to true or false.
-    @BuiltValueField(wireName: r'disabled')
-    bool get disabled;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  UiText? label;
 
-    @nullable
-    @BuiltValueField(wireName: r'label')
-    UiText get label;
+  /// The input's element name.
+  String name;
 
-    /// The input's element name.
-    @BuiltValueField(wireName: r'name')
-    String get name;
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\".
+  String nodeType;
 
-    /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\".
-    @BuiltValueField(wireName: r'node_type')
-    String get nodeType;
+  /// OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? onclick;
 
-    /// OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.
-    @nullable
-    @BuiltValueField(wireName: r'onclick')
-    String get onclick;
+  /// The input's pattern.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? pattern;
 
-    /// The input's pattern.
-    @nullable
-    @BuiltValueField(wireName: r'pattern')
-    String get pattern;
+  /// Mark this input field as required.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? required_;
 
-    /// Mark this input field as required.
-    @nullable
-    @BuiltValueField(wireName: r'required')
-    bool get required_;
+  /// The script MIME type
+  String type;
 
-    /// The script MIME type
-    @BuiltValueField(wireName: r'type')
-    String get type;
+  /// The input's value.
+  Object? value;
 
-    /// The input's value.
-    @nullable
-    @BuiltValueField(wireName: r'value')
-    JsonObject get value;
+  /// A unique identifier
+  String id;
 
-    /// A unique identifier
-    @BuiltValueField(wireName: r'id')
-    String get id;
+  UiText text;
 
-    @BuiltValueField(wireName: r'text')
-    UiText get text;
+  /// Height of the image
+  int height;
 
-    /// Height of the image
-    @BuiltValueField(wireName: r'height')
-    int get height;
+  /// The script source
+  String src;
 
-    /// The script source
-    @BuiltValueField(wireName: r'src')
-    String get src;
+  /// Width of the image
+  int width;
 
-    /// Width of the image
-    @BuiltValueField(wireName: r'width')
-    int get width;
+  /// The link's href (destination) URL.  format: uri
+  String href;
 
-    /// The link's href (destination) URL.  format: uri
-    @BuiltValueField(wireName: r'href')
-    String get href;
+  UiText title;
 
-    @BuiltValueField(wireName: r'title')
-    UiText get title;
+  /// The script async type
+  bool async_;
 
-    /// The script async type
-    @BuiltValueField(wireName: r'async')
-    bool get async_;
+  /// The script cross origin policy
+  String crossorigin;
 
-    /// The script cross origin policy
-    @BuiltValueField(wireName: r'crossorigin')
-    String get crossorigin;
+  /// The script's integrity hash
+  String integrity;
 
-    /// The script's integrity hash
-    @BuiltValueField(wireName: r'integrity')
-    String get integrity;
+  /// Nonce for CSP  A nonce you may want to use to improve your Content Security Policy. You do not have to use this value but if you want to improve your CSP policies you may use it. You can also choose to use your own nonce value!
+  String nonce;
 
-    /// Nonce for CSP  A nonce you may want to use to improve your Content Security Policy. You do not have to use this value but if you want to improve your CSP policies you may use it. You can also choose to use your own nonce value!
-    @BuiltValueField(wireName: r'nonce')
-    String get nonce;
+  /// The script referrer policy
+  String referrerpolicy;
 
-    /// The script referrer policy
-    @BuiltValueField(wireName: r'referrerpolicy')
-    String get referrerpolicy;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is UiNodeAttributes &&
+     other.disabled == disabled &&
+     other.label == label &&
+     other.name == name &&
+     other.nodeType == nodeType &&
+     other.onclick == onclick &&
+     other.pattern == pattern &&
+     other.required_ == required_ &&
+     other.type == type &&
+     other.value == value &&
+     other.id == id &&
+     other.text == text &&
+     other.height == height &&
+     other.src == src &&
+     other.width == width &&
+     other.href == href &&
+     other.title == title &&
+     other.async_ == async_ &&
+     other.crossorigin == crossorigin &&
+     other.integrity == integrity &&
+     other.nonce == nonce &&
+     other.referrerpolicy == referrerpolicy;
 
-    UiNodeAttributes._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (disabled.hashCode) +
+    (label == null ? 0 : label!.hashCode) +
+    (name.hashCode) +
+    (nodeType.hashCode) +
+    (onclick == null ? 0 : onclick!.hashCode) +
+    (pattern == null ? 0 : pattern!.hashCode) +
+    (required_ == null ? 0 : required_!.hashCode) +
+    (type.hashCode) +
+    (value == null ? 0 : value!.hashCode) +
+    (id.hashCode) +
+    (text.hashCode) +
+    (height.hashCode) +
+    (src.hashCode) +
+    (width.hashCode) +
+    (href.hashCode) +
+    (title.hashCode) +
+    (async_.hashCode) +
+    (crossorigin.hashCode) +
+    (integrity.hashCode) +
+    (nonce.hashCode) +
+    (referrerpolicy.hashCode);
 
-    static void _initializeBuilder(UiNodeAttributesBuilder b) => b;
+  @override
+  String toString() => 'UiNodeAttributes[disabled=$disabled, label=$label, name=$name, nodeType=$nodeType, onclick=$onclick, pattern=$pattern, required_=$required_, type=$type, value=$value, id=$id, text=$text, height=$height, src=$src, width=$width, href=$href, title=$title, async_=$async_, crossorigin=$crossorigin, integrity=$integrity, nonce=$nonce, referrerpolicy=$referrerpolicy]';
 
-    factory UiNodeAttributes([void updates(UiNodeAttributesBuilder b)]) = _$UiNodeAttributes;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<UiNodeAttributes> get serializer => _$UiNodeAttributesSerializer();
-}
-
-class _$UiNodeAttributesSerializer implements StructuredSerializer<UiNodeAttributes> {
-
-    @override
-    final Iterable<Type> types = const [UiNodeAttributes, _$UiNodeAttributes];
-    @override
-    final String wireName = r'UiNodeAttributes';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, UiNodeAttributes object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'disabled')
-            ..add(serializers.serialize(object.disabled,
-                specifiedType: const FullType(bool)));
-        if (object.label != null) {
-            result
-                ..add(r'label')
-                ..add(serializers.serialize(object.label,
-                    specifiedType: const FullType(UiText)));
-        }
-        result
-            ..add(r'name')
-            ..add(serializers.serialize(object.name,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'node_type')
-            ..add(serializers.serialize(object.nodeType,
-                specifiedType: const FullType(String)));
-        if (object.onclick != null) {
-            result
-                ..add(r'onclick')
-                ..add(serializers.serialize(object.onclick,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.pattern != null) {
-            result
-                ..add(r'pattern')
-                ..add(serializers.serialize(object.pattern,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.required_ != null) {
-            result
-                ..add(r'required')
-                ..add(serializers.serialize(object.required_,
-                    specifiedType: const FullType(bool)));
-        }
-        result
-            ..add(r'type')
-            ..add(serializers.serialize(object.type,
-                specifiedType: const FullType(String)));
-        if (object.value != null) {
-            result
-                ..add(r'value')
-                ..add(serializers.serialize(object.value,
-                    specifiedType: const FullType(JsonObject)));
-        }
-        result
-            ..add(r'id')
-            ..add(serializers.serialize(object.id,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'text')
-            ..add(serializers.serialize(object.text,
-                specifiedType: const FullType(UiText)));
-        result
-            ..add(r'height')
-            ..add(serializers.serialize(object.height,
-                specifiedType: const FullType(int)));
-        result
-            ..add(r'src')
-            ..add(serializers.serialize(object.src,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'width')
-            ..add(serializers.serialize(object.width,
-                specifiedType: const FullType(int)));
-        result
-            ..add(r'href')
-            ..add(serializers.serialize(object.href,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'title')
-            ..add(serializers.serialize(object.title,
-                specifiedType: const FullType(UiText)));
-        result
-            ..add(r'async')
-            ..add(serializers.serialize(object.async_,
-                specifiedType: const FullType(bool)));
-        result
-            ..add(r'crossorigin')
-            ..add(serializers.serialize(object.crossorigin,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'integrity')
-            ..add(serializers.serialize(object.integrity,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'nonce')
-            ..add(serializers.serialize(object.nonce,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'referrerpolicy')
-            ..add(serializers.serialize(object.referrerpolicy,
-                specifiedType: const FullType(String)));
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'disabled'] = disabled;
+    if (label != null) {
+      _json[r'label'] = label;
+    } else {
+      _json[r'label'] = null;
     }
-
-    @override
-    UiNodeAttributes deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = UiNodeAttributesBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'disabled':
-                    result.disabled = serializers.deserialize(value,
-                        specifiedType: const FullType(bool)) as bool;
-                    break;
-                case r'label':
-                    result.label.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(UiText)) as UiText);
-                    break;
-                case r'name':
-                    result.name = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'node_type':
-                    result.nodeType = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'onclick':
-                    result.onclick = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'pattern':
-                    result.pattern = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'required':
-                    result.required_ = serializers.deserialize(value,
-                        specifiedType: const FullType(bool)) as bool;
-                    break;
-                case r'type':
-                    result.type = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'value':
-                    result.value = serializers.deserialize(value,
-                        specifiedType: const FullType(JsonObject)) as JsonObject;
-                    break;
-                case r'id':
-                    result.id = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'text':
-                    result.text.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(UiText)) as UiText);
-                    break;
-                case r'height':
-                    result.height = serializers.deserialize(value,
-                        specifiedType: const FullType(int)) as int;
-                    break;
-                case r'src':
-                    result.src = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'width':
-                    result.width = serializers.deserialize(value,
-                        specifiedType: const FullType(int)) as int;
-                    break;
-                case r'href':
-                    result.href = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'title':
-                    result.title.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(UiText)) as UiText);
-                    break;
-                case r'async':
-                    result.async_ = serializers.deserialize(value,
-                        specifiedType: const FullType(bool)) as bool;
-                    break;
-                case r'crossorigin':
-                    result.crossorigin = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'integrity':
-                    result.integrity = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'nonce':
-                    result.nonce = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'referrerpolicy':
-                    result.referrerpolicy = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
-        }
-        return result.build();
+      _json[r'name'] = name;
+      _json[r'node_type'] = nodeType;
+    if (onclick != null) {
+      _json[r'onclick'] = onclick;
+    } else {
+      _json[r'onclick'] = null;
     }
+    if (pattern != null) {
+      _json[r'pattern'] = pattern;
+    } else {
+      _json[r'pattern'] = null;
+    }
+    if (required_ != null) {
+      _json[r'required'] = required_;
+    } else {
+      _json[r'required'] = null;
+    }
+      _json[r'type'] = type;
+    if (value != null) {
+      _json[r'value'] = value;
+    } else {
+      _json[r'value'] = null;
+    }
+      _json[r'id'] = id;
+      _json[r'text'] = text;
+      _json[r'height'] = height;
+      _json[r'src'] = src;
+      _json[r'width'] = width;
+      _json[r'href'] = href;
+      _json[r'title'] = title;
+      _json[r'async'] = async_;
+      _json[r'crossorigin'] = crossorigin;
+      _json[r'integrity'] = integrity;
+      _json[r'nonce'] = nonce;
+      _json[r'referrerpolicy'] = referrerpolicy;
+    return _json;
+  }
+
+  /// Returns a new [UiNodeAttributes] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static UiNodeAttributes? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "UiNodeAttributes[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "UiNodeAttributes[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return UiNodeAttributes(
+        disabled: mapValueOfType<bool>(json, r'disabled')!,
+        label: UiText.fromJson(json[r'label']),
+        name: mapValueOfType<String>(json, r'name')!,
+        nodeType: mapValueOfType<String>(json, r'node_type')!,
+        onclick: mapValueOfType<String>(json, r'onclick'),
+        pattern: mapValueOfType<String>(json, r'pattern'),
+        required_: mapValueOfType<bool>(json, r'required'),
+        type: mapValueOfType<String>(json, r'type')!,
+        value: mapValueOfType<Object>(json, r'value'),
+        id: mapValueOfType<String>(json, r'id')!,
+        text: UiText.fromJson(json[r'text'])!,
+        height: mapValueOfType<int>(json, r'height')!,
+        src: mapValueOfType<String>(json, r'src')!,
+        width: mapValueOfType<int>(json, r'width')!,
+        href: mapValueOfType<String>(json, r'href')!,
+        title: UiText.fromJson(json[r'title'])!,
+        async_: mapValueOfType<bool>(json, r'async')!,
+        crossorigin: mapValueOfType<String>(json, r'crossorigin')!,
+        integrity: mapValueOfType<String>(json, r'integrity')!,
+        nonce: mapValueOfType<String>(json, r'nonce')!,
+        referrerpolicy: mapValueOfType<String>(json, r'referrerpolicy')!,
+      );
+    }
+    return null;
+  }
+
+  static List<UiNodeAttributes>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <UiNodeAttributes>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = UiNodeAttributes.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, UiNodeAttributes> mapFromJson(dynamic json) {
+    final map = <String, UiNodeAttributes>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = UiNodeAttributes.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of UiNodeAttributes-objects as value to a dart map
+  static Map<String, List<UiNodeAttributes>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<UiNodeAttributes>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = UiNodeAttributes.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'disabled',
+    'name',
+    'node_type',
+    'type',
+    'id',
+    'text',
+    'height',
+    'src',
+    'width',
+    'href',
+    'title',
+    'async',
+    'crossorigin',
+    'integrity',
+    'nonce',
+    'referrerpolicy',
+  };
 }
 

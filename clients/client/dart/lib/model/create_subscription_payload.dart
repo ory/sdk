@@ -1,91 +1,136 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'create_subscription_payload.g.dart';
+class CreateSubscriptionPayload {
+  /// Returns a new [CreateSubscriptionPayload] instance.
+  CreateSubscriptionPayload({
+    required this.planOrPrice,
+    required this.provisionFirstProject,
+    this.returnTo,
+  });
 
-abstract class CreateSubscriptionPayload implements Built<CreateSubscriptionPayload, CreateSubscriptionPayloadBuilder> {
+  String planOrPrice;
 
-    @BuiltValueField(wireName: r'plan_or_price')
-    String get planOrPrice;
+  String provisionFirstProject;
 
-    @BuiltValueField(wireName: r'provision_first_project')
-    String get provisionFirstProject;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? returnTo;
 
-    @nullable
-    @BuiltValueField(wireName: r'return_to')
-    String get returnTo;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is CreateSubscriptionPayload &&
+     other.planOrPrice == planOrPrice &&
+     other.provisionFirstProject == provisionFirstProject &&
+     other.returnTo == returnTo;
 
-    CreateSubscriptionPayload._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (planOrPrice.hashCode) +
+    (provisionFirstProject.hashCode) +
+    (returnTo == null ? 0 : returnTo!.hashCode);
 
-    static void _initializeBuilder(CreateSubscriptionPayloadBuilder b) => b;
+  @override
+  String toString() => 'CreateSubscriptionPayload[planOrPrice=$planOrPrice, provisionFirstProject=$provisionFirstProject, returnTo=$returnTo]';
 
-    factory CreateSubscriptionPayload([void updates(CreateSubscriptionPayloadBuilder b)]) = _$CreateSubscriptionPayload;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<CreateSubscriptionPayload> get serializer => _$CreateSubscriptionPayloadSerializer();
-}
-
-class _$CreateSubscriptionPayloadSerializer implements StructuredSerializer<CreateSubscriptionPayload> {
-
-    @override
-    final Iterable<Type> types = const [CreateSubscriptionPayload, _$CreateSubscriptionPayload];
-    @override
-    final String wireName = r'CreateSubscriptionPayload';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, CreateSubscriptionPayload object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'plan_or_price')
-            ..add(serializers.serialize(object.planOrPrice,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'provision_first_project')
-            ..add(serializers.serialize(object.provisionFirstProject,
-                specifiedType: const FullType(String)));
-        if (object.returnTo != null) {
-            result
-                ..add(r'return_to')
-                ..add(serializers.serialize(object.returnTo,
-                    specifiedType: const FullType(String)));
-        }
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'plan_or_price'] = planOrPrice;
+      _json[r'provision_first_project'] = provisionFirstProject;
+    if (returnTo != null) {
+      _json[r'return_to'] = returnTo;
+    } else {
+      _json[r'return_to'] = null;
     }
+    return _json;
+  }
 
-    @override
-    CreateSubscriptionPayload deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = CreateSubscriptionPayloadBuilder();
+  /// Returns a new [CreateSubscriptionPayload] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static CreateSubscriptionPayload? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'plan_or_price':
-                    result.planOrPrice = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'provision_first_project':
-                    result.provisionFirstProject = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'return_to':
-                    result.returnTo = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
-        }
-        return result.build();
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "CreateSubscriptionPayload[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "CreateSubscriptionPayload[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return CreateSubscriptionPayload(
+        planOrPrice: mapValueOfType<String>(json, r'plan_or_price')!,
+        provisionFirstProject: mapValueOfType<String>(json, r'provision_first_project')!,
+        returnTo: mapValueOfType<String>(json, r'return_to'),
+      );
     }
+    return null;
+  }
+
+  static List<CreateSubscriptionPayload>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <CreateSubscriptionPayload>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = CreateSubscriptionPayload.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, CreateSubscriptionPayload> mapFromJson(dynamic json) {
+    final map = <String, CreateSubscriptionPayload>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = CreateSubscriptionPayload.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of CreateSubscriptionPayload-objects as value to a dart map
+  static Map<String, List<CreateSubscriptionPayload>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<CreateSubscriptionPayload>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = CreateSubscriptionPayload.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'plan_or_price',
+    'provision_first_project',
+  };
 }
 

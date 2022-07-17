@@ -1,27 +1,24 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'dart:async';
-import 'package:ory_client/auth/auth.dart';
-import 'package:dio/dio.dart';
+part of openapi.api;
 
-class OAuthInterceptor extends AuthInterceptor {
-    Map<String, String> tokens = {};
+class OAuth implements Authentication {
+  OAuth({this.accessToken = ''});
 
-    @override
-    Future<dynamic> onRequest(RequestOptions options) {
-        final authInfo = getAuthInfo(options, 'oauth');
-        for (final info in authInfo) {
-            final token = tokens[info['name']];
-            if (token != null) {
-                options.headers['Authorization'] = 'Bearer ${token}';
-                break;
-            }
-        }
-        return super.onRequest(options);
+  String accessToken;
+
+  @override
+  void applyToParams(List<QueryParam> queryParams, Map<String, String> headerParams) {
+    if (accessToken.isNotEmpty) {
+      headerParams['Authorization'] = 'Bearer $accessToken';
     }
+  }
 }

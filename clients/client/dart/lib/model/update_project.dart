@@ -1,79 +1,120 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:ory_client/model/project_services.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'update_project.g.dart';
+class UpdateProject {
+  /// Returns a new [UpdateProject] instance.
+  UpdateProject({
+    required this.name,
+    required this.services,
+  });
 
-abstract class UpdateProject implements Built<UpdateProject, UpdateProjectBuilder> {
+  /// The name of the project.
+  String name;
 
-    /// The name of the project.
-    @BuiltValueField(wireName: r'name')
-    String get name;
+  ProjectServices services;
 
-    @BuiltValueField(wireName: r'services')
-    ProjectServices get services;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is UpdateProject &&
+     other.name == name &&
+     other.services == services;
 
-    UpdateProject._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (name.hashCode) +
+    (services.hashCode);
 
-    static void _initializeBuilder(UpdateProjectBuilder b) => b;
+  @override
+  String toString() => 'UpdateProject[name=$name, services=$services]';
 
-    factory UpdateProject([void updates(UpdateProjectBuilder b)]) = _$UpdateProject;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'name'] = name;
+      _json[r'services'] = services;
+    return _json;
+  }
 
-    @BuiltValueSerializer(custom: true)
-    static Serializer<UpdateProject> get serializer => _$UpdateProjectSerializer();
-}
+  /// Returns a new [UpdateProject] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static UpdateProject? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-class _$UpdateProjectSerializer implements StructuredSerializer<UpdateProject> {
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "UpdateProject[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "UpdateProject[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
 
-    @override
-    final Iterable<Type> types = const [UpdateProject, _$UpdateProject];
-    @override
-    final String wireName = r'UpdateProject';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, UpdateProject object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'name')
-            ..add(serializers.serialize(object.name,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'services')
-            ..add(serializers.serialize(object.services,
-                specifiedType: const FullType(ProjectServices)));
-        return result;
+      return UpdateProject(
+        name: mapValueOfType<String>(json, r'name')!,
+        services: ProjectServices.fromJson(json[r'services'])!,
+      );
     }
+    return null;
+  }
 
-    @override
-    UpdateProject deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = UpdateProjectBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'name':
-                    result.name = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'services':
-                    result.services.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(ProjectServices)) as ProjectServices);
-                    break;
-            }
+  static List<UpdateProject>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <UpdateProject>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = UpdateProject.fromJson(row);
+        if (value != null) {
+          result.add(value);
         }
-        return result.build();
+      }
     }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, UpdateProject> mapFromJson(dynamic json) {
+    final map = <String, UpdateProject>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = UpdateProject.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of UpdateProject-objects as value to a dart map
+  static Map<String, List<UpdateProject>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<UpdateProject>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = UpdateProject.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'name',
+    'services',
+  };
 }
 

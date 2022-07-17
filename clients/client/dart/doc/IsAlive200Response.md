@@ -1,4 +1,4 @@
-# ory_client.model.InlineResponse2001
+# ory_client.model.IsAlive200Response
 
 ## Load the model package
 ```dart
@@ -8,7 +8,7 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**version** | **String** | The version of Ory Kratos. | 
+**status** | **String** | Always \"ok\". | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

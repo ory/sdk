@@ -1,70 +1,121 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'session_device.g.dart';
+class SessionDevice {
+  /// Returns a new [SessionDevice] instance.
+  SessionDevice({
+    this.userAgent,
+  });
 
-abstract class SessionDevice implements Built<SessionDevice, SessionDeviceBuilder> {
+  /// UserAgent of this device
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? userAgent;
 
-    /// UserAgent of this device
-    @nullable
-    @BuiltValueField(wireName: r'user_agent')
-    String get userAgent;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is SessionDevice &&
+     other.userAgent == userAgent;
 
-    SessionDevice._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (userAgent == null ? 0 : userAgent!.hashCode);
 
-    static void _initializeBuilder(SessionDeviceBuilder b) => b;
+  @override
+  String toString() => 'SessionDevice[userAgent=$userAgent]';
 
-    factory SessionDevice([void updates(SessionDeviceBuilder b)]) = _$SessionDevice;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<SessionDevice> get serializer => _$SessionDeviceSerializer();
-}
-
-class _$SessionDeviceSerializer implements StructuredSerializer<SessionDevice> {
-
-    @override
-    final Iterable<Type> types = const [SessionDevice, _$SessionDevice];
-    @override
-    final String wireName = r'SessionDevice';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, SessionDevice object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.userAgent != null) {
-            result
-                ..add(r'user_agent')
-                ..add(serializers.serialize(object.userAgent,
-                    specifiedType: const FullType(String)));
-        }
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+    if (userAgent != null) {
+      _json[r'user_agent'] = userAgent;
+    } else {
+      _json[r'user_agent'] = null;
     }
+    return _json;
+  }
 
-    @override
-    SessionDevice deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = SessionDeviceBuilder();
+  /// Returns a new [SessionDevice] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static SessionDevice? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'user_agent':
-                    result.userAgent = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
-        }
-        return result.build();
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "SessionDevice[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "SessionDevice[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return SessionDevice(
+        userAgent: mapValueOfType<String>(json, r'user_agent'),
+      );
     }
+    return null;
+  }
+
+  static List<SessionDevice>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <SessionDevice>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = SessionDevice.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, SessionDevice> mapFromJson(dynamic json) {
+    final map = <String, SessionDevice>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SessionDevice.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of SessionDevice-objects as value to a dart map
+  static Map<String, List<SessionDevice>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<SessionDevice>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SessionDevice.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

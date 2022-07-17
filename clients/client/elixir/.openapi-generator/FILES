@@ -1,7 +1,9 @@
+.formatter.exs
 .gitignore
 .openapi-generator-ignore
 README.md
 config/config.exs
+config/runtime.exs
 lib/ory/api/metadata.ex
 lib/ory/api/read.ex
 lib/ory/api/v0alpha2.ex

@@ -9,27 +9,27 @@ defmodule Ory.Model.NormalizedProject do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"created_at",
-    :"current_revision",
-    :"hosts",
-    :"id",
-    :"revisions",
-    :"slug",
-    :"state",
-    :"subscription_id",
-    :"updated_at"
+    :created_at,
+    :current_revision,
+    :hosts,
+    :id,
+    :revisions,
+    :slug,
+    :state,
+    :subscription_id,
+    :updated_at
   ]
 
   @type t :: %__MODULE__{
-    :"created_at" => DateTime.t,
-    :"current_revision" => Ory.Model.NormalizedProjectRevision.t,
-    :"hosts" => [String.t],
-    :"id" => String.t,
-    :"revisions" => [Ory.Model.NormalizedProjectRevision.t],
-    :"slug" => String.t,
-    :"state" => String.t,
-    :"subscription_id" => String.t | nil,
-    :"updated_at" => DateTime.t
+    :created_at => DateTime.t,
+    :current_revision => Ory.Model.NormalizedProjectRevision.t,
+    :hosts => [String.t],
+    :id => String.t,
+    :revisions => [Ory.Model.NormalizedProjectRevision.t],
+    :slug => String.t,
+    :state => String.t,
+    :subscription_id => String.t | nil,
+    :updated_at => DateTime.t
   }
 end
 
@@ -37,8 +37,8 @@ defimpl Poison.Decoder, for: Ory.Model.NormalizedProject do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"current_revision", :struct, Ory.Model.NormalizedProjectRevision, options)
-    |> deserialize(:"revisions", :list, Ory.Model.NormalizedProjectRevision, options)
+    |> deserialize(:current_revision, :struct, Ory.Model.NormalizedProjectRevision, options)
+    |> deserialize(:revisions, :list, Ory.Model.NormalizedProjectRevision, options)
   end
 end
 

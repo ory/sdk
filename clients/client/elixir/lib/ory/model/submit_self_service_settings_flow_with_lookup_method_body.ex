@@ -9,21 +9,21 @@ defmodule Ory.Model.SubmitSelfServiceSettingsFlowWithLookupMethodBody do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"csrf_token",
-    :"lookup_secret_confirm",
-    :"lookup_secret_disable",
-    :"lookup_secret_regenerate",
-    :"lookup_secret_reveal",
-    :"method"
+    :csrf_token,
+    :lookup_secret_confirm,
+    :lookup_secret_disable,
+    :lookup_secret_regenerate,
+    :lookup_secret_reveal,
+    :method
   ]
 
   @type t :: %__MODULE__{
-    :"csrf_token" => String.t | nil,
-    :"lookup_secret_confirm" => boolean() | nil,
-    :"lookup_secret_disable" => boolean() | nil,
-    :"lookup_secret_regenerate" => boolean() | nil,
-    :"lookup_secret_reveal" => boolean() | nil,
-    :"method" => String.t
+    :csrf_token => String.t | nil,
+    :lookup_secret_confirm => boolean() | nil,
+    :lookup_secret_disable => boolean() | nil,
+    :lookup_secret_regenerate => boolean() | nil,
+    :lookup_secret_reveal => boolean() | nil,
+    :method => String.t
   }
 end
 

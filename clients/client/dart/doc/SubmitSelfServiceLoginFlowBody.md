@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **password** | **String** | The user's password. | 
 **passwordIdentifier** | **String** | Identifier is the email or username of the user trying to log in. This field is deprecated! | [optional] 
 **provider** | **String** | The provider to register with | 
-**traits** | [**JsonObject**](.md) | The identity traits. This is a placeholder for the registration flow. | [optional] 
+**traits** | [**Object**](.md) | The identity traits. This is a placeholder for the registration flow. | [optional] 
 **totpCode** | **String** | The TOTP code. | 
 **webauthnLogin** | **String** | Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] 
 **lookupSecret** | **String** | The lookup secret. | 

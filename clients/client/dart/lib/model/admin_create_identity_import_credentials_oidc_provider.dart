@@ -1,79 +1,121 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'admin_create_identity_import_credentials_oidc_provider.g.dart';
+class AdminCreateIdentityImportCredentialsOidcProvider {
+  /// Returns a new [AdminCreateIdentityImportCredentialsOidcProvider] instance.
+  AdminCreateIdentityImportCredentialsOidcProvider({
+    required this.provider,
+    required this.subject,
+  });
 
-abstract class AdminCreateIdentityImportCredentialsOidcProvider implements Built<AdminCreateIdentityImportCredentialsOidcProvider, AdminCreateIdentityImportCredentialsOidcProviderBuilder> {
+  /// The OpenID Connect provider to link the subject to. Usually something like `google` or `github`.
+  String provider;
 
-    /// The OpenID Connect provider to link the subject to. Usually something like `google` or `github`.
-    @BuiltValueField(wireName: r'provider')
-    String get provider;
+  /// The subject (`sub`) of the OpenID Connect connection. Usually the `sub` field of the ID Token.
+  String subject;
 
-    /// The subject (`sub`) of the OpenID Connect connection. Usually the `sub` field of the ID Token.
-    @BuiltValueField(wireName: r'subject')
-    String get subject;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is AdminCreateIdentityImportCredentialsOidcProvider &&
+     other.provider == provider &&
+     other.subject == subject;
 
-    AdminCreateIdentityImportCredentialsOidcProvider._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (provider.hashCode) +
+    (subject.hashCode);
 
-    static void _initializeBuilder(AdminCreateIdentityImportCredentialsOidcProviderBuilder b) => b;
+  @override
+  String toString() => 'AdminCreateIdentityImportCredentialsOidcProvider[provider=$provider, subject=$subject]';
 
-    factory AdminCreateIdentityImportCredentialsOidcProvider([void updates(AdminCreateIdentityImportCredentialsOidcProviderBuilder b)]) = _$AdminCreateIdentityImportCredentialsOidcProvider;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'provider'] = provider;
+      _json[r'subject'] = subject;
+    return _json;
+  }
 
-    @BuiltValueSerializer(custom: true)
-    static Serializer<AdminCreateIdentityImportCredentialsOidcProvider> get serializer => _$AdminCreateIdentityImportCredentialsOidcProviderSerializer();
-}
+  /// Returns a new [AdminCreateIdentityImportCredentialsOidcProvider] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static AdminCreateIdentityImportCredentialsOidcProvider? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-class _$AdminCreateIdentityImportCredentialsOidcProviderSerializer implements StructuredSerializer<AdminCreateIdentityImportCredentialsOidcProvider> {
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "AdminCreateIdentityImportCredentialsOidcProvider[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "AdminCreateIdentityImportCredentialsOidcProvider[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
 
-    @override
-    final Iterable<Type> types = const [AdminCreateIdentityImportCredentialsOidcProvider, _$AdminCreateIdentityImportCredentialsOidcProvider];
-    @override
-    final String wireName = r'AdminCreateIdentityImportCredentialsOidcProvider';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, AdminCreateIdentityImportCredentialsOidcProvider object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'provider')
-            ..add(serializers.serialize(object.provider,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'subject')
-            ..add(serializers.serialize(object.subject,
-                specifiedType: const FullType(String)));
-        return result;
+      return AdminCreateIdentityImportCredentialsOidcProvider(
+        provider: mapValueOfType<String>(json, r'provider')!,
+        subject: mapValueOfType<String>(json, r'subject')!,
+      );
     }
+    return null;
+  }
 
-    @override
-    AdminCreateIdentityImportCredentialsOidcProvider deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = AdminCreateIdentityImportCredentialsOidcProviderBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'provider':
-                    result.provider = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'subject':
-                    result.subject = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
+  static List<AdminCreateIdentityImportCredentialsOidcProvider>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <AdminCreateIdentityImportCredentialsOidcProvider>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = AdminCreateIdentityImportCredentialsOidcProvider.fromJson(row);
+        if (value != null) {
+          result.add(value);
         }
-        return result.build();
+      }
     }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, AdminCreateIdentityImportCredentialsOidcProvider> mapFromJson(dynamic json) {
+    final map = <String, AdminCreateIdentityImportCredentialsOidcProvider>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = AdminCreateIdentityImportCredentialsOidcProvider.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of AdminCreateIdentityImportCredentialsOidcProvider-objects as value to a dart map
+  static Map<String, List<AdminCreateIdentityImportCredentialsOidcProvider>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<AdminCreateIdentityImportCredentialsOidcProvider>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = AdminCreateIdentityImportCredentialsOidcProvider.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'provider',
+    'subject',
+  };
 }
 

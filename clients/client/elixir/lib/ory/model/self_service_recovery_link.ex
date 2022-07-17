@@ -9,13 +9,13 @@ defmodule Ory.Model.SelfServiceRecoveryLink do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"expires_at",
-    :"recovery_link"
+    :expires_at,
+    :recovery_link
   ]
 
   @type t :: %__MODULE__{
-    :"expires_at" => DateTime.t | nil,
-    :"recovery_link" => String.t
+    :expires_at => DateTime.t | nil,
+    :recovery_link => String.t
   }
 end
 

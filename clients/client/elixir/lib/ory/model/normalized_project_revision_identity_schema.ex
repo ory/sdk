@@ -9,29 +9,29 @@ defmodule Ory.Model.NormalizedProjectRevisionIdentitySchema do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"created_at",
-    :"id",
-    :"identity_schema",
-    :"identity_schema_id",
-    :"import_id",
-    :"import_url",
-    :"is_default",
-    :"preset",
-    :"project_revision_id",
-    :"updated_at"
+    :created_at,
+    :id,
+    :identity_schema,
+    :identity_schema_id,
+    :import_id,
+    :import_url,
+    :is_default,
+    :preset,
+    :project_revision_id,
+    :updated_at
   ]
 
   @type t :: %__MODULE__{
-    :"created_at" => DateTime.t | nil,
-    :"id" => String.t | nil,
-    :"identity_schema" => Ory.Model.IdentitySchema.t | nil,
-    :"identity_schema_id" => String.t | nil,
-    :"import_id" => String.t | nil,
-    :"import_url" => String.t | nil,
-    :"is_default" => boolean() | nil,
-    :"preset" => String.t | nil,
-    :"project_revision_id" => String.t | nil,
-    :"updated_at" => DateTime.t | nil
+    :created_at => DateTime.t | nil,
+    :id => String.t | nil,
+    :identity_schema => Ory.Model.IdentitySchema.t | nil,
+    :identity_schema_id => String.t | nil,
+    :import_id => String.t | nil,
+    :import_url => String.t | nil,
+    :is_default => boolean() | nil,
+    :preset => String.t | nil,
+    :project_revision_id => String.t | nil,
+    :updated_at => DateTime.t | nil
   }
 end
 
@@ -39,7 +39,7 @@ defimpl Poison.Decoder, for: Ory.Model.NormalizedProjectRevisionIdentitySchema d
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"identity_schema", :struct, Ory.Model.IdentitySchema, options)
+    |> deserialize(:identity_schema, :struct, Ory.Model.IdentitySchema, options)
   end
 end
 

@@ -1,181 +1,207 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:ory_client/model/ui_container.dart';
-import 'package:ory_client/model/self_service_settings_flow_state.dart';
-import 'package:ory_client/model/identity.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'self_service_settings_flow.g.dart';
+class SelfServiceSettingsFlow {
+  /// Returns a new [SelfServiceSettingsFlow] instance.
+  SelfServiceSettingsFlow({
+    this.active,
+    required this.expiresAt,
+    required this.id,
+    required this.identity,
+    required this.issuedAt,
+    required this.requestUrl,
+    this.returnTo,
+    required this.state,
+    required this.type,
+    required this.ui,
+  });
 
-abstract class SelfServiceSettingsFlow implements Built<SelfServiceSettingsFlow, SelfServiceSettingsFlowBuilder> {
+  /// Active, if set, contains the registration method that is being used. It is initially not set.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? active;
 
-    /// Active, if set, contains the registration method that is being used. It is initially not set.
-    @nullable
-    @BuiltValueField(wireName: r'active')
-    String get active;
+  /// ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to update the setting, a new flow has to be initiated.
+  DateTime expiresAt;
 
-    /// ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to update the setting, a new flow has to be initiated.
-    @BuiltValueField(wireName: r'expires_at')
-    DateTime get expiresAt;
+  String id;
 
-    @BuiltValueField(wireName: r'id')
-    String get id;
+  Identity identity;
 
-    @BuiltValueField(wireName: r'identity')
-    Identity get identity;
+  /// IssuedAt is the time (UTC) when the flow occurred.
+  DateTime issuedAt;
 
-    /// IssuedAt is the time (UTC) when the flow occurred.
-    @BuiltValueField(wireName: r'issued_at')
-    DateTime get issuedAt;
+  /// RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
+  String requestUrl;
 
-    /// RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
-    @BuiltValueField(wireName: r'request_url')
-    String get requestUrl;
+  /// ReturnTo contains the requested return_to URL.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? returnTo;
 
-    /// ReturnTo contains the requested return_to URL.
-    @nullable
-    @BuiltValueField(wireName: r'return_to')
-    String get returnTo;
+  SelfServiceSettingsFlowState state;
 
-    @BuiltValueField(wireName: r'state')
-    SelfServiceSettingsFlowState get state;
-    // enum stateEnum {  show_form,  success,  };
+  /// The flow type can either be `api` or `browser`.
+  String type;
 
-    /// The flow type can either be `api` or `browser`.
-    @BuiltValueField(wireName: r'type')
-    String get type;
+  UiContainer ui;
 
-    @BuiltValueField(wireName: r'ui')
-    UiContainer get ui;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is SelfServiceSettingsFlow &&
+     other.active == active &&
+     other.expiresAt == expiresAt &&
+     other.id == id &&
+     other.identity == identity &&
+     other.issuedAt == issuedAt &&
+     other.requestUrl == requestUrl &&
+     other.returnTo == returnTo &&
+     other.state == state &&
+     other.type == type &&
+     other.ui == ui;
 
-    SelfServiceSettingsFlow._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (active == null ? 0 : active!.hashCode) +
+    (expiresAt.hashCode) +
+    (id.hashCode) +
+    (identity.hashCode) +
+    (issuedAt.hashCode) +
+    (requestUrl.hashCode) +
+    (returnTo == null ? 0 : returnTo!.hashCode) +
+    (state.hashCode) +
+    (type.hashCode) +
+    (ui.hashCode);
 
-    static void _initializeBuilder(SelfServiceSettingsFlowBuilder b) => b;
+  @override
+  String toString() => 'SelfServiceSettingsFlow[active=$active, expiresAt=$expiresAt, id=$id, identity=$identity, issuedAt=$issuedAt, requestUrl=$requestUrl, returnTo=$returnTo, state=$state, type=$type, ui=$ui]';
 
-    factory SelfServiceSettingsFlow([void updates(SelfServiceSettingsFlowBuilder b)]) = _$SelfServiceSettingsFlow;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<SelfServiceSettingsFlow> get serializer => _$SelfServiceSettingsFlowSerializer();
-}
-
-class _$SelfServiceSettingsFlowSerializer implements StructuredSerializer<SelfServiceSettingsFlow> {
-
-    @override
-    final Iterable<Type> types = const [SelfServiceSettingsFlow, _$SelfServiceSettingsFlow];
-    @override
-    final String wireName = r'SelfServiceSettingsFlow';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, SelfServiceSettingsFlow object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        if (object.active != null) {
-            result
-                ..add(r'active')
-                ..add(serializers.serialize(object.active,
-                    specifiedType: const FullType(String)));
-        }
-        result
-            ..add(r'expires_at')
-            ..add(serializers.serialize(object.expiresAt,
-                specifiedType: const FullType(DateTime)));
-        result
-            ..add(r'id')
-            ..add(serializers.serialize(object.id,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'identity')
-            ..add(serializers.serialize(object.identity,
-                specifiedType: const FullType(Identity)));
-        result
-            ..add(r'issued_at')
-            ..add(serializers.serialize(object.issuedAt,
-                specifiedType: const FullType(DateTime)));
-        result
-            ..add(r'request_url')
-            ..add(serializers.serialize(object.requestUrl,
-                specifiedType: const FullType(String)));
-        if (object.returnTo != null) {
-            result
-                ..add(r'return_to')
-                ..add(serializers.serialize(object.returnTo,
-                    specifiedType: const FullType(String)));
-        }
-        result
-            ..add(r'state')
-            ..add(serializers.serialize(object.state,
-                specifiedType: const FullType(SelfServiceSettingsFlowState)));
-        result
-            ..add(r'type')
-            ..add(serializers.serialize(object.type,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'ui')
-            ..add(serializers.serialize(object.ui,
-                specifiedType: const FullType(UiContainer)));
-        return result;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+    if (active != null) {
+      _json[r'active'] = active;
+    } else {
+      _json[r'active'] = null;
     }
-
-    @override
-    SelfServiceSettingsFlow deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = SelfServiceSettingsFlowBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'active':
-                    result.active = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'expires_at':
-                    result.expiresAt = serializers.deserialize(value,
-                        specifiedType: const FullType(DateTime)) as DateTime;
-                    break;
-                case r'id':
-                    result.id = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'identity':
-                    result.identity.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(Identity)) as Identity);
-                    break;
-                case r'issued_at':
-                    result.issuedAt = serializers.deserialize(value,
-                        specifiedType: const FullType(DateTime)) as DateTime;
-                    break;
-                case r'request_url':
-                    result.requestUrl = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'return_to':
-                    result.returnTo = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'state':
-                    result.state = serializers.deserialize(value,
-                        specifiedType: const FullType(SelfServiceSettingsFlowState)) as SelfServiceSettingsFlowState;
-                    break;
-                case r'type':
-                    result.type = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'ui':
-                    result.ui.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(UiContainer)) as UiContainer);
-                    break;
-            }
-        }
-        return result.build();
+      _json[r'expires_at'] = expiresAt.toUtc().toIso8601String();
+      _json[r'id'] = id;
+      _json[r'identity'] = identity;
+      _json[r'issued_at'] = issuedAt.toUtc().toIso8601String();
+      _json[r'request_url'] = requestUrl;
+    if (returnTo != null) {
+      _json[r'return_to'] = returnTo;
+    } else {
+      _json[r'return_to'] = null;
     }
+      _json[r'state'] = state;
+      _json[r'type'] = type;
+      _json[r'ui'] = ui;
+    return _json;
+  }
+
+  /// Returns a new [SelfServiceSettingsFlow] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static SelfServiceSettingsFlow? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "SelfServiceSettingsFlow[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "SelfServiceSettingsFlow[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return SelfServiceSettingsFlow(
+        active: mapValueOfType<String>(json, r'active'),
+        expiresAt: mapDateTime(json, r'expires_at', '')!,
+        id: mapValueOfType<String>(json, r'id')!,
+        identity: Identity.fromJson(json[r'identity'])!,
+        issuedAt: mapDateTime(json, r'issued_at', '')!,
+        requestUrl: mapValueOfType<String>(json, r'request_url')!,
+        returnTo: mapValueOfType<String>(json, r'return_to'),
+        state: SelfServiceSettingsFlowState.fromJson(json[r'state'])!,
+        type: mapValueOfType<String>(json, r'type')!,
+        ui: UiContainer.fromJson(json[r'ui'])!,
+      );
+    }
+    return null;
+  }
+
+  static List<SelfServiceSettingsFlow>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <SelfServiceSettingsFlow>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = SelfServiceSettingsFlow.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, SelfServiceSettingsFlow> mapFromJson(dynamic json) {
+    final map = <String, SelfServiceSettingsFlow>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SelfServiceSettingsFlow.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of SelfServiceSettingsFlow-objects as value to a dart map
+  static Map<String, List<SelfServiceSettingsFlow>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<SelfServiceSettingsFlow>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SelfServiceSettingsFlow.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'expires_at',
+    'id',
+    'identity',
+    'issued_at',
+    'request_url',
+    'state',
+    'type',
+    'ui',
+  };
 }
 

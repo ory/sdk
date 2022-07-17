@@ -9,13 +9,13 @@ defmodule Ory.Model.PatchDelta do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"action",
-    :"relation_tuple"
+    :action,
+    :relation_tuple
   ]
 
   @type t :: %__MODULE__{
-    :"action" => String.t | nil,
-    :"relation_tuple" => Ory.Model.InternalRelationTuple.t | nil
+    :action => String.t | nil,
+    :relation_tuple => Ory.Model.InternalRelationTuple.t | nil
   }
 end
 
@@ -23,7 +23,7 @@ defimpl Poison.Decoder, for: Ory.Model.PatchDelta do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"relation_tuple", :struct, Ory.Model.InternalRelationTuple, options)
+    |> deserialize(:relation_tuple, :struct, Ory.Model.InternalRelationTuple, options)
   end
 end
 
