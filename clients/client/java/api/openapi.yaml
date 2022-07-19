@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.1.0-alpha.3
+  version: v0.1.0-alpha.4
 servers:
 - url: https://{project}.projects.oryapis.com/
   variables:
@@ -1319,6 +1319,77 @@ paths:
     get:
       description: To learn how relation tuples and the check works, head over to
         [the documentation](../concepts/relation-tuples.mdx).
+      operationId: getCheckMirrorStatus
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getCheckResponse'
+          description: getCheckResponse
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getCheckResponse'
+          description: getCheckResponse
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Check a relation tuple
+      tags:
+      - read
+      x-accepts: application/json
+    post:
+      description: To learn how relation tuples and the check works, head over to
+        [the documentation](../concepts/relation-tuples.mdx).
+      operationId: postCheckMirrorStatus
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getCheckResponse'
+          description: getCheckResponse
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getCheckResponse'
+          description: getCheckResponse
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Check a relation tuple
+      tags:
+      - read
+      x-accepts: application/json
+  /relation-tuples/check/openapi:
+    get:
+      description: To learn how relation tuples and the check works, head over to
+        [the documentation](../concepts/relation-tuples.mdx).
       operationId: getCheck
       parameters:
       - description: Namespace of the Relation Tuple
@@ -1398,12 +1469,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/genericError'
           description: genericError
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/getCheckResponse'
-          description: getCheckResponse
         "500":
           content:
             application/json:
@@ -1448,12 +1513,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/genericError'
           description: genericError
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/getCheckResponse'
-          description: getCheckResponse
         "500":
           content:
             application/json:
@@ -4449,7 +4508,7 @@ components:
           type: boolean
       required:
       - allowed
-      title: RESTResponse is the response for a check request.
+      title: RESTResponse represents the response for a check request.
       type: object
     getProjectAccessResponse:
       additionalProperties:

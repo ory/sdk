@@ -48,7 +48,7 @@ class ReadApi {
   /// * [int] maxDepth:
   Future<Response> getCheckWithHttpInfo({ String? namespace, String? object, String? relation, String? subjectId, String? subjectSetPeriodNamespace, String? subjectSetPeriodObject, String? subjectSetPeriodRelation, int? maxDepth, }) async {
     // ignore: prefer_const_declarations
-    final path = r'/relation-tuples/check';
+    final path = r'/relation-tuples/check/openapi';
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -126,6 +126,54 @@ class ReadApi {
   /// * [int] maxDepth:
   Future<GetCheckResponse?> getCheck({ String? namespace, String? object, String? relation, String? subjectId, String? subjectSetPeriodNamespace, String? subjectSetPeriodObject, String? subjectSetPeriodRelation, int? maxDepth, }) async {
     final response = await getCheckWithHttpInfo( namespace: namespace, object: object, relation: relation, subjectId: subjectId, subjectSetPeriodNamespace: subjectSetPeriodNamespace, subjectSetPeriodObject: subjectSetPeriodObject, subjectSetPeriodRelation: subjectSetPeriodRelation, maxDepth: maxDepth, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetCheckResponse',) as GetCheckResponse;
+    
+    }
+    return null;
+  }
+
+  /// Check a relation tuple
+  ///
+  /// To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getCheckMirrorStatusWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/relation-tuples/check';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Check a relation tuple
+  ///
+  /// To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+  Future<GetCheckResponse?> getCheckMirrorStatus() async {
+    final response = await getCheckMirrorStatusWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -363,7 +411,7 @@ class ReadApi {
   /// * [RelationQuery] relationQuery:
   Future<Response> postCheckWithHttpInfo({ int? maxDepth, RelationQuery? relationQuery, }) async {
     // ignore: prefer_const_declarations
-    final path = r'/relation-tuples/check';
+    final path = r'/relation-tuples/check/openapi';
 
     // ignore: prefer_final_locals
     Object? postBody = relationQuery;
@@ -401,6 +449,54 @@ class ReadApi {
   /// * [RelationQuery] relationQuery:
   Future<GetCheckResponse?> postCheck({ int? maxDepth, RelationQuery? relationQuery, }) async {
     final response = await postCheckWithHttpInfo( maxDepth: maxDepth, relationQuery: relationQuery, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetCheckResponse',) as GetCheckResponse;
+    
+    }
+    return null;
+  }
+
+  /// Check a relation tuple
+  ///
+  /// To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> postCheckMirrorStatusWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/relation-tuples/check';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Check a relation tuple
+  ///
+  /// To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+  Future<GetCheckResponse?> postCheckMirrorStatus() async {
+    final response = await postCheckMirrorStatusWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

@@ -26,6 +26,15 @@ void main() {
       // TODO
     });
 
+    // Check a relation tuple
+    //
+    // To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+    //
+    //Future<GetCheckResponse> getCheckMirrorStatus() async
+    test('test getCheckMirrorStatus', () async {
+      // TODO
+    });
+
     // Expand a Relation Tuple
     //
     // Use this endpoint to expand a relation tuple.
@@ -50,6 +59,15 @@ void main() {
     //
     //Future<GetCheckResponse> postCheck({ int maxDepth, RelationQuery relationQuery }) async
     test('test postCheck', () async {
+      // TODO
+    });
+
+    // Check a relation tuple
+    //
+    // To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+    //
+    //Future<GetCheckResponse> postCheckMirrorStatus() async
+    test('test postCheckMirrorStatus', () async {
       // TODO
     });
 

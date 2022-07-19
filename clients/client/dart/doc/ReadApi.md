@@ -9,10 +9,12 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getCheck**](ReadApi.md#getcheck) | **GET** /relation-tuples/check | Check a relation tuple
+[**getCheck**](ReadApi.md#getcheck) | **GET** /relation-tuples/check/openapi | Check a relation tuple
+[**getCheckMirrorStatus**](ReadApi.md#getcheckmirrorstatus) | **GET** /relation-tuples/check | Check a relation tuple
 [**getExpand**](ReadApi.md#getexpand) | **GET** /relation-tuples/expand | Expand a Relation Tuple
 [**getRelationTuples**](ReadApi.md#getrelationtuples) | **GET** /relation-tuples | Query relation tuples
-[**postCheck**](ReadApi.md#postcheck) | **POST** /relation-tuples/check | Check a relation tuple
+[**postCheck**](ReadApi.md#postcheck) | **POST** /relation-tuples/check/openapi | Check a relation tuple
+[**postCheckMirrorStatus**](ReadApi.md#postcheckmirrorstatus) | **POST** /relation-tuples/check | Check a relation tuple
 
 
 # **getCheck**
@@ -62,6 +64,51 @@ Name | Type | Description  | Notes
  **subjectSetPeriodObject** | **String**| Object of the Subject Set | [optional] 
  **subjectSetPeriodRelation** | **String**| Relation of the Subject Set | [optional] 
  **maxDepth** | **int**|  | [optional] 
+
+### Return type
+
+[**GetCheckResponse**](GetCheckResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getCheckMirrorStatus**
+> GetCheckResponse getCheckMirrorStatus()
+
+Check a relation tuple
+
+To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = ReadApi();
+
+try {
+    final result = api_instance.getCheckMirrorStatus();
+    print(result);
+} catch (e) {
+    print('Exception when calling ReadApi->getCheckMirrorStatus: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -245,6 +292,51 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **postCheckMirrorStatus**
+> GetCheckResponse postCheckMirrorStatus()
+
+Check a relation tuple
+
+To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = ReadApi();
+
+try {
+    final result = api_instance.postCheckMirrorStatus();
+    print(result);
+} catch (e) {
+    print('Exception when calling ReadApi->postCheckMirrorStatus: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetCheckResponse**](GetCheckResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -4,10 +4,12 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_check**](ReadApi.md#get_check) | **GET** /relation-tuples/check | Check a relation tuple
+[**get_check**](ReadApi.md#get_check) | **GET** /relation-tuples/check/openapi | Check a relation tuple
+[**get_check_mirror_status**](ReadApi.md#get_check_mirror_status) | **GET** /relation-tuples/check | Check a relation tuple
 [**get_expand**](ReadApi.md#get_expand) | **GET** /relation-tuples/expand | Expand a Relation Tuple
 [**get_relation_tuples**](ReadApi.md#get_relation_tuples) | **GET** /relation-tuples | Query relation tuples
-[**post_check**](ReadApi.md#post_check) | **POST** /relation-tuples/check | Check a relation tuple
+[**post_check**](ReadApi.md#post_check) | **POST** /relation-tuples/check/openapi | Check a relation tuple
+[**post_check_mirror_status**](ReadApi.md#post_check_mirror_status) | **POST** /relation-tuples/check | Check a relation tuple
 
 
 # **get_check**
@@ -80,6 +82,82 @@ Name | Type | Description  | Notes
  **subject_set_object** | **str**| Object of the Subject Set | [optional]
  **subject_set_relation** | **str**| Relation of the Subject Set | [optional]
  **max_depth** | **int**|  | [optional]
+
+### Return type
+
+[**GetCheckResponse**](GetCheckResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | getCheckResponse |  -  |
+**400** | genericError |  -  |
+**500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_check_mirror_status**
+> GetCheckResponse get_check_mirror_status()
+
+Check a relation tuple
+
+To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+
+### Example
+
+* Bearer Authentication (oryAccessToken):
+
+```python
+import time
+import ory_client
+from ory_client.api import read_api
+from ory_client.model.get_check_response import GetCheckResponse
+from ory_client.model.generic_error import GenericError
+from pprint import pprint
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryAccessToken
+configuration = ory_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = read_api.ReadApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        # Check a relation tuple
+        api_response = api_instance.get_check_mirror_status()
+        pprint(api_response)
+    except ory_client.ApiException as e:
+        print("Exception when calling ReadApi->get_check_mirror_status: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -380,6 +458,82 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | getCheckResponse |  -  |
+**400** | genericError |  -  |
+**500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **post_check_mirror_status**
+> GetCheckResponse post_check_mirror_status()
+
+Check a relation tuple
+
+To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+
+### Example
+
+* Bearer Authentication (oryAccessToken):
+
+```python
+import time
+import ory_client
+from ory_client.api import read_api
+from ory_client.model.get_check_response import GetCheckResponse
+from ory_client.model.generic_error import GenericError
+from pprint import pprint
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryAccessToken
+configuration = ory_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = read_api.ReadApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        # Check a relation tuple
+        api_response = api_instance.post_check_mirror_status()
+        pprint(api_response)
+    except ory_client.ApiException as e:
+        print("Exception when calling ReadApi->post_check_mirror_status: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetCheckResponse**](GetCheckResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 

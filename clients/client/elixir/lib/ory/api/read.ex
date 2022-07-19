@@ -46,8 +46,35 @@ defmodule Ory.Api.Read do
     }
     %{}
     |> method(:get)
-    |> url("/relation-tuples/check")
+    |> url("/relation-tuples/check/openapi")
     |> add_optional_params(optional_params, opts)
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> evaluate_response([
+      { 200, %Ory.Model.GetCheckResponse{}},
+      { 400, %Ory.Model.GenericError{}},
+      { 500, %Ory.Model.GenericError{}}
+    ])
+  end
+
+  @doc """
+  Check a relation tuple
+  To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+
+  ## Parameters
+
+  - connection (Ory.Connection): Connection to server
+  - opts (KeywordList): [optional] Optional parameters
+  ## Returns
+
+  {:ok, Ory.Model.GetCheckResponse.t} on success
+  {:error, Tesla.Env.t} on failure
+  """
+  @spec get_check_mirror_status(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, Ory.Model.GetCheckResponse.t} | {:error, Tesla.Env.t}
+  def get_check_mirror_status(connection, _opts \\ []) do
+    %{}
+    |> method(:get)
+    |> url("/relation-tuples/check")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
@@ -168,8 +195,36 @@ defmodule Ory.Api.Read do
     }
     %{}
     |> method(:post)
-    |> url("/relation-tuples/check")
+    |> url("/relation-tuples/check/openapi")
     |> add_optional_params(optional_params, opts)
+    |> ensure_body()
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> evaluate_response([
+      { 200, %Ory.Model.GetCheckResponse{}},
+      { 400, %Ory.Model.GenericError{}},
+      { 500, %Ory.Model.GenericError{}}
+    ])
+  end
+
+  @doc """
+  Check a relation tuple
+  To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+
+  ## Parameters
+
+  - connection (Ory.Connection): Connection to server
+  - opts (KeywordList): [optional] Optional parameters
+  ## Returns
+
+  {:ok, Ory.Model.GetCheckResponse.t} on success
+  {:error, Tesla.Env.t} on failure
+  """
+  @spec post_check_mirror_status(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, Ory.Model.GetCheckResponse.t} | {:error, Tesla.Env.t}
+  def post_check_mirror_status(connection, _opts \\ []) do
+    %{}
+    |> method(:post)
+    |> url("/relation-tuples/check")
     |> ensure_body()
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
