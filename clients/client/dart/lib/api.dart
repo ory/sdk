@@ -95,6 +95,7 @@ part 'model/project_service_identity.dart';
 part 'model/project_service_permission.dart';
 part 'model/project_services.dart';
 part 'model/provision_mock_subscription_payload.dart';
+part 'model/quota_custom_domains.dart';
 part 'model/quota_project_member_seats.dart';
 part 'model/recovery_address.dart';
 part 'model/relation_query.dart';

@@ -73,6 +73,7 @@ lib/ory/model/project_service_identity.ex
 lib/ory/model/project_service_permission.ex
 lib/ory/model/project_services.ex
 lib/ory/model/provision_mock_subscription_payload.ex
+lib/ory/model/quota_custom_domains.ex
 lib/ory/model/quota_project_member_seats.ex
 lib/ory/model/recovery_address.ex
 lib/ory/model/relation_query.ex

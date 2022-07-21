@@ -71,6 +71,7 @@ docs/Model/ProjectServiceIdentity.md
 docs/Model/ProjectServicePermission.md
 docs/Model/ProjectServices.md
 docs/Model/ProvisionMockSubscriptionPayload.md
+docs/Model/QuotaCustomDomains.md
 docs/Model/QuotaProjectMemberSeats.md
 docs/Model/RecoveryAddress.md
 docs/Model/RelationQuery.md
@@ -210,6 +211,7 @@ lib/Model/ProjectServiceIdentity.php
 lib/Model/ProjectServicePermission.php
 lib/Model/ProjectServices.php
 lib/Model/ProvisionMockSubscriptionPayload.php
+lib/Model/QuotaCustomDomains.php
 lib/Model/QuotaProjectMemberSeats.php
 lib/Model/RecoveryAddress.php
 lib/Model/RelationQuery.php
@@ -346,6 +348,7 @@ test/Model/ProjectServicePermissionTest.php
 test/Model/ProjectServicesTest.php
 test/Model/ProjectTest.php
 test/Model/ProvisionMockSubscriptionPayloadTest.php
+test/Model/QuotaCustomDomainsTest.php
 test/Model/QuotaProjectMemberSeatsTest.php
 test/Model/RecoveryAddressTest.php
 test/Model/RelationQueryTest.php

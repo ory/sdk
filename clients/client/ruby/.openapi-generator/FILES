@@ -70,6 +70,7 @@ docs/ProjectServiceIdentity.md
 docs/ProjectServicePermission.md
 docs/ProjectServices.md
 docs/ProvisionMockSubscriptionPayload.md
+docs/QuotaCustomDomains.md
 docs/QuotaProjectMemberSeats.md
 docs/ReadApi.md
 docs/RecoveryAddress.md
@@ -212,6 +213,7 @@ lib/ory-client/models/project_service_identity.rb
 lib/ory-client/models/project_service_permission.rb
 lib/ory-client/models/project_services.rb
 lib/ory-client/models/provision_mock_subscription_payload.rb
+lib/ory-client/models/quota_custom_domains.rb
 lib/ory-client/models/quota_project_member_seats.rb
 lib/ory-client/models/recovery_address.rb
 lib/ory-client/models/relation_query.rb
@@ -350,6 +352,7 @@ spec/models/project_service_permission_spec.rb
 spec/models/project_services_spec.rb
 spec/models/project_spec.rb
 spec/models/provision_mock_subscription_payload_spec.rb
+spec/models/quota_custom_domains_spec.rb
 spec/models/quota_project_member_seats_spec.rb
 spec/models/recovery_address_spec.rb
 spec/models/relation_query_spec.rb

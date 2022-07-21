@@ -85,6 +85,7 @@ docs/ProjectServicePermission.md
 docs/ProjectServices.md
 docs/Projects.md
 docs/ProvisionMockSubscriptionPayload.md
+docs/QuotaCustomDomains.md
 docs/QuotaProjectMemberSeats.md
 docs/ReadApi.md
 docs/RecoveryAddress.md
@@ -253,6 +254,7 @@ ory_client/model/project_service_permission.py
 ory_client/model/project_services.py
 ory_client/model/projects.py
 ory_client/model/provision_mock_subscription_payload.py
+ory_client/model/quota_custom_domains.py
 ory_client/model/quota_project_member_seats.py
 ory_client/model/recovery_address.py
 ory_client/model/relation_query.py
@@ -415,6 +417,7 @@ test/test_project_service_permission.py
 test/test_project_services.py
 test/test_projects.py
 test/test_provision_mock_subscription_payload.py
+test/test_quota_custom_domains.py
 test/test_quota_project_member_seats.py
 test/test_read_api.py
 test/test_recovery_address.py

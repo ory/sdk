@@ -73,6 +73,7 @@ docs/ProjectServiceIdentity.md
 docs/ProjectServicePermission.md
 docs/ProjectServices.md
 docs/ProvisionMockSubscriptionPayload.md
+docs/QuotaCustomDomains.md
 docs/QuotaProjectMemberSeats.md
 docs/ReadApi.md
 docs/RecoveryAddress.md
@@ -209,6 +210,7 @@ model_project_service_identity.go
 model_project_service_permission.go
 model_project_services.go
 model_provision_mock_subscription_payload.go
+model_quota_custom_domains.go
 model_quota_project_member_seats.go
 model_recovery_address.go
 model_relation_query.go

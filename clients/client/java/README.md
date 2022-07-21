@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v0.1.0-alpha.11
-  - Build date: 2022-07-21T10:31:44.206857586Z[Etc/UTC]
+- API version: v0.1.0-alpha.12
+  - Build date: 2022-07-21T15:56:21.922601002Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v0.1.0-alpha.11</version>
+  <version>v0.1.0-alpha.12</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v0.1.0-alpha.11"
+     implementation "sh.ory:client:v0.1.0-alpha.12"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v0.1.0-alpha.11.jar`
+* `target/client-v0.1.0-alpha.12.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -247,6 +247,7 @@ Class | Method | HTTP request | Description
  - [ProjectServicePermission](docs/ProjectServicePermission.md)
  - [ProjectServices](docs/ProjectServices.md)
  - [ProvisionMockSubscriptionPayload](docs/ProvisionMockSubscriptionPayload.md)
+ - [QuotaCustomDomains](docs/QuotaCustomDomains.md)
  - [QuotaProjectMemberSeats](docs/QuotaProjectMemberSeats.md)
  - [RecoveryAddress](docs/RecoveryAddress.md)
  - [RelationQuery](docs/RelationQuery.md)

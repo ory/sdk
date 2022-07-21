@@ -69,6 +69,7 @@ docs/ProjectServiceIdentity.md
 docs/ProjectServicePermission.md
 docs/ProjectServices.md
 docs/ProvisionMockSubscriptionPayload.md
+docs/QuotaCustomDomains.md
 docs/QuotaProjectMemberSeats.md
 docs/ReadApi.md
 docs/RecoveryAddress.md
@@ -232,6 +233,7 @@ src/main/java/sh/ory/model/ProjectServiceIdentity.java
 src/main/java/sh/ory/model/ProjectServicePermission.java
 src/main/java/sh/ory/model/ProjectServices.java
 src/main/java/sh/ory/model/ProvisionMockSubscriptionPayload.java
+src/main/java/sh/ory/model/QuotaCustomDomains.java
 src/main/java/sh/ory/model/QuotaProjectMemberSeats.java
 src/main/java/sh/ory/model/RecoveryAddress.java
 src/main/java/sh/ory/model/RelationQuery.java
@@ -366,6 +368,7 @@ src/test/java/sh/ory/model/ProjectServicePermissionTest.java
 src/test/java/sh/ory/model/ProjectServicesTest.java
 src/test/java/sh/ory/model/ProjectTest.java
 src/test/java/sh/ory/model/ProvisionMockSubscriptionPayloadTest.java
+src/test/java/sh/ory/model/QuotaCustomDomainsTest.java
 src/test/java/sh/ory/model/QuotaProjectMemberSeatsTest.java
 src/test/java/sh/ory/model/RecoveryAddressTest.java
 src/test/java/sh/ory/model/RelationQueryTest.java

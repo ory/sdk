@@ -90,6 +90,7 @@ from ory_client.model.project_service_permission import ProjectServicePermission
 from ory_client.model.project_services import ProjectServices
 from ory_client.model.projects import Projects
 from ory_client.model.provision_mock_subscription_payload import ProvisionMockSubscriptionPayload
+from ory_client.model.quota_custom_domains import QuotaCustomDomains
 from ory_client.model.quota_project_member_seats import QuotaProjectMemberSeats
 from ory_client.model.recovery_address import RecoveryAddress
 from ory_client.model.relation_query import RelationQuery

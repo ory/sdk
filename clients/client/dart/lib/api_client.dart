@@ -318,6 +318,8 @@ class ApiClient {
           return ProjectServices.fromJson(value);
         case 'ProvisionMockSubscriptionPayload':
           return ProvisionMockSubscriptionPayload.fromJson(value);
+        case 'QuotaCustomDomains':
+          return QuotaCustomDomains.fromJson(value);
         case 'QuotaProjectMemberSeats':
           return QuotaProjectMemberSeats.fromJson(value);
         case 'RecoveryAddress':

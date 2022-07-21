@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.1.0-alpha.11
+ * API version: v0.1.0-alpha.12
  * Contact: support@ory.sh
  */
 
@@ -41,7 +41,7 @@ var (
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 )
 
-// APIClient manages communication with the Ory APIs API vv0.1.0-alpha.11
+// APIClient manages communication with the Ory APIs API vv0.1.0-alpha.12
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration

@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.1.0-alpha.11
+  version: v0.1.0-alpha.12
 servers:
 - url: https://{project}.projects.oryapis.com/
   variables:
@@ -3969,6 +3969,17 @@ components:
           type: string
         relation_tuple:
           $ref: '#/components/schemas/InternalRelationTuple'
+      type: object
+    QuotaCustomDomains:
+      properties:
+        available_domains:
+          format: int64
+          type: integer
+        can_use:
+          type: boolean
+        used_domains:
+          format: int64
+          type: integer
       type: object
     QuotaProjectMemberSeats:
       properties:

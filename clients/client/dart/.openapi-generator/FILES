@@ -67,6 +67,7 @@ doc/ProjectServiceIdentity.md
 doc/ProjectServicePermission.md
 doc/ProjectServices.md
 doc/ProvisionMockSubscriptionPayload.md
+doc/QuotaCustomDomains.md
 doc/QuotaProjectMemberSeats.md
 doc/ReadApi.md
 doc/RecoveryAddress.md
@@ -214,6 +215,7 @@ lib/model/project_service_identity.dart
 lib/model/project_service_permission.dart
 lib/model/project_services.dart
 lib/model/provision_mock_subscription_payload.dart
+lib/model/quota_custom_domains.dart
 lib/model/quota_project_member_seats.dart
 lib/model/recovery_address.dart
 lib/model/relation_query.dart
@@ -346,6 +348,7 @@ test/project_service_permission_test.dart
 test/project_services_test.dart
 test/project_test.dart
 test/provision_mock_subscription_payload_test.dart
+test/quota_custom_domains_test.dart
 test/quota_project_member_seats_test.dart
 test/read_api_test.dart
 test/recovery_address_test.dart

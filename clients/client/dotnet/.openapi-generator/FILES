@@ -66,6 +66,7 @@ docs/ClientProjectServiceIdentity.md
 docs/ClientProjectServicePermission.md
 docs/ClientProjectServices.md
 docs/ClientProvisionMockSubscriptionPayload.md
+docs/ClientQuotaCustomDomains.md
 docs/ClientQuotaProjectMemberSeats.md
 docs/ClientRecoveryAddress.md
 docs/ClientRelationQuery.md
@@ -205,6 +206,7 @@ src/Ory.Client.Test/Model/ClientProjectServicePermissionTests.cs
 src/Ory.Client.Test/Model/ClientProjectServicesTests.cs
 src/Ory.Client.Test/Model/ClientProjectTests.cs
 src/Ory.Client.Test/Model/ClientProvisionMockSubscriptionPayloadTests.cs
+src/Ory.Client.Test/Model/ClientQuotaCustomDomainsTests.cs
 src/Ory.Client.Test/Model/ClientQuotaProjectMemberSeatsTests.cs
 src/Ory.Client.Test/Model/ClientRecoveryAddressTests.cs
 src/Ory.Client.Test/Model/ClientRelationQueryTests.cs
@@ -357,6 +359,7 @@ src/Ory.Client/Model/ClientProjectServiceIdentity.cs
 src/Ory.Client/Model/ClientProjectServicePermission.cs
 src/Ory.Client/Model/ClientProjectServices.cs
 src/Ory.Client/Model/ClientProvisionMockSubscriptionPayload.cs
+src/Ory.Client/Model/ClientQuotaCustomDomains.cs
 src/Ory.Client/Model/ClientQuotaProjectMemberSeats.cs
 src/Ory.Client/Model/ClientRecoveryAddress.cs
 src/Ory.Client/Model/ClientRelationQuery.cs
