@@ -133,7 +133,7 @@ php() {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 6.0.1
+  openapi-generator-cli version-manager set 5.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g php \
     -o "$dir" \
@@ -212,7 +212,6 @@ golang () {
     --git-user-id ory \
     --git-repo-id "${GIT_REPO}-go" \
     --git-host github.com \
-    -t openapi/templates/go \
     -c ./config/client/go.yml.proc.yml
   cp "LICENSE" "clients/${PROJECT}/go"
 }
@@ -224,7 +223,7 @@ dotnet () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 6.0.1
+  openapi-generator-cli version-manager set 5.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g csharp-netcore \
     -o "$dir" \
@@ -262,7 +261,7 @@ rust () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set  6.0.1
+  openapi-generator-cli version-manager set 5.2.1
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g rust \
     -o "$dir" \
