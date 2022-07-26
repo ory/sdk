@@ -10,7 +10,6 @@ Name | Type | Description | Notes
 **CreatedAt** | **time.Time** | The Schema&#39;s Creation Date | [readonly] 
 **Id** | **string** |  | 
 **Name** | **string** | The schema name  This is set by the user and is for them to easily recognise their schema | 
-**Schema** | Pointer to **map[string]interface{}** | The actual Identity JSON Schema | [optional] 
 **UpdatedAt** | **time.Time** | Last Time Schema was Updated | [readonly] 
 
 ## Methods
@@ -156,31 +155,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
-### GetSchema
-
-`func (o *IdentitySchema) GetSchema() map[string]interface{}`
-
-GetSchema returns the Schema field if non-nil, zero value otherwise.
-
-### GetSchemaOk
-
-`func (o *IdentitySchema) GetSchemaOk() (*map[string]interface{}, bool)`
-
-GetSchemaOk returns a tuple with the Schema field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSchema
-
-`func (o *IdentitySchema) SetSchema(v map[string]interface{})`
-
-SetSchema sets Schema field to given value.
-
-### HasSchema
-
-`func (o *IdentitySchema) HasSchema() bool`
-
-HasSchema returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 

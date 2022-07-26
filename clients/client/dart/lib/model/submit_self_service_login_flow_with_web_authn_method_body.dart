@@ -14,7 +14,7 @@ class SubmitSelfServiceLoginFlowWithWebAuthnMethodBody {
   /// Returns a new [SubmitSelfServiceLoginFlowWithWebAuthnMethodBody] instance.
   SubmitSelfServiceLoginFlowWithWebAuthnMethodBody({
     this.csrfToken,
-    this.identifier,
+    required this.identifier,
     required this.method,
     this.webauthnLogin,
   });
@@ -28,14 +28,8 @@ class SubmitSelfServiceLoginFlowWithWebAuthnMethodBody {
   ///
   String? csrfToken;
 
-  /// Identifier is the email or username of the user trying to log in. This field is only required when using WebAuthn for passwordless login. When using WebAuthn for multi-factor authentication, it is not needed.
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? identifier;
+  /// Identifier is the email or username of the user trying to log in.
+  String identifier;
 
   /// Method should be set to \"webAuthn\" when logging in using the WebAuthn strategy.
   String method;
@@ -60,7 +54,7 @@ class SubmitSelfServiceLoginFlowWithWebAuthnMethodBody {
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (csrfToken == null ? 0 : csrfToken!.hashCode) +
-    (identifier == null ? 0 : identifier!.hashCode) +
+    (identifier.hashCode) +
     (method.hashCode) +
     (webauthnLogin == null ? 0 : webauthnLogin!.hashCode);
 
@@ -74,11 +68,7 @@ class SubmitSelfServiceLoginFlowWithWebAuthnMethodBody {
     } else {
       _json[r'csrf_token'] = null;
     }
-    if (identifier != null) {
       _json[r'identifier'] = identifier;
-    } else {
-      _json[r'identifier'] = null;
-    }
       _json[r'method'] = method;
     if (webauthnLogin != null) {
       _json[r'webauthn_login'] = webauthnLogin;
@@ -108,7 +98,7 @@ class SubmitSelfServiceLoginFlowWithWebAuthnMethodBody {
 
       return SubmitSelfServiceLoginFlowWithWebAuthnMethodBody(
         csrfToken: mapValueOfType<String>(json, r'csrf_token'),
-        identifier: mapValueOfType<String>(json, r'identifier'),
+        identifier: mapValueOfType<String>(json, r'identifier')!,
         method: mapValueOfType<String>(json, r'method')!,
         webauthnLogin: mapValueOfType<String>(json, r'webauthn_login'),
       );
@@ -160,6 +150,7 @@ class SubmitSelfServiceLoginFlowWithWebAuthnMethodBody {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'identifier',
     'method',
   };
 }

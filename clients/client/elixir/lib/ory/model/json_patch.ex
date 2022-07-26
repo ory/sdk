@@ -9,12 +9,14 @@ defmodule Ory.Model.JsonPatch do
 
   @derive [Poison.Encoder]
   defstruct [
+    :from,
     :op,
     :path,
     :value
   ]
 
   @type t :: %__MODULE__{
+    :from => String.t | nil,
     :op => String.t,
     :path => String.t,
     :value => AnyType | nil

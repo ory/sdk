@@ -258,6 +258,8 @@ class ApiClient {
           return IdentityCredentialsTypeTypeTransformer().decode(value);
         case 'IdentitySchema':
           return IdentitySchema.fromJson(value);
+        case 'IdentitySchemaContainer':
+          return IdentitySchemaContainer.fromJson(value);
         case 'IdentitySchemaLocation':
           return IdentitySchemaLocation.fromJson(value);
         case 'IdentitySchemaPreset':
@@ -422,6 +424,10 @@ class ApiClient {
           return SuccessfulSelfServiceLoginWithoutBrowser.fromJson(value);
         case 'SuccessfulSelfServiceRegistrationWithoutBrowser':
           return SuccessfulSelfServiceRegistrationWithoutBrowser.fromJson(value);
+        case 'TokenPagination':
+          return TokenPagination.fromJson(value);
+        case 'TokenPaginationHeaders':
+          return TokenPaginationHeaders.fromJson(value);
         case 'UiContainer':
           return UiContainer.fromJson(value);
         case 'UiNode':

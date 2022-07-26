@@ -13,12 +13,21 @@ part of openapi.api;
 class AdminUpdateIdentityBody {
   /// Returns a new [AdminUpdateIdentityBody] instance.
   AdminUpdateIdentityBody({
+    this.credentials,
     this.metadataAdmin,
     this.metadataPublic,
     required this.schemaId,
     required this.state,
     required this.traits,
   });
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  AdminIdentityImportCredentials? credentials;
 
   /// Store metadata about the user which is only accessible through admin APIs such as `GET /admin/identities/<id>`.
   Object? metadataAdmin;
@@ -36,6 +45,7 @@ class AdminUpdateIdentityBody {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is AdminUpdateIdentityBody &&
+     other.credentials == credentials &&
      other.metadataAdmin == metadataAdmin &&
      other.metadataPublic == metadataPublic &&
      other.schemaId == schemaId &&
@@ -45,6 +55,7 @@ class AdminUpdateIdentityBody {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
+    (credentials == null ? 0 : credentials!.hashCode) +
     (metadataAdmin == null ? 0 : metadataAdmin!.hashCode) +
     (metadataPublic == null ? 0 : metadataPublic!.hashCode) +
     (schemaId.hashCode) +
@@ -52,10 +63,15 @@ class AdminUpdateIdentityBody {
     (traits.hashCode);
 
   @override
-  String toString() => 'AdminUpdateIdentityBody[metadataAdmin=$metadataAdmin, metadataPublic=$metadataPublic, schemaId=$schemaId, state=$state, traits=$traits]';
+  String toString() => 'AdminUpdateIdentityBody[credentials=$credentials, metadataAdmin=$metadataAdmin, metadataPublic=$metadataPublic, schemaId=$schemaId, state=$state, traits=$traits]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
+    if (credentials != null) {
+      _json[r'credentials'] = credentials;
+    } else {
+      _json[r'credentials'] = null;
+    }
     if (metadataAdmin != null) {
       _json[r'metadata_admin'] = metadataAdmin;
     } else {
@@ -91,6 +107,7 @@ class AdminUpdateIdentityBody {
       }());
 
       return AdminUpdateIdentityBody(
+        credentials: AdminIdentityImportCredentials.fromJson(json[r'credentials']),
         metadataAdmin: mapValueOfType<Object>(json, r'metadata_admin'),
         metadataPublic: mapValueOfType<Object>(json, r'metadata_public'),
         schemaId: mapValueOfType<String>(json, r'schema_id')!,

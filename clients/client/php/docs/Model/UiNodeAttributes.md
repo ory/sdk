@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**autocomplete** | **string** | The autocomplete attribute for the input. | [optional]
 **disabled** | **bool** | Sets the input&#39;s disabled field to true or false. |
 **label** | [**\Ory\Client\Model\UiText**](UiText.md) |  | [optional]
 **name** | **string** | The input&#39;s element name. |

@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **CreatedAt** | **DateTime** | The Schema&#39;s Creation Date | [readonly] 
 **Id** | **string** |  | 
 **Name** | **string** | The schema name  This is set by the user and is for them to easily recognise their schema | 
-**Schema** | **Object** | The actual Identity JSON Schema | [optional] 
 **UpdatedAt** | **DateTime** | Last Time Schema was Updated | [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

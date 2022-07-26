@@ -9,6 +9,7 @@ defmodule Ory.Model.UiNodeInputAttributes do
 
   @derive [Poison.Encoder]
   defstruct [
+    :autocomplete,
     :disabled,
     :label,
     :name,
@@ -21,6 +22,7 @@ defmodule Ory.Model.UiNodeInputAttributes do
   ]
 
   @type t :: %__MODULE__{
+    :autocomplete => String.t | nil,
     :disabled => boolean(),
     :label => Ory.Model.UiText.t | nil,
     :name => String.t,

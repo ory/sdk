@@ -35,6 +35,7 @@ docs/ClientIdentityCredentialsOidcProvider.md
 docs/ClientIdentityCredentialsPassword.md
 docs/ClientIdentityCredentialsType.md
 docs/ClientIdentitySchema.md
+docs/ClientIdentitySchemaContainer.md
 docs/ClientIdentitySchemaLocation.md
 docs/ClientIdentitySchemaPreset.md
 docs/ClientIdentitySchemaValidationResult.md
@@ -118,6 +119,8 @@ docs/ClientSubscription.md
 docs/ClientSuccessfulProjectUpdate.md
 docs/ClientSuccessfulSelfServiceLoginWithoutBrowser.md
 docs/ClientSuccessfulSelfServiceRegistrationWithoutBrowser.md
+docs/ClientTokenPagination.md
+docs/ClientTokenPaginationHeaders.md
 docs/ClientUiContainer.md
 docs/ClientUiNode.md
 docs/ClientUiNodeAnchorAttributes.md
@@ -173,6 +176,7 @@ src/Ory.Client.Test/Model/ClientIdentityCredentialsOidcTests.cs
 src/Ory.Client.Test/Model/ClientIdentityCredentialsPasswordTests.cs
 src/Ory.Client.Test/Model/ClientIdentityCredentialsTests.cs
 src/Ory.Client.Test/Model/ClientIdentityCredentialsTypeTests.cs
+src/Ory.Client.Test/Model/ClientIdentitySchemaContainerTests.cs
 src/Ory.Client.Test/Model/ClientIdentitySchemaLocationTests.cs
 src/Ory.Client.Test/Model/ClientIdentitySchemaPresetTests.cs
 src/Ory.Client.Test/Model/ClientIdentitySchemaTests.cs
@@ -258,6 +262,8 @@ src/Ory.Client.Test/Model/ClientSubscriptionTests.cs
 src/Ory.Client.Test/Model/ClientSuccessfulProjectUpdateTests.cs
 src/Ory.Client.Test/Model/ClientSuccessfulSelfServiceLoginWithoutBrowserTests.cs
 src/Ory.Client.Test/Model/ClientSuccessfulSelfServiceRegistrationWithoutBrowserTests.cs
+src/Ory.Client.Test/Model/ClientTokenPaginationHeadersTests.cs
+src/Ory.Client.Test/Model/ClientTokenPaginationTests.cs
 src/Ory.Client.Test/Model/ClientUiContainerTests.cs
 src/Ory.Client.Test/Model/ClientUiNodeAnchorAttributesTests.cs
 src/Ory.Client.Test/Model/ClientUiNodeAttributesTests.cs
@@ -328,6 +334,7 @@ src/Ory.Client/Model/ClientIdentityCredentialsOidcProvider.cs
 src/Ory.Client/Model/ClientIdentityCredentialsPassword.cs
 src/Ory.Client/Model/ClientIdentityCredentialsType.cs
 src/Ory.Client/Model/ClientIdentitySchema.cs
+src/Ory.Client/Model/ClientIdentitySchemaContainer.cs
 src/Ory.Client/Model/ClientIdentitySchemaLocation.cs
 src/Ory.Client/Model/ClientIdentitySchemaPreset.cs
 src/Ory.Client/Model/ClientIdentitySchemaValidationResult.cs
@@ -411,6 +418,8 @@ src/Ory.Client/Model/ClientSubscription.cs
 src/Ory.Client/Model/ClientSuccessfulProjectUpdate.cs
 src/Ory.Client/Model/ClientSuccessfulSelfServiceLoginWithoutBrowser.cs
 src/Ory.Client/Model/ClientSuccessfulSelfServiceRegistrationWithoutBrowser.cs
+src/Ory.Client/Model/ClientTokenPagination.cs
+src/Ory.Client/Model/ClientTokenPaginationHeaders.cs
 src/Ory.Client/Model/ClientUiContainer.cs
 src/Ory.Client/Model/ClientUiNode.cs
 src/Ory.Client/Model/ClientUiNodeAnchorAttributes.cs

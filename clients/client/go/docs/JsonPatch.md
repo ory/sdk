@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**From** | Pointer to **string** | This field is used together with operation \&quot;move\&quot; and uses JSON Pointer notation.  Learn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5). | [optional] 
 **Op** | **string** | The JSON Patch operation | 
 **Path** | **string** | The JSON Pointer to the target key | 
 **Value** | Pointer to **interface{}** | The value to be used. Only available for &#x60;add&#x60; and &#x60;replace&#x60; operations. | [optional] 
@@ -26,6 +27,31 @@ will change when the set of required properties is changed
 NewJsonPatchWithDefaults instantiates a new JsonPatch object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetFrom
+
+`func (o *JsonPatch) GetFrom() string`
+
+GetFrom returns the From field if non-nil, zero value otherwise.
+
+### GetFromOk
+
+`func (o *JsonPatch) GetFromOk() (*string, bool)`
+
+GetFromOk returns a tuple with the From field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFrom
+
+`func (o *JsonPatch) SetFrom(v string)`
+
+SetFrom sets From field to given value.
+
+### HasFrom
+
+`func (o *JsonPatch) HasFrom() bool`
+
+HasFrom returns a boolean if a field has been set.
 
 ### GetOp
 

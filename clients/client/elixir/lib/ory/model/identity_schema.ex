@@ -15,7 +15,6 @@ defmodule Ory.Model.IdentitySchema do
     :created_at,
     :id,
     :name,
-    :schema,
     :updated_at
   ]
 
@@ -26,7 +25,6 @@ defmodule Ory.Model.IdentitySchema do
     :created_at => DateTime.t,
     :id => String.t,
     :name => String.t,
-    :schema => map() | nil,
     :updated_at => DateTime.t
   }
 end

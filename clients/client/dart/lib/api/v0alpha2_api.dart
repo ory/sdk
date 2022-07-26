@@ -370,7 +370,7 @@ class V0alpha2Api {
   ///   Items per Page  This is the number of items per page.
   ///
   /// * [int] page:
-  ///   Pagination Page
+  ///   Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
   Future<Response> adminListIdentitiesWithHttpInfo({ int? perPage, int? page, }) async {
     // ignore: prefer_const_declarations
     final path = r'/admin/identities';
@@ -413,7 +413,7 @@ class V0alpha2Api {
   ///   Items per Page  This is the number of items per page.
   ///
   /// * [int] page:
-  ///   Pagination Page
+  ///   Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
   Future<List<Identity>?> adminListIdentities({ int? perPage, int? page, }) async {
     final response = await adminListIdentitiesWithHttpInfo( perPage: perPage, page: page, );
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -447,7 +447,7 @@ class V0alpha2Api {
   ///   Items per Page  This is the number of items per page.
   ///
   /// * [int] page:
-  ///   Pagination Page
+  ///   Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
   ///
   /// * [bool] active:
   ///   Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
@@ -500,7 +500,7 @@ class V0alpha2Api {
   ///   Items per Page  This is the number of items per page.
   ///
   /// * [int] page:
-  ///   Pagination Page
+  ///   Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
   ///
   /// * [bool] active:
   ///   Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
@@ -518,6 +518,69 @@ class V0alpha2Api {
         .cast<Session>()
         .toList();
 
+    }
+    return null;
+  }
+
+  /// Partially updates an Identity's field using [JSON Patch](https://jsonpatch.com/)
+  ///
+  /// NOTE: The fields `id`, `stateChangedAt` and `credentials` are not updateable.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///   ID must be set to the ID of identity you want to update
+  ///
+  /// * [List<JsonPatch>] jsonPatch:
+  Future<Response> adminPatchIdentityWithHttpInfo(String id, { List<JsonPatch>? jsonPatch, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/admin/identities/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object? postBody = jsonPatch;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PATCH',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Partially updates an Identity's field using [JSON Patch](https://jsonpatch.com/)
+  ///
+  /// NOTE: The fields `id`, `stateChangedAt` and `credentials` are not updateable.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///   ID must be set to the ID of identity you want to update
+  ///
+  /// * [List<JsonPatch>] jsonPatch:
+  Future<Identity?> adminPatchIdentity(String id, { List<JsonPatch>? jsonPatch, }) async {
+    final response = await adminPatchIdentityWithHttpInfo(id,  jsonPatch: jsonPatch, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Identity',) as Identity;
+    
     }
     return null;
   }
@@ -711,7 +774,7 @@ class V0alpha2Api {
   ///
   /// * [String] id (required):
   ///   ID must be set to the ID of schema you want to get
-  Future<Response> getJsonSchemaWithHttpInfo(String id,) async {
+  Future<Response> getIdentitySchemaWithHttpInfo(String id,) async {
     // ignore: prefer_const_declarations
     final path = r'/schemas/{id}'
       .replaceAll('{id}', id);
@@ -743,8 +806,8 @@ class V0alpha2Api {
   ///
   /// * [String] id (required):
   ///   ID must be set to the ID of schema you want to get
-  Future<Object?> getJsonSchema(String id,) async {
-    final response = await getJsonSchemaWithHttpInfo(id,);
+  Future<IdentitySchema?> getIdentitySchema(String id,) async {
+    final response = await getIdentitySchemaWithHttpInfo(id,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -752,7 +815,7 @@ class V0alpha2Api {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'IdentitySchema',) as IdentitySchema;
     
     }
     return null;
@@ -1915,7 +1978,7 @@ class V0alpha2Api {
 
   /// Initialize Verification Flow for APIs, Services, Apps, ...
   ///
-  /// This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+  /// This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation).
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> initializeSelfServiceVerificationFlowWithoutBrowserWithHttpInfo() async {
@@ -1945,7 +2008,7 @@ class V0alpha2Api {
 
   /// Initialize Verification Flow for APIs, Services, Apps, ...
   ///
-  /// This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+  /// This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation).
   Future<SelfServiceVerificationFlow?> initializeSelfServiceVerificationFlowWithoutBrowser() async {
     final response = await initializeSelfServiceVerificationFlowWithoutBrowserWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -1971,7 +2034,7 @@ class V0alpha2Api {
   ///   Items per Page  This is the number of items per page.
   ///
   /// * [int] page:
-  ///   Pagination Page
+  ///   Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
   Future<Response> listIdentitySchemasWithHttpInfo({ int? perPage, int? page, }) async {
     // ignore: prefer_const_declarations
     final path = r'/schemas';
@@ -2012,7 +2075,7 @@ class V0alpha2Api {
   ///   Items per Page  This is the number of items per page.
   ///
   /// * [int] page:
-  ///   Pagination Page
+  ///   Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
   Future<List<IdentitySchema>?> listIdentitySchemas({ int? perPage, int? page, }) async {
     final response = await listIdentitySchemasWithHttpInfo( perPage: perPage, page: page, );
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -2100,7 +2163,7 @@ class V0alpha2Api {
   ///   Items per Page  This is the number of items per page.
   ///
   /// * [int] page:
-  ///   Pagination Page
+  ///   Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
   Future<Response> listSessionsWithHttpInfo({ String? xSessionToken, String? cookie, int? perPage, int? page, }) async {
     // ignore: prefer_const_declarations
     final path = r'/sessions';
@@ -2156,7 +2219,7 @@ class V0alpha2Api {
   ///   Items per Page  This is the number of items per page.
   ///
   /// * [int] page:
-  ///   Pagination Page
+  ///   Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
   Future<List<Session>?> listSessions({ String? xSessionToken, String? cookie, int? perPage, int? page, }) async {
     final response = await listSessionsWithHttpInfo( xSessionToken: xSessionToken, cookie: cookie, perPage: perPage, page: page, );
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -2175,9 +2238,9 @@ class V0alpha2Api {
     return null;
   }
 
-  /// Patch an Ory Cloud Project Configuration
+  /// Patch an Ory Cloud Project Configuration`
   ///
-  /// This endpoints allows you to patch individual Ory Cloud Project configuration keys for Ory's services (identity, permission, ...). The configuration format is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.
+  /// Deprecated: Use the `patchProjectWithRevision` endpoint instead to specify the exact revision the patch was generated for.  This endpoints allows you to patch individual Ory Cloud Project configuration keys for Ory's services (identity, permission, ...). The configuration format is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -2213,9 +2276,9 @@ class V0alpha2Api {
     );
   }
 
-  /// Patch an Ory Cloud Project Configuration
+  /// Patch an Ory Cloud Project Configuration`
   ///
-  /// This endpoints allows you to patch individual Ory Cloud Project configuration keys for Ory's services (identity, permission, ...). The configuration format is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.
+  /// Deprecated: Use the `patchProjectWithRevision` endpoint instead to specify the exact revision the patch was generated for.  This endpoints allows you to patch individual Ory Cloud Project configuration keys for Ory's services (identity, permission, ...). The configuration format is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.
   ///
   /// Parameters:
   ///
@@ -2561,7 +2624,7 @@ class V0alpha2Api {
   /// Parameters:
   ///
   /// * [String] token:
-  ///   A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/urls` to generate a URL for this endpoint.
+  ///   A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint.
   ///
   /// * [String] returnTo:
   ///   The URL to return to after the logout was completed.
@@ -2604,7 +2667,7 @@ class V0alpha2Api {
   /// Parameters:
   ///
   /// * [String] token:
-  ///   A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/urls` to generate a URL for this endpoint.
+  ///   A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint.
   ///
   /// * [String] returnTo:
   ///   The URL to return to after the logout was completed.

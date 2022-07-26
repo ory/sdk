@@ -35,6 +35,7 @@ docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
 docs/IdentityCredentialsType.md
 docs/IdentitySchema.md
+docs/IdentitySchemaContainer.md
 docs/IdentitySchemaLocation.md
 docs/IdentitySchemaPreset.md
 docs/IdentitySchemaValidationResult.md
@@ -120,6 +121,8 @@ docs/Subscription.md
 docs/SuccessfulProjectUpdate.md
 docs/SuccessfulSelfServiceLoginWithoutBrowser.md
 docs/SuccessfulSelfServiceRegistrationWithoutBrowser.md
+docs/TokenPagination.md
+docs/TokenPaginationHeaders.md
 docs/UiContainer.md
 docs/UiNode.md
 docs/UiNodeAnchorAttributes.md
@@ -178,6 +181,7 @@ src/models/identity_credentials_oidc_provider.rs
 src/models/identity_credentials_password.rs
 src/models/identity_credentials_type.rs
 src/models/identity_schema.rs
+src/models/identity_schema_container.rs
 src/models/identity_schema_location.rs
 src/models/identity_schema_preset.rs
 src/models/identity_schema_validation_result.rs
@@ -262,6 +266,8 @@ src/models/subscription.rs
 src/models/successful_project_update.rs
 src/models/successful_self_service_login_without_browser.rs
 src/models/successful_self_service_registration_without_browser.rs
+src/models/token_pagination.rs
+src/models/token_pagination_headers.rs
 src/models/ui_container.rs
 src/models/ui_node.rs
 src/models/ui_node_anchor_attributes.rs

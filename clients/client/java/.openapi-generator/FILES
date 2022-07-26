@@ -37,6 +37,7 @@ docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
 docs/IdentityCredentialsType.md
 docs/IdentitySchema.md
+docs/IdentitySchemaContainer.md
 docs/IdentitySchemaLocation.md
 docs/IdentitySchemaPreset.md
 docs/IdentitySchemaValidationResult.md
@@ -122,6 +123,8 @@ docs/Subscription.md
 docs/SuccessfulProjectUpdate.md
 docs/SuccessfulSelfServiceLoginWithoutBrowser.md
 docs/SuccessfulSelfServiceRegistrationWithoutBrowser.md
+docs/TokenPagination.md
+docs/TokenPaginationHeaders.md
 docs/UiContainer.md
 docs/UiNode.md
 docs/UiNodeAnchorAttributes.md
@@ -202,6 +205,7 @@ src/main/java/sh/ory/model/IdentityCredentialsOidcProvider.java
 src/main/java/sh/ory/model/IdentityCredentialsPassword.java
 src/main/java/sh/ory/model/IdentityCredentialsType.java
 src/main/java/sh/ory/model/IdentitySchema.java
+src/main/java/sh/ory/model/IdentitySchemaContainer.java
 src/main/java/sh/ory/model/IdentitySchemaLocation.java
 src/main/java/sh/ory/model/IdentitySchemaPreset.java
 src/main/java/sh/ory/model/IdentitySchemaValidationResult.java
@@ -285,6 +289,8 @@ src/main/java/sh/ory/model/Subscription.java
 src/main/java/sh/ory/model/SuccessfulProjectUpdate.java
 src/main/java/sh/ory/model/SuccessfulSelfServiceLoginWithoutBrowser.java
 src/main/java/sh/ory/model/SuccessfulSelfServiceRegistrationWithoutBrowser.java
+src/main/java/sh/ory/model/TokenPagination.java
+src/main/java/sh/ory/model/TokenPaginationHeaders.java
 src/main/java/sh/ory/model/UiContainer.java
 src/main/java/sh/ory/model/UiNode.java
 src/main/java/sh/ory/model/UiNodeAnchorAttributes.java
@@ -335,6 +341,7 @@ src/test/java/sh/ory/model/IdentityCredentialsOidcTest.java
 src/test/java/sh/ory/model/IdentityCredentialsPasswordTest.java
 src/test/java/sh/ory/model/IdentityCredentialsTest.java
 src/test/java/sh/ory/model/IdentityCredentialsTypeTest.java
+src/test/java/sh/ory/model/IdentitySchemaContainerTest.java
 src/test/java/sh/ory/model/IdentitySchemaLocationTest.java
 src/test/java/sh/ory/model/IdentitySchemaPresetTest.java
 src/test/java/sh/ory/model/IdentitySchemaTest.java
@@ -420,6 +427,8 @@ src/test/java/sh/ory/model/SubscriptionTest.java
 src/test/java/sh/ory/model/SuccessfulProjectUpdateTest.java
 src/test/java/sh/ory/model/SuccessfulSelfServiceLoginWithoutBrowserTest.java
 src/test/java/sh/ory/model/SuccessfulSelfServiceRegistrationWithoutBrowserTest.java
+src/test/java/sh/ory/model/TokenPaginationHeadersTest.java
+src/test/java/sh/ory/model/TokenPaginationTest.java
 src/test/java/sh/ory/model/UiContainerTest.java
 src/test/java/sh/ory/model/UiNodeAnchorAttributesTest.java
 src/test/java/sh/ory/model/UiNodeAttributesTest.java

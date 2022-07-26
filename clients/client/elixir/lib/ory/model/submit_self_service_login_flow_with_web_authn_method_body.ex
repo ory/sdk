@@ -17,7 +17,7 @@ defmodule Ory.Model.SubmitSelfServiceLoginFlowWithWebAuthnMethodBody do
 
   @type t :: %__MODULE__{
     :csrf_token => String.t | nil,
-    :identifier => String.t | nil,
+    :identifier => String.t,
     :method => String.t,
     :webauthn_login => String.t | nil
   }

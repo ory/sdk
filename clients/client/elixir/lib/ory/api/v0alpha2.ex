@@ -209,7 +209,7 @@ defmodule Ory.Api.V0alpha2 do
   - connection (Ory.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
     - :per_page (integer()): Items per Page  This is the number of items per page.
-    - :page (integer()): Pagination Page
+    - :page (integer()): Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
   ## Returns
 
   {:ok, [%Identity{}, ...]} on success
@@ -243,7 +243,7 @@ defmodule Ory.Api.V0alpha2 do
   - id (String.t): ID is the identity's ID.
   - opts (KeywordList): [optional] Optional parameters
     - :per_page (integer()): Items per Page  This is the number of items per page.
-    - :page (integer()): Pagination Page
+    - :page (integer()): Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
     - :active (boolean()): Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
   ## Returns
 
@@ -268,6 +268,42 @@ defmodule Ory.Api.V0alpha2 do
       { 400, %Ory.Model.JsonError{}},
       { 401, %Ory.Model.JsonError{}},
       { 404, %Ory.Model.JsonError{}},
+      { 500, %Ory.Model.JsonError{}}
+    ])
+  end
+
+  @doc """
+  Partially updates an Identity's field using [JSON Patch](https://jsonpatch.com/)
+  NOTE: The fields `id`, `stateChangedAt` and `credentials` are not updateable.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+
+  ## Parameters
+
+  - connection (Ory.Connection): Connection to server
+  - id (String.t): ID must be set to the ID of identity you want to update
+  - opts (KeywordList): [optional] Optional parameters
+    - :body ([Ory.Model.JsonPatch.t]): 
+  ## Returns
+
+  {:ok, Ory.Model.Identity.t} on success
+  {:error, Tesla.Env.t} on failure
+  """
+  @spec admin_patch_identity(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.JsonError.t} | {:ok, Ory.Model.Identity.t} | {:error, Tesla.Env.t}
+  def admin_patch_identity(connection, id, opts \\ []) do
+    optional_params = %{
+      :body => :body
+    }
+    %{}
+    |> method(:patch)
+    |> url("/admin/identities/#{id}")
+    |> add_optional_params(optional_params, opts)
+    |> ensure_body()
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> evaluate_response([
+      { 200, %Ory.Model.Identity{}},
+      { 400, %Ory.Model.JsonError{}},
+      { 404, %Ory.Model.JsonError{}},
+      { 409, %Ory.Model.JsonError{}},
       { 500, %Ory.Model.JsonError{}}
     ])
   end
@@ -385,18 +421,18 @@ defmodule Ory.Api.V0alpha2 do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, map()} on success
+  {:ok, Ory.Model.IdentitySchema.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec get_json_schema(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.JsonError.t} | {:ok, Map.t} | {:error, Tesla.Env.t}
-  def get_json_schema(connection, id, _opts \\ []) do
+  @spec get_identity_schema(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.IdentitySchema.t} | {:ok, Ory.Model.JsonError.t} | {:error, Tesla.Env.t}
+  def get_identity_schema(connection, id, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/schemas/#{id}")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
-      { 200, %{}},
+      { 200, %Ory.Model.IdentitySchema{}},
       { 404, %Ory.Model.JsonError{}},
       { 500, %Ory.Model.JsonError{}}
     ])
@@ -990,7 +1026,7 @@ defmodule Ory.Api.V0alpha2 do
 
   @doc """
   Initialize Verification Flow for APIs, Services, Apps, ...
-  This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+  This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation).
 
   ## Parameters
 
@@ -1023,7 +1059,7 @@ defmodule Ory.Api.V0alpha2 do
   - connection (Ory.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
     - :per_page (integer()): Items per Page  This is the number of items per page.
-    - :page (integer()): Pagination Page
+    - :page (integer()): Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
   ## Returns
 
   {:ok, [%IdentitySchema{}, ...]} on success
@@ -1087,7 +1123,7 @@ defmodule Ory.Api.V0alpha2 do
     - :x_session_token (String.t): Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`.
     - :cookie (String.t): Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored.
     - :per_page (integer()): Items per Page  This is the number of items per page.
-    - :page (integer()): Pagination Page
+    - :page (integer()): Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
   ## Returns
 
   {:ok, [%Session{}, ...]} on success
@@ -1117,8 +1153,8 @@ defmodule Ory.Api.V0alpha2 do
   end
 
   @doc """
-  Patch an Ory Cloud Project Configuration
-  This endpoints allows you to patch individual Ory Cloud Project configuration keys for Ory's services (identity, permission, ...). The configuration format is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.
+  Patch an Ory Cloud Project Configuration`
+  Deprecated: Use the `patchProjectWithRevision` endpoint instead to specify the exact revision the patch was generated for.  This endpoints allows you to patch individual Ory Cloud Project configuration keys for Ory's services (identity, permission, ...). The configuration format is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.
 
   ## Parameters
 
@@ -1328,7 +1364,7 @@ defmodule Ory.Api.V0alpha2 do
 
   - connection (Ory.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :token (String.t): A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/urls` to generate a URL for this endpoint.
+    - :token (String.t): A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint.
     - :return_to (String.t): The URL to return to after the logout was completed.
   ## Returns
 

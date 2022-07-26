@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **name** | **str** | The schema name  This is set by the user and is for them to easily recognise their schema | 
 **updated_at** | **datetime** | Last Time Schema was Updated | [readonly] 
 **content_hash** | **str** | The Content Hash  Contains a hash of the schema&#39;s content. | [optional] 
-**schema** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | The actual Identity JSON Schema | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

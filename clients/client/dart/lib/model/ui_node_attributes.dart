@@ -13,6 +13,7 @@ part of openapi.api;
 class UiNodeAttributes {
   /// Returns a new [UiNodeAttributes] instance.
   UiNodeAttributes({
+    this.autocomplete,
     required this.disabled,
     this.label,
     required this.name,
@@ -35,6 +36,9 @@ class UiNodeAttributes {
     required this.nonce,
     required this.referrerpolicy,
   });
+
+  /// The autocomplete attribute for the input.
+  UiNodeAttributesAutocompleteEnum? autocomplete;
 
   /// Sets the input's disabled field to true or false.
   bool disabled;
@@ -122,6 +126,7 @@ class UiNodeAttributes {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is UiNodeAttributes &&
+     other.autocomplete == autocomplete &&
      other.disabled == disabled &&
      other.label == label &&
      other.name == name &&
@@ -147,6 +152,7 @@ class UiNodeAttributes {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
+    (autocomplete == null ? 0 : autocomplete!.hashCode) +
     (disabled.hashCode) +
     (label == null ? 0 : label!.hashCode) +
     (name.hashCode) +
@@ -170,10 +176,15 @@ class UiNodeAttributes {
     (referrerpolicy.hashCode);
 
   @override
-  String toString() => 'UiNodeAttributes[disabled=$disabled, label=$label, name=$name, nodeType=$nodeType, onclick=$onclick, pattern=$pattern, required_=$required_, type=$type, value=$value, id=$id, text=$text, height=$height, src=$src, width=$width, href=$href, title=$title, async_=$async_, crossorigin=$crossorigin, integrity=$integrity, nonce=$nonce, referrerpolicy=$referrerpolicy]';
+  String toString() => 'UiNodeAttributes[autocomplete=$autocomplete, disabled=$disabled, label=$label, name=$name, nodeType=$nodeType, onclick=$onclick, pattern=$pattern, required_=$required_, type=$type, value=$value, id=$id, text=$text, height=$height, src=$src, width=$width, href=$href, title=$title, async_=$async_, crossorigin=$crossorigin, integrity=$integrity, nonce=$nonce, referrerpolicy=$referrerpolicy]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
+    if (autocomplete != null) {
+      _json[r'autocomplete'] = autocomplete;
+    } else {
+      _json[r'autocomplete'] = null;
+    }
       _json[r'disabled'] = disabled;
     if (label != null) {
       _json[r'label'] = label;
@@ -237,6 +248,7 @@ class UiNodeAttributes {
       }());
 
       return UiNodeAttributes(
+        autocomplete: UiNodeAttributesAutocompleteEnum.fromJson(json[r'autocomplete']),
         disabled: mapValueOfType<bool>(json, r'disabled')!,
         label: UiText.fromJson(json[r'label']),
         name: mapValueOfType<String>(json, r'name')!,
@@ -325,4 +337,90 @@ class UiNodeAttributes {
     'referrerpolicy',
   };
 }
+
+/// The autocomplete attribute for the input.
+class UiNodeAttributesAutocompleteEnum {
+  /// Instantiate a new enum with the provided [value].
+  const UiNodeAttributesAutocompleteEnum._(this.value);
+
+  /// The underlying value of this enum member.
+  final String value;
+
+  @override
+  String toString() => value;
+
+  String toJson() => value;
+
+  static const email = UiNodeAttributesAutocompleteEnum._(r'email');
+  static const tel = UiNodeAttributesAutocompleteEnum._(r'tel');
+  static const url = UiNodeAttributesAutocompleteEnum._(r'url');
+  static const currentPassword = UiNodeAttributesAutocompleteEnum._(r'current-password');
+  static const newPassword = UiNodeAttributesAutocompleteEnum._(r'new-password');
+  static const oneTimeCode = UiNodeAttributesAutocompleteEnum._(r'one-time-code');
+
+  /// List of all possible values in this [enum][UiNodeAttributesAutocompleteEnum].
+  static const values = <UiNodeAttributesAutocompleteEnum>[
+    email,
+    tel,
+    url,
+    currentPassword,
+    newPassword,
+    oneTimeCode,
+  ];
+
+  static UiNodeAttributesAutocompleteEnum? fromJson(dynamic value) => UiNodeAttributesAutocompleteEnumTypeTransformer().decode(value);
+
+  static List<UiNodeAttributesAutocompleteEnum>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <UiNodeAttributesAutocompleteEnum>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = UiNodeAttributesAutocompleteEnum.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+}
+
+/// Transformation class that can [encode] an instance of [UiNodeAttributesAutocompleteEnum] to String,
+/// and [decode] dynamic data back to [UiNodeAttributesAutocompleteEnum].
+class UiNodeAttributesAutocompleteEnumTypeTransformer {
+  factory UiNodeAttributesAutocompleteEnumTypeTransformer() => _instance ??= const UiNodeAttributesAutocompleteEnumTypeTransformer._();
+
+  const UiNodeAttributesAutocompleteEnumTypeTransformer._();
+
+  String encode(UiNodeAttributesAutocompleteEnum data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a UiNodeAttributesAutocompleteEnum.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  UiNodeAttributesAutocompleteEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data != null) {
+      switch (data.toString()) {
+        case r'email': return UiNodeAttributesAutocompleteEnum.email;
+        case r'tel': return UiNodeAttributesAutocompleteEnum.tel;
+        case r'url': return UiNodeAttributesAutocompleteEnum.url;
+        case r'current-password': return UiNodeAttributesAutocompleteEnum.currentPassword;
+        case r'new-password': return UiNodeAttributesAutocompleteEnum.newPassword;
+        case r'one-time-code': return UiNodeAttributesAutocompleteEnum.oneTimeCode;
+        default:
+          if (!allowNull) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [UiNodeAttributesAutocompleteEnumTypeTransformer] instance.
+  static UiNodeAttributesAutocompleteEnumTypeTransformer? _instance;
+}
+
 

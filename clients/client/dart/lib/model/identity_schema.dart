@@ -19,7 +19,6 @@ class IdentitySchema {
     required this.createdAt,
     required this.id,
     required this.name,
-    this.schema,
     required this.updatedAt,
   });
 
@@ -46,15 +45,6 @@ class IdentitySchema {
   /// The schema name  This is set by the user and is for them to easily recognise their schema
   String name;
 
-  /// The actual Identity JSON Schema
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  Object? schema;
-
   /// Last Time Schema was Updated
   DateTime updatedAt;
 
@@ -66,7 +56,6 @@ class IdentitySchema {
      other.createdAt == createdAt &&
      other.id == id &&
      other.name == name &&
-     other.schema == schema &&
      other.updatedAt == updatedAt;
 
   @override
@@ -78,11 +67,10 @@ class IdentitySchema {
     (createdAt.hashCode) +
     (id.hashCode) +
     (name.hashCode) +
-    (schema == null ? 0 : schema!.hashCode) +
     (updatedAt.hashCode);
 
   @override
-  String toString() => 'IdentitySchema[blobName=$blobName, blobUrl=$blobUrl, contentHash=$contentHash, createdAt=$createdAt, id=$id, name=$name, schema=$schema, updatedAt=$updatedAt]';
+  String toString() => 'IdentitySchema[blobName=$blobName, blobUrl=$blobUrl, contentHash=$contentHash, createdAt=$createdAt, id=$id, name=$name, updatedAt=$updatedAt]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
@@ -96,11 +84,6 @@ class IdentitySchema {
       _json[r'created_at'] = createdAt.toUtc().toIso8601String();
       _json[r'id'] = id;
       _json[r'name'] = name;
-    if (schema != null) {
-      _json[r'schema'] = schema;
-    } else {
-      _json[r'schema'] = null;
-    }
       _json[r'updated_at'] = updatedAt.toUtc().toIso8601String();
     return _json;
   }
@@ -130,7 +113,6 @@ class IdentitySchema {
         createdAt: mapDateTime(json, r'created_at', '')!,
         id: mapValueOfType<String>(json, r'id')!,
         name: mapValueOfType<String>(json, r'name')!,
-        schema: mapValueOfType<Object>(json, r'schema'),
         updatedAt: mapDateTime(json, r'updated_at', '')!,
       );
     }

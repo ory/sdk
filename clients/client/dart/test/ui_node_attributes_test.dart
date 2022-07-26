@@ -16,6 +16,12 @@ void main() {
   // final instance = UiNodeAttributes();
 
   group('test UiNodeAttributes', () {
+    // The autocomplete attribute for the input.
+    // String autocomplete
+    test('to test the property `autocomplete`', () async {
+      // TODO
+    });
+
     // Sets the input's disabled field to true or false.
     // bool disabled
     test('to test the property `disabled`', () async {

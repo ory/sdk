@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Autocomplete** | **string** | The autocomplete attribute for the input. | [optional] 
 **Disabled** | **bool** | Sets the input&#39;s disabled field to true or false. | 
 **Label** | [**ClientUiText**](ClientUiText.md) |  | [optional] 
 **Name** | **string** | The input&#39;s element name. | 

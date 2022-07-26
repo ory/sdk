@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.1.0-alpha.12
+  version: v0.2.0-alpha.4
 servers:
 - url: https://{project}.projects.oryapis.com/
   variables:
@@ -66,7 +66,13 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - description: Pagination Page
+      - description: |-
+          Pagination Page
+
+          This value is currently an integer, but it is not sequential. The value is not the page number, but a
+          reference. The next page can be any number and some numbers might return an empty list.
+
+          For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
         explode: true
         in: query
         name: page
@@ -231,6 +237,65 @@ paths:
       tags:
       - v0alpha2
       x-accepts: application/json
+    patch:
+      description: |-
+        NOTE: The fields `id`, `stateChangedAt` and `credentials` are not updateable.
+
+        Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+      operationId: adminPatchIdentity
+      parameters:
+      - description: ID must be set to the ID of identity you want to update
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/jsonPatchDocument'
+        x-originalParamName: Body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/identity'
+          description: identity
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/jsonError'
+          description: jsonError
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/jsonError'
+          description: jsonError
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/jsonError'
+          description: jsonError
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/jsonError'
+          description: jsonError
+      security:
+      - oryAccessToken: []
+      summary: Partially updates an Identity's field using [JSON Patch](https://jsonpatch.com/)
+      tags:
+      - v0alpha2
+      x-contentType: application/json
+      x-accepts: application/json
     put:
       description: |-
         This endpoint updates an identity. The full identity payload (except credentials) is expected. This endpoint does not support patching.
@@ -372,7 +437,13 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - description: Pagination Page
+      - description: |-
+          Pagination Page
+
+          This value is currently an integer, but it is not sequential. The value is not the page number, but a
+          reference. The next page can be any number and some numbers might return an empty list.
+
+          For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
         explode: true
         in: query
         name: page
@@ -941,6 +1012,8 @@ paths:
       x-accepts: application/json
     patch:
       description: |-
+        Deprecated: Use the `patchProjectWithRevision` endpoint instead to specify the exact revision the patch was generated for.
+
         This endpoints allows you to patch individual Ory Cloud Project configuration keys for
         Ory's services (identity, permission, ...). The configuration format is fully compatible
         with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).
@@ -1016,7 +1089,7 @@ paths:
           description: genericError
       security:
       - oryAccessToken: []
-      summary: Patch an Ory Cloud Project Configuration
+      summary: Patch an Ory Cloud Project Configuration`
       tags:
       - v0alpha2
       x-contentType: application/json
@@ -1614,7 +1687,13 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - description: Pagination Page
+      - description: |-
+          Pagination Page
+
+          This value is currently an integer, but it is not sequential. The value is not the page number, but a
+          reference. The next page can be any number and some numbers might return an empty list.
+
+          For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
         explode: true
         in: query
         name: page
@@ -1644,7 +1723,7 @@ paths:
   /schemas/{id}:
     get:
       description: Get a JSON Schema
-      operationId: getJsonSchema
+      operationId: getIdentitySchema
       parameters:
       - description: ID must be set to the ID of schema you want to get
         explode: false
@@ -1659,8 +1738,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/jsonSchema'
-          description: jsonSchema
+                $ref: '#/components/schemas/identitySchema'
+          description: identitySchema
         "404":
           content:
             application/json:
@@ -2123,7 +2202,7 @@ paths:
           A Valid Logout Token
 
           If you do not have a logout token because you only have a session cookie,
-          call `/self-service/logout/urls` to generate a URL for this endpoint.
+          call `/self-service/logout/browser` to generate a URL for this endpoint.
         explode: true
         in: query
         name: token
@@ -3315,7 +3394,7 @@ paths:
 
         This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
-        More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+        More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation).
       operationId: initializeSelfServiceVerificationFlowWithoutBrowser
       responses:
         "200":
@@ -3568,7 +3647,13 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - description: Pagination Page
+      - description: |-
+          Pagination Page
+
+          This value is currently an integer, but it is not sequential. The value is not the page number, but a
+          reference. The next page can be any number and some numbers might return an empty list.
+
+          For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
         explode: true
         in: query
         name: page
@@ -3803,9 +3888,26 @@ components:
       example:
         metadata_admin: ""
         traits: '{}'
+        credentials:
+          password:
+            config:
+              hashed_password: hashed_password
+              password: password
+          oidc:
+            config:
+              config:
+                hashed_password: hashed_password
+                password: password
+              providers:
+              - provider: provider
+                subject: subject
+              - provider: provider
+                subject: subject
         schema_id: schema_id
         metadata_public: ""
       properties:
+        credentials:
+          $ref: '#/components/schemas/adminIdentityImportCredentials'
         metadata_admin:
           description: Store metadata about the user which is only accessible through
             admin APIs such as `GET /admin/identities/<id>`.
@@ -4078,8 +4180,16 @@ components:
       - relation
       type: object
     SubscriptionStatus:
-      title: SubscriptionStatus is the list of allowed values for the subscription's
-        status.
+      description: |-
+        For `collection_method=charge_automatically` a subscription moves into `incomplete` if the initial payment attempt fails. A subscription in this state can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an `active` state. If the first invoice is not paid within 23 hours, the subscription transitions to `incomplete_expired`. This is a terminal state, the open invoice will be voided and no further invoices will be generated.
+
+        A subscription that is currently in a trial period is `trialing` and moves to `active` when the trial period is over.
+
+        If subscription `collection_method=charge_automatically` it becomes `past_due` when payment to renew it fails and `canceled` or `unpaid` (depending on your subscriptions settings) when Stripe has exhausted all payment retry attempts.
+
+        If subscription `collection_method=send_invoice` it becomes `past_due` when its invoice is not paid by the due date, and `canceled` or `unpaid` if it is still not paid by an additional deadline after that. Note that when a subscription has a status of `unpaid`, no subsequent invoices will be attempted (invoices will be created, but then immediately automatically closed). After receiving updated payment information from a customer, you may choose to reopen and pay their closed invoices.
+      title: Possible values are `incomplete`, `incomplete_expired`, `trialing`, `active`,
+        `past_due`, `canceled`, or `unpaid`.
       type: string
     Time:
       format: date-time
@@ -4165,11 +4275,30 @@ components:
       - traits
       type: object
     adminCreateIdentityImportCredentialsOidc:
+      example:
+        config:
+          config:
+            hashed_password: hashed_password
+            password: password
+          providers:
+          - provider: provider
+            subject: subject
+          - provider: provider
+            subject: subject
       properties:
         config:
           $ref: '#/components/schemas/adminCreateIdentityImportCredentialsOidcConfig'
       type: object
     adminCreateIdentityImportCredentialsOidcConfig:
+      example:
+        config:
+          hashed_password: hashed_password
+          password: password
+        providers:
+        - provider: provider
+          subject: subject
+        - provider: provider
+          subject: subject
       properties:
         config:
           $ref: '#/components/schemas/adminCreateIdentityImportCredentialsPasswordConfig'
@@ -4180,6 +4309,9 @@ components:
           type: array
       type: object
     adminCreateIdentityImportCredentialsOidcProvider:
+      example:
+        provider: provider
+        subject: subject
       properties:
         provider:
           description: The OpenID Connect provider to link the subject to. Usually
@@ -4194,11 +4326,18 @@ components:
       - subject
       type: object
     adminCreateIdentityImportCredentialsPassword:
+      example:
+        config:
+          hashed_password: hashed_password
+          password: password
       properties:
         config:
           $ref: '#/components/schemas/adminCreateIdentityImportCredentialsPasswordConfig'
       type: object
     adminCreateIdentityImportCredentialsPasswordConfig:
+      example:
+        hashed_password: hashed_password
+        password: password
       properties:
         hashed_password:
           description: The hashed password in [PHC format]( https://www.ory.sh/docs/kratos/concepts/credentials/username-email-password#hashed-password-format)
@@ -4223,6 +4362,21 @@ components:
       - identity_id
       type: object
     adminIdentityImportCredentials:
+      example:
+        password:
+          config:
+            hashed_password: hashed_password
+            password: password
+        oidc:
+          config:
+            config:
+              hashed_password: hashed_password
+              password: password
+            providers:
+            - provider: provider
+              subject: subject
+            - provider: provider
+              subject: subject
       properties:
         oidc:
           $ref: '#/components/schemas/adminCreateIdentityImportCredentialsOidc'
@@ -4778,13 +4932,11 @@ components:
         This prevents a user from having schemas with the same name.
         This also allows schemas to have the same name across the system.
       example:
-        schema: '{}'
         blob_name: blob_name
         updated_at: 2000-01-23T04:56:07.000+00:00
         name: CustomerIdentity
         created_at: 2000-01-23T04:56:07.000+00:00
         content_hash: content_hash
-        id: id
         blob_url: blob_url
       properties:
         blob_name:
@@ -4816,9 +4968,6 @@ components:
             This is set by the user and is for them to easily recognise their schema
           example: CustomerIdentity
           type: string
-        schema:
-          description: The actual Identity JSON Schema
-          type: object
         updated_at:
           description: Last Time Schema was Updated
           format: date-time
@@ -4832,6 +4981,14 @@ components:
       - name
       - updated_at
       title: Schema represents an Ory Kratos Identity Schema
+      type: object
+    identitySchemaContainer:
+      properties:
+        id:
+          description: The ID of the Identity JSON Schema
+          type: string
+        schema:
+          $ref: '#/components/schemas/identitySchema'
       type: object
     identitySchemaLocation:
       properties:
@@ -4930,6 +5087,13 @@ components:
 
         For more examples see: https://jsonpatch.com
       properties:
+        from:
+          description: |-
+            This field is used together with operation "move" and uses JSON Pointer notation.
+
+            Learn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5).
+          example: /name
+          type: string
         op:
           description: The JSON Patch operation
           enum:
@@ -4939,6 +5103,7 @@ components:
           - move
           - copy
           - test
+          example: replace
           type: string
         path:
           description: The JSON Pointer to the target key
@@ -4947,14 +5112,17 @@ components:
         value:
           description: The value to be used. Only available for `add` and `replace`
             operations.
+          example: foobar
       required:
       - op
       - path
       title: A JSON Patch
       type: object
-    jsonSchema:
-      description: Raw JSON Schema
-      type: object
+    jsonPatchDocument:
+      description: A JSONPatchDocument request
+      items:
+        $ref: '#/components/schemas/jsonPatch'
+      type: array
     listCustomHostnamesResponse:
       items:
         $ref: '#/components/schemas/cnameSettings'
@@ -5776,6 +5944,9 @@ components:
       items:
         $ref: '#/components/schemas/normalizedProject'
       type: array
+    nullBool:
+      nullable: true
+      type: boolean
     nullJsonRawMessage:
       description: NullJSONRawMessage represents a json.RawMessage that works well
         with JSON, SQL, and Swagger and is NULLable-
@@ -5788,7 +5959,13 @@ components:
       properties:
         page:
           default: 1
-          description: Pagination Page
+          description: |-
+            Pagination Page
+
+            This value is currently an integer, but it is not sequential. The value is not the page number, but a
+            reference. The next page can be any number and some numbers might return an empty list.
+
+            For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
           format: int64
           minimum: 1
           type: integer
@@ -7132,10 +7309,8 @@ components:
             flows.
           type: string
         identifier:
-          description: |-
-            Identifier is the email or username of the user trying to log in. This field is
-            only required when using WebAuthn for passwordless login. When using WebAuthn
-            for multi-factor authentication, it is not needed.
+          description: Identifier is the email or username of the user trying to log
+            in.
           type: string
         method:
           description: Method should be set to "webAuthn" when logging in using the
@@ -7148,6 +7323,7 @@ components:
             This must contain the ID of the WebAuthN connection.
           type: string
       required:
+      - identifier
       - method
       title: submitSelfServiceLoginFlowWithWebAuthnMethodBody is used to decode the
         login form payload.
@@ -7546,8 +7722,16 @@ components:
         plan_changes_to:
           $ref: '#/components/schemas/NullPlan'
         status:
-          title: SubscriptionStatus is the list of allowed values for the subscription's
-            status.
+          description: |-
+            For `collection_method=charge_automatically` a subscription moves into `incomplete` if the initial payment attempt fails. A subscription in this state can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an `active` state. If the first invoice is not paid within 23 hours, the subscription transitions to `incomplete_expired`. This is a terminal state, the open invoice will be voided and no further invoices will be generated.
+
+            A subscription that is currently in a trial period is `trialing` and moves to `active` when the trial period is over.
+
+            If subscription `collection_method=charge_automatically` it becomes `past_due` when payment to renew it fails and `canceled` or `unpaid` (depending on your subscriptions settings) when Stripe has exhausted all payment retry attempts.
+
+            If subscription `collection_method=send_invoice` it becomes `past_due` when its invoice is not paid by the due date, and `canceled` or `unpaid` if it is still not paid by an additional deadline after that. Note that when a subscription has a status of `unpaid`, no subsequent invoices will be attempted (invoices will be created, but then immediately automatically closed). After receiving updated payment information from a customer, you may choose to reopen and pay their closed invoices.
+          title: Possible values are `incomplete`, `incomplete_expired`, `trialing`,
+            `active`, `past_due`, `canceled`, or `unpaid`.
           type: string
         updated_at:
           format: date-time
@@ -7792,6 +7976,46 @@ components:
       required:
       - identity
       type: object
+    tokenPagination:
+      properties:
+        page_size:
+          default: 250
+          description: |-
+            Items per page
+
+            This is the number of items per page to return.
+            For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          format: int64
+          maximum: 1000
+          minimum: 1
+          type: integer
+        page_token:
+          default: "1"
+          description: |-
+            Next Page Token
+
+            The next page token.
+            For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          minimum: 1
+          type: string
+      type: object
+    tokenPaginationHeaders:
+      properties:
+        link:
+          description: |-
+            The link header contains pagination links.
+
+            For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+
+            in: header
+          type: string
+        x-total-count:
+          description: |-
+            The total number of clients.
+
+            in: header
+          type: string
+      type: object
     uiContainer:
       description: Container represents a HTML Form. The container can work with both
         HTTP Form and JSON requests
@@ -7997,11 +8221,19 @@ components:
       - width
       title: ImageAttributes represents the attributes of an image node.
       type: object
-    uiNodeInputAttributeType:
-      type: string
     uiNodeInputAttributes:
       description: InputAttributes represents the attributes of an input node
       properties:
+        autocomplete:
+          description: The autocomplete attribute for the input.
+          enum:
+          - email
+          - tel
+          - url
+          - current-password
+          - new-password
+          - one-time-code
+          type: string
         disabled:
           description: Sets the input's disabled field to true or false.
           type: boolean
@@ -8027,6 +8259,7 @@ components:
           description: Mark this input field as required.
           type: boolean
         type:
+          description: The input's element type.
           type: string
         value:
           description: The input's value.
@@ -8226,7 +8459,6 @@ components:
             is the limitation in the SQL Schema
           type: string
       required:
-      - id
       - status
       - value
       - verified

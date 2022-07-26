@@ -51,12 +51,6 @@ void main() {
       // TODO
     });
 
-    // The actual Identity JSON Schema
-    // Object schema
-    test('to test the property `schema`', () async {
-      // TODO
-    });
-
     // Last Time Schema was Updated
     // DateTime updatedAt
     test('to test the property `updatedAt`', () async {

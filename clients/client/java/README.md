@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v0.1.0-alpha.12
-  - Build date: 2022-07-21T15:56:21.922601002Z[Etc/UTC]
+- API version: v0.2.0-alpha.4
+  - Build date: 2022-07-26T09:38:14.572024203Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v0.1.0-alpha.12</version>
+  <version>v0.2.0-alpha.4</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v0.1.0-alpha.12"
+     implementation "sh.ory:client:v0.2.0-alpha.4"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v0.1.0-alpha.12.jar`
+* `target/client-v0.2.0-alpha.4.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -137,10 +137,11 @@ Class | Method | HTTP request | Description
 *V0alpha2Api* | [**adminGetIdentity**](docs/V0alpha2Api.md#adminGetIdentity) | **GET** /admin/identities/{id} | Get an Identity
 *V0alpha2Api* | [**adminListIdentities**](docs/V0alpha2Api.md#adminListIdentities) | **GET** /admin/identities | List Identities
 *V0alpha2Api* | [**adminListIdentitySessions**](docs/V0alpha2Api.md#adminListIdentitySessions) | **GET** /admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity.
+*V0alpha2Api* | [**adminPatchIdentity**](docs/V0alpha2Api.md#adminPatchIdentity) | **PATCH** /admin/identities/{id} | Partially updates an Identity&#39;s field using [JSON Patch](https://jsonpatch.com/)
 *V0alpha2Api* | [**adminUpdateIdentity**](docs/V0alpha2Api.md#adminUpdateIdentity) | **PUT** /admin/identities/{id} | Update an Identity
 *V0alpha2Api* | [**createProject**](docs/V0alpha2Api.md#createProject) | **POST** /projects | Create a Project
 *V0alpha2Api* | [**createSelfServiceLogoutFlowUrlForBrowsers**](docs/V0alpha2Api.md#createSelfServiceLogoutFlowUrlForBrowsers) | **GET** /self-service/logout/browser | Create a Logout URL for Browsers
-*V0alpha2Api* | [**getJsonSchema**](docs/V0alpha2Api.md#getJsonSchema) | **GET** /schemas/{id} | 
+*V0alpha2Api* | [**getIdentitySchema**](docs/V0alpha2Api.md#getIdentitySchema) | **GET** /schemas/{id} | 
 *V0alpha2Api* | [**getProject**](docs/V0alpha2Api.md#getProject) | **GET** /projects/{project_id} | Get a Project
 *V0alpha2Api* | [**getProjectMembers**](docs/V0alpha2Api.md#getProjectMembers) | **GET** /projects/{project_id}/members | Get all members associated with this project.
 *V0alpha2Api* | [**getSelfServiceError**](docs/V0alpha2Api.md#getSelfServiceError) | **GET** /self-service/errors | Get Self-Service Errors
@@ -163,7 +164,7 @@ Class | Method | HTTP request | Description
 *V0alpha2Api* | [**listIdentitySchemas**](docs/V0alpha2Api.md#listIdentitySchemas) | **GET** /schemas | 
 *V0alpha2Api* | [**listProjects**](docs/V0alpha2Api.md#listProjects) | **GET** /projects | List All Projects
 *V0alpha2Api* | [**listSessions**](docs/V0alpha2Api.md#listSessions) | **GET** /sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint.
-*V0alpha2Api* | [**patchProject**](docs/V0alpha2Api.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Cloud Project Configuration
+*V0alpha2Api* | [**patchProject**](docs/V0alpha2Api.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Cloud Project Configuration&#x60;
 *V0alpha2Api* | [**purgeProject**](docs/V0alpha2Api.md#purgeProject) | **DELETE** /projects/{project_id} | Irrecoverably Purge a Project
 *V0alpha2Api* | [**removeProjectMember**](docs/V0alpha2Api.md#removeProjectMember) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to &#x60;REMOVED&#x60;.
 *V0alpha2Api* | [**revokeSession**](docs/V0alpha2Api.md#revokeSession) | **DELETE** /sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
@@ -216,6 +217,7 @@ Class | Method | HTTP request | Description
  - [IdentityCredentialsPassword](docs/IdentityCredentialsPassword.md)
  - [IdentityCredentialsType](docs/IdentityCredentialsType.md)
  - [IdentitySchema](docs/IdentitySchema.md)
+ - [IdentitySchemaContainer](docs/IdentitySchemaContainer.md)
  - [IdentitySchemaLocation](docs/IdentitySchemaLocation.md)
  - [IdentitySchemaPreset](docs/IdentitySchemaPreset.md)
  - [IdentitySchemaValidationResult](docs/IdentitySchemaValidationResult.md)
@@ -299,6 +301,8 @@ Class | Method | HTTP request | Description
  - [SuccessfulProjectUpdate](docs/SuccessfulProjectUpdate.md)
  - [SuccessfulSelfServiceLoginWithoutBrowser](docs/SuccessfulSelfServiceLoginWithoutBrowser.md)
  - [SuccessfulSelfServiceRegistrationWithoutBrowser](docs/SuccessfulSelfServiceRegistrationWithoutBrowser.md)
+ - [TokenPagination](docs/TokenPagination.md)
+ - [TokenPaginationHeaders](docs/TokenPaginationHeaders.md)
  - [UiContainer](docs/UiContainer.md)
  - [UiNode](docs/UiNode.md)
  - [UiNodeAnchorAttributes](docs/UiNodeAnchorAttributes.md)

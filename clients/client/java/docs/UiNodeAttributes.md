@@ -7,6 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**autocomplete** | [**AutocompleteEnum**](#AutocompleteEnum) | The autocomplete attribute for the input. |  [optional]
 **disabled** | **Boolean** | Sets the input&#39;s disabled field to true or false. | 
 **label** | [**UiText**](UiText.md) |  |  [optional]
 **name** | **String** | The input&#39;s element name. | 
@@ -28,6 +29,19 @@ Name | Type | Description | Notes
 **integrity** | **String** | The script&#39;s integrity hash | 
 **nonce** | **String** | Nonce for CSP  A nonce you may want to use to improve your Content Security Policy. You do not have to use this value but if you want to improve your CSP policies you may use it. You can also choose to use your own nonce value! | 
 **referrerpolicy** | **String** | The script referrer policy | 
+
+
+
+## Enum: AutocompleteEnum
+
+Name | Value
+---- | -----
+EMAIL | &quot;email&quot;
+TEL | &quot;tel&quot;
+URL | &quot;url&quot;
+CURRENT_PASSWORD | &quot;current-password&quot;
+NEW_PASSWORD | &quot;new-password&quot;
+ONE_TIME_CODE | &quot;one-time-code&quot;
 
 
 

@@ -9,7 +9,7 @@ import 'package:ory_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdAt** | [**DateTime**](DateTime.md) | When this entry was created | [optional] 
-**id** | **String** |  | 
+**id** | **String** |  | [optional] 
 **status** | **String** | VerifiableAddressStatus must not exceed 16 characters as that is the limitation in the SQL Schema | 
 **updatedAt** | [**DateTime**](DateTime.md) | When this entry was last updated | [optional] 
 **value** | **String** | The address value  example foo@user.com | 

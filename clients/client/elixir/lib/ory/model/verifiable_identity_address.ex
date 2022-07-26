@@ -21,7 +21,7 @@ defmodule Ory.Model.VerifiableIdentityAddress do
 
   @type t :: %__MODULE__{
     :created_at => DateTime.t | nil,
-    :id => String.t,
+    :id => String.t | nil,
     :status => String.t,
     :updated_at => DateTime.t | nil,
     :value => String.t,

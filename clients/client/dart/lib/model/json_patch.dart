@@ -13,10 +13,20 @@ part of openapi.api;
 class JsonPatch {
   /// Returns a new [JsonPatch] instance.
   JsonPatch({
+    this.from,
     required this.op,
     required this.path,
     this.value,
   });
+
+  /// This field is used together with operation \"move\" and uses JSON Pointer notation.  Learn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5).
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? from;
 
   /// The JSON Patch operation
   JsonPatchOpEnum op;
@@ -29,6 +39,7 @@ class JsonPatch {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is JsonPatch &&
+     other.from == from &&
      other.op == op &&
      other.path == path &&
      other.value == value;
@@ -36,15 +47,21 @@ class JsonPatch {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
+    (from == null ? 0 : from!.hashCode) +
     (op.hashCode) +
     (path.hashCode) +
     (value == null ? 0 : value!.hashCode);
 
   @override
-  String toString() => 'JsonPatch[op=$op, path=$path, value=$value]';
+  String toString() => 'JsonPatch[from=$from, op=$op, path=$path, value=$value]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
+    if (from != null) {
+      _json[r'from'] = from;
+    } else {
+      _json[r'from'] = null;
+    }
       _json[r'op'] = op;
       _json[r'path'] = path;
     if (value != null) {
@@ -74,6 +91,7 @@ class JsonPatch {
       }());
 
       return JsonPatch(
+        from: mapValueOfType<String>(json, r'from'),
         op: JsonPatchOpEnum.fromJson(json[r'op'])!,
         path: mapValueOfType<String>(json, r'path')!,
         value: mapValueOfType<Object>(json, r'value'),

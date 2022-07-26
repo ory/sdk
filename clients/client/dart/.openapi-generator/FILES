@@ -36,6 +36,7 @@ doc/IdentityCredentialsOidcProvider.md
 doc/IdentityCredentialsPassword.md
 doc/IdentityCredentialsType.md
 doc/IdentitySchema.md
+doc/IdentitySchemaContainer.md
 doc/IdentitySchemaLocation.md
 doc/IdentitySchemaPreset.md
 doc/IdentitySchemaValidationResult.md
@@ -120,6 +121,8 @@ doc/Subscription.md
 doc/SuccessfulProjectUpdate.md
 doc/SuccessfulSelfServiceLoginWithoutBrowser.md
 doc/SuccessfulSelfServiceRegistrationWithoutBrowser.md
+doc/TokenPagination.md
+doc/TokenPaginationHeaders.md
 doc/UiContainer.md
 doc/UiNode.md
 doc/UiNodeAnchorAttributes.md
@@ -185,6 +188,7 @@ lib/model/identity_credentials_oidc_provider.dart
 lib/model/identity_credentials_password.dart
 lib/model/identity_credentials_type.dart
 lib/model/identity_schema.dart
+lib/model/identity_schema_container.dart
 lib/model/identity_schema_location.dart
 lib/model/identity_schema_preset.dart
 lib/model/identity_schema_validation_result.dart
@@ -267,6 +271,8 @@ lib/model/subscription.dart
 lib/model/successful_project_update.dart
 lib/model/successful_self_service_login_without_browser.dart
 lib/model/successful_self_service_registration_without_browser.dart
+lib/model/token_pagination.dart
+lib/model/token_pagination_headers.dart
 lib/model/ui_container.dart
 lib/model/ui_node.dart
 lib/model/ui_node_anchor_attributes.dart
@@ -315,6 +321,7 @@ test/identity_credentials_oidc_test.dart
 test/identity_credentials_password_test.dart
 test/identity_credentials_test.dart
 test/identity_credentials_type_test.dart
+test/identity_schema_container_test.dart
 test/identity_schema_location_test.dart
 test/identity_schema_preset_test.dart
 test/identity_schema_test.dart
@@ -401,6 +408,8 @@ test/subscription_test.dart
 test/successful_project_update_test.dart
 test/successful_self_service_login_without_browser_test.dart
 test/successful_self_service_registration_without_browser_test.dart
+test/token_pagination_headers_test.dart
+test/token_pagination_test.dart
 test/ui_container_test.dart
 test/ui_node_anchor_attributes_test.dart
 test/ui_node_attributes_test.dart

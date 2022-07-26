@@ -9,7 +9,7 @@ VerifiableAddress is an identity's verifiable address
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdAt** | **OffsetDateTime** | When this entry was created |  [optional]
-**id** | **UUID** |  | 
+**id** | **UUID** |  |  [optional]
 **status** | **String** | VerifiableAddressStatus must not exceed 16 characters as that is the limitation in the SQL Schema | 
 **updatedAt** | **OffsetDateTime** | When this entry was last updated |  [optional]
 **value** | **String** | The address value  example foo@user.com | 

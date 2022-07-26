@@ -16,6 +16,12 @@ void main() {
   // final instance = JsonPatch();
 
   group('test JsonPatch', () {
+    // This field is used together with operation \"move\" and uses JSON Pointer notation.  Learn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5).
+    // String from
+    test('to test the property `from`', () async {
+      // TODO
+    });
+
     // The JSON Patch operation
     // String op
     test('to test the property `op`', () async {

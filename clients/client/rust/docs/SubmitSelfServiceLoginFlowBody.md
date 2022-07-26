@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **csrf_token** | Option<**String**> | Sending the anti-csrf token is only required for browser login flows. | [optional]
-**identifier** | **String** | Identifier is the email or username of the user trying to log in. This field is only required when using WebAuthn for passwordless login. When using WebAuthn for multi-factor authentication, it is not needed. | 
+**identifier** | **String** | Identifier is the email or username of the user trying to log in. | 
 **method** | **String** | Method should be set to \"lookup_secret\" when logging in using the lookup_secret strategy. | 
 **password** | **String** | The user's password. | 
 **password_identifier** | Option<**String**> | Identifier is the email or username of the user trying to log in. This field is deprecated! | [optional]

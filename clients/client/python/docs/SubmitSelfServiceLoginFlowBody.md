@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **password_identifier** | **str** | Identifier is the email or username of the user trying to log in. This field is deprecated! | [optional] 
 **traits** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | The identity traits. This is a placeholder for the registration flow. | [optional] 
 **webauthn_login** | **str** | Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] 
-**identifier** | **str** | Identifier is the email or username of the user trying to log in. This field is only required when using WebAuthn for passwordless login. When using WebAuthn for multi-factor authentication, it is not needed. | [optional] 
+**identifier** | **str** | Identifier is the email or username of the user trying to log in. | [optional] 
 **password** | **str** | The user&#39;s password. | [optional] 
 **provider** | **str** | The provider to register with | [optional] 
 **totp_code** | **str** | The TOTP code. | [optional] 

@@ -40,6 +40,7 @@ docs/Model/IdentityCredentialsOidcProvider.md
 docs/Model/IdentityCredentialsPassword.md
 docs/Model/IdentityCredentialsType.md
 docs/Model/IdentitySchema.md
+docs/Model/IdentitySchemaContainer.md
 docs/Model/IdentitySchemaLocation.md
 docs/Model/IdentitySchemaPreset.md
 docs/Model/IdentitySchemaValidationResult.md
@@ -123,6 +124,8 @@ docs/Model/Subscription.md
 docs/Model/SuccessfulProjectUpdate.md
 docs/Model/SuccessfulSelfServiceLoginWithoutBrowser.md
 docs/Model/SuccessfulSelfServiceRegistrationWithoutBrowser.md
+docs/Model/TokenPagination.md
+docs/Model/TokenPaginationHeaders.md
 docs/Model/UiContainer.md
 docs/Model/UiNode.md
 docs/Model/UiNodeAnchorAttributes.md
@@ -179,6 +182,7 @@ lib/Model/IdentityCredentialsOidcProvider.php
 lib/Model/IdentityCredentialsPassword.php
 lib/Model/IdentityCredentialsType.php
 lib/Model/IdentitySchema.php
+lib/Model/IdentitySchemaContainer.php
 lib/Model/IdentitySchemaLocation.php
 lib/Model/IdentitySchemaPreset.php
 lib/Model/IdentitySchemaValidationResult.php
@@ -263,6 +267,8 @@ lib/Model/Subscription.php
 lib/Model/SuccessfulProjectUpdate.php
 lib/Model/SuccessfulSelfServiceLoginWithoutBrowser.php
 lib/Model/SuccessfulSelfServiceRegistrationWithoutBrowser.php
+lib/Model/TokenPagination.php
+lib/Model/TokenPaginationHeaders.php
 lib/Model/UiContainer.php
 lib/Model/UiNode.php
 lib/Model/UiNodeAnchorAttributes.php
@@ -315,6 +321,7 @@ test/Model/IdentityCredentialsOidcTest.php
 test/Model/IdentityCredentialsPasswordTest.php
 test/Model/IdentityCredentialsTest.php
 test/Model/IdentityCredentialsTypeTest.php
+test/Model/IdentitySchemaContainerTest.php
 test/Model/IdentitySchemaLocationTest.php
 test/Model/IdentitySchemaPresetTest.php
 test/Model/IdentitySchemaTest.php
@@ -400,6 +407,8 @@ test/Model/SubscriptionTest.php
 test/Model/SuccessfulProjectUpdateTest.php
 test/Model/SuccessfulSelfServiceLoginWithoutBrowserTest.php
 test/Model/SuccessfulSelfServiceRegistrationWithoutBrowserTest.php
+test/Model/TokenPaginationHeadersTest.php
+test/Model/TokenPaginationTest.php
 test/Model/UiContainerTest.php
 test/Model/UiNodeAnchorAttributesTest.php
 test/Model/UiNodeAttributesTest.php

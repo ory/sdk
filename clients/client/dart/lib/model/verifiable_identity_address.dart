@@ -14,7 +14,7 @@ class VerifiableIdentityAddress {
   /// Returns a new [VerifiableIdentityAddress] instance.
   VerifiableIdentityAddress({
     this.createdAt,
-    required this.id,
+    this.id,
     required this.status,
     this.updatedAt,
     required this.value,
@@ -32,7 +32,13 @@ class VerifiableIdentityAddress {
   ///
   DateTime? createdAt;
 
-  String id;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? id;
 
   /// VerifiableAddressStatus must not exceed 16 characters as that is the limitation in the SQL Schema
   String status;
@@ -78,7 +84,7 @@ class VerifiableIdentityAddress {
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (createdAt == null ? 0 : createdAt!.hashCode) +
-    (id.hashCode) +
+    (id == null ? 0 : id!.hashCode) +
     (status.hashCode) +
     (updatedAt == null ? 0 : updatedAt!.hashCode) +
     (value.hashCode) +
@@ -96,7 +102,11 @@ class VerifiableIdentityAddress {
     } else {
       _json[r'created_at'] = null;
     }
+    if (id != null) {
       _json[r'id'] = id;
+    } else {
+      _json[r'id'] = null;
+    }
       _json[r'status'] = status;
     if (updatedAt != null) {
       _json[r'updated_at'] = updatedAt!.toUtc().toIso8601String();
@@ -134,7 +144,7 @@ class VerifiableIdentityAddress {
 
       return VerifiableIdentityAddress(
         createdAt: mapDateTime(json, r'created_at', ''),
-        id: mapValueOfType<String>(json, r'id')!,
+        id: mapValueOfType<String>(json, r'id'),
         status: mapValueOfType<String>(json, r'status')!,
         updatedAt: mapDateTime(json, r'updated_at', ''),
         value: mapValueOfType<String>(json, r'value')!,
@@ -190,7 +200,6 @@ class VerifiableIdentityAddress {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
-    'id',
     'status',
     'value',
     'verified',

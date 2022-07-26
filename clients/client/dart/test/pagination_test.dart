@@ -16,7 +16,7 @@ void main() {
   // final instance = Pagination();
 
   group('test Pagination', () {
-    // Pagination Page
+    // Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
     // int page (default value: 1)
     test('to test the property `page`', () async {
       // TODO

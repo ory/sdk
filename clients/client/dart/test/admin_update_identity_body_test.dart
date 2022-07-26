@@ -16,6 +16,11 @@ void main() {
   // final instance = AdminUpdateIdentityBody();
 
   group('test AdminUpdateIdentityBody', () {
+    // AdminIdentityImportCredentials credentials
+    test('to test the property `credentials`', () async {
+      // TODO
+    });
+
     // Store metadata about the user which is only accessible through admin APIs such as `GET /admin/identities/<id>`.
     // Object metadataAdmin
     test('to test the property `metadataAdmin`', () async {

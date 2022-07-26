@@ -12,10 +12,11 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**admin_get_identity**](V0alpha2Api.md#admin_get_identity) | **GET** /admin/identities/{id} | Get an Identity |
 | [**admin_list_identities**](V0alpha2Api.md#admin_list_identities) | **GET** /admin/identities | List Identities |
 | [**admin_list_identity_sessions**](V0alpha2Api.md#admin_list_identity_sessions) | **GET** /admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity. |
+| [**admin_patch_identity**](V0alpha2Api.md#admin_patch_identity) | **PATCH** /admin/identities/{id} | Partially updates an Identity&#39;s field using [JSON Patch](https://jsonpatch.com/) |
 | [**admin_update_identity**](V0alpha2Api.md#admin_update_identity) | **PUT** /admin/identities/{id} | Update an Identity |
 | [**create_project**](V0alpha2Api.md#create_project) | **POST** /projects | Create a Project |
 | [**create_self_service_logout_flow_url_for_browsers**](V0alpha2Api.md#create_self_service_logout_flow_url_for_browsers) | **GET** /self-service/logout/browser | Create a Logout URL for Browsers |
-| [**get_json_schema**](V0alpha2Api.md#get_json_schema) | **GET** /schemas/{id} |  |
+| [**get_identity_schema**](V0alpha2Api.md#get_identity_schema) | **GET** /schemas/{id} |  |
 | [**get_project**](V0alpha2Api.md#get_project) | **GET** /projects/{project_id} | Get a Project |
 | [**get_project_members**](V0alpha2Api.md#get_project_members) | **GET** /projects/{project_id}/members | Get all members associated with this project. |
 | [**get_self_service_error**](V0alpha2Api.md#get_self_service_error) | **GET** /self-service/errors | Get Self-Service Errors |
@@ -38,7 +39,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**list_identity_schemas**](V0alpha2Api.md#list_identity_schemas) | **GET** /schemas |  |
 | [**list_projects**](V0alpha2Api.md#list_projects) | **GET** /projects | List All Projects |
 | [**list_sessions**](V0alpha2Api.md#list_sessions) | **GET** /sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint. |
-| [**patch_project**](V0alpha2Api.md#patch_project) | **PATCH** /projects/{project_id} | Patch an Ory Cloud Project Configuration |
+| [**patch_project**](V0alpha2Api.md#patch_project) | **PATCH** /projects/{project_id} | Patch an Ory Cloud Project Configuration&#x60; |
 | [**purge_project**](V0alpha2Api.md#purge_project) | **DELETE** /projects/{project_id} | Irrecoverably Purge a Project |
 | [**remove_project_member**](V0alpha2Api.md#remove_project_member) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to &#x60;REMOVED&#x60;. |
 | [**revoke_session**](V0alpha2Api.md#revoke_session) | **DELETE** /sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted. |
@@ -496,7 +497,7 @@ end
 api_instance = OryClient::V0alpha2Api.new
 opts = {
   per_page: 789, # Integer | Items per Page  This is the number of items per page.
-  page: 789 # Integer | Pagination Page
+  page: 789 # Integer | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
 }
 
 begin
@@ -531,7 +532,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **per_page** | **Integer** | Items per Page  This is the number of items per page. | [optional][default to 250] |
-| **page** | **Integer** | Pagination Page | [optional][default to 1] |
+| **page** | **Integer** | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional][default to 1] |
 
 ### Return type
 
@@ -570,7 +571,7 @@ api_instance = OryClient::V0alpha2Api.new
 id = 'id_example' # String | ID is the identity's ID.
 opts = {
   per_page: 789, # Integer | Items per Page  This is the number of items per page.
-  page: 789, # Integer | Pagination Page
+  page: 789, # Integer | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
   active: true # Boolean | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
 }
 
@@ -607,7 +608,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | ID is the identity&#39;s ID. |  |
 | **per_page** | **Integer** | Items per Page  This is the number of items per page. | [optional][default to 250] |
-| **page** | **Integer** | Pagination Page | [optional][default to 1] |
+| **page** | **Integer** | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional][default to 1] |
 | **active** | **Boolean** | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [optional] |
 
 ### Return type
@@ -621,6 +622,79 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## admin_patch_identity
+
+> <Identity> admin_patch_identity(id, opts)
+
+Partially updates an Identity's field using [JSON Patch](https://jsonpatch.com/)
+
+NOTE: The fields `id`, `stateChangedAt` and `credentials` are not updateable.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::V0alpha2Api.new
+id = 'id_example' # String | ID must be set to the ID of identity you want to update
+opts = {
+  json_patch: [OryClient::JsonPatch.new({op: 'add', path: '/services/identity/config/smtp/from_name'})] # Array<JsonPatch> | 
+}
+
+begin
+  # Partially updates an Identity's field using [JSON Patch](https://jsonpatch.com/)
+  result = api_instance.admin_patch_identity(id, opts)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling V0alpha2Api->admin_patch_identity: #{e}"
+end
+```
+
+#### Using the admin_patch_identity_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Identity>, Integer, Hash)> admin_patch_identity_with_http_info(id, opts)
+
+```ruby
+begin
+  # Partially updates an Identity's field using [JSON Patch](https://jsonpatch.com/)
+  data, status_code, headers = api_instance.admin_patch_identity_with_http_info(id, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Identity>
+rescue OryClient::ApiError => e
+  puts "Error when calling V0alpha2Api->admin_patch_identity_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** | ID must be set to the ID of identity you want to update |  |
+| **json_patch** | [**Array&lt;JsonPatch&gt;**](JsonPatch.md) |  | [optional] |
+
+### Return type
+
+[**Identity**](Identity.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 
@@ -834,9 +908,9 @@ No authorization required
 - **Accept**: application/json
 
 
-## get_json_schema
+## get_identity_schema
 
-> Object get_json_schema(id)
+> <IdentitySchema> get_identity_schema(id)
 
 
 
@@ -853,28 +927,28 @@ id = 'id_example' # String | ID must be set to the ID of schema you want to get
 
 begin
   
-  result = api_instance.get_json_schema(id)
+  result = api_instance.get_identity_schema(id)
   p result
 rescue OryClient::ApiError => e
-  puts "Error when calling V0alpha2Api->get_json_schema: #{e}"
+  puts "Error when calling V0alpha2Api->get_identity_schema: #{e}"
 end
 ```
 
-#### Using the get_json_schema_with_http_info variant
+#### Using the get_identity_schema_with_http_info variant
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(Object, Integer, Hash)> get_json_schema_with_http_info(id)
+> <Array(<IdentitySchema>, Integer, Hash)> get_identity_schema_with_http_info(id)
 
 ```ruby
 begin
   
-  data, status_code, headers = api_instance.get_json_schema_with_http_info(id)
+  data, status_code, headers = api_instance.get_identity_schema_with_http_info(id)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => Object
+  p data # => <IdentitySchema>
 rescue OryClient::ApiError => e
-  puts "Error when calling V0alpha2Api->get_json_schema_with_http_info: #{e}"
+  puts "Error when calling V0alpha2Api->get_identity_schema_with_http_info: #{e}"
 end
 ```
 
@@ -886,7 +960,7 @@ end
 
 ### Return type
 
-**Object**
+[**IdentitySchema**](IdentitySchema.md)
 
 ### Authorization
 
@@ -2101,7 +2175,7 @@ No authorization required
 
 Initialize Verification Flow for APIs, Services, Apps, ...
 
-This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation).
 
 ### Examples
 
@@ -2173,7 +2247,7 @@ require 'ory-client'
 api_instance = OryClient::V0alpha2Api.new
 opts = {
   per_page: 789, # Integer | Items per Page  This is the number of items per page.
-  page: 789 # Integer | Pagination Page
+  page: 789 # Integer | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
 }
 
 begin
@@ -2208,7 +2282,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **per_page** | **Integer** | Items per Page  This is the number of items per page. | [optional][default to 250] |
-| **page** | **Integer** | Pagination Page | [optional][default to 1] |
+| **page** | **Integer** | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional][default to 1] |
 
 ### Return type
 
@@ -2309,7 +2383,7 @@ opts = {
   x_session_token: 'x_session_token_example', # String | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`.
   cookie: 'cookie_example', # String | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored.
   per_page: 789, # Integer | Items per Page  This is the number of items per page.
-  page: 789 # Integer | Pagination Page
+  page: 789 # Integer | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
 }
 
 begin
@@ -2346,7 +2420,7 @@ end
 | **x_session_token** | **String** | Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;. | [optional] |
 | **cookie** | **String** | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored. | [optional] |
 | **per_page** | **Integer** | Items per Page  This is the number of items per page. | [optional][default to 250] |
-| **page** | **Integer** | Pagination Page | [optional][default to 1] |
+| **page** | **Integer** | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional][default to 1] |
 
 ### Return type
 
@@ -2366,9 +2440,9 @@ No authorization required
 
 > <SuccessfulProjectUpdate> patch_project(project_id, opts)
 
-Patch an Ory Cloud Project Configuration
+Patch an Ory Cloud Project Configuration`
 
-This endpoints allows you to patch individual Ory Cloud Project configuration keys for Ory's services (identity, permission, ...). The configuration format is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.
+Deprecated: Use the `patchProjectWithRevision` endpoint instead to specify the exact revision the patch was generated for.  This endpoints allows you to patch individual Ory Cloud Project configuration keys for Ory's services (identity, permission, ...). The configuration format is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.
 
 ### Examples
 
@@ -2388,7 +2462,7 @@ opts = {
 }
 
 begin
-  # Patch an Ory Cloud Project Configuration
+  # Patch an Ory Cloud Project Configuration`
   result = api_instance.patch_project(project_id, opts)
   p result
 rescue OryClient::ApiError => e
@@ -2404,7 +2478,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # Patch an Ory Cloud Project Configuration
+  # Patch an Ory Cloud Project Configuration`
   data, status_code, headers = api_instance.patch_project_with_http_info(project_id, opts)
   p status_code # => 2xx
   p headers # => { ... }
@@ -2792,7 +2866,7 @@ require 'ory-client'
 
 api_instance = OryClient::V0alpha2Api.new
 opts = {
-  token: 'token_example', # String | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/urls` to generate a URL for this endpoint.
+  token: 'token_example', # String | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint.
   return_to: 'return_to_example' # String | The URL to return to after the logout was completed.
 }
 
@@ -2826,7 +2900,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **token** | **String** | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call &#x60;/self-service/logout/urls&#x60; to generate a URL for this endpoint. | [optional] |
+| **token** | **String** | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call &#x60;/self-service/logout/browser&#x60; to generate a URL for this endpoint. | [optional] |
 | **return_to** | **String** | The URL to return to after the logout was completed. | [optional] |
 
 ### Return type

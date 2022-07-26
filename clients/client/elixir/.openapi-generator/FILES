@@ -43,6 +43,7 @@ lib/ory/model/identity_credentials_oidc_provider.ex
 lib/ory/model/identity_credentials_password.ex
 lib/ory/model/identity_credentials_type.ex
 lib/ory/model/identity_schema.ex
+lib/ory/model/identity_schema_container.ex
 lib/ory/model/identity_schema_location.ex
 lib/ory/model/identity_schema_preset.ex
 lib/ory/model/identity_schema_validation_result.ex
@@ -125,6 +126,8 @@ lib/ory/model/subscription.ex
 lib/ory/model/successful_project_update.ex
 lib/ory/model/successful_self_service_login_without_browser.ex
 lib/ory/model/successful_self_service_registration_without_browser.ex
+lib/ory/model/token_pagination.ex
+lib/ory/model/token_pagination_headers.ex
 lib/ory/model/ui_container.ex
 lib/ory/model/ui_node.ex
 lib/ory/model/ui_node_anchor_attributes.ex

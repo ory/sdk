@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **get_version**
-> InlineResponse2001 get_version()
+> GetVersion200Response get_version()
 
 Return Running Software Version.
 
@@ -24,7 +24,7 @@ This endpoint returns the version of Ory Kratos.  If the service supports TLS Ed
 import time
 import ory_client
 from ory_client.api import metadata_api
-from ory_client.model.inline_response2001 import InlineResponse2001
+from ory_client.model.get_version200_response import GetVersion200Response
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
@@ -62,7 +62,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse2001**](InlineResponse2001.md)
+[**GetVersion200Response**](GetVersion200Response.md)
 
 ### Authorization
 
@@ -83,7 +83,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **is_alive**
-> InlineResponse200 is_alive()
+> IsAlive200Response is_alive()
 
 Check HTTP Server Status
 
@@ -97,7 +97,7 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incomi
 import time
 import ory_client
 from ory_client.api import metadata_api
-from ory_client.model.inline_response200 import InlineResponse200
+from ory_client.model.is_alive200_response import IsAlive200Response
 from ory_client.model.generic_error import GenericError
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
@@ -136,7 +136,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**IsAlive200Response**](IsAlive200Response.md)
 
 ### Authorization
 
@@ -158,7 +158,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **is_ready**
-> InlineResponse200 is_ready()
+> IsAlive200Response is_ready()
 
 Check HTTP Server and Database Status
 
@@ -172,8 +172,8 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is up running and t
 import time
 import ory_client
 from ory_client.api import metadata_api
-from ory_client.model.inline_response200 import InlineResponse200
-from ory_client.model.inline_response503 import InlineResponse503
+from ory_client.model.is_alive200_response import IsAlive200Response
+from ory_client.model.is_ready503_response import IsReady503Response
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
@@ -211,7 +211,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**IsAlive200Response**](IsAlive200Response.md)
 
 ### Authorization
 

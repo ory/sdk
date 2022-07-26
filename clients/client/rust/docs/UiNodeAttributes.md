@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**autocomplete** | Option<**String**> | The autocomplete attribute for the input. | [optional]
 **disabled** | **bool** | Sets the input's disabled field to true or false. | 
 **label** | Option<[**crate::models::UiText**](uiText.md)> |  | [optional]
 **name** | **String** | The input's element name. | 
