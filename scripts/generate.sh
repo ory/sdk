@@ -41,7 +41,7 @@ typescript () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 5.4.0
+  openapi-generator-cli version-manager set 6.0.1
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g typescript-axios \
     -o "$dir" \
@@ -131,7 +131,7 @@ php() {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 5.4.0
+  openapi-generator-cli version-manager set 6.0.1
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g php \
     -o "$dir" \
@@ -156,7 +156,7 @@ python () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 5.4.0
+  openapi-generator-cli version-manager set 6.0.1
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g python \
     -o "$dir" \
@@ -176,7 +176,7 @@ ruby () {
 
   rm "${dir}/lib/${RUBY_PROJECT_NAME}/version.rb" || true
 
-  openapi-generator-cli version-manager set 5.4.0
+  openapi-generator-cli version-manager set 6.0.1
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g ruby \
     -o "$dir" \
@@ -203,7 +203,7 @@ golang () {
   mkdir -p "${dir}"
   (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go")
 
-  openapi-generator-cli version-manager set 5.4.0
+  openapi-generator-cli version-manager set 6.0.1
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g go \
     -o "$dir" \
@@ -222,7 +222,7 @@ dotnet () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 5.4.0
+  openapi-generator-cli version-manager set 6.0.1
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g csharp-netcore \
     -o "$dir" \
@@ -260,7 +260,7 @@ rust () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 5.2.1
+  openapi-generator-cli version-manager set  6.0.1
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g rust \
     -o "$dir" \
