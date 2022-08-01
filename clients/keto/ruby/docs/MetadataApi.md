@@ -11,7 +11,7 @@ All URIs are relative to *http://localhost*
 
 ## get_version
 
-> <InlineResponse2001> get_version
+> <GetVersion200Response> get_version
 
 Return Running Software Version.
 
@@ -38,7 +38,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<InlineResponse2001>, Integer, Hash)> get_version_with_http_info
+> <Array(<GetVersion200Response>, Integer, Hash)> get_version_with_http_info
 
 ```ruby
 begin
@@ -46,7 +46,7 @@ begin
   data, status_code, headers = api_instance.get_version_with_http_info
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <InlineResponse2001>
+  p data # => <GetVersion200Response>
 rescue OryKetoClient::ApiError => e
   puts "Error when calling MetadataApi->get_version_with_http_info: #{e}"
 end
@@ -58,7 +58,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse2001**](InlineResponse2001.md)
+[**GetVersion200Response**](GetVersion200Response.md)
 
 ### Authorization
 
@@ -72,7 +72,7 @@ No authorization required
 
 ## is_alive
 
-> <InlineResponse200> is_alive
+> <IsAlive200Response> is_alive
 
 Check HTTP Server Status
 
@@ -99,7 +99,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<InlineResponse200>, Integer, Hash)> is_alive_with_http_info
+> <Array(<IsAlive200Response>, Integer, Hash)> is_alive_with_http_info
 
 ```ruby
 begin
@@ -107,7 +107,7 @@ begin
   data, status_code, headers = api_instance.is_alive_with_http_info
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <InlineResponse200>
+  p data # => <IsAlive200Response>
 rescue OryKetoClient::ApiError => e
   puts "Error when calling MetadataApi->is_alive_with_http_info: #{e}"
 end
@@ -119,7 +119,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**IsAlive200Response**](IsAlive200Response.md)
 
 ### Authorization
 
@@ -133,7 +133,7 @@ No authorization required
 
 ## is_ready
 
-> <InlineResponse200> is_ready
+> <IsAlive200Response> is_ready
 
 Check HTTP Server and Database Status
 
@@ -160,7 +160,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<InlineResponse200>, Integer, Hash)> is_ready_with_http_info
+> <Array(<IsAlive200Response>, Integer, Hash)> is_ready_with_http_info
 
 ```ruby
 begin
@@ -168,7 +168,7 @@ begin
   data, status_code, headers = api_instance.is_ready_with_http_info
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <InlineResponse200>
+  p data # => <IsAlive200Response>
 rescue OryKetoClient::ApiError => e
   puts "Error when calling MetadataApi->is_ready_with_http_info: #{e}"
 end
@@ -180,7 +180,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**IsAlive200Response**](IsAlive200Response.md)
 
 ### Authorization
 

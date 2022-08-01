@@ -9,9 +9,9 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createRelationTuple**](WriteApi.md#createrelationtuple) | **PUT** /relation-tuples | Create a Relation Tuple
-[**deleteRelationTuples**](WriteApi.md#deleterelationtuples) | **DELETE** /relation-tuples | Delete Relation Tuples
-[**patchRelationTuples**](WriteApi.md#patchrelationtuples) | **PATCH** /relation-tuples | Patch Multiple Relation Tuples
+[**createRelationTuple**](WriteApi.md#createrelationtuple) | **PUT** /admin/relation-tuples | Create a Relation Tuple
+[**deleteRelationTuples**](WriteApi.md#deleterelationtuples) | **DELETE** /admin/relation-tuples | Delete Relation Tuples
+[**patchRelationTuples**](WriteApi.md#patchrelationtuples) | **PATCH** /admin/relation-tuples | Patch Multiple Relation Tuples
 
 
 # **createRelationTuple**
@@ -25,11 +25,11 @@ Use this endpoint to create a relation tuple.
 ```dart
 import 'package:ory_keto_client/api.dart';
 
-var api_instance = new WriteApi();
-var relationQuery = new RelationQuery(); // RelationQuery | 
+final api_instance = WriteApi();
+final relationQuery = RelationQuery(); // RelationQuery | 
 
 try {
-    var result = api_instance.createRelationTuple(relationQuery);
+    final result = api_instance.createRelationTuple(relationQuery);
     print(result);
 } catch (e) {
     print('Exception when calling WriteApi->createRelationTuple: $e\n');
@@ -68,14 +68,14 @@ Use this endpoint to delete relation tuples
 ```dart
 import 'package:ory_keto_client/api.dart';
 
-var api_instance = new WriteApi();
-var namespace = namespace_example; // String | Namespace of the Relation Tuple
-var object = object_example; // String | Object of the Relation Tuple
-var relation = relation_example; // String | Relation of the Relation Tuple
-var subjectId = subjectId_example; // String | SubjectID of the Relation Tuple
-var subjectSetPeriodNamespace = subjectSetPeriodNamespace_example; // String | Namespace of the Subject Set
-var subjectSetPeriodObject = subjectSetPeriodObject_example; // String | Object of the Subject Set
-var subjectSetPeriodRelation = subjectSetPeriodRelation_example; // String | Relation of the Subject Set
+final api_instance = WriteApi();
+final namespace = namespace_example; // String | Namespace of the Relation Tuple
+final object = object_example; // String | Object of the Relation Tuple
+final relation = relation_example; // String | Relation of the Relation Tuple
+final subjectId = subjectId_example; // String | SubjectID of the Relation Tuple
+final subjectSetPeriodNamespace = subjectSetPeriodNamespace_example; // String | Namespace of the Subject Set
+final subjectSetPeriodObject = subjectSetPeriodObject_example; // String | Object of the Subject Set
+final subjectSetPeriodRelation = subjectSetPeriodRelation_example; // String | Relation of the Subject Set
 
 try {
     api_instance.deleteRelationTuples(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation);
@@ -122,8 +122,8 @@ Use this endpoint to patch one or more relation tuples.
 ```dart
 import 'package:ory_keto_client/api.dart';
 
-var api_instance = new WriteApi();
-var patchDelta = [new BuiltList<PatchDelta>()]; // BuiltList<PatchDelta> | 
+final api_instance = WriteApi();
+final patchDelta = [List<PatchDelta>()]; // List<PatchDelta> | 
 
 try {
     api_instance.patchRelationTuples(patchDelta);
@@ -136,7 +136,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **patchDelta** | [**BuiltList<PatchDelta>**](PatchDelta.md)|  | [optional] 
+ **patchDelta** | [**List<PatchDelta>**](PatchDelta.md)|  | [optional] 
 
 ### Return type
 

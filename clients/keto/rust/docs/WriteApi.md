@@ -4,9 +4,9 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_relation_tuple**](WriteApi.md#create_relation_tuple) | **PUT** /relation-tuples | Create a Relation Tuple
-[**delete_relation_tuples**](WriteApi.md#delete_relation_tuples) | **DELETE** /relation-tuples | Delete Relation Tuples
-[**patch_relation_tuples**](WriteApi.md#patch_relation_tuples) | **PATCH** /relation-tuples | Patch Multiple Relation Tuples
+[**create_relation_tuple**](WriteApi.md#create_relation_tuple) | **PUT** /admin/relation-tuples | Create a Relation Tuple
+[**delete_relation_tuples**](WriteApi.md#delete_relation_tuples) | **DELETE** /admin/relation-tuples | Delete Relation Tuples
+[**patch_relation_tuples**](WriteApi.md#patch_relation_tuples) | **PATCH** /admin/relation-tuples | Patch Multiple Relation Tuples
 
 
 
@@ -26,7 +26,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::RelationQuery**](RelationQuery.md)
+[**crate::models::RelationQuery**](relationQuery.md)
 
 ### Authorization
 
@@ -88,7 +88,7 @@ Use this endpoint to patch one or more relation tuples.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**patch_delta** | Option<[**Vec<crate::models::PatchDelta>**](PatchDelta.md)> |  |  |
+**patch_delta** | Option<[**Vec<crate::models::PatchDelta>**](patchDelta.md)> |  |  |
 
 ### Return type
 

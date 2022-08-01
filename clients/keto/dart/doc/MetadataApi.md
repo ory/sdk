@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **getVersion**
-> InlineResponse2001 getVersion()
+> GetVersion200Response getVersion()
 
 Return Running Software Version.
 
@@ -25,10 +25,10 @@ This endpoint returns the version of Ory Keto.  If the service supports TLS Edge
 ```dart
 import 'package:ory_keto_client/api.dart';
 
-var api_instance = new MetadataApi();
+final api_instance = MetadataApi();
 
 try {
-    var result = api_instance.getVersion();
+    final result = api_instance.getVersion();
     print(result);
 } catch (e) {
     print('Exception when calling MetadataApi->getVersion: $e\n');
@@ -40,7 +40,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse2001**](InlineResponse2001.md)
+[**GetVersion200Response**](GetVersion200Response.md)
 
 ### Authorization
 
@@ -54,7 +54,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **isAlive**
-> InlineResponse200 isAlive()
+> IsAlive200Response isAlive()
 
 Check HTTP Server Status
 
@@ -64,10 +64,10 @@ This endpoint returns a HTTP 200 status code when Ory Keto is accepting incoming
 ```dart
 import 'package:ory_keto_client/api.dart';
 
-var api_instance = new MetadataApi();
+final api_instance = MetadataApi();
 
 try {
-    var result = api_instance.isAlive();
+    final result = api_instance.isAlive();
     print(result);
 } catch (e) {
     print('Exception when calling MetadataApi->isAlive: $e\n');
@@ -79,7 +79,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**IsAlive200Response**](IsAlive200Response.md)
 
 ### Authorization
 
@@ -93,7 +93,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **isReady**
-> InlineResponse200 isReady()
+> IsAlive200Response isReady()
 
 Check HTTP Server and Database Status
 
@@ -103,10 +103,10 @@ This endpoint returns a HTTP 200 status code when Ory Keto is up running and the
 ```dart
 import 'package:ory_keto_client/api.dart';
 
-var api_instance = new MetadataApi();
+final api_instance = MetadataApi();
 
 try {
-    var result = api_instance.isReady();
+    final result = api_instance.isReady();
     print(result);
 } catch (e) {
     print('Exception when calling MetadataApi->isReady: $e\n');
@@ -118,7 +118,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**IsAlive200Response**](IsAlive200Response.md)
 
 ### Authorization
 

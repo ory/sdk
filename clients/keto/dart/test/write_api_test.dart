@@ -1,20 +1,22 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
 import 'package:ory_keto_client/api.dart';
-import 'package:ory_keto_client/api/write_api.dart';
 import 'package:test/test.dart';
 
 
 /// tests for WriteApi
 void main() {
-  final instance = OryKetoClient().getWriteApi();
+  // final instance = WriteApi();
 
-  group(WriteApi, () {
+  group('tests for WriteApi', () {
     // Create a Relation Tuple
     //
     // Use this endpoint to create a relation tuple.
@@ -37,7 +39,7 @@ void main() {
     //
     // Use this endpoint to patch one or more relation tuples.
     //
-    //Future patchRelationTuples({ BuiltList<PatchDelta> patchDelta }) async
+    //Future patchRelationTuples({ List<PatchDelta> patchDelta }) async
     test('test patchRelationTuples', () async {
       // TODO
     });

@@ -4,10 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getCheck**](ReadApi.md#getCheck) | **GET** /check | Check a relation tuple
-[**getExpand**](ReadApi.md#getExpand) | **GET** /expand | Expand a Relation Tuple
+[**getCheck**](ReadApi.md#getCheck) | **GET** /relation-tuples/check/openapi | Check a relation tuple
+[**getCheckMirrorStatus**](ReadApi.md#getCheckMirrorStatus) | **GET** /relation-tuples/check | Check a relation tuple
+[**getExpand**](ReadApi.md#getExpand) | **GET** /relation-tuples/expand | Expand a Relation Tuple
 [**getRelationTuples**](ReadApi.md#getRelationTuples) | **GET** /relation-tuples | Query relation tuples
-[**postCheck**](ReadApi.md#postCheck) | **POST** /check | Check a relation tuple
+[**postCheck**](ReadApi.md#postCheck) | **POST** /relation-tuples/check/openapi | Check a relation tuple
+[**postCheckMirrorStatus**](ReadApi.md#postCheckMirrorStatus) | **POST** /relation-tuples/check | Check a relation tuple
 
 
 <a name="getCheck"></a>
@@ -67,6 +69,66 @@ Name | Type | Description  | Notes
  **subjectSetObject** | **String**| Object of the Subject Set | [optional]
  **subjectSetRelation** | **String**| Relation of the Subject Set | [optional]
  **maxDepth** | **Long**|  | [optional]
+
+### Return type
+
+[**GetCheckResponse**](GetCheckResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | getCheckResponse |  -  |
+**400** | genericError |  -  |
+**500** | genericError |  -  |
+
+<a name="getCheckMirrorStatus"></a>
+# **getCheckMirrorStatus**
+> GetCheckResponse getCheckMirrorStatus()
+
+Check a relation tuple
+
+To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+
+### Example
+```java
+// Import classes:
+import sh.ory.keto.ApiClient;
+import sh.ory.keto.ApiException;
+import sh.ory.keto.Configuration;
+import sh.ory.keto.models.*;
+import sh.ory.keto.api.ReadApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    ReadApi apiInstance = new ReadApi(defaultClient);
+    try {
+      GetCheckResponse result = apiInstance.getCheckMirrorStatus();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ReadApi#getCheckMirrorStatus");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -297,6 +359,66 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | getCheckResponse |  -  |
+**400** | genericError |  -  |
+**500** | genericError |  -  |
+
+<a name="postCheckMirrorStatus"></a>
+# **postCheckMirrorStatus**
+> GetCheckResponse postCheckMirrorStatus()
+
+Check a relation tuple
+
+To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+
+### Example
+```java
+// Import classes:
+import sh.ory.keto.ApiClient;
+import sh.ory.keto.ApiException;
+import sh.ory.keto.Configuration;
+import sh.ory.keto.models.*;
+import sh.ory.keto.api.ReadApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    ReadApi apiInstance = new ReadApi(defaultClient);
+    try {
+      GetCheckResponse result = apiInstance.postCheckMirrorStatus();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ReadApi#postCheckMirrorStatus");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetCheckResponse**](GetCheckResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 ### HTTP response details

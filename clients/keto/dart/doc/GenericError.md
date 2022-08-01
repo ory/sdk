@@ -9,7 +9,7 @@ import 'package:ory_keto_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **int** |  | [optional] 
-**details** | [**BuiltList<BuiltMap<String, JsonObject>>**](BuiltMap.md) |  | [optional] 
+**details** | [**List<Map<String, Object>>**](Map.md) |  | [optional] [default to const []]
 **message** | **String** |  | [optional] 
 **reason** | **String** |  | [optional] 
 **request** | **String** |  | [optional] 

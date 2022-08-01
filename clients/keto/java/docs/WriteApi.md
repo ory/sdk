@@ -4,9 +4,9 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createRelationTuple**](WriteApi.md#createRelationTuple) | **PUT** /relation-tuples | Create a Relation Tuple
-[**deleteRelationTuples**](WriteApi.md#deleteRelationTuples) | **DELETE** /relation-tuples | Delete Relation Tuples
-[**patchRelationTuples**](WriteApi.md#patchRelationTuples) | **PATCH** /relation-tuples | Patch Multiple Relation Tuples
+[**createRelationTuple**](WriteApi.md#createRelationTuple) | **PUT** /admin/relation-tuples | Create a Relation Tuple
+[**deleteRelationTuples**](WriteApi.md#deleteRelationTuples) | **DELETE** /admin/relation-tuples | Delete Relation Tuples
+[**patchRelationTuples**](WriteApi.md#patchRelationTuples) | **PATCH** /admin/relation-tuples | Patch Multiple Relation Tuples
 
 
 <a name="createRelationTuple"></a>
@@ -69,7 +69,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | RelationQuery |  -  |
+**201** | relationQuery |  -  |
 **400** | genericError |  -  |
 **500** | genericError |  -  |
 

@@ -12,11 +12,11 @@ docs/HealthStatus.md
 docs/InlineResponse200.md
 docs/InlineResponse2001.md
 docs/InlineResponse503.md
-docs/InternalRelationTuple.md
 docs/MetadataApi.md
 docs/PatchDelta.md
 docs/ReadApi.md
 docs/RelationQuery.md
+docs/RelationTuple.md
 docs/SubjectSet.md
 docs/Version.md
 docs/WriteApi.md
@@ -36,9 +36,9 @@ src/models/health_status.rs
 src/models/inline_response_200.rs
 src/models/inline_response_200_1.rs
 src/models/inline_response_503.rs
-src/models/internal_relation_tuple.rs
 src/models/mod.rs
 src/models/patch_delta.rs
 src/models/relation_query.rs
+src/models/relation_tuple.rs
 src/models/subject_set.rs
 src/models/version.rs

@@ -4,10 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_check**](ReadApi.md#get_check) | **GET** /check | Check a relation tuple
-[**get_expand**](ReadApi.md#get_expand) | **GET** /expand | Expand a Relation Tuple
+[**get_check**](ReadApi.md#get_check) | **GET** /relation-tuples/check/openapi | Check a relation tuple
+[**get_check_mirror_status**](ReadApi.md#get_check_mirror_status) | **GET** /relation-tuples/check | Check a relation tuple
+[**get_expand**](ReadApi.md#get_expand) | **GET** /relation-tuples/expand | Expand a Relation Tuple
 [**get_relation_tuples**](ReadApi.md#get_relation_tuples) | **GET** /relation-tuples | Query relation tuples
-[**post_check**](ReadApi.md#post_check) | **POST** /check | Check a relation tuple
+[**post_check**](ReadApi.md#post_check) | **POST** /relation-tuples/check/openapi | Check a relation tuple
+[**post_check_mirror_status**](ReadApi.md#post_check_mirror_status) | **POST** /relation-tuples/check | Check a relation tuple
 
 
 
@@ -31,6 +33,33 @@ Name | Type | Description  | Required | Notes
 **subject_set_object** | Option<**String**> | Object of the Subject Set |  |
 **subject_set_relation** | Option<**String**> | Relation of the Subject Set |  |
 **max_depth** | Option<**i64**> |  |  |
+
+### Return type
+
+[**crate::models::GetCheckResponse**](getCheckResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_check_mirror_status
+
+> crate::models::GetCheckResponse get_check_mirror_status()
+Check a relation tuple
+
+To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+
+### Parameters
+
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -145,6 +174,33 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## post_check_mirror_status
+
+> crate::models::GetCheckResponse post_check_mirror_status()
+Check a relation tuple
+
+To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**crate::models::GetCheckResponse**](getCheckResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -1,8 +1,8 @@
 # keto-client
 
 Ory Keto API
-- API version: v0.8.0-alpha.2
-  - Build date: 2022-03-04T10:51:22.321385788Z[Etc/UTC]
+- API version: v0.9.0-alpha.0
+  - Build date: 2022-08-01T17:28:40.799947159Z[Etc/UTC]
 
 Documentation for all of Ory Keto's REST APIs. gRPC is documented separately.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.keto</groupId>
   <artifactId>keto-client</artifactId>
-  <version>v0.8.0-alpha.2</version>
+  <version>v0.9.0-alpha.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory.keto:keto-client:v0.8.0-alpha.2"
+     implementation "sh.ory.keto:keto-client:v0.9.0-alpha.0"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/keto-client-v0.8.0-alpha.2.jar`
+* `target/keto-client-v0.9.0-alpha.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -117,13 +117,15 @@ Class | Method | HTTP request | Description
 *MetadataApi* | [**getVersion**](docs/MetadataApi.md#getVersion) | **GET** /version | Return Running Software Version.
 *MetadataApi* | [**isAlive**](docs/MetadataApi.md#isAlive) | **GET** /health/alive | Check HTTP Server Status
 *MetadataApi* | [**isReady**](docs/MetadataApi.md#isReady) | **GET** /health/ready | Check HTTP Server and Database Status
-*ReadApi* | [**getCheck**](docs/ReadApi.md#getCheck) | **GET** /check | Check a relation tuple
-*ReadApi* | [**getExpand**](docs/ReadApi.md#getExpand) | **GET** /expand | Expand a Relation Tuple
+*ReadApi* | [**getCheck**](docs/ReadApi.md#getCheck) | **GET** /relation-tuples/check/openapi | Check a relation tuple
+*ReadApi* | [**getCheckMirrorStatus**](docs/ReadApi.md#getCheckMirrorStatus) | **GET** /relation-tuples/check | Check a relation tuple
+*ReadApi* | [**getExpand**](docs/ReadApi.md#getExpand) | **GET** /relation-tuples/expand | Expand a Relation Tuple
 *ReadApi* | [**getRelationTuples**](docs/ReadApi.md#getRelationTuples) | **GET** /relation-tuples | Query relation tuples
-*ReadApi* | [**postCheck**](docs/ReadApi.md#postCheck) | **POST** /check | Check a relation tuple
-*WriteApi* | [**createRelationTuple**](docs/WriteApi.md#createRelationTuple) | **PUT** /relation-tuples | Create a Relation Tuple
-*WriteApi* | [**deleteRelationTuples**](docs/WriteApi.md#deleteRelationTuples) | **DELETE** /relation-tuples | Delete Relation Tuples
-*WriteApi* | [**patchRelationTuples**](docs/WriteApi.md#patchRelationTuples) | **PATCH** /relation-tuples | Patch Multiple Relation Tuples
+*ReadApi* | [**postCheck**](docs/ReadApi.md#postCheck) | **POST** /relation-tuples/check/openapi | Check a relation tuple
+*ReadApi* | [**postCheckMirrorStatus**](docs/ReadApi.md#postCheckMirrorStatus) | **POST** /relation-tuples/check | Check a relation tuple
+*WriteApi* | [**createRelationTuple**](docs/WriteApi.md#createRelationTuple) | **PUT** /admin/relation-tuples | Create a Relation Tuple
+*WriteApi* | [**deleteRelationTuples**](docs/WriteApi.md#deleteRelationTuples) | **DELETE** /admin/relation-tuples | Delete Relation Tuples
+*WriteApi* | [**patchRelationTuples**](docs/WriteApi.md#patchRelationTuples) | **PATCH** /admin/relation-tuples | Patch Multiple Relation Tuples
 
 
 ## Documentation for Models
@@ -137,9 +139,9 @@ Class | Method | HTTP request | Description
  - [InlineResponse200](docs/InlineResponse200.md)
  - [InlineResponse2001](docs/InlineResponse2001.md)
  - [InlineResponse503](docs/InlineResponse503.md)
- - [InternalRelationTuple](docs/InternalRelationTuple.md)
  - [PatchDelta](docs/PatchDelta.md)
  - [RelationQuery](docs/RelationQuery.md)
+ - [RelationTuple](docs/RelationTuple.md)
  - [SubjectSet](docs/SubjectSet.md)
  - [Version](docs/Version.md)
 

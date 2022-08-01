@@ -4,10 +4,12 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
-| [**get_check**](ReadApi.md#get_check) | **GET** /check | Check a relation tuple |
-| [**get_expand**](ReadApi.md#get_expand) | **GET** /expand | Expand a Relation Tuple |
+| [**get_check**](ReadApi.md#get_check) | **GET** /relation-tuples/check/openapi | Check a relation tuple |
+| [**get_check_mirror_status**](ReadApi.md#get_check_mirror_status) | **GET** /relation-tuples/check | Check a relation tuple |
+| [**get_expand**](ReadApi.md#get_expand) | **GET** /relation-tuples/expand | Expand a Relation Tuple |
 | [**get_relation_tuples**](ReadApi.md#get_relation_tuples) | **GET** /relation-tuples | Query relation tuples |
-| [**post_check**](ReadApi.md#post_check) | **POST** /check | Check a relation tuple |
+| [**post_check**](ReadApi.md#post_check) | **POST** /relation-tuples/check/openapi | Check a relation tuple |
+| [**post_check_mirror_status**](ReadApi.md#post_check_mirror_status) | **POST** /relation-tuples/check | Check a relation tuple |
 
 
 ## get_check
@@ -75,6 +77,67 @@ end
 | **subject_set_object** | **String** | Object of the Subject Set | [optional] |
 | **subject_set_relation** | **String** | Relation of the Subject Set | [optional] |
 | **max_depth** | **Integer** |  | [optional] |
+
+### Return type
+
+[**GetCheckResponse**](GetCheckResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_check_mirror_status
+
+> <GetCheckResponse> get_check_mirror_status
+
+Check a relation tuple
+
+To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-keto-client'
+
+api_instance = OryKetoClient::ReadApi.new
+
+begin
+  # Check a relation tuple
+  result = api_instance.get_check_mirror_status
+  p result
+rescue OryKetoClient::ApiError => e
+  puts "Error when calling ReadApi->get_check_mirror_status: #{e}"
+end
+```
+
+#### Using the get_check_mirror_status_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<GetCheckResponse>, Integer, Hash)> get_check_mirror_status_with_http_info
+
+```ruby
+begin
+  # Check a relation tuple
+  data, status_code, headers = api_instance.get_check_mirror_status_with_http_info
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <GetCheckResponse>
+rescue OryKetoClient::ApiError => e
+  puts "Error when calling ReadApi->get_check_mirror_status_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -309,5 +372,66 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## post_check_mirror_status
+
+> <GetCheckResponse> post_check_mirror_status
+
+Check a relation tuple
+
+To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-keto-client'
+
+api_instance = OryKetoClient::ReadApi.new
+
+begin
+  # Check a relation tuple
+  result = api_instance.post_check_mirror_status
+  p result
+rescue OryKetoClient::ApiError => e
+  puts "Error when calling ReadApi->post_check_mirror_status: #{e}"
+end
+```
+
+#### Using the post_check_mirror_status_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<GetCheckResponse>, Integer, Hash)> post_check_mirror_status_with_http_info
+
+```ruby
+begin
+  # Check a relation tuple
+  data, status_code, headers = api_instance.post_check_mirror_status_with_http_info
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <GetCheckResponse>
+rescue OryKetoClient::ApiError => e
+  puts "Error when calling ReadApi->post_check_mirror_status_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetCheckResponse**](GetCheckResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 

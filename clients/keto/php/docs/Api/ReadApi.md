@@ -4,10 +4,12 @@ All URIs are relative to http://localhost.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getCheck()**](ReadApi.md#getCheck) | **GET** /check | Check a relation tuple
-[**getExpand()**](ReadApi.md#getExpand) | **GET** /expand | Expand a Relation Tuple
+[**getCheck()**](ReadApi.md#getCheck) | **GET** /relation-tuples/check/openapi | Check a relation tuple
+[**getCheckMirrorStatus()**](ReadApi.md#getCheckMirrorStatus) | **GET** /relation-tuples/check | Check a relation tuple
+[**getExpand()**](ReadApi.md#getExpand) | **GET** /relation-tuples/expand | Expand a Relation Tuple
 [**getRelationTuples()**](ReadApi.md#getRelationTuples) | **GET** /relation-tuples | Query relation tuples
-[**postCheck()**](ReadApi.md#postCheck) | **POST** /check | Check a relation tuple
+[**postCheck()**](ReadApi.md#postCheck) | **POST** /relation-tuples/check/openapi | Check a relation tuple
+[**postCheckMirrorStatus()**](ReadApi.md#postCheckMirrorStatus) | **POST** /relation-tuples/check | Check a relation tuple
 
 
 ## `getCheck()`
@@ -62,6 +64,59 @@ Name | Type | Description  | Notes
  **subjectSetObject** | **string**| Object of the Subject Set | [optional]
  **subjectSetRelation** | **string**| Relation of the Subject Set | [optional]
  **maxDepth** | **int**|  | [optional]
+
+### Return type
+
+[**\Ory\Keto\Client\Model\GetCheckResponse**](../Model/GetCheckResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getCheckMirrorStatus()`
+
+```php
+getCheckMirrorStatus(): \Ory\Keto\Client\Model\GetCheckResponse
+```
+
+Check a relation tuple
+
+To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Keto\Client\Api\ReadApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $result = $apiInstance->getCheckMirrorStatus();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ReadApi->getCheckMirrorStatus: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -266,6 +321,59 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `postCheckMirrorStatus()`
+
+```php
+postCheckMirrorStatus(): \Ory\Keto\Client\Model\GetCheckResponse
+```
+
+Check a relation tuple
+
+To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Keto\Client\Api\ReadApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $result = $apiInstance->postCheckMirrorStatus();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ReadApi->postCheckMirrorStatus: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Ory\Keto\Client\Model\GetCheckResponse**](../Model/GetCheckResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

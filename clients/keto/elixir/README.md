@@ -1,6 +1,6 @@
-# Keto
+# Ory
 
-Documentation for all of Ory Oathkeeper&#39;s APIs. 
+Documentation for all of Ory Keto&#39;s REST APIs. gRPC is documented separately. 
 
 ### Building
 
@@ -24,3 +24,11 @@ end
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/ory_keto](https://hexdocs.pm/ory_keto).
+
+
+## Configuration
+
+You can override the URL of your server (e.g. if you have a separate development and production server in your configuration files.
+```elixir
+config :ory_keto_api, base_url: "http://localhost"
+```

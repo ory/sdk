@@ -1,91 +1,130 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'subject_set.g.dart';
+class SubjectSet {
+  /// Returns a new [SubjectSet] instance.
+  SubjectSet({
+    required this.namespace,
+    required this.object,
+    required this.relation,
+  });
 
-abstract class SubjectSet implements Built<SubjectSet, SubjectSetBuilder> {
+  /// Namespace of the Subject Set
+  String namespace;
 
-    /// Namespace of the Subject Set
-    @BuiltValueField(wireName: r'namespace')
-    String get namespace;
+  /// Object of the Subject Set
+  String object;
 
-    /// Object of the Subject Set
-    @BuiltValueField(wireName: r'object')
-    String get object;
+  /// Relation of the Subject Set
+  String relation;
 
-    /// Relation of the Subject Set
-    @BuiltValueField(wireName: r'relation')
-    String get relation;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is SubjectSet &&
+     other.namespace == namespace &&
+     other.object == object &&
+     other.relation == relation;
 
-    SubjectSet._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (namespace.hashCode) +
+    (object.hashCode) +
+    (relation.hashCode);
 
-    static void _initializeBuilder(SubjectSetBuilder b) => b;
+  @override
+  String toString() => 'SubjectSet[namespace=$namespace, object=$object, relation=$relation]';
 
-    factory SubjectSet([void updates(SubjectSetBuilder b)]) = _$SubjectSet;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'namespace'] = namespace;
+      _json[r'object'] = object;
+      _json[r'relation'] = relation;
+    return _json;
+  }
 
-    @BuiltValueSerializer(custom: true)
-    static Serializer<SubjectSet> get serializer => _$SubjectSetSerializer();
-}
+  /// Returns a new [SubjectSet] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static SubjectSet? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-class _$SubjectSetSerializer implements StructuredSerializer<SubjectSet> {
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "SubjectSet[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "SubjectSet[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
 
-    @override
-    final Iterable<Type> types = const [SubjectSet, _$SubjectSet];
-    @override
-    final String wireName = r'SubjectSet';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, SubjectSet object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'namespace')
-            ..add(serializers.serialize(object.namespace,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'object')
-            ..add(serializers.serialize(object.object,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'relation')
-            ..add(serializers.serialize(object.relation,
-                specifiedType: const FullType(String)));
-        return result;
+      return SubjectSet(
+        namespace: mapValueOfType<String>(json, r'namespace')!,
+        object: mapValueOfType<String>(json, r'object')!,
+        relation: mapValueOfType<String>(json, r'relation')!,
+      );
     }
+    return null;
+  }
 
-    @override
-    SubjectSet deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = SubjectSetBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'namespace':
-                    result.namespace = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'object':
-                    result.object = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'relation':
-                    result.relation = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
+  static List<SubjectSet>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <SubjectSet>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = SubjectSet.fromJson(row);
+        if (value != null) {
+          result.add(value);
         }
-        return result.build();
+      }
     }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, SubjectSet> mapFromJson(dynamic json) {
+    final map = <String, SubjectSet>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SubjectSet.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of SubjectSet-objects as value to a dart map
+  static Map<String, List<SubjectSet>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<SubjectSet>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SubjectSet.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'namespace',
+    'object',
+    'relation',
+  };
 }
 

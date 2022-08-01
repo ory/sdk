@@ -4,10 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_check**](ReadApi.md#get_check) | **GET** /check | Check a relation tuple
-[**get_expand**](ReadApi.md#get_expand) | **GET** /expand | Expand a Relation Tuple
+[**get_check**](ReadApi.md#get_check) | **GET** /relation-tuples/check/openapi | Check a relation tuple
+[**get_check_mirror_status**](ReadApi.md#get_check_mirror_status) | **GET** /relation-tuples/check | Check a relation tuple
+[**get_expand**](ReadApi.md#get_expand) | **GET** /relation-tuples/expand | Expand a Relation Tuple
 [**get_relation_tuples**](ReadApi.md#get_relation_tuples) | **GET** /relation-tuples | Query relation tuples
-[**post_check**](ReadApi.md#post_check) | **POST** /check | Check a relation tuple
+[**post_check**](ReadApi.md#post_check) | **POST** /relation-tuples/check/openapi | Check a relation tuple
+[**post_check_mirror_status**](ReadApi.md#post_check_mirror_status) | **POST** /relation-tuples/check | Check a relation tuple
 
 
 # **get_check**
@@ -70,6 +72,72 @@ Name | Type | Description  | Notes
  **subject_set_object** | **str**| Object of the Subject Set | [optional]
  **subject_set_relation** | **str**| Relation of the Subject Set | [optional]
  **max_depth** | **int**|  | [optional]
+
+### Return type
+
+[**GetCheckResponse**](GetCheckResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | getCheckResponse |  -  |
+**400** | genericError |  -  |
+**500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_check_mirror_status**
+> GetCheckResponse get_check_mirror_status()
+
+Check a relation tuple
+
+To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+
+### Example
+
+
+```python
+import time
+import ory_keto_client
+from ory_keto_client.api import read_api
+from ory_keto_client.model.generic_error import GenericError
+from ory_keto_client.model.get_check_response import GetCheckResponse
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_keto_client.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_keto_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = read_api.ReadApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        # Check a relation tuple
+        api_response = api_instance.get_check_mirror_status()
+        pprint(api_response)
+    except ory_keto_client.ApiException as e:
+        print("Exception when calling ReadApi->get_check_mirror_status: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -340,6 +408,72 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | getCheckResponse |  -  |
+**400** | genericError |  -  |
+**500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **post_check_mirror_status**
+> GetCheckResponse post_check_mirror_status()
+
+Check a relation tuple
+
+To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+
+### Example
+
+
+```python
+import time
+import ory_keto_client
+from ory_keto_client.api import read_api
+from ory_keto_client.model.generic_error import GenericError
+from ory_keto_client.model.get_check_response import GetCheckResponse
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_keto_client.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_keto_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = read_api.ReadApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        # Check a relation tuple
+        api_response = api_instance.post_check_mirror_status()
+        pprint(api_response)
+    except ory_keto_client.ApiException as e:
+        print("Exception when calling ReadApi->post_check_mirror_status: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetCheckResponse**](GetCheckResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 

@@ -1,19 +1,21 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:ory_keto_client/model/version.dart';
+import 'package:ory_keto_client/api.dart';
 import 'package:test/test.dart';
 
 // tests for Version
 void main() {
-  final instance = VersionBuilder();
-  // TODO add properties to the builder and call build()
+  // final instance = Version();
 
-  group(Version, () {
+  group('test Version', () {
     // Version is the service's version.
     // String version
     test('to test the property `version`', () async {

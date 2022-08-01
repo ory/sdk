@@ -1,26 +1,37 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
 import 'package:ory_keto_client/api.dart';
-import 'package:ory_keto_client/api/read_api.dart';
 import 'package:test/test.dart';
 
 
 /// tests for ReadApi
 void main() {
-  final instance = OryKetoClient().getReadApi();
+  // final instance = ReadApi();
 
-  group(ReadApi, () {
+  group('tests for ReadApi', () {
     // Check a relation tuple
     //
     // To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
     //
     //Future<GetCheckResponse> getCheck({ String namespace, String object, String relation, String subjectId, String subjectSetPeriodNamespace, String subjectSetPeriodObject, String subjectSetPeriodRelation, int maxDepth }) async
     test('test getCheck', () async {
+      // TODO
+    });
+
+    // Check a relation tuple
+    //
+    // To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+    //
+    //Future<GetCheckResponse> getCheckMirrorStatus() async
+    test('test getCheckMirrorStatus', () async {
       // TODO
     });
 
@@ -48,6 +59,15 @@ void main() {
     //
     //Future<GetCheckResponse> postCheck({ int maxDepth, RelationQuery relationQuery }) async
     test('test postCheck', () async {
+      // TODO
+    });
+
+    // Check a relation tuple
+    //
+    // To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+    //
+    //Future<GetCheckResponse> postCheckMirrorStatus() async
+    test('test postCheckMirrorStatus', () async {
       // TODO
     });
 

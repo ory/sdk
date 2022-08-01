@@ -14,11 +14,11 @@ docs/HealthStatus.md
 docs/InlineResponse200.md
 docs/InlineResponse2001.md
 docs/InlineResponse503.md
-docs/InternalRelationTuple.md
 docs/MetadataApi.md
 docs/PatchDelta.md
 docs/ReadApi.md
 docs/RelationQuery.md
+docs/RelationTuple.md
 docs/SubjectSet.md
 docs/Version.md
 docs/WriteApi.md
@@ -60,9 +60,9 @@ src/main/java/sh/ory/keto/model/HealthStatus.java
 src/main/java/sh/ory/keto/model/InlineResponse200.java
 src/main/java/sh/ory/keto/model/InlineResponse2001.java
 src/main/java/sh/ory/keto/model/InlineResponse503.java
-src/main/java/sh/ory/keto/model/InternalRelationTuple.java
 src/main/java/sh/ory/keto/model/PatchDelta.java
 src/main/java/sh/ory/keto/model/RelationQuery.java
+src/main/java/sh/ory/keto/model/RelationTuple.java
 src/main/java/sh/ory/keto/model/SubjectSet.java
 src/main/java/sh/ory/keto/model/Version.java
 src/test/java/sh/ory/keto/api/MetadataApiTest.java
@@ -77,8 +77,8 @@ src/test/java/sh/ory/keto/model/HealthStatusTest.java
 src/test/java/sh/ory/keto/model/InlineResponse2001Test.java
 src/test/java/sh/ory/keto/model/InlineResponse200Test.java
 src/test/java/sh/ory/keto/model/InlineResponse503Test.java
-src/test/java/sh/ory/keto/model/InternalRelationTupleTest.java
 src/test/java/sh/ory/keto/model/PatchDeltaTest.java
 src/test/java/sh/ory/keto/model/RelationQueryTest.java
+src/test/java/sh/ory/keto/model/RelationTupleTest.java
 src/test/java/sh/ory/keto/model/SubjectSetTest.java
 src/test/java/sh/ory/keto/model/VersionTest.java

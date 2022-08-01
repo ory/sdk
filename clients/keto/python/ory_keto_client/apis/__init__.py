@@ -6,7 +6,7 @@
 # raise a `RecursionError`.
 # In order to avoid this, import only the API that you directly need like:
 #
-#   from .api.metadata_api import MetadataApi
+#   from ory_keto_client.api.metadata_api import MetadataApi
 #
 # or import this package, but before doing it, use:
 #

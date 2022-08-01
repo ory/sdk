@@ -1,5 +1,5 @@
 {
-  "name": "ory/keto-client",
+  "name": "ory/keto-client-php",
   "description": "Documentation for all of Ory Keto's REST APIs. gRPC is documented separately.",
   "keywords": [
     "openapitools",

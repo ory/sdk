@@ -1,6 +1,6 @@
 {
   "name": "@ory/keto-client",
-  "version": "v0.8.0-alpha.2",
+  "version": "v0.9.0-alpha.0",
   "description": "OpenAPI client for @ory/keto-client",
   "author": "ORY GmbH",
   "keywords": [

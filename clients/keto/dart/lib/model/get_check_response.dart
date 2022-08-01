@@ -1,67 +1,112 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.7
+// @dart=2.12
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+part of openapi.api;
 
-part 'get_check_response.g.dart';
+class GetCheckResponse {
+  /// Returns a new [GetCheckResponse] instance.
+  GetCheckResponse({
+    required this.allowed,
+  });
 
-abstract class GetCheckResponse implements Built<GetCheckResponse, GetCheckResponseBuilder> {
+  /// whether the relation tuple is allowed
+  bool allowed;
 
-    /// whether the relation tuple is allowed
-    @BuiltValueField(wireName: r'allowed')
-    bool get allowed;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is GetCheckResponse &&
+     other.allowed == allowed;
 
-    GetCheckResponse._();
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (allowed.hashCode);
 
-    static void _initializeBuilder(GetCheckResponseBuilder b) => b;
+  @override
+  String toString() => 'GetCheckResponse[allowed=$allowed]';
 
-    factory GetCheckResponse([void updates(GetCheckResponseBuilder b)]) = _$GetCheckResponse;
+  Map<String, dynamic> toJson() {
+    final _json = <String, dynamic>{};
+      _json[r'allowed'] = allowed;
+    return _json;
+  }
 
-    @BuiltValueSerializer(custom: true)
-    static Serializer<GetCheckResponse> get serializer => _$GetCheckResponseSerializer();
-}
+  /// Returns a new [GetCheckResponse] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static GetCheckResponse? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-class _$GetCheckResponseSerializer implements StructuredSerializer<GetCheckResponse> {
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "GetCheckResponse[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "GetCheckResponse[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
 
-    @override
-    final Iterable<Type> types = const [GetCheckResponse, _$GetCheckResponse];
-    @override
-    final String wireName = r'GetCheckResponse';
-
-    @override
-    Iterable<Object> serialize(Serializers serializers, GetCheckResponse object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object>[];
-        result
-            ..add(r'allowed')
-            ..add(serializers.serialize(object.allowed,
-                specifiedType: const FullType(bool)));
-        return result;
+      return GetCheckResponse(
+        allowed: mapValueOfType<bool>(json, r'allowed')!,
+      );
     }
+    return null;
+  }
 
-    @override
-    GetCheckResponse deserialize(Serializers serializers, Iterable<Object> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = GetCheckResponseBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final dynamic value = iterator.current;
-            switch (key) {
-                case r'allowed':
-                    result.allowed = serializers.deserialize(value,
-                        specifiedType: const FullType(bool)) as bool;
-                    break;
-            }
+  static List<GetCheckResponse>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <GetCheckResponse>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = GetCheckResponse.fromJson(row);
+        if (value != null) {
+          result.add(value);
         }
-        return result.build();
+      }
     }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, GetCheckResponse> mapFromJson(dynamic json) {
+    final map = <String, GetCheckResponse>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = GetCheckResponse.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of GetCheckResponse-objects as value to a dart map
+  static Map<String, List<GetCheckResponse>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<GetCheckResponse>>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = GetCheckResponse.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'allowed',
+  };
 }
 

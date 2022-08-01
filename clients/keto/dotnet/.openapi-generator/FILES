@@ -12,9 +12,9 @@ docs/KetoHealthStatus.md
 docs/KetoInlineResponse200.md
 docs/KetoInlineResponse2001.md
 docs/KetoInlineResponse503.md
-docs/KetoInternalRelationTuple.md
 docs/KetoPatchDelta.md
 docs/KetoRelationQuery.md
+docs/KetoRelationTuple.md
 docs/KetoSubjectSet.md
 docs/KetoVersion.md
 docs/MetadataApi.md
@@ -33,9 +33,9 @@ src/Ory.Keto.Client.Test/Model/KetoHealthStatusTests.cs
 src/Ory.Keto.Client.Test/Model/KetoInlineResponse2001Tests.cs
 src/Ory.Keto.Client.Test/Model/KetoInlineResponse200Tests.cs
 src/Ory.Keto.Client.Test/Model/KetoInlineResponse503Tests.cs
-src/Ory.Keto.Client.Test/Model/KetoInternalRelationTupleTests.cs
 src/Ory.Keto.Client.Test/Model/KetoPatchDeltaTests.cs
 src/Ory.Keto.Client.Test/Model/KetoRelationQueryTests.cs
+src/Ory.Keto.Client.Test/Model/KetoRelationTupleTests.cs
 src/Ory.Keto.Client.Test/Model/KetoSubjectSetTests.cs
 src/Ory.Keto.Client.Test/Model/KetoVersionTests.cs
 src/Ory.Keto.Client.Test/Ory.Keto.Client.Test.csproj
@@ -68,9 +68,9 @@ src/Ory.Keto.Client/Model/KetoHealthStatus.cs
 src/Ory.Keto.Client/Model/KetoInlineResponse200.cs
 src/Ory.Keto.Client/Model/KetoInlineResponse2001.cs
 src/Ory.Keto.Client/Model/KetoInlineResponse503.cs
-src/Ory.Keto.Client/Model/KetoInternalRelationTuple.cs
 src/Ory.Keto.Client/Model/KetoPatchDelta.cs
 src/Ory.Keto.Client/Model/KetoRelationQuery.cs
+src/Ory.Keto.Client/Model/KetoRelationTuple.cs
 src/Ory.Keto.Client/Model/KetoSubjectSet.cs
 src/Ory.Keto.Client/Model/KetoVersion.cs
 src/Ory.Keto.Client/Ory.Keto.Client.csproj

@@ -4,10 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetCheck**](ReadApi.md#getcheck) | **GET** /check | Check a relation tuple
-[**GetExpand**](ReadApi.md#getexpand) | **GET** /expand | Expand a Relation Tuple
+[**GetCheck**](ReadApi.md#getcheck) | **GET** /relation-tuples/check/openapi | Check a relation tuple
+[**GetCheckMirrorStatus**](ReadApi.md#getcheckmirrorstatus) | **GET** /relation-tuples/check | Check a relation tuple
+[**GetExpand**](ReadApi.md#getexpand) | **GET** /relation-tuples/expand | Expand a Relation Tuple
 [**GetRelationTuples**](ReadApi.md#getrelationtuples) | **GET** /relation-tuples | Query relation tuples
-[**PostCheck**](ReadApi.md#postcheck) | **POST** /check | Check a relation tuple
+[**PostCheck**](ReadApi.md#postcheck) | **POST** /relation-tuples/check/openapi | Check a relation tuple
+[**PostCheckMirrorStatus**](ReadApi.md#postcheckmirrorstatus) | **POST** /relation-tuples/check | Check a relation tuple
 
 
 <a name="getcheck"></a>
@@ -73,6 +75,75 @@ Name | Type | Description  | Notes
  **subjectSetObject** | **string**| Object of the Subject Set | [optional] 
  **subjectSetRelation** | **string**| Relation of the Subject Set | [optional] 
  **maxDepth** | **long?**|  | [optional] 
+
+### Return type
+
+[**KetoGetCheckResponse**](KetoGetCheckResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | getCheckResponse |  -  |
+| **400** | genericError |  -  |
+| **500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="getcheckmirrorstatus"></a>
+# **GetCheckMirrorStatus**
+> KetoGetCheckResponse GetCheckMirrorStatus ()
+
+Check a relation tuple
+
+To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Keto.Client.Api;
+using Ory.Keto.Client.Client;
+using Ory.Keto.Client.Model;
+
+namespace Example
+{
+    public class GetCheckMirrorStatusExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            var apiInstance = new ReadApi(config);
+
+            try
+            {
+                // Check a relation tuple
+                KetoGetCheckResponse result = apiInstance.GetCheckMirrorStatus();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ReadApi.GetCheckMirrorStatus: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -330,6 +401,75 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | getCheckResponse |  -  |
+| **400** | genericError |  -  |
+| **500** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="postcheckmirrorstatus"></a>
+# **PostCheckMirrorStatus**
+> KetoGetCheckResponse PostCheckMirrorStatus ()
+
+Check a relation tuple
+
+To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Keto.Client.Api;
+using Ory.Keto.Client.Client;
+using Ory.Keto.Client.Model;
+
+namespace Example
+{
+    public class PostCheckMirrorStatusExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            var apiInstance = new ReadApi(config);
+
+            try
+            {
+                // Check a relation tuple
+                KetoGetCheckResponse result = apiInstance.PostCheckMirrorStatus();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ReadApi.PostCheckMirrorStatus: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**KetoGetCheckResponse**](KetoGetCheckResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 
