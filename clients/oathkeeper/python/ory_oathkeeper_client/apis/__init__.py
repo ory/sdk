@@ -6,7 +6,7 @@
 # raise a `RecursionError`.
 # In order to avoid this, import only the API that you directly need like:
 #
-#   from .api.api_api import ApiApi
+#   from ory_oathkeeper_client.api.api_api import ApiApi
 #
 # or import this package, but before doing it, use:
 #

@@ -1,12 +1,22 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.12
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
+import 'package:ory_oathkeeper_client/api.dart';
 import 'package:test/test.dart';
-import 'package:ory_oathkeeper_client/ory_oathkeeper_client.dart';
 
 
 /// tests for ApiApi
 void main() {
-  final instance = OryOathkeeperClient().getApiApi();
+  // final instance = ApiApi();
 
-  group(ApiApi, () {
+  group('tests for ApiApi', () {
     // Access Control Decision API
     //
     // > This endpoint works with all HTTP Methods (GET, POST, PUT, ...) and matches every path prefixed with /decision.  This endpoint mirrors the proxy capability of ORY Oathkeeper's proxy functionality but instead of forwarding the request to the upstream server, returns 200 (request should be allowed), 401 (unauthorized), or 403 (forbidden) status codes. This endpoint can be used to integrate with other API Proxies like Ambassador, Kong, Envoy, and many more.
@@ -65,7 +75,7 @@ void main() {
     //
     // This method returns an array of all rules that are stored in the backend. This is useful if you want to get a full view of what rules you have currently in place.
     //
-    //Future<BuiltList<Rule>> listRules({ int limit, int offset }) async
+    //Future<List<Rule>> listRules({ int limit, int offset }) async
     test('test listRules', () async {
       // TODO
     });

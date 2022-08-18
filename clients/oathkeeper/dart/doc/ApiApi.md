@@ -29,11 +29,11 @@ Access Control Decision API
 ```dart
 import 'package:ory_oathkeeper_client/api.dart';
 
-final api = OryOathkeeperClient().getApiApi();
+final api_instance = ApiApi();
 
 try {
-    api.decisions();
-} catch on DioError (e) {
+    api_instance.decisions();
+} catch (e) {
     print('Exception when calling ApiApi->decisions: $e\n');
 }
 ```
@@ -67,13 +67,13 @@ Use this method to retrieve a rule from the storage. If it does not exist you wi
 ```dart
 import 'package:ory_oathkeeper_client/api.dart';
 
-final api = OryOathkeeperClient().getApiApi();
-final String id = id_example; // String | 
+final api_instance = ApiApi();
+final id = id_example; // String | 
 
 try {
-    final response = api.getRule(id);
-    print(response);
-} catch on DioError (e) {
+    final result = api_instance.getRule(id);
+    print(result);
+} catch (e) {
     print('Exception when calling ApiApi->getRule: $e\n');
 }
 ```
@@ -110,12 +110,12 @@ This endpoint returns the service version typically notated using semantic versi
 ```dart
 import 'package:ory_oathkeeper_client/api.dart';
 
-final api = OryOathkeeperClient().getApiApi();
+final api_instance = ApiApi();
 
 try {
-    final response = api.getVersion();
-    print(response);
-} catch on DioError (e) {
+    final result = api_instance.getVersion();
+    print(result);
+} catch (e) {
     print('Exception when calling ApiApi->getVersion: $e\n');
 }
 ```
@@ -149,12 +149,12 @@ This endpoint returns cryptographic keys that are required to, for example, veri
 ```dart
 import 'package:ory_oathkeeper_client/api.dart';
 
-final api = OryOathkeeperClient().getApiApi();
+final api_instance = ApiApi();
 
 try {
-    final response = api.getWellKnownJSONWebKeys();
-    print(response);
-} catch on DioError (e) {
+    final result = api_instance.getWellKnownJSONWebKeys();
+    print(result);
+} catch (e) {
     print('Exception when calling ApiApi->getWellKnownJSONWebKeys: $e\n');
 }
 ```
@@ -188,12 +188,12 @@ This endpoint returns a 200 status code when the HTTP server is up running. This
 ```dart
 import 'package:ory_oathkeeper_client/api.dart';
 
-final api = OryOathkeeperClient().getApiApi();
+final api_instance = ApiApi();
 
 try {
-    final response = api.isInstanceAlive();
-    print(response);
-} catch on DioError (e) {
+    final result = api_instance.isInstanceAlive();
+    print(result);
+} catch (e) {
     print('Exception when calling ApiApi->isInstanceAlive: $e\n');
 }
 ```
@@ -227,12 +227,12 @@ This endpoint returns a 200 status code when the HTTP server is up running and t
 ```dart
 import 'package:ory_oathkeeper_client/api.dart';
 
-final api = OryOathkeeperClient().getApiApi();
+final api_instance = ApiApi();
 
 try {
-    final response = api.isInstanceReady();
-    print(response);
-} catch on DioError (e) {
+    final result = api_instance.isInstanceReady();
+    print(result);
+} catch (e) {
     print('Exception when calling ApiApi->isInstanceReady: $e\n');
 }
 ```
@@ -256,7 +256,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listRules**
-> BuiltList<Rule> listRules(limit, offset)
+> List<Rule> listRules(limit, offset)
 
 List all rules
 
@@ -266,14 +266,14 @@ This method returns an array of all rules that are stored in the backend. This i
 ```dart
 import 'package:ory_oathkeeper_client/api.dart';
 
-final api = OryOathkeeperClient().getApiApi();
-final int limit = 789; // int | The maximum amount of rules returned.
-final int offset = 789; // int | The offset from where to start looking.
+final api_instance = ApiApi();
+final limit = 789; // int | The maximum amount of rules returned.
+final offset = 789; // int | The offset from where to start looking.
 
 try {
-    final response = api.listRules(limit, offset);
-    print(response);
-} catch on DioError (e) {
+    final result = api_instance.listRules(limit, offset);
+    print(result);
+} catch (e) {
     print('Exception when calling ApiApi->listRules: $e\n');
 }
 ```
@@ -287,7 +287,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BuiltList&lt;Rule&gt;**](Rule.md)
+[**List<Rule>**](Rule.md)
 
 ### Authorization
 

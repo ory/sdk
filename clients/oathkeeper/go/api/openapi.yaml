@@ -8,14 +8,14 @@ info:
     for validity against a set of rules. This service uses Hydra to validate access
     tokens and policies.
   title: ORY Oathkeeper
-  version: v0.39.0
+  version: v0.39.2
 servers:
 - url: /
 paths:
   /.well-known/jwks.json:
     get:
-      description: This endpoint returns cryptographic keys that are required to,
-        for example, verify signatures of ID Tokens.
+      description: "This endpoint returns cryptographic keys that are required to,\
+        \ for example, verify signatures of ID Tokens."
       operationId: getWellKnownJSONWebKeys
       responses:
         "200":
@@ -28,19 +28,20 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
+                $ref: '#/components/schemas/getWellKnownJSONWebKeys_500_response'
           description: The standard error format
       summary: Lists cryptographic keys
       tags:
       - api
   /decisions:
     get:
-      description: |-
-        > This endpoint works with all HTTP Methods (GET, POST, PUT, ...) and matches every path prefixed with /decision.
-
-        This endpoint mirrors the proxy capability of ORY Oathkeeper's proxy functionality but instead of forwarding the
-        request to the upstream server, returns 200 (request should be allowed), 401 (unauthorized), or 403 (forbidden)
-        status codes. This endpoint can be used to integrate with other API Proxies like Ambassador, Kong, Envoy, and many more.
+      description: "> This endpoint works with all HTTP Methods (GET, POST, PUT, ...)\
+        \ and matches every path prefixed with /decision.\n\nThis endpoint mirrors\
+        \ the proxy capability of ORY Oathkeeper's proxy functionality but instead\
+        \ of forwarding the\nrequest to the upstream server, returns 200 (request\
+        \ should be allowed), 401 (unauthorized), or 403 (forbidden)\nstatus codes.\
+        \ This endpoint can be used to integrate with other API Proxies like Ambassador,\
+        \ Kong, Envoy, and many more."
       operationId: decisions
       responses:
         "200":
@@ -50,40 +51,37 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
+                $ref: '#/components/schemas/getWellKnownJSONWebKeys_500_response'
           description: The standard error format
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
+                $ref: '#/components/schemas/getWellKnownJSONWebKeys_500_response'
           description: The standard error format
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
+                $ref: '#/components/schemas/getWellKnownJSONWebKeys_500_response'
           description: The standard error format
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
+                $ref: '#/components/schemas/getWellKnownJSONWebKeys_500_response'
           description: The standard error format
       summary: Access Control Decision API
       tags:
       - api
   /health/alive:
     get:
-      description: |-
-        This endpoint returns a 200 status code when the HTTP server is up running.
-        This status does currently not include checks whether the database connection is working.
-
-        If the service supports TLS Edge Termination, this endpoint does not require the
-        `X-Forwarded-Proto` header to be set.
-
-        Be aware that if you are running multiple nodes of this service, the health status will never
-        refer to the cluster state, only to a single instance.
+      description: "This endpoint returns a 200 status code when the HTTP server is\
+        \ up running.\nThis status does currently not include checks whether the database\
+        \ connection is working.\n\nIf the service supports TLS Edge Termination,\
+        \ this endpoint does not require the\n`X-Forwarded-Proto` header to be set.\n\
+        \nBe aware that if you are running multiple nodes of this service, the health\
+        \ status will never\nrefer to the cluster state, only to a single instance."
       operationId: isInstanceAlive
       responses:
         "200":
@@ -96,22 +94,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
+                $ref: '#/components/schemas/getWellKnownJSONWebKeys_500_response'
           description: The standard error format
       summary: Check alive status
       tags:
       - api
   /health/ready:
     get:
-      description: |-
-        This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g.
-        the database) are responsive as well.
-
-        If the service supports TLS Edge Termination, this endpoint does not require the
-        `X-Forwarded-Proto` header to be set.
-
-        Be aware that if you are running multiple nodes of this service, the health status will never
-        refer to the cluster state, only to a single instance.
+      description: "This endpoint returns a 200 status code when the HTTP server is\
+        \ up running and the environment dependencies (e.g.\nthe database) are responsive\
+        \ as well.\n\nIf the service supports TLS Edge Termination, this endpoint\
+        \ does not require the\n`X-Forwarded-Proto` header to be set.\n\nBe aware\
+        \ that if you are running multiple nodes of this service, the health status\
+        \ will never\nrefer to the cluster state, only to a single instance."
       operationId: isInstanceReady
       responses:
         "200":
@@ -161,7 +156,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
+                $ref: '#/components/schemas/getWellKnownJSONWebKeys_500_response'
           description: The standard error format
       summary: List all rules
       tags:
@@ -188,27 +183,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
+                $ref: '#/components/schemas/getWellKnownJSONWebKeys_500_response'
           description: The standard error format
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
+                $ref: '#/components/schemas/getWellKnownJSONWebKeys_500_response'
           description: The standard error format
       summary: Retrieve a rule
       tags:
       - api
   /version:
     get:
-      description: |-
-        This endpoint returns the service version typically notated using semantic versioning.
-
-        If the service supports TLS Edge Termination, this endpoint does not require the
-        `X-Forwarded-Proto` header to be set.
-
-        Be aware that if you are running multiple nodes of this service, the health status will never
-        refer to the cluster state, only to a single instance.
+      description: "This endpoint returns the service version typically notated using\
+        \ semantic versioning.\n\nIf the service supports TLS Edge Termination, this\
+        \ endpoint does not require the\n`X-Forwarded-Proto` header to be set.\n\n\
+        Be aware that if you are running multiple nodes of this service, the health\
+        \ status will never\nrefer to the cluster state, only to a single instance."
       operationId: getVersion
       responses:
         "200":
@@ -229,13 +221,14 @@ components:
         url: url
       properties:
         preserve_host:
-          description: |-
-            PreserveHost, if false (the default), tells ORY Oathkeeper to set the upstream request's Host header to the
-            hostname of the API's upstream's URL. Setting this flag to true instructs ORY Oathkeeper not to do so.
+          description: "PreserveHost, if false (the default), tells ORY Oathkeeper\
+            \ to set the upstream request's Host header to the\nhostname of the API's\
+            \ upstream's URL. Setting this flag to true instructs ORY Oathkeeper not\
+            \ to do so."
           type: boolean
         strip_path:
-          description: StripPath if set, replaces the provided path prefix when forwarding
-            the requested URL to the upstream URL.
+          description: "StripPath if set, replaces the provided path prefix when forwarding\
+            \ the requested URL to the upstream URL."
           type: string
         url:
           description: URL is the URL the request will be proxied to.
@@ -271,22 +264,21 @@ components:
         k: k
         dp: dp
         dq: dq
-        n: "n"
+        "n": "n"
         p: p
         kty: kty
         q: q
         qi: qi
         x: x
-        y: "y"
+        "y": "y"
         alg: alg
       properties:
         alg:
-          description: |-
-            The "alg" (algorithm) parameter identifies the algorithm intended for
-            use with the key.  The values used should either be registered in the
-            IANA "JSON Web Signature and Encryption Algorithms" registry
-            established by [JWA] or be a value that contains a Collision-
-            Resistant Name.
+          description: "The \"alg\" (algorithm) parameter identifies the algorithm\
+            \ intended for\nuse with the key.  The values used should either be registered\
+            \ in the\nIANA \"JSON Web Signature and Encryption Algorithms\" registry\n\
+            established by [JWA] or be a value that contains a Collision-\nResistant\
+            \ Name."
           type: string
         crv:
           type: string
@@ -301,26 +293,24 @@ components:
         k:
           type: string
         kid:
-          description: |-
-            The "kid" (key ID) parameter is used to match a specific key.  This
-            is used, for instance, to choose among a set of keys within a JWK Set
-            during key rollover.  The structure of the "kid" value is
-            unspecified.  When "kid" values are used within a JWK Set, different
-            keys within the JWK Set SHOULD use distinct "kid" values.  (One
-            example in which different keys might use the same "kid" value is if
-            they have different "kty" (key type) values but are considered to be
-            equivalent alternatives by the application using them.)  The "kid"
-            value is a case-sensitive string.
+          description: "The \"kid\" (key ID) parameter is used to match a specific\
+            \ key.  This\nis used, for instance, to choose among a set of keys within\
+            \ a JWK Set\nduring key rollover.  The structure of the \"kid\" value\
+            \ is\nunspecified.  When \"kid\" values are used within a JWK Set, different\n\
+            keys within the JWK Set SHOULD use distinct \"kid\" values.  (One\nexample\
+            \ in which different keys might use the same \"kid\" value is if\nthey\
+            \ have different \"kty\" (key type) values but are considered to be\n\
+            equivalent alternatives by the application using them.)  The \"kid\"\n\
+            value is a case-sensitive string."
           type: string
         kty:
-          description: |-
-            The "kty" (key type) parameter identifies the cryptographic algorithm
-            family used with the key, such as "RSA" or "EC". "kty" values should
-            either be registered in the IANA "JSON Web Key Types" registry
-            established by [JWA] or be a value that contains a Collision-
-            Resistant Name.  The "kty" value is a case-sensitive string.
+          description: "The \"kty\" (key type) parameter identifies the cryptographic\
+            \ algorithm\nfamily used with the key, such as \"RSA\" or \"EC\". \"kty\"\
+            \ values should\neither be registered in the IANA \"JSON Web Key Types\"\
+            \ registry\nestablished by [JWA] or be a value that contains a Collision-\n\
+            Resistant Name.  The \"kty\" value is a case-sensitive string."
           type: string
-        n:
+        "n":
           type: string
         p:
           type: string
@@ -338,18 +328,16 @@ components:
         x:
           type: string
         x5c:
-          description: |-
-            The "x5c" (X.509 certificate chain) parameter contains a chain of one
-            or more PKIX certificates [RFC5280].  The certificate chain is
-            represented as a JSON array of certificate value strings.  Each
-            string in the array is a base64-encoded (Section 4 of [RFC4648] --
-            not base64url-encoded) DER [ITU.X690.1994] PKIX certificate value.
-            The PKIX certificate containing the key value MUST be the first
-            certificate.
+          description: "The \"x5c\" (X.509 certificate chain) parameter contains a\
+            \ chain of one\nor more PKIX certificates [RFC5280].  The certificate\
+            \ chain is\nrepresented as a JSON array of certificate value strings.\
+            \  Each\nstring in the array is a base64-encoded (Section 4 of [RFC4648]\
+            \ --\nnot base64url-encoded) DER [ITU.X690.1994] PKIX certificate value.\n\
+            The PKIX certificate containing the key value MUST be the first\ncertificate."
           items:
             type: string
           type: array
-        y:
+        "y":
           type: string
       type: object
     jsonWebKeySet:
@@ -366,13 +354,13 @@ components:
           k: k
           dp: dp
           dq: dq
-          n: "n"
+          "n": "n"
           p: p
           kty: kty
           q: q
           qi: qi
           x: x
-          y: "y"
+          "y": "y"
           alg: alg
         - d: d
           e: e
@@ -385,22 +373,21 @@ components:
           k: k
           dp: dp
           dq: dq
-          n: "n"
+          "n": "n"
           p: p
           kty: kty
           q: q
           qi: qi
           x: x
-          y: "y"
+          "y": "y"
           alg: alg
       properties:
         keys:
-          description: |-
-            The value of the "keys" parameter is an array of JWK values.  By
-            default, the order of the JWK values within the array does not imply
-            an order of preference among them, although applications of JWK Sets
-            can choose to assign a meaning to the order for their purposes, if
-            desired.
+          description: "The value of the \"keys\" parameter is an array of JWK values.\
+            \  By\ndefault, the order of the JWK values within the array does not\
+            \ imply\nan order of preference among them, although applications of JWK\
+            \ Sets\ncan choose to assign a meaning to the order for their purposes,\
+            \ if\ndesired."
           items:
             $ref: '#/components/schemas/jsonWebKey'
           type: array
@@ -413,12 +400,12 @@ components:
           url: url
         authorizer:
           handler: handler
-          config: '{}'
+          config: "{}"
         authenticators:
         - handler: handler
-          config: '{}'
+          config: "{}"
         - handler: handler
-          config: '{}'
+          config: "{}"
         match:
           methods:
           - methods
@@ -427,19 +414,18 @@ components:
         description: description
         mutators:
         - handler: handler
-          config: '{}'
+          config: "{}"
         - handler: handler
-          config: '{}'
+          config: "{}"
         id: id
       properties:
         authenticators:
-          description: |-
-            Authenticators is a list of authentication handlers that will try and authenticate the provided credentials.
-            Authenticators are checked iteratively from index 0 to n and if the first authenticator to return a positive
-            result will be the one used.
-
-            If you want the rule to first check a specific authenticator  before "falling back" to others, have that authenticator
-            as the first item in the array.
+          description: "Authenticators is a list of authentication handlers that will\
+            \ try and authenticate the provided credentials.\nAuthenticators are checked\
+            \ iteratively from index 0 to n and if the first authenticator to return\
+            \ a positive\nresult will be the one used.\n\nIf you want the rule to\
+            \ first check a specific authenticator  before \"falling back\" to others,\
+            \ have that authenticator\nas the first item in the array."
           items:
             $ref: '#/components/schemas/ruleHandler'
           type: array
@@ -449,9 +435,9 @@ components:
           description: Description is a human readable description of this rule.
           type: string
         id:
-          description: |-
-            ID is the unique id of the rule. It can be at most 190 characters long, but the layout of the ID is up to you.
-            You will need this ID later on to update or delete the rule.
+          description: "ID is the unique id of the rule. It can be at most 190 characters\
+            \ long, but the layout of the ID is up to you.\nYou will need this ID\
+            \ later on to update or delete the rule."
           type: string
         match:
           $ref: '#/components/schemas/ruleMatch'
@@ -471,7 +457,7 @@ components:
     ruleHandler:
       example:
         handler: handler
-        config: '{}'
+        config: "{}"
       properties:
         config:
           description: |-
@@ -493,24 +479,26 @@ components:
         url: url
       properties:
         methods:
-          description: |-
-            An array of HTTP methods (e.g. GET, POST, PUT, DELETE, ...). When ORY Oathkeeper searches for rules
-            to decide what to do with an incoming request to the proxy server, it compares the HTTP method of the incoming
-            request with the HTTP methods of each rules. If a match is found, the rule is considered a partial match.
-            If the matchesUrl field is satisfied as well, the rule is considered a full match.
+          description: "An array of HTTP methods (e.g. GET, POST, PUT, DELETE, ...).\
+            \ When ORY Oathkeeper searches for rules\nto decide what to do with an\
+            \ incoming request to the proxy server, it compares the HTTP method of\
+            \ the incoming\nrequest with the HTTP methods of each rules. If a match\
+            \ is found, the rule is considered a partial match.\nIf the matchesUrl\
+            \ field is satisfied as well, the rule is considered a full match."
           items:
             type: string
           type: array
         url:
-          description: |-
-            This field represents the URL pattern this rule matches. When ORY Oathkeeper searches for rules
-            to decide what to do with an incoming request to the proxy server, it compares the full request URL
-            (e.g. https://mydomain.com/api/resource) without query parameters of the incoming
-            request with this field. If a match is found, the rule is considered a partial match.
-            If the matchesMethods field is satisfied as well, the rule is considered a full match.
-
-            You can use regular expressions in this field to match more than one url. Regular expressions are encapsulated in
-            brackets < and >. The following example matches all paths of the domain `mydomain.com`: `https://mydomain.com/<.*>`.
+          description: "This field represents the URL pattern this rule matches. When\
+            \ ORY Oathkeeper searches for rules\nto decide what to do with an incoming\
+            \ request to the proxy server, it compares the full request URL\n(e.g.\
+            \ https://mydomain.com/api/resource) without query parameters of the incoming\n\
+            request with this field. If a match is found, the rule is considered a\
+            \ partial match.\nIf the matchesMethods field is satisfied as well, the\
+            \ rule is considered a full match.\n\nYou can use regular expressions\
+            \ in this field to match more than one url. Regular expressions are encapsulated\
+            \ in\nbrackets < and >. The following example matches all paths of the\
+            \ domain `mydomain.com`: `https://mydomain.com/<.*>`."
           type: string
       type: object
     version:
@@ -521,7 +509,7 @@ components:
           description: Version is the service's version.
           type: string
       type: object
-    inline_response_500:
+    getWellKnownJSONWebKeys_500_response:
       properties:
         code:
           format: int64

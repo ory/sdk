@@ -27,7 +27,7 @@ Access Control Decision API
 import time
 import ory_oathkeeper_client
 from ory_oathkeeper_client.api import api_api
-from ory_oathkeeper_client.model.inline_response500 import InlineResponse500
+from ory_oathkeeper_client.model.get_well_known_json_web_keys500_response import GetWellKnownJSONWebKeys500Response
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -93,7 +93,7 @@ Use this method to retrieve a rule from the storage. If it does not exist you wi
 import time
 import ory_oathkeeper_client
 from ory_oathkeeper_client.api import api_api
-from ory_oathkeeper_client.model.inline_response500 import InlineResponse500
+from ory_oathkeeper_client.model.get_well_known_json_web_keys500_response import GetWellKnownJSONWebKeys500Response
 from ory_oathkeeper_client.model.rule import Rule
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
@@ -226,7 +226,7 @@ This endpoint returns cryptographic keys that are required to, for example, veri
 import time
 import ory_oathkeeper_client
 from ory_oathkeeper_client.api import api_api
-from ory_oathkeeper_client.model.inline_response500 import InlineResponse500
+from ory_oathkeeper_client.model.get_well_known_json_web_keys500_response import GetWellKnownJSONWebKeys500Response
 from ory_oathkeeper_client.model.json_web_key_set import JsonWebKeySet
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
@@ -291,7 +291,7 @@ This endpoint returns a 200 status code when the HTTP server is up running. This
 import time
 import ory_oathkeeper_client
 from ory_oathkeeper_client.api import api_api
-from ory_oathkeeper_client.model.inline_response500 import InlineResponse500
+from ory_oathkeeper_client.model.get_well_known_json_web_keys500_response import GetWellKnownJSONWebKeys500Response
 from ory_oathkeeper_client.model.health_status import HealthStatus
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
@@ -421,7 +421,7 @@ This method returns an array of all rules that are stored in the backend. This i
 import time
 import ory_oathkeeper_client
 from ory_oathkeeper_client.api import api_api
-from ory_oathkeeper_client.model.inline_response500 import InlineResponse500
+from ory_oathkeeper_client.model.get_well_known_json_web_keys500_response import GetWellKnownJSONWebKeys500Response
 from ory_oathkeeper_client.model.rule import Rule
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost

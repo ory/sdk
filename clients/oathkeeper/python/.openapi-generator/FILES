@@ -4,9 +4,9 @@
 .travis.yml
 README.md
 docs/ApiApi.md
+docs/GetWellKnownJSONWebKeys500Response.md
 docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
-docs/InlineResponse500.md
 docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/Rule.md
@@ -23,9 +23,9 @@ ory_oathkeeper_client/apis/__init__.py
 ory_oathkeeper_client/configuration.py
 ory_oathkeeper_client/exceptions.py
 ory_oathkeeper_client/model/__init__.py
+ory_oathkeeper_client/model/get_well_known_json_web_keys500_response.py
 ory_oathkeeper_client/model/health_not_ready_status.py
 ory_oathkeeper_client/model/health_status.py
-ory_oathkeeper_client/model/inline_response500.py
 ory_oathkeeper_client/model/json_web_key.py
 ory_oathkeeper_client/model/json_web_key_set.py
 ory_oathkeeper_client/model/rule.py
@@ -42,9 +42,9 @@ setup.py
 test-requirements.txt
 test/__init__.py
 test/test_api_api.py
+test/test_get_well_known_json_web_keys500_response.py
 test/test_health_not_ready_status.py
 test/test_health_status.py
-test/test_inline_response500.py
 test/test_json_web_key.py
 test/test_json_web_key_set.py
 test/test_rule.py

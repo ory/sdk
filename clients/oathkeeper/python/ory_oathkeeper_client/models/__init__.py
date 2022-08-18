@@ -9,9 +9,9 @@
 # import sys
 # sys.setrecursionlimit(n)
 
+from ory_oathkeeper_client.model.get_well_known_json_web_keys500_response import GetWellKnownJSONWebKeys500Response
 from ory_oathkeeper_client.model.health_not_ready_status import HealthNotReadyStatus
 from ory_oathkeeper_client.model.health_status import HealthStatus
-from ory_oathkeeper_client.model.inline_response500 import InlineResponse500
 from ory_oathkeeper_client.model.json_web_key import JsonWebKey
 from ory_oathkeeper_client.model.json_web_key_set import JsonWebKeySet
 from ory_oathkeeper_client.model.rule import Rule

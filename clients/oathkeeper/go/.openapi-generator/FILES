@@ -7,9 +7,9 @@ api_api.go
 client.go
 configuration.go
 docs/ApiApi.md
+docs/GetWellKnownJSONWebKeys500Response.md
 docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
-docs/InlineResponse500.md
 docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/Rule.md
@@ -20,9 +20,9 @@ docs/Version.md
 git_push.sh
 go.mod
 go.sum
+model_get_well_known_json_web_keys_500_response.go
 model_health_not_ready_status.go
 model_health_status.go
-model_inline_response_500.go
 model_json_web_key.go
 model_json_web_key_set.go
 model_rule.go

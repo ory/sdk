@@ -1,4 +1,5 @@
 .gitignore
+.gitlab-ci.yml
 .openapi-generator-ignore
 .rspec
 .rubocop.yml
@@ -7,9 +8,9 @@ Gemfile
 README.md
 Rakefile
 docs/ApiApi.md
+docs/GetWellKnownJSONWebKeys500Response.md
 docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
-docs/InlineResponse500.md
 docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/Rule.md
@@ -23,9 +24,9 @@ lib/ory-oathkeeper-client/api/api_api.rb
 lib/ory-oathkeeper-client/api_client.rb
 lib/ory-oathkeeper-client/api_error.rb
 lib/ory-oathkeeper-client/configuration.rb
+lib/ory-oathkeeper-client/models/get_well_known_json_web_keys500_response.rb
 lib/ory-oathkeeper-client/models/health_not_ready_status.rb
 lib/ory-oathkeeper-client/models/health_status.rb
-lib/ory-oathkeeper-client/models/inline_response500.rb
 lib/ory-oathkeeper-client/models/json_web_key.rb
 lib/ory-oathkeeper-client/models/json_web_key_set.rb
 lib/ory-oathkeeper-client/models/rule.rb
@@ -38,9 +39,9 @@ ory-oathkeeper-client.gemspec
 spec/api/api_api_spec.rb
 spec/api_client_spec.rb
 spec/configuration_spec.rb
+spec/models/get_well_known_json_web_keys500_response_spec.rb
 spec/models/health_not_ready_status_spec.rb
 spec/models/health_status_spec.rb
-spec/models/inline_response500_spec.rb
 spec/models/json_web_key_set_spec.rb
 spec/models/json_web_key_spec.rb
 spec/models/rule_handler_spec.rb

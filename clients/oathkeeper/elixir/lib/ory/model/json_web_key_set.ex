@@ -9,11 +9,11 @@ defmodule Ory.Model.JsonWebKeySet do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"keys"
+    :keys
   ]
 
   @type t :: %__MODULE__{
-    :"keys" => [Ory.Model.JsonWebKey.t] | nil
+    :keys => [Ory.Model.JsonWebKey.t] | nil
   }
 end
 
@@ -21,7 +21,7 @@ defimpl Poison.Decoder, for: Ory.Model.JsonWebKeySet do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"keys", :list, Ory.Model.JsonWebKey, options)
+    |> deserialize(:keys, :list, Ory.Model.JsonWebKey, options)
   end
 end
 

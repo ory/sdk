@@ -189,8 +189,8 @@ defmodule Ory.Api.Api do
   @spec list_rules(Tesla.Env.client, keyword()) :: {:ok, list(Ory.Model.Rule.t)} | {:ok, Ory.Model.GetWellKnownJsonWebKeys500Response.t} | {:error, Tesla.Env.t}
   def list_rules(connection, opts \\ []) do
     optional_params = %{
-      :"limit" => :query,
-      :"offset" => :query
+      :limit => :query,
+      :offset => :query
     }
     %{}
     |> method(:get)

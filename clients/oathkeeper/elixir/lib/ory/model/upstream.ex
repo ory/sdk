@@ -9,15 +9,15 @@ defmodule Ory.Model.Upstream do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"preserve_host",
-    :"strip_path",
-    :"url"
+    :preserve_host,
+    :strip_path,
+    :url
   ]
 
   @type t :: %__MODULE__{
-    :"preserve_host" => boolean() | nil,
-    :"strip_path" => String.t | nil,
-    :"url" => String.t | nil
+    :preserve_host => boolean() | nil,
+    :strip_path => String.t | nil,
+    :url => String.t | nil
   }
 end
 

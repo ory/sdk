@@ -9,13 +9,13 @@ defmodule Ory.Model.RuleHandler do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"config",
-    :"handler"
+    :config,
+    :handler
   ]
 
   @type t :: %__MODULE__{
-    :"config" => map() | nil,
-    :"handler" => String.t | nil
+    :config => map() | nil,
+    :handler => String.t | nil
   }
 end
 

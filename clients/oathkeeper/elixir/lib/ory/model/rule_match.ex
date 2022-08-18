@@ -9,13 +9,13 @@ defmodule Ory.Model.RuleMatch do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"methods",
-    :"url"
+    :methods,
+    :url
   ]
 
   @type t :: %__MODULE__{
-    :"methods" => [String.t] | nil,
-    :"url" => String.t | nil
+    :methods => [String.t] | nil,
+    :url => String.t | nil
   }
 end
 

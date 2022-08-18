@@ -9,21 +9,21 @@ defmodule Ory.Model.GetWellKnownJsonWebKeys500Response do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"code",
-    :"details",
-    :"message",
-    :"reason",
-    :"request",
-    :"status"
+    :code,
+    :details,
+    :message,
+    :reason,
+    :request,
+    :status
   ]
 
   @type t :: %__MODULE__{
-    :"code" => integer() | nil,
-    :"details" => [map()] | nil,
-    :"message" => String.t | nil,
-    :"reason" => String.t | nil,
-    :"request" => String.t | nil,
-    :"status" => String.t | nil
+    :code => integer() | nil,
+    :details => [map()] | nil,
+    :message => String.t | nil,
+    :reason => String.t | nil,
+    :request => String.t | nil,
+    :status => String.t | nil
   }
 end
 
