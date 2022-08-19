@@ -305,9 +305,14 @@ elixir () {
   cp "LICENSE" "clients/${PROJECT}/elixir"
 }
 
+
+rust
+
+exit 0
+
 elixir
 typescript
-rust
+# rust
 golang
 java
 php

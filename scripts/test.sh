@@ -95,7 +95,7 @@ elixir () {
 
 elixir
 typescript
-rust
+# rust
 golang
 java
 php
