@@ -209,6 +209,7 @@ golang () {
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g go \
     -o "$dir" \
+    -t openapi/templates/go \
     --git-user-id ory \
     --git-repo-id "${GIT_REPO}-go" \
     --git-host github.com \
