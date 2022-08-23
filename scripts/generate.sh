@@ -261,10 +261,14 @@ rust () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 5.2.1
+  openapi-generator-cli version-manager set 6.0.1
+  # We use a custom rust template to fix some of the compilation issues:
+  # - https://github.com/OpenAPITools/openapi-generator/issues/13257
+  # - https://github.com/OpenAPITools/openapi-generator/issues/10845
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g rust \
     -o "$dir" \
+    -t ./openapi/templates/rust \
     --git-user-id ory \
     --git-repo-id sdk \
     --git-host github.com \
@@ -305,14 +309,9 @@ elixir () {
   cp "LICENSE" "clients/${PROJECT}/elixir"
 }
 
-
-rust
-
-exit 0
-
 elixir
 typescript
-# rust
+rust
 golang
 java
 php
