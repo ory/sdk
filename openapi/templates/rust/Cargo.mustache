@@ -1,0 +1,34 @@
+[package]
+name = "{{{packageName}}}"
+version = "{{{packageVersion}}}"
+authors = ["OpenAPI Generator team and contributors"]
+edition = "2018"
+
+[dependencies]
+num-traits = { version = "^0.2", default-features = false }
+serde = "^1.0"
+serde_derive = "^1.0"
+serde_json = "^1.0"
+url = "^2.2"
+{{#hyper}}
+hyper = "~0.11"
+serde_yaml = "0.7"
+base64 = "~0.7.0"
+futures = "0.1.23"
+{{/hyper}}
+{{#reqwest}}
+{{^supportAsync}}
+reqwest = "~0.9"
+{{/supportAsync}}
+{{#supportAsync}}
+[dependencies.reqwest]
+version = "^0.11"
+default-features = false
+features = ["json", "multipart"]
+{{/supportAsync}}
+{{/reqwest}}
+
+[dev-dependencies]
+{{#hyper}}
+tokio-core = "*"
+{{/hyper}}
