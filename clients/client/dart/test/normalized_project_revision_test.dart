@@ -22,6 +22,231 @@ void main() {
       // TODO
     });
 
+    // Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
+    // bool hydraOauth2ClientCredentialsDefaultGrantAllowedScope
+    test('to test the property `hydraOauth2ClientCredentialsDefaultGrantAllowedScope`', () async {
+      // TODO
+    });
+
+    // Configures if the issued at (`iat`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `iat` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.iat_optional\" setting.
+    // bool hydraOauth2GrantJwtIatOptional
+    test('to test the property `hydraOauth2GrantJwtIatOptional`', () async {
+      // TODO
+    });
+
+    // Configures if the JSON Web Token ID (`jti`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `jti` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.jti_optional\" setting.
+    // bool hydraOauth2GrantJwtJtiOptional
+    test('to test the property `hydraOauth2GrantJwtJtiOptional`', () async {
+      // TODO
+    });
+
+    // String hydraOauth2GrantJwtMaxTtl
+    test('to test the property `hydraOauth2GrantJwtMaxTtl`', () async {
+      // TODO
+    });
+
+    // Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \"oauth2.pkce.enforced\" setting.
+    // bool hydraOauth2PkceEnforced
+    test('to test the property `hydraOauth2PkceEnforced`', () async {
+      // TODO
+    });
+
+    // Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \"oauth2.pkce.enforced_for_public_clients\" setting.
+    // bool hydraOauth2PkceEnforcedForPublicClients
+    test('to test the property `hydraOauth2PkceEnforcedForPublicClients`', () async {
+      // TODO
+    });
+
+    // Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \"oauth2.refresh_token_hook\" setting.
+    // String hydraOauth2RefreshTokenHook
+    test('to test the property `hydraOauth2RefreshTokenHook`', () async {
+      // TODO
+    });
+
+    // List<String> hydraOidcDynamicClientRegistrationDefaultScope (default value: const [])
+    test('to test the property `hydraOidcDynamicClientRegistrationDefaultScope`', () async {
+      // TODO
+    });
+
+    // Configures OpenID Connect Dynamic Client Registration.  This governs the \"oidc.dynamic_client_registration.enabled\" setting.
+    // bool hydraOidcDynamicClientRegistrationEnabled
+    test('to test the property `hydraOidcDynamicClientRegistrationEnabled`', () async {
+      // TODO
+    });
+
+    // Configures OpenID Connect Discovery and overwrites the pairwise algorithm  This governs the \"oidc.subject_identifiers.pairwise_salt\" setting.
+    // String hydraOidcSubjectIdentifiersPairwiseSalt
+    test('to test the property `hydraOidcSubjectIdentifiersPairwiseSalt`', () async {
+      // TODO
+    });
+
+    // List<String> hydraOidcSubjectIdentifiersSupportedTypes (default value: const [])
+    test('to test the property `hydraOidcSubjectIdentifiersSupportedTypes`', () async {
+      // TODO
+    });
+
+    // List<String> hydraSecretsCookie (default value: const [])
+    test('to test the property `hydraSecretsCookie`', () async {
+      // TODO
+    });
+
+    // List<String> hydraSecretsSystem (default value: const [])
+    test('to test the property `hydraSecretsSystem`', () async {
+      // TODO
+    });
+
+    // List<String> hydraServeAdminCorsAllowedOrigins (default value: const [])
+    test('to test the property `hydraServeAdminCorsAllowedOrigins`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Hydra CORS Settings  This governs the \"serve.admin.cors.enabled\" setting.
+    // bool hydraServeAdminCorsEnabled
+    test('to test the property `hydraServeAdminCorsEnabled`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \"serve.cookies.same_site_legacy_workaround\" setting.
+    // bool hydraServeCookiesSameSiteLegacyWorkaround
+    test('to test the property `hydraServeCookiesSameSiteLegacyWorkaround`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Hydra Cookie Same Site Mode  This governs the \"serve.cookies.same_site_mode\" setting.
+    // String hydraServeCookiesSameSiteMode
+    test('to test the property `hydraServeCookiesSameSiteMode`', () async {
+      // TODO
+    });
+
+    // List<String> hydraServePublicCorsAllowedOrigins (default value: const [])
+    test('to test the property `hydraServePublicCorsAllowedOrigins`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Hydra CORS Settings  This governs the \"serve.public.cors.enabled\" setting.
+    // bool hydraServePublicCorsEnabled
+    test('to test the property `hydraServePublicCorsEnabled`', () async {
+      // TODO
+    });
+
+    // Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting.
+    // Object hydraStrategiesAccessToken
+    test('to test the property `hydraStrategiesAccessToken`', () async {
+      // TODO
+    });
+
+    // Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting.
+    // Object hydraStrategiesScope
+    test('to test the property `hydraStrategiesScope`', () async {
+      // TODO
+    });
+
+    // String hydraTtlAccessToken
+    test('to test the property `hydraTtlAccessToken`', () async {
+      // TODO
+    });
+
+    // String hydraTtlAuthCode
+    test('to test the property `hydraTtlAuthCode`', () async {
+      // TODO
+    });
+
+    // String hydraTtlIdToken
+    test('to test the property `hydraTtlIdToken`', () async {
+      // TODO
+    });
+
+    // String hydraTtlLoginConsentRequest
+    test('to test the property `hydraTtlLoginConsentRequest`', () async {
+      // TODO
+    });
+
+    // String hydraTtlRefreshToken
+    test('to test the property `hydraTtlRefreshToken`', () async {
+      // TODO
+    });
+
+    // Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.consent\" setting.
+    // String hydraUrlsConsent
+    test('to test the property `hydraUrlsConsent`', () async {
+      // TODO
+    });
+
+    // Sets the OAuth2 Error URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.error\" setting.
+    // String hydraUrlsError
+    test('to test the property `hydraUrlsError`', () async {
+      // TODO
+    });
+
+    // Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.login\" setting.
+    // String hydraUrlsLogin
+    test('to test the property `hydraUrlsLogin`', () async {
+      // TODO
+    });
+
+    // Sets the logout endpoint.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.logout\" setting.
+    // String hydraUrlsLogout
+    test('to test the property `hydraUrlsLogout`', () async {
+      // TODO
+    });
+
+    // When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to Ory Cloud's Managed UI in development and your application in production mode when a custom domain is connected.  This governs the \"urls.post_logout_redirect\" setting.
+    // String hydraUrlsPostLogoutRedirect
+    test('to test the property `hydraUrlsPostLogoutRedirect`', () async {
+      // TODO
+    });
+
+    // This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  In Ory Cloud it will be very rare that you want to modify this value. If left empty, it will default to the correct value for Ory Cloud.  This governs the \"urls.self.issuer\" setting.
+    // String hydraUrlsSelfIssuer
+    test('to test the property `hydraUrlsSelfIssuer`', () async {
+      // TODO
+    });
+
+    // List<String> hydraWebfingerJwksBroadcastKeys (default value: const [])
+    test('to test the property `hydraWebfingerJwksBroadcastKeys`', () async {
+      // TODO
+    });
+
+    // Configures OpenID Connect Discovery and overwrites the OAuth2 Authorization URL.  This governs the \"webfinger.oidc.discovery.auth_url\" setting.
+    // String hydraWebfingerOidcDiscoveryAuthUrl
+    test('to test the property `hydraWebfingerOidcDiscoveryAuthUrl`', () async {
+      // TODO
+    });
+
+    // Configures OpenID Connect Discovery and overwrites the OpenID Connect Dynamic Client Registration Endpoint.  This governs the \"webfinger.oidc.discovery.client_registration_url\" setting.
+    // String hydraWebfingerOidcDiscoveryClientRegistrationUrl
+    test('to test the property `hydraWebfingerOidcDiscoveryClientRegistrationUrl`', () async {
+      // TODO
+    });
+
+    // Configures OpenID Connect Discovery and overwrites the JWKS URL.  This governs the \"webfinger.oidc.discovery.jwks_url\" setting.
+    // String hydraWebfingerOidcDiscoveryJwksUrl
+    test('to test the property `hydraWebfingerOidcDiscoveryJwksUrl`', () async {
+      // TODO
+    });
+
+    // List<String> hydraWebfingerOidcDiscoverySupportedClaims (default value: const [])
+    test('to test the property `hydraWebfingerOidcDiscoverySupportedClaims`', () async {
+      // TODO
+    });
+
+    // List<String> hydraWebfingerOidcDiscoverySupportedScope (default value: const [])
+    test('to test the property `hydraWebfingerOidcDiscoverySupportedScope`', () async {
+      // TODO
+    });
+
+    // Configures OpenID Connect Discovery and overwrites the OAuth2 Token URL.  This governs the \"webfinger.oidc.discovery.token_url\" setting.
+    // String hydraWebfingerOidcDiscoveryTokenUrl
+    test('to test the property `hydraWebfingerOidcDiscoveryTokenUrl`', () async {
+      // TODO
+    });
+
+    // Configures OpenID Connect Discovery and overwrites userinfo endpoint to be advertised at the OpenID Connect Discovery endpoint /.well-known/openid-configuration. Defaults to Ory Hydra's userinfo endpoint at /userinfo. Set this value if you want to handle this endpoint yourself.  This governs the \"webfinger.oidc.discovery.userinfo_url\" setting.
+    // String hydraWebfingerOidcDiscoveryUserinfoUrl
+    test('to test the property `hydraWebfingerOidcDiscoveryUserinfoUrl`', () async {
+      // TODO
+    });
+
     // String id
     test('to test the property `id`', () async {
       // TODO
@@ -502,6 +727,12 @@ void main() {
     // The project's name.
     // String name
     test('to test the property `name`', () async {
+      // TODO
+    });
+
+    // Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment.
+    // bool production
+    test('to test the property `production`', () async {
       // TODO
     });
 

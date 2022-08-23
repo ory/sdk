@@ -21,6 +21,11 @@ void main() {
       // TODO
     });
 
+    // ProjectServiceOAuth2 oauth2
+    test('to test the property `oauth2`', () async {
+      // TODO
+    });
+
     // ProjectServicePermission permission
     test('to test the property `permission`', () async {
       // TODO

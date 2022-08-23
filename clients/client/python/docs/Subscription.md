@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **datetime** |  | [readonly] 
-**current_plan** | **str** | The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom | [readonly] 
+**current_plan** | **str** | The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom | [readonly] 
 **customer_id** | **str** | The ID of the stripe customer | [readonly] 
 **id** | **str** |  | 
 **payed_until** | **datetime** | Until when the subscription is payed | [readonly] 

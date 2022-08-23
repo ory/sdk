@@ -27,7 +27,7 @@ class Subscription {
 
   DateTime createdAt;
 
-  /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
+  /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
   SubscriptionCurrentPlanEnum currentPlan;
 
   /// The ID of the stripe customer
@@ -197,7 +197,7 @@ class Subscription {
   };
 }
 
-/// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
+/// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
 class SubscriptionCurrentPlanEnum {
   /// Instantiate a new enum with the provided [value].
   const SubscriptionCurrentPlanEnum._(this.value);
@@ -214,6 +214,8 @@ class SubscriptionCurrentPlanEnum {
   static const free = SubscriptionCurrentPlanEnum._(r'free');
   static const startUpMonthly = SubscriptionCurrentPlanEnum._(r'start_up_monthly');
   static const startUpYearly = SubscriptionCurrentPlanEnum._(r'start_up_yearly');
+  static const businessMonthly = SubscriptionCurrentPlanEnum._(r'business_monthly');
+  static const businessYearly = SubscriptionCurrentPlanEnum._(r'business_yearly');
   static const custom = SubscriptionCurrentPlanEnum._(r'custom');
 
   /// List of all possible values in this [enum][SubscriptionCurrentPlanEnum].
@@ -222,6 +224,8 @@ class SubscriptionCurrentPlanEnum {
     free,
     startUpMonthly,
     startUpYearly,
+    businessMonthly,
+    businessYearly,
     custom,
   ];
 
@@ -265,6 +269,8 @@ class SubscriptionCurrentPlanEnumTypeTransformer {
         case r'free': return SubscriptionCurrentPlanEnum.free;
         case r'start_up_monthly': return SubscriptionCurrentPlanEnum.startUpMonthly;
         case r'start_up_yearly': return SubscriptionCurrentPlanEnum.startUpYearly;
+        case r'business_monthly': return SubscriptionCurrentPlanEnum.businessMonthly;
+        case r'business_yearly': return SubscriptionCurrentPlanEnum.businessYearly;
         case r'custom': return SubscriptionCurrentPlanEnum.custom;
         default:
           if (!allowNull) {

@@ -97,7 +97,7 @@ class MetadataApi {
   /// Check HTTP Server Status
   ///
   /// This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incoming HTTP requests. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
-  Future<IsAlive200Response?> isAlive() async {
+  Future<HealthStatus?> isAlive() async {
     final response = await isAliveWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -106,7 +106,7 @@ class MetadataApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'IsAlive200Response',) as IsAlive200Response;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'HealthStatus',) as HealthStatus;
     
     }
     return null;
@@ -145,7 +145,7 @@ class MetadataApi {
   /// Check HTTP Server and Database Status
   ///
   /// This endpoint returns a HTTP 200 status code when Ory Kratos is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of Ory Kratos, the health status will never refer to the cluster state, only to a single instance.
-  Future<IsAlive200Response?> isReady() async {
+  Future<IsReady200Response?> isReady() async {
     final response = await isReadyWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -154,7 +154,7 @@ class MetadataApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'IsAlive200Response',) as IsAlive200Response;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'IsReady200Response',) as IsReady200Response;
     
     }
     return null;

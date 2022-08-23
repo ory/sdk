@@ -192,6 +192,12 @@ class ApiClient {
           return valueString == 'true' || valueString == '1';
         case 'DateTime':
           return value is DateTime ? value : DateTime.tryParse(value);
+        case 'AcceptOAuth2ConsentRequest':
+          return AcceptOAuth2ConsentRequest.fromJson(value);
+        case 'AcceptOAuth2ConsentRequestSession':
+          return AcceptOAuth2ConsentRequestSession.fromJson(value);
+        case 'AcceptOAuth2LoginRequest':
+          return AcceptOAuth2LoginRequest.fromJson(value);
         case 'ActiveProject':
           return ActiveProject.fromJson(value);
         case 'AdminCreateIdentityBody':
@@ -206,10 +212,14 @@ class ApiClient {
           return AdminCreateIdentityImportCredentialsPassword.fromJson(value);
         case 'AdminCreateIdentityImportCredentialsPasswordConfig':
           return AdminCreateIdentityImportCredentialsPasswordConfig.fromJson(value);
+        case 'AdminCreateJsonWebKeySetBody':
+          return AdminCreateJsonWebKeySetBody.fromJson(value);
         case 'AdminCreateSelfServiceRecoveryLinkBody':
           return AdminCreateSelfServiceRecoveryLinkBody.fromJson(value);
         case 'AdminIdentityImportCredentials':
           return AdminIdentityImportCredentials.fromJson(value);
+        case 'AdminTrustOAuth2JwtGrantIssuerBody':
+          return AdminTrustOAuth2JwtGrantIssuerBody.fromJson(value);
         case 'AdminUpdateIdentityBody':
           return AdminUpdateIdentityBody.fromJson(value);
         case 'ApiToken':
@@ -236,14 +246,26 @@ class ApiClient {
           return GenericErrorContent.fromJson(value);
         case 'GetCheckResponse':
           return GetCheckResponse.fromJson(value);
+        case 'GetManagedIdentitySchemaLocation':
+          return GetManagedIdentitySchemaLocation.fromJson(value);
         case 'GetRelationTuplesResponse':
           return GetRelationTuplesResponse.fromJson(value);
         case 'GetVersion200Response':
           return GetVersion200Response.fromJson(value);
+        case 'HandledOAuth2ConsentRequest':
+          return HandledOAuth2ConsentRequest.fromJson(value);
+        case 'HandledOAuth2LoginRequest':
+          return HandledOAuth2LoginRequest.fromJson(value);
+        case 'HandledOAuth2LogoutRequest':
+          return HandledOAuth2LogoutRequest.fromJson(value);
+        case 'Headers':
+          return Headers.fromJson(value);
         case 'HealthNotReadyStatus':
           return HealthNotReadyStatus.fromJson(value);
         case 'HealthStatus':
           return HealthStatus.fromJson(value);
+        case 'IDTokenClaims':
+          return IDTokenClaims.fromJson(value);
         case 'Identity':
           return Identity.fromJson(value);
         case 'IdentityCredentials':
@@ -256,36 +278,40 @@ class ApiClient {
           return IdentityCredentialsPassword.fromJson(value);
         case 'IdentityCredentialsType':
           return IdentityCredentialsTypeTypeTransformer().decode(value);
-        case 'IdentitySchema':
-          return IdentitySchema.fromJson(value);
         case 'IdentitySchemaContainer':
           return IdentitySchemaContainer.fromJson(value);
-        case 'IdentitySchemaLocation':
-          return IdentitySchemaLocation.fromJson(value);
         case 'IdentitySchemaPreset':
           return IdentitySchemaPreset.fromJson(value);
-        case 'IdentitySchemaValidationResult':
-          return IdentitySchemaValidationResult.fromJson(value);
         case 'IdentityState':
           return IdentityStateTypeTransformer().decode(value);
         case 'InternalRelationTuple':
           return InternalRelationTuple.fromJson(value);
+        case 'IntrospectedOAuth2Token':
+          return IntrospectedOAuth2Token.fromJson(value);
         case 'InvitePayload':
           return InvitePayload.fromJson(value);
-        case 'IsAlive200Response':
-          return IsAlive200Response.fromJson(value);
         case 'IsOwnerForProjectBySlug':
           return IsOwnerForProjectBySlug.fromJson(value);
         case 'IsOwnerForProjectBySlugPayload':
           return IsOwnerForProjectBySlugPayload.fromJson(value);
+        case 'IsReady200Response':
+          return IsReady200Response.fromJson(value);
         case 'IsReady503Response':
           return IsReady503Response.fromJson(value);
         case 'JsonError':
           return JsonError.fromJson(value);
         case 'JsonPatch':
           return JsonPatch.fromJson(value);
+        case 'JsonWebKey':
+          return JsonWebKey.fromJson(value);
+        case 'JsonWebKeySet':
+          return JsonWebKeySet.fromJson(value);
         case 'KetoNamespace':
           return KetoNamespace.fromJson(value);
+        case 'ManagedIdentitySchema':
+          return ManagedIdentitySchema.fromJson(value);
+        case 'ManagedIdentitySchemaValidationResult':
+          return ManagedIdentitySchemaValidationResult.fromJson(value);
         case 'NeedsPrivilegedSessionError':
           return NeedsPrivilegedSessionError.fromJson(value);
         case 'NormalizedProject':
@@ -300,10 +326,38 @@ class ApiClient {
           return NormalizedProjectRevisionThirdPartyProvider.fromJson(value);
         case 'NullPlan':
           return NullPlanTypeTransformer().decode(value);
+        case 'OAuth2AccessRequest':
+          return OAuth2AccessRequest.fromJson(value);
+        case 'OAuth2ApiError':
+          return OAuth2ApiError.fromJson(value);
+        case 'OAuth2Client':
+          return OAuth2Client.fromJson(value);
+        case 'OAuth2ConsentRequest':
+          return OAuth2ConsentRequest.fromJson(value);
+        case 'OAuth2ConsentRequestOpenIDConnectContext':
+          return OAuth2ConsentRequestOpenIDConnectContext.fromJson(value);
+        case 'OAuth2ConsentSession':
+          return OAuth2ConsentSession.fromJson(value);
+        case 'OAuth2ConsentSessionExpiresAt':
+          return OAuth2ConsentSessionExpiresAt.fromJson(value);
+        case 'OAuth2LoginRequest':
+          return OAuth2LoginRequest.fromJson(value);
+        case 'OAuth2LogoutRequest':
+          return OAuth2LogoutRequest.fromJson(value);
+        case 'OAuth2TokenResponse':
+          return OAuth2TokenResponse.fromJson(value);
+        case 'OidcConfiguration':
+          return OidcConfiguration.fromJson(value);
+        case 'OidcUserInfo':
+          return OidcUserInfo.fromJson(value);
         case 'Pagination':
           return Pagination.fromJson(value);
+        case 'PaginationHeaders':
+          return PaginationHeaders.fromJson(value);
         case 'PatchDelta':
           return PatchDelta.fromJson(value);
+        case 'PreviousOAuth2ConsentSession':
+          return PreviousOAuth2ConsentSession.fromJson(value);
         case 'Project':
           return Project.fromJson(value);
         case 'ProjectHost':
@@ -314,6 +368,8 @@ class ApiClient {
           return ProjectMetadata.fromJson(value);
         case 'ProjectServiceIdentity':
           return ProjectServiceIdentity.fromJson(value);
+        case 'ProjectServiceOAuth2':
+          return ProjectServiceOAuth2.fromJson(value);
         case 'ProjectServicePermission':
           return ProjectServicePermission.fromJson(value);
         case 'ProjectServices':
@@ -326,6 +382,12 @@ class ApiClient {
           return QuotaProjectMemberSeats.fromJson(value);
         case 'RecoveryAddress':
           return RecoveryAddress.fromJson(value);
+        case 'RefreshTokenHookRequest':
+          return RefreshTokenHookRequest.fromJson(value);
+        case 'RefreshTokenHookResponse':
+          return RefreshTokenHookResponse.fromJson(value);
+        case 'RejectOAuth2Request':
+          return RejectOAuth2Request.fromJson(value);
         case 'RelationQuery':
           return RelationQuery.fromJson(value);
         case 'RevokedSessions':
@@ -418,6 +480,8 @@ class ApiClient {
           return SubmitSelfServiceVerificationFlowWithLinkMethodBody.fromJson(value);
         case 'Subscription':
           return Subscription.fromJson(value);
+        case 'SuccessfulOAuth2RequestResponse':
+          return SuccessfulOAuth2RequestResponse.fromJson(value);
         case 'SuccessfulProjectUpdate':
           return SuccessfulProjectUpdate.fromJson(value);
         case 'SuccessfulSelfServiceLoginWithoutBrowser':
@@ -428,6 +492,10 @@ class ApiClient {
           return TokenPagination.fromJson(value);
         case 'TokenPaginationHeaders':
           return TokenPaginationHeaders.fromJson(value);
+        case 'TrustedOAuth2JwtGrantIssuer':
+          return TrustedOAuth2JwtGrantIssuer.fromJson(value);
+        case 'TrustedOAuth2JwtGrantJsonWebKey':
+          return TrustedOAuth2JwtGrantJsonWebKey.fromJson(value);
         case 'UiContainer':
           return UiContainer.fromJson(value);
         case 'UiNode':
@@ -450,6 +518,8 @@ class ApiClient {
           return UiText.fromJson(value);
         case 'UpdateCustomHostnameBody':
           return UpdateCustomHostnameBody.fromJson(value);
+        case 'UpdateOAuth2ClientLifespans':
+          return UpdateOAuth2ClientLifespans.fromJson(value);
         case 'UpdateProject':
           return UpdateProject.fromJson(value);
         case 'UpdateSubscriptionPayload':

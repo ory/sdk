@@ -46,10 +46,10 @@ defmodule Ory.Api.Metadata do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, Ory.Model.IsAlive200Response.t} on success
+  {:ok, map()} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec is_alive(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, Ory.Model.IsAlive200Response.t} | {:error, Tesla.Env.t}
+  @spec is_alive(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, Ory.Model.HealthStatus.t} | {:error, Tesla.Env.t}
   def is_alive(connection, _opts \\ []) do
     %{}
     |> method(:get)
@@ -57,7 +57,7 @@ defmodule Ory.Api.Metadata do
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
-      { 200, %Ory.Model.IsAlive200Response{}},
+      { 200, %{}},
       { 500, %Ory.Model.GenericError{}}
     ])
   end
@@ -72,10 +72,10 @@ defmodule Ory.Api.Metadata do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, Ory.Model.IsAlive200Response.t} on success
+  {:ok, Ory.Model.IsReady200Response.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec is_ready(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.IsAlive200Response.t} | {:ok, Ory.Model.IsReady503Response.t} | {:error, Tesla.Env.t}
+  @spec is_ready(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.IsReady200Response.t} | {:ok, Ory.Model.IsReady503Response.t} | {:error, Tesla.Env.t}
   def is_ready(connection, _opts \\ []) do
     %{}
     |> method(:get)
@@ -83,7 +83,7 @@ defmodule Ory.Api.Metadata do
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
-      { 200, %Ory.Model.IsAlive200Response{}},
+      { 200, %Ory.Model.IsReady200Response{}},
       { 503, %Ory.Model.IsReady503Response{}}
     ])
   end

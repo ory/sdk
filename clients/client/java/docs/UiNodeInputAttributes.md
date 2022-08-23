@@ -8,7 +8,7 @@ InputAttributes represents the attributes of an input node
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**autocomplete** | [**AutocompleteEnum**](#AutocompleteEnum) | The autocomplete attribute for the input. |  [optional]
+**autocomplete** | **String** | The autocomplete attribute for the input. |  [optional]
 **disabled** | **Boolean** | Sets the input&#39;s disabled field to true or false. | 
 **label** | [**UiText**](UiText.md) |  |  [optional]
 **name** | **String** | The input&#39;s element name. | 
@@ -16,21 +16,27 @@ Name | Type | Description | Notes
 **onclick** | **String** | OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn. |  [optional]
 **pattern** | **String** | The input&#39;s pattern. |  [optional]
 **required** | **Boolean** | Mark this input field as required. |  [optional]
-**type** | **String** | The input&#39;s element type. | 
+**type** | [**TypeEnum**](#TypeEnum) | The input&#39;s element type. | 
 **value** | **Object** | The input&#39;s value. |  [optional]
 
 
 
-## Enum: AutocompleteEnum
+## Enum: TypeEnum
 
 Name | Value
 ---- | -----
+TEXT | &quot;text&quot;
+PASSWORD | &quot;password&quot;
+NUMBER | &quot;number&quot;
+CHECKBOX | &quot;checkbox&quot;
+HIDDEN | &quot;hidden&quot;
 EMAIL | &quot;email&quot;
 TEL | &quot;tel&quot;
+SUBMIT | &quot;submit&quot;
+BUTTON | &quot;button&quot;
+DATETIME_LOCAL | &quot;datetime-local&quot;
+DATE | &quot;date&quot;
 URL | &quot;url&quot;
-CURRENT_PASSWORD | &quot;current-password&quot;
-NEW_PASSWORD | &quot;new-password&quot;
-ONE_TIME_CODE | &quot;one-time-code&quot;
 
 
 

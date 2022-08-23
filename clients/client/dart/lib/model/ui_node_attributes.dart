@@ -38,7 +38,13 @@ class UiNodeAttributes {
   });
 
   /// The autocomplete attribute for the input.
-  UiNodeAttributesAutocompleteEnum? autocomplete;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? autocomplete;
 
   /// Sets the input's disabled field to true or false.
   bool disabled;
@@ -248,7 +254,7 @@ class UiNodeAttributes {
       }());
 
       return UiNodeAttributes(
-        autocomplete: UiNodeAttributesAutocompleteEnum.fromJson(json[r'autocomplete']),
+        autocomplete: mapValueOfType<String>(json, r'autocomplete'),
         disabled: mapValueOfType<bool>(json, r'disabled')!,
         label: UiText.fromJson(json[r'label']),
         name: mapValueOfType<String>(json, r'name')!,
@@ -337,90 +343,4 @@ class UiNodeAttributes {
     'referrerpolicy',
   };
 }
-
-/// The autocomplete attribute for the input.
-class UiNodeAttributesAutocompleteEnum {
-  /// Instantiate a new enum with the provided [value].
-  const UiNodeAttributesAutocompleteEnum._(this.value);
-
-  /// The underlying value of this enum member.
-  final String value;
-
-  @override
-  String toString() => value;
-
-  String toJson() => value;
-
-  static const email = UiNodeAttributesAutocompleteEnum._(r'email');
-  static const tel = UiNodeAttributesAutocompleteEnum._(r'tel');
-  static const url = UiNodeAttributesAutocompleteEnum._(r'url');
-  static const currentPassword = UiNodeAttributesAutocompleteEnum._(r'current-password');
-  static const newPassword = UiNodeAttributesAutocompleteEnum._(r'new-password');
-  static const oneTimeCode = UiNodeAttributesAutocompleteEnum._(r'one-time-code');
-
-  /// List of all possible values in this [enum][UiNodeAttributesAutocompleteEnum].
-  static const values = <UiNodeAttributesAutocompleteEnum>[
-    email,
-    tel,
-    url,
-    currentPassword,
-    newPassword,
-    oneTimeCode,
-  ];
-
-  static UiNodeAttributesAutocompleteEnum? fromJson(dynamic value) => UiNodeAttributesAutocompleteEnumTypeTransformer().decode(value);
-
-  static List<UiNodeAttributesAutocompleteEnum>? listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <UiNodeAttributesAutocompleteEnum>[];
-    if (json is List && json.isNotEmpty) {
-      for (final row in json) {
-        final value = UiNodeAttributesAutocompleteEnum.fromJson(row);
-        if (value != null) {
-          result.add(value);
-        }
-      }
-    }
-    return result.toList(growable: growable);
-  }
-}
-
-/// Transformation class that can [encode] an instance of [UiNodeAttributesAutocompleteEnum] to String,
-/// and [decode] dynamic data back to [UiNodeAttributesAutocompleteEnum].
-class UiNodeAttributesAutocompleteEnumTypeTransformer {
-  factory UiNodeAttributesAutocompleteEnumTypeTransformer() => _instance ??= const UiNodeAttributesAutocompleteEnumTypeTransformer._();
-
-  const UiNodeAttributesAutocompleteEnumTypeTransformer._();
-
-  String encode(UiNodeAttributesAutocompleteEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a UiNodeAttributesAutocompleteEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  UiNodeAttributesAutocompleteEnum? decode(dynamic data, {bool allowNull = true}) {
-    if (data != null) {
-      switch (data.toString()) {
-        case r'email': return UiNodeAttributesAutocompleteEnum.email;
-        case r'tel': return UiNodeAttributesAutocompleteEnum.tel;
-        case r'url': return UiNodeAttributesAutocompleteEnum.url;
-        case r'current-password': return UiNodeAttributesAutocompleteEnum.currentPassword;
-        case r'new-password': return UiNodeAttributesAutocompleteEnum.newPassword;
-        case r'one-time-code': return UiNodeAttributesAutocompleteEnum.oneTimeCode;
-        default:
-          if (!allowNull) {
-            throw ArgumentError('Unknown enum value to decode: $data');
-          }
-      }
-    }
-    return null;
-  }
-
-  /// Singleton [UiNodeAttributesAutocompleteEnumTypeTransformer] instance.
-  static UiNodeAttributesAutocompleteEnumTypeTransformer? _instance;
-}
-
 

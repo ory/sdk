@@ -26,7 +26,13 @@ class UiNodeInputAttributes {
   });
 
   /// The autocomplete attribute for the input.
-  UiNodeInputAttributesAutocompleteEnum? autocomplete;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? autocomplete;
 
   /// Sets the input's disabled field to true or false.
   bool disabled;
@@ -73,7 +79,7 @@ class UiNodeInputAttributes {
   bool? required_;
 
   /// The input's element type.
-  String type;
+  UiNodeInputAttributesTypeEnum type;
 
   /// The input's value.
   Object? value;
@@ -166,7 +172,7 @@ class UiNodeInputAttributes {
       }());
 
       return UiNodeInputAttributes(
-        autocomplete: UiNodeInputAttributesAutocompleteEnum.fromJson(json[r'autocomplete']),
+        autocomplete: mapValueOfType<String>(json, r'autocomplete'),
         disabled: mapValueOfType<bool>(json, r'disabled')!,
         label: UiText.fromJson(json[r'label']),
         name: mapValueOfType<String>(json, r'name')!,
@@ -174,7 +180,7 @@ class UiNodeInputAttributes {
         onclick: mapValueOfType<String>(json, r'onclick'),
         pattern: mapValueOfType<String>(json, r'pattern'),
         required_: mapValueOfType<bool>(json, r'required'),
-        type: mapValueOfType<String>(json, r'type')!,
+        type: UiNodeInputAttributesTypeEnum.fromJson(json[r'type'])!,
         value: mapValueOfType<Object>(json, r'value'),
       );
     }
@@ -232,10 +238,10 @@ class UiNodeInputAttributes {
   };
 }
 
-/// The autocomplete attribute for the input.
-class UiNodeInputAttributesAutocompleteEnum {
+/// The input's element type.
+class UiNodeInputAttributesTypeEnum {
   /// Instantiate a new enum with the provided [value].
-  const UiNodeInputAttributesAutocompleteEnum._(this.value);
+  const UiNodeInputAttributesTypeEnum._(this.value);
 
   /// The underlying value of this enum member.
   final String value;
@@ -245,30 +251,42 @@ class UiNodeInputAttributesAutocompleteEnum {
 
   String toJson() => value;
 
-  static const email = UiNodeInputAttributesAutocompleteEnum._(r'email');
-  static const tel = UiNodeInputAttributesAutocompleteEnum._(r'tel');
-  static const url = UiNodeInputAttributesAutocompleteEnum._(r'url');
-  static const currentPassword = UiNodeInputAttributesAutocompleteEnum._(r'current-password');
-  static const newPassword = UiNodeInputAttributesAutocompleteEnum._(r'new-password');
-  static const oneTimeCode = UiNodeInputAttributesAutocompleteEnum._(r'one-time-code');
+  static const text = UiNodeInputAttributesTypeEnum._(r'text');
+  static const password = UiNodeInputAttributesTypeEnum._(r'password');
+  static const number = UiNodeInputAttributesTypeEnum._(r'number');
+  static const checkbox = UiNodeInputAttributesTypeEnum._(r'checkbox');
+  static const hidden = UiNodeInputAttributesTypeEnum._(r'hidden');
+  static const email = UiNodeInputAttributesTypeEnum._(r'email');
+  static const tel = UiNodeInputAttributesTypeEnum._(r'tel');
+  static const submit = UiNodeInputAttributesTypeEnum._(r'submit');
+  static const button = UiNodeInputAttributesTypeEnum._(r'button');
+  static const datetimeLocal = UiNodeInputAttributesTypeEnum._(r'datetime-local');
+  static const date = UiNodeInputAttributesTypeEnum._(r'date');
+  static const url = UiNodeInputAttributesTypeEnum._(r'url');
 
-  /// List of all possible values in this [enum][UiNodeInputAttributesAutocompleteEnum].
-  static const values = <UiNodeInputAttributesAutocompleteEnum>[
+  /// List of all possible values in this [enum][UiNodeInputAttributesTypeEnum].
+  static const values = <UiNodeInputAttributesTypeEnum>[
+    text,
+    password,
+    number,
+    checkbox,
+    hidden,
     email,
     tel,
+    submit,
+    button,
+    datetimeLocal,
+    date,
     url,
-    currentPassword,
-    newPassword,
-    oneTimeCode,
   ];
 
-  static UiNodeInputAttributesAutocompleteEnum? fromJson(dynamic value) => UiNodeInputAttributesAutocompleteEnumTypeTransformer().decode(value);
+  static UiNodeInputAttributesTypeEnum? fromJson(dynamic value) => UiNodeInputAttributesTypeEnumTypeTransformer().decode(value);
 
-  static List<UiNodeInputAttributesAutocompleteEnum>? listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <UiNodeInputAttributesAutocompleteEnum>[];
+  static List<UiNodeInputAttributesTypeEnum>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <UiNodeInputAttributesTypeEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = UiNodeInputAttributesAutocompleteEnum.fromJson(row);
+        final value = UiNodeInputAttributesTypeEnum.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -278,16 +296,16 @@ class UiNodeInputAttributesAutocompleteEnum {
   }
 }
 
-/// Transformation class that can [encode] an instance of [UiNodeInputAttributesAutocompleteEnum] to String,
-/// and [decode] dynamic data back to [UiNodeInputAttributesAutocompleteEnum].
-class UiNodeInputAttributesAutocompleteEnumTypeTransformer {
-  factory UiNodeInputAttributesAutocompleteEnumTypeTransformer() => _instance ??= const UiNodeInputAttributesAutocompleteEnumTypeTransformer._();
+/// Transformation class that can [encode] an instance of [UiNodeInputAttributesTypeEnum] to String,
+/// and [decode] dynamic data back to [UiNodeInputAttributesTypeEnum].
+class UiNodeInputAttributesTypeEnumTypeTransformer {
+  factory UiNodeInputAttributesTypeEnumTypeTransformer() => _instance ??= const UiNodeInputAttributesTypeEnumTypeTransformer._();
 
-  const UiNodeInputAttributesAutocompleteEnumTypeTransformer._();
+  const UiNodeInputAttributesTypeEnumTypeTransformer._();
 
-  String encode(UiNodeInputAttributesAutocompleteEnum data) => data.value;
+  String encode(UiNodeInputAttributesTypeEnum data) => data.value;
 
-  /// Decodes a [dynamic value][data] to a UiNodeInputAttributesAutocompleteEnum.
+  /// Decodes a [dynamic value][data] to a UiNodeInputAttributesTypeEnum.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -295,15 +313,21 @@ class UiNodeInputAttributesAutocompleteEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  UiNodeInputAttributesAutocompleteEnum? decode(dynamic data, {bool allowNull = true}) {
+  UiNodeInputAttributesTypeEnum? decode(dynamic data, {bool allowNull = true}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'email': return UiNodeInputAttributesAutocompleteEnum.email;
-        case r'tel': return UiNodeInputAttributesAutocompleteEnum.tel;
-        case r'url': return UiNodeInputAttributesAutocompleteEnum.url;
-        case r'current-password': return UiNodeInputAttributesAutocompleteEnum.currentPassword;
-        case r'new-password': return UiNodeInputAttributesAutocompleteEnum.newPassword;
-        case r'one-time-code': return UiNodeInputAttributesAutocompleteEnum.oneTimeCode;
+        case r'text': return UiNodeInputAttributesTypeEnum.text;
+        case r'password': return UiNodeInputAttributesTypeEnum.password;
+        case r'number': return UiNodeInputAttributesTypeEnum.number;
+        case r'checkbox': return UiNodeInputAttributesTypeEnum.checkbox;
+        case r'hidden': return UiNodeInputAttributesTypeEnum.hidden;
+        case r'email': return UiNodeInputAttributesTypeEnum.email;
+        case r'tel': return UiNodeInputAttributesTypeEnum.tel;
+        case r'submit': return UiNodeInputAttributesTypeEnum.submit;
+        case r'button': return UiNodeInputAttributesTypeEnum.button;
+        case r'datetime-local': return UiNodeInputAttributesTypeEnum.datetimeLocal;
+        case r'date': return UiNodeInputAttributesTypeEnum.date;
+        case r'url': return UiNodeInputAttributesTypeEnum.url;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -313,8 +337,8 @@ class UiNodeInputAttributesAutocompleteEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [UiNodeInputAttributesAutocompleteEnumTypeTransformer] instance.
-  static UiNodeInputAttributesAutocompleteEnumTypeTransformer? _instance;
+  /// Singleton [UiNodeInputAttributesTypeEnumTypeTransformer] instance.
+  static UiNodeInputAttributesTypeEnumTypeTransformer? _instance;
 }
 
 

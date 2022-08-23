@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.4
+API version: v0.2.0-alpha.15
 Contact: support@ory.sh
 */
 
@@ -21,7 +21,7 @@ type NormalizedProjectRevisionIdentitySchema struct {
 	// The Project's Revision Creation Date
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	Id *string `json:"id,omitempty"`
-	IdentitySchema *IdentitySchema `json:"identity_schema,omitempty"`
+	IdentitySchema *ManagedIdentitySchema `json:"identity_schema,omitempty"`
 	IdentitySchemaId NullableString `json:"identity_schema_id,omitempty"`
 	// The imported (named) ID of the Identity Schema referenced in the Ory Kratos config.
 	ImportId *string `json:"import_id,omitempty"`
@@ -118,9 +118,9 @@ func (o *NormalizedProjectRevisionIdentitySchema) SetId(v string) {
 }
 
 // GetIdentitySchema returns the IdentitySchema field value if set, zero value otherwise.
-func (o *NormalizedProjectRevisionIdentitySchema) GetIdentitySchema() IdentitySchema {
+func (o *NormalizedProjectRevisionIdentitySchema) GetIdentitySchema() ManagedIdentitySchema {
 	if o == nil || o.IdentitySchema == nil {
-		var ret IdentitySchema
+		var ret ManagedIdentitySchema
 		return ret
 	}
 	return *o.IdentitySchema
@@ -128,7 +128,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) GetIdentitySchema() IdentitySc
 
 // GetIdentitySchemaOk returns a tuple with the IdentitySchema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NormalizedProjectRevisionIdentitySchema) GetIdentitySchemaOk() (*IdentitySchema, bool) {
+func (o *NormalizedProjectRevisionIdentitySchema) GetIdentitySchemaOk() (*ManagedIdentitySchema, bool) {
 	if o == nil || o.IdentitySchema == nil {
 		return nil, false
 	}
@@ -144,8 +144,8 @@ func (o *NormalizedProjectRevisionIdentitySchema) HasIdentitySchema() bool {
 	return false
 }
 
-// SetIdentitySchema gets a reference to the given IdentitySchema and assigns it to the IdentitySchema field.
-func (o *NormalizedProjectRevisionIdentitySchema) SetIdentitySchema(v IdentitySchema) {
+// SetIdentitySchema gets a reference to the given ManagedIdentitySchema and assigns it to the IdentitySchema field.
+func (o *NormalizedProjectRevisionIdentitySchema) SetIdentitySchema(v ManagedIdentitySchema) {
 	o.IdentitySchema = &v
 }
 

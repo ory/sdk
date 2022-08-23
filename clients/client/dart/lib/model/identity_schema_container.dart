@@ -26,13 +26,14 @@ class IdentitySchemaContainer {
   ///
   String? id;
 
+  /// Raw JSON Schema
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  IdentitySchema? schema;
+  Object? schema;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is IdentitySchemaContainer &&
@@ -83,7 +84,7 @@ class IdentitySchemaContainer {
 
       return IdentitySchemaContainer(
         id: mapValueOfType<String>(json, r'id'),
-        schema: IdentitySchema.fromJson(json[r'schema']),
+        schema: mapValueOfType<Object>(json, r'schema'),
       );
     }
     return null;

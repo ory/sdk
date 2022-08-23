@@ -4,19 +4,57 @@ All URIs are relative to https://playground.projects.oryapis.com.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**adminAcceptOAuth2ConsentRequest()**](V0alpha2Api.md#adminAcceptOAuth2ConsentRequest) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept an OAuth 2.0 Consent Request
+[**adminAcceptOAuth2LoginRequest()**](V0alpha2Api.md#adminAcceptOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept an OAuth 2.0 Login Request
+[**adminAcceptOAuth2LogoutRequest()**](V0alpha2Api.md#adminAcceptOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept an OAuth 2.0 Logout Request
 [**adminCreateIdentity()**](V0alpha2Api.md#adminCreateIdentity) | **POST** /admin/identities | Create an Identity
+[**adminCreateJsonWebKeySet()**](V0alpha2Api.md#adminCreateJsonWebKeySet) | **POST** /admin/keys/{set} | Generate a New JSON Web Key
+[**adminCreateOAuth2Client()**](V0alpha2Api.md#adminCreateOAuth2Client) | **POST** /admin/clients | Create an OAuth 2.0 Client
 [**adminCreateSelfServiceRecoveryLink()**](V0alpha2Api.md#adminCreateSelfServiceRecoveryLink) | **POST** /admin/recovery/link | Create a Recovery Link
 [**adminDeleteIdentity()**](V0alpha2Api.md#adminDeleteIdentity) | **DELETE** /admin/identities/{id} | Delete an Identity
 [**adminDeleteIdentitySessions()**](V0alpha2Api.md#adminDeleteIdentitySessions) | **DELETE** /admin/identities/{id}/sessions | Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.
+[**adminDeleteJsonWebKey()**](V0alpha2Api.md#adminDeleteJsonWebKey) | **DELETE** /admin/keys/{set}/{kid} | Delete a JSON Web Key
+[**adminDeleteJsonWebKeySet()**](V0alpha2Api.md#adminDeleteJsonWebKeySet) | **DELETE** /admin/keys/{set} | Delete a JSON Web Key Set
+[**adminDeleteOAuth2Client()**](V0alpha2Api.md#adminDeleteOAuth2Client) | **DELETE** /admin/clients/{id} | Deletes an OAuth 2.0 Client
+[**adminDeleteOAuth2Token()**](V0alpha2Api.md#adminDeleteOAuth2Token) | **DELETE** /admin/oauth2/tokens | Delete OAuth2 Access Tokens from a Client
+[**adminDeleteTrustedOAuth2JwtGrantIssuer()**](V0alpha2Api.md#adminDeleteTrustedOAuth2JwtGrantIssuer) | **DELETE** /admin/trust/grants/jwt-bearer/issuers/{id} | Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer
 [**adminExtendSession()**](V0alpha2Api.md#adminExtendSession) | **PATCH** /admin/sessions/{id}/extend | Calling this endpoint extends the given session ID. If &#x60;session.earliest_possible_extend&#x60; is set it will only extend the session after the specified time has passed.
 [**adminGetIdentity()**](V0alpha2Api.md#adminGetIdentity) | **GET** /admin/identities/{id} | Get an Identity
+[**adminGetJsonWebKey()**](V0alpha2Api.md#adminGetJsonWebKey) | **GET** /admin/keys/{set}/{kid} | Fetch a JSON Web Key
+[**adminGetJsonWebKeySet()**](V0alpha2Api.md#adminGetJsonWebKeySet) | **GET** /admin/keys/{set} | Retrieve a JSON Web Key Set
+[**adminGetOAuth2Client()**](V0alpha2Api.md#adminGetOAuth2Client) | **GET** /admin/clients/{id} | Get an OAuth 2.0 Client
+[**adminGetOAuth2ConsentRequest()**](V0alpha2Api.md#adminGetOAuth2ConsentRequest) | **GET** /admin/oauth2/auth/requests/consent | Get OAuth 2.0 Consent Request Information
+[**adminGetOAuth2LoginRequest()**](V0alpha2Api.md#adminGetOAuth2LoginRequest) | **GET** /admin/oauth2/auth/requests/login | Get an OAuth 2.0 Login Request
+[**adminGetOAuth2LogoutRequest()**](V0alpha2Api.md#adminGetOAuth2LogoutRequest) | **GET** /admin/oauth2/auth/requests/logout | Get an OAuth 2.0 Logout Request
+[**adminGetTrustedOAuth2JwtGrantIssuer()**](V0alpha2Api.md#adminGetTrustedOAuth2JwtGrantIssuer) | **GET** /admin/trust/grants/jwt-bearer/issuers/{id} | Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
+[**adminIntrospectOAuth2Token()**](V0alpha2Api.md#adminIntrospectOAuth2Token) | **POST** /admin/oauth2/introspect | Introspect OAuth2 Access or Refresh Tokens
 [**adminListIdentities()**](V0alpha2Api.md#adminListIdentities) | **GET** /admin/identities | List Identities
 [**adminListIdentitySessions()**](V0alpha2Api.md#adminListIdentitySessions) | **GET** /admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity.
+[**adminListOAuth2Clients()**](V0alpha2Api.md#adminListOAuth2Clients) | **GET** /admin/clients | List OAuth 2.0 Clients
+[**adminListOAuth2SubjectConsentSessions()**](V0alpha2Api.md#adminListOAuth2SubjectConsentSessions) | **GET** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject
+[**adminListTrustedOAuth2JwtGrantIssuers()**](V0alpha2Api.md#adminListTrustedOAuth2JwtGrantIssuers) | **GET** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
 [**adminPatchIdentity()**](V0alpha2Api.md#adminPatchIdentity) | **PATCH** /admin/identities/{id} | Partially updates an Identity&#39;s field using [JSON Patch](https://jsonpatch.com/)
+[**adminPatchOAuth2Client()**](V0alpha2Api.md#adminPatchOAuth2Client) | **PATCH** /admin/clients/{id} | Patch an OAuth 2.0 Client
+[**adminRejectOAuth2ConsentRequest()**](V0alpha2Api.md#adminRejectOAuth2ConsentRequest) | **PUT** /admin/oauth2/auth/requests/consent/reject | Reject an OAuth 2.0 Consent Request
+[**adminRejectOAuth2LoginRequest()**](V0alpha2Api.md#adminRejectOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject an OAuth 2.0 Login Request
+[**adminRejectOAuth2LogoutRequest()**](V0alpha2Api.md#adminRejectOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject an OAuth 2.0 Logout Request
+[**adminRevokeOAuth2ConsentSessions()**](V0alpha2Api.md#adminRevokeOAuth2ConsentSessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revokes OAuth 2.0 Consent Sessions of a Subject for a Specific OAuth 2.0 Client
+[**adminRevokeOAuth2LoginSessions()**](V0alpha2Api.md#adminRevokeOAuth2LoginSessions) | **DELETE** /admin/oauth2/auth/sessions/login | Invalidates All OAuth 2.0 Login Sessions of a Certain User
+[**adminTrustOAuth2JwtGrantIssuer()**](V0alpha2Api.md#adminTrustOAuth2JwtGrantIssuer) | **POST** /admin/trust/grants/jwt-bearer/issuers | Trust an OAuth2 JWT Bearer Grant Type Issuer
 [**adminUpdateIdentity()**](V0alpha2Api.md#adminUpdateIdentity) | **PUT** /admin/identities/{id} | Update an Identity
+[**adminUpdateJsonWebKey()**](V0alpha2Api.md#adminUpdateJsonWebKey) | **PUT** /admin/keys/{set}/{kid} | Update a JSON Web Key
+[**adminUpdateJsonWebKeySet()**](V0alpha2Api.md#adminUpdateJsonWebKeySet) | **PUT** /admin/keys/{set} | Update a JSON Web Key Set
+[**adminUpdateOAuth2Client()**](V0alpha2Api.md#adminUpdateOAuth2Client) | **PUT** /admin/clients/{id} | Update an OAuth 2.0 Client
 [**createProject()**](V0alpha2Api.md#createProject) | **POST** /projects | Create a Project
 [**createSelfServiceLogoutFlowUrlForBrowsers()**](V0alpha2Api.md#createSelfServiceLogoutFlowUrlForBrowsers) | **GET** /self-service/logout/browser | Create a Logout URL for Browsers
+[**discoverJsonWebKeys()**](V0alpha2Api.md#discoverJsonWebKeys) | **GET** /.well-known/jwks.json | Discover JSON Web Keys
+[**discoverOidcConfiguration()**](V0alpha2Api.md#discoverOidcConfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
+[**dynamicClientRegistrationCreateOAuth2Client()**](V0alpha2Api.md#dynamicClientRegistrationCreateOAuth2Client) | **POST** /oauth2/register | Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+[**dynamicClientRegistrationDeleteOAuth2Client()**](V0alpha2Api.md#dynamicClientRegistrationDeleteOAuth2Client) | **DELETE** /oauth2/register/{id} | Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+[**dynamicClientRegistrationGetOAuth2Client()**](V0alpha2Api.md#dynamicClientRegistrationGetOAuth2Client) | **GET** /oauth2/register/{id} | Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+[**dynamicClientRegistrationUpdateOAuth2Client()**](V0alpha2Api.md#dynamicClientRegistrationUpdateOAuth2Client) | **PUT** /oauth2/register/{id} | Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 [**getIdentitySchema()**](V0alpha2Api.md#getIdentitySchema) | **GET** /schemas/{id} | 
+[**getOidcUserInfo()**](V0alpha2Api.md#getOidcUserInfo) | **GET** /userinfo | OpenID Connect Userinfo
 [**getProject()**](V0alpha2Api.md#getProject) | **GET** /projects/{project_id} | Get a Project
 [**getProjectMembers()**](V0alpha2Api.md#getProjectMembers) | **GET** /projects/{project_id}/members | Get all members associated with this project.
 [**getSelfServiceError()**](V0alpha2Api.md#getSelfServiceError) | **GET** /self-service/errors | Get Self-Service Errors
@@ -40,8 +78,12 @@ Method | HTTP request | Description
 [**listProjects()**](V0alpha2Api.md#listProjects) | **GET** /projects | List All Projects
 [**listSessions()**](V0alpha2Api.md#listSessions) | **GET** /sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint.
 [**patchProject()**](V0alpha2Api.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Cloud Project Configuration&#x60;
+[**performOAuth2AuthorizationFlow()**](V0alpha2Api.md#performOAuth2AuthorizationFlow) | **GET** /oauth2/auth | The OAuth 2.0 Authorize Endpoint
+[**performOAuth2TokenFlow()**](V0alpha2Api.md#performOAuth2TokenFlow) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
+[**performOidcFrontOrBackChannelLogout()**](V0alpha2Api.md#performOidcFrontOrBackChannelLogout) | **GET** /oauth2/sessions/logout | OpenID Connect Front- or Back-channel Enabled Logout
 [**purgeProject()**](V0alpha2Api.md#purgeProject) | **DELETE** /projects/{project_id} | Irrecoverably Purge a Project
 [**removeProjectMember()**](V0alpha2Api.md#removeProjectMember) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to &#x60;REMOVED&#x60;.
+[**revokeOAuth2Token()**](V0alpha2Api.md#revokeOAuth2Token) | **POST** /oauth2/revoke | Revoke an OAuth2 Access or Refresh Token
 [**revokeSession()**](V0alpha2Api.md#revokeSession) | **DELETE** /sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
 [**revokeSessions()**](V0alpha2Api.md#revokeSessions) | **DELETE** /sessions | Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
 [**submitSelfServiceLoginFlow()**](V0alpha2Api.md#submitSelfServiceLoginFlow) | **POST** /self-service/login | Submit a Login Flow
@@ -54,6 +96,190 @@ Method | HTTP request | Description
 [**toSession()**](V0alpha2Api.md#toSession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 [**updateProject()**](V0alpha2Api.md#updateProject) | **PUT** /projects/{project_id} | Update an Ory Cloud Project Configuration
 
+
+## `adminAcceptOAuth2ConsentRequest()`
+
+```php
+adminAcceptOAuth2ConsentRequest($consentChallenge, $acceptOAuth2ConsentRequest): \Ory\Client\Model\SuccessfulOAuth2RequestResponse
+```
+
+Accept an OAuth 2.0 Consent Request
+
+When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.  This endpoint tells ORY Hydra that the subject has authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider includes additional information, such as session data for access and ID tokens, and if the consent request should be used as basis for future requests.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$consentChallenge = 'consentChallenge_example'; // string
+$acceptOAuth2ConsentRequest = new \Ory\Client\Model\AcceptOAuth2ConsentRequest(); // \Ory\Client\Model\AcceptOAuth2ConsentRequest
+
+try {
+    $result = $apiInstance->adminAcceptOAuth2ConsentRequest($consentChallenge, $acceptOAuth2ConsentRequest);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminAcceptOAuth2ConsentRequest: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **consentChallenge** | **string**|  |
+ **acceptOAuth2ConsentRequest** | [**\Ory\Client\Model\AcceptOAuth2ConsentRequest**](../Model/AcceptOAuth2ConsentRequest.md)|  | [optional]
+
+### Return type
+
+[**\Ory\Client\Model\SuccessfulOAuth2RequestResponse**](../Model/SuccessfulOAuth2RequestResponse.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminAcceptOAuth2LoginRequest()`
+
+```php
+adminAcceptOAuth2LoginRequest($loginChallenge, $acceptOAuth2LoginRequest): \Ory\Client\Model\SuccessfulOAuth2RequestResponse
+```
+
+Accept an OAuth 2.0 Login Request
+
+When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell Ory Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells ORY Hydra that the subject has successfully authenticated and includes additional information such as the subject's ID and if ORY Hydra should remember the subject's subject agent for future authentication attempts by setting a cookie.  The response contains a redirect URL which the login provider should redirect the user-agent to.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$loginChallenge = 'loginChallenge_example'; // string
+$acceptOAuth2LoginRequest = new \Ory\Client\Model\AcceptOAuth2LoginRequest(); // \Ory\Client\Model\AcceptOAuth2LoginRequest
+
+try {
+    $result = $apiInstance->adminAcceptOAuth2LoginRequest($loginChallenge, $acceptOAuth2LoginRequest);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminAcceptOAuth2LoginRequest: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **loginChallenge** | **string**|  |
+ **acceptOAuth2LoginRequest** | [**\Ory\Client\Model\AcceptOAuth2LoginRequest**](../Model/AcceptOAuth2LoginRequest.md)|  | [optional]
+
+### Return type
+
+[**\Ory\Client\Model\SuccessfulOAuth2RequestResponse**](../Model/SuccessfulOAuth2RequestResponse.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminAcceptOAuth2LogoutRequest()`
+
+```php
+adminAcceptOAuth2LogoutRequest($logoutChallenge): \Ory\Client\Model\SuccessfulOAuth2RequestResponse
+```
+
+Accept an OAuth 2.0 Logout Request
+
+When a user or an application requests ORY Hydra to log out a user, this endpoint is used to confirm that logout request.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$logoutChallenge = 'logoutChallenge_example'; // string
+
+try {
+    $result = $apiInstance->adminAcceptOAuth2LogoutRequest($logoutChallenge);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminAcceptOAuth2LogoutRequest: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **logoutChallenge** | **string**|  |
+
+### Return type
+
+[**\Ory\Client\Model\SuccessfulOAuth2RequestResponse**](../Model/SuccessfulOAuth2RequestResponse.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `adminCreateIdentity()`
 
@@ -101,6 +327,128 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\Ory\Client\Model\Identity**](../Model/Identity.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminCreateJsonWebKeySet()`
+
+```php
+adminCreateJsonWebKeySet($set, $adminCreateJsonWebKeySetBody): \Ory\Client\Model\JsonWebKeySet
+```
+
+Generate a New JSON Web Key
+
+This endpoint is capable of generating JSON Web Key Sets for you. There a different strategies available, such as symmetric cryptographic keys (HS256, HS512) and asymetric cryptographic keys (RS256, ECDSA). If the specified JSON Web Key Set does not exist, it will be created.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$set = 'set_example'; // string | The JSON Web Key Set
+$adminCreateJsonWebKeySetBody = new \Ory\Client\Model\AdminCreateJsonWebKeySetBody(); // \Ory\Client\Model\AdminCreateJsonWebKeySetBody
+
+try {
+    $result = $apiInstance->adminCreateJsonWebKeySet($set, $adminCreateJsonWebKeySetBody);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminCreateJsonWebKeySet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **set** | **string**| The JSON Web Key Set |
+ **adminCreateJsonWebKeySetBody** | [**\Ory\Client\Model\AdminCreateJsonWebKeySetBody**](../Model/AdminCreateJsonWebKeySetBody.md)|  |
+
+### Return type
+
+[**\Ory\Client\Model\JsonWebKeySet**](../Model/JsonWebKeySet.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminCreateOAuth2Client()`
+
+```php
+adminCreateOAuth2Client($oAuth2Client): \Ory\Client\Model\OAuth2Client
+```
+
+Create an OAuth 2.0 Client
+
+Create a new OAuth 2.0 client. If you pass `client_secret` the secret is used, otherwise a random secret is generated. The secret is echoed in the response. It is not possible to retrieve it later on.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$oAuth2Client = new \Ory\Client\Model\OAuth2Client(); // \Ory\Client\Model\OAuth2Client
+
+try {
+    $result = $apiInstance->adminCreateOAuth2Client($oAuth2Client);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminCreateOAuth2Client: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **oAuth2Client** | [**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)|  |
+
+### Return type
+
+[**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)
 
 ### Authorization
 
@@ -293,6 +641,303 @@ void (empty response body)
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `adminDeleteJsonWebKey()`
+
+```php
+adminDeleteJsonWebKey($set, $kid)
+```
+
+Delete a JSON Web Key
+
+Use this endpoint to delete a single JSON Web Key.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$set = 'set_example'; // string | The JSON Web Key Set
+$kid = 'kid_example'; // string | The JSON Web Key ID (kid)
+
+try {
+    $apiInstance->adminDeleteJsonWebKey($set, $kid);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminDeleteJsonWebKey: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **set** | **string**| The JSON Web Key Set |
+ **kid** | **string**| The JSON Web Key ID (kid) |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminDeleteJsonWebKeySet()`
+
+```php
+adminDeleteJsonWebKeySet($set)
+```
+
+Delete a JSON Web Key Set
+
+Use this endpoint to delete a complete JSON Web Key Set and all the keys in that set.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$set = 'set_example'; // string | The JSON Web Key Set
+
+try {
+    $apiInstance->adminDeleteJsonWebKeySet($set);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminDeleteJsonWebKeySet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **set** | **string**| The JSON Web Key Set |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminDeleteOAuth2Client()`
+
+```php
+adminDeleteOAuth2Client($id)
+```
+
+Deletes an OAuth 2.0 Client
+
+Delete an existing OAuth 2.0 Client by its ID.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.  Make sure that this endpoint is well protected and only callable by first-party components.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | The id of the OAuth 2.0 Client.
+
+try {
+    $apiInstance->adminDeleteOAuth2Client($id);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminDeleteOAuth2Client: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The id of the OAuth 2.0 Client. |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminDeleteOAuth2Token()`
+
+```php
+adminDeleteOAuth2Token($clientId)
+```
+
+Delete OAuth2 Access Tokens from a Client
+
+This endpoint deletes OAuth2 access tokens issued for a client from the database
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$clientId = 'clientId_example'; // string
+
+try {
+    $apiInstance->adminDeleteOAuth2Token($clientId);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminDeleteOAuth2Token: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **clientId** | **string**|  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminDeleteTrustedOAuth2JwtGrantIssuer()`
+
+```php
+adminDeleteTrustedOAuth2JwtGrantIssuer($id)
+```
+
+Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer
+
+Use this endpoint to delete trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you created the trust relationship.  Once deleted, the associated issuer will no longer be able to perform the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grant.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | The id of the desired grant
+
+try {
+    $apiInstance->adminDeleteTrustedOAuth2JwtGrantIssuer($id);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminDeleteTrustedOAuth2JwtGrantIssuer: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The id of the desired grant |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `adminExtendSession()`
 
 ```php
@@ -409,6 +1054,490 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminGetJsonWebKey()`
+
+```php
+adminGetJsonWebKey($set, $kid): \Ory\Client\Model\JsonWebKeySet
+```
+
+Fetch a JSON Web Key
+
+This endpoint returns a singular JSON Web Key. It is identified by the set and the specific key ID (kid).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$set = 'set_example'; // string | The JSON Web Key Set
+$kid = 'kid_example'; // string | The JSON Web Key ID (kid)
+
+try {
+    $result = $apiInstance->adminGetJsonWebKey($set, $kid);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminGetJsonWebKey: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **set** | **string**| The JSON Web Key Set |
+ **kid** | **string**| The JSON Web Key ID (kid) |
+
+### Return type
+
+[**\Ory\Client\Model\JsonWebKeySet**](../Model/JsonWebKeySet.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminGetJsonWebKeySet()`
+
+```php
+adminGetJsonWebKeySet($set): \Ory\Client\Model\JsonWebKeySet
+```
+
+Retrieve a JSON Web Key Set
+
+This endpoint can be used to retrieve JWK Sets stored in ORY Hydra.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$set = 'set_example'; // string | The JSON Web Key Set
+
+try {
+    $result = $apiInstance->adminGetJsonWebKeySet($set);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminGetJsonWebKeySet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **set** | **string**| The JSON Web Key Set |
+
+### Return type
+
+[**\Ory\Client\Model\JsonWebKeySet**](../Model/JsonWebKeySet.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminGetOAuth2Client()`
+
+```php
+adminGetOAuth2Client($id): \Ory\Client\Model\OAuth2Client
+```
+
+Get an OAuth 2.0 Client
+
+Get an OAuth 2.0 client by its ID. This endpoint never returns the client secret.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | The id of the OAuth 2.0 Client.
+
+try {
+    $result = $apiInstance->adminGetOAuth2Client($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminGetOAuth2Client: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The id of the OAuth 2.0 Client. |
+
+### Return type
+
+[**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminGetOAuth2ConsentRequest()`
+
+```php
+adminGetOAuth2ConsentRequest($consentChallenge): \Ory\Client\Model\OAuth2ConsentRequest
+```
+
+Get OAuth 2.0 Consent Request Information
+
+When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$consentChallenge = 'consentChallenge_example'; // string
+
+try {
+    $result = $apiInstance->adminGetOAuth2ConsentRequest($consentChallenge);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminGetOAuth2ConsentRequest: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **consentChallenge** | **string**|  |
+
+### Return type
+
+[**\Ory\Client\Model\OAuth2ConsentRequest**](../Model/OAuth2ConsentRequest.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminGetOAuth2LoginRequest()`
+
+```php
+adminGetOAuth2LoginRequest($loginChallenge): \Ory\Client\Model\OAuth2LoginRequest
+```
+
+Get an OAuth 2.0 Login Request
+
+When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell ORY Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$loginChallenge = 'loginChallenge_example'; // string
+
+try {
+    $result = $apiInstance->adminGetOAuth2LoginRequest($loginChallenge);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminGetOAuth2LoginRequest: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **loginChallenge** | **string**|  |
+
+### Return type
+
+[**\Ory\Client\Model\OAuth2LoginRequest**](../Model/OAuth2LoginRequest.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminGetOAuth2LogoutRequest()`
+
+```php
+adminGetOAuth2LogoutRequest($logoutChallenge): \Ory\Client\Model\OAuth2LogoutRequest
+```
+
+Get an OAuth 2.0 Logout Request
+
+Use this endpoint to fetch a logout request.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$logoutChallenge = 'logoutChallenge_example'; // string
+
+try {
+    $result = $apiInstance->adminGetOAuth2LogoutRequest($logoutChallenge);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminGetOAuth2LogoutRequest: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **logoutChallenge** | **string**|  |
+
+### Return type
+
+[**\Ory\Client\Model\OAuth2LogoutRequest**](../Model/OAuth2LogoutRequest.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminGetTrustedOAuth2JwtGrantIssuer()`
+
+```php
+adminGetTrustedOAuth2JwtGrantIssuer($id): \Ory\Client\Model\TrustedOAuth2JwtGrantIssuer
+```
+
+Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
+
+Use this endpoint to get a trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you created the trust relationship.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | The id of the desired grant
+
+try {
+    $result = $apiInstance->adminGetTrustedOAuth2JwtGrantIssuer($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminGetTrustedOAuth2JwtGrantIssuer: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The id of the desired grant |
+
+### Return type
+
+[**\Ory\Client\Model\TrustedOAuth2JwtGrantIssuer**](../Model/TrustedOAuth2JwtGrantIssuer.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminIntrospectOAuth2Token()`
+
+```php
+adminIntrospectOAuth2Token($token, $scope): \Ory\Client\Model\IntrospectedOAuth2Token
+```
+
+Introspect OAuth2 Access or Refresh Tokens
+
+The introspection endpoint allows to check if a token (both refresh and access) is active or not. An active token is neither expired nor revoked. If a token is active, additional information on the token will be included. You can set additional data for a token by setting `accessTokenExtra` during the consent flow.  For more information [read this blog post](https://www.oauth.com/oauth2-servers/token-introspection-endpoint/).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$token = 'token_example'; // string | The string value of the token. For access tokens, this is the \\\"access_token\\\" value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\"refresh_token\\\" value returned.
+$scope = 'scope_example'; // string | An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false.
+
+try {
+    $result = $apiInstance->adminIntrospectOAuth2Token($token, $scope);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminIntrospectOAuth2Token: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token** | **string**| The string value of the token. For access tokens, this is the \\\&quot;access_token\\\&quot; value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\&quot;refresh_token\\\&quot; value returned. |
+ **scope** | **string**| An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. | [optional]
+
+### Return type
+
+[**\Ory\Client\Model\IntrospectedOAuth2Token**](../Model/IntrospectedOAuth2Token.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/x-www-form-urlencoded`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -543,6 +1672,204 @@ Name | Type | Description  | Notes
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `adminListOAuth2Clients()`
+
+```php
+adminListOAuth2Clients($pageSize, $pageToken, $clientName, $owner): \Ory\Client\Model\OAuth2Client[]
+```
+
+List OAuth 2.0 Clients
+
+This endpoint lists all clients in the database, and never returns client secrets. As a default it lists the first 100 clients. The `limit` parameter can be used to retrieve more clients, but it has an upper bound at 500 objects. Pagination should be used to retrieve more than 500 objects.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.  The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://project-slug.projects.oryapis.com/admin/clients?limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$pageSize = 250; // int | Items per page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+$pageToken = '1'; // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+$clientName = 'clientName_example'; // string | The name of the clients to filter by.
+$owner = 'owner_example'; // string | The owner of the clients to filter by.
+
+try {
+    $result = $apiInstance->adminListOAuth2Clients($pageSize, $pageToken, $clientName, $owner);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminListOAuth2Clients: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **pageSize** | **int**| Items per page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &#39;1&#39;]
+ **clientName** | **string**| The name of the clients to filter by. | [optional]
+ **owner** | **string**| The owner of the clients to filter by. | [optional]
+
+### Return type
+
+[**\Ory\Client\Model\OAuth2Client[]**](../Model/OAuth2Client.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminListOAuth2SubjectConsentSessions()`
+
+```php
+adminListOAuth2SubjectConsentSessions($subject, $link, $xTotalCount): \Ory\Client\Model\PreviousOAuth2ConsentSession[]
+```
+
+List OAuth 2.0 Consent Sessions of a Subject
+
+This endpoint lists all subject's granted consent sessions, including client and granted scope. If the subject is unknown or has not granted any consent sessions yet, the endpoint returns an empty JSON array with status code 200 OK.  The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/oauth2/auth/sessions/consent?subject={user}&limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$subject = 'subject_example'; // string | The subject to list the consent sessions for.
+$link = 'link_example'; // string | The link header contains pagination links.  For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+$xTotalCount = 'xTotalCount_example'; // string | The total number of clients.
+
+try {
+    $result = $apiInstance->adminListOAuth2SubjectConsentSessions($subject, $link, $xTotalCount);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminListOAuth2SubjectConsentSessions: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **subject** | **string**| The subject to list the consent sessions for. |
+ **link** | **string**| The link header contains pagination links.  For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional]
+ **xTotalCount** | **string**| The total number of clients. | [optional]
+
+### Return type
+
+[**\Ory\Client\Model\PreviousOAuth2ConsentSession[]**](../Model/PreviousOAuth2ConsentSession.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminListTrustedOAuth2JwtGrantIssuers()`
+
+```php
+adminListTrustedOAuth2JwtGrantIssuers($maxItems, $defaultItems, $issuer, $limit, $offset): \Ory\Client\Model\TrustedOAuth2JwtGrantIssuer[]
+```
+
+List Trusted OAuth2 JWT Bearer Grant Type Issuers
+
+Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$maxItems = 56; // int
+$defaultItems = 56; // int
+$issuer = 'issuer_example'; // string | If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned.
+$limit = 56; // int | The maximum amount of policies returned, upper bound is 500 policies
+$offset = 56; // int | The offset from where to start looking.
+
+try {
+    $result = $apiInstance->adminListTrustedOAuth2JwtGrantIssuers($maxItems, $defaultItems, $issuer, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminListTrustedOAuth2JwtGrantIssuers: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **maxItems** | **int**|  | [optional]
+ **defaultItems** | **int**|  | [optional]
+ **issuer** | **string**| If optional \&quot;issuer\&quot; is supplied, only jwt-bearer grants with this issuer will be returned. | [optional]
+ **limit** | **int**| The maximum amount of policies returned, upper bound is 500 policies | [optional]
+ **offset** | **int**| The offset from where to start looking. | [optional]
+
+### Return type
+
+[**\Ory\Client\Model\TrustedOAuth2JwtGrantIssuer[]**](../Model/TrustedOAuth2JwtGrantIssuer.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `adminPatchIdentity()`
 
 ```php
@@ -605,6 +1932,435 @@ Name | Type | Description  | Notes
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `adminPatchOAuth2Client()`
+
+```php
+adminPatchOAuth2Client($id, $jsonPatch): \Ory\Client\Model\OAuth2Client
+```
+
+Patch an OAuth 2.0 Client
+
+Patch an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | The id of the OAuth 2.0 Client.
+$jsonPatch = array(new \Ory\Client\Model\JsonPatch()); // \Ory\Client\Model\JsonPatch[]
+
+try {
+    $result = $apiInstance->adminPatchOAuth2Client($id, $jsonPatch);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminPatchOAuth2Client: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The id of the OAuth 2.0 Client. |
+ **jsonPatch** | [**\Ory\Client\Model\JsonPatch[]**](../Model/JsonPatch.md)|  |
+
+### Return type
+
+[**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminRejectOAuth2ConsentRequest()`
+
+```php
+adminRejectOAuth2ConsentRequest($consentChallenge, $rejectOAuth2Request): \Ory\Client\Model\SuccessfulOAuth2RequestResponse
+```
+
+Reject an OAuth 2.0 Consent Request
+
+When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.  This endpoint tells ORY Hydra that the subject has not authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider must include a reason why the consent was not granted.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$consentChallenge = 'consentChallenge_example'; // string
+$rejectOAuth2Request = new \Ory\Client\Model\RejectOAuth2Request(); // \Ory\Client\Model\RejectOAuth2Request
+
+try {
+    $result = $apiInstance->adminRejectOAuth2ConsentRequest($consentChallenge, $rejectOAuth2Request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminRejectOAuth2ConsentRequest: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **consentChallenge** | **string**|  |
+ **rejectOAuth2Request** | [**\Ory\Client\Model\RejectOAuth2Request**](../Model/RejectOAuth2Request.md)|  | [optional]
+
+### Return type
+
+[**\Ory\Client\Model\SuccessfulOAuth2RequestResponse**](../Model/SuccessfulOAuth2RequestResponse.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminRejectOAuth2LoginRequest()`
+
+```php
+adminRejectOAuth2LoginRequest($loginChallenge, $rejectOAuth2Request): \Ory\Client\Model\SuccessfulOAuth2RequestResponse
+```
+
+Reject an OAuth 2.0 Login Request
+
+When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell ORY Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells ORY Hydra that the subject has not authenticated and includes a reason why the authentication was denied.  The response contains a redirect URL which the login provider should redirect the user-agent to.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$loginChallenge = 'loginChallenge_example'; // string
+$rejectOAuth2Request = new \Ory\Client\Model\RejectOAuth2Request(); // \Ory\Client\Model\RejectOAuth2Request
+
+try {
+    $result = $apiInstance->adminRejectOAuth2LoginRequest($loginChallenge, $rejectOAuth2Request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminRejectOAuth2LoginRequest: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **loginChallenge** | **string**|  |
+ **rejectOAuth2Request** | [**\Ory\Client\Model\RejectOAuth2Request**](../Model/RejectOAuth2Request.md)|  | [optional]
+
+### Return type
+
+[**\Ory\Client\Model\SuccessfulOAuth2RequestResponse**](../Model/SuccessfulOAuth2RequestResponse.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminRejectOAuth2LogoutRequest()`
+
+```php
+adminRejectOAuth2LogoutRequest($logoutChallenge, $rejectOAuth2Request)
+```
+
+Reject an OAuth 2.0 Logout Request
+
+When a user or an application requests ORY Hydra to log out a user, this endpoint is used to deny that logout request. No body is required.  The response is empty as the logout provider has to chose what action to perform next.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$logoutChallenge = 'logoutChallenge_example'; // string
+$rejectOAuth2Request = new \Ory\Client\Model\RejectOAuth2Request(); // \Ory\Client\Model\RejectOAuth2Request
+
+try {
+    $apiInstance->adminRejectOAuth2LogoutRequest($logoutChallenge, $rejectOAuth2Request);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminRejectOAuth2LogoutRequest: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **logoutChallenge** | **string**|  |
+ **rejectOAuth2Request** | [**\Ory\Client\Model\RejectOAuth2Request**](../Model/RejectOAuth2Request.md)|  | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`, `application/x-www-form-urlencoded`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminRevokeOAuth2ConsentSessions()`
+
+```php
+adminRevokeOAuth2ConsentSessions($subject, $client, $all)
+```
+
+Revokes OAuth 2.0 Consent Sessions of a Subject for a Specific OAuth 2.0 Client
+
+This endpoint revokes a subject's granted consent sessions for a specific OAuth 2.0 Client and invalidates all associated OAuth 2.0 Access Tokens.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$subject = 'subject_example'; // string | The subject (Subject) whose consent sessions should be deleted.
+$client = 'client_example'; // string | If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID
+$all = True; // bool | If set to `true` deletes all consent sessions by the Subject that have been granted.
+
+try {
+    $apiInstance->adminRevokeOAuth2ConsentSessions($subject, $client, $all);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminRevokeOAuth2ConsentSessions: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **subject** | **string**| The subject (Subject) whose consent sessions should be deleted. |
+ **client** | **string**| If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID | [optional]
+ **all** | **bool**| If set to &#x60;true&#x60; deletes all consent sessions by the Subject that have been granted. | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminRevokeOAuth2LoginSessions()`
+
+```php
+adminRevokeOAuth2LoginSessions($subject)
+```
+
+Invalidates All OAuth 2.0 Login Sessions of a Certain User
+
+This endpoint invalidates a subject's authentication session. After revoking the authentication session, the subject has to re-authenticate at ORY Hydra. This endpoint does not invalidate any tokens and does not work with OpenID Connect Front- or Back-channel logout.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$subject = 'subject_example'; // string | The subject to revoke authentication sessions for.
+
+try {
+    $apiInstance->adminRevokeOAuth2LoginSessions($subject);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminRevokeOAuth2LoginSessions: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **subject** | **string**| The subject to revoke authentication sessions for. |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminTrustOAuth2JwtGrantIssuer()`
+
+```php
+adminTrustOAuth2JwtGrantIssuer($adminTrustOAuth2JwtGrantIssuerBody): \Ory\Client\Model\TrustedOAuth2JwtGrantIssuer
+```
+
+Trust an OAuth2 JWT Bearer Grant Type Issuer
+
+Use this endpoint to establish a trust relationship for a JWT issuer to perform JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants [RFC7523](https://datatracker.ietf.org/doc/html/rfc7523).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$adminTrustOAuth2JwtGrantIssuerBody = new \Ory\Client\Model\AdminTrustOAuth2JwtGrantIssuerBody(); // \Ory\Client\Model\AdminTrustOAuth2JwtGrantIssuerBody
+
+try {
+    $result = $apiInstance->adminTrustOAuth2JwtGrantIssuer($adminTrustOAuth2JwtGrantIssuerBody);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminTrustOAuth2JwtGrantIssuer: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **adminTrustOAuth2JwtGrantIssuerBody** | [**\Ory\Client\Model\AdminTrustOAuth2JwtGrantIssuerBody**](../Model/AdminTrustOAuth2JwtGrantIssuerBody.md)|  | [optional]
+
+### Return type
+
+[**\Ory\Client\Model\TrustedOAuth2JwtGrantIssuer**](../Model/TrustedOAuth2JwtGrantIssuer.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `adminUpdateIdentity()`
 
 ```php
@@ -653,6 +2409,194 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\Ory\Client\Model\Identity**](../Model/Identity.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminUpdateJsonWebKey()`
+
+```php
+adminUpdateJsonWebKey($set, $kid, $jsonWebKey): \Ory\Client\Model\JsonWebKey
+```
+
+Update a JSON Web Key
+
+Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$set = 'set_example'; // string | The JSON Web Key Set
+$kid = 'kid_example'; // string | The JSON Web Key ID (kid)
+$jsonWebKey = new \Ory\Client\Model\JsonWebKey(); // \Ory\Client\Model\JsonWebKey
+
+try {
+    $result = $apiInstance->adminUpdateJsonWebKey($set, $kid, $jsonWebKey);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminUpdateJsonWebKey: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **set** | **string**| The JSON Web Key Set |
+ **kid** | **string**| The JSON Web Key ID (kid) |
+ **jsonWebKey** | [**\Ory\Client\Model\JsonWebKey**](../Model/JsonWebKey.md)|  | [optional]
+
+### Return type
+
+[**\Ory\Client\Model\JsonWebKey**](../Model/JsonWebKey.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminUpdateJsonWebKeySet()`
+
+```php
+adminUpdateJsonWebKeySet($set, $jsonWebKeySet): \Ory\Client\Model\JsonWebKeySet
+```
+
+Update a JSON Web Key Set
+
+Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$set = 'set_example'; // string | The JSON Web Key Set
+$jsonWebKeySet = new \Ory\Client\Model\JsonWebKeySet(); // \Ory\Client\Model\JsonWebKeySet
+
+try {
+    $result = $apiInstance->adminUpdateJsonWebKeySet($set, $jsonWebKeySet);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminUpdateJsonWebKeySet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **set** | **string**| The JSON Web Key Set |
+ **jsonWebKeySet** | [**\Ory\Client\Model\JsonWebKeySet**](../Model/JsonWebKeySet.md)|  | [optional]
+
+### Return type
+
+[**\Ory\Client\Model\JsonWebKeySet**](../Model/JsonWebKeySet.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `adminUpdateOAuth2Client()`
+
+```php
+adminUpdateOAuth2Client($id, $oAuth2Client): \Ory\Client\Model\OAuth2Client
+```
+
+Update an OAuth 2.0 Client
+
+Update an existing OAuth 2.0 Client. If you pass `client_secret` the secret is used, otherwise a random secret is generated. The secret is echoed in the response. It is not possible to retrieve it later on.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | The id of the OAuth 2.0 Client.
+$oAuth2Client = new \Ory\Client\Model\OAuth2Client(); // \Ory\Client\Model\OAuth2Client
+
+try {
+    $result = $apiInstance->adminUpdateOAuth2Client($id, $oAuth2Client);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->adminUpdateOAuth2Client: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The id of the OAuth 2.0 Client. |
+ **oAuth2Client** | [**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)|  |
+
+### Return type
+
+[**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)
 
 ### Authorization
 
@@ -783,10 +2727,353 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `discoverJsonWebKeys()`
+
+```php
+discoverJsonWebKeys(): \Ory\Client\Model\JsonWebKeySet
+```
+
+Discover JSON Web Keys
+
+This endpoint returns JSON Web Keys required to verifying OpenID Connect ID Tokens and, if enabled, OAuth 2.0 JWT Access Tokens. This endpoint can be used with client libraries like [node-jwks-rsa](https://github.com/auth0/node-jwks-rsa) among others.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $result = $apiInstance->discoverJsonWebKeys();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->discoverJsonWebKeys: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Ory\Client\Model\JsonWebKeySet**](../Model/JsonWebKeySet.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `discoverOidcConfiguration()`
+
+```php
+discoverOidcConfiguration(): \Ory\Client\Model\OidcConfiguration
+```
+
+OpenID Connect Discovery
+
+The well known endpoint an be used to retrieve information for OpenID Connect clients. We encourage you to not roll your own OpenID Connect client but to use an OpenID Connect client library instead. You can learn more on this flow at https://openid.net/specs/openid-connect-discovery-1_0.html .  Popular libraries for OpenID Connect clients include oidc-client-js (JavaScript), go-oidc (Golang), and others. For a full list of clients go here: https://openid.net/developers/certified/
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $result = $apiInstance->discoverOidcConfiguration();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->discoverOidcConfiguration: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Ory\Client\Model\OidcConfiguration**](../Model/OidcConfiguration.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `dynamicClientRegistrationCreateOAuth2Client()`
+
+```php
+dynamicClientRegistrationCreateOAuth2Client($oAuth2Client): \Ory\Client\Model\OAuth2Client
+```
+
+Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+
+This endpoint behaves like the administrative counterpart (`createOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  Please note that using this endpoint you are not able to choose the `client_secret` nor the `client_id` as those values will be server generated when specifying `token_endpoint_auth_method` as `client_secret_basic` or `client_secret_post`.  The `client_secret` will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somewhere safe.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$oAuth2Client = new \Ory\Client\Model\OAuth2Client(); // \Ory\Client\Model\OAuth2Client
+
+try {
+    $result = $apiInstance->dynamicClientRegistrationCreateOAuth2Client($oAuth2Client);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->dynamicClientRegistrationCreateOAuth2Client: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **oAuth2Client** | [**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)|  |
+
+### Return type
+
+[**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `dynamicClientRegistrationDeleteOAuth2Client()`
+
+```php
+dynamicClientRegistrationDeleteOAuth2Client($id)
+```
+
+Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+
+This endpoint behaves like the administrative counterpart (`deleteOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: bearer
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | The id of the OAuth 2.0 Client.
+
+try {
+    $apiInstance->dynamicClientRegistrationDeleteOAuth2Client($id);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->dynamicClientRegistrationDeleteOAuth2Client: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The id of the OAuth 2.0 Client. |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearer](../../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `dynamicClientRegistrationGetOAuth2Client()`
+
+```php
+dynamicClientRegistrationGetOAuth2Client($id): \Ory\Client\Model\OAuth2Client
+```
+
+Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+
+This endpoint behaves like the administrative counterpart (`getOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: bearer
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | The id of the OAuth 2.0 Client.
+
+try {
+    $result = $apiInstance->dynamicClientRegistrationGetOAuth2Client($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->dynamicClientRegistrationGetOAuth2Client: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The id of the OAuth 2.0 Client. |
+
+### Return type
+
+[**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)
+
+### Authorization
+
+[bearer](../../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `dynamicClientRegistrationUpdateOAuth2Client()`
+
+```php
+dynamicClientRegistrationUpdateOAuth2Client($id, $oAuth2Client): \Ory\Client\Model\OAuth2Client
+```
+
+Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+
+This endpoint behaves like the administrative counterpart (`updateOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  If you pass `client_secret` the secret is used, otherwise a random secret is generated. The secret is echoed in the response. It is not possible to retrieve it later on.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: bearer
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | The id of the OAuth 2.0 Client.
+$oAuth2Client = new \Ory\Client\Model\OAuth2Client(); // \Ory\Client\Model\OAuth2Client
+
+try {
+    $result = $apiInstance->dynamicClientRegistrationUpdateOAuth2Client($id, $oAuth2Client);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->dynamicClientRegistrationUpdateOAuth2Client: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The id of the OAuth 2.0 Client. |
+ **oAuth2Client** | [**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)|  |
+
+### Return type
+
+[**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)
+
+### Authorization
+
+[bearer](../../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getIdentitySchema()`
 
 ```php
-getIdentitySchema($id): \Ory\Client\Model\IdentitySchema
+getIdentitySchema($id): object
 ```
 
 
@@ -824,11 +3111,68 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Client\Model\IdentitySchema**](../Model/IdentitySchema.md)
+**object**
 
 ### Authorization
 
 No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getOidcUserInfo()`
+
+```php
+getOidcUserInfo(): \Ory\Client\Model\OidcUserInfo
+```
+
+OpenID Connect Userinfo
+
+This endpoint returns the payload of the ID Token, including the idTokenExtra values, of the provided OAuth 2.0 Access Token.  For more information please [refer to the spec](http://openid.net/specs/openid-connect-core-1_0.html#UserInfo).  In the case of authentication error, a WWW-Authenticate header might be set in the response with more information about the error. See [the spec](https://datatracker.ietf.org/doc/html/rfc6750#section-3) for more details about header format.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure OAuth2 access token for authorization: oauth2
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+try {
+    $result = $apiInstance->getOidcUserInfo();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->getOidcUserInfo: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Ory\Client\Model\OidcUserInfo**](../Model/OidcUserInfo.md)
+
+### Authorization
+
+[oauth2](../../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -1922,7 +4266,7 @@ No authorization required
 ## `listIdentitySchemas()`
 
 ```php
-listIdentitySchemas($perPage, $page): \Ory\Client\Model\IdentitySchema[]
+listIdentitySchemas($perPage, $page): \Ory\Client\Model\IdentitySchemaContainer[]
 ```
 
 
@@ -1962,7 +4306,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Client\Model\IdentitySchema[]**](../Model/IdentitySchema.md)
+[**\Ory\Client\Model\IdentitySchemaContainer[]**](../Model/IdentitySchemaContainer.md)
 
 ### Authorization
 
@@ -2158,6 +4502,184 @@ Name | Type | Description  | Notes
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `performOAuth2AuthorizationFlow()`
+
+```php
+performOAuth2AuthorizationFlow(): \Ory\Client\Model\OAuth2ApiError
+```
+
+The OAuth 2.0 Authorize Endpoint
+
+This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exists.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc6749
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $result = $apiInstance->performOAuth2AuthorizationFlow();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->performOAuth2AuthorizationFlow: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Ory\Client\Model\OAuth2ApiError**](../Model/OAuth2ApiError.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `performOAuth2TokenFlow()`
+
+```php
+performOAuth2TokenFlow($grantType, $clientId, $code, $redirectUri, $refreshToken): \Ory\Client\Model\OAuth2TokenResponse
+```
+
+The OAuth 2.0 Token Endpoint
+
+The client makes a request to the token endpoint by sending the following parameters using the \"application/x-www-form-urlencoded\" HTTP request entity-body.  > Do not implement a client for this endpoint yourself. Use a library. There are many libraries > available for any programming language. You can find a list of libraries here: https://oauth.net/code/ > > Do note that Hydra SDK does not implement this endpoint properly. Use one of the libraries listed above
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basic
+$config = Ory\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure OAuth2 access token for authorization: oauth2
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$grantType = 'grantType_example'; // string
+$clientId = 'clientId_example'; // string
+$code = 'code_example'; // string
+$redirectUri = 'redirectUri_example'; // string
+$refreshToken = 'refreshToken_example'; // string
+
+try {
+    $result = $apiInstance->performOAuth2TokenFlow($grantType, $clientId, $code, $redirectUri, $refreshToken);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->performOAuth2TokenFlow: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **grantType** | **string**|  |
+ **clientId** | **string**|  | [optional]
+ **code** | **string**|  | [optional]
+ **redirectUri** | **string**|  | [optional]
+ **refreshToken** | **string**|  | [optional]
+
+### Return type
+
+[**\Ory\Client\Model\OAuth2TokenResponse**](../Model/OAuth2TokenResponse.md)
+
+### Authorization
+
+[basic](../../README.md#basic), [oauth2](../../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: `application/x-www-form-urlencoded`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `performOidcFrontOrBackChannelLogout()`
+
+```php
+performOidcFrontOrBackChannelLogout()
+```
+
+OpenID Connect Front- or Back-channel Enabled Logout
+
+This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front- / Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html  Back-channel logout is performed asynchronously and does not affect logout flow.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $apiInstance->performOidcFrontOrBackChannelLogout();
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->performOidcFrontOrBackChannelLogout: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `purgeProject()`
 
 ```php
@@ -2272,6 +4794,70 @@ void (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `revokeOAuth2Token()`
+
+```php
+revokeOAuth2Token($token)
+```
+
+Revoke an OAuth2 Access or Refresh Token
+
+Revoking a token (both access and refresh) means that the tokens will be invalid. A revoked access token can no longer be used to make access requests, and a revoked refresh token can no longer be used to refresh an access token. Revoking a refresh token also invalidates the access token that was created with it. A token may only be revoked by the client the token was generated for.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basic
+$config = Ory\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure OAuth2 access token for authorization: oauth2
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\V0alpha2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$token = 'token_example'; // string
+
+try {
+    $apiInstance->revokeOAuth2Token($token);
+} catch (Exception $e) {
+    echo 'Exception when calling V0alpha2Api->revokeOAuth2Token: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token** | **string**|  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basic](../../README.md#basic), [oauth2](../../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: `application/x-www-form-urlencoded`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

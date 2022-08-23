@@ -15,15 +15,13 @@ defmodule Ory.Model.IdentitySchemaContainer do
 
   @type t :: %__MODULE__{
     :id => String.t | nil,
-    :schema => Ory.Model.IdentitySchema.t | nil
+    :schema => map() | nil
   }
 end
 
 defimpl Poison.Decoder, for: Ory.Model.IdentitySchemaContainer do
-  import Ory.Deserializer
-  def decode(value, options) do
+  def decode(value, _options) do
     value
-    |> deserialize(:schema, :struct, Ory.Model.IdentitySchema, options)
   end
 end
 

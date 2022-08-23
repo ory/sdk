@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v0.2.0-alpha.4
-  - Build date: 2022-07-26T09:38:14.572024203Z[Etc/UTC]
+- API version: v0.2.0-alpha.15
+  - Build date: 2022-08-23T15:57:46.854722145Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v0.2.0-alpha.4</version>
+  <version>v0.2.0-alpha.15</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v0.2.0-alpha.4"
+     implementation "sh.ory:client:v0.2.0-alpha.15"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v0.2.0-alpha.4.jar`
+* `target/client-v0.2.0-alpha.15.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -85,25 +85,22 @@ Please follow the [installation](#installation) instruction and execute the foll
 import sh.ory.ApiClient;
 import sh.ory.ApiException;
 import sh.ory.Configuration;
-import sh.ory.auth.*;
 import sh.ory.models.*;
-import sh.ory.api.MetadataApi;
+import sh.ory.api.AdminApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://playground.projects.oryapis.com");
-    
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
 
-    MetadataApi apiInstance = new MetadataApi(defaultClient);
+    AdminApi apiInstance = new AdminApi(defaultClient);
+    String id = "id_example"; // String | The id of the OAuth 2.0 Client.
+    UpdateOAuth2ClientLifespans updateOAuth2ClientLifespans = new UpdateOAuth2ClientLifespans(); // UpdateOAuth2ClientLifespans | 
     try {
-      InlineResponse2001 result = apiInstance.getVersion();
+      OAuth2Client result = apiInstance.updateOAuth2ClientLifespans(id, updateOAuth2ClientLifespans);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling MetadataApi#getVersion");
+      System.err.println("Exception when calling AdminApi#updateOAuth2ClientLifespans");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -120,6 +117,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AdminApi* | [**updateOAuth2ClientLifespans**](docs/AdminApi.md#updateOAuth2ClientLifespans) | **PUT** /admin/clients/{id}/lifespans | 
 *MetadataApi* | [**getVersion**](docs/MetadataApi.md#getVersion) | **GET** /version | Return Running Software Version.
 *MetadataApi* | [**isAlive**](docs/MetadataApi.md#isAlive) | **GET** /health/alive | Check HTTP Server Status
 *MetadataApi* | [**isReady**](docs/MetadataApi.md#isReady) | **GET** /health/ready | Check HTTP Server and Database Status
@@ -129,19 +127,57 @@ Class | Method | HTTP request | Description
 *ReadApi* | [**getRelationTuples**](docs/ReadApi.md#getRelationTuples) | **GET** /relation-tuples | Query relation tuples
 *ReadApi* | [**postCheck**](docs/ReadApi.md#postCheck) | **POST** /relation-tuples/check/openapi | Check a relation tuple
 *ReadApi* | [**postCheckMirrorStatus**](docs/ReadApi.md#postCheckMirrorStatus) | **POST** /relation-tuples/check | Check a relation tuple
+*V0alpha2Api* | [**adminAcceptOAuth2ConsentRequest**](docs/V0alpha2Api.md#adminAcceptOAuth2ConsentRequest) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept an OAuth 2.0 Consent Request
+*V0alpha2Api* | [**adminAcceptOAuth2LoginRequest**](docs/V0alpha2Api.md#adminAcceptOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept an OAuth 2.0 Login Request
+*V0alpha2Api* | [**adminAcceptOAuth2LogoutRequest**](docs/V0alpha2Api.md#adminAcceptOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept an OAuth 2.0 Logout Request
 *V0alpha2Api* | [**adminCreateIdentity**](docs/V0alpha2Api.md#adminCreateIdentity) | **POST** /admin/identities | Create an Identity
+*V0alpha2Api* | [**adminCreateJsonWebKeySet**](docs/V0alpha2Api.md#adminCreateJsonWebKeySet) | **POST** /admin/keys/{set} | Generate a New JSON Web Key
+*V0alpha2Api* | [**adminCreateOAuth2Client**](docs/V0alpha2Api.md#adminCreateOAuth2Client) | **POST** /admin/clients | Create an OAuth 2.0 Client
 *V0alpha2Api* | [**adminCreateSelfServiceRecoveryLink**](docs/V0alpha2Api.md#adminCreateSelfServiceRecoveryLink) | **POST** /admin/recovery/link | Create a Recovery Link
 *V0alpha2Api* | [**adminDeleteIdentity**](docs/V0alpha2Api.md#adminDeleteIdentity) | **DELETE** /admin/identities/{id} | Delete an Identity
 *V0alpha2Api* | [**adminDeleteIdentitySessions**](docs/V0alpha2Api.md#adminDeleteIdentitySessions) | **DELETE** /admin/identities/{id}/sessions | Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.
+*V0alpha2Api* | [**adminDeleteJsonWebKey**](docs/V0alpha2Api.md#adminDeleteJsonWebKey) | **DELETE** /admin/keys/{set}/{kid} | Delete a JSON Web Key
+*V0alpha2Api* | [**adminDeleteJsonWebKeySet**](docs/V0alpha2Api.md#adminDeleteJsonWebKeySet) | **DELETE** /admin/keys/{set} | Delete a JSON Web Key Set
+*V0alpha2Api* | [**adminDeleteOAuth2Client**](docs/V0alpha2Api.md#adminDeleteOAuth2Client) | **DELETE** /admin/clients/{id} | Deletes an OAuth 2.0 Client
+*V0alpha2Api* | [**adminDeleteOAuth2Token**](docs/V0alpha2Api.md#adminDeleteOAuth2Token) | **DELETE** /admin/oauth2/tokens | Delete OAuth2 Access Tokens from a Client
+*V0alpha2Api* | [**adminDeleteTrustedOAuth2JwtGrantIssuer**](docs/V0alpha2Api.md#adminDeleteTrustedOAuth2JwtGrantIssuer) | **DELETE** /admin/trust/grants/jwt-bearer/issuers/{id} | Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer
 *V0alpha2Api* | [**adminExtendSession**](docs/V0alpha2Api.md#adminExtendSession) | **PATCH** /admin/sessions/{id}/extend | Calling this endpoint extends the given session ID. If &#x60;session.earliest_possible_extend&#x60; is set it will only extend the session after the specified time has passed.
 *V0alpha2Api* | [**adminGetIdentity**](docs/V0alpha2Api.md#adminGetIdentity) | **GET** /admin/identities/{id} | Get an Identity
+*V0alpha2Api* | [**adminGetJsonWebKey**](docs/V0alpha2Api.md#adminGetJsonWebKey) | **GET** /admin/keys/{set}/{kid} | Fetch a JSON Web Key
+*V0alpha2Api* | [**adminGetJsonWebKeySet**](docs/V0alpha2Api.md#adminGetJsonWebKeySet) | **GET** /admin/keys/{set} | Retrieve a JSON Web Key Set
+*V0alpha2Api* | [**adminGetOAuth2Client**](docs/V0alpha2Api.md#adminGetOAuth2Client) | **GET** /admin/clients/{id} | Get an OAuth 2.0 Client
+*V0alpha2Api* | [**adminGetOAuth2ConsentRequest**](docs/V0alpha2Api.md#adminGetOAuth2ConsentRequest) | **GET** /admin/oauth2/auth/requests/consent | Get OAuth 2.0 Consent Request Information
+*V0alpha2Api* | [**adminGetOAuth2LoginRequest**](docs/V0alpha2Api.md#adminGetOAuth2LoginRequest) | **GET** /admin/oauth2/auth/requests/login | Get an OAuth 2.0 Login Request
+*V0alpha2Api* | [**adminGetOAuth2LogoutRequest**](docs/V0alpha2Api.md#adminGetOAuth2LogoutRequest) | **GET** /admin/oauth2/auth/requests/logout | Get an OAuth 2.0 Logout Request
+*V0alpha2Api* | [**adminGetTrustedOAuth2JwtGrantIssuer**](docs/V0alpha2Api.md#adminGetTrustedOAuth2JwtGrantIssuer) | **GET** /admin/trust/grants/jwt-bearer/issuers/{id} | Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
+*V0alpha2Api* | [**adminIntrospectOAuth2Token**](docs/V0alpha2Api.md#adminIntrospectOAuth2Token) | **POST** /admin/oauth2/introspect | Introspect OAuth2 Access or Refresh Tokens
 *V0alpha2Api* | [**adminListIdentities**](docs/V0alpha2Api.md#adminListIdentities) | **GET** /admin/identities | List Identities
 *V0alpha2Api* | [**adminListIdentitySessions**](docs/V0alpha2Api.md#adminListIdentitySessions) | **GET** /admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity.
+*V0alpha2Api* | [**adminListOAuth2Clients**](docs/V0alpha2Api.md#adminListOAuth2Clients) | **GET** /admin/clients | List OAuth 2.0 Clients
+*V0alpha2Api* | [**adminListOAuth2SubjectConsentSessions**](docs/V0alpha2Api.md#adminListOAuth2SubjectConsentSessions) | **GET** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject
+*V0alpha2Api* | [**adminListTrustedOAuth2JwtGrantIssuers**](docs/V0alpha2Api.md#adminListTrustedOAuth2JwtGrantIssuers) | **GET** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
 *V0alpha2Api* | [**adminPatchIdentity**](docs/V0alpha2Api.md#adminPatchIdentity) | **PATCH** /admin/identities/{id} | Partially updates an Identity&#39;s field using [JSON Patch](https://jsonpatch.com/)
+*V0alpha2Api* | [**adminPatchOAuth2Client**](docs/V0alpha2Api.md#adminPatchOAuth2Client) | **PATCH** /admin/clients/{id} | Patch an OAuth 2.0 Client
+*V0alpha2Api* | [**adminRejectOAuth2ConsentRequest**](docs/V0alpha2Api.md#adminRejectOAuth2ConsentRequest) | **PUT** /admin/oauth2/auth/requests/consent/reject | Reject an OAuth 2.0 Consent Request
+*V0alpha2Api* | [**adminRejectOAuth2LoginRequest**](docs/V0alpha2Api.md#adminRejectOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject an OAuth 2.0 Login Request
+*V0alpha2Api* | [**adminRejectOAuth2LogoutRequest**](docs/V0alpha2Api.md#adminRejectOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject an OAuth 2.0 Logout Request
+*V0alpha2Api* | [**adminRevokeOAuth2ConsentSessions**](docs/V0alpha2Api.md#adminRevokeOAuth2ConsentSessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revokes OAuth 2.0 Consent Sessions of a Subject for a Specific OAuth 2.0 Client
+*V0alpha2Api* | [**adminRevokeOAuth2LoginSessions**](docs/V0alpha2Api.md#adminRevokeOAuth2LoginSessions) | **DELETE** /admin/oauth2/auth/sessions/login | Invalidates All OAuth 2.0 Login Sessions of a Certain User
+*V0alpha2Api* | [**adminTrustOAuth2JwtGrantIssuer**](docs/V0alpha2Api.md#adminTrustOAuth2JwtGrantIssuer) | **POST** /admin/trust/grants/jwt-bearer/issuers | Trust an OAuth2 JWT Bearer Grant Type Issuer
 *V0alpha2Api* | [**adminUpdateIdentity**](docs/V0alpha2Api.md#adminUpdateIdentity) | **PUT** /admin/identities/{id} | Update an Identity
+*V0alpha2Api* | [**adminUpdateJsonWebKey**](docs/V0alpha2Api.md#adminUpdateJsonWebKey) | **PUT** /admin/keys/{set}/{kid} | Update a JSON Web Key
+*V0alpha2Api* | [**adminUpdateJsonWebKeySet**](docs/V0alpha2Api.md#adminUpdateJsonWebKeySet) | **PUT** /admin/keys/{set} | Update a JSON Web Key Set
+*V0alpha2Api* | [**adminUpdateOAuth2Client**](docs/V0alpha2Api.md#adminUpdateOAuth2Client) | **PUT** /admin/clients/{id} | Update an OAuth 2.0 Client
 *V0alpha2Api* | [**createProject**](docs/V0alpha2Api.md#createProject) | **POST** /projects | Create a Project
 *V0alpha2Api* | [**createSelfServiceLogoutFlowUrlForBrowsers**](docs/V0alpha2Api.md#createSelfServiceLogoutFlowUrlForBrowsers) | **GET** /self-service/logout/browser | Create a Logout URL for Browsers
+*V0alpha2Api* | [**discoverJsonWebKeys**](docs/V0alpha2Api.md#discoverJsonWebKeys) | **GET** /.well-known/jwks.json | Discover JSON Web Keys
+*V0alpha2Api* | [**discoverOidcConfiguration**](docs/V0alpha2Api.md#discoverOidcConfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
+*V0alpha2Api* | [**dynamicClientRegistrationCreateOAuth2Client**](docs/V0alpha2Api.md#dynamicClientRegistrationCreateOAuth2Client) | **POST** /oauth2/register | Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+*V0alpha2Api* | [**dynamicClientRegistrationDeleteOAuth2Client**](docs/V0alpha2Api.md#dynamicClientRegistrationDeleteOAuth2Client) | **DELETE** /oauth2/register/{id} | Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+*V0alpha2Api* | [**dynamicClientRegistrationGetOAuth2Client**](docs/V0alpha2Api.md#dynamicClientRegistrationGetOAuth2Client) | **GET** /oauth2/register/{id} | Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+*V0alpha2Api* | [**dynamicClientRegistrationUpdateOAuth2Client**](docs/V0alpha2Api.md#dynamicClientRegistrationUpdateOAuth2Client) | **PUT** /oauth2/register/{id} | Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 *V0alpha2Api* | [**getIdentitySchema**](docs/V0alpha2Api.md#getIdentitySchema) | **GET** /schemas/{id} | 
+*V0alpha2Api* | [**getOidcUserInfo**](docs/V0alpha2Api.md#getOidcUserInfo) | **GET** /userinfo | OpenID Connect Userinfo
 *V0alpha2Api* | [**getProject**](docs/V0alpha2Api.md#getProject) | **GET** /projects/{project_id} | Get a Project
 *V0alpha2Api* | [**getProjectMembers**](docs/V0alpha2Api.md#getProjectMembers) | **GET** /projects/{project_id}/members | Get all members associated with this project.
 *V0alpha2Api* | [**getSelfServiceError**](docs/V0alpha2Api.md#getSelfServiceError) | **GET** /self-service/errors | Get Self-Service Errors
@@ -165,8 +201,12 @@ Class | Method | HTTP request | Description
 *V0alpha2Api* | [**listProjects**](docs/V0alpha2Api.md#listProjects) | **GET** /projects | List All Projects
 *V0alpha2Api* | [**listSessions**](docs/V0alpha2Api.md#listSessions) | **GET** /sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint.
 *V0alpha2Api* | [**patchProject**](docs/V0alpha2Api.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Cloud Project Configuration&#x60;
+*V0alpha2Api* | [**performOAuth2AuthorizationFlow**](docs/V0alpha2Api.md#performOAuth2AuthorizationFlow) | **GET** /oauth2/auth | The OAuth 2.0 Authorize Endpoint
+*V0alpha2Api* | [**performOAuth2TokenFlow**](docs/V0alpha2Api.md#performOAuth2TokenFlow) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
+*V0alpha2Api* | [**performOidcFrontOrBackChannelLogout**](docs/V0alpha2Api.md#performOidcFrontOrBackChannelLogout) | **GET** /oauth2/sessions/logout | OpenID Connect Front- or Back-channel Enabled Logout
 *V0alpha2Api* | [**purgeProject**](docs/V0alpha2Api.md#purgeProject) | **DELETE** /projects/{project_id} | Irrecoverably Purge a Project
 *V0alpha2Api* | [**removeProjectMember**](docs/V0alpha2Api.md#removeProjectMember) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to &#x60;REMOVED&#x60;.
+*V0alpha2Api* | [**revokeOAuth2Token**](docs/V0alpha2Api.md#revokeOAuth2Token) | **POST** /oauth2/revoke | Revoke an OAuth2 Access or Refresh Token
 *V0alpha2Api* | [**revokeSession**](docs/V0alpha2Api.md#revokeSession) | **DELETE** /sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
 *V0alpha2Api* | [**revokeSessions**](docs/V0alpha2Api.md#revokeSessions) | **DELETE** /sessions | Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
 *V0alpha2Api* | [**submitSelfServiceLoginFlow**](docs/V0alpha2Api.md#submitSelfServiceLoginFlow) | **POST** /self-service/login | Submit a Login Flow
@@ -185,6 +225,9 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [AcceptOAuth2ConsentRequest](docs/AcceptOAuth2ConsentRequest.md)
+ - [AcceptOAuth2ConsentRequestSession](docs/AcceptOAuth2ConsentRequestSession.md)
+ - [AcceptOAuth2LoginRequest](docs/AcceptOAuth2LoginRequest.md)
  - [ActiveProject](docs/ActiveProject.md)
  - [AdminCreateIdentityBody](docs/AdminCreateIdentityBody.md)
  - [AdminCreateIdentityImportCredentialsOidc](docs/AdminCreateIdentityImportCredentialsOidc.md)
@@ -192,8 +235,10 @@ Class | Method | HTTP request | Description
  - [AdminCreateIdentityImportCredentialsOidcProvider](docs/AdminCreateIdentityImportCredentialsOidcProvider.md)
  - [AdminCreateIdentityImportCredentialsPassword](docs/AdminCreateIdentityImportCredentialsPassword.md)
  - [AdminCreateIdentityImportCredentialsPasswordConfig](docs/AdminCreateIdentityImportCredentialsPasswordConfig.md)
+ - [AdminCreateJsonWebKeySetBody](docs/AdminCreateJsonWebKeySetBody.md)
  - [AdminCreateSelfServiceRecoveryLinkBody](docs/AdminCreateSelfServiceRecoveryLinkBody.md)
  - [AdminIdentityImportCredentials](docs/AdminIdentityImportCredentials.md)
+ - [AdminTrustOAuth2JwtGrantIssuerBody](docs/AdminTrustOAuth2JwtGrantIssuerBody.md)
  - [AdminUpdateIdentityBody](docs/AdminUpdateIdentityBody.md)
  - [ApiToken](docs/ApiToken.md)
  - [AuthenticatorAssuranceLevel](docs/AuthenticatorAssuranceLevel.md)
@@ -207,31 +252,39 @@ Class | Method | HTTP request | Description
  - [GenericError](docs/GenericError.md)
  - [GenericErrorContent](docs/GenericErrorContent.md)
  - [GetCheckResponse](docs/GetCheckResponse.md)
+ - [GetManagedIdentitySchemaLocation](docs/GetManagedIdentitySchemaLocation.md)
  - [GetRelationTuplesResponse](docs/GetRelationTuplesResponse.md)
+ - [HandledOAuth2ConsentRequest](docs/HandledOAuth2ConsentRequest.md)
+ - [HandledOAuth2LoginRequest](docs/HandledOAuth2LoginRequest.md)
+ - [HandledOAuth2LogoutRequest](docs/HandledOAuth2LogoutRequest.md)
+ - [Headers](docs/Headers.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
  - [HealthStatus](docs/HealthStatus.md)
+ - [IDTokenClaims](docs/IDTokenClaims.md)
  - [Identity](docs/Identity.md)
  - [IdentityCredentials](docs/IdentityCredentials.md)
  - [IdentityCredentialsOidc](docs/IdentityCredentialsOidc.md)
  - [IdentityCredentialsOidcProvider](docs/IdentityCredentialsOidcProvider.md)
  - [IdentityCredentialsPassword](docs/IdentityCredentialsPassword.md)
  - [IdentityCredentialsType](docs/IdentityCredentialsType.md)
- - [IdentitySchema](docs/IdentitySchema.md)
  - [IdentitySchemaContainer](docs/IdentitySchemaContainer.md)
- - [IdentitySchemaLocation](docs/IdentitySchemaLocation.md)
  - [IdentitySchemaPreset](docs/IdentitySchemaPreset.md)
- - [IdentitySchemaValidationResult](docs/IdentitySchemaValidationResult.md)
  - [IdentityState](docs/IdentityState.md)
  - [InlineResponse200](docs/InlineResponse200.md)
  - [InlineResponse2001](docs/InlineResponse2001.md)
  - [InlineResponse503](docs/InlineResponse503.md)
  - [InternalRelationTuple](docs/InternalRelationTuple.md)
+ - [IntrospectedOAuth2Token](docs/IntrospectedOAuth2Token.md)
  - [InvitePayload](docs/InvitePayload.md)
  - [IsOwnerForProjectBySlug](docs/IsOwnerForProjectBySlug.md)
  - [IsOwnerForProjectBySlugPayload](docs/IsOwnerForProjectBySlugPayload.md)
  - [JsonError](docs/JsonError.md)
  - [JsonPatch](docs/JsonPatch.md)
+ - [JsonWebKey](docs/JsonWebKey.md)
+ - [JsonWebKeySet](docs/JsonWebKeySet.md)
  - [KetoNamespace](docs/KetoNamespace.md)
+ - [ManagedIdentitySchema](docs/ManagedIdentitySchema.md)
+ - [ManagedIdentitySchemaValidationResult](docs/ManagedIdentitySchemaValidationResult.md)
  - [NeedsPrivilegedSessionError](docs/NeedsPrivilegedSessionError.md)
  - [NormalizedProject](docs/NormalizedProject.md)
  - [NormalizedProjectRevision](docs/NormalizedProjectRevision.md)
@@ -239,19 +292,37 @@ Class | Method | HTTP request | Description
  - [NormalizedProjectRevisionIdentitySchema](docs/NormalizedProjectRevisionIdentitySchema.md)
  - [NormalizedProjectRevisionThirdPartyProvider](docs/NormalizedProjectRevisionThirdPartyProvider.md)
  - [NullPlan](docs/NullPlan.md)
+ - [OAuth2AccessRequest](docs/OAuth2AccessRequest.md)
+ - [OAuth2ApiError](docs/OAuth2ApiError.md)
+ - [OAuth2Client](docs/OAuth2Client.md)
+ - [OAuth2ConsentRequest](docs/OAuth2ConsentRequest.md)
+ - [OAuth2ConsentRequestOpenIDConnectContext](docs/OAuth2ConsentRequestOpenIDConnectContext.md)
+ - [OAuth2ConsentSession](docs/OAuth2ConsentSession.md)
+ - [OAuth2ConsentSessionExpiresAt](docs/OAuth2ConsentSessionExpiresAt.md)
+ - [OAuth2LoginRequest](docs/OAuth2LoginRequest.md)
+ - [OAuth2LogoutRequest](docs/OAuth2LogoutRequest.md)
+ - [OAuth2TokenResponse](docs/OAuth2TokenResponse.md)
+ - [OidcConfiguration](docs/OidcConfiguration.md)
+ - [OidcUserInfo](docs/OidcUserInfo.md)
  - [Pagination](docs/Pagination.md)
+ - [PaginationHeaders](docs/PaginationHeaders.md)
  - [PatchDelta](docs/PatchDelta.md)
+ - [PreviousOAuth2ConsentSession](docs/PreviousOAuth2ConsentSession.md)
  - [Project](docs/Project.md)
  - [ProjectHost](docs/ProjectHost.md)
  - [ProjectInvite](docs/ProjectInvite.md)
  - [ProjectMetadata](docs/ProjectMetadata.md)
  - [ProjectServiceIdentity](docs/ProjectServiceIdentity.md)
+ - [ProjectServiceOAuth2](docs/ProjectServiceOAuth2.md)
  - [ProjectServicePermission](docs/ProjectServicePermission.md)
  - [ProjectServices](docs/ProjectServices.md)
  - [ProvisionMockSubscriptionPayload](docs/ProvisionMockSubscriptionPayload.md)
  - [QuotaCustomDomains](docs/QuotaCustomDomains.md)
  - [QuotaProjectMemberSeats](docs/QuotaProjectMemberSeats.md)
  - [RecoveryAddress](docs/RecoveryAddress.md)
+ - [RefreshTokenHookRequest](docs/RefreshTokenHookRequest.md)
+ - [RefreshTokenHookResponse](docs/RefreshTokenHookResponse.md)
+ - [RejectOAuth2Request](docs/RejectOAuth2Request.md)
  - [RelationQuery](docs/RelationQuery.md)
  - [RevokedSessions](docs/RevokedSessions.md)
  - [SchemaPatch](docs/SchemaPatch.md)
@@ -298,11 +369,14 @@ Class | Method | HTTP request | Description
  - [SubmitSelfServiceVerificationFlowBody](docs/SubmitSelfServiceVerificationFlowBody.md)
  - [SubmitSelfServiceVerificationFlowWithLinkMethodBody](docs/SubmitSelfServiceVerificationFlowWithLinkMethodBody.md)
  - [Subscription](docs/Subscription.md)
+ - [SuccessfulOAuth2RequestResponse](docs/SuccessfulOAuth2RequestResponse.md)
  - [SuccessfulProjectUpdate](docs/SuccessfulProjectUpdate.md)
  - [SuccessfulSelfServiceLoginWithoutBrowser](docs/SuccessfulSelfServiceLoginWithoutBrowser.md)
  - [SuccessfulSelfServiceRegistrationWithoutBrowser](docs/SuccessfulSelfServiceRegistrationWithoutBrowser.md)
  - [TokenPagination](docs/TokenPagination.md)
  - [TokenPaginationHeaders](docs/TokenPaginationHeaders.md)
+ - [TrustedOAuth2JwtGrantIssuer](docs/TrustedOAuth2JwtGrantIssuer.md)
+ - [TrustedOAuth2JwtGrantJsonWebKey](docs/TrustedOAuth2JwtGrantJsonWebKey.md)
  - [UiContainer](docs/UiContainer.md)
  - [UiNode](docs/UiNode.md)
  - [UiNodeAnchorAttributes](docs/UiNodeAnchorAttributes.md)
@@ -314,6 +388,7 @@ Class | Method | HTTP request | Description
  - [UiNodeTextAttributes](docs/UiNodeTextAttributes.md)
  - [UiText](docs/UiText.md)
  - [UpdateCustomHostnameBody](docs/UpdateCustomHostnameBody.md)
+ - [UpdateOAuth2ClientLifespans](docs/UpdateOAuth2ClientLifespans.md)
  - [UpdateProject](docs/UpdateProject.md)
  - [UpdateSubscriptionPayload](docs/UpdateSubscriptionPayload.md)
  - [VerifiableIdentityAddress](docs/VerifiableIdentityAddress.md)
@@ -324,6 +399,24 @@ Class | Method | HTTP request | Description
 ## Documentation for Authorization
 
 Authentication schemes defined for the API:
+### basic
+
+- **Type**: HTTP basic authentication
+
+### bearer
+
+- **Type**: HTTP basic authentication
+
+### oauth2
+
+- **Type**: OAuth
+- **Flow**: accessCode
+- **Authorization URL**: https://hydra.demo.ory.sh/oauth2/auth
+- **Scopes**: 
+  - offline: A scope required when requesting refresh tokens (alias for &#x60;offline_access&#x60;)
+  - offline_access: A scope required when requesting refresh tokens
+  - openid: Request an OpenID Connect ID Token
+
 ### oryAccessToken
 
 - **Type**: HTTP basic authentication

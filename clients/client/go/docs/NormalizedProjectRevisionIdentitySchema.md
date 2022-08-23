@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **time.Time** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
 **Id** | Pointer to **string** |  | [optional] 
-**IdentitySchema** | Pointer to [**IdentitySchema**](IdentitySchema.md) |  | [optional] 
+**IdentitySchema** | Pointer to [**ManagedIdentitySchema**](ManagedIdentitySchema.md) |  | [optional] 
 **IdentitySchemaId** | Pointer to **NullableString** |  | [optional] 
 **ImportId** | Pointer to **string** | The imported (named) ID of the Identity Schema referenced in the Ory Kratos config. | [optional] 
 **ImportUrl** | Pointer to **string** | The ImportURL can be used to import an Identity Schema from a bse64 encoded string. In the future, this key also support HTTPS and other sources!  If you import an Ory Kratos configuration, this would be akin to the &#x60;identity.schemas.#.url&#x60; key.  The configuration will always return the import URL when you fetch it from the API. | [optional] 
@@ -86,20 +86,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetIdentitySchema
 
-`func (o *NormalizedProjectRevisionIdentitySchema) GetIdentitySchema() IdentitySchema`
+`func (o *NormalizedProjectRevisionIdentitySchema) GetIdentitySchema() ManagedIdentitySchema`
 
 GetIdentitySchema returns the IdentitySchema field if non-nil, zero value otherwise.
 
 ### GetIdentitySchemaOk
 
-`func (o *NormalizedProjectRevisionIdentitySchema) GetIdentitySchemaOk() (*IdentitySchema, bool)`
+`func (o *NormalizedProjectRevisionIdentitySchema) GetIdentitySchemaOk() (*ManagedIdentitySchema, bool)`
 
 GetIdentitySchemaOk returns a tuple with the IdentitySchema field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIdentitySchema
 
-`func (o *NormalizedProjectRevisionIdentitySchema) SetIdentitySchema(v IdentitySchema)`
+`func (o *NormalizedProjectRevisionIdentitySchema) SetIdentitySchema(v ManagedIdentitySchema)`
 
 SetIdentitySchema sets IdentitySchema field to given value.
 

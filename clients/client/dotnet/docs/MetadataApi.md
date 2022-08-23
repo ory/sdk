@@ -81,7 +81,7 @@ This endpoint does not need any parameter.
 
 <a name="isalive"></a>
 # **IsAlive**
-> ClientInlineResponse200 IsAlive ()
+> ClientHealthStatus IsAlive ()
 
 Check HTTP Server Status
 
@@ -111,7 +111,7 @@ namespace Example
             try
             {
                 // Check HTTP Server Status
-                ClientInlineResponse200 result = apiInstance.IsAlive();
+                ClientHealthStatus result = apiInstance.IsAlive();
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -130,7 +130,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClientInlineResponse200**](ClientInlineResponse200.md)
+[**ClientHealthStatus**](ClientHealthStatus.md)
 
 ### Authorization
 

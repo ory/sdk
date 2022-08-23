@@ -27,7 +27,7 @@ void main() {
       // TODO
     });
 
-    // IdentitySchema identitySchema
+    // ManagedIdentitySchema identitySchema
     test('to test the property `identitySchema`', () async {
       // TODO
     });

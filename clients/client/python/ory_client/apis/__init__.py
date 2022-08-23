@@ -6,7 +6,7 @@
 # raise a `RecursionError`.
 # In order to avoid this, import only the API that you directly need like:
 #
-#   from ory_client.api.metadata_api import MetadataApi
+#   from ory_client.api.admin_api import AdminApi
 #
 # or import this package, but before doing it, use:
 #
@@ -14,6 +14,7 @@
 #   sys.setrecursionlimit(n)
 
 # Import APIs into API package:
+from ory_client.api.admin_api import AdminApi
 from ory_client.api.metadata_api import MetadataApi
 from ory_client.api.read_api import ReadApi
 from ory_client.api.v0alpha2_api import V0alpha2Api

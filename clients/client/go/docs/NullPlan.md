@@ -11,6 +11,10 @@
 
 * `START_UP_YEARLY` (value: `"start_up_yearly"`)
 
+* `BUSINESS_MONTHLY` (value: `"business_monthly"`)
+
+* `BUSINESS_YEARLY` (value: `"business_yearly"`)
+
 * `CUSTOM` (value: `"custom"`)
 
 

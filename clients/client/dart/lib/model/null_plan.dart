@@ -10,7 +10,7 @@
 
 part of openapi.api;
 
-///  unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
+///  unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
 class NullPlan {
   /// Instantiate a new enum with the provided [value].
   const NullPlan._(this.value);
@@ -27,6 +27,8 @@ class NullPlan {
   static const free = NullPlan._(r'free');
   static const startUpMonthly = NullPlan._(r'start_up_monthly');
   static const startUpYearly = NullPlan._(r'start_up_yearly');
+  static const businessMonthly = NullPlan._(r'business_monthly');
+  static const businessYearly = NullPlan._(r'business_yearly');
   static const custom = NullPlan._(r'custom');
 
   /// List of all possible values in this [enum][NullPlan].
@@ -35,6 +37,8 @@ class NullPlan {
     free,
     startUpMonthly,
     startUpYearly,
+    businessMonthly,
+    businessYearly,
     custom,
   ];
 
@@ -78,6 +82,8 @@ class NullPlanTypeTransformer {
         case r'free': return NullPlan.free;
         case r'start_up_monthly': return NullPlan.startUpMonthly;
         case r'start_up_yearly': return NullPlan.startUpYearly;
+        case r'business_monthly': return NullPlan.businessMonthly;
+        case r'business_yearly': return NullPlan.businessYearly;
         case r'custom': return NullPlan.custom;
         default:
           if (!allowNull) {

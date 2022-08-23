@@ -14,6 +14,7 @@ class ProjectServices {
   /// Returns a new [ProjectServices] instance.
   ProjectServices({
     this.identity,
+    this.oauth2,
     this.permission,
   });
 
@@ -31,21 +32,31 @@ class ProjectServices {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
+  ProjectServiceOAuth2? oauth2;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   ProjectServicePermission? permission;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ProjectServices &&
      other.identity == identity &&
+     other.oauth2 == oauth2 &&
      other.permission == permission;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (identity == null ? 0 : identity!.hashCode) +
+    (oauth2 == null ? 0 : oauth2!.hashCode) +
     (permission == null ? 0 : permission!.hashCode);
 
   @override
-  String toString() => 'ProjectServices[identity=$identity, permission=$permission]';
+  String toString() => 'ProjectServices[identity=$identity, oauth2=$oauth2, permission=$permission]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
@@ -53,6 +64,11 @@ class ProjectServices {
       _json[r'identity'] = identity;
     } else {
       _json[r'identity'] = null;
+    }
+    if (oauth2 != null) {
+      _json[r'oauth2'] = oauth2;
+    } else {
+      _json[r'oauth2'] = null;
     }
     if (permission != null) {
       _json[r'permission'] = permission;
@@ -82,6 +98,7 @@ class ProjectServices {
 
       return ProjectServices(
         identity: ProjectServiceIdentity.fromJson(json[r'identity']),
+        oauth2: ProjectServiceOAuth2.fromJson(json[r'oauth2']),
         permission: ProjectServicePermission.fromJson(json[r'permission']),
       );
     }

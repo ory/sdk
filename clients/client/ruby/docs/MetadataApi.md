@@ -77,7 +77,7 @@ This endpoint does not need any parameter.
 
 ## is_alive
 
-> <IsAlive200Response> is_alive
+> <HealthStatus> is_alive
 
 Check HTTP Server Status
 
@@ -109,7 +109,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<IsAlive200Response>, Integer, Hash)> is_alive_with_http_info
+> <Array(<HealthStatus>, Integer, Hash)> is_alive_with_http_info
 
 ```ruby
 begin
@@ -117,7 +117,7 @@ begin
   data, status_code, headers = api_instance.is_alive_with_http_info
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <IsAlive200Response>
+  p data # => <HealthStatus>
 rescue OryClient::ApiError => e
   puts "Error when calling MetadataApi->is_alive_with_http_info: #{e}"
 end
@@ -129,7 +129,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**IsAlive200Response**](IsAlive200Response.md)
+[**HealthStatus**](HealthStatus.md)
 
 ### Authorization
 
@@ -143,7 +143,7 @@ This endpoint does not need any parameter.
 
 ## is_ready
 
-> <IsAlive200Response> is_ready
+> <IsReady200Response> is_ready
 
 Check HTTP Server and Database Status
 
@@ -175,7 +175,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<IsAlive200Response>, Integer, Hash)> is_ready_with_http_info
+> <Array(<IsReady200Response>, Integer, Hash)> is_ready_with_http_info
 
 ```ruby
 begin
@@ -183,7 +183,7 @@ begin
   data, status_code, headers = api_instance.is_ready_with_http_info
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <IsAlive200Response>
+  p data # => <IsReady200Response>
 rescue OryClient::ApiError => e
   puts "Error when calling MetadataApi->is_ready_with_http_info: #{e}"
 end
@@ -195,7 +195,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**IsAlive200Response**](IsAlive200Response.md)
+[**IsReady200Response**](IsReady200Response.md)
 
 ### Authorization
 

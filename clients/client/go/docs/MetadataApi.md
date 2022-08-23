@@ -73,7 +73,7 @@ Other parameters are passed through a pointer to a apiGetVersionRequest struct v
 
 ## IsAlive
 
-> IsAlive200Response IsAlive(ctx).Execute()
+> HealthStatus IsAlive(ctx).Execute()
 
 Check HTTP Server Status
 
@@ -100,7 +100,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `MetadataApi.IsAlive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `IsAlive`: IsAlive200Response
+    // response from `IsAlive`: HealthStatus
     fmt.Fprintf(os.Stdout, "Response from `MetadataApi.IsAlive`: %v\n", resp)
 }
 ```
@@ -116,7 +116,7 @@ Other parameters are passed through a pointer to a apiIsAliveRequest struct via 
 
 ### Return type
 
-[**IsAlive200Response**](IsAlive200Response.md)
+[**HealthStatus**](HealthStatus.md)
 
 ### Authorization
 
@@ -134,7 +134,7 @@ Other parameters are passed through a pointer to a apiIsAliveRequest struct via 
 
 ## IsReady
 
-> IsAlive200Response IsReady(ctx).Execute()
+> IsReady200Response IsReady(ctx).Execute()
 
 Check HTTP Server and Database Status
 
@@ -161,7 +161,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `MetadataApi.IsReady``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `IsReady`: IsAlive200Response
+    // response from `IsReady`: IsReady200Response
     fmt.Fprintf(os.Stdout, "Response from `MetadataApi.IsReady`: %v\n", resp)
 }
 ```
@@ -177,7 +177,7 @@ Other parameters are passed through a pointer to a apiIsReadyRequest struct via 
 
 ### Return type
 
-[**IsAlive200Response**](IsAlive200Response.md)
+[**IsReady200Response**](IsReady200Response.md)
 
 ### Authorization
 

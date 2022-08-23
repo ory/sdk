@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.4
+API version: v0.2.0-alpha.15
 Contact: support@ory.sh
 */
 
@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// NullPlan  unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom
+// NullPlan  unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
 type NullPlan string
 
 // List of NullPlan
@@ -25,6 +25,8 @@ const (
 	NULLPLAN_FREE NullPlan = "free"
 	NULLPLAN_START_UP_MONTHLY NullPlan = "start_up_monthly"
 	NULLPLAN_START_UP_YEARLY NullPlan = "start_up_yearly"
+	NULLPLAN_BUSINESS_MONTHLY NullPlan = "business_monthly"
+	NULLPLAN_BUSINESS_YEARLY NullPlan = "business_yearly"
 	NULLPLAN_CUSTOM NullPlan = "custom"
 )
 
@@ -34,6 +36,8 @@ var AllowedNullPlanEnumValues = []NullPlan{
 	"free",
 	"start_up_monthly",
 	"start_up_yearly",
+	"business_monthly",
+	"business_yearly",
 	"custom",
 }
 

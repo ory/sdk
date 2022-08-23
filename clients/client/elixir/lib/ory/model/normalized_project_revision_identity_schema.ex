@@ -24,7 +24,7 @@ defmodule Ory.Model.NormalizedProjectRevisionIdentitySchema do
   @type t :: %__MODULE__{
     :created_at => DateTime.t | nil,
     :id => String.t | nil,
-    :identity_schema => Ory.Model.IdentitySchema.t | nil,
+    :identity_schema => Ory.Model.ManagedIdentitySchema.t | nil,
     :identity_schema_id => String.t | nil,
     :import_id => String.t | nil,
     :import_url => String.t | nil,
@@ -39,7 +39,7 @@ defimpl Poison.Decoder, for: Ory.Model.NormalizedProjectRevisionIdentitySchema d
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:identity_schema, :struct, Ory.Model.IdentitySchema, options)
+    |> deserialize(:identity_schema, :struct, Ory.Model.ManagedIdentitySchema, options)
   end
 end
 

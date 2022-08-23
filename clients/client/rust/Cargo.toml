@@ -1,6 +1,6 @@
 [package]
 name = "ory-client"
-version = "0.2.0-alpha.4"
+version = "0.2.0-alpha.15"
 description = "SDK Client for Ory"
 documentation = "https://www.ory.sh/docs/sdk"
 homepage = "https://www.ory.sh"
@@ -9,6 +9,7 @@ authors = ["OpenAPI Generator team and contributors"]
 edition = "2018"
 
 [dependencies]
+num-traits = { version = "^0.2", default-features = false }
 serde = "^1.0"
 serde_derive = "^1.0"
 serde_json = "^1.0"

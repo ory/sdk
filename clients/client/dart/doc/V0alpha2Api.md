@@ -9,19 +9,57 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**adminAcceptOAuth2ConsentRequest**](V0alpha2Api.md#adminacceptoauth2consentrequest) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept an OAuth 2.0 Consent Request
+[**adminAcceptOAuth2LoginRequest**](V0alpha2Api.md#adminacceptoauth2loginrequest) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept an OAuth 2.0 Login Request
+[**adminAcceptOAuth2LogoutRequest**](V0alpha2Api.md#adminacceptoauth2logoutrequest) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept an OAuth 2.0 Logout Request
 [**adminCreateIdentity**](V0alpha2Api.md#admincreateidentity) | **POST** /admin/identities | Create an Identity
+[**adminCreateJsonWebKeySet**](V0alpha2Api.md#admincreatejsonwebkeyset) | **POST** /admin/keys/{set} | Generate a New JSON Web Key
+[**adminCreateOAuth2Client**](V0alpha2Api.md#admincreateoauth2client) | **POST** /admin/clients | Create an OAuth 2.0 Client
 [**adminCreateSelfServiceRecoveryLink**](V0alpha2Api.md#admincreateselfservicerecoverylink) | **POST** /admin/recovery/link | Create a Recovery Link
 [**adminDeleteIdentity**](V0alpha2Api.md#admindeleteidentity) | **DELETE** /admin/identities/{id} | Delete an Identity
 [**adminDeleteIdentitySessions**](V0alpha2Api.md#admindeleteidentitysessions) | **DELETE** /admin/identities/{id}/sessions | Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.
+[**adminDeleteJsonWebKey**](V0alpha2Api.md#admindeletejsonwebkey) | **DELETE** /admin/keys/{set}/{kid} | Delete a JSON Web Key
+[**adminDeleteJsonWebKeySet**](V0alpha2Api.md#admindeletejsonwebkeyset) | **DELETE** /admin/keys/{set} | Delete a JSON Web Key Set
+[**adminDeleteOAuth2Client**](V0alpha2Api.md#admindeleteoauth2client) | **DELETE** /admin/clients/{id} | Deletes an OAuth 2.0 Client
+[**adminDeleteOAuth2Token**](V0alpha2Api.md#admindeleteoauth2token) | **DELETE** /admin/oauth2/tokens | Delete OAuth2 Access Tokens from a Client
+[**adminDeleteTrustedOAuth2JwtGrantIssuer**](V0alpha2Api.md#admindeletetrustedoauth2jwtgrantissuer) | **DELETE** /admin/trust/grants/jwt-bearer/issuers/{id} | Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer
 [**adminExtendSession**](V0alpha2Api.md#adminextendsession) | **PATCH** /admin/sessions/{id}/extend | Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.
 [**adminGetIdentity**](V0alpha2Api.md#admingetidentity) | **GET** /admin/identities/{id} | Get an Identity
+[**adminGetJsonWebKey**](V0alpha2Api.md#admingetjsonwebkey) | **GET** /admin/keys/{set}/{kid} | Fetch a JSON Web Key
+[**adminGetJsonWebKeySet**](V0alpha2Api.md#admingetjsonwebkeyset) | **GET** /admin/keys/{set} | Retrieve a JSON Web Key Set
+[**adminGetOAuth2Client**](V0alpha2Api.md#admingetoauth2client) | **GET** /admin/clients/{id} | Get an OAuth 2.0 Client
+[**adminGetOAuth2ConsentRequest**](V0alpha2Api.md#admingetoauth2consentrequest) | **GET** /admin/oauth2/auth/requests/consent | Get OAuth 2.0 Consent Request Information
+[**adminGetOAuth2LoginRequest**](V0alpha2Api.md#admingetoauth2loginrequest) | **GET** /admin/oauth2/auth/requests/login | Get an OAuth 2.0 Login Request
+[**adminGetOAuth2LogoutRequest**](V0alpha2Api.md#admingetoauth2logoutrequest) | **GET** /admin/oauth2/auth/requests/logout | Get an OAuth 2.0 Logout Request
+[**adminGetTrustedOAuth2JwtGrantIssuer**](V0alpha2Api.md#admingettrustedoauth2jwtgrantissuer) | **GET** /admin/trust/grants/jwt-bearer/issuers/{id} | Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
+[**adminIntrospectOAuth2Token**](V0alpha2Api.md#adminintrospectoauth2token) | **POST** /admin/oauth2/introspect | Introspect OAuth2 Access or Refresh Tokens
 [**adminListIdentities**](V0alpha2Api.md#adminlistidentities) | **GET** /admin/identities | List Identities
 [**adminListIdentitySessions**](V0alpha2Api.md#adminlistidentitysessions) | **GET** /admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity.
+[**adminListOAuth2Clients**](V0alpha2Api.md#adminlistoauth2clients) | **GET** /admin/clients | List OAuth 2.0 Clients
+[**adminListOAuth2SubjectConsentSessions**](V0alpha2Api.md#adminlistoauth2subjectconsentsessions) | **GET** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject
+[**adminListTrustedOAuth2JwtGrantIssuers**](V0alpha2Api.md#adminlisttrustedoauth2jwtgrantissuers) | **GET** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
 [**adminPatchIdentity**](V0alpha2Api.md#adminpatchidentity) | **PATCH** /admin/identities/{id} | Partially updates an Identity's field using [JSON Patch](https://jsonpatch.com/)
+[**adminPatchOAuth2Client**](V0alpha2Api.md#adminpatchoauth2client) | **PATCH** /admin/clients/{id} | Patch an OAuth 2.0 Client
+[**adminRejectOAuth2ConsentRequest**](V0alpha2Api.md#adminrejectoauth2consentrequest) | **PUT** /admin/oauth2/auth/requests/consent/reject | Reject an OAuth 2.0 Consent Request
+[**adminRejectOAuth2LoginRequest**](V0alpha2Api.md#adminrejectoauth2loginrequest) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject an OAuth 2.0 Login Request
+[**adminRejectOAuth2LogoutRequest**](V0alpha2Api.md#adminrejectoauth2logoutrequest) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject an OAuth 2.0 Logout Request
+[**adminRevokeOAuth2ConsentSessions**](V0alpha2Api.md#adminrevokeoauth2consentsessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revokes OAuth 2.0 Consent Sessions of a Subject for a Specific OAuth 2.0 Client
+[**adminRevokeOAuth2LoginSessions**](V0alpha2Api.md#adminrevokeoauth2loginsessions) | **DELETE** /admin/oauth2/auth/sessions/login | Invalidates All OAuth 2.0 Login Sessions of a Certain User
+[**adminTrustOAuth2JwtGrantIssuer**](V0alpha2Api.md#admintrustoauth2jwtgrantissuer) | **POST** /admin/trust/grants/jwt-bearer/issuers | Trust an OAuth2 JWT Bearer Grant Type Issuer
 [**adminUpdateIdentity**](V0alpha2Api.md#adminupdateidentity) | **PUT** /admin/identities/{id} | Update an Identity
+[**adminUpdateJsonWebKey**](V0alpha2Api.md#adminupdatejsonwebkey) | **PUT** /admin/keys/{set}/{kid} | Update a JSON Web Key
+[**adminUpdateJsonWebKeySet**](V0alpha2Api.md#adminupdatejsonwebkeyset) | **PUT** /admin/keys/{set} | Update a JSON Web Key Set
+[**adminUpdateOAuth2Client**](V0alpha2Api.md#adminupdateoauth2client) | **PUT** /admin/clients/{id} | Update an OAuth 2.0 Client
 [**createProject**](V0alpha2Api.md#createproject) | **POST** /projects | Create a Project
 [**createSelfServiceLogoutFlowUrlForBrowsers**](V0alpha2Api.md#createselfservicelogoutflowurlforbrowsers) | **GET** /self-service/logout/browser | Create a Logout URL for Browsers
+[**discoverJsonWebKeys**](V0alpha2Api.md#discoverjsonwebkeys) | **GET** /.well-known/jwks.json | Discover JSON Web Keys
+[**discoverOidcConfiguration**](V0alpha2Api.md#discoveroidcconfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
+[**dynamicClientRegistrationCreateOAuth2Client**](V0alpha2Api.md#dynamicclientregistrationcreateoauth2client) | **POST** /oauth2/register | Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+[**dynamicClientRegistrationDeleteOAuth2Client**](V0alpha2Api.md#dynamicclientregistrationdeleteoauth2client) | **DELETE** /oauth2/register/{id} | Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+[**dynamicClientRegistrationGetOAuth2Client**](V0alpha2Api.md#dynamicclientregistrationgetoauth2client) | **GET** /oauth2/register/{id} | Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+[**dynamicClientRegistrationUpdateOAuth2Client**](V0alpha2Api.md#dynamicclientregistrationupdateoauth2client) | **PUT** /oauth2/register/{id} | Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
 [**getIdentitySchema**](V0alpha2Api.md#getidentityschema) | **GET** /schemas/{id} | 
+[**getOidcUserInfo**](V0alpha2Api.md#getoidcuserinfo) | **GET** /userinfo | OpenID Connect Userinfo
 [**getProject**](V0alpha2Api.md#getproject) | **GET** /projects/{project_id} | Get a Project
 [**getProjectMembers**](V0alpha2Api.md#getprojectmembers) | **GET** /projects/{project_id}/members | Get all members associated with this project.
 [**getSelfServiceError**](V0alpha2Api.md#getselfserviceerror) | **GET** /self-service/errors | Get Self-Service Errors
@@ -45,8 +83,12 @@ Method | HTTP request | Description
 [**listProjects**](V0alpha2Api.md#listprojects) | **GET** /projects | List All Projects
 [**listSessions**](V0alpha2Api.md#listsessions) | **GET** /sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the `/sessions/whoami` endpoint.
 [**patchProject**](V0alpha2Api.md#patchproject) | **PATCH** /projects/{project_id} | Patch an Ory Cloud Project Configuration`
+[**performOAuth2AuthorizationFlow**](V0alpha2Api.md#performoauth2authorizationflow) | **GET** /oauth2/auth | The OAuth 2.0 Authorize Endpoint
+[**performOAuth2TokenFlow**](V0alpha2Api.md#performoauth2tokenflow) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
+[**performOidcFrontOrBackChannelLogout**](V0alpha2Api.md#performoidcfrontorbackchannellogout) | **GET** /oauth2/sessions/logout | OpenID Connect Front- or Back-channel Enabled Logout
 [**purgeProject**](V0alpha2Api.md#purgeproject) | **DELETE** /projects/{project_id} | Irrecoverably Purge a Project
 [**removeProjectMember**](V0alpha2Api.md#removeprojectmember) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to `REMOVED`.
+[**revokeOAuth2Token**](V0alpha2Api.md#revokeoauth2token) | **POST** /oauth2/revoke | Revoke an OAuth2 Access or Refresh Token
 [**revokeSession**](V0alpha2Api.md#revokesession) | **DELETE** /sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
 [**revokeSessions**](V0alpha2Api.md#revokesessions) | **DELETE** /sessions | Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
 [**submitSelfServiceLoginFlow**](V0alpha2Api.md#submitselfserviceloginflow) | **POST** /self-service/login | Submit a Login Flow
@@ -59,6 +101,157 @@ Method | HTTP request | Description
 [**toSession**](V0alpha2Api.md#tosession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 [**updateProject**](V0alpha2Api.md#updateproject) | **PUT** /projects/{project_id} | Update an Ory Cloud Project Configuration
 
+
+# **adminAcceptOAuth2ConsentRequest**
+> SuccessfulOAuth2RequestResponse adminAcceptOAuth2ConsentRequest(consentChallenge, acceptOAuth2ConsentRequest)
+
+Accept an OAuth 2.0 Consent Request
+
+When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.  This endpoint tells ORY Hydra that the subject has authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider includes additional information, such as session data for access and ID tokens, and if the consent request should be used as basis for future requests.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final consentChallenge = consentChallenge_example; // String | 
+final acceptOAuth2ConsentRequest = AcceptOAuth2ConsentRequest(); // AcceptOAuth2ConsentRequest | 
+
+try {
+    final result = api_instance.adminAcceptOAuth2ConsentRequest(consentChallenge, acceptOAuth2ConsentRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminAcceptOAuth2ConsentRequest: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **consentChallenge** | **String**|  | 
+ **acceptOAuth2ConsentRequest** | [**AcceptOAuth2ConsentRequest**](AcceptOAuth2ConsentRequest.md)|  | [optional] 
+
+### Return type
+
+[**SuccessfulOAuth2RequestResponse**](SuccessfulOAuth2RequestResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminAcceptOAuth2LoginRequest**
+> SuccessfulOAuth2RequestResponse adminAcceptOAuth2LoginRequest(loginChallenge, acceptOAuth2LoginRequest)
+
+Accept an OAuth 2.0 Login Request
+
+When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell Ory Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells ORY Hydra that the subject has successfully authenticated and includes additional information such as the subject's ID and if ORY Hydra should remember the subject's subject agent for future authentication attempts by setting a cookie.  The response contains a redirect URL which the login provider should redirect the user-agent to.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final loginChallenge = loginChallenge_example; // String | 
+final acceptOAuth2LoginRequest = AcceptOAuth2LoginRequest(); // AcceptOAuth2LoginRequest | 
+
+try {
+    final result = api_instance.adminAcceptOAuth2LoginRequest(loginChallenge, acceptOAuth2LoginRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminAcceptOAuth2LoginRequest: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **loginChallenge** | **String**|  | 
+ **acceptOAuth2LoginRequest** | [**AcceptOAuth2LoginRequest**](AcceptOAuth2LoginRequest.md)|  | [optional] 
+
+### Return type
+
+[**SuccessfulOAuth2RequestResponse**](SuccessfulOAuth2RequestResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminAcceptOAuth2LogoutRequest**
+> SuccessfulOAuth2RequestResponse adminAcceptOAuth2LogoutRequest(logoutChallenge)
+
+Accept an OAuth 2.0 Logout Request
+
+When a user or an application requests ORY Hydra to log out a user, this endpoint is used to confirm that logout request.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final logoutChallenge = logoutChallenge_example; // String | 
+
+try {
+    final result = api_instance.adminAcceptOAuth2LogoutRequest(logoutChallenge);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminAcceptOAuth2LogoutRequest: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **logoutChallenge** | **String**|  | 
+
+### Return type
+
+[**SuccessfulOAuth2RequestResponse**](SuccessfulOAuth2RequestResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **adminCreateIdentity**
 > Identity adminCreateIdentity(adminCreateIdentityBody)
@@ -97,6 +290,106 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Identity**](Identity.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminCreateJsonWebKeySet**
+> JsonWebKeySet adminCreateJsonWebKeySet(set_, adminCreateJsonWebKeySetBody)
+
+Generate a New JSON Web Key
+
+This endpoint is capable of generating JSON Web Key Sets for you. There a different strategies available, such as symmetric cryptographic keys (HS256, HS512) and asymetric cryptographic keys (RS256, ECDSA). If the specified JSON Web Key Set does not exist, it will be created.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final set_ = set__example; // String | The JSON Web Key Set
+final adminCreateJsonWebKeySetBody = AdminCreateJsonWebKeySetBody(); // AdminCreateJsonWebKeySetBody | 
+
+try {
+    final result = api_instance.adminCreateJsonWebKeySet(set_, adminCreateJsonWebKeySetBody);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminCreateJsonWebKeySet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **set_** | **String**| The JSON Web Key Set | 
+ **adminCreateJsonWebKeySetBody** | [**AdminCreateJsonWebKeySetBody**](AdminCreateJsonWebKeySetBody.md)|  | 
+
+### Return type
+
+[**JsonWebKeySet**](JsonWebKeySet.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminCreateOAuth2Client**
+> OAuth2Client adminCreateOAuth2Client(oAuth2Client)
+
+Create an OAuth 2.0 Client
+
+Create a new OAuth 2.0 client. If you pass `client_secret` the secret is used, otherwise a random secret is generated. The secret is echoed in the response. It is not possible to retrieve it later on.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final oAuth2Client = OAuth2Client(); // OAuth2Client | 
+
+try {
+    final result = api_instance.adminCreateOAuth2Client(oAuth2Client);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminCreateOAuth2Client: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **oAuth2Client** | [**OAuth2Client**](OAuth2Client.md)|  | 
+
+### Return type
+
+[**OAuth2Client**](OAuth2Client.md)
 
 ### Authorization
 
@@ -254,6 +547,248 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **adminDeleteJsonWebKey**
+> adminDeleteJsonWebKey(set_, kid)
+
+Delete a JSON Web Key
+
+Use this endpoint to delete a single JSON Web Key.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final set_ = set__example; // String | The JSON Web Key Set
+final kid = kid_example; // String | The JSON Web Key ID (kid)
+
+try {
+    api_instance.adminDeleteJsonWebKey(set_, kid);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminDeleteJsonWebKey: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **set_** | **String**| The JSON Web Key Set | 
+ **kid** | **String**| The JSON Web Key ID (kid) | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminDeleteJsonWebKeySet**
+> adminDeleteJsonWebKeySet(set_)
+
+Delete a JSON Web Key Set
+
+Use this endpoint to delete a complete JSON Web Key Set and all the keys in that set.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final set_ = set__example; // String | The JSON Web Key Set
+
+try {
+    api_instance.adminDeleteJsonWebKeySet(set_);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminDeleteJsonWebKeySet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **set_** | **String**| The JSON Web Key Set | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminDeleteOAuth2Client**
+> adminDeleteOAuth2Client(id)
+
+Deletes an OAuth 2.0 Client
+
+Delete an existing OAuth 2.0 Client by its ID.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.  Make sure that this endpoint is well protected and only callable by first-party components.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final id = id_example; // String | The id of the OAuth 2.0 Client.
+
+try {
+    api_instance.adminDeleteOAuth2Client(id);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminDeleteOAuth2Client: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The id of the OAuth 2.0 Client. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminDeleteOAuth2Token**
+> adminDeleteOAuth2Token(clientId)
+
+Delete OAuth2 Access Tokens from a Client
+
+This endpoint deletes OAuth2 access tokens issued for a client from the database
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final clientId = clientId_example; // String | 
+
+try {
+    api_instance.adminDeleteOAuth2Token(clientId);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminDeleteOAuth2Token: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **clientId** | **String**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminDeleteTrustedOAuth2JwtGrantIssuer**
+> adminDeleteTrustedOAuth2JwtGrantIssuer(id)
+
+Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer
+
+Use this endpoint to delete trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you created the trust relationship.  Once deleted, the associated issuer will no longer be able to perform the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grant.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final id = id_example; // String | The id of the desired grant
+
+try {
+    api_instance.adminDeleteTrustedOAuth2JwtGrantIssuer(id);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminDeleteTrustedOAuth2JwtGrantIssuer: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The id of the desired grant | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **adminExtendSession**
 > Session adminExtendSession(id)
 
@@ -350,6 +885,402 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminGetJsonWebKey**
+> JsonWebKeySet adminGetJsonWebKey(set_, kid)
+
+Fetch a JSON Web Key
+
+This endpoint returns a singular JSON Web Key. It is identified by the set and the specific key ID (kid).
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final set_ = set__example; // String | The JSON Web Key Set
+final kid = kid_example; // String | The JSON Web Key ID (kid)
+
+try {
+    final result = api_instance.adminGetJsonWebKey(set_, kid);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminGetJsonWebKey: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **set_** | **String**| The JSON Web Key Set | 
+ **kid** | **String**| The JSON Web Key ID (kid) | 
+
+### Return type
+
+[**JsonWebKeySet**](JsonWebKeySet.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminGetJsonWebKeySet**
+> JsonWebKeySet adminGetJsonWebKeySet(set_)
+
+Retrieve a JSON Web Key Set
+
+This endpoint can be used to retrieve JWK Sets stored in ORY Hydra.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final set_ = set__example; // String | The JSON Web Key Set
+
+try {
+    final result = api_instance.adminGetJsonWebKeySet(set_);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminGetJsonWebKeySet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **set_** | **String**| The JSON Web Key Set | 
+
+### Return type
+
+[**JsonWebKeySet**](JsonWebKeySet.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminGetOAuth2Client**
+> OAuth2Client adminGetOAuth2Client(id)
+
+Get an OAuth 2.0 Client
+
+Get an OAuth 2.0 client by its ID. This endpoint never returns the client secret.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final id = id_example; // String | The id of the OAuth 2.0 Client.
+
+try {
+    final result = api_instance.adminGetOAuth2Client(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminGetOAuth2Client: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The id of the OAuth 2.0 Client. | 
+
+### Return type
+
+[**OAuth2Client**](OAuth2Client.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminGetOAuth2ConsentRequest**
+> OAuth2ConsentRequest adminGetOAuth2ConsentRequest(consentChallenge)
+
+Get OAuth 2.0 Consent Request Information
+
+When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final consentChallenge = consentChallenge_example; // String | 
+
+try {
+    final result = api_instance.adminGetOAuth2ConsentRequest(consentChallenge);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminGetOAuth2ConsentRequest: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **consentChallenge** | **String**|  | 
+
+### Return type
+
+[**OAuth2ConsentRequest**](OAuth2ConsentRequest.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminGetOAuth2LoginRequest**
+> OAuth2LoginRequest adminGetOAuth2LoginRequest(loginChallenge)
+
+Get an OAuth 2.0 Login Request
+
+When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell ORY Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final loginChallenge = loginChallenge_example; // String | 
+
+try {
+    final result = api_instance.adminGetOAuth2LoginRequest(loginChallenge);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminGetOAuth2LoginRequest: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **loginChallenge** | **String**|  | 
+
+### Return type
+
+[**OAuth2LoginRequest**](OAuth2LoginRequest.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminGetOAuth2LogoutRequest**
+> OAuth2LogoutRequest adminGetOAuth2LogoutRequest(logoutChallenge)
+
+Get an OAuth 2.0 Logout Request
+
+Use this endpoint to fetch a logout request.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final logoutChallenge = logoutChallenge_example; // String | 
+
+try {
+    final result = api_instance.adminGetOAuth2LogoutRequest(logoutChallenge);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminGetOAuth2LogoutRequest: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **logoutChallenge** | **String**|  | 
+
+### Return type
+
+[**OAuth2LogoutRequest**](OAuth2LogoutRequest.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminGetTrustedOAuth2JwtGrantIssuer**
+> TrustedOAuth2JwtGrantIssuer adminGetTrustedOAuth2JwtGrantIssuer(id)
+
+Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
+
+Use this endpoint to get a trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you created the trust relationship.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final id = id_example; // String | The id of the desired grant
+
+try {
+    final result = api_instance.adminGetTrustedOAuth2JwtGrantIssuer(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminGetTrustedOAuth2JwtGrantIssuer: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The id of the desired grant | 
+
+### Return type
+
+[**TrustedOAuth2JwtGrantIssuer**](TrustedOAuth2JwtGrantIssuer.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminIntrospectOAuth2Token**
+> IntrospectedOAuth2Token adminIntrospectOAuth2Token(token, scope)
+
+Introspect OAuth2 Access or Refresh Tokens
+
+The introspection endpoint allows to check if a token (both refresh and access) is active or not. An active token is neither expired nor revoked. If a token is active, additional information on the token will be included. You can set additional data for a token by setting `accessTokenExtra` during the consent flow.  For more information [read this blog post](https://www.oauth.com/oauth2-servers/token-introspection-endpoint/).
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final token = token_example; // String | The string value of the token. For access tokens, this is the \\\"access_token\\\" value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\"refresh_token\\\" value returned.
+final scope = scope_example; // String | An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false.
+
+try {
+    final result = api_instance.adminIntrospectOAuth2Token(token, scope);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminIntrospectOAuth2Token: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token** | **String**| The string value of the token. For access tokens, this is the \\\"access_token\\\" value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\"refresh_token\\\" value returned. | 
+ **scope** | **String**| An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. | [optional] 
+
+### Return type
+
+[**IntrospectedOAuth2Token**](IntrospectedOAuth2Token.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -460,6 +1391,171 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **adminListOAuth2Clients**
+> List<OAuth2Client> adminListOAuth2Clients(pageSize, pageToken, clientName, owner)
+
+List OAuth 2.0 Clients
+
+This endpoint lists all clients in the database, and never returns client secrets. As a default it lists the first 100 clients. The `limit` parameter can be used to retrieve more clients, but it has an upper bound at 500 objects. Pagination should be used to retrieve more than 500 objects.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.  The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://project-slug.projects.oryapis.com/admin/clients?limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final pageSize = 789; // int | Items per page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+final pageToken = pageToken_example; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+final clientName = clientName_example; // String | The name of the clients to filter by.
+final owner = owner_example; // String | The owner of the clients to filter by.
+
+try {
+    final result = api_instance.adminListOAuth2Clients(pageSize, pageToken, clientName, owner);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminListOAuth2Clients: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **pageSize** | **int**| Items per page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to '1']
+ **clientName** | **String**| The name of the clients to filter by. | [optional] 
+ **owner** | **String**| The owner of the clients to filter by. | [optional] 
+
+### Return type
+
+[**List<OAuth2Client>**](OAuth2Client.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminListOAuth2SubjectConsentSessions**
+> List<PreviousOAuth2ConsentSession> adminListOAuth2SubjectConsentSessions(subject, link, xTotalCount)
+
+List OAuth 2.0 Consent Sessions of a Subject
+
+This endpoint lists all subject's granted consent sessions, including client and granted scope. If the subject is unknown or has not granted any consent sessions yet, the endpoint returns an empty JSON array with status code 200 OK.  The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/oauth2/auth/sessions/consent?subject={user}&limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final subject = subject_example; // String | The subject to list the consent sessions for.
+final link = link_example; // String | The link header contains pagination links.  For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+final xTotalCount = xTotalCount_example; // String | The total number of clients.
+
+try {
+    final result = api_instance.adminListOAuth2SubjectConsentSessions(subject, link, xTotalCount);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminListOAuth2SubjectConsentSessions: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **subject** | **String**| The subject to list the consent sessions for. | 
+ **link** | **String**| The link header contains pagination links.  For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] 
+ **xTotalCount** | **String**| The total number of clients. | [optional] 
+
+### Return type
+
+[**List<PreviousOAuth2ConsentSession>**](PreviousOAuth2ConsentSession.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminListTrustedOAuth2JwtGrantIssuers**
+> List<TrustedOAuth2JwtGrantIssuer> adminListTrustedOAuth2JwtGrantIssuers(maxItems, defaultItems, issuer, limit, offset)
+
+List Trusted OAuth2 JWT Bearer Grant Type Issuers
+
+Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final maxItems = 789; // int | 
+final defaultItems = 789; // int | 
+final issuer = issuer_example; // String | If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned.
+final limit = 789; // int | The maximum amount of policies returned, upper bound is 500 policies
+final offset = 789; // int | The offset from where to start looking.
+
+try {
+    final result = api_instance.adminListTrustedOAuth2JwtGrantIssuers(maxItems, defaultItems, issuer, limit, offset);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminListTrustedOAuth2JwtGrantIssuers: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **maxItems** | **int**|  | [optional] 
+ **defaultItems** | **int**|  | [optional] 
+ **issuer** | **String**| If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned. | [optional] 
+ **limit** | **int**| The maximum amount of policies returned, upper bound is 500 policies | [optional] 
+ **offset** | **int**| The offset from where to start looking. | [optional] 
+
+### Return type
+
+[**List<TrustedOAuth2JwtGrantIssuer>**](TrustedOAuth2JwtGrantIssuer.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **adminPatchIdentity**
 > Identity adminPatchIdentity(id, jsonPatch)
 
@@ -511,6 +1607,358 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **adminPatchOAuth2Client**
+> OAuth2Client adminPatchOAuth2Client(id, jsonPatch)
+
+Patch an OAuth 2.0 Client
+
+Patch an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final id = id_example; // String | The id of the OAuth 2.0 Client.
+final jsonPatch = [List<JsonPatch>()]; // List<JsonPatch> | 
+
+try {
+    final result = api_instance.adminPatchOAuth2Client(id, jsonPatch);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminPatchOAuth2Client: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The id of the OAuth 2.0 Client. | 
+ **jsonPatch** | [**List<JsonPatch>**](JsonPatch.md)|  | 
+
+### Return type
+
+[**OAuth2Client**](OAuth2Client.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminRejectOAuth2ConsentRequest**
+> SuccessfulOAuth2RequestResponse adminRejectOAuth2ConsentRequest(consentChallenge, rejectOAuth2Request)
+
+Reject an OAuth 2.0 Consent Request
+
+When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.  This endpoint tells ORY Hydra that the subject has not authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider must include a reason why the consent was not granted.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final consentChallenge = consentChallenge_example; // String | 
+final rejectOAuth2Request = RejectOAuth2Request(); // RejectOAuth2Request | 
+
+try {
+    final result = api_instance.adminRejectOAuth2ConsentRequest(consentChallenge, rejectOAuth2Request);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminRejectOAuth2ConsentRequest: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **consentChallenge** | **String**|  | 
+ **rejectOAuth2Request** | [**RejectOAuth2Request**](RejectOAuth2Request.md)|  | [optional] 
+
+### Return type
+
+[**SuccessfulOAuth2RequestResponse**](SuccessfulOAuth2RequestResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminRejectOAuth2LoginRequest**
+> SuccessfulOAuth2RequestResponse adminRejectOAuth2LoginRequest(loginChallenge, rejectOAuth2Request)
+
+Reject an OAuth 2.0 Login Request
+
+When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell ORY Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells ORY Hydra that the subject has not authenticated and includes a reason why the authentication was denied.  The response contains a redirect URL which the login provider should redirect the user-agent to.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final loginChallenge = loginChallenge_example; // String | 
+final rejectOAuth2Request = RejectOAuth2Request(); // RejectOAuth2Request | 
+
+try {
+    final result = api_instance.adminRejectOAuth2LoginRequest(loginChallenge, rejectOAuth2Request);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminRejectOAuth2LoginRequest: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **loginChallenge** | **String**|  | 
+ **rejectOAuth2Request** | [**RejectOAuth2Request**](RejectOAuth2Request.md)|  | [optional] 
+
+### Return type
+
+[**SuccessfulOAuth2RequestResponse**](SuccessfulOAuth2RequestResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminRejectOAuth2LogoutRequest**
+> adminRejectOAuth2LogoutRequest(logoutChallenge, rejectOAuth2Request)
+
+Reject an OAuth 2.0 Logout Request
+
+When a user or an application requests ORY Hydra to log out a user, this endpoint is used to deny that logout request. No body is required.  The response is empty as the logout provider has to chose what action to perform next.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final logoutChallenge = logoutChallenge_example; // String | 
+final rejectOAuth2Request = RejectOAuth2Request(); // RejectOAuth2Request | 
+
+try {
+    api_instance.adminRejectOAuth2LogoutRequest(logoutChallenge, rejectOAuth2Request);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminRejectOAuth2LogoutRequest: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **logoutChallenge** | **String**|  | 
+ **rejectOAuth2Request** | [**RejectOAuth2Request**](RejectOAuth2Request.md)|  | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminRevokeOAuth2ConsentSessions**
+> adminRevokeOAuth2ConsentSessions(subject, client, all)
+
+Revokes OAuth 2.0 Consent Sessions of a Subject for a Specific OAuth 2.0 Client
+
+This endpoint revokes a subject's granted consent sessions for a specific OAuth 2.0 Client and invalidates all associated OAuth 2.0 Access Tokens.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final subject = subject_example; // String | The subject (Subject) whose consent sessions should be deleted.
+final client = client_example; // String | If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID
+final all = true; // bool | If set to `true` deletes all consent sessions by the Subject that have been granted.
+
+try {
+    api_instance.adminRevokeOAuth2ConsentSessions(subject, client, all);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminRevokeOAuth2ConsentSessions: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **subject** | **String**| The subject (Subject) whose consent sessions should be deleted. | 
+ **client** | **String**| If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID | [optional] 
+ **all** | **bool**| If set to `true` deletes all consent sessions by the Subject that have been granted. | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminRevokeOAuth2LoginSessions**
+> adminRevokeOAuth2LoginSessions(subject)
+
+Invalidates All OAuth 2.0 Login Sessions of a Certain User
+
+This endpoint invalidates a subject's authentication session. After revoking the authentication session, the subject has to re-authenticate at ORY Hydra. This endpoint does not invalidate any tokens and does not work with OpenID Connect Front- or Back-channel logout.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final subject = subject_example; // String | The subject to revoke authentication sessions for.
+
+try {
+    api_instance.adminRevokeOAuth2LoginSessions(subject);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminRevokeOAuth2LoginSessions: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **subject** | **String**| The subject to revoke authentication sessions for. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminTrustOAuth2JwtGrantIssuer**
+> TrustedOAuth2JwtGrantIssuer adminTrustOAuth2JwtGrantIssuer(adminTrustOAuth2JwtGrantIssuerBody)
+
+Trust an OAuth2 JWT Bearer Grant Type Issuer
+
+Use this endpoint to establish a trust relationship for a JWT issuer to perform JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants [RFC7523](https://datatracker.ietf.org/doc/html/rfc7523).
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final adminTrustOAuth2JwtGrantIssuerBody = AdminTrustOAuth2JwtGrantIssuerBody(); // AdminTrustOAuth2JwtGrantIssuerBody | 
+
+try {
+    final result = api_instance.adminTrustOAuth2JwtGrantIssuer(adminTrustOAuth2JwtGrantIssuerBody);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminTrustOAuth2JwtGrantIssuer: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **adminTrustOAuth2JwtGrantIssuerBody** | [**AdminTrustOAuth2JwtGrantIssuerBody**](AdminTrustOAuth2JwtGrantIssuerBody.md)|  | [optional] 
+
+### Return type
+
+[**TrustedOAuth2JwtGrantIssuer**](TrustedOAuth2JwtGrantIssuer.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **adminUpdateIdentity**
 > Identity adminUpdateIdentity(id, adminUpdateIdentityBody)
 
@@ -550,6 +1998,161 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Identity**](Identity.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminUpdateJsonWebKey**
+> JsonWebKey adminUpdateJsonWebKey(set_, kid, jsonWebKey)
+
+Update a JSON Web Key
+
+Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final set_ = set__example; // String | The JSON Web Key Set
+final kid = kid_example; // String | The JSON Web Key ID (kid)
+final jsonWebKey = JsonWebKey(); // JsonWebKey | 
+
+try {
+    final result = api_instance.adminUpdateJsonWebKey(set_, kid, jsonWebKey);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminUpdateJsonWebKey: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **set_** | **String**| The JSON Web Key Set | 
+ **kid** | **String**| The JSON Web Key ID (kid) | 
+ **jsonWebKey** | [**JsonWebKey**](JsonWebKey.md)|  | [optional] 
+
+### Return type
+
+[**JsonWebKey**](JsonWebKey.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminUpdateJsonWebKeySet**
+> JsonWebKeySet adminUpdateJsonWebKeySet(set_, jsonWebKeySet)
+
+Update a JSON Web Key Set
+
+Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final set_ = set__example; // String | The JSON Web Key Set
+final jsonWebKeySet = JsonWebKeySet(); // JsonWebKeySet | 
+
+try {
+    final result = api_instance.adminUpdateJsonWebKeySet(set_, jsonWebKeySet);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminUpdateJsonWebKeySet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **set_** | **String**| The JSON Web Key Set | 
+ **jsonWebKeySet** | [**JsonWebKeySet**](JsonWebKeySet.md)|  | [optional] 
+
+### Return type
+
+[**JsonWebKeySet**](JsonWebKeySet.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminUpdateOAuth2Client**
+> OAuth2Client adminUpdateOAuth2Client(id, oAuth2Client)
+
+Update an OAuth 2.0 Client
+
+Update an existing OAuth 2.0 Client. If you pass `client_secret` the secret is used, otherwise a random secret is generated. The secret is echoed in the response. It is not possible to retrieve it later on.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: oryAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final id = id_example; // String | The id of the OAuth 2.0 Client.
+final oAuth2Client = OAuth2Client(); // OAuth2Client | 
+
+try {
+    final result = api_instance.adminUpdateOAuth2Client(id, oAuth2Client);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->adminUpdateOAuth2Client: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The id of the OAuth 2.0 Client. | 
+ **oAuth2Client** | [**OAuth2Client**](OAuth2Client.md)|  | 
+
+### Return type
+
+[**OAuth2Client**](OAuth2Client.md)
 
 ### Authorization
 
@@ -654,8 +2257,277 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **discoverJsonWebKeys**
+> JsonWebKeySet discoverJsonWebKeys()
+
+Discover JSON Web Keys
+
+This endpoint returns JSON Web Keys required to verifying OpenID Connect ID Tokens and, if enabled, OAuth 2.0 JWT Access Tokens. This endpoint can be used with client libraries like [node-jwks-rsa](https://github.com/auth0/node-jwks-rsa) among others.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api_instance = V0alpha2Api();
+
+try {
+    final result = api_instance.discoverJsonWebKeys();
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->discoverJsonWebKeys: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**JsonWebKeySet**](JsonWebKeySet.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **discoverOidcConfiguration**
+> OidcConfiguration discoverOidcConfiguration()
+
+OpenID Connect Discovery
+
+The well known endpoint an be used to retrieve information for OpenID Connect clients. We encourage you to not roll your own OpenID Connect client but to use an OpenID Connect client library instead. You can learn more on this flow at https://openid.net/specs/openid-connect-discovery-1_0.html .  Popular libraries for OpenID Connect clients include oidc-client-js (JavaScript), go-oidc (Golang), and others. For a full list of clients go here: https://openid.net/developers/certified/
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api_instance = V0alpha2Api();
+
+try {
+    final result = api_instance.discoverOidcConfiguration();
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->discoverOidcConfiguration: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**OidcConfiguration**](OidcConfiguration.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **dynamicClientRegistrationCreateOAuth2Client**
+> OAuth2Client dynamicClientRegistrationCreateOAuth2Client(oAuth2Client)
+
+Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+
+This endpoint behaves like the administrative counterpart (`createOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  Please note that using this endpoint you are not able to choose the `client_secret` nor the `client_id` as those values will be server generated when specifying `token_endpoint_auth_method` as `client_secret_basic` or `client_secret_post`.  The `client_secret` will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somewhere safe.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api_instance = V0alpha2Api();
+final oAuth2Client = OAuth2Client(); // OAuth2Client | 
+
+try {
+    final result = api_instance.dynamicClientRegistrationCreateOAuth2Client(oAuth2Client);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->dynamicClientRegistrationCreateOAuth2Client: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **oAuth2Client** | [**OAuth2Client**](OAuth2Client.md)|  | 
+
+### Return type
+
+[**OAuth2Client**](OAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **dynamicClientRegistrationDeleteOAuth2Client**
+> dynamicClientRegistrationDeleteOAuth2Client(id)
+
+Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+
+This endpoint behaves like the administrative counterpart (`deleteOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: bearer
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearer').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearer').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final id = id_example; // String | The id of the OAuth 2.0 Client.
+
+try {
+    api_instance.dynamicClientRegistrationDeleteOAuth2Client(id);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->dynamicClientRegistrationDeleteOAuth2Client: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The id of the OAuth 2.0 Client. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **dynamicClientRegistrationGetOAuth2Client**
+> OAuth2Client dynamicClientRegistrationGetOAuth2Client(id)
+
+Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+
+This endpoint behaves like the administrative counterpart (`getOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: bearer
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearer').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearer').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final id = id_example; // String | The id of the OAuth 2.0 Client.
+
+try {
+    final result = api_instance.dynamicClientRegistrationGetOAuth2Client(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->dynamicClientRegistrationGetOAuth2Client: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The id of the OAuth 2.0 Client. | 
+
+### Return type
+
+[**OAuth2Client**](OAuth2Client.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **dynamicClientRegistrationUpdateOAuth2Client**
+> OAuth2Client dynamicClientRegistrationUpdateOAuth2Client(id, oAuth2Client)
+
+Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+
+This endpoint behaves like the administrative counterpart (`updateOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  If you pass `client_secret` the secret is used, otherwise a random secret is generated. The secret is echoed in the response. It is not possible to retrieve it later on.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP Bearer authorization: bearer
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearer').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearer').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = V0alpha2Api();
+final id = id_example; // String | The id of the OAuth 2.0 Client.
+final oAuth2Client = OAuth2Client(); // OAuth2Client | 
+
+try {
+    final result = api_instance.dynamicClientRegistrationUpdateOAuth2Client(id, oAuth2Client);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->dynamicClientRegistrationUpdateOAuth2Client: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The id of the OAuth 2.0 Client. | 
+ **oAuth2Client** | [**OAuth2Client**](OAuth2Client.md)|  | 
+
+### Return type
+
+[**OAuth2Client**](OAuth2Client.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getIdentitySchema**
-> IdentitySchema getIdentitySchema(id)
+> Object getIdentitySchema(id)
 
 
 
@@ -684,11 +2556,52 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**IdentitySchema**](IdentitySchema.md)
+[**Object**](Object.md)
 
 ### Authorization
 
 No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getOidcUserInfo**
+> OidcUserInfo getOidcUserInfo()
+
+OpenID Connect Userinfo
+
+This endpoint returns the payload of the ID Token, including the idTokenExtra values, of the provided OAuth 2.0 Access Token.  For more information please [refer to the spec](http://openid.net/specs/openid-connect-core-1_0.html#UserInfo).  In the case of authentication error, a WWW-Authenticate header might be set in the response with more information about the error. See [the spec](https://datatracker.ietf.org/doc/html/rfc6750#section-3) for more details about header format.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure OAuth2 access token for authorization: oauth2
+//defaultApiClient.getAuthentication<OAuth>('oauth2').accessToken = 'YOUR_ACCESS_TOKEN';
+
+final api_instance = V0alpha2Api();
+
+try {
+    final result = api_instance.getOidcUserInfo();
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->getOidcUserInfo: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**OidcUserInfo**](OidcUserInfo.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -1531,7 +3444,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listIdentitySchemas**
-> List<IdentitySchema> listIdentitySchemas(perPage, page)
+> List<IdentitySchemaContainer> listIdentitySchemas(perPage, page)
 
 
 
@@ -1562,7 +3475,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List<IdentitySchema>**](IdentitySchema.md)
+[**List<IdentitySchemaContainer>**](IdentitySchemaContainer.md)
 
 ### Authorization
 
@@ -1720,6 +3633,139 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **performOAuth2AuthorizationFlow**
+> OAuth2ApiError performOAuth2AuthorizationFlow()
+
+The OAuth 2.0 Authorize Endpoint
+
+This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exists.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc6749
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api_instance = V0alpha2Api();
+
+try {
+    final result = api_instance.performOAuth2AuthorizationFlow();
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->performOAuth2AuthorizationFlow: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**OAuth2ApiError**](OAuth2ApiError.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **performOAuth2TokenFlow**
+> OAuth2TokenResponse performOAuth2TokenFlow(grantType, clientId, code, redirectUri, refreshToken)
+
+The OAuth 2.0 Token Endpoint
+
+The client makes a request to the token endpoint by sending the following parameters using the \"application/x-www-form-urlencoded\" HTTP request entity-body.  > Do not implement a client for this endpoint yourself. Use a library. There are many libraries > available for any programming language. You can find a list of libraries here: https://oauth.net/code/ > > Do note that Hydra SDK does not implement this endpoint properly. Use one of the libraries listed above
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP basic authorization: basic
+//defaultApiClient.getAuthentication<HttpBasicAuth>('basic').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('basic').password = 'YOUR_PASSWORD';
+// TODO Configure OAuth2 access token for authorization: oauth2
+//defaultApiClient.getAuthentication<OAuth>('oauth2').accessToken = 'YOUR_ACCESS_TOKEN';
+
+final api_instance = V0alpha2Api();
+final grantType = grantType_example; // String | 
+final clientId = clientId_example; // String | 
+final code = code_example; // String | 
+final redirectUri = redirectUri_example; // String | 
+final refreshToken = refreshToken_example; // String | 
+
+try {
+    final result = api_instance.performOAuth2TokenFlow(grantType, clientId, code, redirectUri, refreshToken);
+    print(result);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->performOAuth2TokenFlow: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **grantType** | **String**|  | 
+ **clientId** | **String**|  | [optional] 
+ **code** | **String**|  | [optional] 
+ **redirectUri** | **String**|  | [optional] 
+ **refreshToken** | **String**|  | [optional] 
+
+### Return type
+
+[**OAuth2TokenResponse**](OAuth2TokenResponse.md)
+
+### Authorization
+
+[basic](../README.md#basic), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **performOidcFrontOrBackChannelLogout**
+> performOidcFrontOrBackChannelLogout()
+
+OpenID Connect Front- or Back-channel Enabled Logout
+
+This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front- / Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html  Back-channel logout is performed asynchronously and does not affect logout flow.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api_instance = V0alpha2Api();
+
+try {
+    api_instance.performOidcFrontOrBackChannelLogout();
+} catch (e) {
+    print('Exception when calling V0alpha2Api->performOidcFrontOrBackChannelLogout: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **purgeProject**
 > purgeProject(projectId)
 
@@ -1814,6 +3860,53 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **revokeOAuth2Token**
+> revokeOAuth2Token(token)
+
+Revoke an OAuth2 Access or Refresh Token
+
+Revoking a token (both access and refresh) means that the tokens will be invalid. A revoked access token can no longer be used to make access requests, and a revoked refresh token can no longer be used to refresh an access token. Revoking a refresh token also invalidates the access token that was created with it. A token may only be revoked by the client the token was generated for.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP basic authorization: basic
+//defaultApiClient.getAuthentication<HttpBasicAuth>('basic').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('basic').password = 'YOUR_PASSWORD';
+// TODO Configure OAuth2 access token for authorization: oauth2
+//defaultApiClient.getAuthentication<OAuth>('oauth2').accessToken = 'YOUR_ACCESS_TOKEN';
+
+final api_instance = V0alpha2Api();
+final token = token_example; // String | 
+
+try {
+    api_instance.revokeOAuth2Token(token);
+} catch (e) {
+    print('Exception when calling V0alpha2Api->revokeOAuth2Token: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token** | **String**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basic](../README.md#basic), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -22,7 +22,8 @@ void main() {
       // TODO
     });
 
-    // IdentitySchema schema
+    // Raw JSON Schema
+    // Object schema
     test('to test the property `schema`', () async {
       // TODO
     });

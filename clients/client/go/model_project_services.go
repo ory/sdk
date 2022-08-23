@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.4
+API version: v0.2.0-alpha.15
 Contact: support@ory.sh
 */
 
@@ -18,6 +18,7 @@ import (
 // ProjectServices struct for ProjectServices
 type ProjectServices struct {
 	Identity *ProjectServiceIdentity `json:"identity,omitempty"`
+	Oauth2 *ProjectServiceOAuth2 `json:"oauth2,omitempty"`
 	Permission *ProjectServicePermission `json:"permission,omitempty"`
 }
 
@@ -70,6 +71,38 @@ func (o *ProjectServices) SetIdentity(v ProjectServiceIdentity) {
 	o.Identity = &v
 }
 
+// GetOauth2 returns the Oauth2 field value if set, zero value otherwise.
+func (o *ProjectServices) GetOauth2() ProjectServiceOAuth2 {
+	if o == nil || o.Oauth2 == nil {
+		var ret ProjectServiceOAuth2
+		return ret
+	}
+	return *o.Oauth2
+}
+
+// GetOauth2Ok returns a tuple with the Oauth2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectServices) GetOauth2Ok() (*ProjectServiceOAuth2, bool) {
+	if o == nil || o.Oauth2 == nil {
+		return nil, false
+	}
+	return o.Oauth2, true
+}
+
+// HasOauth2 returns a boolean if a field has been set.
+func (o *ProjectServices) HasOauth2() bool {
+	if o != nil && o.Oauth2 != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOauth2 gets a reference to the given ProjectServiceOAuth2 and assigns it to the Oauth2 field.
+func (o *ProjectServices) SetOauth2(v ProjectServiceOAuth2) {
+	o.Oauth2 = &v
+}
+
 // GetPermission returns the Permission field value if set, zero value otherwise.
 func (o *ProjectServices) GetPermission() ProjectServicePermission {
 	if o == nil || o.Permission == nil {
@@ -106,6 +139,9 @@ func (o ProjectServices) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Identity != nil {
 		toSerialize["identity"] = o.Identity
+	}
+	if o.Oauth2 != nil {
+		toSerialize["oauth2"] = o.Oauth2
 	}
 	if o.Permission != nil {
 		toSerialize["permission"] = o.Permission

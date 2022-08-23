@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Identity** | Pointer to [**ProjectServiceIdentity**](ProjectServiceIdentity.md) |  | [optional] 
+**Oauth2** | Pointer to [**ProjectServiceOAuth2**](ProjectServiceOAuth2.md) |  | [optional] 
 **Permission** | Pointer to [**ProjectServicePermission**](ProjectServicePermission.md) |  | [optional] 
 
 ## Methods
@@ -50,6 +51,31 @@ SetIdentity sets Identity field to given value.
 `func (o *ProjectServices) HasIdentity() bool`
 
 HasIdentity returns a boolean if a field has been set.
+
+### GetOauth2
+
+`func (o *ProjectServices) GetOauth2() ProjectServiceOAuth2`
+
+GetOauth2 returns the Oauth2 field if non-nil, zero value otherwise.
+
+### GetOauth2Ok
+
+`func (o *ProjectServices) GetOauth2Ok() (*ProjectServiceOAuth2, bool)`
+
+GetOauth2Ok returns a tuple with the Oauth2 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOauth2
+
+`func (o *ProjectServices) SetOauth2(v ProjectServiceOAuth2)`
+
+SetOauth2 sets Oauth2 field to given value.
+
+### HasOauth2
+
+`func (o *ProjectServices) HasOauth2() bool`
+
+HasOauth2 returns a boolean if a field has been set.
 
 ### GetPermission
 

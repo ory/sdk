@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **created_at** | **Time** |  | [readonly] |
-| **current_plan** | **String** | The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom | [readonly] |
+| **current_plan** | **String** | The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom | [readonly] |
 | **customer_id** | **String** | The ID of the stripe customer | [readonly] |
 | **id** | **String** |  |  |
 | **ongoing_stripe_checkout_id** | **String** |  | [optional] |

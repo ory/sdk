@@ -14,6 +14,46 @@ class NormalizedProjectRevision {
   /// Returns a new [NormalizedProjectRevision] instance.
   NormalizedProjectRevision({
     this.createdAt,
+    this.hydraOauth2ClientCredentialsDefaultGrantAllowedScope,
+    this.hydraOauth2GrantJwtIatOptional,
+    this.hydraOauth2GrantJwtJtiOptional,
+    this.hydraOauth2GrantJwtMaxTtl,
+    this.hydraOauth2PkceEnforced,
+    this.hydraOauth2PkceEnforcedForPublicClients,
+    this.hydraOauth2RefreshTokenHook,
+    this.hydraOidcDynamicClientRegistrationDefaultScope = const [],
+    this.hydraOidcDynamicClientRegistrationEnabled,
+    this.hydraOidcSubjectIdentifiersPairwiseSalt,
+    this.hydraOidcSubjectIdentifiersSupportedTypes = const [],
+    this.hydraSecretsCookie = const [],
+    this.hydraSecretsSystem = const [],
+    this.hydraServeAdminCorsAllowedOrigins = const [],
+    this.hydraServeAdminCorsEnabled,
+    this.hydraServeCookiesSameSiteLegacyWorkaround,
+    this.hydraServeCookiesSameSiteMode,
+    this.hydraServePublicCorsAllowedOrigins = const [],
+    this.hydraServePublicCorsEnabled,
+    this.hydraStrategiesAccessToken,
+    this.hydraStrategiesScope,
+    this.hydraTtlAccessToken,
+    this.hydraTtlAuthCode,
+    this.hydraTtlIdToken,
+    this.hydraTtlLoginConsentRequest,
+    this.hydraTtlRefreshToken,
+    this.hydraUrlsConsent,
+    this.hydraUrlsError,
+    this.hydraUrlsLogin,
+    this.hydraUrlsLogout,
+    this.hydraUrlsPostLogoutRedirect,
+    this.hydraUrlsSelfIssuer,
+    this.hydraWebfingerJwksBroadcastKeys = const [],
+    this.hydraWebfingerOidcDiscoveryAuthUrl,
+    this.hydraWebfingerOidcDiscoveryClientRegistrationUrl,
+    this.hydraWebfingerOidcDiscoveryJwksUrl,
+    this.hydraWebfingerOidcDiscoverySupportedClaims = const [],
+    this.hydraWebfingerOidcDiscoverySupportedScope = const [],
+    this.hydraWebfingerOidcDiscoveryTokenUrl,
+    this.hydraWebfingerOidcDiscoveryUserinfoUrl,
     this.id,
     this.ketoNamespaces = const [],
     this.ketoReadMaxDepth,
@@ -98,6 +138,7 @@ class NormalizedProjectRevision {
     this.kratosSessionLifespan,
     this.kratosSessionWhoamiRequiredAal,
     required this.name,
+    this.production,
     this.projectId,
     this.updatedAt,
   });
@@ -110,6 +151,249 @@ class NormalizedProjectRevision {
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
   DateTime? createdAt;
+
+  /// Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? hydraOauth2ClientCredentialsDefaultGrantAllowedScope;
+
+  /// Configures if the issued at (`iat`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `iat` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.iat_optional\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? hydraOauth2GrantJwtIatOptional;
+
+  /// Configures if the JSON Web Token ID (`jti`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `jti` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.jti_optional\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? hydraOauth2GrantJwtJtiOptional;
+
+  String? hydraOauth2GrantJwtMaxTtl;
+
+  /// Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \"oauth2.pkce.enforced\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? hydraOauth2PkceEnforced;
+
+  /// Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \"oauth2.pkce.enforced_for_public_clients\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? hydraOauth2PkceEnforcedForPublicClients;
+
+  /// Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \"oauth2.refresh_token_hook\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? hydraOauth2RefreshTokenHook;
+
+  List<String> hydraOidcDynamicClientRegistrationDefaultScope;
+
+  /// Configures OpenID Connect Dynamic Client Registration.  This governs the \"oidc.dynamic_client_registration.enabled\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? hydraOidcDynamicClientRegistrationEnabled;
+
+  /// Configures OpenID Connect Discovery and overwrites the pairwise algorithm  This governs the \"oidc.subject_identifiers.pairwise_salt\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? hydraOidcSubjectIdentifiersPairwiseSalt;
+
+  List<String> hydraOidcSubjectIdentifiersSupportedTypes;
+
+  List<String> hydraSecretsCookie;
+
+  List<String> hydraSecretsSystem;
+
+  List<String> hydraServeAdminCorsAllowedOrigins;
+
+  /// Configures the Ory Hydra CORS Settings  This governs the \"serve.admin.cors.enabled\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? hydraServeAdminCorsEnabled;
+
+  /// Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \"serve.cookies.same_site_legacy_workaround\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? hydraServeCookiesSameSiteLegacyWorkaround;
+
+  /// Configures the Ory Hydra Cookie Same Site Mode  This governs the \"serve.cookies.same_site_mode\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? hydraServeCookiesSameSiteMode;
+
+  List<String> hydraServePublicCorsAllowedOrigins;
+
+  /// Configures the Ory Hydra CORS Settings  This governs the \"serve.public.cors.enabled\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? hydraServePublicCorsEnabled;
+
+  /// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting.
+  Object? hydraStrategiesAccessToken;
+
+  /// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting.
+  Object? hydraStrategiesScope;
+
+  String? hydraTtlAccessToken;
+
+  String? hydraTtlAuthCode;
+
+  String? hydraTtlIdToken;
+
+  String? hydraTtlLoginConsentRequest;
+
+  String? hydraTtlRefreshToken;
+
+  /// Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.consent\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? hydraUrlsConsent;
+
+  /// Sets the OAuth2 Error URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.error\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? hydraUrlsError;
+
+  /// Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.login\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? hydraUrlsLogin;
+
+  /// Sets the logout endpoint.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.logout\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? hydraUrlsLogout;
+
+  /// When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to Ory Cloud's Managed UI in development and your application in production mode when a custom domain is connected.  This governs the \"urls.post_logout_redirect\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? hydraUrlsPostLogoutRedirect;
+
+  /// This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  In Ory Cloud it will be very rare that you want to modify this value. If left empty, it will default to the correct value for Ory Cloud.  This governs the \"urls.self.issuer\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? hydraUrlsSelfIssuer;
+
+  List<String> hydraWebfingerJwksBroadcastKeys;
+
+  /// Configures OpenID Connect Discovery and overwrites the OAuth2 Authorization URL.  This governs the \"webfinger.oidc.discovery.auth_url\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? hydraWebfingerOidcDiscoveryAuthUrl;
+
+  /// Configures OpenID Connect Discovery and overwrites the OpenID Connect Dynamic Client Registration Endpoint.  This governs the \"webfinger.oidc.discovery.client_registration_url\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? hydraWebfingerOidcDiscoveryClientRegistrationUrl;
+
+  /// Configures OpenID Connect Discovery and overwrites the JWKS URL.  This governs the \"webfinger.oidc.discovery.jwks_url\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? hydraWebfingerOidcDiscoveryJwksUrl;
+
+  List<String> hydraWebfingerOidcDiscoverySupportedClaims;
+
+  List<String> hydraWebfingerOidcDiscoverySupportedScope;
+
+  /// Configures OpenID Connect Discovery and overwrites the OAuth2 Token URL.  This governs the \"webfinger.oidc.discovery.token_url\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? hydraWebfingerOidcDiscoveryTokenUrl;
+
+  /// Configures OpenID Connect Discovery and overwrites userinfo endpoint to be advertised at the OpenID Connect Discovery endpoint /.well-known/openid-configuration. Defaults to Ory Hydra's userinfo endpoint at /userinfo. Set this value if you want to handle this endpoint yourself.  This governs the \"webfinger.oidc.discovery.userinfo_url\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? hydraWebfingerOidcDiscoveryUserinfoUrl;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -720,6 +1004,15 @@ class NormalizedProjectRevision {
   /// The project's name.
   String name;
 
+  /// Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? production;
+
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -740,6 +1033,46 @@ class NormalizedProjectRevision {
   @override
   bool operator ==(Object other) => identical(this, other) || other is NormalizedProjectRevision &&
      other.createdAt == createdAt &&
+     other.hydraOauth2ClientCredentialsDefaultGrantAllowedScope == hydraOauth2ClientCredentialsDefaultGrantAllowedScope &&
+     other.hydraOauth2GrantJwtIatOptional == hydraOauth2GrantJwtIatOptional &&
+     other.hydraOauth2GrantJwtJtiOptional == hydraOauth2GrantJwtJtiOptional &&
+     other.hydraOauth2GrantJwtMaxTtl == hydraOauth2GrantJwtMaxTtl &&
+     other.hydraOauth2PkceEnforced == hydraOauth2PkceEnforced &&
+     other.hydraOauth2PkceEnforcedForPublicClients == hydraOauth2PkceEnforcedForPublicClients &&
+     other.hydraOauth2RefreshTokenHook == hydraOauth2RefreshTokenHook &&
+     other.hydraOidcDynamicClientRegistrationDefaultScope == hydraOidcDynamicClientRegistrationDefaultScope &&
+     other.hydraOidcDynamicClientRegistrationEnabled == hydraOidcDynamicClientRegistrationEnabled &&
+     other.hydraOidcSubjectIdentifiersPairwiseSalt == hydraOidcSubjectIdentifiersPairwiseSalt &&
+     other.hydraOidcSubjectIdentifiersSupportedTypes == hydraOidcSubjectIdentifiersSupportedTypes &&
+     other.hydraSecretsCookie == hydraSecretsCookie &&
+     other.hydraSecretsSystem == hydraSecretsSystem &&
+     other.hydraServeAdminCorsAllowedOrigins == hydraServeAdminCorsAllowedOrigins &&
+     other.hydraServeAdminCorsEnabled == hydraServeAdminCorsEnabled &&
+     other.hydraServeCookiesSameSiteLegacyWorkaround == hydraServeCookiesSameSiteLegacyWorkaround &&
+     other.hydraServeCookiesSameSiteMode == hydraServeCookiesSameSiteMode &&
+     other.hydraServePublicCorsAllowedOrigins == hydraServePublicCorsAllowedOrigins &&
+     other.hydraServePublicCorsEnabled == hydraServePublicCorsEnabled &&
+     other.hydraStrategiesAccessToken == hydraStrategiesAccessToken &&
+     other.hydraStrategiesScope == hydraStrategiesScope &&
+     other.hydraTtlAccessToken == hydraTtlAccessToken &&
+     other.hydraTtlAuthCode == hydraTtlAuthCode &&
+     other.hydraTtlIdToken == hydraTtlIdToken &&
+     other.hydraTtlLoginConsentRequest == hydraTtlLoginConsentRequest &&
+     other.hydraTtlRefreshToken == hydraTtlRefreshToken &&
+     other.hydraUrlsConsent == hydraUrlsConsent &&
+     other.hydraUrlsError == hydraUrlsError &&
+     other.hydraUrlsLogin == hydraUrlsLogin &&
+     other.hydraUrlsLogout == hydraUrlsLogout &&
+     other.hydraUrlsPostLogoutRedirect == hydraUrlsPostLogoutRedirect &&
+     other.hydraUrlsSelfIssuer == hydraUrlsSelfIssuer &&
+     other.hydraWebfingerJwksBroadcastKeys == hydraWebfingerJwksBroadcastKeys &&
+     other.hydraWebfingerOidcDiscoveryAuthUrl == hydraWebfingerOidcDiscoveryAuthUrl &&
+     other.hydraWebfingerOidcDiscoveryClientRegistrationUrl == hydraWebfingerOidcDiscoveryClientRegistrationUrl &&
+     other.hydraWebfingerOidcDiscoveryJwksUrl == hydraWebfingerOidcDiscoveryJwksUrl &&
+     other.hydraWebfingerOidcDiscoverySupportedClaims == hydraWebfingerOidcDiscoverySupportedClaims &&
+     other.hydraWebfingerOidcDiscoverySupportedScope == hydraWebfingerOidcDiscoverySupportedScope &&
+     other.hydraWebfingerOidcDiscoveryTokenUrl == hydraWebfingerOidcDiscoveryTokenUrl &&
+     other.hydraWebfingerOidcDiscoveryUserinfoUrl == hydraWebfingerOidcDiscoveryUserinfoUrl &&
      other.id == id &&
      other.ketoNamespaces == ketoNamespaces &&
      other.ketoReadMaxDepth == ketoReadMaxDepth &&
@@ -824,6 +1157,7 @@ class NormalizedProjectRevision {
      other.kratosSessionLifespan == kratosSessionLifespan &&
      other.kratosSessionWhoamiRequiredAal == kratosSessionWhoamiRequiredAal &&
      other.name == name &&
+     other.production == production &&
      other.projectId == projectId &&
      other.updatedAt == updatedAt;
 
@@ -831,6 +1165,46 @@ class NormalizedProjectRevision {
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (createdAt == null ? 0 : createdAt!.hashCode) +
+    (hydraOauth2ClientCredentialsDefaultGrantAllowedScope == null ? 0 : hydraOauth2ClientCredentialsDefaultGrantAllowedScope!.hashCode) +
+    (hydraOauth2GrantJwtIatOptional == null ? 0 : hydraOauth2GrantJwtIatOptional!.hashCode) +
+    (hydraOauth2GrantJwtJtiOptional == null ? 0 : hydraOauth2GrantJwtJtiOptional!.hashCode) +
+    (hydraOauth2GrantJwtMaxTtl == null ? 0 : hydraOauth2GrantJwtMaxTtl!.hashCode) +
+    (hydraOauth2PkceEnforced == null ? 0 : hydraOauth2PkceEnforced!.hashCode) +
+    (hydraOauth2PkceEnforcedForPublicClients == null ? 0 : hydraOauth2PkceEnforcedForPublicClients!.hashCode) +
+    (hydraOauth2RefreshTokenHook == null ? 0 : hydraOauth2RefreshTokenHook!.hashCode) +
+    (hydraOidcDynamicClientRegistrationDefaultScope.hashCode) +
+    (hydraOidcDynamicClientRegistrationEnabled == null ? 0 : hydraOidcDynamicClientRegistrationEnabled!.hashCode) +
+    (hydraOidcSubjectIdentifiersPairwiseSalt == null ? 0 : hydraOidcSubjectIdentifiersPairwiseSalt!.hashCode) +
+    (hydraOidcSubjectIdentifiersSupportedTypes.hashCode) +
+    (hydraSecretsCookie.hashCode) +
+    (hydraSecretsSystem.hashCode) +
+    (hydraServeAdminCorsAllowedOrigins.hashCode) +
+    (hydraServeAdminCorsEnabled == null ? 0 : hydraServeAdminCorsEnabled!.hashCode) +
+    (hydraServeCookiesSameSiteLegacyWorkaround == null ? 0 : hydraServeCookiesSameSiteLegacyWorkaround!.hashCode) +
+    (hydraServeCookiesSameSiteMode == null ? 0 : hydraServeCookiesSameSiteMode!.hashCode) +
+    (hydraServePublicCorsAllowedOrigins.hashCode) +
+    (hydraServePublicCorsEnabled == null ? 0 : hydraServePublicCorsEnabled!.hashCode) +
+    (hydraStrategiesAccessToken == null ? 0 : hydraStrategiesAccessToken!.hashCode) +
+    (hydraStrategiesScope == null ? 0 : hydraStrategiesScope!.hashCode) +
+    (hydraTtlAccessToken == null ? 0 : hydraTtlAccessToken!.hashCode) +
+    (hydraTtlAuthCode == null ? 0 : hydraTtlAuthCode!.hashCode) +
+    (hydraTtlIdToken == null ? 0 : hydraTtlIdToken!.hashCode) +
+    (hydraTtlLoginConsentRequest == null ? 0 : hydraTtlLoginConsentRequest!.hashCode) +
+    (hydraTtlRefreshToken == null ? 0 : hydraTtlRefreshToken!.hashCode) +
+    (hydraUrlsConsent == null ? 0 : hydraUrlsConsent!.hashCode) +
+    (hydraUrlsError == null ? 0 : hydraUrlsError!.hashCode) +
+    (hydraUrlsLogin == null ? 0 : hydraUrlsLogin!.hashCode) +
+    (hydraUrlsLogout == null ? 0 : hydraUrlsLogout!.hashCode) +
+    (hydraUrlsPostLogoutRedirect == null ? 0 : hydraUrlsPostLogoutRedirect!.hashCode) +
+    (hydraUrlsSelfIssuer == null ? 0 : hydraUrlsSelfIssuer!.hashCode) +
+    (hydraWebfingerJwksBroadcastKeys.hashCode) +
+    (hydraWebfingerOidcDiscoveryAuthUrl == null ? 0 : hydraWebfingerOidcDiscoveryAuthUrl!.hashCode) +
+    (hydraWebfingerOidcDiscoveryClientRegistrationUrl == null ? 0 : hydraWebfingerOidcDiscoveryClientRegistrationUrl!.hashCode) +
+    (hydraWebfingerOidcDiscoveryJwksUrl == null ? 0 : hydraWebfingerOidcDiscoveryJwksUrl!.hashCode) +
+    (hydraWebfingerOidcDiscoverySupportedClaims.hashCode) +
+    (hydraWebfingerOidcDiscoverySupportedScope.hashCode) +
+    (hydraWebfingerOidcDiscoveryTokenUrl == null ? 0 : hydraWebfingerOidcDiscoveryTokenUrl!.hashCode) +
+    (hydraWebfingerOidcDiscoveryUserinfoUrl == null ? 0 : hydraWebfingerOidcDiscoveryUserinfoUrl!.hashCode) +
     (id == null ? 0 : id!.hashCode) +
     (ketoNamespaces.hashCode) +
     (ketoReadMaxDepth == null ? 0 : ketoReadMaxDepth!.hashCode) +
@@ -915,11 +1289,12 @@ class NormalizedProjectRevision {
     (kratosSessionLifespan == null ? 0 : kratosSessionLifespan!.hashCode) +
     (kratosSessionWhoamiRequiredAal == null ? 0 : kratosSessionWhoamiRequiredAal!.hashCode) +
     (name.hashCode) +
+    (production == null ? 0 : production!.hashCode) +
     (projectId == null ? 0 : projectId!.hashCode) +
     (updatedAt == null ? 0 : updatedAt!.hashCode);
 
   @override
-  String toString() => 'NormalizedProjectRevision[createdAt=$createdAt, id=$id, ketoNamespaces=$ketoNamespaces, ketoReadMaxDepth=$ketoReadMaxDepth, kratosCookiesSameSite=$kratosCookiesSameSite, kratosCourierSmtpConnectionUri=$kratosCourierSmtpConnectionUri, kratosCourierSmtpFromAddress=$kratosCourierSmtpFromAddress, kratosCourierSmtpFromName=$kratosCourierSmtpFromName, kratosCourierSmtpHeaders=$kratosCourierSmtpHeaders, kratosCourierTemplatesRecoveryInvalidEmailBodyHtml=$kratosCourierTemplatesRecoveryInvalidEmailBodyHtml, kratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext=$kratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext, kratosCourierTemplatesRecoveryInvalidEmailSubject=$kratosCourierTemplatesRecoveryInvalidEmailSubject, kratosCourierTemplatesRecoveryValidEmailBodyHtml=$kratosCourierTemplatesRecoveryValidEmailBodyHtml, kratosCourierTemplatesRecoveryValidEmailBodyPlaintext=$kratosCourierTemplatesRecoveryValidEmailBodyPlaintext, kratosCourierTemplatesRecoveryValidEmailSubject=$kratosCourierTemplatesRecoveryValidEmailSubject, kratosCourierTemplatesVerificationInvalidEmailBodyHtml=$kratosCourierTemplatesVerificationInvalidEmailBodyHtml, kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext=$kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext, kratosCourierTemplatesVerificationInvalidEmailSubject=$kratosCourierTemplatesVerificationInvalidEmailSubject, kratosCourierTemplatesVerificationValidEmailBodyHtml=$kratosCourierTemplatesVerificationValidEmailBodyHtml, kratosCourierTemplatesVerificationValidEmailBodyPlaintext=$kratosCourierTemplatesVerificationValidEmailBodyPlaintext, kratosCourierTemplatesVerificationValidEmailSubject=$kratosCourierTemplatesVerificationValidEmailSubject, kratosIdentitySchemas=$kratosIdentitySchemas, kratosSecretsCipher=$kratosSecretsCipher, kratosSecretsCookie=$kratosSecretsCookie, kratosSecretsDefault=$kratosSecretsDefault, kratosSelfserviceAllowedReturnUrls=$kratosSelfserviceAllowedReturnUrls, kratosSelfserviceDefaultBrowserReturnUrl=$kratosSelfserviceDefaultBrowserReturnUrl, kratosSelfserviceFlowsErrorUiUrl=$kratosSelfserviceFlowsErrorUiUrl, kratosSelfserviceFlowsHooks=$kratosSelfserviceFlowsHooks, kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl=$kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl, kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl=$kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl, kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl=$kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl, kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl=$kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl, kratosSelfserviceFlowsLoginLifespan=$kratosSelfserviceFlowsLoginLifespan, kratosSelfserviceFlowsLoginUiUrl=$kratosSelfserviceFlowsLoginUiUrl, kratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl=$kratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl, kratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl=$kratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl, kratosSelfserviceFlowsRecoveryEnabled=$kratosSelfserviceFlowsRecoveryEnabled, kratosSelfserviceFlowsRecoveryLifespan=$kratosSelfserviceFlowsRecoveryLifespan, kratosSelfserviceFlowsRecoveryUiUrl=$kratosSelfserviceFlowsRecoveryUiUrl, kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl=$kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl, kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl=$kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl, kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl=$kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl, kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl=$kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl, kratosSelfserviceFlowsRegistrationEnabled=$kratosSelfserviceFlowsRegistrationEnabled, kratosSelfserviceFlowsRegistrationLifespan=$kratosSelfserviceFlowsRegistrationLifespan, kratosSelfserviceFlowsRegistrationUiUrl=$kratosSelfserviceFlowsRegistrationUiUrl, kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl=$kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl, kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl=$kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl, kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl=$kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl, kratosSelfserviceFlowsSettingsLifespan=$kratosSelfserviceFlowsSettingsLifespan, kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge=$kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge, kratosSelfserviceFlowsSettingsRequiredAal=$kratosSelfserviceFlowsSettingsRequiredAal, kratosSelfserviceFlowsSettingsUiUrl=$kratosSelfserviceFlowsSettingsUiUrl, kratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl=$kratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl, kratosSelfserviceFlowsVerificationEnabled=$kratosSelfserviceFlowsVerificationEnabled, kratosSelfserviceFlowsVerificationLifespan=$kratosSelfserviceFlowsVerificationLifespan, kratosSelfserviceFlowsVerificationUiUrl=$kratosSelfserviceFlowsVerificationUiUrl, kratosSelfserviceMethodsLinkConfigBaseUrl=$kratosSelfserviceMethodsLinkConfigBaseUrl, kratosSelfserviceMethodsLinkConfigLifespan=$kratosSelfserviceMethodsLinkConfigLifespan, kratosSelfserviceMethodsLinkEnabled=$kratosSelfserviceMethodsLinkEnabled, kratosSelfserviceMethodsLookupSecretEnabled=$kratosSelfserviceMethodsLookupSecretEnabled, kratosSelfserviceMethodsOidcConfigBaseRedirectUri=$kratosSelfserviceMethodsOidcConfigBaseRedirectUri, kratosSelfserviceMethodsOidcConfigProviders=$kratosSelfserviceMethodsOidcConfigProviders, kratosSelfserviceMethodsOidcEnabled=$kratosSelfserviceMethodsOidcEnabled, kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled=$kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled, kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled=$kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled, kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors=$kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors, kratosSelfserviceMethodsPasswordConfigMaxBreaches=$kratosSelfserviceMethodsPasswordConfigMaxBreaches, kratosSelfserviceMethodsPasswordConfigMinPasswordLength=$kratosSelfserviceMethodsPasswordConfigMinPasswordLength, kratosSelfserviceMethodsPasswordEnabled=$kratosSelfserviceMethodsPasswordEnabled, kratosSelfserviceMethodsProfileEnabled=$kratosSelfserviceMethodsProfileEnabled, kratosSelfserviceMethodsTotpConfigIssuer=$kratosSelfserviceMethodsTotpConfigIssuer, kratosSelfserviceMethodsTotpEnabled=$kratosSelfserviceMethodsTotpEnabled, kratosSelfserviceMethodsWebauthnConfigPasswordless=$kratosSelfserviceMethodsWebauthnConfigPasswordless, kratosSelfserviceMethodsWebauthnConfigRpDisplayName=$kratosSelfserviceMethodsWebauthnConfigRpDisplayName, kratosSelfserviceMethodsWebauthnConfigRpIcon=$kratosSelfserviceMethodsWebauthnConfigRpIcon, kratosSelfserviceMethodsWebauthnConfigRpId=$kratosSelfserviceMethodsWebauthnConfigRpId, kratosSelfserviceMethodsWebauthnConfigRpOrigin=$kratosSelfserviceMethodsWebauthnConfigRpOrigin, kratosSelfserviceMethodsWebauthnEnabled=$kratosSelfserviceMethodsWebauthnEnabled, kratosSessionCookiePersistent=$kratosSessionCookiePersistent, kratosSessionCookieSameSite=$kratosSessionCookieSameSite, kratosSessionLifespan=$kratosSessionLifespan, kratosSessionWhoamiRequiredAal=$kratosSessionWhoamiRequiredAal, name=$name, projectId=$projectId, updatedAt=$updatedAt]';
+  String toString() => 'NormalizedProjectRevision[createdAt=$createdAt, hydraOauth2ClientCredentialsDefaultGrantAllowedScope=$hydraOauth2ClientCredentialsDefaultGrantAllowedScope, hydraOauth2GrantJwtIatOptional=$hydraOauth2GrantJwtIatOptional, hydraOauth2GrantJwtJtiOptional=$hydraOauth2GrantJwtJtiOptional, hydraOauth2GrantJwtMaxTtl=$hydraOauth2GrantJwtMaxTtl, hydraOauth2PkceEnforced=$hydraOauth2PkceEnforced, hydraOauth2PkceEnforcedForPublicClients=$hydraOauth2PkceEnforcedForPublicClients, hydraOauth2RefreshTokenHook=$hydraOauth2RefreshTokenHook, hydraOidcDynamicClientRegistrationDefaultScope=$hydraOidcDynamicClientRegistrationDefaultScope, hydraOidcDynamicClientRegistrationEnabled=$hydraOidcDynamicClientRegistrationEnabled, hydraOidcSubjectIdentifiersPairwiseSalt=$hydraOidcSubjectIdentifiersPairwiseSalt, hydraOidcSubjectIdentifiersSupportedTypes=$hydraOidcSubjectIdentifiersSupportedTypes, hydraSecretsCookie=$hydraSecretsCookie, hydraSecretsSystem=$hydraSecretsSystem, hydraServeAdminCorsAllowedOrigins=$hydraServeAdminCorsAllowedOrigins, hydraServeAdminCorsEnabled=$hydraServeAdminCorsEnabled, hydraServeCookiesSameSiteLegacyWorkaround=$hydraServeCookiesSameSiteLegacyWorkaround, hydraServeCookiesSameSiteMode=$hydraServeCookiesSameSiteMode, hydraServePublicCorsAllowedOrigins=$hydraServePublicCorsAllowedOrigins, hydraServePublicCorsEnabled=$hydraServePublicCorsEnabled, hydraStrategiesAccessToken=$hydraStrategiesAccessToken, hydraStrategiesScope=$hydraStrategiesScope, hydraTtlAccessToken=$hydraTtlAccessToken, hydraTtlAuthCode=$hydraTtlAuthCode, hydraTtlIdToken=$hydraTtlIdToken, hydraTtlLoginConsentRequest=$hydraTtlLoginConsentRequest, hydraTtlRefreshToken=$hydraTtlRefreshToken, hydraUrlsConsent=$hydraUrlsConsent, hydraUrlsError=$hydraUrlsError, hydraUrlsLogin=$hydraUrlsLogin, hydraUrlsLogout=$hydraUrlsLogout, hydraUrlsPostLogoutRedirect=$hydraUrlsPostLogoutRedirect, hydraUrlsSelfIssuer=$hydraUrlsSelfIssuer, hydraWebfingerJwksBroadcastKeys=$hydraWebfingerJwksBroadcastKeys, hydraWebfingerOidcDiscoveryAuthUrl=$hydraWebfingerOidcDiscoveryAuthUrl, hydraWebfingerOidcDiscoveryClientRegistrationUrl=$hydraWebfingerOidcDiscoveryClientRegistrationUrl, hydraWebfingerOidcDiscoveryJwksUrl=$hydraWebfingerOidcDiscoveryJwksUrl, hydraWebfingerOidcDiscoverySupportedClaims=$hydraWebfingerOidcDiscoverySupportedClaims, hydraWebfingerOidcDiscoverySupportedScope=$hydraWebfingerOidcDiscoverySupportedScope, hydraWebfingerOidcDiscoveryTokenUrl=$hydraWebfingerOidcDiscoveryTokenUrl, hydraWebfingerOidcDiscoveryUserinfoUrl=$hydraWebfingerOidcDiscoveryUserinfoUrl, id=$id, ketoNamespaces=$ketoNamespaces, ketoReadMaxDepth=$ketoReadMaxDepth, kratosCookiesSameSite=$kratosCookiesSameSite, kratosCourierSmtpConnectionUri=$kratosCourierSmtpConnectionUri, kratosCourierSmtpFromAddress=$kratosCourierSmtpFromAddress, kratosCourierSmtpFromName=$kratosCourierSmtpFromName, kratosCourierSmtpHeaders=$kratosCourierSmtpHeaders, kratosCourierTemplatesRecoveryInvalidEmailBodyHtml=$kratosCourierTemplatesRecoveryInvalidEmailBodyHtml, kratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext=$kratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext, kratosCourierTemplatesRecoveryInvalidEmailSubject=$kratosCourierTemplatesRecoveryInvalidEmailSubject, kratosCourierTemplatesRecoveryValidEmailBodyHtml=$kratosCourierTemplatesRecoveryValidEmailBodyHtml, kratosCourierTemplatesRecoveryValidEmailBodyPlaintext=$kratosCourierTemplatesRecoveryValidEmailBodyPlaintext, kratosCourierTemplatesRecoveryValidEmailSubject=$kratosCourierTemplatesRecoveryValidEmailSubject, kratosCourierTemplatesVerificationInvalidEmailBodyHtml=$kratosCourierTemplatesVerificationInvalidEmailBodyHtml, kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext=$kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext, kratosCourierTemplatesVerificationInvalidEmailSubject=$kratosCourierTemplatesVerificationInvalidEmailSubject, kratosCourierTemplatesVerificationValidEmailBodyHtml=$kratosCourierTemplatesVerificationValidEmailBodyHtml, kratosCourierTemplatesVerificationValidEmailBodyPlaintext=$kratosCourierTemplatesVerificationValidEmailBodyPlaintext, kratosCourierTemplatesVerificationValidEmailSubject=$kratosCourierTemplatesVerificationValidEmailSubject, kratosIdentitySchemas=$kratosIdentitySchemas, kratosSecretsCipher=$kratosSecretsCipher, kratosSecretsCookie=$kratosSecretsCookie, kratosSecretsDefault=$kratosSecretsDefault, kratosSelfserviceAllowedReturnUrls=$kratosSelfserviceAllowedReturnUrls, kratosSelfserviceDefaultBrowserReturnUrl=$kratosSelfserviceDefaultBrowserReturnUrl, kratosSelfserviceFlowsErrorUiUrl=$kratosSelfserviceFlowsErrorUiUrl, kratosSelfserviceFlowsHooks=$kratosSelfserviceFlowsHooks, kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl=$kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl, kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl=$kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl, kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl=$kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl, kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl=$kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl, kratosSelfserviceFlowsLoginLifespan=$kratosSelfserviceFlowsLoginLifespan, kratosSelfserviceFlowsLoginUiUrl=$kratosSelfserviceFlowsLoginUiUrl, kratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl=$kratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl, kratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl=$kratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl, kratosSelfserviceFlowsRecoveryEnabled=$kratosSelfserviceFlowsRecoveryEnabled, kratosSelfserviceFlowsRecoveryLifespan=$kratosSelfserviceFlowsRecoveryLifespan, kratosSelfserviceFlowsRecoveryUiUrl=$kratosSelfserviceFlowsRecoveryUiUrl, kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl=$kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl, kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl=$kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl, kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl=$kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl, kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl=$kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl, kratosSelfserviceFlowsRegistrationEnabled=$kratosSelfserviceFlowsRegistrationEnabled, kratosSelfserviceFlowsRegistrationLifespan=$kratosSelfserviceFlowsRegistrationLifespan, kratosSelfserviceFlowsRegistrationUiUrl=$kratosSelfserviceFlowsRegistrationUiUrl, kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl=$kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl, kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl=$kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl, kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl=$kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl, kratosSelfserviceFlowsSettingsLifespan=$kratosSelfserviceFlowsSettingsLifespan, kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge=$kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge, kratosSelfserviceFlowsSettingsRequiredAal=$kratosSelfserviceFlowsSettingsRequiredAal, kratosSelfserviceFlowsSettingsUiUrl=$kratosSelfserviceFlowsSettingsUiUrl, kratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl=$kratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl, kratosSelfserviceFlowsVerificationEnabled=$kratosSelfserviceFlowsVerificationEnabled, kratosSelfserviceFlowsVerificationLifespan=$kratosSelfserviceFlowsVerificationLifespan, kratosSelfserviceFlowsVerificationUiUrl=$kratosSelfserviceFlowsVerificationUiUrl, kratosSelfserviceMethodsLinkConfigBaseUrl=$kratosSelfserviceMethodsLinkConfigBaseUrl, kratosSelfserviceMethodsLinkConfigLifespan=$kratosSelfserviceMethodsLinkConfigLifespan, kratosSelfserviceMethodsLinkEnabled=$kratosSelfserviceMethodsLinkEnabled, kratosSelfserviceMethodsLookupSecretEnabled=$kratosSelfserviceMethodsLookupSecretEnabled, kratosSelfserviceMethodsOidcConfigBaseRedirectUri=$kratosSelfserviceMethodsOidcConfigBaseRedirectUri, kratosSelfserviceMethodsOidcConfigProviders=$kratosSelfserviceMethodsOidcConfigProviders, kratosSelfserviceMethodsOidcEnabled=$kratosSelfserviceMethodsOidcEnabled, kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled=$kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled, kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled=$kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled, kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors=$kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors, kratosSelfserviceMethodsPasswordConfigMaxBreaches=$kratosSelfserviceMethodsPasswordConfigMaxBreaches, kratosSelfserviceMethodsPasswordConfigMinPasswordLength=$kratosSelfserviceMethodsPasswordConfigMinPasswordLength, kratosSelfserviceMethodsPasswordEnabled=$kratosSelfserviceMethodsPasswordEnabled, kratosSelfserviceMethodsProfileEnabled=$kratosSelfserviceMethodsProfileEnabled, kratosSelfserviceMethodsTotpConfigIssuer=$kratosSelfserviceMethodsTotpConfigIssuer, kratosSelfserviceMethodsTotpEnabled=$kratosSelfserviceMethodsTotpEnabled, kratosSelfserviceMethodsWebauthnConfigPasswordless=$kratosSelfserviceMethodsWebauthnConfigPasswordless, kratosSelfserviceMethodsWebauthnConfigRpDisplayName=$kratosSelfserviceMethodsWebauthnConfigRpDisplayName, kratosSelfserviceMethodsWebauthnConfigRpIcon=$kratosSelfserviceMethodsWebauthnConfigRpIcon, kratosSelfserviceMethodsWebauthnConfigRpId=$kratosSelfserviceMethodsWebauthnConfigRpId, kratosSelfserviceMethodsWebauthnConfigRpOrigin=$kratosSelfserviceMethodsWebauthnConfigRpOrigin, kratosSelfserviceMethodsWebauthnEnabled=$kratosSelfserviceMethodsWebauthnEnabled, kratosSessionCookiePersistent=$kratosSessionCookiePersistent, kratosSessionCookieSameSite=$kratosSessionCookieSameSite, kratosSessionLifespan=$kratosSessionLifespan, kratosSessionWhoamiRequiredAal=$kratosSessionWhoamiRequiredAal, name=$name, production=$production, projectId=$projectId, updatedAt=$updatedAt]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
@@ -927,6 +1302,170 @@ class NormalizedProjectRevision {
       _json[r'created_at'] = createdAt!.toUtc().toIso8601String();
     } else {
       _json[r'created_at'] = null;
+    }
+    if (hydraOauth2ClientCredentialsDefaultGrantAllowedScope != null) {
+      _json[r'hydra_oauth2_client_credentials_default_grant_allowed_scope'] = hydraOauth2ClientCredentialsDefaultGrantAllowedScope;
+    } else {
+      _json[r'hydra_oauth2_client_credentials_default_grant_allowed_scope'] = null;
+    }
+    if (hydraOauth2GrantJwtIatOptional != null) {
+      _json[r'hydra_oauth2_grant_jwt_iat_optional'] = hydraOauth2GrantJwtIatOptional;
+    } else {
+      _json[r'hydra_oauth2_grant_jwt_iat_optional'] = null;
+    }
+    if (hydraOauth2GrantJwtJtiOptional != null) {
+      _json[r'hydra_oauth2_grant_jwt_jti_optional'] = hydraOauth2GrantJwtJtiOptional;
+    } else {
+      _json[r'hydra_oauth2_grant_jwt_jti_optional'] = null;
+    }
+    if (hydraOauth2GrantJwtMaxTtl != null) {
+      _json[r'hydra_oauth2_grant_jwt_max_ttl'] = hydraOauth2GrantJwtMaxTtl;
+    } else {
+      _json[r'hydra_oauth2_grant_jwt_max_ttl'] = null;
+    }
+    if (hydraOauth2PkceEnforced != null) {
+      _json[r'hydra_oauth2_pkce_enforced'] = hydraOauth2PkceEnforced;
+    } else {
+      _json[r'hydra_oauth2_pkce_enforced'] = null;
+    }
+    if (hydraOauth2PkceEnforcedForPublicClients != null) {
+      _json[r'hydra_oauth2_pkce_enforced_for_public_clients'] = hydraOauth2PkceEnforcedForPublicClients;
+    } else {
+      _json[r'hydra_oauth2_pkce_enforced_for_public_clients'] = null;
+    }
+    if (hydraOauth2RefreshTokenHook != null) {
+      _json[r'hydra_oauth2_refresh_token_hook'] = hydraOauth2RefreshTokenHook;
+    } else {
+      _json[r'hydra_oauth2_refresh_token_hook'] = null;
+    }
+      _json[r'hydra_oidc_dynamic_client_registration_default_scope'] = hydraOidcDynamicClientRegistrationDefaultScope;
+    if (hydraOidcDynamicClientRegistrationEnabled != null) {
+      _json[r'hydra_oidc_dynamic_client_registration_enabled'] = hydraOidcDynamicClientRegistrationEnabled;
+    } else {
+      _json[r'hydra_oidc_dynamic_client_registration_enabled'] = null;
+    }
+    if (hydraOidcSubjectIdentifiersPairwiseSalt != null) {
+      _json[r'hydra_oidc_subject_identifiers_pairwise_salt'] = hydraOidcSubjectIdentifiersPairwiseSalt;
+    } else {
+      _json[r'hydra_oidc_subject_identifiers_pairwise_salt'] = null;
+    }
+      _json[r'hydra_oidc_subject_identifiers_supported_types'] = hydraOidcSubjectIdentifiersSupportedTypes;
+      _json[r'hydra_secrets_cookie'] = hydraSecretsCookie;
+      _json[r'hydra_secrets_system'] = hydraSecretsSystem;
+      _json[r'hydra_serve_admin_cors_allowed_origins'] = hydraServeAdminCorsAllowedOrigins;
+    if (hydraServeAdminCorsEnabled != null) {
+      _json[r'hydra_serve_admin_cors_enabled'] = hydraServeAdminCorsEnabled;
+    } else {
+      _json[r'hydra_serve_admin_cors_enabled'] = null;
+    }
+    if (hydraServeCookiesSameSiteLegacyWorkaround != null) {
+      _json[r'hydra_serve_cookies_same_site_legacy_workaround'] = hydraServeCookiesSameSiteLegacyWorkaround;
+    } else {
+      _json[r'hydra_serve_cookies_same_site_legacy_workaround'] = null;
+    }
+    if (hydraServeCookiesSameSiteMode != null) {
+      _json[r'hydra_serve_cookies_same_site_mode'] = hydraServeCookiesSameSiteMode;
+    } else {
+      _json[r'hydra_serve_cookies_same_site_mode'] = null;
+    }
+      _json[r'hydra_serve_public_cors_allowed_origins'] = hydraServePublicCorsAllowedOrigins;
+    if (hydraServePublicCorsEnabled != null) {
+      _json[r'hydra_serve_public_cors_enabled'] = hydraServePublicCorsEnabled;
+    } else {
+      _json[r'hydra_serve_public_cors_enabled'] = null;
+    }
+    if (hydraStrategiesAccessToken != null) {
+      _json[r'hydra_strategies_access_token'] = hydraStrategiesAccessToken;
+    } else {
+      _json[r'hydra_strategies_access_token'] = null;
+    }
+    if (hydraStrategiesScope != null) {
+      _json[r'hydra_strategies_scope'] = hydraStrategiesScope;
+    } else {
+      _json[r'hydra_strategies_scope'] = null;
+    }
+    if (hydraTtlAccessToken != null) {
+      _json[r'hydra_ttl_access_token'] = hydraTtlAccessToken;
+    } else {
+      _json[r'hydra_ttl_access_token'] = null;
+    }
+    if (hydraTtlAuthCode != null) {
+      _json[r'hydra_ttl_auth_code'] = hydraTtlAuthCode;
+    } else {
+      _json[r'hydra_ttl_auth_code'] = null;
+    }
+    if (hydraTtlIdToken != null) {
+      _json[r'hydra_ttl_id_token'] = hydraTtlIdToken;
+    } else {
+      _json[r'hydra_ttl_id_token'] = null;
+    }
+    if (hydraTtlLoginConsentRequest != null) {
+      _json[r'hydra_ttl_login_consent_request'] = hydraTtlLoginConsentRequest;
+    } else {
+      _json[r'hydra_ttl_login_consent_request'] = null;
+    }
+    if (hydraTtlRefreshToken != null) {
+      _json[r'hydra_ttl_refresh_token'] = hydraTtlRefreshToken;
+    } else {
+      _json[r'hydra_ttl_refresh_token'] = null;
+    }
+    if (hydraUrlsConsent != null) {
+      _json[r'hydra_urls_consent'] = hydraUrlsConsent;
+    } else {
+      _json[r'hydra_urls_consent'] = null;
+    }
+    if (hydraUrlsError != null) {
+      _json[r'hydra_urls_error'] = hydraUrlsError;
+    } else {
+      _json[r'hydra_urls_error'] = null;
+    }
+    if (hydraUrlsLogin != null) {
+      _json[r'hydra_urls_login'] = hydraUrlsLogin;
+    } else {
+      _json[r'hydra_urls_login'] = null;
+    }
+    if (hydraUrlsLogout != null) {
+      _json[r'hydra_urls_logout'] = hydraUrlsLogout;
+    } else {
+      _json[r'hydra_urls_logout'] = null;
+    }
+    if (hydraUrlsPostLogoutRedirect != null) {
+      _json[r'hydra_urls_post_logout_redirect'] = hydraUrlsPostLogoutRedirect;
+    } else {
+      _json[r'hydra_urls_post_logout_redirect'] = null;
+    }
+    if (hydraUrlsSelfIssuer != null) {
+      _json[r'hydra_urls_self_issuer'] = hydraUrlsSelfIssuer;
+    } else {
+      _json[r'hydra_urls_self_issuer'] = null;
+    }
+      _json[r'hydra_webfinger_jwks_broadcast_keys'] = hydraWebfingerJwksBroadcastKeys;
+    if (hydraWebfingerOidcDiscoveryAuthUrl != null) {
+      _json[r'hydra_webfinger_oidc_discovery_auth_url'] = hydraWebfingerOidcDiscoveryAuthUrl;
+    } else {
+      _json[r'hydra_webfinger_oidc_discovery_auth_url'] = null;
+    }
+    if (hydraWebfingerOidcDiscoveryClientRegistrationUrl != null) {
+      _json[r'hydra_webfinger_oidc_discovery_client_registration_url'] = hydraWebfingerOidcDiscoveryClientRegistrationUrl;
+    } else {
+      _json[r'hydra_webfinger_oidc_discovery_client_registration_url'] = null;
+    }
+    if (hydraWebfingerOidcDiscoveryJwksUrl != null) {
+      _json[r'hydra_webfinger_oidc_discovery_jwks_url'] = hydraWebfingerOidcDiscoveryJwksUrl;
+    } else {
+      _json[r'hydra_webfinger_oidc_discovery_jwks_url'] = null;
+    }
+      _json[r'hydra_webfinger_oidc_discovery_supported_claims'] = hydraWebfingerOidcDiscoverySupportedClaims;
+      _json[r'hydra_webfinger_oidc_discovery_supported_scope'] = hydraWebfingerOidcDiscoverySupportedScope;
+    if (hydraWebfingerOidcDiscoveryTokenUrl != null) {
+      _json[r'hydra_webfinger_oidc_discovery_token_url'] = hydraWebfingerOidcDiscoveryTokenUrl;
+    } else {
+      _json[r'hydra_webfinger_oidc_discovery_token_url'] = null;
+    }
+    if (hydraWebfingerOidcDiscoveryUserinfoUrl != null) {
+      _json[r'hydra_webfinger_oidc_discovery_userinfo_url'] = hydraWebfingerOidcDiscoveryUserinfoUrl;
+    } else {
+      _json[r'hydra_webfinger_oidc_discovery_userinfo_url'] = null;
     }
     if (id != null) {
       _json[r'id'] = id;
@@ -1312,6 +1851,11 @@ class NormalizedProjectRevision {
       _json[r'kratos_session_whoami_required_aal'] = null;
     }
       _json[r'name'] = name;
+    if (production != null) {
+      _json[r'production'] = production;
+    } else {
+      _json[r'production'] = null;
+    }
     if (projectId != null) {
       _json[r'project_id'] = projectId;
     } else {
@@ -1345,6 +1889,64 @@ class NormalizedProjectRevision {
 
       return NormalizedProjectRevision(
         createdAt: mapDateTime(json, r'created_at', ''),
+        hydraOauth2ClientCredentialsDefaultGrantAllowedScope: mapValueOfType<bool>(json, r'hydra_oauth2_client_credentials_default_grant_allowed_scope'),
+        hydraOauth2GrantJwtIatOptional: mapValueOfType<bool>(json, r'hydra_oauth2_grant_jwt_iat_optional'),
+        hydraOauth2GrantJwtJtiOptional: mapValueOfType<bool>(json, r'hydra_oauth2_grant_jwt_jti_optional'),
+        hydraOauth2GrantJwtMaxTtl: mapValueOfType<String>(json, r'hydra_oauth2_grant_jwt_max_ttl'),
+        hydraOauth2PkceEnforced: mapValueOfType<bool>(json, r'hydra_oauth2_pkce_enforced'),
+        hydraOauth2PkceEnforcedForPublicClients: mapValueOfType<bool>(json, r'hydra_oauth2_pkce_enforced_for_public_clients'),
+        hydraOauth2RefreshTokenHook: mapValueOfType<String>(json, r'hydra_oauth2_refresh_token_hook'),
+        hydraOidcDynamicClientRegistrationDefaultScope: json[r'hydra_oidc_dynamic_client_registration_default_scope'] is List
+            ? (json[r'hydra_oidc_dynamic_client_registration_default_scope'] as List).cast<String>()
+            : const [],
+        hydraOidcDynamicClientRegistrationEnabled: mapValueOfType<bool>(json, r'hydra_oidc_dynamic_client_registration_enabled'),
+        hydraOidcSubjectIdentifiersPairwiseSalt: mapValueOfType<String>(json, r'hydra_oidc_subject_identifiers_pairwise_salt'),
+        hydraOidcSubjectIdentifiersSupportedTypes: json[r'hydra_oidc_subject_identifiers_supported_types'] is List
+            ? (json[r'hydra_oidc_subject_identifiers_supported_types'] as List).cast<String>()
+            : const [],
+        hydraSecretsCookie: json[r'hydra_secrets_cookie'] is List
+            ? (json[r'hydra_secrets_cookie'] as List).cast<String>()
+            : const [],
+        hydraSecretsSystem: json[r'hydra_secrets_system'] is List
+            ? (json[r'hydra_secrets_system'] as List).cast<String>()
+            : const [],
+        hydraServeAdminCorsAllowedOrigins: json[r'hydra_serve_admin_cors_allowed_origins'] is List
+            ? (json[r'hydra_serve_admin_cors_allowed_origins'] as List).cast<String>()
+            : const [],
+        hydraServeAdminCorsEnabled: mapValueOfType<bool>(json, r'hydra_serve_admin_cors_enabled'),
+        hydraServeCookiesSameSiteLegacyWorkaround: mapValueOfType<bool>(json, r'hydra_serve_cookies_same_site_legacy_workaround'),
+        hydraServeCookiesSameSiteMode: mapValueOfType<String>(json, r'hydra_serve_cookies_same_site_mode'),
+        hydraServePublicCorsAllowedOrigins: json[r'hydra_serve_public_cors_allowed_origins'] is List
+            ? (json[r'hydra_serve_public_cors_allowed_origins'] as List).cast<String>()
+            : const [],
+        hydraServePublicCorsEnabled: mapValueOfType<bool>(json, r'hydra_serve_public_cors_enabled'),
+        hydraStrategiesAccessToken: mapValueOfType<Object>(json, r'hydra_strategies_access_token'),
+        hydraStrategiesScope: mapValueOfType<Object>(json, r'hydra_strategies_scope'),
+        hydraTtlAccessToken: mapValueOfType<String>(json, r'hydra_ttl_access_token'),
+        hydraTtlAuthCode: mapValueOfType<String>(json, r'hydra_ttl_auth_code'),
+        hydraTtlIdToken: mapValueOfType<String>(json, r'hydra_ttl_id_token'),
+        hydraTtlLoginConsentRequest: mapValueOfType<String>(json, r'hydra_ttl_login_consent_request'),
+        hydraTtlRefreshToken: mapValueOfType<String>(json, r'hydra_ttl_refresh_token'),
+        hydraUrlsConsent: mapValueOfType<String>(json, r'hydra_urls_consent'),
+        hydraUrlsError: mapValueOfType<String>(json, r'hydra_urls_error'),
+        hydraUrlsLogin: mapValueOfType<String>(json, r'hydra_urls_login'),
+        hydraUrlsLogout: mapValueOfType<String>(json, r'hydra_urls_logout'),
+        hydraUrlsPostLogoutRedirect: mapValueOfType<String>(json, r'hydra_urls_post_logout_redirect'),
+        hydraUrlsSelfIssuer: mapValueOfType<String>(json, r'hydra_urls_self_issuer'),
+        hydraWebfingerJwksBroadcastKeys: json[r'hydra_webfinger_jwks_broadcast_keys'] is List
+            ? (json[r'hydra_webfinger_jwks_broadcast_keys'] as List).cast<String>()
+            : const [],
+        hydraWebfingerOidcDiscoveryAuthUrl: mapValueOfType<String>(json, r'hydra_webfinger_oidc_discovery_auth_url'),
+        hydraWebfingerOidcDiscoveryClientRegistrationUrl: mapValueOfType<String>(json, r'hydra_webfinger_oidc_discovery_client_registration_url'),
+        hydraWebfingerOidcDiscoveryJwksUrl: mapValueOfType<String>(json, r'hydra_webfinger_oidc_discovery_jwks_url'),
+        hydraWebfingerOidcDiscoverySupportedClaims: json[r'hydra_webfinger_oidc_discovery_supported_claims'] is List
+            ? (json[r'hydra_webfinger_oidc_discovery_supported_claims'] as List).cast<String>()
+            : const [],
+        hydraWebfingerOidcDiscoverySupportedScope: json[r'hydra_webfinger_oidc_discovery_supported_scope'] is List
+            ? (json[r'hydra_webfinger_oidc_discovery_supported_scope'] as List).cast<String>()
+            : const [],
+        hydraWebfingerOidcDiscoveryTokenUrl: mapValueOfType<String>(json, r'hydra_webfinger_oidc_discovery_token_url'),
+        hydraWebfingerOidcDiscoveryUserinfoUrl: mapValueOfType<String>(json, r'hydra_webfinger_oidc_discovery_userinfo_url'),
         id: mapValueOfType<String>(json, r'id'),
         ketoNamespaces: KetoNamespace.listFromJson(json[r'keto_namespaces']) ?? const [],
         ketoReadMaxDepth: mapValueOfType<int>(json, r'keto_read_max_depth'),
@@ -1437,6 +2039,7 @@ class NormalizedProjectRevision {
         kratosSessionLifespan: mapValueOfType<String>(json, r'kratos_session_lifespan'),
         kratosSessionWhoamiRequiredAal: mapValueOfType<String>(json, r'kratos_session_whoami_required_aal'),
         name: mapValueOfType<String>(json, r'name')!,
+        production: mapValueOfType<bool>(json, r'production'),
         projectId: mapValueOfType<String>(json, r'project_id'),
         updatedAt: mapDateTime(json, r'updated_at', ''),
       );

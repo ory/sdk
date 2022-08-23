@@ -5,6 +5,46 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **created_at** | **Time** | The Project&#39;s Revision Creation Date | [optional][readonly] |
+| **hydra_oauth2_client_credentials_default_grant_allowed_scope** | **Boolean** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example &#x60;read write&#x60;). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the &#x60;scope&#x60; query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \&quot;oauth2.client_credentials.default_grant_allowed_scope\&quot; setting. | [optional] |
+| **hydra_oauth2_grant_jwt_iat_optional** | **Boolean** | Configures if the issued at (&#x60;iat&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;iat&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.iat_optional\&quot; setting. | [optional] |
+| **hydra_oauth2_grant_jwt_jti_optional** | **Boolean** | Configures if the JSON Web Token ID (&#x60;jti&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;jti&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.jti_optional\&quot; setting. | [optional] |
+| **hydra_oauth2_grant_jwt_max_ttl** | **String** |  | [optional] |
+| **hydra_oauth2_pkce_enforced** | **Boolean** | Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \&quot;oauth2.pkce.enforced\&quot; setting. | [optional] |
+| **hydra_oauth2_pkce_enforced_for_public_clients** | **Boolean** | Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \&quot;oauth2.pkce.enforced_for_public_clients\&quot; setting. | [optional] |
+| **hydra_oauth2_refresh_token_hook** | **String** | Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \&quot;oauth2.refresh_token_hook\&quot; setting. | [optional] |
+| **hydra_oidc_dynamic_client_registration_default_scope** | **Array&lt;String&gt;** |  | [optional] |
+| **hydra_oidc_dynamic_client_registration_enabled** | **Boolean** | Configures OpenID Connect Dynamic Client Registration.  This governs the \&quot;oidc.dynamic_client_registration.enabled\&quot; setting. | [optional] |
+| **hydra_oidc_subject_identifiers_pairwise_salt** | **String** | Configures OpenID Connect Discovery and overwrites the pairwise algorithm  This governs the \&quot;oidc.subject_identifiers.pairwise_salt\&quot; setting. | [optional] |
+| **hydra_oidc_subject_identifiers_supported_types** | **Array&lt;String&gt;** |  | [optional] |
+| **hydra_secrets_cookie** | **Array&lt;String&gt;** |  | [optional] |
+| **hydra_secrets_system** | **Array&lt;String&gt;** |  | [optional] |
+| **hydra_serve_admin_cors_allowed_origins** | **Array&lt;String&gt;** |  | [optional] |
+| **hydra_serve_admin_cors_enabled** | **Boolean** | Configures the Ory Hydra CORS Settings  This governs the \&quot;serve.admin.cors.enabled\&quot; setting. | [optional] |
+| **hydra_serve_cookies_same_site_legacy_workaround** | **Boolean** | Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \&quot;serve.cookies.same_site_legacy_workaround\&quot; setting. | [optional] |
+| **hydra_serve_cookies_same_site_mode** | **String** | Configures the Ory Hydra Cookie Same Site Mode  This governs the \&quot;serve.cookies.same_site_mode\&quot; setting. | [optional] |
+| **hydra_serve_public_cors_allowed_origins** | **Array&lt;String&gt;** |  | [optional] |
+| **hydra_serve_public_cors_enabled** | **Boolean** | Configures the Ory Hydra CORS Settings  This governs the \&quot;serve.public.cors.enabled\&quot; setting. | [optional] |
+| **hydra_strategies_access_token** | **Object** | Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \&quot;strategies.access_token\&quot; setting. | [optional] |
+| **hydra_strategies_scope** | **Object** | Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \&quot;strategies.scope\&quot; setting. | [optional] |
+| **hydra_ttl_access_token** | **String** |  | [optional] |
+| **hydra_ttl_auth_code** | **String** |  | [optional] |
+| **hydra_ttl_id_token** | **String** |  | [optional] |
+| **hydra_ttl_login_consent_request** | **String** |  | [optional] |
+| **hydra_ttl_refresh_token** | **String** |  | [optional] |
+| **hydra_urls_consent** | **String** | Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login &amp; Consent flow.  Defaults to Ory Cloud&#39;s Managed UI if left empty.  This governs the \&quot;urls.consent\&quot; setting. | [optional] |
+| **hydra_urls_error** | **String** | Sets the OAuth2 Error URL of the OAuth2 User Login &amp; Consent flow.  Defaults to Ory Cloud&#39;s Managed UI if left empty.  This governs the \&quot;urls.error\&quot; setting. | [optional] |
+| **hydra_urls_login** | **String** | Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login &amp; Consent flow.  Defaults to Ory Cloud&#39;s Managed UI if left empty.  This governs the \&quot;urls.login\&quot; setting. | [optional] |
+| **hydra_urls_logout** | **String** | Sets the logout endpoint.  Defaults to Ory Cloud&#39;s Managed UI if left empty.  This governs the \&quot;urls.logout\&quot; setting. | [optional] |
+| **hydra_urls_post_logout_redirect** | **String** | When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to Ory Cloud&#39;s Managed UI in development and your application in production mode when a custom domain is connected.  This governs the \&quot;urls.post_logout_redirect\&quot; setting. | [optional] |
+| **hydra_urls_self_issuer** | **String** | This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  In Ory Cloud it will be very rare that you want to modify this value. If left empty, it will default to the correct value for Ory Cloud.  This governs the \&quot;urls.self.issuer\&quot; setting. | [optional] |
+| **hydra_webfinger_jwks_broadcast_keys** | **Array&lt;String&gt;** |  | [optional] |
+| **hydra_webfinger_oidc_discovery_auth_url** | **String** | Configures OpenID Connect Discovery and overwrites the OAuth2 Authorization URL.  This governs the \&quot;webfinger.oidc.discovery.auth_url\&quot; setting. | [optional] |
+| **hydra_webfinger_oidc_discovery_client_registration_url** | **String** | Configures OpenID Connect Discovery and overwrites the OpenID Connect Dynamic Client Registration Endpoint.  This governs the \&quot;webfinger.oidc.discovery.client_registration_url\&quot; setting. | [optional] |
+| **hydra_webfinger_oidc_discovery_jwks_url** | **String** | Configures OpenID Connect Discovery and overwrites the JWKS URL.  This governs the \&quot;webfinger.oidc.discovery.jwks_url\&quot; setting. | [optional] |
+| **hydra_webfinger_oidc_discovery_supported_claims** | **Array&lt;String&gt;** |  | [optional] |
+| **hydra_webfinger_oidc_discovery_supported_scope** | **Array&lt;String&gt;** |  | [optional] |
+| **hydra_webfinger_oidc_discovery_token_url** | **String** | Configures OpenID Connect Discovery and overwrites the OAuth2 Token URL.  This governs the \&quot;webfinger.oidc.discovery.token_url\&quot; setting. | [optional] |
+| **hydra_webfinger_oidc_discovery_userinfo_url** | **String** | Configures OpenID Connect Discovery and overwrites userinfo endpoint to be advertised at the OpenID Connect Discovery endpoint /.well-known/openid-configuration. Defaults to Ory Hydra&#39;s userinfo endpoint at /userinfo. Set this value if you want to handle this endpoint yourself.  This governs the \&quot;webfinger.oidc.discovery.userinfo_url\&quot; setting. | [optional] |
 | **id** | **String** |  | [optional] |
 | **keto_namespaces** | [**Array&lt;KetoNamespace&gt;**](KetoNamespace.md) |  | [optional] |
 | **keto_read_max_depth** | **Integer** |  | [optional] |
@@ -89,6 +129,7 @@
 | **kratos_session_lifespan** | **String** | Configures the Ory Kratos Session Lifespan  This governs the \&quot;session.lifespan\&quot; setting. | [optional] |
 | **kratos_session_whoami_required_aal** | **String** | Configures the Ory Kratos Session Whoami AAL requirement  This governs the \&quot;session.whoami.required_aal\&quot; setting. | [optional] |
 | **name** | **String** | The project&#39;s name. |  |
+| **production** | **Boolean** | Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment. | [optional] |
 | **project_id** | **String** |  | [optional] |
 | **updated_at** | **Time** | Last Time Project&#39;s Revision was Updated | [optional][readonly] |
 
@@ -99,6 +140,46 @@ require 'ory-client'
 
 instance = OryClient::NormalizedProjectRevision.new(
   created_at: null,
+  hydra_oauth2_client_credentials_default_grant_allowed_scope: null,
+  hydra_oauth2_grant_jwt_iat_optional: null,
+  hydra_oauth2_grant_jwt_jti_optional: null,
+  hydra_oauth2_grant_jwt_max_ttl: null,
+  hydra_oauth2_pkce_enforced: null,
+  hydra_oauth2_pkce_enforced_for_public_clients: null,
+  hydra_oauth2_refresh_token_hook: null,
+  hydra_oidc_dynamic_client_registration_default_scope: null,
+  hydra_oidc_dynamic_client_registration_enabled: null,
+  hydra_oidc_subject_identifiers_pairwise_salt: null,
+  hydra_oidc_subject_identifiers_supported_types: null,
+  hydra_secrets_cookie: null,
+  hydra_secrets_system: null,
+  hydra_serve_admin_cors_allowed_origins: null,
+  hydra_serve_admin_cors_enabled: null,
+  hydra_serve_cookies_same_site_legacy_workaround: null,
+  hydra_serve_cookies_same_site_mode: null,
+  hydra_serve_public_cors_allowed_origins: null,
+  hydra_serve_public_cors_enabled: null,
+  hydra_strategies_access_token: null,
+  hydra_strategies_scope: null,
+  hydra_ttl_access_token: null,
+  hydra_ttl_auth_code: null,
+  hydra_ttl_id_token: null,
+  hydra_ttl_login_consent_request: null,
+  hydra_ttl_refresh_token: null,
+  hydra_urls_consent: null,
+  hydra_urls_error: null,
+  hydra_urls_login: null,
+  hydra_urls_logout: null,
+  hydra_urls_post_logout_redirect: null,
+  hydra_urls_self_issuer: null,
+  hydra_webfinger_jwks_broadcast_keys: null,
+  hydra_webfinger_oidc_discovery_auth_url: null,
+  hydra_webfinger_oidc_discovery_client_registration_url: null,
+  hydra_webfinger_oidc_discovery_jwks_url: null,
+  hydra_webfinger_oidc_discovery_supported_claims: null,
+  hydra_webfinger_oidc_discovery_supported_scope: null,
+  hydra_webfinger_oidc_discovery_token_url: null,
+  hydra_webfinger_oidc_discovery_userinfo_url: null,
   id: null,
   keto_namespaces: null,
   keto_read_max_depth: null,
@@ -183,6 +264,7 @@ instance = OryClient::NormalizedProjectRevision.new(
   kratos_session_lifespan: null,
   kratos_session_whoami_required_aal: null,
   name: null,
+  production: null,
   project_id: null,
   updated_at: null
 )

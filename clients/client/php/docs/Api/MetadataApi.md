@@ -69,7 +69,7 @@ This endpoint does not need any parameter.
 ## `isAlive()`
 
 ```php
-isAlive(): \Ory\Client\Model\InlineResponse200
+isAlive(): \Ory\Client\Model\HealthStatus
 ```
 
 Check HTTP Server Status
@@ -108,7 +108,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Ory\Client\Model\InlineResponse200**](../Model/InlineResponse200.md)
+[**\Ory\Client\Model\HealthStatus**](../Model/HealthStatus.md)
 
 ### Authorization
 

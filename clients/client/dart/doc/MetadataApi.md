@@ -60,7 +60,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **isAlive**
-> IsAlive200Response isAlive()
+> HealthStatus isAlive()
 
 Check HTTP Server Status
 
@@ -91,7 +91,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**IsAlive200Response**](IsAlive200Response.md)
+[**HealthStatus**](HealthStatus.md)
 
 ### Authorization
 
@@ -105,7 +105,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **isReady**
-> IsAlive200Response isReady()
+> IsReady200Response isReady()
 
 Check HTTP Server and Database Status
 
@@ -136,7 +136,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**IsAlive200Response**](IsAlive200Response.md)
+[**IsReady200Response**](IsReady200Response.md)
 
 ### Authorization
 

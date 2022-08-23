@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** | The ID of the Identity JSON Schema | [optional] 
-**Schema** | Pointer to [**IdentitySchema**](IdentitySchema.md) |  | [optional] 
+**Schema** | Pointer to **map[string]interface{}** | Raw JSON Schema | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetSchema
 
-`func (o *IdentitySchemaContainer) GetSchema() IdentitySchema`
+`func (o *IdentitySchemaContainer) GetSchema() map[string]interface{}`
 
 GetSchema returns the Schema field if non-nil, zero value otherwise.
 
 ### GetSchemaOk
 
-`func (o *IdentitySchemaContainer) GetSchemaOk() (*IdentitySchema, bool)`
+`func (o *IdentitySchemaContainer) GetSchemaOk() (*map[string]interface{}, bool)`
 
 GetSchemaOk returns a tuple with the Schema field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSchema
 
-`func (o *IdentitySchemaContainer) SetSchema(v IdentitySchema)`
+`func (o *IdentitySchemaContainer) SetSchema(v map[string]interface{})`
 
 SetSchema sets Schema field to given value.
 

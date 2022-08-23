@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.4
+API version: v0.2.0-alpha.15
 Contact: support@ory.sh
 */
 
@@ -19,7 +19,8 @@ import (
 type IdentitySchemaContainer struct {
 	// The ID of the Identity JSON Schema
 	Id *string `json:"id,omitempty"`
-	Schema *IdentitySchema `json:"schema,omitempty"`
+	// Raw JSON Schema
+	Schema map[string]interface{} `json:"schema,omitempty"`
 }
 
 // NewIdentitySchemaContainer instantiates a new IdentitySchemaContainer object
@@ -72,17 +73,17 @@ func (o *IdentitySchemaContainer) SetId(v string) {
 }
 
 // GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *IdentitySchemaContainer) GetSchema() IdentitySchema {
+func (o *IdentitySchemaContainer) GetSchema() map[string]interface{} {
 	if o == nil || o.Schema == nil {
-		var ret IdentitySchema
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Schema
+	return o.Schema
 }
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdentitySchemaContainer) GetSchemaOk() (*IdentitySchema, bool) {
+func (o *IdentitySchemaContainer) GetSchemaOk() (map[string]interface{}, bool) {
 	if o == nil || o.Schema == nil {
 		return nil, false
 	}
@@ -98,9 +99,9 @@ func (o *IdentitySchemaContainer) HasSchema() bool {
 	return false
 }
 
-// SetSchema gets a reference to the given IdentitySchema and assigns it to the Schema field.
-func (o *IdentitySchemaContainer) SetSchema(v IdentitySchema) {
-	o.Schema = &v
+// SetSchema gets a reference to the given map[string]interface{} and assigns it to the Schema field.
+func (o *IdentitySchemaContainer) SetSchema(v map[string]interface{}) {
+	o.Schema = v
 }
 
 func (o IdentitySchemaContainer) MarshalJSON() ([]byte, error) {

@@ -8,7 +8,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdAt** | **OffsetDateTime** |  |  [readonly]
-**currentPlan** | [**CurrentPlanEnum**](#CurrentPlanEnum) | The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly custom Custom |  [readonly]
+**currentPlan** | [**CurrentPlanEnum**](#CurrentPlanEnum) | The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom |  [readonly]
 **customerId** | **String** | The ID of the stripe customer |  [readonly]
 **id** | **UUID** |  | 
 **ongoingStripeCheckoutId** | **String** |  |  [optional]
@@ -28,6 +28,8 @@ UNKNOWN | &quot;unknown&quot;
 FREE | &quot;free&quot;
 START_UP_MONTHLY | &quot;start_up_monthly&quot;
 START_UP_YEARLY | &quot;start_up_yearly&quot;
+BUSINESS_MONTHLY | &quot;business_monthly&quot;
+BUSINESS_YEARLY | &quot;business_yearly&quot;
 CUSTOM | &quot;custom&quot;
 
 

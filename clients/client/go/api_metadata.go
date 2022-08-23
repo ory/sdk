@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.4
+API version: v0.2.0-alpha.15
 Contact: support@ory.sh
 */
 
@@ -60,8 +60,8 @@ refer to the cluster state, only to a single instance.
 	IsAlive(ctx context.Context) MetadataApiIsAliveRequest
 
 	// IsAliveExecute executes the request
-	//  @return IsAlive200Response
-	IsAliveExecute(r MetadataApiIsAliveRequest) (*IsAlive200Response, *http.Response, error)
+	//  @return HealthStatus
+	IsAliveExecute(r MetadataApiIsAliveRequest) (*HealthStatus, *http.Response, error)
 
 	/*
 	IsReady Check HTTP Server and Database Status
@@ -81,8 +81,8 @@ refer to the cluster state, only to a single instance.
 	IsReady(ctx context.Context) MetadataApiIsReadyRequest
 
 	// IsReadyExecute executes the request
-	//  @return IsAlive200Response
-	IsReadyExecute(r MetadataApiIsReadyRequest) (*IsAlive200Response, *http.Response, error)
+	//  @return IsReady200Response
+	IsReadyExecute(r MetadataApiIsReadyRequest) (*IsReady200Response, *http.Response, error)
 }
 
 // MetadataApiService MetadataApi service
@@ -198,7 +198,7 @@ type MetadataApiIsAliveRequest struct {
 	ApiService MetadataApi
 }
 
-func (r MetadataApiIsAliveRequest) Execute() (*IsAlive200Response, *http.Response, error) {
+func (r MetadataApiIsAliveRequest) Execute() (*HealthStatus, *http.Response, error) {
 	return r.ApiService.IsAliveExecute(r)
 }
 
@@ -225,13 +225,13 @@ func (a *MetadataApiService) IsAlive(ctx context.Context) MetadataApiIsAliveRequ
 }
 
 // Execute executes the request
-//  @return IsAlive200Response
-func (a *MetadataApiService) IsAliveExecute(r MetadataApiIsAliveRequest) (*IsAlive200Response, *http.Response, error) {
+//  @return HealthStatus
+func (a *MetadataApiService) IsAliveExecute(r MetadataApiIsAliveRequest) (*HealthStatus, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *IsAlive200Response
+		localVarReturnValue  *HealthStatus
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetadataApiService.IsAlive")
@@ -313,7 +313,7 @@ type MetadataApiIsReadyRequest struct {
 	ApiService MetadataApi
 }
 
-func (r MetadataApiIsReadyRequest) Execute() (*IsAlive200Response, *http.Response, error) {
+func (r MetadataApiIsReadyRequest) Execute() (*IsReady200Response, *http.Response, error) {
 	return r.ApiService.IsReadyExecute(r)
 }
 
@@ -340,13 +340,13 @@ func (a *MetadataApiService) IsReady(ctx context.Context) MetadataApiIsReadyRequ
 }
 
 // Execute executes the request
-//  @return IsAlive200Response
-func (a *MetadataApiService) IsReadyExecute(r MetadataApiIsReadyRequest) (*IsAlive200Response, *http.Response, error) {
+//  @return IsReady200Response
+func (a *MetadataApiService) IsReadyExecute(r MetadataApiIsReadyRequest) (*IsReady200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *IsAlive200Response
+		localVarReturnValue  *IsReady200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetadataApiService.IsReady")

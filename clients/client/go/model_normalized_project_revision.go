@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.4
+API version: v0.2.0-alpha.15
 Contact: support@ory.sh
 */
 
@@ -20,6 +20,71 @@ import (
 type NormalizedProjectRevision struct {
 	// The Project's Revision Creation Date
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	// Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
+	HydraOauth2ClientCredentialsDefaultGrantAllowedScope *bool `json:"hydra_oauth2_client_credentials_default_grant_allowed_scope,omitempty"`
+	// Configures if the issued at (`iat`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `iat` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.iat_optional\" setting.
+	HydraOauth2GrantJwtIatOptional *bool `json:"hydra_oauth2_grant_jwt_iat_optional,omitempty"`
+	// Configures if the JSON Web Token ID (`jti`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `jti` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.jti_optional\" setting.
+	HydraOauth2GrantJwtJtiOptional *bool `json:"hydra_oauth2_grant_jwt_jti_optional,omitempty"`
+	HydraOauth2GrantJwtMaxTtl NullableString `json:"hydra_oauth2_grant_jwt_max_ttl,omitempty"`
+	// Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \"oauth2.pkce.enforced\" setting.
+	HydraOauth2PkceEnforced *bool `json:"hydra_oauth2_pkce_enforced,omitempty"`
+	// Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \"oauth2.pkce.enforced_for_public_clients\" setting.
+	HydraOauth2PkceEnforcedForPublicClients *bool `json:"hydra_oauth2_pkce_enforced_for_public_clients,omitempty"`
+	// Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \"oauth2.refresh_token_hook\" setting.
+	HydraOauth2RefreshTokenHook *string `json:"hydra_oauth2_refresh_token_hook,omitempty"`
+	HydraOidcDynamicClientRegistrationDefaultScope []string `json:"hydra_oidc_dynamic_client_registration_default_scope,omitempty"`
+	// Configures OpenID Connect Dynamic Client Registration.  This governs the \"oidc.dynamic_client_registration.enabled\" setting.
+	HydraOidcDynamicClientRegistrationEnabled *bool `json:"hydra_oidc_dynamic_client_registration_enabled,omitempty"`
+	// Configures OpenID Connect Discovery and overwrites the pairwise algorithm  This governs the \"oidc.subject_identifiers.pairwise_salt\" setting.
+	HydraOidcSubjectIdentifiersPairwiseSalt *string `json:"hydra_oidc_subject_identifiers_pairwise_salt,omitempty"`
+	HydraOidcSubjectIdentifiersSupportedTypes []string `json:"hydra_oidc_subject_identifiers_supported_types,omitempty"`
+	HydraSecretsCookie []string `json:"hydra_secrets_cookie,omitempty"`
+	HydraSecretsSystem []string `json:"hydra_secrets_system,omitempty"`
+	HydraServeAdminCorsAllowedOrigins []string `json:"hydra_serve_admin_cors_allowed_origins,omitempty"`
+	// Configures the Ory Hydra CORS Settings  This governs the \"serve.admin.cors.enabled\" setting.
+	HydraServeAdminCorsEnabled *bool `json:"hydra_serve_admin_cors_enabled,omitempty"`
+	// Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \"serve.cookies.same_site_legacy_workaround\" setting.
+	HydraServeCookiesSameSiteLegacyWorkaround *bool `json:"hydra_serve_cookies_same_site_legacy_workaround,omitempty"`
+	// Configures the Ory Hydra Cookie Same Site Mode  This governs the \"serve.cookies.same_site_mode\" setting.
+	HydraServeCookiesSameSiteMode *string `json:"hydra_serve_cookies_same_site_mode,omitempty"`
+	HydraServePublicCorsAllowedOrigins []string `json:"hydra_serve_public_cors_allowed_origins,omitempty"`
+	// Configures the Ory Hydra CORS Settings  This governs the \"serve.public.cors.enabled\" setting.
+	HydraServePublicCorsEnabled *bool `json:"hydra_serve_public_cors_enabled,omitempty"`
+	// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting.
+	HydraStrategiesAccessToken interface{} `json:"hydra_strategies_access_token,omitempty"`
+	// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting.
+	HydraStrategiesScope interface{} `json:"hydra_strategies_scope,omitempty"`
+	HydraTtlAccessToken NullableString `json:"hydra_ttl_access_token,omitempty"`
+	HydraTtlAuthCode NullableString `json:"hydra_ttl_auth_code,omitempty"`
+	HydraTtlIdToken NullableString `json:"hydra_ttl_id_token,omitempty"`
+	HydraTtlLoginConsentRequest NullableString `json:"hydra_ttl_login_consent_request,omitempty"`
+	HydraTtlRefreshToken NullableString `json:"hydra_ttl_refresh_token,omitempty"`
+	// Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.consent\" setting.
+	HydraUrlsConsent *string `json:"hydra_urls_consent,omitempty"`
+	// Sets the OAuth2 Error URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.error\" setting.
+	HydraUrlsError *string `json:"hydra_urls_error,omitempty"`
+	// Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.login\" setting.
+	HydraUrlsLogin *string `json:"hydra_urls_login,omitempty"`
+	// Sets the logout endpoint.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.logout\" setting.
+	HydraUrlsLogout *string `json:"hydra_urls_logout,omitempty"`
+	// When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to Ory Cloud's Managed UI in development and your application in production mode when a custom domain is connected.  This governs the \"urls.post_logout_redirect\" setting.
+	HydraUrlsPostLogoutRedirect *string `json:"hydra_urls_post_logout_redirect,omitempty"`
+	// This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  In Ory Cloud it will be very rare that you want to modify this value. If left empty, it will default to the correct value for Ory Cloud.  This governs the \"urls.self.issuer\" setting.
+	HydraUrlsSelfIssuer *string `json:"hydra_urls_self_issuer,omitempty"`
+	HydraWebfingerJwksBroadcastKeys []string `json:"hydra_webfinger_jwks_broadcast_keys,omitempty"`
+	// Configures OpenID Connect Discovery and overwrites the OAuth2 Authorization URL.  This governs the \"webfinger.oidc.discovery.auth_url\" setting.
+	HydraWebfingerOidcDiscoveryAuthUrl *string `json:"hydra_webfinger_oidc_discovery_auth_url,omitempty"`
+	// Configures OpenID Connect Discovery and overwrites the OpenID Connect Dynamic Client Registration Endpoint.  This governs the \"webfinger.oidc.discovery.client_registration_url\" setting.
+	HydraWebfingerOidcDiscoveryClientRegistrationUrl *string `json:"hydra_webfinger_oidc_discovery_client_registration_url,omitempty"`
+	// Configures OpenID Connect Discovery and overwrites the JWKS URL.  This governs the \"webfinger.oidc.discovery.jwks_url\" setting.
+	HydraWebfingerOidcDiscoveryJwksUrl *string `json:"hydra_webfinger_oidc_discovery_jwks_url,omitempty"`
+	HydraWebfingerOidcDiscoverySupportedClaims []string `json:"hydra_webfinger_oidc_discovery_supported_claims,omitempty"`
+	HydraWebfingerOidcDiscoverySupportedScope []string `json:"hydra_webfinger_oidc_discovery_supported_scope,omitempty"`
+	// Configures OpenID Connect Discovery and overwrites the OAuth2 Token URL.  This governs the \"webfinger.oidc.discovery.token_url\" setting.
+	HydraWebfingerOidcDiscoveryTokenUrl *string `json:"hydra_webfinger_oidc_discovery_token_url,omitempty"`
+	// Configures OpenID Connect Discovery and overwrites userinfo endpoint to be advertised at the OpenID Connect Discovery endpoint /.well-known/openid-configuration. Defaults to Ory Hydra's userinfo endpoint at /userinfo. Set this value if you want to handle this endpoint yourself.  This governs the \"webfinger.oidc.discovery.userinfo_url\" setting.
+	HydraWebfingerOidcDiscoveryUserinfoUrl *string `json:"hydra_webfinger_oidc_discovery_userinfo_url,omitempty"`
 	Id *string `json:"id,omitempty"`
 	KetoNamespaces []KetoNamespace `json:"keto_namespaces,omitempty"`
 	KetoReadMaxDepth NullableInt32 `json:"keto_read_max_depth,omitempty"`
@@ -167,6 +232,8 @@ type NormalizedProjectRevision struct {
 	KratosSessionWhoamiRequiredAal *string `json:"kratos_session_whoami_required_aal,omitempty"`
 	// The project's name.
 	Name string `json:"name"`
+	// Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment.
+	Production *bool `json:"production,omitempty"`
 	ProjectId *string `json:"project_id,omitempty"`
 	// Last Time Project's Revision was Updated
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
@@ -220,6 +287,1348 @@ func (o *NormalizedProjectRevision) HasCreatedAt() bool {
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *NormalizedProjectRevision) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
+}
+
+// GetHydraOauth2ClientCredentialsDefaultGrantAllowedScope returns the HydraOauth2ClientCredentialsDefaultGrantAllowedScope field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraOauth2ClientCredentialsDefaultGrantAllowedScope() bool {
+	if o == nil || o.HydraOauth2ClientCredentialsDefaultGrantAllowedScope == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HydraOauth2ClientCredentialsDefaultGrantAllowedScope
+}
+
+// GetHydraOauth2ClientCredentialsDefaultGrantAllowedScopeOk returns a tuple with the HydraOauth2ClientCredentialsDefaultGrantAllowedScope field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraOauth2ClientCredentialsDefaultGrantAllowedScopeOk() (*bool, bool) {
+	if o == nil || o.HydraOauth2ClientCredentialsDefaultGrantAllowedScope == nil {
+		return nil, false
+	}
+	return o.HydraOauth2ClientCredentialsDefaultGrantAllowedScope, true
+}
+
+// HasHydraOauth2ClientCredentialsDefaultGrantAllowedScope returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraOauth2ClientCredentialsDefaultGrantAllowedScope() bool {
+	if o != nil && o.HydraOauth2ClientCredentialsDefaultGrantAllowedScope != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2ClientCredentialsDefaultGrantAllowedScope gets a reference to the given bool and assigns it to the HydraOauth2ClientCredentialsDefaultGrantAllowedScope field.
+func (o *NormalizedProjectRevision) SetHydraOauth2ClientCredentialsDefaultGrantAllowedScope(v bool) {
+	o.HydraOauth2ClientCredentialsDefaultGrantAllowedScope = &v
+}
+
+// GetHydraOauth2GrantJwtIatOptional returns the HydraOauth2GrantJwtIatOptional field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraOauth2GrantJwtIatOptional() bool {
+	if o == nil || o.HydraOauth2GrantJwtIatOptional == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HydraOauth2GrantJwtIatOptional
+}
+
+// GetHydraOauth2GrantJwtIatOptionalOk returns a tuple with the HydraOauth2GrantJwtIatOptional field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraOauth2GrantJwtIatOptionalOk() (*bool, bool) {
+	if o == nil || o.HydraOauth2GrantJwtIatOptional == nil {
+		return nil, false
+	}
+	return o.HydraOauth2GrantJwtIatOptional, true
+}
+
+// HasHydraOauth2GrantJwtIatOptional returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraOauth2GrantJwtIatOptional() bool {
+	if o != nil && o.HydraOauth2GrantJwtIatOptional != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2GrantJwtIatOptional gets a reference to the given bool and assigns it to the HydraOauth2GrantJwtIatOptional field.
+func (o *NormalizedProjectRevision) SetHydraOauth2GrantJwtIatOptional(v bool) {
+	o.HydraOauth2GrantJwtIatOptional = &v
+}
+
+// GetHydraOauth2GrantJwtJtiOptional returns the HydraOauth2GrantJwtJtiOptional field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraOauth2GrantJwtJtiOptional() bool {
+	if o == nil || o.HydraOauth2GrantJwtJtiOptional == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HydraOauth2GrantJwtJtiOptional
+}
+
+// GetHydraOauth2GrantJwtJtiOptionalOk returns a tuple with the HydraOauth2GrantJwtJtiOptional field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraOauth2GrantJwtJtiOptionalOk() (*bool, bool) {
+	if o == nil || o.HydraOauth2GrantJwtJtiOptional == nil {
+		return nil, false
+	}
+	return o.HydraOauth2GrantJwtJtiOptional, true
+}
+
+// HasHydraOauth2GrantJwtJtiOptional returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraOauth2GrantJwtJtiOptional() bool {
+	if o != nil && o.HydraOauth2GrantJwtJtiOptional != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2GrantJwtJtiOptional gets a reference to the given bool and assigns it to the HydraOauth2GrantJwtJtiOptional field.
+func (o *NormalizedProjectRevision) SetHydraOauth2GrantJwtJtiOptional(v bool) {
+	o.HydraOauth2GrantJwtJtiOptional = &v
+}
+
+// GetHydraOauth2GrantJwtMaxTtl returns the HydraOauth2GrantJwtMaxTtl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevision) GetHydraOauth2GrantJwtMaxTtl() string {
+	if o == nil || o.HydraOauth2GrantJwtMaxTtl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.HydraOauth2GrantJwtMaxTtl.Get()
+}
+
+// GetHydraOauth2GrantJwtMaxTtlOk returns a tuple with the HydraOauth2GrantJwtMaxTtl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevision) GetHydraOauth2GrantJwtMaxTtlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.HydraOauth2GrantJwtMaxTtl.Get(), o.HydraOauth2GrantJwtMaxTtl.IsSet()
+}
+
+// HasHydraOauth2GrantJwtMaxTtl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraOauth2GrantJwtMaxTtl() bool {
+	if o != nil && o.HydraOauth2GrantJwtMaxTtl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2GrantJwtMaxTtl gets a reference to the given NullableString and assigns it to the HydraOauth2GrantJwtMaxTtl field.
+func (o *NormalizedProjectRevision) SetHydraOauth2GrantJwtMaxTtl(v string) {
+	o.HydraOauth2GrantJwtMaxTtl.Set(&v)
+}
+// SetHydraOauth2GrantJwtMaxTtlNil sets the value for HydraOauth2GrantJwtMaxTtl to be an explicit nil
+func (o *NormalizedProjectRevision) SetHydraOauth2GrantJwtMaxTtlNil() {
+	o.HydraOauth2GrantJwtMaxTtl.Set(nil)
+}
+
+// UnsetHydraOauth2GrantJwtMaxTtl ensures that no value is present for HydraOauth2GrantJwtMaxTtl, not even an explicit nil
+func (o *NormalizedProjectRevision) UnsetHydraOauth2GrantJwtMaxTtl() {
+	o.HydraOauth2GrantJwtMaxTtl.Unset()
+}
+
+// GetHydraOauth2PkceEnforced returns the HydraOauth2PkceEnforced field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraOauth2PkceEnforced() bool {
+	if o == nil || o.HydraOauth2PkceEnforced == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HydraOauth2PkceEnforced
+}
+
+// GetHydraOauth2PkceEnforcedOk returns a tuple with the HydraOauth2PkceEnforced field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraOauth2PkceEnforcedOk() (*bool, bool) {
+	if o == nil || o.HydraOauth2PkceEnforced == nil {
+		return nil, false
+	}
+	return o.HydraOauth2PkceEnforced, true
+}
+
+// HasHydraOauth2PkceEnforced returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraOauth2PkceEnforced() bool {
+	if o != nil && o.HydraOauth2PkceEnforced != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2PkceEnforced gets a reference to the given bool and assigns it to the HydraOauth2PkceEnforced field.
+func (o *NormalizedProjectRevision) SetHydraOauth2PkceEnforced(v bool) {
+	o.HydraOauth2PkceEnforced = &v
+}
+
+// GetHydraOauth2PkceEnforcedForPublicClients returns the HydraOauth2PkceEnforcedForPublicClients field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraOauth2PkceEnforcedForPublicClients() bool {
+	if o == nil || o.HydraOauth2PkceEnforcedForPublicClients == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HydraOauth2PkceEnforcedForPublicClients
+}
+
+// GetHydraOauth2PkceEnforcedForPublicClientsOk returns a tuple with the HydraOauth2PkceEnforcedForPublicClients field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraOauth2PkceEnforcedForPublicClientsOk() (*bool, bool) {
+	if o == nil || o.HydraOauth2PkceEnforcedForPublicClients == nil {
+		return nil, false
+	}
+	return o.HydraOauth2PkceEnforcedForPublicClients, true
+}
+
+// HasHydraOauth2PkceEnforcedForPublicClients returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraOauth2PkceEnforcedForPublicClients() bool {
+	if o != nil && o.HydraOauth2PkceEnforcedForPublicClients != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2PkceEnforcedForPublicClients gets a reference to the given bool and assigns it to the HydraOauth2PkceEnforcedForPublicClients field.
+func (o *NormalizedProjectRevision) SetHydraOauth2PkceEnforcedForPublicClients(v bool) {
+	o.HydraOauth2PkceEnforcedForPublicClients = &v
+}
+
+// GetHydraOauth2RefreshTokenHook returns the HydraOauth2RefreshTokenHook field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraOauth2RefreshTokenHook() string {
+	if o == nil || o.HydraOauth2RefreshTokenHook == nil {
+		var ret string
+		return ret
+	}
+	return *o.HydraOauth2RefreshTokenHook
+}
+
+// GetHydraOauth2RefreshTokenHookOk returns a tuple with the HydraOauth2RefreshTokenHook field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraOauth2RefreshTokenHookOk() (*string, bool) {
+	if o == nil || o.HydraOauth2RefreshTokenHook == nil {
+		return nil, false
+	}
+	return o.HydraOauth2RefreshTokenHook, true
+}
+
+// HasHydraOauth2RefreshTokenHook returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraOauth2RefreshTokenHook() bool {
+	if o != nil && o.HydraOauth2RefreshTokenHook != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2RefreshTokenHook gets a reference to the given string and assigns it to the HydraOauth2RefreshTokenHook field.
+func (o *NormalizedProjectRevision) SetHydraOauth2RefreshTokenHook(v string) {
+	o.HydraOauth2RefreshTokenHook = &v
+}
+
+// GetHydraOidcDynamicClientRegistrationDefaultScope returns the HydraOidcDynamicClientRegistrationDefaultScope field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraOidcDynamicClientRegistrationDefaultScope() []string {
+	if o == nil || o.HydraOidcDynamicClientRegistrationDefaultScope == nil {
+		var ret []string
+		return ret
+	}
+	return o.HydraOidcDynamicClientRegistrationDefaultScope
+}
+
+// GetHydraOidcDynamicClientRegistrationDefaultScopeOk returns a tuple with the HydraOidcDynamicClientRegistrationDefaultScope field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraOidcDynamicClientRegistrationDefaultScopeOk() ([]string, bool) {
+	if o == nil || o.HydraOidcDynamicClientRegistrationDefaultScope == nil {
+		return nil, false
+	}
+	return o.HydraOidcDynamicClientRegistrationDefaultScope, true
+}
+
+// HasHydraOidcDynamicClientRegistrationDefaultScope returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraOidcDynamicClientRegistrationDefaultScope() bool {
+	if o != nil && o.HydraOidcDynamicClientRegistrationDefaultScope != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOidcDynamicClientRegistrationDefaultScope gets a reference to the given []string and assigns it to the HydraOidcDynamicClientRegistrationDefaultScope field.
+func (o *NormalizedProjectRevision) SetHydraOidcDynamicClientRegistrationDefaultScope(v []string) {
+	o.HydraOidcDynamicClientRegistrationDefaultScope = v
+}
+
+// GetHydraOidcDynamicClientRegistrationEnabled returns the HydraOidcDynamicClientRegistrationEnabled field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraOidcDynamicClientRegistrationEnabled() bool {
+	if o == nil || o.HydraOidcDynamicClientRegistrationEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HydraOidcDynamicClientRegistrationEnabled
+}
+
+// GetHydraOidcDynamicClientRegistrationEnabledOk returns a tuple with the HydraOidcDynamicClientRegistrationEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraOidcDynamicClientRegistrationEnabledOk() (*bool, bool) {
+	if o == nil || o.HydraOidcDynamicClientRegistrationEnabled == nil {
+		return nil, false
+	}
+	return o.HydraOidcDynamicClientRegistrationEnabled, true
+}
+
+// HasHydraOidcDynamicClientRegistrationEnabled returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraOidcDynamicClientRegistrationEnabled() bool {
+	if o != nil && o.HydraOidcDynamicClientRegistrationEnabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOidcDynamicClientRegistrationEnabled gets a reference to the given bool and assigns it to the HydraOidcDynamicClientRegistrationEnabled field.
+func (o *NormalizedProjectRevision) SetHydraOidcDynamicClientRegistrationEnabled(v bool) {
+	o.HydraOidcDynamicClientRegistrationEnabled = &v
+}
+
+// GetHydraOidcSubjectIdentifiersPairwiseSalt returns the HydraOidcSubjectIdentifiersPairwiseSalt field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraOidcSubjectIdentifiersPairwiseSalt() string {
+	if o == nil || o.HydraOidcSubjectIdentifiersPairwiseSalt == nil {
+		var ret string
+		return ret
+	}
+	return *o.HydraOidcSubjectIdentifiersPairwiseSalt
+}
+
+// GetHydraOidcSubjectIdentifiersPairwiseSaltOk returns a tuple with the HydraOidcSubjectIdentifiersPairwiseSalt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraOidcSubjectIdentifiersPairwiseSaltOk() (*string, bool) {
+	if o == nil || o.HydraOidcSubjectIdentifiersPairwiseSalt == nil {
+		return nil, false
+	}
+	return o.HydraOidcSubjectIdentifiersPairwiseSalt, true
+}
+
+// HasHydraOidcSubjectIdentifiersPairwiseSalt returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraOidcSubjectIdentifiersPairwiseSalt() bool {
+	if o != nil && o.HydraOidcSubjectIdentifiersPairwiseSalt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOidcSubjectIdentifiersPairwiseSalt gets a reference to the given string and assigns it to the HydraOidcSubjectIdentifiersPairwiseSalt field.
+func (o *NormalizedProjectRevision) SetHydraOidcSubjectIdentifiersPairwiseSalt(v string) {
+	o.HydraOidcSubjectIdentifiersPairwiseSalt = &v
+}
+
+// GetHydraOidcSubjectIdentifiersSupportedTypes returns the HydraOidcSubjectIdentifiersSupportedTypes field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraOidcSubjectIdentifiersSupportedTypes() []string {
+	if o == nil || o.HydraOidcSubjectIdentifiersSupportedTypes == nil {
+		var ret []string
+		return ret
+	}
+	return o.HydraOidcSubjectIdentifiersSupportedTypes
+}
+
+// GetHydraOidcSubjectIdentifiersSupportedTypesOk returns a tuple with the HydraOidcSubjectIdentifiersSupportedTypes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraOidcSubjectIdentifiersSupportedTypesOk() ([]string, bool) {
+	if o == nil || o.HydraOidcSubjectIdentifiersSupportedTypes == nil {
+		return nil, false
+	}
+	return o.HydraOidcSubjectIdentifiersSupportedTypes, true
+}
+
+// HasHydraOidcSubjectIdentifiersSupportedTypes returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraOidcSubjectIdentifiersSupportedTypes() bool {
+	if o != nil && o.HydraOidcSubjectIdentifiersSupportedTypes != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOidcSubjectIdentifiersSupportedTypes gets a reference to the given []string and assigns it to the HydraOidcSubjectIdentifiersSupportedTypes field.
+func (o *NormalizedProjectRevision) SetHydraOidcSubjectIdentifiersSupportedTypes(v []string) {
+	o.HydraOidcSubjectIdentifiersSupportedTypes = v
+}
+
+// GetHydraSecretsCookie returns the HydraSecretsCookie field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraSecretsCookie() []string {
+	if o == nil || o.HydraSecretsCookie == nil {
+		var ret []string
+		return ret
+	}
+	return o.HydraSecretsCookie
+}
+
+// GetHydraSecretsCookieOk returns a tuple with the HydraSecretsCookie field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraSecretsCookieOk() ([]string, bool) {
+	if o == nil || o.HydraSecretsCookie == nil {
+		return nil, false
+	}
+	return o.HydraSecretsCookie, true
+}
+
+// HasHydraSecretsCookie returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraSecretsCookie() bool {
+	if o != nil && o.HydraSecretsCookie != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraSecretsCookie gets a reference to the given []string and assigns it to the HydraSecretsCookie field.
+func (o *NormalizedProjectRevision) SetHydraSecretsCookie(v []string) {
+	o.HydraSecretsCookie = v
+}
+
+// GetHydraSecretsSystem returns the HydraSecretsSystem field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraSecretsSystem() []string {
+	if o == nil || o.HydraSecretsSystem == nil {
+		var ret []string
+		return ret
+	}
+	return o.HydraSecretsSystem
+}
+
+// GetHydraSecretsSystemOk returns a tuple with the HydraSecretsSystem field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraSecretsSystemOk() ([]string, bool) {
+	if o == nil || o.HydraSecretsSystem == nil {
+		return nil, false
+	}
+	return o.HydraSecretsSystem, true
+}
+
+// HasHydraSecretsSystem returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraSecretsSystem() bool {
+	if o != nil && o.HydraSecretsSystem != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraSecretsSystem gets a reference to the given []string and assigns it to the HydraSecretsSystem field.
+func (o *NormalizedProjectRevision) SetHydraSecretsSystem(v []string) {
+	o.HydraSecretsSystem = v
+}
+
+// GetHydraServeAdminCorsAllowedOrigins returns the HydraServeAdminCorsAllowedOrigins field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraServeAdminCorsAllowedOrigins() []string {
+	if o == nil || o.HydraServeAdminCorsAllowedOrigins == nil {
+		var ret []string
+		return ret
+	}
+	return o.HydraServeAdminCorsAllowedOrigins
+}
+
+// GetHydraServeAdminCorsAllowedOriginsOk returns a tuple with the HydraServeAdminCorsAllowedOrigins field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraServeAdminCorsAllowedOriginsOk() ([]string, bool) {
+	if o == nil || o.HydraServeAdminCorsAllowedOrigins == nil {
+		return nil, false
+	}
+	return o.HydraServeAdminCorsAllowedOrigins, true
+}
+
+// HasHydraServeAdminCorsAllowedOrigins returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraServeAdminCorsAllowedOrigins() bool {
+	if o != nil && o.HydraServeAdminCorsAllowedOrigins != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraServeAdminCorsAllowedOrigins gets a reference to the given []string and assigns it to the HydraServeAdminCorsAllowedOrigins field.
+func (o *NormalizedProjectRevision) SetHydraServeAdminCorsAllowedOrigins(v []string) {
+	o.HydraServeAdminCorsAllowedOrigins = v
+}
+
+// GetHydraServeAdminCorsEnabled returns the HydraServeAdminCorsEnabled field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraServeAdminCorsEnabled() bool {
+	if o == nil || o.HydraServeAdminCorsEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HydraServeAdminCorsEnabled
+}
+
+// GetHydraServeAdminCorsEnabledOk returns a tuple with the HydraServeAdminCorsEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraServeAdminCorsEnabledOk() (*bool, bool) {
+	if o == nil || o.HydraServeAdminCorsEnabled == nil {
+		return nil, false
+	}
+	return o.HydraServeAdminCorsEnabled, true
+}
+
+// HasHydraServeAdminCorsEnabled returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraServeAdminCorsEnabled() bool {
+	if o != nil && o.HydraServeAdminCorsEnabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraServeAdminCorsEnabled gets a reference to the given bool and assigns it to the HydraServeAdminCorsEnabled field.
+func (o *NormalizedProjectRevision) SetHydraServeAdminCorsEnabled(v bool) {
+	o.HydraServeAdminCorsEnabled = &v
+}
+
+// GetHydraServeCookiesSameSiteLegacyWorkaround returns the HydraServeCookiesSameSiteLegacyWorkaround field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraServeCookiesSameSiteLegacyWorkaround() bool {
+	if o == nil || o.HydraServeCookiesSameSiteLegacyWorkaround == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HydraServeCookiesSameSiteLegacyWorkaround
+}
+
+// GetHydraServeCookiesSameSiteLegacyWorkaroundOk returns a tuple with the HydraServeCookiesSameSiteLegacyWorkaround field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraServeCookiesSameSiteLegacyWorkaroundOk() (*bool, bool) {
+	if o == nil || o.HydraServeCookiesSameSiteLegacyWorkaround == nil {
+		return nil, false
+	}
+	return o.HydraServeCookiesSameSiteLegacyWorkaround, true
+}
+
+// HasHydraServeCookiesSameSiteLegacyWorkaround returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraServeCookiesSameSiteLegacyWorkaround() bool {
+	if o != nil && o.HydraServeCookiesSameSiteLegacyWorkaround != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraServeCookiesSameSiteLegacyWorkaround gets a reference to the given bool and assigns it to the HydraServeCookiesSameSiteLegacyWorkaround field.
+func (o *NormalizedProjectRevision) SetHydraServeCookiesSameSiteLegacyWorkaround(v bool) {
+	o.HydraServeCookiesSameSiteLegacyWorkaround = &v
+}
+
+// GetHydraServeCookiesSameSiteMode returns the HydraServeCookiesSameSiteMode field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraServeCookiesSameSiteMode() string {
+	if o == nil || o.HydraServeCookiesSameSiteMode == nil {
+		var ret string
+		return ret
+	}
+	return *o.HydraServeCookiesSameSiteMode
+}
+
+// GetHydraServeCookiesSameSiteModeOk returns a tuple with the HydraServeCookiesSameSiteMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraServeCookiesSameSiteModeOk() (*string, bool) {
+	if o == nil || o.HydraServeCookiesSameSiteMode == nil {
+		return nil, false
+	}
+	return o.HydraServeCookiesSameSiteMode, true
+}
+
+// HasHydraServeCookiesSameSiteMode returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraServeCookiesSameSiteMode() bool {
+	if o != nil && o.HydraServeCookiesSameSiteMode != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraServeCookiesSameSiteMode gets a reference to the given string and assigns it to the HydraServeCookiesSameSiteMode field.
+func (o *NormalizedProjectRevision) SetHydraServeCookiesSameSiteMode(v string) {
+	o.HydraServeCookiesSameSiteMode = &v
+}
+
+// GetHydraServePublicCorsAllowedOrigins returns the HydraServePublicCorsAllowedOrigins field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraServePublicCorsAllowedOrigins() []string {
+	if o == nil || o.HydraServePublicCorsAllowedOrigins == nil {
+		var ret []string
+		return ret
+	}
+	return o.HydraServePublicCorsAllowedOrigins
+}
+
+// GetHydraServePublicCorsAllowedOriginsOk returns a tuple with the HydraServePublicCorsAllowedOrigins field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraServePublicCorsAllowedOriginsOk() ([]string, bool) {
+	if o == nil || o.HydraServePublicCorsAllowedOrigins == nil {
+		return nil, false
+	}
+	return o.HydraServePublicCorsAllowedOrigins, true
+}
+
+// HasHydraServePublicCorsAllowedOrigins returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraServePublicCorsAllowedOrigins() bool {
+	if o != nil && o.HydraServePublicCorsAllowedOrigins != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraServePublicCorsAllowedOrigins gets a reference to the given []string and assigns it to the HydraServePublicCorsAllowedOrigins field.
+func (o *NormalizedProjectRevision) SetHydraServePublicCorsAllowedOrigins(v []string) {
+	o.HydraServePublicCorsAllowedOrigins = v
+}
+
+// GetHydraServePublicCorsEnabled returns the HydraServePublicCorsEnabled field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraServePublicCorsEnabled() bool {
+	if o == nil || o.HydraServePublicCorsEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HydraServePublicCorsEnabled
+}
+
+// GetHydraServePublicCorsEnabledOk returns a tuple with the HydraServePublicCorsEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraServePublicCorsEnabledOk() (*bool, bool) {
+	if o == nil || o.HydraServePublicCorsEnabled == nil {
+		return nil, false
+	}
+	return o.HydraServePublicCorsEnabled, true
+}
+
+// HasHydraServePublicCorsEnabled returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraServePublicCorsEnabled() bool {
+	if o != nil && o.HydraServePublicCorsEnabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraServePublicCorsEnabled gets a reference to the given bool and assigns it to the HydraServePublicCorsEnabled field.
+func (o *NormalizedProjectRevision) SetHydraServePublicCorsEnabled(v bool) {
+	o.HydraServePublicCorsEnabled = &v
+}
+
+// GetHydraStrategiesAccessToken returns the HydraStrategiesAccessToken field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevision) GetHydraStrategiesAccessToken() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.HydraStrategiesAccessToken
+}
+
+// GetHydraStrategiesAccessTokenOk returns a tuple with the HydraStrategiesAccessToken field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevision) GetHydraStrategiesAccessTokenOk() (*interface{}, bool) {
+	if o == nil || o.HydraStrategiesAccessToken == nil {
+		return nil, false
+	}
+	return &o.HydraStrategiesAccessToken, true
+}
+
+// HasHydraStrategiesAccessToken returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraStrategiesAccessToken() bool {
+	if o != nil && o.HydraStrategiesAccessToken != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraStrategiesAccessToken gets a reference to the given interface{} and assigns it to the HydraStrategiesAccessToken field.
+func (o *NormalizedProjectRevision) SetHydraStrategiesAccessToken(v interface{}) {
+	o.HydraStrategiesAccessToken = v
+}
+
+// GetHydraStrategiesScope returns the HydraStrategiesScope field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevision) GetHydraStrategiesScope() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.HydraStrategiesScope
+}
+
+// GetHydraStrategiesScopeOk returns a tuple with the HydraStrategiesScope field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevision) GetHydraStrategiesScopeOk() (*interface{}, bool) {
+	if o == nil || o.HydraStrategiesScope == nil {
+		return nil, false
+	}
+	return &o.HydraStrategiesScope, true
+}
+
+// HasHydraStrategiesScope returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraStrategiesScope() bool {
+	if o != nil && o.HydraStrategiesScope != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraStrategiesScope gets a reference to the given interface{} and assigns it to the HydraStrategiesScope field.
+func (o *NormalizedProjectRevision) SetHydraStrategiesScope(v interface{}) {
+	o.HydraStrategiesScope = v
+}
+
+// GetHydraTtlAccessToken returns the HydraTtlAccessToken field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevision) GetHydraTtlAccessToken() string {
+	if o == nil || o.HydraTtlAccessToken.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.HydraTtlAccessToken.Get()
+}
+
+// GetHydraTtlAccessTokenOk returns a tuple with the HydraTtlAccessToken field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevision) GetHydraTtlAccessTokenOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.HydraTtlAccessToken.Get(), o.HydraTtlAccessToken.IsSet()
+}
+
+// HasHydraTtlAccessToken returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraTtlAccessToken() bool {
+	if o != nil && o.HydraTtlAccessToken.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraTtlAccessToken gets a reference to the given NullableString and assigns it to the HydraTtlAccessToken field.
+func (o *NormalizedProjectRevision) SetHydraTtlAccessToken(v string) {
+	o.HydraTtlAccessToken.Set(&v)
+}
+// SetHydraTtlAccessTokenNil sets the value for HydraTtlAccessToken to be an explicit nil
+func (o *NormalizedProjectRevision) SetHydraTtlAccessTokenNil() {
+	o.HydraTtlAccessToken.Set(nil)
+}
+
+// UnsetHydraTtlAccessToken ensures that no value is present for HydraTtlAccessToken, not even an explicit nil
+func (o *NormalizedProjectRevision) UnsetHydraTtlAccessToken() {
+	o.HydraTtlAccessToken.Unset()
+}
+
+// GetHydraTtlAuthCode returns the HydraTtlAuthCode field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevision) GetHydraTtlAuthCode() string {
+	if o == nil || o.HydraTtlAuthCode.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.HydraTtlAuthCode.Get()
+}
+
+// GetHydraTtlAuthCodeOk returns a tuple with the HydraTtlAuthCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevision) GetHydraTtlAuthCodeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.HydraTtlAuthCode.Get(), o.HydraTtlAuthCode.IsSet()
+}
+
+// HasHydraTtlAuthCode returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraTtlAuthCode() bool {
+	if o != nil && o.HydraTtlAuthCode.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraTtlAuthCode gets a reference to the given NullableString and assigns it to the HydraTtlAuthCode field.
+func (o *NormalizedProjectRevision) SetHydraTtlAuthCode(v string) {
+	o.HydraTtlAuthCode.Set(&v)
+}
+// SetHydraTtlAuthCodeNil sets the value for HydraTtlAuthCode to be an explicit nil
+func (o *NormalizedProjectRevision) SetHydraTtlAuthCodeNil() {
+	o.HydraTtlAuthCode.Set(nil)
+}
+
+// UnsetHydraTtlAuthCode ensures that no value is present for HydraTtlAuthCode, not even an explicit nil
+func (o *NormalizedProjectRevision) UnsetHydraTtlAuthCode() {
+	o.HydraTtlAuthCode.Unset()
+}
+
+// GetHydraTtlIdToken returns the HydraTtlIdToken field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevision) GetHydraTtlIdToken() string {
+	if o == nil || o.HydraTtlIdToken.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.HydraTtlIdToken.Get()
+}
+
+// GetHydraTtlIdTokenOk returns a tuple with the HydraTtlIdToken field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevision) GetHydraTtlIdTokenOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.HydraTtlIdToken.Get(), o.HydraTtlIdToken.IsSet()
+}
+
+// HasHydraTtlIdToken returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraTtlIdToken() bool {
+	if o != nil && o.HydraTtlIdToken.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraTtlIdToken gets a reference to the given NullableString and assigns it to the HydraTtlIdToken field.
+func (o *NormalizedProjectRevision) SetHydraTtlIdToken(v string) {
+	o.HydraTtlIdToken.Set(&v)
+}
+// SetHydraTtlIdTokenNil sets the value for HydraTtlIdToken to be an explicit nil
+func (o *NormalizedProjectRevision) SetHydraTtlIdTokenNil() {
+	o.HydraTtlIdToken.Set(nil)
+}
+
+// UnsetHydraTtlIdToken ensures that no value is present for HydraTtlIdToken, not even an explicit nil
+func (o *NormalizedProjectRevision) UnsetHydraTtlIdToken() {
+	o.HydraTtlIdToken.Unset()
+}
+
+// GetHydraTtlLoginConsentRequest returns the HydraTtlLoginConsentRequest field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevision) GetHydraTtlLoginConsentRequest() string {
+	if o == nil || o.HydraTtlLoginConsentRequest.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.HydraTtlLoginConsentRequest.Get()
+}
+
+// GetHydraTtlLoginConsentRequestOk returns a tuple with the HydraTtlLoginConsentRequest field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevision) GetHydraTtlLoginConsentRequestOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.HydraTtlLoginConsentRequest.Get(), o.HydraTtlLoginConsentRequest.IsSet()
+}
+
+// HasHydraTtlLoginConsentRequest returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraTtlLoginConsentRequest() bool {
+	if o != nil && o.HydraTtlLoginConsentRequest.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraTtlLoginConsentRequest gets a reference to the given NullableString and assigns it to the HydraTtlLoginConsentRequest field.
+func (o *NormalizedProjectRevision) SetHydraTtlLoginConsentRequest(v string) {
+	o.HydraTtlLoginConsentRequest.Set(&v)
+}
+// SetHydraTtlLoginConsentRequestNil sets the value for HydraTtlLoginConsentRequest to be an explicit nil
+func (o *NormalizedProjectRevision) SetHydraTtlLoginConsentRequestNil() {
+	o.HydraTtlLoginConsentRequest.Set(nil)
+}
+
+// UnsetHydraTtlLoginConsentRequest ensures that no value is present for HydraTtlLoginConsentRequest, not even an explicit nil
+func (o *NormalizedProjectRevision) UnsetHydraTtlLoginConsentRequest() {
+	o.HydraTtlLoginConsentRequest.Unset()
+}
+
+// GetHydraTtlRefreshToken returns the HydraTtlRefreshToken field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevision) GetHydraTtlRefreshToken() string {
+	if o == nil || o.HydraTtlRefreshToken.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.HydraTtlRefreshToken.Get()
+}
+
+// GetHydraTtlRefreshTokenOk returns a tuple with the HydraTtlRefreshToken field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevision) GetHydraTtlRefreshTokenOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.HydraTtlRefreshToken.Get(), o.HydraTtlRefreshToken.IsSet()
+}
+
+// HasHydraTtlRefreshToken returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraTtlRefreshToken() bool {
+	if o != nil && o.HydraTtlRefreshToken.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraTtlRefreshToken gets a reference to the given NullableString and assigns it to the HydraTtlRefreshToken field.
+func (o *NormalizedProjectRevision) SetHydraTtlRefreshToken(v string) {
+	o.HydraTtlRefreshToken.Set(&v)
+}
+// SetHydraTtlRefreshTokenNil sets the value for HydraTtlRefreshToken to be an explicit nil
+func (o *NormalizedProjectRevision) SetHydraTtlRefreshTokenNil() {
+	o.HydraTtlRefreshToken.Set(nil)
+}
+
+// UnsetHydraTtlRefreshToken ensures that no value is present for HydraTtlRefreshToken, not even an explicit nil
+func (o *NormalizedProjectRevision) UnsetHydraTtlRefreshToken() {
+	o.HydraTtlRefreshToken.Unset()
+}
+
+// GetHydraUrlsConsent returns the HydraUrlsConsent field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraUrlsConsent() string {
+	if o == nil || o.HydraUrlsConsent == nil {
+		var ret string
+		return ret
+	}
+	return *o.HydraUrlsConsent
+}
+
+// GetHydraUrlsConsentOk returns a tuple with the HydraUrlsConsent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraUrlsConsentOk() (*string, bool) {
+	if o == nil || o.HydraUrlsConsent == nil {
+		return nil, false
+	}
+	return o.HydraUrlsConsent, true
+}
+
+// HasHydraUrlsConsent returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraUrlsConsent() bool {
+	if o != nil && o.HydraUrlsConsent != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraUrlsConsent gets a reference to the given string and assigns it to the HydraUrlsConsent field.
+func (o *NormalizedProjectRevision) SetHydraUrlsConsent(v string) {
+	o.HydraUrlsConsent = &v
+}
+
+// GetHydraUrlsError returns the HydraUrlsError field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraUrlsError() string {
+	if o == nil || o.HydraUrlsError == nil {
+		var ret string
+		return ret
+	}
+	return *o.HydraUrlsError
+}
+
+// GetHydraUrlsErrorOk returns a tuple with the HydraUrlsError field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraUrlsErrorOk() (*string, bool) {
+	if o == nil || o.HydraUrlsError == nil {
+		return nil, false
+	}
+	return o.HydraUrlsError, true
+}
+
+// HasHydraUrlsError returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraUrlsError() bool {
+	if o != nil && o.HydraUrlsError != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraUrlsError gets a reference to the given string and assigns it to the HydraUrlsError field.
+func (o *NormalizedProjectRevision) SetHydraUrlsError(v string) {
+	o.HydraUrlsError = &v
+}
+
+// GetHydraUrlsLogin returns the HydraUrlsLogin field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraUrlsLogin() string {
+	if o == nil || o.HydraUrlsLogin == nil {
+		var ret string
+		return ret
+	}
+	return *o.HydraUrlsLogin
+}
+
+// GetHydraUrlsLoginOk returns a tuple with the HydraUrlsLogin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraUrlsLoginOk() (*string, bool) {
+	if o == nil || o.HydraUrlsLogin == nil {
+		return nil, false
+	}
+	return o.HydraUrlsLogin, true
+}
+
+// HasHydraUrlsLogin returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraUrlsLogin() bool {
+	if o != nil && o.HydraUrlsLogin != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraUrlsLogin gets a reference to the given string and assigns it to the HydraUrlsLogin field.
+func (o *NormalizedProjectRevision) SetHydraUrlsLogin(v string) {
+	o.HydraUrlsLogin = &v
+}
+
+// GetHydraUrlsLogout returns the HydraUrlsLogout field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraUrlsLogout() string {
+	if o == nil || o.HydraUrlsLogout == nil {
+		var ret string
+		return ret
+	}
+	return *o.HydraUrlsLogout
+}
+
+// GetHydraUrlsLogoutOk returns a tuple with the HydraUrlsLogout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraUrlsLogoutOk() (*string, bool) {
+	if o == nil || o.HydraUrlsLogout == nil {
+		return nil, false
+	}
+	return o.HydraUrlsLogout, true
+}
+
+// HasHydraUrlsLogout returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraUrlsLogout() bool {
+	if o != nil && o.HydraUrlsLogout != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraUrlsLogout gets a reference to the given string and assigns it to the HydraUrlsLogout field.
+func (o *NormalizedProjectRevision) SetHydraUrlsLogout(v string) {
+	o.HydraUrlsLogout = &v
+}
+
+// GetHydraUrlsPostLogoutRedirect returns the HydraUrlsPostLogoutRedirect field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraUrlsPostLogoutRedirect() string {
+	if o == nil || o.HydraUrlsPostLogoutRedirect == nil {
+		var ret string
+		return ret
+	}
+	return *o.HydraUrlsPostLogoutRedirect
+}
+
+// GetHydraUrlsPostLogoutRedirectOk returns a tuple with the HydraUrlsPostLogoutRedirect field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraUrlsPostLogoutRedirectOk() (*string, bool) {
+	if o == nil || o.HydraUrlsPostLogoutRedirect == nil {
+		return nil, false
+	}
+	return o.HydraUrlsPostLogoutRedirect, true
+}
+
+// HasHydraUrlsPostLogoutRedirect returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraUrlsPostLogoutRedirect() bool {
+	if o != nil && o.HydraUrlsPostLogoutRedirect != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraUrlsPostLogoutRedirect gets a reference to the given string and assigns it to the HydraUrlsPostLogoutRedirect field.
+func (o *NormalizedProjectRevision) SetHydraUrlsPostLogoutRedirect(v string) {
+	o.HydraUrlsPostLogoutRedirect = &v
+}
+
+// GetHydraUrlsSelfIssuer returns the HydraUrlsSelfIssuer field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraUrlsSelfIssuer() string {
+	if o == nil || o.HydraUrlsSelfIssuer == nil {
+		var ret string
+		return ret
+	}
+	return *o.HydraUrlsSelfIssuer
+}
+
+// GetHydraUrlsSelfIssuerOk returns a tuple with the HydraUrlsSelfIssuer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraUrlsSelfIssuerOk() (*string, bool) {
+	if o == nil || o.HydraUrlsSelfIssuer == nil {
+		return nil, false
+	}
+	return o.HydraUrlsSelfIssuer, true
+}
+
+// HasHydraUrlsSelfIssuer returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraUrlsSelfIssuer() bool {
+	if o != nil && o.HydraUrlsSelfIssuer != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraUrlsSelfIssuer gets a reference to the given string and assigns it to the HydraUrlsSelfIssuer field.
+func (o *NormalizedProjectRevision) SetHydraUrlsSelfIssuer(v string) {
+	o.HydraUrlsSelfIssuer = &v
+}
+
+// GetHydraWebfingerJwksBroadcastKeys returns the HydraWebfingerJwksBroadcastKeys field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraWebfingerJwksBroadcastKeys() []string {
+	if o == nil || o.HydraWebfingerJwksBroadcastKeys == nil {
+		var ret []string
+		return ret
+	}
+	return o.HydraWebfingerJwksBroadcastKeys
+}
+
+// GetHydraWebfingerJwksBroadcastKeysOk returns a tuple with the HydraWebfingerJwksBroadcastKeys field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraWebfingerJwksBroadcastKeysOk() ([]string, bool) {
+	if o == nil || o.HydraWebfingerJwksBroadcastKeys == nil {
+		return nil, false
+	}
+	return o.HydraWebfingerJwksBroadcastKeys, true
+}
+
+// HasHydraWebfingerJwksBroadcastKeys returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraWebfingerJwksBroadcastKeys() bool {
+	if o != nil && o.HydraWebfingerJwksBroadcastKeys != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraWebfingerJwksBroadcastKeys gets a reference to the given []string and assigns it to the HydraWebfingerJwksBroadcastKeys field.
+func (o *NormalizedProjectRevision) SetHydraWebfingerJwksBroadcastKeys(v []string) {
+	o.HydraWebfingerJwksBroadcastKeys = v
+}
+
+// GetHydraWebfingerOidcDiscoveryAuthUrl returns the HydraWebfingerOidcDiscoveryAuthUrl field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraWebfingerOidcDiscoveryAuthUrl() string {
+	if o == nil || o.HydraWebfingerOidcDiscoveryAuthUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.HydraWebfingerOidcDiscoveryAuthUrl
+}
+
+// GetHydraWebfingerOidcDiscoveryAuthUrlOk returns a tuple with the HydraWebfingerOidcDiscoveryAuthUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraWebfingerOidcDiscoveryAuthUrlOk() (*string, bool) {
+	if o == nil || o.HydraWebfingerOidcDiscoveryAuthUrl == nil {
+		return nil, false
+	}
+	return o.HydraWebfingerOidcDiscoveryAuthUrl, true
+}
+
+// HasHydraWebfingerOidcDiscoveryAuthUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraWebfingerOidcDiscoveryAuthUrl() bool {
+	if o != nil && o.HydraWebfingerOidcDiscoveryAuthUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraWebfingerOidcDiscoveryAuthUrl gets a reference to the given string and assigns it to the HydraWebfingerOidcDiscoveryAuthUrl field.
+func (o *NormalizedProjectRevision) SetHydraWebfingerOidcDiscoveryAuthUrl(v string) {
+	o.HydraWebfingerOidcDiscoveryAuthUrl = &v
+}
+
+// GetHydraWebfingerOidcDiscoveryClientRegistrationUrl returns the HydraWebfingerOidcDiscoveryClientRegistrationUrl field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraWebfingerOidcDiscoveryClientRegistrationUrl() string {
+	if o == nil || o.HydraWebfingerOidcDiscoveryClientRegistrationUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.HydraWebfingerOidcDiscoveryClientRegistrationUrl
+}
+
+// GetHydraWebfingerOidcDiscoveryClientRegistrationUrlOk returns a tuple with the HydraWebfingerOidcDiscoveryClientRegistrationUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraWebfingerOidcDiscoveryClientRegistrationUrlOk() (*string, bool) {
+	if o == nil || o.HydraWebfingerOidcDiscoveryClientRegistrationUrl == nil {
+		return nil, false
+	}
+	return o.HydraWebfingerOidcDiscoveryClientRegistrationUrl, true
+}
+
+// HasHydraWebfingerOidcDiscoveryClientRegistrationUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraWebfingerOidcDiscoveryClientRegistrationUrl() bool {
+	if o != nil && o.HydraWebfingerOidcDiscoveryClientRegistrationUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraWebfingerOidcDiscoveryClientRegistrationUrl gets a reference to the given string and assigns it to the HydraWebfingerOidcDiscoveryClientRegistrationUrl field.
+func (o *NormalizedProjectRevision) SetHydraWebfingerOidcDiscoveryClientRegistrationUrl(v string) {
+	o.HydraWebfingerOidcDiscoveryClientRegistrationUrl = &v
+}
+
+// GetHydraWebfingerOidcDiscoveryJwksUrl returns the HydraWebfingerOidcDiscoveryJwksUrl field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraWebfingerOidcDiscoveryJwksUrl() string {
+	if o == nil || o.HydraWebfingerOidcDiscoveryJwksUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.HydraWebfingerOidcDiscoveryJwksUrl
+}
+
+// GetHydraWebfingerOidcDiscoveryJwksUrlOk returns a tuple with the HydraWebfingerOidcDiscoveryJwksUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraWebfingerOidcDiscoveryJwksUrlOk() (*string, bool) {
+	if o == nil || o.HydraWebfingerOidcDiscoveryJwksUrl == nil {
+		return nil, false
+	}
+	return o.HydraWebfingerOidcDiscoveryJwksUrl, true
+}
+
+// HasHydraWebfingerOidcDiscoveryJwksUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraWebfingerOidcDiscoveryJwksUrl() bool {
+	if o != nil && o.HydraWebfingerOidcDiscoveryJwksUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraWebfingerOidcDiscoveryJwksUrl gets a reference to the given string and assigns it to the HydraWebfingerOidcDiscoveryJwksUrl field.
+func (o *NormalizedProjectRevision) SetHydraWebfingerOidcDiscoveryJwksUrl(v string) {
+	o.HydraWebfingerOidcDiscoveryJwksUrl = &v
+}
+
+// GetHydraWebfingerOidcDiscoverySupportedClaims returns the HydraWebfingerOidcDiscoverySupportedClaims field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraWebfingerOidcDiscoverySupportedClaims() []string {
+	if o == nil || o.HydraWebfingerOidcDiscoverySupportedClaims == nil {
+		var ret []string
+		return ret
+	}
+	return o.HydraWebfingerOidcDiscoverySupportedClaims
+}
+
+// GetHydraWebfingerOidcDiscoverySupportedClaimsOk returns a tuple with the HydraWebfingerOidcDiscoverySupportedClaims field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraWebfingerOidcDiscoverySupportedClaimsOk() ([]string, bool) {
+	if o == nil || o.HydraWebfingerOidcDiscoverySupportedClaims == nil {
+		return nil, false
+	}
+	return o.HydraWebfingerOidcDiscoverySupportedClaims, true
+}
+
+// HasHydraWebfingerOidcDiscoverySupportedClaims returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraWebfingerOidcDiscoverySupportedClaims() bool {
+	if o != nil && o.HydraWebfingerOidcDiscoverySupportedClaims != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraWebfingerOidcDiscoverySupportedClaims gets a reference to the given []string and assigns it to the HydraWebfingerOidcDiscoverySupportedClaims field.
+func (o *NormalizedProjectRevision) SetHydraWebfingerOidcDiscoverySupportedClaims(v []string) {
+	o.HydraWebfingerOidcDiscoverySupportedClaims = v
+}
+
+// GetHydraWebfingerOidcDiscoverySupportedScope returns the HydraWebfingerOidcDiscoverySupportedScope field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraWebfingerOidcDiscoverySupportedScope() []string {
+	if o == nil || o.HydraWebfingerOidcDiscoverySupportedScope == nil {
+		var ret []string
+		return ret
+	}
+	return o.HydraWebfingerOidcDiscoverySupportedScope
+}
+
+// GetHydraWebfingerOidcDiscoverySupportedScopeOk returns a tuple with the HydraWebfingerOidcDiscoverySupportedScope field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraWebfingerOidcDiscoverySupportedScopeOk() ([]string, bool) {
+	if o == nil || o.HydraWebfingerOidcDiscoverySupportedScope == nil {
+		return nil, false
+	}
+	return o.HydraWebfingerOidcDiscoverySupportedScope, true
+}
+
+// HasHydraWebfingerOidcDiscoverySupportedScope returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraWebfingerOidcDiscoverySupportedScope() bool {
+	if o != nil && o.HydraWebfingerOidcDiscoverySupportedScope != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraWebfingerOidcDiscoverySupportedScope gets a reference to the given []string and assigns it to the HydraWebfingerOidcDiscoverySupportedScope field.
+func (o *NormalizedProjectRevision) SetHydraWebfingerOidcDiscoverySupportedScope(v []string) {
+	o.HydraWebfingerOidcDiscoverySupportedScope = v
+}
+
+// GetHydraWebfingerOidcDiscoveryTokenUrl returns the HydraWebfingerOidcDiscoveryTokenUrl field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraWebfingerOidcDiscoveryTokenUrl() string {
+	if o == nil || o.HydraWebfingerOidcDiscoveryTokenUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.HydraWebfingerOidcDiscoveryTokenUrl
+}
+
+// GetHydraWebfingerOidcDiscoveryTokenUrlOk returns a tuple with the HydraWebfingerOidcDiscoveryTokenUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraWebfingerOidcDiscoveryTokenUrlOk() (*string, bool) {
+	if o == nil || o.HydraWebfingerOidcDiscoveryTokenUrl == nil {
+		return nil, false
+	}
+	return o.HydraWebfingerOidcDiscoveryTokenUrl, true
+}
+
+// HasHydraWebfingerOidcDiscoveryTokenUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraWebfingerOidcDiscoveryTokenUrl() bool {
+	if o != nil && o.HydraWebfingerOidcDiscoveryTokenUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraWebfingerOidcDiscoveryTokenUrl gets a reference to the given string and assigns it to the HydraWebfingerOidcDiscoveryTokenUrl field.
+func (o *NormalizedProjectRevision) SetHydraWebfingerOidcDiscoveryTokenUrl(v string) {
+	o.HydraWebfingerOidcDiscoveryTokenUrl = &v
+}
+
+// GetHydraWebfingerOidcDiscoveryUserinfoUrl returns the HydraWebfingerOidcDiscoveryUserinfoUrl field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraWebfingerOidcDiscoveryUserinfoUrl() string {
+	if o == nil || o.HydraWebfingerOidcDiscoveryUserinfoUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.HydraWebfingerOidcDiscoveryUserinfoUrl
+}
+
+// GetHydraWebfingerOidcDiscoveryUserinfoUrlOk returns a tuple with the HydraWebfingerOidcDiscoveryUserinfoUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraWebfingerOidcDiscoveryUserinfoUrlOk() (*string, bool) {
+	if o == nil || o.HydraWebfingerOidcDiscoveryUserinfoUrl == nil {
+		return nil, false
+	}
+	return o.HydraWebfingerOidcDiscoveryUserinfoUrl, true
+}
+
+// HasHydraWebfingerOidcDiscoveryUserinfoUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraWebfingerOidcDiscoveryUserinfoUrl() bool {
+	if o != nil && o.HydraWebfingerOidcDiscoveryUserinfoUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraWebfingerOidcDiscoveryUserinfoUrl gets a reference to the given string and assigns it to the HydraWebfingerOidcDiscoveryUserinfoUrl field.
+func (o *NormalizedProjectRevision) SetHydraWebfingerOidcDiscoveryUserinfoUrl(v string) {
+	o.HydraWebfingerOidcDiscoveryUserinfoUrl = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -3022,6 +4431,38 @@ func (o *NormalizedProjectRevision) SetName(v string) {
 	o.Name = v
 }
 
+// GetProduction returns the Production field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetProduction() bool {
+	if o == nil || o.Production == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Production
+}
+
+// GetProductionOk returns a tuple with the Production field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetProductionOk() (*bool, bool) {
+	if o == nil || o.Production == nil {
+		return nil, false
+	}
+	return o.Production, true
+}
+
+// HasProduction returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasProduction() bool {
+	if o != nil && o.Production != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProduction gets a reference to the given bool and assigns it to the Production field.
+func (o *NormalizedProjectRevision) SetProduction(v bool) {
+	o.Production = &v
+}
+
 // GetProjectId returns the ProjectId field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetProjectId() string {
 	if o == nil || o.ProjectId == nil {
@@ -3090,6 +4531,126 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.HydraOauth2ClientCredentialsDefaultGrantAllowedScope != nil {
+		toSerialize["hydra_oauth2_client_credentials_default_grant_allowed_scope"] = o.HydraOauth2ClientCredentialsDefaultGrantAllowedScope
+	}
+	if o.HydraOauth2GrantJwtIatOptional != nil {
+		toSerialize["hydra_oauth2_grant_jwt_iat_optional"] = o.HydraOauth2GrantJwtIatOptional
+	}
+	if o.HydraOauth2GrantJwtJtiOptional != nil {
+		toSerialize["hydra_oauth2_grant_jwt_jti_optional"] = o.HydraOauth2GrantJwtJtiOptional
+	}
+	if o.HydraOauth2GrantJwtMaxTtl.IsSet() {
+		toSerialize["hydra_oauth2_grant_jwt_max_ttl"] = o.HydraOauth2GrantJwtMaxTtl.Get()
+	}
+	if o.HydraOauth2PkceEnforced != nil {
+		toSerialize["hydra_oauth2_pkce_enforced"] = o.HydraOauth2PkceEnforced
+	}
+	if o.HydraOauth2PkceEnforcedForPublicClients != nil {
+		toSerialize["hydra_oauth2_pkce_enforced_for_public_clients"] = o.HydraOauth2PkceEnforcedForPublicClients
+	}
+	if o.HydraOauth2RefreshTokenHook != nil {
+		toSerialize["hydra_oauth2_refresh_token_hook"] = o.HydraOauth2RefreshTokenHook
+	}
+	if o.HydraOidcDynamicClientRegistrationDefaultScope != nil {
+		toSerialize["hydra_oidc_dynamic_client_registration_default_scope"] = o.HydraOidcDynamicClientRegistrationDefaultScope
+	}
+	if o.HydraOidcDynamicClientRegistrationEnabled != nil {
+		toSerialize["hydra_oidc_dynamic_client_registration_enabled"] = o.HydraOidcDynamicClientRegistrationEnabled
+	}
+	if o.HydraOidcSubjectIdentifiersPairwiseSalt != nil {
+		toSerialize["hydra_oidc_subject_identifiers_pairwise_salt"] = o.HydraOidcSubjectIdentifiersPairwiseSalt
+	}
+	if o.HydraOidcSubjectIdentifiersSupportedTypes != nil {
+		toSerialize["hydra_oidc_subject_identifiers_supported_types"] = o.HydraOidcSubjectIdentifiersSupportedTypes
+	}
+	if o.HydraSecretsCookie != nil {
+		toSerialize["hydra_secrets_cookie"] = o.HydraSecretsCookie
+	}
+	if o.HydraSecretsSystem != nil {
+		toSerialize["hydra_secrets_system"] = o.HydraSecretsSystem
+	}
+	if o.HydraServeAdminCorsAllowedOrigins != nil {
+		toSerialize["hydra_serve_admin_cors_allowed_origins"] = o.HydraServeAdminCorsAllowedOrigins
+	}
+	if o.HydraServeAdminCorsEnabled != nil {
+		toSerialize["hydra_serve_admin_cors_enabled"] = o.HydraServeAdminCorsEnabled
+	}
+	if o.HydraServeCookiesSameSiteLegacyWorkaround != nil {
+		toSerialize["hydra_serve_cookies_same_site_legacy_workaround"] = o.HydraServeCookiesSameSiteLegacyWorkaround
+	}
+	if o.HydraServeCookiesSameSiteMode != nil {
+		toSerialize["hydra_serve_cookies_same_site_mode"] = o.HydraServeCookiesSameSiteMode
+	}
+	if o.HydraServePublicCorsAllowedOrigins != nil {
+		toSerialize["hydra_serve_public_cors_allowed_origins"] = o.HydraServePublicCorsAllowedOrigins
+	}
+	if o.HydraServePublicCorsEnabled != nil {
+		toSerialize["hydra_serve_public_cors_enabled"] = o.HydraServePublicCorsEnabled
+	}
+	if o.HydraStrategiesAccessToken != nil {
+		toSerialize["hydra_strategies_access_token"] = o.HydraStrategiesAccessToken
+	}
+	if o.HydraStrategiesScope != nil {
+		toSerialize["hydra_strategies_scope"] = o.HydraStrategiesScope
+	}
+	if o.HydraTtlAccessToken.IsSet() {
+		toSerialize["hydra_ttl_access_token"] = o.HydraTtlAccessToken.Get()
+	}
+	if o.HydraTtlAuthCode.IsSet() {
+		toSerialize["hydra_ttl_auth_code"] = o.HydraTtlAuthCode.Get()
+	}
+	if o.HydraTtlIdToken.IsSet() {
+		toSerialize["hydra_ttl_id_token"] = o.HydraTtlIdToken.Get()
+	}
+	if o.HydraTtlLoginConsentRequest.IsSet() {
+		toSerialize["hydra_ttl_login_consent_request"] = o.HydraTtlLoginConsentRequest.Get()
+	}
+	if o.HydraTtlRefreshToken.IsSet() {
+		toSerialize["hydra_ttl_refresh_token"] = o.HydraTtlRefreshToken.Get()
+	}
+	if o.HydraUrlsConsent != nil {
+		toSerialize["hydra_urls_consent"] = o.HydraUrlsConsent
+	}
+	if o.HydraUrlsError != nil {
+		toSerialize["hydra_urls_error"] = o.HydraUrlsError
+	}
+	if o.HydraUrlsLogin != nil {
+		toSerialize["hydra_urls_login"] = o.HydraUrlsLogin
+	}
+	if o.HydraUrlsLogout != nil {
+		toSerialize["hydra_urls_logout"] = o.HydraUrlsLogout
+	}
+	if o.HydraUrlsPostLogoutRedirect != nil {
+		toSerialize["hydra_urls_post_logout_redirect"] = o.HydraUrlsPostLogoutRedirect
+	}
+	if o.HydraUrlsSelfIssuer != nil {
+		toSerialize["hydra_urls_self_issuer"] = o.HydraUrlsSelfIssuer
+	}
+	if o.HydraWebfingerJwksBroadcastKeys != nil {
+		toSerialize["hydra_webfinger_jwks_broadcast_keys"] = o.HydraWebfingerJwksBroadcastKeys
+	}
+	if o.HydraWebfingerOidcDiscoveryAuthUrl != nil {
+		toSerialize["hydra_webfinger_oidc_discovery_auth_url"] = o.HydraWebfingerOidcDiscoveryAuthUrl
+	}
+	if o.HydraWebfingerOidcDiscoveryClientRegistrationUrl != nil {
+		toSerialize["hydra_webfinger_oidc_discovery_client_registration_url"] = o.HydraWebfingerOidcDiscoveryClientRegistrationUrl
+	}
+	if o.HydraWebfingerOidcDiscoveryJwksUrl != nil {
+		toSerialize["hydra_webfinger_oidc_discovery_jwks_url"] = o.HydraWebfingerOidcDiscoveryJwksUrl
+	}
+	if o.HydraWebfingerOidcDiscoverySupportedClaims != nil {
+		toSerialize["hydra_webfinger_oidc_discovery_supported_claims"] = o.HydraWebfingerOidcDiscoverySupportedClaims
+	}
+	if o.HydraWebfingerOidcDiscoverySupportedScope != nil {
+		toSerialize["hydra_webfinger_oidc_discovery_supported_scope"] = o.HydraWebfingerOidcDiscoverySupportedScope
+	}
+	if o.HydraWebfingerOidcDiscoveryTokenUrl != nil {
+		toSerialize["hydra_webfinger_oidc_discovery_token_url"] = o.HydraWebfingerOidcDiscoveryTokenUrl
+	}
+	if o.HydraWebfingerOidcDiscoveryUserinfoUrl != nil {
+		toSerialize["hydra_webfinger_oidc_discovery_userinfo_url"] = o.HydraWebfingerOidcDiscoveryUserinfoUrl
 	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
@@ -3342,6 +4903,9 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["name"] = o.Name
+	}
+	if o.Production != nil {
+		toSerialize["production"] = o.Production
 	}
 	if o.ProjectId != nil {
 		toSerialize["project_id"] = o.ProjectId

@@ -48,7 +48,7 @@ class NormalizedProjectRevisionIdentitySchema {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  IdentitySchema? identitySchema;
+  ManagedIdentitySchema? identitySchema;
 
   String? identitySchemaId;
 
@@ -211,7 +211,7 @@ class NormalizedProjectRevisionIdentitySchema {
       return NormalizedProjectRevisionIdentitySchema(
         createdAt: mapDateTime(json, r'created_at', ''),
         id: mapValueOfType<String>(json, r'id'),
-        identitySchema: IdentitySchema.fromJson(json[r'identity_schema']),
+        identitySchema: ManagedIdentitySchema.fromJson(json[r'identity_schema']),
         identitySchemaId: mapValueOfType<String>(json, r'identity_schema_id'),
         importId: mapValueOfType<String>(json, r'import_id'),
         importUrl: mapValueOfType<String>(json, r'import_url'),
