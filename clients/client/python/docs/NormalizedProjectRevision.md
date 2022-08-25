@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **hydra_oauth2_pkce_enforced** | **bool** | Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \&quot;oauth2.pkce.enforced\&quot; setting. | [optional] 
 **hydra_oauth2_pkce_enforced_for_public_clients** | **bool** | Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \&quot;oauth2.pkce.enforced_for_public_clients\&quot; setting. | [optional] 
 **hydra_oauth2_refresh_token_hook** | **str** | Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \&quot;oauth2.refresh_token_hook\&quot; setting. | [optional] 
+**hydra_oauth2_session_allowed_top_level_claims** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
+**hydra_oauth2_session_exclude_not_before_claim** | **bool** | Set to true if you want to exclude claim &#x60;nbf (not before)&#x60; part of access token.  This governs the \&quot;oauth2.session.exclude_not_before_claim\&quot; setting. | [optional] 
 **hydra_oidc_dynamic_client_registration_default_scope** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
 **hydra_oidc_dynamic_client_registration_enabled** | **bool** | Configures OpenID Connect Dynamic Client Registration.  This governs the \&quot;oidc.dynamic_client_registration.enabled\&quot; setting. | [optional] 
 **hydra_oidc_subject_identifiers_pairwise_salt** | **str** | Configures OpenID Connect Discovery and overwrites the pairwise algorithm  This governs the \&quot;oidc.subject_identifiers.pairwise_salt\&quot; setting. | [optional] 

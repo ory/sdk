@@ -12,6 +12,8 @@
 | **hydra_oauth2_pkce_enforced** | **Boolean** | Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \&quot;oauth2.pkce.enforced\&quot; setting. | [optional] |
 | **hydra_oauth2_pkce_enforced_for_public_clients** | **Boolean** | Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \&quot;oauth2.pkce.enforced_for_public_clients\&quot; setting. | [optional] |
 | **hydra_oauth2_refresh_token_hook** | **String** | Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \&quot;oauth2.refresh_token_hook\&quot; setting. | [optional] |
+| **hydra_oauth2_session_allowed_top_level_claims** | **Array&lt;String&gt;** |  | [optional] |
+| **hydra_oauth2_session_exclude_not_before_claim** | **Boolean** | Set to true if you want to exclude claim &#x60;nbf (not before)&#x60; part of access token.  This governs the \&quot;oauth2.session.exclude_not_before_claim\&quot; setting. | [optional] |
 | **hydra_oidc_dynamic_client_registration_default_scope** | **Array&lt;String&gt;** |  | [optional] |
 | **hydra_oidc_dynamic_client_registration_enabled** | **Boolean** | Configures OpenID Connect Dynamic Client Registration.  This governs the \&quot;oidc.dynamic_client_registration.enabled\&quot; setting. | [optional] |
 | **hydra_oidc_subject_identifiers_pairwise_salt** | **String** | Configures OpenID Connect Discovery and overwrites the pairwise algorithm  This governs the \&quot;oidc.subject_identifiers.pairwise_salt\&quot; setting. | [optional] |
@@ -147,6 +149,8 @@ instance = OryClient::NormalizedProjectRevision.new(
   hydra_oauth2_pkce_enforced: null,
   hydra_oauth2_pkce_enforced_for_public_clients: null,
   hydra_oauth2_refresh_token_hook: null,
+  hydra_oauth2_session_allowed_top_level_claims: null,
+  hydra_oauth2_session_exclude_not_before_claim: null,
   hydra_oidc_dynamic_client_registration_default_scope: null,
   hydra_oidc_dynamic_client_registration_enabled: null,
   hydra_oidc_subject_identifiers_pairwise_salt: null,

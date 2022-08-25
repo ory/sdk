@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.2.0-alpha.16
+  version: v0.2.0-alpha.18
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -7345,6 +7345,18 @@ components:
 
             This governs the "oauth2.refresh_token_hook" setting.
           type: string
+        hydra_oauth2_session_allowed_top_level_claims:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
+        hydra_oauth2_session_exclude_not_before_claim:
+          description: |-
+            Set to true if you want to exclude claim `nbf (not before)` part of access token.
+
+            This governs the "oauth2.session.exclude_not_before_claim" setting.
+          type: boolean
         hydra_oidc_dynamic_client_registration_default_scope:
           items:
             type: string

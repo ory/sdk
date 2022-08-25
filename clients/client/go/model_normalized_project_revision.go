@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.16
+API version: v0.2.0-alpha.18
 Contact: support@ory.sh
 */
 
@@ -33,6 +33,9 @@ type NormalizedProjectRevision struct {
 	HydraOauth2PkceEnforcedForPublicClients *bool `json:"hydra_oauth2_pkce_enforced_for_public_clients,omitempty"`
 	// Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \"oauth2.refresh_token_hook\" setting.
 	HydraOauth2RefreshTokenHook *string `json:"hydra_oauth2_refresh_token_hook,omitempty"`
+	HydraOauth2SessionAllowedTopLevelClaims []string `json:"hydra_oauth2_session_allowed_top_level_claims,omitempty"`
+	// Set to true if you want to exclude claim `nbf (not before)` part of access token.  This governs the \"oauth2.session.exclude_not_before_claim\" setting.
+	HydraOauth2SessionExcludeNotBeforeClaim *bool `json:"hydra_oauth2_session_exclude_not_before_claim,omitempty"`
 	HydraOidcDynamicClientRegistrationDefaultScope []string `json:"hydra_oidc_dynamic_client_registration_default_scope,omitempty"`
 	// Configures OpenID Connect Dynamic Client Registration.  This governs the \"oidc.dynamic_client_registration.enabled\" setting.
 	HydraOidcDynamicClientRegistrationEnabled *bool `json:"hydra_oidc_dynamic_client_registration_enabled,omitempty"`
@@ -521,6 +524,70 @@ func (o *NormalizedProjectRevision) HasHydraOauth2RefreshTokenHook() bool {
 // SetHydraOauth2RefreshTokenHook gets a reference to the given string and assigns it to the HydraOauth2RefreshTokenHook field.
 func (o *NormalizedProjectRevision) SetHydraOauth2RefreshTokenHook(v string) {
 	o.HydraOauth2RefreshTokenHook = &v
+}
+
+// GetHydraOauth2SessionAllowedTopLevelClaims returns the HydraOauth2SessionAllowedTopLevelClaims field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraOauth2SessionAllowedTopLevelClaims() []string {
+	if o == nil || o.HydraOauth2SessionAllowedTopLevelClaims == nil {
+		var ret []string
+		return ret
+	}
+	return o.HydraOauth2SessionAllowedTopLevelClaims
+}
+
+// GetHydraOauth2SessionAllowedTopLevelClaimsOk returns a tuple with the HydraOauth2SessionAllowedTopLevelClaims field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraOauth2SessionAllowedTopLevelClaimsOk() ([]string, bool) {
+	if o == nil || o.HydraOauth2SessionAllowedTopLevelClaims == nil {
+		return nil, false
+	}
+	return o.HydraOauth2SessionAllowedTopLevelClaims, true
+}
+
+// HasHydraOauth2SessionAllowedTopLevelClaims returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraOauth2SessionAllowedTopLevelClaims() bool {
+	if o != nil && o.HydraOauth2SessionAllowedTopLevelClaims != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2SessionAllowedTopLevelClaims gets a reference to the given []string and assigns it to the HydraOauth2SessionAllowedTopLevelClaims field.
+func (o *NormalizedProjectRevision) SetHydraOauth2SessionAllowedTopLevelClaims(v []string) {
+	o.HydraOauth2SessionAllowedTopLevelClaims = v
+}
+
+// GetHydraOauth2SessionExcludeNotBeforeClaim returns the HydraOauth2SessionExcludeNotBeforeClaim field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraOauth2SessionExcludeNotBeforeClaim() bool {
+	if o == nil || o.HydraOauth2SessionExcludeNotBeforeClaim == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HydraOauth2SessionExcludeNotBeforeClaim
+}
+
+// GetHydraOauth2SessionExcludeNotBeforeClaimOk returns a tuple with the HydraOauth2SessionExcludeNotBeforeClaim field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraOauth2SessionExcludeNotBeforeClaimOk() (*bool, bool) {
+	if o == nil || o.HydraOauth2SessionExcludeNotBeforeClaim == nil {
+		return nil, false
+	}
+	return o.HydraOauth2SessionExcludeNotBeforeClaim, true
+}
+
+// HasHydraOauth2SessionExcludeNotBeforeClaim returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraOauth2SessionExcludeNotBeforeClaim() bool {
+	if o != nil && o.HydraOauth2SessionExcludeNotBeforeClaim != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2SessionExcludeNotBeforeClaim gets a reference to the given bool and assigns it to the HydraOauth2SessionExcludeNotBeforeClaim field.
+func (o *NormalizedProjectRevision) SetHydraOauth2SessionExcludeNotBeforeClaim(v bool) {
+	o.HydraOauth2SessionExcludeNotBeforeClaim = &v
 }
 
 // GetHydraOidcDynamicClientRegistrationDefaultScope returns the HydraOidcDynamicClientRegistrationDefaultScope field value if set, zero value otherwise.
@@ -4552,6 +4619,12 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	}
 	if o.HydraOauth2RefreshTokenHook != nil {
 		toSerialize["hydra_oauth2_refresh_token_hook"] = o.HydraOauth2RefreshTokenHook
+	}
+	if o.HydraOauth2SessionAllowedTopLevelClaims != nil {
+		toSerialize["hydra_oauth2_session_allowed_top_level_claims"] = o.HydraOauth2SessionAllowedTopLevelClaims
+	}
+	if o.HydraOauth2SessionExcludeNotBeforeClaim != nil {
+		toSerialize["hydra_oauth2_session_exclude_not_before_claim"] = o.HydraOauth2SessionExcludeNotBeforeClaim
 	}
 	if o.HydraOidcDynamicClientRegistrationDefaultScope != nil {
 		toSerialize["hydra_oidc_dynamic_client_registration_default_scope"] = o.HydraOidcDynamicClientRegistrationDefaultScope

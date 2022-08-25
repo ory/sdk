@@ -63,6 +63,17 @@ void main() {
       // TODO
     });
 
+    // List<String> hydraOauth2SessionAllowedTopLevelClaims (default value: const [])
+    test('to test the property `hydraOauth2SessionAllowedTopLevelClaims`', () async {
+      // TODO
+    });
+
+    // Set to true if you want to exclude claim `nbf (not before)` part of access token.  This governs the \"oauth2.session.exclude_not_before_claim\" setting.
+    // bool hydraOauth2SessionExcludeNotBeforeClaim
+    test('to test the property `hydraOauth2SessionExcludeNotBeforeClaim`', () async {
+      // TODO
+    });
+
     // List<String> hydraOidcDynamicClientRegistrationDefaultScope (default value: const [])
     test('to test the property `hydraOidcDynamicClientRegistrationDefaultScope`', () async {
       // TODO

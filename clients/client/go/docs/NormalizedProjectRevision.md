@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **HydraOauth2PkceEnforced** | Pointer to **bool** | Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \&quot;oauth2.pkce.enforced\&quot; setting. | [optional] 
 **HydraOauth2PkceEnforcedForPublicClients** | Pointer to **bool** | Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \&quot;oauth2.pkce.enforced_for_public_clients\&quot; setting. | [optional] 
 **HydraOauth2RefreshTokenHook** | Pointer to **string** | Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \&quot;oauth2.refresh_token_hook\&quot; setting. | [optional] 
+**HydraOauth2SessionAllowedTopLevelClaims** | Pointer to **[]string** |  | [optional] 
+**HydraOauth2SessionExcludeNotBeforeClaim** | Pointer to **bool** | Set to true if you want to exclude claim &#x60;nbf (not before)&#x60; part of access token.  This governs the \&quot;oauth2.session.exclude_not_before_claim\&quot; setting. | [optional] 
 **HydraOidcDynamicClientRegistrationDefaultScope** | Pointer to **[]string** |  | [optional] 
 **HydraOidcDynamicClientRegistrationEnabled** | Pointer to **bool** | Configures OpenID Connect Dynamic Client Registration.  This governs the \&quot;oidc.dynamic_client_registration.enabled\&quot; setting. | [optional] 
 **HydraOidcSubjectIdentifiersPairwiseSalt** | Pointer to **string** | Configures OpenID Connect Discovery and overwrites the pairwise algorithm  This governs the \&quot;oidc.subject_identifiers.pairwise_salt\&quot; setting. | [optional] 
@@ -361,6 +363,56 @@ SetHydraOauth2RefreshTokenHook sets HydraOauth2RefreshTokenHook field to given v
 `func (o *NormalizedProjectRevision) HasHydraOauth2RefreshTokenHook() bool`
 
 HasHydraOauth2RefreshTokenHook returns a boolean if a field has been set.
+
+### GetHydraOauth2SessionAllowedTopLevelClaims
+
+`func (o *NormalizedProjectRevision) GetHydraOauth2SessionAllowedTopLevelClaims() []string`
+
+GetHydraOauth2SessionAllowedTopLevelClaims returns the HydraOauth2SessionAllowedTopLevelClaims field if non-nil, zero value otherwise.
+
+### GetHydraOauth2SessionAllowedTopLevelClaimsOk
+
+`func (o *NormalizedProjectRevision) GetHydraOauth2SessionAllowedTopLevelClaimsOk() (*[]string, bool)`
+
+GetHydraOauth2SessionAllowedTopLevelClaimsOk returns a tuple with the HydraOauth2SessionAllowedTopLevelClaims field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraOauth2SessionAllowedTopLevelClaims
+
+`func (o *NormalizedProjectRevision) SetHydraOauth2SessionAllowedTopLevelClaims(v []string)`
+
+SetHydraOauth2SessionAllowedTopLevelClaims sets HydraOauth2SessionAllowedTopLevelClaims field to given value.
+
+### HasHydraOauth2SessionAllowedTopLevelClaims
+
+`func (o *NormalizedProjectRevision) HasHydraOauth2SessionAllowedTopLevelClaims() bool`
+
+HasHydraOauth2SessionAllowedTopLevelClaims returns a boolean if a field has been set.
+
+### GetHydraOauth2SessionExcludeNotBeforeClaim
+
+`func (o *NormalizedProjectRevision) GetHydraOauth2SessionExcludeNotBeforeClaim() bool`
+
+GetHydraOauth2SessionExcludeNotBeforeClaim returns the HydraOauth2SessionExcludeNotBeforeClaim field if non-nil, zero value otherwise.
+
+### GetHydraOauth2SessionExcludeNotBeforeClaimOk
+
+`func (o *NormalizedProjectRevision) GetHydraOauth2SessionExcludeNotBeforeClaimOk() (*bool, bool)`
+
+GetHydraOauth2SessionExcludeNotBeforeClaimOk returns a tuple with the HydraOauth2SessionExcludeNotBeforeClaim field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraOauth2SessionExcludeNotBeforeClaim
+
+`func (o *NormalizedProjectRevision) SetHydraOauth2SessionExcludeNotBeforeClaim(v bool)`
+
+SetHydraOauth2SessionExcludeNotBeforeClaim sets HydraOauth2SessionExcludeNotBeforeClaim field to given value.
+
+### HasHydraOauth2SessionExcludeNotBeforeClaim
+
+`func (o *NormalizedProjectRevision) HasHydraOauth2SessionExcludeNotBeforeClaim() bool`
+
+HasHydraOauth2SessionExcludeNotBeforeClaim returns a boolean if a field has been set.
 
 ### GetHydraOidcDynamicClientRegistrationDefaultScope
 
