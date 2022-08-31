@@ -3,7 +3,7 @@
 #
 
 name: 'ory_oathkeeper_client'
-version: '0.39.2'
+version: '0.39.4'
 description: 'OpenAPI API client'
 homepage: 'https://www.ory.sh'
 environment:

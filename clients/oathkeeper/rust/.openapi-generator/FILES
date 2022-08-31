@@ -4,9 +4,9 @@
 Cargo.toml
 README.md
 docs/ApiApi.md
+docs/GetWellKnownJsonWebKeys500Response.md
 docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
-docs/InlineResponse500.md
 docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/Rule.md
@@ -19,9 +19,9 @@ src/apis/api_api.rs
 src/apis/configuration.rs
 src/apis/mod.rs
 src/lib.rs
+src/models/get_well_known_json_web_keys_500_response.rs
 src/models/health_not_ready_status.rs
 src/models/health_status.rs
-src/models/inline_response_500.rs
 src/models/json_web_key.rs
 src/models/json_web_key_set.rs
 src/models/mod.rs

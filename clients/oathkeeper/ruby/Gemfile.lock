@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ory-oathkeeper-client (0.39.2)
+    ory-oathkeeper-client (0.39.4)
       typhoeus (~> 1.0, >= 1.0.1)
 
 GEM
