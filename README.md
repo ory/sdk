@@ -23,10 +23,9 @@ If you wish to debug some generators or build steps, you can run the image local
 docker run --platform linux/amd64 --mount type=bind,source="$(pwd)",target=/sdk --name sdk --user "$(id -u):$(id -g)" -it oryd/sdk:latest /bin/sh
 ```
 
-### Debugging Failing CircleCI Tests
+### Debugging Failing Tests on CI
 
-If a CircleCI tests fails ([see example](https://app.circleci.com/pipelines/github/ory/kratos/5333/workflows/00edb19c-e87a-456e-8053-8d064f1acfc0/jobs/28235))
-you may run the following code snippet to reproduce the failure locally:
+If a tests fails on CI, you may run the following code snippet to reproduce the failure locally:
 
 ```shell script
 docker run --platform linux/amd64 --mount type=bind,source="$(pwd)",target=/project -it oryd/sdk:v0.0.50 /bin/sh
