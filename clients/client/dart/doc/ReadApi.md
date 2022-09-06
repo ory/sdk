@@ -9,18 +9,18 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getCheck**](ReadApi.md#getcheck) | **GET** /relation-tuples/check/openapi | Check a relation tuple
-[**getCheckMirrorStatus**](ReadApi.md#getcheckmirrorstatus) | **GET** /relation-tuples/check | Check a relation tuple
-[**getExpand**](ReadApi.md#getexpand) | **GET** /relation-tuples/expand | Expand a Relation Tuple
-[**getRelationTuples**](ReadApi.md#getrelationtuples) | **GET** /relation-tuples | Query relation tuples
-[**postCheck**](ReadApi.md#postcheck) | **POST** /relation-tuples/check/openapi | Check a relation tuple
-[**postCheckMirrorStatus**](ReadApi.md#postcheckmirrorstatus) | **POST** /relation-tuples/check | Check a relation tuple
+[**getCheck**](ReadApi.md#getcheck) | **GET** /relation-tuples/check/openapi | # Check a relation tuple
+[**getCheckMirrorStatus**](ReadApi.md#getcheckmirrorstatus) | **GET** /relation-tuples/check | # Check a relation tuple
+[**getExpand**](ReadApi.md#getexpand) | **GET** /relation-tuples/expand | # Expand a Relation Tuple
+[**getRelationTuples**](ReadApi.md#getrelationtuples) | **GET** /relation-tuples | # Query relation tuples
+[**postCheck**](ReadApi.md#postcheck) | **POST** /relation-tuples/check/openapi | # Check a relation tuple
+[**postCheckMirrorStatus**](ReadApi.md#postcheckmirrorstatus) | **POST** /relation-tuples/check | # Check a relation tuple
 
 
 # **getCheck**
 > GetCheckResponse getCheck(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation, maxDepth)
 
-Check a relation tuple
+# Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 # **getCheckMirrorStatus**
 > GetCheckResponse getCheckMirrorStatus()
 
-Check a relation tuple
+# Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -128,7 +128,7 @@ This endpoint does not need any parameter.
 # **getExpand**
 > ExpandTree getExpand(namespace, object, relation, maxDepth)
 
-Expand a Relation Tuple
+# Expand a Relation Tuple
 
 Use this endpoint to expand a relation tuple.
 
@@ -183,7 +183,7 @@ Name | Type | Description  | Notes
 # **getRelationTuples**
 > GetRelationTuplesResponse getRelationTuples(pageToken, pageSize, namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation)
 
-Query relation tuples
+# Query relation tuples
 
 Get all relation tuples that match the query. Only the namespace field is required.
 
@@ -248,7 +248,7 @@ Name | Type | Description  | Notes
 # **postCheck**
 > GetCheckResponse postCheck(maxDepth, relationQuery)
 
-Check a relation tuple
+# Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -299,7 +299,7 @@ Name | Type | Description  | Notes
 # **postCheckMirrorStatus**
 > GetCheckResponse postCheckMirrorStatus()
 
-Check a relation tuple
+# Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 

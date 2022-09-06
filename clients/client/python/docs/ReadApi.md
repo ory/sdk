@@ -4,18 +4,18 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_check**](ReadApi.md#get_check) | **GET** /relation-tuples/check/openapi | Check a relation tuple
-[**get_check_mirror_status**](ReadApi.md#get_check_mirror_status) | **GET** /relation-tuples/check | Check a relation tuple
-[**get_expand**](ReadApi.md#get_expand) | **GET** /relation-tuples/expand | Expand a Relation Tuple
-[**get_relation_tuples**](ReadApi.md#get_relation_tuples) | **GET** /relation-tuples | Query relation tuples
-[**post_check**](ReadApi.md#post_check) | **POST** /relation-tuples/check/openapi | Check a relation tuple
-[**post_check_mirror_status**](ReadApi.md#post_check_mirror_status) | **POST** /relation-tuples/check | Check a relation tuple
+[**get_check**](ReadApi.md#get_check) | **GET** /relation-tuples/check/openapi | # Check a relation tuple
+[**get_check_mirror_status**](ReadApi.md#get_check_mirror_status) | **GET** /relation-tuples/check | # Check a relation tuple
+[**get_expand**](ReadApi.md#get_expand) | **GET** /relation-tuples/expand | # Expand a Relation Tuple
+[**get_relation_tuples**](ReadApi.md#get_relation_tuples) | **GET** /relation-tuples | # Query relation tuples
+[**post_check**](ReadApi.md#post_check) | **POST** /relation-tuples/check/openapi | # Check a relation tuple
+[**post_check_mirror_status**](ReadApi.md#post_check_mirror_status) | **POST** /relation-tuples/check | # Check a relation tuple
 
 
 # **get_check**
 > GetCheckResponse get_check()
 
-Check a relation tuple
+# Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -62,7 +62,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # Check a relation tuple
+        # # Check a relation tuple
         api_response = api_instance.get_check(namespace=namespace, object=object, relation=relation, subject_id=subject_id, subject_set_namespace=subject_set_namespace, subject_set_object=subject_set_object, subject_set_relation=subject_set_relation, max_depth=max_depth)
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 # **get_check_mirror_status**
 > GetCheckResponse get_check_mirror_status()
 
-Check a relation tuple
+# Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -148,7 +148,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
     # example, this endpoint has no required or optional parameters
     try:
-        # Check a relation tuple
+        # # Check a relation tuple
         api_response = api_instance.get_check_mirror_status()
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -187,7 +187,7 @@ This endpoint does not need any parameter.
 # **get_expand**
 > ExpandTree get_expand(namespace, object, relation)
 
-Expand a Relation Tuple
+# Expand a Relation Tuple
 
 Use this endpoint to expand a relation tuple.
 
@@ -229,7 +229,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # Expand a Relation Tuple
+        # # Expand a Relation Tuple
         api_response = api_instance.get_expand(namespace, object, relation)
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -238,7 +238,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # Expand a Relation Tuple
+        # # Expand a Relation Tuple
         api_response = api_instance.get_expand(namespace, object, relation, max_depth=max_depth)
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -283,7 +283,7 @@ Name | Type | Description  | Notes
 # **get_relation_tuples**
 > GetRelationTuplesResponse get_relation_tuples()
 
-Query relation tuples
+# Query relation tuples
 
 Get all relation tuples that match the query. Only the namespace field is required.
 
@@ -331,7 +331,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # Query relation tuples
+        # # Query relation tuples
         api_response = api_instance.get_relation_tuples(page_token=page_token, page_size=page_size, namespace=namespace, object=object, relation=relation, subject_id=subject_id, subject_set_namespace=subject_set_namespace, subject_set_object=subject_set_object, subject_set_relation=subject_set_relation)
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -380,7 +380,7 @@ Name | Type | Description  | Notes
 # **post_check**
 > GetCheckResponse post_check()
 
-Check a relation tuple
+# Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -432,7 +432,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # Check a relation tuple
+        # # Check a relation tuple
         api_response = api_instance.post_check(max_depth=max_depth, relation_query=relation_query)
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -474,7 +474,7 @@ Name | Type | Description  | Notes
 # **post_check_mirror_status**
 > GetCheckResponse post_check_mirror_status()
 
-Check a relation tuple
+# Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -512,7 +512,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
     # example, this endpoint has no required or optional parameters
     try:
-        # Check a relation tuple
+        # # Check a relation tuple
         api_response = api_instance.post_check_mirror_status()
         pprint(api_response)
     except ory_client.ApiException as e:

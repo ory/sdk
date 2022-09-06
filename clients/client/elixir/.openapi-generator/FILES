@@ -57,7 +57,6 @@ lib/ory/model/identity_credentials_type.ex
 lib/ory/model/identity_schema_container.ex
 lib/ory/model/identity_schema_preset.ex
 lib/ory/model/identity_state.ex
-lib/ory/model/internal_relation_tuple.ex
 lib/ory/model/introspected_o_auth2_token.ex
 lib/ory/model/invite_payload.ex
 lib/ory/model/is_owner_for_project_by_slug.ex
@@ -110,6 +109,7 @@ lib/ory/model/refresh_token_hook_request.ex
 lib/ory/model/refresh_token_hook_response.ex
 lib/ory/model/reject_o_auth2_request.ex
 lib/ory/model/relation_query.ex
+lib/ory/model/relation_tuple.ex
 lib/ory/model/revoked_sessions.ex
 lib/ory/model/schema_patch.ex
 lib/ory/model/self_service_browser_location_change_required_error.ex

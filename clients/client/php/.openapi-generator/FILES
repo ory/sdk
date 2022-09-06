@@ -57,7 +57,6 @@ docs/Model/IdentityState.md
 docs/Model/InlineResponse200.md
 docs/Model/InlineResponse2001.md
 docs/Model/InlineResponse503.md
-docs/Model/InternalRelationTuple.md
 docs/Model/IntrospectedOAuth2Token.md
 docs/Model/InvitePayload.md
 docs/Model/IsOwnerForProjectBySlug.md
@@ -108,6 +107,7 @@ docs/Model/RefreshTokenHookRequest.md
 docs/Model/RefreshTokenHookResponse.md
 docs/Model/RejectOAuth2Request.md
 docs/Model/RelationQuery.md
+docs/Model/RelationTuple.md
 docs/Model/RevokedSessions.md
 docs/Model/SchemaPatch.md
 docs/Model/SelfServiceBrowserLocationChangeRequiredError.md
@@ -235,7 +235,6 @@ lib/Model/IdentityState.php
 lib/Model/InlineResponse200.php
 lib/Model/InlineResponse2001.php
 lib/Model/InlineResponse503.php
-lib/Model/InternalRelationTuple.php
 lib/Model/IntrospectedOAuth2Token.php
 lib/Model/InvitePayload.php
 lib/Model/IsOwnerForProjectBySlug.php
@@ -287,6 +286,7 @@ lib/Model/RefreshTokenHookRequest.php
 lib/Model/RefreshTokenHookResponse.php
 lib/Model/RejectOAuth2Request.php
 lib/Model/RelationQuery.php
+lib/Model/RelationTuple.php
 lib/Model/RevokedSessions.php
 lib/Model/SchemaPatch.php
 lib/Model/SelfServiceBrowserLocationChangeRequiredError.php
@@ -412,7 +412,6 @@ test/Model/IdentityTest.php
 test/Model/InlineResponse2001Test.php
 test/Model/InlineResponse200Test.php
 test/Model/InlineResponse503Test.php
-test/Model/InternalRelationTupleTest.php
 test/Model/IntrospectedOAuth2TokenTest.php
 test/Model/InvitePayloadTest.php
 test/Model/IsOwnerForProjectBySlugPayloadTest.php
@@ -463,6 +462,7 @@ test/Model/RefreshTokenHookRequestTest.php
 test/Model/RefreshTokenHookResponseTest.php
 test/Model/RejectOAuth2RequestTest.php
 test/Model/RelationQueryTest.php
+test/Model/RelationTupleTest.php
 test/Model/RevokedSessionsTest.php
 test/Model/SchemaPatchTest.php
 test/Model/SelfServiceBrowserLocationChangeRequiredErrorTest.php

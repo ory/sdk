@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**namespace** | Option<**String**> | Namespace of the Relation Tuple | [optional]
-**object** | Option<**String**> | Object of the Relation Tuple | [optional]
-**relation** | Option<**String**> | Relation of the Relation Tuple | [optional]
-**subject_id** | Option<**String**> | SubjectID of the Relation Tuple  Either SubjectSet or SubjectID can be provided. | [optional]
-**subject_set** | Option<[**crate::models::SubjectSet**](SubjectSet.md)> |  | [optional]
+**namespace** | Option<**String**> | Namespace to query | [optional]
+**object** | Option<**String**> | Object to query | [optional]
+**relation** | Option<**String**> | Relation to query | [optional]
+**subject_id** | Option<**String**> | SubjectID to query  Either SubjectSet or SubjectID can be provided. | [optional]
+**subject_set** | Option<[**crate::models::SubjectSet**](subjectSet.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

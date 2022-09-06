@@ -60,7 +60,6 @@ from ory_client.model.identity_schema_preset import IdentitySchemaPreset
 from ory_client.model.identity_schema_presets import IdentitySchemaPresets
 from ory_client.model.identity_schemas import IdentitySchemas
 from ory_client.model.identity_state import IdentityState
-from ory_client.model.internal_relation_tuple import InternalRelationTuple
 from ory_client.model.introspected_o_auth2_token import IntrospectedOAuth2Token
 from ory_client.model.invite_payload import InvitePayload
 from ory_client.model.is_owner_for_project_by_slug import IsOwnerForProjectBySlug
@@ -130,6 +129,7 @@ from ory_client.model.refresh_token_hook_request import RefreshTokenHookRequest
 from ory_client.model.refresh_token_hook_response import RefreshTokenHookResponse
 from ory_client.model.reject_o_auth2_request import RejectOAuth2Request
 from ory_client.model.relation_query import RelationQuery
+from ory_client.model.relation_tuple import RelationTuple
 from ory_client.model.revoked_sessions import RevokedSessions
 from ory_client.model.schema_patch import SchemaPatch
 from ory_client.model.self_service_browser_location_change_required_error import SelfServiceBrowserLocationChangeRequiredError

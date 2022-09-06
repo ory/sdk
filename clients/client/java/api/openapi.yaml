@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.2.0-alpha.25
+  version: v0.2.0-alpha.26
 servers:
 - url: https://{project}.projects.oryapis.com/
   variables:
@@ -1909,7 +1909,7 @@ paths:
           description: genericError
       security:
       - oryAccessToken: []
-      summary: Delete Relation Tuples
+      summary: '# Delete Relation Tuples'
       tags:
       - write
       x-accepts: application/json
@@ -1921,7 +1921,7 @@ paths:
           application/json:
             schema:
               items:
-                $ref: '#/components/schemas/PatchDelta'
+                $ref: '#/components/schemas/patchDelta'
               type: array
         x-originalParamName: Payload
       responses:
@@ -1949,7 +1949,7 @@ paths:
           description: genericError
       security:
       - oryAccessToken: []
-      summary: Patch Multiple Relation Tuples
+      summary: '# Patch Multiple Relation Tuples'
       tags:
       - write
       x-contentType: application/json
@@ -1961,15 +1961,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RelationQuery'
+              $ref: '#/components/schemas/relationQuery'
         x-originalParamName: Payload
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RelationQuery'
-          description: RelationQuery
+                $ref: '#/components/schemas/relationQuery'
+          description: relationQuery
         "400":
           content:
             application/json:
@@ -1984,7 +1984,7 @@ paths:
           description: genericError
       security:
       - oryAccessToken: []
-      summary: Create a Relation Tuple
+      summary: '# Create a Relation Tuple'
       tags:
       - write
       x-contentType: application/json
@@ -3158,7 +3158,7 @@ paths:
           description: genericError
       security:
       - oryAccessToken: []
-      summary: Query relation tuples
+      summary: '# Query relation tuples'
       tags:
       - read
       x-accepts: application/json
@@ -3194,7 +3194,7 @@ paths:
           description: genericError
       security:
       - oryAccessToken: []
-      summary: Check a relation tuple
+      summary: '# Check a relation tuple'
       tags:
       - read
       x-accepts: application/json
@@ -3229,7 +3229,7 @@ paths:
           description: genericError
       security:
       - oryAccessToken: []
-      summary: Check a relation tuple
+      summary: '# Check a relation tuple'
       tags:
       - read
       x-accepts: application/json
@@ -3324,7 +3324,7 @@ paths:
           description: genericError
       security:
       - oryAccessToken: []
-      summary: Check a relation tuple
+      summary: '# Check a relation tuple'
       tags:
       - read
       x-accepts: application/json
@@ -3345,7 +3345,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RelationQuery'
+              $ref: '#/components/schemas/relationQuery'
         x-originalParamName: Payload
       responses:
         "200":
@@ -3368,7 +3368,7 @@ paths:
           description: genericError
       security:
       - oryAccessToken: []
-      summary: Check a relation tuple
+      summary: '# Check a relation tuple'
       tags:
       - read
       x-contentType: application/json
@@ -3437,7 +3437,7 @@ paths:
           description: genericError
       security:
       - oryAccessToken: []
-      summary: Expand a Relation Tuple
+      summary: '# Expand a Relation Tuple'
       tags:
       - read
       x-accepts: application/json
@@ -5836,39 +5836,6 @@ components:
         sub:
           type: string
       type: object
-    InternalRelationTuple:
-      example:
-        subject_id: subject_id
-        namespace: namespace
-        object: object
-        relation: relation
-        subject_set:
-          namespace: namespace
-          object: object
-          relation: relation
-      properties:
-        namespace:
-          description: Namespace of the Relation Tuple
-          type: string
-        object:
-          description: Object of the Relation Tuple
-          type: string
-        relation:
-          description: Relation of the Relation Tuple
-          type: string
-        subject_id:
-          description: |-
-            SubjectID of the Relation Tuple
-
-            Either SubjectSet or SubjectID are required.
-          type: string
-        subject_set:
-          $ref: '#/components/schemas/SubjectSet'
-      required:
-      - namespace
-      - object
-      - relation
-      type: object
     InvitePayload:
       properties:
         invitee_email:
@@ -5940,27 +5907,6 @@ components:
       format: uuid4
       nullable: true
       type: string
-    PatchDelta:
-      example:
-        relation_tuple:
-          subject_id: subject_id
-          namespace: namespace
-          object: object
-          relation: relation
-          subject_set:
-            namespace: namespace
-            object: object
-            relation: relation
-        action: insert
-      properties:
-        action:
-          enum:
-          - insert
-          - delete
-          type: string
-        relation_tuple:
-          $ref: '#/components/schemas/InternalRelationTuple'
-      type: object
     QuotaCustomDomains:
       properties:
         available_domains:
@@ -6011,35 +5957,6 @@ components:
       type: object
     RecoveryAddressType:
       type: string
-    RelationQuery:
-      example:
-        subject_id: subject_id
-        namespace: namespace
-        object: object
-        relation: relation
-        subject_set:
-          namespace: namespace
-          object: object
-          relation: relation
-      properties:
-        namespace:
-          description: Namespace of the Relation Tuple
-          type: string
-        object:
-          description: Object of the Relation Tuple
-          type: string
-        relation:
-          description: Relation of the Relation Tuple
-          type: string
-        subject_id:
-          description: |-
-            SubjectID of the Relation Tuple
-
-            Either SubjectSet or SubjectID can be provided.
-          type: string
-        subject_set:
-          $ref: '#/components/schemas/SubjectSet'
-      type: object
     String:
       $ref: '#/components/schemas/NullString'
     StringSliceJSONFormat:
@@ -6048,26 +5965,6 @@ components:
       title: StringSliceJSONFormat represents []string{} which is encoded to/from
         JSON for SQL storage.
       type: array
-    SubjectSet:
-      example:
-        namespace: namespace
-        object: object
-        relation: relation
-      properties:
-        namespace:
-          description: Namespace of the Subject Set
-          type: string
-        object:
-          description: Object of the Subject Set
-          type: string
-        relation:
-          description: Relation of the Subject Set
-          type: string
-      required:
-      - namespace
-      - object
-      - relation
-      type: object
     SubscriptionStatus:
       description: |-
         For `collection_method=charge_automatically` a subscription moves into `incomplete` if the initial payment attempt fails. A subscription in this state can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an `active` state. If the first invoice is not paid within 23 hours, the subscription transitions to `incomplete_expired`. This is a terminal state, the open invoice will be voided and no further invoices will be generated.
@@ -6674,31 +6571,57 @@ components:
       type: object
     expandTree:
       example:
-        subject_id: subject_id
+        tuple:
+          subject_id: subject_id
+          namespace: namespace
+          object: object
+          relation: relation
+          subject_set:
+            namespace: namespace
+            object: object
+            relation: relation
         children:
         - null
         - null
         type: union
-        subject_set:
-          namespace: namespace
-          object: object
-          relation: relation
       properties:
         children:
+          description: The children of the node, possibly none.
           items:
             $ref: '#/components/schemas/expandTree'
           type: array
-        subject_id:
-          type: string
-        subject_set:
-          $ref: '#/components/schemas/SubjectSet'
+        tuple:
+          $ref: '#/components/schemas/relationTuple'
         type:
+          description: |-
+            The type of the node.
+            union TreeNodeUnion
+            exclusion TreeNodeExclusion
+            intersection TreeNodeIntersection
+            leaf TreeNodeLeaf
+            tuple_to_subject_set TreeNodeTupleToSubjectSet
+            computed_subject_set TreeNodeComputedSubjectSet
+            not TreeNodeNot
+            unspecified TreeNodeUnspecified
           enum:
           - union
           - exclusion
           - intersection
           - leaf
+          - tuple_to_subject_set
+          - computed_subject_set
+          - not
+          - unspecified
           type: string
+          x-go-enum-desc: |-
+            union TreeNodeUnion
+            exclusion TreeNodeExclusion
+            intersection TreeNodeIntersection
+            leaf TreeNodeLeaf
+            tuple_to_subject_set TreeNodeTupleToSubjectSet
+            computed_subject_set TreeNodeComputedSubjectSet
+            not TreeNodeNot
+            unspecified TreeNodeUnspecified
       required:
       - type
       type: object
@@ -6838,7 +6761,7 @@ components:
           type: string
         relation_tuples:
           items:
-            $ref: '#/components/schemas/InternalRelationTuple'
+            $ref: '#/components/schemas/relationTuple'
           type: array
       type: object
     handledOAuth2ConsentRequest:
@@ -10000,6 +9923,19 @@ components:
             in: header
           type: string
       type: object
+    patchDelta:
+      properties:
+        action:
+          enum:
+          - insert
+          - delete
+          type: string
+          x-go-enum-desc: |-
+            insert ActionInsert
+            delete ActionDelete
+        relation_tuple:
+          $ref: '#/components/schemas/relationTuple'
+      type: object
     previousOAuth2ConsentSession:
       description: |-
         The response used to return used consent requests
@@ -10460,6 +10396,68 @@ components:
           format: int64
           type: integer
       title: The request payload used to accept a login or consent request.
+      type: object
+    relationQuery:
+      example:
+        subject_id: subject_id
+        namespace: namespace
+        object: object
+        relation: relation
+        subject_set:
+          namespace: namespace
+          object: object
+          relation: relation
+      properties:
+        namespace:
+          description: Namespace to query
+          type: string
+        object:
+          description: Object to query
+          type: string
+        relation:
+          description: Relation to query
+          type: string
+        subject_id:
+          description: |-
+            SubjectID to query
+
+            Either SubjectSet or SubjectID can be provided.
+          type: string
+        subject_set:
+          $ref: '#/components/schemas/subjectSet'
+      type: object
+    relationTuple:
+      example:
+        subject_id: subject_id
+        namespace: namespace
+        object: object
+        relation: relation
+        subject_set:
+          namespace: namespace
+          object: object
+          relation: relation
+      properties:
+        namespace:
+          description: Namespace of the Relation Tuple
+          type: string
+        object:
+          description: Object of the Relation Tuple
+          type: string
+        relation:
+          description: Relation of the Relation Tuple
+          type: string
+        subject_id:
+          description: |-
+            SubjectID of the Relation Tuple
+
+            Either SubjectSet or SubjectID can be provided.
+          type: string
+        subject_set:
+          $ref: '#/components/schemas/subjectSet'
+      required:
+      - namespace
+      - object
+      - relation
       type: object
     revokedSessions:
       example:
@@ -11421,7 +11419,25 @@ components:
         id:
           type: string
       type: object
-    subject:
+    subjectSet:
+      example:
+        namespace: namespace
+        object: object
+        relation: relation
+      properties:
+        namespace:
+          description: Namespace of the Subject Set
+          type: string
+        object:
+          description: Object of the Subject Set
+          type: string
+        relation:
+          description: Relation of the Subject Set
+          type: string
+      required:
+      - namespace
+      - object
+      - relation
       type: object
     submitSelfServiceFlowWithWebAuthnRegistrationMethod:
       properties:

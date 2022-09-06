@@ -25,7 +25,7 @@ class PatchDelta {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  InternalRelationTuple? relationTuple;
+  RelationTuple? relationTuple;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PatchDelta &&
@@ -76,7 +76,7 @@ class PatchDelta {
 
       return PatchDelta(
         action: PatchDeltaActionEnum.fromJson(json[r'action']),
-        relationTuple: InternalRelationTuple.fromJson(json[r'relation_tuple']),
+        relationTuple: RelationTuple.fromJson(json[r'relation_tuple']),
       );
     }
     return null;

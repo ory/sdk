@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-class InternalRelationTuple {
-  /// Returns a new [InternalRelationTuple] instance.
-  InternalRelationTuple({
+class RelationTuple {
+  /// Returns a new [RelationTuple] instance.
+  RelationTuple({
     required this.namespace,
     required this.object,
     required this.relation,
@@ -29,7 +29,7 @@ class InternalRelationTuple {
   /// Relation of the Relation Tuple
   String relation;
 
-  /// SubjectID of the Relation Tuple  Either SubjectSet or SubjectID are required.
+  /// SubjectID of the Relation Tuple  Either SubjectSet or SubjectID can be provided.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -47,7 +47,7 @@ class InternalRelationTuple {
   SubjectSet? subjectSet;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is InternalRelationTuple &&
+  bool operator ==(Object other) => identical(this, other) || other is RelationTuple &&
      other.namespace == namespace &&
      other.object == object &&
      other.relation == relation &&
@@ -64,7 +64,7 @@ class InternalRelationTuple {
     (subjectSet == null ? 0 : subjectSet!.hashCode);
 
   @override
-  String toString() => 'InternalRelationTuple[namespace=$namespace, object=$object, relation=$relation, subjectId=$subjectId, subjectSet=$subjectSet]';
+  String toString() => 'RelationTuple[namespace=$namespace, object=$object, relation=$relation, subjectId=$subjectId, subjectSet=$subjectSet]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
@@ -84,10 +84,10 @@ class InternalRelationTuple {
     return _json;
   }
 
-  /// Returns a new [InternalRelationTuple] instance and imports its values from
+  /// Returns a new [RelationTuple] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static InternalRelationTuple? fromJson(dynamic value) {
+  static RelationTuple? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
 
@@ -96,13 +96,13 @@ class InternalRelationTuple {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "InternalRelationTuple[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "InternalRelationTuple[$key]" has a null value in JSON.');
+          assert(json.containsKey(key), 'Required key "RelationTuple[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "RelationTuple[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
-      return InternalRelationTuple(
+      return RelationTuple(
         namespace: mapValueOfType<String>(json, r'namespace')!,
         object: mapValueOfType<String>(json, r'object')!,
         relation: mapValueOfType<String>(json, r'relation')!,
@@ -113,11 +113,11 @@ class InternalRelationTuple {
     return null;
   }
 
-  static List<InternalRelationTuple>? listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <InternalRelationTuple>[];
+  static List<RelationTuple>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <RelationTuple>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = InternalRelationTuple.fromJson(row);
+        final value = RelationTuple.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -126,12 +126,12 @@ class InternalRelationTuple {
     return result.toList(growable: growable);
   }
 
-  static Map<String, InternalRelationTuple> mapFromJson(dynamic json) {
-    final map = <String, InternalRelationTuple>{};
+  static Map<String, RelationTuple> mapFromJson(dynamic json) {
+    final map = <String, RelationTuple>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = InternalRelationTuple.fromJson(entry.value);
+        final value = RelationTuple.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -140,13 +140,13 @@ class InternalRelationTuple {
     return map;
   }
 
-  // maps a json object with a list of InternalRelationTuple-objects as value to a dart map
-  static Map<String, List<InternalRelationTuple>> mapListFromJson(dynamic json, {bool growable = false,}) {
-    final map = <String, List<InternalRelationTuple>>{};
+  // maps a json object with a list of RelationTuple-objects as value to a dart map
+  static Map<String, List<RelationTuple>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<RelationTuple>>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = InternalRelationTuple.listFromJson(entry.value, growable: growable,);
+        final value = RelationTuple.listFromJson(entry.value, growable: growable,);
         if (value != null) {
           map[entry.key] = value;
         }

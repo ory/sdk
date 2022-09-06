@@ -20,7 +20,7 @@ class RelationQuery {
     this.subjectSet,
   });
 
-  /// Namespace of the Relation Tuple
+  /// Namespace to query
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -29,7 +29,7 @@ class RelationQuery {
   ///
   String? namespace;
 
-  /// Object of the Relation Tuple
+  /// Object to query
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -38,7 +38,7 @@ class RelationQuery {
   ///
   String? object;
 
-  /// Relation of the Relation Tuple
+  /// Relation to query
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -47,7 +47,7 @@ class RelationQuery {
   ///
   String? relation;
 
-  /// SubjectID of the Relation Tuple  Either SubjectSet or SubjectID can be provided.
+  /// SubjectID to query  Either SubjectSet or SubjectID can be provided.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated

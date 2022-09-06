@@ -16,7 +16,7 @@ class WriteApi {
 
   final ApiClient apiClient;
 
-  /// Create a Relation Tuple
+  /// # Create a Relation Tuple
   ///
   /// Use this endpoint to create a relation tuple.
   ///
@@ -50,7 +50,7 @@ class WriteApi {
     );
   }
 
-  /// Create a Relation Tuple
+  /// # Create a Relation Tuple
   ///
   /// Use this endpoint to create a relation tuple.
   ///
@@ -72,7 +72,7 @@ class WriteApi {
     return null;
   }
 
-  /// Delete Relation Tuples
+  /// # Delete Relation Tuples
   ///
   /// Use this endpoint to delete relation tuples
   ///
@@ -147,7 +147,7 @@ class WriteApi {
     );
   }
 
-  /// Delete Relation Tuples
+  /// # Delete Relation Tuples
   ///
   /// Use this endpoint to delete relation tuples
   ///
@@ -180,7 +180,7 @@ class WriteApi {
     }
   }
 
-  /// Patch Multiple Relation Tuples
+  /// # Patch Multiple Relation Tuples
   ///
   /// Use this endpoint to patch one or more relation tuples.
   ///
@@ -214,7 +214,7 @@ class WriteApi {
     );
   }
 
-  /// Patch Multiple Relation Tuples
+  /// # Patch Multiple Relation Tuples
   ///
   /// Use this endpoint to patch one or more relation tuples.
   ///

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.25
+API version: v0.2.0-alpha.26
 Contact: support@ory.sh
 */
 
@@ -17,13 +17,13 @@ import (
 
 // RelationQuery struct for RelationQuery
 type RelationQuery struct {
-	// Namespace of the Relation Tuple
+	// Namespace to query
 	Namespace *string `json:"namespace,omitempty"`
-	// Object of the Relation Tuple
+	// Object to query
 	Object *string `json:"object,omitempty"`
-	// Relation of the Relation Tuple
+	// Relation to query
 	Relation *string `json:"relation,omitempty"`
-	// SubjectID of the Relation Tuple  Either SubjectSet or SubjectID can be provided.
+	// SubjectID to query  Either SubjectSet or SubjectID can be provided.
 	SubjectId *string `json:"subject_id,omitempty"`
 	SubjectSet *SubjectSet `json:"subject_set,omitempty"`
 }

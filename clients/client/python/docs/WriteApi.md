@@ -4,15 +4,15 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_relation_tuple**](WriteApi.md#create_relation_tuple) | **PUT** /admin/relation-tuples | Create a Relation Tuple
-[**delete_relation_tuples**](WriteApi.md#delete_relation_tuples) | **DELETE** /admin/relation-tuples | Delete Relation Tuples
-[**patch_relation_tuples**](WriteApi.md#patch_relation_tuples) | **PATCH** /admin/relation-tuples | Patch Multiple Relation Tuples
+[**create_relation_tuple**](WriteApi.md#create_relation_tuple) | **PUT** /admin/relation-tuples | # Create a Relation Tuple
+[**delete_relation_tuples**](WriteApi.md#delete_relation_tuples) | **DELETE** /admin/relation-tuples | # Delete Relation Tuples
+[**patch_relation_tuples**](WriteApi.md#patch_relation_tuples) | **PATCH** /admin/relation-tuples | # Patch Multiple Relation Tuples
 
 
 # **create_relation_tuple**
 > RelationQuery create_relation_tuple()
 
-Create a Relation Tuple
+# Create a Relation Tuple
 
 Use this endpoint to create a relation tuple.
 
@@ -62,7 +62,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # Create a Relation Tuple
+        # # Create a Relation Tuple
         api_response = api_instance.create_relation_tuple(relation_query=relation_query)
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | RelationQuery |  -  |
+**201** | relationQuery |  -  |
 **400** | genericError |  -  |
 **500** | genericError |  -  |
 
@@ -103,7 +103,7 @@ Name | Type | Description  | Notes
 # **delete_relation_tuples**
 > delete_relation_tuples()
 
-Delete Relation Tuples
+# Delete Relation Tuples
 
 Use this endpoint to delete relation tuples
 
@@ -148,7 +148,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # Delete Relation Tuples
+        # # Delete Relation Tuples
         api_instance.delete_relation_tuples(namespace=namespace, object=object, relation=relation, subject_id=subject_id, subject_set_namespace=subject_set_namespace, subject_set_object=subject_set_object, subject_set_relation=subject_set_relation)
     except ory_client.ApiException as e:
         print("Exception when calling WriteApi->delete_relation_tuples: %s\n" % e)
@@ -194,7 +194,7 @@ void (empty response body)
 # **patch_relation_tuples**
 > patch_relation_tuples()
 
-Patch Multiple Relation Tuples
+# Patch Multiple Relation Tuples
 
 Use this endpoint to patch one or more relation tuples.
 
@@ -232,7 +232,7 @@ with ory_client.ApiClient(configuration) as api_client:
     patch_delta = [
         PatchDelta(
             action="insert",
-            relation_tuple=InternalRelationTuple(
+            relation_tuple=RelationTuple(
                 namespace="namespace_example",
                 object="object_example",
                 relation="relation_example",
@@ -249,7 +249,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # Patch Multiple Relation Tuples
+        # # Patch Multiple Relation Tuples
         api_instance.patch_relation_tuples(patch_delta=patch_delta)
     except ory_client.ApiException as e:
         print("Exception when calling WriteApi->patch_relation_tuples: %s\n" % e)

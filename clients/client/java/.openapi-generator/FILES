@@ -54,7 +54,6 @@ docs/IdentityState.md
 docs/InlineResponse200.md
 docs/InlineResponse2001.md
 docs/InlineResponse503.md
-docs/InternalRelationTuple.md
 docs/IntrospectedOAuth2Token.md
 docs/InvitePayload.md
 docs/IsOwnerForProjectBySlug.md
@@ -107,6 +106,7 @@ docs/RefreshTokenHookRequest.md
 docs/RefreshTokenHookResponse.md
 docs/RejectOAuth2Request.md
 docs/RelationQuery.md
+docs/RelationTuple.md
 docs/RevokedSessions.md
 docs/SchemaPatch.md
 docs/SelfServiceBrowserLocationChangeRequiredError.md
@@ -262,7 +262,6 @@ src/main/java/sh/ory/model/IdentityState.java
 src/main/java/sh/ory/model/InlineResponse200.java
 src/main/java/sh/ory/model/InlineResponse2001.java
 src/main/java/sh/ory/model/InlineResponse503.java
-src/main/java/sh/ory/model/InternalRelationTuple.java
 src/main/java/sh/ory/model/IntrospectedOAuth2Token.java
 src/main/java/sh/ory/model/InvitePayload.java
 src/main/java/sh/ory/model/IsOwnerForProjectBySlug.java
@@ -313,6 +312,7 @@ src/main/java/sh/ory/model/RefreshTokenHookRequest.java
 src/main/java/sh/ory/model/RefreshTokenHookResponse.java
 src/main/java/sh/ory/model/RejectOAuth2Request.java
 src/main/java/sh/ory/model/RelationQuery.java
+src/main/java/sh/ory/model/RelationTuple.java
 src/main/java/sh/ory/model/RevokedSessions.java
 src/main/java/sh/ory/model/SchemaPatch.java
 src/main/java/sh/ory/model/SelfServiceBrowserLocationChangeRequiredError.java
@@ -436,7 +436,6 @@ src/test/java/sh/ory/model/IdentityTest.java
 src/test/java/sh/ory/model/InlineResponse2001Test.java
 src/test/java/sh/ory/model/InlineResponse200Test.java
 src/test/java/sh/ory/model/InlineResponse503Test.java
-src/test/java/sh/ory/model/InternalRelationTupleTest.java
 src/test/java/sh/ory/model/IntrospectedOAuth2TokenTest.java
 src/test/java/sh/ory/model/InvitePayloadTest.java
 src/test/java/sh/ory/model/IsOwnerForProjectBySlugPayloadTest.java
@@ -487,6 +486,7 @@ src/test/java/sh/ory/model/RefreshTokenHookRequestTest.java
 src/test/java/sh/ory/model/RefreshTokenHookResponseTest.java
 src/test/java/sh/ory/model/RejectOAuth2RequestTest.java
 src/test/java/sh/ory/model/RelationQueryTest.java
+src/test/java/sh/ory/model/RelationTupleTest.java
 src/test/java/sh/ory/model/RevokedSessionsTest.java
 src/test/java/sh/ory/model/SchemaPatchTest.java
 src/test/java/sh/ory/model/SelfServiceBrowserLocationChangeRequiredErrorTest.java

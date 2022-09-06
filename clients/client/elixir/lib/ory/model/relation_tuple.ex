@@ -2,7 +2,7 @@
 # https://openapi-generator.tech
 # Do not edit the class manually.
 
-defmodule Ory.Model.InternalRelationTuple do
+defmodule Ory.Model.RelationTuple do
   @moduledoc """
   
   """
@@ -25,7 +25,7 @@ defmodule Ory.Model.InternalRelationTuple do
   }
 end
 
-defimpl Poison.Decoder, for: Ory.Model.InternalRelationTuple do
+defimpl Poison.Decoder, for: Ory.Model.RelationTuple do
   import Ory.Deserializer
   def decode(value, options) do
     value

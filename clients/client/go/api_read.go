@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.25
+API version: v0.2.0-alpha.26
 Contact: support@ory.sh
 */
 
@@ -23,7 +23,7 @@ import (
 type ReadApi interface {
 
 	/*
-	GetCheck Check a relation tuple
+	GetCheck # Check a relation tuple
 
 	To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -37,7 +37,7 @@ type ReadApi interface {
 	GetCheckExecute(r ReadApiGetCheckRequest) (*GetCheckResponse, *http.Response, error)
 
 	/*
-	GetCheckMirrorStatus Check a relation tuple
+	GetCheckMirrorStatus # Check a relation tuple
 
 	To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -51,7 +51,7 @@ type ReadApi interface {
 	GetCheckMirrorStatusExecute(r ReadApiGetCheckMirrorStatusRequest) (*GetCheckResponse, *http.Response, error)
 
 	/*
-	GetExpand Expand a Relation Tuple
+	GetExpand # Expand a Relation Tuple
 
 	Use this endpoint to expand a relation tuple.
 
@@ -65,7 +65,7 @@ type ReadApi interface {
 	GetExpandExecute(r ReadApiGetExpandRequest) (*ExpandTree, *http.Response, error)
 
 	/*
-	GetRelationTuples Query relation tuples
+	GetRelationTuples # Query relation tuples
 
 	Get all relation tuples that match the query. Only the namespace field is required.
 
@@ -79,7 +79,7 @@ type ReadApi interface {
 	GetRelationTuplesExecute(r ReadApiGetRelationTuplesRequest) (*GetRelationTuplesResponse, *http.Response, error)
 
 	/*
-	PostCheck Check a relation tuple
+	PostCheck # Check a relation tuple
 
 	To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -93,7 +93,7 @@ type ReadApi interface {
 	PostCheckExecute(r ReadApiPostCheckRequest) (*GetCheckResponse, *http.Response, error)
 
 	/*
-	PostCheckMirrorStatus Check a relation tuple
+	PostCheckMirrorStatus # Check a relation tuple
 
 	To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -175,7 +175,7 @@ func (r ReadApiGetCheckRequest) Execute() (*GetCheckResponse, *http.Response, er
 }
 
 /*
-GetCheck Check a relation tuple
+GetCheck # Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -317,7 +317,7 @@ func (r ReadApiGetCheckMirrorStatusRequest) Execute() (*GetCheckResponse, *http.
 }
 
 /*
-GetCheckMirrorStatus Check a relation tuple
+GetCheckMirrorStatus # Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -472,7 +472,7 @@ func (r ReadApiGetExpandRequest) Execute() (*ExpandTree, *http.Response, error) 
 }
 
 /*
-GetExpand Expand a Relation Tuple
+GetExpand # Expand a Relation Tuple
 
 Use this endpoint to expand a relation tuple.
 
@@ -676,7 +676,7 @@ func (r ReadApiGetRelationTuplesRequest) Execute() (*GetRelationTuplesResponse, 
 }
 
 /*
-GetRelationTuples Query relation tuples
+GetRelationTuples # Query relation tuples
 
 Get all relation tuples that match the query. Only the namespace field is required.
 
@@ -833,7 +833,7 @@ func (r ReadApiPostCheckRequest) Execute() (*GetCheckResponse, *http.Response, e
 }
 
 /*
-PostCheck Check a relation tuple
+PostCheck # Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -956,7 +956,7 @@ func (r ReadApiPostCheckMirrorStatusRequest) Execute() (*GetCheckResponse, *http
 }
 
 /*
-PostCheckMirrorStatus Check a relation tuple
+PostCheckMirrorStatus # Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 

@@ -11,11 +11,11 @@
 import 'package:ory_client/api.dart';
 import 'package:test/test.dart';
 
-// tests for InternalRelationTuple
+// tests for RelationTuple
 void main() {
-  // final instance = InternalRelationTuple();
+  // final instance = RelationTuple();
 
-  group('test InternalRelationTuple', () {
+  group('test RelationTuple', () {
     // Namespace of the Relation Tuple
     // String namespace
     test('to test the property `namespace`', () async {
@@ -34,7 +34,7 @@ void main() {
       // TODO
     });
 
-    // SubjectID of the Relation Tuple  Either SubjectSet or SubjectID are required.
+    // SubjectID of the Relation Tuple  Either SubjectSet or SubjectID can be provided.
     // String subjectId
     test('to test the property `subjectId`', () async {
       // TODO

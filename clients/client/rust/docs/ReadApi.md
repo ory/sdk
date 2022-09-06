@@ -4,19 +4,19 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_check**](ReadApi.md#get_check) | **GET** /relation-tuples/check/openapi | Check a relation tuple
-[**get_check_mirror_status**](ReadApi.md#get_check_mirror_status) | **GET** /relation-tuples/check | Check a relation tuple
-[**get_expand**](ReadApi.md#get_expand) | **GET** /relation-tuples/expand | Expand a Relation Tuple
-[**get_relation_tuples**](ReadApi.md#get_relation_tuples) | **GET** /relation-tuples | Query relation tuples
-[**post_check**](ReadApi.md#post_check) | **POST** /relation-tuples/check/openapi | Check a relation tuple
-[**post_check_mirror_status**](ReadApi.md#post_check_mirror_status) | **POST** /relation-tuples/check | Check a relation tuple
+[**get_check**](ReadApi.md#get_check) | **GET** /relation-tuples/check/openapi | # Check a relation tuple
+[**get_check_mirror_status**](ReadApi.md#get_check_mirror_status) | **GET** /relation-tuples/check | # Check a relation tuple
+[**get_expand**](ReadApi.md#get_expand) | **GET** /relation-tuples/expand | # Expand a Relation Tuple
+[**get_relation_tuples**](ReadApi.md#get_relation_tuples) | **GET** /relation-tuples | # Query relation tuples
+[**post_check**](ReadApi.md#post_check) | **POST** /relation-tuples/check/openapi | # Check a relation tuple
+[**post_check_mirror_status**](ReadApi.md#post_check_mirror_status) | **POST** /relation-tuples/check | # Check a relation tuple
 
 
 
 ## get_check
 
 > crate::models::GetCheckResponse get_check(namespace, object, relation, subject_id, subject_set_namespace, subject_set_object, subject_set_relation, max_depth)
-Check a relation tuple
+# Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -53,7 +53,7 @@ Name | Type | Description  | Required | Notes
 ## get_check_mirror_status
 
 > crate::models::GetCheckResponse get_check_mirror_status()
-Check a relation tuple
+# Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -80,7 +80,7 @@ This endpoint does not need any parameter.
 ## get_expand
 
 > crate::models::ExpandTree get_expand(namespace, object, relation, max_depth)
-Expand a Relation Tuple
+# Expand a Relation Tuple
 
 Use this endpoint to expand a relation tuple.
 
@@ -113,7 +113,7 @@ Name | Type | Description  | Required | Notes
 ## get_relation_tuples
 
 > crate::models::GetRelationTuplesResponse get_relation_tuples(page_token, page_size, namespace, object, relation, subject_id, subject_set_namespace, subject_set_object, subject_set_relation)
-Query relation tuples
+# Query relation tuples
 
 Get all relation tuples that match the query. Only the namespace field is required.
 
@@ -151,7 +151,7 @@ Name | Type | Description  | Required | Notes
 ## post_check
 
 > crate::models::GetCheckResponse post_check(max_depth, relation_query)
-Check a relation tuple
+# Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -182,7 +182,7 @@ Name | Type | Description  | Required | Notes
 ## post_check_mirror_status
 
 > crate::models::GetCheckResponse post_check_mirror_status()
-Check a relation tuple
+# Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 

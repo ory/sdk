@@ -4,16 +4,16 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
-| [**create_relation_tuple**](WriteApi.md#create_relation_tuple) | **PUT** /admin/relation-tuples | Create a Relation Tuple |
-| [**delete_relation_tuples**](WriteApi.md#delete_relation_tuples) | **DELETE** /admin/relation-tuples | Delete Relation Tuples |
-| [**patch_relation_tuples**](WriteApi.md#patch_relation_tuples) | **PATCH** /admin/relation-tuples | Patch Multiple Relation Tuples |
+| [**create_relation_tuple**](WriteApi.md#create_relation_tuple) | **PUT** /admin/relation-tuples | # Create a Relation Tuple |
+| [**delete_relation_tuples**](WriteApi.md#delete_relation_tuples) | **DELETE** /admin/relation-tuples | # Delete Relation Tuples |
+| [**patch_relation_tuples**](WriteApi.md#patch_relation_tuples) | **PATCH** /admin/relation-tuples | # Patch Multiple Relation Tuples |
 
 
 ## create_relation_tuple
 
 > <RelationQuery> create_relation_tuple(opts)
 
-Create a Relation Tuple
+# Create a Relation Tuple
 
 Use this endpoint to create a relation tuple.
 
@@ -34,7 +34,7 @@ opts = {
 }
 
 begin
-  # Create a Relation Tuple
+  # # Create a Relation Tuple
   result = api_instance.create_relation_tuple(opts)
   p result
 rescue OryClient::ApiError => e
@@ -50,7 +50,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # Create a Relation Tuple
+  # # Create a Relation Tuple
   data, status_code, headers = api_instance.create_relation_tuple_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
@@ -84,7 +84,7 @@ end
 
 > delete_relation_tuples(opts)
 
-Delete Relation Tuples
+# Delete Relation Tuples
 
 Use this endpoint to delete relation tuples
 
@@ -111,7 +111,7 @@ opts = {
 }
 
 begin
-  # Delete Relation Tuples
+  # # Delete Relation Tuples
   api_instance.delete_relation_tuples(opts)
 rescue OryClient::ApiError => e
   puts "Error when calling WriteApi->delete_relation_tuples: #{e}"
@@ -126,7 +126,7 @@ This returns an Array which contains the response data (`nil` in this case), sta
 
 ```ruby
 begin
-  # Delete Relation Tuples
+  # # Delete Relation Tuples
   data, status_code, headers = api_instance.delete_relation_tuples_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
@@ -166,7 +166,7 @@ nil (empty response body)
 
 > patch_relation_tuples(opts)
 
-Patch Multiple Relation Tuples
+# Patch Multiple Relation Tuples
 
 Use this endpoint to patch one or more relation tuples.
 
@@ -187,7 +187,7 @@ opts = {
 }
 
 begin
-  # Patch Multiple Relation Tuples
+  # # Patch Multiple Relation Tuples
   api_instance.patch_relation_tuples(opts)
 rescue OryClient::ApiError => e
   puts "Error when calling WriteApi->patch_relation_tuples: #{e}"
@@ -202,7 +202,7 @@ This returns an Array which contains the response data (`nil` in this case), sta
 
 ```ruby
 begin
-  # Patch Multiple Relation Tuples
+  # # Patch Multiple Relation Tuples
   data, status_code, headers = api_instance.patch_relation_tuples_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }

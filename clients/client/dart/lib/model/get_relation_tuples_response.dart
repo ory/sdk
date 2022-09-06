@@ -26,7 +26,7 @@ class GetRelationTuplesResponse {
   ///
   String? nextPageToken;
 
-  List<InternalRelationTuple> relationTuples;
+  List<RelationTuple> relationTuples;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetRelationTuplesResponse &&
@@ -73,7 +73,7 @@ class GetRelationTuplesResponse {
 
       return GetRelationTuplesResponse(
         nextPageToken: mapValueOfType<String>(json, r'next_page_token'),
-        relationTuples: InternalRelationTuple.listFromJson(json[r'relation_tuples']) ?? const [],
+        relationTuples: RelationTuple.listFromJson(json[r'relation_tuples']) ?? const [],
       );
     }
     return null;

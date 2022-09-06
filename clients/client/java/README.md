@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v0.2.0-alpha.25
-  - Build date: 2022-08-31T08:55:51.300468660Z[Etc/UTC]
+- API version: v0.2.0-alpha.26
+  - Build date: 2022-09-06T11:35:36.962578076Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v0.2.0-alpha.25</version>
+  <version>v0.2.0-alpha.26</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v0.2.0-alpha.25"
+     implementation "sh.ory:client:v0.2.0-alpha.26"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v0.2.0-alpha.25.jar`
+* `target/client-v0.2.0-alpha.26.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -121,12 +121,12 @@ Class | Method | HTTP request | Description
 *MetadataApi* | [**getVersion**](docs/MetadataApi.md#getVersion) | **GET** /version | Return Running Software Version.
 *MetadataApi* | [**isAlive**](docs/MetadataApi.md#isAlive) | **GET** /health/alive | Check HTTP Server Status
 *MetadataApi* | [**isReady**](docs/MetadataApi.md#isReady) | **GET** /health/ready | Check HTTP Server and Database Status
-*ReadApi* | [**getCheck**](docs/ReadApi.md#getCheck) | **GET** /relation-tuples/check/openapi | Check a relation tuple
-*ReadApi* | [**getCheckMirrorStatus**](docs/ReadApi.md#getCheckMirrorStatus) | **GET** /relation-tuples/check | Check a relation tuple
-*ReadApi* | [**getExpand**](docs/ReadApi.md#getExpand) | **GET** /relation-tuples/expand | Expand a Relation Tuple
-*ReadApi* | [**getRelationTuples**](docs/ReadApi.md#getRelationTuples) | **GET** /relation-tuples | Query relation tuples
-*ReadApi* | [**postCheck**](docs/ReadApi.md#postCheck) | **POST** /relation-tuples/check/openapi | Check a relation tuple
-*ReadApi* | [**postCheckMirrorStatus**](docs/ReadApi.md#postCheckMirrorStatus) | **POST** /relation-tuples/check | Check a relation tuple
+*ReadApi* | [**getCheck**](docs/ReadApi.md#getCheck) | **GET** /relation-tuples/check/openapi | # Check a relation tuple
+*ReadApi* | [**getCheckMirrorStatus**](docs/ReadApi.md#getCheckMirrorStatus) | **GET** /relation-tuples/check | # Check a relation tuple
+*ReadApi* | [**getExpand**](docs/ReadApi.md#getExpand) | **GET** /relation-tuples/expand | # Expand a Relation Tuple
+*ReadApi* | [**getRelationTuples**](docs/ReadApi.md#getRelationTuples) | **GET** /relation-tuples | # Query relation tuples
+*ReadApi* | [**postCheck**](docs/ReadApi.md#postCheck) | **POST** /relation-tuples/check/openapi | # Check a relation tuple
+*ReadApi* | [**postCheckMirrorStatus**](docs/ReadApi.md#postCheckMirrorStatus) | **POST** /relation-tuples/check | # Check a relation tuple
 *V0alpha2Api* | [**adminAcceptOAuth2ConsentRequest**](docs/V0alpha2Api.md#adminAcceptOAuth2ConsentRequest) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept an OAuth 2.0 Consent Request
 *V0alpha2Api* | [**adminAcceptOAuth2LoginRequest**](docs/V0alpha2Api.md#adminAcceptOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept an OAuth 2.0 Login Request
 *V0alpha2Api* | [**adminAcceptOAuth2LogoutRequest**](docs/V0alpha2Api.md#adminAcceptOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept an OAuth 2.0 Logout Request
@@ -218,9 +218,9 @@ Class | Method | HTTP request | Description
 *V0alpha2Api* | [**submitSelfServiceVerificationFlow**](docs/V0alpha2Api.md#submitSelfServiceVerificationFlow) | **POST** /self-service/verification | Complete Verification Flow
 *V0alpha2Api* | [**toSession**](docs/V0alpha2Api.md#toSession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 *V0alpha2Api* | [**updateProject**](docs/V0alpha2Api.md#updateProject) | **PUT** /projects/{project_id} | Update an Ory Cloud Project Configuration
-*WriteApi* | [**createRelationTuple**](docs/WriteApi.md#createRelationTuple) | **PUT** /admin/relation-tuples | Create a Relation Tuple
-*WriteApi* | [**deleteRelationTuples**](docs/WriteApi.md#deleteRelationTuples) | **DELETE** /admin/relation-tuples | Delete Relation Tuples
-*WriteApi* | [**patchRelationTuples**](docs/WriteApi.md#patchRelationTuples) | **PATCH** /admin/relation-tuples | Patch Multiple Relation Tuples
+*WriteApi* | [**createRelationTuple**](docs/WriteApi.md#createRelationTuple) | **PUT** /admin/relation-tuples | # Create a Relation Tuple
+*WriteApi* | [**deleteRelationTuples**](docs/WriteApi.md#deleteRelationTuples) | **DELETE** /admin/relation-tuples | # Delete Relation Tuples
+*WriteApi* | [**patchRelationTuples**](docs/WriteApi.md#patchRelationTuples) | **PATCH** /admin/relation-tuples | # Patch Multiple Relation Tuples
 
 
 ## Documentation for Models
@@ -273,7 +273,6 @@ Class | Method | HTTP request | Description
  - [InlineResponse200](docs/InlineResponse200.md)
  - [InlineResponse2001](docs/InlineResponse2001.md)
  - [InlineResponse503](docs/InlineResponse503.md)
- - [InternalRelationTuple](docs/InternalRelationTuple.md)
  - [IntrospectedOAuth2Token](docs/IntrospectedOAuth2Token.md)
  - [InvitePayload](docs/InvitePayload.md)
  - [IsOwnerForProjectBySlug](docs/IsOwnerForProjectBySlug.md)
@@ -324,6 +323,7 @@ Class | Method | HTTP request | Description
  - [RefreshTokenHookResponse](docs/RefreshTokenHookResponse.md)
  - [RejectOAuth2Request](docs/RejectOAuth2Request.md)
  - [RelationQuery](docs/RelationQuery.md)
+ - [RelationTuple](docs/RelationTuple.md)
  - [RevokedSessions](docs/RevokedSessions.md)
  - [SchemaPatch](docs/SchemaPatch.md)
  - [SelfServiceBrowserLocationChangeRequiredError](docs/SelfServiceBrowserLocationChangeRequiredError.md)

@@ -21,7 +21,7 @@ void main() {
       // TODO
     });
 
-    // InternalRelationTuple relationTuple
+    // RelationTuple relationTuple
     test('to test the property `relationTuple`', () async {
       // TODO
     });

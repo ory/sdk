@@ -16,7 +16,7 @@ class ReadApi {
 
   final ApiClient apiClient;
 
-  /// Check a relation tuple
+  /// # Check a relation tuple
   ///
   /// To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
   ///
@@ -96,7 +96,7 @@ class ReadApi {
     );
   }
 
-  /// Check a relation tuple
+  /// # Check a relation tuple
   ///
   /// To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
   ///
@@ -139,7 +139,7 @@ class ReadApi {
     return null;
   }
 
-  /// Check a relation tuple
+  /// # Check a relation tuple
   ///
   /// To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
   ///
@@ -169,7 +169,7 @@ class ReadApi {
     );
   }
 
-  /// Check a relation tuple
+  /// # Check a relation tuple
   ///
   /// To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
   Future<GetCheckResponse?> getCheckMirrorStatus() async {
@@ -187,7 +187,7 @@ class ReadApi {
     return null;
   }
 
-  /// Expand a Relation Tuple
+  /// # Expand a Relation Tuple
   ///
   /// Use this endpoint to expand a relation tuple.
   ///
@@ -237,7 +237,7 @@ class ReadApi {
     );
   }
 
-  /// Expand a Relation Tuple
+  /// # Expand a Relation Tuple
   ///
   /// Use this endpoint to expand a relation tuple.
   ///
@@ -268,7 +268,7 @@ class ReadApi {
     return null;
   }
 
-  /// Query relation tuples
+  /// # Query relation tuples
   ///
   /// Get all relation tuples that match the query. Only the namespace field is required.
   ///
@@ -353,7 +353,7 @@ class ReadApi {
     );
   }
 
-  /// Query relation tuples
+  /// # Query relation tuples
   ///
   /// Get all relation tuples that match the query. Only the namespace field is required.
   ///
@@ -398,7 +398,7 @@ class ReadApi {
     return null;
   }
 
-  /// Check a relation tuple
+  /// # Check a relation tuple
   ///
   /// To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
   ///
@@ -438,7 +438,7 @@ class ReadApi {
     );
   }
 
-  /// Check a relation tuple
+  /// # Check a relation tuple
   ///
   /// To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
   ///
@@ -462,7 +462,7 @@ class ReadApi {
     return null;
   }
 
-  /// Check a relation tuple
+  /// # Check a relation tuple
   ///
   /// To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
   ///
@@ -492,7 +492,7 @@ class ReadApi {
     );
   }
 
-  /// Check a relation tuple
+  /// # Check a relation tuple
   ///
   /// To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
   Future<GetCheckResponse?> postCheckMirrorStatus() async {

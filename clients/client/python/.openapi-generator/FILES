@@ -55,7 +55,6 @@ docs/IdentitySchemaPreset.md
 docs/IdentitySchemaPresets.md
 docs/IdentitySchemas.md
 docs/IdentityState.md
-docs/InternalRelationTuple.md
 docs/IntrospectedOAuth2Token.md
 docs/InvitePayload.md
 docs/IsOwnerForProjectBySlug.md
@@ -127,6 +126,7 @@ docs/RefreshTokenHookRequest.md
 docs/RefreshTokenHookResponse.md
 docs/RejectOAuth2Request.md
 docs/RelationQuery.md
+docs/RelationTuple.md
 docs/RevokedSessions.md
 docs/SchemaPatch.md
 docs/SelfServiceBrowserLocationChangeRequiredError.md
@@ -269,7 +269,6 @@ ory_client/model/identity_schema_preset.py
 ory_client/model/identity_schema_presets.py
 ory_client/model/identity_schemas.py
 ory_client/model/identity_state.py
-ory_client/model/internal_relation_tuple.py
 ory_client/model/introspected_o_auth2_token.py
 ory_client/model/invite_payload.py
 ory_client/model/is_owner_for_project_by_slug.py
@@ -339,6 +338,7 @@ ory_client/model/refresh_token_hook_request.py
 ory_client/model/refresh_token_hook_response.py
 ory_client/model/reject_o_auth2_request.py
 ory_client/model/relation_query.py
+ory_client/model/relation_tuple.py
 ory_client/model/revoked_sessions.py
 ory_client/model/schema_patch.py
 ory_client/model/self_service_browser_location_change_required_error.py
@@ -475,7 +475,6 @@ test/test_identity_schema_preset.py
 test/test_identity_schema_presets.py
 test/test_identity_schemas.py
 test/test_identity_state.py
-test/test_internal_relation_tuple.py
 test/test_introspected_o_auth2_token.py
 test/test_invite_payload.py
 test/test_is_owner_for_project_by_slug.py
@@ -547,6 +546,7 @@ test/test_refresh_token_hook_request.py
 test/test_refresh_token_hook_response.py
 test/test_reject_o_auth2_request.py
 test/test_relation_query.py
+test/test_relation_tuple.py
 test/test_revoked_sessions.py
 test/test_schema_patch.py
 test/test_self_service_browser_location_change_required_error.py

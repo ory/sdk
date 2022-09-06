@@ -16,21 +16,18 @@ void main() {
   // final instance = ExpandTree();
 
   group('test ExpandTree', () {
+    // The children of the node, possibly none.
     // List<ExpandTree> children (default value: const [])
     test('to test the property `children`', () async {
       // TODO
     });
 
-    // String subjectId
-    test('to test the property `subjectId`', () async {
+    // RelationTuple tuple
+    test('to test the property `tuple`', () async {
       // TODO
     });
 
-    // SubjectSet subjectSet
-    test('to test the property `subjectSet`', () async {
-      // TODO
-    });
-
+    // The type of the node. union TreeNodeUnion exclusion TreeNodeExclusion intersection TreeNodeIntersection leaf TreeNodeLeaf tuple_to_subject_set TreeNodeTupleToSubjectSet computed_subject_set TreeNodeComputedSubjectSet not TreeNodeNot unspecified TreeNodeUnspecified
     // String type
     test('to test the property `type`', () async {
       // TODO

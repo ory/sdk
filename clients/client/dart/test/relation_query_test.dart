@@ -16,25 +16,25 @@ void main() {
   // final instance = RelationQuery();
 
   group('test RelationQuery', () {
-    // Namespace of the Relation Tuple
+    // Namespace to query
     // String namespace
     test('to test the property `namespace`', () async {
       // TODO
     });
 
-    // Object of the Relation Tuple
+    // Object to query
     // String object
     test('to test the property `object`', () async {
       // TODO
     });
 
-    // Relation of the Relation Tuple
+    // Relation to query
     // String relation
     test('to test the property `relation`', () async {
       // TODO
     });
 
-    // SubjectID of the Relation Tuple  Either SubjectSet or SubjectID can be provided.
+    // SubjectID to query  Either SubjectSet or SubjectID can be provided.
     // String subjectId
     test('to test the property `subjectId`', () async {
       // TODO

@@ -22,7 +22,7 @@ void main() {
       // TODO
     });
 
-    // List<InternalRelationTuple> relationTuples (default value: const [])
+    // List<RelationTuple> relationTuples (default value: const [])
     test('to test the property `relationTuples`', () async {
       // TODO
     });

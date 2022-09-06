@@ -54,7 +54,6 @@ docs/IdentityCredentialsType.md
 docs/IdentitySchemaContainer.md
 docs/IdentitySchemaPreset.md
 docs/IdentityState.md
-docs/InternalRelationTuple.md
 docs/IntrospectedOAuth2Token.md
 docs/InvitePayload.md
 docs/IsOwnerForProjectBySlug.md
@@ -109,6 +108,7 @@ docs/RefreshTokenHookRequest.md
 docs/RefreshTokenHookResponse.md
 docs/RejectOAuth2Request.md
 docs/RelationQuery.md
+docs/RelationTuple.md
 docs/RevokedSessions.md
 docs/SchemaPatch.md
 docs/SelfServiceBrowserLocationChangeRequiredError.md
@@ -237,7 +237,6 @@ lib/ory-client/models/identity_credentials_type.rb
 lib/ory-client/models/identity_schema_container.rb
 lib/ory-client/models/identity_schema_preset.rb
 lib/ory-client/models/identity_state.rb
-lib/ory-client/models/internal_relation_tuple.rb
 lib/ory-client/models/introspected_o_auth2_token.rb
 lib/ory-client/models/invite_payload.rb
 lib/ory-client/models/is_owner_for_project_by_slug.rb
@@ -290,6 +289,7 @@ lib/ory-client/models/refresh_token_hook_request.rb
 lib/ory-client/models/refresh_token_hook_response.rb
 lib/ory-client/models/reject_o_auth2_request.rb
 lib/ory-client/models/relation_query.rb
+lib/ory-client/models/relation_tuple.rb
 lib/ory-client/models/revoked_sessions.rb
 lib/ory-client/models/schema_patch.rb
 lib/ory-client/models/self_service_browser_location_change_required_error.rb
@@ -415,7 +415,6 @@ spec/models/identity_schema_container_spec.rb
 spec/models/identity_schema_preset_spec.rb
 spec/models/identity_spec.rb
 spec/models/identity_state_spec.rb
-spec/models/internal_relation_tuple_spec.rb
 spec/models/introspected_o_auth2_token_spec.rb
 spec/models/invite_payload_spec.rb
 spec/models/is_owner_for_project_by_slug_payload_spec.rb
@@ -468,6 +467,7 @@ spec/models/refresh_token_hook_request_spec.rb
 spec/models/refresh_token_hook_response_spec.rb
 spec/models/reject_o_auth2_request_spec.rb
 spec/models/relation_query_spec.rb
+spec/models/relation_tuple_spec.rb
 spec/models/revoked_sessions_spec.rb
 spec/models/schema_patch_spec.rb
 spec/models/self_service_browser_location_change_required_error_spec.rb

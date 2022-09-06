@@ -4,16 +4,16 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createRelationTuple**](WriteApi.md#createRelationTuple) | **PUT** /admin/relation-tuples | Create a Relation Tuple
-[**deleteRelationTuples**](WriteApi.md#deleteRelationTuples) | **DELETE** /admin/relation-tuples | Delete Relation Tuples
-[**patchRelationTuples**](WriteApi.md#patchRelationTuples) | **PATCH** /admin/relation-tuples | Patch Multiple Relation Tuples
+[**createRelationTuple**](WriteApi.md#createRelationTuple) | **PUT** /admin/relation-tuples | # Create a Relation Tuple
+[**deleteRelationTuples**](WriteApi.md#deleteRelationTuples) | **DELETE** /admin/relation-tuples | # Delete Relation Tuples
+[**patchRelationTuples**](WriteApi.md#patchRelationTuples) | **PATCH** /admin/relation-tuples | # Patch Multiple Relation Tuples
 
 
 <a name="createRelationTuple"></a>
 # **createRelationTuple**
 > RelationQuery createRelationTuple(relationQuery)
 
-Create a Relation Tuple
+# Create a Relation Tuple
 
 Use this endpoint to create a relation tuple.
 
@@ -74,7 +74,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | RelationQuery |  -  |
+**201** | relationQuery |  -  |
 **400** | genericError |  -  |
 **500** | genericError |  -  |
 
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 # **deleteRelationTuples**
 > deleteRelationTuples(namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation)
 
-Delete Relation Tuples
+# Delete Relation Tuples
 
 Use this endpoint to delete relation tuples
 
@@ -162,7 +162,7 @@ null (empty response body)
 # **patchRelationTuples**
 > patchRelationTuples(patchDelta)
 
-Patch Multiple Relation Tuples
+# Patch Multiple Relation Tuples
 
 Use this endpoint to patch one or more relation tuples.
 

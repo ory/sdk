@@ -52,7 +52,6 @@ docs/ClientIdentityState.md
 docs/ClientInlineResponse200.md
 docs/ClientInlineResponse2001.md
 docs/ClientInlineResponse503.md
-docs/ClientInternalRelationTuple.md
 docs/ClientIntrospectedOAuth2Token.md
 docs/ClientInvitePayload.md
 docs/ClientIsOwnerForProjectBySlug.md
@@ -103,6 +102,7 @@ docs/ClientRefreshTokenHookRequest.md
 docs/ClientRefreshTokenHookResponse.md
 docs/ClientRejectOAuth2Request.md
 docs/ClientRelationQuery.md
+docs/ClientRelationTuple.md
 docs/ClientRevokedSessions.md
 docs/ClientSchemaPatch.md
 docs/ClientSelfServiceBrowserLocationChangeRequiredError.md
@@ -231,7 +231,6 @@ src/Ory.Client.Test/Model/ClientIdentityTests.cs
 src/Ory.Client.Test/Model/ClientInlineResponse2001Tests.cs
 src/Ory.Client.Test/Model/ClientInlineResponse200Tests.cs
 src/Ory.Client.Test/Model/ClientInlineResponse503Tests.cs
-src/Ory.Client.Test/Model/ClientInternalRelationTupleTests.cs
 src/Ory.Client.Test/Model/ClientIntrospectedOAuth2TokenTests.cs
 src/Ory.Client.Test/Model/ClientInvitePayloadTests.cs
 src/Ory.Client.Test/Model/ClientIsOwnerForProjectBySlugPayloadTests.cs
@@ -282,6 +281,7 @@ src/Ory.Client.Test/Model/ClientRefreshTokenHookRequestTests.cs
 src/Ory.Client.Test/Model/ClientRefreshTokenHookResponseTests.cs
 src/Ory.Client.Test/Model/ClientRejectOAuth2RequestTests.cs
 src/Ory.Client.Test/Model/ClientRelationQueryTests.cs
+src/Ory.Client.Test/Model/ClientRelationTupleTests.cs
 src/Ory.Client.Test/Model/ClientRevokedSessionsTests.cs
 src/Ory.Client.Test/Model/ClientSchemaPatchTests.cs
 src/Ory.Client.Test/Model/ClientSelfServiceBrowserLocationChangeRequiredErrorTests.cs
@@ -423,7 +423,6 @@ src/Ory.Client/Model/ClientIdentityState.cs
 src/Ory.Client/Model/ClientInlineResponse200.cs
 src/Ory.Client/Model/ClientInlineResponse2001.cs
 src/Ory.Client/Model/ClientInlineResponse503.cs
-src/Ory.Client/Model/ClientInternalRelationTuple.cs
 src/Ory.Client/Model/ClientIntrospectedOAuth2Token.cs
 src/Ory.Client/Model/ClientInvitePayload.cs
 src/Ory.Client/Model/ClientIsOwnerForProjectBySlug.cs
@@ -474,6 +473,7 @@ src/Ory.Client/Model/ClientRefreshTokenHookRequest.cs
 src/Ory.Client/Model/ClientRefreshTokenHookResponse.cs
 src/Ory.Client/Model/ClientRejectOAuth2Request.cs
 src/Ory.Client/Model/ClientRelationQuery.cs
+src/Ory.Client/Model/ClientRelationTuple.cs
 src/Ory.Client/Model/ClientRevokedSessions.cs
 src/Ory.Client/Model/ClientSchemaPatch.cs
 src/Ory.Client/Model/ClientSelfServiceBrowserLocationChangeRequiredError.cs

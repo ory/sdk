@@ -4,10 +4,9 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **children** | [**Array&lt;ExpandTree&gt;**](ExpandTree.md) |  | [optional] |
-| **subject_id** | **String** |  | [optional] |
-| **subject_set** | [**SubjectSet**](SubjectSet.md) |  | [optional] |
-| **type** | **String** |  |  |
+| **children** | [**Array&lt;ExpandTree&gt;**](ExpandTree.md) | The children of the node, possibly none. | [optional] |
+| **tuple** | [**RelationTuple**](RelationTuple.md) |  | [optional] |
+| **type** | **String** | The type of the node. union TreeNodeUnion exclusion TreeNodeExclusion intersection TreeNodeIntersection leaf TreeNodeLeaf tuple_to_subject_set TreeNodeTupleToSubjectSet computed_subject_set TreeNodeComputedSubjectSet not TreeNodeNot unspecified TreeNodeUnspecified |  |
 
 ## Example
 
@@ -16,8 +15,7 @@ require 'ory-client'
 
 instance = OryClient::ExpandTree.new(
   children: null,
-  subject_id: null,
-  subject_set: null,
+  tuple: null,
   type: null
 )
 ```

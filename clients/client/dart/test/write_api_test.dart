@@ -17,7 +17,7 @@ void main() {
   // final instance = WriteApi();
 
   group('tests for WriteApi', () {
-    // Create a Relation Tuple
+    // # Create a Relation Tuple
     //
     // Use this endpoint to create a relation tuple.
     //
@@ -26,7 +26,7 @@ void main() {
       // TODO
     });
 
-    // Delete Relation Tuples
+    // # Delete Relation Tuples
     //
     // Use this endpoint to delete relation tuples
     //
@@ -35,7 +35,7 @@ void main() {
       // TODO
     });
 
-    // Patch Multiple Relation Tuples
+    // # Patch Multiple Relation Tuples
     //
     // Use this endpoint to patch one or more relation tuples.
     //

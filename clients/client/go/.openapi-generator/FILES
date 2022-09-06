@@ -57,7 +57,6 @@ docs/IdentityCredentialsType.md
 docs/IdentitySchemaContainer.md
 docs/IdentitySchemaPreset.md
 docs/IdentityState.md
-docs/InternalRelationTuple.md
 docs/IntrospectedOAuth2Token.md
 docs/InvitePayload.md
 docs/IsOwnerForProjectBySlug.md
@@ -112,6 +111,7 @@ docs/RefreshTokenHookRequest.md
 docs/RefreshTokenHookResponse.md
 docs/RejectOAuth2Request.md
 docs/RelationQuery.md
+docs/RelationTuple.md
 docs/RevokedSessions.md
 docs/SchemaPatch.md
 docs/SelfServiceBrowserLocationChangeRequiredError.md
@@ -233,7 +233,6 @@ model_identity_credentials_type.go
 model_identity_schema_container.go
 model_identity_schema_preset.go
 model_identity_state.go
-model_internal_relation_tuple.go
 model_introspected_o_auth2_token.go
 model_invite_payload.go
 model_is_owner_for_project_by_slug.go
@@ -286,6 +285,7 @@ model_refresh_token_hook_request.go
 model_refresh_token_hook_response.go
 model_reject_o_auth2_request.go
 model_relation_query.go
+model_relation_tuple.go
 model_revoked_sessions.go
 model_schema_patch.go
 model_self_service_browser_location_change_required_error.go

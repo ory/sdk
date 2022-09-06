@@ -284,8 +284,6 @@ class ApiClient {
           return IdentitySchemaPreset.fromJson(value);
         case 'IdentityState':
           return IdentityStateTypeTransformer().decode(value);
-        case 'InternalRelationTuple':
-          return InternalRelationTuple.fromJson(value);
         case 'IntrospectedOAuth2Token':
           return IntrospectedOAuth2Token.fromJson(value);
         case 'InvitePayload':
@@ -390,6 +388,8 @@ class ApiClient {
           return RejectOAuth2Request.fromJson(value);
         case 'RelationQuery':
           return RelationQuery.fromJson(value);
+        case 'RelationTuple':
+          return RelationTuple.fromJson(value);
         case 'RevokedSessions':
           return RevokedSessions.fromJson(value);
         case 'SchemaPatch':

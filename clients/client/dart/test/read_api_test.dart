@@ -17,7 +17,7 @@ void main() {
   // final instance = ReadApi();
 
   group('tests for ReadApi', () {
-    // Check a relation tuple
+    // # Check a relation tuple
     //
     // To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
     //
@@ -26,7 +26,7 @@ void main() {
       // TODO
     });
 
-    // Check a relation tuple
+    // # Check a relation tuple
     //
     // To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
     //
@@ -35,7 +35,7 @@ void main() {
       // TODO
     });
 
-    // Expand a Relation Tuple
+    // # Expand a Relation Tuple
     //
     // Use this endpoint to expand a relation tuple.
     //
@@ -44,7 +44,7 @@ void main() {
       // TODO
     });
 
-    // Query relation tuples
+    // # Query relation tuples
     //
     // Get all relation tuples that match the query. Only the namespace field is required.
     //
@@ -53,7 +53,7 @@ void main() {
       // TODO
     });
 
-    // Check a relation tuple
+    // # Check a relation tuple
     //
     // To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
     //
@@ -62,7 +62,7 @@ void main() {
       // TODO
     });
 
-    // Check a relation tuple
+    // # Check a relation tuple
     //
     // To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
     //

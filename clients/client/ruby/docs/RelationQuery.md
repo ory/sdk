@@ -4,10 +4,10 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **namespace** | **String** | Namespace of the Relation Tuple | [optional] |
-| **object** | **String** | Object of the Relation Tuple | [optional] |
-| **relation** | **String** | Relation of the Relation Tuple | [optional] |
-| **subject_id** | **String** | SubjectID of the Relation Tuple  Either SubjectSet or SubjectID can be provided. | [optional] |
+| **namespace** | **String** | Namespace to query | [optional] |
+| **object** | **String** | Object to query | [optional] |
+| **relation** | **String** | Relation to query | [optional] |
+| **subject_id** | **String** | SubjectID to query  Either SubjectSet or SubjectID can be provided. | [optional] |
 | **subject_set** | [**SubjectSet**](SubjectSet.md) |  | [optional] |
 
 ## Example

@@ -8,7 +8,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **action** | [**ActionEnum**](#ActionEnum) |  |  [optional]
-**relationTuple** | [**InternalRelationTuple**](InternalRelationTuple.md) |  |  [optional]
+**relationTuple** | [**RelationTuple**](RelationTuple.md) |  |  [optional]
 
 
 
