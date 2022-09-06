@@ -29,7 +29,7 @@ void main() {
     });
 
     // Further error details
-    // List<Map<String, Object>> details (default value: const [])
+    // Object details
     test('to test the property `details`', () async {
       // TODO
     });

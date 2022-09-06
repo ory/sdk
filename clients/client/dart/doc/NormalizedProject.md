@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **createdAt** | [**DateTime**](DateTime.md) | The Project's Creation Date | [readonly] 
 **currentRevision** | [**NormalizedProjectRevision**](NormalizedProjectRevision.md) |  | 
 **hosts** | **List<String>** |  | [default to const []]
-**id** | **String** |  | 
+**id** | **String** | The project's ID. | [readonly] 
 **revisions** | [**List<NormalizedProjectRevision>**](NormalizedProjectRevision.md) |  | [default to const []]
 **slug** | **String** | The project's slug | [readonly] 
 **state** | **String** | The state of the project. running Running halted Halted | [readonly] 

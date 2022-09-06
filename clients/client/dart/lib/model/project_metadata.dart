@@ -28,6 +28,7 @@ class ProjectMetadata {
 
   List<String> hosts;
 
+  /// The project's ID.
   String id;
 
   /// The project's name if set

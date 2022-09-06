@@ -8,9 +8,9 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | 
+**id** | **String** | The project's ID. | [readonly] 
 **name** | **String** | The name of the project. | 
-**revisionId** | **String** |  | 
+**revisionId** | **String** | The configuration revision ID. | [readonly] 
 **services** | [**ProjectServices**](ProjectServices.md) |  | 
 **slug** | **String** | The project's slug | [readonly] 
 **state** | **String** | The state of the project. running Running halted Halted | [readonly] 

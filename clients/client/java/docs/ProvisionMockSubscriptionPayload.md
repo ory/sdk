@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**identityId** | **UUID** |  | 
+**identityId** | **String** |  | 
 **planOrPrice** | **String** |  | 
 
 

@@ -9,11 +9,17 @@ defmodule Ory.Model.JsonError do
 
   @derive [Poison.Encoder]
   defstruct [
-    :error
+    :error,
+    :error_debug,
+    :error_description,
+    :status_code
   ]
 
   @type t :: %__MODULE__{
-    :error => Ory.Model.GenericError.t
+    :error => Ory.Model.GenericError.t,
+    :error_debug => String.t | nil,
+    :error_description => String.t | nil,
+    :status_code => integer() | nil
   }
 end
 

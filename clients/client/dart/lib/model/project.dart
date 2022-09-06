@@ -21,11 +21,13 @@ class Project {
     required this.state,
   });
 
+  /// The project's ID.
   String id;
 
   /// The name of the project.
   String name;
 
+  /// The configuration revision ID.
   String revisionId;
 
   ProjectServices services;

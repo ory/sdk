@@ -27,6 +27,7 @@ class ProjectInvite {
   /// The Project's Revision Creation Date
   DateTime createdAt;
 
+  /// The invite's ID.
   String id;
 
   /// The invitee's email
@@ -37,8 +38,10 @@ class ProjectInvite {
   /// The invite owner's email Usually the project's owner email
   String ownerEmail;
 
+  /// The invite owner's ID Usually the project's owner
   String ownerId;
 
+  /// The Project's ID this invite is associated with
   String projectId;
 
   /// The invite's status Keeps track of the invites status such as pending, accepted, declined, expired

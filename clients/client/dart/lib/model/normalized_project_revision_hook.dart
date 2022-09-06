@@ -26,6 +26,7 @@ class NormalizedProjectRevisionHook {
     this.webHookConfigAuthBasicAuthUser,
     this.webHookConfigAuthType,
     this.webHookConfigBody,
+    this.webHookConfigCanInterrupt,
     this.webHookConfigMethod,
     this.webHookConfigResponseIgnore,
     this.webHookConfigUrl,
@@ -46,6 +47,7 @@ class NormalizedProjectRevisionHook {
   /// The Hook Type
   String hook;
 
+  /// ID of the entry
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -54,6 +56,7 @@ class NormalizedProjectRevisionHook {
   ///
   String? id;
 
+  /// The Revision's ID this schema belongs to
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -134,6 +137,15 @@ class NormalizedProjectRevisionHook {
   ///
   String? webHookConfigBody;
 
+  /// If enabled allows the web hook to interrupt / abort the self-service flow. It only applies to certain flows (registration/verification/login/settings) and requires a valid response format.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? webHookConfigCanInterrupt;
+
   /// The HTTP method to use (GET, POST, etc) for the Web-Hook
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -176,6 +188,7 @@ class NormalizedProjectRevisionHook {
      other.webHookConfigAuthBasicAuthUser == webHookConfigAuthBasicAuthUser &&
      other.webHookConfigAuthType == webHookConfigAuthType &&
      other.webHookConfigBody == webHookConfigBody &&
+     other.webHookConfigCanInterrupt == webHookConfigCanInterrupt &&
      other.webHookConfigMethod == webHookConfigMethod &&
      other.webHookConfigResponseIgnore == webHookConfigResponseIgnore &&
      other.webHookConfigUrl == webHookConfigUrl;
@@ -196,12 +209,13 @@ class NormalizedProjectRevisionHook {
     (webHookConfigAuthBasicAuthUser == null ? 0 : webHookConfigAuthBasicAuthUser!.hashCode) +
     (webHookConfigAuthType == null ? 0 : webHookConfigAuthType!.hashCode) +
     (webHookConfigBody == null ? 0 : webHookConfigBody!.hashCode) +
+    (webHookConfigCanInterrupt == null ? 0 : webHookConfigCanInterrupt!.hashCode) +
     (webHookConfigMethod == null ? 0 : webHookConfigMethod!.hashCode) +
     (webHookConfigResponseIgnore == null ? 0 : webHookConfigResponseIgnore!.hashCode) +
     (webHookConfigUrl == null ? 0 : webHookConfigUrl!.hashCode);
 
   @override
-  String toString() => 'NormalizedProjectRevisionHook[configKey=$configKey, createdAt=$createdAt, hook=$hook, id=$id, projectRevisionId=$projectRevisionId, updatedAt=$updatedAt, webHookConfigAuthApiKeyIn=$webHookConfigAuthApiKeyIn, webHookConfigAuthApiKeyName=$webHookConfigAuthApiKeyName, webHookConfigAuthApiKeyValue=$webHookConfigAuthApiKeyValue, webHookConfigAuthBasicAuthPassword=$webHookConfigAuthBasicAuthPassword, webHookConfigAuthBasicAuthUser=$webHookConfigAuthBasicAuthUser, webHookConfigAuthType=$webHookConfigAuthType, webHookConfigBody=$webHookConfigBody, webHookConfigMethod=$webHookConfigMethod, webHookConfigResponseIgnore=$webHookConfigResponseIgnore, webHookConfigUrl=$webHookConfigUrl]';
+  String toString() => 'NormalizedProjectRevisionHook[configKey=$configKey, createdAt=$createdAt, hook=$hook, id=$id, projectRevisionId=$projectRevisionId, updatedAt=$updatedAt, webHookConfigAuthApiKeyIn=$webHookConfigAuthApiKeyIn, webHookConfigAuthApiKeyName=$webHookConfigAuthApiKeyName, webHookConfigAuthApiKeyValue=$webHookConfigAuthApiKeyValue, webHookConfigAuthBasicAuthPassword=$webHookConfigAuthBasicAuthPassword, webHookConfigAuthBasicAuthUser=$webHookConfigAuthBasicAuthUser, webHookConfigAuthType=$webHookConfigAuthType, webHookConfigBody=$webHookConfigBody, webHookConfigCanInterrupt=$webHookConfigCanInterrupt, webHookConfigMethod=$webHookConfigMethod, webHookConfigResponseIgnore=$webHookConfigResponseIgnore, webHookConfigUrl=$webHookConfigUrl]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
@@ -262,6 +276,11 @@ class NormalizedProjectRevisionHook {
     } else {
       _json[r'web_hook_config_body'] = null;
     }
+    if (webHookConfigCanInterrupt != null) {
+      _json[r'web_hook_config_can_interrupt'] = webHookConfigCanInterrupt;
+    } else {
+      _json[r'web_hook_config_can_interrupt'] = null;
+    }
     if (webHookConfigMethod != null) {
       _json[r'web_hook_config_method'] = webHookConfigMethod;
     } else {
@@ -312,6 +331,7 @@ class NormalizedProjectRevisionHook {
         webHookConfigAuthBasicAuthUser: mapValueOfType<String>(json, r'web_hook_config_auth_basic_auth_user'),
         webHookConfigAuthType: mapValueOfType<String>(json, r'web_hook_config_auth_type'),
         webHookConfigBody: mapValueOfType<String>(json, r'web_hook_config_body'),
+        webHookConfigCanInterrupt: mapValueOfType<bool>(json, r'web_hook_config_can_interrupt'),
         webHookConfigMethod: mapValueOfType<String>(json, r'web_hook_config_method'),
         webHookConfigResponseIgnore: mapValueOfType<bool>(json, r'web_hook_config_response_ignore'),
         webHookConfigUrl: mapValueOfType<String>(json, r'web_hook_config_url'),

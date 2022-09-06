@@ -34,16 +34,6 @@ void main() {
       // TODO
     });
 
-    // OAuth2AccessRequest requester
-    test('to test the property `requester`', () async {
-      // TODO
-    });
-
-    // OAuth2ConsentSession session
-    test('to test the property `session`', () async {
-      // TODO
-    });
-
     // Subject is the identifier of the authenticated end-user.
     // String subject
     test('to test the property `subject`', () async {

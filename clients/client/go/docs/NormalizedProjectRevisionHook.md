@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **ConfigKey** | **string** | The Hooks Config Key | 
 **CreatedAt** | Pointer to **time.Time** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
 **Hook** | **string** | The Hook Type | 
-**Id** | Pointer to **string** |  | [optional] 
-**ProjectRevisionId** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** | ID of the entry | [optional] 
+**ProjectRevisionId** | Pointer to **string** | The Revision&#39;s ID this schema belongs to | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
 **WebHookConfigAuthApiKeyIn** | Pointer to **string** | Whether to send the API Key in the HTTP Header or as a HTTP Cookie | [optional] 
 **WebHookConfigAuthApiKeyName** | Pointer to **string** | The name of the api key | [optional] 
@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **WebHookConfigAuthBasicAuthUser** | Pointer to **string** | The username to be sent in the HTTP Basic Auth Header | [optional] 
 **WebHookConfigAuthType** | Pointer to **string** | HTTP Auth Method to use for the Web-Hook | [optional] 
 **WebHookConfigBody** | Pointer to **string** | URI pointing to the JsonNet template used for Web-Hook payload generation. Only used for those HTTP methods, which support HTTP body payloads. | [optional] 
+**WebHookConfigCanInterrupt** | Pointer to **bool** | If enabled allows the web hook to interrupt / abort the self-service flow. It only applies to certain flows (registration/verification/login/settings) and requires a valid response format. | [optional] 
 **WebHookConfigMethod** | Pointer to **string** | The HTTP method to use (GET, POST, etc) for the Web-Hook | [optional] 
 **WebHookConfigResponseIgnore** | Pointer to **bool** | Whether to ignore the Web Hook response | [optional] 
 **WebHookConfigUrl** | Pointer to **string** | The URL the Web-Hook should call | [optional] 
@@ -354,6 +355,31 @@ SetWebHookConfigBody sets WebHookConfigBody field to given value.
 `func (o *NormalizedProjectRevisionHook) HasWebHookConfigBody() bool`
 
 HasWebHookConfigBody returns a boolean if a field has been set.
+
+### GetWebHookConfigCanInterrupt
+
+`func (o *NormalizedProjectRevisionHook) GetWebHookConfigCanInterrupt() bool`
+
+GetWebHookConfigCanInterrupt returns the WebHookConfigCanInterrupt field if non-nil, zero value otherwise.
+
+### GetWebHookConfigCanInterruptOk
+
+`func (o *NormalizedProjectRevisionHook) GetWebHookConfigCanInterruptOk() (*bool, bool)`
+
+GetWebHookConfigCanInterruptOk returns a tuple with the WebHookConfigCanInterrupt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWebHookConfigCanInterrupt
+
+`func (o *NormalizedProjectRevisionHook) SetWebHookConfigCanInterrupt(v bool)`
+
+SetWebHookConfigCanInterrupt sets WebHookConfigCanInterrupt field to given value.
+
+### HasWebHookConfigCanInterrupt
+
+`func (o *NormalizedProjectRevisionHook) HasWebHookConfigCanInterrupt() bool`
+
+HasWebHookConfigCanInterrupt returns a boolean if a field has been set.
 
 ### GetWebHookConfigMethod
 

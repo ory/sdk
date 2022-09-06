@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **HydraOauth2ClientCredentialsDefaultGrantAllowedScope** | Pointer to **bool** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example &#x60;read write&#x60;). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the &#x60;scope&#x60; query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \&quot;oauth2.client_credentials.default_grant_allowed_scope\&quot; setting. | [optional] 
 **HydraOauth2GrantJwtIatOptional** | Pointer to **bool** | Configures if the issued at (&#x60;iat&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;iat&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.iat_optional\&quot; setting. | [optional] 
 **HydraOauth2GrantJwtJtiOptional** | Pointer to **bool** | Configures if the JSON Web Token ID (&#x60;jti&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;jti&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.jti_optional\&quot; setting. | [optional] 
-**HydraOauth2GrantJwtMaxTtl** | Pointer to **NullableString** |  | [optional] 
+**HydraOauth2GrantJwtMaxTtl** | Pointer to **string** | Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the &#x60;exp&#x60; claim and &#x60;iat&#x60; claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \&quot;oauth2.grant.jwt.max_ttl\&quot; setting. | [optional] [default to "720h"]
 **HydraOauth2PkceEnforced** | Pointer to **bool** | Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \&quot;oauth2.pkce.enforced\&quot; setting. | [optional] 
 **HydraOauth2PkceEnforcedForPublicClients** | Pointer to **bool** | Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \&quot;oauth2.pkce.enforced_for_public_clients\&quot; setting. | [optional] 
 **HydraOauth2RefreshTokenHook** | Pointer to **string** | Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \&quot;oauth2.refresh_token_hook\&quot; setting. | [optional] 
@@ -28,11 +28,11 @@ Name | Type | Description | Notes
 **HydraServePublicCorsEnabled** | Pointer to **bool** | Configures the Ory Hydra CORS Settings  This governs the \&quot;serve.public.cors.enabled\&quot; setting. | [optional] 
 **HydraStrategiesAccessToken** | Pointer to **interface{}** | Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \&quot;strategies.access_token\&quot; setting. | [optional] 
 **HydraStrategiesScope** | Pointer to **interface{}** | Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \&quot;strategies.scope\&quot; setting. | [optional] 
-**HydraTtlAccessToken** | Pointer to **NullableString** |  | [optional] 
-**HydraTtlAuthCode** | Pointer to **NullableString** |  | [optional] 
-**HydraTtlIdToken** | Pointer to **NullableString** |  | [optional] 
-**HydraTtlLoginConsentRequest** | Pointer to **NullableString** |  | [optional] 
-**HydraTtlRefreshToken** | Pointer to **NullableString** |  | [optional] 
+**HydraTtlAccessToken** | Pointer to **string** | This governs the \&quot;ttl.access_token\&quot; setting. | [optional] [default to "30m"]
+**HydraTtlAuthCode** | Pointer to **string** | Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \&quot;ttl.auth_code\&quot; setting. | [optional] [default to "720h"]
+**HydraTtlIdToken** | Pointer to **string** | This governs the \&quot;ttl.id_token\&quot; setting. | [optional] [default to "30m"]
+**HydraTtlLoginConsentRequest** | Pointer to **string** | Configures how long a user login and consent flow may take.  This governs the \&quot;ttl.login_consent_request\&quot; setting. | [optional] [default to "30m"]
+**HydraTtlRefreshToken** | Pointer to **string** | Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \&quot;ttl.refresh_token\&quot; setting. | [optional] [default to "720h"]
 **HydraUrlsConsent** | Pointer to **string** | Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login &amp; Consent flow.  Defaults to Ory Cloud&#39;s Managed UI if left empty.  This governs the \&quot;urls.consent\&quot; setting. | [optional] 
 **HydraUrlsError** | Pointer to **string** | Sets the OAuth2 Error URL of the OAuth2 User Login &amp; Consent flow.  Defaults to Ory Cloud&#39;s Managed UI if left empty.  This governs the \&quot;urls.error\&quot; setting. | [optional] 
 **HydraUrlsLogin** | Pointer to **string** | Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login &amp; Consent flow.  Defaults to Ory Cloud&#39;s Managed UI if left empty.  This governs the \&quot;urls.login\&quot; setting. | [optional] 
@@ -47,7 +47,7 @@ Name | Type | Description | Notes
 **HydraWebfingerOidcDiscoverySupportedScope** | Pointer to **[]string** |  | [optional] 
 **HydraWebfingerOidcDiscoveryTokenUrl** | Pointer to **string** | Configures OpenID Connect Discovery and overwrites the OAuth2 Token URL.  This governs the \&quot;webfinger.oidc.discovery.token_url\&quot; setting. | [optional] 
 **HydraWebfingerOidcDiscoveryUserinfoUrl** | Pointer to **string** | Configures OpenID Connect Discovery and overwrites userinfo endpoint to be advertised at the OpenID Connect Discovery endpoint /.well-known/openid-configuration. Defaults to Ory Hydra&#39;s userinfo endpoint at /userinfo. Set this value if you want to handle this endpoint yourself.  This governs the \&quot;webfinger.oidc.discovery.userinfo_url\&quot; setting. | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** | The revision ID. | [optional] [readonly] 
 **KetoNamespaces** | Pointer to [**[]KetoNamespace**](KetoNamespace.md) |  | [optional] 
 **KetoReadMaxDepth** | Pointer to **NullableInt32** |  | [optional] 
 **KratosCookiesSameSite** | Pointer to **string** | Configures the Ory Kratos Cookie SameSite Attribute  This governs the \&quot;cookies.same_site\&quot; setting. | [optional] 
@@ -90,7 +90,7 @@ Name | Type | Description | Notes
 **KratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Registration After OIDC Default Return URL  This governs the \&quot;selfservice.flows.registration.after.oidc.default_browser_return_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Registration After Password Default Return URL  This governs the \&quot;selfservice.flows.registration.after.password.default_browser_return_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Registration After Password Default Return URL  This governs the \&quot;selfservice.flows.registration.after.password.default_browser_return_url\&quot; setting. | [optional] 
-**KratosSelfserviceFlowsRegistrationEnabled** | Pointer to **NullableBool** |  | [optional] 
+**KratosSelfserviceFlowsRegistrationEnabled** | Pointer to **bool** | Configures the Whether Ory Kratos Registration is Enabled  This governs the \&quot;selfservice.flows.registration.enabled\&quot; setting.0 | [optional] 
 **KratosSelfserviceFlowsRegistrationLifespan** | Pointer to **string** | Configures the Ory Kratos Registration Lifespan  This governs the \&quot;selfservice.flows.registration.lifespan\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsRegistrationUiUrl** | Pointer to **string** | Configures the Ory Kratos Registration UI URL  This governs the \&quot;selfservice.flows.registration.ui_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Settings Default Return URL  This governs the \&quot;selfservice.flows.settings.after.default_browser_return_url\&quot; setting. | [optional] 
@@ -106,33 +106,33 @@ Name | Type | Description | Notes
 **KratosSelfserviceFlowsVerificationUiUrl** | Pointer to **string** | Configures the Ory Kratos Verification UI URL  This governs the \&quot;selfservice.flows.verification.ui_url\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsLinkConfigBaseUrl** | Pointer to **string** | Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \&quot;selfservice.methods.link.config.base_url\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsLinkConfigLifespan** | Pointer to **string** | Configures whether Ory Kratos Link Method is enabled  This governs the \&quot;selfservice.methods.link.config.lifespan\&quot; setting. | [optional] 
-**KratosSelfserviceMethodsLinkEnabled** | Pointer to **NullableBool** |  | [optional] 
-**KratosSelfserviceMethodsLookupSecretEnabled** | Pointer to **NullableBool** |  | [optional] 
+**KratosSelfserviceMethodsLinkEnabled** | Pointer to **bool** | Configures whether Ory Kratos Link Method is enabled  This governs the \&quot;selfservice.methods.link.enabled\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsLookupSecretEnabled** | Pointer to **bool** | Configures whether Ory Kratos TOTP Lookup Secret is enabled  This governs the \&quot;selfservice.methods.lookup_secret.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsOidcConfigBaseRedirectUri** | Pointer to **string** | Configures the Ory Kratos Third Party / OpenID Connect base redirect URI  This governs the \&quot;selfservice.methods.oidc.config.base_redirect_uri\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsOidcConfigProviders** | Pointer to [**[]NormalizedProjectRevisionThirdPartyProvider**](NormalizedProjectRevisionThirdPartyProvider.md) |  | [optional] 
 **KratosSelfserviceMethodsOidcEnabled** | Pointer to **bool** | Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \&quot;selfservice.methods.oidc.enabled\&quot; setting. | [optional] 
-**KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled** | Pointer to **NullableBool** |  | [optional] 
-**KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled** | Pointer to **NullableBool** |  | [optional] 
-**KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors** | Pointer to **NullableBool** |  | [optional] 
+**KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled** | Pointer to **bool** | Configures whether Ory Kratos Password HIBP Checks is enabled  This governs the \&quot;selfservice.methods.password.config.haveibeenpwned_enabled\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled** | Pointer to **bool** | Configures whether Ory Kratos Password should disable the similarity policy.  This governs the \&quot;selfservice.methods.password.config.identifier_similarity_check_enabled\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors** | Pointer to **bool** | Configures whether Ory Kratos Password Should ignore HIBPWND Network Errors  This governs the \&quot;selfservice.methods.password.config.ignore_network_errors\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsPasswordConfigMaxBreaches** | Pointer to **int64** | Configures Ory Kratos Password Max Breaches Detection  This governs the \&quot;selfservice.methods.password.config.max_breaches\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsPasswordConfigMinPasswordLength** | Pointer to **int64** | Configures the minimum length of passwords.  This governs the \&quot;selfservice.methods.password.config.min_password_length\&quot; setting. | [optional] 
-**KratosSelfserviceMethodsPasswordEnabled** | Pointer to **NullableBool** |  | [optional] 
-**KratosSelfserviceMethodsProfileEnabled** | Pointer to **NullableBool** |  | [optional] 
+**KratosSelfserviceMethodsPasswordEnabled** | Pointer to **bool** | Configures whether Ory Kratos Password Method is enabled  This governs the \&quot;selfservice.methods.password.enabled\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsProfileEnabled** | Pointer to **bool** | Configures whether Ory Kratos Profile Method is enabled  This governs the \&quot;selfservice.methods.profile.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsTotpConfigIssuer** | Pointer to **string** | Configures Ory Kratos TOTP Issuer  This governs the \&quot;selfservice.methods.totp.config.issuer\&quot; setting. | [optional] 
-**KratosSelfserviceMethodsTotpEnabled** | Pointer to **NullableBool** |  | [optional] 
+**KratosSelfserviceMethodsTotpEnabled** | Pointer to **bool** | Configures whether Ory Kratos TOTP Method is enabled  This governs the \&quot;selfservice.methods.totp.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsWebauthnConfigPasswordless** | Pointer to **bool** | Configures whether Ory Kratos Webauthn is used for passwordless flows  This governs the \&quot;selfservice.methods.webauthn.config.passwordless\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsWebauthnConfigRpDisplayName** | Pointer to **string** | Configures the Ory Kratos Webauthn RP Display Name  This governs the \&quot;selfservice.methods.webauthn.config.rp.display_name\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsWebauthnConfigRpIcon** | Pointer to **string** | Configures the Ory Kratos Webauthn RP Icon  This governs the \&quot;selfservice.methods.webauthn.config.rp.icon\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsWebauthnConfigRpId** | Pointer to **string** | Configures the Ory Kratos Webauthn RP ID  This governs the \&quot;selfservice.methods.webauthn.config.rp.id\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsWebauthnConfigRpOrigin** | Pointer to **string** | Configures the Ory Kratos Webauthn RP Origin  This governs the \&quot;selfservice.methods.webauthn.config.rp.origin\&quot; setting. | [optional] 
-**KratosSelfserviceMethodsWebauthnEnabled** | Pointer to **NullableBool** |  | [optional] 
-**KratosSessionCookiePersistent** | Pointer to **NullableBool** |  | [optional] 
+**KratosSelfserviceMethodsWebauthnEnabled** | Pointer to **bool** | Configures whether Ory Kratos Webauthn is enabled  This governs the \&quot;selfservice.methods.webauthn.enabled\&quot; setting. | [optional] 
+**KratosSessionCookiePersistent** | Pointer to **bool** | Configures the Ory Kratos Session Cookie Persistent Attribute  This governs the \&quot;session.cookie.persistent\&quot; setting. | [optional] 
 **KratosSessionCookieSameSite** | Pointer to **string** | Configures the Ory Kratos Session Cookie SameSite Attribute  This governs the \&quot;session.cookie.same_site\&quot; setting. | [optional] 
 **KratosSessionLifespan** | Pointer to **string** | Configures the Ory Kratos Session Lifespan  This governs the \&quot;session.lifespan\&quot; setting. | [optional] 
 **KratosSessionWhoamiRequiredAal** | Pointer to **string** | Configures the Ory Kratos Session Whoami AAL requirement  This governs the \&quot;session.whoami.required_aal\&quot; setting. | [optional] 
 **Name** | **string** | The project&#39;s name. | 
 **Production** | Pointer to **bool** | Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment. | [optional] 
-**ProjectId** | Pointer to **string** |  | [optional] 
+**ProjectId** | Pointer to **string** | The Revision&#39;s Project ID | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
 
 ## Methods
@@ -279,16 +279,6 @@ SetHydraOauth2GrantJwtMaxTtl sets HydraOauth2GrantJwtMaxTtl field to given value
 
 HasHydraOauth2GrantJwtMaxTtl returns a boolean if a field has been set.
 
-### SetHydraOauth2GrantJwtMaxTtlNil
-
-`func (o *NormalizedProjectRevision) SetHydraOauth2GrantJwtMaxTtlNil(b bool)`
-
- SetHydraOauth2GrantJwtMaxTtlNil sets the value for HydraOauth2GrantJwtMaxTtl to be an explicit nil
-
-### UnsetHydraOauth2GrantJwtMaxTtl
-`func (o *NormalizedProjectRevision) UnsetHydraOauth2GrantJwtMaxTtl()`
-
-UnsetHydraOauth2GrantJwtMaxTtl ensures that no value is present for HydraOauth2GrantJwtMaxTtl, not even an explicit nil
 ### GetHydraOauth2PkceEnforced
 
 `func (o *NormalizedProjectRevision) GetHydraOauth2PkceEnforced() bool`
@@ -809,16 +799,6 @@ SetHydraTtlAccessToken sets HydraTtlAccessToken field to given value.
 
 HasHydraTtlAccessToken returns a boolean if a field has been set.
 
-### SetHydraTtlAccessTokenNil
-
-`func (o *NormalizedProjectRevision) SetHydraTtlAccessTokenNil(b bool)`
-
- SetHydraTtlAccessTokenNil sets the value for HydraTtlAccessToken to be an explicit nil
-
-### UnsetHydraTtlAccessToken
-`func (o *NormalizedProjectRevision) UnsetHydraTtlAccessToken()`
-
-UnsetHydraTtlAccessToken ensures that no value is present for HydraTtlAccessToken, not even an explicit nil
 ### GetHydraTtlAuthCode
 
 `func (o *NormalizedProjectRevision) GetHydraTtlAuthCode() string`
@@ -844,16 +824,6 @@ SetHydraTtlAuthCode sets HydraTtlAuthCode field to given value.
 
 HasHydraTtlAuthCode returns a boolean if a field has been set.
 
-### SetHydraTtlAuthCodeNil
-
-`func (o *NormalizedProjectRevision) SetHydraTtlAuthCodeNil(b bool)`
-
- SetHydraTtlAuthCodeNil sets the value for HydraTtlAuthCode to be an explicit nil
-
-### UnsetHydraTtlAuthCode
-`func (o *NormalizedProjectRevision) UnsetHydraTtlAuthCode()`
-
-UnsetHydraTtlAuthCode ensures that no value is present for HydraTtlAuthCode, not even an explicit nil
 ### GetHydraTtlIdToken
 
 `func (o *NormalizedProjectRevision) GetHydraTtlIdToken() string`
@@ -879,16 +849,6 @@ SetHydraTtlIdToken sets HydraTtlIdToken field to given value.
 
 HasHydraTtlIdToken returns a boolean if a field has been set.
 
-### SetHydraTtlIdTokenNil
-
-`func (o *NormalizedProjectRevision) SetHydraTtlIdTokenNil(b bool)`
-
- SetHydraTtlIdTokenNil sets the value for HydraTtlIdToken to be an explicit nil
-
-### UnsetHydraTtlIdToken
-`func (o *NormalizedProjectRevision) UnsetHydraTtlIdToken()`
-
-UnsetHydraTtlIdToken ensures that no value is present for HydraTtlIdToken, not even an explicit nil
 ### GetHydraTtlLoginConsentRequest
 
 `func (o *NormalizedProjectRevision) GetHydraTtlLoginConsentRequest() string`
@@ -914,16 +874,6 @@ SetHydraTtlLoginConsentRequest sets HydraTtlLoginConsentRequest field to given v
 
 HasHydraTtlLoginConsentRequest returns a boolean if a field has been set.
 
-### SetHydraTtlLoginConsentRequestNil
-
-`func (o *NormalizedProjectRevision) SetHydraTtlLoginConsentRequestNil(b bool)`
-
- SetHydraTtlLoginConsentRequestNil sets the value for HydraTtlLoginConsentRequest to be an explicit nil
-
-### UnsetHydraTtlLoginConsentRequest
-`func (o *NormalizedProjectRevision) UnsetHydraTtlLoginConsentRequest()`
-
-UnsetHydraTtlLoginConsentRequest ensures that no value is present for HydraTtlLoginConsentRequest, not even an explicit nil
 ### GetHydraTtlRefreshToken
 
 `func (o *NormalizedProjectRevision) GetHydraTtlRefreshToken() string`
@@ -949,16 +899,6 @@ SetHydraTtlRefreshToken sets HydraTtlRefreshToken field to given value.
 
 HasHydraTtlRefreshToken returns a boolean if a field has been set.
 
-### SetHydraTtlRefreshTokenNil
-
-`func (o *NormalizedProjectRevision) SetHydraTtlRefreshTokenNil(b bool)`
-
- SetHydraTtlRefreshTokenNil sets the value for HydraTtlRefreshToken to be an explicit nil
-
-### UnsetHydraTtlRefreshToken
-`func (o *NormalizedProjectRevision) UnsetHydraTtlRefreshToken()`
-
-UnsetHydraTtlRefreshToken ensures that no value is present for HydraTtlRefreshToken, not even an explicit nil
 ### GetHydraUrlsConsent
 
 `func (o *NormalizedProjectRevision) GetHydraUrlsConsent() string`
@@ -2419,16 +2359,6 @@ SetKratosSelfserviceFlowsRegistrationEnabled sets KratosSelfserviceFlowsRegistra
 
 HasKratosSelfserviceFlowsRegistrationEnabled returns a boolean if a field has been set.
 
-### SetKratosSelfserviceFlowsRegistrationEnabledNil
-
-`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationEnabledNil(b bool)`
-
- SetKratosSelfserviceFlowsRegistrationEnabledNil sets the value for KratosSelfserviceFlowsRegistrationEnabled to be an explicit nil
-
-### UnsetKratosSelfserviceFlowsRegistrationEnabled
-`func (o *NormalizedProjectRevision) UnsetKratosSelfserviceFlowsRegistrationEnabled()`
-
-UnsetKratosSelfserviceFlowsRegistrationEnabled ensures that no value is present for KratosSelfserviceFlowsRegistrationEnabled, not even an explicit nil
 ### GetKratosSelfserviceFlowsRegistrationLifespan
 
 `func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationLifespan() string`
@@ -2829,16 +2759,6 @@ SetKratosSelfserviceMethodsLinkEnabled sets KratosSelfserviceMethodsLinkEnabled 
 
 HasKratosSelfserviceMethodsLinkEnabled returns a boolean if a field has been set.
 
-### SetKratosSelfserviceMethodsLinkEnabledNil
-
-`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsLinkEnabledNil(b bool)`
-
- SetKratosSelfserviceMethodsLinkEnabledNil sets the value for KratosSelfserviceMethodsLinkEnabled to be an explicit nil
-
-### UnsetKratosSelfserviceMethodsLinkEnabled
-`func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsLinkEnabled()`
-
-UnsetKratosSelfserviceMethodsLinkEnabled ensures that no value is present for KratosSelfserviceMethodsLinkEnabled, not even an explicit nil
 ### GetKratosSelfserviceMethodsLookupSecretEnabled
 
 `func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsLookupSecretEnabled() bool`
@@ -2864,16 +2784,6 @@ SetKratosSelfserviceMethodsLookupSecretEnabled sets KratosSelfserviceMethodsLook
 
 HasKratosSelfserviceMethodsLookupSecretEnabled returns a boolean if a field has been set.
 
-### SetKratosSelfserviceMethodsLookupSecretEnabledNil
-
-`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsLookupSecretEnabledNil(b bool)`
-
- SetKratosSelfserviceMethodsLookupSecretEnabledNil sets the value for KratosSelfserviceMethodsLookupSecretEnabled to be an explicit nil
-
-### UnsetKratosSelfserviceMethodsLookupSecretEnabled
-`func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsLookupSecretEnabled()`
-
-UnsetKratosSelfserviceMethodsLookupSecretEnabled ensures that no value is present for KratosSelfserviceMethodsLookupSecretEnabled, not even an explicit nil
 ### GetKratosSelfserviceMethodsOidcConfigBaseRedirectUri
 
 `func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsOidcConfigBaseRedirectUri() string`
@@ -2974,16 +2884,6 @@ SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled sets KratosSelfse
 
 HasKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled returns a boolean if a field has been set.
 
-### SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabledNil
-
-`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabledNil(b bool)`
-
- SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabledNil sets the value for KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled to be an explicit nil
-
-### UnsetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled
-`func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled()`
-
-UnsetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled ensures that no value is present for KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled, not even an explicit nil
 ### GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled
 
 `func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled() bool`
@@ -3009,16 +2909,6 @@ SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled sets K
 
 HasKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled returns a boolean if a field has been set.
 
-### SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabledNil
-
-`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabledNil(b bool)`
-
- SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabledNil sets the value for KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled to be an explicit nil
-
-### UnsetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled
-`func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled()`
-
-UnsetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled ensures that no value is present for KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled, not even an explicit nil
 ### GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors
 
 `func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors() bool`
@@ -3044,16 +2934,6 @@ SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors sets KratosSelfserv
 
 HasKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors returns a boolean if a field has been set.
 
-### SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrorsNil
-
-`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrorsNil(b bool)`
-
- SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrorsNil sets the value for KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors to be an explicit nil
-
-### UnsetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors
-`func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors()`
-
-UnsetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors ensures that no value is present for KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors, not even an explicit nil
 ### GetKratosSelfserviceMethodsPasswordConfigMaxBreaches
 
 `func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigMaxBreaches() int64`
@@ -3129,16 +3009,6 @@ SetKratosSelfserviceMethodsPasswordEnabled sets KratosSelfserviceMethodsPassword
 
 HasKratosSelfserviceMethodsPasswordEnabled returns a boolean if a field has been set.
 
-### SetKratosSelfserviceMethodsPasswordEnabledNil
-
-`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordEnabledNil(b bool)`
-
- SetKratosSelfserviceMethodsPasswordEnabledNil sets the value for KratosSelfserviceMethodsPasswordEnabled to be an explicit nil
-
-### UnsetKratosSelfserviceMethodsPasswordEnabled
-`func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsPasswordEnabled()`
-
-UnsetKratosSelfserviceMethodsPasswordEnabled ensures that no value is present for KratosSelfserviceMethodsPasswordEnabled, not even an explicit nil
 ### GetKratosSelfserviceMethodsProfileEnabled
 
 `func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsProfileEnabled() bool`
@@ -3164,16 +3034,6 @@ SetKratosSelfserviceMethodsProfileEnabled sets KratosSelfserviceMethodsProfileEn
 
 HasKratosSelfserviceMethodsProfileEnabled returns a boolean if a field has been set.
 
-### SetKratosSelfserviceMethodsProfileEnabledNil
-
-`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsProfileEnabledNil(b bool)`
-
- SetKratosSelfserviceMethodsProfileEnabledNil sets the value for KratosSelfserviceMethodsProfileEnabled to be an explicit nil
-
-### UnsetKratosSelfserviceMethodsProfileEnabled
-`func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsProfileEnabled()`
-
-UnsetKratosSelfserviceMethodsProfileEnabled ensures that no value is present for KratosSelfserviceMethodsProfileEnabled, not even an explicit nil
 ### GetKratosSelfserviceMethodsTotpConfigIssuer
 
 `func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsTotpConfigIssuer() string`
@@ -3224,16 +3084,6 @@ SetKratosSelfserviceMethodsTotpEnabled sets KratosSelfserviceMethodsTotpEnabled 
 
 HasKratosSelfserviceMethodsTotpEnabled returns a boolean if a field has been set.
 
-### SetKratosSelfserviceMethodsTotpEnabledNil
-
-`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsTotpEnabledNil(b bool)`
-
- SetKratosSelfserviceMethodsTotpEnabledNil sets the value for KratosSelfserviceMethodsTotpEnabled to be an explicit nil
-
-### UnsetKratosSelfserviceMethodsTotpEnabled
-`func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsTotpEnabled()`
-
-UnsetKratosSelfserviceMethodsTotpEnabled ensures that no value is present for KratosSelfserviceMethodsTotpEnabled, not even an explicit nil
 ### GetKratosSelfserviceMethodsWebauthnConfigPasswordless
 
 `func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigPasswordless() bool`
@@ -3384,16 +3234,6 @@ SetKratosSelfserviceMethodsWebauthnEnabled sets KratosSelfserviceMethodsWebauthn
 
 HasKratosSelfserviceMethodsWebauthnEnabled returns a boolean if a field has been set.
 
-### SetKratosSelfserviceMethodsWebauthnEnabledNil
-
-`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnEnabledNil(b bool)`
-
- SetKratosSelfserviceMethodsWebauthnEnabledNil sets the value for KratosSelfserviceMethodsWebauthnEnabled to be an explicit nil
-
-### UnsetKratosSelfserviceMethodsWebauthnEnabled
-`func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsWebauthnEnabled()`
-
-UnsetKratosSelfserviceMethodsWebauthnEnabled ensures that no value is present for KratosSelfserviceMethodsWebauthnEnabled, not even an explicit nil
 ### GetKratosSessionCookiePersistent
 
 `func (o *NormalizedProjectRevision) GetKratosSessionCookiePersistent() bool`
@@ -3419,16 +3259,6 @@ SetKratosSessionCookiePersistent sets KratosSessionCookiePersistent field to giv
 
 HasKratosSessionCookiePersistent returns a boolean if a field has been set.
 
-### SetKratosSessionCookiePersistentNil
-
-`func (o *NormalizedProjectRevision) SetKratosSessionCookiePersistentNil(b bool)`
-
- SetKratosSessionCookiePersistentNil sets the value for KratosSessionCookiePersistent to be an explicit nil
-
-### UnsetKratosSessionCookiePersistent
-`func (o *NormalizedProjectRevision) UnsetKratosSessionCookiePersistent()`
-
-UnsetKratosSessionCookiePersistent ensures that no value is present for KratosSessionCookiePersistent, not even an explicit nil
 ### GetKratosSessionCookieSameSite
 
 `func (o *NormalizedProjectRevision) GetKratosSessionCookieSameSite() string`

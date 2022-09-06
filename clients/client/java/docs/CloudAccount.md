@@ -8,7 +8,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **email** | **String** |  |  [optional]
-**id** | **UUID** |  |  [optional]
+**id** | **String** |  |  [optional]
 **name** | **String** |  |  [optional]
 
 

@@ -12,103 +12,6 @@ defmodule Ory.Api.V0alpha2 do
 
 
   @doc """
-  Accept an OAuth 2.0 Consent Request
-  When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.  This endpoint tells ORY Hydra that the subject has authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider includes additional information, such as session data for access and ID tokens, and if the consent request should be used as basis for future requests.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - consent_challenge (String.t): 
-  - opts (KeywordList): [optional] Optional parameters
-    - :body (AcceptOAuth2ConsentRequest): 
-  ## Returns
-
-  {:ok, Ory.Model.SuccessfulOAuth2RequestResponse.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_accept_o_auth2_consent_request(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.SuccessfulOAuth2RequestResponse.t} | {:ok, Ory.Model.OAuth2ApiError.t} | {:error, Tesla.Env.t}
-  def admin_accept_o_auth2_consent_request(connection, consent_challenge, opts \\ []) do
-    optional_params = %{
-      :body => :body
-    }
-    %{}
-    |> method(:put)
-    |> url("/admin/oauth2/auth/requests/consent/accept")
-    |> add_param(:query, :consent_challenge, consent_challenge)
-    |> add_optional_params(optional_params, opts)
-    |> ensure_body()
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.SuccessfulOAuth2RequestResponse{}},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  Accept an OAuth 2.0 Login Request
-  When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell Ory Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells ORY Hydra that the subject has successfully authenticated and includes additional information such as the subject's ID and if ORY Hydra should remember the subject's subject agent for future authentication attempts by setting a cookie.  The response contains a redirect URL which the login provider should redirect the user-agent to.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - login_challenge (String.t): 
-  - opts (KeywordList): [optional] Optional parameters
-    - :body (AcceptOAuth2LoginRequest): 
-  ## Returns
-
-  {:ok, Ory.Model.SuccessfulOAuth2RequestResponse.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_accept_o_auth2_login_request(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.SuccessfulOAuth2RequestResponse.t} | {:ok, Ory.Model.OAuth2ApiError.t} | {:error, Tesla.Env.t}
-  def admin_accept_o_auth2_login_request(connection, login_challenge, opts \\ []) do
-    optional_params = %{
-      :body => :body
-    }
-    %{}
-    |> method(:put)
-    |> url("/admin/oauth2/auth/requests/login/accept")
-    |> add_param(:query, :login_challenge, login_challenge)
-    |> add_optional_params(optional_params, opts)
-    |> ensure_body()
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.SuccessfulOAuth2RequestResponse{}},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  Accept an OAuth 2.0 Logout Request
-  When a user or an application requests ORY Hydra to log out a user, this endpoint is used to confirm that logout request.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - logout_challenge (String.t): 
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, Ory.Model.SuccessfulOAuth2RequestResponse.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_accept_o_auth2_logout_request(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.SuccessfulOAuth2RequestResponse.t} | {:ok, Ory.Model.OAuth2ApiError.t} | {:error, Tesla.Env.t}
-  def admin_accept_o_auth2_logout_request(connection, logout_challenge, _opts \\ []) do
-    %{}
-    |> method(:put)
-    |> url("/admin/oauth2/auth/requests/logout/accept")
-    |> add_param(:query, :logout_challenge, logout_challenge)
-    |> ensure_body()
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.SuccessfulOAuth2RequestResponse{}},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
   Create an Identity
   This endpoint creates an identity. Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
@@ -139,63 +42,6 @@ defmodule Ory.Api.V0alpha2 do
       { 400, %Ory.Model.JsonError{}},
       { 409, %Ory.Model.JsonError{}},
       { 500, %Ory.Model.JsonError{}}
-    ])
-  end
-
-  @doc """
-  Generate a New JSON Web Key
-  This endpoint is capable of generating JSON Web Key Sets for you. There a different strategies available, such as symmetric cryptographic keys (HS256, HS512) and asymetric cryptographic keys (RS256, ECDSA). If the specified JSON Web Key Set does not exist, it will be created.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - set (String.t): The JSON Web Key Set
-  - admin_create_json_web_key_set_body (AdminCreateJsonWebKeySetBody): 
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, Ory.Model.JsonWebKeySet.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_create_json_web_key_set(Tesla.Env.client, String.t, Ory.Model.AdminCreateJsonWebKeySetBody.t, keyword()) :: {:ok, Ory.Model.JsonWebKeySet.t} | {:ok, Ory.Model.OAuth2ApiError.t} | {:error, Tesla.Env.t}
-  def admin_create_json_web_key_set(connection, set, admin_create_json_web_key_set_body, _opts \\ []) do
-    %{}
-    |> method(:post)
-    |> url("/admin/keys/#{set}")
-    |> add_param(:body, :body, admin_create_json_web_key_set_body)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 201, %Ory.Model.JsonWebKeySet{}},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  Create an OAuth 2.0 Client
-  Create a new OAuth 2.0 client. If you pass `client_secret` the secret is used, otherwise a random secret is generated. The secret is echoed in the response. It is not possible to retrieve it later on.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - o_auth2_client (OAuth2Client): 
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, Ory.Model.OAuth2Client.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_create_o_auth2_client(Tesla.Env.client, Ory.Model.OAuth2Client.t, keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, Ory.Model.OAuth2Client.t} | {:error, Tesla.Env.t}
-  def admin_create_o_auth2_client(connection, o_auth2_client, _opts \\ []) do
-    %{}
-    |> method(:post)
-    |> url("/admin/clients")
-    |> add_param(:body, :body, o_auth2_client)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 201, %Ory.Model.OAuth2Client{}},
-      { :default, %Ory.Model.GenericError{}}
     ])
   end
 
@@ -292,143 +138,6 @@ defmodule Ory.Api.V0alpha2 do
   end
 
   @doc """
-  Delete a JSON Web Key
-  Use this endpoint to delete a single JSON Web Key.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - set (String.t): The JSON Web Key Set
-  - kid (String.t): The JSON Web Key ID (kid)
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, nil} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_delete_json_web_key(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.OAuth2ApiError.t} | {:error, Tesla.Env.t}
-  def admin_delete_json_web_key(connection, set, kid, _opts \\ []) do
-    %{}
-    |> method(:delete)
-    |> url("/admin/keys/#{set}/#{kid}")
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 204, false},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  Delete a JSON Web Key Set
-  Use this endpoint to delete a complete JSON Web Key Set and all the keys in that set.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - set (String.t): The JSON Web Key Set
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, nil} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_delete_json_web_key_set(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.OAuth2ApiError.t} | {:error, Tesla.Env.t}
-  def admin_delete_json_web_key_set(connection, set, _opts \\ []) do
-    %{}
-    |> method(:delete)
-    |> url("/admin/keys/#{set}")
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 204, false},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  Deletes an OAuth 2.0 Client
-  Delete an existing OAuth 2.0 Client by its ID.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.  Make sure that this endpoint is well protected and only callable by first-party components.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - id (String.t): The id of the OAuth 2.0 Client.
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, nil} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_delete_o_auth2_client(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.GenericError.t} | {:error, Tesla.Env.t}
-  def admin_delete_o_auth2_client(connection, id, _opts \\ []) do
-    %{}
-    |> method(:delete)
-    |> url("/admin/clients/#{id}")
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 204, false},
-      { :default, %Ory.Model.GenericError{}}
-    ])
-  end
-
-  @doc """
-  Delete OAuth2 Access Tokens from a Client
-  This endpoint deletes OAuth2 access tokens issued for a client from the database
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - client_id (String.t): 
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, nil} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_delete_o_auth2_token(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.OAuth2ApiError.t} | {:error, Tesla.Env.t}
-  def admin_delete_o_auth2_token(connection, client_id, _opts \\ []) do
-    %{}
-    |> method(:delete)
-    |> url("/admin/oauth2/tokens")
-    |> add_param(:query, :client_id, client_id)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 204, false},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer
-  Use this endpoint to delete trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you created the trust relationship.  Once deleted, the associated issuer will no longer be able to perform the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grant.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - id (String.t): The id of the desired grant
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, nil} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_delete_trusted_o_auth2_jwt_grant_issuer(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.GenericError.t} | {:error, Tesla.Env.t}
-  def admin_delete_trusted_o_auth2_jwt_grant_issuer(connection, id, _opts \\ []) do
-    %{}
-    |> method(:delete)
-    |> url("/admin/trust/grants/jwt-bearer/issuers/#{id}")
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 204, false},
-      { :default, %Ory.Model.GenericError{}}
-    ])
-  end
-
-  @doc """
   Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.
   Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
 
@@ -488,235 +197,6 @@ defmodule Ory.Api.V0alpha2 do
       { 200, %Ory.Model.Identity{}},
       { 404, %Ory.Model.JsonError{}},
       { 500, %Ory.Model.JsonError{}}
-    ])
-  end
-
-  @doc """
-  Fetch a JSON Web Key
-  This endpoint returns a singular JSON Web Key. It is identified by the set and the specific key ID (kid).
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - set (String.t): The JSON Web Key Set
-  - kid (String.t): The JSON Web Key ID (kid)
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, Ory.Model.JsonWebKeySet.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_get_json_web_key(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, Ory.Model.JsonWebKeySet.t} | {:ok, Ory.Model.OAuth2ApiError.t} | {:error, Tesla.Env.t}
-  def admin_get_json_web_key(connection, set, kid, _opts \\ []) do
-    %{}
-    |> method(:get)
-    |> url("/admin/keys/#{set}/#{kid}")
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.JsonWebKeySet{}},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  Retrieve a JSON Web Key Set
-  This endpoint can be used to retrieve JWK Sets stored in ORY Hydra.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - set (String.t): The JSON Web Key Set
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, Ory.Model.JsonWebKeySet.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_get_json_web_key_set(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.JsonWebKeySet.t} | {:ok, Ory.Model.OAuth2ApiError.t} | {:error, Tesla.Env.t}
-  def admin_get_json_web_key_set(connection, set, _opts \\ []) do
-    %{}
-    |> method(:get)
-    |> url("/admin/keys/#{set}")
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.JsonWebKeySet{}},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  Get an OAuth 2.0 Client
-  Get an OAuth 2.0 client by its ID. This endpoint never returns the client secret.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - id (String.t): The id of the OAuth 2.0 Client.
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, Ory.Model.OAuth2Client.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_get_o_auth2_client(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, Ory.Model.OAuth2Client.t} | {:error, Tesla.Env.t}
-  def admin_get_o_auth2_client(connection, id, _opts \\ []) do
-    %{}
-    |> method(:get)
-    |> url("/admin/clients/#{id}")
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.OAuth2Client{}},
-      { :default, %Ory.Model.GenericError{}}
-    ])
-  end
-
-  @doc """
-  Get OAuth 2.0 Consent Request Information
-  When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - consent_challenge (String.t): 
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, Ory.Model.OAuth2ConsentRequest.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_get_o_auth2_consent_request(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.OAuth2ConsentRequest.t} | {:ok, Ory.Model.OAuth2ApiError.t} | {:ok, Ory.Model.HandledOAuth2ConsentRequest.t} | {:error, Tesla.Env.t}
-  def admin_get_o_auth2_consent_request(connection, consent_challenge, _opts \\ []) do
-    %{}
-    |> method(:get)
-    |> url("/admin/oauth2/auth/requests/consent")
-    |> add_param(:query, :consent_challenge, consent_challenge)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.OAuth2ConsentRequest{}},
-      { 410, %Ory.Model.HandledOAuth2ConsentRequest{}},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  Get an OAuth 2.0 Login Request
-  When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell ORY Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - login_challenge (String.t): 
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, Ory.Model.OAuth2LoginRequest.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_get_o_auth2_login_request(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.OAuth2ApiError.t} | {:ok, Ory.Model.OAuth2LoginRequest.t} | {:ok, Ory.Model.HandledOAuth2LoginRequest.t} | {:error, Tesla.Env.t}
-  def admin_get_o_auth2_login_request(connection, login_challenge, _opts \\ []) do
-    %{}
-    |> method(:get)
-    |> url("/admin/oauth2/auth/requests/login")
-    |> add_param(:query, :login_challenge, login_challenge)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.OAuth2LoginRequest{}},
-      { 410, %Ory.Model.HandledOAuth2LoginRequest{}},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  Get an OAuth 2.0 Logout Request
-  Use this endpoint to fetch a logout request.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - logout_challenge (String.t): 
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, Ory.Model.OAuth2LogoutRequest.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_get_o_auth2_logout_request(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.OAuth2LogoutRequest.t} | {:ok, Ory.Model.OAuth2ApiError.t} | {:ok, Ory.Model.HandledOAuth2LogoutRequest.t} | {:error, Tesla.Env.t}
-  def admin_get_o_auth2_logout_request(connection, logout_challenge, _opts \\ []) do
-    %{}
-    |> method(:get)
-    |> url("/admin/oauth2/auth/requests/logout")
-    |> add_param(:query, :logout_challenge, logout_challenge)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.OAuth2LogoutRequest{}},
-      { 410, %Ory.Model.HandledOAuth2LogoutRequest{}},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
-  Use this endpoint to get a trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you created the trust relationship.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - id (String.t): The id of the desired grant
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, Ory.Model.TrustedOAuth2JwtGrantIssuer.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_get_trusted_o_auth2_jwt_grant_issuer(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.TrustedOAuth2JwtGrantIssuer.t} | {:ok, Ory.Model.GenericError.t} | {:error, Tesla.Env.t}
-  def admin_get_trusted_o_auth2_jwt_grant_issuer(connection, id, _opts \\ []) do
-    %{}
-    |> method(:get)
-    |> url("/admin/trust/grants/jwt-bearer/issuers/#{id}")
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.TrustedOAuth2JwtGrantIssuer{}},
-      { :default, %Ory.Model.GenericError{}}
-    ])
-  end
-
-  @doc """
-  Introspect OAuth2 Access or Refresh Tokens
-  The introspection endpoint allows to check if a token (both refresh and access) is active or not. An active token is neither expired nor revoked. If a token is active, additional information on the token will be included. You can set additional data for a token by setting `accessTokenExtra` during the consent flow.  For more information [read this blog post](https://www.oauth.com/oauth2-servers/token-introspection-endpoint/).
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - token (String.t): The string value of the token. For access tokens, this is the \\\"access_token\\\" value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\"refresh_token\\\" value returned.
-  - opts (KeywordList): [optional] Optional parameters
-    - :scope (String.t): An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false.
-  ## Returns
-
-  {:ok, Ory.Model.IntrospectedOAuth2Token.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_introspect_o_auth2_token(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.OAuth2ApiError.t} | {:ok, Ory.Model.IntrospectedOAuth2Token.t} | {:error, Tesla.Env.t}
-  def admin_introspect_o_auth2_token(connection, token, opts \\ []) do
-    optional_params = %{
-      :scope => :form
-    }
-    %{}
-    |> method(:post)
-    |> url("/admin/oauth2/introspect")
-    |> add_param(:form, :token, token)
-    |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.IntrospectedOAuth2Token{}},
-      { :default, %Ory.Model.OAuth2ApiError{}}
     ])
   end
 
@@ -793,117 +273,6 @@ defmodule Ory.Api.V0alpha2 do
   end
 
   @doc """
-  List OAuth 2.0 Clients
-  This endpoint lists all clients in the database, and never returns client secrets. As a default it lists the first 100 clients. The `limit` parameter can be used to retrieve more clients, but it has an upper bound at 500 objects. Pagination should be used to retrieve more than 500 objects.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.  The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://project-slug.projects.oryapis.com/admin/clients?limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - opts (KeywordList): [optional] Optional parameters
-    - :page_size (integer()): Items per page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-    - :page_token (String.t): Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-    - :client_name (String.t): The name of the clients to filter by.
-    - :owner (String.t): The owner of the clients to filter by.
-  ## Returns
-
-  {:ok, [%OAuth2Client{}, ...]} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_list_o_auth2_clients(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, list(Ory.Model.OAuth2Client.t)} | {:error, Tesla.Env.t}
-  def admin_list_o_auth2_clients(connection, opts \\ []) do
-    optional_params = %{
-      :page_size => :query,
-      :page_token => :query,
-      :client_name => :query,
-      :owner => :query
-    }
-    %{}
-    |> method(:get)
-    |> url("/admin/clients")
-    |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, [%Ory.Model.OAuth2Client{}]},
-      { :default, %Ory.Model.GenericError{}}
-    ])
-  end
-
-  @doc """
-  List OAuth 2.0 Consent Sessions of a Subject
-  This endpoint lists all subject's granted consent sessions, including client and granted scope. If the subject is unknown or has not granted any consent sessions yet, the endpoint returns an empty JSON array with status code 200 OK.  The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/oauth2/auth/sessions/consent?subject={user}&limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - subject (String.t): The subject to list the consent sessions for.
-  - opts (KeywordList): [optional] Optional parameters
-    - :link (String.t): The link header contains pagination links.  For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-    - :x_total_count (String.t): The total number of clients.
-  ## Returns
-
-  {:ok, [%PreviousOAuth2ConsentSession{}, ...]} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_list_o_auth2_subject_consent_sessions(Tesla.Env.client, String.t, keyword()) :: {:ok, list(Ory.Model.PreviousOAuth2ConsentSession.t)} | {:ok, Ory.Model.OAuth2ApiError.t} | {:error, Tesla.Env.t}
-  def admin_list_o_auth2_subject_consent_sessions(connection, subject, opts \\ []) do
-    optional_params = %{
-      :link => :headers,
-      :"x-total-count" => :headers
-    }
-    %{}
-    |> method(:get)
-    |> url("/admin/oauth2/auth/sessions/consent")
-    |> add_param(:query, :subject, subject)
-    |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, [%Ory.Model.PreviousOAuth2ConsentSession{}]},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  List Trusted OAuth2 JWT Bearer Grant Type Issuers
-  Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - opts (KeywordList): [optional] Optional parameters
-    - :max_items (integer()): 
-    - :default_items (integer()): 
-    - :issuer (String.t): If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned.
-    - :limit (integer()): The maximum amount of policies returned, upper bound is 500 policies
-    - :offset (integer()): The offset from where to start looking.
-  ## Returns
-
-  {:ok, [%TrustedOAuth2JwtGrantIssuer{}, ...]} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_list_trusted_o_auth2_jwt_grant_issuers(Tesla.Env.client, keyword()) :: {:ok, list(Ory.Model.TrustedOAuth2JwtGrantIssuer.t)} | {:ok, Ory.Model.GenericError.t} | {:error, Tesla.Env.t}
-  def admin_list_trusted_o_auth2_jwt_grant_issuers(connection, opts \\ []) do
-    optional_params = %{
-      :MaxItems => :query,
-      :DefaultItems => :query,
-      :issuer => :query,
-      :limit => :query,
-      :offset => :query
-    }
-    %{}
-    |> method(:get)
-    |> url("/admin/trust/grants/jwt-bearer/issuers")
-    |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, [%Ory.Model.TrustedOAuth2JwtGrantIssuer{}]},
-      { :default, %Ory.Model.GenericError{}}
-    ])
-  end
-
-  @doc """
   Partially updates an Identity's field using [JSON Patch](https://jsonpatch.com/)
   NOTE: The fields `id`, `stateChangedAt` and `credentials` are not updateable.  Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 
@@ -936,232 +305,6 @@ defmodule Ory.Api.V0alpha2 do
       { 404, %Ory.Model.JsonError{}},
       { 409, %Ory.Model.JsonError{}},
       { 500, %Ory.Model.JsonError{}}
-    ])
-  end
-
-  @doc """
-  Patch an OAuth 2.0 Client
-  Patch an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - id (String.t): The id of the OAuth 2.0 Client.
-  - json_patch ([Ory.Model.JsonPatch.t]): 
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, Ory.Model.OAuth2Client.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_patch_o_auth2_client(Tesla.Env.client, String.t, list(Ory.Model.JsonPatch.t), keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, Ory.Model.OAuth2Client.t} | {:error, Tesla.Env.t}
-  def admin_patch_o_auth2_client(connection, id, json_patch, _opts \\ []) do
-    %{}
-    |> method(:patch)
-    |> url("/admin/clients/#{id}")
-    |> add_param(:body, :body, json_patch)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.OAuth2Client{}},
-      { :default, %Ory.Model.GenericError{}}
-    ])
-  end
-
-  @doc """
-  Reject an OAuth 2.0 Consent Request
-  When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.  This endpoint tells ORY Hydra that the subject has not authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider must include a reason why the consent was not granted.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - consent_challenge (String.t): 
-  - opts (KeywordList): [optional] Optional parameters
-    - :body (RejectOAuth2Request): 
-  ## Returns
-
-  {:ok, Ory.Model.SuccessfulOAuth2RequestResponse.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_reject_o_auth2_consent_request(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.SuccessfulOAuth2RequestResponse.t} | {:ok, Ory.Model.OAuth2ApiError.t} | {:error, Tesla.Env.t}
-  def admin_reject_o_auth2_consent_request(connection, consent_challenge, opts \\ []) do
-    optional_params = %{
-      :body => :body
-    }
-    %{}
-    |> method(:put)
-    |> url("/admin/oauth2/auth/requests/consent/reject")
-    |> add_param(:query, :consent_challenge, consent_challenge)
-    |> add_optional_params(optional_params, opts)
-    |> ensure_body()
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.SuccessfulOAuth2RequestResponse{}},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  Reject an OAuth 2.0 Login Request
-  When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell ORY Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells ORY Hydra that the subject has not authenticated and includes a reason why the authentication was denied.  The response contains a redirect URL which the login provider should redirect the user-agent to.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - login_challenge (String.t): 
-  - opts (KeywordList): [optional] Optional parameters
-    - :body (RejectOAuth2Request): 
-  ## Returns
-
-  {:ok, Ory.Model.SuccessfulOAuth2RequestResponse.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_reject_o_auth2_login_request(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.SuccessfulOAuth2RequestResponse.t} | {:ok, Ory.Model.OAuth2ApiError.t} | {:error, Tesla.Env.t}
-  def admin_reject_o_auth2_login_request(connection, login_challenge, opts \\ []) do
-    optional_params = %{
-      :body => :body
-    }
-    %{}
-    |> method(:put)
-    |> url("/admin/oauth2/auth/requests/login/reject")
-    |> add_param(:query, :login_challenge, login_challenge)
-    |> add_optional_params(optional_params, opts)
-    |> ensure_body()
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.SuccessfulOAuth2RequestResponse{}},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  Reject an OAuth 2.0 Logout Request
-  When a user or an application requests ORY Hydra to log out a user, this endpoint is used to deny that logout request. No body is required.  The response is empty as the logout provider has to chose what action to perform next.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - logout_challenge (String.t): 
-  - opts (KeywordList): [optional] Optional parameters
-    - :body (RejectOAuth2Request): 
-  ## Returns
-
-  {:ok, nil} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_reject_o_auth2_logout_request(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.OAuth2ApiError.t} | {:error, Tesla.Env.t}
-  def admin_reject_o_auth2_logout_request(connection, logout_challenge, opts \\ []) do
-    optional_params = %{
-      :body => :body
-    }
-    %{}
-    |> method(:put)
-    |> url("/admin/oauth2/auth/requests/logout/reject")
-    |> add_param(:query, :logout_challenge, logout_challenge)
-    |> add_optional_params(optional_params, opts)
-    |> ensure_body()
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 204, false},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  Revokes OAuth 2.0 Consent Sessions of a Subject for a Specific OAuth 2.0 Client
-  This endpoint revokes a subject's granted consent sessions for a specific OAuth 2.0 Client and invalidates all associated OAuth 2.0 Access Tokens.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - subject (String.t): The subject (Subject) whose consent sessions should be deleted.
-  - opts (KeywordList): [optional] Optional parameters
-    - :client (String.t): If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID
-    - :all (boolean()): If set to `true` deletes all consent sessions by the Subject that have been granted.
-  ## Returns
-
-  {:ok, nil} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_revoke_o_auth2_consent_sessions(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.OAuth2ApiError.t} | {:error, Tesla.Env.t}
-  def admin_revoke_o_auth2_consent_sessions(connection, subject, opts \\ []) do
-    optional_params = %{
-      :client => :query,
-      :all => :query
-    }
-    %{}
-    |> method(:delete)
-    |> url("/admin/oauth2/auth/sessions/consent")
-    |> add_param(:query, :subject, subject)
-    |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 204, false},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  Invalidates All OAuth 2.0 Login Sessions of a Certain User
-  This endpoint invalidates a subject's authentication session. After revoking the authentication session, the subject has to re-authenticate at ORY Hydra. This endpoint does not invalidate any tokens and does not work with OpenID Connect Front- or Back-channel logout.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - subject (String.t): The subject to revoke authentication sessions for.
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, nil} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_revoke_o_auth2_login_sessions(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.OAuth2ApiError.t} | {:error, Tesla.Env.t}
-  def admin_revoke_o_auth2_login_sessions(connection, subject, _opts \\ []) do
-    %{}
-    |> method(:delete)
-    |> url("/admin/oauth2/auth/sessions/login")
-    |> add_param(:query, :subject, subject)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 204, false},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  Trust an OAuth2 JWT Bearer Grant Type Issuer
-  Use this endpoint to establish a trust relationship for a JWT issuer to perform JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants [RFC7523](https://datatracker.ietf.org/doc/html/rfc7523).
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - opts (KeywordList): [optional] Optional parameters
-    - :body (AdminTrustOAuth2JwtGrantIssuerBody): 
-  ## Returns
-
-  {:ok, Ory.Model.TrustedOAuth2JwtGrantIssuer.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_trust_o_auth2_jwt_grant_issuer(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.TrustedOAuth2JwtGrantIssuer.t} | {:ok, Ory.Model.GenericError.t} | {:error, Tesla.Env.t}
-  def admin_trust_o_auth2_jwt_grant_issuer(connection, opts \\ []) do
-    optional_params = %{
-      :body => :body
-    }
-    %{}
-    |> method(:post)
-    |> url("/admin/trust/grants/jwt-bearer/issuers")
-    |> add_optional_params(optional_params, opts)
-    |> ensure_body()
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 201, %Ory.Model.TrustedOAuth2JwtGrantIssuer{}},
-      { :default, %Ory.Model.GenericError{}}
     ])
   end
 
@@ -1202,103 +345,7 @@ defmodule Ory.Api.V0alpha2 do
   end
 
   @doc """
-  Update a JSON Web Key
-  Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - set (String.t): The JSON Web Key Set
-  - kid (String.t): The JSON Web Key ID (kid)
-  - opts (KeywordList): [optional] Optional parameters
-    - :body (JsonWebKey): 
-  ## Returns
-
-  {:ok, Ory.Model.JsonWebKey.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_update_json_web_key(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, Ory.Model.OAuth2ApiError.t} | {:ok, Ory.Model.JsonWebKey.t} | {:error, Tesla.Env.t}
-  def admin_update_json_web_key(connection, set, kid, opts \\ []) do
-    optional_params = %{
-      :body => :body
-    }
-    %{}
-    |> method(:put)
-    |> url("/admin/keys/#{set}/#{kid}")
-    |> add_optional_params(optional_params, opts)
-    |> ensure_body()
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.JsonWebKey{}},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  Update a JSON Web Key Set
-  Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - set (String.t): The JSON Web Key Set
-  - opts (KeywordList): [optional] Optional parameters
-    - :body (JsonWebKeySet): 
-  ## Returns
-
-  {:ok, Ory.Model.JsonWebKeySet.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_update_json_web_key_set(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.JsonWebKeySet.t} | {:ok, Ory.Model.OAuth2ApiError.t} | {:error, Tesla.Env.t}
-  def admin_update_json_web_key_set(connection, set, opts \\ []) do
-    optional_params = %{
-      :body => :body
-    }
-    %{}
-    |> method(:put)
-    |> url("/admin/keys/#{set}")
-    |> add_optional_params(optional_params, opts)
-    |> ensure_body()
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.JsonWebKeySet{}},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  Update an OAuth 2.0 Client
-  Update an existing OAuth 2.0 Client. If you pass `client_secret` the secret is used, otherwise a random secret is generated. The secret is echoed in the response. It is not possible to retrieve it later on.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - id (String.t): The id of the OAuth 2.0 Client.
-  - o_auth2_client (OAuth2Client): 
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, Ory.Model.OAuth2Client.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec admin_update_o_auth2_client(Tesla.Env.client, String.t, Ory.Model.OAuth2Client.t, keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, Ory.Model.OAuth2Client.t} | {:error, Tesla.Env.t}
-  def admin_update_o_auth2_client(connection, id, o_auth2_client, _opts \\ []) do
-    %{}
-    |> method(:put)
-    |> url("/admin/clients/#{id}")
-    |> add_param(:body, :body, o_auth2_client)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.OAuth2Client{}},
-      { :default, %Ory.Model.GenericError{}}
-    ])
-  end
-
-  @doc """
-  Create a Project
+  # Create a Project
   Creates a new project.
 
   ## Parameters
@@ -1328,6 +375,39 @@ defmodule Ory.Api.V0alpha2 do
       { 401, %Ory.Model.GenericError{}},
       { 403, %Ory.Model.GenericError{}},
       { 404, %Ory.Model.GenericError{}},
+      { :default, %Ory.Model.GenericError{}}
+    ])
+  end
+
+  @doc """
+  # Create API Token
+  Create an API token for a project.
+
+  ## Parameters
+
+  - connection (Ory.Connection): Connection to server
+  - project (String.t): The Project ID or Project slug
+  - opts (KeywordList): [optional] Optional parameters
+    - :body (CreateProjectApiKeyRequest): 
+  ## Returns
+
+  {:ok, Ory.Model.ProjectApiKey.t} on success
+  {:error, Tesla.Env.t} on failure
+  """
+  @spec create_project_api_key(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.ProjectApiKey.t} | {:ok, Ory.Model.GenericError.t} | {:error, Tesla.Env.t}
+  def create_project_api_key(connection, project, opts \\ []) do
+    optional_params = %{
+      :body => :body
+    }
+    %{}
+    |> method(:post)
+    |> url("/projects/#{project}/tokens")
+    |> add_optional_params(optional_params, opts)
+    |> ensure_body()
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> evaluate_response([
+      { 201, %Ory.Model.ProjectApiKey{}},
       { :default, %Ory.Model.GenericError{}}
     ])
   end
@@ -1365,164 +445,29 @@ defmodule Ory.Api.V0alpha2 do
   end
 
   @doc """
-  Discover JSON Web Keys
-  This endpoint returns JSON Web Keys required to verifying OpenID Connect ID Tokens and, if enabled, OAuth 2.0 JWT Access Tokens. This endpoint can be used with client libraries like [node-jwks-rsa](https://github.com/auth0/node-jwks-rsa) among others.
+  # Delete API Token
+  Deletes an API Token and immediately removes it.
 
   ## Parameters
 
   - connection (Ory.Connection): Connection to server
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, Ory.Model.JsonWebKeySet.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec discover_json_web_keys(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.JsonWebKeySet.t} | {:ok, Ory.Model.OAuth2ApiError.t} | {:error, Tesla.Env.t}
-  def discover_json_web_keys(connection, _opts \\ []) do
-    %{}
-    |> method(:get)
-    |> url("/.well-known/jwks.json")
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.JsonWebKeySet{}},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  OpenID Connect Discovery
-  The well known endpoint an be used to retrieve information for OpenID Connect clients. We encourage you to not roll your own OpenID Connect client but to use an OpenID Connect client library instead. You can learn more on this flow at https://openid.net/specs/openid-connect-discovery-1_0.html .  Popular libraries for OpenID Connect clients include oidc-client-js (JavaScript), go-oidc (Golang), and others. For a full list of clients go here: https://openid.net/developers/certified/
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, Ory.Model.OidcConfiguration.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec discover_oidc_configuration(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.OidcConfiguration.t} | {:ok, Ory.Model.OAuth2ApiError.t} | {:error, Tesla.Env.t}
-  def discover_oidc_configuration(connection, _opts \\ []) do
-    %{}
-    |> method(:get)
-    |> url("/.well-known/openid-configuration")
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.OidcConfiguration{}},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-  This endpoint behaves like the administrative counterpart (`createOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  Please note that using this endpoint you are not able to choose the `client_secret` nor the `client_id` as those values will be server generated when specifying `token_endpoint_auth_method` as `client_secret_basic` or `client_secret_post`.  The `client_secret` will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somewhere safe.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - o_auth2_client (OAuth2Client): 
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, Ory.Model.OAuth2Client.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec dynamic_client_registration_create_o_auth2_client(Tesla.Env.client, Ory.Model.OAuth2Client.t, keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, Ory.Model.OAuth2Client.t} | {:error, Tesla.Env.t}
-  def dynamic_client_registration_create_o_auth2_client(connection, o_auth2_client, _opts \\ []) do
-    %{}
-    |> method(:post)
-    |> url("/oauth2/register")
-    |> add_param(:body, :body, o_auth2_client)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 201, %Ory.Model.OAuth2Client{}},
-      { :default, %Ory.Model.GenericError{}}
-    ])
-  end
-
-  @doc """
-  Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-  This endpoint behaves like the administrative counterpart (`deleteOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - id (String.t): The id of the OAuth 2.0 Client.
+  - project (String.t): The Project ID or Project slug
+  - token_id (String.t): The Token ID
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
   {:ok, nil} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec dynamic_client_registration_delete_o_auth2_client(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.GenericError.t} | {:error, Tesla.Env.t}
-  def dynamic_client_registration_delete_o_auth2_client(connection, id, _opts \\ []) do
+  @spec delete_project_api_key(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.GenericError.t} | {:error, Tesla.Env.t}
+  def delete_project_api_key(connection, project, token_id, _opts \\ []) do
     %{}
     |> method(:delete)
-    |> url("/oauth2/register/#{id}")
+    |> url("/projects/#{project}/tokens/#{token_id}")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       { 204, false},
-      { :default, %Ory.Model.GenericError{}}
-    ])
-  end
-
-  @doc """
-  Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-  This endpoint behaves like the administrative counterpart (`getOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - id (String.t): The id of the OAuth 2.0 Client.
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, Ory.Model.OAuth2Client.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec dynamic_client_registration_get_o_auth2_client(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, Ory.Model.OAuth2Client.t} | {:error, Tesla.Env.t}
-  def dynamic_client_registration_get_o_auth2_client(connection, id, _opts \\ []) do
-    %{}
-    |> method(:get)
-    |> url("/oauth2/register/#{id}")
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.OAuth2Client{}},
-      { :default, %Ory.Model.GenericError{}}
-    ])
-  end
-
-  @doc """
-  Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-  This endpoint behaves like the administrative counterpart (`updateOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  If you pass `client_secret` the secret is used, otherwise a random secret is generated. The secret is echoed in the response. It is not possible to retrieve it later on.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - id (String.t): The id of the OAuth 2.0 Client.
-  - o_auth2_client (OAuth2Client): 
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, Ory.Model.OAuth2Client.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec dynamic_client_registration_update_o_auth2_client(Tesla.Env.client, String.t, Ory.Model.OAuth2Client.t, keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, Ory.Model.OAuth2Client.t} | {:error, Tesla.Env.t}
-  def dynamic_client_registration_update_o_auth2_client(connection, id, o_auth2_client, _opts \\ []) do
-    %{}
-    |> method(:put)
-    |> url("/oauth2/register/#{id}")
-    |> add_param(:body, :body, o_auth2_client)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.OAuth2Client{}},
       { :default, %Ory.Model.GenericError{}}
     ])
   end
@@ -1555,33 +500,7 @@ defmodule Ory.Api.V0alpha2 do
   end
 
   @doc """
-  OpenID Connect Userinfo
-  This endpoint returns the payload of the ID Token, including the idTokenExtra values, of the provided OAuth 2.0 Access Token.  For more information please [refer to the spec](http://openid.net/specs/openid-connect-core-1_0.html#UserInfo).  In the case of authentication error, a WWW-Authenticate header might be set in the response with more information about the error. See [the spec](https://datatracker.ietf.org/doc/html/rfc6750#section-3) for more details about header format.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, Ory.Model.OidcUserInfo.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec get_oidc_user_info(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.OAuth2ApiError.t} | {:ok, Ory.Model.OidcUserInfo.t} | {:error, Tesla.Env.t}
-  def get_oidc_user_info(connection, _opts \\ []) do
-    %{}
-    |> method(:get)
-    |> url("/userinfo")
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.OidcUserInfo{}},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  Get a Project
+  # Get a Project
   Get a projects you have access to by its ID.
 
   ## Parameters
@@ -1816,7 +735,7 @@ defmodule Ory.Api.V0alpha2 do
   end
 
   @doc """
-  Get Verification Flow
+  # Get Verification Flow
   This endpoint returns a verification flow's context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request's HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  ```js pseudo-code example router.get('/recovery', async function (req, res) { const flow = await client.getSelfServiceVerificationFlow(req.header('cookie'), req.query['flow'])  res.render('verification', flow) })  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
   ## Parameters
@@ -2226,7 +1145,34 @@ defmodule Ory.Api.V0alpha2 do
   end
 
   @doc """
-  List All Projects
+  # List a Project's API Tokens
+  A list of all the project's API tokens.
+
+  ## Parameters
+
+  - connection (Ory.Connection): Connection to server
+  - project (String.t): The Project ID or Project slug
+  - opts (KeywordList): [optional] Optional parameters
+  ## Returns
+
+  {:ok, [%ProjectApiKey{}, ...]} on success
+  {:error, Tesla.Env.t} on failure
+  """
+  @spec list_project_api_keys(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, list(Ory.Model.ProjectApiKey.t)} | {:error, Tesla.Env.t}
+  def list_project_api_keys(connection, project, _opts \\ []) do
+    %{}
+    |> method(:get)
+    |> url("/projects/#{project}/tokens")
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> evaluate_response([
+      { 200, [%Ory.Model.ProjectApiKey{}]},
+      { :default, %Ory.Model.GenericError{}}
+    ])
+  end
+
+  @doc """
+  # List All Projects
   Lists all projects you have access to.
 
   ## Parameters
@@ -2332,97 +1278,7 @@ defmodule Ory.Api.V0alpha2 do
   end
 
   @doc """
-  The OAuth 2.0 Authorize Endpoint
-  This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exists.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc6749
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, Ory.Model.OAuth2ApiError.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec perform_o_auth2_authorization_flow(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, Ory.Model.OAuth2ApiError.t} | {:error, Tesla.Env.t}
-  def perform_o_auth2_authorization_flow(connection, _opts \\ []) do
-    %{}
-    |> method(:get)
-    |> url("/oauth2/auth")
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 302, false},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  The OAuth 2.0 Token Endpoint
-  The client makes a request to the token endpoint by sending the following parameters using the \"application/x-www-form-urlencoded\" HTTP request entity-body.  > Do not implement a client for this endpoint yourself. Use a library. There are many libraries > available for any programming language. You can find a list of libraries here: https://oauth.net/code/ > > Do note that Hydra SDK does not implement this endpoint properly. Use one of the libraries listed above
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - grant_type (String.t): 
-  - opts (KeywordList): [optional] Optional parameters
-    - :client_id (String.t): 
-    - :code (String.t): 
-    - :redirect_uri (String.t): 
-    - :refresh_token (String.t): 
-  ## Returns
-
-  {:ok, Ory.Model.OAuth2TokenResponse.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec perform_o_auth2_token_flow(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.OAuth2TokenResponse.t} | {:ok, Ory.Model.OAuth2ApiError.t} | {:error, Tesla.Env.t}
-  def perform_o_auth2_token_flow(connection, grant_type, opts \\ []) do
-    optional_params = %{
-      :client_id => :form,
-      :code => :form,
-      :redirect_uri => :form,
-      :refresh_token => :form
-    }
-    %{}
-    |> method(:post)
-    |> url("/oauth2/token")
-    |> add_param(:form, :grant_type, grant_type)
-    |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %Ory.Model.OAuth2TokenResponse{}},
-      { :default, %Ory.Model.OAuth2ApiError{}}
-    ])
-  end
-
-  @doc """
-  OpenID Connect Front- or Back-channel Enabled Logout
-  This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front- / Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html  Back-channel logout is performed asynchronously and does not affect logout flow.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, nil} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec perform_oidc_front_or_back_channel_logout(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
-  def perform_oidc_front_or_back_channel_logout(connection, _opts \\ []) do
-    %{}
-    |> method(:get)
-    |> url("/oauth2/sessions/logout")
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 302, false}
-    ])
-  end
-
-  @doc """
-  Irrecoverably Purge a Project
+  # Irrecoverably Purge a Project
   !! Use with extreme caution !!  Using this API endpoint you can purge (completely delete) a project and its data. This action can not be undone and will delete ALL your data.  !! Use with extreme caution !!
 
   ## Parameters
@@ -2479,34 +1335,6 @@ defmodule Ory.Api.V0alpha2 do
       { 401, %Ory.Model.GenericError{}},
       { 406, %Ory.Model.GenericError{}},
       { 500, %Ory.Model.GenericError{}}
-    ])
-  end
-
-  @doc """
-  Revoke an OAuth2 Access or Refresh Token
-  Revoking a token (both access and refresh) means that the tokens will be invalid. A revoked access token can no longer be used to make access requests, and a revoked refresh token can no longer be used to refresh an access token. Revoking a refresh token also invalidates the access token that was created with it. A token may only be revoked by the client the token was generated for.
-
-  ## Parameters
-
-  - connection (Ory.Connection): Connection to server
-  - token (String.t): 
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, nil} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec revoke_o_auth2_token(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.OAuth2ApiError.t} | {:error, Tesla.Env.t}
-  def revoke_o_auth2_token(connection, token, _opts \\ []) do
-    %{}
-    |> method(:post)
-    |> url("/oauth2/revoke")
-    |> add_param(:form, :token, token)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, false},
-      { :default, %Ory.Model.OAuth2ApiError{}}
     ])
   end
 
@@ -2802,7 +1630,7 @@ defmodule Ory.Api.V0alpha2 do
   end
 
   @doc """
-  Complete Verification Flow
+  # Complete Verification Flow
   Use this endpoint to complete a verification flow. This endpoint behaves differently for API and browser flows and has several states:  `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent and works with API- and Browser-initiated flows. For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid and a HTTP 303 See Other redirect with a fresh verification flow if the flow was otherwise invalid (e.g. expired). For Browser clients without HTTP Header `Accept` or with `Accept: text/*` it returns a HTTP 303 See Other redirect to the Verification UI URL with the Verification Flow ID appended. `sent_email` is the success state after `choose_method` when using the `link` method and allows the user to request another verification email. It works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state. `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow (\"sending a verification link\") does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Verification UI URL with a new Verification Flow ID which contains an error message that the verification link was invalid.  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
   ## Parameters
@@ -2877,7 +1705,7 @@ defmodule Ory.Api.V0alpha2 do
   end
 
   @doc """
-  Update an Ory Cloud Project Configuration
+  # Update an Ory Cloud Project Configuration
   This endpoints allows you to update the Ory Cloud Project configuration for individual services (identity, permission, ...). The configuration is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.  Be aware that updating any service's configuration will completely override your current configuration for that service!
 
   ## Parameters

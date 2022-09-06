@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-class JsonWebKey {
-  /// Returns a new [JsonWebKey] instance.
-  JsonWebKey({
+class JSONWebKey {
+  /// Returns a new [JSONWebKey] instance.
+  JSONWebKey({
     required this.alg,
     this.crv,
     this.d,
@@ -144,7 +144,7 @@ class JsonWebKey {
   String? y;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is JsonWebKey &&
+  bool operator ==(Object other) => identical(this, other) || other is JSONWebKey &&
      other.alg == alg &&
      other.crv == crv &&
      other.d == d &&
@@ -185,7 +185,7 @@ class JsonWebKey {
     (y == null ? 0 : y!.hashCode);
 
   @override
-  String toString() => 'JsonWebKey[alg=$alg, crv=$crv, d=$d, dp=$dp, dq=$dq, e=$e, k=$k, kid=$kid, kty=$kty, n=$n, p=$p, q=$q, qi=$qi, use=$use, x=$x, x5c=$x5c, y=$y]';
+  String toString() => 'JSONWebKey[alg=$alg, crv=$crv, d=$d, dp=$dp, dq=$dq, e=$e, k=$k, kid=$kid, kty=$kty, n=$n, p=$p, q=$q, qi=$qi, use=$use, x=$x, x5c=$x5c, y=$y]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
@@ -257,10 +257,10 @@ class JsonWebKey {
     return _json;
   }
 
-  /// Returns a new [JsonWebKey] instance and imports its values from
+  /// Returns a new [JSONWebKey] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static JsonWebKey? fromJson(dynamic value) {
+  static JSONWebKey? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
 
@@ -269,13 +269,13 @@ class JsonWebKey {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "JsonWebKey[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "JsonWebKey[$key]" has a null value in JSON.');
+          assert(json.containsKey(key), 'Required key "JSONWebKey[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "JSONWebKey[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
-      return JsonWebKey(
+      return JSONWebKey(
         alg: mapValueOfType<String>(json, r'alg')!,
         crv: mapValueOfType<String>(json, r'crv'),
         d: mapValueOfType<String>(json, r'd'),
@@ -300,11 +300,11 @@ class JsonWebKey {
     return null;
   }
 
-  static List<JsonWebKey>? listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <JsonWebKey>[];
+  static List<JSONWebKey>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <JSONWebKey>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = JsonWebKey.fromJson(row);
+        final value = JSONWebKey.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -313,12 +313,12 @@ class JsonWebKey {
     return result.toList(growable: growable);
   }
 
-  static Map<String, JsonWebKey> mapFromJson(dynamic json) {
-    final map = <String, JsonWebKey>{};
+  static Map<String, JSONWebKey> mapFromJson(dynamic json) {
+    final map = <String, JSONWebKey>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = JsonWebKey.fromJson(entry.value);
+        final value = JSONWebKey.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -327,13 +327,13 @@ class JsonWebKey {
     return map;
   }
 
-  // maps a json object with a list of JsonWebKey-objects as value to a dart map
-  static Map<String, List<JsonWebKey>> mapListFromJson(dynamic json, {bool growable = false,}) {
-    final map = <String, List<JsonWebKey>>{};
+  // maps a json object with a list of JSONWebKey-objects as value to a dart map
+  static Map<String, List<JSONWebKey>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<JSONWebKey>>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = JsonWebKey.listFromJson(entry.value, growable: growable,);
+        final value = JSONWebKey.listFromJson(entry.value, growable: growable,);
         if (value != null) {
           map[entry.key] = value;
         }

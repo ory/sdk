@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **createdAt** | [**DateTime**](DateTime.md) |  | [readonly] 
 **currentPlan** | **String** | The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom | [readonly] 
 **customerId** | **String** | The ID of the stripe customer | [readonly] 
-**id** | **String** |  | 
+**id** | **String** | The ID of the subscription | [readonly] 
 **ongoingStripeCheckoutId** | **String** |  | [optional] 
 **payedUntil** | [**DateTime**](DateTime.md) | Until when the subscription is payed | [readonly] 
 **planChangesAt** | [**DateTime**](DateTime.md) |  | [optional] 

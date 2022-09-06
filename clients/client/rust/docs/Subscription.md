@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **created_at** | **String** |  | [readonly]
 **current_plan** | **String** | The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom | [readonly]
 **customer_id** | **String** | The ID of the stripe customer | [readonly]
-**id** | **String** |  | 
+**id** | **String** | The ID of the subscription | [readonly]
 **ongoing_stripe_checkout_id** | Option<**String**> |  | [optional]
 **payed_until** | **String** | Until when the subscription is payed | [readonly]
 **plan_changes_at** | Option<**String**> |  | [optional]

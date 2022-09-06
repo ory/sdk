@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.28
+API version: v0.2.0-alpha.29
 Contact: support@ory.sh
 */
 
@@ -23,6 +23,7 @@ type Subscription struct {
 	CurrentPlan string `json:"current_plan"`
 	// The ID of the stripe customer
 	CustomerId string `json:"customer_id"`
+	// The ID of the subscription
 	Id string `json:"id"`
 	OngoingStripeCheckoutId NullableString `json:"ongoing_stripe_checkout_id,omitempty"`
 	// Until when the subscription is payed

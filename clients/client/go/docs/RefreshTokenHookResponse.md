@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Session** | Pointer to [**AcceptOAuth2ConsentRequestSession**](AcceptOAuth2ConsentRequestSession.md) |  | [optional] 
+**Session** | Pointer to [**ConsentRequestSession**](ConsentRequestSession.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSession
 
-`func (o *RefreshTokenHookResponse) GetSession() AcceptOAuth2ConsentRequestSession`
+`func (o *RefreshTokenHookResponse) GetSession() ConsentRequestSession`
 
 GetSession returns the Session field if non-nil, zero value otherwise.
 
 ### GetSessionOk
 
-`func (o *RefreshTokenHookResponse) GetSessionOk() (*AcceptOAuth2ConsentRequestSession, bool)`
+`func (o *RefreshTokenHookResponse) GetSessionOk() (*ConsentRequestSession, bool)`
 
 GetSessionOk returns a tuple with the Session field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSession
 
-`func (o *RefreshTokenHookResponse) SetSession(v AcceptOAuth2ConsentRequestSession)`
+`func (o *RefreshTokenHookResponse) SetSession(v ConsentRequestSession)`
 
 SetSession sets Session field to given value.
 

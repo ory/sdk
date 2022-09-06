@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **CreatedAt** | **DateTime** | The Project&#39;s Creation Date | [readonly] 
 **CurrentRevision** | [**ClientNormalizedProjectRevision**](ClientNormalizedProjectRevision.md) |  | 
 **Hosts** | **List&lt;string&gt;** |  | 
-**Id** | **string** |  | 
+**Id** | **string** | The project&#39;s ID. | [readonly] 
 **Revisions** | [**List&lt;ClientNormalizedProjectRevision&gt;**](ClientNormalizedProjectRevision.md) |  | 
 **Slug** | **string** | The project&#39;s slug | [readonly] 
 **State** | **string** | The state of the project. running Running halted Halted | [readonly] 

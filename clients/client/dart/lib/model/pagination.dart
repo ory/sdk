@@ -14,8 +14,6 @@ class Pagination {
   /// Returns a new [Pagination] instance.
   Pagination({
     this.page = 1,
-    this.pageSize = 250,
-    this.pageToken = '1',
     this.perPage = 250,
   });
 
@@ -23,15 +21,6 @@ class Pagination {
   ///
   /// Minimum value: 1
   int page;
-
-  /// Items per page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-  ///
-  /// Minimum value: 1
-  /// Maximum value: 1000
-  int pageSize;
-
-  /// Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-  String pageToken;
 
   /// Items per Page  This is the number of items per page.
   ///
@@ -42,26 +31,20 @@ class Pagination {
   @override
   bool operator ==(Object other) => identical(this, other) || other is Pagination &&
      other.page == page &&
-     other.pageSize == pageSize &&
-     other.pageToken == pageToken &&
      other.perPage == perPage;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (page.hashCode) +
-    (pageSize.hashCode) +
-    (pageToken.hashCode) +
     (perPage.hashCode);
 
   @override
-  String toString() => 'Pagination[page=$page, pageSize=$pageSize, pageToken=$pageToken, perPage=$perPage]';
+  String toString() => 'Pagination[page=$page, perPage=$perPage]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
       _json[r'page'] = page;
-      _json[r'page_size'] = pageSize;
-      _json[r'page_token'] = pageToken;
       _json[r'per_page'] = perPage;
     return _json;
   }
@@ -86,8 +69,6 @@ class Pagination {
 
       return Pagination(
         page: mapValueOfType<int>(json, r'page') ?? 1,
-        pageSize: mapValueOfType<int>(json, r'page_size') ?? 250,
-        pageToken: mapValueOfType<String>(json, r'page_token') ?? '1',
         perPage: mapValueOfType<int>(json, r'per_page') ?? 250,
       );
     }

@@ -21,8 +21,10 @@ class ProjectHost {
   /// The project's host.
   String host;
 
+  /// The mapping's ID.
   String id;
 
+  /// The Revision's Project ID
   String projectId;
 
   @override

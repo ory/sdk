@@ -33,6 +33,7 @@ class Subscription {
   /// The ID of the stripe customer
   String customerId;
 
+  /// The ID of the subscription
   String id;
 
   String? ongoingStripeCheckoutId;

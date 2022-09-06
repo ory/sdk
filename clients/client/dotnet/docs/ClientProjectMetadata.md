@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **DateTime** | The Project&#39;s Creation Date | 
 **Hosts** | **List&lt;string&gt;** |  | 
-**Id** | **string** |  | 
+**Id** | **string** | The project&#39;s ID. | [readonly] 
 **Name** | **string** | The project&#39;s name if set | 
 **Slug** | **string** | The project&#39;s slug | [optional] [readonly] 
 **State** | **string** | The state of the project. running Running halted Halted | 

@@ -31,6 +31,7 @@ class NormalizedProject {
 
   List<String> hosts;
 
+  /// The project's ID.
   String id;
 
   List<NormalizedProjectRevision> revisions;

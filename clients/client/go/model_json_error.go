@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.28
+API version: v0.2.0-alpha.29
 Contact: support@ory.sh
 */
 
@@ -18,6 +18,12 @@ import (
 // JsonError The standard Ory JSON API error format.
 type JsonError struct {
 	Error GenericError `json:"error"`
+	// Debug contains debug information. This is usually not available and has to be enabled.
+	ErrorDebug *string `json:"error_debug,omitempty"`
+	// Description contains further information on the nature of the error.
+	ErrorDescription *string `json:"error_description,omitempty"`
+	// Code represents the error status code (404, 403, 401, ...).
+	StatusCode *int64 `json:"status_code,omitempty"`
 }
 
 // NewJsonError instantiates a new JsonError object
@@ -62,10 +68,115 @@ func (o *JsonError) SetError(v GenericError) {
 	o.Error = v
 }
 
+// GetErrorDebug returns the ErrorDebug field value if set, zero value otherwise.
+func (o *JsonError) GetErrorDebug() string {
+	if o == nil || o.ErrorDebug == nil {
+		var ret string
+		return ret
+	}
+	return *o.ErrorDebug
+}
+
+// GetErrorDebugOk returns a tuple with the ErrorDebug field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *JsonError) GetErrorDebugOk() (*string, bool) {
+	if o == nil || o.ErrorDebug == nil {
+		return nil, false
+	}
+	return o.ErrorDebug, true
+}
+
+// HasErrorDebug returns a boolean if a field has been set.
+func (o *JsonError) HasErrorDebug() bool {
+	if o != nil && o.ErrorDebug != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetErrorDebug gets a reference to the given string and assigns it to the ErrorDebug field.
+func (o *JsonError) SetErrorDebug(v string) {
+	o.ErrorDebug = &v
+}
+
+// GetErrorDescription returns the ErrorDescription field value if set, zero value otherwise.
+func (o *JsonError) GetErrorDescription() string {
+	if o == nil || o.ErrorDescription == nil {
+		var ret string
+		return ret
+	}
+	return *o.ErrorDescription
+}
+
+// GetErrorDescriptionOk returns a tuple with the ErrorDescription field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *JsonError) GetErrorDescriptionOk() (*string, bool) {
+	if o == nil || o.ErrorDescription == nil {
+		return nil, false
+	}
+	return o.ErrorDescription, true
+}
+
+// HasErrorDescription returns a boolean if a field has been set.
+func (o *JsonError) HasErrorDescription() bool {
+	if o != nil && o.ErrorDescription != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetErrorDescription gets a reference to the given string and assigns it to the ErrorDescription field.
+func (o *JsonError) SetErrorDescription(v string) {
+	o.ErrorDescription = &v
+}
+
+// GetStatusCode returns the StatusCode field value if set, zero value otherwise.
+func (o *JsonError) GetStatusCode() int64 {
+	if o == nil || o.StatusCode == nil {
+		var ret int64
+		return ret
+	}
+	return *o.StatusCode
+}
+
+// GetStatusCodeOk returns a tuple with the StatusCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *JsonError) GetStatusCodeOk() (*int64, bool) {
+	if o == nil || o.StatusCode == nil {
+		return nil, false
+	}
+	return o.StatusCode, true
+}
+
+// HasStatusCode returns a boolean if a field has been set.
+func (o *JsonError) HasStatusCode() bool {
+	if o != nil && o.StatusCode != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStatusCode gets a reference to the given int64 and assigns it to the StatusCode field.
+func (o *JsonError) SetStatusCode(v int64) {
+	o.StatusCode = &v
+}
+
 func (o JsonError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["error"] = o.Error
+	}
+	if o.ErrorDebug != nil {
+		toSerialize["error_debug"] = o.ErrorDebug
+	}
+	if o.ErrorDescription != nil {
+		toSerialize["error_description"] = o.ErrorDescription
+	}
+	if o.StatusCode != nil {
+		toSerialize["status_code"] = o.StatusCode
 	}
 	return json.Marshal(toSerialize)
 }

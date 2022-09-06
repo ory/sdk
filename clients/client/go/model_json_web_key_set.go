@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.28
+API version: v0.2.0-alpha.29
 Contact: support@ory.sh
 */
 
@@ -15,33 +15,33 @@ import (
 	"encoding/json"
 )
 
-// JsonWebKeySet It is important that this model object is named JSONWebKeySet for \"swagger generate spec\" to generate only on definition of a JSONWebKeySet. Since one with the same name is previously defined as client.Client.JSONWebKeys and this one is last, this one will be effectively written in the swagger spec.
-type JsonWebKeySet struct {
-	// The value of the \"keys\" parameter is an array of JSON Web Key (JWK) values. By default, the order of the JWK values within the array does not imply an order of preference among them, although applications of JWK Sets can choose to assign a meaning to the order for their purposes, if desired.
-	Keys []JsonWebKey `json:"keys,omitempty"`
+// JSONWebKeySet It is important that this model object is named JSONWebKeySet for \"swagger generate spec\" to generate only on definition of a JSONWebKeySet. Since one with the same name is previously defined as client.Client.JSONWebKeys and this one is last, this one will be effectively written in the swagger spec.
+type JSONWebKeySet struct {
+	// The value of the \"keys\" parameter is an array of JWK values.  By default, the order of the JWK values within the array does not imply an order of preference among them, although applications of JWK Sets can choose to assign a meaning to the order for their purposes, if desired.
+	Keys []JSONWebKey `json:"keys,omitempty"`
 }
 
-// NewJsonWebKeySet instantiates a new JsonWebKeySet object
+// NewJSONWebKeySet instantiates a new JSONWebKeySet object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJsonWebKeySet() *JsonWebKeySet {
-	this := JsonWebKeySet{}
+func NewJSONWebKeySet() *JSONWebKeySet {
+	this := JSONWebKeySet{}
 	return &this
 }
 
-// NewJsonWebKeySetWithDefaults instantiates a new JsonWebKeySet object
+// NewJSONWebKeySetWithDefaults instantiates a new JSONWebKeySet object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewJsonWebKeySetWithDefaults() *JsonWebKeySet {
-	this := JsonWebKeySet{}
+func NewJSONWebKeySetWithDefaults() *JSONWebKeySet {
+	this := JSONWebKeySet{}
 	return &this
 }
 
 // GetKeys returns the Keys field value if set, zero value otherwise.
-func (o *JsonWebKeySet) GetKeys() []JsonWebKey {
+func (o *JSONWebKeySet) GetKeys() []JSONWebKey {
 	if o == nil || o.Keys == nil {
-		var ret []JsonWebKey
+		var ret []JSONWebKey
 		return ret
 	}
 	return o.Keys
@@ -49,7 +49,7 @@ func (o *JsonWebKeySet) GetKeys() []JsonWebKey {
 
 // GetKeysOk returns a tuple with the Keys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *JsonWebKeySet) GetKeysOk() ([]JsonWebKey, bool) {
+func (o *JSONWebKeySet) GetKeysOk() ([]JSONWebKey, bool) {
 	if o == nil || o.Keys == nil {
 		return nil, false
 	}
@@ -57,7 +57,7 @@ func (o *JsonWebKeySet) GetKeysOk() ([]JsonWebKey, bool) {
 }
 
 // HasKeys returns a boolean if a field has been set.
-func (o *JsonWebKeySet) HasKeys() bool {
+func (o *JSONWebKeySet) HasKeys() bool {
 	if o != nil && o.Keys != nil {
 		return true
 	}
@@ -65,12 +65,12 @@ func (o *JsonWebKeySet) HasKeys() bool {
 	return false
 }
 
-// SetKeys gets a reference to the given []JsonWebKey and assigns it to the Keys field.
-func (o *JsonWebKeySet) SetKeys(v []JsonWebKey) {
+// SetKeys gets a reference to the given []JSONWebKey and assigns it to the Keys field.
+func (o *JSONWebKeySet) SetKeys(v []JSONWebKey) {
 	o.Keys = v
 }
 
-func (o JsonWebKeySet) MarshalJSON() ([]byte, error) {
+func (o JSONWebKeySet) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Keys != nil {
 		toSerialize["keys"] = o.Keys
@@ -78,38 +78,38 @@ func (o JsonWebKeySet) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableJsonWebKeySet struct {
-	value *JsonWebKeySet
+type NullableJSONWebKeySet struct {
+	value *JSONWebKeySet
 	isSet bool
 }
 
-func (v NullableJsonWebKeySet) Get() *JsonWebKeySet {
+func (v NullableJSONWebKeySet) Get() *JSONWebKeySet {
 	return v.value
 }
 
-func (v *NullableJsonWebKeySet) Set(val *JsonWebKeySet) {
+func (v *NullableJSONWebKeySet) Set(val *JSONWebKeySet) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableJsonWebKeySet) IsSet() bool {
+func (v NullableJSONWebKeySet) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableJsonWebKeySet) Unset() {
+func (v *NullableJSONWebKeySet) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableJsonWebKeySet(val *JsonWebKeySet) *NullableJsonWebKeySet {
-	return &NullableJsonWebKeySet{value: val, isSet: true}
+func NewNullableJSONWebKeySet(val *JSONWebKeySet) *NullableJSONWebKeySet {
+	return &NullableJSONWebKeySet{value: val, isSet: true}
 }
 
-func (v NullableJsonWebKeySet) MarshalJSON() ([]byte, error) {
+func (v NullableJSONWebKeySet) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableJsonWebKeySet) UnmarshalJSON(src []byte) error {
+func (v *NullableJSONWebKeySet) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

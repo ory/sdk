@@ -22,11 +22,13 @@ void main() {
       // TODO
     });
 
+    // The mapping's ID.
     // String id
     test('to test the property `id`', () async {
       // TODO
     });
 
+    // The Revision's Project ID
     // String projectId
     test('to test the property `projectId`', () async {
       // TODO

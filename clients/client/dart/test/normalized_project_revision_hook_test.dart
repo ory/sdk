@@ -34,11 +34,13 @@ void main() {
       // TODO
     });
 
+    // ID of the entry
     // String id
     test('to test the property `id`', () async {
       // TODO
     });
 
+    // The Revision's ID this schema belongs to
     // String projectRevisionId
     test('to test the property `projectRevisionId`', () async {
       // TODO
@@ -89,6 +91,12 @@ void main() {
     // URI pointing to the JsonNet template used for Web-Hook payload generation. Only used for those HTTP methods, which support HTTP body payloads.
     // String webHookConfigBody
     test('to test the property `webHookConfigBody`', () async {
+      // TODO
+    });
+
+    // If enabled allows the web hook to interrupt / abort the self-service flow. It only applies to certain flows (registration/verification/login/settings) and requires a valid response format.
+    // bool webHookConfigCanInterrupt
+    test('to test the property `webHookConfigCanInterrupt`', () async {
       // TODO
     });
 

@@ -16,7 +16,7 @@ void main() {
   // final instance = RefreshTokenHookResponse();
 
   group('test RefreshTokenHookResponse', () {
-    // AcceptOAuth2ConsentRequestSession session
+    // ConsentRequestSession session
     test('to test the property `session`', () async {
       // TODO
     });

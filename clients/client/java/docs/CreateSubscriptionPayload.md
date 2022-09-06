@@ -8,7 +8,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **planOrPrice** | **String** |  | 
-**provisionFirstProject** | **UUID** |  | 
+**provisionFirstProject** | **String** |  | 
 **returnTo** | **String** |  |  [optional]
 
 

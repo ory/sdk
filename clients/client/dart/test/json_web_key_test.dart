@@ -11,11 +11,11 @@
 import 'package:ory_client/api.dart';
 import 'package:test/test.dart';
 
-// tests for JsonWebKey
+// tests for JSONWebKey
 void main() {
-  // final instance = JsonWebKey();
+  // final instance = JSONWebKey();
 
-  group('test JsonWebKey', () {
+  group('test JSONWebKey', () {
     // The \"alg\" (algorithm) parameter identifies the algorithm intended for use with the key.  The values used should either be registered in the IANA \"JSON Web Signature and Encryption Algorithms\" registry established by [JWA] or be a value that contains a Collision- Resistant Name.
     // String alg
     test('to test the property `alg`', () async {

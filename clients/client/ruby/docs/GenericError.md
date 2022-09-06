@@ -6,7 +6,7 @@
 | ---- | ---- | ----------- | ----- |
 | **code** | **Integer** | The status code | [optional] |
 | **debug** | **String** | Debug information  This field is often not exposed to protect against leaking sensitive information. | [optional] |
-| **details** | **Array&lt;Hash&lt;String, Object&gt;&gt;** | Further error details | [optional] |
+| **details** | **Object** | Further error details | [optional] |
 | **error** | [**GenericErrorContent**](GenericErrorContent.md) |  | [optional] |
 | **id** | **String** | The error ID  Useful when trying to identify various errors in application logic. | [optional] |
 | **message** | **String** | Error message  The error&#39;s message. |  |

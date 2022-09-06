@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.28
+API version: v0.2.0-alpha.29
 Contact: support@ory.sh
 */
 
@@ -22,6 +22,7 @@ type NormalizedProject struct {
 	CreatedAt time.Time `json:"created_at"`
 	CurrentRevision NormalizedProjectRevision `json:"current_revision"`
 	Hosts []string `json:"hosts"`
+	// The project's ID.
 	Id string `json:"id"`
 	Revisions []NormalizedProjectRevision `json:"revisions"`
 	// The project's slug

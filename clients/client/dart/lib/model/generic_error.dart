@@ -15,7 +15,7 @@ class GenericError {
   GenericError({
     this.code,
     this.debug,
-    this.details = const [],
+    this.details,
     this.error,
     this.id,
     required this.message,
@@ -43,7 +43,7 @@ class GenericError {
   String? debug;
 
   /// Further error details
-  List<Map<String, Object>> details;
+  Object? details;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -109,7 +109,7 @@ class GenericError {
     // ignore: unnecessary_parenthesis
     (code == null ? 0 : code!.hashCode) +
     (debug == null ? 0 : debug!.hashCode) +
-    (details.hashCode) +
+    (details == null ? 0 : details!.hashCode) +
     (error == null ? 0 : error!.hashCode) +
     (id == null ? 0 : id!.hashCode) +
     (message.hashCode) +
@@ -132,7 +132,11 @@ class GenericError {
     } else {
       _json[r'debug'] = null;
     }
+    if (details != null) {
       _json[r'details'] = details;
+    } else {
+      _json[r'details'] = null;
+    }
     if (error != null) {
       _json[r'error'] = error;
     } else {
@@ -183,7 +187,7 @@ class GenericError {
       return GenericError(
         code: mapValueOfType<int>(json, r'code'),
         debug: mapValueOfType<String>(json, r'debug'),
-        details: Map.listFromJson(json[r'details']) ?? const [],
+        details: mapValueOfType<Object>(json, r'details'),
         error: GenericErrorContent.fromJson(json[r'error']),
         id: mapValueOfType<String>(json, r'id'),
         message: mapValueOfType<String>(json, r'message')!,

@@ -40,6 +40,7 @@ void main() {
       // TODO
     });
 
+    // The schema's ID.
     // String id
     test('to test the property `id`', () async {
       // TODO

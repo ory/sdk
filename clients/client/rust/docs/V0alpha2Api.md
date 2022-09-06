@@ -4,65 +4,29 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**admin_accept_o_auth2_consent_request**](V0alpha2Api.md#admin_accept_o_auth2_consent_request) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept an OAuth 2.0 Consent Request
-[**admin_accept_o_auth2_login_request**](V0alpha2Api.md#admin_accept_o_auth2_login_request) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept an OAuth 2.0 Login Request
-[**admin_accept_o_auth2_logout_request**](V0alpha2Api.md#admin_accept_o_auth2_logout_request) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept an OAuth 2.0 Logout Request
 [**admin_create_identity**](V0alpha2Api.md#admin_create_identity) | **POST** /admin/identities | Create an Identity
-[**admin_create_json_web_key_set**](V0alpha2Api.md#admin_create_json_web_key_set) | **POST** /admin/keys/{set} | Generate a New JSON Web Key
-[**admin_create_o_auth2_client**](V0alpha2Api.md#admin_create_o_auth2_client) | **POST** /admin/clients | Create an OAuth 2.0 Client
 [**admin_create_self_service_recovery_link**](V0alpha2Api.md#admin_create_self_service_recovery_link) | **POST** /admin/recovery/link | Create a Recovery Link
 [**admin_delete_identity**](V0alpha2Api.md#admin_delete_identity) | **DELETE** /admin/identities/{id} | Delete an Identity
 [**admin_delete_identity_sessions**](V0alpha2Api.md#admin_delete_identity_sessions) | **DELETE** /admin/identities/{id}/sessions | Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.
-[**admin_delete_json_web_key**](V0alpha2Api.md#admin_delete_json_web_key) | **DELETE** /admin/keys/{set}/{kid} | Delete a JSON Web Key
-[**admin_delete_json_web_key_set**](V0alpha2Api.md#admin_delete_json_web_key_set) | **DELETE** /admin/keys/{set} | Delete a JSON Web Key Set
-[**admin_delete_o_auth2_client**](V0alpha2Api.md#admin_delete_o_auth2_client) | **DELETE** /admin/clients/{id} | Deletes an OAuth 2.0 Client
-[**admin_delete_o_auth2_token**](V0alpha2Api.md#admin_delete_o_auth2_token) | **DELETE** /admin/oauth2/tokens | Delete OAuth2 Access Tokens from a Client
-[**admin_delete_trusted_o_auth2_jwt_grant_issuer**](V0alpha2Api.md#admin_delete_trusted_o_auth2_jwt_grant_issuer) | **DELETE** /admin/trust/grants/jwt-bearer/issuers/{id} | Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer
 [**admin_extend_session**](V0alpha2Api.md#admin_extend_session) | **PATCH** /admin/sessions/{id}/extend | Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.
 [**admin_get_identity**](V0alpha2Api.md#admin_get_identity) | **GET** /admin/identities/{id} | Get an Identity
-[**admin_get_json_web_key**](V0alpha2Api.md#admin_get_json_web_key) | **GET** /admin/keys/{set}/{kid} | Fetch a JSON Web Key
-[**admin_get_json_web_key_set**](V0alpha2Api.md#admin_get_json_web_key_set) | **GET** /admin/keys/{set} | Retrieve a JSON Web Key Set
-[**admin_get_o_auth2_client**](V0alpha2Api.md#admin_get_o_auth2_client) | **GET** /admin/clients/{id} | Get an OAuth 2.0 Client
-[**admin_get_o_auth2_consent_request**](V0alpha2Api.md#admin_get_o_auth2_consent_request) | **GET** /admin/oauth2/auth/requests/consent | Get OAuth 2.0 Consent Request Information
-[**admin_get_o_auth2_login_request**](V0alpha2Api.md#admin_get_o_auth2_login_request) | **GET** /admin/oauth2/auth/requests/login | Get an OAuth 2.0 Login Request
-[**admin_get_o_auth2_logout_request**](V0alpha2Api.md#admin_get_o_auth2_logout_request) | **GET** /admin/oauth2/auth/requests/logout | Get an OAuth 2.0 Logout Request
-[**admin_get_trusted_o_auth2_jwt_grant_issuer**](V0alpha2Api.md#admin_get_trusted_o_auth2_jwt_grant_issuer) | **GET** /admin/trust/grants/jwt-bearer/issuers/{id} | Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
-[**admin_introspect_o_auth2_token**](V0alpha2Api.md#admin_introspect_o_auth2_token) | **POST** /admin/oauth2/introspect | Introspect OAuth2 Access or Refresh Tokens
 [**admin_list_identities**](V0alpha2Api.md#admin_list_identities) | **GET** /admin/identities | List Identities
 [**admin_list_identity_sessions**](V0alpha2Api.md#admin_list_identity_sessions) | **GET** /admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity.
-[**admin_list_o_auth2_clients**](V0alpha2Api.md#admin_list_o_auth2_clients) | **GET** /admin/clients | List OAuth 2.0 Clients
-[**admin_list_o_auth2_subject_consent_sessions**](V0alpha2Api.md#admin_list_o_auth2_subject_consent_sessions) | **GET** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject
-[**admin_list_trusted_o_auth2_jwt_grant_issuers**](V0alpha2Api.md#admin_list_trusted_o_auth2_jwt_grant_issuers) | **GET** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
 [**admin_patch_identity**](V0alpha2Api.md#admin_patch_identity) | **PATCH** /admin/identities/{id} | Partially updates an Identity's field using [JSON Patch](https://jsonpatch.com/)
-[**admin_patch_o_auth2_client**](V0alpha2Api.md#admin_patch_o_auth2_client) | **PATCH** /admin/clients/{id} | Patch an OAuth 2.0 Client
-[**admin_reject_o_auth2_consent_request**](V0alpha2Api.md#admin_reject_o_auth2_consent_request) | **PUT** /admin/oauth2/auth/requests/consent/reject | Reject an OAuth 2.0 Consent Request
-[**admin_reject_o_auth2_login_request**](V0alpha2Api.md#admin_reject_o_auth2_login_request) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject an OAuth 2.0 Login Request
-[**admin_reject_o_auth2_logout_request**](V0alpha2Api.md#admin_reject_o_auth2_logout_request) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject an OAuth 2.0 Logout Request
-[**admin_revoke_o_auth2_consent_sessions**](V0alpha2Api.md#admin_revoke_o_auth2_consent_sessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revokes OAuth 2.0 Consent Sessions of a Subject for a Specific OAuth 2.0 Client
-[**admin_revoke_o_auth2_login_sessions**](V0alpha2Api.md#admin_revoke_o_auth2_login_sessions) | **DELETE** /admin/oauth2/auth/sessions/login | Invalidates All OAuth 2.0 Login Sessions of a Certain User
-[**admin_trust_o_auth2_jwt_grant_issuer**](V0alpha2Api.md#admin_trust_o_auth2_jwt_grant_issuer) | **POST** /admin/trust/grants/jwt-bearer/issuers | Trust an OAuth2 JWT Bearer Grant Type Issuer
 [**admin_update_identity**](V0alpha2Api.md#admin_update_identity) | **PUT** /admin/identities/{id} | Update an Identity
-[**admin_update_json_web_key**](V0alpha2Api.md#admin_update_json_web_key) | **PUT** /admin/keys/{set}/{kid} | Update a JSON Web Key
-[**admin_update_json_web_key_set**](V0alpha2Api.md#admin_update_json_web_key_set) | **PUT** /admin/keys/{set} | Update a JSON Web Key Set
-[**admin_update_o_auth2_client**](V0alpha2Api.md#admin_update_o_auth2_client) | **PUT** /admin/clients/{id} | Update an OAuth 2.0 Client
-[**create_project**](V0alpha2Api.md#create_project) | **POST** /projects | Create a Project
+[**create_project**](V0alpha2Api.md#create_project) | **POST** /projects | # Create a Project
+[**create_project_api_key**](V0alpha2Api.md#create_project_api_key) | **POST** /projects/{project}/tokens | # Create API Token
 [**create_self_service_logout_flow_url_for_browsers**](V0alpha2Api.md#create_self_service_logout_flow_url_for_browsers) | **GET** /self-service/logout/browser | Create a Logout URL for Browsers
-[**discover_json_web_keys**](V0alpha2Api.md#discover_json_web_keys) | **GET** /.well-known/jwks.json | Discover JSON Web Keys
-[**discover_oidc_configuration**](V0alpha2Api.md#discover_oidc_configuration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
-[**dynamic_client_registration_create_o_auth2_client**](V0alpha2Api.md#dynamic_client_registration_create_o_auth2_client) | **POST** /oauth2/register | Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-[**dynamic_client_registration_delete_o_auth2_client**](V0alpha2Api.md#dynamic_client_registration_delete_o_auth2_client) | **DELETE** /oauth2/register/{id} | Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-[**dynamic_client_registration_get_o_auth2_client**](V0alpha2Api.md#dynamic_client_registration_get_o_auth2_client) | **GET** /oauth2/register/{id} | Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-[**dynamic_client_registration_update_o_auth2_client**](V0alpha2Api.md#dynamic_client_registration_update_o_auth2_client) | **PUT** /oauth2/register/{id} | Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+[**delete_project_api_key**](V0alpha2Api.md#delete_project_api_key) | **DELETE** /projects/{project}/tokens/{token_id} | # Delete API Token
 [**get_identity_schema**](V0alpha2Api.md#get_identity_schema) | **GET** /schemas/{id} | 
-[**get_oidc_user_info**](V0alpha2Api.md#get_oidc_user_info) | **GET** /userinfo | OpenID Connect Userinfo
-[**get_project**](V0alpha2Api.md#get_project) | **GET** /projects/{project_id} | Get a Project
+[**get_project**](V0alpha2Api.md#get_project) | **GET** /projects/{project_id} | # Get a Project
 [**get_project_members**](V0alpha2Api.md#get_project_members) | **GET** /projects/{project_id}/members | Get all members associated with this project.
 [**get_self_service_error**](V0alpha2Api.md#get_self_service_error) | **GET** /self-service/errors | Get Self-Service Errors
 [**get_self_service_login_flow**](V0alpha2Api.md#get_self_service_login_flow) | **GET** /self-service/login/flows | Get Login Flow
 [**get_self_service_recovery_flow**](V0alpha2Api.md#get_self_service_recovery_flow) | **GET** /self-service/recovery/flows | Get Recovery Flow
 [**get_self_service_registration_flow**](V0alpha2Api.md#get_self_service_registration_flow) | **GET** /self-service/registration/flows | Get Registration Flow
 [**get_self_service_settings_flow**](V0alpha2Api.md#get_self_service_settings_flow) | **GET** /self-service/settings/flows | Get Settings Flow
-[**get_self_service_verification_flow**](V0alpha2Api.md#get_self_service_verification_flow) | **GET** /self-service/verification/flows | Get Verification Flow
+[**get_self_service_verification_flow**](V0alpha2Api.md#get_self_service_verification_flow) | **GET** /self-service/verification/flows | # Get Verification Flow
 [**get_web_authn_java_script**](V0alpha2Api.md#get_web_authn_java_script) | **GET** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
 [**initialize_self_service_login_flow_for_browsers**](V0alpha2Api.md#initialize_self_service_login_flow_for_browsers) | **GET** /self-service/login/browser | Initialize Login Flow for Browsers
 [**initialize_self_service_login_flow_without_browser**](V0alpha2Api.md#initialize_self_service_login_flow_without_browser) | **GET** /self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ...
@@ -75,15 +39,12 @@ Method | HTTP request | Description
 [**initialize_self_service_verification_flow_for_browsers**](V0alpha2Api.md#initialize_self_service_verification_flow_for_browsers) | **GET** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
 [**initialize_self_service_verification_flow_without_browser**](V0alpha2Api.md#initialize_self_service_verification_flow_without_browser) | **GET** /self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
 [**list_identity_schemas**](V0alpha2Api.md#list_identity_schemas) | **GET** /schemas | 
-[**list_projects**](V0alpha2Api.md#list_projects) | **GET** /projects | List All Projects
+[**list_project_api_keys**](V0alpha2Api.md#list_project_api_keys) | **GET** /projects/{project}/tokens | # List a Project's API Tokens
+[**list_projects**](V0alpha2Api.md#list_projects) | **GET** /projects | # List All Projects
 [**list_sessions**](V0alpha2Api.md#list_sessions) | **GET** /sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the `/sessions/whoami` endpoint.
 [**patch_project**](V0alpha2Api.md#patch_project) | **PATCH** /projects/{project_id} | Patch an Ory Cloud Project Configuration`
-[**perform_o_auth2_authorization_flow**](V0alpha2Api.md#perform_o_auth2_authorization_flow) | **GET** /oauth2/auth | The OAuth 2.0 Authorize Endpoint
-[**perform_o_auth2_token_flow**](V0alpha2Api.md#perform_o_auth2_token_flow) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
-[**perform_oidc_front_or_back_channel_logout**](V0alpha2Api.md#perform_oidc_front_or_back_channel_logout) | **GET** /oauth2/sessions/logout | OpenID Connect Front- or Back-channel Enabled Logout
-[**purge_project**](V0alpha2Api.md#purge_project) | **DELETE** /projects/{project_id} | Irrecoverably Purge a Project
+[**purge_project**](V0alpha2Api.md#purge_project) | **DELETE** /projects/{project_id} | # Irrecoverably Purge a Project
 [**remove_project_member**](V0alpha2Api.md#remove_project_member) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to `REMOVED`.
-[**revoke_o_auth2_token**](V0alpha2Api.md#revoke_o_auth2_token) | **POST** /oauth2/revoke | Revoke an OAuth2 Access or Refresh Token
 [**revoke_session**](V0alpha2Api.md#revoke_session) | **DELETE** /sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
 [**revoke_sessions**](V0alpha2Api.md#revoke_sessions) | **DELETE** /sessions | Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
 [**submit_self_service_login_flow**](V0alpha2Api.md#submit_self_service_login_flow) | **POST** /self-service/login | Submit a Login Flow
@@ -92,102 +53,10 @@ Method | HTTP request | Description
 [**submit_self_service_recovery_flow**](V0alpha2Api.md#submit_self_service_recovery_flow) | **POST** /self-service/recovery | Complete Recovery Flow
 [**submit_self_service_registration_flow**](V0alpha2Api.md#submit_self_service_registration_flow) | **POST** /self-service/registration | Submit a Registration Flow
 [**submit_self_service_settings_flow**](V0alpha2Api.md#submit_self_service_settings_flow) | **POST** /self-service/settings | Complete Settings Flow
-[**submit_self_service_verification_flow**](V0alpha2Api.md#submit_self_service_verification_flow) | **POST** /self-service/verification | Complete Verification Flow
+[**submit_self_service_verification_flow**](V0alpha2Api.md#submit_self_service_verification_flow) | **POST** /self-service/verification | # Complete Verification Flow
 [**to_session**](V0alpha2Api.md#to_session) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
-[**update_project**](V0alpha2Api.md#update_project) | **PUT** /projects/{project_id} | Update an Ory Cloud Project Configuration
+[**update_project**](V0alpha2Api.md#update_project) | **PUT** /projects/{project_id} | # Update an Ory Cloud Project Configuration
 
-
-
-## admin_accept_o_auth2_consent_request
-
-> crate::models::SuccessfulOAuth2RequestResponse admin_accept_o_auth2_consent_request(consent_challenge, accept_o_auth2_consent_request)
-Accept an OAuth 2.0 Consent Request
-
-When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.  This endpoint tells ORY Hydra that the subject has authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider includes additional information, such as session data for access and ID tokens, and if the consent request should be used as basis for future requests.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**consent_challenge** | **String** |  | [required] |
-**accept_o_auth2_consent_request** | Option<[**AcceptOAuth2ConsentRequest**](AcceptOAuth2ConsentRequest.md)> |  |  |
-
-### Return type
-
-[**crate::models::SuccessfulOAuth2RequestResponse**](successfulOAuth2RequestResponse.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_accept_o_auth2_login_request
-
-> crate::models::SuccessfulOAuth2RequestResponse admin_accept_o_auth2_login_request(login_challenge, accept_o_auth2_login_request)
-Accept an OAuth 2.0 Login Request
-
-When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell Ory Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells ORY Hydra that the subject has successfully authenticated and includes additional information such as the subject's ID and if ORY Hydra should remember the subject's subject agent for future authentication attempts by setting a cookie.  The response contains a redirect URL which the login provider should redirect the user-agent to.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**login_challenge** | **String** |  | [required] |
-**accept_o_auth2_login_request** | Option<[**AcceptOAuth2LoginRequest**](AcceptOAuth2LoginRequest.md)> |  |  |
-
-### Return type
-
-[**crate::models::SuccessfulOAuth2RequestResponse**](successfulOAuth2RequestResponse.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_accept_o_auth2_logout_request
-
-> crate::models::SuccessfulOAuth2RequestResponse admin_accept_o_auth2_logout_request(logout_challenge)
-Accept an OAuth 2.0 Logout Request
-
-When a user or an application requests ORY Hydra to log out a user, this endpoint is used to confirm that logout request.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**logout_challenge** | **String** |  | [required] |
-
-### Return type
-
-[**crate::models::SuccessfulOAuth2RequestResponse**](successfulOAuth2RequestResponse.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## admin_create_identity
@@ -207,67 +76,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Identity**](identity.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_create_json_web_key_set
-
-> crate::models::JsonWebKeySet admin_create_json_web_key_set(set, admin_create_json_web_key_set_body)
-Generate a New JSON Web Key
-
-This endpoint is capable of generating JSON Web Key Sets for you. There a different strategies available, such as symmetric cryptographic keys (HS256, HS512) and asymetric cryptographic keys (RS256, ECDSA). If the specified JSON Web Key Set does not exist, it will be created.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**set** | **String** | The JSON Web Key Set | [required] |
-**admin_create_json_web_key_set_body** | [**AdminCreateJsonWebKeySetBody**](AdminCreateJsonWebKeySetBody.md) |  | [required] |
-
-### Return type
-
-[**crate::models::JsonWebKeySet**](jsonWebKeySet.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_create_o_auth2_client
-
-> crate::models::OAuth2Client admin_create_o_auth2_client(o_auth2_client)
-Create an OAuth 2.0 Client
-
-Create a new OAuth 2.0 client. If you pass `client_secret` the secret is used, otherwise a random secret is generated. The secret is echoed in the response. It is not possible to retrieve it later on.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**o_auth2_client** | [**OAuth2Client**](OAuth2Client.md) |  | [required] |
-
-### Return type
-
-[**crate::models::OAuth2Client**](oAuth2Client.md)
 
 ### Authorization
 
@@ -371,157 +179,6 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## admin_delete_json_web_key
-
-> admin_delete_json_web_key(set, kid)
-Delete a JSON Web Key
-
-Use this endpoint to delete a single JSON Web Key.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**set** | **String** | The JSON Web Key Set | [required] |
-**kid** | **String** | The JSON Web Key ID (kid) | [required] |
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_delete_json_web_key_set
-
-> admin_delete_json_web_key_set(set)
-Delete a JSON Web Key Set
-
-Use this endpoint to delete a complete JSON Web Key Set and all the keys in that set.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**set** | **String** | The JSON Web Key Set | [required] |
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_delete_o_auth2_client
-
-> admin_delete_o_auth2_client(id)
-Deletes an OAuth 2.0 Client
-
-Delete an existing OAuth 2.0 Client by its ID.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.  Make sure that this endpoint is well protected and only callable by first-party components.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | The id of the OAuth 2.0 Client. | [required] |
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_delete_o_auth2_token
-
-> admin_delete_o_auth2_token(client_id)
-Delete OAuth2 Access Tokens from a Client
-
-This endpoint deletes OAuth2 access tokens issued for a client from the database
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**client_id** | **String** |  | [required] |
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_delete_trusted_o_auth2_jwt_grant_issuer
-
-> admin_delete_trusted_o_auth2_jwt_grant_issuer(id)
-Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer
-
-Use this endpoint to delete trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you created the trust relationship.  Once deleted, the associated issuer will no longer be able to perform the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grant.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | The id of the desired grant | [required] |
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
 ## admin_extend_session
 
 > crate::models::Session admin_extend_session(id)
@@ -578,248 +235,6 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_get_json_web_key
-
-> crate::models::JsonWebKeySet admin_get_json_web_key(set, kid)
-Fetch a JSON Web Key
-
-This endpoint returns a singular JSON Web Key. It is identified by the set and the specific key ID (kid).
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**set** | **String** | The JSON Web Key Set | [required] |
-**kid** | **String** | The JSON Web Key ID (kid) | [required] |
-
-### Return type
-
-[**crate::models::JsonWebKeySet**](jsonWebKeySet.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_get_json_web_key_set
-
-> crate::models::JsonWebKeySet admin_get_json_web_key_set(set)
-Retrieve a JSON Web Key Set
-
-This endpoint can be used to retrieve JWK Sets stored in ORY Hydra.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**set** | **String** | The JSON Web Key Set | [required] |
-
-### Return type
-
-[**crate::models::JsonWebKeySet**](jsonWebKeySet.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_get_o_auth2_client
-
-> crate::models::OAuth2Client admin_get_o_auth2_client(id)
-Get an OAuth 2.0 Client
-
-Get an OAuth 2.0 client by its ID. This endpoint never returns the client secret.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | The id of the OAuth 2.0 Client. | [required] |
-
-### Return type
-
-[**crate::models::OAuth2Client**](oAuth2Client.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_get_o_auth2_consent_request
-
-> crate::models::OAuth2ConsentRequest admin_get_o_auth2_consent_request(consent_challenge)
-Get OAuth 2.0 Consent Request Information
-
-When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**consent_challenge** | **String** |  | [required] |
-
-### Return type
-
-[**crate::models::OAuth2ConsentRequest**](oAuth2ConsentRequest.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_get_o_auth2_login_request
-
-> crate::models::OAuth2LoginRequest admin_get_o_auth2_login_request(login_challenge)
-Get an OAuth 2.0 Login Request
-
-When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell ORY Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**login_challenge** | **String** |  | [required] |
-
-### Return type
-
-[**crate::models::OAuth2LoginRequest**](oAuth2LoginRequest.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_get_o_auth2_logout_request
-
-> crate::models::OAuth2LogoutRequest admin_get_o_auth2_logout_request(logout_challenge)
-Get an OAuth 2.0 Logout Request
-
-Use this endpoint to fetch a logout request.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**logout_challenge** | **String** |  | [required] |
-
-### Return type
-
-[**crate::models::OAuth2LogoutRequest**](oAuth2LogoutRequest.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_get_trusted_o_auth2_jwt_grant_issuer
-
-> crate::models::TrustedOAuth2JwtGrantIssuer admin_get_trusted_o_auth2_jwt_grant_issuer(id)
-Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
-
-Use this endpoint to get a trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you created the trust relationship.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | The id of the desired grant | [required] |
-
-### Return type
-
-[**crate::models::TrustedOAuth2JwtGrantIssuer**](trustedOAuth2JwtGrantIssuer.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_introspect_o_auth2_token
-
-> crate::models::IntrospectedOAuth2Token admin_introspect_o_auth2_token(token, scope)
-Introspect OAuth2 Access or Refresh Tokens
-
-The introspection endpoint allows to check if a token (both refresh and access) is active or not. An active token is neither expired nor revoked. If a token is active, additional information on the token will be included. You can set additional data for a token by setting `accessTokenExtra` during the consent flow.  For more information [read this blog post](https://www.oauth.com/oauth2-servers/token-introspection-endpoint/).
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**token** | **String** | The string value of the token. For access tokens, this is the \\\"access_token\\\" value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\"refresh_token\\\" value returned. | [required] |
-**scope** | Option<**String**> | An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. |  |
-
-### Return type
-
-[**crate::models::IntrospectedOAuth2Token**](introspectedOAuth2Token.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -889,105 +304,6 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## admin_list_o_auth2_clients
-
-> Vec<crate::models::OAuth2Client> admin_list_o_auth2_clients(page_size, page_token, client_name, owner)
-List OAuth 2.0 Clients
-
-This endpoint lists all clients in the database, and never returns client secrets. As a default it lists the first 100 clients. The `limit` parameter can be used to retrieve more clients, but it has an upper bound at 500 objects. Pagination should be used to retrieve more than 500 objects.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.  The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://project-slug.projects.oryapis.com/admin/clients?limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**page_size** | Option<**i64**> | Items per page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 250]
-**page_token** | Option<**String**> | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 1]
-**client_name** | Option<**String**> | The name of the clients to filter by. |  |
-**owner** | Option<**String**> | The owner of the clients to filter by. |  |
-
-### Return type
-
-[**Vec<crate::models::OAuth2Client>**](oAuth2Client.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_list_o_auth2_subject_consent_sessions
-
-> Vec<crate::models::PreviousOAuth2ConsentSession> admin_list_o_auth2_subject_consent_sessions(subject, link, x_total_count)
-List OAuth 2.0 Consent Sessions of a Subject
-
-This endpoint lists all subject's granted consent sessions, including client and granted scope. If the subject is unknown or has not granted any consent sessions yet, the endpoint returns an empty JSON array with status code 200 OK.  The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/oauth2/auth/sessions/consent?subject={user}&limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**subject** | **String** | The subject to list the consent sessions for. | [required] |
-**link** | Option<**String**> | The link header contains pagination links.  For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |
-**x_total_count** | Option<**String**> | The total number of clients. |  |
-
-### Return type
-
-[**Vec<crate::models::PreviousOAuth2ConsentSession>**](previousOAuth2ConsentSession.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_list_trusted_o_auth2_jwt_grant_issuers
-
-> Vec<crate::models::TrustedOAuth2JwtGrantIssuer> admin_list_trusted_o_auth2_jwt_grant_issuers(max_items, default_items, issuer, limit, offset)
-List Trusted OAuth2 JWT Bearer Grant Type Issuers
-
-Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**max_items** | Option<**i64**> |  |  |
-**default_items** | Option<**i64**> |  |  |
-**issuer** | Option<**String**> | If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned. |  |
-**limit** | Option<**i64**> | The maximum amount of policies returned, upper bound is 500 policies |  |
-**offset** | Option<**i64**> | The offset from where to start looking. |  |
-
-### Return type
-
-[**Vec<crate::models::TrustedOAuth2JwtGrantIssuer>**](trustedOAuth2JwtGrantIssuer.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
 ## admin_patch_identity
 
 > crate::models::Identity admin_patch_identity(id, json_patch)
@@ -1006,222 +322,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Identity**](identity.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_patch_o_auth2_client
-
-> crate::models::OAuth2Client admin_patch_o_auth2_client(id, json_patch)
-Patch an OAuth 2.0 Client
-
-Patch an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | The id of the OAuth 2.0 Client. | [required] |
-**json_patch** | [**Vec<crate::models::JsonPatch>**](jsonPatch.md) |  | [required] |
-
-### Return type
-
-[**crate::models::OAuth2Client**](oAuth2Client.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_reject_o_auth2_consent_request
-
-> crate::models::SuccessfulOAuth2RequestResponse admin_reject_o_auth2_consent_request(consent_challenge, reject_o_auth2_request)
-Reject an OAuth 2.0 Consent Request
-
-When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.  This endpoint tells ORY Hydra that the subject has not authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider must include a reason why the consent was not granted.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**consent_challenge** | **String** |  | [required] |
-**reject_o_auth2_request** | Option<[**RejectOAuth2Request**](RejectOAuth2Request.md)> |  |  |
-
-### Return type
-
-[**crate::models::SuccessfulOAuth2RequestResponse**](successfulOAuth2RequestResponse.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_reject_o_auth2_login_request
-
-> crate::models::SuccessfulOAuth2RequestResponse admin_reject_o_auth2_login_request(login_challenge, reject_o_auth2_request)
-Reject an OAuth 2.0 Login Request
-
-When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell ORY Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells ORY Hydra that the subject has not authenticated and includes a reason why the authentication was denied.  The response contains a redirect URL which the login provider should redirect the user-agent to.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**login_challenge** | **String** |  | [required] |
-**reject_o_auth2_request** | Option<[**RejectOAuth2Request**](RejectOAuth2Request.md)> |  |  |
-
-### Return type
-
-[**crate::models::SuccessfulOAuth2RequestResponse**](successfulOAuth2RequestResponse.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_reject_o_auth2_logout_request
-
-> admin_reject_o_auth2_logout_request(logout_challenge, reject_o_auth2_request)
-Reject an OAuth 2.0 Logout Request
-
-When a user or an application requests ORY Hydra to log out a user, this endpoint is used to deny that logout request. No body is required.  The response is empty as the logout provider has to chose what action to perform next.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**logout_challenge** | **String** |  | [required] |
-**reject_o_auth2_request** | Option<[**RejectOAuth2Request**](RejectOAuth2Request.md)> |  |  |
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_revoke_o_auth2_consent_sessions
-
-> admin_revoke_o_auth2_consent_sessions(subject, client, all)
-Revokes OAuth 2.0 Consent Sessions of a Subject for a Specific OAuth 2.0 Client
-
-This endpoint revokes a subject's granted consent sessions for a specific OAuth 2.0 Client and invalidates all associated OAuth 2.0 Access Tokens.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**subject** | **String** | The subject (Subject) whose consent sessions should be deleted. | [required] |
-**client** | Option<**String**> | If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID |  |
-**all** | Option<**bool**> | If set to `true` deletes all consent sessions by the Subject that have been granted. |  |
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_revoke_o_auth2_login_sessions
-
-> admin_revoke_o_auth2_login_sessions(subject)
-Invalidates All OAuth 2.0 Login Sessions of a Certain User
-
-This endpoint invalidates a subject's authentication session. After revoking the authentication session, the subject has to re-authenticate at ORY Hydra. This endpoint does not invalidate any tokens and does not work with OpenID Connect Front- or Back-channel logout.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**subject** | **String** | The subject to revoke authentication sessions for. | [required] |
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_trust_o_auth2_jwt_grant_issuer
-
-> crate::models::TrustedOAuth2JwtGrantIssuer admin_trust_o_auth2_jwt_grant_issuer(admin_trust_o_auth2_jwt_grant_issuer_body)
-Trust an OAuth2 JWT Bearer Grant Type Issuer
-
-Use this endpoint to establish a trust relationship for a JWT issuer to perform JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants [RFC7523](https://datatracker.ietf.org/doc/html/rfc7523).
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**admin_trust_o_auth2_jwt_grant_issuer_body** | Option<[**AdminTrustOAuth2JwtGrantIssuerBody**](AdminTrustOAuth2JwtGrantIssuerBody.md)> |  |  |
-
-### Return type
-
-[**crate::models::TrustedOAuth2JwtGrantIssuer**](trustedOAuth2JwtGrantIssuer.md)
 
 ### Authorization
 
@@ -1266,104 +366,10 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## admin_update_json_web_key
-
-> crate::models::JsonWebKey admin_update_json_web_key(set, kid, json_web_key)
-Update a JSON Web Key
-
-Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**set** | **String** | The JSON Web Key Set | [required] |
-**kid** | **String** | The JSON Web Key ID (kid) | [required] |
-**json_web_key** | Option<[**JsonWebKey**](JsonWebKey.md)> |  |  |
-
-### Return type
-
-[**crate::models::JsonWebKey**](jsonWebKey.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_update_json_web_key_set
-
-> crate::models::JsonWebKeySet admin_update_json_web_key_set(set, json_web_key_set)
-Update a JSON Web Key Set
-
-Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**set** | **String** | The JSON Web Key Set | [required] |
-**json_web_key_set** | Option<[**JsonWebKeySet**](JsonWebKeySet.md)> |  |  |
-
-### Return type
-
-[**crate::models::JsonWebKeySet**](jsonWebKeySet.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_update_o_auth2_client
-
-> crate::models::OAuth2Client admin_update_o_auth2_client(id, o_auth2_client)
-Update an OAuth 2.0 Client
-
-Update an existing OAuth 2.0 Client. If you pass `client_secret` the secret is used, otherwise a random secret is generated. The secret is echoed in the response. It is not possible to retrieve it later on.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | The id of the OAuth 2.0 Client. | [required] |
-**o_auth2_client** | [**OAuth2Client**](OAuth2Client.md) |  | [required] |
-
-### Return type
-
-[**crate::models::OAuth2Client**](oAuth2Client.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
 ## create_project
 
 > crate::models::Project create_project(create_project_body)
-Create a Project
+# Create a Project
 
 Creates a new project.
 
@@ -1377,6 +383,37 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Project**](project.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## create_project_api_key
+
+> crate::models::ProjectApiKey create_project_api_key(project, create_project_api_key_request)
+# Create API Token
+
+Create an API token for a project.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**project** | **String** | The Project ID or Project slug | [required] |
+**create_project_api_key_request** | Option<[**CreateProjectApiKeyRequest**](CreateProjectApiKeyRequest.md)> |  |  |
+
+### Return type
+
+[**crate::models::ProjectApiKey**](projectApiKey.md)
 
 ### Authorization
 
@@ -1420,103 +457,20 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## discover_json_web_keys
+## delete_project_api_key
 
-> crate::models::JsonWebKeySet discover_json_web_keys()
-Discover JSON Web Keys
+> delete_project_api_key(project, token_id)
+# Delete API Token
 
-This endpoint returns JSON Web Keys required to verifying OpenID Connect ID Tokens and, if enabled, OAuth 2.0 JWT Access Tokens. This endpoint can be used with client libraries like [node-jwks-rsa](https://github.com/auth0/node-jwks-rsa) among others.
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**crate::models::JsonWebKeySet**](jsonWebKeySet.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## discover_oidc_configuration
-
-> crate::models::OidcConfiguration discover_oidc_configuration()
-OpenID Connect Discovery
-
-The well known endpoint an be used to retrieve information for OpenID Connect clients. We encourage you to not roll your own OpenID Connect client but to use an OpenID Connect client library instead. You can learn more on this flow at https://openid.net/specs/openid-connect-discovery-1_0.html .  Popular libraries for OpenID Connect clients include oidc-client-js (JavaScript), go-oidc (Golang), and others. For a full list of clients go here: https://openid.net/developers/certified/
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**crate::models::OidcConfiguration**](oidcConfiguration.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## dynamic_client_registration_create_o_auth2_client
-
-> crate::models::OAuth2Client dynamic_client_registration_create_o_auth2_client(o_auth2_client)
-Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-
-This endpoint behaves like the administrative counterpart (`createOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  Please note that using this endpoint you are not able to choose the `client_secret` nor the `client_id` as those values will be server generated when specifying `token_endpoint_auth_method` as `client_secret_basic` or `client_secret_post`.  The `client_secret` will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somewhere safe.
+Deletes an API Token and immediately removes it.
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**o_auth2_client** | [**OAuth2Client**](OAuth2Client.md) |  | [required] |
-
-### Return type
-
-[**crate::models::OAuth2Client**](oAuth2Client.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## dynamic_client_registration_delete_o_auth2_client
-
-> dynamic_client_registration_delete_o_auth2_client(id)
-Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-
-This endpoint behaves like the administrative counterpart (`deleteOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | The id of the OAuth 2.0 Client. | [required] |
+**project** | **String** | The Project ID or Project slug | [required] |
+**token_id** | **String** | The Token ID | [required] |
 
 ### Return type
 
@@ -1524,72 +478,11 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[bearer](../README.md#bearer)
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## dynamic_client_registration_get_o_auth2_client
-
-> crate::models::OAuth2Client dynamic_client_registration_get_o_auth2_client(id)
-Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-
-This endpoint behaves like the administrative counterpart (`getOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | The id of the OAuth 2.0 Client. | [required] |
-
-### Return type
-
-[**crate::models::OAuth2Client**](oAuth2Client.md)
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## dynamic_client_registration_update_o_auth2_client
-
-> crate::models::OAuth2Client dynamic_client_registration_update_o_auth2_client(id, o_auth2_client)
-Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-
-This endpoint behaves like the administrative counterpart (`updateOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  If you pass `client_secret` the secret is used, otherwise a random secret is generated. The secret is echoed in the response. It is not possible to retrieve it later on.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | The id of the OAuth 2.0 Client. | [required] |
-**o_auth2_client** | [**OAuth2Client**](OAuth2Client.md) |  | [required] |
-
-### Return type
-
-[**crate::models::OAuth2Client**](oAuth2Client.md)
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1625,37 +518,10 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## get_oidc_user_info
-
-> crate::models::OidcUserInfo get_oidc_user_info()
-OpenID Connect Userinfo
-
-This endpoint returns the payload of the ID Token, including the idTokenExtra values, of the provided OAuth 2.0 Access Token.  For more information please [refer to the spec](http://openid.net/specs/openid-connect-core-1_0.html#UserInfo).  In the case of authentication error, a WWW-Authenticate header might be set in the response with more information about the error. See [the spec](https://datatracker.ietf.org/doc/html/rfc6750#section-3) for more details about header format.
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**crate::models::OidcUserInfo**](oidcUserInfo.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
 ## get_project
 
 > crate::models::Project get_project(project_id)
-Get a Project
+# Get a Project
 
 Get a projects you have access to by its ID.
 
@@ -1870,7 +736,7 @@ No authorization required
 ## get_self_service_verification_flow
 
 > crate::models::SelfServiceVerificationFlow get_self_service_verification_flow(id, cookie)
-Get Verification Flow
+# Get Verification Flow
 
 This endpoint returns a verification flow's context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request's HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  ```js pseudo-code example router.get('/recovery', async function (req, res) { const flow = await client.getSelfServiceVerificationFlow(req.header('cookie'), req.query['flow'])  res.render('verification', flow) })  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
@@ -2251,10 +1117,40 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## list_project_api_keys
+
+> Vec<crate::models::ProjectApiKey> list_project_api_keys(project)
+# List a Project's API Tokens
+
+A list of all the project's API tokens.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**project** | **String** | The Project ID or Project slug | [required] |
+
+### Return type
+
+[**Vec<crate::models::ProjectApiKey>**](projectApiKey.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## list_projects
 
 > Vec<crate::models::ProjectMetadata> list_projects()
-List All Projects
+# List All Projects
 
 Lists all projects you have access to.
 
@@ -2342,98 +1238,10 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## perform_o_auth2_authorization_flow
-
-> crate::models::OAuth2ApiError perform_o_auth2_authorization_flow()
-The OAuth 2.0 Authorize Endpoint
-
-This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exists.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc6749
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**crate::models::OAuth2ApiError**](oAuth2ApiError.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## perform_o_auth2_token_flow
-
-> crate::models::OAuth2TokenResponse perform_o_auth2_token_flow(grant_type, client_id, code, redirect_uri, refresh_token)
-The OAuth 2.0 Token Endpoint
-
-The client makes a request to the token endpoint by sending the following parameters using the \"application/x-www-form-urlencoded\" HTTP request entity-body.  > Do not implement a client for this endpoint yourself. Use a library. There are many libraries > available for any programming language. You can find a list of libraries here: https://oauth.net/code/ > > Do note that Hydra SDK does not implement this endpoint properly. Use one of the libraries listed above
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**grant_type** | **String** |  | [required] |
-**client_id** | Option<**String**> |  |  |
-**code** | Option<**String**> |  |  |
-**redirect_uri** | Option<**String**> |  |  |
-**refresh_token** | Option<**String**> |  |  |
-
-### Return type
-
-[**crate::models::OAuth2TokenResponse**](oAuth2TokenResponse.md)
-
-### Authorization
-
-[basic](../README.md#basic), [oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/x-www-form-urlencoded
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## perform_oidc_front_or_back_channel_logout
-
-> perform_oidc_front_or_back_channel_logout()
-OpenID Connect Front- or Back-channel Enabled Logout
-
-This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front- / Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html  Back-channel logout is performed asynchronously and does not affect logout flow.
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
 ## purge_project
 
 > purge_project(project_id)
-Irrecoverably Purge a Project
+# Irrecoverably Purge a Project
 
 !! Use with extreme caution !!  Using this API endpoint you can purge (completely delete) a project and its data. This action can not be undone and will delete ALL your data.  !! Use with extreme caution !!
 
@@ -2486,36 +1294,6 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## revoke_o_auth2_token
-
-> revoke_o_auth2_token(token)
-Revoke an OAuth2 Access or Refresh Token
-
-Revoking a token (both access and refresh) means that the tokens will be invalid. A revoked access token can no longer be used to make access requests, and a revoked refresh token can no longer be used to refresh an access token. Revoking a refresh token also invalidates the access token that was created with it. A token may only be revoked by the client the token was generated for.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**token** | **String** |  | [required] |
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[basic](../README.md#basic), [oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2777,7 +1555,7 @@ No authorization required
 ## submit_self_service_verification_flow
 
 > crate::models::SelfServiceVerificationFlow submit_self_service_verification_flow(flow, submit_self_service_verification_flow_body, token, cookie)
-Complete Verification Flow
+# Complete Verification Flow
 
 Use this endpoint to complete a verification flow. This endpoint behaves differently for API and browser flows and has several states:  `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent and works with API- and Browser-initiated flows. For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid and a HTTP 303 See Other redirect with a fresh verification flow if the flow was otherwise invalid (e.g. expired). For Browser clients without HTTP Header `Accept` or with `Accept: text/_*` it returns a HTTP 303 See Other redirect to the Verification UI URL with the Verification Flow ID appended. `sent_email` is the success state after `choose_method` when using the `link` method and allows the user to request another verification email. It works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state. `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow (\"sending a verification link\") does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Verification UI URL with a new Verification Flow ID which contains an error message that the verification link was invalid.  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
@@ -2841,7 +1619,7 @@ No authorization required
 ## update_project
 
 > crate::models::SuccessfulProjectUpdate update_project(project_id, update_project)
-Update an Ory Cloud Project Configuration
+# Update an Ory Cloud Project Configuration
 
 This endpoints allows you to update the Ory Cloud Project configuration for individual services (identity, permission, ...). The configuration is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.  Be aware that updating any service's configuration will completely override your current configuration for that service!
 

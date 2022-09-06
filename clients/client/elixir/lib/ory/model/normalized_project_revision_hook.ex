@@ -22,6 +22,7 @@ defmodule Ory.Model.NormalizedProjectRevisionHook do
     :web_hook_config_auth_basic_auth_user,
     :web_hook_config_auth_type,
     :web_hook_config_body,
+    :web_hook_config_can_interrupt,
     :web_hook_config_method,
     :web_hook_config_response_ignore,
     :web_hook_config_url
@@ -41,6 +42,7 @@ defmodule Ory.Model.NormalizedProjectRevisionHook do
     :web_hook_config_auth_basic_auth_user => String.t | nil,
     :web_hook_config_auth_type => String.t | nil,
     :web_hook_config_body => String.t | nil,
+    :web_hook_config_can_interrupt => boolean() | nil,
     :web_hook_config_method => String.t | nil,
     :web_hook_config_response_ignore => boolean() | nil,
     :web_hook_config_url => String.t | nil

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Code** | **long** | The status code | [optional] 
 **Debug** | **string** | Debug information  This field is often not exposed to protect against leaking sensitive information. | [optional] 
-**Details** | **List&lt;Dictionary&lt;string, Object&gt;&gt;** | Further error details | [optional] 
+**Details** | **Object** | Further error details | [optional] 
 **Error** | [**ClientGenericErrorContent**](ClientGenericErrorContent.md) |  | [optional] 
 **Id** | **string** | The error ID  Useful when trying to identify various errors in application logic. | [optional] 
 **Message** | **string** | Error message  The error&#39;s message. | 

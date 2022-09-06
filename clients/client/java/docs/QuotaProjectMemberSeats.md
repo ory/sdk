@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**projectId** | **UUID** |  |  [optional]
+**projectId** | **String** |  |  [optional]
 **remainingSeats** | **Long** |  |  [optional]
 **totalSeats** | **Long** |  |  [optional]
 

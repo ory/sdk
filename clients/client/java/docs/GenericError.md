@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **Long** | The status code |  [optional]
 **debug** | **String** | Debug information  This field is often not exposed to protect against leaking sensitive information. |  [optional]
-**details** | **List&lt;Map&lt;String, Object&gt;&gt;** | Further error details |  [optional]
+**details** | **Object** | Further error details |  [optional]
 **error** | [**GenericErrorContent**](GenericErrorContent.md) |  |  [optional]
 **id** | **String** | The error ID  Useful when trying to identify various errors in application logic. |  [optional]
 **message** | **String** | Error message  The error&#39;s message. | 

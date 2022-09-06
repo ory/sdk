@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.28
+API version: v0.2.0-alpha.29
 Contact: support@ory.sh
 */
 
@@ -26,7 +26,8 @@ type NormalizedProjectRevision struct {
 	HydraOauth2GrantJwtIatOptional *bool `json:"hydra_oauth2_grant_jwt_iat_optional,omitempty"`
 	// Configures if the JSON Web Token ID (`jti`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `jti` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.jti_optional\" setting.
 	HydraOauth2GrantJwtJtiOptional *bool `json:"hydra_oauth2_grant_jwt_jti_optional,omitempty"`
-	HydraOauth2GrantJwtMaxTtl NullableString `json:"hydra_oauth2_grant_jwt_max_ttl,omitempty"`
+	// Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
+	HydraOauth2GrantJwtMaxTtl *string `json:"hydra_oauth2_grant_jwt_max_ttl,omitempty"`
 	// Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \"oauth2.pkce.enforced\" setting.
 	HydraOauth2PkceEnforced *bool `json:"hydra_oauth2_pkce_enforced,omitempty"`
 	// Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \"oauth2.pkce.enforced_for_public_clients\" setting.
@@ -58,11 +59,16 @@ type NormalizedProjectRevision struct {
 	HydraStrategiesAccessToken interface{} `json:"hydra_strategies_access_token,omitempty"`
 	// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting.
 	HydraStrategiesScope interface{} `json:"hydra_strategies_scope,omitempty"`
-	HydraTtlAccessToken NullableString `json:"hydra_ttl_access_token,omitempty"`
-	HydraTtlAuthCode NullableString `json:"hydra_ttl_auth_code,omitempty"`
-	HydraTtlIdToken NullableString `json:"hydra_ttl_id_token,omitempty"`
-	HydraTtlLoginConsentRequest NullableString `json:"hydra_ttl_login_consent_request,omitempty"`
-	HydraTtlRefreshToken NullableString `json:"hydra_ttl_refresh_token,omitempty"`
+	// This governs the \"ttl.access_token\" setting.
+	HydraTtlAccessToken *string `json:"hydra_ttl_access_token,omitempty"`
+	// Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.auth_code\" setting.
+	HydraTtlAuthCode *string `json:"hydra_ttl_auth_code,omitempty"`
+	// This governs the \"ttl.id_token\" setting.
+	HydraTtlIdToken *string `json:"hydra_ttl_id_token,omitempty"`
+	// Configures how long a user login and consent flow may take.  This governs the \"ttl.login_consent_request\" setting.
+	HydraTtlLoginConsentRequest *string `json:"hydra_ttl_login_consent_request,omitempty"`
+	// Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.refresh_token\" setting.
+	HydraTtlRefreshToken *string `json:"hydra_ttl_refresh_token,omitempty"`
 	// Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.consent\" setting.
 	HydraUrlsConsent *string `json:"hydra_urls_consent,omitempty"`
 	// Sets the OAuth2 Error URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.error\" setting.
@@ -88,6 +94,7 @@ type NormalizedProjectRevision struct {
 	HydraWebfingerOidcDiscoveryTokenUrl *string `json:"hydra_webfinger_oidc_discovery_token_url,omitempty"`
 	// Configures OpenID Connect Discovery and overwrites userinfo endpoint to be advertised at the OpenID Connect Discovery endpoint /.well-known/openid-configuration. Defaults to Ory Hydra's userinfo endpoint at /userinfo. Set this value if you want to handle this endpoint yourself.  This governs the \"webfinger.oidc.discovery.userinfo_url\" setting.
 	HydraWebfingerOidcDiscoveryUserinfoUrl *string `json:"hydra_webfinger_oidc_discovery_userinfo_url,omitempty"`
+	// The revision ID.
 	Id *string `json:"id,omitempty"`
 	KetoNamespaces []KetoNamespace `json:"keto_namespaces,omitempty"`
 	KetoReadMaxDepth NullableInt32 `json:"keto_read_max_depth,omitempty"`
@@ -165,7 +172,8 @@ type NormalizedProjectRevision struct {
 	KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_registration_after_password_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_registration_after_webauthn_default_browser_return_url,omitempty"`
-	KratosSelfserviceFlowsRegistrationEnabled NullableBool `json:"kratos_selfservice_flows_registration_enabled,omitempty"`
+	// Configures the Whether Ory Kratos Registration is Enabled  This governs the \"selfservice.flows.registration.enabled\" setting.0
+	KratosSelfserviceFlowsRegistrationEnabled *bool `json:"kratos_selfservice_flows_registration_enabled,omitempty"`
 	// Configures the Ory Kratos Registration Lifespan  This governs the \"selfservice.flows.registration.lifespan\" setting.
 	KratosSelfserviceFlowsRegistrationLifespan *string `json:"kratos_selfservice_flows_registration_lifespan,omitempty"`
 	// Configures the Ory Kratos Registration UI URL  This governs the \"selfservice.flows.registration.ui_url\" setting.
@@ -196,25 +204,33 @@ type NormalizedProjectRevision struct {
 	KratosSelfserviceMethodsLinkConfigBaseUrl *string `json:"kratos_selfservice_methods_link_config_base_url,omitempty"`
 	// Configures whether Ory Kratos Link Method is enabled  This governs the \"selfservice.methods.link.config.lifespan\" setting.
 	KratosSelfserviceMethodsLinkConfigLifespan *string `json:"kratos_selfservice_methods_link_config_lifespan,omitempty"`
-	KratosSelfserviceMethodsLinkEnabled NullableBool `json:"kratos_selfservice_methods_link_enabled,omitempty"`
-	KratosSelfserviceMethodsLookupSecretEnabled NullableBool `json:"kratos_selfservice_methods_lookup_secret_enabled,omitempty"`
+	// Configures whether Ory Kratos Link Method is enabled  This governs the \"selfservice.methods.link.enabled\" setting.
+	KratosSelfserviceMethodsLinkEnabled *bool `json:"kratos_selfservice_methods_link_enabled,omitempty"`
+	// Configures whether Ory Kratos TOTP Lookup Secret is enabled  This governs the \"selfservice.methods.lookup_secret.enabled\" setting.
+	KratosSelfserviceMethodsLookupSecretEnabled *bool `json:"kratos_selfservice_methods_lookup_secret_enabled,omitempty"`
 	// Configures the Ory Kratos Third Party / OpenID Connect base redirect URI  This governs the \"selfservice.methods.oidc.config.base_redirect_uri\" setting.
 	KratosSelfserviceMethodsOidcConfigBaseRedirectUri *string `json:"kratos_selfservice_methods_oidc_config_base_redirect_uri,omitempty"`
 	KratosSelfserviceMethodsOidcConfigProviders []NormalizedProjectRevisionThirdPartyProvider `json:"kratos_selfservice_methods_oidc_config_providers,omitempty"`
 	// Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \"selfservice.methods.oidc.enabled\" setting.
 	KratosSelfserviceMethodsOidcEnabled *bool `json:"kratos_selfservice_methods_oidc_enabled,omitempty"`
-	KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled NullableBool `json:"kratos_selfservice_methods_password_config_haveibeenpwned_enabled,omitempty"`
-	KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled NullableBool `json:"kratos_selfservice_methods_password_config_identifier_similarity_check_enabled,omitempty"`
-	KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors NullableBool `json:"kratos_selfservice_methods_password_config_ignore_network_errors,omitempty"`
+	// Configures whether Ory Kratos Password HIBP Checks is enabled  This governs the \"selfservice.methods.password.config.haveibeenpwned_enabled\" setting.
+	KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled *bool `json:"kratos_selfservice_methods_password_config_haveibeenpwned_enabled,omitempty"`
+	// Configures whether Ory Kratos Password should disable the similarity policy.  This governs the \"selfservice.methods.password.config.identifier_similarity_check_enabled\" setting.
+	KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled *bool `json:"kratos_selfservice_methods_password_config_identifier_similarity_check_enabled,omitempty"`
+	// Configures whether Ory Kratos Password Should ignore HIBPWND Network Errors  This governs the \"selfservice.methods.password.config.ignore_network_errors\" setting.
+	KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors *bool `json:"kratos_selfservice_methods_password_config_ignore_network_errors,omitempty"`
 	// Configures Ory Kratos Password Max Breaches Detection  This governs the \"selfservice.methods.password.config.max_breaches\" setting.
 	KratosSelfserviceMethodsPasswordConfigMaxBreaches *int64 `json:"kratos_selfservice_methods_password_config_max_breaches,omitempty"`
 	// Configures the minimum length of passwords.  This governs the \"selfservice.methods.password.config.min_password_length\" setting.
 	KratosSelfserviceMethodsPasswordConfigMinPasswordLength *int64 `json:"kratos_selfservice_methods_password_config_min_password_length,omitempty"`
-	KratosSelfserviceMethodsPasswordEnabled NullableBool `json:"kratos_selfservice_methods_password_enabled,omitempty"`
-	KratosSelfserviceMethodsProfileEnabled NullableBool `json:"kratos_selfservice_methods_profile_enabled,omitempty"`
+	// Configures whether Ory Kratos Password Method is enabled  This governs the \"selfservice.methods.password.enabled\" setting.
+	KratosSelfserviceMethodsPasswordEnabled *bool `json:"kratos_selfservice_methods_password_enabled,omitempty"`
+	// Configures whether Ory Kratos Profile Method is enabled  This governs the \"selfservice.methods.profile.enabled\" setting.
+	KratosSelfserviceMethodsProfileEnabled *bool `json:"kratos_selfservice_methods_profile_enabled,omitempty"`
 	// Configures Ory Kratos TOTP Issuer  This governs the \"selfservice.methods.totp.config.issuer\" setting.
 	KratosSelfserviceMethodsTotpConfigIssuer *string `json:"kratos_selfservice_methods_totp_config_issuer,omitempty"`
-	KratosSelfserviceMethodsTotpEnabled NullableBool `json:"kratos_selfservice_methods_totp_enabled,omitempty"`
+	// Configures whether Ory Kratos TOTP Method is enabled  This governs the \"selfservice.methods.totp.enabled\" setting.
+	KratosSelfserviceMethodsTotpEnabled *bool `json:"kratos_selfservice_methods_totp_enabled,omitempty"`
 	// Configures whether Ory Kratos Webauthn is used for passwordless flows  This governs the \"selfservice.methods.webauthn.config.passwordless\" setting.
 	KratosSelfserviceMethodsWebauthnConfigPasswordless *bool `json:"kratos_selfservice_methods_webauthn_config_passwordless,omitempty"`
 	// Configures the Ory Kratos Webauthn RP Display Name  This governs the \"selfservice.methods.webauthn.config.rp.display_name\" setting.
@@ -225,8 +241,10 @@ type NormalizedProjectRevision struct {
 	KratosSelfserviceMethodsWebauthnConfigRpId *string `json:"kratos_selfservice_methods_webauthn_config_rp_id,omitempty"`
 	// Configures the Ory Kratos Webauthn RP Origin  This governs the \"selfservice.methods.webauthn.config.rp.origin\" setting.
 	KratosSelfserviceMethodsWebauthnConfigRpOrigin *string `json:"kratos_selfservice_methods_webauthn_config_rp_origin,omitempty"`
-	KratosSelfserviceMethodsWebauthnEnabled NullableBool `json:"kratos_selfservice_methods_webauthn_enabled,omitempty"`
-	KratosSessionCookiePersistent NullableBool `json:"kratos_session_cookie_persistent,omitempty"`
+	// Configures whether Ory Kratos Webauthn is enabled  This governs the \"selfservice.methods.webauthn.enabled\" setting.
+	KratosSelfserviceMethodsWebauthnEnabled *bool `json:"kratos_selfservice_methods_webauthn_enabled,omitempty"`
+	// Configures the Ory Kratos Session Cookie Persistent Attribute  This governs the \"session.cookie.persistent\" setting.
+	KratosSessionCookiePersistent *bool `json:"kratos_session_cookie_persistent,omitempty"`
 	// Configures the Ory Kratos Session Cookie SameSite Attribute  This governs the \"session.cookie.same_site\" setting.
 	KratosSessionCookieSameSite *string `json:"kratos_session_cookie_same_site,omitempty"`
 	// Configures the Ory Kratos Session Lifespan  This governs the \"session.lifespan\" setting.
@@ -237,6 +255,7 @@ type NormalizedProjectRevision struct {
 	Name string `json:"name"`
 	// Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment.
 	Production *bool `json:"production,omitempty"`
+	// The Revision's Project ID
 	ProjectId *string `json:"project_id,omitempty"`
 	// Last Time Project's Revision was Updated
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
@@ -248,6 +267,18 @@ type NormalizedProjectRevision struct {
 // will change when the set of required properties is changed
 func NewNormalizedProjectRevision(name string) *NormalizedProjectRevision {
 	this := NormalizedProjectRevision{}
+	var hydraOauth2GrantJwtMaxTtl string = "720h"
+	this.HydraOauth2GrantJwtMaxTtl = &hydraOauth2GrantJwtMaxTtl
+	var hydraTtlAccessToken string = "30m"
+	this.HydraTtlAccessToken = &hydraTtlAccessToken
+	var hydraTtlAuthCode string = "720h"
+	this.HydraTtlAuthCode = &hydraTtlAuthCode
+	var hydraTtlIdToken string = "30m"
+	this.HydraTtlIdToken = &hydraTtlIdToken
+	var hydraTtlLoginConsentRequest string = "30m"
+	this.HydraTtlLoginConsentRequest = &hydraTtlLoginConsentRequest
+	var hydraTtlRefreshToken string = "720h"
+	this.HydraTtlRefreshToken = &hydraTtlRefreshToken
 	this.Name = name
 	return &this
 }
@@ -257,6 +288,18 @@ func NewNormalizedProjectRevision(name string) *NormalizedProjectRevision {
 // but it doesn't guarantee that properties required by API are set
 func NewNormalizedProjectRevisionWithDefaults() *NormalizedProjectRevision {
 	this := NormalizedProjectRevision{}
+	var hydraOauth2GrantJwtMaxTtl string = "720h"
+	this.HydraOauth2GrantJwtMaxTtl = &hydraOauth2GrantJwtMaxTtl
+	var hydraTtlAccessToken string = "30m"
+	this.HydraTtlAccessToken = &hydraTtlAccessToken
+	var hydraTtlAuthCode string = "720h"
+	this.HydraTtlAuthCode = &hydraTtlAuthCode
+	var hydraTtlIdToken string = "30m"
+	this.HydraTtlIdToken = &hydraTtlIdToken
+	var hydraTtlLoginConsentRequest string = "30m"
+	this.HydraTtlLoginConsentRequest = &hydraTtlLoginConsentRequest
+	var hydraTtlRefreshToken string = "720h"
+	this.HydraTtlRefreshToken = &hydraTtlRefreshToken
 	return &this
 }
 
@@ -388,46 +431,36 @@ func (o *NormalizedProjectRevision) SetHydraOauth2GrantJwtJtiOptional(v bool) {
 	o.HydraOauth2GrantJwtJtiOptional = &v
 }
 
-// GetHydraOauth2GrantJwtMaxTtl returns the HydraOauth2GrantJwtMaxTtl field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetHydraOauth2GrantJwtMaxTtl returns the HydraOauth2GrantJwtMaxTtl field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetHydraOauth2GrantJwtMaxTtl() string {
-	if o == nil || o.HydraOauth2GrantJwtMaxTtl.Get() == nil {
+	if o == nil || o.HydraOauth2GrantJwtMaxTtl == nil {
 		var ret string
 		return ret
 	}
-	return *o.HydraOauth2GrantJwtMaxTtl.Get()
+	return *o.HydraOauth2GrantJwtMaxTtl
 }
 
 // GetHydraOauth2GrantJwtMaxTtlOk returns a tuple with the HydraOauth2GrantJwtMaxTtl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NormalizedProjectRevision) GetHydraOauth2GrantJwtMaxTtlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.HydraOauth2GrantJwtMaxTtl == nil {
 		return nil, false
 	}
-	return o.HydraOauth2GrantJwtMaxTtl.Get(), o.HydraOauth2GrantJwtMaxTtl.IsSet()
+	return o.HydraOauth2GrantJwtMaxTtl, true
 }
 
 // HasHydraOauth2GrantJwtMaxTtl returns a boolean if a field has been set.
 func (o *NormalizedProjectRevision) HasHydraOauth2GrantJwtMaxTtl() bool {
-	if o != nil && o.HydraOauth2GrantJwtMaxTtl.IsSet() {
+	if o != nil && o.HydraOauth2GrantJwtMaxTtl != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetHydraOauth2GrantJwtMaxTtl gets a reference to the given NullableString and assigns it to the HydraOauth2GrantJwtMaxTtl field.
+// SetHydraOauth2GrantJwtMaxTtl gets a reference to the given string and assigns it to the HydraOauth2GrantJwtMaxTtl field.
 func (o *NormalizedProjectRevision) SetHydraOauth2GrantJwtMaxTtl(v string) {
-	o.HydraOauth2GrantJwtMaxTtl.Set(&v)
-}
-// SetHydraOauth2GrantJwtMaxTtlNil sets the value for HydraOauth2GrantJwtMaxTtl to be an explicit nil
-func (o *NormalizedProjectRevision) SetHydraOauth2GrantJwtMaxTtlNil() {
-	o.HydraOauth2GrantJwtMaxTtl.Set(nil)
-}
-
-// UnsetHydraOauth2GrantJwtMaxTtl ensures that no value is present for HydraOauth2GrantJwtMaxTtl, not even an explicit nil
-func (o *NormalizedProjectRevision) UnsetHydraOauth2GrantJwtMaxTtl() {
-	o.HydraOauth2GrantJwtMaxTtl.Unset()
+	o.HydraOauth2GrantJwtMaxTtl = &v
 }
 
 // GetHydraOauth2PkceEnforced returns the HydraOauth2PkceEnforced field value if set, zero value otherwise.
@@ -1040,214 +1073,164 @@ func (o *NormalizedProjectRevision) SetHydraStrategiesScope(v interface{}) {
 	o.HydraStrategiesScope = v
 }
 
-// GetHydraTtlAccessToken returns the HydraTtlAccessToken field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetHydraTtlAccessToken returns the HydraTtlAccessToken field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetHydraTtlAccessToken() string {
-	if o == nil || o.HydraTtlAccessToken.Get() == nil {
+	if o == nil || o.HydraTtlAccessToken == nil {
 		var ret string
 		return ret
 	}
-	return *o.HydraTtlAccessToken.Get()
+	return *o.HydraTtlAccessToken
 }
 
 // GetHydraTtlAccessTokenOk returns a tuple with the HydraTtlAccessToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NormalizedProjectRevision) GetHydraTtlAccessTokenOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.HydraTtlAccessToken == nil {
 		return nil, false
 	}
-	return o.HydraTtlAccessToken.Get(), o.HydraTtlAccessToken.IsSet()
+	return o.HydraTtlAccessToken, true
 }
 
 // HasHydraTtlAccessToken returns a boolean if a field has been set.
 func (o *NormalizedProjectRevision) HasHydraTtlAccessToken() bool {
-	if o != nil && o.HydraTtlAccessToken.IsSet() {
+	if o != nil && o.HydraTtlAccessToken != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetHydraTtlAccessToken gets a reference to the given NullableString and assigns it to the HydraTtlAccessToken field.
+// SetHydraTtlAccessToken gets a reference to the given string and assigns it to the HydraTtlAccessToken field.
 func (o *NormalizedProjectRevision) SetHydraTtlAccessToken(v string) {
-	o.HydraTtlAccessToken.Set(&v)
-}
-// SetHydraTtlAccessTokenNil sets the value for HydraTtlAccessToken to be an explicit nil
-func (o *NormalizedProjectRevision) SetHydraTtlAccessTokenNil() {
-	o.HydraTtlAccessToken.Set(nil)
+	o.HydraTtlAccessToken = &v
 }
 
-// UnsetHydraTtlAccessToken ensures that no value is present for HydraTtlAccessToken, not even an explicit nil
-func (o *NormalizedProjectRevision) UnsetHydraTtlAccessToken() {
-	o.HydraTtlAccessToken.Unset()
-}
-
-// GetHydraTtlAuthCode returns the HydraTtlAuthCode field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetHydraTtlAuthCode returns the HydraTtlAuthCode field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetHydraTtlAuthCode() string {
-	if o == nil || o.HydraTtlAuthCode.Get() == nil {
+	if o == nil || o.HydraTtlAuthCode == nil {
 		var ret string
 		return ret
 	}
-	return *o.HydraTtlAuthCode.Get()
+	return *o.HydraTtlAuthCode
 }
 
 // GetHydraTtlAuthCodeOk returns a tuple with the HydraTtlAuthCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NormalizedProjectRevision) GetHydraTtlAuthCodeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.HydraTtlAuthCode == nil {
 		return nil, false
 	}
-	return o.HydraTtlAuthCode.Get(), o.HydraTtlAuthCode.IsSet()
+	return o.HydraTtlAuthCode, true
 }
 
 // HasHydraTtlAuthCode returns a boolean if a field has been set.
 func (o *NormalizedProjectRevision) HasHydraTtlAuthCode() bool {
-	if o != nil && o.HydraTtlAuthCode.IsSet() {
+	if o != nil && o.HydraTtlAuthCode != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetHydraTtlAuthCode gets a reference to the given NullableString and assigns it to the HydraTtlAuthCode field.
+// SetHydraTtlAuthCode gets a reference to the given string and assigns it to the HydraTtlAuthCode field.
 func (o *NormalizedProjectRevision) SetHydraTtlAuthCode(v string) {
-	o.HydraTtlAuthCode.Set(&v)
-}
-// SetHydraTtlAuthCodeNil sets the value for HydraTtlAuthCode to be an explicit nil
-func (o *NormalizedProjectRevision) SetHydraTtlAuthCodeNil() {
-	o.HydraTtlAuthCode.Set(nil)
+	o.HydraTtlAuthCode = &v
 }
 
-// UnsetHydraTtlAuthCode ensures that no value is present for HydraTtlAuthCode, not even an explicit nil
-func (o *NormalizedProjectRevision) UnsetHydraTtlAuthCode() {
-	o.HydraTtlAuthCode.Unset()
-}
-
-// GetHydraTtlIdToken returns the HydraTtlIdToken field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetHydraTtlIdToken returns the HydraTtlIdToken field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetHydraTtlIdToken() string {
-	if o == nil || o.HydraTtlIdToken.Get() == nil {
+	if o == nil || o.HydraTtlIdToken == nil {
 		var ret string
 		return ret
 	}
-	return *o.HydraTtlIdToken.Get()
+	return *o.HydraTtlIdToken
 }
 
 // GetHydraTtlIdTokenOk returns a tuple with the HydraTtlIdToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NormalizedProjectRevision) GetHydraTtlIdTokenOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.HydraTtlIdToken == nil {
 		return nil, false
 	}
-	return o.HydraTtlIdToken.Get(), o.HydraTtlIdToken.IsSet()
+	return o.HydraTtlIdToken, true
 }
 
 // HasHydraTtlIdToken returns a boolean if a field has been set.
 func (o *NormalizedProjectRevision) HasHydraTtlIdToken() bool {
-	if o != nil && o.HydraTtlIdToken.IsSet() {
+	if o != nil && o.HydraTtlIdToken != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetHydraTtlIdToken gets a reference to the given NullableString and assigns it to the HydraTtlIdToken field.
+// SetHydraTtlIdToken gets a reference to the given string and assigns it to the HydraTtlIdToken field.
 func (o *NormalizedProjectRevision) SetHydraTtlIdToken(v string) {
-	o.HydraTtlIdToken.Set(&v)
-}
-// SetHydraTtlIdTokenNil sets the value for HydraTtlIdToken to be an explicit nil
-func (o *NormalizedProjectRevision) SetHydraTtlIdTokenNil() {
-	o.HydraTtlIdToken.Set(nil)
+	o.HydraTtlIdToken = &v
 }
 
-// UnsetHydraTtlIdToken ensures that no value is present for HydraTtlIdToken, not even an explicit nil
-func (o *NormalizedProjectRevision) UnsetHydraTtlIdToken() {
-	o.HydraTtlIdToken.Unset()
-}
-
-// GetHydraTtlLoginConsentRequest returns the HydraTtlLoginConsentRequest field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetHydraTtlLoginConsentRequest returns the HydraTtlLoginConsentRequest field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetHydraTtlLoginConsentRequest() string {
-	if o == nil || o.HydraTtlLoginConsentRequest.Get() == nil {
+	if o == nil || o.HydraTtlLoginConsentRequest == nil {
 		var ret string
 		return ret
 	}
-	return *o.HydraTtlLoginConsentRequest.Get()
+	return *o.HydraTtlLoginConsentRequest
 }
 
 // GetHydraTtlLoginConsentRequestOk returns a tuple with the HydraTtlLoginConsentRequest field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NormalizedProjectRevision) GetHydraTtlLoginConsentRequestOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.HydraTtlLoginConsentRequest == nil {
 		return nil, false
 	}
-	return o.HydraTtlLoginConsentRequest.Get(), o.HydraTtlLoginConsentRequest.IsSet()
+	return o.HydraTtlLoginConsentRequest, true
 }
 
 // HasHydraTtlLoginConsentRequest returns a boolean if a field has been set.
 func (o *NormalizedProjectRevision) HasHydraTtlLoginConsentRequest() bool {
-	if o != nil && o.HydraTtlLoginConsentRequest.IsSet() {
+	if o != nil && o.HydraTtlLoginConsentRequest != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetHydraTtlLoginConsentRequest gets a reference to the given NullableString and assigns it to the HydraTtlLoginConsentRequest field.
+// SetHydraTtlLoginConsentRequest gets a reference to the given string and assigns it to the HydraTtlLoginConsentRequest field.
 func (o *NormalizedProjectRevision) SetHydraTtlLoginConsentRequest(v string) {
-	o.HydraTtlLoginConsentRequest.Set(&v)
-}
-// SetHydraTtlLoginConsentRequestNil sets the value for HydraTtlLoginConsentRequest to be an explicit nil
-func (o *NormalizedProjectRevision) SetHydraTtlLoginConsentRequestNil() {
-	o.HydraTtlLoginConsentRequest.Set(nil)
+	o.HydraTtlLoginConsentRequest = &v
 }
 
-// UnsetHydraTtlLoginConsentRequest ensures that no value is present for HydraTtlLoginConsentRequest, not even an explicit nil
-func (o *NormalizedProjectRevision) UnsetHydraTtlLoginConsentRequest() {
-	o.HydraTtlLoginConsentRequest.Unset()
-}
-
-// GetHydraTtlRefreshToken returns the HydraTtlRefreshToken field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetHydraTtlRefreshToken returns the HydraTtlRefreshToken field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetHydraTtlRefreshToken() string {
-	if o == nil || o.HydraTtlRefreshToken.Get() == nil {
+	if o == nil || o.HydraTtlRefreshToken == nil {
 		var ret string
 		return ret
 	}
-	return *o.HydraTtlRefreshToken.Get()
+	return *o.HydraTtlRefreshToken
 }
 
 // GetHydraTtlRefreshTokenOk returns a tuple with the HydraTtlRefreshToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NormalizedProjectRevision) GetHydraTtlRefreshTokenOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.HydraTtlRefreshToken == nil {
 		return nil, false
 	}
-	return o.HydraTtlRefreshToken.Get(), o.HydraTtlRefreshToken.IsSet()
+	return o.HydraTtlRefreshToken, true
 }
 
 // HasHydraTtlRefreshToken returns a boolean if a field has been set.
 func (o *NormalizedProjectRevision) HasHydraTtlRefreshToken() bool {
-	if o != nil && o.HydraTtlRefreshToken.IsSet() {
+	if o != nil && o.HydraTtlRefreshToken != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetHydraTtlRefreshToken gets a reference to the given NullableString and assigns it to the HydraTtlRefreshToken field.
+// SetHydraTtlRefreshToken gets a reference to the given string and assigns it to the HydraTtlRefreshToken field.
 func (o *NormalizedProjectRevision) SetHydraTtlRefreshToken(v string) {
-	o.HydraTtlRefreshToken.Set(&v)
-}
-// SetHydraTtlRefreshTokenNil sets the value for HydraTtlRefreshToken to be an explicit nil
-func (o *NormalizedProjectRevision) SetHydraTtlRefreshTokenNil() {
-	o.HydraTtlRefreshToken.Set(nil)
-}
-
-// UnsetHydraTtlRefreshToken ensures that no value is present for HydraTtlRefreshToken, not even an explicit nil
-func (o *NormalizedProjectRevision) UnsetHydraTtlRefreshToken() {
-	o.HydraTtlRefreshToken.Unset()
+	o.HydraTtlRefreshToken = &v
 }
 
 // GetHydraUrlsConsent returns the HydraUrlsConsent field value if set, zero value otherwise.
@@ -3084,46 +3067,36 @@ func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationAfterWe
 	o.KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl = &v
 }
 
-// GetKratosSelfserviceFlowsRegistrationEnabled returns the KratosSelfserviceFlowsRegistrationEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetKratosSelfserviceFlowsRegistrationEnabled returns the KratosSelfserviceFlowsRegistrationEnabled field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationEnabled() bool {
-	if o == nil || o.KratosSelfserviceFlowsRegistrationEnabled.Get() == nil {
+	if o == nil || o.KratosSelfserviceFlowsRegistrationEnabled == nil {
 		var ret bool
 		return ret
 	}
-	return *o.KratosSelfserviceFlowsRegistrationEnabled.Get()
+	return *o.KratosSelfserviceFlowsRegistrationEnabled
 }
 
 // GetKratosSelfserviceFlowsRegistrationEnabledOk returns a tuple with the KratosSelfserviceFlowsRegistrationEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || o.KratosSelfserviceFlowsRegistrationEnabled == nil {
 		return nil, false
 	}
-	return o.KratosSelfserviceFlowsRegistrationEnabled.Get(), o.KratosSelfserviceFlowsRegistrationEnabled.IsSet()
+	return o.KratosSelfserviceFlowsRegistrationEnabled, true
 }
 
 // HasKratosSelfserviceFlowsRegistrationEnabled returns a boolean if a field has been set.
 func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRegistrationEnabled() bool {
-	if o != nil && o.KratosSelfserviceFlowsRegistrationEnabled.IsSet() {
+	if o != nil && o.KratosSelfserviceFlowsRegistrationEnabled != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetKratosSelfserviceFlowsRegistrationEnabled gets a reference to the given NullableBool and assigns it to the KratosSelfserviceFlowsRegistrationEnabled field.
+// SetKratosSelfserviceFlowsRegistrationEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceFlowsRegistrationEnabled field.
 func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationEnabled(v bool) {
-	o.KratosSelfserviceFlowsRegistrationEnabled.Set(&v)
-}
-// SetKratosSelfserviceFlowsRegistrationEnabledNil sets the value for KratosSelfserviceFlowsRegistrationEnabled to be an explicit nil
-func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationEnabledNil() {
-	o.KratosSelfserviceFlowsRegistrationEnabled.Set(nil)
-}
-
-// UnsetKratosSelfserviceFlowsRegistrationEnabled ensures that no value is present for KratosSelfserviceFlowsRegistrationEnabled, not even an explicit nil
-func (o *NormalizedProjectRevision) UnsetKratosSelfserviceFlowsRegistrationEnabled() {
-	o.KratosSelfserviceFlowsRegistrationEnabled.Unset()
+	o.KratosSelfserviceFlowsRegistrationEnabled = &v
 }
 
 // GetKratosSelfserviceFlowsRegistrationLifespan returns the KratosSelfserviceFlowsRegistrationLifespan field value if set, zero value otherwise.
@@ -3606,88 +3579,68 @@ func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsLinkConfigLifespa
 	o.KratosSelfserviceMethodsLinkConfigLifespan = &v
 }
 
-// GetKratosSelfserviceMethodsLinkEnabled returns the KratosSelfserviceMethodsLinkEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetKratosSelfserviceMethodsLinkEnabled returns the KratosSelfserviceMethodsLinkEnabled field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsLinkEnabled() bool {
-	if o == nil || o.KratosSelfserviceMethodsLinkEnabled.Get() == nil {
+	if o == nil || o.KratosSelfserviceMethodsLinkEnabled == nil {
 		var ret bool
 		return ret
 	}
-	return *o.KratosSelfserviceMethodsLinkEnabled.Get()
+	return *o.KratosSelfserviceMethodsLinkEnabled
 }
 
 // GetKratosSelfserviceMethodsLinkEnabledOk returns a tuple with the KratosSelfserviceMethodsLinkEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsLinkEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || o.KratosSelfserviceMethodsLinkEnabled == nil {
 		return nil, false
 	}
-	return o.KratosSelfserviceMethodsLinkEnabled.Get(), o.KratosSelfserviceMethodsLinkEnabled.IsSet()
+	return o.KratosSelfserviceMethodsLinkEnabled, true
 }
 
 // HasKratosSelfserviceMethodsLinkEnabled returns a boolean if a field has been set.
 func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsLinkEnabled() bool {
-	if o != nil && o.KratosSelfserviceMethodsLinkEnabled.IsSet() {
+	if o != nil && o.KratosSelfserviceMethodsLinkEnabled != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetKratosSelfserviceMethodsLinkEnabled gets a reference to the given NullableBool and assigns it to the KratosSelfserviceMethodsLinkEnabled field.
+// SetKratosSelfserviceMethodsLinkEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsLinkEnabled field.
 func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsLinkEnabled(v bool) {
-	o.KratosSelfserviceMethodsLinkEnabled.Set(&v)
-}
-// SetKratosSelfserviceMethodsLinkEnabledNil sets the value for KratosSelfserviceMethodsLinkEnabled to be an explicit nil
-func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsLinkEnabledNil() {
-	o.KratosSelfserviceMethodsLinkEnabled.Set(nil)
+	o.KratosSelfserviceMethodsLinkEnabled = &v
 }
 
-// UnsetKratosSelfserviceMethodsLinkEnabled ensures that no value is present for KratosSelfserviceMethodsLinkEnabled, not even an explicit nil
-func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsLinkEnabled() {
-	o.KratosSelfserviceMethodsLinkEnabled.Unset()
-}
-
-// GetKratosSelfserviceMethodsLookupSecretEnabled returns the KratosSelfserviceMethodsLookupSecretEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetKratosSelfserviceMethodsLookupSecretEnabled returns the KratosSelfserviceMethodsLookupSecretEnabled field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsLookupSecretEnabled() bool {
-	if o == nil || o.KratosSelfserviceMethodsLookupSecretEnabled.Get() == nil {
+	if o == nil || o.KratosSelfserviceMethodsLookupSecretEnabled == nil {
 		var ret bool
 		return ret
 	}
-	return *o.KratosSelfserviceMethodsLookupSecretEnabled.Get()
+	return *o.KratosSelfserviceMethodsLookupSecretEnabled
 }
 
 // GetKratosSelfserviceMethodsLookupSecretEnabledOk returns a tuple with the KratosSelfserviceMethodsLookupSecretEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsLookupSecretEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || o.KratosSelfserviceMethodsLookupSecretEnabled == nil {
 		return nil, false
 	}
-	return o.KratosSelfserviceMethodsLookupSecretEnabled.Get(), o.KratosSelfserviceMethodsLookupSecretEnabled.IsSet()
+	return o.KratosSelfserviceMethodsLookupSecretEnabled, true
 }
 
 // HasKratosSelfserviceMethodsLookupSecretEnabled returns a boolean if a field has been set.
 func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsLookupSecretEnabled() bool {
-	if o != nil && o.KratosSelfserviceMethodsLookupSecretEnabled.IsSet() {
+	if o != nil && o.KratosSelfserviceMethodsLookupSecretEnabled != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetKratosSelfserviceMethodsLookupSecretEnabled gets a reference to the given NullableBool and assigns it to the KratosSelfserviceMethodsLookupSecretEnabled field.
+// SetKratosSelfserviceMethodsLookupSecretEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsLookupSecretEnabled field.
 func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsLookupSecretEnabled(v bool) {
-	o.KratosSelfserviceMethodsLookupSecretEnabled.Set(&v)
-}
-// SetKratosSelfserviceMethodsLookupSecretEnabledNil sets the value for KratosSelfserviceMethodsLookupSecretEnabled to be an explicit nil
-func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsLookupSecretEnabledNil() {
-	o.KratosSelfserviceMethodsLookupSecretEnabled.Set(nil)
-}
-
-// UnsetKratosSelfserviceMethodsLookupSecretEnabled ensures that no value is present for KratosSelfserviceMethodsLookupSecretEnabled, not even an explicit nil
-func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsLookupSecretEnabled() {
-	o.KratosSelfserviceMethodsLookupSecretEnabled.Unset()
+	o.KratosSelfserviceMethodsLookupSecretEnabled = &v
 }
 
 // GetKratosSelfserviceMethodsOidcConfigBaseRedirectUri returns the KratosSelfserviceMethodsOidcConfigBaseRedirectUri field value if set, zero value otherwise.
@@ -3786,130 +3739,100 @@ func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsOidcEnabled(v boo
 	o.KratosSelfserviceMethodsOidcEnabled = &v
 }
 
-// GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled returns the KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled returns the KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled() bool {
-	if o == nil || o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled.Get() == nil {
+	if o == nil || o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled == nil {
 		var ret bool
 		return ret
 	}
-	return *o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled.Get()
+	return *o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled
 }
 
 // GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabledOk returns a tuple with the KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled == nil {
 		return nil, false
 	}
-	return o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled.Get(), o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled.IsSet()
+	return o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled, true
 }
 
 // HasKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled returns a boolean if a field has been set.
 func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled() bool {
-	if o != nil && o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled.IsSet() {
+	if o != nil && o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled gets a reference to the given NullableBool and assigns it to the KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled field.
+// SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled field.
 func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled(v bool) {
-	o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled.Set(&v)
-}
-// SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabledNil sets the value for KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled to be an explicit nil
-func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabledNil() {
-	o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled.Set(nil)
+	o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled = &v
 }
 
-// UnsetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled ensures that no value is present for KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled, not even an explicit nil
-func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled() {
-	o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled.Unset()
-}
-
-// GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled returns the KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled returns the KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled() bool {
-	if o == nil || o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.Get() == nil {
+	if o == nil || o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled == nil {
 		var ret bool
 		return ret
 	}
-	return *o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.Get()
+	return *o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled
 }
 
 // GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabledOk returns a tuple with the KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled == nil {
 		return nil, false
 	}
-	return o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.Get(), o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.IsSet()
+	return o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled, true
 }
 
 // HasKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled returns a boolean if a field has been set.
 func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled() bool {
-	if o != nil && o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.IsSet() {
+	if o != nil && o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled gets a reference to the given NullableBool and assigns it to the KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled field.
+// SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled field.
 func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled(v bool) {
-	o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.Set(&v)
-}
-// SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabledNil sets the value for KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled to be an explicit nil
-func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabledNil() {
-	o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.Set(nil)
+	o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled = &v
 }
 
-// UnsetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled ensures that no value is present for KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled, not even an explicit nil
-func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled() {
-	o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.Unset()
-}
-
-// GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors returns the KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors returns the KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors() bool {
-	if o == nil || o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors.Get() == nil {
+	if o == nil || o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors == nil {
 		var ret bool
 		return ret
 	}
-	return *o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors.Get()
+	return *o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors
 }
 
 // GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrorsOk returns a tuple with the KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrorsOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors == nil {
 		return nil, false
 	}
-	return o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors.Get(), o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors.IsSet()
+	return o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors, true
 }
 
 // HasKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors returns a boolean if a field has been set.
 func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors() bool {
-	if o != nil && o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors.IsSet() {
+	if o != nil && o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors gets a reference to the given NullableBool and assigns it to the KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors field.
+// SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors field.
 func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors(v bool) {
-	o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors.Set(&v)
-}
-// SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrorsNil sets the value for KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors to be an explicit nil
-func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrorsNil() {
-	o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors.Set(nil)
-}
-
-// UnsetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors ensures that no value is present for KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors, not even an explicit nil
-func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors() {
-	o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors.Unset()
+	o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors = &v
 }
 
 // GetKratosSelfserviceMethodsPasswordConfigMaxBreaches returns the KratosSelfserviceMethodsPasswordConfigMaxBreaches field value if set, zero value otherwise.
@@ -3976,88 +3899,68 @@ func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigMin
 	o.KratosSelfserviceMethodsPasswordConfigMinPasswordLength = &v
 }
 
-// GetKratosSelfserviceMethodsPasswordEnabled returns the KratosSelfserviceMethodsPasswordEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetKratosSelfserviceMethodsPasswordEnabled returns the KratosSelfserviceMethodsPasswordEnabled field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordEnabled() bool {
-	if o == nil || o.KratosSelfserviceMethodsPasswordEnabled.Get() == nil {
+	if o == nil || o.KratosSelfserviceMethodsPasswordEnabled == nil {
 		var ret bool
 		return ret
 	}
-	return *o.KratosSelfserviceMethodsPasswordEnabled.Get()
+	return *o.KratosSelfserviceMethodsPasswordEnabled
 }
 
 // GetKratosSelfserviceMethodsPasswordEnabledOk returns a tuple with the KratosSelfserviceMethodsPasswordEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || o.KratosSelfserviceMethodsPasswordEnabled == nil {
 		return nil, false
 	}
-	return o.KratosSelfserviceMethodsPasswordEnabled.Get(), o.KratosSelfserviceMethodsPasswordEnabled.IsSet()
+	return o.KratosSelfserviceMethodsPasswordEnabled, true
 }
 
 // HasKratosSelfserviceMethodsPasswordEnabled returns a boolean if a field has been set.
 func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsPasswordEnabled() bool {
-	if o != nil && o.KratosSelfserviceMethodsPasswordEnabled.IsSet() {
+	if o != nil && o.KratosSelfserviceMethodsPasswordEnabled != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetKratosSelfserviceMethodsPasswordEnabled gets a reference to the given NullableBool and assigns it to the KratosSelfserviceMethodsPasswordEnabled field.
+// SetKratosSelfserviceMethodsPasswordEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsPasswordEnabled field.
 func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordEnabled(v bool) {
-	o.KratosSelfserviceMethodsPasswordEnabled.Set(&v)
-}
-// SetKratosSelfserviceMethodsPasswordEnabledNil sets the value for KratosSelfserviceMethodsPasswordEnabled to be an explicit nil
-func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordEnabledNil() {
-	o.KratosSelfserviceMethodsPasswordEnabled.Set(nil)
+	o.KratosSelfserviceMethodsPasswordEnabled = &v
 }
 
-// UnsetKratosSelfserviceMethodsPasswordEnabled ensures that no value is present for KratosSelfserviceMethodsPasswordEnabled, not even an explicit nil
-func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsPasswordEnabled() {
-	o.KratosSelfserviceMethodsPasswordEnabled.Unset()
-}
-
-// GetKratosSelfserviceMethodsProfileEnabled returns the KratosSelfserviceMethodsProfileEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetKratosSelfserviceMethodsProfileEnabled returns the KratosSelfserviceMethodsProfileEnabled field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsProfileEnabled() bool {
-	if o == nil || o.KratosSelfserviceMethodsProfileEnabled.Get() == nil {
+	if o == nil || o.KratosSelfserviceMethodsProfileEnabled == nil {
 		var ret bool
 		return ret
 	}
-	return *o.KratosSelfserviceMethodsProfileEnabled.Get()
+	return *o.KratosSelfserviceMethodsProfileEnabled
 }
 
 // GetKratosSelfserviceMethodsProfileEnabledOk returns a tuple with the KratosSelfserviceMethodsProfileEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsProfileEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || o.KratosSelfserviceMethodsProfileEnabled == nil {
 		return nil, false
 	}
-	return o.KratosSelfserviceMethodsProfileEnabled.Get(), o.KratosSelfserviceMethodsProfileEnabled.IsSet()
+	return o.KratosSelfserviceMethodsProfileEnabled, true
 }
 
 // HasKratosSelfserviceMethodsProfileEnabled returns a boolean if a field has been set.
 func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsProfileEnabled() bool {
-	if o != nil && o.KratosSelfserviceMethodsProfileEnabled.IsSet() {
+	if o != nil && o.KratosSelfserviceMethodsProfileEnabled != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetKratosSelfserviceMethodsProfileEnabled gets a reference to the given NullableBool and assigns it to the KratosSelfserviceMethodsProfileEnabled field.
+// SetKratosSelfserviceMethodsProfileEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsProfileEnabled field.
 func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsProfileEnabled(v bool) {
-	o.KratosSelfserviceMethodsProfileEnabled.Set(&v)
-}
-// SetKratosSelfserviceMethodsProfileEnabledNil sets the value for KratosSelfserviceMethodsProfileEnabled to be an explicit nil
-func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsProfileEnabledNil() {
-	o.KratosSelfserviceMethodsProfileEnabled.Set(nil)
-}
-
-// UnsetKratosSelfserviceMethodsProfileEnabled ensures that no value is present for KratosSelfserviceMethodsProfileEnabled, not even an explicit nil
-func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsProfileEnabled() {
-	o.KratosSelfserviceMethodsProfileEnabled.Unset()
+	o.KratosSelfserviceMethodsProfileEnabled = &v
 }
 
 // GetKratosSelfserviceMethodsTotpConfigIssuer returns the KratosSelfserviceMethodsTotpConfigIssuer field value if set, zero value otherwise.
@@ -4092,46 +3995,36 @@ func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsTotpConfigIssuer(
 	o.KratosSelfserviceMethodsTotpConfigIssuer = &v
 }
 
-// GetKratosSelfserviceMethodsTotpEnabled returns the KratosSelfserviceMethodsTotpEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetKratosSelfserviceMethodsTotpEnabled returns the KratosSelfserviceMethodsTotpEnabled field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsTotpEnabled() bool {
-	if o == nil || o.KratosSelfserviceMethodsTotpEnabled.Get() == nil {
+	if o == nil || o.KratosSelfserviceMethodsTotpEnabled == nil {
 		var ret bool
 		return ret
 	}
-	return *o.KratosSelfserviceMethodsTotpEnabled.Get()
+	return *o.KratosSelfserviceMethodsTotpEnabled
 }
 
 // GetKratosSelfserviceMethodsTotpEnabledOk returns a tuple with the KratosSelfserviceMethodsTotpEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsTotpEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || o.KratosSelfserviceMethodsTotpEnabled == nil {
 		return nil, false
 	}
-	return o.KratosSelfserviceMethodsTotpEnabled.Get(), o.KratosSelfserviceMethodsTotpEnabled.IsSet()
+	return o.KratosSelfserviceMethodsTotpEnabled, true
 }
 
 // HasKratosSelfserviceMethodsTotpEnabled returns a boolean if a field has been set.
 func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsTotpEnabled() bool {
-	if o != nil && o.KratosSelfserviceMethodsTotpEnabled.IsSet() {
+	if o != nil && o.KratosSelfserviceMethodsTotpEnabled != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetKratosSelfserviceMethodsTotpEnabled gets a reference to the given NullableBool and assigns it to the KratosSelfserviceMethodsTotpEnabled field.
+// SetKratosSelfserviceMethodsTotpEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsTotpEnabled field.
 func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsTotpEnabled(v bool) {
-	o.KratosSelfserviceMethodsTotpEnabled.Set(&v)
-}
-// SetKratosSelfserviceMethodsTotpEnabledNil sets the value for KratosSelfserviceMethodsTotpEnabled to be an explicit nil
-func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsTotpEnabledNil() {
-	o.KratosSelfserviceMethodsTotpEnabled.Set(nil)
-}
-
-// UnsetKratosSelfserviceMethodsTotpEnabled ensures that no value is present for KratosSelfserviceMethodsTotpEnabled, not even an explicit nil
-func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsTotpEnabled() {
-	o.KratosSelfserviceMethodsTotpEnabled.Unset()
+	o.KratosSelfserviceMethodsTotpEnabled = &v
 }
 
 // GetKratosSelfserviceMethodsWebauthnConfigPasswordless returns the KratosSelfserviceMethodsWebauthnConfigPasswordless field value if set, zero value otherwise.
@@ -4294,88 +4187,68 @@ func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigRpO
 	o.KratosSelfserviceMethodsWebauthnConfigRpOrigin = &v
 }
 
-// GetKratosSelfserviceMethodsWebauthnEnabled returns the KratosSelfserviceMethodsWebauthnEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetKratosSelfserviceMethodsWebauthnEnabled returns the KratosSelfserviceMethodsWebauthnEnabled field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnEnabled() bool {
-	if o == nil || o.KratosSelfserviceMethodsWebauthnEnabled.Get() == nil {
+	if o == nil || o.KratosSelfserviceMethodsWebauthnEnabled == nil {
 		var ret bool
 		return ret
 	}
-	return *o.KratosSelfserviceMethodsWebauthnEnabled.Get()
+	return *o.KratosSelfserviceMethodsWebauthnEnabled
 }
 
 // GetKratosSelfserviceMethodsWebauthnEnabledOk returns a tuple with the KratosSelfserviceMethodsWebauthnEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || o.KratosSelfserviceMethodsWebauthnEnabled == nil {
 		return nil, false
 	}
-	return o.KratosSelfserviceMethodsWebauthnEnabled.Get(), o.KratosSelfserviceMethodsWebauthnEnabled.IsSet()
+	return o.KratosSelfserviceMethodsWebauthnEnabled, true
 }
 
 // HasKratosSelfserviceMethodsWebauthnEnabled returns a boolean if a field has been set.
 func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsWebauthnEnabled() bool {
-	if o != nil && o.KratosSelfserviceMethodsWebauthnEnabled.IsSet() {
+	if o != nil && o.KratosSelfserviceMethodsWebauthnEnabled != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetKratosSelfserviceMethodsWebauthnEnabled gets a reference to the given NullableBool and assigns it to the KratosSelfserviceMethodsWebauthnEnabled field.
+// SetKratosSelfserviceMethodsWebauthnEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsWebauthnEnabled field.
 func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnEnabled(v bool) {
-	o.KratosSelfserviceMethodsWebauthnEnabled.Set(&v)
-}
-// SetKratosSelfserviceMethodsWebauthnEnabledNil sets the value for KratosSelfserviceMethodsWebauthnEnabled to be an explicit nil
-func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnEnabledNil() {
-	o.KratosSelfserviceMethodsWebauthnEnabled.Set(nil)
+	o.KratosSelfserviceMethodsWebauthnEnabled = &v
 }
 
-// UnsetKratosSelfserviceMethodsWebauthnEnabled ensures that no value is present for KratosSelfserviceMethodsWebauthnEnabled, not even an explicit nil
-func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsWebauthnEnabled() {
-	o.KratosSelfserviceMethodsWebauthnEnabled.Unset()
-}
-
-// GetKratosSessionCookiePersistent returns the KratosSessionCookiePersistent field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetKratosSessionCookiePersistent returns the KratosSessionCookiePersistent field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSessionCookiePersistent() bool {
-	if o == nil || o.KratosSessionCookiePersistent.Get() == nil {
+	if o == nil || o.KratosSessionCookiePersistent == nil {
 		var ret bool
 		return ret
 	}
-	return *o.KratosSessionCookiePersistent.Get()
+	return *o.KratosSessionCookiePersistent
 }
 
 // GetKratosSessionCookiePersistentOk returns a tuple with the KratosSessionCookiePersistent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NormalizedProjectRevision) GetKratosSessionCookiePersistentOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || o.KratosSessionCookiePersistent == nil {
 		return nil, false
 	}
-	return o.KratosSessionCookiePersistent.Get(), o.KratosSessionCookiePersistent.IsSet()
+	return o.KratosSessionCookiePersistent, true
 }
 
 // HasKratosSessionCookiePersistent returns a boolean if a field has been set.
 func (o *NormalizedProjectRevision) HasKratosSessionCookiePersistent() bool {
-	if o != nil && o.KratosSessionCookiePersistent.IsSet() {
+	if o != nil && o.KratosSessionCookiePersistent != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetKratosSessionCookiePersistent gets a reference to the given NullableBool and assigns it to the KratosSessionCookiePersistent field.
+// SetKratosSessionCookiePersistent gets a reference to the given bool and assigns it to the KratosSessionCookiePersistent field.
 func (o *NormalizedProjectRevision) SetKratosSessionCookiePersistent(v bool) {
-	o.KratosSessionCookiePersistent.Set(&v)
-}
-// SetKratosSessionCookiePersistentNil sets the value for KratosSessionCookiePersistent to be an explicit nil
-func (o *NormalizedProjectRevision) SetKratosSessionCookiePersistentNil() {
-	o.KratosSessionCookiePersistent.Set(nil)
-}
-
-// UnsetKratosSessionCookiePersistent ensures that no value is present for KratosSessionCookiePersistent, not even an explicit nil
-func (o *NormalizedProjectRevision) UnsetKratosSessionCookiePersistent() {
-	o.KratosSessionCookiePersistent.Unset()
+	o.KratosSessionCookiePersistent = &v
 }
 
 // GetKratosSessionCookieSameSite returns the KratosSessionCookieSameSite field value if set, zero value otherwise.
@@ -4608,8 +4481,8 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.HydraOauth2GrantJwtJtiOptional != nil {
 		toSerialize["hydra_oauth2_grant_jwt_jti_optional"] = o.HydraOauth2GrantJwtJtiOptional
 	}
-	if o.HydraOauth2GrantJwtMaxTtl.IsSet() {
-		toSerialize["hydra_oauth2_grant_jwt_max_ttl"] = o.HydraOauth2GrantJwtMaxTtl.Get()
+	if o.HydraOauth2GrantJwtMaxTtl != nil {
+		toSerialize["hydra_oauth2_grant_jwt_max_ttl"] = o.HydraOauth2GrantJwtMaxTtl
 	}
 	if o.HydraOauth2PkceEnforced != nil {
 		toSerialize["hydra_oauth2_pkce_enforced"] = o.HydraOauth2PkceEnforced
@@ -4668,20 +4541,20 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.HydraStrategiesScope != nil {
 		toSerialize["hydra_strategies_scope"] = o.HydraStrategiesScope
 	}
-	if o.HydraTtlAccessToken.IsSet() {
-		toSerialize["hydra_ttl_access_token"] = o.HydraTtlAccessToken.Get()
+	if o.HydraTtlAccessToken != nil {
+		toSerialize["hydra_ttl_access_token"] = o.HydraTtlAccessToken
 	}
-	if o.HydraTtlAuthCode.IsSet() {
-		toSerialize["hydra_ttl_auth_code"] = o.HydraTtlAuthCode.Get()
+	if o.HydraTtlAuthCode != nil {
+		toSerialize["hydra_ttl_auth_code"] = o.HydraTtlAuthCode
 	}
-	if o.HydraTtlIdToken.IsSet() {
-		toSerialize["hydra_ttl_id_token"] = o.HydraTtlIdToken.Get()
+	if o.HydraTtlIdToken != nil {
+		toSerialize["hydra_ttl_id_token"] = o.HydraTtlIdToken
 	}
-	if o.HydraTtlLoginConsentRequest.IsSet() {
-		toSerialize["hydra_ttl_login_consent_request"] = o.HydraTtlLoginConsentRequest.Get()
+	if o.HydraTtlLoginConsentRequest != nil {
+		toSerialize["hydra_ttl_login_consent_request"] = o.HydraTtlLoginConsentRequest
 	}
-	if o.HydraTtlRefreshToken.IsSet() {
-		toSerialize["hydra_ttl_refresh_token"] = o.HydraTtlRefreshToken.Get()
+	if o.HydraTtlRefreshToken != nil {
+		toSerialize["hydra_ttl_refresh_token"] = o.HydraTtlRefreshToken
 	}
 	if o.HydraUrlsConsent != nil {
 		toSerialize["hydra_urls_consent"] = o.HydraUrlsConsent
@@ -4854,8 +4727,8 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl != nil {
 		toSerialize["kratos_selfservice_flows_registration_after_webauthn_default_browser_return_url"] = o.KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl
 	}
-	if o.KratosSelfserviceFlowsRegistrationEnabled.IsSet() {
-		toSerialize["kratos_selfservice_flows_registration_enabled"] = o.KratosSelfserviceFlowsRegistrationEnabled.Get()
+	if o.KratosSelfserviceFlowsRegistrationEnabled != nil {
+		toSerialize["kratos_selfservice_flows_registration_enabled"] = o.KratosSelfserviceFlowsRegistrationEnabled
 	}
 	if o.KratosSelfserviceFlowsRegistrationLifespan != nil {
 		toSerialize["kratos_selfservice_flows_registration_lifespan"] = o.KratosSelfserviceFlowsRegistrationLifespan
@@ -4902,11 +4775,11 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosSelfserviceMethodsLinkConfigLifespan != nil {
 		toSerialize["kratos_selfservice_methods_link_config_lifespan"] = o.KratosSelfserviceMethodsLinkConfigLifespan
 	}
-	if o.KratosSelfserviceMethodsLinkEnabled.IsSet() {
-		toSerialize["kratos_selfservice_methods_link_enabled"] = o.KratosSelfserviceMethodsLinkEnabled.Get()
+	if o.KratosSelfserviceMethodsLinkEnabled != nil {
+		toSerialize["kratos_selfservice_methods_link_enabled"] = o.KratosSelfserviceMethodsLinkEnabled
 	}
-	if o.KratosSelfserviceMethodsLookupSecretEnabled.IsSet() {
-		toSerialize["kratos_selfservice_methods_lookup_secret_enabled"] = o.KratosSelfserviceMethodsLookupSecretEnabled.Get()
+	if o.KratosSelfserviceMethodsLookupSecretEnabled != nil {
+		toSerialize["kratos_selfservice_methods_lookup_secret_enabled"] = o.KratosSelfserviceMethodsLookupSecretEnabled
 	}
 	if o.KratosSelfserviceMethodsOidcConfigBaseRedirectUri != nil {
 		toSerialize["kratos_selfservice_methods_oidc_config_base_redirect_uri"] = o.KratosSelfserviceMethodsOidcConfigBaseRedirectUri
@@ -4917,14 +4790,14 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosSelfserviceMethodsOidcEnabled != nil {
 		toSerialize["kratos_selfservice_methods_oidc_enabled"] = o.KratosSelfserviceMethodsOidcEnabled
 	}
-	if o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled.IsSet() {
-		toSerialize["kratos_selfservice_methods_password_config_haveibeenpwned_enabled"] = o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled.Get()
+	if o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled != nil {
+		toSerialize["kratos_selfservice_methods_password_config_haveibeenpwned_enabled"] = o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled
 	}
-	if o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.IsSet() {
-		toSerialize["kratos_selfservice_methods_password_config_identifier_similarity_check_enabled"] = o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.Get()
+	if o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled != nil {
+		toSerialize["kratos_selfservice_methods_password_config_identifier_similarity_check_enabled"] = o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled
 	}
-	if o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors.IsSet() {
-		toSerialize["kratos_selfservice_methods_password_config_ignore_network_errors"] = o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors.Get()
+	if o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors != nil {
+		toSerialize["kratos_selfservice_methods_password_config_ignore_network_errors"] = o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors
 	}
 	if o.KratosSelfserviceMethodsPasswordConfigMaxBreaches != nil {
 		toSerialize["kratos_selfservice_methods_password_config_max_breaches"] = o.KratosSelfserviceMethodsPasswordConfigMaxBreaches
@@ -4932,17 +4805,17 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosSelfserviceMethodsPasswordConfigMinPasswordLength != nil {
 		toSerialize["kratos_selfservice_methods_password_config_min_password_length"] = o.KratosSelfserviceMethodsPasswordConfigMinPasswordLength
 	}
-	if o.KratosSelfserviceMethodsPasswordEnabled.IsSet() {
-		toSerialize["kratos_selfservice_methods_password_enabled"] = o.KratosSelfserviceMethodsPasswordEnabled.Get()
+	if o.KratosSelfserviceMethodsPasswordEnabled != nil {
+		toSerialize["kratos_selfservice_methods_password_enabled"] = o.KratosSelfserviceMethodsPasswordEnabled
 	}
-	if o.KratosSelfserviceMethodsProfileEnabled.IsSet() {
-		toSerialize["kratos_selfservice_methods_profile_enabled"] = o.KratosSelfserviceMethodsProfileEnabled.Get()
+	if o.KratosSelfserviceMethodsProfileEnabled != nil {
+		toSerialize["kratos_selfservice_methods_profile_enabled"] = o.KratosSelfserviceMethodsProfileEnabled
 	}
 	if o.KratosSelfserviceMethodsTotpConfigIssuer != nil {
 		toSerialize["kratos_selfservice_methods_totp_config_issuer"] = o.KratosSelfserviceMethodsTotpConfigIssuer
 	}
-	if o.KratosSelfserviceMethodsTotpEnabled.IsSet() {
-		toSerialize["kratos_selfservice_methods_totp_enabled"] = o.KratosSelfserviceMethodsTotpEnabled.Get()
+	if o.KratosSelfserviceMethodsTotpEnabled != nil {
+		toSerialize["kratos_selfservice_methods_totp_enabled"] = o.KratosSelfserviceMethodsTotpEnabled
 	}
 	if o.KratosSelfserviceMethodsWebauthnConfigPasswordless != nil {
 		toSerialize["kratos_selfservice_methods_webauthn_config_passwordless"] = o.KratosSelfserviceMethodsWebauthnConfigPasswordless
@@ -4959,11 +4832,11 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosSelfserviceMethodsWebauthnConfigRpOrigin != nil {
 		toSerialize["kratos_selfservice_methods_webauthn_config_rp_origin"] = o.KratosSelfserviceMethodsWebauthnConfigRpOrigin
 	}
-	if o.KratosSelfserviceMethodsWebauthnEnabled.IsSet() {
-		toSerialize["kratos_selfservice_methods_webauthn_enabled"] = o.KratosSelfserviceMethodsWebauthnEnabled.Get()
+	if o.KratosSelfserviceMethodsWebauthnEnabled != nil {
+		toSerialize["kratos_selfservice_methods_webauthn_enabled"] = o.KratosSelfserviceMethodsWebauthnEnabled
 	}
-	if o.KratosSessionCookiePersistent.IsSet() {
-		toSerialize["kratos_session_cookie_persistent"] = o.KratosSessionCookiePersistent.Get()
+	if o.KratosSessionCookiePersistent != nil {
+		toSerialize["kratos_session_cookie_persistent"] = o.KratosSessionCookiePersistent
 	}
 	if o.KratosSessionCookieSameSite != nil {
 		toSerialize["kratos_session_cookie_same_site"] = o.KratosSessionCookieSameSite

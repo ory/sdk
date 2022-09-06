@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
+**Id** | **string** | The project&#39;s ID. | [readonly] 
 **Name** | **string** | The name of the project. | 
-**RevisionId** | **string** |  | 
+**RevisionId** | **string** | The configuration revision ID. | [readonly] 
 **Services** | [**ClientProjectServices**](ClientProjectServices.md) |  | 
 **Slug** | **string** | The project&#39;s slug | [readonly] 
 **State** | **string** | The state of the project. running Running halted Halted | [readonly] 

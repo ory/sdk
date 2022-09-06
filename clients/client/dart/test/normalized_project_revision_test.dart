@@ -40,7 +40,8 @@ void main() {
       // TODO
     });
 
-    // String hydraOauth2GrantJwtMaxTtl
+    // Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
+    // String hydraOauth2GrantJwtMaxTtl (default value: '720h')
     test('to test the property `hydraOauth2GrantJwtMaxTtl`', () async {
       // TODO
     });
@@ -152,27 +153,32 @@ void main() {
       // TODO
     });
 
-    // String hydraTtlAccessToken
+    // This governs the \"ttl.access_token\" setting.
+    // String hydraTtlAccessToken (default value: '30m')
     test('to test the property `hydraTtlAccessToken`', () async {
       // TODO
     });
 
-    // String hydraTtlAuthCode
+    // Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.auth_code\" setting.
+    // String hydraTtlAuthCode (default value: '720h')
     test('to test the property `hydraTtlAuthCode`', () async {
       // TODO
     });
 
-    // String hydraTtlIdToken
+    // This governs the \"ttl.id_token\" setting.
+    // String hydraTtlIdToken (default value: '30m')
     test('to test the property `hydraTtlIdToken`', () async {
       // TODO
     });
 
-    // String hydraTtlLoginConsentRequest
+    // Configures how long a user login and consent flow may take.  This governs the \"ttl.login_consent_request\" setting.
+    // String hydraTtlLoginConsentRequest (default value: '30m')
     test('to test the property `hydraTtlLoginConsentRequest`', () async {
       // TODO
     });
 
-    // String hydraTtlRefreshToken
+    // Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.refresh_token\" setting.
+    // String hydraTtlRefreshToken (default value: '720h')
     test('to test the property `hydraTtlRefreshToken`', () async {
       // TODO
     });
@@ -258,6 +264,7 @@ void main() {
       // TODO
     });
 
+    // The revision ID.
     // String id
     test('to test the property `id`', () async {
       // TODO
@@ -507,6 +514,7 @@ void main() {
       // TODO
     });
 
+    // Configures the Whether Ory Kratos Registration is Enabled  This governs the \"selfservice.flows.registration.enabled\" setting.0
     // bool kratosSelfserviceFlowsRegistrationEnabled
     test('to test the property `kratosSelfserviceFlowsRegistrationEnabled`', () async {
       // TODO
@@ -602,11 +610,13 @@ void main() {
       // TODO
     });
 
+    // Configures whether Ory Kratos Link Method is enabled  This governs the \"selfservice.methods.link.enabled\" setting.
     // bool kratosSelfserviceMethodsLinkEnabled
     test('to test the property `kratosSelfserviceMethodsLinkEnabled`', () async {
       // TODO
     });
 
+    // Configures whether Ory Kratos TOTP Lookup Secret is enabled  This governs the \"selfservice.methods.lookup_secret.enabled\" setting.
     // bool kratosSelfserviceMethodsLookupSecretEnabled
     test('to test the property `kratosSelfserviceMethodsLookupSecretEnabled`', () async {
       // TODO
@@ -629,16 +639,19 @@ void main() {
       // TODO
     });
 
+    // Configures whether Ory Kratos Password HIBP Checks is enabled  This governs the \"selfservice.methods.password.config.haveibeenpwned_enabled\" setting.
     // bool kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled
     test('to test the property `kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled`', () async {
       // TODO
     });
 
+    // Configures whether Ory Kratos Password should disable the similarity policy.  This governs the \"selfservice.methods.password.config.identifier_similarity_check_enabled\" setting.
     // bool kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled
     test('to test the property `kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled`', () async {
       // TODO
     });
 
+    // Configures whether Ory Kratos Password Should ignore HIBPWND Network Errors  This governs the \"selfservice.methods.password.config.ignore_network_errors\" setting.
     // bool kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors
     test('to test the property `kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors`', () async {
       // TODO
@@ -656,11 +669,13 @@ void main() {
       // TODO
     });
 
+    // Configures whether Ory Kratos Password Method is enabled  This governs the \"selfservice.methods.password.enabled\" setting.
     // bool kratosSelfserviceMethodsPasswordEnabled
     test('to test the property `kratosSelfserviceMethodsPasswordEnabled`', () async {
       // TODO
     });
 
+    // Configures whether Ory Kratos Profile Method is enabled  This governs the \"selfservice.methods.profile.enabled\" setting.
     // bool kratosSelfserviceMethodsProfileEnabled
     test('to test the property `kratosSelfserviceMethodsProfileEnabled`', () async {
       // TODO
@@ -672,6 +687,7 @@ void main() {
       // TODO
     });
 
+    // Configures whether Ory Kratos TOTP Method is enabled  This governs the \"selfservice.methods.totp.enabled\" setting.
     // bool kratosSelfserviceMethodsTotpEnabled
     test('to test the property `kratosSelfserviceMethodsTotpEnabled`', () async {
       // TODO
@@ -707,11 +723,13 @@ void main() {
       // TODO
     });
 
+    // Configures whether Ory Kratos Webauthn is enabled  This governs the \"selfservice.methods.webauthn.enabled\" setting.
     // bool kratosSelfserviceMethodsWebauthnEnabled
     test('to test the property `kratosSelfserviceMethodsWebauthnEnabled`', () async {
       // TODO
     });
 
+    // Configures the Ory Kratos Session Cookie Persistent Attribute  This governs the \"session.cookie.persistent\" setting.
     // bool kratosSessionCookiePersistent
     test('to test the property `kratosSessionCookiePersistent`', () async {
       // TODO
@@ -747,6 +765,7 @@ void main() {
       // TODO
     });
 
+    // The Revision's Project ID
     // String projectId
     test('to test the property `projectId`', () async {
       // TODO

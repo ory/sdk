@@ -4,65 +4,29 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**admin_accept_o_auth2_consent_request**](V0alpha2Api.md#admin_accept_o_auth2_consent_request) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept an OAuth 2.0 Consent Request
-[**admin_accept_o_auth2_login_request**](V0alpha2Api.md#admin_accept_o_auth2_login_request) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept an OAuth 2.0 Login Request
-[**admin_accept_o_auth2_logout_request**](V0alpha2Api.md#admin_accept_o_auth2_logout_request) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept an OAuth 2.0 Logout Request
 [**admin_create_identity**](V0alpha2Api.md#admin_create_identity) | **POST** /admin/identities | Create an Identity
-[**admin_create_json_web_key_set**](V0alpha2Api.md#admin_create_json_web_key_set) | **POST** /admin/keys/{set} | Generate a New JSON Web Key
-[**admin_create_o_auth2_client**](V0alpha2Api.md#admin_create_o_auth2_client) | **POST** /admin/clients | Create an OAuth 2.0 Client
 [**admin_create_self_service_recovery_link**](V0alpha2Api.md#admin_create_self_service_recovery_link) | **POST** /admin/recovery/link | Create a Recovery Link
 [**admin_delete_identity**](V0alpha2Api.md#admin_delete_identity) | **DELETE** /admin/identities/{id} | Delete an Identity
 [**admin_delete_identity_sessions**](V0alpha2Api.md#admin_delete_identity_sessions) | **DELETE** /admin/identities/{id}/sessions | Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.
-[**admin_delete_json_web_key**](V0alpha2Api.md#admin_delete_json_web_key) | **DELETE** /admin/keys/{set}/{kid} | Delete a JSON Web Key
-[**admin_delete_json_web_key_set**](V0alpha2Api.md#admin_delete_json_web_key_set) | **DELETE** /admin/keys/{set} | Delete a JSON Web Key Set
-[**admin_delete_o_auth2_client**](V0alpha2Api.md#admin_delete_o_auth2_client) | **DELETE** /admin/clients/{id} | Deletes an OAuth 2.0 Client
-[**admin_delete_o_auth2_token**](V0alpha2Api.md#admin_delete_o_auth2_token) | **DELETE** /admin/oauth2/tokens | Delete OAuth2 Access Tokens from a Client
-[**admin_delete_trusted_o_auth2_jwt_grant_issuer**](V0alpha2Api.md#admin_delete_trusted_o_auth2_jwt_grant_issuer) | **DELETE** /admin/trust/grants/jwt-bearer/issuers/{id} | Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer
 [**admin_extend_session**](V0alpha2Api.md#admin_extend_session) | **PATCH** /admin/sessions/{id}/extend | Calling this endpoint extends the given session ID. If &#x60;session.earliest_possible_extend&#x60; is set it will only extend the session after the specified time has passed.
 [**admin_get_identity**](V0alpha2Api.md#admin_get_identity) | **GET** /admin/identities/{id} | Get an Identity
-[**admin_get_json_web_key**](V0alpha2Api.md#admin_get_json_web_key) | **GET** /admin/keys/{set}/{kid} | Fetch a JSON Web Key
-[**admin_get_json_web_key_set**](V0alpha2Api.md#admin_get_json_web_key_set) | **GET** /admin/keys/{set} | Retrieve a JSON Web Key Set
-[**admin_get_o_auth2_client**](V0alpha2Api.md#admin_get_o_auth2_client) | **GET** /admin/clients/{id} | Get an OAuth 2.0 Client
-[**admin_get_o_auth2_consent_request**](V0alpha2Api.md#admin_get_o_auth2_consent_request) | **GET** /admin/oauth2/auth/requests/consent | Get OAuth 2.0 Consent Request Information
-[**admin_get_o_auth2_login_request**](V0alpha2Api.md#admin_get_o_auth2_login_request) | **GET** /admin/oauth2/auth/requests/login | Get an OAuth 2.0 Login Request
-[**admin_get_o_auth2_logout_request**](V0alpha2Api.md#admin_get_o_auth2_logout_request) | **GET** /admin/oauth2/auth/requests/logout | Get an OAuth 2.0 Logout Request
-[**admin_get_trusted_o_auth2_jwt_grant_issuer**](V0alpha2Api.md#admin_get_trusted_o_auth2_jwt_grant_issuer) | **GET** /admin/trust/grants/jwt-bearer/issuers/{id} | Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
-[**admin_introspect_o_auth2_token**](V0alpha2Api.md#admin_introspect_o_auth2_token) | **POST** /admin/oauth2/introspect | Introspect OAuth2 Access or Refresh Tokens
 [**admin_list_identities**](V0alpha2Api.md#admin_list_identities) | **GET** /admin/identities | List Identities
 [**admin_list_identity_sessions**](V0alpha2Api.md#admin_list_identity_sessions) | **GET** /admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity.
-[**admin_list_o_auth2_clients**](V0alpha2Api.md#admin_list_o_auth2_clients) | **GET** /admin/clients | List OAuth 2.0 Clients
-[**admin_list_o_auth2_subject_consent_sessions**](V0alpha2Api.md#admin_list_o_auth2_subject_consent_sessions) | **GET** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject
-[**admin_list_trusted_o_auth2_jwt_grant_issuers**](V0alpha2Api.md#admin_list_trusted_o_auth2_jwt_grant_issuers) | **GET** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
 [**admin_patch_identity**](V0alpha2Api.md#admin_patch_identity) | **PATCH** /admin/identities/{id} | Partially updates an Identity&#39;s field using [JSON Patch](https://jsonpatch.com/)
-[**admin_patch_o_auth2_client**](V0alpha2Api.md#admin_patch_o_auth2_client) | **PATCH** /admin/clients/{id} | Patch an OAuth 2.0 Client
-[**admin_reject_o_auth2_consent_request**](V0alpha2Api.md#admin_reject_o_auth2_consent_request) | **PUT** /admin/oauth2/auth/requests/consent/reject | Reject an OAuth 2.0 Consent Request
-[**admin_reject_o_auth2_login_request**](V0alpha2Api.md#admin_reject_o_auth2_login_request) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject an OAuth 2.0 Login Request
-[**admin_reject_o_auth2_logout_request**](V0alpha2Api.md#admin_reject_o_auth2_logout_request) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject an OAuth 2.0 Logout Request
-[**admin_revoke_o_auth2_consent_sessions**](V0alpha2Api.md#admin_revoke_o_auth2_consent_sessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revokes OAuth 2.0 Consent Sessions of a Subject for a Specific OAuth 2.0 Client
-[**admin_revoke_o_auth2_login_sessions**](V0alpha2Api.md#admin_revoke_o_auth2_login_sessions) | **DELETE** /admin/oauth2/auth/sessions/login | Invalidates All OAuth 2.0 Login Sessions of a Certain User
-[**admin_trust_o_auth2_jwt_grant_issuer**](V0alpha2Api.md#admin_trust_o_auth2_jwt_grant_issuer) | **POST** /admin/trust/grants/jwt-bearer/issuers | Trust an OAuth2 JWT Bearer Grant Type Issuer
 [**admin_update_identity**](V0alpha2Api.md#admin_update_identity) | **PUT** /admin/identities/{id} | Update an Identity
-[**admin_update_json_web_key**](V0alpha2Api.md#admin_update_json_web_key) | **PUT** /admin/keys/{set}/{kid} | Update a JSON Web Key
-[**admin_update_json_web_key_set**](V0alpha2Api.md#admin_update_json_web_key_set) | **PUT** /admin/keys/{set} | Update a JSON Web Key Set
-[**admin_update_o_auth2_client**](V0alpha2Api.md#admin_update_o_auth2_client) | **PUT** /admin/clients/{id} | Update an OAuth 2.0 Client
-[**create_project**](V0alpha2Api.md#create_project) | **POST** /projects | Create a Project
+[**create_project**](V0alpha2Api.md#create_project) | **POST** /projects | # Create a Project
+[**create_project_api_key**](V0alpha2Api.md#create_project_api_key) | **POST** /projects/{project}/tokens | # Create API Token
 [**create_self_service_logout_flow_url_for_browsers**](V0alpha2Api.md#create_self_service_logout_flow_url_for_browsers) | **GET** /self-service/logout/browser | Create a Logout URL for Browsers
-[**discover_json_web_keys**](V0alpha2Api.md#discover_json_web_keys) | **GET** /.well-known/jwks.json | Discover JSON Web Keys
-[**discover_oidc_configuration**](V0alpha2Api.md#discover_oidc_configuration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
-[**dynamic_client_registration_create_o_auth2_client**](V0alpha2Api.md#dynamic_client_registration_create_o_auth2_client) | **POST** /oauth2/register | Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-[**dynamic_client_registration_delete_o_auth2_client**](V0alpha2Api.md#dynamic_client_registration_delete_o_auth2_client) | **DELETE** /oauth2/register/{id} | Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-[**dynamic_client_registration_get_o_auth2_client**](V0alpha2Api.md#dynamic_client_registration_get_o_auth2_client) | **GET** /oauth2/register/{id} | Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-[**dynamic_client_registration_update_o_auth2_client**](V0alpha2Api.md#dynamic_client_registration_update_o_auth2_client) | **PUT** /oauth2/register/{id} | Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+[**delete_project_api_key**](V0alpha2Api.md#delete_project_api_key) | **DELETE** /projects/{project}/tokens/{token_id} | # Delete API Token
 [**get_identity_schema**](V0alpha2Api.md#get_identity_schema) | **GET** /schemas/{id} | 
-[**get_oidc_user_info**](V0alpha2Api.md#get_oidc_user_info) | **GET** /userinfo | OpenID Connect Userinfo
-[**get_project**](V0alpha2Api.md#get_project) | **GET** /projects/{project_id} | Get a Project
+[**get_project**](V0alpha2Api.md#get_project) | **GET** /projects/{project_id} | # Get a Project
 [**get_project_members**](V0alpha2Api.md#get_project_members) | **GET** /projects/{project_id}/members | Get all members associated with this project.
 [**get_self_service_error**](V0alpha2Api.md#get_self_service_error) | **GET** /self-service/errors | Get Self-Service Errors
 [**get_self_service_login_flow**](V0alpha2Api.md#get_self_service_login_flow) | **GET** /self-service/login/flows | Get Login Flow
 [**get_self_service_recovery_flow**](V0alpha2Api.md#get_self_service_recovery_flow) | **GET** /self-service/recovery/flows | Get Recovery Flow
 [**get_self_service_registration_flow**](V0alpha2Api.md#get_self_service_registration_flow) | **GET** /self-service/registration/flows | Get Registration Flow
 [**get_self_service_settings_flow**](V0alpha2Api.md#get_self_service_settings_flow) | **GET** /self-service/settings/flows | Get Settings Flow
-[**get_self_service_verification_flow**](V0alpha2Api.md#get_self_service_verification_flow) | **GET** /self-service/verification/flows | Get Verification Flow
+[**get_self_service_verification_flow**](V0alpha2Api.md#get_self_service_verification_flow) | **GET** /self-service/verification/flows | # Get Verification Flow
 [**get_web_authn_java_script**](V0alpha2Api.md#get_web_authn_java_script) | **GET** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
 [**initialize_self_service_login_flow_for_browsers**](V0alpha2Api.md#initialize_self_service_login_flow_for_browsers) | **GET** /self-service/login/browser | Initialize Login Flow for Browsers
 [**initialize_self_service_login_flow_without_browser**](V0alpha2Api.md#initialize_self_service_login_flow_without_browser) | **GET** /self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ...
@@ -75,15 +39,12 @@ Method | HTTP request | Description
 [**initialize_self_service_verification_flow_for_browsers**](V0alpha2Api.md#initialize_self_service_verification_flow_for_browsers) | **GET** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
 [**initialize_self_service_verification_flow_without_browser**](V0alpha2Api.md#initialize_self_service_verification_flow_without_browser) | **GET** /self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
 [**list_identity_schemas**](V0alpha2Api.md#list_identity_schemas) | **GET** /schemas | 
-[**list_projects**](V0alpha2Api.md#list_projects) | **GET** /projects | List All Projects
+[**list_project_api_keys**](V0alpha2Api.md#list_project_api_keys) | **GET** /projects/{project}/tokens | # List a Project&#39;s API Tokens
+[**list_projects**](V0alpha2Api.md#list_projects) | **GET** /projects | # List All Projects
 [**list_sessions**](V0alpha2Api.md#list_sessions) | **GET** /sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint.
 [**patch_project**](V0alpha2Api.md#patch_project) | **PATCH** /projects/{project_id} | Patch an Ory Cloud Project Configuration&#x60;
-[**perform_o_auth2_authorization_flow**](V0alpha2Api.md#perform_o_auth2_authorization_flow) | **GET** /oauth2/auth | The OAuth 2.0 Authorize Endpoint
-[**perform_o_auth2_token_flow**](V0alpha2Api.md#perform_o_auth2_token_flow) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
-[**perform_oidc_front_or_back_channel_logout**](V0alpha2Api.md#perform_oidc_front_or_back_channel_logout) | **GET** /oauth2/sessions/logout | OpenID Connect Front- or Back-channel Enabled Logout
-[**purge_project**](V0alpha2Api.md#purge_project) | **DELETE** /projects/{project_id} | Irrecoverably Purge a Project
+[**purge_project**](V0alpha2Api.md#purge_project) | **DELETE** /projects/{project_id} | # Irrecoverably Purge a Project
 [**remove_project_member**](V0alpha2Api.md#remove_project_member) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to &#x60;REMOVED&#x60;.
-[**revoke_o_auth2_token**](V0alpha2Api.md#revoke_o_auth2_token) | **POST** /oauth2/revoke | Revoke an OAuth2 Access or Refresh Token
 [**revoke_session**](V0alpha2Api.md#revoke_session) | **DELETE** /sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
 [**revoke_sessions**](V0alpha2Api.md#revoke_sessions) | **DELETE** /sessions | Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
 [**submit_self_service_login_flow**](V0alpha2Api.md#submit_self_service_login_flow) | **POST** /self-service/login | Submit a Login Flow
@@ -92,295 +53,10 @@ Method | HTTP request | Description
 [**submit_self_service_recovery_flow**](V0alpha2Api.md#submit_self_service_recovery_flow) | **POST** /self-service/recovery | Complete Recovery Flow
 [**submit_self_service_registration_flow**](V0alpha2Api.md#submit_self_service_registration_flow) | **POST** /self-service/registration | Submit a Registration Flow
 [**submit_self_service_settings_flow**](V0alpha2Api.md#submit_self_service_settings_flow) | **POST** /self-service/settings | Complete Settings Flow
-[**submit_self_service_verification_flow**](V0alpha2Api.md#submit_self_service_verification_flow) | **POST** /self-service/verification | Complete Verification Flow
+[**submit_self_service_verification_flow**](V0alpha2Api.md#submit_self_service_verification_flow) | **POST** /self-service/verification | # Complete Verification Flow
 [**to_session**](V0alpha2Api.md#to_session) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
-[**update_project**](V0alpha2Api.md#update_project) | **PUT** /projects/{project_id} | Update an Ory Cloud Project Configuration
+[**update_project**](V0alpha2Api.md#update_project) | **PUT** /projects/{project_id} | # Update an Ory Cloud Project Configuration
 
-
-# **admin_accept_o_auth2_consent_request**
-> SuccessfulOAuth2RequestResponse admin_accept_o_auth2_consent_request(consent_challenge)
-
-Accept an OAuth 2.0 Consent Request
-
-When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.  This endpoint tells ORY Hydra that the subject has authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider includes additional information, such as session data for access and ID tokens, and if the consent request should be used as basis for future requests.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.successful_o_auth2_request_response import SuccessfulOAuth2RequestResponse
-from ory_client.model.accept_o_auth2_consent_request import AcceptOAuth2ConsentRequest
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    consent_challenge = "consent_challenge_example" # str | 
-    accept_o_auth2_consent_request = AcceptOAuth2ConsentRequest(
-        grant_access_token_audience=StringSliceJSONFormat([
-            "grant_access_token_audience_example",
-        ]),
-        grant_scope=StringSliceJSONFormat([
-            "grant_scope_example",
-        ]),
-        handled_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        remember=True,
-        remember_for=1,
-        session=AcceptOAuth2ConsentRequestSession(
-            access_token=None,
-            id_token=None,
-        ),
-    ) # AcceptOAuth2ConsentRequest |  (optional)
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Accept an OAuth 2.0 Consent Request
-        api_response = api_instance.admin_accept_o_auth2_consent_request(consent_challenge)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_accept_o_auth2_consent_request: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Accept an OAuth 2.0 Consent Request
-        api_response = api_instance.admin_accept_o_auth2_consent_request(consent_challenge, accept_o_auth2_consent_request=accept_o_auth2_consent_request)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_accept_o_auth2_consent_request: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **consent_challenge** | **str**|  |
- **accept_o_auth2_consent_request** | [**AcceptOAuth2ConsentRequest**](AcceptOAuth2ConsentRequest.md)|  | [optional]
-
-### Return type
-
-[**SuccessfulOAuth2RequestResponse**](SuccessfulOAuth2RequestResponse.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | successfulOAuth2RequestResponse |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_accept_o_auth2_login_request**
-> SuccessfulOAuth2RequestResponse admin_accept_o_auth2_login_request(login_challenge)
-
-Accept an OAuth 2.0 Login Request
-
-When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell Ory Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells ORY Hydra that the subject has successfully authenticated and includes additional information such as the subject's ID and if ORY Hydra should remember the subject's subject agent for future authentication attempts by setting a cookie.  The response contains a redirect URL which the login provider should redirect the user-agent to.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.accept_o_auth2_login_request import AcceptOAuth2LoginRequest
-from ory_client.model.successful_o_auth2_request_response import SuccessfulOAuth2RequestResponse
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    login_challenge = "login_challenge_example" # str | 
-    accept_o_auth2_login_request = AcceptOAuth2LoginRequest(
-        acr="acr_example",
-        amr=StringSliceJSONFormat([
-            "amr_example",
-        ]),
-        context={},
-        force_subject_identifier="force_subject_identifier_example",
-        remember=True,
-        remember_for=1,
-        subject="subject_example",
-    ) # AcceptOAuth2LoginRequest |  (optional)
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Accept an OAuth 2.0 Login Request
-        api_response = api_instance.admin_accept_o_auth2_login_request(login_challenge)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_accept_o_auth2_login_request: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Accept an OAuth 2.0 Login Request
-        api_response = api_instance.admin_accept_o_auth2_login_request(login_challenge, accept_o_auth2_login_request=accept_o_auth2_login_request)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_accept_o_auth2_login_request: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **login_challenge** | **str**|  |
- **accept_o_auth2_login_request** | [**AcceptOAuth2LoginRequest**](AcceptOAuth2LoginRequest.md)|  | [optional]
-
-### Return type
-
-[**SuccessfulOAuth2RequestResponse**](SuccessfulOAuth2RequestResponse.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | successfulOAuth2RequestResponse |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_accept_o_auth2_logout_request**
-> SuccessfulOAuth2RequestResponse admin_accept_o_auth2_logout_request(logout_challenge)
-
-Accept an OAuth 2.0 Logout Request
-
-When a user or an application requests ORY Hydra to log out a user, this endpoint is used to confirm that logout request.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.successful_o_auth2_request_response import SuccessfulOAuth2RequestResponse
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    logout_challenge = "logout_challenge_example" # str | 
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Accept an OAuth 2.0 Logout Request
-        api_response = api_instance.admin_accept_o_auth2_logout_request(logout_challenge)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_accept_o_auth2_logout_request: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **logout_challenge** | **str**|  |
-
-### Return type
-
-[**SuccessfulOAuth2RequestResponse**](SuccessfulOAuth2RequestResponse.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | successfulOAuth2RequestResponse |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **admin_create_identity**
 > Identity admin_create_identity()
@@ -511,235 +187,6 @@ Name | Type | Description  | Notes
 **400** | jsonError |  -  |
 **409** | jsonError |  -  |
 **500** | jsonError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_create_json_web_key_set**
-> JsonWebKeySet admin_create_json_web_key_set(set, admin_create_json_web_key_set_body)
-
-Generate a New JSON Web Key
-
-This endpoint is capable of generating JSON Web Key Sets for you. There a different strategies available, such as symmetric cryptographic keys (HS256, HS512) and asymetric cryptographic keys (RS256, ECDSA). If the specified JSON Web Key Set does not exist, it will be created.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.json_web_key_set import JsonWebKeySet
-from ory_client.model.admin_create_json_web_key_set_body import AdminCreateJsonWebKeySetBody
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    set = "set_example" # str | The JSON Web Key Set
-    admin_create_json_web_key_set_body = AdminCreateJsonWebKeySetBody(
-        alg="alg_example",
-        kid="kid_example",
-        use="use_example",
-    ) # AdminCreateJsonWebKeySetBody | 
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Generate a New JSON Web Key
-        api_response = api_instance.admin_create_json_web_key_set(set, admin_create_json_web_key_set_body)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_create_json_web_key_set: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **str**| The JSON Web Key Set |
- **admin_create_json_web_key_set_body** | [**AdminCreateJsonWebKeySetBody**](AdminCreateJsonWebKeySetBody.md)|  |
-
-### Return type
-
-[**JsonWebKeySet**](JsonWebKeySet.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | jsonWebKeySet |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_create_o_auth2_client**
-> OAuth2Client admin_create_o_auth2_client(o_auth2_client)
-
-Create an OAuth 2.0 Client
-
-Create a new OAuth 2.0 client. If you pass `client_secret` the secret is used, otherwise a random secret is generated. The secret is echoed in the response. It is not possible to retrieve it later on.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.o_auth2_client import OAuth2Client
-from ory_client.model.generic_error import GenericError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    o_auth2_client = OAuth2Client(
-        allowed_cors_origins=StringSliceJSONFormat([
-            "allowed_cors_origins_example",
-        ]),
-        audience=StringSliceJSONFormat([
-            "audience_example",
-        ]),
-        authorization_code_grant_access_token_lifespan=NullDuration("4ms"),
-        authorization_code_grant_id_token_lifespan=NullDuration("4ms"),
-        authorization_code_grant_refresh_token_lifespan=NullDuration("4ms"),
-        backchannel_logout_session_required=True,
-        backchannel_logout_uri="backchannel_logout_uri_example",
-        client_credentials_grant_access_token_lifespan=NullDuration("4ms"),
-        client_id="client_id_example",
-        client_name="client_name_example",
-        client_secret="client_secret_example",
-        client_secret_expires_at=1,
-        client_uri="client_uri_example",
-        contacts=StringSliceJSONFormat([
-            "contacts_example",
-        ]),
-        created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        frontchannel_logout_session_required=True,
-        frontchannel_logout_uri="frontchannel_logout_uri_example",
-        grant_types=StringSliceJSONFormat([
-            "grant_types_example",
-        ]),
-        implicit_grant_access_token_lifespan=NullDuration("4ms"),
-        implicit_grant_id_token_lifespan=NullDuration("4ms"),
-        jwks={},
-        jwks_uri="jwks_uri_example",
-        jwt_bearer_grant_access_token_lifespan=NullDuration("4ms"),
-        logo_uri="logo_uri_example",
-        metadata={},
-        owner="owner_example",
-        password_grant_access_token_lifespan=NullDuration("4ms"),
-        password_grant_refresh_token_lifespan=NullDuration("4ms"),
-        policy_uri="policy_uri_example",
-        post_logout_redirect_uris=StringSliceJSONFormat([
-            "post_logout_redirect_uris_example",
-        ]),
-        redirect_uris=StringSliceJSONFormat([
-            "redirect_uris_example",
-        ]),
-        refresh_token_grant_access_token_lifespan=NullDuration("4ms"),
-        refresh_token_grant_id_token_lifespan=NullDuration("4ms"),
-        refresh_token_grant_refresh_token_lifespan=NullDuration("4ms"),
-        registration_access_token="registration_access_token_example",
-        registration_client_uri="registration_client_uri_example",
-        request_object_signing_alg="request_object_signing_alg_example",
-        request_uris=StringSliceJSONFormat([
-            "request_uris_example",
-        ]),
-        response_types=StringSliceJSONFormat([
-            "response_types_example",
-        ]),
-        scope="scope1 scope-2 scope.3 scope:4",
-        sector_identifier_uri="sector_identifier_uri_example",
-        subject_type="subject_type_example",
-        token_endpoint_auth_method="token_endpoint_auth_method_example",
-        token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",
-        tos_uri="tos_uri_example",
-        updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        userinfo_signed_response_alg="userinfo_signed_response_alg_example",
-    ) # OAuth2Client | 
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Create an OAuth 2.0 Client
-        api_response = api_instance.admin_create_o_auth2_client(o_auth2_client)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_create_o_auth2_client: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md)|  |
-
-### Return type
-
-[**OAuth2Client**](OAuth2Client.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | oAuth2Client |  -  |
-**0** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -987,393 +434,6 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **admin_delete_json_web_key**
-> admin_delete_json_web_key(set, kid)
-
-Delete a JSON Web Key
-
-Use this endpoint to delete a single JSON Web Key.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    set = "set_example" # str | The JSON Web Key Set
-    kid = "kid_example" # str | The JSON Web Key ID (kid)
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Delete a JSON Web Key
-        api_instance.admin_delete_json_web_key(set, kid)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_delete_json_web_key: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **str**| The JSON Web Key Set |
- **kid** | **str**| The JSON Web Key ID (kid) |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_delete_json_web_key_set**
-> admin_delete_json_web_key_set(set)
-
-Delete a JSON Web Key Set
-
-Use this endpoint to delete a complete JSON Web Key Set and all the keys in that set.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    set = "set_example" # str | The JSON Web Key Set
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Delete a JSON Web Key Set
-        api_instance.admin_delete_json_web_key_set(set)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_delete_json_web_key_set: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **str**| The JSON Web Key Set |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_delete_o_auth2_client**
-> admin_delete_o_auth2_client(id)
-
-Deletes an OAuth 2.0 Client
-
-Delete an existing OAuth 2.0 Client by its ID.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.  Make sure that this endpoint is well protected and only callable by first-party components.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.generic_error import GenericError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    id = "id_example" # str | The id of the OAuth 2.0 Client.
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Deletes an OAuth 2.0 Client
-        api_instance.admin_delete_o_auth2_client(id)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_delete_o_auth2_client: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| The id of the OAuth 2.0 Client. |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_delete_o_auth2_token**
-> admin_delete_o_auth2_token(client_id)
-
-Delete OAuth2 Access Tokens from a Client
-
-This endpoint deletes OAuth2 access tokens issued for a client from the database
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    client_id = "client_id_example" # str | 
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Delete OAuth2 Access Tokens from a Client
-        api_instance.admin_delete_o_auth2_token(client_id)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_delete_o_auth2_token: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **client_id** | **str**|  |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_delete_trusted_o_auth2_jwt_grant_issuer**
-> admin_delete_trusted_o_auth2_jwt_grant_issuer(id)
-
-Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer
-
-Use this endpoint to delete trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you created the trust relationship.  Once deleted, the associated issuer will no longer be able to perform the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grant.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.generic_error import GenericError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    id = "id_example" # str | The id of the desired grant
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer
-        api_instance.admin_delete_trusted_o_auth2_jwt_grant_issuer(id)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_delete_trusted_o_auth2_jwt_grant_issuer: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| The id of the desired grant |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **admin_extend_session**
 > Session admin_extend_session(id)
 
@@ -1545,657 +605,6 @@ Name | Type | Description  | Notes
 **200** | identity |  -  |
 **404** | jsonError |  -  |
 **500** | jsonError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_get_json_web_key**
-> JsonWebKeySet admin_get_json_web_key(set, kid)
-
-Fetch a JSON Web Key
-
-This endpoint returns a singular JSON Web Key. It is identified by the set and the specific key ID (kid).
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.json_web_key_set import JsonWebKeySet
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    set = "set_example" # str | The JSON Web Key Set
-    kid = "kid_example" # str | The JSON Web Key ID (kid)
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Fetch a JSON Web Key
-        api_response = api_instance.admin_get_json_web_key(set, kid)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_get_json_web_key: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **str**| The JSON Web Key Set |
- **kid** | **str**| The JSON Web Key ID (kid) |
-
-### Return type
-
-[**JsonWebKeySet**](JsonWebKeySet.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | jsonWebKeySet |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_get_json_web_key_set**
-> JsonWebKeySet admin_get_json_web_key_set(set)
-
-Retrieve a JSON Web Key Set
-
-This endpoint can be used to retrieve JWK Sets stored in ORY Hydra.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.json_web_key_set import JsonWebKeySet
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    set = "set_example" # str | The JSON Web Key Set
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Retrieve a JSON Web Key Set
-        api_response = api_instance.admin_get_json_web_key_set(set)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_get_json_web_key_set: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **str**| The JSON Web Key Set |
-
-### Return type
-
-[**JsonWebKeySet**](JsonWebKeySet.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | jsonWebKeySet |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_get_o_auth2_client**
-> OAuth2Client admin_get_o_auth2_client(id)
-
-Get an OAuth 2.0 Client
-
-Get an OAuth 2.0 client by its ID. This endpoint never returns the client secret.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.o_auth2_client import OAuth2Client
-from ory_client.model.generic_error import GenericError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    id = "id_example" # str | The id of the OAuth 2.0 Client.
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Get an OAuth 2.0 Client
-        api_response = api_instance.admin_get_o_auth2_client(id)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_get_o_auth2_client: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| The id of the OAuth 2.0 Client. |
-
-### Return type
-
-[**OAuth2Client**](OAuth2Client.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | oAuth2Client |  -  |
-**0** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_get_o_auth2_consent_request**
-> OAuth2ConsentRequest admin_get_o_auth2_consent_request(consent_challenge)
-
-Get OAuth 2.0 Consent Request Information
-
-When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.o_auth2_consent_request import OAuth2ConsentRequest
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from ory_client.model.handled_o_auth2_consent_request import HandledOAuth2ConsentRequest
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    consent_challenge = "consent_challenge_example" # str | 
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Get OAuth 2.0 Consent Request Information
-        api_response = api_instance.admin_get_o_auth2_consent_request(consent_challenge)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_get_o_auth2_consent_request: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **consent_challenge** | **str**|  |
-
-### Return type
-
-[**OAuth2ConsentRequest**](OAuth2ConsentRequest.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | oAuth2ConsentRequest |  -  |
-**410** | handledOAuth2ConsentRequest |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_get_o_auth2_login_request**
-> OAuth2LoginRequest admin_get_o_auth2_login_request(login_challenge)
-
-Get an OAuth 2.0 Login Request
-
-When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell ORY Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.handled_o_auth2_login_request import HandledOAuth2LoginRequest
-from ory_client.model.o_auth2_login_request import OAuth2LoginRequest
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    login_challenge = "login_challenge_example" # str | 
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Get an OAuth 2.0 Login Request
-        api_response = api_instance.admin_get_o_auth2_login_request(login_challenge)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_get_o_auth2_login_request: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **login_challenge** | **str**|  |
-
-### Return type
-
-[**OAuth2LoginRequest**](OAuth2LoginRequest.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | oAuth2LoginRequest |  -  |
-**410** | handledOAuth2LoginRequest |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_get_o_auth2_logout_request**
-> OAuth2LogoutRequest admin_get_o_auth2_logout_request(logout_challenge)
-
-Get an OAuth 2.0 Logout Request
-
-Use this endpoint to fetch a logout request.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from ory_client.model.o_auth2_logout_request import OAuth2LogoutRequest
-from ory_client.model.handled_o_auth2_logout_request import HandledOAuth2LogoutRequest
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    logout_challenge = "logout_challenge_example" # str | 
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Get an OAuth 2.0 Logout Request
-        api_response = api_instance.admin_get_o_auth2_logout_request(logout_challenge)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_get_o_auth2_logout_request: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **logout_challenge** | **str**|  |
-
-### Return type
-
-[**OAuth2LogoutRequest**](OAuth2LogoutRequest.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | oAuth2LogoutRequest |  -  |
-**410** | handledOAuth2LogoutRequest |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_get_trusted_o_auth2_jwt_grant_issuer**
-> TrustedOAuth2JwtGrantIssuer admin_get_trusted_o_auth2_jwt_grant_issuer(id)
-
-Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
-
-Use this endpoint to get a trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you created the trust relationship.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.trusted_o_auth2_jwt_grant_issuer import TrustedOAuth2JwtGrantIssuer
-from ory_client.model.generic_error import GenericError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    id = "id_example" # str | The id of the desired grant
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
-        api_response = api_instance.admin_get_trusted_o_auth2_jwt_grant_issuer(id)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_get_trusted_o_auth2_jwt_grant_issuer: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| The id of the desired grant |
-
-### Return type
-
-[**TrustedOAuth2JwtGrantIssuer**](TrustedOAuth2JwtGrantIssuer.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | trustedOAuth2JwtGrantIssuer |  -  |
-**0** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_introspect_o_auth2_token**
-> IntrospectedOAuth2Token admin_introspect_o_auth2_token(token)
-
-Introspect OAuth2 Access or Refresh Tokens
-
-The introspection endpoint allows to check if a token (both refresh and access) is active or not. An active token is neither expired nor revoked. If a token is active, additional information on the token will be included. You can set additional data for a token by setting `accessTokenExtra` during the consent flow.  For more information [read this blog post](https://www.oauth.com/oauth2-servers/token-introspection-endpoint/).
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.introspected_o_auth2_token import IntrospectedOAuth2Token
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    token = "token_example" # str | The string value of the token. For access tokens, this is the \\\"access_token\\\" value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\"refresh_token\\\" value returned.
-    scope = "scope_example" # str | An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. (optional)
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Introspect OAuth2 Access or Refresh Tokens
-        api_response = api_instance.admin_introspect_o_auth2_token(token)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_introspect_o_auth2_token: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Introspect OAuth2 Access or Refresh Tokens
-        api_response = api_instance.admin_introspect_o_auth2_token(token, scope=scope)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_introspect_o_auth2_token: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **str**| The string value of the token. For access tokens, this is the \\\&quot;access_token\\\&quot; value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\&quot;refresh_token\\\&quot; value returned. |
- **scope** | **str**| An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. | [optional]
-
-### Return type
-
-[**IntrospectedOAuth2Token**](IntrospectedOAuth2Token.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | introspectedOAuth2Token |  -  |
-**0** | oAuth2ApiError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2378,272 +787,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **admin_list_o_auth2_clients**
-> [OAuth2Client] admin_list_o_auth2_clients()
-
-List OAuth 2.0 Clients
-
-This endpoint lists all clients in the database, and never returns client secrets. As a default it lists the first 100 clients. The `limit` parameter can be used to retrieve more clients, but it has an upper bound at 500 objects. Pagination should be used to retrieve more than 500 objects.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.  The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://project-slug.projects.oryapis.com/admin/clients?limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.o_auth2_client import OAuth2Client
-from ory_client.model.generic_error import GenericError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    page_size = 250 # int | Items per page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) if omitted the server will use the default value of 250
-    page_token = "1" # str | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) if omitted the server will use the default value of "1"
-    client_name = "client_name_example" # str | The name of the clients to filter by. (optional)
-    owner = "owner_example" # str | The owner of the clients to filter by. (optional)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # List OAuth 2.0 Clients
-        api_response = api_instance.admin_list_o_auth2_clients(page_size=page_size, page_token=page_token, client_name=client_name, owner=owner)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_list_o_auth2_clients: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **page_size** | **int**| Items per page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] if omitted the server will use the default value of 250
- **page_token** | **str**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] if omitted the server will use the default value of "1"
- **client_name** | **str**| The name of the clients to filter by. | [optional]
- **owner** | **str**| The owner of the clients to filter by. | [optional]
-
-### Return type
-
-[**[OAuth2Client]**](OAuth2Client.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | The list of clients and pagination information. |  -  |
-**0** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_list_o_auth2_subject_consent_sessions**
-> PreviousOAuth2ConsentSessions admin_list_o_auth2_subject_consent_sessions(subject)
-
-List OAuth 2.0 Consent Sessions of a Subject
-
-This endpoint lists all subject's granted consent sessions, including client and granted scope. If the subject is unknown or has not granted any consent sessions yet, the endpoint returns an empty JSON array with status code 200 OK.  The \"Link\" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/oauth2/auth/sessions/consent?subject={user}&limit={limit}&offset={offset}>; rel=\"{page}\"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can be included in this header, and will be separated by a comma.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from ory_client.model.previous_o_auth2_consent_sessions import PreviousOAuth2ConsentSessions
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    subject = "subject_example" # str | The subject to list the consent sessions for.
-    link = "link_example" # str | The link header contains pagination links.  For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)
-    x_total_count = "x-total-count_example" # str | The total number of clients. (optional)
-
-    # example passing only required values which don't have defaults set
-    try:
-        # List OAuth 2.0 Consent Sessions of a Subject
-        api_response = api_instance.admin_list_o_auth2_subject_consent_sessions(subject)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_list_o_auth2_subject_consent_sessions: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # List OAuth 2.0 Consent Sessions of a Subject
-        api_response = api_instance.admin_list_o_auth2_subject_consent_sessions(subject, link=link, x_total_count=x_total_count)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_list_o_auth2_subject_consent_sessions: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subject** | **str**| The subject to list the consent sessions for. |
- **link** | **str**| The link header contains pagination links.  For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional]
- **x_total_count** | **str**| The total number of clients. | [optional]
-
-### Return type
-
-[**PreviousOAuth2ConsentSessions**](PreviousOAuth2ConsentSessions.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | previousOAuth2ConsentSessions |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_list_trusted_o_auth2_jwt_grant_issuers**
-> TrustedOAuth2JwtGrantIssuers admin_list_trusted_o_auth2_jwt_grant_issuers()
-
-List Trusted OAuth2 JWT Bearer Grant Type Issuers
-
-Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.generic_error import GenericError
-from ory_client.model.trusted_o_auth2_jwt_grant_issuers import TrustedOAuth2JwtGrantIssuers
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    max_items = 1 # int |  (optional)
-    default_items = 1 # int |  (optional)
-    issuer = "issuer_example" # str | If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned. (optional)
-    limit = 1 # int | The maximum amount of policies returned, upper bound is 500 policies (optional)
-    offset = 1 # int | The offset from where to start looking. (optional)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # List Trusted OAuth2 JWT Bearer Grant Type Issuers
-        api_response = api_instance.admin_list_trusted_o_auth2_jwt_grant_issuers(max_items=max_items, default_items=default_items, issuer=issuer, limit=limit, offset=offset)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_list_trusted_o_auth2_jwt_grant_issuers: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **max_items** | **int**|  | [optional]
- **default_items** | **int**|  | [optional]
- **issuer** | **str**| If optional \&quot;issuer\&quot; is supplied, only jwt-bearer grants with this issuer will be returned. | [optional]
- **limit** | **int**| The maximum amount of policies returned, upper bound is 500 policies | [optional]
- **offset** | **int**| The offset from where to start looking. | [optional]
-
-### Return type
-
-[**TrustedOAuth2JwtGrantIssuers**](TrustedOAuth2JwtGrantIssuers.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | trustedOAuth2JwtGrantIssuers |  -  |
-**0** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **admin_patch_identity**
 > Identity admin_patch_identity(id)
 
@@ -2742,657 +885,6 @@ Name | Type | Description  | Notes
 **404** | jsonError |  -  |
 **409** | jsonError |  -  |
 **500** | jsonError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_patch_o_auth2_client**
-> OAuth2Client admin_patch_o_auth2_client(id, json_patch_document)
-
-Patch an OAuth 2.0 Client
-
-Patch an existing OAuth 2.0 Client. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.json_patch_document import JsonPatchDocument
-from ory_client.model.o_auth2_client import OAuth2Client
-from ory_client.model.generic_error import GenericError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    id = "id_example" # str | The id of the OAuth 2.0 Client.
-    json_patch_document = JsonPatchDocument([
-        JsonPatch(
-            _from="/name",
-            op="replace",
-            path="/services/identity/config/smtp/from_name",
-            value=None,
-        ),
-    ]) # JsonPatchDocument | 
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Patch an OAuth 2.0 Client
-        api_response = api_instance.admin_patch_o_auth2_client(id, json_patch_document)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_patch_o_auth2_client: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| The id of the OAuth 2.0 Client. |
- **json_patch_document** | [**JsonPatchDocument**](JsonPatchDocument.md)|  |
-
-### Return type
-
-[**OAuth2Client**](OAuth2Client.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | oAuth2Client |  -  |
-**0** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_reject_o_auth2_consent_request**
-> SuccessfulOAuth2RequestResponse admin_reject_o_auth2_consent_request(consent_challenge)
-
-Reject an OAuth 2.0 Consent Request
-
-When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to grant or deny the client access to the requested scope (\"Application my-dropbox-app wants write access to all your private files\").  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted or rejected the request.  This endpoint tells ORY Hydra that the subject has not authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider must include a reason why the consent was not granted.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.reject_o_auth2_request import RejectOAuth2Request
-from ory_client.model.successful_o_auth2_request_response import SuccessfulOAuth2RequestResponse
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    consent_challenge = "consent_challenge_example" # str | 
-    reject_o_auth2_request = RejectOAuth2Request(
-        error="error_example",
-        error_debug="error_debug_example",
-        error_description="error_description_example",
-        error_hint="error_hint_example",
-        status_code=1,
-    ) # RejectOAuth2Request |  (optional)
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Reject an OAuth 2.0 Consent Request
-        api_response = api_instance.admin_reject_o_auth2_consent_request(consent_challenge)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_reject_o_auth2_consent_request: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Reject an OAuth 2.0 Consent Request
-        api_response = api_instance.admin_reject_o_auth2_consent_request(consent_challenge, reject_o_auth2_request=reject_o_auth2_request)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_reject_o_auth2_consent_request: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **consent_challenge** | **str**|  |
- **reject_o_auth2_request** | [**RejectOAuth2Request**](RejectOAuth2Request.md)|  | [optional]
-
-### Return type
-
-[**SuccessfulOAuth2RequestResponse**](SuccessfulOAuth2RequestResponse.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | successfulOAuth2RequestResponse |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_reject_o_auth2_login_request**
-> SuccessfulOAuth2RequestResponse admin_reject_o_auth2_login_request(login_challenge)
-
-Reject an OAuth 2.0 Login Request
-
-When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider (sometimes called \"identity provider\") to authenticate the subject and then tell ORY Hydra now about it. The login provider is an web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells ORY Hydra that the subject has not authenticated and includes a reason why the authentication was denied.  The response contains a redirect URL which the login provider should redirect the user-agent to.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.reject_o_auth2_request import RejectOAuth2Request
-from ory_client.model.successful_o_auth2_request_response import SuccessfulOAuth2RequestResponse
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    login_challenge = "login_challenge_example" # str | 
-    reject_o_auth2_request = RejectOAuth2Request(
-        error="error_example",
-        error_debug="error_debug_example",
-        error_description="error_description_example",
-        error_hint="error_hint_example",
-        status_code=1,
-    ) # RejectOAuth2Request |  (optional)
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Reject an OAuth 2.0 Login Request
-        api_response = api_instance.admin_reject_o_auth2_login_request(login_challenge)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_reject_o_auth2_login_request: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Reject an OAuth 2.0 Login Request
-        api_response = api_instance.admin_reject_o_auth2_login_request(login_challenge, reject_o_auth2_request=reject_o_auth2_request)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_reject_o_auth2_login_request: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **login_challenge** | **str**|  |
- **reject_o_auth2_request** | [**RejectOAuth2Request**](RejectOAuth2Request.md)|  | [optional]
-
-### Return type
-
-[**SuccessfulOAuth2RequestResponse**](SuccessfulOAuth2RequestResponse.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | successfulOAuth2RequestResponse |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_reject_o_auth2_logout_request**
-> admin_reject_o_auth2_logout_request(logout_challenge)
-
-Reject an OAuth 2.0 Logout Request
-
-When a user or an application requests ORY Hydra to log out a user, this endpoint is used to deny that logout request. No body is required.  The response is empty as the logout provider has to chose what action to perform next.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.reject_o_auth2_request import RejectOAuth2Request
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    logout_challenge = "logout_challenge_example" # str | 
-    reject_o_auth2_request = RejectOAuth2Request(
-        error="error_example",
-        error_debug="error_debug_example",
-        error_description="error_description_example",
-        error_hint="error_hint_example",
-        status_code=1,
-    ) # RejectOAuth2Request |  (optional)
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Reject an OAuth 2.0 Logout Request
-        api_instance.admin_reject_o_auth2_logout_request(logout_challenge)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_reject_o_auth2_logout_request: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Reject an OAuth 2.0 Logout Request
-        api_instance.admin_reject_o_auth2_logout_request(logout_challenge, reject_o_auth2_request=reject_o_auth2_request)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_reject_o_auth2_logout_request: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **logout_challenge** | **str**|  |
- **reject_o_auth2_request** | [**RejectOAuth2Request**](RejectOAuth2Request.md)|  | [optional]
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_revoke_o_auth2_consent_sessions**
-> admin_revoke_o_auth2_consent_sessions(subject)
-
-Revokes OAuth 2.0 Consent Sessions of a Subject for a Specific OAuth 2.0 Client
-
-This endpoint revokes a subject's granted consent sessions for a specific OAuth 2.0 Client and invalidates all associated OAuth 2.0 Access Tokens.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    subject = "subject_example" # str | The subject (Subject) whose consent sessions should be deleted.
-    client = "client_example" # str | If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID (optional)
-    all = True # bool | If set to `true` deletes all consent sessions by the Subject that have been granted. (optional)
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Revokes OAuth 2.0 Consent Sessions of a Subject for a Specific OAuth 2.0 Client
-        api_instance.admin_revoke_o_auth2_consent_sessions(subject)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_revoke_o_auth2_consent_sessions: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Revokes OAuth 2.0 Consent Sessions of a Subject for a Specific OAuth 2.0 Client
-        api_instance.admin_revoke_o_auth2_consent_sessions(subject, client=client, all=all)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_revoke_o_auth2_consent_sessions: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subject** | **str**| The subject (Subject) whose consent sessions should be deleted. |
- **client** | **str**| If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID | [optional]
- **all** | **bool**| If set to &#x60;true&#x60; deletes all consent sessions by the Subject that have been granted. | [optional]
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_revoke_o_auth2_login_sessions**
-> admin_revoke_o_auth2_login_sessions(subject)
-
-Invalidates All OAuth 2.0 Login Sessions of a Certain User
-
-This endpoint invalidates a subject's authentication session. After revoking the authentication session, the subject has to re-authenticate at ORY Hydra. This endpoint does not invalidate any tokens and does not work with OpenID Connect Front- or Back-channel logout.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    subject = "subject_example" # str | The subject to revoke authentication sessions for.
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Invalidates All OAuth 2.0 Login Sessions of a Certain User
-        api_instance.admin_revoke_o_auth2_login_sessions(subject)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_revoke_o_auth2_login_sessions: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subject** | **str**| The subject to revoke authentication sessions for. |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_trust_o_auth2_jwt_grant_issuer**
-> TrustedOAuth2JwtGrantIssuer admin_trust_o_auth2_jwt_grant_issuer()
-
-Trust an OAuth2 JWT Bearer Grant Type Issuer
-
-Use this endpoint to establish a trust relationship for a JWT issuer to perform JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants [RFC7523](https://datatracker.ietf.org/doc/html/rfc7523).
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.trusted_o_auth2_jwt_grant_issuer import TrustedOAuth2JwtGrantIssuer
-from ory_client.model.admin_trust_o_auth2_jwt_grant_issuer_body import AdminTrustOAuth2JwtGrantIssuerBody
-from ory_client.model.generic_error import GenericError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    admin_trust_o_auth2_jwt_grant_issuer_body = AdminTrustOAuth2JwtGrantIssuerBody(
-        allow_any_subject=True,
-        expires_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        issuer="https://jwt-idp.example.com",
-        jwk=JsonWebKey(
-            alg="RS256",
-            crv="P-256",
-            d="T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE",
-            dp="G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0",
-            dq="s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk",
-            e="AQAB",
-            k="GawgguFyGrWKav7AX4VKUg",
-            kid="1603dfe0af8f4596",
-            kty="RSA",
-            n="vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0",
-            p="6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ",
-            q="0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ",
-            qi="GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU",
-            use="sig",
-            x="f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU",
-            x5c=[
-                "x5c_example",
-            ],
-            y="x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0",
-        ),
-        scope=["openid","offline"],
-        subject="mike@example.com",
-    ) # AdminTrustOAuth2JwtGrantIssuerBody |  (optional)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Trust an OAuth2 JWT Bearer Grant Type Issuer
-        api_response = api_instance.admin_trust_o_auth2_jwt_grant_issuer(admin_trust_o_auth2_jwt_grant_issuer_body=admin_trust_o_auth2_jwt_grant_issuer_body)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_trust_o_auth2_jwt_grant_issuer: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **admin_trust_o_auth2_jwt_grant_issuer_body** | [**AdminTrustOAuth2JwtGrantIssuerBody**](AdminTrustOAuth2JwtGrantIssuerBody.md)|  | [optional]
-
-### Return type
-
-[**TrustedOAuth2JwtGrantIssuer**](TrustedOAuth2JwtGrantIssuer.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | trustedOAuth2JwtGrantIssuer |  -  |
-**0** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3518,381 +1010,10 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **admin_update_json_web_key**
-> JsonWebKey admin_update_json_web_key(set, kid)
-
-Update a JSON Web Key
-
-Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.json_web_key import JsonWebKey
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    set = "set_example" # str | The JSON Web Key Set
-    kid = "kid_example" # str | The JSON Web Key ID (kid)
-    json_web_key = JsonWebKey(
-        alg="RS256",
-        crv="P-256",
-        d="T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE",
-        dp="G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0",
-        dq="s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk",
-        e="AQAB",
-        k="GawgguFyGrWKav7AX4VKUg",
-        kid="1603dfe0af8f4596",
-        kty="RSA",
-        n="vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0",
-        p="6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ",
-        q="0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ",
-        qi="GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU",
-        use="sig",
-        x="f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU",
-        x5c=[
-            "x5c_example",
-        ],
-        y="x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0",
-    ) # JsonWebKey |  (optional)
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Update a JSON Web Key
-        api_response = api_instance.admin_update_json_web_key(set, kid)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_update_json_web_key: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Update a JSON Web Key
-        api_response = api_instance.admin_update_json_web_key(set, kid, json_web_key=json_web_key)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_update_json_web_key: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **str**| The JSON Web Key Set |
- **kid** | **str**| The JSON Web Key ID (kid) |
- **json_web_key** | [**JsonWebKey**](JsonWebKey.md)|  | [optional]
-
-### Return type
-
-[**JsonWebKey**](JsonWebKey.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | jsonWebKey |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_update_json_web_key_set**
-> JsonWebKeySet admin_update_json_web_key_set(set)
-
-Update a JSON Web Key Set
-
-Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.json_web_key_set import JsonWebKeySet
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    set = "set_example" # str | The JSON Web Key Set
-    json_web_key_set = JsonWebKeySet(
-        keys=[
-            JsonWebKey(
-                alg="RS256",
-                crv="P-256",
-                d="T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE",
-                dp="G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0",
-                dq="s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk",
-                e="AQAB",
-                k="GawgguFyGrWKav7AX4VKUg",
-                kid="1603dfe0af8f4596",
-                kty="RSA",
-                n="vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0",
-                p="6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ",
-                q="0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ",
-                qi="GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU",
-                use="sig",
-                x="f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU",
-                x5c=[
-                    "x5c_example",
-                ],
-                y="x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0",
-            ),
-        ],
-    ) # JsonWebKeySet |  (optional)
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Update a JSON Web Key Set
-        api_response = api_instance.admin_update_json_web_key_set(set)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_update_json_web_key_set: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Update a JSON Web Key Set
-        api_response = api_instance.admin_update_json_web_key_set(set, json_web_key_set=json_web_key_set)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_update_json_web_key_set: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **str**| The JSON Web Key Set |
- **json_web_key_set** | [**JsonWebKeySet**](JsonWebKeySet.md)|  | [optional]
-
-### Return type
-
-[**JsonWebKeySet**](JsonWebKeySet.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | jsonWebKeySet |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_update_o_auth2_client**
-> OAuth2Client admin_update_o_auth2_client(id, o_auth2_client)
-
-Update an OAuth 2.0 Client
-
-Update an existing OAuth 2.0 Client. If you pass `client_secret` the secret is used, otherwise a random secret is generated. The secret is echoed in the response. It is not possible to retrieve it later on.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.o_auth2_client import OAuth2Client
-from ory_client.model.generic_error import GenericError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    id = "id_example" # str | The id of the OAuth 2.0 Client.
-    o_auth2_client = OAuth2Client(
-        allowed_cors_origins=StringSliceJSONFormat([
-            "allowed_cors_origins_example",
-        ]),
-        audience=StringSliceJSONFormat([
-            "audience_example",
-        ]),
-        authorization_code_grant_access_token_lifespan=NullDuration("4ms"),
-        authorization_code_grant_id_token_lifespan=NullDuration("4ms"),
-        authorization_code_grant_refresh_token_lifespan=NullDuration("4ms"),
-        backchannel_logout_session_required=True,
-        backchannel_logout_uri="backchannel_logout_uri_example",
-        client_credentials_grant_access_token_lifespan=NullDuration("4ms"),
-        client_id="client_id_example",
-        client_name="client_name_example",
-        client_secret="client_secret_example",
-        client_secret_expires_at=1,
-        client_uri="client_uri_example",
-        contacts=StringSliceJSONFormat([
-            "contacts_example",
-        ]),
-        created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        frontchannel_logout_session_required=True,
-        frontchannel_logout_uri="frontchannel_logout_uri_example",
-        grant_types=StringSliceJSONFormat([
-            "grant_types_example",
-        ]),
-        implicit_grant_access_token_lifespan=NullDuration("4ms"),
-        implicit_grant_id_token_lifespan=NullDuration("4ms"),
-        jwks={},
-        jwks_uri="jwks_uri_example",
-        jwt_bearer_grant_access_token_lifespan=NullDuration("4ms"),
-        logo_uri="logo_uri_example",
-        metadata={},
-        owner="owner_example",
-        password_grant_access_token_lifespan=NullDuration("4ms"),
-        password_grant_refresh_token_lifespan=NullDuration("4ms"),
-        policy_uri="policy_uri_example",
-        post_logout_redirect_uris=StringSliceJSONFormat([
-            "post_logout_redirect_uris_example",
-        ]),
-        redirect_uris=StringSliceJSONFormat([
-            "redirect_uris_example",
-        ]),
-        refresh_token_grant_access_token_lifespan=NullDuration("4ms"),
-        refresh_token_grant_id_token_lifespan=NullDuration("4ms"),
-        refresh_token_grant_refresh_token_lifespan=NullDuration("4ms"),
-        registration_access_token="registration_access_token_example",
-        registration_client_uri="registration_client_uri_example",
-        request_object_signing_alg="request_object_signing_alg_example",
-        request_uris=StringSliceJSONFormat([
-            "request_uris_example",
-        ]),
-        response_types=StringSliceJSONFormat([
-            "response_types_example",
-        ]),
-        scope="scope1 scope-2 scope.3 scope:4",
-        sector_identifier_uri="sector_identifier_uri_example",
-        subject_type="subject_type_example",
-        token_endpoint_auth_method="token_endpoint_auth_method_example",
-        token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",
-        tos_uri="tos_uri_example",
-        updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        userinfo_signed_response_alg="userinfo_signed_response_alg_example",
-    ) # OAuth2Client | 
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Update an OAuth 2.0 Client
-        api_response = api_instance.admin_update_o_auth2_client(id, o_auth2_client)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->admin_update_o_auth2_client: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| The id of the OAuth 2.0 Client. |
- **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md)|  |
-
-### Return type
-
-[**OAuth2Client**](OAuth2Client.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | oAuth2Client |  -  |
-**0** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **create_project**
 > Project create_project()
 
-Create a Project
+# Create a Project
 
 Creates a new project.
 
@@ -3935,7 +1056,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # Create a Project
+        # # Create a Project
         api_response = api_instance.create_project(create_project_body=create_project_body)
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -3971,6 +1092,99 @@ Name | Type | Description  | Notes
 **401** | genericError |  -  |
 **403** | genericError |  -  |
 **404** | genericError |  -  |
+**0** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_project_api_key**
+> ProjectApiKey create_project_api_key(project)
+
+# Create API Token
+
+Create an API token for a project.
+
+### Example
+
+* Bearer Authentication (oryAccessToken):
+
+```python
+import time
+import ory_client
+from ory_client.api import v0alpha2_api
+from ory_client.model.create_project_api_key_request import CreateProjectApiKeyRequest
+from ory_client.model.project_api_key import ProjectApiKey
+from ory_client.model.generic_error import GenericError
+from pprint import pprint
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryAccessToken
+configuration = ory_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = v0alpha2_api.V0alpha2Api(api_client)
+    project = "project_example" # str | The Project ID or Project slug
+    create_project_api_key_request = CreateProjectApiKeyRequest(
+        name="name_example",
+    ) # CreateProjectApiKeyRequest |  (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # # Create API Token
+        api_response = api_instance.create_project_api_key(project)
+        pprint(api_response)
+    except ory_client.ApiException as e:
+        print("Exception when calling V0alpha2Api->create_project_api_key: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # # Create API Token
+        api_response = api_instance.create_project_api_key(project, create_project_api_key_request=create_project_api_key_request)
+        pprint(api_response)
+    except ory_client.ApiException as e:
+        print("Exception when calling V0alpha2Api->create_project_api_key: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project** | **str**| The Project ID or Project slug |
+ **create_project_api_key_request** | [**CreateProjectApiKeyRequest**](CreateProjectApiKeyRequest.md)|  | [optional]
+
+### Return type
+
+[**ProjectApiKey**](ProjectApiKey.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | projectApiKey |  -  |
 **0** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4046,279 +1260,16 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **discover_json_web_keys**
-> JsonWebKeySet discover_json_web_keys()
+# **delete_project_api_key**
+> delete_project_api_key(project, token_id)
 
-Discover JSON Web Keys
+# Delete API Token
 
-This endpoint returns JSON Web Keys required to verifying OpenID Connect ID Tokens and, if enabled, OAuth 2.0 JWT Access Tokens. This endpoint can be used with client libraries like [node-jwks-rsa](https://github.com/auth0/node-jwks-rsa) among others.
-
-### Example
-
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.json_web_key_set import JsonWebKeySet
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        # Discover JSON Web Keys
-        api_response = api_instance.discover_json_web_keys()
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->discover_json_web_keys: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**JsonWebKeySet**](JsonWebKeySet.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | jsonWebKeySet |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **discover_oidc_configuration**
-> OidcConfiguration discover_oidc_configuration()
-
-OpenID Connect Discovery
-
-The well known endpoint an be used to retrieve information for OpenID Connect clients. We encourage you to not roll your own OpenID Connect client but to use an OpenID Connect client library instead. You can learn more on this flow at https://openid.net/specs/openid-connect-discovery-1_0.html .  Popular libraries for OpenID Connect clients include oidc-client-js (JavaScript), go-oidc (Golang), and others. For a full list of clients go here: https://openid.net/developers/certified/
+Deletes an API Token and immediately removes it.
 
 ### Example
 
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from ory_client.model.oidc_configuration import OidcConfiguration
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        # OpenID Connect Discovery
-        api_response = api_instance.discover_oidc_configuration()
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->discover_oidc_configuration: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**OidcConfiguration**](OidcConfiguration.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | oidcConfiguration |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **dynamic_client_registration_create_o_auth2_client**
-> OAuth2Client dynamic_client_registration_create_o_auth2_client(o_auth2_client)
-
-Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-
-This endpoint behaves like the administrative counterpart (`createOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  Please note that using this endpoint you are not able to choose the `client_secret` nor the `client_id` as those values will be server generated when specifying `token_endpoint_auth_method` as `client_secret_basic` or `client_secret_post`.  The `client_secret` will be returned in the response and you will not be able to retrieve it later on. Write the secret down and keep it somewhere safe.
-
-### Example
-
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.o_auth2_client import OAuth2Client
-from ory_client.model.generic_error import GenericError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    o_auth2_client = OAuth2Client(
-        allowed_cors_origins=StringSliceJSONFormat([
-            "allowed_cors_origins_example",
-        ]),
-        audience=StringSliceJSONFormat([
-            "audience_example",
-        ]),
-        authorization_code_grant_access_token_lifespan=NullDuration("4ms"),
-        authorization_code_grant_id_token_lifespan=NullDuration("4ms"),
-        authorization_code_grant_refresh_token_lifespan=NullDuration("4ms"),
-        backchannel_logout_session_required=True,
-        backchannel_logout_uri="backchannel_logout_uri_example",
-        client_credentials_grant_access_token_lifespan=NullDuration("4ms"),
-        client_id="client_id_example",
-        client_name="client_name_example",
-        client_secret="client_secret_example",
-        client_secret_expires_at=1,
-        client_uri="client_uri_example",
-        contacts=StringSliceJSONFormat([
-            "contacts_example",
-        ]),
-        created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        frontchannel_logout_session_required=True,
-        frontchannel_logout_uri="frontchannel_logout_uri_example",
-        grant_types=StringSliceJSONFormat([
-            "grant_types_example",
-        ]),
-        implicit_grant_access_token_lifespan=NullDuration("4ms"),
-        implicit_grant_id_token_lifespan=NullDuration("4ms"),
-        jwks={},
-        jwks_uri="jwks_uri_example",
-        jwt_bearer_grant_access_token_lifespan=NullDuration("4ms"),
-        logo_uri="logo_uri_example",
-        metadata={},
-        owner="owner_example",
-        password_grant_access_token_lifespan=NullDuration("4ms"),
-        password_grant_refresh_token_lifespan=NullDuration("4ms"),
-        policy_uri="policy_uri_example",
-        post_logout_redirect_uris=StringSliceJSONFormat([
-            "post_logout_redirect_uris_example",
-        ]),
-        redirect_uris=StringSliceJSONFormat([
-            "redirect_uris_example",
-        ]),
-        refresh_token_grant_access_token_lifespan=NullDuration("4ms"),
-        refresh_token_grant_id_token_lifespan=NullDuration("4ms"),
-        refresh_token_grant_refresh_token_lifespan=NullDuration("4ms"),
-        registration_access_token="registration_access_token_example",
-        registration_client_uri="registration_client_uri_example",
-        request_object_signing_alg="request_object_signing_alg_example",
-        request_uris=StringSliceJSONFormat([
-            "request_uris_example",
-        ]),
-        response_types=StringSliceJSONFormat([
-            "response_types_example",
-        ]),
-        scope="scope1 scope-2 scope.3 scope:4",
-        sector_identifier_uri="sector_identifier_uri_example",
-        subject_type="subject_type_example",
-        token_endpoint_auth_method="token_endpoint_auth_method_example",
-        token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",
-        tos_uri="tos_uri_example",
-        updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        userinfo_signed_response_alg="userinfo_signed_response_alg_example",
-    ) # OAuth2Client | 
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-        api_response = api_instance.dynamic_client_registration_create_o_auth2_client(o_auth2_client)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->dynamic_client_registration_create_o_auth2_client: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md)|  |
-
-### Return type
-
-[**OAuth2Client**](OAuth2Client.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | oAuth2Client |  -  |
-**0** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **dynamic_client_registration_delete_o_auth2_client**
-> dynamic_client_registration_delete_o_auth2_client(id)
-
-Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-
-This endpoint behaves like the administrative counterpart (`deleteOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
-
-### Example
-
-* Bearer Authentication (bearer):
+* Bearer Authentication (oryAccessToken):
 
 ```python
 import time
@@ -4337,7 +1288,7 @@ configuration = ory_client.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization: bearer
+# Configure Bearer authorization: oryAccessToken
 configuration = ory_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -4346,14 +1297,15 @@ configuration = ory_client.Configuration(
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    id = "id_example" # str | The id of the OAuth 2.0 Client.
+    project = "project_example" # str | The Project ID or Project slug
+    token_id = "token_id_example" # str | The Token ID
 
     # example passing only required values which don't have defaults set
     try:
-        # Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-        api_instance.dynamic_client_registration_delete_o_auth2_client(id)
+        # # Delete API Token
+        api_instance.delete_project_api_key(project, token_id)
     except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->dynamic_client_registration_delete_o_auth2_client: %s\n" % e)
+        print("Exception when calling V0alpha2Api->delete_project_api_key: %s\n" % e)
 ```
 
 
@@ -4361,7 +1313,8 @@ with ory_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The id of the OAuth 2.0 Client. |
+ **project** | **str**| The Project ID or Project slug |
+ **token_id** | **str**| The Token ID |
 
 ### Return type
 
@@ -4369,7 +1322,7 @@ void (empty response body)
 
 ### Authorization
 
-[bearer](../README.md#bearer)
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -4382,230 +1335,6 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **dynamic_client_registration_get_o_auth2_client**
-> OAuth2Client dynamic_client_registration_get_o_auth2_client(id)
-
-Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-
-This endpoint behaves like the administrative counterpart (`getOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
-
-### Example
-
-* Bearer Authentication (bearer):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.o_auth2_client import OAuth2Client
-from ory_client.model.generic_error import GenericError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: bearer
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    id = "id_example" # str | The id of the OAuth 2.0 Client.
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-        api_response = api_instance.dynamic_client_registration_get_o_auth2_client(id)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->dynamic_client_registration_get_o_auth2_client: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| The id of the OAuth 2.0 Client. |
-
-### Return type
-
-[**OAuth2Client**](OAuth2Client.md)
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | oAuth2Client |  -  |
-**0** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **dynamic_client_registration_update_o_auth2_client**
-> OAuth2Client dynamic_client_registration_update_o_auth2_client(id, o_auth2_client)
-
-Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-
-This endpoint behaves like the administrative counterpart (`updateOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  If you pass `client_secret` the secret is used, otherwise a random secret is generated. The secret is echoed in the response. It is not possible to retrieve it later on.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
-
-### Example
-
-* Bearer Authentication (bearer):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.o_auth2_client import OAuth2Client
-from ory_client.model.generic_error import GenericError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: bearer
-configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    id = "id_example" # str | The id of the OAuth 2.0 Client.
-    o_auth2_client = OAuth2Client(
-        allowed_cors_origins=StringSliceJSONFormat([
-            "allowed_cors_origins_example",
-        ]),
-        audience=StringSliceJSONFormat([
-            "audience_example",
-        ]),
-        authorization_code_grant_access_token_lifespan=NullDuration("4ms"),
-        authorization_code_grant_id_token_lifespan=NullDuration("4ms"),
-        authorization_code_grant_refresh_token_lifespan=NullDuration("4ms"),
-        backchannel_logout_session_required=True,
-        backchannel_logout_uri="backchannel_logout_uri_example",
-        client_credentials_grant_access_token_lifespan=NullDuration("4ms"),
-        client_id="client_id_example",
-        client_name="client_name_example",
-        client_secret="client_secret_example",
-        client_secret_expires_at=1,
-        client_uri="client_uri_example",
-        contacts=StringSliceJSONFormat([
-            "contacts_example",
-        ]),
-        created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        frontchannel_logout_session_required=True,
-        frontchannel_logout_uri="frontchannel_logout_uri_example",
-        grant_types=StringSliceJSONFormat([
-            "grant_types_example",
-        ]),
-        implicit_grant_access_token_lifespan=NullDuration("4ms"),
-        implicit_grant_id_token_lifespan=NullDuration("4ms"),
-        jwks={},
-        jwks_uri="jwks_uri_example",
-        jwt_bearer_grant_access_token_lifespan=NullDuration("4ms"),
-        logo_uri="logo_uri_example",
-        metadata={},
-        owner="owner_example",
-        password_grant_access_token_lifespan=NullDuration("4ms"),
-        password_grant_refresh_token_lifespan=NullDuration("4ms"),
-        policy_uri="policy_uri_example",
-        post_logout_redirect_uris=StringSliceJSONFormat([
-            "post_logout_redirect_uris_example",
-        ]),
-        redirect_uris=StringSliceJSONFormat([
-            "redirect_uris_example",
-        ]),
-        refresh_token_grant_access_token_lifespan=NullDuration("4ms"),
-        refresh_token_grant_id_token_lifespan=NullDuration("4ms"),
-        refresh_token_grant_refresh_token_lifespan=NullDuration("4ms"),
-        registration_access_token="registration_access_token_example",
-        registration_client_uri="registration_client_uri_example",
-        request_object_signing_alg="request_object_signing_alg_example",
-        request_uris=StringSliceJSONFormat([
-            "request_uris_example",
-        ]),
-        response_types=StringSliceJSONFormat([
-            "response_types_example",
-        ]),
-        scope="scope1 scope-2 scope.3 scope:4",
-        sector_identifier_uri="sector_identifier_uri_example",
-        subject_type="subject_type_example",
-        token_endpoint_auth_method="token_endpoint_auth_method_example",
-        token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",
-        tos_uri="tos_uri_example",
-        updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        userinfo_signed_response_alg="userinfo_signed_response_alg_example",
-    ) # OAuth2Client | 
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-        api_response = api_instance.dynamic_client_registration_update_o_auth2_client(id, o_auth2_client)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->dynamic_client_registration_update_o_auth2_client: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| The id of the OAuth 2.0 Client. |
- **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md)|  |
-
-### Return type
-
-[**OAuth2Client**](OAuth2Client.md)
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | oAuth2Client |  -  |
 **0** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4678,86 +1407,10 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_oidc_user_info**
-> OidcUserInfo get_oidc_user_info()
-
-OpenID Connect Userinfo
-
-This endpoint returns the payload of the ID Token, including the idTokenExtra values, of the provided OAuth 2.0 Access Token.  For more information please [refer to the spec](http://openid.net/specs/openid-connect-core-1_0.html#UserInfo).  In the case of authentication error, a WWW-Authenticate header might be set in the response with more information about the error. See [the spec](https://datatracker.ietf.org/doc/html/rfc6750#section-3) for more details about header format.
-
-### Example
-
-* OAuth Authentication (oauth2):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.oidc_user_info import OidcUserInfo
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure OAuth2 access token for authorization: oauth2
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        # OpenID Connect Userinfo
-        api_response = api_instance.get_oidc_user_info()
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->get_oidc_user_info: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**OidcUserInfo**](OidcUserInfo.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | oidcUserInfo |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_project**
 > Project get_project(project_id)
 
-Get a Project
+# Get a Project
 
 Get a projects you have access to by its ID.
 
@@ -4796,7 +1449,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # Get a Project
+        # # Get a Project
         api_response = api_instance.get_project(project_id)
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -5325,7 +1978,7 @@ No authorization required
 # **get_self_service_verification_flow**
 > SelfServiceVerificationFlow get_self_service_verification_flow(id)
 
-Get Verification Flow
+# Get Verification Flow
 
 This endpoint returns a verification flow's context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request's HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  ```js pseudo-code example router.get('/recovery', async function (req, res) { const flow = await client.getSelfServiceVerificationFlow(req.header('cookie'), req.query['flow'])  res.render('verification', flow) })  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
@@ -5355,7 +2008,7 @@ with ory_client.ApiClient() as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # Get Verification Flow
+        # # Get Verification Flow
         api_response = api_instance.get_self_service_verification_flow(id)
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -5364,7 +2017,7 @@ with ory_client.ApiClient() as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # Get Verification Flow
+        # # Get Verification Flow
         api_response = api_instance.get_self_service_verification_flow(id, cookie=cookie)
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -6245,10 +2898,89 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **list_project_api_keys**
+> ProjectApiKeys list_project_api_keys(project)
+
+# List a Project's API Tokens
+
+A list of all the project's API tokens.
+
+### Example
+
+* Bearer Authentication (oryAccessToken):
+
+```python
+import time
+import ory_client
+from ory_client.api import v0alpha2_api
+from ory_client.model.generic_error import GenericError
+from ory_client.model.project_api_keys import ProjectApiKeys
+from pprint import pprint
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryAccessToken
+configuration = ory_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = v0alpha2_api.V0alpha2Api(api_client)
+    project = "project_example" # str | The Project ID or Project slug
+
+    # example passing only required values which don't have defaults set
+    try:
+        # # List a Project's API Tokens
+        api_response = api_instance.list_project_api_keys(project)
+        pprint(api_response)
+    except ory_client.ApiException as e:
+        print("Exception when calling V0alpha2Api->list_project_api_keys: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project** | **str**| The Project ID or Project slug |
+
+### Return type
+
+[**ProjectApiKeys**](ProjectApiKeys.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | projectApiKeys |  -  |
+**0** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **list_projects**
 > ProjectMetadataList list_projects()
 
-List All Projects
+# List All Projects
 
 Lists all projects you have access to.
 
@@ -6286,7 +3018,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
     # example, this endpoint has no required or optional parameters
     try:
-        # List All Projects
+        # # List All Projects
         api_response = api_instance.list_projects()
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -6504,239 +3236,10 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **perform_o_auth2_authorization_flow**
-> OAuth2ApiError perform_o_auth2_authorization_flow()
-
-The OAuth 2.0 Authorize Endpoint
-
-This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exists.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc6749
-
-### Example
-
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        # The OAuth 2.0 Authorize Endpoint
-        api_response = api_instance.perform_o_auth2_authorization_flow()
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->perform_o_auth2_authorization_flow: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**OAuth2ApiError**](OAuth2ApiError.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **perform_o_auth2_token_flow**
-> OAuth2TokenResponse perform_o_auth2_token_flow(grant_type)
-
-The OAuth 2.0 Token Endpoint
-
-The client makes a request to the token endpoint by sending the following parameters using the \"application/x-www-form-urlencoded\" HTTP request entity-body.  > Do not implement a client for this endpoint yourself. Use a library. There are many libraries > available for any programming language. You can find a list of libraries here: https://oauth.net/code/ > > Do note that Hydra SDK does not implement this endpoint properly. Use one of the libraries listed above
-
-### Example
-
-* Basic Authentication (basic):
-* OAuth Authentication (oauth2):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from ory_client.model.o_auth2_token_response import OAuth2TokenResponse
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: basic
-configuration = ory_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure OAuth2 access token for authorization: oauth2
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    grant_type = "grant_type_example" # str | 
-    client_id = "client_id_example" # str |  (optional)
-    code = "code_example" # str |  (optional)
-    redirect_uri = "redirect_uri_example" # str |  (optional)
-    refresh_token = "refresh_token_example" # str |  (optional)
-
-    # example passing only required values which don't have defaults set
-    try:
-        # The OAuth 2.0 Token Endpoint
-        api_response = api_instance.perform_o_auth2_token_flow(grant_type)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->perform_o_auth2_token_flow: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # The OAuth 2.0 Token Endpoint
-        api_response = api_instance.perform_o_auth2_token_flow(grant_type, client_id=client_id, code=code, redirect_uri=redirect_uri, refresh_token=refresh_token)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->perform_o_auth2_token_flow: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **grant_type** | **str**|  |
- **client_id** | **str**|  | [optional]
- **code** | **str**|  | [optional]
- **redirect_uri** | **str**|  | [optional]
- **refresh_token** | **str**|  | [optional]
-
-### Return type
-
-[**OAuth2TokenResponse**](OAuth2TokenResponse.md)
-
-### Authorization
-
-[basic](../README.md#basic), [oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | oAuth2TokenResponse |  -  |
-**0** | oAuth2ApiError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **perform_oidc_front_or_back_channel_logout**
-> perform_oidc_front_or_back_channel_logout()
-
-OpenID Connect Front- or Back-channel Enabled Logout
-
-This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front- / Back-channel logout:  https://openid.net/specs/openid-connect-frontchannel-1_0.html https://openid.net/specs/openid-connect-backchannel-1_0.html  Back-channel logout is performed asynchronously and does not affect logout flow.
-
-### Example
-
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        # OpenID Connect Front- or Back-channel Enabled Logout
-        api_instance.perform_oidc_front_or_back_channel_logout()
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->perform_oidc_front_or_back_channel_logout: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **purge_project**
 > purge_project(project_id)
 
-Irrecoverably Purge a Project
+# Irrecoverably Purge a Project
 
 !! Use with extreme caution !!  Using this API endpoint you can purge (completely delete) a project and its data. This action can not be undone and will delete ALL your data.  !! Use with extreme caution !!
 
@@ -6774,7 +3277,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # Irrecoverably Purge a Project
+        # # Irrecoverably Purge a Project
         api_instance.purge_project(project_id)
     except ory_client.ApiException as e:
         print("Exception when calling V0alpha2Api->purge_project: %s\n" % e)
@@ -6892,91 +3395,6 @@ void (empty response body)
 **401** | genericError |  -  |
 **406** | genericError |  -  |
 **500** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **revoke_o_auth2_token**
-> revoke_o_auth2_token(token)
-
-Revoke an OAuth2 Access or Refresh Token
-
-Revoking a token (both access and refresh) means that the tokens will be invalid. A revoked access token can no longer be used to make access requests, and a revoked refresh token can no longer be used to refresh an access token. Revoking a refresh token also invalidates the access token that was created with it. A token may only be revoked by the client the token was generated for.
-
-### Example
-
-* Basic Authentication (basic):
-* OAuth Authentication (oauth2):
-
-```python
-import time
-import ory_client
-from ory_client.api import v0alpha2_api
-from ory_client.model.o_auth2_api_error import OAuth2ApiError
-from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: basic
-configuration = ory_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure OAuth2 access token for authorization: oauth2
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = v0alpha2_api.V0alpha2Api(api_client)
-    token = "token_example" # str | 
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Revoke an OAuth2 Access or Refresh Token
-        api_instance.revoke_o_auth2_token(token)
-    except ory_client.ApiException as e:
-        print("Exception when calling V0alpha2Api->revoke_o_auth2_token: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **str**|  |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[basic](../README.md#basic), [oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | oAuth2ApiError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -7629,7 +4047,7 @@ No authorization required
 # **submit_self_service_verification_flow**
 > SelfServiceVerificationFlow submit_self_service_verification_flow(flow, submit_self_service_verification_flow_body)
 
-Complete Verification Flow
+# Complete Verification Flow
 
 Use this endpoint to complete a verification flow. This endpoint behaves differently for API and browser flows and has several states:  `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent and works with API- and Browser-initiated flows. For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid and a HTTP 303 See Other redirect with a fresh verification flow if the flow was otherwise invalid (e.g. expired). For Browser clients without HTTP Header `Accept` or with `Accept: text/*` it returns a HTTP 303 See Other redirect to the Verification UI URL with the Verification Flow ID appended. `sent_email` is the success state after `choose_method` when using the `link` method and allows the user to request another verification email. It works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state. `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow (\"sending a verification link\") does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Verification UI URL with a new Verification Flow ID which contains an error message that the verification link was invalid.  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
 
@@ -7662,7 +4080,7 @@ with ory_client.ApiClient() as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # Complete Verification Flow
+        # # Complete Verification Flow
         api_response = api_instance.submit_self_service_verification_flow(flow, submit_self_service_verification_flow_body)
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -7671,7 +4089,7 @@ with ory_client.ApiClient() as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # Complete Verification Flow
+        # # Complete Verification Flow
         api_response = api_instance.submit_self_service_verification_flow(flow, submit_self_service_verification_flow_body, token=token, cookie=cookie)
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -7791,7 +4209,7 @@ No authorization required
 # **update_project**
 > SuccessfulProjectUpdate update_project(project_id)
 
-Update an Ory Cloud Project Configuration
+# Update an Ory Cloud Project Configuration
 
 This endpoints allows you to update the Ory Cloud Project configuration for individual services (identity, permission, ...). The configuration is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.  Be aware that updating any service's configuration will completely override your current configuration for that service!
 
@@ -7845,7 +4263,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # Update an Ory Cloud Project Configuration
+        # # Update an Ory Cloud Project Configuration
         api_response = api_instance.update_project(project_id)
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -7854,7 +4272,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # Update an Ory Cloud Project Configuration
+        # # Update an Ory Cloud Project Configuration
         api_response = api_instance.update_project(project_id, update_project=update_project)
         pprint(api_response)
     except ory_client.ApiException as e:

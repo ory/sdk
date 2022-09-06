@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **corsEnabled** | **Boolean** |  |  [optional]
 **createdAt** | **OffsetDateTime** |  |  [optional]
 **hostname** | **String** |  |  [optional]
-**id** | **UUID** |  |  [optional]
+**id** | **String** |  |  [optional]
 **updatedAt** | **OffsetDateTime** |  |  [optional]
 **verificationErrors** | **List&lt;String&gt;** |  |  [optional]
 **verificationStatus** | **String** | CustomHostnameStatus is the enumeration of valid state values in the CustomHostnameSSL |  [optional]

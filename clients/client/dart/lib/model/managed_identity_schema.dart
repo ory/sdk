@@ -40,6 +40,7 @@ class ManagedIdentitySchema {
   /// The Schema's Creation Date
   DateTime createdAt;
 
+  /// The schema's ID.
   String id;
 
   /// The schema name  This is set by the user and is for them to easily recognise their schema

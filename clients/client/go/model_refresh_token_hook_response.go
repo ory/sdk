@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.28
+API version: v0.2.0-alpha.29
 Contact: support@ory.sh
 */
 
@@ -17,7 +17,7 @@ import (
 
 // RefreshTokenHookResponse struct for RefreshTokenHookResponse
 type RefreshTokenHookResponse struct {
-	Session *AcceptOAuth2ConsentRequestSession `json:"session,omitempty"`
+	Session *ConsentRequestSession `json:"session,omitempty"`
 }
 
 // NewRefreshTokenHookResponse instantiates a new RefreshTokenHookResponse object
@@ -38,9 +38,9 @@ func NewRefreshTokenHookResponseWithDefaults() *RefreshTokenHookResponse {
 }
 
 // GetSession returns the Session field value if set, zero value otherwise.
-func (o *RefreshTokenHookResponse) GetSession() AcceptOAuth2ConsentRequestSession {
+func (o *RefreshTokenHookResponse) GetSession() ConsentRequestSession {
 	if o == nil || o.Session == nil {
-		var ret AcceptOAuth2ConsentRequestSession
+		var ret ConsentRequestSession
 		return ret
 	}
 	return *o.Session
@@ -48,7 +48,7 @@ func (o *RefreshTokenHookResponse) GetSession() AcceptOAuth2ConsentRequestSessio
 
 // GetSessionOk returns a tuple with the Session field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RefreshTokenHookResponse) GetSessionOk() (*AcceptOAuth2ConsentRequestSession, bool) {
+func (o *RefreshTokenHookResponse) GetSessionOk() (*ConsentRequestSession, bool) {
 	if o == nil || o.Session == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *RefreshTokenHookResponse) HasSession() bool {
 	return false
 }
 
-// SetSession gets a reference to the given AcceptOAuth2ConsentRequestSession and assigns it to the Session field.
-func (o *RefreshTokenHookResponse) SetSession(v AcceptOAuth2ConsentRequestSession) {
+// SetSession gets a reference to the given ConsentRequestSession and assigns it to the Session field.
+func (o *RefreshTokenHookResponse) SetSession(v ConsentRequestSession) {
 	o.Session = &v
 }
 

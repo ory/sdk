@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | 
+**id** | **str** | The project&#39;s ID. | [readonly] 
 **name** | **str** | The name of the project. | 
-**revision_id** | **str** |  | 
+**revision_id** | **str** | The configuration revision ID. | [readonly] 
 **services** | [**ProjectServices**](ProjectServices.md) |  | 
 **slug** | **str** | The project&#39;s slug | [readonly] 
 **state** | **str** | The state of the project. running Running halted Halted | [readonly] 

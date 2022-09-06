@@ -10,15 +10,11 @@ defmodule Ory.Model.Pagination do
   @derive [Poison.Encoder]
   defstruct [
     :page,
-    :page_size,
-    :page_token,
     :per_page
   ]
 
   @type t :: %__MODULE__{
     :page => integer() | nil,
-    :page_size => integer() | nil,
-    :page_token => String.t | nil,
     :per_page => integer() | nil
   }
 end

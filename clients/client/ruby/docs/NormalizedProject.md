@@ -7,7 +7,7 @@
 | **created_at** | **Time** | The Project&#39;s Creation Date | [readonly] |
 | **current_revision** | [**NormalizedProjectRevision**](NormalizedProjectRevision.md) |  |  |
 | **hosts** | **Array&lt;String&gt;** |  |  |
-| **id** | **String** |  |  |
+| **id** | **String** | The project&#39;s ID. | [readonly] |
 | **revisions** | [**Array&lt;NormalizedProjectRevision&gt;**](NormalizedProjectRevision.md) |  |  |
 | **slug** | **String** | The project&#39;s slug | [readonly] |
 | **state** | **String** | The state of the project. running Running halted Halted | [readonly] |

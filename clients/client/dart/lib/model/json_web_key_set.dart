@@ -10,17 +10,17 @@
 
 part of openapi.api;
 
-class JsonWebKeySet {
-  /// Returns a new [JsonWebKeySet] instance.
-  JsonWebKeySet({
+class JSONWebKeySet {
+  /// Returns a new [JSONWebKeySet] instance.
+  JSONWebKeySet({
     this.keys = const [],
   });
 
-  /// The value of the \"keys\" parameter is an array of JSON Web Key (JWK) values. By default, the order of the JWK values within the array does not imply an order of preference among them, although applications of JWK Sets can choose to assign a meaning to the order for their purposes, if desired.
-  List<JsonWebKey> keys;
+  /// The value of the \"keys\" parameter is an array of JWK values.  By default, the order of the JWK values within the array does not imply an order of preference among them, although applications of JWK Sets can choose to assign a meaning to the order for their purposes, if desired.
+  List<JSONWebKey> keys;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is JsonWebKeySet &&
+  bool operator ==(Object other) => identical(this, other) || other is JSONWebKeySet &&
      other.keys == keys;
 
   @override
@@ -29,7 +29,7 @@ class JsonWebKeySet {
     (keys.hashCode);
 
   @override
-  String toString() => 'JsonWebKeySet[keys=$keys]';
+  String toString() => 'JSONWebKeySet[keys=$keys]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
@@ -37,10 +37,10 @@ class JsonWebKeySet {
     return _json;
   }
 
-  /// Returns a new [JsonWebKeySet] instance and imports its values from
+  /// Returns a new [JSONWebKeySet] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static JsonWebKeySet? fromJson(dynamic value) {
+  static JSONWebKeySet? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
 
@@ -49,24 +49,24 @@ class JsonWebKeySet {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "JsonWebKeySet[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "JsonWebKeySet[$key]" has a null value in JSON.');
+          assert(json.containsKey(key), 'Required key "JSONWebKeySet[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "JSONWebKeySet[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
-      return JsonWebKeySet(
-        keys: JsonWebKey.listFromJson(json[r'keys']) ?? const [],
+      return JSONWebKeySet(
+        keys: JSONWebKey.listFromJson(json[r'keys']) ?? const [],
       );
     }
     return null;
   }
 
-  static List<JsonWebKeySet>? listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <JsonWebKeySet>[];
+  static List<JSONWebKeySet>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <JSONWebKeySet>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = JsonWebKeySet.fromJson(row);
+        final value = JSONWebKeySet.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -75,12 +75,12 @@ class JsonWebKeySet {
     return result.toList(growable: growable);
   }
 
-  static Map<String, JsonWebKeySet> mapFromJson(dynamic json) {
-    final map = <String, JsonWebKeySet>{};
+  static Map<String, JSONWebKeySet> mapFromJson(dynamic json) {
+    final map = <String, JSONWebKeySet>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = JsonWebKeySet.fromJson(entry.value);
+        final value = JSONWebKeySet.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -89,13 +89,13 @@ class JsonWebKeySet {
     return map;
   }
 
-  // maps a json object with a list of JsonWebKeySet-objects as value to a dart map
-  static Map<String, List<JsonWebKeySet>> mapListFromJson(dynamic json, {bool growable = false,}) {
-    final map = <String, List<JsonWebKeySet>>{};
+  // maps a json object with a list of JSONWebKeySet-objects as value to a dart map
+  static Map<String, List<JSONWebKeySet>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<JSONWebKeySet>>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = JsonWebKeySet.listFromJson(entry.value, growable: growable,);
+        final value = JSONWebKeySet.listFromJson(entry.value, growable: growable,);
         if (value != null) {
           map[entry.key] = value;
         }

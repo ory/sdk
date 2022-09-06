@@ -16,8 +16,6 @@ class RefreshTokenHookRequest {
     this.clientId,
     this.grantedAudience = const [],
     this.grantedScopes = const [],
-    this.requester,
-    this.session,
     this.subject,
   });
 
@@ -36,22 +34,6 @@ class RefreshTokenHookRequest {
   /// GrantedScopes is the list of scopes granted to the OAuth 2.0 client.
   List<String> grantedScopes;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  OAuth2AccessRequest? requester;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  OAuth2ConsentSession? session;
-
   /// Subject is the identifier of the authenticated end-user.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -66,8 +48,6 @@ class RefreshTokenHookRequest {
      other.clientId == clientId &&
      other.grantedAudience == grantedAudience &&
      other.grantedScopes == grantedScopes &&
-     other.requester == requester &&
-     other.session == session &&
      other.subject == subject;
 
   @override
@@ -76,12 +56,10 @@ class RefreshTokenHookRequest {
     (clientId == null ? 0 : clientId!.hashCode) +
     (grantedAudience.hashCode) +
     (grantedScopes.hashCode) +
-    (requester == null ? 0 : requester!.hashCode) +
-    (session == null ? 0 : session!.hashCode) +
     (subject == null ? 0 : subject!.hashCode);
 
   @override
-  String toString() => 'RefreshTokenHookRequest[clientId=$clientId, grantedAudience=$grantedAudience, grantedScopes=$grantedScopes, requester=$requester, session=$session, subject=$subject]';
+  String toString() => 'RefreshTokenHookRequest[clientId=$clientId, grantedAudience=$grantedAudience, grantedScopes=$grantedScopes, subject=$subject]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
@@ -92,16 +70,6 @@ class RefreshTokenHookRequest {
     }
       _json[r'granted_audience'] = grantedAudience;
       _json[r'granted_scopes'] = grantedScopes;
-    if (requester != null) {
-      _json[r'requester'] = requester;
-    } else {
-      _json[r'requester'] = null;
-    }
-    if (session != null) {
-      _json[r'session'] = session;
-    } else {
-      _json[r'session'] = null;
-    }
     if (subject != null) {
       _json[r'subject'] = subject;
     } else {
@@ -136,8 +104,6 @@ class RefreshTokenHookRequest {
         grantedScopes: json[r'granted_scopes'] is List
             ? (json[r'granted_scopes'] as List).cast<String>()
             : const [],
-        requester: OAuth2AccessRequest.fromJson(json[r'requester']),
-        session: OAuth2ConsentSession.fromJson(json[r'session']),
         subject: mapValueOfType<String>(json, r'subject'),
       );
     }

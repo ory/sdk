@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **string** |  |
+**id** | **string** | The project&#39;s ID. | [readonly]
 **name** | **string** | The name of the project. |
-**revisionId** | **string** |  |
+**revisionId** | **string** | The configuration revision ID. | [readonly]
 **services** | [**\Ory\Client\Model\ProjectServices**](ProjectServices.md) |  |
 **slug** | **string** | The project&#39;s slug | [readonly]
 **state** | **string** | The state of the project. running Running halted Halted | [readonly]

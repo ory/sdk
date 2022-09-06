@@ -14,25 +14,76 @@ class JsonError {
   /// Returns a new [JsonError] instance.
   JsonError({
     required this.error,
+    this.errorDebug,
+    this.errorDescription,
+    this.statusCode,
   });
 
   GenericError error;
 
+  /// Debug contains debug information. This is usually not available and has to be enabled.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? errorDebug;
+
+  /// Description contains further information on the nature of the error.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? errorDescription;
+
+  /// Code represents the error status code (404, 403, 401, ...).
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? statusCode;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is JsonError &&
-     other.error == error;
+     other.error == error &&
+     other.errorDebug == errorDebug &&
+     other.errorDescription == errorDescription &&
+     other.statusCode == statusCode;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (error.hashCode);
+    (error.hashCode) +
+    (errorDebug == null ? 0 : errorDebug!.hashCode) +
+    (errorDescription == null ? 0 : errorDescription!.hashCode) +
+    (statusCode == null ? 0 : statusCode!.hashCode);
 
   @override
-  String toString() => 'JsonError[error=$error]';
+  String toString() => 'JsonError[error=$error, errorDebug=$errorDebug, errorDescription=$errorDescription, statusCode=$statusCode]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
       _json[r'error'] = error;
+    if (errorDebug != null) {
+      _json[r'error_debug'] = errorDebug;
+    } else {
+      _json[r'error_debug'] = null;
+    }
+    if (errorDescription != null) {
+      _json[r'error_description'] = errorDescription;
+    } else {
+      _json[r'error_description'] = null;
+    }
+    if (statusCode != null) {
+      _json[r'status_code'] = statusCode;
+    } else {
+      _json[r'status_code'] = null;
+    }
     return _json;
   }
 
@@ -56,6 +107,9 @@ class JsonError {
 
       return JsonError(
         error: GenericError.fromJson(json[r'error'])!,
+        errorDebug: mapValueOfType<String>(json, r'error_debug'),
+        errorDescription: mapValueOfType<String>(json, r'error_description'),
+        statusCode: mapValueOfType<int>(json, r'status_code'),
       );
     }
     return null;

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **created_at** | **datetime** | The Project&#39;s Creation Date | [readonly] 
 **current_revision** | [**NormalizedProjectRevision**](NormalizedProjectRevision.md) |  | 
 **hosts** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | 
-**id** | **str** |  | 
+**id** | **str** | The project&#39;s ID. | [readonly] 
 **revisions** | [**ProjectRevisions**](ProjectRevisions.md) |  | 
 **slug** | **str** | The project&#39;s slug | [readonly] 
 **state** | **str** | The state of the project. running Running halted Halted | [readonly] 

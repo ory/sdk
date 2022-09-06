@@ -7,9 +7,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **UUID** |  | 
+**id** | **String** | The project&#39;s ID. |  [readonly]
 **name** | **String** | The name of the project. | 
-**revisionId** | **UUID** |  | 
+**revisionId** | **String** | The configuration revision ID. |  [readonly]
 **services** | [**ProjectServices**](ProjectServices.md) |  | 
 **slug** | **String** | The project&#39;s slug |  [readonly]
 **state** | [**StateEnum**](#StateEnum) | The state of the project. running Running halted Halted |  [readonly]

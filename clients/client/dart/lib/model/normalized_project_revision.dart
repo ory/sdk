@@ -17,7 +17,7 @@ class NormalizedProjectRevision {
     this.hydraOauth2ClientCredentialsDefaultGrantAllowedScope,
     this.hydraOauth2GrantJwtIatOptional,
     this.hydraOauth2GrantJwtJtiOptional,
-    this.hydraOauth2GrantJwtMaxTtl,
+    this.hydraOauth2GrantJwtMaxTtl = '720h',
     this.hydraOauth2PkceEnforced,
     this.hydraOauth2PkceEnforcedForPublicClients,
     this.hydraOauth2RefreshTokenHook,
@@ -37,11 +37,11 @@ class NormalizedProjectRevision {
     this.hydraServePublicCorsEnabled,
     this.hydraStrategiesAccessToken,
     this.hydraStrategiesScope,
-    this.hydraTtlAccessToken,
-    this.hydraTtlAuthCode,
-    this.hydraTtlIdToken,
-    this.hydraTtlLoginConsentRequest,
-    this.hydraTtlRefreshToken,
+    this.hydraTtlAccessToken = '30m',
+    this.hydraTtlAuthCode = '720h',
+    this.hydraTtlIdToken = '30m',
+    this.hydraTtlLoginConsentRequest = '30m',
+    this.hydraTtlRefreshToken = '720h',
     this.hydraUrlsConsent,
     this.hydraUrlsError,
     this.hydraUrlsLogin,
@@ -181,7 +181,8 @@ class NormalizedProjectRevision {
   ///
   bool? hydraOauth2GrantJwtJtiOptional;
 
-  String? hydraOauth2GrantJwtMaxTtl;
+  /// Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
+  String hydraOauth2GrantJwtMaxTtl;
 
   /// Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \"oauth2.pkce.enforced\" setting.
   ///
@@ -293,15 +294,20 @@ class NormalizedProjectRevision {
   /// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting.
   Object? hydraStrategiesScope;
 
-  String? hydraTtlAccessToken;
+  /// This governs the \"ttl.access_token\" setting.
+  String hydraTtlAccessToken;
 
-  String? hydraTtlAuthCode;
+  /// Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.auth_code\" setting.
+  String hydraTtlAuthCode;
 
-  String? hydraTtlIdToken;
+  /// This governs the \"ttl.id_token\" setting.
+  String hydraTtlIdToken;
 
-  String? hydraTtlLoginConsentRequest;
+  /// Configures how long a user login and consent flow may take.  This governs the \"ttl.login_consent_request\" setting.
+  String hydraTtlLoginConsentRequest;
 
-  String? hydraTtlRefreshToken;
+  /// Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.refresh_token\" setting.
+  String hydraTtlRefreshToken;
 
   /// Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.consent\" setting.
   ///
@@ -408,6 +414,7 @@ class NormalizedProjectRevision {
   ///
   String? hydraWebfingerOidcDiscoveryUserinfoUrl;
 
+  /// The revision ID.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -738,6 +745,13 @@ class NormalizedProjectRevision {
   ///
   String? kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl;
 
+  /// Configures the Whether Ory Kratos Registration is Enabled  This governs the \"selfservice.flows.registration.enabled\" setting.0
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   bool? kratosSelfserviceFlowsRegistrationEnabled;
 
   /// Configures the Ory Kratos Registration Lifespan  This governs the \"selfservice.flows.registration.lifespan\" setting.
@@ -875,8 +889,22 @@ class NormalizedProjectRevision {
   ///
   String? kratosSelfserviceMethodsLinkConfigLifespan;
 
+  /// Configures whether Ory Kratos Link Method is enabled  This governs the \"selfservice.methods.link.enabled\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   bool? kratosSelfserviceMethodsLinkEnabled;
 
+  /// Configures whether Ory Kratos TOTP Lookup Secret is enabled  This governs the \"selfservice.methods.lookup_secret.enabled\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   bool? kratosSelfserviceMethodsLookupSecretEnabled;
 
   /// Configures the Ory Kratos Third Party / OpenID Connect base redirect URI  This governs the \"selfservice.methods.oidc.config.base_redirect_uri\" setting.
@@ -899,10 +927,31 @@ class NormalizedProjectRevision {
   ///
   bool? kratosSelfserviceMethodsOidcEnabled;
 
+  /// Configures whether Ory Kratos Password HIBP Checks is enabled  This governs the \"selfservice.methods.password.config.haveibeenpwned_enabled\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   bool? kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled;
 
+  /// Configures whether Ory Kratos Password should disable the similarity policy.  This governs the \"selfservice.methods.password.config.identifier_similarity_check_enabled\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   bool? kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled;
 
+  /// Configures whether Ory Kratos Password Should ignore HIBPWND Network Errors  This governs the \"selfservice.methods.password.config.ignore_network_errors\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   bool? kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors;
 
   /// Configures Ory Kratos Password Max Breaches Detection  This governs the \"selfservice.methods.password.config.max_breaches\" setting.
@@ -923,8 +972,22 @@ class NormalizedProjectRevision {
   ///
   int? kratosSelfserviceMethodsPasswordConfigMinPasswordLength;
 
+  /// Configures whether Ory Kratos Password Method is enabled  This governs the \"selfservice.methods.password.enabled\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   bool? kratosSelfserviceMethodsPasswordEnabled;
 
+  /// Configures whether Ory Kratos Profile Method is enabled  This governs the \"selfservice.methods.profile.enabled\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   bool? kratosSelfserviceMethodsProfileEnabled;
 
   /// Configures Ory Kratos TOTP Issuer  This governs the \"selfservice.methods.totp.config.issuer\" setting.
@@ -936,6 +999,13 @@ class NormalizedProjectRevision {
   ///
   String? kratosSelfserviceMethodsTotpConfigIssuer;
 
+  /// Configures whether Ory Kratos TOTP Method is enabled  This governs the \"selfservice.methods.totp.enabled\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   bool? kratosSelfserviceMethodsTotpEnabled;
 
   /// Configures whether Ory Kratos Webauthn is used for passwordless flows  This governs the \"selfservice.methods.webauthn.config.passwordless\" setting.
@@ -983,8 +1053,22 @@ class NormalizedProjectRevision {
   ///
   String? kratosSelfserviceMethodsWebauthnConfigRpOrigin;
 
+  /// Configures whether Ory Kratos Webauthn is enabled  This governs the \"selfservice.methods.webauthn.enabled\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   bool? kratosSelfserviceMethodsWebauthnEnabled;
 
+  /// Configures the Ory Kratos Session Cookie Persistent Attribute  This governs the \"session.cookie.persistent\" setting.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   bool? kratosSessionCookiePersistent;
 
   /// Configures the Ory Kratos Session Cookie SameSite Attribute  This governs the \"session.cookie.same_site\" setting.
@@ -1026,6 +1110,7 @@ class NormalizedProjectRevision {
   ///
   bool? production;
 
+  /// The Revision's Project ID
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -1183,7 +1268,7 @@ class NormalizedProjectRevision {
     (hydraOauth2ClientCredentialsDefaultGrantAllowedScope == null ? 0 : hydraOauth2ClientCredentialsDefaultGrantAllowedScope!.hashCode) +
     (hydraOauth2GrantJwtIatOptional == null ? 0 : hydraOauth2GrantJwtIatOptional!.hashCode) +
     (hydraOauth2GrantJwtJtiOptional == null ? 0 : hydraOauth2GrantJwtJtiOptional!.hashCode) +
-    (hydraOauth2GrantJwtMaxTtl == null ? 0 : hydraOauth2GrantJwtMaxTtl!.hashCode) +
+    (hydraOauth2GrantJwtMaxTtl.hashCode) +
     (hydraOauth2PkceEnforced == null ? 0 : hydraOauth2PkceEnforced!.hashCode) +
     (hydraOauth2PkceEnforcedForPublicClients == null ? 0 : hydraOauth2PkceEnforcedForPublicClients!.hashCode) +
     (hydraOauth2RefreshTokenHook == null ? 0 : hydraOauth2RefreshTokenHook!.hashCode) +
@@ -1203,11 +1288,11 @@ class NormalizedProjectRevision {
     (hydraServePublicCorsEnabled == null ? 0 : hydraServePublicCorsEnabled!.hashCode) +
     (hydraStrategiesAccessToken == null ? 0 : hydraStrategiesAccessToken!.hashCode) +
     (hydraStrategiesScope == null ? 0 : hydraStrategiesScope!.hashCode) +
-    (hydraTtlAccessToken == null ? 0 : hydraTtlAccessToken!.hashCode) +
-    (hydraTtlAuthCode == null ? 0 : hydraTtlAuthCode!.hashCode) +
-    (hydraTtlIdToken == null ? 0 : hydraTtlIdToken!.hashCode) +
-    (hydraTtlLoginConsentRequest == null ? 0 : hydraTtlLoginConsentRequest!.hashCode) +
-    (hydraTtlRefreshToken == null ? 0 : hydraTtlRefreshToken!.hashCode) +
+    (hydraTtlAccessToken.hashCode) +
+    (hydraTtlAuthCode.hashCode) +
+    (hydraTtlIdToken.hashCode) +
+    (hydraTtlLoginConsentRequest.hashCode) +
+    (hydraTtlRefreshToken.hashCode) +
     (hydraUrlsConsent == null ? 0 : hydraUrlsConsent!.hashCode) +
     (hydraUrlsError == null ? 0 : hydraUrlsError!.hashCode) +
     (hydraUrlsLogin == null ? 0 : hydraUrlsLogin!.hashCode) +
@@ -1335,11 +1420,7 @@ class NormalizedProjectRevision {
     } else {
       _json[r'hydra_oauth2_grant_jwt_jti_optional'] = null;
     }
-    if (hydraOauth2GrantJwtMaxTtl != null) {
       _json[r'hydra_oauth2_grant_jwt_max_ttl'] = hydraOauth2GrantJwtMaxTtl;
-    } else {
-      _json[r'hydra_oauth2_grant_jwt_max_ttl'] = null;
-    }
     if (hydraOauth2PkceEnforced != null) {
       _json[r'hydra_oauth2_pkce_enforced'] = hydraOauth2PkceEnforced;
     } else {
@@ -1407,31 +1488,11 @@ class NormalizedProjectRevision {
     } else {
       _json[r'hydra_strategies_scope'] = null;
     }
-    if (hydraTtlAccessToken != null) {
       _json[r'hydra_ttl_access_token'] = hydraTtlAccessToken;
-    } else {
-      _json[r'hydra_ttl_access_token'] = null;
-    }
-    if (hydraTtlAuthCode != null) {
       _json[r'hydra_ttl_auth_code'] = hydraTtlAuthCode;
-    } else {
-      _json[r'hydra_ttl_auth_code'] = null;
-    }
-    if (hydraTtlIdToken != null) {
       _json[r'hydra_ttl_id_token'] = hydraTtlIdToken;
-    } else {
-      _json[r'hydra_ttl_id_token'] = null;
-    }
-    if (hydraTtlLoginConsentRequest != null) {
       _json[r'hydra_ttl_login_consent_request'] = hydraTtlLoginConsentRequest;
-    } else {
-      _json[r'hydra_ttl_login_consent_request'] = null;
-    }
-    if (hydraTtlRefreshToken != null) {
       _json[r'hydra_ttl_refresh_token'] = hydraTtlRefreshToken;
-    } else {
-      _json[r'hydra_ttl_refresh_token'] = null;
-    }
     if (hydraUrlsConsent != null) {
       _json[r'hydra_urls_consent'] = hydraUrlsConsent;
     } else {
@@ -1915,7 +1976,7 @@ class NormalizedProjectRevision {
         hydraOauth2ClientCredentialsDefaultGrantAllowedScope: mapValueOfType<bool>(json, r'hydra_oauth2_client_credentials_default_grant_allowed_scope'),
         hydraOauth2GrantJwtIatOptional: mapValueOfType<bool>(json, r'hydra_oauth2_grant_jwt_iat_optional'),
         hydraOauth2GrantJwtJtiOptional: mapValueOfType<bool>(json, r'hydra_oauth2_grant_jwt_jti_optional'),
-        hydraOauth2GrantJwtMaxTtl: mapValueOfType<String>(json, r'hydra_oauth2_grant_jwt_max_ttl'),
+        hydraOauth2GrantJwtMaxTtl: mapValueOfType<String>(json, r'hydra_oauth2_grant_jwt_max_ttl') ?? '720h',
         hydraOauth2PkceEnforced: mapValueOfType<bool>(json, r'hydra_oauth2_pkce_enforced'),
         hydraOauth2PkceEnforcedForPublicClients: mapValueOfType<bool>(json, r'hydra_oauth2_pkce_enforced_for_public_clients'),
         hydraOauth2RefreshTokenHook: mapValueOfType<String>(json, r'hydra_oauth2_refresh_token_hook'),
@@ -1949,11 +2010,11 @@ class NormalizedProjectRevision {
         hydraServePublicCorsEnabled: mapValueOfType<bool>(json, r'hydra_serve_public_cors_enabled'),
         hydraStrategiesAccessToken: mapValueOfType<Object>(json, r'hydra_strategies_access_token'),
         hydraStrategiesScope: mapValueOfType<Object>(json, r'hydra_strategies_scope'),
-        hydraTtlAccessToken: mapValueOfType<String>(json, r'hydra_ttl_access_token'),
-        hydraTtlAuthCode: mapValueOfType<String>(json, r'hydra_ttl_auth_code'),
-        hydraTtlIdToken: mapValueOfType<String>(json, r'hydra_ttl_id_token'),
-        hydraTtlLoginConsentRequest: mapValueOfType<String>(json, r'hydra_ttl_login_consent_request'),
-        hydraTtlRefreshToken: mapValueOfType<String>(json, r'hydra_ttl_refresh_token'),
+        hydraTtlAccessToken: mapValueOfType<String>(json, r'hydra_ttl_access_token') ?? '30m',
+        hydraTtlAuthCode: mapValueOfType<String>(json, r'hydra_ttl_auth_code') ?? '720h',
+        hydraTtlIdToken: mapValueOfType<String>(json, r'hydra_ttl_id_token') ?? '30m',
+        hydraTtlLoginConsentRequest: mapValueOfType<String>(json, r'hydra_ttl_login_consent_request') ?? '30m',
+        hydraTtlRefreshToken: mapValueOfType<String>(json, r'hydra_ttl_refresh_token') ?? '720h',
         hydraUrlsConsent: mapValueOfType<String>(json, r'hydra_urls_consent'),
         hydraUrlsError: mapValueOfType<String>(json, r'hydra_urls_error'),
         hydraUrlsLogin: mapValueOfType<String>(json, r'hydra_urls_login'),

@@ -23,7 +23,7 @@ defmodule Ory.Model.GenericError do
   @type t :: %__MODULE__{
     :code => integer() | nil,
     :debug => String.t | nil,
-    :details => [%{optional(String.t) => AnyType}] | nil,
+    :details => AnyType | nil,
     :error => Ory.Model.GenericErrorContent.t | nil,
     :id => String.t | nil,
     :message => String.t,
@@ -37,6 +37,7 @@ defimpl Poison.Decoder, for: Ory.Model.GenericError do
   import Ory.Deserializer
   def decode(value, options) do
     value
+    |> deserialize(:details, :struct, Ory.Model.AnyType, options)
     |> deserialize(:error, :struct, Ory.Model.GenericErrorContent, options)
   end
 end

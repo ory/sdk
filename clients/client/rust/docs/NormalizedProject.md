@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **created_at** | **String** | The Project's Creation Date | [readonly]
 **current_revision** | [**crate::models::NormalizedProjectRevision**](normalizedProjectRevision.md) |  | 
 **hosts** | **Vec<String>** |  | 
-**id** | **String** |  | 
+**id** | **String** | The project's ID. | [readonly]
 **revisions** | [**Vec<crate::models::NormalizedProjectRevision>**](normalizedProjectRevision.md) |  | 
 **slug** | **String** | The project's slug | [readonly]
 **state** | **String** | The state of the project. running Running halted Halted | [readonly]

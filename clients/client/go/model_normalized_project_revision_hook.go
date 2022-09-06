@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.28
+API version: v0.2.0-alpha.29
 Contact: support@ory.sh
 */
 
@@ -24,7 +24,9 @@ type NormalizedProjectRevisionHook struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// The Hook Type
 	Hook string `json:"hook"`
+	// ID of the entry
 	Id *string `json:"id,omitempty"`
+	// The Revision's ID this schema belongs to
 	ProjectRevisionId *string `json:"project_revision_id,omitempty"`
 	// Last Time Project's Revision was Updated
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
@@ -42,6 +44,8 @@ type NormalizedProjectRevisionHook struct {
 	WebHookConfigAuthType *string `json:"web_hook_config_auth_type,omitempty"`
 	// URI pointing to the JsonNet template used for Web-Hook payload generation. Only used for those HTTP methods, which support HTTP body payloads.
 	WebHookConfigBody *string `json:"web_hook_config_body,omitempty"`
+	// If enabled allows the web hook to interrupt / abort the self-service flow. It only applies to certain flows (registration/verification/login/settings) and requires a valid response format.
+	WebHookConfigCanInterrupt *bool `json:"web_hook_config_can_interrupt,omitempty"`
 	// The HTTP method to use (GET, POST, etc) for the Web-Hook
 	WebHookConfigMethod *string `json:"web_hook_config_method,omitempty"`
 	// Whether to ignore the Web Hook response
@@ -469,6 +473,38 @@ func (o *NormalizedProjectRevisionHook) SetWebHookConfigBody(v string) {
 	o.WebHookConfigBody = &v
 }
 
+// GetWebHookConfigCanInterrupt returns the WebHookConfigCanInterrupt field value if set, zero value otherwise.
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigCanInterrupt() bool {
+	if o == nil || o.WebHookConfigCanInterrupt == nil {
+		var ret bool
+		return ret
+	}
+	return *o.WebHookConfigCanInterrupt
+}
+
+// GetWebHookConfigCanInterruptOk returns a tuple with the WebHookConfigCanInterrupt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigCanInterruptOk() (*bool, bool) {
+	if o == nil || o.WebHookConfigCanInterrupt == nil {
+		return nil, false
+	}
+	return o.WebHookConfigCanInterrupt, true
+}
+
+// HasWebHookConfigCanInterrupt returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionHook) HasWebHookConfigCanInterrupt() bool {
+	if o != nil && o.WebHookConfigCanInterrupt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetWebHookConfigCanInterrupt gets a reference to the given bool and assigns it to the WebHookConfigCanInterrupt field.
+func (o *NormalizedProjectRevisionHook) SetWebHookConfigCanInterrupt(v bool) {
+	o.WebHookConfigCanInterrupt = &v
+}
+
 // GetWebHookConfigMethod returns the WebHookConfigMethod field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionHook) GetWebHookConfigMethod() string {
 	if o == nil || o.WebHookConfigMethod == nil {
@@ -605,6 +641,9 @@ func (o NormalizedProjectRevisionHook) MarshalJSON() ([]byte, error) {
 	}
 	if o.WebHookConfigBody != nil {
 		toSerialize["web_hook_config_body"] = o.WebHookConfigBody
+	}
+	if o.WebHookConfigCanInterrupt != nil {
+		toSerialize["web_hook_config_can_interrupt"] = o.WebHookConfigCanInterrupt
 	}
 	if o.WebHookConfigMethod != nil {
 		toSerialize["web_hook_config_method"] = o.WebHookConfigMethod

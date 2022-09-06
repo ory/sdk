@@ -22,7 +22,7 @@ class RefreshTokenHookResponse {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  AcceptOAuth2ConsentRequestSession? session;
+  ConsentRequestSession? session;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is RefreshTokenHookResponse &&
@@ -65,7 +65,7 @@ class RefreshTokenHookResponse {
       }());
 
       return RefreshTokenHookResponse(
-        session: AcceptOAuth2ConsentRequestSession.fromJson(json[r'session']),
+        session: ConsentRequestSession.fromJson(json[r'session']),
       );
     }
     return null;

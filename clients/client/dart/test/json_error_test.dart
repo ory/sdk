@@ -21,6 +21,24 @@ void main() {
       // TODO
     });
 
+    // Debug contains debug information. This is usually not available and has to be enabled.
+    // String errorDebug
+    test('to test the property `errorDebug`', () async {
+      // TODO
+    });
+
+    // Description contains further information on the nature of the error.
+    // String errorDescription
+    test('to test the property `errorDescription`', () async {
+      // TODO
+    });
+
+    // Code represents the error status code (404, 403, 401, ...).
+    // int statusCode
+    test('to test the property `statusCode`', () async {
+      // TODO
+    });
+
 
   });
 
