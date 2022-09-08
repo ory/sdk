@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 VisualStudioVersion = 12.0.0.0
 MinimumVisualStudioVersion = 10.0.0.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ory.Client", "src\Ory.Client\Ory.Client.csproj", "{372E5AC8-358D-4EFF-A125-E97E02E96A7B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ory.Client", "src\Ory.Client\Ory.Client.csproj", "{AD341D6B-91E7-4ACA-BEA9-1DCD0868170D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ory.Client.Test", "src\Ory.Client.Test\Ory.Client.Test.csproj", "{19F1DEBC-DE5E-4517-8062-F000CD499087}"
 EndProject
@@ -12,10 +12,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{372E5AC8-358D-4EFF-A125-E97E02E96A7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{372E5AC8-358D-4EFF-A125-E97E02E96A7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{372E5AC8-358D-4EFF-A125-E97E02E96A7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{372E5AC8-358D-4EFF-A125-E97E02E96A7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD341D6B-91E7-4ACA-BEA9-1DCD0868170D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD341D6B-91E7-4ACA-BEA9-1DCD0868170D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD341D6B-91E7-4ACA-BEA9-1DCD0868170D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD341D6B-91E7-4ACA-BEA9-1DCD0868170D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Release|Any CPU.ActiveCfg = Release|Any CPU
