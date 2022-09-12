@@ -3,7 +3,7 @@
 #
 
 name: 'ory_client'
-version: '0.2.0-alpha.38'
+version: '0.2.0-alpha.39'
 description: 'OpenAPI API client'
 homepage: 'https://www.ory.sh'
 environment:
