@@ -5,9 +5,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**session** | [**ConsentRequestSession**](ConsentRequestSession.md) |  |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**session** | [**ConsentRequestSession**](ConsentRequestSession.md) |  |  [optional] |
 
 
 

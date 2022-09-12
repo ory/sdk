@@ -2,40 +2,40 @@
 
 All URIs are relative to *https://playground.projects.oryapis.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**acceptConsentRequest**](AdminApi.md#acceptConsentRequest) | **PUT** /oauth2/auth/requests/consent/accept | Accept a Consent Request
-[**acceptLoginRequest**](AdminApi.md#acceptLoginRequest) | **PUT** /oauth2/auth/requests/login/accept | Accept a Login Request
-[**acceptLogoutRequest**](AdminApi.md#acceptLogoutRequest) | **PUT** /oauth2/auth/requests/logout/accept | Accept a Logout Request
-[**createJsonWebKeySet**](AdminApi.md#createJsonWebKeySet) | **POST** /keys/{set} | Generate a New JSON Web Key
-[**createOAuth2Client**](AdminApi.md#createOAuth2Client) | **POST** /clients | Create an OAuth 2.0 Client
-[**deleteJsonWebKey**](AdminApi.md#deleteJsonWebKey) | **DELETE** /keys/{set}/{kid} | Delete a JSON Web Key
-[**deleteJsonWebKeySet**](AdminApi.md#deleteJsonWebKeySet) | **DELETE** /keys/{set} | Delete a JSON Web Key Set
-[**deleteOAuth2Client**](AdminApi.md#deleteOAuth2Client) | **DELETE** /clients/{id} | Deletes an OAuth 2.0 Client
-[**deleteOAuth2Token**](AdminApi.md#deleteOAuth2Token) | **DELETE** /oauth2/tokens | Delete OAuth2 Access Tokens from a Client
-[**deleteTrustedJwtGrantIssuer**](AdminApi.md#deleteTrustedJwtGrantIssuer) | **DELETE** /trust/grants/jwt-bearer/issuers/{id} | Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer
-[**flushInactiveOAuth2Tokens**](AdminApi.md#flushInactiveOAuth2Tokens) | **POST** /oauth2/flush | Flush Expired OAuth2 Access Tokens
-[**getConsentRequest**](AdminApi.md#getConsentRequest) | **GET** /oauth2/auth/requests/consent | Get Consent Request Information
-[**getJsonWebKey**](AdminApi.md#getJsonWebKey) | **GET** /keys/{set}/{kid} | Fetch a JSON Web Key
-[**getJsonWebKeySet**](AdminApi.md#getJsonWebKeySet) | **GET** /keys/{set} | Retrieve a JSON Web Key Set
-[**getLoginRequest**](AdminApi.md#getLoginRequest) | **GET** /oauth2/auth/requests/login | Get a Login Request
-[**getLogoutRequest**](AdminApi.md#getLogoutRequest) | **GET** /oauth2/auth/requests/logout | Get a Logout Request
-[**getOAuth2Client**](AdminApi.md#getOAuth2Client) | **GET** /clients/{id} | Get an OAuth 2.0 Client
-[**getTrustedJwtGrantIssuer**](AdminApi.md#getTrustedJwtGrantIssuer) | **GET** /trust/grants/jwt-bearer/issuers/{id} | Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
-[**introspectOAuth2Token**](AdminApi.md#introspectOAuth2Token) | **POST** /oauth2/introspect | Introspect OAuth2 Tokens
-[**listOAuth2Clients**](AdminApi.md#listOAuth2Clients) | **GET** /clients | List OAuth 2.0 Clients
-[**listSubjectConsentSessions**](AdminApi.md#listSubjectConsentSessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject
-[**listTrustedJwtGrantIssuers**](AdminApi.md#listTrustedJwtGrantIssuers) | **GET** /trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
-[**patchOAuth2Client**](AdminApi.md#patchOAuth2Client) | **PATCH** /clients/{id} | Patch an OAuth 2.0 Client
-[**rejectConsentRequest**](AdminApi.md#rejectConsentRequest) | **PUT** /oauth2/auth/requests/consent/reject | Reject a Consent Request
-[**rejectLoginRequest**](AdminApi.md#rejectLoginRequest) | **PUT** /oauth2/auth/requests/login/reject | Reject a Login Request
-[**rejectLogoutRequest**](AdminApi.md#rejectLogoutRequest) | **PUT** /oauth2/auth/requests/logout/reject | Reject a Logout Request
-[**revokeAuthenticationSession**](AdminApi.md#revokeAuthenticationSession) | **DELETE** /oauth2/auth/sessions/login | Invalidates All Login Sessions of a Certain User Invalidates a Subject&#39;s Authentication Session
-[**revokeConsentSessions**](AdminApi.md#revokeConsentSessions) | **DELETE** /oauth2/auth/sessions/consent | Revokes Consent Sessions of a Subject for a Specific OAuth 2.0 Client
-[**trustJwtGrantIssuer**](AdminApi.md#trustJwtGrantIssuer) | **POST** /trust/grants/jwt-bearer/issuers | Trust an OAuth2 JWT Bearer Grant Type Issuer
-[**updateJsonWebKey**](AdminApi.md#updateJsonWebKey) | **PUT** /keys/{set}/{kid} | Update a JSON Web Key
-[**updateJsonWebKeySet**](AdminApi.md#updateJsonWebKeySet) | **PUT** /keys/{set} | Update a JSON Web Key Set
-[**updateOAuth2Client**](AdminApi.md#updateOAuth2Client) | **PUT** /clients/{id} | Update an OAuth 2.0 Client
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**acceptConsentRequest**](AdminApi.md#acceptConsentRequest) | **PUT** /oauth2/auth/requests/consent/accept | Accept a Consent Request |
+| [**acceptLoginRequest**](AdminApi.md#acceptLoginRequest) | **PUT** /oauth2/auth/requests/login/accept | Accept a Login Request |
+| [**acceptLogoutRequest**](AdminApi.md#acceptLogoutRequest) | **PUT** /oauth2/auth/requests/logout/accept | Accept a Logout Request |
+| [**createJsonWebKeySet**](AdminApi.md#createJsonWebKeySet) | **POST** /keys/{set} | Generate a New JSON Web Key |
+| [**createOAuth2Client**](AdminApi.md#createOAuth2Client) | **POST** /clients | Create an OAuth 2.0 Client |
+| [**deleteJsonWebKey**](AdminApi.md#deleteJsonWebKey) | **DELETE** /keys/{set}/{kid} | Delete a JSON Web Key |
+| [**deleteJsonWebKeySet**](AdminApi.md#deleteJsonWebKeySet) | **DELETE** /keys/{set} | Delete a JSON Web Key Set |
+| [**deleteOAuth2Client**](AdminApi.md#deleteOAuth2Client) | **DELETE** /clients/{id} | Deletes an OAuth 2.0 Client |
+| [**deleteOAuth2Token**](AdminApi.md#deleteOAuth2Token) | **DELETE** /oauth2/tokens | Delete OAuth2 Access Tokens from a Client |
+| [**deleteTrustedJwtGrantIssuer**](AdminApi.md#deleteTrustedJwtGrantIssuer) | **DELETE** /trust/grants/jwt-bearer/issuers/{id} | Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer |
+| [**flushInactiveOAuth2Tokens**](AdminApi.md#flushInactiveOAuth2Tokens) | **POST** /oauth2/flush | Flush Expired OAuth2 Access Tokens |
+| [**getConsentRequest**](AdminApi.md#getConsentRequest) | **GET** /oauth2/auth/requests/consent | Get Consent Request Information |
+| [**getJsonWebKey**](AdminApi.md#getJsonWebKey) | **GET** /keys/{set}/{kid} | Fetch a JSON Web Key |
+| [**getJsonWebKeySet**](AdminApi.md#getJsonWebKeySet) | **GET** /keys/{set} | Retrieve a JSON Web Key Set |
+| [**getLoginRequest**](AdminApi.md#getLoginRequest) | **GET** /oauth2/auth/requests/login | Get a Login Request |
+| [**getLogoutRequest**](AdminApi.md#getLogoutRequest) | **GET** /oauth2/auth/requests/logout | Get a Logout Request |
+| [**getOAuth2Client**](AdminApi.md#getOAuth2Client) | **GET** /clients/{id} | Get an OAuth 2.0 Client |
+| [**getTrustedJwtGrantIssuer**](AdminApi.md#getTrustedJwtGrantIssuer) | **GET** /trust/grants/jwt-bearer/issuers/{id} | Get a Trusted OAuth2 JWT Bearer Grant Type Issuer |
+| [**introspectOAuth2Token**](AdminApi.md#introspectOAuth2Token) | **POST** /oauth2/introspect | Introspect OAuth2 Tokens |
+| [**listOAuth2Clients**](AdminApi.md#listOAuth2Clients) | **GET** /clients | List OAuth 2.0 Clients |
+| [**listSubjectConsentSessions**](AdminApi.md#listSubjectConsentSessions) | **GET** /oauth2/auth/sessions/consent | Lists All Consent Sessions of a Subject |
+| [**listTrustedJwtGrantIssuers**](AdminApi.md#listTrustedJwtGrantIssuers) | **GET** /trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers |
+| [**patchOAuth2Client**](AdminApi.md#patchOAuth2Client) | **PATCH** /clients/{id} | Patch an OAuth 2.0 Client |
+| [**rejectConsentRequest**](AdminApi.md#rejectConsentRequest) | **PUT** /oauth2/auth/requests/consent/reject | Reject a Consent Request |
+| [**rejectLoginRequest**](AdminApi.md#rejectLoginRequest) | **PUT** /oauth2/auth/requests/login/reject | Reject a Login Request |
+| [**rejectLogoutRequest**](AdminApi.md#rejectLogoutRequest) | **PUT** /oauth2/auth/requests/logout/reject | Reject a Logout Request |
+| [**revokeAuthenticationSession**](AdminApi.md#revokeAuthenticationSession) | **DELETE** /oauth2/auth/sessions/login | Invalidates All Login Sessions of a Certain User Invalidates a Subject&#39;s Authentication Session |
+| [**revokeConsentSessions**](AdminApi.md#revokeConsentSessions) | **DELETE** /oauth2/auth/sessions/consent | Revokes Consent Sessions of a Subject for a Specific OAuth 2.0 Client |
+| [**trustJwtGrantIssuer**](AdminApi.md#trustJwtGrantIssuer) | **POST** /trust/grants/jwt-bearer/issuers | Trust an OAuth2 JWT Bearer Grant Type Issuer |
+| [**updateJsonWebKey**](AdminApi.md#updateJsonWebKey) | **PUT** /keys/{set}/{kid} | Update a JSON Web Key |
+| [**updateJsonWebKeySet**](AdminApi.md#updateJsonWebKeySet) | **PUT** /keys/{set} | Update a JSON Web Key Set |
+| [**updateOAuth2Client**](AdminApi.md#updateOAuth2Client) | **PUT** /clients/{id} | Update an OAuth 2.0 Client |
 
 
 <a name="acceptConsentRequest"></a>
@@ -79,10 +79,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **consentChallenge** | **String**|  |
- **acceptConsentRequest** | [**AcceptConsentRequest**](AcceptConsentRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **consentChallenge** | **String**|  | |
+| **acceptConsentRequest** | [**AcceptConsentRequest**](AcceptConsentRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -100,9 +100,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | completedRequest |  -  |
-**404** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | completedRequest |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="acceptLoginRequest"></a>
 # **acceptLoginRequest**
@@ -145,10 +145,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **loginChallenge** | **String**|  |
- **acceptLoginRequest** | [**AcceptLoginRequest**](AcceptLoginRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **loginChallenge** | **String**|  | |
+| **acceptLoginRequest** | [**AcceptLoginRequest**](AcceptLoginRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -166,11 +166,11 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | completedRequest |  -  |
-**400** | jsonError |  -  |
-**401** | jsonError |  -  |
-**404** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | completedRequest |  -  |
+| **400** | jsonError |  -  |
+| **401** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="acceptLogoutRequest"></a>
 # **acceptLogoutRequest**
@@ -212,9 +212,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **logoutChallenge** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **logoutChallenge** | **String**|  | |
 
 ### Return type
 
@@ -232,9 +232,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | completedRequest |  -  |
-**404** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | completedRequest |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="createJsonWebKeySet"></a>
 # **createJsonWebKeySet**
@@ -277,10 +277,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **String**| The set |
- **jsonWebKeySetGeneratorRequest** | [**JsonWebKeySetGeneratorRequest**](JsonWebKeySetGeneratorRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **set** | **String**| The set | |
+| **jsonWebKeySetGeneratorRequest** | [**JsonWebKeySetGeneratorRequest**](JsonWebKeySetGeneratorRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -298,10 +298,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | JSONWebKeySet |  -  |
-**401** | jsonError |  -  |
-**403** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **201** | JSONWebKeySet |  -  |
+| **401** | jsonError |  -  |
+| **403** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="createOAuth2Client"></a>
 # **createOAuth2Client**
@@ -343,9 +343,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **oauth2Client** | [**OAuth2Client**](OAuth2Client.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **oauth2Client** | [**OAuth2Client**](OAuth2Client.md)|  | |
 
 ### Return type
 
@@ -363,8 +363,8 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | oAuth2Client |  -  |
-**0** | jsonError |  -  |
+| **201** | oAuth2Client |  -  |
+| **0** | jsonError |  -  |
 
 <a name="deleteJsonWebKey"></a>
 # **deleteJsonWebKey**
@@ -406,10 +406,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **kid** | **String**| The kid of the desired key |
- **set** | **String**| The set |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **kid** | **String**| The kid of the desired key | |
+| **set** | **String**| The set | |
 
 ### Return type
 
@@ -427,10 +427,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**401** | jsonError |  -  |
-**403** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **401** | jsonError |  -  |
+| **403** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="deleteJsonWebKeySet"></a>
 # **deleteJsonWebKeySet**
@@ -471,9 +471,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **String**| The set |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **set** | **String**| The set | |
 
 ### Return type
 
@@ -491,10 +491,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**401** | jsonError |  -  |
-**403** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **401** | jsonError |  -  |
+| **403** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="deleteOAuth2Client"></a>
 # **deleteOAuth2Client**
@@ -535,9 +535,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The id of the OAuth 2.0 Client. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The id of the OAuth 2.0 Client. | |
 
 ### Return type
 
@@ -555,8 +555,8 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | jsonError |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **0** | jsonError |  -  |
 
 <a name="deleteOAuth2Token"></a>
 # **deleteOAuth2Token**
@@ -597,9 +597,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **clientId** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **clientId** | **String**|  | |
 
 ### Return type
 
@@ -617,9 +617,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**401** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **401** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="deleteTrustedJwtGrantIssuer"></a>
 # **deleteTrustedJwtGrantIssuer**
@@ -660,9 +660,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The id of the desired grant |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The id of the desired grant | |
 
 ### Return type
 
@@ -680,9 +680,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **404** | genericError |  -  |
+| **500** | genericError |  -  |
 
 <a name="flushInactiveOAuth2Tokens"></a>
 # **flushInactiveOAuth2Tokens**
@@ -723,9 +723,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **flushInactiveOAuth2TokensRequest** | [**FlushInactiveOAuth2TokensRequest**](FlushInactiveOAuth2TokensRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **flushInactiveOAuth2TokensRequest** | [**FlushInactiveOAuth2TokensRequest**](FlushInactiveOAuth2TokensRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -743,9 +743,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**401** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **401** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="getConsentRequest"></a>
 # **getConsentRequest**
@@ -787,9 +787,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **consentChallenge** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **consentChallenge** | **String**|  | |
 
 ### Return type
 
@@ -807,10 +807,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | consentRequest |  -  |
-**404** | jsonError |  -  |
-**410** | requestWasHandledResponse |  -  |
-**500** | jsonError |  -  |
+| **200** | consentRequest |  -  |
+| **404** | jsonError |  -  |
+| **410** | requestWasHandledResponse |  -  |
+| **500** | jsonError |  -  |
 
 <a name="getJsonWebKey"></a>
 # **getJsonWebKey**
@@ -853,10 +853,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **kid** | **String**| The kid of the desired key |
- **set** | **String**| The set |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **kid** | **String**| The kid of the desired key | |
+| **set** | **String**| The set | |
 
 ### Return type
 
@@ -874,9 +874,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | JSONWebKeySet |  -  |
-**404** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | JSONWebKeySet |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="getJsonWebKeySet"></a>
 # **getJsonWebKeySet**
@@ -918,9 +918,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **String**| The set |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **set** | **String**| The set | |
 
 ### Return type
 
@@ -938,10 +938,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | JSONWebKeySet |  -  |
-**401** | jsonError |  -  |
-**403** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | JSONWebKeySet |  -  |
+| **401** | jsonError |  -  |
+| **403** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="getLoginRequest"></a>
 # **getLoginRequest**
@@ -983,9 +983,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **loginChallenge** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **loginChallenge** | **String**|  | |
 
 ### Return type
 
@@ -1003,11 +1003,11 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | loginRequest |  -  |
-**400** | jsonError |  -  |
-**404** | jsonError |  -  |
-**410** | requestWasHandledResponse |  -  |
-**500** | jsonError |  -  |
+| **200** | loginRequest |  -  |
+| **400** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **410** | requestWasHandledResponse |  -  |
+| **500** | jsonError |  -  |
 
 <a name="getLogoutRequest"></a>
 # **getLogoutRequest**
@@ -1049,9 +1049,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **logoutChallenge** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **logoutChallenge** | **String**|  | |
 
 ### Return type
 
@@ -1069,10 +1069,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | logoutRequest |  -  |
-**404** | jsonError |  -  |
-**410** | requestWasHandledResponse |  -  |
-**500** | jsonError |  -  |
+| **200** | logoutRequest |  -  |
+| **404** | jsonError |  -  |
+| **410** | requestWasHandledResponse |  -  |
+| **500** | jsonError |  -  |
 
 <a name="getOAuth2Client"></a>
 # **getOAuth2Client**
@@ -1114,9 +1114,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The id of the OAuth 2.0 Client. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The id of the OAuth 2.0 Client. | |
 
 ### Return type
 
@@ -1134,8 +1134,8 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2Client |  -  |
-**0** | jsonError |  -  |
+| **200** | oAuth2Client |  -  |
+| **0** | jsonError |  -  |
 
 <a name="getTrustedJwtGrantIssuer"></a>
 # **getTrustedJwtGrantIssuer**
@@ -1177,9 +1177,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The id of the desired grant |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The id of the desired grant | |
 
 ### Return type
 
@@ -1197,9 +1197,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | trustedJwtGrantIssuer |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+| **200** | trustedJwtGrantIssuer |  -  |
+| **404** | genericError |  -  |
+| **500** | genericError |  -  |
 
 <a name="introspectOAuth2Token"></a>
 # **introspectOAuth2Token**
@@ -1242,10 +1242,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **String**| The string value of the token. For access tokens, this is the \\\&quot;access_token\\\&quot; value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\&quot;refresh_token\\\&quot; value returned. |
- **scope** | **String**| An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**| The string value of the token. For access tokens, this is the \\\&quot;access_token\\\&quot; value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\&quot;refresh_token\\\&quot; value returned. | |
+| **scope** | **String**| An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. | [optional] |
 
 ### Return type
 
@@ -1263,9 +1263,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2TokenIntrospection |  -  |
-**401** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | oAuth2TokenIntrospection |  -  |
+| **401** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="listOAuth2Clients"></a>
 # **listOAuth2Clients**
@@ -1310,12 +1310,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **limit** | **Long**| The maximum amount of clients to returned, upper bound is 500 clients. | [optional]
- **offset** | **Long**| The offset from where to start looking. | [optional]
- **clientName** | **String**| The name of the clients to filter by. | [optional]
- **owner** | **String**| The owner of the clients to filter by. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **limit** | **Long**| The maximum amount of clients to returned, upper bound is 500 clients. | [optional] |
+| **offset** | **Long**| The offset from where to start looking. | [optional] |
+| **clientName** | **String**| The name of the clients to filter by. | [optional] |
+| **owner** | **String**| The owner of the clients to filter by. | [optional] |
 
 ### Return type
 
@@ -1333,8 +1333,8 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A list of clients. |  -  |
-**0** | jsonError |  -  |
+| **200** | A list of clients. |  -  |
+| **0** | jsonError |  -  |
 
 <a name="listSubjectConsentSessions"></a>
 # **listSubjectConsentSessions**
@@ -1378,11 +1378,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subject** | **String**|  |
- **limit** | **Long**| The maximum amount of consent sessions to be returned, upper bound is 500 sessions. | [optional]
- **offset** | **Long**| The offset from where to start looking. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **subject** | **String**|  | |
+| **limit** | **Long**| The maximum amount of consent sessions to be returned, upper bound is 500 sessions. | [optional] |
+| **offset** | **Long**| The offset from where to start looking. | [optional] |
 
 ### Return type
 
@@ -1400,9 +1400,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A list of used consent requests. |  -  |
-**400** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | A list of used consent requests. |  -  |
+| **400** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="listTrustedJwtGrantIssuers"></a>
 # **listTrustedJwtGrantIssuers**
@@ -1446,11 +1446,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **issuer** | **String**| If optional \&quot;issuer\&quot; is supplied, only jwt-bearer grants with this issuer will be returned. | [optional]
- **limit** | **Long**| The maximum amount of policies returned, upper bound is 500 policies | [optional]
- **offset** | **Long**| The offset from where to start looking. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **issuer** | **String**| If optional \&quot;issuer\&quot; is supplied, only jwt-bearer grants with this issuer will be returned. | [optional] |
+| **limit** | **Long**| The maximum amount of policies returned, upper bound is 500 policies | [optional] |
+| **offset** | **Long**| The offset from where to start looking. | [optional] |
 
 ### Return type
 
@@ -1468,8 +1468,8 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | trustedJwtGrantIssuers |  -  |
-**500** | genericError |  -  |
+| **200** | trustedJwtGrantIssuers |  -  |
+| **500** | genericError |  -  |
 
 <a name="patchOAuth2Client"></a>
 # **patchOAuth2Client**
@@ -1512,10 +1512,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The id of the OAuth 2.0 Client. |
- **patchDocument** | [**List&lt;PatchDocument&gt;**](PatchDocument.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The id of the OAuth 2.0 Client. | |
+| **patchDocument** | [**List&lt;PatchDocument&gt;**](PatchDocument.md)|  | |
 
 ### Return type
 
@@ -1533,8 +1533,8 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2Client |  -  |
-**0** | jsonError |  -  |
+| **200** | oAuth2Client |  -  |
+| **0** | jsonError |  -  |
 
 <a name="rejectConsentRequest"></a>
 # **rejectConsentRequest**
@@ -1577,10 +1577,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **consentChallenge** | **String**|  |
- **rejectRequest** | [**RejectRequest**](RejectRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **consentChallenge** | **String**|  | |
+| **rejectRequest** | [**RejectRequest**](RejectRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1598,9 +1598,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | completedRequest |  -  |
-**404** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | completedRequest |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="rejectLoginRequest"></a>
 # **rejectLoginRequest**
@@ -1643,10 +1643,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **loginChallenge** | **String**|  |
- **rejectRequest** | [**RejectRequest**](RejectRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **loginChallenge** | **String**|  | |
+| **rejectRequest** | [**RejectRequest**](RejectRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1664,11 +1664,11 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | completedRequest |  -  |
-**400** | jsonError |  -  |
-**401** | jsonError |  -  |
-**404** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | completedRequest |  -  |
+| **400** | jsonError |  -  |
+| **401** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="rejectLogoutRequest"></a>
 # **rejectLogoutRequest**
@@ -1710,10 +1710,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **logoutChallenge** | **String**|  |
- **rejectRequest** | [**RejectRequest**](RejectRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **logoutChallenge** | **String**|  | |
+| **rejectRequest** | [**RejectRequest**](RejectRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1731,9 +1731,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**404** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="revokeAuthenticationSession"></a>
 # **revokeAuthenticationSession**
@@ -1774,9 +1774,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subject** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **subject** | **String**|  | |
 
 ### Return type
 
@@ -1794,9 +1794,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="revokeConsentSessions"></a>
 # **revokeConsentSessions**
@@ -1839,11 +1839,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subject** | **String**| The subject (Subject) who&#39;s consent sessions should be deleted. |
- **client** | **String**| If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID | [optional]
- **all** | **Boolean**| If set to &#x60;?all&#x3D;true&#x60;, deletes all consent sessions by the Subject that have been granted. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **subject** | **String**| The subject (Subject) who&#39;s consent sessions should be deleted. | |
+| **client** | **String**| If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID | [optional] |
+| **all** | **Boolean**| If set to &#x60;?all&#x3D;true&#x60;, deletes all consent sessions by the Subject that have been granted. | [optional] |
 
 ### Return type
 
@@ -1861,9 +1861,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="trustJwtGrantIssuer"></a>
 # **trustJwtGrantIssuer**
@@ -1905,9 +1905,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **trustJwtGrantIssuerBody** | [**TrustJwtGrantIssuerBody**](TrustJwtGrantIssuerBody.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **trustJwtGrantIssuerBody** | [**TrustJwtGrantIssuerBody**](TrustJwtGrantIssuerBody.md)|  | [optional] |
 
 ### Return type
 
@@ -1925,10 +1925,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | trustedJwtGrantIssuer |  -  |
-**400** | genericError |  -  |
-**409** | genericError |  -  |
-**500** | genericError |  -  |
+| **201** | trustedJwtGrantIssuer |  -  |
+| **400** | genericError |  -  |
+| **409** | genericError |  -  |
+| **500** | genericError |  -  |
 
 <a name="updateJsonWebKey"></a>
 # **updateJsonWebKey**
@@ -1972,11 +1972,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **kid** | **String**| The kid of the desired key |
- **set** | **String**| The set |
- **jsONWebKey** | [**JSONWebKey**](JSONWebKey.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **kid** | **String**| The kid of the desired key | |
+| **set** | **String**| The set | |
+| **jsONWebKey** | [**JSONWebKey**](JSONWebKey.md)|  | [optional] |
 
 ### Return type
 
@@ -1994,10 +1994,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | JSONWebKey |  -  |
-**401** | jsonError |  -  |
-**403** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | JSONWebKey |  -  |
+| **401** | jsonError |  -  |
+| **403** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="updateJsonWebKeySet"></a>
 # **updateJsonWebKeySet**
@@ -2040,10 +2040,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **String**| The set |
- **jsONWebKeySet** | [**JSONWebKeySet**](JSONWebKeySet.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **set** | **String**| The set | |
+| **jsONWebKeySet** | [**JSONWebKeySet**](JSONWebKeySet.md)|  | [optional] |
 
 ### Return type
 
@@ -2061,10 +2061,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | JSONWebKeySet |  -  |
-**401** | jsonError |  -  |
-**403** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | JSONWebKeySet |  -  |
+| **401** | jsonError |  -  |
+| **403** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="updateOAuth2Client"></a>
 # **updateOAuth2Client**
@@ -2107,10 +2107,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The id of the OAuth 2.0 Client. |
- **oauth2Client** | [**OAuth2Client**](OAuth2Client.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The id of the OAuth 2.0 Client. | |
+| **oauth2Client** | [**OAuth2Client**](OAuth2Client.md)|  | |
 
 ### Return type
 
@@ -2128,6 +2128,6 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2Client |  -  |
-**0** | jsonError |  -  |
+| **200** | oAuth2Client |  -  |
+| **0** | jsonError |  -  |
 

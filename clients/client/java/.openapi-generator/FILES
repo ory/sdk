@@ -1,3 +1,4 @@
+.github/workflows/maven.yml
 .gitignore
 .openapi-generator-ignore
 .travis.yml
@@ -25,6 +26,7 @@ docs/CompletedRequest.md
 docs/ConsentRequest.md
 docs/ConsentRequestSession.md
 docs/CreateCustomHostnameBody.md
+docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
 docs/CreateSubscriptionPayload.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
@@ -36,6 +38,7 @@ docs/GenericErrorContent.md
 docs/GetCheckResponse.md
 docs/GetManagedIdentitySchemaLocation.md
 docs/GetRelationTuplesResponse.md
+docs/GetVersion200Response.md
 docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
 docs/Identity.md
@@ -47,13 +50,11 @@ docs/IdentityCredentialsType.md
 docs/IdentitySchemaContainer.md
 docs/IdentitySchemaPreset.md
 docs/IdentityState.md
-docs/InlineObject3.md
-docs/InlineResponse200.md
-docs/InlineResponse2001.md
-docs/InlineResponse503.md
 docs/InvitePayload.md
 docs/IsOwnerForProjectBySlug.md
 docs/IsOwnerForProjectBySlugPayload.md
+docs/IsReady200Response.md
+docs/IsReady503Response.md
 docs/JSONWebKey.md
 docs/JSONWebKeySet.md
 docs/JsonError.md
@@ -211,6 +212,7 @@ src/main/java/sh/ory/auth/OAuth.java
 src/main/java/sh/ory/auth/OAuthFlow.java
 src/main/java/sh/ory/auth/OAuthOkHttpClient.java
 src/main/java/sh/ory/auth/RetryingOAuth.java
+src/main/java/sh/ory/model/AbstractOpenApiSchema.java
 src/main/java/sh/ory/model/AcceptConsentRequest.java
 src/main/java/sh/ory/model/AcceptLoginRequest.java
 src/main/java/sh/ory/model/ActiveProject.java
@@ -230,6 +232,7 @@ src/main/java/sh/ory/model/CompletedRequest.java
 src/main/java/sh/ory/model/ConsentRequest.java
 src/main/java/sh/ory/model/ConsentRequestSession.java
 src/main/java/sh/ory/model/CreateCustomHostnameBody.java
+src/main/java/sh/ory/model/CreateProjectApiKeyRequest.java
 src/main/java/sh/ory/model/CreateProjectBody.java
 src/main/java/sh/ory/model/CreateSubscriptionPayload.java
 src/main/java/sh/ory/model/ErrorAuthenticatorAssuranceLevelNotSatisfied.java
@@ -241,6 +244,7 @@ src/main/java/sh/ory/model/GenericErrorContent.java
 src/main/java/sh/ory/model/GetCheckResponse.java
 src/main/java/sh/ory/model/GetManagedIdentitySchemaLocation.java
 src/main/java/sh/ory/model/GetRelationTuplesResponse.java
+src/main/java/sh/ory/model/GetVersion200Response.java
 src/main/java/sh/ory/model/HealthNotReadyStatus.java
 src/main/java/sh/ory/model/HealthStatus.java
 src/main/java/sh/ory/model/Identity.java
@@ -252,13 +256,11 @@ src/main/java/sh/ory/model/IdentityCredentialsType.java
 src/main/java/sh/ory/model/IdentitySchemaContainer.java
 src/main/java/sh/ory/model/IdentitySchemaPreset.java
 src/main/java/sh/ory/model/IdentityState.java
-src/main/java/sh/ory/model/InlineObject3.java
-src/main/java/sh/ory/model/InlineResponse200.java
-src/main/java/sh/ory/model/InlineResponse2001.java
-src/main/java/sh/ory/model/InlineResponse503.java
 src/main/java/sh/ory/model/InvitePayload.java
 src/main/java/sh/ory/model/IsOwnerForProjectBySlug.java
 src/main/java/sh/ory/model/IsOwnerForProjectBySlugPayload.java
+src/main/java/sh/ory/model/IsReady200Response.java
+src/main/java/sh/ory/model/IsReady503Response.java
 src/main/java/sh/ory/model/JSONWebKey.java
 src/main/java/sh/ory/model/JSONWebKeySet.java
 src/main/java/sh/ory/model/JsonError.java
@@ -400,6 +402,7 @@ src/test/java/sh/ory/model/CompletedRequestTest.java
 src/test/java/sh/ory/model/ConsentRequestSessionTest.java
 src/test/java/sh/ory/model/ConsentRequestTest.java
 src/test/java/sh/ory/model/CreateCustomHostnameBodyTest.java
+src/test/java/sh/ory/model/CreateProjectApiKeyRequestTest.java
 src/test/java/sh/ory/model/CreateProjectBodyTest.java
 src/test/java/sh/ory/model/CreateSubscriptionPayloadTest.java
 src/test/java/sh/ory/model/ErrorAuthenticatorAssuranceLevelNotSatisfiedTest.java
@@ -411,6 +414,7 @@ src/test/java/sh/ory/model/GenericErrorTest.java
 src/test/java/sh/ory/model/GetCheckResponseTest.java
 src/test/java/sh/ory/model/GetManagedIdentitySchemaLocationTest.java
 src/test/java/sh/ory/model/GetRelationTuplesResponseTest.java
+src/test/java/sh/ory/model/GetVersion200ResponseTest.java
 src/test/java/sh/ory/model/HealthNotReadyStatusTest.java
 src/test/java/sh/ory/model/HealthStatusTest.java
 src/test/java/sh/ory/model/IdentityCredentialsOidcProviderTest.java
@@ -422,13 +426,11 @@ src/test/java/sh/ory/model/IdentitySchemaContainerTest.java
 src/test/java/sh/ory/model/IdentitySchemaPresetTest.java
 src/test/java/sh/ory/model/IdentityStateTest.java
 src/test/java/sh/ory/model/IdentityTest.java
-src/test/java/sh/ory/model/InlineObject3Test.java
-src/test/java/sh/ory/model/InlineResponse2001Test.java
-src/test/java/sh/ory/model/InlineResponse200Test.java
-src/test/java/sh/ory/model/InlineResponse503Test.java
 src/test/java/sh/ory/model/InvitePayloadTest.java
 src/test/java/sh/ory/model/IsOwnerForProjectBySlugPayloadTest.java
 src/test/java/sh/ory/model/IsOwnerForProjectBySlugTest.java
+src/test/java/sh/ory/model/IsReady200ResponseTest.java
+src/test/java/sh/ory/model/IsReady503ResponseTest.java
 src/test/java/sh/ory/model/JSONWebKeySetTest.java
 src/test/java/sh/ory/model/JSONWebKeyTest.java
 src/test/java/sh/ory/model/JsonErrorTest.java

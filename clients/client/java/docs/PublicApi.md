@@ -2,19 +2,19 @@
 
 All URIs are relative to *https://playground.projects.oryapis.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**disconnectUser**](PublicApi.md#disconnectUser) | **GET** /oauth2/sessions/logout | OpenID Connect Front-Backchannel Enabled Logout
-[**discoverOpenIDConfiguration**](PublicApi.md#discoverOpenIDConfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
-[**dynamicClientRegistrationCreateOAuth2Client**](PublicApi.md#dynamicClientRegistrationCreateOAuth2Client) | **POST** /connect/register | Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-[**dynamicClientRegistrationDeleteOAuth2Client**](PublicApi.md#dynamicClientRegistrationDeleteOAuth2Client) | **DELETE** /connect/register/{id} | Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-[**dynamicClientRegistrationGetOAuth2Client**](PublicApi.md#dynamicClientRegistrationGetOAuth2Client) | **GET** /connect/register/{id} | Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-[**dynamicClientRegistrationUpdateOAuth2Client**](PublicApi.md#dynamicClientRegistrationUpdateOAuth2Client) | **PUT** /connect/register/{id} | Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
-[**oauth2Token**](PublicApi.md#oauth2Token) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
-[**oauthAuth**](PublicApi.md#oauthAuth) | **GET** /oauth2/auth | The OAuth 2.0 Authorize Endpoint
-[**revokeOAuth2Token**](PublicApi.md#revokeOAuth2Token) | **POST** /oauth2/revoke | Revoke OAuth2 Tokens
-[**userinfo**](PublicApi.md#userinfo) | **GET** /userinfo | OpenID Connect Userinfo
-[**wellKnown**](PublicApi.md#wellKnown) | **GET** /.well-known/jwks.json | JSON Web Keys Discovery
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**disconnectUser**](PublicApi.md#disconnectUser) | **GET** /oauth2/sessions/logout | OpenID Connect Front-Backchannel Enabled Logout |
+| [**discoverOpenIDConfiguration**](PublicApi.md#discoverOpenIDConfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery |
+| [**dynamicClientRegistrationCreateOAuth2Client**](PublicApi.md#dynamicClientRegistrationCreateOAuth2Client) | **POST** /connect/register | Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol |
+| [**dynamicClientRegistrationDeleteOAuth2Client**](PublicApi.md#dynamicClientRegistrationDeleteOAuth2Client) | **DELETE** /connect/register/{id} | Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol |
+| [**dynamicClientRegistrationGetOAuth2Client**](PublicApi.md#dynamicClientRegistrationGetOAuth2Client) | **GET** /connect/register/{id} | Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol |
+| [**dynamicClientRegistrationUpdateOAuth2Client**](PublicApi.md#dynamicClientRegistrationUpdateOAuth2Client) | **PUT** /connect/register/{id} | Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol |
+| [**oauth2Token**](PublicApi.md#oauth2Token) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint |
+| [**oauthAuth**](PublicApi.md#oauthAuth) | **GET** /oauth2/auth | The OAuth 2.0 Authorize Endpoint |
+| [**revokeOAuth2Token**](PublicApi.md#revokeOAuth2Token) | **POST** /oauth2/revoke | Revoke OAuth2 Tokens |
+| [**userinfo**](PublicApi.md#userinfo) | **GET** /userinfo | OpenID Connect Userinfo |
+| [**wellKnown**](PublicApi.md#wellKnown) | **GET** /.well-known/jwks.json | JSON Web Keys Discovery |
 
 
 <a name="disconnectUser"></a>
@@ -72,7 +72,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 
 <a name="discoverOpenIDConfiguration"></a>
 # **discoverOpenIDConfiguration**
@@ -130,9 +130,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | wellKnown |  -  |
-**401** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | wellKnown |  -  |
+| **401** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="dynamicClientRegistrationCreateOAuth2Client"></a>
 # **dynamicClientRegistrationCreateOAuth2Client**
@@ -174,9 +174,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **oauth2Client** | [**OAuth2Client**](OAuth2Client.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **oauth2Client** | [**OAuth2Client**](OAuth2Client.md)|  | |
 
 ### Return type
 
@@ -194,8 +194,8 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | oAuth2Client |  -  |
-**0** | jsonError |  -  |
+| **201** | oAuth2Client |  -  |
+| **0** | jsonError |  -  |
 
 <a name="dynamicClientRegistrationDeleteOAuth2Client"></a>
 # **dynamicClientRegistrationDeleteOAuth2Client**
@@ -236,9 +236,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The id of the OAuth 2.0 Client. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The id of the OAuth 2.0 Client. | |
 
 ### Return type
 
@@ -256,8 +256,8 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | jsonError |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **0** | jsonError |  -  |
 
 <a name="dynamicClientRegistrationGetOAuth2Client"></a>
 # **dynamicClientRegistrationGetOAuth2Client**
@@ -299,9 +299,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The id of the OAuth 2.0 Client. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The id of the OAuth 2.0 Client. | |
 
 ### Return type
 
@@ -319,8 +319,8 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2Client |  -  |
-**0** | jsonError |  -  |
+| **200** | oAuth2Client |  -  |
+| **0** | jsonError |  -  |
 
 <a name="dynamicClientRegistrationUpdateOAuth2Client"></a>
 # **dynamicClientRegistrationUpdateOAuth2Client**
@@ -363,10 +363,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The id of the OAuth 2.0 Client. |
- **oauth2Client** | [**OAuth2Client**](OAuth2Client.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The id of the OAuth 2.0 Client. | |
+| **oauth2Client** | [**OAuth2Client**](OAuth2Client.md)|  | |
 
 ### Return type
 
@@ -384,8 +384,8 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2Client |  -  |
-**0** | jsonError |  -  |
+| **200** | oAuth2Client |  -  |
+| **0** | jsonError |  -  |
 
 <a name="oauth2Token"></a>
 # **oauth2Token**
@@ -441,13 +441,13 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **grantType** | **String**|  |
- **clientId** | **String**|  | [optional]
- **code** | **String**|  | [optional]
- **redirectUri** | **String**|  | [optional]
- **refreshToken** | **String**|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **grantType** | **String**|  | |
+| **clientId** | **String**|  | [optional] |
+| **code** | **String**|  | [optional] |
+| **redirectUri** | **String**|  | [optional] |
+| **refreshToken** | **String**|  | [optional] |
 
 ### Return type
 
@@ -465,10 +465,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oauth2TokenResponse |  -  |
-**400** | jsonError |  -  |
-**401** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | oauth2TokenResponse |  -  |
+| **400** | jsonError |  -  |
+| **401** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="oauthAuth"></a>
 # **oauthAuth**
@@ -525,9 +525,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**401** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **401** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="revokeOAuth2Token"></a>
 # **revokeOAuth2Token**
@@ -578,9 +578,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**|  | |
 
 ### Return type
 
@@ -598,9 +598,9 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**401** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **401** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="userinfo"></a>
 # **userinfo**
@@ -663,9 +663,9 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | userinfoResponse |  -  |
-**401** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | userinfoResponse |  -  |
+| **401** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="wellKnown"></a>
 # **wellKnown**
@@ -723,6 +723,6 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | JSONWebKeySet |  -  |
-**500** | jsonError |  -  |
+| **200** | JSONWebKeySet |  -  |
+| **500** | jsonError |  -  |
 

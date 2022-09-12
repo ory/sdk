@@ -5,19 +5,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**action** | [**ActionEnum**](#ActionEnum) |  |  [optional]
-**relationTuple** | [**RelationTuple**](RelationTuple.md) |  |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**action** | [**ActionEnum**](#ActionEnum) |  |  [optional] |
+|**relationTuple** | [**RelationTuple**](RelationTuple.md) |  |  [optional] |
 
 
 
 ## Enum: ActionEnum
 
-Name | Value
----- | -----
-INSERT | &quot;insert&quot;
-DELETE | &quot;delete&quot;
+| Name | Value |
+|---- | -----|
+| INSERT | &quot;insert&quot; |
+| DELETE | &quot;delete&quot; |
 
 
 

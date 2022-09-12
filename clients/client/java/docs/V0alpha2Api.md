@@ -2,60 +2,60 @@
 
 All URIs are relative to *https://playground.projects.oryapis.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**adminCreateIdentity**](V0alpha2Api.md#adminCreateIdentity) | **POST** /admin/identities | Create an Identity
-[**adminCreateSelfServiceRecoveryLink**](V0alpha2Api.md#adminCreateSelfServiceRecoveryLink) | **POST** /admin/recovery/link | Create a Recovery Link
-[**adminDeleteIdentity**](V0alpha2Api.md#adminDeleteIdentity) | **DELETE** /admin/identities/{id} | Delete an Identity
-[**adminDeleteIdentitySessions**](V0alpha2Api.md#adminDeleteIdentitySessions) | **DELETE** /admin/identities/{id}/sessions | Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.
-[**adminExtendSession**](V0alpha2Api.md#adminExtendSession) | **PATCH** /admin/sessions/{id}/extend | Calling this endpoint extends the given session ID. If &#x60;session.earliest_possible_extend&#x60; is set it will only extend the session after the specified time has passed.
-[**adminGetIdentity**](V0alpha2Api.md#adminGetIdentity) | **GET** /admin/identities/{id} | Get an Identity
-[**adminListIdentities**](V0alpha2Api.md#adminListIdentities) | **GET** /admin/identities | List Identities
-[**adminListIdentitySessions**](V0alpha2Api.md#adminListIdentitySessions) | **GET** /admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity.
-[**adminPatchIdentity**](V0alpha2Api.md#adminPatchIdentity) | **PATCH** /admin/identities/{id} | Partially updates an Identity&#39;s field using [JSON Patch](https://jsonpatch.com/)
-[**adminUpdateIdentity**](V0alpha2Api.md#adminUpdateIdentity) | **PUT** /admin/identities/{id} | Update an Identity
-[**createProject**](V0alpha2Api.md#createProject) | **POST** /projects | # Create a Project
-[**createProjectApiKey**](V0alpha2Api.md#createProjectApiKey) | **POST** /projects/{project}/tokens | # Create API Token
-[**createSelfServiceLogoutFlowUrlForBrowsers**](V0alpha2Api.md#createSelfServiceLogoutFlowUrlForBrowsers) | **GET** /self-service/logout/browser | Create a Logout URL for Browsers
-[**deleteProjectApiKey**](V0alpha2Api.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | # Delete API Token
-[**getIdentitySchema**](V0alpha2Api.md#getIdentitySchema) | **GET** /schemas/{id} | 
-[**getProject**](V0alpha2Api.md#getProject) | **GET** /projects/{project_id} | # Get a Project
-[**getProjectMembers**](V0alpha2Api.md#getProjectMembers) | **GET** /projects/{project_id}/members | Get all members associated with this project.
-[**getSelfServiceError**](V0alpha2Api.md#getSelfServiceError) | **GET** /self-service/errors | Get Self-Service Errors
-[**getSelfServiceLoginFlow**](V0alpha2Api.md#getSelfServiceLoginFlow) | **GET** /self-service/login/flows | Get Login Flow
-[**getSelfServiceRecoveryFlow**](V0alpha2Api.md#getSelfServiceRecoveryFlow) | **GET** /self-service/recovery/flows | Get Recovery Flow
-[**getSelfServiceRegistrationFlow**](V0alpha2Api.md#getSelfServiceRegistrationFlow) | **GET** /self-service/registration/flows | Get Registration Flow
-[**getSelfServiceSettingsFlow**](V0alpha2Api.md#getSelfServiceSettingsFlow) | **GET** /self-service/settings/flows | Get Settings Flow
-[**getSelfServiceVerificationFlow**](V0alpha2Api.md#getSelfServiceVerificationFlow) | **GET** /self-service/verification/flows | # Get Verification Flow
-[**getWebAuthnJavaScript**](V0alpha2Api.md#getWebAuthnJavaScript) | **GET** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
-[**initializeSelfServiceLoginFlowForBrowsers**](V0alpha2Api.md#initializeSelfServiceLoginFlowForBrowsers) | **GET** /self-service/login/browser | Initialize Login Flow for Browsers
-[**initializeSelfServiceLoginFlowWithoutBrowser**](V0alpha2Api.md#initializeSelfServiceLoginFlowWithoutBrowser) | **GET** /self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ...
-[**initializeSelfServiceRecoveryFlowForBrowsers**](V0alpha2Api.md#initializeSelfServiceRecoveryFlowForBrowsers) | **GET** /self-service/recovery/browser | Initialize Recovery Flow for Browsers
-[**initializeSelfServiceRecoveryFlowWithoutBrowser**](V0alpha2Api.md#initializeSelfServiceRecoveryFlowWithoutBrowser) | **GET** /self-service/recovery/api | Initialize Recovery Flow for APIs, Services, Apps, ...
-[**initializeSelfServiceRegistrationFlowForBrowsers**](V0alpha2Api.md#initializeSelfServiceRegistrationFlowForBrowsers) | **GET** /self-service/registration/browser | Initialize Registration Flow for Browsers
-[**initializeSelfServiceRegistrationFlowWithoutBrowser**](V0alpha2Api.md#initializeSelfServiceRegistrationFlowWithoutBrowser) | **GET** /self-service/registration/api | Initialize Registration Flow for APIs, Services, Apps, ...
-[**initializeSelfServiceSettingsFlowForBrowsers**](V0alpha2Api.md#initializeSelfServiceSettingsFlowForBrowsers) | **GET** /self-service/settings/browser | Initialize Settings Flow for Browsers
-[**initializeSelfServiceSettingsFlowWithoutBrowser**](V0alpha2Api.md#initializeSelfServiceSettingsFlowWithoutBrowser) | **GET** /self-service/settings/api | Initialize Settings Flow for APIs, Services, Apps, ...
-[**initializeSelfServiceVerificationFlowForBrowsers**](V0alpha2Api.md#initializeSelfServiceVerificationFlowForBrowsers) | **GET** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
-[**initializeSelfServiceVerificationFlowWithoutBrowser**](V0alpha2Api.md#initializeSelfServiceVerificationFlowWithoutBrowser) | **GET** /self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
-[**listIdentitySchemas**](V0alpha2Api.md#listIdentitySchemas) | **GET** /schemas | 
-[**listProjectApiKeys**](V0alpha2Api.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | # List a Project&#39;s API Tokens
-[**listProjects**](V0alpha2Api.md#listProjects) | **GET** /projects | # List All Projects
-[**listSessions**](V0alpha2Api.md#listSessions) | **GET** /sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint.
-[**patchProject**](V0alpha2Api.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Cloud Project Configuration&#x60;
-[**purgeProject**](V0alpha2Api.md#purgeProject) | **DELETE** /projects/{project_id} | # Irrecoverably Purge a Project
-[**removeProjectMember**](V0alpha2Api.md#removeProjectMember) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to &#x60;REMOVED&#x60;.
-[**revokeSession**](V0alpha2Api.md#revokeSession) | **DELETE** /sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
-[**revokeSessions**](V0alpha2Api.md#revokeSessions) | **DELETE** /sessions | Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
-[**submitSelfServiceLoginFlow**](V0alpha2Api.md#submitSelfServiceLoginFlow) | **POST** /self-service/login | Submit a Login Flow
-[**submitSelfServiceLogoutFlow**](V0alpha2Api.md#submitSelfServiceLogoutFlow) | **GET** /self-service/logout | Complete Self-Service Logout
-[**submitSelfServiceLogoutFlowWithoutBrowser**](V0alpha2Api.md#submitSelfServiceLogoutFlowWithoutBrowser) | **DELETE** /self-service/logout/api | Perform Logout for APIs, Services, Apps, ...
-[**submitSelfServiceRecoveryFlow**](V0alpha2Api.md#submitSelfServiceRecoveryFlow) | **POST** /self-service/recovery | Complete Recovery Flow
-[**submitSelfServiceRegistrationFlow**](V0alpha2Api.md#submitSelfServiceRegistrationFlow) | **POST** /self-service/registration | Submit a Registration Flow
-[**submitSelfServiceSettingsFlow**](V0alpha2Api.md#submitSelfServiceSettingsFlow) | **POST** /self-service/settings | Complete Settings Flow
-[**submitSelfServiceVerificationFlow**](V0alpha2Api.md#submitSelfServiceVerificationFlow) | **POST** /self-service/verification | # Complete Verification Flow
-[**toSession**](V0alpha2Api.md#toSession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
-[**updateProject**](V0alpha2Api.md#updateProject) | **PUT** /projects/{project_id} | # Update an Ory Cloud Project Configuration
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**adminCreateIdentity**](V0alpha2Api.md#adminCreateIdentity) | **POST** /admin/identities | Create an Identity |
+| [**adminCreateSelfServiceRecoveryLink**](V0alpha2Api.md#adminCreateSelfServiceRecoveryLink) | **POST** /admin/recovery/link | Create a Recovery Link |
+| [**adminDeleteIdentity**](V0alpha2Api.md#adminDeleteIdentity) | **DELETE** /admin/identities/{id} | Delete an Identity |
+| [**adminDeleteIdentitySessions**](V0alpha2Api.md#adminDeleteIdentitySessions) | **DELETE** /admin/identities/{id}/sessions | Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity. |
+| [**adminExtendSession**](V0alpha2Api.md#adminExtendSession) | **PATCH** /admin/sessions/{id}/extend | Calling this endpoint extends the given session ID. If &#x60;session.earliest_possible_extend&#x60; is set it will only extend the session after the specified time has passed. |
+| [**adminGetIdentity**](V0alpha2Api.md#adminGetIdentity) | **GET** /admin/identities/{id} | Get an Identity |
+| [**adminListIdentities**](V0alpha2Api.md#adminListIdentities) | **GET** /admin/identities | List Identities |
+| [**adminListIdentitySessions**](V0alpha2Api.md#adminListIdentitySessions) | **GET** /admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity. |
+| [**adminPatchIdentity**](V0alpha2Api.md#adminPatchIdentity) | **PATCH** /admin/identities/{id} | Partially updates an Identity&#39;s field using [JSON Patch](https://jsonpatch.com/) |
+| [**adminUpdateIdentity**](V0alpha2Api.md#adminUpdateIdentity) | **PUT** /admin/identities/{id} | Update an Identity |
+| [**createProject**](V0alpha2Api.md#createProject) | **POST** /projects | # Create a Project |
+| [**createProjectApiKey**](V0alpha2Api.md#createProjectApiKey) | **POST** /projects/{project}/tokens | # Create API Token |
+| [**createSelfServiceLogoutFlowUrlForBrowsers**](V0alpha2Api.md#createSelfServiceLogoutFlowUrlForBrowsers) | **GET** /self-service/logout/browser | Create a Logout URL for Browsers |
+| [**deleteProjectApiKey**](V0alpha2Api.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | # Delete API Token |
+| [**getIdentitySchema**](V0alpha2Api.md#getIdentitySchema) | **GET** /schemas/{id} |  |
+| [**getProject**](V0alpha2Api.md#getProject) | **GET** /projects/{project_id} | # Get a Project |
+| [**getProjectMembers**](V0alpha2Api.md#getProjectMembers) | **GET** /projects/{project_id}/members | Get all members associated with this project. |
+| [**getSelfServiceError**](V0alpha2Api.md#getSelfServiceError) | **GET** /self-service/errors | Get Self-Service Errors |
+| [**getSelfServiceLoginFlow**](V0alpha2Api.md#getSelfServiceLoginFlow) | **GET** /self-service/login/flows | Get Login Flow |
+| [**getSelfServiceRecoveryFlow**](V0alpha2Api.md#getSelfServiceRecoveryFlow) | **GET** /self-service/recovery/flows | Get Recovery Flow |
+| [**getSelfServiceRegistrationFlow**](V0alpha2Api.md#getSelfServiceRegistrationFlow) | **GET** /self-service/registration/flows | Get Registration Flow |
+| [**getSelfServiceSettingsFlow**](V0alpha2Api.md#getSelfServiceSettingsFlow) | **GET** /self-service/settings/flows | Get Settings Flow |
+| [**getSelfServiceVerificationFlow**](V0alpha2Api.md#getSelfServiceVerificationFlow) | **GET** /self-service/verification/flows | # Get Verification Flow |
+| [**getWebAuthnJavaScript**](V0alpha2Api.md#getWebAuthnJavaScript) | **GET** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript |
+| [**initializeSelfServiceLoginFlowForBrowsers**](V0alpha2Api.md#initializeSelfServiceLoginFlowForBrowsers) | **GET** /self-service/login/browser | Initialize Login Flow for Browsers |
+| [**initializeSelfServiceLoginFlowWithoutBrowser**](V0alpha2Api.md#initializeSelfServiceLoginFlowWithoutBrowser) | **GET** /self-service/login/api | Initialize Login Flow for APIs, Services, Apps, ... |
+| [**initializeSelfServiceRecoveryFlowForBrowsers**](V0alpha2Api.md#initializeSelfServiceRecoveryFlowForBrowsers) | **GET** /self-service/recovery/browser | Initialize Recovery Flow for Browsers |
+| [**initializeSelfServiceRecoveryFlowWithoutBrowser**](V0alpha2Api.md#initializeSelfServiceRecoveryFlowWithoutBrowser) | **GET** /self-service/recovery/api | Initialize Recovery Flow for APIs, Services, Apps, ... |
+| [**initializeSelfServiceRegistrationFlowForBrowsers**](V0alpha2Api.md#initializeSelfServiceRegistrationFlowForBrowsers) | **GET** /self-service/registration/browser | Initialize Registration Flow for Browsers |
+| [**initializeSelfServiceRegistrationFlowWithoutBrowser**](V0alpha2Api.md#initializeSelfServiceRegistrationFlowWithoutBrowser) | **GET** /self-service/registration/api | Initialize Registration Flow for APIs, Services, Apps, ... |
+| [**initializeSelfServiceSettingsFlowForBrowsers**](V0alpha2Api.md#initializeSelfServiceSettingsFlowForBrowsers) | **GET** /self-service/settings/browser | Initialize Settings Flow for Browsers |
+| [**initializeSelfServiceSettingsFlowWithoutBrowser**](V0alpha2Api.md#initializeSelfServiceSettingsFlowWithoutBrowser) | **GET** /self-service/settings/api | Initialize Settings Flow for APIs, Services, Apps, ... |
+| [**initializeSelfServiceVerificationFlowForBrowsers**](V0alpha2Api.md#initializeSelfServiceVerificationFlowForBrowsers) | **GET** /self-service/verification/browser | Initialize Verification Flow for Browser Clients |
+| [**initializeSelfServiceVerificationFlowWithoutBrowser**](V0alpha2Api.md#initializeSelfServiceVerificationFlowWithoutBrowser) | **GET** /self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ... |
+| [**listIdentitySchemas**](V0alpha2Api.md#listIdentitySchemas) | **GET** /schemas |  |
+| [**listProjectApiKeys**](V0alpha2Api.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | # List a Project&#39;s API Tokens |
+| [**listProjects**](V0alpha2Api.md#listProjects) | **GET** /projects | # List All Projects |
+| [**listSessions**](V0alpha2Api.md#listSessions) | **GET** /sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint. |
+| [**patchProject**](V0alpha2Api.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Cloud Project Configuration&#x60; |
+| [**purgeProject**](V0alpha2Api.md#purgeProject) | **DELETE** /projects/{project_id} | # Irrecoverably Purge a Project |
+| [**removeProjectMember**](V0alpha2Api.md#removeProjectMember) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to &#x60;REMOVED&#x60;. |
+| [**revokeSession**](V0alpha2Api.md#revokeSession) | **DELETE** /sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted. |
+| [**revokeSessions**](V0alpha2Api.md#revokeSessions) | **DELETE** /sessions | Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted. |
+| [**submitSelfServiceLoginFlow**](V0alpha2Api.md#submitSelfServiceLoginFlow) | **POST** /self-service/login | Submit a Login Flow |
+| [**submitSelfServiceLogoutFlow**](V0alpha2Api.md#submitSelfServiceLogoutFlow) | **GET** /self-service/logout | Complete Self-Service Logout |
+| [**submitSelfServiceLogoutFlowWithoutBrowser**](V0alpha2Api.md#submitSelfServiceLogoutFlowWithoutBrowser) | **DELETE** /self-service/logout/api | Perform Logout for APIs, Services, Apps, ... |
+| [**submitSelfServiceRecoveryFlow**](V0alpha2Api.md#submitSelfServiceRecoveryFlow) | **POST** /self-service/recovery | Complete Recovery Flow |
+| [**submitSelfServiceRegistrationFlow**](V0alpha2Api.md#submitSelfServiceRegistrationFlow) | **POST** /self-service/registration | Submit a Registration Flow |
+| [**submitSelfServiceSettingsFlow**](V0alpha2Api.md#submitSelfServiceSettingsFlow) | **POST** /self-service/settings | Complete Settings Flow |
+| [**submitSelfServiceVerificationFlow**](V0alpha2Api.md#submitSelfServiceVerificationFlow) | **POST** /self-service/verification | # Complete Verification Flow |
+| [**toSession**](V0alpha2Api.md#toSession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To |
+| [**updateProject**](V0alpha2Api.md#updateProject) | **PUT** /projects/{project_id} | # Update an Ory Cloud Project Configuration |
 
 
 <a name="adminCreateIdentity"></a>
@@ -103,9 +103,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **adminCreateIdentityBody** | [**AdminCreateIdentityBody**](AdminCreateIdentityBody.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adminCreateIdentityBody** | [**AdminCreateIdentityBody**](AdminCreateIdentityBody.md)|  | [optional] |
 
 ### Return type
 
@@ -123,10 +123,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | identity |  -  |
-**400** | jsonError |  -  |
-**409** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **201** | identity |  -  |
+| **400** | jsonError |  -  |
+| **409** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="adminCreateSelfServiceRecoveryLink"></a>
 # **adminCreateSelfServiceRecoveryLink**
@@ -173,9 +173,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **adminCreateSelfServiceRecoveryLinkBody** | [**AdminCreateSelfServiceRecoveryLinkBody**](AdminCreateSelfServiceRecoveryLinkBody.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adminCreateSelfServiceRecoveryLinkBody** | [**AdminCreateSelfServiceRecoveryLinkBody**](AdminCreateSelfServiceRecoveryLinkBody.md)|  | [optional] |
 
 ### Return type
 
@@ -193,10 +193,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | selfServiceRecoveryLink |  -  |
-**400** | jsonError |  -  |
-**404** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | selfServiceRecoveryLink |  -  |
+| **400** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="adminDeleteIdentity"></a>
 # **adminDeleteIdentity**
@@ -242,9 +242,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| ID is the identity&#39;s ID. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| ID is the identity&#39;s ID. | |
 
 ### Return type
 
@@ -262,9 +262,9 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**404** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="adminDeleteIdentitySessions"></a>
 # **adminDeleteIdentitySessions**
@@ -310,9 +310,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| ID is the identity&#39;s ID. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| ID is the identity&#39;s ID. | |
 
 ### Return type
 
@@ -330,11 +330,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | jsonError |  -  |
-**401** | jsonError |  -  |
-**404** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | jsonError |  -  |
+| **401** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="adminExtendSession"></a>
 # **adminExtendSession**
@@ -381,9 +381,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| ID is the session&#39;s ID. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| ID is the session&#39;s ID. | |
 
 ### Return type
 
@@ -401,10 +401,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | session |  -  |
-**400** | jsonError |  -  |
-**404** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | session |  -  |
+| **400** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="adminGetIdentity"></a>
 # **adminGetIdentity**
@@ -452,10 +452,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| ID must be set to the ID of identity you want to get |
- **includeCredential** | [**List&lt;String&gt;**](String.md)| DeclassifyCredentials will declassify one or more identity&#39;s credentials  Currently, only &#x60;oidc&#x60; is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| ID must be set to the ID of identity you want to get | |
+| **includeCredential** | [**List&lt;String&gt;**](String.md)| DeclassifyCredentials will declassify one or more identity&#39;s credentials  Currently, only &#x60;oidc&#x60; is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token. | [optional] |
 
 ### Return type
 
@@ -473,9 +473,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | identity |  -  |
-**404** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | identity |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="adminListIdentities"></a>
 # **adminListIdentities**
@@ -523,10 +523,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **perPage** | **Long**| Items per Page  This is the number of items per page. | [optional] [default to 250]
- **page** | **Long**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **perPage** | **Long**| Items per Page  This is the number of items per page. | [optional] [default to 250] |
+| **page** | **Long**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1] |
 
 ### Return type
 
@@ -544,8 +544,8 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | identityList |  -  |
-**500** | jsonError |  -  |
+| **200** | identityList |  -  |
+| **500** | jsonError |  -  |
 
 <a name="adminListIdentitySessions"></a>
 # **adminListIdentitySessions**
@@ -595,12 +595,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| ID is the identity&#39;s ID. |
- **perPage** | **Long**| Items per Page  This is the number of items per page. | [optional] [default to 250]
- **page** | **Long**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1]
- **active** | **Boolean**| Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| ID is the identity&#39;s ID. | |
+| **perPage** | **Long**| Items per Page  This is the number of items per page. | [optional] [default to 250] |
+| **page** | **Long**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1] |
+| **active** | **Boolean**| Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [optional] |
 
 ### Return type
 
@@ -618,11 +618,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | sessionList |  -  |
-**400** | jsonError |  -  |
-**401** | jsonError |  -  |
-**404** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | sessionList |  -  |
+| **400** | jsonError |  -  |
+| **401** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="adminPatchIdentity"></a>
 # **adminPatchIdentity**
@@ -670,10 +670,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| ID must be set to the ID of identity you want to update |
- **jsonPatch** | [**List&lt;JsonPatch&gt;**](JsonPatch.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| ID must be set to the ID of identity you want to update | |
+| **jsonPatch** | [**List&lt;JsonPatch&gt;**](JsonPatch.md)|  | [optional] |
 
 ### Return type
 
@@ -691,11 +691,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | identity |  -  |
-**400** | jsonError |  -  |
-**404** | jsonError |  -  |
-**409** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | identity |  -  |
+| **400** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **409** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="adminUpdateIdentity"></a>
 # **adminUpdateIdentity**
@@ -743,10 +743,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| ID must be set to the ID of identity you want to update |
- **adminUpdateIdentityBody** | [**AdminUpdateIdentityBody**](AdminUpdateIdentityBody.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| ID must be set to the ID of identity you want to update | |
+| **adminUpdateIdentityBody** | [**AdminUpdateIdentityBody**](AdminUpdateIdentityBody.md)|  | [optional] |
 
 ### Return type
 
@@ -764,11 +764,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | identity |  -  |
-**400** | jsonError |  -  |
-**404** | jsonError |  -  |
-**409** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | identity |  -  |
+| **400** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **409** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="createProject"></a>
 # **createProject**
@@ -815,9 +815,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **createProjectBody** | [**CreateProjectBody**](CreateProjectBody.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createProjectBody** | [**CreateProjectBody**](CreateProjectBody.md)|  | [optional] |
 
 ### Return type
 
@@ -835,15 +835,15 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | project |  -  |
-**401** | genericError |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**0** | genericError |  -  |
+| **201** | project |  -  |
+| **401** | genericError |  -  |
+| **403** | genericError |  -  |
+| **404** | genericError |  -  |
+| **0** | genericError |  -  |
 
 <a name="createProjectApiKey"></a>
 # **createProjectApiKey**
-> ProjectApiKey createProjectApiKey(project, inlineObject3)
+> ProjectApiKey createProjectApiKey(project, createProjectApiKeyRequest)
 
 # Create API Token
 
@@ -870,9 +870,9 @@ public class Example {
 
     V0alpha2Api apiInstance = new V0alpha2Api(defaultClient);
     String project = "project_example"; // String | The Project ID or Project slug
-    InlineObject3 inlineObject3 = new InlineObject3(); // InlineObject3 | 
+    CreateProjectApiKeyRequest createProjectApiKeyRequest = new CreateProjectApiKeyRequest(); // CreateProjectApiKeyRequest | 
     try {
-      ProjectApiKey result = apiInstance.createProjectApiKey(project, inlineObject3);
+      ProjectApiKey result = apiInstance.createProjectApiKey(project, createProjectApiKeyRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling V0alpha2Api#createProjectApiKey");
@@ -887,10 +887,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **project** | **String**| The Project ID or Project slug |
- **inlineObject3** | [**InlineObject3**](InlineObject3.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **project** | **String**| The Project ID or Project slug | |
+| **createProjectApiKeyRequest** | [**CreateProjectApiKeyRequest**](CreateProjectApiKeyRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -908,8 +908,8 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | projectApiKey |  -  |
-**0** | genericError |  -  |
+| **201** | projectApiKey |  -  |
+| **0** | genericError |  -  |
 
 <a name="createSelfServiceLogoutFlowUrlForBrowsers"></a>
 # **createSelfServiceLogoutFlowUrlForBrowsers**
@@ -951,9 +951,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **cookie** | **String**| HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **cookie** | **String**| HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. | [optional] |
 
 ### Return type
 
@@ -971,9 +971,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | selfServiceLogoutUrl |  -  |
-**401** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | selfServiceLogoutUrl |  -  |
+| **401** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="deleteProjectApiKey"></a>
 # **deleteProjectApiKey**
@@ -1020,10 +1020,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **project** | **String**| The Project ID or Project slug |
- **tokenId** | **String**| The Token ID |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **project** | **String**| The Project ID or Project slug | |
+| **tokenId** | **String**| The Token ID | |
 
 ### Return type
 
@@ -1041,8 +1041,8 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | genericError |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **0** | genericError |  -  |
 
 <a name="getIdentitySchema"></a>
 # **getIdentitySchema**
@@ -1084,9 +1084,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| ID must be set to the ID of schema you want to get |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| ID must be set to the ID of schema you want to get | |
 
 ### Return type
 
@@ -1104,9 +1104,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | identitySchema |  -  |
-**404** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | identitySchema |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="getProject"></a>
 # **getProject**
@@ -1153,9 +1153,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **String**| Project ID  The project&#39;s ID. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| Project ID  The project&#39;s ID. | |
 
 ### Return type
 
@@ -1173,11 +1173,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | project |  -  |
-**401** | genericError |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**0** | genericError |  -  |
+| **200** | project |  -  |
+| **401** | genericError |  -  |
+| **403** | genericError |  -  |
+| **404** | genericError |  -  |
+| **0** | genericError |  -  |
 
 <a name="getProjectMembers"></a>
 # **getProjectMembers**
@@ -1224,9 +1224,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **String**| Project ID  The project&#39;s ID. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| Project ID  The project&#39;s ID. | |
 
 ### Return type
 
@@ -1244,10 +1244,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | projectMembers |  -  |
-**401** | genericError |  -  |
-**406** | genericError |  -  |
-**500** | genericError |  -  |
+| **200** | projectMembers |  -  |
+| **401** | genericError |  -  |
+| **406** | genericError |  -  |
+| **500** | genericError |  -  |
 
 <a name="getSelfServiceError"></a>
 # **getSelfServiceError**
@@ -1289,9 +1289,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Error is the error&#39;s ID |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Error is the error&#39;s ID | |
 
 ### Return type
 
@@ -1309,10 +1309,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | selfServiceError |  -  |
-**403** | jsonError |  -  |
-**404** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | selfServiceError |  -  |
+| **403** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="getSelfServiceLoginFlow"></a>
 # **getSelfServiceLoginFlow**
@@ -1355,10 +1355,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). |
- **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). | |
+| **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 
 ### Return type
 
@@ -1376,11 +1376,11 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | selfServiceLoginFlow |  -  |
-**403** | jsonError |  -  |
-**404** | jsonError |  -  |
-**410** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | selfServiceLoginFlow |  -  |
+| **403** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **410** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="getSelfServiceRecoveryFlow"></a>
 # **getSelfServiceRecoveryFlow**
@@ -1423,10 +1423,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). |
- **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). | |
+| **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 
 ### Return type
 
@@ -1444,10 +1444,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | selfServiceRecoveryFlow |  -  |
-**404** | jsonError |  -  |
-**410** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | selfServiceRecoveryFlow |  -  |
+| **404** | jsonError |  -  |
+| **410** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="getSelfServiceRegistrationFlow"></a>
 # **getSelfServiceRegistrationFlow**
@@ -1490,10 +1490,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). |
- **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). | |
+| **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 
 ### Return type
 
@@ -1511,11 +1511,11 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | selfServiceRegistrationFlow |  -  |
-**403** | jsonError |  -  |
-**404** | jsonError |  -  |
-**410** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | selfServiceRegistrationFlow |  -  |
+| **403** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **410** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="getSelfServiceSettingsFlow"></a>
 # **getSelfServiceSettingsFlow**
@@ -1559,11 +1559,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
- **xSessionToken** | **String**| The Session Token  When using the SDK in an app without a browser, please include the session token here. | [optional]
- **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). | |
+| **xSessionToken** | **String**| The Session Token  When using the SDK in an app without a browser, please include the session token here. | [optional] |
+| **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 
 ### Return type
 
@@ -1581,12 +1581,12 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | selfServiceSettingsFlow |  -  |
-**401** | jsonError |  -  |
-**403** | jsonError |  -  |
-**404** | jsonError |  -  |
-**410** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | selfServiceSettingsFlow |  -  |
+| **401** | jsonError |  -  |
+| **403** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **410** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="getSelfServiceVerificationFlow"></a>
 # **getSelfServiceVerificationFlow**
@@ -1629,10 +1629,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verification?flow&#x3D;abcde&#x60;). |
- **cookie** | **String**| HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verification?flow&#x3D;abcde&#x60;). | |
+| **cookie** | **String**| HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. | [optional] |
 
 ### Return type
 
@@ -1650,10 +1650,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | selfServiceVerificationFlow |  -  |
-**403** | jsonError |  -  |
-**404** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | selfServiceVerificationFlow |  -  |
+| **403** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="getWebAuthnJavaScript"></a>
 # **getWebAuthnJavaScript**
@@ -1711,7 +1711,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | webAuthnJavaScript |  -  |
+| **200** | webAuthnJavaScript |  -  |
 
 <a name="initializeSelfServiceLoginFlowForBrowsers"></a>
 # **initializeSelfServiceLoginFlowForBrowsers**
@@ -1755,11 +1755,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **refresh** | **Boolean**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional]
- **aal** | **String**| Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session&#39;s authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \&quot;upgrade\&quot; the session&#39;s security by asking the user to perform TOTP / WebAuth/ ... you would set this to \&quot;aal2\&quot;. | [optional]
- **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **refresh** | **Boolean**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional] |
+| **aal** | **String**| Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session&#39;s authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \&quot;upgrade\&quot; the session&#39;s security by asking the user to perform TOTP / WebAuth/ ... you would set this to \&quot;aal2\&quot;. | [optional] |
+| **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional] |
 
 ### Return type
 
@@ -1777,10 +1777,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | selfServiceLoginFlow |  -  |
-**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | selfServiceLoginFlow |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="initializeSelfServiceLoginFlowWithoutBrowser"></a>
 # **initializeSelfServiceLoginFlowWithoutBrowser**
@@ -1824,11 +1824,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **refresh** | **Boolean**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional]
- **aal** | **String**| Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session&#39;s authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \&quot;upgrade\&quot; the session&#39;s security by asking the user to perform TOTP / WebAuth/ ... you would set this to \&quot;aal2\&quot;. | [optional]
- **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **refresh** | **Boolean**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional] |
+| **aal** | **String**| Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session&#39;s authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \&quot;upgrade\&quot; the session&#39;s security by asking the user to perform TOTP / WebAuth/ ... you would set this to \&quot;aal2\&quot;. | [optional] |
+| **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional] |
 
 ### Return type
 
@@ -1846,9 +1846,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | selfServiceLoginFlow |  -  |
-**400** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | selfServiceLoginFlow |  -  |
+| **400** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="initializeSelfServiceRecoveryFlowForBrowsers"></a>
 # **initializeSelfServiceRecoveryFlowForBrowsers**
@@ -1890,9 +1890,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional] |
 
 ### Return type
 
@@ -1910,10 +1910,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | selfServiceRecoveryFlow |  -  |
-**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | selfServiceRecoveryFlow |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="initializeSelfServiceRecoveryFlowWithoutBrowser"></a>
 # **initializeSelfServiceRecoveryFlowWithoutBrowser**
@@ -1971,9 +1971,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | selfServiceRecoveryFlow |  -  |
-**400** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | selfServiceRecoveryFlow |  -  |
+| **400** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="initializeSelfServiceRegistrationFlowForBrowsers"></a>
 # **initializeSelfServiceRegistrationFlowForBrowsers**
@@ -2015,9 +2015,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional] |
 
 ### Return type
 
@@ -2035,9 +2035,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | selfServiceRegistrationFlow |  -  |
-**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**500** | jsonError |  -  |
+| **200** | selfServiceRegistrationFlow |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **500** | jsonError |  -  |
 
 <a name="initializeSelfServiceRegistrationFlowWithoutBrowser"></a>
 # **initializeSelfServiceRegistrationFlowWithoutBrowser**
@@ -2095,9 +2095,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | selfServiceRegistrationFlow |  -  |
-**400** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | selfServiceRegistrationFlow |  -  |
+| **400** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="initializeSelfServiceSettingsFlowForBrowsers"></a>
 # **initializeSelfServiceSettingsFlowForBrowsers**
@@ -2139,9 +2139,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional] |
 
 ### Return type
 
@@ -2159,12 +2159,12 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | selfServiceSettingsFlow |  -  |
-**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | jsonError |  -  |
-**401** | jsonError |  -  |
-**403** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | selfServiceSettingsFlow |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | jsonError |  -  |
+| **401** | jsonError |  -  |
+| **403** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="initializeSelfServiceSettingsFlowWithoutBrowser"></a>
 # **initializeSelfServiceSettingsFlowWithoutBrowser**
@@ -2206,9 +2206,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional] |
 
 ### Return type
 
@@ -2226,9 +2226,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | selfServiceSettingsFlow |  -  |
-**400** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | selfServiceSettingsFlow |  -  |
+| **400** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="initializeSelfServiceVerificationFlowForBrowsers"></a>
 # **initializeSelfServiceVerificationFlowForBrowsers**
@@ -2270,9 +2270,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional] |
 
 ### Return type
 
@@ -2290,9 +2290,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | selfServiceVerificationFlow |  -  |
-**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**500** | jsonError |  -  |
+| **200** | selfServiceVerificationFlow |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **500** | jsonError |  -  |
 
 <a name="initializeSelfServiceVerificationFlowWithoutBrowser"></a>
 # **initializeSelfServiceVerificationFlowWithoutBrowser**
@@ -2350,9 +2350,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | selfServiceVerificationFlow |  -  |
-**400** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | selfServiceVerificationFlow |  -  |
+| **400** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="listIdentitySchemas"></a>
 # **listIdentitySchemas**
@@ -2395,10 +2395,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **perPage** | **Long**| Items per Page  This is the number of items per page. | [optional] [default to 250]
- **page** | **Long**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **perPage** | **Long**| Items per Page  This is the number of items per page. | [optional] [default to 250] |
+| **page** | **Long**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1] |
 
 ### Return type
 
@@ -2416,8 +2416,8 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | identitySchemas |  -  |
-**500** | jsonError |  -  |
+| **200** | identitySchemas |  -  |
+| **500** | jsonError |  -  |
 
 <a name="listProjectApiKeys"></a>
 # **listProjectApiKeys**
@@ -2464,9 +2464,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **project** | **String**| The Project ID or Project slug |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **project** | **String**| The Project ID or Project slug | |
 
 ### Return type
 
@@ -2484,8 +2484,8 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | projectApiKeys |  -  |
-**0** | genericError |  -  |
+| **200** | projectApiKeys |  -  |
+| **0** | genericError |  -  |
 
 <a name="listProjects"></a>
 # **listProjects**
@@ -2548,11 +2548,11 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | projectMetadataList |  -  |
-**401** | genericError |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**0** | genericError |  -  |
+| **200** | projectMetadataList |  -  |
+| **401** | genericError |  -  |
+| **403** | genericError |  -  |
+| **404** | genericError |  -  |
+| **0** | genericError |  -  |
 
 <a name="listSessions"></a>
 # **listSessions**
@@ -2597,12 +2597,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **xSessionToken** | **String**| Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;. | [optional]
- **cookie** | **String**| Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored. | [optional]
- **perPage** | **Long**| Items per Page  This is the number of items per page. | [optional] [default to 250]
- **page** | **Long**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **xSessionToken** | **String**| Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;. | [optional] |
+| **cookie** | **String**| Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored. | [optional] |
+| **perPage** | **Long**| Items per Page  This is the number of items per page. | [optional] [default to 250] |
+| **page** | **Long**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1] |
 
 ### Return type
 
@@ -2620,11 +2620,11 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | sessionList |  -  |
-**400** | jsonError |  -  |
-**401** | jsonError |  -  |
-**404** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | sessionList |  -  |
+| **400** | jsonError |  -  |
+| **401** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="patchProject"></a>
 # **patchProject**
@@ -2672,10 +2672,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **String**| Project ID  The project&#39;s ID. |
- **jsonPatch** | [**List&lt;JsonPatch&gt;**](JsonPatch.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| Project ID  The project&#39;s ID. | |
+| **jsonPatch** | [**List&lt;JsonPatch&gt;**](JsonPatch.md)|  | [optional] |
 
 ### Return type
 
@@ -2693,12 +2693,12 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | successfulProjectUpdate |  -  |
-**400** | genericError |  -  |
-**401** | genericError |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**0** | genericError |  -  |
+| **200** | successfulProjectUpdate |  -  |
+| **400** | genericError |  -  |
+| **401** | genericError |  -  |
+| **403** | genericError |  -  |
+| **404** | genericError |  -  |
+| **0** | genericError |  -  |
 
 <a name="purgeProject"></a>
 # **purgeProject**
@@ -2744,9 +2744,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **String**| Project ID  The project&#39;s ID. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| Project ID  The project&#39;s ID. | |
 
 ### Return type
 
@@ -2764,11 +2764,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**401** | genericError |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**0** | genericError |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **401** | genericError |  -  |
+| **403** | genericError |  -  |
+| **404** | genericError |  -  |
+| **0** | genericError |  -  |
 
 <a name="removeProjectMember"></a>
 # **removeProjectMember**
@@ -2815,10 +2815,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **String**| Project ID  The project&#39;s ID. |
- **memberId** | **String**| Member ID |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| Project ID  The project&#39;s ID. | |
+| **memberId** | **String**| Member ID | |
 
 ### Return type
 
@@ -2836,11 +2836,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | genericError |  -  |
-**401** | genericError |  -  |
-**406** | genericError |  -  |
-**500** | genericError |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | genericError |  -  |
+| **401** | genericError |  -  |
+| **406** | genericError |  -  |
+| **500** | genericError |  -  |
 
 <a name="revokeSession"></a>
 # **revokeSession**
@@ -2881,9 +2881,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| ID is the session&#39;s ID. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| ID is the session&#39;s ID. | |
 
 ### Return type
 
@@ -2901,10 +2901,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | jsonError |  -  |
-**401** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | jsonError |  -  |
+| **401** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="revokeSessions"></a>
 # **revokeSessions**
@@ -2947,10 +2947,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **xSessionToken** | **String**| Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;. | [optional]
- **cookie** | **String**| Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **xSessionToken** | **String**| Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;. | [optional] |
+| **cookie** | **String**| Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored. | [optional] |
 
 ### Return type
 
@@ -2968,11 +2968,11 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | revokedSessions |  -  |
-**400** | jsonError |  -  |
-**401** | jsonError |  -  |
-**404** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | revokedSessions |  -  |
+| **400** | jsonError |  -  |
+| **401** | jsonError |  -  |
+| **404** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="submitSelfServiceLoginFlow"></a>
 # **submitSelfServiceLoginFlow**
@@ -3017,12 +3017,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **flow** | **String**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). |
- **submitSelfServiceLoginFlowBody** | [**SubmitSelfServiceLoginFlowBody**](SubmitSelfServiceLoginFlowBody.md)|  |
- **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional]
- **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **flow** | **String**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). | |
+| **submitSelfServiceLoginFlowBody** | [**SubmitSelfServiceLoginFlowBody**](SubmitSelfServiceLoginFlowBody.md)|  | |
+| **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional] |
+| **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 
 ### Return type
 
@@ -3040,12 +3040,12 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | successfulSelfServiceLoginWithoutBrowser |  -  |
-**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | selfServiceLoginFlow |  -  |
-**410** | jsonError |  -  |
-**422** | selfServiceBrowserLocationChangeRequiredError |  -  |
-**500** | jsonError |  -  |
+| **200** | successfulSelfServiceLoginWithoutBrowser |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | selfServiceLoginFlow |  -  |
+| **410** | jsonError |  -  |
+| **422** | selfServiceBrowserLocationChangeRequiredError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="submitSelfServiceLogoutFlow"></a>
 # **submitSelfServiceLogoutFlow**
@@ -3087,10 +3087,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **String**| A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call &#x60;/self-service/logout/browser&#x60; to generate a URL for this endpoint. | [optional]
- **returnTo** | **String**| The URL to return to after the logout was completed. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**| A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call &#x60;/self-service/logout/browser&#x60; to generate a URL for this endpoint. | [optional] |
+| **returnTo** | **String**| The URL to return to after the logout was completed. | [optional] |
 
 ### Return type
 
@@ -3108,9 +3108,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**500** | jsonError |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **500** | jsonError |  -  |
 
 <a name="submitSelfServiceLogoutFlowWithoutBrowser"></a>
 # **submitSelfServiceLogoutFlowWithoutBrowser**
@@ -3151,9 +3151,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **submitSelfServiceLogoutFlowWithoutBrowserBody** | [**SubmitSelfServiceLogoutFlowWithoutBrowserBody**](SubmitSelfServiceLogoutFlowWithoutBrowserBody.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **submitSelfServiceLogoutFlowWithoutBrowserBody** | [**SubmitSelfServiceLogoutFlowWithoutBrowserBody**](SubmitSelfServiceLogoutFlowWithoutBrowserBody.md)|  | |
 
 ### Return type
 
@@ -3171,9 +3171,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="submitSelfServiceRecoveryFlow"></a>
 # **submitSelfServiceRecoveryFlow**
@@ -3218,12 +3218,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **flow** | **String**| The Recovery Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). |
- **submitSelfServiceRecoveryFlowBody** | [**SubmitSelfServiceRecoveryFlowBody**](SubmitSelfServiceRecoveryFlowBody.md)|  |
- **token** | **String**| Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. | [optional]
- **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **flow** | **String**| The Recovery Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). | |
+| **submitSelfServiceRecoveryFlowBody** | [**SubmitSelfServiceRecoveryFlowBody**](SubmitSelfServiceRecoveryFlowBody.md)|  | |
+| **token** | **String**| Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. | [optional] |
+| **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 
 ### Return type
 
@@ -3241,11 +3241,11 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | selfServiceRecoveryFlow |  -  |
-**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | selfServiceRecoveryFlow |  -  |
-**410** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | selfServiceRecoveryFlow |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | selfServiceRecoveryFlow |  -  |
+| **410** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="submitSelfServiceRegistrationFlow"></a>
 # **submitSelfServiceRegistrationFlow**
@@ -3289,11 +3289,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **flow** | **String**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). |
- **submitSelfServiceRegistrationFlowBody** | [**SubmitSelfServiceRegistrationFlowBody**](SubmitSelfServiceRegistrationFlowBody.md)|  |
- **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **flow** | **String**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). | |
+| **submitSelfServiceRegistrationFlowBody** | [**SubmitSelfServiceRegistrationFlowBody**](SubmitSelfServiceRegistrationFlowBody.md)|  | |
+| **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 
 ### Return type
 
@@ -3311,12 +3311,12 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | successfulSelfServiceRegistrationWithoutBrowser |  -  |
-**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | selfServiceRegistrationFlow |  -  |
-**410** | jsonError |  -  |
-**422** | selfServiceBrowserLocationChangeRequiredError |  -  |
-**500** | jsonError |  -  |
+| **200** | successfulSelfServiceRegistrationWithoutBrowser |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | selfServiceRegistrationFlow |  -  |
+| **410** | jsonError |  -  |
+| **422** | selfServiceBrowserLocationChangeRequiredError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="submitSelfServiceSettingsFlow"></a>
 # **submitSelfServiceSettingsFlow**
@@ -3361,12 +3361,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **flow** | **String**| The Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
- **submitSelfServiceSettingsFlowBody** | [**SubmitSelfServiceSettingsFlowBody**](SubmitSelfServiceSettingsFlowBody.md)|  |
- **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional]
- **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **flow** | **String**| The Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). | |
+| **submitSelfServiceSettingsFlowBody** | [**SubmitSelfServiceSettingsFlowBody**](SubmitSelfServiceSettingsFlowBody.md)|  | |
+| **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional] |
+| **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 
 ### Return type
 
@@ -3384,14 +3384,14 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | selfServiceSettingsFlow |  -  |
-**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | selfServiceSettingsFlow |  -  |
-**401** | jsonError |  -  |
-**403** | jsonError |  -  |
-**410** | jsonError |  -  |
-**422** | selfServiceBrowserLocationChangeRequiredError |  -  |
-**500** | jsonError |  -  |
+| **200** | selfServiceSettingsFlow |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | selfServiceSettingsFlow |  -  |
+| **401** | jsonError |  -  |
+| **403** | jsonError |  -  |
+| **410** | jsonError |  -  |
+| **422** | selfServiceBrowserLocationChangeRequiredError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="submitSelfServiceVerificationFlow"></a>
 # **submitSelfServiceVerificationFlow**
@@ -3436,12 +3436,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **flow** | **String**| The Verification Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/verification?flow&#x3D;abcde&#x60;). |
- **submitSelfServiceVerificationFlowBody** | [**SubmitSelfServiceVerificationFlowBody**](SubmitSelfServiceVerificationFlowBody.md)|  |
- **token** | **String**| Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. | [optional]
- **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **flow** | **String**| The Verification Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/verification?flow&#x3D;abcde&#x60;). | |
+| **submitSelfServiceVerificationFlowBody** | [**SubmitSelfServiceVerificationFlowBody**](SubmitSelfServiceVerificationFlowBody.md)|  | |
+| **token** | **String**| Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. | [optional] |
+| **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 
 ### Return type
 
@@ -3459,11 +3459,11 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | selfServiceVerificationFlow |  -  |
-**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | selfServiceVerificationFlow |  -  |
-**410** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | selfServiceVerificationFlow |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | selfServiceVerificationFlow |  -  |
+| **410** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="toSession"></a>
 # **toSession**
@@ -3506,10 +3506,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **xSessionToken** | **String**| Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;. | [optional]
- **cookie** | **String**| Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **xSessionToken** | **String**| Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;. | [optional] |
+| **cookie** | **String**| Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored. | [optional] |
 
 ### Return type
 
@@ -3527,10 +3527,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | session |  -  |
-**401** | jsonError |  -  |
-**403** | jsonError |  -  |
-**500** | jsonError |  -  |
+| **200** | session |  -  |
+| **401** | jsonError |  -  |
+| **403** | jsonError |  -  |
+| **500** | jsonError |  -  |
 
 <a name="updateProject"></a>
 # **updateProject**
@@ -3578,10 +3578,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **String**| Project ID  The project&#39;s ID. |
- **updateProject** | [**UpdateProject**](UpdateProject.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| Project ID  The project&#39;s ID. | |
+| **updateProject** | [**UpdateProject**](UpdateProject.md)|  | [optional] |
 
 ### Return type
 
@@ -3599,10 +3599,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | successfulProjectUpdate |  -  |
-**400** | genericError |  -  |
-**401** | genericError |  -  |
-**403** | genericError |  -  |
-**404** | genericError |  -  |
-**0** | genericError |  -  |
+| **200** | successfulProjectUpdate |  -  |
+| **400** | genericError |  -  |
+| **401** | genericError |  -  |
+| **403** | genericError |  -  |
+| **404** | genericError |  -  |
+| **0** | genericError |  -  |
 

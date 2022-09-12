@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v0.2.0-alpha.37
-  - Build date: 2022-09-09T08:29:13.059041099Z[Etc/UTC]
+- API version: v0.2.0-alpha.38
+  - Build date: 2022-09-12T13:39:28.630998806Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v0.2.0-alpha.37</version>
+  <version>v0.2.0-alpha.38</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v0.2.0-alpha.37"
+     implementation "sh.ory:client:v0.2.0-alpha.38"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v0.2.0-alpha.37.jar`
+* `target/client-v0.2.0-alpha.38.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -247,6 +247,7 @@ Class | Method | HTTP request | Description
  - [ConsentRequest](docs/ConsentRequest.md)
  - [ConsentRequestSession](docs/ConsentRequestSession.md)
  - [CreateCustomHostnameBody](docs/CreateCustomHostnameBody.md)
+ - [CreateProjectApiKeyRequest](docs/CreateProjectApiKeyRequest.md)
  - [CreateProjectBody](docs/CreateProjectBody.md)
  - [CreateSubscriptionPayload](docs/CreateSubscriptionPayload.md)
  - [ErrorAuthenticatorAssuranceLevelNotSatisfied](docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md)
@@ -258,6 +259,7 @@ Class | Method | HTTP request | Description
  - [GetCheckResponse](docs/GetCheckResponse.md)
  - [GetManagedIdentitySchemaLocation](docs/GetManagedIdentitySchemaLocation.md)
  - [GetRelationTuplesResponse](docs/GetRelationTuplesResponse.md)
+ - [GetVersion200Response](docs/GetVersion200Response.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
  - [HealthStatus](docs/HealthStatus.md)
  - [Identity](docs/Identity.md)
@@ -269,13 +271,11 @@ Class | Method | HTTP request | Description
  - [IdentitySchemaContainer](docs/IdentitySchemaContainer.md)
  - [IdentitySchemaPreset](docs/IdentitySchemaPreset.md)
  - [IdentityState](docs/IdentityState.md)
- - [InlineObject3](docs/InlineObject3.md)
- - [InlineResponse200](docs/InlineResponse200.md)
- - [InlineResponse2001](docs/InlineResponse2001.md)
- - [InlineResponse503](docs/InlineResponse503.md)
  - [InvitePayload](docs/InvitePayload.md)
  - [IsOwnerForProjectBySlug](docs/IsOwnerForProjectBySlug.md)
  - [IsOwnerForProjectBySlugPayload](docs/IsOwnerForProjectBySlugPayload.md)
+ - [IsReady200Response](docs/IsReady200Response.md)
+ - [IsReady503Response](docs/IsReady503Response.md)
  - [JSONWebKey](docs/JSONWebKey.md)
  - [JSONWebKeySet](docs/JSONWebKeySet.md)
  - [JsonError](docs/JsonError.md)

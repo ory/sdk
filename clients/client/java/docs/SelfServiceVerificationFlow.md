@@ -6,17 +6,17 @@ Used to verify an out-of-band communication channel such as an email address or 
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**active** | **String** | Active, if set, contains the registration method that is being used. It is initially not set. |  [optional]
-**expiresAt** | **OffsetDateTime** | ExpiresAt is the time (UTC) when the request expires. If the user still wishes to verify the address, a new request has to be initiated. |  [optional]
-**id** | **UUID** |  | 
-**issuedAt** | **OffsetDateTime** | IssuedAt is the time (UTC) when the request occurred. |  [optional]
-**requestUrl** | **String** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. |  [optional]
-**returnTo** | **String** | ReturnTo contains the requested return_to URL. |  [optional]
-**state** | **SelfServiceVerificationFlowState** |  | 
-**type** | **String** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | 
-**ui** | [**UiContainer**](UiContainer.md) |  | 
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**active** | **String** | Active, if set, contains the registration method that is being used. It is initially not set. |  [optional] |
+|**expiresAt** | **OffsetDateTime** | ExpiresAt is the time (UTC) when the request expires. If the user still wishes to verify the address, a new request has to be initiated. |  [optional] |
+|**id** | **String** |  |  |
+|**issuedAt** | **OffsetDateTime** | IssuedAt is the time (UTC) when the request occurred. |  [optional] |
+|**requestUrl** | **String** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. |  [optional] |
+|**returnTo** | **String** | ReturnTo contains the requested return_to URL. |  [optional] |
+|**state** | **SelfServiceVerificationFlowState** |  |  |
+|**type** | **String** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. |  |
+|**ui** | [**UiContainer**](UiContainer.md) |  |  |
 
 
 

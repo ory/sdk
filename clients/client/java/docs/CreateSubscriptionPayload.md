@@ -5,11 +5,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**planOrPrice** | **String** |  | 
-**provisionFirstProject** | **String** |  | 
-**returnTo** | **String** |  |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**planOrPrice** | **String** |  |  |
+|**provisionFirstProject** | **String** |  |  |
+|**returnTo** | **String** |  |  [optional] |
 
 
 
