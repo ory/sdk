@@ -9,9 +9,8 @@ import 'package:ory_keto_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **children** | [**List<ExpandTree>**](ExpandTree.md) | The children of the node, possibly none. | [optional] [default to const []]
-**subjectId** | **String** | The subject ID the node represents. Either this field, or SubjectSet are set. | [optional] 
-**subjectSet** | [**SubjectSet**](SubjectSet.md) |  | [optional] 
-**type** | **String** | The type of the node. union ExpandNodeUnion exclusion ExpandNodeExclusion intersection ExpandNodeIntersection leaf ExpandNodeLeaf unspecified ExpandNodeUnspecified | 
+**tuple** | [**RelationTuple**](RelationTuple.md) |  | [optional] 
+**type** | **String** | The type of the node. union TreeNodeUnion exclusion TreeNodeExclusion intersection TreeNodeIntersection leaf TreeNodeLeaf tuple_to_subject_set TreeNodeTupleToSubjectSet computed_subject_set TreeNodeComputedSubjectSet not TreeNodeNot unspecified TreeNodeUnspecified | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

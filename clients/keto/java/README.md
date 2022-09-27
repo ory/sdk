@@ -1,8 +1,8 @@
 # keto-client
 
 Ory Keto API
-- API version: v0.9.0-alpha.0
-  - Build date: 2022-08-01T17:28:40.799947159Z[Etc/UTC]
+- API version: v0.10.0-alpha.0
+  - Build date: 2022-09-27T13:43:10.921931843Z[Etc/UTC]
 
 Documentation for all of Ory Keto's REST APIs. gRPC is documented separately.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.keto</groupId>
   <artifactId>keto-client</artifactId>
-  <version>v0.9.0-alpha.0</version>
+  <version>v0.10.0-alpha.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory.keto:keto-client:v0.9.0-alpha.0"
+     implementation "sh.ory.keto:keto-client:v0.10.0-alpha.0"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/keto-client-v0.9.0-alpha.0.jar`
+* `target/keto-client-v0.10.0-alpha.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -94,7 +94,7 @@ public class Example {
 
     MetadataApi apiInstance = new MetadataApi(defaultClient);
     try {
-      InlineResponse2001 result = apiInstance.getVersion();
+      GetVersion200Response result = apiInstance.getVersion();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling MetadataApi#getVersion");
@@ -134,11 +134,11 @@ Class | Method | HTTP request | Description
  - [GenericError](docs/GenericError.md)
  - [GetCheckResponse](docs/GetCheckResponse.md)
  - [GetRelationTuplesResponse](docs/GetRelationTuplesResponse.md)
+ - [GetVersion200Response](docs/GetVersion200Response.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
  - [HealthStatus](docs/HealthStatus.md)
- - [InlineResponse200](docs/InlineResponse200.md)
- - [InlineResponse2001](docs/InlineResponse2001.md)
- - [InlineResponse503](docs/InlineResponse503.md)
+ - [IsAlive200Response](docs/IsAlive200Response.md)
+ - [IsReady503Response](docs/IsReady503Response.md)
  - [PatchDelta](docs/PatchDelta.md)
  - [RelationQuery](docs/RelationQuery.md)
  - [RelationTuple](docs/RelationTuple.md)

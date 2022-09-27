@@ -1,4 +1,4 @@
-# InlineResponse200
+# IsAlive200Response
 
 ## Properties
 

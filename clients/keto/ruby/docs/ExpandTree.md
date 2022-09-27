@@ -5,9 +5,8 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **children** | [**Array&lt;ExpandTree&gt;**](ExpandTree.md) | The children of the node, possibly none. | [optional] |
-| **subject_id** | **String** | The subject ID the node represents. Either this field, or SubjectSet are set. | [optional] |
-| **subject_set** | [**SubjectSet**](SubjectSet.md) |  | [optional] |
-| **type** | **String** | The type of the node. union ExpandNodeUnion exclusion ExpandNodeExclusion intersection ExpandNodeIntersection leaf ExpandNodeLeaf unspecified ExpandNodeUnspecified |  |
+| **tuple** | [**RelationTuple**](RelationTuple.md) |  | [optional] |
+| **type** | **String** | The type of the node. union TreeNodeUnion exclusion TreeNodeExclusion intersection TreeNodeIntersection leaf TreeNodeLeaf tuple_to_subject_set TreeNodeTupleToSubjectSet computed_subject_set TreeNodeComputedSubjectSet not TreeNodeNot unspecified TreeNodeUnspecified |  |
 
 ## Example
 
@@ -16,8 +15,7 @@ require 'ory-keto-client'
 
 instance = OryKetoClient::ExpandTree.new(
   children: null,
-  subject_id: null,
-  subject_set: null,
+  tuple: null,
   type: null
 )
 ```

@@ -2,14 +2,14 @@
 
 All URIs are relative to *http://localhost*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getCheck**](ReadApi.md#getCheck) | **GET** /relation-tuples/check/openapi | Check a relation tuple
-[**getCheckMirrorStatus**](ReadApi.md#getCheckMirrorStatus) | **GET** /relation-tuples/check | Check a relation tuple
-[**getExpand**](ReadApi.md#getExpand) | **GET** /relation-tuples/expand | Expand a Relation Tuple
-[**getRelationTuples**](ReadApi.md#getRelationTuples) | **GET** /relation-tuples | Query relation tuples
-[**postCheck**](ReadApi.md#postCheck) | **POST** /relation-tuples/check/openapi | Check a relation tuple
-[**postCheckMirrorStatus**](ReadApi.md#postCheckMirrorStatus) | **POST** /relation-tuples/check | Check a relation tuple
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**getCheck**](ReadApi.md#getCheck) | **GET** /relation-tuples/check/openapi | Check a relation tuple |
+| [**getCheckMirrorStatus**](ReadApi.md#getCheckMirrorStatus) | **GET** /relation-tuples/check | Check a relation tuple |
+| [**getExpand**](ReadApi.md#getExpand) | **GET** /relation-tuples/expand | Expand a Relation Tuple |
+| [**getRelationTuples**](ReadApi.md#getRelationTuples) | **GET** /relation-tuples | Query relation tuples |
+| [**postCheck**](ReadApi.md#postCheck) | **POST** /relation-tuples/check/openapi | Check a relation tuple |
+| [**postCheckMirrorStatus**](ReadApi.md#postCheckMirrorStatus) | **POST** /relation-tuples/check | Check a relation tuple |
 
 
 <a name="getCheck"></a>
@@ -59,16 +59,16 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **namespace** | **String**| Namespace of the Relation Tuple | [optional]
- **_object** | **String**| Object of the Relation Tuple | [optional]
- **relation** | **String**| Relation of the Relation Tuple | [optional]
- **subjectId** | **String**| SubjectID of the Relation Tuple | [optional]
- **subjectSetNamespace** | **String**| Namespace of the Subject Set | [optional]
- **subjectSetObject** | **String**| Object of the Subject Set | [optional]
- **subjectSetRelation** | **String**| Relation of the Subject Set | [optional]
- **maxDepth** | **Long**|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **namespace** | **String**| Namespace of the Relation Tuple | [optional] |
+| **_object** | **String**| Object of the Relation Tuple | [optional] |
+| **relation** | **String**| Relation of the Relation Tuple | [optional] |
+| **subjectId** | **String**| SubjectID of the Relation Tuple | [optional] |
+| **subjectSetNamespace** | **String**| Namespace of the Subject Set | [optional] |
+| **subjectSetObject** | **String**| Object of the Subject Set | [optional] |
+| **subjectSetRelation** | **String**| Relation of the Subject Set | [optional] |
+| **maxDepth** | **Long**|  | [optional] |
 
 ### Return type
 
@@ -86,9 +86,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | getCheckResponse |  -  |
-**400** | genericError |  -  |
-**500** | genericError |  -  |
+| **200** | getCheckResponse |  -  |
+| **400** | genericError |  -  |
+| **500** | genericError |  -  |
 
 <a name="getCheckMirrorStatus"></a>
 # **getCheckMirrorStatus**
@@ -146,10 +146,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | getCheckResponse |  -  |
-**400** | genericError |  -  |
-**403** | getCheckResponse |  -  |
-**500** | genericError |  -  |
+| **200** | getCheckResponse |  -  |
+| **400** | genericError |  -  |
+| **403** | getCheckResponse |  -  |
+| **500** | genericError |  -  |
 
 <a name="getExpand"></a>
 # **getExpand**
@@ -194,12 +194,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **namespace** | **String**| Namespace of the Subject Set |
- **_object** | **String**| Object of the Subject Set |
- **relation** | **String**| Relation of the Subject Set |
- **maxDepth** | **Long**|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **namespace** | **String**| Namespace of the Subject Set | |
+| **_object** | **String**| Object of the Subject Set | |
+| **relation** | **String**| Relation of the Subject Set | |
+| **maxDepth** | **Long**|  | [optional] |
 
 ### Return type
 
@@ -217,10 +217,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | expandTree |  -  |
-**400** | genericError |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+| **200** | expandTree |  -  |
+| **400** | genericError |  -  |
+| **404** | genericError |  -  |
+| **500** | genericError |  -  |
 
 <a name="getRelationTuples"></a>
 # **getRelationTuples**
@@ -270,17 +270,17 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **pageToken** | **String**|  | [optional]
- **pageSize** | **Long**|  | [optional]
- **namespace** | **String**| Namespace of the Relation Tuple | [optional]
- **_object** | **String**| Object of the Relation Tuple | [optional]
- **relation** | **String**| Relation of the Relation Tuple | [optional]
- **subjectId** | **String**| SubjectID of the Relation Tuple | [optional]
- **subjectSetNamespace** | **String**| Namespace of the Subject Set | [optional]
- **subjectSetObject** | **String**| Object of the Subject Set | [optional]
- **subjectSetRelation** | **String**| Relation of the Subject Set | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **pageToken** | **String**|  | [optional] |
+| **pageSize** | **Long**|  | [optional] |
+| **namespace** | **String**| Namespace of the Relation Tuple | [optional] |
+| **_object** | **String**| Object of the Relation Tuple | [optional] |
+| **relation** | **String**| Relation of the Relation Tuple | [optional] |
+| **subjectId** | **String**| SubjectID of the Relation Tuple | [optional] |
+| **subjectSetNamespace** | **String**| Namespace of the Subject Set | [optional] |
+| **subjectSetObject** | **String**| Object of the Subject Set | [optional] |
+| **subjectSetRelation** | **String**| Relation of the Subject Set | [optional] |
 
 ### Return type
 
@@ -298,9 +298,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | getRelationTuplesResponse |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+| **200** | getRelationTuplesResponse |  -  |
+| **404** | genericError |  -  |
+| **500** | genericError |  -  |
 
 <a name="postCheck"></a>
 # **postCheck**
@@ -343,10 +343,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **maxDepth** | **Long**|  | [optional]
- **relationQuery** | [**RelationQuery**](RelationQuery.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **maxDepth** | **Long**|  | [optional] |
+| **relationQuery** | [**RelationQuery**](RelationQuery.md)|  | [optional] |
 
 ### Return type
 
@@ -364,9 +364,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | getCheckResponse |  -  |
-**400** | genericError |  -  |
-**500** | genericError |  -  |
+| **200** | getCheckResponse |  -  |
+| **400** | genericError |  -  |
+| **500** | genericError |  -  |
 
 <a name="postCheckMirrorStatus"></a>
 # **postCheckMirrorStatus**
@@ -424,8 +424,8 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | getCheckResponse |  -  |
-**400** | genericError |  -  |
-**403** | getCheckResponse |  -  |
-**500** | genericError |  -  |
+| **200** | getCheckResponse |  -  |
+| **400** | genericError |  -  |
+| **403** | getCheckResponse |  -  |
+| **500** | genericError |  -  |
 

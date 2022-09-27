@@ -14,64 +14,47 @@ class ExpandTree {
   /// Returns a new [ExpandTree] instance.
   ExpandTree({
     this.children = const [],
-    this.subjectId,
-    this.subjectSet,
+    this.tuple,
     required this.type,
   });
 
   /// The children of the node, possibly none.
   List<ExpandTree> children;
 
-  /// The subject ID the node represents. Either this field, or SubjectSet are set.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  String? subjectId;
+  RelationTuple? tuple;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  SubjectSet? subjectSet;
-
-  /// The type of the node. union ExpandNodeUnion exclusion ExpandNodeExclusion intersection ExpandNodeIntersection leaf ExpandNodeLeaf unspecified ExpandNodeUnspecified
+  /// The type of the node. union TreeNodeUnion exclusion TreeNodeExclusion intersection TreeNodeIntersection leaf TreeNodeLeaf tuple_to_subject_set TreeNodeTupleToSubjectSet computed_subject_set TreeNodeComputedSubjectSet not TreeNodeNot unspecified TreeNodeUnspecified
   ExpandTreeTypeEnum type;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ExpandTree &&
      other.children == children &&
-     other.subjectId == subjectId &&
-     other.subjectSet == subjectSet &&
+     other.tuple == tuple &&
      other.type == type;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (children.hashCode) +
-    (subjectId == null ? 0 : subjectId!.hashCode) +
-    (subjectSet == null ? 0 : subjectSet!.hashCode) +
+    (tuple == null ? 0 : tuple!.hashCode) +
     (type.hashCode);
 
   @override
-  String toString() => 'ExpandTree[children=$children, subjectId=$subjectId, subjectSet=$subjectSet, type=$type]';
+  String toString() => 'ExpandTree[children=$children, tuple=$tuple, type=$type]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
       _json[r'children'] = children;
-    if (subjectId != null) {
-      _json[r'subject_id'] = subjectId;
+    if (tuple != null) {
+      _json[r'tuple'] = tuple;
     } else {
-      _json[r'subject_id'] = null;
-    }
-    if (subjectSet != null) {
-      _json[r'subject_set'] = subjectSet;
-    } else {
-      _json[r'subject_set'] = null;
+      _json[r'tuple'] = null;
     }
       _json[r'type'] = type;
     return _json;
@@ -97,8 +80,7 @@ class ExpandTree {
 
       return ExpandTree(
         children: ExpandTree.listFromJson(json[r'children']) ?? const [],
-        subjectId: mapValueOfType<String>(json, r'subject_id'),
-        subjectSet: SubjectSet.fromJson(json[r'subject_set']),
+        tuple: RelationTuple.fromJson(json[r'tuple']),
         type: ExpandTreeTypeEnum.fromJson(json[r'type'])!,
       );
     }
@@ -153,7 +135,7 @@ class ExpandTree {
   };
 }
 
-/// The type of the node. union ExpandNodeUnion exclusion ExpandNodeExclusion intersection ExpandNodeIntersection leaf ExpandNodeLeaf unspecified ExpandNodeUnspecified
+/// The type of the node. union TreeNodeUnion exclusion TreeNodeExclusion intersection TreeNodeIntersection leaf TreeNodeLeaf tuple_to_subject_set TreeNodeTupleToSubjectSet computed_subject_set TreeNodeComputedSubjectSet not TreeNodeNot unspecified TreeNodeUnspecified
 class ExpandTreeTypeEnum {
   /// Instantiate a new enum with the provided [value].
   const ExpandTreeTypeEnum._(this.value);
@@ -170,6 +152,9 @@ class ExpandTreeTypeEnum {
   static const exclusion = ExpandTreeTypeEnum._(r'exclusion');
   static const intersection = ExpandTreeTypeEnum._(r'intersection');
   static const leaf = ExpandTreeTypeEnum._(r'leaf');
+  static const tupleToSubjectSet = ExpandTreeTypeEnum._(r'tuple_to_subject_set');
+  static const computedSubjectSet = ExpandTreeTypeEnum._(r'computed_subject_set');
+  static const not = ExpandTreeTypeEnum._(r'not');
   static const unspecified = ExpandTreeTypeEnum._(r'unspecified');
 
   /// List of all possible values in this [enum][ExpandTreeTypeEnum].
@@ -178,6 +163,9 @@ class ExpandTreeTypeEnum {
     exclusion,
     intersection,
     leaf,
+    tupleToSubjectSet,
+    computedSubjectSet,
+    not,
     unspecified,
   ];
 
@@ -221,6 +209,9 @@ class ExpandTreeTypeEnumTypeTransformer {
         case r'exclusion': return ExpandTreeTypeEnum.exclusion;
         case r'intersection': return ExpandTreeTypeEnum.intersection;
         case r'leaf': return ExpandTreeTypeEnum.leaf;
+        case r'tuple_to_subject_set': return ExpandTreeTypeEnum.tupleToSubjectSet;
+        case r'computed_subject_set': return ExpandTreeTypeEnum.computedSubjectSet;
+        case r'not': return ExpandTreeTypeEnum.not;
         case r'unspecified': return ExpandTreeTypeEnum.unspecified;
         default:
           if (!allowNull) {

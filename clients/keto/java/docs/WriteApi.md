@@ -2,11 +2,11 @@
 
 All URIs are relative to *http://localhost*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createRelationTuple**](WriteApi.md#createRelationTuple) | **PUT** /admin/relation-tuples | Create a Relation Tuple
-[**deleteRelationTuples**](WriteApi.md#deleteRelationTuples) | **DELETE** /admin/relation-tuples | Delete Relation Tuples
-[**patchRelationTuples**](WriteApi.md#patchRelationTuples) | **PATCH** /admin/relation-tuples | Patch Multiple Relation Tuples
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**createRelationTuple**](WriteApi.md#createRelationTuple) | **PUT** /admin/relation-tuples | Create a Relation Tuple |
+| [**deleteRelationTuples**](WriteApi.md#deleteRelationTuples) | **DELETE** /admin/relation-tuples | Delete Relation Tuples |
+| [**patchRelationTuples**](WriteApi.md#patchRelationTuples) | **PATCH** /admin/relation-tuples | Patch Multiple Relation Tuples |
 
 
 <a name="createRelationTuple"></a>
@@ -49,9 +49,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **relationQuery** | [**RelationQuery**](RelationQuery.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **relationQuery** | [**RelationQuery**](RelationQuery.md)|  | [optional] |
 
 ### Return type
 
@@ -69,9 +69,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | relationQuery |  -  |
-**400** | genericError |  -  |
-**500** | genericError |  -  |
+| **201** | relationQuery |  -  |
+| **400** | genericError |  -  |
+| **500** | genericError |  -  |
 
 <a name="deleteRelationTuples"></a>
 # **deleteRelationTuples**
@@ -118,15 +118,15 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **namespace** | **String**| Namespace of the Relation Tuple | [optional]
- **_object** | **String**| Object of the Relation Tuple | [optional]
- **relation** | **String**| Relation of the Relation Tuple | [optional]
- **subjectId** | **String**| SubjectID of the Relation Tuple | [optional]
- **subjectSetNamespace** | **String**| Namespace of the Subject Set | [optional]
- **subjectSetObject** | **String**| Object of the Subject Set | [optional]
- **subjectSetRelation** | **String**| Relation of the Subject Set | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **namespace** | **String**| Namespace of the Relation Tuple | [optional] |
+| **_object** | **String**| Object of the Relation Tuple | [optional] |
+| **relation** | **String**| Relation of the Relation Tuple | [optional] |
+| **subjectId** | **String**| SubjectID of the Relation Tuple | [optional] |
+| **subjectSetNamespace** | **String**| Namespace of the Subject Set | [optional] |
+| **subjectSetObject** | **String**| Object of the Subject Set | [optional] |
+| **subjectSetRelation** | **String**| Relation of the Subject Set | [optional] |
 
 ### Return type
 
@@ -144,9 +144,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | genericError |  -  |
-**500** | genericError |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | genericError |  -  |
+| **500** | genericError |  -  |
 
 <a name="patchRelationTuples"></a>
 # **patchRelationTuples**
@@ -187,9 +187,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **patchDelta** | [**List&lt;PatchDelta&gt;**](PatchDelta.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **patchDelta** | [**List&lt;PatchDelta&gt;**](PatchDelta.md)|  | [optional] |
 
 ### Return type
 
@@ -207,8 +207,8 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | genericError |  -  |
-**404** | genericError |  -  |
-**500** | genericError |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | genericError |  -  |
+| **404** | genericError |  -  |
+| **500** | genericError |  -  |
 

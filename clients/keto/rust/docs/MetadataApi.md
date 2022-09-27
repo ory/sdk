@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## get_version
 
-> crate::models::InlineResponse2001 get_version()
+> crate::models::GetVersion200Response get_version()
 Return Running Software Version.
 
 This endpoint returns the version of Ory Keto.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the version will never refer to the cluster state, only to a single instance.
@@ -23,7 +23,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::InlineResponse2001**](inline_response_200_1.md)
+[**crate::models::GetVersion200Response**](getVersion_200_response.md)
 
 ### Authorization
 
@@ -39,7 +39,7 @@ No authorization required
 
 ## is_alive
 
-> crate::models::InlineResponse200 is_alive()
+> crate::models::IsAlive200Response is_alive()
 Check HTTP Server Status
 
 This endpoint returns a HTTP 200 status code when Ory Keto is accepting incoming HTTP requests. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
@@ -50,7 +50,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::InlineResponse200**](inline_response_200.md)
+[**crate::models::IsAlive200Response**](isAlive_200_response.md)
 
 ### Authorization
 
@@ -66,7 +66,7 @@ No authorization required
 
 ## is_ready
 
-> crate::models::InlineResponse200 is_ready()
+> crate::models::IsAlive200Response is_ready()
 Check HTTP Server and Database Status
 
 This endpoint returns a HTTP 200 status code when Ory Keto is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of Ory Keto, the health status will never refer to the cluster state, only to a single instance.
@@ -77,7 +77,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::InlineResponse200**](inline_response_200.md)
+[**crate::models::IsAlive200Response**](isAlive_200_response.md)
 
 ### Authorization
 

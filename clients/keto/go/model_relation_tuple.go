@@ -3,7 +3,7 @@ Ory Keto API
 
 Documentation for all of Ory Keto's REST APIs. gRPC is documented separately. 
 
-API version: v0.9.0-alpha.0
+API version: v0.10.0-alpha.0
 Contact: hi@ory.sh
 */
 

@@ -1,10 +1,10 @@
-# InlineResponse503
+# GetVersion200Response
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**errors** | **::std::collections::HashMap<String, String>** | Errors contains a list of errors that caused the not ready status. | 
+**version** | **String** | The version of Ory Keto. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
