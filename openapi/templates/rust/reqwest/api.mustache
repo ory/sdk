@@ -8,6 +8,8 @@ use reqwest;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
+// temporarely needed until https://github.com/OpenAPITools/openapi-generator/issues/5676 is fixed
+use crate::models::CourierMessageStatus;
 
 trait NumVecJoin {
     fn join(&self, sep: &str) -> String;
