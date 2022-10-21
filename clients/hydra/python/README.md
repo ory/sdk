@@ -17,9 +17,9 @@ Python >=3.6
 If the python package is hosted on a repository, you can install directly using:
 
 ```sh
-pip install git+https://github.com/ory/sdk.git
+pip install git+https://github.com/ory/sdk.git#subdirectory=clients/hydra/python
 ```
-(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/ory/sdk.git`)
+(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/ory/sdk.git#subdirectory=clients/hydra/python`)
 
 Then import the package:
 ```python
