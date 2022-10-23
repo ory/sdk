@@ -9,9 +9,8 @@ jobs:
     container: oryd/sdk:v0.0.50
     steps:
       - uses: actions/checkout@v3
-      # - run: ./scripts/generate.sh
-      # - run: ./scripts/test.sh
-      - run: ls .
+      - run: ./scripts/generate.sh
+      - run: ./scripts/test.sh
 # version: 2.1
 
 # jobs:
