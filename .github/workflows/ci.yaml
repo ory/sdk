@@ -1,15 +1,17 @@
 name: CI
 on:
-  push:
+  # push:
   pull_request:
 
 jobs:
   test:
-    runs-on: oryd/sdk:v0.0.50
+    runs-on: ubuntu-latest
+    container: oryd/sdk:v0.0.50
     steps:
       - uses: actions/checkout@v3
-      - run: ./scripts/generate.sh
-      - run: ./scripts/test.sh
+      # - run: ./scripts/generate.sh
+      # - run: ./scripts/test.sh
+      - run: ls .
 # version: 2.1
 
 # jobs:
