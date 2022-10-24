@@ -13,7 +13,7 @@ defmodule Ory.Model.RefreshTokenHookResponse do
   ]
 
   @type t :: %__MODULE__{
-    :session => Ory.Model.ConsentRequestSession.t | nil
+    :session => Ory.Model.AcceptOAuth2ConsentRequestSession.t | nil
   }
 end
 
@@ -21,7 +21,7 @@ defimpl Poison.Decoder, for: Ory.Model.RefreshTokenHookResponse do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:session, :struct, Ory.Model.ConsentRequestSession, options)
+    |> deserialize(:session, :struct, Ory.Model.AcceptOAuth2ConsentRequestSession, options)
   end
 end
 

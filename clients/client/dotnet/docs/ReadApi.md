@@ -4,19 +4,19 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetCheck**](ReadApi.md#getcheck) | **GET** /relation-tuples/check/openapi | # Check a relation tuple
-[**GetCheckMirrorStatus**](ReadApi.md#getcheckmirrorstatus) | **GET** /relation-tuples/check | # Check a relation tuple
-[**GetExpand**](ReadApi.md#getexpand) | **GET** /relation-tuples/expand | # Expand a Relation Tuple
-[**GetRelationTuples**](ReadApi.md#getrelationtuples) | **GET** /relation-tuples | # Query relation tuples
-[**PostCheck**](ReadApi.md#postcheck) | **POST** /relation-tuples/check/openapi | # Check a relation tuple
-[**PostCheckMirrorStatus**](ReadApi.md#postcheckmirrorstatus) | **POST** /relation-tuples/check | # Check a relation tuple
+[**GetCheck**](ReadApi.md#getcheck) | **GET** /relation-tuples/check/openapi | Check a relation tuple
+[**GetCheckMirrorStatus**](ReadApi.md#getcheckmirrorstatus) | **GET** /relation-tuples/check | Check a relation tuple
+[**GetExpand**](ReadApi.md#getexpand) | **GET** /relation-tuples/expand | Expand a Relation Tuple
+[**GetRelationTuples**](ReadApi.md#getrelationtuples) | **GET** /relation-tuples | Query relation tuples
+[**PostCheck**](ReadApi.md#postcheck) | **POST** /relation-tuples/check/openapi | Check a relation tuple
+[**PostCheckMirrorStatus**](ReadApi.md#postcheckmirrorstatus) | **POST** /relation-tuples/check | Check a relation tuple
 
 
 <a name="getcheck"></a>
 # **GetCheck**
 > ClientGetCheckResponse GetCheck (string _namespace = null, string _object = null, string relation = null, string subjectId = null, string subjectSetNamespace = null, string subjectSetObject = null, string subjectSetRelation = null, long? maxDepth = null)
 
-# Check a relation tuple
+Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -51,7 +51,7 @@ namespace Example
 
             try
             {
-                // # Check a relation tuple
+                // Check a relation tuple
                 ClientGetCheckResponse result = apiInstance.GetCheck(_namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation, maxDepth);
                 Debug.WriteLine(result);
             }
@@ -106,7 +106,7 @@ Name | Type | Description  | Notes
 # **GetCheckMirrorStatus**
 > ClientGetCheckResponse GetCheckMirrorStatus ()
 
-# Check a relation tuple
+Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -133,7 +133,7 @@ namespace Example
 
             try
             {
-                // # Check a relation tuple
+                // Check a relation tuple
                 ClientGetCheckResponse result = apiInstance.GetCheckMirrorStatus();
                 Debug.WriteLine(result);
             }
@@ -179,7 +179,7 @@ This endpoint does not need any parameter.
 # **GetExpand**
 > ClientExpandTree GetExpand (string _namespace, string _object, string relation, long? maxDepth = null)
 
-# Expand a Relation Tuple
+Expand a Relation Tuple
 
 Use this endpoint to expand a relation tuple.
 
@@ -210,7 +210,7 @@ namespace Example
 
             try
             {
-                // # Expand a Relation Tuple
+                // Expand a Relation Tuple
                 ClientExpandTree result = apiInstance.GetExpand(_namespace, _object, relation, maxDepth);
                 Debug.WriteLine(result);
             }
@@ -262,7 +262,7 @@ Name | Type | Description  | Notes
 # **GetRelationTuples**
 > ClientGetRelationTuplesResponse GetRelationTuples (string pageToken = null, long? pageSize = null, string _namespace = null, string _object = null, string relation = null, string subjectId = null, string subjectSetNamespace = null, string subjectSetObject = null, string subjectSetRelation = null)
 
-# Query relation tuples
+Query relation tuples
 
 Get all relation tuples that match the query. Only the namespace field is required.
 
@@ -298,7 +298,7 @@ namespace Example
 
             try
             {
-                // # Query relation tuples
+                // Query relation tuples
                 ClientGetRelationTuplesResponse result = apiInstance.GetRelationTuples(pageToken, pageSize, _namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
                 Debug.WriteLine(result);
             }
@@ -354,7 +354,7 @@ Name | Type | Description  | Notes
 # **PostCheck**
 > ClientGetCheckResponse PostCheck (long? maxDepth = null, ClientRelationQuery clientRelationQuery = null)
 
-# Check a relation tuple
+Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -383,7 +383,7 @@ namespace Example
 
             try
             {
-                // # Check a relation tuple
+                // Check a relation tuple
                 ClientGetCheckResponse result = apiInstance.PostCheck(maxDepth, clientRelationQuery);
                 Debug.WriteLine(result);
             }
@@ -432,7 +432,7 @@ Name | Type | Description  | Notes
 # **PostCheckMirrorStatus**
 > ClientGetCheckResponse PostCheckMirrorStatus ()
 
-# Check a relation tuple
+Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -459,7 +459,7 @@ namespace Example
 
             try
             {
-                // # Check a relation tuple
+                // Check a relation tuple
                 ClientGetCheckResponse result = apiInstance.PostCheckMirrorStatus();
                 Debug.WriteLine(result);
             }

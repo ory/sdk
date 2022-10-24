@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.48
+API version: v0.2.0-alpha.60
 Contact: support@ory.sh
 */
 
@@ -22,6 +22,7 @@ type SelfServiceVerificationFlow struct {
 	Active *string `json:"active,omitempty"`
 	// ExpiresAt is the time (UTC) when the request expires. If the user still wishes to verify the address, a new request has to be initiated.
 	ExpiresAt *time.Time `json:"expires_at,omitempty"`
+	// ID represents the request's unique ID. When performing the verification flow, this represents the id in the verify ui's query parameter: http://<selfservice.flows.verification.ui_url>?request=<id>  type: string format: uuid
 	Id string `json:"id"`
 	// IssuedAt is the time (UTC) when the request occurred.
 	IssuedAt *time.Time `json:"issued_at,omitempty"`

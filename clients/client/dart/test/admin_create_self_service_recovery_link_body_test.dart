@@ -1,33 +1,23 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.12
-
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: constant_identifier_names
-// ignore_for_file: lines_longer_than_80_chars
-
-import 'package:ory_client/api.dart';
 import 'package:test/test.dart';
+import 'package:ory_client/ory_client.dart';
 
 // tests for AdminCreateSelfServiceRecoveryLinkBody
 void main() {
-  // final instance = AdminCreateSelfServiceRecoveryLinkBody();
+  final instance = AdminCreateSelfServiceRecoveryLinkBodyBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test AdminCreateSelfServiceRecoveryLinkBody', () {
+  group(AdminCreateSelfServiceRecoveryLinkBody, () {
     // Link Expires In  The recovery link will expire at that point in time. Defaults to the configuration value of `selfservice.flows.recovery.request_lifespan`.
     // String expiresIn
     test('to test the property `expiresIn`', () async {
       // TODO
     });
 
+    // Identity to Recover  The identity's ID you wish to recover.
     // String identityId
     test('to test the property `identityId`', () async {
       // TODO
     });
 
-
   });
-
 }

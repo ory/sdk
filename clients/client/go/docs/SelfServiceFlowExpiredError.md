@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **Request** | Pointer to **string** | The request ID  The request ID is often exposed internally in order to trace errors across service architectures. This is often a UUID. | [optional] 
 **Since** | Pointer to **int64** | A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years. | [optional] 
 **Status** | Pointer to **string** | The status description | [optional] 
-**UseFlowId** | Pointer to **string** |  | [optional] 
+**UseFlowId** | Pointer to **string** | The flow ID that should be used for the new flow as it contains the correct messages. | [optional] 
 
 ## Methods
 

@@ -13,7 +13,7 @@
 | **request** | **String** | The request ID  The request ID is often exposed internally in order to trace errors across service architectures. This is often a UUID. | [optional] |
 | **since** | **Integer** | A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years. | [optional] |
 | **status** | **String** | The status description | [optional] |
-| **use_flow_id** | **String** |  | [optional] |
+| **use_flow_id** | **String** | The flow ID that should be used for the new flow as it contains the correct messages. | [optional] |
 
 ## Example
 

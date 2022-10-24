@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.48
+API version: v0.2.0-alpha.60
 Contact: support@ory.sh
 */
 
@@ -21,6 +21,7 @@ type SelfServiceError struct {
 	// CreatedAt is a helper struct field for gobuffalo.pop.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	Error map[string]interface{} `json:"error,omitempty"`
+	// ID of the error container.
 	Id string `json:"id"`
 	// UpdatedAt is a helper struct field for gobuffalo.pop.
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`

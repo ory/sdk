@@ -5,9 +5,9 @@ This request is used when an identity wants to recover their account.  We recomm
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Active** | **string** | Active, if set, contains the registration method that is being used. It is initially not set. | [optional] 
+**Active** | **string** | Active, if set, contains the recovery method that is being used. It is initially not set. | [optional] 
 **ExpiresAt** | **DateTime** | ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the setting, a new request has to be initiated. | 
-**Id** | **string** |  | 
+**Id** | **string** | ID represents the request&#39;s unique ID. When performing the recovery flow, this represents the id in the recovery ui&#39;s query parameter: http://&lt;selfservice.flows.recovery.ui_url&gt;?request&#x3D;&lt;id&gt; | 
 **IssuedAt** | **DateTime** | IssuedAt is the time (UTC) when the request occurred. | 
 **RequestUrl** | **string** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. | 
 **ReturnTo** | **string** | ReturnTo contains the requested return_to URL. | [optional] 

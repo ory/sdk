@@ -7,10 +7,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **DateTime** | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **Credentials** | [**Dictionary&lt;string, ClientIdentityCredentials&gt;**](ClientIdentityCredentials.md) | Credentials represents all credentials that can be used for authenticating this identity. | [optional] 
-**Id** | **string** |  | 
+**Id** | **string** | ID is the identity&#39;s unique identifier.  The Identity ID can not be changed and can not be chosen. This ensures future compatibility and optimization for distributed stores such as CockroachDB. | 
 **MetadataAdmin** | **Object** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
 **MetadataPublic** | **Object** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
-**RecoveryAddresses** | [**List&lt;ClientRecoveryAddress&gt;**](ClientRecoveryAddress.md) | RecoveryAddresses contains all the addresses that can be used to recover an identity. | [optional] 
+**RecoveryAddresses** | [**List&lt;ClientRecoveryIdentityAddress&gt;**](ClientRecoveryIdentityAddress.md) | RecoveryAddresses contains all the addresses that can be used to recover an identity. | [optional] 
 **SchemaId** | **string** | SchemaID is the ID of the JSON Schema to be used for validating the identity&#39;s traits. | 
 **SchemaUrl** | **string** | SchemaURL is the URL of the endpoint where the identity&#39;s traits schema can be fetched from.  format: url | 
 **State** | [**ClientIdentityState**](ClientIdentityState.md) |  | [optional] 

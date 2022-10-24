@@ -14,6 +14,7 @@ require 'ory-client'
 OryClient::SubmitSelfServiceRecoveryFlowBody.openapi_one_of
 # =>
 # [
+#   :'SubmitSelfServiceRecoveryFlowWithCodeMethodBody',
 #   :'SubmitSelfServiceRecoveryFlowWithLinkMethodBody'
 # ]
 ```
@@ -43,6 +44,7 @@ require 'ory-client'
 OryClient::SubmitSelfServiceRecoveryFlowBody.openapi_discriminator_mapping
 # =>
 # {
+#   :'code' => :'SubmitSelfServiceRecoveryFlowWithCodeMethodBody',
 #   :'link' => :'SubmitSelfServiceRecoveryFlowWithLinkMethodBody'
 # }
 
@@ -56,7 +58,7 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 require 'ory-client'
 
 OryClient::SubmitSelfServiceRecoveryFlowBody.build(data)
-# => #<SubmitSelfServiceRecoveryFlowWithLinkMethodBody:0x00007fdd4aab02a0>
+# => #<SubmitSelfServiceRecoveryFlowWithCodeMethodBody:0x00007fdd4aab02a0>
 
 OryClient::SubmitSelfServiceRecoveryFlowBody.build(data_that_doesnt_match)
 # => nil
@@ -70,6 +72,7 @@ OryClient::SubmitSelfServiceRecoveryFlowBody.build(data_that_doesnt_match)
 
 #### Return type
 
+- `SubmitSelfServiceRecoveryFlowWithCodeMethodBody`
 - `SubmitSelfServiceRecoveryFlowWithLinkMethodBody`
 - `nil` (if no type matches)
 

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.48
+API version: v0.2.0-alpha.60
 Contact: support@ory.sh
 */
 
@@ -23,6 +23,8 @@ type RefreshTokenHookRequest struct {
 	GrantedAudience []string `json:"granted_audience,omitempty"`
 	// GrantedScopes is the list of scopes granted to the OAuth 2.0 client.
 	GrantedScopes []string `json:"granted_scopes,omitempty"`
+	Requester *OAuth2AccessRequest `json:"requester,omitempty"`
+	Session *OAuth2ConsentSession `json:"session,omitempty"`
 	// Subject is the identifier of the authenticated end-user.
 	Subject *string `json:"subject,omitempty"`
 }
@@ -140,6 +142,70 @@ func (o *RefreshTokenHookRequest) SetGrantedScopes(v []string) {
 	o.GrantedScopes = v
 }
 
+// GetRequester returns the Requester field value if set, zero value otherwise.
+func (o *RefreshTokenHookRequest) GetRequester() OAuth2AccessRequest {
+	if o == nil || o.Requester == nil {
+		var ret OAuth2AccessRequest
+		return ret
+	}
+	return *o.Requester
+}
+
+// GetRequesterOk returns a tuple with the Requester field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RefreshTokenHookRequest) GetRequesterOk() (*OAuth2AccessRequest, bool) {
+	if o == nil || o.Requester == nil {
+		return nil, false
+	}
+	return o.Requester, true
+}
+
+// HasRequester returns a boolean if a field has been set.
+func (o *RefreshTokenHookRequest) HasRequester() bool {
+	if o != nil && o.Requester != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRequester gets a reference to the given OAuth2AccessRequest and assigns it to the Requester field.
+func (o *RefreshTokenHookRequest) SetRequester(v OAuth2AccessRequest) {
+	o.Requester = &v
+}
+
+// GetSession returns the Session field value if set, zero value otherwise.
+func (o *RefreshTokenHookRequest) GetSession() OAuth2ConsentSession {
+	if o == nil || o.Session == nil {
+		var ret OAuth2ConsentSession
+		return ret
+	}
+	return *o.Session
+}
+
+// GetSessionOk returns a tuple with the Session field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RefreshTokenHookRequest) GetSessionOk() (*OAuth2ConsentSession, bool) {
+	if o == nil || o.Session == nil {
+		return nil, false
+	}
+	return o.Session, true
+}
+
+// HasSession returns a boolean if a field has been set.
+func (o *RefreshTokenHookRequest) HasSession() bool {
+	if o != nil && o.Session != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSession gets a reference to the given OAuth2ConsentSession and assigns it to the Session field.
+func (o *RefreshTokenHookRequest) SetSession(v OAuth2ConsentSession) {
+	o.Session = &v
+}
+
 // GetSubject returns the Subject field value if set, zero value otherwise.
 func (o *RefreshTokenHookRequest) GetSubject() string {
 	if o == nil || o.Subject == nil {
@@ -182,6 +248,12 @@ func (o RefreshTokenHookRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.GrantedScopes != nil {
 		toSerialize["granted_scopes"] = o.GrantedScopes
+	}
+	if o.Requester != nil {
+		toSerialize["requester"] = o.Requester
+	}
+	if o.Session != nil {
+		toSerialize["session"] = o.Session
 	}
 	if o.Subject != nil {
 		toSerialize["subject"] = o.Subject

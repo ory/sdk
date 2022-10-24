@@ -1,21 +1,12 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.12
-
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: constant_identifier_names
-// ignore_for_file: lines_longer_than_80_chars
-
-import 'package:ory_client/api.dart';
 import 'package:test/test.dart';
+import 'package:ory_client/ory_client.dart';
 
 // tests for IsOwnerForProjectBySlugPayload
 void main() {
-  // final instance = IsOwnerForProjectBySlugPayload();
+  final instance = IsOwnerForProjectBySlugPayloadBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test IsOwnerForProjectBySlugPayload', () {
+  group(IsOwnerForProjectBySlugPayload, () {
     // ProjectScope is the project_id resolved from the API Token.
     // String projectScope
     test('to test the property `projectScope`', () async {
@@ -34,7 +25,5 @@ void main() {
       // TODO
     });
 
-
   });
-
 }

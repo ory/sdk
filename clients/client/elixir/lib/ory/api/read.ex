@@ -12,7 +12,7 @@ defmodule Ory.Api.Read do
 
 
   @doc """
-  # Check a relation tuple
+  Check a relation tuple
   To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
   ## Parameters
@@ -58,7 +58,7 @@ defmodule Ory.Api.Read do
   end
 
   @doc """
-  # Check a relation tuple
+  Check a relation tuple
   To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
   ## Parameters
@@ -86,7 +86,7 @@ defmodule Ory.Api.Read do
   end
 
   @doc """
-  # Expand a Relation Tuple
+  Expand a Relation Tuple
   Use this endpoint to expand a relation tuple.
 
   ## Parameters
@@ -125,7 +125,7 @@ defmodule Ory.Api.Read do
   end
 
   @doc """
-  # Query relation tuples
+  Query relation tuples
   Get all relation tuples that match the query. Only the namespace field is required.
 
   ## Parameters
@@ -173,7 +173,7 @@ defmodule Ory.Api.Read do
   end
 
   @doc """
-  # Check a relation tuple
+  Check a relation tuple
   To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
   ## Parameters
@@ -208,7 +208,7 @@ defmodule Ory.Api.Read do
   end
 
   @doc """
-  # Check a relation tuple
+  Check a relation tuple
   To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
   ## Parameters

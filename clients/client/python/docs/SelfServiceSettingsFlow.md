@@ -6,7 +6,7 @@ This flow is used when an identity wants to update settings (e.g. profile data, 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **expires_at** | **datetime** | ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to update the setting, a new flow has to be initiated. | 
-**id** | **str** |  | 
+**id** | **str** | ID represents the flow&#39;s unique ID. When performing the settings flow, this represents the id in the settings ui&#39;s query parameter: http://&lt;selfservice.flows.settings.ui_url&gt;?flow&#x3D;&lt;id&gt; | 
 **identity** | [**Identity**](Identity.md) |  | 
 **issued_at** | **datetime** | IssuedAt is the time (UTC) when the flow occurred. | 
 **request_url** | **str** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. | 

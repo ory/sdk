@@ -12,6 +12,8 @@ defmodule Ory.Model.RefreshTokenHookRequest do
     :client_id,
     :granted_audience,
     :granted_scopes,
+    :requester,
+    :session,
     :subject
   ]
 
@@ -19,13 +21,18 @@ defmodule Ory.Model.RefreshTokenHookRequest do
     :client_id => String.t | nil,
     :granted_audience => [String.t] | nil,
     :granted_scopes => [String.t] | nil,
+    :requester => Ory.Model.OAuth2AccessRequest.t | nil,
+    :session => Ory.Model.OAuth2ConsentSession.t | nil,
     :subject => String.t | nil
   }
 end
 
 defimpl Poison.Decoder, for: Ory.Model.RefreshTokenHookRequest do
-  def decode(value, _options) do
+  import Ory.Deserializer
+  def decode(value, options) do
     value
+    |> deserialize(:requester, :struct, Ory.Model.OAuth2AccessRequest, options)
+    |> deserialize(:session, :struct, Ory.Model.OAuth2ConsentSession, options)
   end
 end
 

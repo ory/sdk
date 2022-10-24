@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Request** | **string** | The request ID  The request ID is often exposed internally in order to trace errors across service architectures. This is often a UUID. | [optional] 
 **Since** | **long** | A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years. | [optional] 
 **Status** | **string** | The status description | [optional] 
-**UseFlowId** | **string** |  | [optional] 
+**UseFlowId** | **string** | The flow ID that should be used for the new flow as it contains the correct messages. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

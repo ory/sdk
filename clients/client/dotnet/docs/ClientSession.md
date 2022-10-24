@@ -9,8 +9,9 @@ Name | Type | Description | Notes
 **AuthenticatedAt** | **DateTime** | The Session Authentication Timestamp  When this session was authenticated at. If multi-factor authentication was used this is the time when the last factor was authenticated (e.g. the TOTP code challenge was completed). | [optional] 
 **AuthenticationMethods** | [**List&lt;ClientSessionAuthenticationMethod&gt;**](ClientSessionAuthenticationMethod.md) | A list of authenticators which were used to authenticate the session. | [optional] 
 **AuthenticatorAssuranceLevel** | [**ClientAuthenticatorAssuranceLevel**](ClientAuthenticatorAssuranceLevel.md) |  | [optional] 
+**Devices** | [**List&lt;ClientSessionDevice&gt;**](ClientSessionDevice.md) | Devices has history of all endpoints where the session was used | [optional] 
 **ExpiresAt** | **DateTime** | The Session Expiry  When this session expires at. | [optional] 
-**Id** | **string** |  | 
+**Id** | **string** | Session ID | 
 **Identity** | [**ClientIdentity**](ClientIdentity.md) |  | 
 **IssuedAt** | **DateTime** | The Session Issuance Timestamp  When this session was issued at. Usually equal or close to &#x60;authenticated_at&#x60;. | [optional] 
 

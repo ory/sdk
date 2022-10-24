@@ -9,45 +9,42 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getCheck**](ReadApi.md#getcheck) | **GET** /relation-tuples/check/openapi | # Check a relation tuple
-[**getCheckMirrorStatus**](ReadApi.md#getcheckmirrorstatus) | **GET** /relation-tuples/check | # Check a relation tuple
-[**getExpand**](ReadApi.md#getexpand) | **GET** /relation-tuples/expand | # Expand a Relation Tuple
-[**getRelationTuples**](ReadApi.md#getrelationtuples) | **GET** /relation-tuples | # Query relation tuples
-[**postCheck**](ReadApi.md#postcheck) | **POST** /relation-tuples/check/openapi | # Check a relation tuple
-[**postCheckMirrorStatus**](ReadApi.md#postcheckmirrorstatus) | **POST** /relation-tuples/check | # Check a relation tuple
+[**getCheck**](ReadApi.md#getcheck) | **GET** /relation-tuples/check/openapi | Check a relation tuple
+[**getCheckMirrorStatus**](ReadApi.md#getcheckmirrorstatus) | **GET** /relation-tuples/check | Check a relation tuple
+[**getExpand**](ReadApi.md#getexpand) | **GET** /relation-tuples/expand | Expand a Relation Tuple
+[**getRelationTuples**](ReadApi.md#getrelationtuples) | **GET** /relation-tuples | Query relation tuples
+[**postCheck**](ReadApi.md#postcheck) | **POST** /relation-tuples/check/openapi | Check a relation tuple
+[**postCheckMirrorStatus**](ReadApi.md#postcheckmirrorstatus) | **POST** /relation-tuples/check | Check a relation tuple
 
 
 # **getCheck**
 > GetCheckResponse getCheck(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation, maxDepth)
 
-# Check a relation tuple
+Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP Bearer authorization: oryAccessToken
-// Case 1. Use String Token
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
-// Case 2. Use Function which generate token.
-// String yourTokenGeneratorFunction() { ... }
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
-final api_instance = ReadApi();
-final namespace = namespace_example; // String | Namespace of the Relation Tuple
-final object = object_example; // String | Object of the Relation Tuple
-final relation = relation_example; // String | Relation of the Relation Tuple
-final subjectId = subjectId_example; // String | SubjectID of the Relation Tuple
-final subjectSetPeriodNamespace = subjectSetPeriodNamespace_example; // String | Namespace of the Subject Set
-final subjectSetPeriodObject = subjectSetPeriodObject_example; // String | Object of the Subject Set
-final subjectSetPeriodRelation = subjectSetPeriodRelation_example; // String | Relation of the Subject Set
-final maxDepth = 789; // int | 
+final api = OryClient().getReadApi();
+final String namespace = namespace_example; // String | Namespace of the Relation Tuple
+final String object = object_example; // String | Object of the Relation Tuple
+final String relation = relation_example; // String | Relation of the Relation Tuple
+final String subjectId = subjectId_example; // String | SubjectID of the Relation Tuple
+final String subjectSetPeriodNamespace = subjectSetPeriodNamespace_example; // String | Namespace of the Subject Set
+final String subjectSetPeriodObject = subjectSetPeriodObject_example; // String | Object of the Subject Set
+final String subjectSetPeriodRelation = subjectSetPeriodRelation_example; // String | Relation of the Subject Set
+final int maxDepth = 789; // int | 
 
 try {
-    final result = api_instance.getCheck(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation, maxDepth);
-    print(result);
-} catch (e) {
+    final response = api.getCheck(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation, maxDepth);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling ReadApi->getCheck: $e\n');
 }
 ```
@@ -83,26 +80,23 @@ Name | Type | Description  | Notes
 # **getCheckMirrorStatus**
 > GetCheckResponse getCheckMirrorStatus()
 
-# Check a relation tuple
+Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP Bearer authorization: oryAccessToken
-// Case 1. Use String Token
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
-// Case 2. Use Function which generate token.
-// String yourTokenGeneratorFunction() { ... }
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
-final api_instance = ReadApi();
+final api = OryClient().getReadApi();
 
 try {
-    final result = api_instance.getCheckMirrorStatus();
-    print(result);
-} catch (e) {
+    final response = api.getCheckMirrorStatus();
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling ReadApi->getCheckMirrorStatus: $e\n');
 }
 ```
@@ -128,30 +122,27 @@ This endpoint does not need any parameter.
 # **getExpand**
 > ExpandTree getExpand(namespace, object, relation, maxDepth)
 
-# Expand a Relation Tuple
+Expand a Relation Tuple
 
 Use this endpoint to expand a relation tuple.
 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP Bearer authorization: oryAccessToken
-// Case 1. Use String Token
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
-// Case 2. Use Function which generate token.
-// String yourTokenGeneratorFunction() { ... }
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
-final api_instance = ReadApi();
-final namespace = namespace_example; // String | Namespace of the Subject Set
-final object = object_example; // String | Object of the Subject Set
-final relation = relation_example; // String | Relation of the Subject Set
-final maxDepth = 789; // int | 
+final api = OryClient().getReadApi();
+final String namespace = namespace_example; // String | Namespace of the Subject Set
+final String object = object_example; // String | Object of the Subject Set
+final String relation = relation_example; // String | Relation of the Subject Set
+final int maxDepth = 789; // int | 
 
 try {
-    final result = api_instance.getExpand(namespace, object, relation, maxDepth);
-    print(result);
-} catch (e) {
+    final response = api.getExpand(namespace, object, relation, maxDepth);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling ReadApi->getExpand: $e\n');
 }
 ```
@@ -183,35 +174,32 @@ Name | Type | Description  | Notes
 # **getRelationTuples**
 > GetRelationTuplesResponse getRelationTuples(pageToken, pageSize, namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation)
 
-# Query relation tuples
+Query relation tuples
 
 Get all relation tuples that match the query. Only the namespace field is required.
 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP Bearer authorization: oryAccessToken
-// Case 1. Use String Token
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
-// Case 2. Use Function which generate token.
-// String yourTokenGeneratorFunction() { ... }
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
-final api_instance = ReadApi();
-final pageToken = pageToken_example; // String | 
-final pageSize = 789; // int | 
-final namespace = namespace_example; // String | Namespace of the Relation Tuple
-final object = object_example; // String | Object of the Relation Tuple
-final relation = relation_example; // String | Relation of the Relation Tuple
-final subjectId = subjectId_example; // String | SubjectID of the Relation Tuple
-final subjectSetPeriodNamespace = subjectSetPeriodNamespace_example; // String | Namespace of the Subject Set
-final subjectSetPeriodObject = subjectSetPeriodObject_example; // String | Object of the Subject Set
-final subjectSetPeriodRelation = subjectSetPeriodRelation_example; // String | Relation of the Subject Set
+final api = OryClient().getReadApi();
+final String pageToken = pageToken_example; // String | 
+final int pageSize = 789; // int | 
+final String namespace = namespace_example; // String | Namespace of the Relation Tuple
+final String object = object_example; // String | Object of the Relation Tuple
+final String relation = relation_example; // String | Relation of the Relation Tuple
+final String subjectId = subjectId_example; // String | SubjectID of the Relation Tuple
+final String subjectSetPeriodNamespace = subjectSetPeriodNamespace_example; // String | Namespace of the Subject Set
+final String subjectSetPeriodObject = subjectSetPeriodObject_example; // String | Object of the Subject Set
+final String subjectSetPeriodRelation = subjectSetPeriodRelation_example; // String | Relation of the Subject Set
 
 try {
-    final result = api_instance.getRelationTuples(pageToken, pageSize, namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation);
-    print(result);
-} catch (e) {
+    final response = api.getRelationTuples(pageToken, pageSize, namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling ReadApi->getRelationTuples: $e\n');
 }
 ```
@@ -248,28 +236,25 @@ Name | Type | Description  | Notes
 # **postCheck**
 > GetCheckResponse postCheck(maxDepth, relationQuery)
 
-# Check a relation tuple
+Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP Bearer authorization: oryAccessToken
-// Case 1. Use String Token
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
-// Case 2. Use Function which generate token.
-// String yourTokenGeneratorFunction() { ... }
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
-final api_instance = ReadApi();
-final maxDepth = 789; // int | 
-final relationQuery = RelationQuery(); // RelationQuery | 
+final api = OryClient().getReadApi();
+final int maxDepth = 789; // int | 
+final RelationQuery relationQuery = ; // RelationQuery | 
 
 try {
-    final result = api_instance.postCheck(maxDepth, relationQuery);
-    print(result);
-} catch (e) {
+    final response = api.postCheck(maxDepth, relationQuery);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling ReadApi->postCheck: $e\n');
 }
 ```
@@ -299,26 +284,23 @@ Name | Type | Description  | Notes
 # **postCheckMirrorStatus**
 > GetCheckResponse postCheckMirrorStatus()
 
-# Check a relation tuple
+Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP Bearer authorization: oryAccessToken
-// Case 1. Use String Token
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
-// Case 2. Use Function which generate token.
-// String yourTokenGeneratorFunction() { ... }
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
-final api_instance = ReadApi();
+final api = OryClient().getReadApi();
 
 try {
-    final result = api_instance.postCheckMirrorStatus();
-    print(result);
-} catch (e) {
+    final response = api.postCheckMirrorStatus();
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling ReadApi->postCheckMirrorStatus: $e\n');
 }
 ```

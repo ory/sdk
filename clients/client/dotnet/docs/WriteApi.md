@@ -4,16 +4,16 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateRelationTuple**](WriteApi.md#createrelationtuple) | **PUT** /admin/relation-tuples | # Create a Relation Tuple
-[**DeleteRelationTuples**](WriteApi.md#deleterelationtuples) | **DELETE** /admin/relation-tuples | # Delete Relation Tuples
-[**PatchRelationTuples**](WriteApi.md#patchrelationtuples) | **PATCH** /admin/relation-tuples | # Patch Multiple Relation Tuples
+[**CreateRelationTuple**](WriteApi.md#createrelationtuple) | **PUT** /admin/relation-tuples | Create a Relation Tuple
+[**DeleteRelationTuples**](WriteApi.md#deleterelationtuples) | **DELETE** /admin/relation-tuples | Delete Relation Tuples
+[**PatchRelationTuples**](WriteApi.md#patchrelationtuples) | **PATCH** /admin/relation-tuples | Patch Multiple Relation Tuples
 
 
 <a name="createrelationtuple"></a>
 # **CreateRelationTuple**
 > ClientRelationQuery CreateRelationTuple (ClientRelationQuery clientRelationQuery = null)
 
-# Create a Relation Tuple
+Create a Relation Tuple
 
 Use this endpoint to create a relation tuple.
 
@@ -41,7 +41,7 @@ namespace Example
 
             try
             {
-                // # Create a Relation Tuple
+                // Create a Relation Tuple
                 ClientRelationQuery result = apiInstance.CreateRelationTuple(clientRelationQuery);
                 Debug.WriteLine(result);
             }
@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 # **DeleteRelationTuples**
 > void DeleteRelationTuples (string _namespace = null, string _object = null, string relation = null, string subjectId = null, string subjectSetNamespace = null, string subjectSetObject = null, string subjectSetRelation = null)
 
-# Delete Relation Tuples
+Delete Relation Tuples
 
 Use this endpoint to delete relation tuples
 
@@ -123,7 +123,7 @@ namespace Example
 
             try
             {
-                // # Delete Relation Tuples
+                // Delete Relation Tuples
                 apiInstance.DeleteRelationTuples(_namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
             }
             catch (ApiException  e)
@@ -176,7 +176,7 @@ void (empty response body)
 # **PatchRelationTuples**
 > void PatchRelationTuples (List<ClientPatchDelta> clientPatchDelta = null)
 
-# Patch Multiple Relation Tuples
+Patch Multiple Relation Tuples
 
 Use this endpoint to patch one or more relation tuples.
 
@@ -204,7 +204,7 @@ namespace Example
 
             try
             {
-                // # Patch Multiple Relation Tuples
+                // Patch Multiple Relation Tuples
                 apiInstance.PatchRelationTuples(clientPatchDelta);
             }
             catch (ApiException  e)

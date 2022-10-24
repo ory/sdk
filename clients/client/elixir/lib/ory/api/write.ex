@@ -12,7 +12,7 @@ defmodule Ory.Api.Write do
 
 
   @doc """
-  # Create a Relation Tuple
+  Create a Relation Tuple
   Use this endpoint to create a relation tuple.
 
   ## Parameters
@@ -45,7 +45,7 @@ defmodule Ory.Api.Write do
   end
 
   @doc """
-  # Delete Relation Tuples
+  Delete Relation Tuples
   Use this endpoint to delete relation tuples
 
   ## Parameters
@@ -89,7 +89,7 @@ defmodule Ory.Api.Write do
   end
 
   @doc """
-  # Patch Multiple Relation Tuples
+  Patch Multiple Relation Tuples
   Use this endpoint to patch one or more relation tuples.
 
   ## Parameters

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.48
+API version: v0.2.0-alpha.60
 Contact: support@ory.sh
 */
 
@@ -35,6 +35,7 @@ type SelfServiceFlowExpiredError struct {
 	Since *int64 `json:"since,omitempty"`
 	// The status description
 	Status *string `json:"status,omitempty"`
+	// The flow ID that should be used for the new flow as it contains the correct messages.
 	UseFlowId *string `json:"use_flow_id,omitempty"`
 }
 

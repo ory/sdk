@@ -4,16 +4,16 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_relation_tuple**](WriteApi.md#create_relation_tuple) | **PUT** /admin/relation-tuples | # Create a Relation Tuple
-[**delete_relation_tuples**](WriteApi.md#delete_relation_tuples) | **DELETE** /admin/relation-tuples | # Delete Relation Tuples
-[**patch_relation_tuples**](WriteApi.md#patch_relation_tuples) | **PATCH** /admin/relation-tuples | # Patch Multiple Relation Tuples
+[**create_relation_tuple**](WriteApi.md#create_relation_tuple) | **PUT** /admin/relation-tuples | Create a Relation Tuple
+[**delete_relation_tuples**](WriteApi.md#delete_relation_tuples) | **DELETE** /admin/relation-tuples | Delete Relation Tuples
+[**patch_relation_tuples**](WriteApi.md#patch_relation_tuples) | **PATCH** /admin/relation-tuples | Patch Multiple Relation Tuples
 
 
 
 ## create_relation_tuple
 
 > crate::models::RelationQuery create_relation_tuple(relation_query)
-# Create a Relation Tuple
+Create a Relation Tuple
 
 Use this endpoint to create a relation tuple.
 
@@ -43,7 +43,7 @@ Name | Type | Description  | Required | Notes
 ## delete_relation_tuples
 
 > delete_relation_tuples(namespace, object, relation, subject_id, subject_set_namespace, subject_set_object, subject_set_relation)
-# Delete Relation Tuples
+Delete Relation Tuples
 
 Use this endpoint to delete relation tuples
 
@@ -79,7 +79,7 @@ Name | Type | Description  | Required | Notes
 ## patch_relation_tuples
 
 > patch_relation_tuples(patch_delta)
-# Patch Multiple Relation Tuples
+Patch Multiple Relation Tuples
 
 Use this endpoint to patch one or more relation tuples.
 

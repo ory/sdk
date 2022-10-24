@@ -23,7 +23,7 @@ defmodule Ory.Model.AdminCreateIdentityBody do
     :credentials => Ory.Model.AdminIdentityImportCredentials.t | nil,
     :metadata_admin => AnyType | nil,
     :metadata_public => AnyType | nil,
-    :recovery_addresses => [Ory.Model.RecoveryAddress.t] | nil,
+    :recovery_addresses => [Ory.Model.RecoveryIdentityAddress.t] | nil,
     :schema_id => String.t,
     :state => Ory.Model.IdentityState.t | nil,
     :traits => map(),
@@ -38,7 +38,7 @@ defimpl Poison.Decoder, for: Ory.Model.AdminCreateIdentityBody do
     |> deserialize(:credentials, :struct, Ory.Model.AdminIdentityImportCredentials, options)
     |> deserialize(:metadata_admin, :struct, Ory.Model.AnyType, options)
     |> deserialize(:metadata_public, :struct, Ory.Model.AnyType, options)
-    |> deserialize(:recovery_addresses, :list, Ory.Model.RecoveryAddress, options)
+    |> deserialize(:recovery_addresses, :list, Ory.Model.RecoveryIdentityAddress, options)
     |> deserialize(:state, :struct, Ory.Model.IdentityState, options)
     |> deserialize(:verifiable_addresses, :list, Ory.Model.VerifiableIdentityAddress, options)
   end

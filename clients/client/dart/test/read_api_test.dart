@@ -1,23 +1,13 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.12
-
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: constant_identifier_names
-// ignore_for_file: lines_longer_than_80_chars
-
-import 'package:ory_client/api.dart';
 import 'package:test/test.dart';
+import 'package:ory_client/ory_client.dart';
 
 
 /// tests for ReadApi
 void main() {
-  // final instance = ReadApi();
+  final instance = OryClient().getReadApi();
 
-  group('tests for ReadApi', () {
-    // # Check a relation tuple
+  group(ReadApi, () {
+    // Check a relation tuple
     //
     // To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
     //
@@ -26,7 +16,7 @@ void main() {
       // TODO
     });
 
-    // # Check a relation tuple
+    // Check a relation tuple
     //
     // To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
     //
@@ -35,7 +25,7 @@ void main() {
       // TODO
     });
 
-    // # Expand a Relation Tuple
+    // Expand a Relation Tuple
     //
     // Use this endpoint to expand a relation tuple.
     //
@@ -44,7 +34,7 @@ void main() {
       // TODO
     });
 
-    // # Query relation tuples
+    // Query relation tuples
     //
     // Get all relation tuples that match the query. Only the namespace field is required.
     //
@@ -53,7 +43,7 @@ void main() {
       // TODO
     });
 
-    // # Check a relation tuple
+    // Check a relation tuple
     //
     // To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
     //
@@ -62,7 +52,7 @@ void main() {
       // TODO
     });
 
-    // # Check a relation tuple
+    // Check a relation tuple
     //
     // To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
     //

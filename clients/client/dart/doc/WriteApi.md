@@ -9,35 +9,32 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createRelationTuple**](WriteApi.md#createrelationtuple) | **PUT** /admin/relation-tuples | # Create a Relation Tuple
-[**deleteRelationTuples**](WriteApi.md#deleterelationtuples) | **DELETE** /admin/relation-tuples | # Delete Relation Tuples
-[**patchRelationTuples**](WriteApi.md#patchrelationtuples) | **PATCH** /admin/relation-tuples | # Patch Multiple Relation Tuples
+[**createRelationTuple**](WriteApi.md#createrelationtuple) | **PUT** /admin/relation-tuples | Create a Relation Tuple
+[**deleteRelationTuples**](WriteApi.md#deleterelationtuples) | **DELETE** /admin/relation-tuples | Delete Relation Tuples
+[**patchRelationTuples**](WriteApi.md#patchrelationtuples) | **PATCH** /admin/relation-tuples | Patch Multiple Relation Tuples
 
 
 # **createRelationTuple**
 > RelationQuery createRelationTuple(relationQuery)
 
-# Create a Relation Tuple
+Create a Relation Tuple
 
 Use this endpoint to create a relation tuple.
 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP Bearer authorization: oryAccessToken
-// Case 1. Use String Token
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
-// Case 2. Use Function which generate token.
-// String yourTokenGeneratorFunction() { ... }
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
-final api_instance = WriteApi();
-final relationQuery = RelationQuery(); // RelationQuery | 
+final api = OryClient().getWriteApi();
+final RelationQuery relationQuery = ; // RelationQuery | 
 
 try {
-    final result = api_instance.createRelationTuple(relationQuery);
-    print(result);
-} catch (e) {
+    final response = api.createRelationTuple(relationQuery);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling WriteApi->createRelationTuple: $e\n');
 }
 ```
@@ -66,32 +63,29 @@ Name | Type | Description  | Notes
 # **deleteRelationTuples**
 > deleteRelationTuples(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation)
 
-# Delete Relation Tuples
+Delete Relation Tuples
 
 Use this endpoint to delete relation tuples
 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP Bearer authorization: oryAccessToken
-// Case 1. Use String Token
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
-// Case 2. Use Function which generate token.
-// String yourTokenGeneratorFunction() { ... }
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
-final api_instance = WriteApi();
-final namespace = namespace_example; // String | Namespace of the Relation Tuple
-final object = object_example; // String | Object of the Relation Tuple
-final relation = relation_example; // String | Relation of the Relation Tuple
-final subjectId = subjectId_example; // String | SubjectID of the Relation Tuple
-final subjectSetPeriodNamespace = subjectSetPeriodNamespace_example; // String | Namespace of the Subject Set
-final subjectSetPeriodObject = subjectSetPeriodObject_example; // String | Object of the Subject Set
-final subjectSetPeriodRelation = subjectSetPeriodRelation_example; // String | Relation of the Subject Set
+final api = OryClient().getWriteApi();
+final String namespace = namespace_example; // String | Namespace of the Relation Tuple
+final String object = object_example; // String | Object of the Relation Tuple
+final String relation = relation_example; // String | Relation of the Relation Tuple
+final String subjectId = subjectId_example; // String | SubjectID of the Relation Tuple
+final String subjectSetPeriodNamespace = subjectSetPeriodNamespace_example; // String | Namespace of the Subject Set
+final String subjectSetPeriodObject = subjectSetPeriodObject_example; // String | Object of the Subject Set
+final String subjectSetPeriodRelation = subjectSetPeriodRelation_example; // String | Relation of the Subject Set
 
 try {
-    api_instance.deleteRelationTuples(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation);
-} catch (e) {
+    api.deleteRelationTuples(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation);
+} catch on DioError (e) {
     print('Exception when calling WriteApi->deleteRelationTuples: $e\n');
 }
 ```
@@ -126,26 +120,23 @@ void (empty response body)
 # **patchRelationTuples**
 > patchRelationTuples(patchDelta)
 
-# Patch Multiple Relation Tuples
+Patch Multiple Relation Tuples
 
 Use this endpoint to patch one or more relation tuples.
 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP Bearer authorization: oryAccessToken
-// Case 1. Use String Token
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
-// Case 2. Use Function which generate token.
-// String yourTokenGeneratorFunction() { ... }
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
-final api_instance = WriteApi();
-final patchDelta = [List<PatchDelta>()]; // List<PatchDelta> | 
+final api = OryClient().getWriteApi();
+final BuiltList<PatchDelta> patchDelta = ; // BuiltList<PatchDelta> | 
 
 try {
-    api_instance.patchRelationTuples(patchDelta);
-} catch (e) {
+    api.patchRelationTuples(patchDelta);
+} catch on DioError (e) {
     print('Exception when calling WriteApi->patchRelationTuples: $e\n');
 }
 ```
@@ -154,7 +145,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **patchDelta** | [**List<PatchDelta>**](PatchDelta.md)|  | [optional] 
+ **patchDelta** | [**BuiltList&lt;PatchDelta&gt;**](PatchDelta.md)|  | [optional] 
 
 ### Return type
 

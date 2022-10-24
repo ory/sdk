@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | 
+**id** | **str** | ID of the error container. | 
 **created_at** | **datetime** | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **error** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
 **updated_at** | **datetime** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 

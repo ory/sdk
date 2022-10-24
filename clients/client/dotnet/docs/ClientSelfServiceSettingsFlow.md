@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Active** | **string** | Active, if set, contains the registration method that is being used. It is initially not set. | [optional] 
 **ExpiresAt** | **DateTime** | ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to update the setting, a new flow has to be initiated. | 
-**Id** | **string** |  | 
+**Id** | **string** | ID represents the flow&#39;s unique ID. When performing the settings flow, this represents the id in the settings ui&#39;s query parameter: http://&lt;selfservice.flows.settings.ui_url&gt;?flow&#x3D;&lt;id&gt; | 
 **Identity** | [**ClientIdentity**](ClientIdentity.md) |  | 
 **IssuedAt** | **DateTime** | IssuedAt is the time (UTC) when the flow occurred. | 
 **RequestUrl** | **string** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. | 

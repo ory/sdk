@@ -24,19 +24,16 @@ This endpoint returns the version of Ory Kratos.  If the service supports TLS Ed
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP Bearer authorization: oryAccessToken
-// Case 1. Use String Token
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
-// Case 2. Use Function which generate token.
-// String yourTokenGeneratorFunction() { ... }
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
-final api_instance = MetadataApi();
+final api = OryClient().getMetadataApi();
 
 try {
-    final result = api_instance.getVersion();
-    print(result);
-} catch (e) {
+    final response = api.getVersion();
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling MetadataApi->getVersion: $e\n');
 }
 ```
@@ -69,19 +66,16 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incomi
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP Bearer authorization: oryAccessToken
-// Case 1. Use String Token
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
-// Case 2. Use Function which generate token.
-// String yourTokenGeneratorFunction() { ... }
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
-final api_instance = MetadataApi();
+final api = OryClient().getMetadataApi();
 
 try {
-    final result = api_instance.isAlive();
-    print(result);
-} catch (e) {
+    final response = api.isAlive();
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling MetadataApi->isAlive: $e\n');
 }
 ```
@@ -114,19 +108,16 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is up running and t
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP Bearer authorization: oryAccessToken
-// Case 1. Use String Token
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
-// Case 2. Use Function which generate token.
-// String yourTokenGeneratorFunction() { ... }
-//defaultApiClient.getAuthentication<HttpBearerAuth>('oryAccessToken').setAccessToken(yourTokenGeneratorFunction);
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
-final api_instance = MetadataApi();
+final api = OryClient().getMetadataApi();
 
 try {
-    final result = api_instance.isReady();
-    print(result);
-} catch (e) {
+    final response = api.isReady();
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling MetadataApi->isReady: $e\n');
 }
 ```

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.48
+API version: v0.2.0-alpha.60
 Contact: support@ory.sh
 */
 
@@ -18,10 +18,11 @@ import (
 
 // SelfServiceRecoveryFlow This request is used when an identity wants to recover their account.  We recommend reading the [Account Recovery Documentation](../self-service/flows/password-reset-account-recovery)
 type SelfServiceRecoveryFlow struct {
-	// Active, if set, contains the registration method that is being used. It is initially not set.
+	// Active, if set, contains the recovery method that is being used. It is initially not set.
 	Active *string `json:"active,omitempty"`
 	// ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the setting, a new request has to be initiated.
 	ExpiresAt time.Time `json:"expires_at"`
+	// ID represents the request's unique ID. When performing the recovery flow, this represents the id in the recovery ui's query parameter: http://<selfservice.flows.recovery.ui_url>?request=<id>
 	Id string `json:"id"`
 	// IssuedAt is the time (UTC) when the request occurred.
 	IssuedAt time.Time `json:"issued_at"`

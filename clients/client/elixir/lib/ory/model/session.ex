@@ -13,6 +13,7 @@ defmodule Ory.Model.Session do
     :authenticated_at,
     :authentication_methods,
     :authenticator_assurance_level,
+    :devices,
     :expires_at,
     :id,
     :identity,
@@ -24,6 +25,7 @@ defmodule Ory.Model.Session do
     :authenticated_at => DateTime.t | nil,
     :authentication_methods => [Ory.Model.SessionAuthenticationMethod.t] | nil,
     :authenticator_assurance_level => Ory.Model.AuthenticatorAssuranceLevel.t | nil,
+    :devices => [Ory.Model.SessionDevice.t] | nil,
     :expires_at => DateTime.t | nil,
     :id => String.t,
     :identity => Ory.Model.Identity.t,
@@ -37,6 +39,7 @@ defimpl Poison.Decoder, for: Ory.Model.Session do
     value
     |> deserialize(:authentication_methods, :list, Ory.Model.SessionAuthenticationMethod, options)
     |> deserialize(:authenticator_assurance_level, :struct, Ory.Model.AuthenticatorAssuranceLevel, options)
+    |> deserialize(:devices, :list, Ory.Model.SessionDevice, options)
     |> deserialize(:identity, :struct, Ory.Model.Identity, options)
   end
 end

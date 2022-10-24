@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.48
+API version: v0.2.0-alpha.60
 Contact: support@ory.sh
 */
 
@@ -23,7 +23,7 @@ import (
 type WriteApi interface {
 
 	/*
-	CreateRelationTuple # Create a Relation Tuple
+	CreateRelationTuple Create a Relation Tuple
 
 	Use this endpoint to create a relation tuple.
 
@@ -37,7 +37,7 @@ type WriteApi interface {
 	CreateRelationTupleExecute(r WriteApiCreateRelationTupleRequest) (*RelationQuery, *http.Response, error)
 
 	/*
-	DeleteRelationTuples # Delete Relation Tuples
+	DeleteRelationTuples Delete Relation Tuples
 
 	Use this endpoint to delete relation tuples
 
@@ -50,7 +50,7 @@ type WriteApi interface {
 	DeleteRelationTuplesExecute(r WriteApiDeleteRelationTuplesRequest) (*http.Response, error)
 
 	/*
-	PatchRelationTuples # Patch Multiple Relation Tuples
+	PatchRelationTuples Patch Multiple Relation Tuples
 
 	Use this endpoint to patch one or more relation tuples.
 
@@ -82,7 +82,7 @@ func (r WriteApiCreateRelationTupleRequest) Execute() (*RelationQuery, *http.Res
 }
 
 /*
-CreateRelationTuple # Create a Relation Tuple
+CreateRelationTuple Create a Relation Tuple
 
 Use this endpoint to create a relation tuple.
 
@@ -251,7 +251,7 @@ func (r WriteApiDeleteRelationTuplesRequest) Execute() (*http.Response, error) {
 }
 
 /*
-DeleteRelationTuples # Delete Relation Tuples
+DeleteRelationTuples Delete Relation Tuples
 
 Use this endpoint to delete relation tuples
 
@@ -385,7 +385,7 @@ func (r WriteApiPatchRelationTuplesRequest) Execute() (*http.Response, error) {
 }
 
 /*
-PatchRelationTuples # Patch Multiple Relation Tuples
+PatchRelationTuples Patch Multiple Relation Tuples
 
 Use this endpoint to patch one or more relation tuples.
 

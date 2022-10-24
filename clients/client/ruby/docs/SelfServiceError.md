@@ -6,7 +6,7 @@
 | ---- | ---- | ----------- | ----- |
 | **created_at** | **Time** | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] |
 | **error** | **Object** |  | [optional] |
-| **id** | **String** |  |  |
+| **id** | **String** | ID of the error container. |  |
 | **updated_at** | **Time** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] |
 
 ## Example

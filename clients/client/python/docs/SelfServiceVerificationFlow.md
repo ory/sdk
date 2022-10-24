@@ -5,7 +5,7 @@ Used to verify an out-of-band communication channel such as an email address or 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | 
+**id** | **str** | ID represents the request&#39;s unique ID. When performing the verification flow, this represents the id in the verify ui&#39;s query parameter: http://&lt;selfservice.flows.verification.ui_url&gt;?request&#x3D;&lt;id&gt;  type: string format: uuid | 
 **state** | [**SelfServiceVerificationFlowState**](SelfServiceVerificationFlowState.md) |  | 
 **type** | **str** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | 
 **ui** | [**UiContainer**](UiContainer.md) |  | 

@@ -8,7 +8,7 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**autocomplete** | **String** | The autocomplete attribute for the input. | [optional] 
+**autocomplete** | **String** | The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode | [optional] 
 **disabled** | **bool** | Sets the input's disabled field to true or false. | 
 **label** | [**UiText**](UiText.md) |  | [optional] 
 **name** | **String** | The input's element name. | 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **pattern** | **String** | The input's pattern. | [optional] 
 **required_** | **bool** | Mark this input field as required. | [optional] 
 **type** | **String** | The script MIME type | 
-**value** | [**Object**](.md) | The input's value. | [optional] 
+**value** | [**JsonObject**](.md) | The input's value. | [optional] 
 **id** | **String** | A unique identifier | 
 **text** | [**UiText**](UiText.md) |  | 
 **height** | **int** | Height of the image | 

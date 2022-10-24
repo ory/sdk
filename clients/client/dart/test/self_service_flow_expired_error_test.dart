@@ -1,21 +1,12 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.12
-
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: constant_identifier_names
-// ignore_for_file: lines_longer_than_80_chars
-
-import 'package:ory_client/api.dart';
 import 'package:test/test.dart';
+import 'package:ory_client/ory_client.dart';
 
 // tests for SelfServiceFlowExpiredError
 void main() {
-  // final instance = SelfServiceFlowExpiredError();
+  final instance = SelfServiceFlowExpiredErrorBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test SelfServiceFlowExpiredError', () {
+  group(SelfServiceFlowExpiredError, () {
     // The status code
     // int code
     test('to test the property `code`', () async {
@@ -29,7 +20,7 @@ void main() {
     });
 
     // Further error details
-    // Map<String, Object> details (default value: const {})
+    // BuiltMap<String, JsonObject> details
     test('to test the property `details`', () async {
       // TODO
     });
@@ -70,12 +61,11 @@ void main() {
       // TODO
     });
 
+    // The flow ID that should be used for the new flow as it contains the correct messages.
     // String useFlowId
     test('to test the property `useFlowId`', () async {
       // TODO
     });
 
-
   });
-
 }

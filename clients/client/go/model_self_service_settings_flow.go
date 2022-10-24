@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.48
+API version: v0.2.0-alpha.60
 Contact: support@ory.sh
 */
 
@@ -22,6 +22,7 @@ type SelfServiceSettingsFlow struct {
 	Active *string `json:"active,omitempty"`
 	// ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to update the setting, a new flow has to be initiated.
 	ExpiresAt time.Time `json:"expires_at"`
+	// ID represents the flow's unique ID. When performing the settings flow, this represents the id in the settings ui's query parameter: http://<selfservice.flows.settings.ui_url>?flow=<id>
 	Id string `json:"id"`
 	Identity Identity `json:"identity"`
 	// IssuedAt is the time (UTC) when the flow occurred.

@@ -1,27 +1,18 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.12
-
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: constant_identifier_names
-// ignore_for_file: lines_longer_than_80_chars
-
-import 'package:ory_client/api.dart';
 import 'package:test/test.dart';
+import 'package:ory_client/ory_client.dart';
 
 // tests for CnameSettings
 void main() {
-  // final instance = CnameSettings();
+  final instance = CnameSettingsBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test CnameSettings', () {
+  group(CnameSettings, () {
     // String cookieDomain
     test('to test the property `cookieDomain`', () async {
       // TODO
     });
 
-    // List<String> corsAllowedOrigins (default value: const [])
+    // BuiltList<String> corsAllowedOrigins
     test('to test the property `corsAllowedOrigins`', () async {
       // TODO
     });
@@ -51,7 +42,7 @@ void main() {
       // TODO
     });
 
-    // List<String> verificationErrors (default value: const [])
+    // BuiltList<String> verificationErrors
     test('to test the property `verificationErrors`', () async {
       // TODO
     });
@@ -62,7 +53,5 @@ void main() {
       // TODO
     });
 
-
   });
-
 }

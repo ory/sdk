@@ -4,19 +4,19 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
-| [**get_check**](ReadApi.md#get_check) | **GET** /relation-tuples/check/openapi | # Check a relation tuple |
-| [**get_check_mirror_status**](ReadApi.md#get_check_mirror_status) | **GET** /relation-tuples/check | # Check a relation tuple |
-| [**get_expand**](ReadApi.md#get_expand) | **GET** /relation-tuples/expand | # Expand a Relation Tuple |
-| [**get_relation_tuples**](ReadApi.md#get_relation_tuples) | **GET** /relation-tuples | # Query relation tuples |
-| [**post_check**](ReadApi.md#post_check) | **POST** /relation-tuples/check/openapi | # Check a relation tuple |
-| [**post_check_mirror_status**](ReadApi.md#post_check_mirror_status) | **POST** /relation-tuples/check | # Check a relation tuple |
+| [**get_check**](ReadApi.md#get_check) | **GET** /relation-tuples/check/openapi | Check a relation tuple |
+| [**get_check_mirror_status**](ReadApi.md#get_check_mirror_status) | **GET** /relation-tuples/check | Check a relation tuple |
+| [**get_expand**](ReadApi.md#get_expand) | **GET** /relation-tuples/expand | Expand a Relation Tuple |
+| [**get_relation_tuples**](ReadApi.md#get_relation_tuples) | **GET** /relation-tuples | Query relation tuples |
+| [**post_check**](ReadApi.md#post_check) | **POST** /relation-tuples/check/openapi | Check a relation tuple |
+| [**post_check_mirror_status**](ReadApi.md#post_check_mirror_status) | **POST** /relation-tuples/check | Check a relation tuple |
 
 
 ## get_check
 
 > <GetCheckResponse> get_check(opts)
 
-# Check a relation tuple
+Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -44,7 +44,7 @@ opts = {
 }
 
 begin
-  # # Check a relation tuple
+  # Check a relation tuple
   result = api_instance.get_check(opts)
   p result
 rescue OryClient::ApiError => e
@@ -60,7 +60,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # # Check a relation tuple
+  # Check a relation tuple
   data, status_code, headers = api_instance.get_check_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
@@ -101,7 +101,7 @@ end
 
 > <GetCheckResponse> get_check_mirror_status
 
-# Check a relation tuple
+Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -119,7 +119,7 @@ end
 api_instance = OryClient::ReadApi.new
 
 begin
-  # # Check a relation tuple
+  # Check a relation tuple
   result = api_instance.get_check_mirror_status
   p result
 rescue OryClient::ApiError => e
@@ -135,7 +135,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # # Check a relation tuple
+  # Check a relation tuple
   data, status_code, headers = api_instance.get_check_mirror_status_with_http_info
   p status_code # => 2xx
   p headers # => { ... }
@@ -167,7 +167,7 @@ This endpoint does not need any parameter.
 
 > <ExpandTree> get_expand(namespace, object, relation, opts)
 
-# Expand a Relation Tuple
+Expand a Relation Tuple
 
 Use this endpoint to expand a relation tuple.
 
@@ -191,7 +191,7 @@ opts = {
 }
 
 begin
-  # # Expand a Relation Tuple
+  # Expand a Relation Tuple
   result = api_instance.get_expand(namespace, object, relation, opts)
   p result
 rescue OryClient::ApiError => e
@@ -207,7 +207,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # # Expand a Relation Tuple
+  # Expand a Relation Tuple
   data, status_code, headers = api_instance.get_expand_with_http_info(namespace, object, relation, opts)
   p status_code # => 2xx
   p headers # => { ... }
@@ -244,7 +244,7 @@ end
 
 > <GetRelationTuplesResponse> get_relation_tuples(opts)
 
-# Query relation tuples
+Query relation tuples
 
 Get all relation tuples that match the query. Only the namespace field is required.
 
@@ -273,7 +273,7 @@ opts = {
 }
 
 begin
-  # # Query relation tuples
+  # Query relation tuples
   result = api_instance.get_relation_tuples(opts)
   p result
 rescue OryClient::ApiError => e
@@ -289,7 +289,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # # Query relation tuples
+  # Query relation tuples
   data, status_code, headers = api_instance.get_relation_tuples_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
@@ -331,7 +331,7 @@ end
 
 > <GetCheckResponse> post_check(opts)
 
-# Check a relation tuple
+Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -353,7 +353,7 @@ opts = {
 }
 
 begin
-  # # Check a relation tuple
+  # Check a relation tuple
   result = api_instance.post_check(opts)
   p result
 rescue OryClient::ApiError => e
@@ -369,7 +369,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # # Check a relation tuple
+  # Check a relation tuple
   data, status_code, headers = api_instance.post_check_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
@@ -404,7 +404,7 @@ end
 
 > <GetCheckResponse> post_check_mirror_status
 
-# Check a relation tuple
+Check a relation tuple
 
 To learn how relation tuples and the check works, head over to [the documentation](../concepts/relation-tuples.mdx).
 
@@ -422,7 +422,7 @@ end
 api_instance = OryClient::ReadApi.new
 
 begin
-  # # Check a relation tuple
+  # Check a relation tuple
   result = api_instance.post_check_mirror_status
   p result
 rescue OryClient::ApiError => e
@@ -438,7 +438,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # # Check a relation tuple
+  # Check a relation tuple
   data, status_code, headers = api_instance.post_check_mirror_status_with_http_info
   p status_code # => 2xx
   p headers # => { ... }

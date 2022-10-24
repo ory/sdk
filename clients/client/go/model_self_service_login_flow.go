@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.48
+API version: v0.2.0-alpha.60
 Contact: support@ory.sh
 */
 
@@ -23,6 +23,7 @@ type SelfServiceLoginFlow struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated.
 	ExpiresAt time.Time `json:"expires_at"`
+	// ID represents the flow's unique ID. When performing the login flow, this represents the id in the login UI's query parameter: http://<selfservice.flows.login.ui_url>/?flow=<flow_id>
 	Id string `json:"id"`
 	// IssuedAt is the time (UTC) when the flow started.
 	IssuedAt time.Time `json:"issued_at"`

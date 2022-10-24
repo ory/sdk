@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **session** | [**ConsentRequestSession**](ConsentRequestSession.md) |  | [optional] |
+| **session** | [**AcceptOAuth2ConsentRequestSession**](AcceptOAuth2ConsentRequestSession.md) |  | [optional] |
 
 ## Example
 

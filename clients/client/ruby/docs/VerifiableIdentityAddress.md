@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **created_at** | **Time** | When this entry was created | [optional] |
-| **id** | **String** |  | [optional] |
+| **id** | **String** | The ID | [optional] |
 | **status** | **String** | VerifiableAddressStatus must not exceed 16 characters as that is the limitation in the SQL Schema |  |
 | **updated_at** | **Time** | When this entry was last updated | [optional] |
 | **value** | **String** | The address value  example foo@user.com |  |
