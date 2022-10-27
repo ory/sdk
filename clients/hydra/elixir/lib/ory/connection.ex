@@ -10,10 +10,28 @@ defmodule Ory.Connection do
   use Tesla
 
   # Add any middleware here (authentication)
-  plug Tesla.Middleware.BaseUrl, Application.get_env(:ory_hydra, :base_url, "http://localhost")
+  plug Tesla.Middleware.BaseUrl, Application.get_env(:ory_hydra_api, :base_url, "http://localhost")
   plug Tesla.Middleware.Headers, [{"user-agent", "Elixir"}]
   plug Tesla.Middleware.EncodeJson, engine: Poison
 
+  @doc """
+  Configure a client connection using Basic authentication.
+
+  ## Parameters
+
+  - username (String): Username used for authentication
+  - password (String): Password used for authentication
+
+  # Returns
+
+  Tesla.Env.client
+  """
+  @spec new(String.t, String.t) :: Tesla.Env.client
+  def new(username, password) do
+    Tesla.client([
+      {Tesla.Middleware.BasicAuth, %{username: username, password: password}}
+    ])
+  end
   @doc """
   Configure a client connection using Basic authentication.
 

@@ -12,8 +12,8 @@ defmodule Ory.Api.Metadata do
 
 
   @doc """
-  Get snapshot metrics from the service. If you're using k8s, you can then add annotations to your deployment like so:
-  ``` metadata: annotations: prometheus.io/port: \"4434\" prometheus.io/path: \"/metrics/prometheus\" ```
+  Return Running Software Version.
+  This endpoint returns the version of Ory Hydra.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the version will never refer to the cluster state, only to a single instance.
 
   ## Parameters
 
@@ -21,18 +21,70 @@ defmodule Ory.Api.Metadata do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, nil} on success
+  {:ok, Ory.Model.GetVersion200Response.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec prometheus(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
-  def prometheus(connection, _opts \\ []) do
+  @spec get_version(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.GetVersion200Response.t} | {:error, Tesla.Env.t}
+  def get_version(connection, _opts \\ []) do
     %{}
     |> method(:get)
-    |> url("/metrics/prometheus")
+    |> url("/version")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
-      { 200, false}
+      { 200, %Ory.Model.GetVersion200Response{}}
+    ])
+  end
+
+  @doc """
+  Check HTTP Server Status
+  This endpoint returns a HTTP 200 status code when Ory Hydra is accepting incoming HTTP requests. This status does currently not include checks whether the database connection is working.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the health status will never refer to the cluster state, only to a single instance.
+
+  ## Parameters
+
+  - connection (Ory.Connection): Connection to server
+  - opts (KeywordList): [optional] Optional parameters
+  ## Returns
+
+  {:ok, Ory.Model.HealthStatus.t} on success
+  {:error, Tesla.Env.t} on failure
+  """
+  @spec is_alive(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, Ory.Model.HealthStatus.t} | {:error, Tesla.Env.t}
+  def is_alive(connection, _opts \\ []) do
+    %{}
+    |> method(:get)
+    |> url("/health/alive")
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> evaluate_response([
+      { 200, %Ory.Model.HealthStatus{}},
+      { 500, %Ory.Model.GenericError{}}
+    ])
+  end
+
+  @doc """
+  Check HTTP Server and Database Status
+  This endpoint returns a HTTP 200 status code when Ory Hydra is up running and the environment dependencies (e.g. the database) are responsive as well.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of Ory Hydra, the health status will never refer to the cluster state, only to a single instance.
+
+  ## Parameters
+
+  - connection (Ory.Connection): Connection to server
+  - opts (KeywordList): [optional] Optional parameters
+  ## Returns
+
+  {:ok, Ory.Model.IsReady200Response.t} on success
+  {:error, Tesla.Env.t} on failure
+  """
+  @spec is_ready(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.IsReady200Response.t} | {:ok, Ory.Model.IsReady503Response.t} | {:error, Tesla.Env.t}
+  def is_ready(connection, _opts \\ []) do
+    %{}
+    |> method(:get)
+    |> url("/health/ready")
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> evaluate_response([
+      { 200, %Ory.Model.IsReady200Response{}},
+      { 503, %Ory.Model.IsReady503Response{}}
     ])
   end
 end

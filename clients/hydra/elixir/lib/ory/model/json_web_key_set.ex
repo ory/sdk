@@ -4,16 +4,16 @@
 
 defmodule Ory.Model.JsonWebKeySet do
   @moduledoc """
-  It is important that this model object is named JSONWebKeySet for \"swagger generate spec\" to generate only on definition of a JSONWebKeySet. Since one with the same name is previously defined as client.Client.JSONWebKeys and this one is last, this one will be effectively written in the swagger spec.
+  JSON Web Key Set
   """
 
   @derive [Poison.Encoder]
   defstruct [
-    :"keys"
+    :keys
   ]
 
   @type t :: %__MODULE__{
-    :"keys" => [Ory.Model.JsonWebKey.t] | nil
+    :keys => [Ory.Model.JsonWebKey.t] | nil
   }
 end
 
@@ -21,7 +21,7 @@ defimpl Poison.Decoder, for: Ory.Model.JsonWebKeySet do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"keys", :list, Ory.Model.JsonWebKey, options)
+    |> deserialize(:keys, :list, Ory.Model.JsonWebKey, options)
   end
 end
 
