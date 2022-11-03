@@ -86,7 +86,7 @@ class OAuth2TokenExchange(ModelNormal):
             'expires_in': (int,),  # noqa: E501
             'id_token': (int,),  # noqa: E501
             'refresh_token': (str,),  # noqa: E501
-            'scope': (int,),  # noqa: E501
+            'scope': (str,),  # noqa: E501
             'token_type': (str,),  # noqa: E501
         }
 
