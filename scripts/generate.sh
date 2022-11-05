@@ -203,7 +203,12 @@ golang () {
   mkdir -p "$dir"
 
   mkdir -p "${dir}"
-  (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go")
+
+  if [ "${PROJECT}" == "hydra" ]; then
+    (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go/v2")
+  else
+    (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go")
+  fi
 
   openapi-generator-cli version-manager set 6.0.1
   openapi-generator-cli generate -i "${SPEC_FILE}" \
