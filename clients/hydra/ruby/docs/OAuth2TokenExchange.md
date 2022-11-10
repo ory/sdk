@@ -8,7 +8,7 @@
 | **expires_in** | **Integer** | The lifetime in seconds of the access token. For example, the value \&quot;3600\&quot; denotes that the access token will expire in one hour from the time the response was generated. | [optional] |
 | **id_token** | **Integer** | To retrieve a refresh token request the id_token scope. | [optional] |
 | **refresh_token** | **String** | The refresh token, which can be used to obtain new access tokens. To retrieve it add the scope \&quot;offline\&quot; to your access token request. | [optional] |
-| **scope** | **Integer** | The scope of the access token | [optional] |
+| **scope** | **String** | The scope of the access token | [optional] |
 | **token_type** | **String** | The type of the token issued | [optional] |
 
 ## Example

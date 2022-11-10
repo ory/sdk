@@ -22,7 +22,7 @@ defmodule Ory.Model.OAuth2TokenExchange do
     :expires_in => integer() | nil,
     :id_token => integer() | nil,
     :refresh_token => String.t | nil,
-    :scope => integer() | nil,
+    :scope => String.t | nil,
     :token_type => String.t | nil
   }
 end
