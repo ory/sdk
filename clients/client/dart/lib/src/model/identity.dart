@@ -14,7 +14,7 @@ import 'package:built_value/serializer.dart';
 
 part 'identity.g.dart';
 
-/// An identity can be a real human, a service, an IoT device - everything that can be described as an \"actor\" in a system.
+/// An [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) represents a (human) user in Ory.
 ///
 /// Properties:
 /// * [createdAt] - CreatedAt is a helper struct field for gobuffalo.pop.
@@ -129,14 +129,14 @@ class _$IdentitySerializer implements PrimitiveSerializer<Identity> {
       yield r'metadata_admin';
       yield serializers.serialize(
         object.metadataAdmin,
-        specifiedType: const FullType(JsonObject),
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.metadataPublic != null) {
       yield r'metadata_public';
       yield serializers.serialize(
         object.metadataPublic,
-        specifiedType: const FullType(JsonObject),
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.recoveryAddresses != null) {
@@ -236,15 +236,17 @@ class _$IdentitySerializer implements PrimitiveSerializer<Identity> {
         case r'metadata_admin':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.metadataAdmin = valueDes;
           break;
         case r'metadata_public':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.metadataPublic = valueDes;
           break;
         case r'recovery_addresses':

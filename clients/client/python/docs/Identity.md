@@ -1,6 +1,6 @@
 # Identity
 
-An identity can be a real human, a service, an IoT device - everything that can be described as an \"actor\" in a system.
+An [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) represents a (human) user in Ory.
 
 ## Properties
 Name | Type | Description | Notes
@@ -11,8 +11,8 @@ Name | Type | Description | Notes
 **traits** | **bool, date, datetime, dict, float, int, list, str, none_type** | Traits represent an identity&#39;s traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in &#x60;schema_url&#x60;. | 
 **created_at** | **datetime** | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **credentials** | [**{str: (IdentityCredentials,)}**](IdentityCredentials.md) | Credentials represents all credentials that can be used for authenticating this identity. | [optional] 
-**metadata_admin** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
-**metadata_public** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
+**metadata_admin** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
+**metadata_public** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
 **recovery_addresses** | [**[RecoveryIdentityAddress]**](RecoveryIdentityAddress.md) | RecoveryAddresses contains all the addresses that can be used to recover an identity. | [optional] 
 **state** | [**IdentityState**](IdentityState.md) |  | [optional] 
 **state_changed_at** | **datetime** |  | [optional] 

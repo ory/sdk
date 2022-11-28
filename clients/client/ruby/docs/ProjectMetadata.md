@@ -6,10 +6,10 @@
 | ---- | ---- | ----------- | ----- |
 | **created_at** | **Time** | The Project&#39;s Creation Date |  |
 | **hosts** | **Array&lt;String&gt;** |  |  |
-| **id** | **String** | The project&#39;s ID. | [readonly] |
+| **id** | **String** |  |  |
 | **name** | **String** | The project&#39;s name if set |  |
 | **slug** | **String** | The project&#39;s slug | [optional][readonly] |
-| **state** | **String** | The state of the project. running Running halted Halted |  |
+| **state** | **String** | The state of the project. |  |
 | **subscription_id** | **String** |  | [optional] |
 | **updated_at** | **Time** | Last Time Project was Updated |  |
 

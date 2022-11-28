@@ -13,7 +13,6 @@ defmodule Ory.Model.NormalizedProject do
     :current_revision,
     :hosts,
     :id,
-    :revisions,
     :slug,
     :state,
     :subscription_id,
@@ -25,7 +24,6 @@ defmodule Ory.Model.NormalizedProject do
     :current_revision => Ory.Model.NormalizedProjectRevision.t,
     :hosts => [String.t],
     :id => String.t,
-    :revisions => [Ory.Model.NormalizedProjectRevision.t],
     :slug => String.t,
     :state => String.t,
     :subscription_id => String.t | nil,
@@ -38,7 +36,6 @@ defimpl Poison.Decoder, for: Ory.Model.NormalizedProject do
   def decode(value, options) do
     value
     |> deserialize(:current_revision, :struct, Ory.Model.NormalizedProjectRevision, options)
-    |> deserialize(:revisions, :list, Ory.Model.NormalizedProjectRevision, options)
   end
 end
 

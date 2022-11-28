@@ -4,7 +4,7 @@
 
 defmodule Ory.Model.OAuth2Client do
   @moduledoc """
-  
+  OAuth 2.0 Clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
   """
 
   @derive [Poison.Encoder]
@@ -35,8 +35,6 @@ defmodule Ory.Model.OAuth2Client do
     :logo_uri,
     :metadata,
     :owner,
-    :password_grant_access_token_lifespan,
-    :password_grant_refresh_token_lifespan,
     :policy_uri,
     :post_logout_redirect_uris,
     :redirect_uris,
@@ -79,14 +77,12 @@ defmodule Ory.Model.OAuth2Client do
     :grant_types => [String.t] | nil,
     :implicit_grant_access_token_lifespan => String.t | nil,
     :implicit_grant_id_token_lifespan => String.t | nil,
-    :jwks => map() | nil,
+    :jwks => AnyType | nil,
     :jwks_uri => String.t | nil,
     :jwt_bearer_grant_access_token_lifespan => String.t | nil,
     :logo_uri => String.t | nil,
     :metadata => map() | nil,
     :owner => String.t | nil,
-    :password_grant_access_token_lifespan => String.t | nil,
-    :password_grant_refresh_token_lifespan => String.t | nil,
     :policy_uri => String.t | nil,
     :post_logout_redirect_uris => [String.t] | nil,
     :redirect_uris => [String.t] | nil,
@@ -110,8 +106,10 @@ defmodule Ory.Model.OAuth2Client do
 end
 
 defimpl Poison.Decoder, for: Ory.Model.OAuth2Client do
-  def decode(value, _options) do
+  import Ory.Deserializer
+  def decode(value, options) do
     value
+    |> deserialize(:jwks, :struct, Ory.Model.AnyType, options)
   end
 end
 

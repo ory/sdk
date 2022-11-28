@@ -132,6 +132,16 @@ SetMetadataAdmin sets MetadataAdmin field to given value.
 
 HasMetadataAdmin returns a boolean if a field has been set.
 
+### SetMetadataAdminNil
+
+`func (o *Identity) SetMetadataAdminNil(b bool)`
+
+ SetMetadataAdminNil sets the value for MetadataAdmin to be an explicit nil
+
+### UnsetMetadataAdmin
+`func (o *Identity) UnsetMetadataAdmin()`
+
+UnsetMetadataAdmin ensures that no value is present for MetadataAdmin, not even an explicit nil
 ### GetMetadataPublic
 
 `func (o *Identity) GetMetadataPublic() map[string]interface{}`
@@ -157,6 +167,16 @@ SetMetadataPublic sets MetadataPublic field to given value.
 
 HasMetadataPublic returns a boolean if a field has been set.
 
+### SetMetadataPublicNil
+
+`func (o *Identity) SetMetadataPublicNil(b bool)`
+
+ SetMetadataPublicNil sets the value for MetadataPublic to be an explicit nil
+
+### UnsetMetadataPublic
+`func (o *Identity) UnsetMetadataPublic()`
+
+UnsetMetadataPublic ensures that no value is present for MetadataPublic, not even an explicit nil
 ### GetRecoveryAddresses
 
 `func (o *Identity) GetRecoveryAddresses() []RecoveryIdentityAddress`

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **code** | **int** | The status code | [optional]
 **debug** | **string** | Debug information  This field is often not exposed to protect against leaking sensitive information. | [optional]
 **details** | **array<string,mixed>** | Further error details | [optional]
+**expiredAt** | **\DateTime** | When the flow has expired | [optional]
 **id** | **string** | The error ID  Useful when trying to identify various errors in application logic. | [optional]
 **message** | **string** | Error message  The error&#39;s message. |
 **reason** | **string** | A human-readable reason for the error | [optional]

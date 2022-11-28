@@ -18,7 +18,6 @@ void main() {
       // TODO
     });
 
-    // The project's ID.
     // String id
     test('to test the property `id`', () async {
       // TODO
@@ -36,7 +35,7 @@ void main() {
       // TODO
     });
 
-    // The state of the project. running Running halted Halted
+    // The state of the project.
     // String state
     test('to test the property `state`', () async {
       // TODO

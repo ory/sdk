@@ -1,4 +1,5 @@
 # Ory.Client.Model.ClientGetManagedIdentitySchemaLocation
+Ory Identity Schema Location
 
 ## Properties
 

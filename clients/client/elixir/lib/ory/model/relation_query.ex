@@ -4,7 +4,7 @@
 
 defmodule Ory.Model.RelationQuery do
   @moduledoc """
-  
+  Relation Query
   """
 
   @derive [Poison.Encoder]

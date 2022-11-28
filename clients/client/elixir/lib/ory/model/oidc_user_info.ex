@@ -4,7 +4,7 @@
 
 defmodule Ory.Model.OidcUserInfo do
   @moduledoc """
-  The userinfo response
+  OpenID Connect Userinfo
   """
 
   @derive [Poison.Encoder]

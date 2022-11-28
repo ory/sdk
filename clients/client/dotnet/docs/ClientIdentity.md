@@ -1,5 +1,5 @@
 # Ory.Client.Model.ClientIdentity
-An identity can be a real human, a service, an IoT device - everything that can be described as an \"actor\" in a system.
+An [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) represents a (human) user in Ory.
 
 ## Properties
 

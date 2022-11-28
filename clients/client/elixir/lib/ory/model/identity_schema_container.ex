@@ -4,7 +4,7 @@
 
 defmodule Ory.Model.IdentitySchemaContainer do
   @moduledoc """
-  
+  An Identity JSON Schema Container
   """
 
   @derive [Poison.Encoder]

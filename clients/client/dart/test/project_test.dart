@@ -7,7 +7,6 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(Project, () {
-    // The project's ID.
     // String id
     test('to test the property `id`', () async {
       // TODO
@@ -19,7 +18,6 @@ void main() {
       // TODO
     });
 
-    // The configuration revision ID.
     // String revisionId
     test('to test the property `revisionId`', () async {
       // TODO
@@ -36,7 +34,7 @@ void main() {
       // TODO
     });
 
-    // The state of the project. running Running halted Halted
+    // The state of the project.
     // String state
     test('to test the property `state`', () async {
       // TODO

@@ -73,6 +73,12 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :kratos_courier_templates_recovery_valid_email_body_html,
     :kratos_courier_templates_recovery_valid_email_body_plaintext,
     :kratos_courier_templates_recovery_valid_email_subject,
+    :kratos_courier_templates_verification_code_invalid_email_body_html,
+    :kratos_courier_templates_verification_code_invalid_email_body_plaintext,
+    :kratos_courier_templates_verification_code_invalid_email_subject,
+    :kratos_courier_templates_verification_code_valid_email_body_html,
+    :kratos_courier_templates_verification_code_valid_email_body_plaintext,
+    :kratos_courier_templates_verification_code_valid_email_subject,
     :kratos_courier_templates_verification_invalid_email_body_html,
     :kratos_courier_templates_verification_invalid_email_body_plaintext,
     :kratos_courier_templates_verification_invalid_email_subject,
@@ -80,6 +86,8 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :kratos_courier_templates_verification_valid_email_body_plaintext,
     :kratos_courier_templates_verification_valid_email_subject,
     :kratos_identity_schemas,
+    :kratos_oauth2_provider_headers,
+    :kratos_oauth2_provider_url,
     :kratos_secrets_cipher,
     :kratos_secrets_cookie,
     :kratos_secrets_default,
@@ -117,6 +125,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :kratos_selfservice_flows_verification_enabled,
     :kratos_selfservice_flows_verification_lifespan,
     :kratos_selfservice_flows_verification_ui_url,
+    :kratos_selfservice_flows_verification_use,
     :kratos_selfservice_methods_code_config_lifespan,
     :kratos_selfservice_methods_code_enabled,
     :kratos_selfservice_methods_link_config_base_url,
@@ -174,8 +183,8 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :hydra_serve_cookies_same_site_mode => String.t | nil,
     :hydra_serve_public_cors_allowed_origins => [String.t] | nil,
     :hydra_serve_public_cors_enabled => boolean() | nil,
-    :hydra_strategies_access_token => AnyType | nil,
-    :hydra_strategies_scope => AnyType | nil,
+    :hydra_strategies_access_token => String.t | nil,
+    :hydra_strategies_scope => String.t | nil,
     :hydra_ttl_access_token => String.t | nil,
     :hydra_ttl_auth_code => String.t | nil,
     :hydra_ttl_id_token => String.t | nil,
@@ -216,6 +225,12 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :kratos_courier_templates_recovery_valid_email_body_html => String.t | nil,
     :kratos_courier_templates_recovery_valid_email_body_plaintext => String.t | nil,
     :kratos_courier_templates_recovery_valid_email_subject => String.t | nil,
+    :kratos_courier_templates_verification_code_invalid_email_body_html => String.t | nil,
+    :kratos_courier_templates_verification_code_invalid_email_body_plaintext => String.t | nil,
+    :kratos_courier_templates_verification_code_invalid_email_subject => String.t | nil,
+    :kratos_courier_templates_verification_code_valid_email_body_html => String.t | nil,
+    :kratos_courier_templates_verification_code_valid_email_body_plaintext => String.t | nil,
+    :kratos_courier_templates_verification_code_valid_email_subject => String.t | nil,
     :kratos_courier_templates_verification_invalid_email_body_html => String.t | nil,
     :kratos_courier_templates_verification_invalid_email_body_plaintext => String.t | nil,
     :kratos_courier_templates_verification_invalid_email_subject => String.t | nil,
@@ -223,6 +238,8 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :kratos_courier_templates_verification_valid_email_body_plaintext => String.t | nil,
     :kratos_courier_templates_verification_valid_email_subject => String.t | nil,
     :kratos_identity_schemas => [Ory.Model.NormalizedProjectRevisionIdentitySchema.t] | nil,
+    :kratos_oauth2_provider_headers => map() | nil,
+    :kratos_oauth2_provider_url => String.t | nil,
     :kratos_secrets_cipher => [String.t] | nil,
     :kratos_secrets_cookie => [String.t] | nil,
     :kratos_secrets_default => [String.t] | nil,
@@ -260,6 +277,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :kratos_selfservice_flows_verification_enabled => boolean() | nil,
     :kratos_selfservice_flows_verification_lifespan => String.t | nil,
     :kratos_selfservice_flows_verification_ui_url => String.t | nil,
+    :kratos_selfservice_flows_verification_use => String.t | nil,
     :kratos_selfservice_methods_code_config_lifespan => String.t | nil,
     :kratos_selfservice_methods_code_enabled => boolean() | nil,
     :kratos_selfservice_methods_link_config_base_url => String.t | nil,
@@ -299,8 +317,6 @@ defimpl Poison.Decoder, for: Ory.Model.NormalizedProjectRevision do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:hydra_strategies_access_token, :struct, Ory.Model.AnyType, options)
-    |> deserialize(:hydra_strategies_scope, :struct, Ory.Model.AnyType, options)
     |> deserialize(:keto_namespaces, :list, Ory.Model.KetoNamespace, options)
     |> deserialize(:kratos_identity_schemas, :list, Ory.Model.NormalizedProjectRevisionIdentitySchema, options)
     |> deserialize(:kratos_selfservice_flows_hooks, :list, Ory.Model.NormalizedProjectRevisionHook, options)

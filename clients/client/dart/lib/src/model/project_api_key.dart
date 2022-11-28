@@ -11,14 +11,13 @@ part 'project_api_key.g.dart';
 /// ProjectApiKey
 ///
 /// Properties:
-/// * [id] - The token's ID.
+/// * [id] 
 /// * [name] - The Token's Name  Set this to help you remember, for example, where you use the token.
-/// * [ownerId] - The token's owner
-/// * [projectId] - The Token's Project ID
+/// * [ownerId] 
+/// * [projectId] 
 /// * [value] - The token's value
 @BuiltValue()
 abstract class ProjectApiKey implements Built<ProjectApiKey, ProjectApiKeyBuilder> {
-  /// The token's ID.
   @BuiltValueField(wireName: r'id')
   String get id;
 
@@ -26,11 +25,9 @@ abstract class ProjectApiKey implements Built<ProjectApiKey, ProjectApiKeyBuilde
   @BuiltValueField(wireName: r'name')
   String get name;
 
-  /// The token's owner
   @BuiltValueField(wireName: r'owner_id')
   String get ownerId;
 
-  /// The Token's Project ID
   @BuiltValueField(wireName: r'project_id')
   String? get projectId;
 

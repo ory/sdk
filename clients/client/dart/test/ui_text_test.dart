@@ -24,6 +24,7 @@ void main() {
       // TODO
     });
 
+    // The message type. info Info error Error success Success
     // String type
     test('to test the property `type`', () async {
       // TODO

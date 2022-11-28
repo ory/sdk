@@ -4,7 +4,7 @@
 
 defmodule Ory.Model.ManagedIdentitySchemaValidationResult do
   @moduledoc """
-  
+  Ory Identity Schema Validation Result
   """
 
   @derive [Poison.Encoder]

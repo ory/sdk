@@ -4,12 +4,12 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **id** | **String** | The project&#39;s ID. | [readonly] |
+| **id** | **String** |  |  |
 | **name** | **String** | The name of the project. |  |
-| **revision_id** | **String** | The configuration revision ID. | [readonly] |
+| **revision_id** | **String** |  |  |
 | **services** | [**ProjectServices**](ProjectServices.md) |  |  |
 | **slug** | **String** | The project&#39;s slug | [readonly] |
-| **state** | **String** | The state of the project. running Running halted Halted | [readonly] |
+| **state** | **String** | The state of the project. | [readonly] |
 
 ## Example
 

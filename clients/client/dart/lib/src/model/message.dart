@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/model/courier_message_type.dart';
 import 'package:ory_client/src/model/courier_message_status.dart';
 import 'package:built_value/built_value.dart';
@@ -49,7 +50,8 @@ abstract class Message implements Built<Message, MessageBuilder> {
   String? get subject;
 
   @BuiltValueField(wireName: r'template_type')
-  String? get templateType;
+  MessageTemplateTypeEnum? get templateType;
+  // enum templateTypeEnum {  recovery_invalid,  recovery_valid,  recovery_code_invalid,  recovery_code_valid,  verification_invalid,  verification_valid,  verification_code_invalid,  verification_code_valid,  otp,  stub,  };
 
   @BuiltValueField(wireName: r'type')
   CourierMessageType? get type;
@@ -135,7 +137,7 @@ class _$MessageSerializer implements PrimitiveSerializer<Message> {
       yield r'template_type';
       yield serializers.serialize(
         object.templateType,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(MessageTemplateTypeEnum),
       );
     }
     if (object.type != null) {
@@ -227,8 +229,8 @@ class _$MessageSerializer implements PrimitiveSerializer<Message> {
         case r'template_type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(MessageTemplateTypeEnum),
+          ) as MessageTemplateTypeEnum;
           result.templateType = valueDes;
           break;
         case r'type':
@@ -272,5 +274,36 @@ class _$MessageSerializer implements PrimitiveSerializer<Message> {
     );
     return result.build();
   }
+}
+
+class MessageTemplateTypeEnum extends EnumClass {
+
+  @BuiltValueEnumConst(wireName: r'recovery_invalid')
+  static const MessageTemplateTypeEnum recoveryInvalid = _$messageTemplateTypeEnum_recoveryInvalid;
+  @BuiltValueEnumConst(wireName: r'recovery_valid')
+  static const MessageTemplateTypeEnum recoveryValid = _$messageTemplateTypeEnum_recoveryValid;
+  @BuiltValueEnumConst(wireName: r'recovery_code_invalid')
+  static const MessageTemplateTypeEnum recoveryCodeInvalid = _$messageTemplateTypeEnum_recoveryCodeInvalid;
+  @BuiltValueEnumConst(wireName: r'recovery_code_valid')
+  static const MessageTemplateTypeEnum recoveryCodeValid = _$messageTemplateTypeEnum_recoveryCodeValid;
+  @BuiltValueEnumConst(wireName: r'verification_invalid')
+  static const MessageTemplateTypeEnum verificationInvalid = _$messageTemplateTypeEnum_verificationInvalid;
+  @BuiltValueEnumConst(wireName: r'verification_valid')
+  static const MessageTemplateTypeEnum verificationValid = _$messageTemplateTypeEnum_verificationValid;
+  @BuiltValueEnumConst(wireName: r'verification_code_invalid')
+  static const MessageTemplateTypeEnum verificationCodeInvalid = _$messageTemplateTypeEnum_verificationCodeInvalid;
+  @BuiltValueEnumConst(wireName: r'verification_code_valid')
+  static const MessageTemplateTypeEnum verificationCodeValid = _$messageTemplateTypeEnum_verificationCodeValid;
+  @BuiltValueEnumConst(wireName: r'otp')
+  static const MessageTemplateTypeEnum otp = _$messageTemplateTypeEnum_otp;
+  @BuiltValueEnumConst(wireName: r'stub')
+  static const MessageTemplateTypeEnum stub = _$messageTemplateTypeEnum_stub;
+
+  static Serializer<MessageTemplateTypeEnum> get serializer => _$messageTemplateTypeEnumSerializer;
+
+  const MessageTemplateTypeEnum._(String name): super(name);
+
+  static BuiltSet<MessageTemplateTypeEnum> get values => _$messageTemplateTypeEnumValues;
+  static MessageTemplateTypeEnum valueOf(String name) => _$messageTemplateTypeEnumValueOf(name);
 }
 

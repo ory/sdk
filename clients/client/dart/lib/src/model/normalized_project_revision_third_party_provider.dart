@@ -25,7 +25,7 @@ part 'normalized_project_revision_third_party_provider.g.dart';
 /// * [issuerUrl] - IssuerURL is the OpenID Connect Server URL. You can leave this empty if `provider` is not set to `generic`. If set, neither `auth_url` nor `token_url` are required.
 /// * [label] - Label represents an optional label which can be used in the UI generation.
 /// * [mapperUrl] - Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.  It can be either a URL (file://, http(s)://, base64://) or an inline JSONNet code snippet.
-/// * [projectRevisionId] - The Revision's ID this schema belongs to
+/// * [projectRevisionId] 
 /// * [provider] - Provider is either \"generic\" for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple
 /// * [providerId] - ID is the provider's ID
 /// * [requestedClaims] 
@@ -79,7 +79,6 @@ abstract class NormalizedProjectRevisionThirdPartyProvider implements Built<Norm
   @BuiltValueField(wireName: r'mapper_url')
   String? get mapperUrl;
 
-  /// The Revision's ID this schema belongs to
   @BuiltValueField(wireName: r'project_revision_id')
   String? get projectRevisionId;
 

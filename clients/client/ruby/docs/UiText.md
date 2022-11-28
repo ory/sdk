@@ -7,7 +7,7 @@
 | **context** | **Object** | The message&#39;s context. Useful when customizing messages. | [optional] |
 | **id** | **Integer** |  |  |
 | **text** | **String** | The message text. Written in american english. |  |
-| **type** | **String** |  |  |
+| **type** | **String** | The message type. info Info error Error success Success |  |
 
 ## Example
 

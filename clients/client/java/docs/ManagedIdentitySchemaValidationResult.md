@@ -2,6 +2,7 @@
 
 # ManagedIdentitySchemaValidationResult
 
+Ory Identity Schema Validation Result
 
 ## Properties
 

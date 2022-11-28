@@ -7,23 +7,8 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(OAuth2ConsentSession, () {
-    // BuiltList<String> allowedTopLevelClaims
-    test('to test the property `allowedTopLevelClaims`', () async {
-      // TODO
-    });
-
-    // String clientId
-    test('to test the property `clientId`', () async {
-      // TODO
-    });
-
-    // String consentChallenge
-    test('to test the property `consentChallenge`', () async {
-      // TODO
-    });
-
-    // bool excludeNotBeforeClaim
-    test('to test the property `excludeNotBeforeClaim`', () async {
+    // OAuth2ConsentRequest consentRequest
+    test('to test the property `consentRequest`', () async {
       // TODO
     });
 
@@ -32,33 +17,35 @@ void main() {
       // TODO
     });
 
-    // BuiltMap<String, JsonObject> extra
-    test('to test the property `extra`', () async {
+    // BuiltList<String> grantAccessTokenAudience
+    test('to test the property `grantAccessTokenAudience`', () async {
       // TODO
     });
 
-    // Headers headers
-    test('to test the property `headers`', () async {
+    // BuiltList<String> grantScope
+    test('to test the property `grantScope`', () async {
       // TODO
     });
 
-    // IDTokenClaims idTokenClaims
-    test('to test the property `idTokenClaims`', () async {
+    // DateTime handledAt
+    test('to test the property `handledAt`', () async {
       // TODO
     });
 
-    // String kid
-    test('to test the property `kid`', () async {
+    // Remember Consent  Remember, if set to true, tells ORY Hydra to remember this consent authorization and reuse it if the same client asks the same user for the same, or a subset of, scope.
+    // bool remember
+    test('to test the property `remember`', () async {
       // TODO
     });
 
-    // String subject
-    test('to test the property `subject`', () async {
+    // Remember Consent For  RememberFor sets how long the consent authorization should be remembered for in seconds. If set to `0`, the authorization will be remembered indefinitely.
+    // int rememberFor
+    test('to test the property `rememberFor`', () async {
       // TODO
     });
 
-    // String username
-    test('to test the property `username`', () async {
+    // AcceptOAuth2ConsentRequestSession session
+    test('to test the property `session`', () async {
       // TODO
     });
 

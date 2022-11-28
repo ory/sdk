@@ -19,15 +19,13 @@ defmodule Ory.Model.JsonPatch do
     :from => String.t | nil,
     :op => String.t,
     :path => String.t,
-    :value => AnyType | nil
+    :value => map() | nil
   }
 end
 
 defimpl Poison.Decoder, for: Ory.Model.JsonPatch do
-  import Ory.Deserializer
-  def decode(value, options) do
+  def decode(value, _options) do
     value
-    |> deserialize(:value, :struct, Ory.Model.AnyType, options)
   end
 end
 

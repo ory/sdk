@@ -1,4 +1,5 @@
 # Ory.Client.Model.ClientCreateProjectBody
+Create Project Request Body
 
 ## Properties
 

@@ -1,4 +1,5 @@
 # Ory.Client.Model.ClientManagedIdentitySchemaValidationResult
+Ory Identity Schema Validation Result
 
 ## Properties
 

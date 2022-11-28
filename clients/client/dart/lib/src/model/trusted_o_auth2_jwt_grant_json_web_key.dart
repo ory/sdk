@@ -8,7 +8,7 @@ import 'package:built_value/serializer.dart';
 
 part 'trusted_o_auth2_jwt_grant_json_web_key.g.dart';
 
-/// TrustedOAuth2JwtGrantJsonWebKey
+/// OAuth2 JWT Bearer Grant Type Issuer Trusted JSON Web Key
 ///
 /// Properties:
 /// * [kid] - The \"key_id\" is key unique identifier (same as kid header in jws/jwt).

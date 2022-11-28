@@ -10,7 +10,7 @@ import 'package:built_value/serializer.dart';
 
 part 'trusted_o_auth2_jwt_grant_issuer.g.dart';
 
-/// TrustedOAuth2JwtGrantIssuer
+/// OAuth2 JWT Bearer Grant Type Issuer Trust Relationship
 ///
 /// Properties:
 /// * [allowAnySubject] - The \"allow_any_subject\" indicates that the issuer is allowed to have any principal as the subject of the JWT.

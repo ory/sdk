@@ -3,64 +3,53 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:ory_client/src/model/accept_o_auth2_consent_request_session.dart';
 import 'package:built_collection/built_collection.dart';
-import 'package:ory_client/src/model/headers.dart';
-import 'package:ory_client/src/model/id_token_claims.dart';
-import 'package:built_value/json_object.dart';
+import 'package:ory_client/src/model/o_auth2_consent_request.dart';
 import 'package:ory_client/src/model/o_auth2_consent_session_expires_at.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
 part 'o_auth2_consent_session.g.dart';
 
-/// OAuth2ConsentSession
+/// A completed OAuth 2.0 Consent Session.
 ///
 /// Properties:
-/// * [allowedTopLevelClaims] 
-/// * [clientId] 
-/// * [consentChallenge] 
-/// * [excludeNotBeforeClaim] 
+/// * [consentRequest] 
 /// * [expiresAt] 
-/// * [extra] 
-/// * [headers] 
-/// * [idTokenClaims] 
-/// * [kid] 
-/// * [subject] 
-/// * [username] 
+/// * [grantAccessTokenAudience] 
+/// * [grantScope] 
+/// * [handledAt] 
+/// * [remember] - Remember Consent  Remember, if set to true, tells ORY Hydra to remember this consent authorization and reuse it if the same client asks the same user for the same, or a subset of, scope.
+/// * [rememberFor] - Remember Consent For  RememberFor sets how long the consent authorization should be remembered for in seconds. If set to `0`, the authorization will be remembered indefinitely.
+/// * [session] 
 @BuiltValue()
 abstract class OAuth2ConsentSession implements Built<OAuth2ConsentSession, OAuth2ConsentSessionBuilder> {
-  @BuiltValueField(wireName: r'allowed_top_level_claims')
-  BuiltList<String>? get allowedTopLevelClaims;
-
-  @BuiltValueField(wireName: r'client_id')
-  String? get clientId;
-
-  @BuiltValueField(wireName: r'consent_challenge')
-  String? get consentChallenge;
-
-  @BuiltValueField(wireName: r'exclude_not_before_claim')
-  bool? get excludeNotBeforeClaim;
+  @BuiltValueField(wireName: r'consent_request')
+  OAuth2ConsentRequest? get consentRequest;
 
   @BuiltValueField(wireName: r'expires_at')
   OAuth2ConsentSessionExpiresAt? get expiresAt;
 
-  @BuiltValueField(wireName: r'extra')
-  BuiltMap<String, JsonObject?>? get extra;
+  @BuiltValueField(wireName: r'grant_access_token_audience')
+  BuiltList<String>? get grantAccessTokenAudience;
 
-  @BuiltValueField(wireName: r'headers')
-  Headers? get headers;
+  @BuiltValueField(wireName: r'grant_scope')
+  BuiltList<String>? get grantScope;
 
-  @BuiltValueField(wireName: r'id_token_claims')
-  IDTokenClaims? get idTokenClaims;
+  @BuiltValueField(wireName: r'handled_at')
+  DateTime? get handledAt;
 
-  @BuiltValueField(wireName: r'kid')
-  String? get kid;
+  /// Remember Consent  Remember, if set to true, tells ORY Hydra to remember this consent authorization and reuse it if the same client asks the same user for the same, or a subset of, scope.
+  @BuiltValueField(wireName: r'remember')
+  bool? get remember;
 
-  @BuiltValueField(wireName: r'subject')
-  String? get subject;
+  /// Remember Consent For  RememberFor sets how long the consent authorization should be remembered for in seconds. If set to `0`, the authorization will be remembered indefinitely.
+  @BuiltValueField(wireName: r'remember_for')
+  int? get rememberFor;
 
-  @BuiltValueField(wireName: r'username')
-  String? get username;
+  @BuiltValueField(wireName: r'session')
+  AcceptOAuth2ConsentRequestSession? get session;
 
   OAuth2ConsentSession._();
 
@@ -85,32 +74,11 @@ class _$OAuth2ConsentSessionSerializer implements PrimitiveSerializer<OAuth2Cons
     OAuth2ConsentSession object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.allowedTopLevelClaims != null) {
-      yield r'allowed_top_level_claims';
+    if (object.consentRequest != null) {
+      yield r'consent_request';
       yield serializers.serialize(
-        object.allowedTopLevelClaims,
-        specifiedType: const FullType(BuiltList, [FullType(String)]),
-      );
-    }
-    if (object.clientId != null) {
-      yield r'client_id';
-      yield serializers.serialize(
-        object.clientId,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.consentChallenge != null) {
-      yield r'consent_challenge';
-      yield serializers.serialize(
-        object.consentChallenge,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.excludeNotBeforeClaim != null) {
-      yield r'exclude_not_before_claim';
-      yield serializers.serialize(
-        object.excludeNotBeforeClaim,
-        specifiedType: const FullType(bool),
+        object.consentRequest,
+        specifiedType: const FullType(OAuth2ConsentRequest),
       );
     }
     if (object.expiresAt != null) {
@@ -120,46 +88,46 @@ class _$OAuth2ConsentSessionSerializer implements PrimitiveSerializer<OAuth2Cons
         specifiedType: const FullType(OAuth2ConsentSessionExpiresAt),
       );
     }
-    if (object.extra != null) {
-      yield r'extra';
+    if (object.grantAccessTokenAudience != null) {
+      yield r'grant_access_token_audience';
       yield serializers.serialize(
-        object.extra,
-        specifiedType: const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
+        object.grantAccessTokenAudience,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
       );
     }
-    if (object.headers != null) {
-      yield r'headers';
+    if (object.grantScope != null) {
+      yield r'grant_scope';
       yield serializers.serialize(
-        object.headers,
-        specifiedType: const FullType(Headers),
+        object.grantScope,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
       );
     }
-    if (object.idTokenClaims != null) {
-      yield r'id_token_claims';
+    if (object.handledAt != null) {
+      yield r'handled_at';
       yield serializers.serialize(
-        object.idTokenClaims,
-        specifiedType: const FullType(IDTokenClaims),
+        object.handledAt,
+        specifiedType: const FullType(DateTime),
       );
     }
-    if (object.kid != null) {
-      yield r'kid';
+    if (object.remember != null) {
+      yield r'remember';
       yield serializers.serialize(
-        object.kid,
-        specifiedType: const FullType(String),
+        object.remember,
+        specifiedType: const FullType(bool),
       );
     }
-    if (object.subject != null) {
-      yield r'subject';
+    if (object.rememberFor != null) {
+      yield r'remember_for';
       yield serializers.serialize(
-        object.subject,
-        specifiedType: const FullType(String),
+        object.rememberFor,
+        specifiedType: const FullType(int),
       );
     }
-    if (object.username != null) {
-      yield r'username';
+    if (object.session != null) {
+      yield r'session';
       yield serializers.serialize(
-        object.username,
-        specifiedType: const FullType(String),
+        object.session,
+        specifiedType: const FullType(AcceptOAuth2ConsentRequestSession),
       );
     }
   }
@@ -185,33 +153,12 @@ class _$OAuth2ConsentSessionSerializer implements PrimitiveSerializer<OAuth2Cons
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'allowed_top_level_claims':
+        case r'consent_request':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
-          result.allowedTopLevelClaims.replace(valueDes);
-          break;
-        case r'client_id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.clientId = valueDes;
-          break;
-        case r'consent_challenge':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.consentChallenge = valueDes;
-          break;
-        case r'exclude_not_before_claim':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.excludeNotBeforeClaim = valueDes;
+            specifiedType: const FullType(OAuth2ConsentRequest),
+          ) as OAuth2ConsentRequest;
+          result.consentRequest.replace(valueDes);
           break;
         case r'expires_at':
           final valueDes = serializers.deserialize(
@@ -220,47 +167,47 @@ class _$OAuth2ConsentSessionSerializer implements PrimitiveSerializer<OAuth2Cons
           ) as OAuth2ConsentSessionExpiresAt;
           result.expiresAt.replace(valueDes);
           break;
-        case r'extra':
+        case r'grant_access_token_audience':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
-          ) as BuiltMap<String, JsonObject?>;
-          result.extra.replace(valueDes);
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.grantAccessTokenAudience.replace(valueDes);
           break;
-        case r'headers':
+        case r'grant_scope':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Headers),
-          ) as Headers;
-          result.headers.replace(valueDes);
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.grantScope.replace(valueDes);
           break;
-        case r'id_token_claims':
+        case r'handled_at':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(IDTokenClaims),
-          ) as IDTokenClaims;
-          result.idTokenClaims.replace(valueDes);
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.handledAt = valueDes;
           break;
-        case r'kid':
+        case r'remember':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.kid = valueDes;
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.remember = valueDes;
           break;
-        case r'subject':
+        case r'remember_for':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.subject = valueDes;
+            specifiedType: const FullType(int),
+          ) as int;
+          result.rememberFor = valueDes;
           break;
-        case r'username':
+        case r'session':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.username = valueDes;
+            specifiedType: const FullType(AcceptOAuth2ConsentRequestSession),
+          ) as AcceptOAuth2ConsentRequestSession;
+          result.session.replace(valueDes);
           break;
         default:
           unhandled.add(key);

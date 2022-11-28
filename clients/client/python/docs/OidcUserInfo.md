@@ -1,6 +1,6 @@
 # OidcUserInfo
 
-The userinfo response
+OpenID Connect Userinfo
 
 ## Properties
 Name | Type | Description | Notes

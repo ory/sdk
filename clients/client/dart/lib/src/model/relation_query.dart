@@ -9,7 +9,7 @@ import 'package:built_value/serializer.dart';
 
 part 'relation_query.g.dart';
 
-/// RelationQuery
+/// Relation Query
 ///
 /// Properties:
 /// * [namespace] - Namespace to query

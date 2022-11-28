@@ -8,7 +8,7 @@ import 'package:built_value/serializer.dart';
 
 part 'create_project_body.g.dart';
 
-/// CreateProjectBody
+/// Create Project Request Body
 ///
 /// Properties:
 /// * [name] - The name of the project to be created

@@ -2,7 +2,7 @@
 
 # OidcUserInfo
 
-The userinfo response
+OpenID Connect Userinfo
 
 ## Properties
 

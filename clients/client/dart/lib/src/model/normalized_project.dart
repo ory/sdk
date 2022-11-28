@@ -16,10 +16,9 @@ part 'normalized_project.g.dart';
 /// * [createdAt] - The Project's Creation Date
 /// * [currentRevision] 
 /// * [hosts] 
-/// * [id] - The project's ID.
-/// * [revisions] 
+/// * [id] 
 /// * [slug] - The project's slug
-/// * [state] - The state of the project. running Running halted Halted
+/// * [state] - The state of the project.
 /// * [subscriptionId] 
 /// * [updatedAt] - Last Time Project was Updated
 @BuiltValue()
@@ -34,18 +33,14 @@ abstract class NormalizedProject implements Built<NormalizedProject, NormalizedP
   @BuiltValueField(wireName: r'hosts')
   BuiltList<String> get hosts;
 
-  /// The project's ID.
   @BuiltValueField(wireName: r'id')
   String get id;
-
-  @BuiltValueField(wireName: r'revisions')
-  BuiltList<NormalizedProjectRevision> get revisions;
 
   /// The project's slug
   @BuiltValueField(wireName: r'slug')
   String get slug;
 
-  /// The state of the project. running Running halted Halted
+  /// The state of the project.
   @BuiltValueField(wireName: r'state')
   NormalizedProjectStateEnum get state;
   // enum stateEnum {  running,  halted,  };
@@ -99,11 +94,6 @@ class _$NormalizedProjectSerializer implements PrimitiveSerializer<NormalizedPro
     yield serializers.serialize(
       object.id,
       specifiedType: const FullType(String),
-    );
-    yield r'revisions';
-    yield serializers.serialize(
-      object.revisions,
-      specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevision)]),
     );
     yield r'slug';
     yield serializers.serialize(
@@ -178,13 +168,6 @@ class _$NormalizedProjectSerializer implements PrimitiveSerializer<NormalizedPro
           ) as String;
           result.id = valueDes;
           break;
-        case r'revisions':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevision)]),
-          ) as BuiltList<NormalizedProjectRevision>;
-          result.revisions.replace(valueDes);
-          break;
         case r'slug':
           final valueDes = serializers.deserialize(
             value,
@@ -245,10 +228,10 @@ class _$NormalizedProjectSerializer implements PrimitiveSerializer<NormalizedPro
 
 class NormalizedProjectStateEnum extends EnumClass {
 
-  /// The state of the project. running Running halted Halted
+  /// The state of the project.
   @BuiltValueEnumConst(wireName: r'running')
   static const NormalizedProjectStateEnum running = _$normalizedProjectStateEnum_running;
-  /// The state of the project. running Running halted Halted
+  /// The state of the project.
   @BuiltValueEnumConst(wireName: r'halted')
   static const NormalizedProjectStateEnum halted = _$normalizedProjectStateEnum_halted;
 

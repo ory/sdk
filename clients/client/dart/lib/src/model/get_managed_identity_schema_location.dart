@@ -8,7 +8,7 @@ import 'package:built_value/serializer.dart';
 
 part 'get_managed_identity_schema_location.g.dart';
 
-/// GetManagedIdentitySchemaLocation
+/// Ory Identity Schema Location
 ///
 /// Properties:
 /// * [location] 

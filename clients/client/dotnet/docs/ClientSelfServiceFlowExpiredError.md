@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Code** | **long** | The status code | [optional] 
 **Debug** | **string** | Debug information  This field is often not exposed to protect against leaking sensitive information. | [optional] 
 **Details** | **Dictionary&lt;string, Object&gt;** | Further error details | [optional] 
+**ExpiredAt** | **DateTime** | When the flow has expired | [optional] 
 **Id** | **string** | The error ID  Useful when trying to identify various errors in application logic. | [optional] 
 **Message** | **string** | Error message  The error&#39;s message. | 
 **Reason** | **string** | A human-readable reason for the error | [optional] 

@@ -1,5 +1,5 @@
 # Ory.Client.Model.ClientOidcUserInfo
-The userinfo response
+OpenID Connect Userinfo
 
 ## Properties
 

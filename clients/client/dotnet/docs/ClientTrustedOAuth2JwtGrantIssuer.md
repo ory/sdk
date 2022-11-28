@@ -1,4 +1,5 @@
 # Ory.Client.Model.ClientTrustedOAuth2JwtGrantIssuer
+OAuth2 JWT Bearer Grant Type Issuer Trust Relationship
 
 ## Properties
 

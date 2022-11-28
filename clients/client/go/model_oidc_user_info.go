@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.60
+API version: v1.0.0-alpha.0
 Contact: support@ory.sh
 */
 
@@ -15,7 +15,7 @@ import (
 	"encoding/json"
 )
 
-// OidcUserInfo The userinfo response
+// OidcUserInfo OpenID Connect Userinfo
 type OidcUserInfo struct {
 	// End-User's birthday, represented as an ISO 8601:2004 [ISO8601‑2004] YYYY-MM-DD format. The year MAY be 0000, indicating that it is omitted. To represent only the year, YYYY format is allowed. Note that depending on the underlying platform's date related function, providing just year can result in varying month and day, so the implementers need to take this factor into account to correctly process the dates.
 	Birthdate *string `json:"birthdate,omitempty"`

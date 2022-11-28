@@ -21,7 +21,7 @@ part 'normalized_project_revision.g.dart';
 /// * [hydraOauth2ClientCredentialsDefaultGrantAllowedScope] - Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
 /// * [hydraOauth2GrantJwtIatOptional] - Configures if the issued at (`iat`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `iat` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.iat_optional\" setting.
 /// * [hydraOauth2GrantJwtJtiOptional] - Configures if the JSON Web Token ID (`jti`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `jti` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.jti_optional\" setting.
-/// * [hydraOauth2GrantJwtMaxTtl] - Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
+/// * [hydraOauth2GrantJwtMaxTtl] 
 /// * [hydraOauth2PkceEnforced] - Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \"oauth2.pkce.enforced\" setting.
 /// * [hydraOauth2PkceEnforcedForPublicClients] - Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \"oauth2.pkce.enforced_for_public_clients\" setting.
 /// * [hydraOauth2RefreshTokenHook] - Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \"oauth2.refresh_token_hook\" setting.
@@ -41,17 +41,17 @@ part 'normalized_project_revision.g.dart';
 /// * [hydraServePublicCorsEnabled] - Configures the Ory Hydra CORS Settings  This governs the \"serve.public.cors.enabled\" setting.
 /// * [hydraStrategiesAccessToken] - Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting.
 /// * [hydraStrategiesScope] - Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting.
-/// * [hydraTtlAccessToken] - This governs the \"ttl.access_token\" setting.
-/// * [hydraTtlAuthCode] - Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.auth_code\" setting.
-/// * [hydraTtlIdToken] - This governs the \"ttl.id_token\" setting.
-/// * [hydraTtlLoginConsentRequest] - Configures how long a user login and consent flow may take.  This governs the \"ttl.login_consent_request\" setting.
-/// * [hydraTtlRefreshToken] - Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.refresh_token\" setting.
-/// * [hydraUrlsConsent] - Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.consent\" setting.
-/// * [hydraUrlsError] - Sets the OAuth2 Error URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.error\" setting.
-/// * [hydraUrlsLogin] - Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.login\" setting.
-/// * [hydraUrlsLogout] - Sets the logout endpoint.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.logout\" setting.
-/// * [hydraUrlsPostLogoutRedirect] - When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to Ory Cloud's Managed UI in development and your application in production mode when a custom domain is connected.  This governs the \"urls.post_logout_redirect\" setting.
-/// * [hydraUrlsSelfIssuer] - This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  In Ory Cloud it will be very rare that you want to modify this value. If left empty, it will default to the correct value for Ory Cloud.  This governs the \"urls.self.issuer\" setting.
+/// * [hydraTtlAccessToken] 
+/// * [hydraTtlAuthCode] 
+/// * [hydraTtlIdToken] 
+/// * [hydraTtlLoginConsentRequest] 
+/// * [hydraTtlRefreshToken] 
+/// * [hydraUrlsConsent] - Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.consent\" setting.
+/// * [hydraUrlsError] - Sets the OAuth2 Error URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.error\" setting.
+/// * [hydraUrlsLogin] - Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.login\" setting.
+/// * [hydraUrlsLogout] - Sets the logout endpoint.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.logout\" setting.
+/// * [hydraUrlsPostLogoutRedirect] - When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to the Ory Account Experience in development and your application in production mode when a custom domain is connected.  This governs the \"urls.post_logout_redirect\" setting.
+/// * [hydraUrlsSelfIssuer] - This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  On the Ory Network it will be very rare that you want to modify this value. If left empty, it will default to the correct value for the Ory Network.  This governs the \"urls.self.issuer\" setting.
 /// * [hydraWebfingerJwksBroadcastKeys] 
 /// * [hydraWebfingerOidcDiscoveryAuthUrl] - Configures OpenID Connect Discovery and overwrites the OAuth2 Authorization URL.  This governs the \"webfinger.oidc.discovery.auth_url\" setting.
 /// * [hydraWebfingerOidcDiscoveryClientRegistrationUrl] - Configures OpenID Connect Discovery and overwrites the OpenID Connect Dynamic Client Registration Endpoint.  This governs the \"webfinger.oidc.discovery.client_registration_url\" setting.
@@ -60,7 +60,7 @@ part 'normalized_project_revision.g.dart';
 /// * [hydraWebfingerOidcDiscoverySupportedScope] 
 /// * [hydraWebfingerOidcDiscoveryTokenUrl] - Configures OpenID Connect Discovery and overwrites the OAuth2 Token URL.  This governs the \"webfinger.oidc.discovery.token_url\" setting.
 /// * [hydraWebfingerOidcDiscoveryUserinfoUrl] - Configures OpenID Connect Discovery and overwrites userinfo endpoint to be advertised at the OpenID Connect Discovery endpoint /.well-known/openid-configuration. Defaults to Ory Hydra's userinfo endpoint at /userinfo. Set this value if you want to handle this endpoint yourself.  This governs the \"webfinger.oidc.discovery.userinfo_url\" setting.
-/// * [id] - The revision ID.
+/// * [id] 
 /// * [ketoNamespaceConfiguration] - The Revisions' Keto Namespace Configuration  The string is a URL pointing to an OPL file with the configuration.
 /// * [ketoNamespaces] 
 /// * [ketoReadMaxDepth] 
@@ -81,13 +81,21 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosCourierTemplatesRecoveryValidEmailBodyHtml] - Configures the Ory Kratos Valid Recovery Email Body HTML Template  This governs the \"courier.smtp.templates.recovery.valid.email.body.html\" setting.
 /// * [kratosCourierTemplatesRecoveryValidEmailBodyPlaintext] - Configures the Ory Kratos Valid Recovery Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery.valid.email.body.plaintext\" setting.
 /// * [kratosCourierTemplatesRecoveryValidEmailSubject] - Configures the Ory Kratos Valid Recovery Email Subject Template  This governs the \"courier.smtp.templates.recovery.valid.email.subject\" setting.
+/// * [kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml] - Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.body.html\" setting.
+/// * [kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext] - Configures the Ory Kratos Invalid Verification via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.body.plaintext\" setting.
+/// * [kratosCourierTemplatesVerificationCodeInvalidEmailSubject] - Configures the Ory Kratos Invalid Verification via Code Email Subject Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.subject\" setting.
+/// * [kratosCourierTemplatesVerificationCodeValidEmailBodyHtml] - Configures the Ory Kratos Valid Verification via Code Email Body HTML Template  This governs the \"courier.smtp.templates.verification_code.valid.email.body.html\" setting.
+/// * [kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext] - Configures the Ory Kratos Valid Verification via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification_code.valid.email.body.plaintext\" setting.
+/// * [kratosCourierTemplatesVerificationCodeValidEmailSubject] - Configures the Ory Kratos Valid Verification via Code Email Subject Template  This governs the \"courier.smtp.templates.verification_code.valid.email.subject\" setting.
 /// * [kratosCourierTemplatesVerificationInvalidEmailBodyHtml] - Configures the Ory Kratos Invalid Verification Email Body HTML Template  This governs the \"courier.smtp.templates.verification.invalid.email.body.html\" setting.
-/// * [kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext] - Configures the Ory Kratos Invalid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery.invalid.email.body.plaintext\" setting.
+/// * [kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext] - Configures the Ory Kratos Invalid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification.invalid.email.body.plaintext\" setting.
 /// * [kratosCourierTemplatesVerificationInvalidEmailSubject] - Configures the Ory Kratos Invalid Verification Email Subject Template  This governs the \"courier.smtp.templates.verification.invalid.email.subject\" setting.
 /// * [kratosCourierTemplatesVerificationValidEmailBodyHtml] - Configures the Ory Kratos Valid Verification Email Body HTML Template  This governs the \"courier.smtp.templates.verification.valid.email.body.html\" setting.
-/// * [kratosCourierTemplatesVerificationValidEmailBodyPlaintext] - Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery.valid.email.body.plaintext\" setting.
+/// * [kratosCourierTemplatesVerificationValidEmailBodyPlaintext] - Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification.valid.email.body.plaintext\" setting.
 /// * [kratosCourierTemplatesVerificationValidEmailSubject] - Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \"courier.smtp.templates.verification.valid.email.subject\" setting.
 /// * [kratosIdentitySchemas] 
+/// * [kratosOauth2ProviderHeaders] - NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+/// * [kratosOauth2ProviderUrl] - The Revisions' OAuth2 Provider Integration URL  This governs the \"oauth2_provider.url\" setting.
 /// * [kratosSecretsCipher] 
 /// * [kratosSecretsCookie] 
 /// * [kratosSecretsDefault] 
@@ -111,7 +119,7 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl] - Configures the Ory Kratos Registration After OIDC Default Return URL  This governs the \"selfservice.flows.registration.after.oidc.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl] - Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl] - Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
-/// * [kratosSelfserviceFlowsRegistrationEnabled] - Configures the Whether Ory Kratos Registration is Enabled  This governs the \"selfservice.flows.registration.enabled\" setting.0
+/// * [kratosSelfserviceFlowsRegistrationEnabled] 
 /// * [kratosSelfserviceFlowsRegistrationLifespan] - Configures the Ory Kratos Registration Lifespan  This governs the \"selfservice.flows.registration.lifespan\" setting.
 /// * [kratosSelfserviceFlowsRegistrationUiUrl] - Configures the Ory Kratos Registration UI URL  This governs the \"selfservice.flows.registration.ui_url\" setting.
 /// * [kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl] - Configures the Ory Kratos Settings Default Return URL  This governs the \"selfservice.flows.settings.after.default_browser_return_url\" setting.
@@ -125,37 +133,38 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosSelfserviceFlowsVerificationEnabled] - Configures the Ory Kratos Verification Enabled Setting  This governs the \"selfservice.flows.verification.enabled\" setting.
 /// * [kratosSelfserviceFlowsVerificationLifespan] - Configures the Ory Kratos Verification Lifespan  This governs the \"selfservice.flows.verification.lifespan\" setting.
 /// * [kratosSelfserviceFlowsVerificationUiUrl] - Configures the Ory Kratos Verification UI URL  This governs the \"selfservice.flows.verification.ui_url\" setting.
+/// * [kratosSelfserviceFlowsVerificationUse] - Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting.
 /// * [kratosSelfserviceMethodsCodeConfigLifespan] - Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
-/// * [kratosSelfserviceMethodsCodeEnabled] - Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
+/// * [kratosSelfserviceMethodsCodeEnabled] 
 /// * [kratosSelfserviceMethodsLinkConfigBaseUrl] - Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \"selfservice.methods.link.config.base_url\" setting.
 /// * [kratosSelfserviceMethodsLinkConfigLifespan] - Configures the Ory Kratos Link Method's lifespan  This governs the \"selfservice.methods.link.config.lifespan\" setting.
-/// * [kratosSelfserviceMethodsLinkEnabled] - Configures whether Ory Kratos Link Method is enabled  This governs the \"selfservice.methods.link.enabled\" setting.
-/// * [kratosSelfserviceMethodsLookupSecretEnabled] - Configures whether Ory Kratos TOTP Lookup Secret is enabled  This governs the \"selfservice.methods.lookup_secret.enabled\" setting.
+/// * [kratosSelfserviceMethodsLinkEnabled] 
+/// * [kratosSelfserviceMethodsLookupSecretEnabled] 
 /// * [kratosSelfserviceMethodsOidcConfigBaseRedirectUri] - Configures the Ory Kratos Third Party / OpenID Connect base redirect URI  This governs the \"selfservice.methods.oidc.config.base_redirect_uri\" setting.
 /// * [kratosSelfserviceMethodsOidcConfigProviders] 
 /// * [kratosSelfserviceMethodsOidcEnabled] - Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \"selfservice.methods.oidc.enabled\" setting.
-/// * [kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled] - Configures whether Ory Kratos Password HIBP Checks is enabled  This governs the \"selfservice.methods.password.config.haveibeenpwned_enabled\" setting.
-/// * [kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled] - Configures whether Ory Kratos Password should disable the similarity policy.  This governs the \"selfservice.methods.password.config.identifier_similarity_check_enabled\" setting.
-/// * [kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors] - Configures whether Ory Kratos Password Should ignore HIBPWND Network Errors  This governs the \"selfservice.methods.password.config.ignore_network_errors\" setting.
+/// * [kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled] 
+/// * [kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled] 
+/// * [kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors] 
 /// * [kratosSelfserviceMethodsPasswordConfigMaxBreaches] - Configures Ory Kratos Password Max Breaches Detection  This governs the \"selfservice.methods.password.config.max_breaches\" setting.
 /// * [kratosSelfserviceMethodsPasswordConfigMinPasswordLength] - Configures the minimum length of passwords.  This governs the \"selfservice.methods.password.config.min_password_length\" setting.
-/// * [kratosSelfserviceMethodsPasswordEnabled] - Configures whether Ory Kratos Password Method is enabled  This governs the \"selfservice.methods.password.enabled\" setting.
-/// * [kratosSelfserviceMethodsProfileEnabled] - Configures whether Ory Kratos Profile Method is enabled  This governs the \"selfservice.methods.profile.enabled\" setting.
+/// * [kratosSelfserviceMethodsPasswordEnabled] 
+/// * [kratosSelfserviceMethodsProfileEnabled] 
 /// * [kratosSelfserviceMethodsTotpConfigIssuer] - Configures Ory Kratos TOTP Issuer  This governs the \"selfservice.methods.totp.config.issuer\" setting.
-/// * [kratosSelfserviceMethodsTotpEnabled] - Configures whether Ory Kratos TOTP Method is enabled  This governs the \"selfservice.methods.totp.enabled\" setting.
+/// * [kratosSelfserviceMethodsTotpEnabled] 
 /// * [kratosSelfserviceMethodsWebauthnConfigPasswordless] - Configures whether Ory Kratos Webauthn is used for passwordless flows  This governs the \"selfservice.methods.webauthn.config.passwordless\" setting.
 /// * [kratosSelfserviceMethodsWebauthnConfigRpDisplayName] - Configures the Ory Kratos Webauthn RP Display Name  This governs the \"selfservice.methods.webauthn.config.rp.display_name\" setting.
 /// * [kratosSelfserviceMethodsWebauthnConfigRpIcon] - Configures the Ory Kratos Webauthn RP Icon  This governs the \"selfservice.methods.webauthn.config.rp.icon\" setting.
 /// * [kratosSelfserviceMethodsWebauthnConfigRpId] - Configures the Ory Kratos Webauthn RP ID  This governs the \"selfservice.methods.webauthn.config.rp.id\" setting.
 /// * [kratosSelfserviceMethodsWebauthnConfigRpOrigin] - Configures the Ory Kratos Webauthn RP Origin  This governs the \"selfservice.methods.webauthn.config.rp.origin\" setting.
-/// * [kratosSelfserviceMethodsWebauthnEnabled] - Configures whether Ory Kratos Webauthn is enabled  This governs the \"selfservice.methods.webauthn.enabled\" setting.
-/// * [kratosSessionCookiePersistent] - Configures the Ory Kratos Session Cookie Persistent Attribute  This governs the \"session.cookie.persistent\" setting.
+/// * [kratosSelfserviceMethodsWebauthnEnabled] 
+/// * [kratosSessionCookiePersistent] 
 /// * [kratosSessionCookieSameSite] - Configures the Ory Kratos Session Cookie SameSite Attribute  This governs the \"session.cookie.same_site\" setting.
 /// * [kratosSessionLifespan] - Configures the Ory Kratos Session Lifespan  This governs the \"session.lifespan\" setting.
 /// * [kratosSessionWhoamiRequiredAal] - Configures the Ory Kratos Session Whoami AAL requirement  This governs the \"session.whoami.required_aal\" setting.
 /// * [name] - The project's name.
 /// * [production] - Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment.
-/// * [projectId] - The Revision's Project ID
+/// * [projectId] 
 /// * [updatedAt] - Last Time Project's Revision was Updated
 @BuiltValue()
 abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevision, NormalizedProjectRevisionBuilder> {
@@ -175,7 +184,6 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'hydra_oauth2_grant_jwt_jti_optional')
   bool? get hydraOauth2GrantJwtJtiOptional;
 
-  /// Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
   @BuiltValueField(wireName: r'hydra_oauth2_grant_jwt_max_ttl')
   String? get hydraOauth2GrantJwtMaxTtl;
 
@@ -242,53 +250,50 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
 
   /// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting.
   @BuiltValueField(wireName: r'hydra_strategies_access_token')
-  JsonObject? get hydraStrategiesAccessToken;
+  NormalizedProjectRevisionHydraStrategiesAccessTokenEnum? get hydraStrategiesAccessToken;
+  // enum hydraStrategiesAccessTokenEnum {  opaque,  jwt,  };
 
   /// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting.
   @BuiltValueField(wireName: r'hydra_strategies_scope')
-  JsonObject? get hydraStrategiesScope;
+  NormalizedProjectRevisionHydraStrategiesScopeEnum? get hydraStrategiesScope;
+  // enum hydraStrategiesScopeEnum {  exact,  wildcard,  };
 
-  /// This governs the \"ttl.access_token\" setting.
   @BuiltValueField(wireName: r'hydra_ttl_access_token')
   String? get hydraTtlAccessToken;
 
-  /// Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.auth_code\" setting.
   @BuiltValueField(wireName: r'hydra_ttl_auth_code')
   String? get hydraTtlAuthCode;
 
-  /// This governs the \"ttl.id_token\" setting.
   @BuiltValueField(wireName: r'hydra_ttl_id_token')
   String? get hydraTtlIdToken;
 
-  /// Configures how long a user login and consent flow may take.  This governs the \"ttl.login_consent_request\" setting.
   @BuiltValueField(wireName: r'hydra_ttl_login_consent_request')
   String? get hydraTtlLoginConsentRequest;
 
-  /// Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.refresh_token\" setting.
   @BuiltValueField(wireName: r'hydra_ttl_refresh_token')
   String? get hydraTtlRefreshToken;
 
-  /// Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.consent\" setting.
+  /// Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.consent\" setting.
   @BuiltValueField(wireName: r'hydra_urls_consent')
   String? get hydraUrlsConsent;
 
-  /// Sets the OAuth2 Error URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.error\" setting.
+  /// Sets the OAuth2 Error URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.error\" setting.
   @BuiltValueField(wireName: r'hydra_urls_error')
   String? get hydraUrlsError;
 
-  /// Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.login\" setting.
+  /// Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.login\" setting.
   @BuiltValueField(wireName: r'hydra_urls_login')
   String? get hydraUrlsLogin;
 
-  /// Sets the logout endpoint.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.logout\" setting.
+  /// Sets the logout endpoint.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.logout\" setting.
   @BuiltValueField(wireName: r'hydra_urls_logout')
   String? get hydraUrlsLogout;
 
-  /// When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to Ory Cloud's Managed UI in development and your application in production mode when a custom domain is connected.  This governs the \"urls.post_logout_redirect\" setting.
+  /// When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to the Ory Account Experience in development and your application in production mode when a custom domain is connected.  This governs the \"urls.post_logout_redirect\" setting.
   @BuiltValueField(wireName: r'hydra_urls_post_logout_redirect')
   String? get hydraUrlsPostLogoutRedirect;
 
-  /// This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  In Ory Cloud it will be very rare that you want to modify this value. If left empty, it will default to the correct value for Ory Cloud.  This governs the \"urls.self.issuer\" setting.
+  /// This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  On the Ory Network it will be very rare that you want to modify this value. If left empty, it will default to the correct value for the Ory Network.  This governs the \"urls.self.issuer\" setting.
   @BuiltValueField(wireName: r'hydra_urls_self_issuer')
   String? get hydraUrlsSelfIssuer;
 
@@ -321,7 +326,6 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'hydra_webfinger_oidc_discovery_userinfo_url')
   String? get hydraWebfingerOidcDiscoveryUserinfoUrl;
 
-  /// The revision ID.
   @BuiltValueField(wireName: r'id')
   String? get id;
 
@@ -403,11 +407,35 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_courier_templates_recovery_valid_email_subject')
   String? get kratosCourierTemplatesRecoveryValidEmailSubject;
 
+  /// Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.body.html\" setting.
+  @BuiltValueField(wireName: r'kratos_courier_templates_verification_code_invalid_email_body_html')
+  String? get kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml;
+
+  /// Configures the Ory Kratos Invalid Verification via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.body.plaintext\" setting.
+  @BuiltValueField(wireName: r'kratos_courier_templates_verification_code_invalid_email_body_plaintext')
+  String? get kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext;
+
+  /// Configures the Ory Kratos Invalid Verification via Code Email Subject Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.subject\" setting.
+  @BuiltValueField(wireName: r'kratos_courier_templates_verification_code_invalid_email_subject')
+  String? get kratosCourierTemplatesVerificationCodeInvalidEmailSubject;
+
+  /// Configures the Ory Kratos Valid Verification via Code Email Body HTML Template  This governs the \"courier.smtp.templates.verification_code.valid.email.body.html\" setting.
+  @BuiltValueField(wireName: r'kratos_courier_templates_verification_code_valid_email_body_html')
+  String? get kratosCourierTemplatesVerificationCodeValidEmailBodyHtml;
+
+  /// Configures the Ory Kratos Valid Verification via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification_code.valid.email.body.plaintext\" setting.
+  @BuiltValueField(wireName: r'kratos_courier_templates_verification_code_valid_email_body_plaintext')
+  String? get kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext;
+
+  /// Configures the Ory Kratos Valid Verification via Code Email Subject Template  This governs the \"courier.smtp.templates.verification_code.valid.email.subject\" setting.
+  @BuiltValueField(wireName: r'kratos_courier_templates_verification_code_valid_email_subject')
+  String? get kratosCourierTemplatesVerificationCodeValidEmailSubject;
+
   /// Configures the Ory Kratos Invalid Verification Email Body HTML Template  This governs the \"courier.smtp.templates.verification.invalid.email.body.html\" setting.
   @BuiltValueField(wireName: r'kratos_courier_templates_verification_invalid_email_body_html')
   String? get kratosCourierTemplatesVerificationInvalidEmailBodyHtml;
 
-  /// Configures the Ory Kratos Invalid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery.invalid.email.body.plaintext\" setting.
+  /// Configures the Ory Kratos Invalid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification.invalid.email.body.plaintext\" setting.
   @BuiltValueField(wireName: r'kratos_courier_templates_verification_invalid_email_body_plaintext')
   String? get kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext;
 
@@ -419,7 +447,7 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_courier_templates_verification_valid_email_body_html')
   String? get kratosCourierTemplatesVerificationValidEmailBodyHtml;
 
-  /// Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery.valid.email.body.plaintext\" setting.
+  /// Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification.valid.email.body.plaintext\" setting.
   @BuiltValueField(wireName: r'kratos_courier_templates_verification_valid_email_body_plaintext')
   String? get kratosCourierTemplatesVerificationValidEmailBodyPlaintext;
 
@@ -429,6 +457,14 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
 
   @BuiltValueField(wireName: r'kratos_identity_schemas')
   BuiltList<NormalizedProjectRevisionIdentitySchema>? get kratosIdentitySchemas;
+
+  /// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+  @BuiltValueField(wireName: r'kratos_oauth2_provider_headers')
+  JsonObject? get kratosOauth2ProviderHeaders;
+
+  /// The Revisions' OAuth2 Provider Integration URL  This governs the \"oauth2_provider.url\" setting.
+  @BuiltValueField(wireName: r'kratos_oauth2_provider_url')
+  String? get kratosOauth2ProviderUrl;
 
   @BuiltValueField(wireName: r'kratos_secrets_cipher')
   BuiltList<String>? get kratosSecretsCipher;
@@ -517,7 +553,6 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_flows_registration_after_webauthn_default_browser_return_url')
   String? get kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl;
 
-  /// Configures the Whether Ory Kratos Registration is Enabled  This governs the \"selfservice.flows.registration.enabled\" setting.0
   @BuiltValueField(wireName: r'kratos_selfservice_flows_registration_enabled')
   bool? get kratosSelfserviceFlowsRegistrationEnabled;
 
@@ -573,11 +608,14 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_flows_verification_ui_url')
   String? get kratosSelfserviceFlowsVerificationUiUrl;
 
+  /// Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_flows_verification_use')
+  String? get kratosSelfserviceFlowsVerificationUse;
+
   /// Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_code_config_lifespan')
   String? get kratosSelfserviceMethodsCodeConfigLifespan;
 
-  /// Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_code_enabled')
   bool? get kratosSelfserviceMethodsCodeEnabled;
 
@@ -589,11 +627,9 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_methods_link_config_lifespan')
   String? get kratosSelfserviceMethodsLinkConfigLifespan;
 
-  /// Configures whether Ory Kratos Link Method is enabled  This governs the \"selfservice.methods.link.enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_link_enabled')
   bool? get kratosSelfserviceMethodsLinkEnabled;
 
-  /// Configures whether Ory Kratos TOTP Lookup Secret is enabled  This governs the \"selfservice.methods.lookup_secret.enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_lookup_secret_enabled')
   bool? get kratosSelfserviceMethodsLookupSecretEnabled;
 
@@ -608,15 +644,12 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_methods_oidc_enabled')
   bool? get kratosSelfserviceMethodsOidcEnabled;
 
-  /// Configures whether Ory Kratos Password HIBP Checks is enabled  This governs the \"selfservice.methods.password.config.haveibeenpwned_enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_password_config_haveibeenpwned_enabled')
   bool? get kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled;
 
-  /// Configures whether Ory Kratos Password should disable the similarity policy.  This governs the \"selfservice.methods.password.config.identifier_similarity_check_enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_password_config_identifier_similarity_check_enabled')
   bool? get kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled;
 
-  /// Configures whether Ory Kratos Password Should ignore HIBPWND Network Errors  This governs the \"selfservice.methods.password.config.ignore_network_errors\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_password_config_ignore_network_errors')
   bool? get kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors;
 
@@ -628,11 +661,9 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_methods_password_config_min_password_length')
   int? get kratosSelfserviceMethodsPasswordConfigMinPasswordLength;
 
-  /// Configures whether Ory Kratos Password Method is enabled  This governs the \"selfservice.methods.password.enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_password_enabled')
   bool? get kratosSelfserviceMethodsPasswordEnabled;
 
-  /// Configures whether Ory Kratos Profile Method is enabled  This governs the \"selfservice.methods.profile.enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_profile_enabled')
   bool? get kratosSelfserviceMethodsProfileEnabled;
 
@@ -640,7 +671,6 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_methods_totp_config_issuer')
   String? get kratosSelfserviceMethodsTotpConfigIssuer;
 
-  /// Configures whether Ory Kratos TOTP Method is enabled  This governs the \"selfservice.methods.totp.enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_totp_enabled')
   bool? get kratosSelfserviceMethodsTotpEnabled;
 
@@ -664,11 +694,9 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_methods_webauthn_config_rp_origin')
   String? get kratosSelfserviceMethodsWebauthnConfigRpOrigin;
 
-  /// Configures whether Ory Kratos Webauthn is enabled  This governs the \"selfservice.methods.webauthn.enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_webauthn_enabled')
   bool? get kratosSelfserviceMethodsWebauthnEnabled;
 
-  /// Configures the Ory Kratos Session Cookie Persistent Attribute  This governs the \"session.cookie.persistent\" setting.
   @BuiltValueField(wireName: r'kratos_session_cookie_persistent')
   bool? get kratosSessionCookiePersistent;
 
@@ -692,7 +720,6 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'production')
   bool? get production;
 
-  /// The Revision's Project ID
   @BuiltValueField(wireName: r'project_id')
   String? get projectId;
 
@@ -706,12 +733,8 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(NormalizedProjectRevisionBuilder b) => b
-      ..hydraOauth2GrantJwtMaxTtl = '720h'
-      ..hydraTtlAccessToken = '30m'
-      ..hydraTtlAuthCode = '720h'
-      ..hydraTtlIdToken = '30m'
-      ..hydraTtlLoginConsentRequest = '30m'
-      ..hydraTtlRefreshToken = '720h';
+      ..hydraStrategiesAccessToken = const NormalizedProjectRevisionHydraStrategiesAccessTokenEnum._('opaque')
+      ..hydraStrategiesScope = const NormalizedProjectRevisionHydraStrategiesScopeEnum._('wildcard');
 
   @BuiltValueSerializer(custom: true)
   static Serializer<NormalizedProjectRevision> get serializer => _$NormalizedProjectRevisionSerializer();
@@ -761,7 +784,7 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'hydra_oauth2_grant_jwt_max_ttl';
       yield serializers.serialize(
         object.hydraOauth2GrantJwtMaxTtl,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.hydraOauth2PkceEnforced != null) {
@@ -887,49 +910,49 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'hydra_strategies_access_token';
       yield serializers.serialize(
         object.hydraStrategiesAccessToken,
-        specifiedType: const FullType.nullable(JsonObject),
+        specifiedType: const FullType(NormalizedProjectRevisionHydraStrategiesAccessTokenEnum),
       );
     }
     if (object.hydraStrategiesScope != null) {
       yield r'hydra_strategies_scope';
       yield serializers.serialize(
         object.hydraStrategiesScope,
-        specifiedType: const FullType.nullable(JsonObject),
+        specifiedType: const FullType(NormalizedProjectRevisionHydraStrategiesScopeEnum),
       );
     }
     if (object.hydraTtlAccessToken != null) {
       yield r'hydra_ttl_access_token';
       yield serializers.serialize(
         object.hydraTtlAccessToken,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.hydraTtlAuthCode != null) {
       yield r'hydra_ttl_auth_code';
       yield serializers.serialize(
         object.hydraTtlAuthCode,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.hydraTtlIdToken != null) {
       yield r'hydra_ttl_id_token';
       yield serializers.serialize(
         object.hydraTtlIdToken,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.hydraTtlLoginConsentRequest != null) {
       yield r'hydra_ttl_login_consent_request';
       yield serializers.serialize(
         object.hydraTtlLoginConsentRequest,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.hydraTtlRefreshToken != null) {
       yield r'hydra_ttl_refresh_token';
       yield serializers.serialize(
         object.hydraTtlRefreshToken,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.hydraUrlsConsent != null) {
@@ -1090,7 +1113,7 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_courier_smtp_headers';
       yield serializers.serialize(
         object.kratosCourierSmtpHeaders,
-        specifiedType: const FullType(JsonObject),
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml != null) {
@@ -1177,6 +1200,48 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         specifiedType: const FullType(String),
       );
     }
+    if (object.kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml != null) {
+      yield r'kratos_courier_templates_verification_code_invalid_email_body_html';
+      yield serializers.serialize(
+        object.kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext != null) {
+      yield r'kratos_courier_templates_verification_code_invalid_email_body_plaintext';
+      yield serializers.serialize(
+        object.kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosCourierTemplatesVerificationCodeInvalidEmailSubject != null) {
+      yield r'kratos_courier_templates_verification_code_invalid_email_subject';
+      yield serializers.serialize(
+        object.kratosCourierTemplatesVerificationCodeInvalidEmailSubject,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosCourierTemplatesVerificationCodeValidEmailBodyHtml != null) {
+      yield r'kratos_courier_templates_verification_code_valid_email_body_html';
+      yield serializers.serialize(
+        object.kratosCourierTemplatesVerificationCodeValidEmailBodyHtml,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext != null) {
+      yield r'kratos_courier_templates_verification_code_valid_email_body_plaintext';
+      yield serializers.serialize(
+        object.kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosCourierTemplatesVerificationCodeValidEmailSubject != null) {
+      yield r'kratos_courier_templates_verification_code_valid_email_subject';
+      yield serializers.serialize(
+        object.kratosCourierTemplatesVerificationCodeValidEmailSubject,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.kratosCourierTemplatesVerificationInvalidEmailBodyHtml != null) {
       yield r'kratos_courier_templates_verification_invalid_email_body_html';
       yield serializers.serialize(
@@ -1224,6 +1289,20 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield serializers.serialize(
         object.kratosIdentitySchemas,
         specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionIdentitySchema)]),
+      );
+    }
+    if (object.kratosOauth2ProviderHeaders != null) {
+      yield r'kratos_oauth2_provider_headers';
+      yield serializers.serialize(
+        object.kratosOauth2ProviderHeaders,
+        specifiedType: const FullType.nullable(JsonObject),
+      );
+    }
+    if (object.kratosOauth2ProviderUrl != null) {
+      yield r'kratos_oauth2_provider_url';
+      yield serializers.serialize(
+        object.kratosOauth2ProviderUrl,
+        specifiedType: const FullType(String),
       );
     }
     if (object.kratosSecretsCipher != null) {
@@ -1391,7 +1470,7 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_selfservice_flows_registration_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceFlowsRegistrationEnabled,
-        specifiedType: const FullType(bool),
+        specifiedType: const FullType.nullable(bool),
       );
     }
     if (object.kratosSelfserviceFlowsRegistrationLifespan != null) {
@@ -1485,6 +1564,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         specifiedType: const FullType(String),
       );
     }
+    if (object.kratosSelfserviceFlowsVerificationUse != null) {
+      yield r'kratos_selfservice_flows_verification_use';
+      yield serializers.serialize(
+        object.kratosSelfserviceFlowsVerificationUse,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.kratosSelfserviceMethodsCodeConfigLifespan != null) {
       yield r'kratos_selfservice_methods_code_config_lifespan';
       yield serializers.serialize(
@@ -1496,7 +1582,7 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_selfservice_methods_code_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsCodeEnabled,
-        specifiedType: const FullType(bool),
+        specifiedType: const FullType.nullable(bool),
       );
     }
     if (object.kratosSelfserviceMethodsLinkConfigBaseUrl != null) {
@@ -1517,14 +1603,14 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_selfservice_methods_link_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsLinkEnabled,
-        specifiedType: const FullType(bool),
+        specifiedType: const FullType.nullable(bool),
       );
     }
     if (object.kratosSelfserviceMethodsLookupSecretEnabled != null) {
       yield r'kratos_selfservice_methods_lookup_secret_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsLookupSecretEnabled,
-        specifiedType: const FullType(bool),
+        specifiedType: const FullType.nullable(bool),
       );
     }
     if (object.kratosSelfserviceMethodsOidcConfigBaseRedirectUri != null) {
@@ -1552,21 +1638,21 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_selfservice_methods_password_config_haveibeenpwned_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled,
-        specifiedType: const FullType(bool),
+        specifiedType: const FullType.nullable(bool),
       );
     }
     if (object.kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled != null) {
       yield r'kratos_selfservice_methods_password_config_identifier_similarity_check_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled,
-        specifiedType: const FullType(bool),
+        specifiedType: const FullType.nullable(bool),
       );
     }
     if (object.kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors != null) {
       yield r'kratos_selfservice_methods_password_config_ignore_network_errors';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors,
-        specifiedType: const FullType(bool),
+        specifiedType: const FullType.nullable(bool),
       );
     }
     if (object.kratosSelfserviceMethodsPasswordConfigMaxBreaches != null) {
@@ -1587,14 +1673,14 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_selfservice_methods_password_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsPasswordEnabled,
-        specifiedType: const FullType(bool),
+        specifiedType: const FullType.nullable(bool),
       );
     }
     if (object.kratosSelfserviceMethodsProfileEnabled != null) {
       yield r'kratos_selfservice_methods_profile_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsProfileEnabled,
-        specifiedType: const FullType(bool),
+        specifiedType: const FullType.nullable(bool),
       );
     }
     if (object.kratosSelfserviceMethodsTotpConfigIssuer != null) {
@@ -1608,7 +1694,7 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_selfservice_methods_totp_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsTotpEnabled,
-        specifiedType: const FullType(bool),
+        specifiedType: const FullType.nullable(bool),
       );
     }
     if (object.kratosSelfserviceMethodsWebauthnConfigPasswordless != null) {
@@ -1650,14 +1736,14 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_selfservice_methods_webauthn_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsWebauthnEnabled,
-        specifiedType: const FullType(bool),
+        specifiedType: const FullType.nullable(bool),
       );
     }
     if (object.kratosSessionCookiePersistent != null) {
       yield r'kratos_session_cookie_persistent';
       yield serializers.serialize(
         object.kratosSessionCookiePersistent,
-        specifiedType: const FullType(bool),
+        specifiedType: const FullType.nullable(bool),
       );
     }
     if (object.kratosSessionCookieSameSite != null) {
@@ -1761,8 +1847,9 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         case r'hydra_oauth2_grant_jwt_max_ttl':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.hydraOauth2GrantJwtMaxTtl = valueDes;
           break;
         case r'hydra_oauth2_pkce_enforced':
@@ -1887,52 +1974,55 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         case r'hydra_strategies_access_token':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(JsonObject),
-          ) as JsonObject?;
-          if (valueDes == null) continue;
+            specifiedType: const FullType(NormalizedProjectRevisionHydraStrategiesAccessTokenEnum),
+          ) as NormalizedProjectRevisionHydraStrategiesAccessTokenEnum;
           result.hydraStrategiesAccessToken = valueDes;
           break;
         case r'hydra_strategies_scope':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(JsonObject),
-          ) as JsonObject?;
-          if (valueDes == null) continue;
+            specifiedType: const FullType(NormalizedProjectRevisionHydraStrategiesScopeEnum),
+          ) as NormalizedProjectRevisionHydraStrategiesScopeEnum;
           result.hydraStrategiesScope = valueDes;
           break;
         case r'hydra_ttl_access_token':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.hydraTtlAccessToken = valueDes;
           break;
         case r'hydra_ttl_auth_code':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.hydraTtlAuthCode = valueDes;
           break;
         case r'hydra_ttl_id_token':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.hydraTtlIdToken = valueDes;
           break;
         case r'hydra_ttl_login_consent_request':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.hydraTtlLoginConsentRequest = valueDes;
           break;
         case r'hydra_ttl_refresh_token':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.hydraTtlRefreshToken = valueDes;
           break;
         case r'hydra_urls_consent':
@@ -2093,8 +2183,9 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         case r'kratos_courier_smtp_headers':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.kratosCourierSmtpHeaders = valueDes;
           break;
         case r'kratos_courier_templates_recovery_code_invalid_email_body_html':
@@ -2181,6 +2272,48 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
           ) as String;
           result.kratosCourierTemplatesRecoveryValidEmailSubject = valueDes;
           break;
+        case r'kratos_courier_templates_verification_code_invalid_email_body_html':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml = valueDes;
+          break;
+        case r'kratos_courier_templates_verification_code_invalid_email_body_plaintext':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext = valueDes;
+          break;
+        case r'kratos_courier_templates_verification_code_invalid_email_subject':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosCourierTemplatesVerificationCodeInvalidEmailSubject = valueDes;
+          break;
+        case r'kratos_courier_templates_verification_code_valid_email_body_html':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosCourierTemplatesVerificationCodeValidEmailBodyHtml = valueDes;
+          break;
+        case r'kratos_courier_templates_verification_code_valid_email_body_plaintext':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext = valueDes;
+          break;
+        case r'kratos_courier_templates_verification_code_valid_email_subject':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosCourierTemplatesVerificationCodeValidEmailSubject = valueDes;
+          break;
         case r'kratos_courier_templates_verification_invalid_email_body_html':
           final valueDes = serializers.deserialize(
             value,
@@ -2229,6 +2362,21 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionIdentitySchema)]),
           ) as BuiltList<NormalizedProjectRevisionIdentitySchema>;
           result.kratosIdentitySchemas.replace(valueDes);
+          break;
+        case r'kratos_oauth2_provider_headers':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
+          result.kratosOauth2ProviderHeaders = valueDes;
+          break;
+        case r'kratos_oauth2_provider_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosOauth2ProviderUrl = valueDes;
           break;
         case r'kratos_secrets_cipher':
           final valueDes = serializers.deserialize(
@@ -2394,8 +2542,9 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         case r'kratos_selfservice_flows_registration_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.kratosSelfserviceFlowsRegistrationEnabled = valueDes;
           break;
         case r'kratos_selfservice_flows_registration_lifespan':
@@ -2489,6 +2638,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
           ) as String;
           result.kratosSelfserviceFlowsVerificationUiUrl = valueDes;
           break;
+        case r'kratos_selfservice_flows_verification_use':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosSelfserviceFlowsVerificationUse = valueDes;
+          break;
         case r'kratos_selfservice_methods_code_config_lifespan':
           final valueDes = serializers.deserialize(
             value,
@@ -2499,8 +2655,9 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         case r'kratos_selfservice_methods_code_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.kratosSelfserviceMethodsCodeEnabled = valueDes;
           break;
         case r'kratos_selfservice_methods_link_config_base_url':
@@ -2520,15 +2677,17 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         case r'kratos_selfservice_methods_link_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.kratosSelfserviceMethodsLinkEnabled = valueDes;
           break;
         case r'kratos_selfservice_methods_lookup_secret_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.kratosSelfserviceMethodsLookupSecretEnabled = valueDes;
           break;
         case r'kratos_selfservice_methods_oidc_config_base_redirect_uri':
@@ -2555,22 +2714,25 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         case r'kratos_selfservice_methods_password_config_haveibeenpwned_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled = valueDes;
           break;
         case r'kratos_selfservice_methods_password_config_identifier_similarity_check_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled = valueDes;
           break;
         case r'kratos_selfservice_methods_password_config_ignore_network_errors':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors = valueDes;
           break;
         case r'kratos_selfservice_methods_password_config_max_breaches':
@@ -2590,15 +2752,17 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         case r'kratos_selfservice_methods_password_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.kratosSelfserviceMethodsPasswordEnabled = valueDes;
           break;
         case r'kratos_selfservice_methods_profile_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.kratosSelfserviceMethodsProfileEnabled = valueDes;
           break;
         case r'kratos_selfservice_methods_totp_config_issuer':
@@ -2611,8 +2775,9 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         case r'kratos_selfservice_methods_totp_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.kratosSelfserviceMethodsTotpEnabled = valueDes;
           break;
         case r'kratos_selfservice_methods_webauthn_config_passwordless':
@@ -2653,15 +2818,17 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         case r'kratos_selfservice_methods_webauthn_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.kratosSelfserviceMethodsWebauthnEnabled = valueDes;
           break;
         case r'kratos_session_cookie_persistent':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.kratosSessionCookiePersistent = valueDes;
           break;
         case r'kratos_session_cookie_same_site':
@@ -2740,5 +2907,39 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
     );
     return result.build();
   }
+}
+
+class NormalizedProjectRevisionHydraStrategiesAccessTokenEnum extends EnumClass {
+
+  /// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting.
+  @BuiltValueEnumConst(wireName: r'opaque')
+  static const NormalizedProjectRevisionHydraStrategiesAccessTokenEnum opaque = _$normalizedProjectRevisionHydraStrategiesAccessTokenEnum_opaque;
+  /// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting.
+  @BuiltValueEnumConst(wireName: r'jwt')
+  static const NormalizedProjectRevisionHydraStrategiesAccessTokenEnum jwt = _$normalizedProjectRevisionHydraStrategiesAccessTokenEnum_jwt;
+
+  static Serializer<NormalizedProjectRevisionHydraStrategiesAccessTokenEnum> get serializer => _$normalizedProjectRevisionHydraStrategiesAccessTokenEnumSerializer;
+
+  const NormalizedProjectRevisionHydraStrategiesAccessTokenEnum._(String name): super(name);
+
+  static BuiltSet<NormalizedProjectRevisionHydraStrategiesAccessTokenEnum> get values => _$normalizedProjectRevisionHydraStrategiesAccessTokenEnumValues;
+  static NormalizedProjectRevisionHydraStrategiesAccessTokenEnum valueOf(String name) => _$normalizedProjectRevisionHydraStrategiesAccessTokenEnumValueOf(name);
+}
+
+class NormalizedProjectRevisionHydraStrategiesScopeEnum extends EnumClass {
+
+  /// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting.
+  @BuiltValueEnumConst(wireName: r'exact')
+  static const NormalizedProjectRevisionHydraStrategiesScopeEnum exact = _$normalizedProjectRevisionHydraStrategiesScopeEnum_exact;
+  /// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting.
+  @BuiltValueEnumConst(wireName: r'wildcard')
+  static const NormalizedProjectRevisionHydraStrategiesScopeEnum wildcard = _$normalizedProjectRevisionHydraStrategiesScopeEnum_wildcard;
+
+  static Serializer<NormalizedProjectRevisionHydraStrategiesScopeEnum> get serializer => _$normalizedProjectRevisionHydraStrategiesScopeEnumSerializer;
+
+  const NormalizedProjectRevisionHydraStrategiesScopeEnum._(String name): super(name);
+
+  static BuiltSet<NormalizedProjectRevisionHydraStrategiesScopeEnum> get values => _$normalizedProjectRevisionHydraStrategiesScopeEnumValues;
+  static NormalizedProjectRevisionHydraStrategiesScopeEnum valueOf(String name) => _$normalizedProjectRevisionHydraStrategiesScopeEnumValueOf(name);
 }
 

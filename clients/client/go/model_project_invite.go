@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.60
+API version: v1.0.0-alpha.0
 Contact: support@ory.sh
 */
 
@@ -20,16 +20,13 @@ import (
 type ProjectInvite struct {
 	// The Project's Revision Creation Date
 	CreatedAt time.Time `json:"created_at"`
-	// The invite's ID.
 	Id string `json:"id"`
 	// The invitee's email
 	InviteeEmail string `json:"invitee_email"`
 	InviteeId NullableString `json:"invitee_id,omitempty"`
 	// The invite owner's email Usually the project's owner email
 	OwnerEmail string `json:"owner_email"`
-	// The invite owner's ID Usually the project's owner
 	OwnerId string `json:"owner_id"`
-	// The Project's ID this invite is associated with
 	ProjectId string `json:"project_id"`
 	// The invite's status Keeps track of the invites status such as pending, accepted, declined, expired
 	Status string `json:"status"`

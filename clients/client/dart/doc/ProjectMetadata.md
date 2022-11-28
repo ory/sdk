@@ -10,10 +10,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdAt** | [**DateTime**](DateTime.md) | The Project's Creation Date | 
 **hosts** | **BuiltList&lt;String&gt;** |  | 
-**id** | **String** | The project's ID. | 
+**id** | **String** |  | 
 **name** | **String** | The project's name if set | 
 **slug** | **String** | The project's slug | [optional] 
-**state** | **String** | The state of the project. running Running halted Halted | 
+**state** | **String** | The state of the project. | 
 **subscriptionId** | **String** |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) | Last Time Project was Updated | 
 

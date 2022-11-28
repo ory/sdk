@@ -25,6 +25,12 @@ void main() {
       // TODO
     });
 
+    // When the flow has expired
+    // DateTime expiredAt
+    test('to test the property `expiredAt`', () async {
+      // TODO
+    });
+
     // The error ID  Useful when trying to identify various errors in application logic.
     // String id
     test('to test the property `id`', () async {

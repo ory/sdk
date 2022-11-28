@@ -1,5 +1,6 @@
 # ManagedIdentitySchemaValidationResult
 
+Ory Identity Schema Validation Result
 
 ## Properties
 Name | Type | Description | Notes

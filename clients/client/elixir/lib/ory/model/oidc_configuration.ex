@@ -4,7 +4,7 @@
 
 defmodule Ory.Model.OidcConfiguration do
   @moduledoc """
-  It includes links to several endpoints (for example `/oauth2/token`) and exposes information on supported signature algorithms among others.
+  Includes links to several endpoints (for example `/oauth2/token`) and exposes information on supported signature algorithms among others.
   """
 
   @derive [Poison.Encoder]

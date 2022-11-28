@@ -4,17 +4,14 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **allowed_top_level_claims** | **Array&lt;String&gt;** |  | [optional] |
-| **client_id** | **String** |  | [optional] |
-| **consent_challenge** | **String** |  | [optional] |
-| **exclude_not_before_claim** | **Boolean** |  | [optional] |
+| **consent_request** | [**OAuth2ConsentRequest**](OAuth2ConsentRequest.md) |  | [optional] |
 | **expires_at** | [**OAuth2ConsentSessionExpiresAt**](OAuth2ConsentSessionExpiresAt.md) |  | [optional] |
-| **extra** | **Hash&lt;String, Object&gt;** |  | [optional] |
-| **headers** | [**Headers**](Headers.md) |  | [optional] |
-| **id_token_claims** | [**IDTokenClaims**](IDTokenClaims.md) |  | [optional] |
-| **kid** | **String** |  | [optional] |
-| **subject** | **String** |  | [optional] |
-| **username** | **String** |  | [optional] |
+| **grant_access_token_audience** | **Array&lt;String&gt;** |  | [optional] |
+| **grant_scope** | **Array&lt;String&gt;** |  | [optional] |
+| **handled_at** | **Time** |  | [optional] |
+| **remember** | **Boolean** | Remember Consent  Remember, if set to true, tells ORY Hydra to remember this consent authorization and reuse it if the same client asks the same user for the same, or a subset of, scope. | [optional] |
+| **remember_for** | **Integer** | Remember Consent For  RememberFor sets how long the consent authorization should be remembered for in seconds. If set to &#x60;0&#x60;, the authorization will be remembered indefinitely. | [optional] |
+| **session** | [**AcceptOAuth2ConsentRequestSession**](AcceptOAuth2ConsentRequestSession.md) |  | [optional] |
 
 ## Example
 
@@ -22,17 +19,14 @@
 require 'ory-client'
 
 instance = OryClient::OAuth2ConsentSession.new(
-  allowed_top_level_claims: null,
-  client_id: null,
-  consent_challenge: null,
-  exclude_not_before_claim: null,
+  consent_request: null,
   expires_at: null,
-  extra: null,
-  headers: null,
-  id_token_claims: null,
-  kid: null,
-  subject: null,
-  username: null
+  grant_access_token_audience: null,
+  grant_scope: null,
+  handled_at: null,
+  remember: null,
+  remember_for: null,
+  session: null
 )
 ```
 

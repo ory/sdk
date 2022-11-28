@@ -4,36 +4,30 @@
 
 defmodule Ory.Model.OAuth2ConsentSession do
   @moduledoc """
-  
+  A completed OAuth 2.0 Consent Session.
   """
 
   @derive [Poison.Encoder]
   defstruct [
-    :allowed_top_level_claims,
-    :client_id,
-    :consent_challenge,
-    :exclude_not_before_claim,
+    :consent_request,
     :expires_at,
-    :extra,
-    :headers,
-    :id_token_claims,
-    :kid,
-    :subject,
-    :username
+    :grant_access_token_audience,
+    :grant_scope,
+    :handled_at,
+    :remember,
+    :remember_for,
+    :session
   ]
 
   @type t :: %__MODULE__{
-    :allowed_top_level_claims => [String.t] | nil,
-    :client_id => String.t | nil,
-    :consent_challenge => String.t | nil,
-    :exclude_not_before_claim => boolean() | nil,
+    :consent_request => Ory.Model.OAuth2ConsentRequest.t | nil,
     :expires_at => Ory.Model.OAuth2ConsentSessionExpiresAt.t | nil,
-    :extra => %{optional(String.t) => AnyType} | nil,
-    :headers => Ory.Model.Headers.t | nil,
-    :id_token_claims => Ory.Model.IdTokenClaims.t | nil,
-    :kid => String.t | nil,
-    :subject => String.t | nil,
-    :username => String.t | nil
+    :grant_access_token_audience => [String.t] | nil,
+    :grant_scope => [String.t] | nil,
+    :handled_at => DateTime.t | nil,
+    :remember => boolean() | nil,
+    :remember_for => integer() | nil,
+    :session => Ory.Model.AcceptOAuth2ConsentRequestSession.t | nil
   }
 end
 
@@ -41,10 +35,9 @@ defimpl Poison.Decoder, for: Ory.Model.OAuth2ConsentSession do
   import Ory.Deserializer
   def decode(value, options) do
     value
+    |> deserialize(:consent_request, :struct, Ory.Model.OAuth2ConsentRequest, options)
     |> deserialize(:expires_at, :struct, Ory.Model.OAuth2ConsentSessionExpiresAt, options)
-    |> deserialize(:extra, :map, Ory.Model.AnyType, options)
-    |> deserialize(:headers, :struct, Ory.Model.Headers, options)
-    |> deserialize(:id_token_claims, :struct, Ory.Model.IdTokenClaims, options)
+    |> deserialize(:session, :struct, Ory.Model.AcceptOAuth2ConsentRequestSession, options)
   end
 end
 

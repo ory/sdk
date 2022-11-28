@@ -2,6 +2,7 @@
 
 # IdentitySchemaContainer
 
+An Identity JSON Schema Container
 
 ## Properties
 

@@ -13,7 +13,6 @@ void main() {
       // TODO
     });
 
-    // The invite's ID.
     // String id
     test('to test the property `id`', () async {
       // TODO
@@ -36,13 +35,11 @@ void main() {
       // TODO
     });
 
-    // The invite owner's ID Usually the project's owner
     // String ownerId
     test('to test the property `ownerId`', () async {
       // TODO
     });
 
-    // The Project's ID this invite is associated with
     // String projectId
     test('to test the property `projectId`', () async {
       // TODO

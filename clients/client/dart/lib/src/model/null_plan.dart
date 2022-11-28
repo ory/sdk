@@ -11,25 +11,18 @@ part 'null_plan.g.dart';
 
 class NullPlan extends EnumClass {
 
-  ///  unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
   @BuiltValueEnumConst(wireName: r'unknown')
   static const NullPlan unknown = _$unknown;
-  ///  unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
   @BuiltValueEnumConst(wireName: r'free')
   static const NullPlan free = _$free;
-  ///  unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
   @BuiltValueEnumConst(wireName: r'start_up_monthly')
   static const NullPlan startUpMonthly = _$startUpMonthly;
-  ///  unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
   @BuiltValueEnumConst(wireName: r'start_up_yearly')
   static const NullPlan startUpYearly = _$startUpYearly;
-  ///  unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
   @BuiltValueEnumConst(wireName: r'business_monthly')
   static const NullPlan businessMonthly = _$businessMonthly;
-  ///  unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
   @BuiltValueEnumConst(wireName: r'business_yearly')
   static const NullPlan businessYearly = _$businessYearly;
-  ///  unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
   @BuiltValueEnumConst(wireName: r'custom')
   static const NullPlan custom = _$custom;
 

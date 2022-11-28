@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.60
+API version: v1.0.0-alpha.0
 Contact: support@ory.sh
 */
 
@@ -16,7 +16,7 @@ import (
 	"time"
 )
 
-// Identity An identity can be a real human, a service, an IoT device - everything that can be described as an \"actor\" in a system.
+// Identity An [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) represents a (human) user in Ory.
 type Identity struct {
 	// CreatedAt is a helper struct field for gobuffalo.pop.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
@@ -153,9 +153,9 @@ func (o *Identity) SetId(v string) {
 	o.Id = v
 }
 
-// GetMetadataAdmin returns the MetadataAdmin field value if set, zero value otherwise.
+// GetMetadataAdmin returns the MetadataAdmin field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Identity) GetMetadataAdmin() map[string]interface{} {
-	if o == nil || o.MetadataAdmin == nil {
+	if o == nil {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -164,6 +164,7 @@ func (o *Identity) GetMetadataAdmin() map[string]interface{} {
 
 // GetMetadataAdminOk returns a tuple with the MetadataAdmin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Identity) GetMetadataAdminOk() (map[string]interface{}, bool) {
 	if o == nil || o.MetadataAdmin == nil {
 		return nil, false
@@ -185,9 +186,9 @@ func (o *Identity) SetMetadataAdmin(v map[string]interface{}) {
 	o.MetadataAdmin = v
 }
 
-// GetMetadataPublic returns the MetadataPublic field value if set, zero value otherwise.
+// GetMetadataPublic returns the MetadataPublic field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Identity) GetMetadataPublic() map[string]interface{} {
-	if o == nil || o.MetadataPublic == nil {
+	if o == nil {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -196,6 +197,7 @@ func (o *Identity) GetMetadataPublic() map[string]interface{} {
 
 // GetMetadataPublicOk returns a tuple with the MetadataPublic field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Identity) GetMetadataPublicOk() (map[string]interface{}, bool) {
 	if o == nil || o.MetadataPublic == nil {
 		return nil, false

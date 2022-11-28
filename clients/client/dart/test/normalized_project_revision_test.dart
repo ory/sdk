@@ -31,8 +31,7 @@ void main() {
       // TODO
     });
 
-    // Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
-    // String hydraOauth2GrantJwtMaxTtl (default value: '720h')
+    // String hydraOauth2GrantJwtMaxTtl
     test('to test the property `hydraOauth2GrantJwtMaxTtl`', () async {
       // TODO
     });
@@ -133,78 +132,73 @@ void main() {
     });
 
     // Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting.
-    // JsonObject hydraStrategiesAccessToken
+    // String hydraStrategiesAccessToken (default value: 'opaque')
     test('to test the property `hydraStrategiesAccessToken`', () async {
       // TODO
     });
 
     // Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting.
-    // JsonObject hydraStrategiesScope
+    // String hydraStrategiesScope (default value: 'wildcard')
     test('to test the property `hydraStrategiesScope`', () async {
       // TODO
     });
 
-    // This governs the \"ttl.access_token\" setting.
-    // String hydraTtlAccessToken (default value: '30m')
+    // String hydraTtlAccessToken
     test('to test the property `hydraTtlAccessToken`', () async {
       // TODO
     });
 
-    // Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.auth_code\" setting.
-    // String hydraTtlAuthCode (default value: '720h')
+    // String hydraTtlAuthCode
     test('to test the property `hydraTtlAuthCode`', () async {
       // TODO
     });
 
-    // This governs the \"ttl.id_token\" setting.
-    // String hydraTtlIdToken (default value: '30m')
+    // String hydraTtlIdToken
     test('to test the property `hydraTtlIdToken`', () async {
       // TODO
     });
 
-    // Configures how long a user login and consent flow may take.  This governs the \"ttl.login_consent_request\" setting.
-    // String hydraTtlLoginConsentRequest (default value: '30m')
+    // String hydraTtlLoginConsentRequest
     test('to test the property `hydraTtlLoginConsentRequest`', () async {
       // TODO
     });
 
-    // Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.refresh_token\" setting.
-    // String hydraTtlRefreshToken (default value: '720h')
+    // String hydraTtlRefreshToken
     test('to test the property `hydraTtlRefreshToken`', () async {
       // TODO
     });
 
-    // Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.consent\" setting.
+    // Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.consent\" setting.
     // String hydraUrlsConsent
     test('to test the property `hydraUrlsConsent`', () async {
       // TODO
     });
 
-    // Sets the OAuth2 Error URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.error\" setting.
+    // Sets the OAuth2 Error URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.error\" setting.
     // String hydraUrlsError
     test('to test the property `hydraUrlsError`', () async {
       // TODO
     });
 
-    // Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.login\" setting.
+    // Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.login\" setting.
     // String hydraUrlsLogin
     test('to test the property `hydraUrlsLogin`', () async {
       // TODO
     });
 
-    // Sets the logout endpoint.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.logout\" setting.
+    // Sets the logout endpoint.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.logout\" setting.
     // String hydraUrlsLogout
     test('to test the property `hydraUrlsLogout`', () async {
       // TODO
     });
 
-    // When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to Ory Cloud's Managed UI in development and your application in production mode when a custom domain is connected.  This governs the \"urls.post_logout_redirect\" setting.
+    // When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to the Ory Account Experience in development and your application in production mode when a custom domain is connected.  This governs the \"urls.post_logout_redirect\" setting.
     // String hydraUrlsPostLogoutRedirect
     test('to test the property `hydraUrlsPostLogoutRedirect`', () async {
       // TODO
     });
 
-    // This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  In Ory Cloud it will be very rare that you want to modify this value. If left empty, it will default to the correct value for Ory Cloud.  This governs the \"urls.self.issuer\" setting.
+    // This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  On the Ory Network it will be very rare that you want to modify this value. If left empty, it will default to the correct value for the Ory Network.  This governs the \"urls.self.issuer\" setting.
     // String hydraUrlsSelfIssuer
     test('to test the property `hydraUrlsSelfIssuer`', () async {
       // TODO
@@ -255,7 +249,6 @@ void main() {
       // TODO
     });
 
-    // The revision ID.
     // String id
     test('to test the property `id`', () async {
       // TODO
@@ -379,13 +372,49 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.body.html\" setting.
+    // String kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml
+    test('to test the property `kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Invalid Verification via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.body.plaintext\" setting.
+    // String kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext
+    test('to test the property `kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Invalid Verification via Code Email Subject Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.subject\" setting.
+    // String kratosCourierTemplatesVerificationCodeInvalidEmailSubject
+    test('to test the property `kratosCourierTemplatesVerificationCodeInvalidEmailSubject`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Valid Verification via Code Email Body HTML Template  This governs the \"courier.smtp.templates.verification_code.valid.email.body.html\" setting.
+    // String kratosCourierTemplatesVerificationCodeValidEmailBodyHtml
+    test('to test the property `kratosCourierTemplatesVerificationCodeValidEmailBodyHtml`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Valid Verification via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification_code.valid.email.body.plaintext\" setting.
+    // String kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext
+    test('to test the property `kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Valid Verification via Code Email Subject Template  This governs the \"courier.smtp.templates.verification_code.valid.email.subject\" setting.
+    // String kratosCourierTemplatesVerificationCodeValidEmailSubject
+    test('to test the property `kratosCourierTemplatesVerificationCodeValidEmailSubject`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Invalid Verification Email Body HTML Template  This governs the \"courier.smtp.templates.verification.invalid.email.body.html\" setting.
     // String kratosCourierTemplatesVerificationInvalidEmailBodyHtml
     test('to test the property `kratosCourierTemplatesVerificationInvalidEmailBodyHtml`', () async {
       // TODO
     });
 
-    // Configures the Ory Kratos Invalid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery.invalid.email.body.plaintext\" setting.
+    // Configures the Ory Kratos Invalid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification.invalid.email.body.plaintext\" setting.
     // String kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext
     test('to test the property `kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext`', () async {
       // TODO
@@ -403,7 +432,7 @@ void main() {
       // TODO
     });
 
-    // Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery.valid.email.body.plaintext\" setting.
+    // Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification.valid.email.body.plaintext\" setting.
     // String kratosCourierTemplatesVerificationValidEmailBodyPlaintext
     test('to test the property `kratosCourierTemplatesVerificationValidEmailBodyPlaintext`', () async {
       // TODO
@@ -417,6 +446,18 @@ void main() {
 
     // BuiltList<NormalizedProjectRevisionIdentitySchema> kratosIdentitySchemas
     test('to test the property `kratosIdentitySchemas`', () async {
+      // TODO
+    });
+
+    // NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+    // JsonObject kratosOauth2ProviderHeaders
+    test('to test the property `kratosOauth2ProviderHeaders`', () async {
+      // TODO
+    });
+
+    // The Revisions' OAuth2 Provider Integration URL  This governs the \"oauth2_provider.url\" setting.
+    // String kratosOauth2ProviderUrl
+    test('to test the property `kratosOauth2ProviderUrl`', () async {
       // TODO
     });
 
@@ -553,7 +594,6 @@ void main() {
       // TODO
     });
 
-    // Configures the Whether Ory Kratos Registration is Enabled  This governs the \"selfservice.flows.registration.enabled\" setting.0
     // bool kratosSelfserviceFlowsRegistrationEnabled
     test('to test the property `kratosSelfserviceFlowsRegistrationEnabled`', () async {
       // TODO
@@ -637,13 +677,18 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting.
+    // String kratosSelfserviceFlowsVerificationUse
+    test('to test the property `kratosSelfserviceFlowsVerificationUse`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
     // String kratosSelfserviceMethodsCodeConfigLifespan
     test('to test the property `kratosSelfserviceMethodsCodeConfigLifespan`', () async {
       // TODO
     });
 
-    // Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
     // bool kratosSelfserviceMethodsCodeEnabled
     test('to test the property `kratosSelfserviceMethodsCodeEnabled`', () async {
       // TODO
@@ -661,13 +706,11 @@ void main() {
       // TODO
     });
 
-    // Configures whether Ory Kratos Link Method is enabled  This governs the \"selfservice.methods.link.enabled\" setting.
     // bool kratosSelfserviceMethodsLinkEnabled
     test('to test the property `kratosSelfserviceMethodsLinkEnabled`', () async {
       // TODO
     });
 
-    // Configures whether Ory Kratos TOTP Lookup Secret is enabled  This governs the \"selfservice.methods.lookup_secret.enabled\" setting.
     // bool kratosSelfserviceMethodsLookupSecretEnabled
     test('to test the property `kratosSelfserviceMethodsLookupSecretEnabled`', () async {
       // TODO
@@ -690,19 +733,16 @@ void main() {
       // TODO
     });
 
-    // Configures whether Ory Kratos Password HIBP Checks is enabled  This governs the \"selfservice.methods.password.config.haveibeenpwned_enabled\" setting.
     // bool kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled
     test('to test the property `kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled`', () async {
       // TODO
     });
 
-    // Configures whether Ory Kratos Password should disable the similarity policy.  This governs the \"selfservice.methods.password.config.identifier_similarity_check_enabled\" setting.
     // bool kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled
     test('to test the property `kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled`', () async {
       // TODO
     });
 
-    // Configures whether Ory Kratos Password Should ignore HIBPWND Network Errors  This governs the \"selfservice.methods.password.config.ignore_network_errors\" setting.
     // bool kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors
     test('to test the property `kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors`', () async {
       // TODO
@@ -720,13 +760,11 @@ void main() {
       // TODO
     });
 
-    // Configures whether Ory Kratos Password Method is enabled  This governs the \"selfservice.methods.password.enabled\" setting.
     // bool kratosSelfserviceMethodsPasswordEnabled
     test('to test the property `kratosSelfserviceMethodsPasswordEnabled`', () async {
       // TODO
     });
 
-    // Configures whether Ory Kratos Profile Method is enabled  This governs the \"selfservice.methods.profile.enabled\" setting.
     // bool kratosSelfserviceMethodsProfileEnabled
     test('to test the property `kratosSelfserviceMethodsProfileEnabled`', () async {
       // TODO
@@ -738,7 +776,6 @@ void main() {
       // TODO
     });
 
-    // Configures whether Ory Kratos TOTP Method is enabled  This governs the \"selfservice.methods.totp.enabled\" setting.
     // bool kratosSelfserviceMethodsTotpEnabled
     test('to test the property `kratosSelfserviceMethodsTotpEnabled`', () async {
       // TODO
@@ -774,13 +811,11 @@ void main() {
       // TODO
     });
 
-    // Configures whether Ory Kratos Webauthn is enabled  This governs the \"selfservice.methods.webauthn.enabled\" setting.
     // bool kratosSelfserviceMethodsWebauthnEnabled
     test('to test the property `kratosSelfserviceMethodsWebauthnEnabled`', () async {
       // TODO
     });
 
-    // Configures the Ory Kratos Session Cookie Persistent Attribute  This governs the \"session.cookie.persistent\" setting.
     // bool kratosSessionCookiePersistent
     test('to test the property `kratosSessionCookiePersistent`', () async {
       // TODO
@@ -816,7 +851,6 @@ void main() {
       // TODO
     });
 
-    // The Revision's Project ID
     // String projectId
     test('to test the property `projectId`', () async {
       // TODO

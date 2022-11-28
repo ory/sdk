@@ -4,7 +4,7 @@
 
 defmodule Ory.Model.CreateProjectBody do
   @moduledoc """
-  
+  Create Project Request Body
   """
 
   @derive [Poison.Encoder]

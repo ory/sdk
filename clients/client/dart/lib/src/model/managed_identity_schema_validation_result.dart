@@ -8,7 +8,7 @@ import 'package:built_value/serializer.dart';
 
 part 'managed_identity_schema_validation_result.g.dart';
 
-/// ManagedIdentitySchemaValidationResult
+/// Ory Identity Schema Validation Result
 ///
 /// Properties:
 /// * [message] 

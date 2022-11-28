@@ -9,7 +9,7 @@ import 'package:built_value/serializer.dart';
 
 part 'identity_schema_container.g.dart';
 
-/// IdentitySchemaContainer
+/// An Identity JSON Schema Container
 ///
 /// Properties:
 /// * [id] - The ID of the Identity JSON Schema

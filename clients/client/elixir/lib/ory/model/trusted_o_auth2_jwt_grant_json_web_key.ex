@@ -4,7 +4,7 @@
 
 defmodule Ory.Model.TrustedOAuth2JwtGrantJsonWebKey do
   @moduledoc """
-  
+  OAuth2 JWT Bearer Grant Type Issuer Trusted JSON Web Key
   """
 
   @derive [Poison.Encoder]

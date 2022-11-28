@@ -1,4 +1,5 @@
 # Ory.Client.Model.ClientRelationQuery
+Relation Query
 
 ## Properties
 

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.60
+API version: v1.0.0-alpha.0
 Contact: support@ory.sh
 */
 
@@ -21,13 +21,12 @@ type ProjectMetadata struct {
 	// The Project's Creation Date
 	CreatedAt time.Time `json:"created_at"`
 	Hosts []string `json:"hosts"`
-	// The project's ID.
 	Id string `json:"id"`
 	// The project's name if set
 	Name string `json:"name"`
 	// The project's slug
 	Slug *string `json:"slug,omitempty"`
-	// The state of the project. running Running halted Halted
+	// The state of the project.
 	State string `json:"state"`
 	SubscriptionId NullableString `json:"subscription_id,omitempty"`
 	// Last Time Project was Updated

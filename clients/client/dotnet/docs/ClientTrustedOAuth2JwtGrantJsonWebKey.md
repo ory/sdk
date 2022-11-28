@@ -1,4 +1,5 @@
 # Ory.Client.Model.ClientTrustedOAuth2JwtGrantJsonWebKey
+OAuth2 JWT Bearer Grant Type Issuer Trusted JSON Web Key
 
 ## Properties
 

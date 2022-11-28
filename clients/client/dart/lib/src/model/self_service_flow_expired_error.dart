@@ -16,6 +16,7 @@ part 'self_service_flow_expired_error.g.dart';
 /// * [code] - The status code
 /// * [debug] - Debug information  This field is often not exposed to protect against leaking sensitive information.
 /// * [details] - Further error details
+/// * [expiredAt] - When the flow has expired
 /// * [id] - The error ID  Useful when trying to identify various errors in application logic.
 /// * [message] - Error message  The error's message.
 /// * [reason] - A human-readable reason for the error
@@ -36,6 +37,10 @@ abstract class SelfServiceFlowExpiredError implements Built<SelfServiceFlowExpir
   /// Further error details
   @BuiltValueField(wireName: r'details')
   BuiltMap<String, JsonObject?>? get details;
+
+  /// When the flow has expired
+  @BuiltValueField(wireName: r'expired_at')
+  DateTime? get expiredAt;
 
   /// The error ID  Useful when trying to identify various errors in application logic.
   @BuiltValueField(wireName: r'id')
@@ -107,6 +112,13 @@ class _$SelfServiceFlowExpiredErrorSerializer implements PrimitiveSerializer<Sel
       yield serializers.serialize(
         object.details,
         specifiedType: const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
+      );
+    }
+    if (object.expiredAt != null) {
+      yield r'expired_at';
+      yield serializers.serialize(
+        object.expiredAt,
+        specifiedType: const FullType(DateTime),
       );
     }
     if (object.id != null) {
@@ -199,6 +211,13 @@ class _$SelfServiceFlowExpiredErrorSerializer implements PrimitiveSerializer<Sel
             specifiedType: const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
           ) as BuiltMap<String, JsonObject?>;
           result.details.replace(valueDes);
+          break;
+        case r'expired_at':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.expiredAt = valueDes;
           break;
         case r'id':
           final valueDes = serializers.deserialize(

@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -15,7 +16,7 @@ part 'ui_text.g.dart';
 /// * [context] - The message's context. Useful when customizing messages.
 /// * [id] 
 /// * [text] - The message text. Written in american english.
-/// * [type] 
+/// * [type] - The message type. info Info error Error success Success
 @BuiltValue()
 abstract class UiText implements Built<UiText, UiTextBuilder> {
   /// The message's context. Useful when customizing messages.
@@ -29,8 +30,10 @@ abstract class UiText implements Built<UiText, UiTextBuilder> {
   @BuiltValueField(wireName: r'text')
   String get text;
 
+  /// The message type. info Info error Error success Success
   @BuiltValueField(wireName: r'type')
-  String get type;
+  UiTextTypeEnum get type;
+  // enum typeEnum {  info,  error,  success,  };
 
   UiText._();
 
@@ -75,7 +78,7 @@ class _$UiTextSerializer implements PrimitiveSerializer<UiText> {
     yield r'type';
     yield serializers.serialize(
       object.type,
-      specifiedType: const FullType(String),
+      specifiedType: const FullType(UiTextTypeEnum),
     );
   }
 
@@ -124,8 +127,8 @@ class _$UiTextSerializer implements PrimitiveSerializer<UiText> {
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(UiTextTypeEnum),
+          ) as UiTextTypeEnum;
           result.type = valueDes;
           break;
         default:
@@ -155,5 +158,25 @@ class _$UiTextSerializer implements PrimitiveSerializer<UiText> {
     );
     return result.build();
   }
+}
+
+class UiTextTypeEnum extends EnumClass {
+
+  /// The message type. info Info error Error success Success
+  @BuiltValueEnumConst(wireName: r'info')
+  static const UiTextTypeEnum info = _$uiTextTypeEnum_info;
+  /// The message type. info Info error Error success Success
+  @BuiltValueEnumConst(wireName: r'error')
+  static const UiTextTypeEnum error = _$uiTextTypeEnum_error;
+  /// The message type. info Info error Error success Success
+  @BuiltValueEnumConst(wireName: r'success')
+  static const UiTextTypeEnum success = _$uiTextTypeEnum_success;
+
+  static Serializer<UiTextTypeEnum> get serializer => _$uiTextTypeEnumSerializer;
+
+  const UiTextTypeEnum._(String name): super(name);
+
+  static BuiltSet<UiTextTypeEnum> get values => _$uiTextTypeEnumValues;
+  static UiTextTypeEnum valueOf(String name) => _$uiTextTypeEnumValueOf(name);
 }
 

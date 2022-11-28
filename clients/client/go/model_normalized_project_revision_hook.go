@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.60
+API version: v1.0.0-alpha.0
 Contact: support@ory.sh
 */
 
@@ -24,9 +24,7 @@ type NormalizedProjectRevisionHook struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// The Hook Type
 	Hook string `json:"hook"`
-	// ID of the entry
 	Id *string `json:"id,omitempty"`
-	// The Revision's ID this schema belongs to
 	ProjectRevisionId *string `json:"project_revision_id,omitempty"`
 	// Last Time Project's Revision was Updated
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`

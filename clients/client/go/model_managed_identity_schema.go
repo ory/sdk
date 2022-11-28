@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.60
+API version: v1.0.0-alpha.0
 Contact: support@ory.sh
 */
 
@@ -26,7 +26,6 @@ type ManagedIdentitySchema struct {
 	ContentHash *string `json:"content_hash,omitempty"`
 	// The Schema's Creation Date
 	CreatedAt time.Time `json:"created_at"`
-	// The schema's ID.
 	Id string `json:"id"`
 	// The schema name  This is set by the user and is for them to easily recognise their schema
 	Name string `json:"name"`

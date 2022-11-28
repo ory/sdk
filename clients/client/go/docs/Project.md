@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | The project&#39;s ID. | [readonly] 
+**Id** | **string** |  | 
 **Name** | **string** | The name of the project. | 
-**RevisionId** | **string** | The configuration revision ID. | [readonly] 
+**RevisionId** | **string** |  | 
 **Services** | [**ProjectServices**](ProjectServices.md) |  | 
 **Slug** | **string** | The project&#39;s slug | [readonly] 
-**State** | **string** | The state of the project. running Running halted Halted | [readonly] 
+**State** | **string** | The state of the project. | [readonly] 
 
 ## Methods
 

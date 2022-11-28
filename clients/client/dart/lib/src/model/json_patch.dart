@@ -80,7 +80,7 @@ class _$JsonPatchSerializer implements PrimitiveSerializer<JsonPatch> {
       yield r'value';
       yield serializers.serialize(
         object.value,
-        specifiedType: const FullType.nullable(JsonObject),
+        specifiedType: const FullType(JsonObject),
       );
     }
   }
@@ -130,9 +130,8 @@ class _$JsonPatchSerializer implements PrimitiveSerializer<JsonPatch> {
         case r'value':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(JsonObject),
-          ) as JsonObject?;
-          if (valueDes == null) continue;
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
           result.value = valueDes;
           break;
         default:

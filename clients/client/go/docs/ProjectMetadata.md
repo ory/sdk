@@ -6,10 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **time.Time** | The Project&#39;s Creation Date | 
 **Hosts** | **[]string** |  | 
-**Id** | **string** | The project&#39;s ID. | [readonly] 
+**Id** | **string** |  | 
 **Name** | **string** | The project&#39;s name if set | 
 **Slug** | Pointer to **string** | The project&#39;s slug | [optional] [readonly] 
-**State** | **string** | The state of the project. running Running halted Halted | 
+**State** | **string** | The state of the project. | 
 **SubscriptionId** | Pointer to **NullableString** |  | [optional] 
 **UpdatedAt** | **time.Time** | Last Time Project was Updated | 
 

@@ -1,5 +1,6 @@
 # IdentitySchemaContainer
 
+An Identity JSON Schema Container
 
 ## Properties
 Name | Type | Description | Notes

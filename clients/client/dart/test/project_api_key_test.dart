@@ -7,7 +7,6 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(ProjectApiKey, () {
-    // The token's ID.
     // String id
     test('to test the property `id`', () async {
       // TODO
@@ -19,13 +18,11 @@ void main() {
       // TODO
     });
 
-    // The token's owner
     // String ownerId
     test('to test the property `ownerId`', () async {
       // TODO
     });
 
-    // The Token's Project ID
     // String projectId
     test('to test the property `projectId`', () async {
       // TODO

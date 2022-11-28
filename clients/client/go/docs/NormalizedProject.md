@@ -7,10 +7,9 @@ Name | Type | Description | Notes
 **CreatedAt** | **time.Time** | The Project&#39;s Creation Date | [readonly] 
 **CurrentRevision** | [**NormalizedProjectRevision**](NormalizedProjectRevision.md) |  | 
 **Hosts** | **[]string** |  | 
-**Id** | **string** | The project&#39;s ID. | [readonly] 
-**Revisions** | [**[]NormalizedProjectRevision**](NormalizedProjectRevision.md) |  | 
+**Id** | **string** |  | 
 **Slug** | **string** | The project&#39;s slug | [readonly] 
-**State** | **string** | The state of the project. running Running halted Halted | [readonly] 
+**State** | **string** | The state of the project. | [readonly] 
 **SubscriptionId** | Pointer to **NullableString** |  | [optional] 
 **UpdatedAt** | **time.Time** | Last Time Project was Updated | [readonly] 
 
@@ -18,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewNormalizedProject
 
-`func NewNormalizedProject(createdAt time.Time, currentRevision NormalizedProjectRevision, hosts []string, id string, revisions []NormalizedProjectRevision, slug string, state string, updatedAt time.Time, ) *NormalizedProject`
+`func NewNormalizedProject(createdAt time.Time, currentRevision NormalizedProjectRevision, hosts []string, id string, slug string, state string, updatedAt time.Time, ) *NormalizedProject`
 
 NewNormalizedProject instantiates a new NormalizedProject object
 This constructor will assign default values to properties that have it defined,
@@ -111,26 +110,6 @@ and a boolean to check if the value has been set.
 `func (o *NormalizedProject) SetId(v string)`
 
 SetId sets Id field to given value.
-
-
-### GetRevisions
-
-`func (o *NormalizedProject) GetRevisions() []NormalizedProjectRevision`
-
-GetRevisions returns the Revisions field if non-nil, zero value otherwise.
-
-### GetRevisionsOk
-
-`func (o *NormalizedProject) GetRevisionsOk() (*[]NormalizedProjectRevision, bool)`
-
-GetRevisionsOk returns a tuple with the Revisions field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRevisions
-
-`func (o *NormalizedProject) SetRevisions(v []NormalizedProjectRevision)`
-
-SetRevisions sets Revisions field to given value.
 
 
 ### GetSlug

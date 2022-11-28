@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.60
+API version: v1.0.0-alpha.0
 Contact: support@ory.sh
 */
 
@@ -16,7 +16,7 @@ import (
 	"time"
 )
 
-// TrustedOAuth2JwtGrantIssuer struct for TrustedOAuth2JwtGrantIssuer
+// TrustedOAuth2JwtGrantIssuer OAuth2 JWT Bearer Grant Type Issuer Trust Relationship
 type TrustedOAuth2JwtGrantIssuer struct {
 	// The \"allow_any_subject\" indicates that the issuer is allowed to have any principal as the subject of the JWT.
 	AllowAnySubject *bool `json:"allow_any_subject,omitempty"`

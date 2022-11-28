@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.60
+API version: v1.0.0-alpha.0
 Contact: support@ory.sh
 */
 
@@ -15,7 +15,7 @@ import (
 	"encoding/json"
 )
 
-// TrustedOAuth2JwtGrantJsonWebKey struct for TrustedOAuth2JwtGrantJsonWebKey
+// TrustedOAuth2JwtGrantJsonWebKey OAuth2 JWT Bearer Grant Type Issuer Trusted JSON Web Key
 type TrustedOAuth2JwtGrantJsonWebKey struct {
 	// The \"key_id\" is key unique identifier (same as kid header in jws/jwt).
 	Kid *string `json:"kid,omitempty"`

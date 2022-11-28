@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.60
+API version: v1.0.0-alpha.0
 Contact: support@ory.sh
 */
 
@@ -15,7 +15,7 @@ import (
 	"encoding/json"
 )
 
-// ManagedIdentitySchemaValidationResult struct for ManagedIdentitySchemaValidationResult
+// ManagedIdentitySchemaValidationResult Ory Identity Schema Validation Result
 type ManagedIdentitySchemaValidationResult struct {
 	Message *string `json:"message,omitempty"`
 	Valid *bool `json:"valid,omitempty"`

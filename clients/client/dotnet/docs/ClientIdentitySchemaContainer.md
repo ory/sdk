@@ -1,4 +1,5 @@
 # Ory.Client.Model.ClientIdentitySchemaContainer
+An Identity JSON Schema Container
 
 ## Properties
 

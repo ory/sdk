@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.60
+API version: v1.0.0-alpha.0
 Contact: support@ory.sh
 */
 
@@ -22,12 +22,10 @@ type NormalizedProject struct {
 	CreatedAt time.Time `json:"created_at"`
 	CurrentRevision NormalizedProjectRevision `json:"current_revision"`
 	Hosts []string `json:"hosts"`
-	// The project's ID.
 	Id string `json:"id"`
-	Revisions []NormalizedProjectRevision `json:"revisions"`
 	// The project's slug
 	Slug string `json:"slug"`
-	// The state of the project. running Running halted Halted
+	// The state of the project.
 	State string `json:"state"`
 	SubscriptionId NullableString `json:"subscription_id,omitempty"`
 	// Last Time Project was Updated
@@ -38,13 +36,12 @@ type NormalizedProject struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNormalizedProject(createdAt time.Time, currentRevision NormalizedProjectRevision, hosts []string, id string, revisions []NormalizedProjectRevision, slug string, state string, updatedAt time.Time) *NormalizedProject {
+func NewNormalizedProject(createdAt time.Time, currentRevision NormalizedProjectRevision, hosts []string, id string, slug string, state string, updatedAt time.Time) *NormalizedProject {
 	this := NormalizedProject{}
 	this.CreatedAt = createdAt
 	this.CurrentRevision = currentRevision
 	this.Hosts = hosts
 	this.Id = id
-	this.Revisions = revisions
 	this.Slug = slug
 	this.State = state
 	this.UpdatedAt = updatedAt
@@ -153,30 +150,6 @@ func (o *NormalizedProject) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *NormalizedProject) SetId(v string) {
 	o.Id = v
-}
-
-// GetRevisions returns the Revisions field value
-func (o *NormalizedProject) GetRevisions() []NormalizedProjectRevision {
-	if o == nil {
-		var ret []NormalizedProjectRevision
-		return ret
-	}
-
-	return o.Revisions
-}
-
-// GetRevisionsOk returns a tuple with the Revisions field value
-// and a boolean to check if the value has been set.
-func (o *NormalizedProject) GetRevisionsOk() ([]NormalizedProjectRevision, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Revisions, true
-}
-
-// SetRevisions sets field value
-func (o *NormalizedProject) SetRevisions(v []NormalizedProjectRevision) {
-	o.Revisions = v
 }
 
 // GetSlug returns the Slug field value
@@ -306,9 +279,6 @@ func (o NormalizedProject) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["revisions"] = o.Revisions
 	}
 	if true {
 		toSerialize["slug"] = o.Slug

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.60
+API version: v1.0.0-alpha.0
 Contact: support@ory.sh
 */
 
@@ -20,7 +20,6 @@ import (
 type NormalizedProjectRevisionIdentitySchema struct {
 	// The Project's Revision Creation Date
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	// The unique ID of this entry.
 	Id *string `json:"id,omitempty"`
 	IdentitySchema *ManagedIdentitySchema `json:"identity_schema,omitempty"`
 	IdentitySchemaId NullableString `json:"identity_schema_id,omitempty"`
@@ -32,7 +31,6 @@ type NormalizedProjectRevisionIdentitySchema struct {
 	IsDefault *bool `json:"is_default,omitempty"`
 	// Use a preset instead of a custom identity schema.
 	Preset *string `json:"preset,omitempty"`
-	// The Revision's ID this schema belongs to
 	ProjectRevisionId *string `json:"project_revision_id,omitempty"`
 	// Last Time Project's Revision was Updated
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
