@@ -1658,7 +1658,7 @@ with ory_client.ApiClient(configuration) as api_client:
             _from="/name",
             op="replace",
             path="/services/identity/config/smtp/from_name",
-            value={},
+            value=None,
         ),
     ]) # JsonPatchDocument | OAuth 2.0 Client JSON Patch Body
 

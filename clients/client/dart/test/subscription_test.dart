@@ -12,7 +12,7 @@ void main() {
       // TODO
     });
 
-    // The currently active plan of the subscription
+    // The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
     // String currentPlan
     test('to test the property `currentPlan`', () async {
       // TODO
@@ -24,6 +24,7 @@ void main() {
       // TODO
     });
 
+    // The ID of the subscription
     // String id
     test('to test the property `id`', () async {
       // TODO

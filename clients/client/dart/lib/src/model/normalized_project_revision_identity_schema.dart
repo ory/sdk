@@ -13,14 +13,14 @@ part 'normalized_project_revision_identity_schema.g.dart';
 ///
 /// Properties:
 /// * [createdAt] - The Project's Revision Creation Date
-/// * [id] 
+/// * [id] - The unique ID of this entry.
 /// * [identitySchema] 
 /// * [identitySchemaId] 
 /// * [importId] - The imported (named) ID of the Identity Schema referenced in the Ory Kratos config.
 /// * [importUrl] - The ImportURL can be used to import an Identity Schema from a bse64 encoded string. In the future, this key also support HTTPS and other sources!  If you import an Ory Kratos configuration, this would be akin to the `identity.schemas.#.url` key.  The configuration will always return the import URL when you fetch it from the API.
 /// * [isDefault] - If true sets the default schema for identities  Only one schema can ever be the default schema. If you try to add two schemas with default to true, the request will fail.
 /// * [preset] - Use a preset instead of a custom identity schema.
-/// * [projectRevisionId] 
+/// * [projectRevisionId] - The Revision's ID this schema belongs to
 /// * [updatedAt] - Last Time Project's Revision was Updated
 @BuiltValue()
 abstract class NormalizedProjectRevisionIdentitySchema implements Built<NormalizedProjectRevisionIdentitySchema, NormalizedProjectRevisionIdentitySchemaBuilder> {
@@ -28,6 +28,7 @@ abstract class NormalizedProjectRevisionIdentitySchema implements Built<Normaliz
   @BuiltValueField(wireName: r'created_at')
   DateTime? get createdAt;
 
+  /// The unique ID of this entry.
   @BuiltValueField(wireName: r'id')
   String? get id;
 
@@ -53,6 +54,7 @@ abstract class NormalizedProjectRevisionIdentitySchema implements Built<Normaliz
   @BuiltValueField(wireName: r'preset')
   String? get preset;
 
+  /// The Revision's ID this schema belongs to
   @BuiltValueField(wireName: r'project_revision_id')
   String? get projectRevisionId;
 

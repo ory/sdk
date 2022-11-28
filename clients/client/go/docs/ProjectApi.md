@@ -4,19 +4,19 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateProject**](ProjectApi.md#CreateProject) | **Post** /projects | # Create a Project
-[**CreateProjectApiKey**](ProjectApi.md#CreateProjectApiKey) | **Post** /projects/{project}/tokens | # Create project API token
-[**DeleteProjectApiKey**](ProjectApi.md#DeleteProjectApiKey) | **Delete** /projects/{project}/tokens/{token_id} | # Delete project API token
-[**GetActiveProjectInConsole**](ProjectApi.md#GetActiveProjectInConsole) | **Get** /console/active/project | # Returns the Ory Network Project selected in the Ory Network Console
-[**GetProject**](ProjectApi.md#GetProject) | **Get** /projects/{project_id} | # Get a Project
-[**GetProjectMembers**](ProjectApi.md#GetProjectMembers) | **Get** /projects/{project_id}/members | # Get all members associated with this project
-[**ListProjectApiKeys**](ProjectApi.md#ListProjectApiKeys) | **Get** /projects/{project}/tokens | # List a project&#39;s API Tokens
-[**ListProjects**](ProjectApi.md#ListProjects) | **Get** /projects | # List All Projects
-[**PatchProject**](ProjectApi.md#PatchProject) | **Patch** /projects/{project_id} | # Patch an Ory Network Project Configuration
-[**PurgeProject**](ProjectApi.md#PurgeProject) | **Delete** /projects/{project_id} | # Irrecoverably purge a project
-[**RemoveProjectMember**](ProjectApi.md#RemoveProjectMember) | **Delete** /projects/{project_id}/members/{member_id} | # Remove a member associated with this project
-[**SetActiveProjectInConsole**](ProjectApi.md#SetActiveProjectInConsole) | **Put** /console/active/project | # Sets the Ory Network Project active in the Ory Network Console
-[**SetProject**](ProjectApi.md#SetProject) | **Put** /projects/{project_id} | # Update an Ory Network Project Configuration
+[**CreateProject**](ProjectApi.md#CreateProject) | **Post** /projects | Create a Project
+[**CreateProjectApiKey**](ProjectApi.md#CreateProjectApiKey) | **Post** /projects/{project}/tokens | Create project API token
+[**DeleteProjectApiKey**](ProjectApi.md#DeleteProjectApiKey) | **Delete** /projects/{project}/tokens/{token_id} | Delete project API token
+[**GetActiveProjectInConsole**](ProjectApi.md#GetActiveProjectInConsole) | **Get** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
+[**GetProject**](ProjectApi.md#GetProject) | **Get** /projects/{project_id} | Get a Project
+[**GetProjectMembers**](ProjectApi.md#GetProjectMembers) | **Get** /projects/{project_id}/members | Get all members associated with this project
+[**ListProjectApiKeys**](ProjectApi.md#ListProjectApiKeys) | **Get** /projects/{project}/tokens | List a project&#39;s API Tokens
+[**ListProjects**](ProjectApi.md#ListProjects) | **Get** /projects | List All Projects
+[**PatchProject**](ProjectApi.md#PatchProject) | **Patch** /projects/{project_id} | Patch an Ory Network Project Configuration
+[**PurgeProject**](ProjectApi.md#PurgeProject) | **Delete** /projects/{project_id} | Irrecoverably purge a project
+[**RemoveProjectMember**](ProjectApi.md#RemoveProjectMember) | **Delete** /projects/{project_id}/members/{member_id} | Remove a member associated with this project
+[**SetActiveProjectInConsole**](ProjectApi.md#SetActiveProjectInConsole) | **Put** /console/active/project | Sets the Ory Network Project active in the Ory Network Console
+[**SetProject**](ProjectApi.md#SetProject) | **Put** /projects/{project_id} | Update an Ory Network Project Configuration
 
 
 
@@ -24,7 +24,7 @@ Method | HTTP request | Description
 
 > Project CreateProject(ctx).CreateProjectBody(createProjectBody).Execute()
 
-# Create a Project
+Create a Project
 
 
 
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 > ProjectApiKey CreateProjectApiKey(ctx, project).CreateProjectApiKeyRequest(createProjectApiKeyRequest).Execute()
 
-# Create project API token
+Create project API token
 
 
 
@@ -162,7 +162,7 @@ Name | Type | Description  | Notes
 
 > DeleteProjectApiKey(ctx, project, tokenId).Execute()
 
-# Delete project API token
+Delete project API token
 
 
 
@@ -233,7 +233,7 @@ Name | Type | Description  | Notes
 
 > ActiveProjectInConsole GetActiveProjectInConsole(ctx).Execute()
 
-# Returns the Ory Network Project selected in the Ory Network Console
+Returns the Ory Network Project selected in the Ory Network Console
 
 
 
@@ -294,7 +294,7 @@ Other parameters are passed through a pointer to a apiGetActiveProjectInConsoleR
 
 > Project GetProject(ctx, projectId).Execute()
 
-# Get a Project
+Get a Project
 
 
 
@@ -364,7 +364,7 @@ Name | Type | Description  | Notes
 
 > []CloudAccount GetProjectMembers(ctx, projectId).Execute()
 
-# Get all members associated with this project
+Get all members associated with this project
 
 
 
@@ -434,7 +434,7 @@ Name | Type | Description  | Notes
 
 > []ProjectApiKey ListProjectApiKeys(ctx, project).Execute()
 
-# List a project's API Tokens
+List a project's API Tokens
 
 
 
@@ -504,7 +504,7 @@ Name | Type | Description  | Notes
 
 > []ProjectMetadata ListProjects(ctx).Execute()
 
-# List All Projects
+List All Projects
 
 
 
@@ -565,7 +565,7 @@ Other parameters are passed through a pointer to a apiListProjectsRequest struct
 
 > SuccessfulProjectUpdate PatchProject(ctx, projectId).JsonPatch(jsonPatch).Execute()
 
-# Patch an Ory Network Project Configuration
+Patch an Ory Network Project Configuration
 
 
 
@@ -637,7 +637,7 @@ Name | Type | Description  | Notes
 
 > PurgeProject(ctx, projectId).Execute()
 
-# Irrecoverably purge a project
+Irrecoverably purge a project
 
 
 
@@ -705,7 +705,7 @@ Name | Type | Description  | Notes
 
 > RemoveProjectMember(ctx, projectId, memberId).Execute()
 
-# Remove a member associated with this project
+Remove a member associated with this project
 
 
 
@@ -776,7 +776,7 @@ Name | Type | Description  | Notes
 
 > SetActiveProjectInConsole(ctx).SetActiveProjectInConsoleBody(setActiveProjectInConsoleBody).Execute()
 
-# Sets the Ory Network Project active in the Ory Network Console
+Sets the Ory Network Project active in the Ory Network Console
 
 
 
@@ -840,7 +840,7 @@ Name | Type | Description  | Notes
 
 > SuccessfulProjectUpdate SetProject(ctx, projectId).SetProject(setProject).Execute()
 
-# Update an Ory Network Project Configuration
+Update an Ory Network Project Configuration
 
 
 

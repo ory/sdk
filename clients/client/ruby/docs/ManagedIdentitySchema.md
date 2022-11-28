@@ -8,7 +8,7 @@
 | **blob_url** | **String** | The publicly accessible url of the schema |  |
 | **content_hash** | **String** | The Content Hash  Contains a hash of the schema&#39;s content. | [optional] |
 | **created_at** | **Time** | The Schema&#39;s Creation Date | [readonly] |
-| **id** | **String** |  |  |
+| **id** | **String** | The schema&#39;s ID. | [readonly] |
 | **name** | **String** | The schema name  This is set by the user and is for them to easily recognise their schema |  |
 | **updated_at** | **Time** | Last Time Schema was Updated | [readonly] |
 

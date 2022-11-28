@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **ConfigKey** | **string** | The Hooks Config Key | 
 **CreatedAt** | **DateTime** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
 **Hook** | **string** | The Hook Type | 
-**Id** | **string** |  | [optional] 
-**ProjectRevisionId** | **string** |  | [optional] 
+**Id** | **string** | ID of the entry | [optional] 
+**ProjectRevisionId** | **string** | The Revision&#39;s ID this schema belongs to | [optional] 
 **UpdatedAt** | **DateTime** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
 **WebHookConfigAuthApiKeyIn** | **string** | Whether to send the API Key in the HTTP Header or as a HTTP Cookie | [optional] 
 **WebHookConfigAuthApiKeyName** | **string** | The name of the api key | [optional] 

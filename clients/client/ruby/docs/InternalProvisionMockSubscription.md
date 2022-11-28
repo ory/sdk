@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **identity_id** | **String** |  |  |
+| **identity_id** | **String** | Identity ID |  |
 | **plan_or_price** | **String** | Plan or Price |  |
 
 ## Example

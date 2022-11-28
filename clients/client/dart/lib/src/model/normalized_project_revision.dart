@@ -21,7 +21,7 @@ part 'normalized_project_revision.g.dart';
 /// * [hydraOauth2ClientCredentialsDefaultGrantAllowedScope] - Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
 /// * [hydraOauth2GrantJwtIatOptional] - Configures if the issued at (`iat`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `iat` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.iat_optional\" setting.
 /// * [hydraOauth2GrantJwtJtiOptional] - Configures if the JSON Web Token ID (`jti`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `jti` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.jti_optional\" setting.
-/// * [hydraOauth2GrantJwtMaxTtl] 
+/// * [hydraOauth2GrantJwtMaxTtl] - Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
 /// * [hydraOauth2PkceEnforced] - Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \"oauth2.pkce.enforced\" setting.
 /// * [hydraOauth2PkceEnforcedForPublicClients] - Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \"oauth2.pkce.enforced_for_public_clients\" setting.
 /// * [hydraOauth2RefreshTokenHook] - Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \"oauth2.refresh_token_hook\" setting.
@@ -39,13 +39,13 @@ part 'normalized_project_revision.g.dart';
 /// * [hydraServeCookiesSameSiteMode] - Configures the Ory Hydra Cookie Same Site Mode  This governs the \"serve.cookies.same_site_mode\" setting.
 /// * [hydraServePublicCorsAllowedOrigins] 
 /// * [hydraServePublicCorsEnabled] - Configures the Ory Hydra CORS Settings  This governs the \"serve.public.cors.enabled\" setting.
-/// * [hydraStrategiesAccessToken] - Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting.
-/// * [hydraStrategiesScope] - Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting.
-/// * [hydraTtlAccessToken] 
-/// * [hydraTtlAuthCode] 
-/// * [hydraTtlIdToken] 
-/// * [hydraTtlLoginConsentRequest] 
-/// * [hydraTtlRefreshToken] 
+/// * [hydraStrategiesAccessToken] - Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque OAUTH2_ACCESS_TOKEN_STRATEGY_OPAQUE jwt OAUTH2_ACCESS_TOKEN_STRATEGY_JWT
+/// * [hydraStrategiesScope] - Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact OAUTH2_SCOPE_STRATEGY_EXACT wildcard OAUTH2_SCOPE_STRATEGY_WILDCARD
+/// * [hydraTtlAccessToken] - This governs the \"ttl.access_token\" setting.
+/// * [hydraTtlAuthCode] - Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.auth_code\" setting.
+/// * [hydraTtlIdToken] - This governs the \"ttl.id_token\" setting.
+/// * [hydraTtlLoginConsentRequest] - Configures how long a user login and consent flow may take.  This governs the \"ttl.login_consent_request\" setting.
+/// * [hydraTtlRefreshToken] - Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.refresh_token\" setting.
 /// * [hydraUrlsConsent] - Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.consent\" setting.
 /// * [hydraUrlsError] - Sets the OAuth2 Error URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.error\" setting.
 /// * [hydraUrlsLogin] - Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.login\" setting.
@@ -60,7 +60,7 @@ part 'normalized_project_revision.g.dart';
 /// * [hydraWebfingerOidcDiscoverySupportedScope] 
 /// * [hydraWebfingerOidcDiscoveryTokenUrl] - Configures OpenID Connect Discovery and overwrites the OAuth2 Token URL.  This governs the \"webfinger.oidc.discovery.token_url\" setting.
 /// * [hydraWebfingerOidcDiscoveryUserinfoUrl] - Configures OpenID Connect Discovery and overwrites userinfo endpoint to be advertised at the OpenID Connect Discovery endpoint /.well-known/openid-configuration. Defaults to Ory Hydra's userinfo endpoint at /userinfo. Set this value if you want to handle this endpoint yourself.  This governs the \"webfinger.oidc.discovery.userinfo_url\" setting.
-/// * [id] 
+/// * [id] - The revision ID.
 /// * [ketoNamespaceConfiguration] - The Revisions' Keto Namespace Configuration  The string is a URL pointing to an OPL file with the configuration.
 /// * [ketoNamespaces] 
 /// * [ketoReadMaxDepth] 
@@ -119,7 +119,7 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl] - Configures the Ory Kratos Registration After OIDC Default Return URL  This governs the \"selfservice.flows.registration.after.oidc.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl] - Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl] - Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
-/// * [kratosSelfserviceFlowsRegistrationEnabled] 
+/// * [kratosSelfserviceFlowsRegistrationEnabled] - Configures the Whether Ory Kratos Registration is Enabled  This governs the \"selfservice.flows.registration.enabled\" setting.0
 /// * [kratosSelfserviceFlowsRegistrationLifespan] - Configures the Ory Kratos Registration Lifespan  This governs the \"selfservice.flows.registration.lifespan\" setting.
 /// * [kratosSelfserviceFlowsRegistrationUiUrl] - Configures the Ory Kratos Registration UI URL  This governs the \"selfservice.flows.registration.ui_url\" setting.
 /// * [kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl] - Configures the Ory Kratos Settings Default Return URL  This governs the \"selfservice.flows.settings.after.default_browser_return_url\" setting.
@@ -135,36 +135,36 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosSelfserviceFlowsVerificationUiUrl] - Configures the Ory Kratos Verification UI URL  This governs the \"selfservice.flows.verification.ui_url\" setting.
 /// * [kratosSelfserviceFlowsVerificationUse] - Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting.
 /// * [kratosSelfserviceMethodsCodeConfigLifespan] - Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
-/// * [kratosSelfserviceMethodsCodeEnabled] 
+/// * [kratosSelfserviceMethodsCodeEnabled] - Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
 /// * [kratosSelfserviceMethodsLinkConfigBaseUrl] - Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \"selfservice.methods.link.config.base_url\" setting.
 /// * [kratosSelfserviceMethodsLinkConfigLifespan] - Configures the Ory Kratos Link Method's lifespan  This governs the \"selfservice.methods.link.config.lifespan\" setting.
-/// * [kratosSelfserviceMethodsLinkEnabled] 
-/// * [kratosSelfserviceMethodsLookupSecretEnabled] 
+/// * [kratosSelfserviceMethodsLinkEnabled] - Configures whether Ory Kratos Link Method is enabled  This governs the \"selfservice.methods.link.enabled\" setting.
+/// * [kratosSelfserviceMethodsLookupSecretEnabled] - Configures whether Ory Kratos TOTP Lookup Secret is enabled  This governs the \"selfservice.methods.lookup_secret.enabled\" setting.
 /// * [kratosSelfserviceMethodsOidcConfigBaseRedirectUri] - Configures the Ory Kratos Third Party / OpenID Connect base redirect URI  This governs the \"selfservice.methods.oidc.config.base_redirect_uri\" setting.
 /// * [kratosSelfserviceMethodsOidcConfigProviders] 
 /// * [kratosSelfserviceMethodsOidcEnabled] - Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \"selfservice.methods.oidc.enabled\" setting.
-/// * [kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled] 
-/// * [kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled] 
-/// * [kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors] 
+/// * [kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled] - Configures whether Ory Kratos Password HIBP Checks is enabled  This governs the \"selfservice.methods.password.config.haveibeenpwned_enabled\" setting.
+/// * [kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled] - Configures whether Ory Kratos Password should disable the similarity policy.  This governs the \"selfservice.methods.password.config.identifier_similarity_check_enabled\" setting.
+/// * [kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors] - Configures whether Ory Kratos Password Should ignore HIBPWND Network Errors  This governs the \"selfservice.methods.password.config.ignore_network_errors\" setting.
 /// * [kratosSelfserviceMethodsPasswordConfigMaxBreaches] - Configures Ory Kratos Password Max Breaches Detection  This governs the \"selfservice.methods.password.config.max_breaches\" setting.
 /// * [kratosSelfserviceMethodsPasswordConfigMinPasswordLength] - Configures the minimum length of passwords.  This governs the \"selfservice.methods.password.config.min_password_length\" setting.
-/// * [kratosSelfserviceMethodsPasswordEnabled] 
-/// * [kratosSelfserviceMethodsProfileEnabled] 
+/// * [kratosSelfserviceMethodsPasswordEnabled] - Configures whether Ory Kratos Password Method is enabled  This governs the \"selfservice.methods.password.enabled\" setting.
+/// * [kratosSelfserviceMethodsProfileEnabled] - Configures whether Ory Kratos Profile Method is enabled  This governs the \"selfservice.methods.profile.enabled\" setting.
 /// * [kratosSelfserviceMethodsTotpConfigIssuer] - Configures Ory Kratos TOTP Issuer  This governs the \"selfservice.methods.totp.config.issuer\" setting.
-/// * [kratosSelfserviceMethodsTotpEnabled] 
+/// * [kratosSelfserviceMethodsTotpEnabled] - Configures whether Ory Kratos TOTP Method is enabled  This governs the \"selfservice.methods.totp.enabled\" setting.
 /// * [kratosSelfserviceMethodsWebauthnConfigPasswordless] - Configures whether Ory Kratos Webauthn is used for passwordless flows  This governs the \"selfservice.methods.webauthn.config.passwordless\" setting.
 /// * [kratosSelfserviceMethodsWebauthnConfigRpDisplayName] - Configures the Ory Kratos Webauthn RP Display Name  This governs the \"selfservice.methods.webauthn.config.rp.display_name\" setting.
 /// * [kratosSelfserviceMethodsWebauthnConfigRpIcon] - Configures the Ory Kratos Webauthn RP Icon  This governs the \"selfservice.methods.webauthn.config.rp.icon\" setting.
 /// * [kratosSelfserviceMethodsWebauthnConfigRpId] - Configures the Ory Kratos Webauthn RP ID  This governs the \"selfservice.methods.webauthn.config.rp.id\" setting.
 /// * [kratosSelfserviceMethodsWebauthnConfigRpOrigin] - Configures the Ory Kratos Webauthn RP Origin  This governs the \"selfservice.methods.webauthn.config.rp.origin\" setting.
-/// * [kratosSelfserviceMethodsWebauthnEnabled] 
-/// * [kratosSessionCookiePersistent] 
+/// * [kratosSelfserviceMethodsWebauthnEnabled] - Configures whether Ory Kratos Webauthn is enabled  This governs the \"selfservice.methods.webauthn.enabled\" setting.
+/// * [kratosSessionCookiePersistent] - Configures the Ory Kratos Session Cookie Persistent Attribute  This governs the \"session.cookie.persistent\" setting.
 /// * [kratosSessionCookieSameSite] - Configures the Ory Kratos Session Cookie SameSite Attribute  This governs the \"session.cookie.same_site\" setting.
 /// * [kratosSessionLifespan] - Configures the Ory Kratos Session Lifespan  This governs the \"session.lifespan\" setting.
 /// * [kratosSessionWhoamiRequiredAal] - Configures the Ory Kratos Session Whoami AAL requirement  This governs the \"session.whoami.required_aal\" setting.
 /// * [name] - The project's name.
 /// * [production] - Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment.
-/// * [projectId] 
+/// * [projectId] - The Revision's Project ID
 /// * [updatedAt] - Last Time Project's Revision was Updated
 @BuiltValue()
 abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevision, NormalizedProjectRevisionBuilder> {
@@ -184,6 +184,7 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'hydra_oauth2_grant_jwt_jti_optional')
   bool? get hydraOauth2GrantJwtJtiOptional;
 
+  /// Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
   @BuiltValueField(wireName: r'hydra_oauth2_grant_jwt_max_ttl')
   String? get hydraOauth2GrantJwtMaxTtl;
 
@@ -248,28 +249,33 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'hydra_serve_public_cors_enabled')
   bool? get hydraServePublicCorsEnabled;
 
-  /// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting.
+  /// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque OAUTH2_ACCESS_TOKEN_STRATEGY_OPAQUE jwt OAUTH2_ACCESS_TOKEN_STRATEGY_JWT
   @BuiltValueField(wireName: r'hydra_strategies_access_token')
   NormalizedProjectRevisionHydraStrategiesAccessTokenEnum? get hydraStrategiesAccessToken;
   // enum hydraStrategiesAccessTokenEnum {  opaque,  jwt,  };
 
-  /// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting.
+  /// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact OAUTH2_SCOPE_STRATEGY_EXACT wildcard OAUTH2_SCOPE_STRATEGY_WILDCARD
   @BuiltValueField(wireName: r'hydra_strategies_scope')
   NormalizedProjectRevisionHydraStrategiesScopeEnum? get hydraStrategiesScope;
   // enum hydraStrategiesScopeEnum {  exact,  wildcard,  };
 
+  /// This governs the \"ttl.access_token\" setting.
   @BuiltValueField(wireName: r'hydra_ttl_access_token')
   String? get hydraTtlAccessToken;
 
+  /// Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.auth_code\" setting.
   @BuiltValueField(wireName: r'hydra_ttl_auth_code')
   String? get hydraTtlAuthCode;
 
+  /// This governs the \"ttl.id_token\" setting.
   @BuiltValueField(wireName: r'hydra_ttl_id_token')
   String? get hydraTtlIdToken;
 
+  /// Configures how long a user login and consent flow may take.  This governs the \"ttl.login_consent_request\" setting.
   @BuiltValueField(wireName: r'hydra_ttl_login_consent_request')
   String? get hydraTtlLoginConsentRequest;
 
+  /// Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.refresh_token\" setting.
   @BuiltValueField(wireName: r'hydra_ttl_refresh_token')
   String? get hydraTtlRefreshToken;
 
@@ -326,6 +332,7 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'hydra_webfinger_oidc_discovery_userinfo_url')
   String? get hydraWebfingerOidcDiscoveryUserinfoUrl;
 
+  /// The revision ID.
   @BuiltValueField(wireName: r'id')
   String? get id;
 
@@ -553,6 +560,7 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_flows_registration_after_webauthn_default_browser_return_url')
   String? get kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl;
 
+  /// Configures the Whether Ory Kratos Registration is Enabled  This governs the \"selfservice.flows.registration.enabled\" setting.0
   @BuiltValueField(wireName: r'kratos_selfservice_flows_registration_enabled')
   bool? get kratosSelfserviceFlowsRegistrationEnabled;
 
@@ -616,6 +624,7 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_methods_code_config_lifespan')
   String? get kratosSelfserviceMethodsCodeConfigLifespan;
 
+  /// Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_code_enabled')
   bool? get kratosSelfserviceMethodsCodeEnabled;
 
@@ -627,9 +636,11 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_methods_link_config_lifespan')
   String? get kratosSelfserviceMethodsLinkConfigLifespan;
 
+  /// Configures whether Ory Kratos Link Method is enabled  This governs the \"selfservice.methods.link.enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_link_enabled')
   bool? get kratosSelfserviceMethodsLinkEnabled;
 
+  /// Configures whether Ory Kratos TOTP Lookup Secret is enabled  This governs the \"selfservice.methods.lookup_secret.enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_lookup_secret_enabled')
   bool? get kratosSelfserviceMethodsLookupSecretEnabled;
 
@@ -644,12 +655,15 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_methods_oidc_enabled')
   bool? get kratosSelfserviceMethodsOidcEnabled;
 
+  /// Configures whether Ory Kratos Password HIBP Checks is enabled  This governs the \"selfservice.methods.password.config.haveibeenpwned_enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_password_config_haveibeenpwned_enabled')
   bool? get kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled;
 
+  /// Configures whether Ory Kratos Password should disable the similarity policy.  This governs the \"selfservice.methods.password.config.identifier_similarity_check_enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_password_config_identifier_similarity_check_enabled')
   bool? get kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled;
 
+  /// Configures whether Ory Kratos Password Should ignore HIBPWND Network Errors  This governs the \"selfservice.methods.password.config.ignore_network_errors\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_password_config_ignore_network_errors')
   bool? get kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors;
 
@@ -661,9 +675,11 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_methods_password_config_min_password_length')
   int? get kratosSelfserviceMethodsPasswordConfigMinPasswordLength;
 
+  /// Configures whether Ory Kratos Password Method is enabled  This governs the \"selfservice.methods.password.enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_password_enabled')
   bool? get kratosSelfserviceMethodsPasswordEnabled;
 
+  /// Configures whether Ory Kratos Profile Method is enabled  This governs the \"selfservice.methods.profile.enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_profile_enabled')
   bool? get kratosSelfserviceMethodsProfileEnabled;
 
@@ -671,6 +687,7 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_methods_totp_config_issuer')
   String? get kratosSelfserviceMethodsTotpConfigIssuer;
 
+  /// Configures whether Ory Kratos TOTP Method is enabled  This governs the \"selfservice.methods.totp.enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_totp_enabled')
   bool? get kratosSelfserviceMethodsTotpEnabled;
 
@@ -694,9 +711,11 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_methods_webauthn_config_rp_origin')
   String? get kratosSelfserviceMethodsWebauthnConfigRpOrigin;
 
+  /// Configures whether Ory Kratos Webauthn is enabled  This governs the \"selfservice.methods.webauthn.enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_webauthn_enabled')
   bool? get kratosSelfserviceMethodsWebauthnEnabled;
 
+  /// Configures the Ory Kratos Session Cookie Persistent Attribute  This governs the \"session.cookie.persistent\" setting.
   @BuiltValueField(wireName: r'kratos_session_cookie_persistent')
   bool? get kratosSessionCookiePersistent;
 
@@ -720,6 +739,7 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'production')
   bool? get production;
 
+  /// The Revision's Project ID
   @BuiltValueField(wireName: r'project_id')
   String? get projectId;
 
@@ -733,8 +753,14 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(NormalizedProjectRevisionBuilder b) => b
+      ..hydraOauth2GrantJwtMaxTtl = '720h'
       ..hydraStrategiesAccessToken = const NormalizedProjectRevisionHydraStrategiesAccessTokenEnum._('opaque')
-      ..hydraStrategiesScope = const NormalizedProjectRevisionHydraStrategiesScopeEnum._('wildcard');
+      ..hydraStrategiesScope = const NormalizedProjectRevisionHydraStrategiesScopeEnum._('wildcard')
+      ..hydraTtlAccessToken = '30m'
+      ..hydraTtlAuthCode = '720h'
+      ..hydraTtlIdToken = '30m'
+      ..hydraTtlLoginConsentRequest = '30m'
+      ..hydraTtlRefreshToken = '720h';
 
   @BuiltValueSerializer(custom: true)
   static Serializer<NormalizedProjectRevision> get serializer => _$NormalizedProjectRevisionSerializer();
@@ -784,7 +810,7 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'hydra_oauth2_grant_jwt_max_ttl';
       yield serializers.serialize(
         object.hydraOauth2GrantJwtMaxTtl,
-        specifiedType: const FullType.nullable(String),
+        specifiedType: const FullType(String),
       );
     }
     if (object.hydraOauth2PkceEnforced != null) {
@@ -924,35 +950,35 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'hydra_ttl_access_token';
       yield serializers.serialize(
         object.hydraTtlAccessToken,
-        specifiedType: const FullType.nullable(String),
+        specifiedType: const FullType(String),
       );
     }
     if (object.hydraTtlAuthCode != null) {
       yield r'hydra_ttl_auth_code';
       yield serializers.serialize(
         object.hydraTtlAuthCode,
-        specifiedType: const FullType.nullable(String),
+        specifiedType: const FullType(String),
       );
     }
     if (object.hydraTtlIdToken != null) {
       yield r'hydra_ttl_id_token';
       yield serializers.serialize(
         object.hydraTtlIdToken,
-        specifiedType: const FullType.nullable(String),
+        specifiedType: const FullType(String),
       );
     }
     if (object.hydraTtlLoginConsentRequest != null) {
       yield r'hydra_ttl_login_consent_request';
       yield serializers.serialize(
         object.hydraTtlLoginConsentRequest,
-        specifiedType: const FullType.nullable(String),
+        specifiedType: const FullType(String),
       );
     }
     if (object.hydraTtlRefreshToken != null) {
       yield r'hydra_ttl_refresh_token';
       yield serializers.serialize(
         object.hydraTtlRefreshToken,
-        specifiedType: const FullType.nullable(String),
+        specifiedType: const FullType(String),
       );
     }
     if (object.hydraUrlsConsent != null) {
@@ -1470,7 +1496,7 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_selfservice_flows_registration_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceFlowsRegistrationEnabled,
-        specifiedType: const FullType.nullable(bool),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosSelfserviceFlowsRegistrationLifespan != null) {
@@ -1582,7 +1608,7 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_selfservice_methods_code_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsCodeEnabled,
-        specifiedType: const FullType.nullable(bool),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosSelfserviceMethodsLinkConfigBaseUrl != null) {
@@ -1603,14 +1629,14 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_selfservice_methods_link_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsLinkEnabled,
-        specifiedType: const FullType.nullable(bool),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosSelfserviceMethodsLookupSecretEnabled != null) {
       yield r'kratos_selfservice_methods_lookup_secret_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsLookupSecretEnabled,
-        specifiedType: const FullType.nullable(bool),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosSelfserviceMethodsOidcConfigBaseRedirectUri != null) {
@@ -1638,21 +1664,21 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_selfservice_methods_password_config_haveibeenpwned_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled,
-        specifiedType: const FullType.nullable(bool),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled != null) {
       yield r'kratos_selfservice_methods_password_config_identifier_similarity_check_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled,
-        specifiedType: const FullType.nullable(bool),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors != null) {
       yield r'kratos_selfservice_methods_password_config_ignore_network_errors';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors,
-        specifiedType: const FullType.nullable(bool),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosSelfserviceMethodsPasswordConfigMaxBreaches != null) {
@@ -1673,14 +1699,14 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_selfservice_methods_password_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsPasswordEnabled,
-        specifiedType: const FullType.nullable(bool),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosSelfserviceMethodsProfileEnabled != null) {
       yield r'kratos_selfservice_methods_profile_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsProfileEnabled,
-        specifiedType: const FullType.nullable(bool),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosSelfserviceMethodsTotpConfigIssuer != null) {
@@ -1694,7 +1720,7 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_selfservice_methods_totp_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsTotpEnabled,
-        specifiedType: const FullType.nullable(bool),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosSelfserviceMethodsWebauthnConfigPasswordless != null) {
@@ -1736,14 +1762,14 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_selfservice_methods_webauthn_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsWebauthnEnabled,
-        specifiedType: const FullType.nullable(bool),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosSessionCookiePersistent != null) {
       yield r'kratos_session_cookie_persistent';
       yield serializers.serialize(
         object.kratosSessionCookiePersistent,
-        specifiedType: const FullType.nullable(bool),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosSessionCookieSameSite != null) {
@@ -1847,9 +1873,8 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         case r'hydra_oauth2_grant_jwt_max_ttl':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
+            specifiedType: const FullType(String),
+          ) as String;
           result.hydraOauth2GrantJwtMaxTtl = valueDes;
           break;
         case r'hydra_oauth2_pkce_enforced':
@@ -1988,41 +2013,36 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         case r'hydra_ttl_access_token':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
+            specifiedType: const FullType(String),
+          ) as String;
           result.hydraTtlAccessToken = valueDes;
           break;
         case r'hydra_ttl_auth_code':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
+            specifiedType: const FullType(String),
+          ) as String;
           result.hydraTtlAuthCode = valueDes;
           break;
         case r'hydra_ttl_id_token':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
+            specifiedType: const FullType(String),
+          ) as String;
           result.hydraTtlIdToken = valueDes;
           break;
         case r'hydra_ttl_login_consent_request':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
+            specifiedType: const FullType(String),
+          ) as String;
           result.hydraTtlLoginConsentRequest = valueDes;
           break;
         case r'hydra_ttl_refresh_token':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
+            specifiedType: const FullType(String),
+          ) as String;
           result.hydraTtlRefreshToken = valueDes;
           break;
         case r'hydra_urls_consent':
@@ -2542,9 +2562,8 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         case r'kratos_selfservice_flows_registration_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(bool),
-          ) as bool?;
-          if (valueDes == null) continue;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.kratosSelfserviceFlowsRegistrationEnabled = valueDes;
           break;
         case r'kratos_selfservice_flows_registration_lifespan':
@@ -2655,9 +2674,8 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         case r'kratos_selfservice_methods_code_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(bool),
-          ) as bool?;
-          if (valueDes == null) continue;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.kratosSelfserviceMethodsCodeEnabled = valueDes;
           break;
         case r'kratos_selfservice_methods_link_config_base_url':
@@ -2677,17 +2695,15 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         case r'kratos_selfservice_methods_link_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(bool),
-          ) as bool?;
-          if (valueDes == null) continue;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.kratosSelfserviceMethodsLinkEnabled = valueDes;
           break;
         case r'kratos_selfservice_methods_lookup_secret_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(bool),
-          ) as bool?;
-          if (valueDes == null) continue;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.kratosSelfserviceMethodsLookupSecretEnabled = valueDes;
           break;
         case r'kratos_selfservice_methods_oidc_config_base_redirect_uri':
@@ -2714,25 +2730,22 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         case r'kratos_selfservice_methods_password_config_haveibeenpwned_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(bool),
-          ) as bool?;
-          if (valueDes == null) continue;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled = valueDes;
           break;
         case r'kratos_selfservice_methods_password_config_identifier_similarity_check_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(bool),
-          ) as bool?;
-          if (valueDes == null) continue;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled = valueDes;
           break;
         case r'kratos_selfservice_methods_password_config_ignore_network_errors':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(bool),
-          ) as bool?;
-          if (valueDes == null) continue;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors = valueDes;
           break;
         case r'kratos_selfservice_methods_password_config_max_breaches':
@@ -2752,17 +2765,15 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         case r'kratos_selfservice_methods_password_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(bool),
-          ) as bool?;
-          if (valueDes == null) continue;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.kratosSelfserviceMethodsPasswordEnabled = valueDes;
           break;
         case r'kratos_selfservice_methods_profile_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(bool),
-          ) as bool?;
-          if (valueDes == null) continue;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.kratosSelfserviceMethodsProfileEnabled = valueDes;
           break;
         case r'kratos_selfservice_methods_totp_config_issuer':
@@ -2775,9 +2786,8 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         case r'kratos_selfservice_methods_totp_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(bool),
-          ) as bool?;
-          if (valueDes == null) continue;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.kratosSelfserviceMethodsTotpEnabled = valueDes;
           break;
         case r'kratos_selfservice_methods_webauthn_config_passwordless':
@@ -2818,17 +2828,15 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         case r'kratos_selfservice_methods_webauthn_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(bool),
-          ) as bool?;
-          if (valueDes == null) continue;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.kratosSelfserviceMethodsWebauthnEnabled = valueDes;
           break;
         case r'kratos_session_cookie_persistent':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(bool),
-          ) as bool?;
-          if (valueDes == null) continue;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.kratosSessionCookiePersistent = valueDes;
           break;
         case r'kratos_session_cookie_same_site':
@@ -2911,10 +2919,10 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
 
 class NormalizedProjectRevisionHydraStrategiesAccessTokenEnum extends EnumClass {
 
-  /// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting.
+  /// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque OAUTH2_ACCESS_TOKEN_STRATEGY_OPAQUE jwt OAUTH2_ACCESS_TOKEN_STRATEGY_JWT
   @BuiltValueEnumConst(wireName: r'opaque')
   static const NormalizedProjectRevisionHydraStrategiesAccessTokenEnum opaque = _$normalizedProjectRevisionHydraStrategiesAccessTokenEnum_opaque;
-  /// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting.
+  /// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque OAUTH2_ACCESS_TOKEN_STRATEGY_OPAQUE jwt OAUTH2_ACCESS_TOKEN_STRATEGY_JWT
   @BuiltValueEnumConst(wireName: r'jwt')
   static const NormalizedProjectRevisionHydraStrategiesAccessTokenEnum jwt = _$normalizedProjectRevisionHydraStrategiesAccessTokenEnum_jwt;
 
@@ -2928,10 +2936,10 @@ class NormalizedProjectRevisionHydraStrategiesAccessTokenEnum extends EnumClass 
 
 class NormalizedProjectRevisionHydraStrategiesScopeEnum extends EnumClass {
 
-  /// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting.
+  /// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact OAUTH2_SCOPE_STRATEGY_EXACT wildcard OAUTH2_SCOPE_STRATEGY_WILDCARD
   @BuiltValueEnumConst(wireName: r'exact')
   static const NormalizedProjectRevisionHydraStrategiesScopeEnum exact = _$normalizedProjectRevisionHydraStrategiesScopeEnum_exact;
-  /// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting.
+  /// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact OAUTH2_SCOPE_STRATEGY_EXACT wildcard OAUTH2_SCOPE_STRATEGY_WILDCARD
   @BuiltValueEnumConst(wireName: r'wildcard')
   static const NormalizedProjectRevisionHydraStrategiesScopeEnum wildcard = _$normalizedProjectRevisionHydraStrategiesScopeEnum_wildcard;
 

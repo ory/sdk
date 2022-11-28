@@ -13,6 +13,7 @@ void main() {
       // TODO
     });
 
+    // The unique ID of this entry.
     // String id
     test('to test the property `id`', () async {
       // TODO
@@ -52,6 +53,7 @@ void main() {
       // TODO
     });
 
+    // The Revision's ID this schema belongs to
     // String projectRevisionId
     test('to test the property `projectRevisionId`', () async {
       // TODO

@@ -8,7 +8,7 @@ Internal Provision Mock Subscription Request Body
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**identityId** | **String** |  |  |
+|**identityId** | **String** | Identity ID |  |
 |**planOrPrice** | **String** | Plan or Price |  |
 
 

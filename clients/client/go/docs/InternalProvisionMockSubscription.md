@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IdentityId** | **string** |  | 
+**IdentityId** | **string** | Identity ID | 
 **PlanOrPrice** | **string** | Plan or Price | 
 
 ## Methods

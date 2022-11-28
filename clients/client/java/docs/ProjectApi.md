@@ -4,26 +4,26 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createProject**](ProjectApi.md#createProject) | **POST** /projects | # Create a Project |
-| [**createProjectApiKey**](ProjectApi.md#createProjectApiKey) | **POST** /projects/{project}/tokens | # Create project API token |
-| [**deleteProjectApiKey**](ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | # Delete project API token |
-| [**getActiveProjectInConsole**](ProjectApi.md#getActiveProjectInConsole) | **GET** /console/active/project | # Returns the Ory Network Project selected in the Ory Network Console |
-| [**getProject**](ProjectApi.md#getProject) | **GET** /projects/{project_id} | # Get a Project |
-| [**getProjectMembers**](ProjectApi.md#getProjectMembers) | **GET** /projects/{project_id}/members | # Get all members associated with this project |
-| [**listProjectApiKeys**](ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | # List a project&#39;s API Tokens |
-| [**listProjects**](ProjectApi.md#listProjects) | **GET** /projects | # List All Projects |
-| [**patchProject**](ProjectApi.md#patchProject) | **PATCH** /projects/{project_id} | # Patch an Ory Network Project Configuration |
-| [**purgeProject**](ProjectApi.md#purgeProject) | **DELETE** /projects/{project_id} | # Irrecoverably purge a project |
-| [**removeProjectMember**](ProjectApi.md#removeProjectMember) | **DELETE** /projects/{project_id}/members/{member_id} | # Remove a member associated with this project |
-| [**setActiveProjectInConsole**](ProjectApi.md#setActiveProjectInConsole) | **PUT** /console/active/project | # Sets the Ory Network Project active in the Ory Network Console |
-| [**setProject**](ProjectApi.md#setProject) | **PUT** /projects/{project_id} | # Update an Ory Network Project Configuration |
+| [**createProject**](ProjectApi.md#createProject) | **POST** /projects | Create a Project |
+| [**createProjectApiKey**](ProjectApi.md#createProjectApiKey) | **POST** /projects/{project}/tokens | Create project API token |
+| [**deleteProjectApiKey**](ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token |
+| [**getActiveProjectInConsole**](ProjectApi.md#getActiveProjectInConsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console |
+| [**getProject**](ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project |
+| [**getProjectMembers**](ProjectApi.md#getProjectMembers) | **GET** /projects/{project_id}/members | Get all members associated with this project |
+| [**listProjectApiKeys**](ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens |
+| [**listProjects**](ProjectApi.md#listProjects) | **GET** /projects | List All Projects |
+| [**patchProject**](ProjectApi.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration |
+| [**purgeProject**](ProjectApi.md#purgeProject) | **DELETE** /projects/{project_id} | Irrecoverably purge a project |
+| [**removeProjectMember**](ProjectApi.md#removeProjectMember) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project |
+| [**setActiveProjectInConsole**](ProjectApi.md#setActiveProjectInConsole) | **PUT** /console/active/project | Sets the Ory Network Project active in the Ory Network Console |
+| [**setProject**](ProjectApi.md#setProject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration |
 
 
 <a name="createProject"></a>
 # **createProject**
 > Project createProject(createProjectBody)
 
-# Create a Project
+Create a Project
 
 Creates a new project.
 
@@ -94,7 +94,7 @@ public class Example {
 # **createProjectApiKey**
 > ProjectApiKey createProjectApiKey(project, createProjectApiKeyRequest)
 
-# Create project API token
+Create project API token
 
 Create an API token for a project.
 
@@ -164,7 +164,7 @@ public class Example {
 # **deleteProjectApiKey**
 > deleteProjectApiKey(project, tokenId)
 
-# Delete project API token
+Delete project API token
 
 Deletes an API token and immediately removes it.
 
@@ -233,7 +233,7 @@ null (empty response body)
 # **getActiveProjectInConsole**
 > ActiveProjectInConsole getActiveProjectInConsole()
 
-# Returns the Ory Network Project selected in the Ory Network Console
+Returns the Ory Network Project selected in the Ory Network Console
 
 Use this API to get your active project in the Ory Network Console UI.
 
@@ -298,7 +298,7 @@ This endpoint does not need any parameter.
 # **getProject**
 > Project getProject(projectId)
 
-# Get a Project
+Get a Project
 
 Get a projects you have access to by its ID.
 
@@ -369,7 +369,7 @@ public class Example {
 # **getProjectMembers**
 > List&lt;CloudAccount&gt; getProjectMembers(projectId)
 
-# Get all members associated with this project
+Get all members associated with this project
 
 This endpoint requires the user to be a member of the project with the role &#x60;OWNER&#x60; or &#x60;DEVELOPER&#x60;.
 
@@ -439,7 +439,7 @@ public class Example {
 # **listProjectApiKeys**
 > List&lt;ProjectApiKey&gt; listProjectApiKeys(project)
 
-# List a project&#39;s API Tokens
+List a project&#39;s API Tokens
 
 A list of all the project&#39;s API tokens.
 
@@ -507,7 +507,7 @@ public class Example {
 # **listProjects**
 > List&lt;ProjectMetadata&gt; listProjects()
 
-# List All Projects
+List All Projects
 
 Lists all projects you have access to.
 
@@ -574,7 +574,7 @@ This endpoint does not need any parameter.
 # **patchProject**
 > SuccessfulProjectUpdate patchProject(projectId, jsonPatch)
 
-# Patch an Ory Network Project Configuration
+Patch an Ory Network Project Configuration
 
 Deprecated: Use the &#x60;patchProjectWithRevision&#x60; endpoint instead to specify the exact revision the patch was generated for.  This endpoints allows you to patch individual Ory Network project configuration keys for Ory&#39;s services (identity, permission, ...). The configuration format is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the &#x60;version&#x60; key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.
 
@@ -648,7 +648,7 @@ public class Example {
 # **purgeProject**
 > purgeProject(projectId)
 
-# Irrecoverably purge a project
+Irrecoverably purge a project
 
 !! Use with extreme caution !!  Using this API endpoint you can purge (completely delete) a project and its data. This action can not be undone and will delete ALL your data.  !! Use with extreme caution !!
 
@@ -718,7 +718,7 @@ null (empty response body)
 # **removeProjectMember**
 > removeProjectMember(projectId, memberId)
 
-# Remove a member associated with this project
+Remove a member associated with this project
 
 This also sets their invite status to &#x60;REMOVED&#x60;. This endpoint requires the user to be a member of the project with the role &#x60;OWNER&#x60;.
 
@@ -789,7 +789,7 @@ null (empty response body)
 # **setActiveProjectInConsole**
 > setActiveProjectInConsole(setActiveProjectInConsoleBody)
 
-# Sets the Ory Network Project active in the Ory Network Console
+Sets the Ory Network Project active in the Ory Network Console
 
 Use this API to set your active project in the Ory Network Console UI.
 
@@ -857,7 +857,7 @@ null (empty response body)
 # **setProject**
 > SuccessfulProjectUpdate setProject(projectId, setProject)
 
-# Update an Ory Network Project Configuration
+Update an Ory Network Project Configuration
 
 This endpoints allows you to update the Ory Network project configuration for individual services (identity, permission, ...). The configuration is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the &#x60;version&#x60; key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.  Be aware that updating any service&#39;s configuration will completely override your current configuration for that service!
 

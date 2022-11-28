@@ -12,17 +12,19 @@ part 'project_host.g.dart';
 ///
 /// Properties:
 /// * [host] - The project's host.
-/// * [id] 
-/// * [projectId] 
+/// * [id] - The mapping's ID.
+/// * [projectId] - The Revision's Project ID
 @BuiltValue()
 abstract class ProjectHost implements Built<ProjectHost, ProjectHostBuilder> {
   /// The project's host.
   @BuiltValueField(wireName: r'host')
   String get host;
 
+  /// The mapping's ID.
   @BuiltValueField(wireName: r'id')
   String get id;
 
+  /// The Revision's Project ID
   @BuiltValueField(wireName: r'project_id')
   String get projectId;
 

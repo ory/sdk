@@ -10,9 +10,9 @@
 |**createdAt** | **OffsetDateTime** | The Project&#39;s Creation Date |  [readonly] |
 |**currentRevision** | [**NormalizedProjectRevision**](NormalizedProjectRevision.md) |  |  |
 |**hosts** | **List&lt;String&gt;** |  |  |
-|**id** | **String** |  |  |
+|**id** | **String** | The project&#39;s ID. |  [readonly] |
 |**slug** | **String** | The project&#39;s slug |  [readonly] |
-|**state** | [**StateEnum**](#StateEnum) | The state of the project. |  [readonly] |
+|**state** | [**StateEnum**](#StateEnum) | The state of the project. running Running halted Halted |  [readonly] |
 |**subscriptionId** | **String** |  |  [optional] |
 |**updatedAt** | **OffsetDateTime** | Last Time Project was Updated |  [readonly] |
 

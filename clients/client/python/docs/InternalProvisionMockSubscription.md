@@ -5,7 +5,7 @@ Internal Provision Mock Subscription Request Body
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**identity_id** | **str** |  | 
+**identity_id** | **str** | Identity ID | 
 **plan_or_price** | **str** | Plan or Price | 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

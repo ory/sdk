@@ -7,9 +7,9 @@
 | **created_at** | **Time** | The Project&#39;s Creation Date | [readonly] |
 | **current_revision** | [**NormalizedProjectRevision**](NormalizedProjectRevision.md) |  |  |
 | **hosts** | **Array&lt;String&gt;** |  |  |
-| **id** | **String** |  |  |
+| **id** | **String** | The project&#39;s ID. | [readonly] |
 | **slug** | **String** | The project&#39;s slug | [readonly] |
-| **state** | **String** | The state of the project. | [readonly] |
+| **state** | **String** | The state of the project. running Running halted Halted | [readonly] |
 | **subscription_id** | **String** |  | [optional] |
 | **updated_at** | **Time** | Last Time Project was Updated | [readonly] |
 

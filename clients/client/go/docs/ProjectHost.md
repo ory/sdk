@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Host** | **string** | The project&#39;s host. | 
-**Id** | **string** |  | 
-**ProjectId** | **string** |  | 
+**Id** | **string** | The mapping&#39;s ID. | [readonly] 
+**ProjectId** | **string** | The Revision&#39;s Project ID | 
 
 ## Methods
 

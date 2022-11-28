@@ -13,14 +13,15 @@ part 'project.g.dart';
 /// Project
 ///
 /// Properties:
-/// * [id] 
+/// * [id] - The project's ID.
 /// * [name] - The name of the project.
-/// * [revisionId] 
+/// * [revisionId] - The configuration revision ID.
 /// * [services] 
 /// * [slug] - The project's slug
-/// * [state] - The state of the project.
+/// * [state] - The state of the project. running Running halted Halted
 @BuiltValue()
 abstract class Project implements Built<Project, ProjectBuilder> {
+  /// The project's ID.
   @BuiltValueField(wireName: r'id')
   String get id;
 
@@ -28,6 +29,7 @@ abstract class Project implements Built<Project, ProjectBuilder> {
   @BuiltValueField(wireName: r'name')
   String get name;
 
+  /// The configuration revision ID.
   @BuiltValueField(wireName: r'revision_id')
   String get revisionId;
 
@@ -38,7 +40,7 @@ abstract class Project implements Built<Project, ProjectBuilder> {
   @BuiltValueField(wireName: r'slug')
   String get slug;
 
-  /// The state of the project.
+  /// The state of the project. running Running halted Halted
   @BuiltValueField(wireName: r'state')
   ProjectStateEnum get state;
   // enum stateEnum {  running,  halted,  };
@@ -192,10 +194,10 @@ class _$ProjectSerializer implements PrimitiveSerializer<Project> {
 
 class ProjectStateEnum extends EnumClass {
 
-  /// The state of the project.
+  /// The state of the project. running Running halted Halted
   @BuiltValueEnumConst(wireName: r'running')
   static const ProjectStateEnum running = _$projectStateEnum_running;
-  /// The state of the project.
+  /// The state of the project. running Running halted Halted
   @BuiltValueEnumConst(wireName: r'halted')
   static const ProjectStateEnum halted = _$projectStateEnum_halted;
 

@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.0.0
+  version: v1.0.1
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -2424,7 +2424,7 @@ paths:
           description: genericError
       security:
       - oryAccessToken: []
-      summary: '# Returns the Ory Network Project selected in the Ory Network Console'
+      summary: Returns the Ory Network Project selected in the Ory Network Console
       tags:
       - project
     put:
@@ -2455,7 +2455,7 @@ paths:
           description: genericError
       security:
       - oryAccessToken: []
-      summary: '# Sets the Ory Network Project active in the Ory Network Console'
+      summary: Sets the Ory Network Project active in the Ory Network Console
       tags:
       - project
   /health/alive:
@@ -2885,7 +2885,7 @@ paths:
           description: errorGeneric
       security:
       - oryAccessToken: []
-      summary: '# List All Projects'
+      summary: List All Projects
       tags:
       - project
     post:
@@ -2930,7 +2930,7 @@ paths:
           description: errorGeneric
       security:
       - oryAccessToken: []
-      summary: '# Create a Project'
+      summary: Create a Project
       tags:
       - project
   /projects/{project_id}:
@@ -2985,7 +2985,7 @@ paths:
           description: genericError
       security:
       - oryAccessToken: []
-      summary: '# Irrecoverably purge a project'
+      summary: Irrecoverably purge a project
       tags:
       - project
     get:
@@ -3036,7 +3036,7 @@ paths:
           description: errorGeneric
       security:
       - oryAccessToken: []
-      summary: '# Get a Project'
+      summary: Get a Project
       tags:
       - project
     patch:
@@ -3115,7 +3115,7 @@ paths:
           description: errorGeneric
       security:
       - oryAccessToken: []
-      summary: '# Patch an Ory Network Project Configuration'
+      summary: Patch an Ory Network Project Configuration
       tags:
       - project
     put:
@@ -3192,7 +3192,7 @@ paths:
           description: errorGeneric
       security:
       - oryAccessToken: []
-      summary: '# Update an Ory Network Project Configuration'
+      summary: Update an Ory Network Project Configuration
       tags:
       - project
   /projects/{project_id}/members:
@@ -3239,7 +3239,7 @@ paths:
           description: genericError
       security:
       - oryAccessToken: []
-      summary: '# Get all members associated with this project'
+      summary: Get all members associated with this project
       tags:
       - project
   /projects/{project_id}/members/{member_id}:
@@ -3292,7 +3292,7 @@ paths:
           description: genericError
       security:
       - oryAccessToken: []
-      summary: '# Remove a member associated with this project'
+      summary: Remove a member associated with this project
       tags:
       - project
   /projects/{project}/tokens:
@@ -3323,7 +3323,7 @@ paths:
           description: errorGeneric
       security:
       - oryAccessToken: []
-      summary: '# List a project''s API Tokens'
+      summary: List a project's API Tokens
       tags:
       - project
     post:
@@ -3359,7 +3359,7 @@ paths:
           description: errorGeneric
       security:
       - oryAccessToken: []
-      summary: '# Create project API token'
+      summary: Create project API token
       tags:
       - project
   /projects/{project}/tokens/{token_id}:
@@ -3395,7 +3395,7 @@ paths:
           description: errorGeneric
       security:
       - oryAccessToken: []
-      summary: '# Delete project API token'
+      summary: Delete project API token
       tags:
       - project
   /relation-tuples:
@@ -6078,6 +6078,15 @@ components:
       nullable: true
       type: integer
     NullPlan:
+      description: |2-
+
+        unknown Unknown
+        free Free
+        start_up_monthly StartUpMonthly
+        start_up_yearly StartUpYearly
+        business_monthly BusinessMonthly
+        business_yearly BusinessYearly
+        custom Custom
       enum:
       - unknown
       - free
@@ -6087,6 +6096,14 @@ components:
       - business_yearly
       - custom
       type: string
+      x-go-enum-desc: |-
+        unknown Unknown
+        free Free
+        start_up_monthly StartUpMonthly
+        start_up_yearly StartUpYearly
+        business_monthly BusinessMonthly
+        business_yearly BusinessYearly
+        custom Custom
     NullString:
       nullable: true
       type: string
@@ -6356,7 +6373,7 @@ components:
         email:
           type: string
         id:
-          format: uuid4
+          format: uuid
           type: string
         name:
           type: string
@@ -6553,7 +6570,7 @@ components:
         plan_or_price:
           type: string
         provision_first_project:
-          format: uuid4
+          format: uuid
           type: string
         return_to:
           type: string
@@ -6580,7 +6597,7 @@ components:
         hostname:
           type: string
         id:
-          format: uuid4
+          format: uuid
           type: string
         updated_at:
           format: date-time
@@ -7351,7 +7368,8 @@ components:
       description: Internal Provision Mock Subscription Request Body
       properties:
         identity_id:
-          format: uuid4
+          description: Identity ID
+          format: uuid
           type: string
         plan_or_price:
           description: Plan or Price
@@ -7461,7 +7479,7 @@ components:
       description: Project invite quota
       properties:
         project_id:
-          format: uuid4
+          format: uuid
           type: string
         remaining_seats:
           format: int64
@@ -7510,7 +7528,6 @@ components:
           description: The value to be used. Only available for `add` and `replace`
             operations.
           example: foobar
-          type: object
       required:
       - op
       - path
@@ -7944,7 +7961,9 @@ components:
           readOnly: true
           type: string
         id:
-          format: uuid4
+          description: The schema's ID.
+          format: uuid
+          readOnly: true
           type: string
         name:
           description: |-
@@ -8122,19 +8141,27 @@ components:
             \ JSON for SQL storage."
           type: array
         id:
-          format: uuid4
+          description: The project's ID.
+          format: uuid
+          readOnly: true
           type: string
         slug:
           description: The project's slug
           readOnly: true
           type: string
         state:
-          description: The state of the project.
+          description: |-
+            The state of the project.
+            running Running
+            halted Halted
           enum:
           - running
           - halted
           readOnly: true
           type: string
+          x-go-enum-desc: |-
+            running Running
+            halted Halted
         subscription_id:
           format: uuid4
           nullable: true
@@ -8186,7 +8213,16 @@ components:
             \nThis governs the \"oauth2.grant.jwt.jti_optional\" setting."
           type: boolean
         hydra_oauth2_grant_jwt_max_ttl:
-          nullable: true
+          default: 720h
+          description: |-
+            Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.
+
+            This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.
+
+            Useful as a safety measure and recommended to keep below 720h.
+
+            This governs the "oauth2.grant.jwt.max_ttl" setting.
+          example: 30m
           pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
           type: string
         hydra_oauth2_pkce_enforced:
@@ -8294,40 +8330,72 @@ components:
         hydra_strategies_access_token:
           default: opaque
           description: "Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens\n\
-            \nThis governs the \"strategies.access_token\" setting."
+            \nThis governs the \"strategies.access_token\" setting.\nopaque OAUTH2_ACCESS_TOKEN_STRATEGY_OPAQUE\n\
+            jwt OAUTH2_ACCESS_TOKEN_STRATEGY_JWT"
           enum:
           - opaque
           - jwt
           type: string
+          x-go-enum-desc: |-
+            opaque OAUTH2_ACCESS_TOKEN_STRATEGY_OPAQUE
+            jwt OAUTH2_ACCESS_TOKEN_STRATEGY_JWT
         hydra_strategies_scope:
           default: wildcard
           description: |-
             Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes
 
             This governs the "strategies.scope" setting.
+            exact OAUTH2_SCOPE_STRATEGY_EXACT
+            wildcard OAUTH2_SCOPE_STRATEGY_WILDCARD
           enum:
           - exact
           - wildcard
           type: string
+          x-go-enum-desc: |-
+            exact OAUTH2_SCOPE_STRATEGY_EXACT
+            wildcard OAUTH2_SCOPE_STRATEGY_WILDCARD
         hydra_ttl_access_token:
-          nullable: true
+          default: 30m
+          description: This governs the "ttl.access_token" setting.
+          example: 1h
           pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
           type: string
         hydra_ttl_auth_code:
-          nullable: true
+          default: 720h
+          description: |-
+            Configures how long refresh tokens are valid.
+
+            Set to -1 for refresh tokens to never expire. This is not recommended!
+
+            This governs the "ttl.auth_code" setting.
+          example: 30m
           pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
           type: string
         hydra_ttl_id_token:
-          nullable: true
+          default: 30m
+          description: This governs the "ttl.id_token" setting.
+          example: 1h
           pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
           type: string
         hydra_ttl_login_consent_request:
-          nullable: true
+          default: 30m
+          description: |-
+            Configures how long a user login and consent flow may take.
+
+            This governs the "ttl.login_consent_request" setting.
+          example: 1h
           pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
           type: string
         hydra_ttl_refresh_token:
-          nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          default: 720h
+          description: |-
+            Configures how long refresh tokens are valid.
+
+            Set to -1 for refresh tokens to never expire. This is not recommended!
+
+            This governs the "ttl.refresh_token" setting.
+          example: 30m
+          pattern: "^([0-9]+(ns|us|ms|s|m|h)|-1)$"
           type: string
         hydra_urls_consent:
           description: |-
@@ -8425,7 +8493,9 @@ components:
             This governs the "webfinger.oidc.discovery.userinfo_url" setting.
           type: string
         id:
-          format: uuid4
+          description: The revision ID.
+          format: uuid
+          readOnly: true
           type: string
         keto_namespace_configuration:
           description: |-
@@ -8765,7 +8835,10 @@ components:
             This governs the "selfservice.flows.registration.after.password.default_browser_return_url" setting.
           type: string
         kratos_selfservice_flows_registration_enabled:
-          nullable: true
+          description: |-
+            Configures the Whether Ory Kratos Registration is Enabled
+
+            This governs the "selfservice.flows.registration.enabled" setting.0
           type: boolean
         kratos_selfservice_flows_registration_lifespan:
           description: |-
@@ -8858,7 +8931,10 @@ components:
             This governs the "selfservice.methods.code.config.lifespan" setting.
           type: string
         kratos_selfservice_methods_code_enabled:
-          nullable: true
+          description: |-
+            Configures whether Ory Kratos Code Method is enabled
+
+            This governs the "selfservice.methods.code.enabled" setting.
           type: boolean
         kratos_selfservice_methods_link_config_base_url:
           description: "Configures the Base URL which Recovery, Verification, and\
@@ -8874,10 +8950,16 @@ components:
             This governs the "selfservice.methods.link.config.lifespan" setting.
           type: string
         kratos_selfservice_methods_link_enabled:
-          nullable: true
+          description: |-
+            Configures whether Ory Kratos Link Method is enabled
+
+            This governs the "selfservice.methods.link.enabled" setting.
           type: boolean
         kratos_selfservice_methods_lookup_secret_enabled:
-          nullable: true
+          description: |-
+            Configures whether Ory Kratos TOTP Lookup Secret is enabled
+
+            This governs the "selfservice.methods.lookup_secret.enabled" setting.
           type: boolean
         kratos_selfservice_methods_oidc_config_base_redirect_uri:
           description: |-
@@ -8896,13 +8978,22 @@ components:
             This governs the "selfservice.methods.oidc.enabled" setting.
           type: boolean
         kratos_selfservice_methods_password_config_haveibeenpwned_enabled:
-          nullable: true
+          description: |-
+            Configures whether Ory Kratos Password HIBP Checks is enabled
+
+            This governs the "selfservice.methods.password.config.haveibeenpwned_enabled" setting.
           type: boolean
         kratos_selfservice_methods_password_config_identifier_similarity_check_enabled:
-          nullable: true
+          description: |-
+            Configures whether Ory Kratos Password should disable the similarity policy.
+
+            This governs the "selfservice.methods.password.config.identifier_similarity_check_enabled" setting.
           type: boolean
         kratos_selfservice_methods_password_config_ignore_network_errors:
-          nullable: true
+          description: |-
+            Configures whether Ory Kratos Password Should ignore HIBPWND Network Errors
+
+            This governs the "selfservice.methods.password.config.ignore_network_errors" setting.
           type: boolean
         kratos_selfservice_methods_password_config_max_breaches:
           description: |-
@@ -8919,10 +9010,16 @@ components:
           format: int64
           type: integer
         kratos_selfservice_methods_password_enabled:
-          nullable: true
+          description: |-
+            Configures whether Ory Kratos Password Method is enabled
+
+            This governs the "selfservice.methods.password.enabled" setting.
           type: boolean
         kratos_selfservice_methods_profile_enabled:
-          nullable: true
+          description: |-
+            Configures whether Ory Kratos Profile Method is enabled
+
+            This governs the "selfservice.methods.profile.enabled" setting.
           type: boolean
         kratos_selfservice_methods_totp_config_issuer:
           description: |-
@@ -8931,7 +9028,10 @@ components:
             This governs the "selfservice.methods.totp.config.issuer" setting.
           type: string
         kratos_selfservice_methods_totp_enabled:
-          nullable: true
+          description: |-
+            Configures whether Ory Kratos TOTP Method is enabled
+
+            This governs the "selfservice.methods.totp.enabled" setting.
           type: boolean
         kratos_selfservice_methods_webauthn_config_passwordless:
           description: |-
@@ -8964,10 +9064,16 @@ components:
             This governs the "selfservice.methods.webauthn.config.rp.origin" setting.
           type: string
         kratos_selfservice_methods_webauthn_enabled:
-          nullable: true
+          description: |-
+            Configures whether Ory Kratos Webauthn is enabled
+
+            This governs the "selfservice.methods.webauthn.enabled" setting.
           type: boolean
         kratos_session_cookie_persistent:
-          nullable: true
+          description: |-
+            Configures the Ory Kratos Session Cookie Persistent Attribute
+
+            This governs the "session.cookie.persistent" setting.
           type: boolean
         kratos_session_cookie_same_site:
           description: |-
@@ -8996,7 +9102,8 @@ components:
             \ your, for example, local environment."
           type: boolean
         project_id:
-          format: uuid4
+          description: The Revision's Project ID
+          format: uuid
           type: string
         updated_at:
           description: Last Time Project's Revision was Updated
@@ -9020,10 +9127,12 @@ components:
           description: The Hook Type
           type: string
         id:
-          format: uuid4
+          description: ID of the entry
+          format: uuid
           type: string
         project_revision_id:
-          format: uuid4
+          description: The Revision's ID this schema belongs to
+          format: uuid
           type: string
         updated_at:
           description: Last Time Project's Revision was Updated
@@ -9086,7 +9195,8 @@ components:
           readOnly: true
           type: string
         id:
-          format: uuid4
+          description: The unique ID of this entry.
+          format: uuid
           type: string
         identity_schema:
           $ref: '#/components/schemas/managedIdentitySchema'
@@ -9115,7 +9225,8 @@ components:
           description: Use a preset instead of a custom identity schema.
           type: string
         project_revision_id:
-          format: uuid4
+          description: The Revision's ID this schema belongs to
+          format: uuid
           type: string
         updated_at:
           description: Last Time Project's Revision was Updated
@@ -9172,7 +9283,7 @@ components:
           readOnly: true
           type: string
         id:
-          format: uuid4
+          format: uuid
           type: string
         issuer_url:
           description: "IssuerURL is the OpenID Connect Server URL. You can leave\
@@ -9191,7 +9302,8 @@ components:
             \ http(s)://, base64://) or an inline JSONNet code snippet."
           type: string
         project_revision_id:
-          format: uuid4
+          description: The Revision's ID this schema belongs to
+          format: uuid
           type: string
         provider:
           description: |-
@@ -10856,7 +10968,7 @@ components:
     project:
       example:
         name: name
-        id: id
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         services:
           identity:
             config: "{}"
@@ -10866,16 +10978,20 @@ components:
             config: "{}"
         state: running
         slug: slug
-        revision_id: revision_id
+        revision_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
         id:
-          format: uuid4
+          description: The project's ID.
+          format: uuid
+          readOnly: true
           type: string
         name:
           description: The name of the project.
           type: string
         revision_id:
-          format: uuid4
+          description: The configuration revision ID.
+          format: uuid
+          readOnly: true
           type: string
         services:
           $ref: '#/components/schemas/projectServices'
@@ -10884,12 +11000,18 @@ components:
           readOnly: true
           type: string
         state:
-          description: The state of the project.
+          description: |-
+            The state of the project.
+            running Running
+            halted Halted
           enum:
           - running
           - halted
           readOnly: true
           type: string
+          x-go-enum-desc: |-
+            running Running
+            halted Halted
       required:
       - id
       - name
@@ -10900,24 +11022,30 @@ components:
       type: object
     projectApiKey:
       example:
-        project_id: project_id
-        owner_id: owner_id
+        project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        owner_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
-        id: id
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         value: value
       properties:
         id:
-          format: uuid4
+          description: The token's ID.
+          format: uuid
+          readOnly: true
           type: string
         name:
           description: "The Token's Name\n\nSet this to help you remember, for example,\
             \ where you use the token."
           type: string
         owner_id:
-          format: uuid4
+          description: The token's owner
+          format: uuid
+          readOnly: true
           type: string
         project_id:
-          format: uuid4
+          description: The Token's Project ID
+          format: uuid
+          readOnly: true
           type: string
         value:
           description: The token's value
@@ -10938,10 +11066,13 @@ components:
           description: The project's host.
           type: string
         id:
-          format: uuid4
+          description: The mapping's ID.
+          format: uuid
+          readOnly: true
           type: string
         project_id:
-          format: uuid4
+          description: The Revision's Project ID
+          format: uuid
           type: string
       required:
       - host
@@ -10956,7 +11087,9 @@ components:
           readOnly: true
           type: string
         id:
-          format: uuid4
+          description: The invite's ID.
+          format: uuid
+          readOnly: true
           type: string
         invitee_email:
           description: The invitee's email
@@ -10971,14 +11104,19 @@ components:
             Usually the project's owner email
           type: string
         owner_id:
-          format: uuid4
+          description: |-
+            The invite owner's ID
+            Usually the project's owner
+          format: uuid
           type: string
         project_id:
-          format: uuid4
+          description: The Project's ID this invite is associated with
+          format: uuid
           type: string
         status:
           description: "The invite's status\nKeeps track of the invites status such\
-            \ as pending, accepted, declined, expired"
+            \ as pending, accepted, declined, expired\npending PENDING\naccepted ACCEPTED\n\
+            declined DECLINED\nexpired EXPIRED\ncancelled CANCELLED\nremoved REMOVED"
           enum:
           - pending
           - accepted
@@ -10987,6 +11125,13 @@ components:
           - cancelled
           - removed
           type: string
+          x-go-enum-desc: |-
+            pending PENDING
+            accepted ACCEPTED
+            declined DECLINED
+            expired EXPIRED
+            cancelled CANCELLED
+            removed REMOVED
         updated_at:
           description: Last Time Project's Revision was Updated
           format: date-time
@@ -11021,7 +11166,7 @@ components:
         - hosts
         name: name
         created_at: 2000-01-23T04:56:07.000+00:00
-        id: id
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         state: running
         slug: slug
       properties:
@@ -11036,7 +11181,9 @@ components:
             \ JSON for SQL storage."
           type: array
         id:
-          format: uuid4
+          description: The project's ID.
+          format: uuid
+          readOnly: true
           type: string
         name:
           description: The project's name if set
@@ -11046,11 +11193,17 @@ components:
           readOnly: true
           type: string
         state:
-          description: The state of the project.
+          description: |-
+            The state of the project.
+            running Running
+            halted Halted
           enum:
           - running
           - halted
           type: string
+          x-go-enum-desc: |-
+            running Running
+            halted Halted
         subscription_id:
           format: uuid4
           nullable: true
@@ -12173,7 +12326,15 @@ components:
           readOnly: true
           type: string
         current_plan:
-          description: The currently active plan of the subscription
+          description: |-
+            The currently active plan of the subscription
+            unknown Unknown
+            free Free
+            start_up_monthly StartUpMonthly
+            start_up_yearly StartUpYearly
+            business_monthly BusinessMonthly
+            business_yearly BusinessYearly
+            custom Custom
           enum:
           - unknown
           - free
@@ -12184,12 +12345,22 @@ components:
           - custom
           readOnly: true
           type: string
+          x-go-enum-desc: |-
+            unknown Unknown
+            free Free
+            start_up_monthly StartUpMonthly
+            start_up_yearly StartUpYearly
+            business_monthly BusinessMonthly
+            business_yearly BusinessYearly
+            custom Custom
         customer_id:
           description: The ID of the stripe customer
           readOnly: true
           type: string
         id:
-          format: uuid4
+          description: The ID of the subscription
+          format: uuid
+          readOnly: true
           type: string
         ongoing_stripe_checkout_id:
           nullable: true
@@ -12478,7 +12649,7 @@ components:
           message: message
         project:
           name: name
-          id: id
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           services:
             identity:
               config: "{}"
@@ -12488,7 +12659,7 @@ components:
               config: "{}"
           state: running
           slug: slug
-          revision_id: revision_id
+          revision_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
         project:
           $ref: '#/components/schemas/project'

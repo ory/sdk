@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.0.0
+API version: v1.0.1
 Contact: support@ory.sh
 */
 
@@ -24,7 +24,7 @@ import (
 type ProjectApi interface {
 
 	/*
-	CreateProject # Create a Project
+	CreateProject Create a Project
 
 	Creates a new project.
 
@@ -38,7 +38,7 @@ type ProjectApi interface {
 	CreateProjectExecute(r ProjectApiCreateProjectRequest) (*Project, *http.Response, error)
 
 	/*
-	CreateProjectApiKey # Create project API token
+	CreateProjectApiKey Create project API token
 
 	Create an API token for a project.
 
@@ -53,7 +53,7 @@ type ProjectApi interface {
 	CreateProjectApiKeyExecute(r ProjectApiCreateProjectApiKeyRequest) (*ProjectApiKey, *http.Response, error)
 
 	/*
-	DeleteProjectApiKey # Delete project API token
+	DeleteProjectApiKey Delete project API token
 
 	Deletes an API token and immediately removes it.
 
@@ -68,7 +68,7 @@ type ProjectApi interface {
 	DeleteProjectApiKeyExecute(r ProjectApiDeleteProjectApiKeyRequest) (*http.Response, error)
 
 	/*
-	GetActiveProjectInConsole # Returns the Ory Network Project selected in the Ory Network Console
+	GetActiveProjectInConsole Returns the Ory Network Project selected in the Ory Network Console
 
 	Use this API to get your active project in the Ory Network Console UI.
 
@@ -82,7 +82,7 @@ type ProjectApi interface {
 	GetActiveProjectInConsoleExecute(r ProjectApiGetActiveProjectInConsoleRequest) (*ActiveProjectInConsole, *http.Response, error)
 
 	/*
-	GetProject # Get a Project
+	GetProject Get a Project
 
 	Get a projects you have access to by its ID.
 
@@ -97,7 +97,7 @@ type ProjectApi interface {
 	GetProjectExecute(r ProjectApiGetProjectRequest) (*Project, *http.Response, error)
 
 	/*
-	GetProjectMembers # Get all members associated with this project
+	GetProjectMembers Get all members associated with this project
 
 	This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
 
@@ -112,7 +112,7 @@ type ProjectApi interface {
 	GetProjectMembersExecute(r ProjectApiGetProjectMembersRequest) ([]CloudAccount, *http.Response, error)
 
 	/*
-	ListProjectApiKeys # List a project's API Tokens
+	ListProjectApiKeys List a project's API Tokens
 
 	A list of all the project's API tokens.
 
@@ -127,7 +127,7 @@ type ProjectApi interface {
 	ListProjectApiKeysExecute(r ProjectApiListProjectApiKeysRequest) ([]ProjectApiKey, *http.Response, error)
 
 	/*
-	ListProjects # List All Projects
+	ListProjects List All Projects
 
 	Lists all projects you have access to.
 
@@ -141,7 +141,7 @@ type ProjectApi interface {
 	ListProjectsExecute(r ProjectApiListProjectsRequest) ([]ProjectMetadata, *http.Response, error)
 
 	/*
-	PatchProject # Patch an Ory Network Project Configuration
+	PatchProject Patch an Ory Network Project Configuration
 
 	Deprecated: Use the `patchProjectWithRevision` endpoint instead to specify the exact revision the patch was generated for.
 
@@ -172,7 +172,7 @@ to help you understand which parts of your config could not be processed.
 	PatchProjectExecute(r ProjectApiPatchProjectRequest) (*SuccessfulProjectUpdate, *http.Response, error)
 
 	/*
-	PurgeProject # Irrecoverably purge a project
+	PurgeProject Irrecoverably purge a project
 
 	!! Use with extreme caution !!
 
@@ -191,7 +191,7 @@ This action can not be undone and will delete ALL your data.
 	PurgeProjectExecute(r ProjectApiPurgeProjectRequest) (*http.Response, error)
 
 	/*
-	RemoveProjectMember # Remove a member associated with this project
+	RemoveProjectMember Remove a member associated with this project
 
 	This also sets their invite status to `REMOVED`.
 This endpoint requires the user to be a member of the project with the role `OWNER`.
@@ -207,7 +207,7 @@ This endpoint requires the user to be a member of the project with the role `OWN
 	RemoveProjectMemberExecute(r ProjectApiRemoveProjectMemberRequest) (*http.Response, error)
 
 	/*
-	SetActiveProjectInConsole # Sets the Ory Network Project active in the Ory Network Console
+	SetActiveProjectInConsole Sets the Ory Network Project active in the Ory Network Console
 
 	Use this API to set your active project in the Ory Network Console UI.
 
@@ -220,7 +220,7 @@ This endpoint requires the user to be a member of the project with the role `OWN
 	SetActiveProjectInConsoleExecute(r ProjectApiSetActiveProjectInConsoleRequest) (*http.Response, error)
 
 	/*
-	SetProject # Update an Ory Network Project Configuration
+	SetProject Update an Ory Network Project Configuration
 
 	This endpoints allows you to update the Ory Network project configuration for
 individual services (identity, permission, ...). The configuration is fully compatible
@@ -271,7 +271,7 @@ func (r ProjectApiCreateProjectRequest) Execute() (*Project, *http.Response, err
 }
 
 /*
-CreateProject # Create a Project
+CreateProject Create a Project
 
 Creates a new project.
 
@@ -416,7 +416,7 @@ func (r ProjectApiCreateProjectApiKeyRequest) Execute() (*ProjectApiKey, *http.R
 }
 
 /*
-CreateProjectApiKey # Create project API token
+CreateProjectApiKey Create project API token
 
 Create an API token for a project.
 
@@ -529,7 +529,7 @@ func (r ProjectApiDeleteProjectApiKeyRequest) Execute() (*http.Response, error) 
 }
 
 /*
-DeleteProjectApiKey # Delete project API token
+DeleteProjectApiKey Delete project API token
 
 Deletes an API token and immediately removes it.
 
@@ -630,7 +630,7 @@ func (r ProjectApiGetActiveProjectInConsoleRequest) Execute() (*ActiveProjectInC
 }
 
 /*
-GetActiveProjectInConsole # Returns the Ory Network Project selected in the Ory Network Console
+GetActiveProjectInConsole Returns the Ory Network Project selected in the Ory Network Console
 
 Use this API to get your active project in the Ory Network Console UI.
 
@@ -747,7 +747,7 @@ func (r ProjectApiGetProjectRequest) Execute() (*Project, *http.Response, error)
 }
 
 /*
-GetProject # Get a Project
+GetProject Get a Project
 
 Get a projects you have access to by its ID.
 
@@ -887,7 +887,7 @@ func (r ProjectApiGetProjectMembersRequest) Execute() ([]CloudAccount, *http.Res
 }
 
 /*
-GetProjectMembers # Get all members associated with this project
+GetProjectMembers Get all members associated with this project
 
 This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
 
@@ -1017,7 +1017,7 @@ func (r ProjectApiListProjectApiKeysRequest) Execute() ([]ProjectApiKey, *http.R
 }
 
 /*
-ListProjectApiKeys # List a project's API Tokens
+ListProjectApiKeys List a project's API Tokens
 
 A list of all the project's API tokens.
 
@@ -1126,7 +1126,7 @@ func (r ProjectApiListProjectsRequest) Execute() ([]ProjectMetadata, *http.Respo
 }
 
 /*
-ListProjects # List All Projects
+ListProjects List All Projects
 
 Lists all projects you have access to.
 
@@ -1269,7 +1269,7 @@ func (r ProjectApiPatchProjectRequest) Execute() (*SuccessfulProjectUpdate, *htt
 }
 
 /*
-PatchProject # Patch an Ory Network Project Configuration
+PatchProject Patch an Ory Network Project Configuration
 
 Deprecated: Use the `patchProjectWithRevision` endpoint instead to specify the exact revision the patch was generated for.
 
@@ -1437,7 +1437,7 @@ func (r ProjectApiPurgeProjectRequest) Execute() (*http.Response, error) {
 }
 
 /*
-PurgeProject # Irrecoverably purge a project
+PurgeProject Irrecoverably purge a project
 
 !! Use with extreme caution !!
 
@@ -1572,7 +1572,7 @@ func (r ProjectApiRemoveProjectMemberRequest) Execute() (*http.Response, error) 
 }
 
 /*
-RemoveProjectMember # Remove a member associated with this project
+RemoveProjectMember Remove a member associated with this project
 
 This also sets their invite status to `REMOVED`.
 This endpoint requires the user to be a member of the project with the role `OWNER`.
@@ -1700,7 +1700,7 @@ func (r ProjectApiSetActiveProjectInConsoleRequest) Execute() (*http.Response, e
 }
 
 /*
-SetActiveProjectInConsole # Sets the Ory Network Project active in the Ory Network Console
+SetActiveProjectInConsole Sets the Ory Network Project active in the Ory Network Console
 
 Use this API to set your active project in the Ory Network Console UI.
 
@@ -1814,7 +1814,7 @@ func (r ProjectApiSetProjectRequest) Execute() (*SuccessfulProjectUpdate, *http.
 }
 
 /*
-SetProject # Update an Ory Network Project Configuration
+SetProject Update an Ory Network Project Configuration
 
 This endpoints allows you to update the Ory Network project configuration for
 individual services (identity, permission, ...). The configuration is fully compatible

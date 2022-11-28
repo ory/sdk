@@ -14,10 +14,10 @@ part 'project_metadata.g.dart';
 /// Properties:
 /// * [createdAt] - The Project's Creation Date
 /// * [hosts] 
-/// * [id] 
+/// * [id] - The project's ID.
 /// * [name] - The project's name if set
 /// * [slug] - The project's slug
-/// * [state] - The state of the project.
+/// * [state] - The state of the project. running Running halted Halted
 /// * [subscriptionId] 
 /// * [updatedAt] - Last Time Project was Updated
 @BuiltValue()
@@ -29,6 +29,7 @@ abstract class ProjectMetadata implements Built<ProjectMetadata, ProjectMetadata
   @BuiltValueField(wireName: r'hosts')
   BuiltList<String> get hosts;
 
+  /// The project's ID.
   @BuiltValueField(wireName: r'id')
   String get id;
 
@@ -40,7 +41,7 @@ abstract class ProjectMetadata implements Built<ProjectMetadata, ProjectMetadata
   @BuiltValueField(wireName: r'slug')
   String? get slug;
 
-  /// The state of the project.
+  /// The state of the project. running Running halted Halted
   @BuiltValueField(wireName: r'state')
   ProjectMetadataStateEnum get state;
   // enum stateEnum {  running,  halted,  };
@@ -230,10 +231,10 @@ class _$ProjectMetadataSerializer implements PrimitiveSerializer<ProjectMetadata
 
 class ProjectMetadataStateEnum extends EnumClass {
 
-  /// The state of the project.
+  /// The state of the project. running Running halted Halted
   @BuiltValueEnumConst(wireName: r'running')
   static const ProjectMetadataStateEnum running = _$projectMetadataStateEnum_running;
-  /// The state of the project.
+  /// The state of the project. running Running halted Halted
   @BuiltValueEnumConst(wireName: r'halted')
   static const ProjectMetadataStateEnum halted = _$projectMetadataStateEnum_halted;
 

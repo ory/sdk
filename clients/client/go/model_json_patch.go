@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.0.0
+API version: v1.0.1
 Contact: support@ory.sh
 */
 
@@ -24,7 +24,7 @@ type JsonPatch struct {
 	// The JSON Pointer to the target key
 	Path string `json:"path"`
 	// The value to be used. Only available for `add` and `replace` operations.
-	Value map[string]interface{} `json:"value,omitempty"`
+	Value interface{} `json:"value,omitempty"`
 }
 
 // NewJsonPatch instantiates a new JsonPatch object
@@ -126,10 +126,10 @@ func (o *JsonPatch) SetPath(v string) {
 	o.Path = v
 }
 
-// GetValue returns the Value field value if set, zero value otherwise.
-func (o *JsonPatch) GetValue() map[string]interface{} {
-	if o == nil || o.Value == nil {
-		var ret map[string]interface{}
+// GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *JsonPatch) GetValue() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.Value
@@ -137,11 +137,12 @@ func (o *JsonPatch) GetValue() map[string]interface{} {
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *JsonPatch) GetValueOk() (map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *JsonPatch) GetValueOk() (*interface{}, bool) {
 	if o == nil || o.Value == nil {
 		return nil, false
 	}
-	return o.Value, true
+	return &o.Value, true
 }
 
 // HasValue returns a boolean if a field has been set.
@@ -153,8 +154,8 @@ func (o *JsonPatch) HasValue() bool {
 	return false
 }
 
-// SetValue gets a reference to the given map[string]interface{} and assigns it to the Value field.
-func (o *JsonPatch) SetValue(v map[string]interface{}) {
+// SetValue gets a reference to the given interface{} and assigns it to the Value field.
+func (o *JsonPatch) SetValue(v interface{}) {
 	o.Value = v
 }
 

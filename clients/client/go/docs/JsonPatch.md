@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **From** | Pointer to **string** | This field is used together with operation \&quot;move\&quot; and uses JSON Pointer notation.  Learn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5). | [optional] 
 **Op** | **string** | The JSON Patch operation | 
 **Path** | **string** | The JSON Pointer to the target key | 
-**Value** | Pointer to **map[string]interface{}** | The value to be used. Only available for &#x60;add&#x60; and &#x60;replace&#x60; operations. | [optional] 
+**Value** | Pointer to **interface{}** | The value to be used. Only available for &#x60;add&#x60; and &#x60;replace&#x60; operations. | [optional] 
 
 ## Methods
 
@@ -95,20 +95,20 @@ SetPath sets Path field to given value.
 
 ### GetValue
 
-`func (o *JsonPatch) GetValue() map[string]interface{}`
+`func (o *JsonPatch) GetValue() interface{}`
 
 GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *JsonPatch) GetValueOk() (*map[string]interface{}, bool)`
+`func (o *JsonPatch) GetValueOk() (*interface{}, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValue
 
-`func (o *JsonPatch) SetValue(v map[string]interface{})`
+`func (o *JsonPatch) SetValue(v interface{})`
 
 SetValue sets Value field to given value.
 
@@ -118,6 +118,16 @@ SetValue sets Value field to given value.
 
 HasValue returns a boolean if a field has been set.
 
+### SetValueNil
+
+`func (o *JsonPatch) SetValueNil(b bool)`
+
+ SetValueNil sets the value for Value to be an explicit nil
+
+### UnsetValue
+`func (o *JsonPatch) UnsetValue()`
+
+UnsetValue ensures that no value is present for Value, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

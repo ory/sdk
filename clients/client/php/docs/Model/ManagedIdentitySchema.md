@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **blobUrl** | **string** | The publicly accessible url of the schema |
 **contentHash** | **string** | The Content Hash  Contains a hash of the schema&#39;s content. | [optional]
 **createdAt** | **\DateTime** | The Schema&#39;s Creation Date | [readonly]
-**id** | **string** |  |
+**id** | **string** | The schema&#39;s ID. | [readonly]
 **name** | **string** | The schema name  This is set by the user and is for them to easily recognise their schema |
 **updatedAt** | **\DateTime** | Last Time Schema was Updated | [readonly]
 

@@ -10,8 +10,8 @@
 |**configKey** | **String** | The Hooks Config Key |  |
 |**createdAt** | **OffsetDateTime** | The Project&#39;s Revision Creation Date |  [optional] [readonly] |
 |**hook** | **String** | The Hook Type |  |
-|**id** | **String** |  |  [optional] |
-|**projectRevisionId** | **String** |  |  [optional] |
+|**id** | **String** | ID of the entry |  [optional] |
+|**projectRevisionId** | **String** | The Revision&#39;s ID this schema belongs to |  [optional] |
 |**updatedAt** | **OffsetDateTime** | Last Time Project&#39;s Revision was Updated |  [optional] [readonly] |
 |**webHookConfigAuthApiKeyIn** | **String** | Whether to send the API Key in the HTTP Header or as a HTTP Cookie |  [optional] |
 |**webHookConfigAuthApiKeyName** | **String** | The name of the api key |  [optional] |

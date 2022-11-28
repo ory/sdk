@@ -4,25 +4,25 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_project**](ProjectApi.md#create_project) | **POST** /projects | # Create a Project
-[**create_project_api_key**](ProjectApi.md#create_project_api_key) | **POST** /projects/{project}/tokens | # Create project API token
-[**delete_project_api_key**](ProjectApi.md#delete_project_api_key) | **DELETE** /projects/{project}/tokens/{token_id} | # Delete project API token
-[**get_active_project_in_console**](ProjectApi.md#get_active_project_in_console) | **GET** /console/active/project | # Returns the Ory Network Project selected in the Ory Network Console
-[**get_project**](ProjectApi.md#get_project) | **GET** /projects/{project_id} | # Get a Project
-[**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project_id}/members | # Get all members associated with this project
-[**list_project_api_keys**](ProjectApi.md#list_project_api_keys) | **GET** /projects/{project}/tokens | # List a project&#39;s API Tokens
-[**list_projects**](ProjectApi.md#list_projects) | **GET** /projects | # List All Projects
-[**patch_project**](ProjectApi.md#patch_project) | **PATCH** /projects/{project_id} | # Patch an Ory Network Project Configuration
-[**purge_project**](ProjectApi.md#purge_project) | **DELETE** /projects/{project_id} | # Irrecoverably purge a project
-[**remove_project_member**](ProjectApi.md#remove_project_member) | **DELETE** /projects/{project_id}/members/{member_id} | # Remove a member associated with this project
-[**set_active_project_in_console**](ProjectApi.md#set_active_project_in_console) | **PUT** /console/active/project | # Sets the Ory Network Project active in the Ory Network Console
-[**set_project**](ProjectApi.md#set_project) | **PUT** /projects/{project_id} | # Update an Ory Network Project Configuration
+[**create_project**](ProjectApi.md#create_project) | **POST** /projects | Create a Project
+[**create_project_api_key**](ProjectApi.md#create_project_api_key) | **POST** /projects/{project}/tokens | Create project API token
+[**delete_project_api_key**](ProjectApi.md#delete_project_api_key) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
+[**get_active_project_in_console**](ProjectApi.md#get_active_project_in_console) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
+[**get_project**](ProjectApi.md#get_project) | **GET** /projects/{project_id} | Get a Project
+[**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project_id}/members | Get all members associated with this project
+[**list_project_api_keys**](ProjectApi.md#list_project_api_keys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
+[**list_projects**](ProjectApi.md#list_projects) | **GET** /projects | List All Projects
+[**patch_project**](ProjectApi.md#patch_project) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
+[**purge_project**](ProjectApi.md#purge_project) | **DELETE** /projects/{project_id} | Irrecoverably purge a project
+[**remove_project_member**](ProjectApi.md#remove_project_member) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project
+[**set_active_project_in_console**](ProjectApi.md#set_active_project_in_console) | **PUT** /console/active/project | Sets the Ory Network Project active in the Ory Network Console
+[**set_project**](ProjectApi.md#set_project) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
 
 
 # **create_project**
 > Project create_project()
 
-# Create a Project
+Create a Project
 
 Creates a new project.
 
@@ -65,7 +65,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # # Create a Project
+        # Create a Project
         api_response = api_instance.create_project(create_project_body=create_project_body)
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -108,7 +108,7 @@ Name | Type | Description  | Notes
 # **create_project_api_key**
 > ProjectApiKey create_project_api_key(project)
 
-# Create project API token
+Create project API token
 
 Create an API token for a project.
 
@@ -151,7 +151,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # # Create project API token
+        # Create project API token
         api_response = api_instance.create_project_api_key(project)
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -160,7 +160,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # # Create project API token
+        # Create project API token
         api_response = api_instance.create_project_api_key(project, create_project_api_key_request=create_project_api_key_request)
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -201,7 +201,7 @@ Name | Type | Description  | Notes
 # **delete_project_api_key**
 > delete_project_api_key(project, token_id)
 
-# Delete project API token
+Delete project API token
 
 Deletes an API token and immediately removes it.
 
@@ -240,7 +240,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # # Delete project API token
+        # Delete project API token
         api_instance.delete_project_api_key(project, token_id)
     except ory_client.ApiException as e:
         print("Exception when calling ProjectApi->delete_project_api_key: %s\n" % e)
@@ -280,7 +280,7 @@ void (empty response body)
 # **get_active_project_in_console**
 > ActiveProjectInConsole get_active_project_in_console()
 
-# Returns the Ory Network Project selected in the Ory Network Console
+Returns the Ory Network Project selected in the Ory Network Console
 
 Use this API to get your active project in the Ory Network Console UI.
 
@@ -318,7 +318,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
     # example, this endpoint has no required or optional parameters
     try:
-        # # Returns the Ory Network Project selected in the Ory Network Console
+        # Returns the Ory Network Project selected in the Ory Network Console
         api_response = api_instance.get_active_project_in_console()
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -356,7 +356,7 @@ This endpoint does not need any parameter.
 # **get_project**
 > Project get_project(project_id)
 
-# Get a Project
+Get a Project
 
 Get a projects you have access to by its ID.
 
@@ -395,7 +395,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # # Get a Project
+        # Get a Project
         api_response = api_instance.get_project(project_id)
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -438,7 +438,7 @@ Name | Type | Description  | Notes
 # **get_project_members**
 > ProjectMembers get_project_members(project_id)
 
-# Get all members associated with this project
+Get all members associated with this project
 
 This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
 
@@ -477,7 +477,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # # Get all members associated with this project
+        # Get all members associated with this project
         api_response = api_instance.get_project_members(project_id)
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -519,7 +519,7 @@ Name | Type | Description  | Notes
 # **list_project_api_keys**
 > ProjectApiKeys list_project_api_keys(project)
 
-# List a project's API Tokens
+List a project's API Tokens
 
 A list of all the project's API tokens.
 
@@ -558,7 +558,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # # List a project's API Tokens
+        # List a project's API Tokens
         api_response = api_instance.list_project_api_keys(project)
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -598,7 +598,7 @@ Name | Type | Description  | Notes
 # **list_projects**
 > ProjectMetadataList list_projects()
 
-# List All Projects
+List All Projects
 
 Lists all projects you have access to.
 
@@ -636,7 +636,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
     # example, this endpoint has no required or optional parameters
     try:
-        # # List All Projects
+        # List All Projects
         api_response = api_instance.list_projects()
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -676,7 +676,7 @@ This endpoint does not need any parameter.
 # **patch_project**
 > SuccessfulProjectUpdate patch_project(project_id)
 
-# Patch an Ory Network Project Configuration
+Patch an Ory Network Project Configuration
 
 Deprecated: Use the `patchProjectWithRevision` endpoint instead to specify the exact revision the patch was generated for.  This endpoints allows you to patch individual Ory Network project configuration keys for Ory's services (identity, permission, ...). The configuration format is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.
 
@@ -718,13 +718,13 @@ with ory_client.ApiClient(configuration) as api_client:
             _from="/name",
             op="replace",
             path="/services/identity/config/smtp/from_name",
-            value={},
+            value=None,
         ),
     ] # [JsonPatch] |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
-        # # Patch an Ory Network Project Configuration
+        # Patch an Ory Network Project Configuration
         api_response = api_instance.patch_project(project_id)
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -733,7 +733,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # # Patch an Ory Network Project Configuration
+        # Patch an Ory Network Project Configuration
         api_response = api_instance.patch_project(project_id, json_patch=json_patch)
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -778,7 +778,7 @@ Name | Type | Description  | Notes
 # **purge_project**
 > purge_project(project_id)
 
-# Irrecoverably purge a project
+Irrecoverably purge a project
 
 !! Use with extreme caution !!  Using this API endpoint you can purge (completely delete) a project and its data. This action can not be undone and will delete ALL your data.  !! Use with extreme caution !!
 
@@ -816,7 +816,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # # Irrecoverably purge a project
+        # Irrecoverably purge a project
         api_instance.purge_project(project_id)
     except ory_client.ApiException as e:
         print("Exception when calling ProjectApi->purge_project: %s\n" % e)
@@ -858,7 +858,7 @@ void (empty response body)
 # **remove_project_member**
 > remove_project_member(project_id, member_id)
 
-# Remove a member associated with this project
+Remove a member associated with this project
 
 This also sets their invite status to `REMOVED`. This endpoint requires the user to be a member of the project with the role `OWNER`.
 
@@ -897,7 +897,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # # Remove a member associated with this project
+        # Remove a member associated with this project
         api_instance.remove_project_member(project_id, member_id)
     except ory_client.ApiException as e:
         print("Exception when calling ProjectApi->remove_project_member: %s\n" % e)
@@ -939,7 +939,7 @@ void (empty response body)
 # **set_active_project_in_console**
 > set_active_project_in_console()
 
-# Sets the Ory Network Project active in the Ory Network Console
+Sets the Ory Network Project active in the Ory Network Console
 
 Use this API to set your active project in the Ory Network Console UI.
 
@@ -981,7 +981,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # # Sets the Ory Network Project active in the Ory Network Console
+        # Sets the Ory Network Project active in the Ory Network Console
         api_instance.set_active_project_in_console(set_active_project_in_console_body=set_active_project_in_console_body)
     except ory_client.ApiException as e:
         print("Exception when calling ProjectApi->set_active_project_in_console: %s\n" % e)
@@ -1021,7 +1021,7 @@ void (empty response body)
 # **set_project**
 > SuccessfulProjectUpdate set_project(project_id)
 
-# Update an Ory Network Project Configuration
+Update an Ory Network Project Configuration
 
 This endpoints allows you to update the Ory Network project configuration for individual services (identity, permission, ...). The configuration is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.  Be aware that updating any service's configuration will completely override your current configuration for that service!
 
@@ -1075,7 +1075,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # # Update an Ory Network Project Configuration
+        # Update an Ory Network Project Configuration
         api_response = api_instance.set_project(project_id)
         pprint(api_response)
     except ory_client.ApiException as e:
@@ -1084,7 +1084,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # # Update an Ory Network Project Configuration
+        # Update an Ory Network Project Configuration
         api_response = api_instance.set_project(project_id, set_project=set_project)
         pprint(api_response)
     except ory_client.ApiException as e:

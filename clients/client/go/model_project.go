@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.0.0
+API version: v1.0.1
 Contact: support@ory.sh
 */
 
@@ -17,14 +17,16 @@ import (
 
 // Project struct for Project
 type Project struct {
+	// The project's ID.
 	Id string `json:"id"`
 	// The name of the project.
 	Name string `json:"name"`
+	// The configuration revision ID.
 	RevisionId string `json:"revision_id"`
 	Services ProjectServices `json:"services"`
 	// The project's slug
 	Slug string `json:"slug"`
-	// The state of the project.
+	// The state of the project. running Running halted Halted
 	State string `json:"state"`
 }
 

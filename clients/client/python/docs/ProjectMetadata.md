@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **datetime** | The Project&#39;s Creation Date | 
 **hosts** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | 
-**id** | **str** |  | 
+**id** | **str** | The project&#39;s ID. | [readonly] 
 **name** | **str** | The project&#39;s name if set | 
-**state** | **str** | The state of the project. | 
+**state** | **str** | The state of the project. running Running halted Halted | 
 **updated_at** | **datetime** | Last Time Project was Updated | 
 **slug** | **str** | The project&#39;s slug | [optional] [readonly] 
 **subscription_id** | **str, none_type** |  | [optional] 

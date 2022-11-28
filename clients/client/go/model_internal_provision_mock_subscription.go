@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.0.0
+API version: v1.0.1
 Contact: support@ory.sh
 */
 
@@ -17,6 +17,7 @@ import (
 
 // InternalProvisionMockSubscription Internal Provision Mock Subscription Request Body
 type InternalProvisionMockSubscription struct {
+	// Identity ID
 	IdentityId string `json:"identity_id"`
 	// Plan or Price
 	PlanOrPrice string `json:"plan_or_price"`

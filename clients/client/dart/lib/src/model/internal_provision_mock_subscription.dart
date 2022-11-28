@@ -11,10 +11,11 @@ part 'internal_provision_mock_subscription.g.dart';
 /// Internal Provision Mock Subscription Request Body
 ///
 /// Properties:
-/// * [identityId] 
+/// * [identityId] - Identity ID
 /// * [planOrPrice] - Plan or Price
 @BuiltValue()
 abstract class InternalProvisionMockSubscription implements Built<InternalProvisionMockSubscription, InternalProvisionMockSubscriptionBuilder> {
+  /// Identity ID
   @BuiltValueField(wireName: r'identity_id')
   String get identityId;
 

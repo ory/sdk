@@ -30,7 +30,7 @@ class ProjectApi {
 
   const ProjectApi(this._dio, this._serializers);
 
-  /// # Create a Project
+  /// Create a Project
   /// Creates a new project.
   ///
   /// Parameters:
@@ -129,7 +129,7 @@ class ProjectApi {
     );
   }
 
-  /// # Create project API token
+  /// Create project API token
   /// Create an API token for a project.
   ///
   /// Parameters:
@@ -230,7 +230,7 @@ class ProjectApi {
     );
   }
 
-  /// # Delete project API token
+  /// Delete project API token
   /// Deletes an API token and immediately removes it.
   ///
   /// Parameters:
@@ -285,7 +285,7 @@ class ProjectApi {
     return _response;
   }
 
-  /// # Returns the Ory Network Project selected in the Ory Network Console
+  /// Returns the Ory Network Project selected in the Ory Network Console
   /// Use this API to get your active project in the Ory Network Console UI.
   ///
   /// Parameters:
@@ -363,7 +363,7 @@ class ProjectApi {
     );
   }
 
-  /// # Get a Project
+  /// Get a Project
   /// Get a projects you have access to by its ID.
   ///
   /// Parameters:
@@ -443,7 +443,7 @@ class ProjectApi {
     );
   }
 
-  /// # Get all members associated with this project
+  /// Get all members associated with this project
   /// This endpoint requires the user to be a member of the project with the role &#x60;OWNER&#x60; or &#x60;DEVELOPER&#x60;.
   ///
   /// Parameters:
@@ -523,7 +523,7 @@ class ProjectApi {
     );
   }
 
-  /// # List a project&#39;s API Tokens
+  /// List a project&#39;s API Tokens
   /// A list of all the project&#39;s API tokens.
   ///
   /// Parameters:
@@ -603,7 +603,7 @@ class ProjectApi {
     );
   }
 
-  /// # List All Projects
+  /// List All Projects
   /// Lists all projects you have access to.
   ///
   /// Parameters:
@@ -681,7 +681,7 @@ class ProjectApi {
     );
   }
 
-  /// # Patch an Ory Network Project Configuration
+  /// Patch an Ory Network Project Configuration
   /// Deprecated: Use the &#x60;patchProjectWithRevision&#x60; endpoint instead to specify the exact revision the patch was generated for.  This endpoints allows you to patch individual Ory Network project configuration keys for Ory&#39;s services (identity, permission, ...). The configuration format is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the &#x60;version&#x60; key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.
   ///
   /// Parameters:
@@ -782,7 +782,7 @@ class ProjectApi {
     );
   }
 
-  /// # Irrecoverably purge a project
+  /// Irrecoverably purge a project
   /// !! Use with extreme caution !!  Using this API endpoint you can purge (completely delete) a project and its data. This action can not be undone and will delete ALL your data.  !! Use with extreme caution !!
   ///
   /// Parameters:
@@ -835,7 +835,7 @@ class ProjectApi {
     return _response;
   }
 
-  /// # Remove a member associated with this project
+  /// Remove a member associated with this project
   /// This also sets their invite status to &#x60;REMOVED&#x60;. This endpoint requires the user to be a member of the project with the role &#x60;OWNER&#x60;.
   ///
   /// Parameters:
@@ -890,7 +890,7 @@ class ProjectApi {
     return _response;
   }
 
-  /// # Sets the Ory Network Project active in the Ory Network Console
+  /// Sets the Ory Network Project active in the Ory Network Console
   /// Use this API to set your active project in the Ory Network Console UI.
   ///
   /// Parameters:
@@ -962,7 +962,7 @@ class ProjectApi {
     return _response;
   }
 
-  /// # Update an Ory Network Project Configuration
+  /// Update an Ory Network Project Configuration
   /// This endpoints allows you to update the Ory Network project configuration for individual services (identity, permission, ...). The configuration is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the &#x60;version&#x60; key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.  Be aware that updating any service&#39;s configuration will completely override your current configuration for that service!
   ///
   /// Parameters:

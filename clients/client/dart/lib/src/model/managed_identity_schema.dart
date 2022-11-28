@@ -15,7 +15,7 @@ part 'managed_identity_schema.g.dart';
 /// * [blobUrl] - The publicly accessible url of the schema
 /// * [contentHash] - The Content Hash  Contains a hash of the schema's content.
 /// * [createdAt] - The Schema's Creation Date
-/// * [id] 
+/// * [id] - The schema's ID.
 /// * [name] - The schema name  This is set by the user and is for them to easily recognise their schema
 /// * [updatedAt] - Last Time Schema was Updated
 @BuiltValue()
@@ -36,6 +36,7 @@ abstract class ManagedIdentitySchema implements Built<ManagedIdentitySchema, Man
   @BuiltValueField(wireName: r'created_at')
   DateTime get createdAt;
 
+  /// The schema's ID.
   @BuiltValueField(wireName: r'id')
   String get id;
 

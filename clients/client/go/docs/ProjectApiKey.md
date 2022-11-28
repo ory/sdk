@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
+**Id** | **string** | The token&#39;s ID. | [readonly] 
 **Name** | **string** | The Token&#39;s Name  Set this to help you remember, for example, where you use the token. | 
-**OwnerId** | **string** |  | 
-**ProjectId** | Pointer to **string** |  | [optional] 
+**OwnerId** | **string** | The token&#39;s owner | [readonly] 
+**ProjectId** | Pointer to **string** | The Token&#39;s Project ID | [optional] [readonly] 
 **Value** | Pointer to **string** | The token&#39;s value | [optional] [readonly] 
 
 ## Methods

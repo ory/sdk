@@ -14,8 +14,8 @@ part 'normalized_project_revision_hook.g.dart';
 /// * [configKey] - The Hooks Config Key
 /// * [createdAt] - The Project's Revision Creation Date
 /// * [hook] - The Hook Type
-/// * [id] 
-/// * [projectRevisionId] 
+/// * [id] - ID of the entry
+/// * [projectRevisionId] - The Revision's ID this schema belongs to
 /// * [updatedAt] - Last Time Project's Revision was Updated
 /// * [webHookConfigAuthApiKeyIn] - Whether to send the API Key in the HTTP Header or as a HTTP Cookie
 /// * [webHookConfigAuthApiKeyName] - The name of the api key
@@ -42,9 +42,11 @@ abstract class NormalizedProjectRevisionHook implements Built<NormalizedProjectR
   @BuiltValueField(wireName: r'hook')
   String get hook;
 
+  /// ID of the entry
   @BuiltValueField(wireName: r'id')
   String? get id;
 
+  /// The Revision's ID this schema belongs to
   @BuiltValueField(wireName: r'project_revision_id')
   String? get projectRevisionId;
 
