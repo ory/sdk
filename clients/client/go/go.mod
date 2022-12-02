@@ -1,4 +1,4 @@
-module github.com/ory/client-client-go
+module github.com/ory/client-go
 
 go 1.17
 
