@@ -9,11 +9,11 @@ defmodule Ory.Model.IdentityCredentialsPassword do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"hashed_password"
+    :hashed_password
   ]
 
   @type t :: %__MODULE__{
-    :"hashed_password" => String.t | nil
+    :hashed_password => String.t | nil
   }
 end
 

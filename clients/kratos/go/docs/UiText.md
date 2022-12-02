@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Context** | Pointer to **map[string]interface{}** | The message&#39;s context. Useful when customizing messages. | [optional] 
 **Id** | **int64** |  | 
 **Text** | **string** | The message text. Written in american english. | 
-**Type** | **string** |  | 
+**Type** | **string** | The message type. info Info error Error success Success | 
 
 ## Methods
 

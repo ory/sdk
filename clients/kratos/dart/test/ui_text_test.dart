@@ -1,12 +1,5 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.7
-
-// ignore_for_file: unused_import
-
-import 'package:ory_kratos_client/model/ui_text.dart';
 import 'package:test/test.dart';
+import 'package:ory_kratos_client/ory_kratos_client.dart';
 
 // tests for UiText
 void main() {
@@ -31,12 +24,11 @@ void main() {
       // TODO
     });
 
+    // The message type. info Info error Error success Success
     // String type
     test('to test the property `type`', () async {
       // TODO
     });
 
-
   });
-
 }

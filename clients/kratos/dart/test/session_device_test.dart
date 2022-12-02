@@ -1,12 +1,5 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.7
-
-// ignore_for_file: unused_import
-
-import 'package:ory_kratos_client/model/session_device.dart';
 import 'package:test/test.dart';
+import 'package:ory_kratos_client/ory_kratos_client.dart';
 
 // tests for SessionDevice
 void main() {
@@ -14,13 +7,29 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(SessionDevice, () {
-    // UserAgent of this device
+    // Device record ID
+    // String id
+    test('to test the property `id`', () async {
+      // TODO
+    });
+
+    // IPAddress of the client
+    // String ipAddress
+    test('to test the property `ipAddress`', () async {
+      // TODO
+    });
+
+    // Geo Location corresponding to the IP Address
+    // String location
+    test('to test the property `location`', () async {
+      // TODO
+    });
+
+    // UserAgent of the client
     // String userAgent
     test('to test the property `userAgent`', () async {
       // TODO
     });
 
-
   });
-
 }

@@ -9,25 +9,27 @@ defmodule Ory.Model.Session do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"active",
-    :"authenticated_at",
-    :"authentication_methods",
-    :"authenticator_assurance_level",
-    :"expires_at",
-    :"id",
-    :"identity",
-    :"issued_at"
+    :active,
+    :authenticated_at,
+    :authentication_methods,
+    :authenticator_assurance_level,
+    :devices,
+    :expires_at,
+    :id,
+    :identity,
+    :issued_at
   ]
 
   @type t :: %__MODULE__{
-    :"active" => boolean() | nil,
-    :"authenticated_at" => DateTime.t | nil,
-    :"authentication_methods" => [Ory.Model.SessionAuthenticationMethod.t] | nil,
-    :"authenticator_assurance_level" => Ory.Model.AuthenticatorAssuranceLevel.t | nil,
-    :"expires_at" => DateTime.t | nil,
-    :"id" => String.t,
-    :"identity" => Ory.Model.Identity.t,
-    :"issued_at" => DateTime.t | nil
+    :active => boolean() | nil,
+    :authenticated_at => DateTime.t | nil,
+    :authentication_methods => [Ory.Model.SessionAuthenticationMethod.t] | nil,
+    :authenticator_assurance_level => Ory.Model.AuthenticatorAssuranceLevel.t | nil,
+    :devices => [Ory.Model.SessionDevice.t] | nil,
+    :expires_at => DateTime.t | nil,
+    :id => String.t,
+    :identity => Ory.Model.Identity.t,
+    :issued_at => DateTime.t | nil
   }
 end
 
@@ -35,9 +37,10 @@ defimpl Poison.Decoder, for: Ory.Model.Session do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"authentication_methods", :list, Ory.Model.SessionAuthenticationMethod, options)
-    |> deserialize(:"authenticator_assurance_level", :struct, Ory.Model.AuthenticatorAssuranceLevel, options)
-    |> deserialize(:"identity", :struct, Ory.Model.Identity, options)
+    |> deserialize(:authentication_methods, :list, Ory.Model.SessionAuthenticationMethod, options)
+    |> deserialize(:authenticator_assurance_level, :struct, Ory.Model.AuthenticatorAssuranceLevel, options)
+    |> deserialize(:devices, :list, Ory.Model.SessionDevice, options)
+    |> deserialize(:identity, :struct, Ory.Model.Identity, options)
   end
 end
 

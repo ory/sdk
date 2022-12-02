@@ -9,17 +9,17 @@ defmodule Ory.Model.UiText do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"context",
-    :"id",
-    :"text",
-    :"type"
+    :context,
+    :id,
+    :text,
+    :type
   ]
 
   @type t :: %__MODULE__{
-    :"context" => map() | nil,
-    :"id" => integer(),
-    :"text" => String.t,
-    :"type" => String.t
+    :context => map() | nil,
+    :id => integer(),
+    :text => String.t,
+    :type => String.t
   }
 end
 

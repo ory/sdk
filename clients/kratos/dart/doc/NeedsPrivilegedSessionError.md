@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **int** | The status code | [optional] 
 **debug** | **String** | Debug information  This field is often not exposed to protect against leaking sensitive information. | [optional] 
-**details** | [**BuiltMap<String, JsonObject>**](JsonObject.md) | Further error details | [optional] 
+**details** | [**BuiltMap&lt;String, JsonObject&gt;**](JsonObject.md) | Further error details | [optional] 
 **id** | **String** | The error ID  Useful when trying to identify various errors in application logic. | [optional] 
 **message** | **String** | Error message  The error's message. | 
 **reason** | **String** | A human-readable reason for the error | [optional] 

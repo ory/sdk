@@ -9,8 +9,9 @@ Name | Type | Description | Notes
 **AuthenticatedAt** | **DateTime** | The Session Authentication Timestamp  When this session was authenticated at. If multi-factor authentication was used this is the time when the last factor was authenticated (e.g. the TOTP code challenge was completed). | [optional] 
 **AuthenticationMethods** | [**List&lt;KratosSessionAuthenticationMethod&gt;**](KratosSessionAuthenticationMethod.md) | A list of authenticators which were used to authenticate the session. | [optional] 
 **AuthenticatorAssuranceLevel** | [**KratosAuthenticatorAssuranceLevel**](KratosAuthenticatorAssuranceLevel.md) |  | [optional] 
+**Devices** | [**List&lt;KratosSessionDevice&gt;**](KratosSessionDevice.md) | Devices has history of all endpoints where the session was used | [optional] 
 **ExpiresAt** | **DateTime** | The Session Expiry  When this session expires at. | [optional] 
-**Id** | **string** |  | 
+**Id** | **string** | Session ID | 
 **Identity** | [**KratosIdentity**](KratosIdentity.md) |  | 
 **IssuedAt** | **DateTime** | The Session Issuance Timestamp  When this session was issued at. Usually equal or close to &#x60;authenticated_at&#x60;. | [optional] 
 

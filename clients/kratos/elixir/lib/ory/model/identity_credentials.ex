@@ -9,21 +9,21 @@ defmodule Ory.Model.IdentityCredentials do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"config",
-    :"created_at",
-    :"identifiers",
-    :"type",
-    :"updated_at",
-    :"version"
+    :config,
+    :created_at,
+    :identifiers,
+    :type,
+    :updated_at,
+    :version
   ]
 
   @type t :: %__MODULE__{
-    :"config" => map() | nil,
-    :"created_at" => DateTime.t | nil,
-    :"identifiers" => [String.t] | nil,
-    :"type" => Ory.Model.IdentityCredentialsType.t | nil,
-    :"updated_at" => DateTime.t | nil,
-    :"version" => integer() | nil
+    :config => map() | nil,
+    :created_at => DateTime.t | nil,
+    :identifiers => [String.t] | nil,
+    :type => Ory.Model.IdentityCredentialsType.t | nil,
+    :updated_at => DateTime.t | nil,
+    :version => integer() | nil
   }
 end
 
@@ -31,7 +31,7 @@ defimpl Poison.Decoder, for: Ory.Model.IdentityCredentials do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"type", :struct, Ory.Model.IdentityCredentialsType, options)
+    |> deserialize(:type, :struct, Ory.Model.IdentityCredentialsType, options)
   end
 end
 

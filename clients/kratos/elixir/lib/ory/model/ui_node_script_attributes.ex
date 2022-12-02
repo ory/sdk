@@ -9,27 +9,27 @@ defmodule Ory.Model.UiNodeScriptAttributes do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"async",
-    :"crossorigin",
-    :"id",
-    :"integrity",
-    :"node_type",
-    :"nonce",
-    :"referrerpolicy",
-    :"src",
-    :"type"
+    :async,
+    :crossorigin,
+    :id,
+    :integrity,
+    :node_type,
+    :nonce,
+    :referrerpolicy,
+    :src,
+    :type
   ]
 
   @type t :: %__MODULE__{
-    :"async" => boolean(),
-    :"crossorigin" => String.t,
-    :"id" => String.t,
-    :"integrity" => String.t,
-    :"node_type" => String.t,
-    :"nonce" => String.t,
-    :"referrerpolicy" => String.t,
-    :"src" => String.t,
-    :"type" => String.t
+    :async => boolean(),
+    :crossorigin => String.t,
+    :id => String.t,
+    :integrity => String.t,
+    :node_type => String.t,
+    :nonce => String.t,
+    :referrerpolicy => String.t,
+    :src => String.t,
+    :type => String.t
   }
 end
 

@@ -1,6 +1,6 @@
 [package]
 name = "ory-kratos-client"
-version = "0.10.1"
+version = "0.11.0"
 description = "SDK Client for Ory Kratos"
 documentation = "https://www.ory.sh/kratos/docs/sdk"
 homepage = "https://www.ory.sh"
@@ -9,6 +9,7 @@ authors = ["OpenAPI Generator team and contributors"]
 edition = "2018"
 
 [dependencies]
+num-traits = { version = "^0.2", default-features = false }
 serde = "^1.0"
 serde_derive = "^1.0"
 serde_json = "^1.0"

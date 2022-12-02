@@ -2,16 +2,16 @@
 
 All URIs are relative to *http://localhost*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getVersion**](MetadataApi.md#getVersion) | **GET** /version | Return Running Software Version.
-[**isAlive**](MetadataApi.md#isAlive) | **GET** /health/alive | Check HTTP Server Status
-[**isReady**](MetadataApi.md#isReady) | **GET** /health/ready | Check HTTP Server and Database Status
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**getVersion**](MetadataApi.md#getVersion) | **GET** /version | Return Running Software Version. |
+| [**isAlive**](MetadataApi.md#isAlive) | **GET** /health/alive | Check HTTP Server Status |
+| [**isReady**](MetadataApi.md#isReady) | **GET** /health/ready | Check HTTP Server and Database Status |
 
 
 <a name="getVersion"></a>
 # **getVersion**
-> InlineResponse2001 getVersion()
+> GetVersion200Response getVersion()
 
 Return Running Software Version.
 
@@ -33,7 +33,7 @@ public class Example {
 
     MetadataApi apiInstance = new MetadataApi(defaultClient);
     try {
-      InlineResponse2001 result = apiInstance.getVersion();
+      GetVersion200Response result = apiInstance.getVersion();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling MetadataApi#getVersion");
@@ -51,7 +51,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse2001**](InlineResponse2001.md)
+[**GetVersion200Response**](GetVersion200Response.md)
 
 ### Authorization
 
@@ -65,11 +65,11 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Returns the Ory Kratos version. |  -  |
+| **200** | Returns the Ory Kratos version. |  -  |
 
 <a name="isAlive"></a>
 # **isAlive**
-> InlineResponse200 isAlive()
+> IsAlive200Response isAlive()
 
 Check HTTP Server Status
 
@@ -91,7 +91,7 @@ public class Example {
 
     MetadataApi apiInstance = new MetadataApi(defaultClient);
     try {
-      InlineResponse200 result = apiInstance.isAlive();
+      IsAlive200Response result = apiInstance.isAlive();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling MetadataApi#isAlive");
@@ -109,7 +109,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**IsAlive200Response**](IsAlive200Response.md)
 
 ### Authorization
 
@@ -123,12 +123,12 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Ory Kratos is ready to accept connections. |  -  |
-**500** | genericError |  -  |
+| **200** | Ory Kratos is ready to accept connections. |  -  |
+| **500** | genericError |  -  |
 
 <a name="isReady"></a>
 # **isReady**
-> InlineResponse200 isReady()
+> IsAlive200Response isReady()
 
 Check HTTP Server and Database Status
 
@@ -150,7 +150,7 @@ public class Example {
 
     MetadataApi apiInstance = new MetadataApi(defaultClient);
     try {
-      InlineResponse200 result = apiInstance.isReady();
+      IsAlive200Response result = apiInstance.isReady();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling MetadataApi#isReady");
@@ -168,7 +168,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**IsAlive200Response**](IsAlive200Response.md)
 
 ### Authorization
 
@@ -182,6 +182,6 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Ory Kratos is ready to accept requests. |  -  |
-**503** | Ory Kratos is not yet ready to accept requests. |  -  |
+| **200** | Ory Kratos is ready to accept requests. |  -  |
+| **503** | Ory Kratos is not yet ready to accept requests. |  -  |
 

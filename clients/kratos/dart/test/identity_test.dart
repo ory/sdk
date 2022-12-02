@@ -1,12 +1,5 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.7
-
-// ignore_for_file: unused_import
-
-import 'package:ory_kratos_client/model/identity.dart';
 import 'package:test/test.dart';
+import 'package:ory_kratos_client/ory_kratos_client.dart';
 
 // tests for Identity
 void main() {
@@ -26,6 +19,7 @@ void main() {
       // TODO
     });
 
+    // ID is the identity's unique identifier.  The Identity ID can not be changed and can not be chosen. This ensures future compatibility and optimization for distributed stores such as CockroachDB.
     // String id
     test('to test the property `id`', () async {
       // TODO
@@ -44,7 +38,7 @@ void main() {
     });
 
     // RecoveryAddresses contains all the addresses that can be used to recover an identity.
-    // BuiltList<RecoveryAddress> recoveryAddresses
+    // BuiltList<RecoveryIdentityAddress> recoveryAddresses
     test('to test the property `recoveryAddresses`', () async {
       // TODO
     });
@@ -89,7 +83,5 @@ void main() {
       // TODO
     });
 
-
   });
-
 }

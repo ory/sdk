@@ -9,11 +9,11 @@ defmodule Ory.Model.IsAlive200Response do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"status"
+    :status
   ]
 
   @type t :: %__MODULE__{
-    :"status" => String.t
+    :status => String.t
   }
 end
 

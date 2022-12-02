@@ -1,12 +1,5 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.7
-
-// ignore_for_file: unused_import
-
-import 'package:ory_kratos_client/model/ui_node_attributes.dart';
 import 'package:test/test.dart';
+import 'package:ory_kratos_client/ory_kratos_client.dart';
 
 // tests for UiNodeAttributes
 void main() {
@@ -14,6 +7,12 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(UiNodeAttributes, () {
+    // The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode
+    // String autocomplete
+    test('to test the property `autocomplete`', () async {
+      // TODO
+    });
+
     // Sets the input's disabled field to true or false.
     // bool disabled
     test('to test the property `disabled`', () async {
@@ -137,7 +136,5 @@ void main() {
       // TODO
     });
 
-
   });
-
 }

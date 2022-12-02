@@ -9,27 +9,29 @@ defmodule Ory.Model.UiNodeInputAttributes do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"disabled",
-    :"label",
-    :"name",
-    :"node_type",
-    :"onclick",
-    :"pattern",
-    :"required",
-    :"type",
-    :"value"
+    :autocomplete,
+    :disabled,
+    :label,
+    :name,
+    :node_type,
+    :onclick,
+    :pattern,
+    :required,
+    :type,
+    :value
   ]
 
   @type t :: %__MODULE__{
-    :"disabled" => boolean(),
-    :"label" => Ory.Model.UiText.t | nil,
-    :"name" => String.t,
-    :"node_type" => String.t,
-    :"onclick" => String.t | nil,
-    :"pattern" => String.t | nil,
-    :"required" => boolean() | nil,
-    :"type" => String.t,
-    :"value" => AnyType | nil
+    :autocomplete => String.t | nil,
+    :disabled => boolean(),
+    :label => Ory.Model.UiText.t | nil,
+    :name => String.t,
+    :node_type => String.t,
+    :onclick => String.t | nil,
+    :pattern => String.t | nil,
+    :required => boolean() | nil,
+    :type => String.t,
+    :value => AnyType | nil
   }
 end
 
@@ -37,8 +39,8 @@ defimpl Poison.Decoder, for: Ory.Model.UiNodeInputAttributes do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"label", :struct, Ory.Model.UiText, options)
-    |> deserialize(:"value", :struct, Ory.Model.AnyType, options)
+    |> deserialize(:label, :struct, Ory.Model.UiText, options)
+    |> deserialize(:value, :struct, Ory.Model.AnyType, options)
   end
 end
 

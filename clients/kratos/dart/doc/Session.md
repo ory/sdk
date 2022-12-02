@@ -10,10 +10,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active** | **bool** | Active state. If false the session is no longer active. | [optional] 
 **authenticatedAt** | [**DateTime**](DateTime.md) | The Session Authentication Timestamp  When this session was authenticated at. If multi-factor authentication was used this is the time when the last factor was authenticated (e.g. the TOTP code challenge was completed). | [optional] 
-**authenticationMethods** | [**BuiltList<SessionAuthenticationMethod>**](SessionAuthenticationMethod.md) | A list of authenticators which were used to authenticate the session. | [optional] 
+**authenticationMethods** | [**BuiltList&lt;SessionAuthenticationMethod&gt;**](SessionAuthenticationMethod.md) | A list of authenticators which were used to authenticate the session. | [optional] 
 **authenticatorAssuranceLevel** | [**AuthenticatorAssuranceLevel**](AuthenticatorAssuranceLevel.md) |  | [optional] 
+**devices** | [**BuiltList&lt;SessionDevice&gt;**](SessionDevice.md) | Devices has history of all endpoints where the session was used | [optional] 
 **expiresAt** | [**DateTime**](DateTime.md) | The Session Expiry  When this session expires at. | [optional] 
-**id** | **String** |  | 
+**id** | **String** | Session ID | 
 **identity** | [**Identity**](Identity.md) |  | 
 **issuedAt** | [**DateTime**](DateTime.md) | The Session Issuance Timestamp  When this session was issued at. Usually equal or close to `authenticated_at`. | [optional] 
 

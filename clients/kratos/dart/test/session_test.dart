@@ -1,12 +1,5 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.7
-
-// ignore_for_file: unused_import
-
-import 'package:ory_kratos_client/model/session.dart';
 import 'package:test/test.dart';
+import 'package:ory_kratos_client/ory_kratos_client.dart';
 
 // tests for Session
 void main() {
@@ -37,12 +30,19 @@ void main() {
       // TODO
     });
 
+    // Devices has history of all endpoints where the session was used
+    // BuiltList<SessionDevice> devices
+    test('to test the property `devices`', () async {
+      // TODO
+    });
+
     // The Session Expiry  When this session expires at.
     // DateTime expiresAt
     test('to test the property `expiresAt`', () async {
       // TODO
     });
 
+    // Session ID
     // String id
     test('to test the property `id`', () async {
       // TODO
@@ -59,7 +59,5 @@ void main() {
       // TODO
     });
 
-
   });
-
 }

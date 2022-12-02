@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Autocomplete** | **string** | The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode | [optional] 
 **Disabled** | **bool** | Sets the input&#39;s disabled field to true or false. | 
 **Label** | [**KratosUiText**](KratosUiText.md) |  | [optional] 
 **Name** | **string** | The input&#39;s element name. | 

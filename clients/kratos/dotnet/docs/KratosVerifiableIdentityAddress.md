@@ -6,7 +6,7 @@ VerifiableAddress is an identity's verifiable address
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **DateTime** | When this entry was created | [optional] 
-**Id** | **string** |  | 
+**Id** | **string** | The ID | [optional] 
 **Status** | **string** | VerifiableAddressStatus must not exceed 16 characters as that is the limitation in the SQL Schema | 
 **UpdatedAt** | **DateTime** | When this entry was last updated | [optional] 
 **Value** | **string** | The address value  example foo@user.com | 

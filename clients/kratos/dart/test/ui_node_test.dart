@@ -1,12 +1,5 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.7
-
-// ignore_for_file: unused_import
-
-import 'package:ory_kratos_client/model/ui_node.dart';
 import 'package:test/test.dart';
+import 'package:ory_kratos_client/ory_kratos_client.dart';
 
 // tests for UiNode
 void main() {
@@ -19,7 +12,7 @@ void main() {
       // TODO
     });
 
-    // Group specifies which group (e.g. password authenticator) this node belongs to.
+    // Group specifies which group (e.g. password authenticator) this node belongs to. default DefaultGroup password PasswordGroup oidc OpenIDConnectGroup profile ProfileGroup link LinkGroup code CodeGroup totp TOTPGroup lookup_secret LookupGroup webauthn WebAuthnGroup
     // String group
     test('to test the property `group`', () async {
       // TODO
@@ -35,13 +28,11 @@ void main() {
       // TODO
     });
 
-    // The node's type
+    // The node's type text Text input Input img Image a Anchor script Script
     // String type
     test('to test the property `type`', () async {
       // TODO
     });
 
-
   });
-
 }

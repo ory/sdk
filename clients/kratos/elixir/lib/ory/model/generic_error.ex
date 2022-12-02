@@ -9,25 +9,25 @@ defmodule Ory.Model.GenericError do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"code",
-    :"debug",
-    :"details",
-    :"id",
-    :"message",
-    :"reason",
-    :"request",
-    :"status"
+    :code,
+    :debug,
+    :details,
+    :id,
+    :message,
+    :reason,
+    :request,
+    :status
   ]
 
   @type t :: %__MODULE__{
-    :"code" => integer() | nil,
-    :"debug" => String.t | nil,
-    :"details" => map() | nil,
-    :"id" => String.t | nil,
-    :"message" => String.t,
-    :"reason" => String.t | nil,
-    :"request" => String.t | nil,
-    :"status" => String.t | nil
+    :code => integer() | nil,
+    :debug => String.t | nil,
+    :details => map() | nil,
+    :id => String.t | nil,
+    :message => String.t,
+    :reason => String.t | nil,
+    :request => String.t | nil,
+    :status => String.t | nil
   }
 end
 
