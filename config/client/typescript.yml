@@ -6,3 +6,4 @@ ensureUniqueParams: true
 modelPropertyNaming: original
 disallowAdditionalPropertiesIfNotPresent: false
 withInterfaces: true
+useSingleRequestParameter: true
