@@ -1,0 +1,15 @@
+{
+  "$schema": "https://raw.githubusercontent.com/ory/ci/master/conventional_commit_config/dist/config.schema.json",
+  "addScopes": [
+    "dart",
+    "dotnet",
+    "elixir",
+    "go",
+    "java",
+    "php",
+    "python",
+    "ruby",
+    "rust",
+    "ts"
+  ]
+}
