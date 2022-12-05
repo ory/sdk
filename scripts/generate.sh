@@ -191,6 +191,8 @@ ruby () {
 
   (sed "s/${VERSION}/${GEM_VERSION}/g" < "${file}") > tmp.$$.rb && mv tmp.$$.rb "${file}"
 
+  (cd ${dir}; sed "/^end.*/i \  gem 'psych', '~> 4.0.6'" < Gemfile) > tmp.$$.Gemfile && mv tmp.$$.Gemfile "${dir}/Gemfile"
+
   cat "${file}"
   cp "LICENSE" "clients/${PROJECT}/ruby"
 }
