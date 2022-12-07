@@ -5,6 +5,11 @@ modelPackage: ${JAVA_GROUP_ID}.model
 
 artifactId: ${JAVA_ARTIFACT_ID}
 artifactVersion: $VERSION
+artifactUrl: https://github.com/ory/client-java
+scmUrl: https://github.com/ory/client-java
+scmConnection: scm:git:git@github.com:ory/client-java.git
+scmDeveloperConnection: scm:git:git@github.com:ory/client-java.git
+artifactDescription: Java Client for Ory
 library: okhttp-gson
 dateLibrary: java8
 developerName: Ory
