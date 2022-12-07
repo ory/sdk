@@ -1,12 +1,5 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.7
-
-// ignore_for_file: unused_import
-
-import 'package:ory_kratos_client/model/self_service_flow_expired_error.dart';
 import 'package:test/test.dart';
+import 'package:ory_kratos_client/ory_kratos_client.dart';
 
 // tests for SelfServiceFlowExpiredError
 void main() {
@@ -29,6 +22,12 @@ void main() {
     // Further error details
     // BuiltMap<String, JsonObject> details
     test('to test the property `details`', () async {
+      // TODO
+    });
+
+    // When the flow has expired
+    // DateTime expiredAt
+    test('to test the property `expiredAt`', () async {
       // TODO
     });
 
@@ -68,12 +67,11 @@ void main() {
       // TODO
     });
 
+    // The flow ID that should be used for the new flow as it contains the correct messages.
     // String useFlowId
     test('to test the property `useFlowId`', () async {
       // TODO
     });
 
-
   });
-
 }

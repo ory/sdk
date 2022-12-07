@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **current_revision** | [**crate::models::NormalizedProjectRevision**](normalizedProjectRevision.md) |  | 
 **hosts** | **Vec<String>** |  | 
 **id** | **String** | The project's ID. | [readonly]
-**revisions** | [**Vec<crate::models::NormalizedProjectRevision>**](normalizedProjectRevision.md) |  | 
 **slug** | **String** | The project's slug | [readonly]
 **state** | **String** | The state of the project. running Running halted Halted | [readonly]
 **subscription_id** | Option<**String**> |  | [optional]

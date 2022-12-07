@@ -203,7 +203,6 @@ golang () {
   mkdir -p "$dir"
 
   mkdir -p "${dir}"
-  (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go")
 
   openapi-generator-cli version-manager set 6.0.1
   openapi-generator-cli generate -i "${SPEC_FILE}" \
@@ -214,6 +213,14 @@ golang () {
     --git-host github.com \
     -c ./config/client/go.yml.proc.yml
   cp "LICENSE" "clients/${PROJECT}/go"
+  
+  if [ "${PROJECT}" == "hydra" ]; then
+    (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go/v2"; go mod tidy)
+  elif [ "${PROJECT}" == "client" ]; then
+    (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/client-go"; go mod tidy)
+  else
+    (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go"; go mod tidy)
+  fi
 }
 
 dotnet () {

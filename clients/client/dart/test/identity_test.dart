@@ -1,21 +1,12 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.12
-
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: constant_identifier_names
-// ignore_for_file: lines_longer_than_80_chars
-
-import 'package:ory_client/api.dart';
 import 'package:test/test.dart';
+import 'package:ory_client/ory_client.dart';
 
 // tests for Identity
 void main() {
-  // final instance = Identity();
+  final instance = IdentityBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test Identity', () {
+  group(Identity, () {
     // CreatedAt is a helper struct field for gobuffalo.pop.
     // DateTime createdAt
     test('to test the property `createdAt`', () async {
@@ -23,30 +14,31 @@ void main() {
     });
 
     // Credentials represents all credentials that can be used for authenticating this identity.
-    // Map<String, IdentityCredentials> credentials (default value: const {})
+    // BuiltMap<String, IdentityCredentials> credentials
     test('to test the property `credentials`', () async {
       // TODO
     });
 
+    // ID is the identity's unique identifier.  The Identity ID can not be changed and can not be chosen. This ensures future compatibility and optimization for distributed stores such as CockroachDB.
     // String id
     test('to test the property `id`', () async {
       // TODO
     });
 
     // NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
-    // Object metadataAdmin
+    // JsonObject metadataAdmin
     test('to test the property `metadataAdmin`', () async {
       // TODO
     });
 
     // NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
-    // Object metadataPublic
+    // JsonObject metadataPublic
     test('to test the property `metadataPublic`', () async {
       // TODO
     });
 
     // RecoveryAddresses contains all the addresses that can be used to recover an identity.
-    // List<RecoveryAddress> recoveryAddresses (default value: const [])
+    // BuiltList<RecoveryIdentityAddress> recoveryAddresses
     test('to test the property `recoveryAddresses`', () async {
       // TODO
     });
@@ -74,7 +66,7 @@ void main() {
     });
 
     // Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_url`.
-    // Object traits
+    // JsonObject traits
     test('to test the property `traits`', () async {
       // TODO
     });
@@ -86,12 +78,10 @@ void main() {
     });
 
     // VerifiableAddresses contains all the addresses that can be verified by the user.
-    // List<VerifiableIdentityAddress> verifiableAddresses (default value: const [])
+    // BuiltList<VerifiableIdentityAddress> verifiableAddresses
     test('to test the property `verifiableAddresses`', () async {
       // TODO
     });
 
-
   });
-
 }

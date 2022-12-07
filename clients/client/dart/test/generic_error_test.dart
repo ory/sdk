@@ -1,21 +1,12 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.12
-
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: constant_identifier_names
-// ignore_for_file: lines_longer_than_80_chars
-
-import 'package:ory_client/api.dart';
 import 'package:test/test.dart';
+import 'package:ory_client/ory_client.dart';
 
 // tests for GenericError
 void main() {
-  // final instance = GenericError();
+  final instance = GenericErrorBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test GenericError', () {
+  group(GenericError, () {
     // The status code
     // int code
     test('to test the property `code`', () async {
@@ -29,7 +20,7 @@ void main() {
     });
 
     // Further error details
-    // Object details
+    // JsonObject details
     test('to test the property `details`', () async {
       // TODO
     });
@@ -69,7 +60,5 @@ void main() {
       // TODO
     });
 
-
   });
-
 }

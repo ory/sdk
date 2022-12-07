@@ -1,12 +1,5 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.7
-
-// ignore_for_file: unused_import
-
-import 'package:ory_kratos_client/model/verifiable_identity_address.dart';
 import 'package:test/test.dart';
+import 'package:ory_kratos_client/ory_kratos_client.dart';
 
 // tests for VerifiableIdentityAddress
 void main() {
@@ -20,6 +13,7 @@ void main() {
       // TODO
     });
 
+    // The ID
     // String id
     test('to test the property `id`', () async {
       // TODO
@@ -60,7 +54,5 @@ void main() {
       // TODO
     });
 
-
   });
-
 }

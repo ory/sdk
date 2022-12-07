@@ -1,19 +1,12 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.7
-
-// ignore_for_file: unused_import
-
-import 'package:ory_hydra_client/model/json_web_key.dart';
 import 'package:test/test.dart';
+import 'package:ory_hydra_client/ory_hydra_client.dart';
 
-// tests for JSONWebKey
+// tests for JsonWebKey
 void main() {
-  final instance = JSONWebKeyBuilder();
+  final instance = JsonWebKeyBuilder();
   // TODO add properties to the builder and call build()
 
-  group(JSONWebKey, () {
+  group(JsonWebKey, () {
     // The \"alg\" (algorithm) parameter identifies the algorithm intended for use with the key.  The values used should either be registered in the IANA \"JSON Web Signature and Encryption Algorithms\" registry established by [JWA] or be a value that contains a Collision- Resistant Name.
     // String alg
     test('to test the property `alg`', () async {
@@ -104,7 +97,5 @@ void main() {
       // TODO
     });
 
-
   });
-
 }

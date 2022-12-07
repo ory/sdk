@@ -1,6 +1,6 @@
 {
-  "name": "ory/hydra-client",
-  "description": "Welcome to the ORY Hydra HTTP API documentation. You will find documentation for all HTTP APIs here.",
+  "name": "ory/hydra-client-php",
+  "description": "Documentation for all of Ory Hydra's APIs.",
   "keywords": [
     "openapitools",
     "openapi-generator",

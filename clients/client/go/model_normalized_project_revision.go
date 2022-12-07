@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.48
+API version: v1.0.2
 Contact: support@ory.sh
 */
 
@@ -55,10 +55,10 @@ type NormalizedProjectRevision struct {
 	HydraServePublicCorsAllowedOrigins []string `json:"hydra_serve_public_cors_allowed_origins,omitempty"`
 	// Configures the Ory Hydra CORS Settings  This governs the \"serve.public.cors.enabled\" setting.
 	HydraServePublicCorsEnabled *bool `json:"hydra_serve_public_cors_enabled,omitempty"`
-	// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting.
-	HydraStrategiesAccessToken interface{} `json:"hydra_strategies_access_token,omitempty"`
-	// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting.
-	HydraStrategiesScope interface{} `json:"hydra_strategies_scope,omitempty"`
+	// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque OAUTH2_ACCESS_TOKEN_STRATEGY_OPAQUE jwt OAUTH2_ACCESS_TOKEN_STRATEGY_JWT
+	HydraStrategiesAccessToken *string `json:"hydra_strategies_access_token,omitempty"`
+	// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact OAUTH2_SCOPE_STRATEGY_EXACT wildcard OAUTH2_SCOPE_STRATEGY_WILDCARD
+	HydraStrategiesScope *string `json:"hydra_strategies_scope,omitempty"`
 	// This governs the \"ttl.access_token\" setting.
 	HydraTtlAccessToken *string `json:"hydra_ttl_access_token,omitempty"`
 	// Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.auth_code\" setting.
@@ -69,17 +69,17 @@ type NormalizedProjectRevision struct {
 	HydraTtlLoginConsentRequest *string `json:"hydra_ttl_login_consent_request,omitempty"`
 	// Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.refresh_token\" setting.
 	HydraTtlRefreshToken *string `json:"hydra_ttl_refresh_token,omitempty"`
-	// Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.consent\" setting.
+	// Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.consent\" setting.
 	HydraUrlsConsent *string `json:"hydra_urls_consent,omitempty"`
-	// Sets the OAuth2 Error URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.error\" setting.
+	// Sets the OAuth2 Error URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.error\" setting.
 	HydraUrlsError *string `json:"hydra_urls_error,omitempty"`
-	// Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.login\" setting.
+	// Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.login\" setting.
 	HydraUrlsLogin *string `json:"hydra_urls_login,omitempty"`
-	// Sets the logout endpoint.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.logout\" setting.
+	// Sets the logout endpoint.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.logout\" setting.
 	HydraUrlsLogout *string `json:"hydra_urls_logout,omitempty"`
-	// When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to Ory Cloud's Managed UI in development and your application in production mode when a custom domain is connected.  This governs the \"urls.post_logout_redirect\" setting.
+	// When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to the Ory Account Experience in development and your application in production mode when a custom domain is connected.  This governs the \"urls.post_logout_redirect\" setting.
 	HydraUrlsPostLogoutRedirect *string `json:"hydra_urls_post_logout_redirect,omitempty"`
-	// This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  In Ory Cloud it will be very rare that you want to modify this value. If left empty, it will default to the correct value for Ory Cloud.  This governs the \"urls.self.issuer\" setting.
+	// This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  On the Ory Network it will be very rare that you want to modify this value. If left empty, it will default to the correct value for the Ory Network.  This governs the \"urls.self.issuer\" setting.
 	HydraUrlsSelfIssuer *string `json:"hydra_urls_self_issuer,omitempty"`
 	HydraWebfingerJwksBroadcastKeys []string `json:"hydra_webfinger_jwks_broadcast_keys,omitempty"`
 	// Configures OpenID Connect Discovery and overwrites the OAuth2 Authorization URL.  This governs the \"webfinger.oidc.discovery.auth_url\" setting.
@@ -96,6 +96,8 @@ type NormalizedProjectRevision struct {
 	HydraWebfingerOidcDiscoveryUserinfoUrl *string `json:"hydra_webfinger_oidc_discovery_userinfo_url,omitempty"`
 	// The revision ID.
 	Id *string `json:"id,omitempty"`
+	// The Revisions' Keto Namespace Configuration  The string is a URL pointing to an OPL file with the configuration.
+	KetoNamespaceConfiguration *string `json:"keto_namespace_configuration,omitempty"`
 	KetoNamespaces []KetoNamespace `json:"keto_namespaces,omitempty"`
 	KetoReadMaxDepth NullableInt32 `json:"keto_read_max_depth,omitempty"`
 	// Configures the Ory Kratos Cookie SameSite Attribute  This governs the \"cookies.same_site\" setting.
@@ -108,6 +110,18 @@ type NormalizedProjectRevision struct {
 	KratosCourierSmtpFromName *string `json:"kratos_courier_smtp_from_name,omitempty"`
 	// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
 	KratosCourierSmtpHeaders map[string]interface{} `json:"kratos_courier_smtp_headers,omitempty"`
+	// Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.html\" setting.
+	KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml *string `json:"kratos_courier_templates_recovery_code_invalid_email_body_html,omitempty"`
+	// Configures the Ory Kratos Invalid Recovery via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.plaintext\" setting.
+	KratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext *string `json:"kratos_courier_templates_recovery_code_invalid_email_body_plaintext,omitempty"`
+	// Configures the Ory Kratos Invalid Recovery via Code Email Subject Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.html\" setting.
+	KratosCourierTemplatesRecoveryCodeInvalidEmailSubject *string `json:"kratos_courier_templates_recovery_code_invalid_email_subject,omitempty"`
+	// Configures the Ory Kratos Valid Recovery via Code Email Body HTML Template  This governs the \"courier.smtp.templates.recovery_code.valid.email.body.html\" setting.
+	KratosCourierTemplatesRecoveryCodeValidEmailBodyHtml *string `json:"kratos_courier_templates_recovery_code_valid_email_body_html,omitempty"`
+	// Configures the Ory Kratos Valid Recovery via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery_code.valid.email.body.plaintext\" setting.
+	KratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext *string `json:"kratos_courier_templates_recovery_code_valid_email_body_plaintext,omitempty"`
+	// Configures the Ory Kratos Valid Recovery via Code Email Subject Template  This governs the \"courier.smtp.templates.recovery_code.valid.email.subject\" setting.
+	KratosCourierTemplatesRecoveryCodeValidEmailSubject *string `json:"kratos_courier_templates_recovery_code_valid_email_subject,omitempty"`
 	// Configures the Ory Kratos Invalid Recovery Email Body HTML Template  This governs the \"courier.smtp.templates.recovery.invalid.email.body.html\" setting.
 	KratosCourierTemplatesRecoveryInvalidEmailBodyHtml *string `json:"kratos_courier_templates_recovery_invalid_email_body_html,omitempty"`
 	// Configures the Ory Kratos Invalid Recovery Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery.invalid.email.body.plaintext\" setting.
@@ -120,19 +134,35 @@ type NormalizedProjectRevision struct {
 	KratosCourierTemplatesRecoveryValidEmailBodyPlaintext *string `json:"kratos_courier_templates_recovery_valid_email_body_plaintext,omitempty"`
 	// Configures the Ory Kratos Valid Recovery Email Subject Template  This governs the \"courier.smtp.templates.recovery.valid.email.subject\" setting.
 	KratosCourierTemplatesRecoveryValidEmailSubject *string `json:"kratos_courier_templates_recovery_valid_email_subject,omitempty"`
+	// Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.body.html\" setting.
+	KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml *string `json:"kratos_courier_templates_verification_code_invalid_email_body_html,omitempty"`
+	// Configures the Ory Kratos Invalid Verification via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.body.plaintext\" setting.
+	KratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext *string `json:"kratos_courier_templates_verification_code_invalid_email_body_plaintext,omitempty"`
+	// Configures the Ory Kratos Invalid Verification via Code Email Subject Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.subject\" setting.
+	KratosCourierTemplatesVerificationCodeInvalidEmailSubject *string `json:"kratos_courier_templates_verification_code_invalid_email_subject,omitempty"`
+	// Configures the Ory Kratos Valid Verification via Code Email Body HTML Template  This governs the \"courier.smtp.templates.verification_code.valid.email.body.html\" setting.
+	KratosCourierTemplatesVerificationCodeValidEmailBodyHtml *string `json:"kratos_courier_templates_verification_code_valid_email_body_html,omitempty"`
+	// Configures the Ory Kratos Valid Verification via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification_code.valid.email.body.plaintext\" setting.
+	KratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext *string `json:"kratos_courier_templates_verification_code_valid_email_body_plaintext,omitempty"`
+	// Configures the Ory Kratos Valid Verification via Code Email Subject Template  This governs the \"courier.smtp.templates.verification_code.valid.email.subject\" setting.
+	KratosCourierTemplatesVerificationCodeValidEmailSubject *string `json:"kratos_courier_templates_verification_code_valid_email_subject,omitempty"`
 	// Configures the Ory Kratos Invalid Verification Email Body HTML Template  This governs the \"courier.smtp.templates.verification.invalid.email.body.html\" setting.
 	KratosCourierTemplatesVerificationInvalidEmailBodyHtml *string `json:"kratos_courier_templates_verification_invalid_email_body_html,omitempty"`
-	// Configures the Ory Kratos Invalid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery.invalid.email.body.plaintext\" setting.
+	// Configures the Ory Kratos Invalid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification.invalid.email.body.plaintext\" setting.
 	KratosCourierTemplatesVerificationInvalidEmailBodyPlaintext *string `json:"kratos_courier_templates_verification_invalid_email_body_plaintext,omitempty"`
 	// Configures the Ory Kratos Invalid Verification Email Subject Template  This governs the \"courier.smtp.templates.verification.invalid.email.subject\" setting.
 	KratosCourierTemplatesVerificationInvalidEmailSubject *string `json:"kratos_courier_templates_verification_invalid_email_subject,omitempty"`
 	// Configures the Ory Kratos Valid Verification Email Body HTML Template  This governs the \"courier.smtp.templates.verification.valid.email.body.html\" setting.
 	KratosCourierTemplatesVerificationValidEmailBodyHtml *string `json:"kratos_courier_templates_verification_valid_email_body_html,omitempty"`
-	// Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery.valid.email.body.plaintext\" setting.
+	// Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification.valid.email.body.plaintext\" setting.
 	KratosCourierTemplatesVerificationValidEmailBodyPlaintext *string `json:"kratos_courier_templates_verification_valid_email_body_plaintext,omitempty"`
 	// Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \"courier.smtp.templates.verification.valid.email.subject\" setting.
 	KratosCourierTemplatesVerificationValidEmailSubject *string `json:"kratos_courier_templates_verification_valid_email_subject,omitempty"`
 	KratosIdentitySchemas []NormalizedProjectRevisionIdentitySchema `json:"kratos_identity_schemas,omitempty"`
+	// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+	KratosOauth2ProviderHeaders map[string]interface{} `json:"kratos_oauth2_provider_headers,omitempty"`
+	// The Revisions' OAuth2 Provider Integration URL  This governs the \"oauth2_provider.url\" setting.
+	KratosOauth2ProviderUrl *string `json:"kratos_oauth2_provider_url,omitempty"`
 	KratosSecretsCipher []string `json:"kratos_secrets_cipher,omitempty"`
 	KratosSecretsCookie []string `json:"kratos_secrets_cookie,omitempty"`
 	KratosSecretsDefault []string `json:"kratos_secrets_default,omitempty"`
@@ -164,6 +194,8 @@ type NormalizedProjectRevision struct {
 	KratosSelfserviceFlowsRecoveryLifespan *string `json:"kratos_selfservice_flows_recovery_lifespan,omitempty"`
 	// Configures the Ory Kratos Recovery UI URL  This governs the \"selfservice.flows.recovery.ui_url\" setting.
 	KratosSelfserviceFlowsRecoveryUiUrl *string `json:"kratos_selfservice_flows_recovery_ui_url,omitempty"`
+	// Configures the Ory Kratos Recovery strategy to use (\"link\" or \"code\")  This governs the \"selfservice.flows.recovery.use\" setting.
+	KratosSelfserviceFlowsRecoveryUse *string `json:"kratos_selfservice_flows_recovery_use,omitempty"`
 	// Configures the Ory Kratos Registration Default Return URL  This governs the \"selfservice.flows.registration.after.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_registration_after_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Registration After OIDC Default Return URL  This governs the \"selfservice.flows.registration.after.oidc.default_browser_return_url\" setting.
@@ -200,9 +232,15 @@ type NormalizedProjectRevision struct {
 	KratosSelfserviceFlowsVerificationLifespan *string `json:"kratos_selfservice_flows_verification_lifespan,omitempty"`
 	// Configures the Ory Kratos Verification UI URL  This governs the \"selfservice.flows.verification.ui_url\" setting.
 	KratosSelfserviceFlowsVerificationUiUrl *string `json:"kratos_selfservice_flows_verification_ui_url,omitempty"`
+	// Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting.
+	KratosSelfserviceFlowsVerificationUse *string `json:"kratos_selfservice_flows_verification_use,omitempty"`
+	// Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
+	KratosSelfserviceMethodsCodeConfigLifespan *string `json:"kratos_selfservice_methods_code_config_lifespan,omitempty"`
+	// Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
+	KratosSelfserviceMethodsCodeEnabled *bool `json:"kratos_selfservice_methods_code_enabled,omitempty"`
 	// Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \"selfservice.methods.link.config.base_url\" setting.
 	KratosSelfserviceMethodsLinkConfigBaseUrl *string `json:"kratos_selfservice_methods_link_config_base_url,omitempty"`
-	// Configures whether Ory Kratos Link Method is enabled  This governs the \"selfservice.methods.link.config.lifespan\" setting.
+	// Configures the Ory Kratos Link Method's lifespan  This governs the \"selfservice.methods.link.config.lifespan\" setting.
 	KratosSelfserviceMethodsLinkConfigLifespan *string `json:"kratos_selfservice_methods_link_config_lifespan,omitempty"`
 	// Configures whether Ory Kratos Link Method is enabled  This governs the \"selfservice.methods.link.enabled\" setting.
 	KratosSelfserviceMethodsLinkEnabled *bool `json:"kratos_selfservice_methods_link_enabled,omitempty"`
@@ -269,6 +307,10 @@ func NewNormalizedProjectRevision(name string) *NormalizedProjectRevision {
 	this := NormalizedProjectRevision{}
 	var hydraOauth2GrantJwtMaxTtl string = "720h"
 	this.HydraOauth2GrantJwtMaxTtl = &hydraOauth2GrantJwtMaxTtl
+	var hydraStrategiesAccessToken string = "opaque"
+	this.HydraStrategiesAccessToken = &hydraStrategiesAccessToken
+	var hydraStrategiesScope string = "wildcard"
+	this.HydraStrategiesScope = &hydraStrategiesScope
 	var hydraTtlAccessToken string = "30m"
 	this.HydraTtlAccessToken = &hydraTtlAccessToken
 	var hydraTtlAuthCode string = "720h"
@@ -290,6 +332,10 @@ func NewNormalizedProjectRevisionWithDefaults() *NormalizedProjectRevision {
 	this := NormalizedProjectRevision{}
 	var hydraOauth2GrantJwtMaxTtl string = "720h"
 	this.HydraOauth2GrantJwtMaxTtl = &hydraOauth2GrantJwtMaxTtl
+	var hydraStrategiesAccessToken string = "opaque"
+	this.HydraStrategiesAccessToken = &hydraStrategiesAccessToken
+	var hydraStrategiesScope string = "wildcard"
+	this.HydraStrategiesScope = &hydraStrategiesScope
 	var hydraTtlAccessToken string = "30m"
 	this.HydraTtlAccessToken = &hydraTtlAccessToken
 	var hydraTtlAuthCode string = "720h"
@@ -1007,23 +1053,22 @@ func (o *NormalizedProjectRevision) SetHydraServePublicCorsEnabled(v bool) {
 	o.HydraServePublicCorsEnabled = &v
 }
 
-// GetHydraStrategiesAccessToken returns the HydraStrategiesAccessToken field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *NormalizedProjectRevision) GetHydraStrategiesAccessToken() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetHydraStrategiesAccessToken returns the HydraStrategiesAccessToken field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraStrategiesAccessToken() string {
+	if o == nil || o.HydraStrategiesAccessToken == nil {
+		var ret string
 		return ret
 	}
-	return o.HydraStrategiesAccessToken
+	return *o.HydraStrategiesAccessToken
 }
 
 // GetHydraStrategiesAccessTokenOk returns a tuple with the HydraStrategiesAccessToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *NormalizedProjectRevision) GetHydraStrategiesAccessTokenOk() (*interface{}, bool) {
+func (o *NormalizedProjectRevision) GetHydraStrategiesAccessTokenOk() (*string, bool) {
 	if o == nil || o.HydraStrategiesAccessToken == nil {
 		return nil, false
 	}
-	return &o.HydraStrategiesAccessToken, true
+	return o.HydraStrategiesAccessToken, true
 }
 
 // HasHydraStrategiesAccessToken returns a boolean if a field has been set.
@@ -1035,28 +1080,27 @@ func (o *NormalizedProjectRevision) HasHydraStrategiesAccessToken() bool {
 	return false
 }
 
-// SetHydraStrategiesAccessToken gets a reference to the given interface{} and assigns it to the HydraStrategiesAccessToken field.
-func (o *NormalizedProjectRevision) SetHydraStrategiesAccessToken(v interface{}) {
-	o.HydraStrategiesAccessToken = v
+// SetHydraStrategiesAccessToken gets a reference to the given string and assigns it to the HydraStrategiesAccessToken field.
+func (o *NormalizedProjectRevision) SetHydraStrategiesAccessToken(v string) {
+	o.HydraStrategiesAccessToken = &v
 }
 
-// GetHydraStrategiesScope returns the HydraStrategiesScope field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *NormalizedProjectRevision) GetHydraStrategiesScope() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetHydraStrategiesScope returns the HydraStrategiesScope field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraStrategiesScope() string {
+	if o == nil || o.HydraStrategiesScope == nil {
+		var ret string
 		return ret
 	}
-	return o.HydraStrategiesScope
+	return *o.HydraStrategiesScope
 }
 
 // GetHydraStrategiesScopeOk returns a tuple with the HydraStrategiesScope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *NormalizedProjectRevision) GetHydraStrategiesScopeOk() (*interface{}, bool) {
+func (o *NormalizedProjectRevision) GetHydraStrategiesScopeOk() (*string, bool) {
 	if o == nil || o.HydraStrategiesScope == nil {
 		return nil, false
 	}
-	return &o.HydraStrategiesScope, true
+	return o.HydraStrategiesScope, true
 }
 
 // HasHydraStrategiesScope returns a boolean if a field has been set.
@@ -1068,9 +1112,9 @@ func (o *NormalizedProjectRevision) HasHydraStrategiesScope() bool {
 	return false
 }
 
-// SetHydraStrategiesScope gets a reference to the given interface{} and assigns it to the HydraStrategiesScope field.
-func (o *NormalizedProjectRevision) SetHydraStrategiesScope(v interface{}) {
-	o.HydraStrategiesScope = v
+// SetHydraStrategiesScope gets a reference to the given string and assigns it to the HydraStrategiesScope field.
+func (o *NormalizedProjectRevision) SetHydraStrategiesScope(v string) {
+	o.HydraStrategiesScope = &v
 }
 
 // GetHydraTtlAccessToken returns the HydraTtlAccessToken field value if set, zero value otherwise.
@@ -1713,6 +1757,38 @@ func (o *NormalizedProjectRevision) SetId(v string) {
 	o.Id = &v
 }
 
+// GetKetoNamespaceConfiguration returns the KetoNamespaceConfiguration field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKetoNamespaceConfiguration() string {
+	if o == nil || o.KetoNamespaceConfiguration == nil {
+		var ret string
+		return ret
+	}
+	return *o.KetoNamespaceConfiguration
+}
+
+// GetKetoNamespaceConfigurationOk returns a tuple with the KetoNamespaceConfiguration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKetoNamespaceConfigurationOk() (*string, bool) {
+	if o == nil || o.KetoNamespaceConfiguration == nil {
+		return nil, false
+	}
+	return o.KetoNamespaceConfiguration, true
+}
+
+// HasKetoNamespaceConfiguration returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKetoNamespaceConfiguration() bool {
+	if o != nil && o.KetoNamespaceConfiguration != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKetoNamespaceConfiguration gets a reference to the given string and assigns it to the KetoNamespaceConfiguration field.
+func (o *NormalizedProjectRevision) SetKetoNamespaceConfiguration(v string) {
+	o.KetoNamespaceConfiguration = &v
+}
+
 // GetKetoNamespaces returns the KetoNamespaces field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKetoNamespaces() []KetoNamespace {
 	if o == nil || o.KetoNamespaces == nil {
@@ -1915,9 +1991,9 @@ func (o *NormalizedProjectRevision) SetKratosCourierSmtpFromName(v string) {
 	o.KratosCourierSmtpFromName = &v
 }
 
-// GetKratosCourierSmtpHeaders returns the KratosCourierSmtpHeaders field value if set, zero value otherwise.
+// GetKratosCourierSmtpHeaders returns the KratosCourierSmtpHeaders field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *NormalizedProjectRevision) GetKratosCourierSmtpHeaders() map[string]interface{} {
-	if o == nil || o.KratosCourierSmtpHeaders == nil {
+	if o == nil {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -1926,6 +2002,7 @@ func (o *NormalizedProjectRevision) GetKratosCourierSmtpHeaders() map[string]int
 
 // GetKratosCourierSmtpHeadersOk returns a tuple with the KratosCourierSmtpHeaders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NormalizedProjectRevision) GetKratosCourierSmtpHeadersOk() (map[string]interface{}, bool) {
 	if o == nil || o.KratosCourierSmtpHeaders == nil {
 		return nil, false
@@ -1945,6 +2022,198 @@ func (o *NormalizedProjectRevision) HasKratosCourierSmtpHeaders() bool {
 // SetKratosCourierSmtpHeaders gets a reference to the given map[string]interface{} and assigns it to the KratosCourierSmtpHeaders field.
 func (o *NormalizedProjectRevision) SetKratosCourierSmtpHeaders(v map[string]interface{}) {
 	o.KratosCourierSmtpHeaders = v
+}
+
+// GetKratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml returns the KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml() string {
+	if o == nil || o.KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml
+}
+
+// GetKratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtmlOk returns a tuple with the KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtmlOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml, true
+}
+
+// HasKratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml() bool {
+	if o != nil && o.KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml gets a reference to the given string and assigns it to the KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml(v string) {
+	o.KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml = &v
+}
+
+// GetKratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext returns the KratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext() string {
+	if o == nil || o.KratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext
+}
+
+// GetKratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintextOk returns a tuple with the KratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintextOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext, true
+}
+
+// HasKratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext() bool {
+	if o != nil && o.KratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext gets a reference to the given string and assigns it to the KratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext(v string) {
+	o.KratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext = &v
+}
+
+// GetKratosCourierTemplatesRecoveryCodeInvalidEmailSubject returns the KratosCourierTemplatesRecoveryCodeInvalidEmailSubject field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryCodeInvalidEmailSubject() string {
+	if o == nil || o.KratosCourierTemplatesRecoveryCodeInvalidEmailSubject == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesRecoveryCodeInvalidEmailSubject
+}
+
+// GetKratosCourierTemplatesRecoveryCodeInvalidEmailSubjectOk returns a tuple with the KratosCourierTemplatesRecoveryCodeInvalidEmailSubject field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryCodeInvalidEmailSubjectOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesRecoveryCodeInvalidEmailSubject == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesRecoveryCodeInvalidEmailSubject, true
+}
+
+// HasKratosCourierTemplatesRecoveryCodeInvalidEmailSubject returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRecoveryCodeInvalidEmailSubject() bool {
+	if o != nil && o.KratosCourierTemplatesRecoveryCodeInvalidEmailSubject != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesRecoveryCodeInvalidEmailSubject gets a reference to the given string and assigns it to the KratosCourierTemplatesRecoveryCodeInvalidEmailSubject field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRecoveryCodeInvalidEmailSubject(v string) {
+	o.KratosCourierTemplatesRecoveryCodeInvalidEmailSubject = &v
+}
+
+// GetKratosCourierTemplatesRecoveryCodeValidEmailBodyHtml returns the KratosCourierTemplatesRecoveryCodeValidEmailBodyHtml field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryCodeValidEmailBodyHtml() string {
+	if o == nil || o.KratosCourierTemplatesRecoveryCodeValidEmailBodyHtml == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesRecoveryCodeValidEmailBodyHtml
+}
+
+// GetKratosCourierTemplatesRecoveryCodeValidEmailBodyHtmlOk returns a tuple with the KratosCourierTemplatesRecoveryCodeValidEmailBodyHtml field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryCodeValidEmailBodyHtmlOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesRecoveryCodeValidEmailBodyHtml == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesRecoveryCodeValidEmailBodyHtml, true
+}
+
+// HasKratosCourierTemplatesRecoveryCodeValidEmailBodyHtml returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRecoveryCodeValidEmailBodyHtml() bool {
+	if o != nil && o.KratosCourierTemplatesRecoveryCodeValidEmailBodyHtml != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesRecoveryCodeValidEmailBodyHtml gets a reference to the given string and assigns it to the KratosCourierTemplatesRecoveryCodeValidEmailBodyHtml field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRecoveryCodeValidEmailBodyHtml(v string) {
+	o.KratosCourierTemplatesRecoveryCodeValidEmailBodyHtml = &v
+}
+
+// GetKratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext returns the KratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext() string {
+	if o == nil || o.KratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext
+}
+
+// GetKratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintextOk returns a tuple with the KratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintextOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext, true
+}
+
+// HasKratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext() bool {
+	if o != nil && o.KratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext gets a reference to the given string and assigns it to the KratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext(v string) {
+	o.KratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext = &v
+}
+
+// GetKratosCourierTemplatesRecoveryCodeValidEmailSubject returns the KratosCourierTemplatesRecoveryCodeValidEmailSubject field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryCodeValidEmailSubject() string {
+	if o == nil || o.KratosCourierTemplatesRecoveryCodeValidEmailSubject == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesRecoveryCodeValidEmailSubject
+}
+
+// GetKratosCourierTemplatesRecoveryCodeValidEmailSubjectOk returns a tuple with the KratosCourierTemplatesRecoveryCodeValidEmailSubject field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryCodeValidEmailSubjectOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesRecoveryCodeValidEmailSubject == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesRecoveryCodeValidEmailSubject, true
+}
+
+// HasKratosCourierTemplatesRecoveryCodeValidEmailSubject returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRecoveryCodeValidEmailSubject() bool {
+	if o != nil && o.KratosCourierTemplatesRecoveryCodeValidEmailSubject != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesRecoveryCodeValidEmailSubject gets a reference to the given string and assigns it to the KratosCourierTemplatesRecoveryCodeValidEmailSubject field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRecoveryCodeValidEmailSubject(v string) {
+	o.KratosCourierTemplatesRecoveryCodeValidEmailSubject = &v
 }
 
 // GetKratosCourierTemplatesRecoveryInvalidEmailBodyHtml returns the KratosCourierTemplatesRecoveryInvalidEmailBodyHtml field value if set, zero value otherwise.
@@ -2137,6 +2406,198 @@ func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRecoveryValidEmailS
 // SetKratosCourierTemplatesRecoveryValidEmailSubject gets a reference to the given string and assigns it to the KratosCourierTemplatesRecoveryValidEmailSubject field.
 func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRecoveryValidEmailSubject(v string) {
 	o.KratosCourierTemplatesRecoveryValidEmailSubject = &v
+}
+
+// GetKratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml returns the KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml() string {
+	if o == nil || o.KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml
+}
+
+// GetKratosCourierTemplatesVerificationCodeInvalidEmailBodyHtmlOk returns a tuple with the KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationCodeInvalidEmailBodyHtmlOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml, true
+}
+
+// HasKratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml() bool {
+	if o != nil && o.KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml gets a reference to the given string and assigns it to the KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml(v string) {
+	o.KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml = &v
+}
+
+// GetKratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext returns the KratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext() string {
+	if o == nil || o.KratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext
+}
+
+// GetKratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintextOk returns a tuple with the KratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintextOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext, true
+}
+
+// HasKratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext() bool {
+	if o != nil && o.KratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext gets a reference to the given string and assigns it to the KratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext(v string) {
+	o.KratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext = &v
+}
+
+// GetKratosCourierTemplatesVerificationCodeInvalidEmailSubject returns the KratosCourierTemplatesVerificationCodeInvalidEmailSubject field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationCodeInvalidEmailSubject() string {
+	if o == nil || o.KratosCourierTemplatesVerificationCodeInvalidEmailSubject == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesVerificationCodeInvalidEmailSubject
+}
+
+// GetKratosCourierTemplatesVerificationCodeInvalidEmailSubjectOk returns a tuple with the KratosCourierTemplatesVerificationCodeInvalidEmailSubject field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationCodeInvalidEmailSubjectOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesVerificationCodeInvalidEmailSubject == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesVerificationCodeInvalidEmailSubject, true
+}
+
+// HasKratosCourierTemplatesVerificationCodeInvalidEmailSubject returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerificationCodeInvalidEmailSubject() bool {
+	if o != nil && o.KratosCourierTemplatesVerificationCodeInvalidEmailSubject != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesVerificationCodeInvalidEmailSubject gets a reference to the given string and assigns it to the KratosCourierTemplatesVerificationCodeInvalidEmailSubject field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerificationCodeInvalidEmailSubject(v string) {
+	o.KratosCourierTemplatesVerificationCodeInvalidEmailSubject = &v
+}
+
+// GetKratosCourierTemplatesVerificationCodeValidEmailBodyHtml returns the KratosCourierTemplatesVerificationCodeValidEmailBodyHtml field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationCodeValidEmailBodyHtml() string {
+	if o == nil || o.KratosCourierTemplatesVerificationCodeValidEmailBodyHtml == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesVerificationCodeValidEmailBodyHtml
+}
+
+// GetKratosCourierTemplatesVerificationCodeValidEmailBodyHtmlOk returns a tuple with the KratosCourierTemplatesVerificationCodeValidEmailBodyHtml field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationCodeValidEmailBodyHtmlOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesVerificationCodeValidEmailBodyHtml == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesVerificationCodeValidEmailBodyHtml, true
+}
+
+// HasKratosCourierTemplatesVerificationCodeValidEmailBodyHtml returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerificationCodeValidEmailBodyHtml() bool {
+	if o != nil && o.KratosCourierTemplatesVerificationCodeValidEmailBodyHtml != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesVerificationCodeValidEmailBodyHtml gets a reference to the given string and assigns it to the KratosCourierTemplatesVerificationCodeValidEmailBodyHtml field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerificationCodeValidEmailBodyHtml(v string) {
+	o.KratosCourierTemplatesVerificationCodeValidEmailBodyHtml = &v
+}
+
+// GetKratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext returns the KratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext() string {
+	if o == nil || o.KratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext
+}
+
+// GetKratosCourierTemplatesVerificationCodeValidEmailBodyPlaintextOk returns a tuple with the KratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationCodeValidEmailBodyPlaintextOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext, true
+}
+
+// HasKratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext() bool {
+	if o != nil && o.KratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext gets a reference to the given string and assigns it to the KratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext(v string) {
+	o.KratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext = &v
+}
+
+// GetKratosCourierTemplatesVerificationCodeValidEmailSubject returns the KratosCourierTemplatesVerificationCodeValidEmailSubject field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationCodeValidEmailSubject() string {
+	if o == nil || o.KratosCourierTemplatesVerificationCodeValidEmailSubject == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesVerificationCodeValidEmailSubject
+}
+
+// GetKratosCourierTemplatesVerificationCodeValidEmailSubjectOk returns a tuple with the KratosCourierTemplatesVerificationCodeValidEmailSubject field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationCodeValidEmailSubjectOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesVerificationCodeValidEmailSubject == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesVerificationCodeValidEmailSubject, true
+}
+
+// HasKratosCourierTemplatesVerificationCodeValidEmailSubject returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerificationCodeValidEmailSubject() bool {
+	if o != nil && o.KratosCourierTemplatesVerificationCodeValidEmailSubject != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesVerificationCodeValidEmailSubject gets a reference to the given string and assigns it to the KratosCourierTemplatesVerificationCodeValidEmailSubject field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerificationCodeValidEmailSubject(v string) {
+	o.KratosCourierTemplatesVerificationCodeValidEmailSubject = &v
 }
 
 // GetKratosCourierTemplatesVerificationInvalidEmailBodyHtml returns the KratosCourierTemplatesVerificationInvalidEmailBodyHtml field value if set, zero value otherwise.
@@ -2361,6 +2822,71 @@ func (o *NormalizedProjectRevision) HasKratosIdentitySchemas() bool {
 // SetKratosIdentitySchemas gets a reference to the given []NormalizedProjectRevisionIdentitySchema and assigns it to the KratosIdentitySchemas field.
 func (o *NormalizedProjectRevision) SetKratosIdentitySchemas(v []NormalizedProjectRevisionIdentitySchema) {
 	o.KratosIdentitySchemas = v
+}
+
+// GetKratosOauth2ProviderHeaders returns the KratosOauth2ProviderHeaders field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevision) GetKratosOauth2ProviderHeaders() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.KratosOauth2ProviderHeaders
+}
+
+// GetKratosOauth2ProviderHeadersOk returns a tuple with the KratosOauth2ProviderHeaders field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevision) GetKratosOauth2ProviderHeadersOk() (map[string]interface{}, bool) {
+	if o == nil || o.KratosOauth2ProviderHeaders == nil {
+		return nil, false
+	}
+	return o.KratosOauth2ProviderHeaders, true
+}
+
+// HasKratosOauth2ProviderHeaders returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosOauth2ProviderHeaders() bool {
+	if o != nil && o.KratosOauth2ProviderHeaders != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosOauth2ProviderHeaders gets a reference to the given map[string]interface{} and assigns it to the KratosOauth2ProviderHeaders field.
+func (o *NormalizedProjectRevision) SetKratosOauth2ProviderHeaders(v map[string]interface{}) {
+	o.KratosOauth2ProviderHeaders = v
+}
+
+// GetKratosOauth2ProviderUrl returns the KratosOauth2ProviderUrl field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosOauth2ProviderUrl() string {
+	if o == nil || o.KratosOauth2ProviderUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosOauth2ProviderUrl
+}
+
+// GetKratosOauth2ProviderUrlOk returns a tuple with the KratosOauth2ProviderUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosOauth2ProviderUrlOk() (*string, bool) {
+	if o == nil || o.KratosOauth2ProviderUrl == nil {
+		return nil, false
+	}
+	return o.KratosOauth2ProviderUrl, true
+}
+
+// HasKratosOauth2ProviderUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosOauth2ProviderUrl() bool {
+	if o != nil && o.KratosOauth2ProviderUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosOauth2ProviderUrl gets a reference to the given string and assigns it to the KratosOauth2ProviderUrl field.
+func (o *NormalizedProjectRevision) SetKratosOauth2ProviderUrl(v string) {
+	o.KratosOauth2ProviderUrl = &v
 }
 
 // GetKratosSecretsCipher returns the KratosSecretsCipher field value if set, zero value otherwise.
@@ -2939,6 +3465,38 @@ func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRecoveryUiUrl(v str
 	o.KratosSelfserviceFlowsRecoveryUiUrl = &v
 }
 
+// GetKratosSelfserviceFlowsRecoveryUse returns the KratosSelfserviceFlowsRecoveryUse field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryUse() string {
+	if o == nil || o.KratosSelfserviceFlowsRecoveryUse == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsRecoveryUse
+}
+
+// GetKratosSelfserviceFlowsRecoveryUseOk returns a tuple with the KratosSelfserviceFlowsRecoveryUse field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryUseOk() (*string, bool) {
+	if o == nil || o.KratosSelfserviceFlowsRecoveryUse == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsRecoveryUse, true
+}
+
+// HasKratosSelfserviceFlowsRecoveryUse returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRecoveryUse() bool {
+	if o != nil && o.KratosSelfserviceFlowsRecoveryUse != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsRecoveryUse gets a reference to the given string and assigns it to the KratosSelfserviceFlowsRecoveryUse field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRecoveryUse(v string) {
+	o.KratosSelfserviceFlowsRecoveryUse = &v
+}
+
 // GetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl == nil {
@@ -3513,6 +4071,102 @@ func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsVerificationUiUrl()
 // SetKratosSelfserviceFlowsVerificationUiUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsVerificationUiUrl field.
 func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsVerificationUiUrl(v string) {
 	o.KratosSelfserviceFlowsVerificationUiUrl = &v
+}
+
+// GetKratosSelfserviceFlowsVerificationUse returns the KratosSelfserviceFlowsVerificationUse field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationUse() string {
+	if o == nil || o.KratosSelfserviceFlowsVerificationUse == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsVerificationUse
+}
+
+// GetKratosSelfserviceFlowsVerificationUseOk returns a tuple with the KratosSelfserviceFlowsVerificationUse field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationUseOk() (*string, bool) {
+	if o == nil || o.KratosSelfserviceFlowsVerificationUse == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsVerificationUse, true
+}
+
+// HasKratosSelfserviceFlowsVerificationUse returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsVerificationUse() bool {
+	if o != nil && o.KratosSelfserviceFlowsVerificationUse != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsVerificationUse gets a reference to the given string and assigns it to the KratosSelfserviceFlowsVerificationUse field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsVerificationUse(v string) {
+	o.KratosSelfserviceFlowsVerificationUse = &v
+}
+
+// GetKratosSelfserviceMethodsCodeConfigLifespan returns the KratosSelfserviceMethodsCodeConfigLifespan field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCodeConfigLifespan() string {
+	if o == nil || o.KratosSelfserviceMethodsCodeConfigLifespan == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsCodeConfigLifespan
+}
+
+// GetKratosSelfserviceMethodsCodeConfigLifespanOk returns a tuple with the KratosSelfserviceMethodsCodeConfigLifespan field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCodeConfigLifespanOk() (*string, bool) {
+	if o == nil || o.KratosSelfserviceMethodsCodeConfigLifespan == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsCodeConfigLifespan, true
+}
+
+// HasKratosSelfserviceMethodsCodeConfigLifespan returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCodeConfigLifespan() bool {
+	if o != nil && o.KratosSelfserviceMethodsCodeConfigLifespan != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsCodeConfigLifespan gets a reference to the given string and assigns it to the KratosSelfserviceMethodsCodeConfigLifespan field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsCodeConfigLifespan(v string) {
+	o.KratosSelfserviceMethodsCodeConfigLifespan = &v
+}
+
+// GetKratosSelfserviceMethodsCodeEnabled returns the KratosSelfserviceMethodsCodeEnabled field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCodeEnabled() bool {
+	if o == nil || o.KratosSelfserviceMethodsCodeEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsCodeEnabled
+}
+
+// GetKratosSelfserviceMethodsCodeEnabledOk returns a tuple with the KratosSelfserviceMethodsCodeEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCodeEnabledOk() (*bool, bool) {
+	if o == nil || o.KratosSelfserviceMethodsCodeEnabled == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsCodeEnabled, true
+}
+
+// HasKratosSelfserviceMethodsCodeEnabled returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCodeEnabled() bool {
+	if o != nil && o.KratosSelfserviceMethodsCodeEnabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsCodeEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsCodeEnabled field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsCodeEnabled(v bool) {
+	o.KratosSelfserviceMethodsCodeEnabled = &v
 }
 
 // GetKratosSelfserviceMethodsLinkConfigBaseUrl returns the KratosSelfserviceMethodsLinkConfigBaseUrl field value if set, zero value otherwise.
@@ -4601,6 +5255,9 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
+	if o.KetoNamespaceConfiguration != nil {
+		toSerialize["keto_namespace_configuration"] = o.KetoNamespaceConfiguration
+	}
 	if o.KetoNamespaces != nil {
 		toSerialize["keto_namespaces"] = o.KetoNamespaces
 	}
@@ -4622,6 +5279,24 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosCourierSmtpHeaders != nil {
 		toSerialize["kratos_courier_smtp_headers"] = o.KratosCourierSmtpHeaders
 	}
+	if o.KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml != nil {
+		toSerialize["kratos_courier_templates_recovery_code_invalid_email_body_html"] = o.KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml
+	}
+	if o.KratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext != nil {
+		toSerialize["kratos_courier_templates_recovery_code_invalid_email_body_plaintext"] = o.KratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext
+	}
+	if o.KratosCourierTemplatesRecoveryCodeInvalidEmailSubject != nil {
+		toSerialize["kratos_courier_templates_recovery_code_invalid_email_subject"] = o.KratosCourierTemplatesRecoveryCodeInvalidEmailSubject
+	}
+	if o.KratosCourierTemplatesRecoveryCodeValidEmailBodyHtml != nil {
+		toSerialize["kratos_courier_templates_recovery_code_valid_email_body_html"] = o.KratosCourierTemplatesRecoveryCodeValidEmailBodyHtml
+	}
+	if o.KratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext != nil {
+		toSerialize["kratos_courier_templates_recovery_code_valid_email_body_plaintext"] = o.KratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext
+	}
+	if o.KratosCourierTemplatesRecoveryCodeValidEmailSubject != nil {
+		toSerialize["kratos_courier_templates_recovery_code_valid_email_subject"] = o.KratosCourierTemplatesRecoveryCodeValidEmailSubject
+	}
 	if o.KratosCourierTemplatesRecoveryInvalidEmailBodyHtml != nil {
 		toSerialize["kratos_courier_templates_recovery_invalid_email_body_html"] = o.KratosCourierTemplatesRecoveryInvalidEmailBodyHtml
 	}
@@ -4639,6 +5314,24 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	}
 	if o.KratosCourierTemplatesRecoveryValidEmailSubject != nil {
 		toSerialize["kratos_courier_templates_recovery_valid_email_subject"] = o.KratosCourierTemplatesRecoveryValidEmailSubject
+	}
+	if o.KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml != nil {
+		toSerialize["kratos_courier_templates_verification_code_invalid_email_body_html"] = o.KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml
+	}
+	if o.KratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext != nil {
+		toSerialize["kratos_courier_templates_verification_code_invalid_email_body_plaintext"] = o.KratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext
+	}
+	if o.KratosCourierTemplatesVerificationCodeInvalidEmailSubject != nil {
+		toSerialize["kratos_courier_templates_verification_code_invalid_email_subject"] = o.KratosCourierTemplatesVerificationCodeInvalidEmailSubject
+	}
+	if o.KratosCourierTemplatesVerificationCodeValidEmailBodyHtml != nil {
+		toSerialize["kratos_courier_templates_verification_code_valid_email_body_html"] = o.KratosCourierTemplatesVerificationCodeValidEmailBodyHtml
+	}
+	if o.KratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext != nil {
+		toSerialize["kratos_courier_templates_verification_code_valid_email_body_plaintext"] = o.KratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext
+	}
+	if o.KratosCourierTemplatesVerificationCodeValidEmailSubject != nil {
+		toSerialize["kratos_courier_templates_verification_code_valid_email_subject"] = o.KratosCourierTemplatesVerificationCodeValidEmailSubject
 	}
 	if o.KratosCourierTemplatesVerificationInvalidEmailBodyHtml != nil {
 		toSerialize["kratos_courier_templates_verification_invalid_email_body_html"] = o.KratosCourierTemplatesVerificationInvalidEmailBodyHtml
@@ -4660,6 +5353,12 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	}
 	if o.KratosIdentitySchemas != nil {
 		toSerialize["kratos_identity_schemas"] = o.KratosIdentitySchemas
+	}
+	if o.KratosOauth2ProviderHeaders != nil {
+		toSerialize["kratos_oauth2_provider_headers"] = o.KratosOauth2ProviderHeaders
+	}
+	if o.KratosOauth2ProviderUrl != nil {
+		toSerialize["kratos_oauth2_provider_url"] = o.KratosOauth2ProviderUrl
 	}
 	if o.KratosSecretsCipher != nil {
 		toSerialize["kratos_secrets_cipher"] = o.KratosSecretsCipher
@@ -4715,6 +5414,9 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosSelfserviceFlowsRecoveryUiUrl != nil {
 		toSerialize["kratos_selfservice_flows_recovery_ui_url"] = o.KratosSelfserviceFlowsRecoveryUiUrl
 	}
+	if o.KratosSelfserviceFlowsRecoveryUse != nil {
+		toSerialize["kratos_selfservice_flows_recovery_use"] = o.KratosSelfserviceFlowsRecoveryUse
+	}
 	if o.KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl != nil {
 		toSerialize["kratos_selfservice_flows_registration_after_default_browser_return_url"] = o.KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl
 	}
@@ -4768,6 +5470,15 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	}
 	if o.KratosSelfserviceFlowsVerificationUiUrl != nil {
 		toSerialize["kratos_selfservice_flows_verification_ui_url"] = o.KratosSelfserviceFlowsVerificationUiUrl
+	}
+	if o.KratosSelfserviceFlowsVerificationUse != nil {
+		toSerialize["kratos_selfservice_flows_verification_use"] = o.KratosSelfserviceFlowsVerificationUse
+	}
+	if o.KratosSelfserviceMethodsCodeConfigLifespan != nil {
+		toSerialize["kratos_selfservice_methods_code_config_lifespan"] = o.KratosSelfserviceMethodsCodeConfigLifespan
+	}
+	if o.KratosSelfserviceMethodsCodeEnabled != nil {
+		toSerialize["kratos_selfservice_methods_code_enabled"] = o.KratosSelfserviceMethodsCodeEnabled
 	}
 	if o.KratosSelfserviceMethodsLinkConfigBaseUrl != nil {
 		toSerialize["kratos_selfservice_methods_link_config_base_url"] = o.KratosSelfserviceMethodsLinkConfigBaseUrl

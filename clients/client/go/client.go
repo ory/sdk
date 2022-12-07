@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.48
+API version: v1.0.2
 Contact: support@ory.sh
 */
 
@@ -42,7 +42,7 @@ var (
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 )
 
-// APIClient manages communication with the Ory APIs API vv0.2.0-alpha.48
+// APIClient manages communication with the Ory APIs API vv1.0.2
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -50,17 +50,27 @@ type APIClient struct {
 
 	// API Services
 
-	AdminApi AdminApi
+	CourierApi CourierApi
+
+	FrontendApi FrontendApi
+
+	IdentityApi IdentityApi
+
+	JwkApi JwkApi
 
 	MetadataApi MetadataApi
 
-	PublicApi PublicApi
+	OAuth2Api OAuth2Api
 
-	ReadApi ReadApi
+	OidcApi OidcApi
 
-	V0alpha2Api V0alpha2Api
+	PermissionApi PermissionApi
 
-	WriteApi WriteApi
+	ProjectApi ProjectApi
+
+	RelationshipApi RelationshipApi
+
+	WellknownApi WellknownApi
 }
 
 type service struct {
@@ -79,12 +89,17 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.AdminApi = (*AdminApiService)(&c.common)
+	c.CourierApi = (*CourierApiService)(&c.common)
+	c.FrontendApi = (*FrontendApiService)(&c.common)
+	c.IdentityApi = (*IdentityApiService)(&c.common)
+	c.JwkApi = (*JwkApiService)(&c.common)
 	c.MetadataApi = (*MetadataApiService)(&c.common)
-	c.PublicApi = (*PublicApiService)(&c.common)
-	c.ReadApi = (*ReadApiService)(&c.common)
-	c.V0alpha2Api = (*V0alpha2ApiService)(&c.common)
-	c.WriteApi = (*WriteApiService)(&c.common)
+	c.OAuth2Api = (*OAuth2ApiService)(&c.common)
+	c.OidcApi = (*OidcApiService)(&c.common)
+	c.PermissionApi = (*PermissionApiService)(&c.common)
+	c.ProjectApi = (*ProjectApiService)(&c.common)
+	c.RelationshipApi = (*RelationshipApiService)(&c.common)
+	c.WellknownApi = (*WellknownApiService)(&c.common)
 
 	return c
 }

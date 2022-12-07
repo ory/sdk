@@ -4,16 +4,22 @@
 
 defmodule Ory.Model.SessionDevice do
   @moduledoc """
-  
+  Device corresponding to a Session
   """
 
   @derive [Poison.Encoder]
   defstruct [
-    :"user_agent"
+    :id,
+    :ip_address,
+    :location,
+    :user_agent
   ]
 
   @type t :: %__MODULE__{
-    :"user_agent" => String.t | nil
+    :id => String.t,
+    :ip_address => String.t | nil,
+    :location => String.t | nil,
+    :user_agent => String.t | nil
   }
 end
 

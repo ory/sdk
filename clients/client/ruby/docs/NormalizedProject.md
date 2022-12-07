@@ -8,7 +8,6 @@
 | **current_revision** | [**NormalizedProjectRevision**](NormalizedProjectRevision.md) |  |  |
 | **hosts** | **Array&lt;String&gt;** |  |  |
 | **id** | **String** | The project&#39;s ID. | [readonly] |
-| **revisions** | [**Array&lt;NormalizedProjectRevision&gt;**](NormalizedProjectRevision.md) |  |  |
 | **slug** | **String** | The project&#39;s slug | [readonly] |
 | **state** | **String** | The state of the project. running Running halted Halted | [readonly] |
 | **subscription_id** | **String** |  | [optional] |
@@ -24,7 +23,6 @@ instance = OryClient::NormalizedProject.new(
   current_revision: null,
   hosts: null,
   id: null,
-  revisions: null,
   slug: null,
   state: null,
   subscription_id: null,

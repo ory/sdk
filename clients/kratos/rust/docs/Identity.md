@@ -6,10 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | Option<**String**> | CreatedAt is a helper struct field for gobuffalo.pop. | [optional]
 **credentials** | Option<[**::std::collections::HashMap<String, crate::models::IdentityCredentials>**](identityCredentials.md)> | Credentials represents all credentials that can be used for authenticating this identity. | [optional]
-**id** | **String** |  | 
+**id** | **String** | ID is the identity's unique identifier.  The Identity ID can not be changed and can not be chosen. This ensures future compatibility and optimization for distributed stores such as CockroachDB. | 
 **metadata_admin** | Option<[**serde_json::Value**](.md)> | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional]
 **metadata_public** | Option<[**serde_json::Value**](.md)> | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional]
-**recovery_addresses** | Option<[**Vec<crate::models::RecoveryAddress>**](RecoveryAddress.md)> | RecoveryAddresses contains all the addresses that can be used to recover an identity. | [optional]
+**recovery_addresses** | Option<[**Vec<crate::models::RecoveryIdentityAddress>**](recoveryIdentityAddress.md)> | RecoveryAddresses contains all the addresses that can be used to recover an identity. | [optional]
 **schema_id** | **String** | SchemaID is the ID of the JSON Schema to be used for validating the identity's traits. | 
 **schema_url** | **String** | SchemaURL is the URL of the endpoint where the identity's traits schema can be fetched from.  format: url | 
 **state** | Option<[**crate::models::IdentityState**](identityState.md)> |  | [optional]

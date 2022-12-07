@@ -1,21 +1,12 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.12
-
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: constant_identifier_names
-// ignore_for_file: lines_longer_than_80_chars
-
-import 'package:ory_client/api.dart';
 import 'package:test/test.dart';
+import 'package:ory_client/ory_client.dart';
 
 // tests for NormalizedProjectRevision
 void main() {
-  // final instance = NormalizedProjectRevision();
+  final instance = NormalizedProjectRevisionBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test NormalizedProjectRevision', () {
+  group(NormalizedProjectRevision, () {
     // The Project's Revision Creation Date
     // DateTime createdAt
     test('to test the property `createdAt`', () async {
@@ -64,7 +55,7 @@ void main() {
       // TODO
     });
 
-    // List<String> hydraOauth2SessionAllowedTopLevelClaims (default value: const [])
+    // BuiltList<String> hydraOauth2SessionAllowedTopLevelClaims
     test('to test the property `hydraOauth2SessionAllowedTopLevelClaims`', () async {
       // TODO
     });
@@ -75,7 +66,7 @@ void main() {
       // TODO
     });
 
-    // List<String> hydraOidcDynamicClientRegistrationDefaultScope (default value: const [])
+    // BuiltList<String> hydraOidcDynamicClientRegistrationDefaultScope
     test('to test the property `hydraOidcDynamicClientRegistrationDefaultScope`', () async {
       // TODO
     });
@@ -92,22 +83,22 @@ void main() {
       // TODO
     });
 
-    // List<String> hydraOidcSubjectIdentifiersSupportedTypes (default value: const [])
+    // BuiltList<String> hydraOidcSubjectIdentifiersSupportedTypes
     test('to test the property `hydraOidcSubjectIdentifiersSupportedTypes`', () async {
       // TODO
     });
 
-    // List<String> hydraSecretsCookie (default value: const [])
+    // BuiltList<String> hydraSecretsCookie
     test('to test the property `hydraSecretsCookie`', () async {
       // TODO
     });
 
-    // List<String> hydraSecretsSystem (default value: const [])
+    // BuiltList<String> hydraSecretsSystem
     test('to test the property `hydraSecretsSystem`', () async {
       // TODO
     });
 
-    // List<String> hydraServeAdminCorsAllowedOrigins (default value: const [])
+    // BuiltList<String> hydraServeAdminCorsAllowedOrigins
     test('to test the property `hydraServeAdminCorsAllowedOrigins`', () async {
       // TODO
     });
@@ -130,7 +121,7 @@ void main() {
       // TODO
     });
 
-    // List<String> hydraServePublicCorsAllowedOrigins (default value: const [])
+    // BuiltList<String> hydraServePublicCorsAllowedOrigins
     test('to test the property `hydraServePublicCorsAllowedOrigins`', () async {
       // TODO
     });
@@ -141,14 +132,14 @@ void main() {
       // TODO
     });
 
-    // Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting.
-    // Object hydraStrategiesAccessToken
+    // Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque OAUTH2_ACCESS_TOKEN_STRATEGY_OPAQUE jwt OAUTH2_ACCESS_TOKEN_STRATEGY_JWT
+    // String hydraStrategiesAccessToken (default value: 'opaque')
     test('to test the property `hydraStrategiesAccessToken`', () async {
       // TODO
     });
 
-    // Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting.
-    // Object hydraStrategiesScope
+    // Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact OAUTH2_SCOPE_STRATEGY_EXACT wildcard OAUTH2_SCOPE_STRATEGY_WILDCARD
+    // String hydraStrategiesScope (default value: 'wildcard')
     test('to test the property `hydraStrategiesScope`', () async {
       // TODO
     });
@@ -183,43 +174,43 @@ void main() {
       // TODO
     });
 
-    // Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.consent\" setting.
+    // Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.consent\" setting.
     // String hydraUrlsConsent
     test('to test the property `hydraUrlsConsent`', () async {
       // TODO
     });
 
-    // Sets the OAuth2 Error URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.error\" setting.
+    // Sets the OAuth2 Error URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.error\" setting.
     // String hydraUrlsError
     test('to test the property `hydraUrlsError`', () async {
       // TODO
     });
 
-    // Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.login\" setting.
+    // Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.login\" setting.
     // String hydraUrlsLogin
     test('to test the property `hydraUrlsLogin`', () async {
       // TODO
     });
 
-    // Sets the logout endpoint.  Defaults to Ory Cloud's Managed UI if left empty.  This governs the \"urls.logout\" setting.
+    // Sets the logout endpoint.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.logout\" setting.
     // String hydraUrlsLogout
     test('to test the property `hydraUrlsLogout`', () async {
       // TODO
     });
 
-    // When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to Ory Cloud's Managed UI in development and your application in production mode when a custom domain is connected.  This governs the \"urls.post_logout_redirect\" setting.
+    // When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to the Ory Account Experience in development and your application in production mode when a custom domain is connected.  This governs the \"urls.post_logout_redirect\" setting.
     // String hydraUrlsPostLogoutRedirect
     test('to test the property `hydraUrlsPostLogoutRedirect`', () async {
       // TODO
     });
 
-    // This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  In Ory Cloud it will be very rare that you want to modify this value. If left empty, it will default to the correct value for Ory Cloud.  This governs the \"urls.self.issuer\" setting.
+    // This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  On the Ory Network it will be very rare that you want to modify this value. If left empty, it will default to the correct value for the Ory Network.  This governs the \"urls.self.issuer\" setting.
     // String hydraUrlsSelfIssuer
     test('to test the property `hydraUrlsSelfIssuer`', () async {
       // TODO
     });
 
-    // List<String> hydraWebfingerJwksBroadcastKeys (default value: const [])
+    // BuiltList<String> hydraWebfingerJwksBroadcastKeys
     test('to test the property `hydraWebfingerJwksBroadcastKeys`', () async {
       // TODO
     });
@@ -242,12 +233,12 @@ void main() {
       // TODO
     });
 
-    // List<String> hydraWebfingerOidcDiscoverySupportedClaims (default value: const [])
+    // BuiltList<String> hydraWebfingerOidcDiscoverySupportedClaims
     test('to test the property `hydraWebfingerOidcDiscoverySupportedClaims`', () async {
       // TODO
     });
 
-    // List<String> hydraWebfingerOidcDiscoverySupportedScope (default value: const [])
+    // BuiltList<String> hydraWebfingerOidcDiscoverySupportedScope
     test('to test the property `hydraWebfingerOidcDiscoverySupportedScope`', () async {
       // TODO
     });
@@ -270,7 +261,13 @@ void main() {
       // TODO
     });
 
-    // List<KetoNamespace> ketoNamespaces (default value: const [])
+    // The Revisions' Keto Namespace Configuration  The string is a URL pointing to an OPL file with the configuration.
+    // String ketoNamespaceConfiguration
+    test('to test the property `ketoNamespaceConfiguration`', () async {
+      // TODO
+    });
+
+    // BuiltList<KetoNamespace> ketoNamespaces
     test('to test the property `ketoNamespaces`', () async {
       // TODO
     });
@@ -305,8 +302,44 @@ void main() {
     });
 
     // NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
-    // Object kratosCourierSmtpHeaders
+    // JsonObject kratosCourierSmtpHeaders
     test('to test the property `kratosCourierSmtpHeaders`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.html\" setting.
+    // String kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml
+    test('to test the property `kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Invalid Recovery via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.plaintext\" setting.
+    // String kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext
+    test('to test the property `kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Invalid Recovery via Code Email Subject Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.html\" setting.
+    // String kratosCourierTemplatesRecoveryCodeInvalidEmailSubject
+    test('to test the property `kratosCourierTemplatesRecoveryCodeInvalidEmailSubject`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Valid Recovery via Code Email Body HTML Template  This governs the \"courier.smtp.templates.recovery_code.valid.email.body.html\" setting.
+    // String kratosCourierTemplatesRecoveryCodeValidEmailBodyHtml
+    test('to test the property `kratosCourierTemplatesRecoveryCodeValidEmailBodyHtml`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Valid Recovery via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery_code.valid.email.body.plaintext\" setting.
+    // String kratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext
+    test('to test the property `kratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Valid Recovery via Code Email Subject Template  This governs the \"courier.smtp.templates.recovery_code.valid.email.subject\" setting.
+    // String kratosCourierTemplatesRecoveryCodeValidEmailSubject
+    test('to test the property `kratosCourierTemplatesRecoveryCodeValidEmailSubject`', () async {
       // TODO
     });
 
@@ -346,13 +379,49 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.body.html\" setting.
+    // String kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml
+    test('to test the property `kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Invalid Verification via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.body.plaintext\" setting.
+    // String kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext
+    test('to test the property `kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Invalid Verification via Code Email Subject Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.subject\" setting.
+    // String kratosCourierTemplatesVerificationCodeInvalidEmailSubject
+    test('to test the property `kratosCourierTemplatesVerificationCodeInvalidEmailSubject`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Valid Verification via Code Email Body HTML Template  This governs the \"courier.smtp.templates.verification_code.valid.email.body.html\" setting.
+    // String kratosCourierTemplatesVerificationCodeValidEmailBodyHtml
+    test('to test the property `kratosCourierTemplatesVerificationCodeValidEmailBodyHtml`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Valid Verification via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification_code.valid.email.body.plaintext\" setting.
+    // String kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext
+    test('to test the property `kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Valid Verification via Code Email Subject Template  This governs the \"courier.smtp.templates.verification_code.valid.email.subject\" setting.
+    // String kratosCourierTemplatesVerificationCodeValidEmailSubject
+    test('to test the property `kratosCourierTemplatesVerificationCodeValidEmailSubject`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Invalid Verification Email Body HTML Template  This governs the \"courier.smtp.templates.verification.invalid.email.body.html\" setting.
     // String kratosCourierTemplatesVerificationInvalidEmailBodyHtml
     test('to test the property `kratosCourierTemplatesVerificationInvalidEmailBodyHtml`', () async {
       // TODO
     });
 
-    // Configures the Ory Kratos Invalid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery.invalid.email.body.plaintext\" setting.
+    // Configures the Ory Kratos Invalid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification.invalid.email.body.plaintext\" setting.
     // String kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext
     test('to test the property `kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext`', () async {
       // TODO
@@ -370,7 +439,7 @@ void main() {
       // TODO
     });
 
-    // Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery.valid.email.body.plaintext\" setting.
+    // Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification.valid.email.body.plaintext\" setting.
     // String kratosCourierTemplatesVerificationValidEmailBodyPlaintext
     test('to test the property `kratosCourierTemplatesVerificationValidEmailBodyPlaintext`', () async {
       // TODO
@@ -382,27 +451,39 @@ void main() {
       // TODO
     });
 
-    // List<NormalizedProjectRevisionIdentitySchema> kratosIdentitySchemas (default value: const [])
+    // BuiltList<NormalizedProjectRevisionIdentitySchema> kratosIdentitySchemas
     test('to test the property `kratosIdentitySchemas`', () async {
       // TODO
     });
 
-    // List<String> kratosSecretsCipher (default value: const [])
+    // NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+    // JsonObject kratosOauth2ProviderHeaders
+    test('to test the property `kratosOauth2ProviderHeaders`', () async {
+      // TODO
+    });
+
+    // The Revisions' OAuth2 Provider Integration URL  This governs the \"oauth2_provider.url\" setting.
+    // String kratosOauth2ProviderUrl
+    test('to test the property `kratosOauth2ProviderUrl`', () async {
+      // TODO
+    });
+
+    // BuiltList<String> kratosSecretsCipher
     test('to test the property `kratosSecretsCipher`', () async {
       // TODO
     });
 
-    // List<String> kratosSecretsCookie (default value: const [])
+    // BuiltList<String> kratosSecretsCookie
     test('to test the property `kratosSecretsCookie`', () async {
       // TODO
     });
 
-    // List<String> kratosSecretsDefault (default value: const [])
+    // BuiltList<String> kratosSecretsDefault
     test('to test the property `kratosSecretsDefault`', () async {
       // TODO
     });
 
-    // List<String> kratosSelfserviceAllowedReturnUrls (default value: const [])
+    // BuiltList<String> kratosSelfserviceAllowedReturnUrls
     test('to test the property `kratosSelfserviceAllowedReturnUrls`', () async {
       // TODO
     });
@@ -419,7 +500,7 @@ void main() {
       // TODO
     });
 
-    // List<NormalizedProjectRevisionHook> kratosSelfserviceFlowsHooks (default value: const [])
+    // BuiltList<NormalizedProjectRevisionHook> kratosSelfserviceFlowsHooks
     test('to test the property `kratosSelfserviceFlowsHooks`', () async {
       // TODO
     });
@@ -487,6 +568,12 @@ void main() {
     // Configures the Ory Kratos Recovery UI URL  This governs the \"selfservice.flows.recovery.ui_url\" setting.
     // String kratosSelfserviceFlowsRecoveryUiUrl
     test('to test the property `kratosSelfserviceFlowsRecoveryUiUrl`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Recovery strategy to use (\"link\" or \"code\")  This governs the \"selfservice.flows.recovery.use\" setting.
+    // String kratosSelfserviceFlowsRecoveryUse
+    test('to test the property `kratosSelfserviceFlowsRecoveryUse`', () async {
       // TODO
     });
 
@@ -598,13 +685,31 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting.
+    // String kratosSelfserviceFlowsVerificationUse
+    test('to test the property `kratosSelfserviceFlowsVerificationUse`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
+    // String kratosSelfserviceMethodsCodeConfigLifespan
+    test('to test the property `kratosSelfserviceMethodsCodeConfigLifespan`', () async {
+      // TODO
+    });
+
+    // Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
+    // bool kratosSelfserviceMethodsCodeEnabled
+    test('to test the property `kratosSelfserviceMethodsCodeEnabled`', () async {
+      // TODO
+    });
+
     // Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \"selfservice.methods.link.config.base_url\" setting.
     // String kratosSelfserviceMethodsLinkConfigBaseUrl
     test('to test the property `kratosSelfserviceMethodsLinkConfigBaseUrl`', () async {
       // TODO
     });
 
-    // Configures whether Ory Kratos Link Method is enabled  This governs the \"selfservice.methods.link.config.lifespan\" setting.
+    // Configures the Ory Kratos Link Method's lifespan  This governs the \"selfservice.methods.link.config.lifespan\" setting.
     // String kratosSelfserviceMethodsLinkConfigLifespan
     test('to test the property `kratosSelfserviceMethodsLinkConfigLifespan`', () async {
       // TODO
@@ -628,7 +733,7 @@ void main() {
       // TODO
     });
 
-    // List<NormalizedProjectRevisionThirdPartyProvider> kratosSelfserviceMethodsOidcConfigProviders (default value: const [])
+    // BuiltList<NormalizedProjectRevisionThirdPartyProvider> kratosSelfserviceMethodsOidcConfigProviders
     test('to test the property `kratosSelfserviceMethodsOidcConfigProviders`', () async {
       // TODO
     });
@@ -777,7 +882,5 @@ void main() {
       // TODO
     });
 
-
   });
-
 }

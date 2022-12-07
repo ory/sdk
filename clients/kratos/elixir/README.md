@@ -1,6 +1,6 @@
 # Ory
 
-Documentation for all public and administrative Ory Kratos APIs. Public and administrative APIs are exposed on different ports. Public APIs can face the public internet without any protection while administrative APIs should never be exposed without prior authorization. To protect the administative API port you should use something like Nginx, Ory Oathkeeper, or any other technology capable of authorizing incoming requests. 
+This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
 ### Building
 
@@ -30,5 +30,5 @@ be found at [https://hexdocs.pm/ory_kratos](https://hexdocs.pm/ory_kratos).
 
 You can override the URL of your server (e.g. if you have a separate development and production server in your configuration files.
 ```elixir
-config :ory_kratos_api, base_url: "http://localhost"
+config :ory_identities_api, base_url: "http://localhost"
 ```

@@ -19,6 +19,7 @@ A singular authenticator used during authentication / login.
 | Name | Value |
 |---- | -----|
 | LINK_RECOVERY | &quot;link_recovery&quot; |
+| CODE_RECOVERY | &quot;code_recovery&quot; |
 | PASSWORD | &quot;password&quot; |
 | TOTP | &quot;totp&quot; |
 | OIDC | &quot;oidc&quot; |

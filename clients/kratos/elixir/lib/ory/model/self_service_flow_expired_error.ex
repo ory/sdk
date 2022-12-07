@@ -9,29 +9,31 @@ defmodule Ory.Model.SelfServiceFlowExpiredError do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"code",
-    :"debug",
-    :"details",
-    :"id",
-    :"message",
-    :"reason",
-    :"request",
-    :"since",
-    :"status",
-    :"use_flow_id"
+    :code,
+    :debug,
+    :details,
+    :expired_at,
+    :id,
+    :message,
+    :reason,
+    :request,
+    :since,
+    :status,
+    :use_flow_id
   ]
 
   @type t :: %__MODULE__{
-    :"code" => integer() | nil,
-    :"debug" => String.t | nil,
-    :"details" => %{optional(String.t) => AnyType} | nil,
-    :"id" => String.t | nil,
-    :"message" => String.t,
-    :"reason" => String.t | nil,
-    :"request" => String.t | nil,
-    :"since" => integer() | nil,
-    :"status" => String.t | nil,
-    :"use_flow_id" => String.t | nil
+    :code => integer() | nil,
+    :debug => String.t | nil,
+    :details => %{optional(String.t) => AnyType} | nil,
+    :expired_at => DateTime.t | nil,
+    :id => String.t | nil,
+    :message => String.t,
+    :reason => String.t | nil,
+    :request => String.t | nil,
+    :since => integer() | nil,
+    :status => String.t | nil,
+    :use_flow_id => String.t | nil
   }
 end
 
@@ -39,7 +41,7 @@ defimpl Poison.Decoder, for: Ory.Model.SelfServiceFlowExpiredError do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"details", :map, Ory.Model.AnyType, options)
+    |> deserialize(:details, :map, Ory.Model.AnyType, options)
   end
 end
 

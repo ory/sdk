@@ -4,15 +4,19 @@
 
 defmodule Ory.Model.OAuth2Client do
   @moduledoc """
-  
+  OAuth 2.0 Clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
   """
 
   @derive [Poison.Encoder]
   defstruct [
     :allowed_cors_origins,
     :audience,
+    :authorization_code_grant_access_token_lifespan,
+    :authorization_code_grant_id_token_lifespan,
+    :authorization_code_grant_refresh_token_lifespan,
     :backchannel_logout_session_required,
     :backchannel_logout_uri,
+    :client_credentials_grant_access_token_lifespan,
     :client_id,
     :client_name,
     :client_secret,
@@ -23,14 +27,20 @@ defmodule Ory.Model.OAuth2Client do
     :frontchannel_logout_session_required,
     :frontchannel_logout_uri,
     :grant_types,
+    :implicit_grant_access_token_lifespan,
+    :implicit_grant_id_token_lifespan,
     :jwks,
     :jwks_uri,
+    :jwt_bearer_grant_access_token_lifespan,
     :logo_uri,
     :metadata,
     :owner,
     :policy_uri,
     :post_logout_redirect_uris,
     :redirect_uris,
+    :refresh_token_grant_access_token_lifespan,
+    :refresh_token_grant_id_token_lifespan,
+    :refresh_token_grant_refresh_token_lifespan,
     :registration_access_token,
     :registration_client_uri,
     :request_object_signing_alg,
@@ -49,8 +59,12 @@ defmodule Ory.Model.OAuth2Client do
   @type t :: %__MODULE__{
     :allowed_cors_origins => [String.t] | nil,
     :audience => [String.t] | nil,
+    :authorization_code_grant_access_token_lifespan => String.t | nil,
+    :authorization_code_grant_id_token_lifespan => String.t | nil,
+    :authorization_code_grant_refresh_token_lifespan => String.t | nil,
     :backchannel_logout_session_required => boolean() | nil,
     :backchannel_logout_uri => String.t | nil,
+    :client_credentials_grant_access_token_lifespan => String.t | nil,
     :client_id => String.t | nil,
     :client_name => String.t | nil,
     :client_secret => String.t | nil,
@@ -61,14 +75,20 @@ defmodule Ory.Model.OAuth2Client do
     :frontchannel_logout_session_required => boolean() | nil,
     :frontchannel_logout_uri => String.t | nil,
     :grant_types => [String.t] | nil,
-    :jwks => map() | nil,
+    :implicit_grant_access_token_lifespan => String.t | nil,
+    :implicit_grant_id_token_lifespan => String.t | nil,
+    :jwks => AnyType | nil,
     :jwks_uri => String.t | nil,
+    :jwt_bearer_grant_access_token_lifespan => String.t | nil,
     :logo_uri => String.t | nil,
     :metadata => map() | nil,
     :owner => String.t | nil,
     :policy_uri => String.t | nil,
     :post_logout_redirect_uris => [String.t] | nil,
     :redirect_uris => [String.t] | nil,
+    :refresh_token_grant_access_token_lifespan => String.t | nil,
+    :refresh_token_grant_id_token_lifespan => String.t | nil,
+    :refresh_token_grant_refresh_token_lifespan => String.t | nil,
     :registration_access_token => String.t | nil,
     :registration_client_uri => String.t | nil,
     :request_object_signing_alg => String.t | nil,
@@ -86,8 +106,10 @@ defmodule Ory.Model.OAuth2Client do
 end
 
 defimpl Poison.Decoder, for: Ory.Model.OAuth2Client do
-  def decode(value, _options) do
+  import Ory.Deserializer
+  def decode(value, options) do
     value
+    |> deserialize(:jwks, :struct, Ory.Model.AnyType, options)
   end
 end
 

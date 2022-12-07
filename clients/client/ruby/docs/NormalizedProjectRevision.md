@@ -26,19 +26,19 @@
 | **hydra_serve_cookies_same_site_mode** | **String** | Configures the Ory Hydra Cookie Same Site Mode  This governs the \&quot;serve.cookies.same_site_mode\&quot; setting. | [optional] |
 | **hydra_serve_public_cors_allowed_origins** | **Array&lt;String&gt;** |  | [optional] |
 | **hydra_serve_public_cors_enabled** | **Boolean** | Configures the Ory Hydra CORS Settings  This governs the \&quot;serve.public.cors.enabled\&quot; setting. | [optional] |
-| **hydra_strategies_access_token** | **Object** | Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \&quot;strategies.access_token\&quot; setting. | [optional] |
-| **hydra_strategies_scope** | **Object** | Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \&quot;strategies.scope\&quot; setting. | [optional] |
+| **hydra_strategies_access_token** | **String** | Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \&quot;strategies.access_token\&quot; setting. opaque OAUTH2_ACCESS_TOKEN_STRATEGY_OPAQUE jwt OAUTH2_ACCESS_TOKEN_STRATEGY_JWT | [optional][default to &#39;opaque&#39;] |
+| **hydra_strategies_scope** | **String** | Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \&quot;strategies.scope\&quot; setting. exact OAUTH2_SCOPE_STRATEGY_EXACT wildcard OAUTH2_SCOPE_STRATEGY_WILDCARD | [optional][default to &#39;wildcard&#39;] |
 | **hydra_ttl_access_token** | **String** | This governs the \&quot;ttl.access_token\&quot; setting. | [optional][default to &#39;30m&#39;] |
 | **hydra_ttl_auth_code** | **String** | Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \&quot;ttl.auth_code\&quot; setting. | [optional][default to &#39;720h&#39;] |
 | **hydra_ttl_id_token** | **String** | This governs the \&quot;ttl.id_token\&quot; setting. | [optional][default to &#39;30m&#39;] |
 | **hydra_ttl_login_consent_request** | **String** | Configures how long a user login and consent flow may take.  This governs the \&quot;ttl.login_consent_request\&quot; setting. | [optional][default to &#39;30m&#39;] |
 | **hydra_ttl_refresh_token** | **String** | Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \&quot;ttl.refresh_token\&quot; setting. | [optional][default to &#39;720h&#39;] |
-| **hydra_urls_consent** | **String** | Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login &amp; Consent flow.  Defaults to Ory Cloud&#39;s Managed UI if left empty.  This governs the \&quot;urls.consent\&quot; setting. | [optional] |
-| **hydra_urls_error** | **String** | Sets the OAuth2 Error URL of the OAuth2 User Login &amp; Consent flow.  Defaults to Ory Cloud&#39;s Managed UI if left empty.  This governs the \&quot;urls.error\&quot; setting. | [optional] |
-| **hydra_urls_login** | **String** | Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login &amp; Consent flow.  Defaults to Ory Cloud&#39;s Managed UI if left empty.  This governs the \&quot;urls.login\&quot; setting. | [optional] |
-| **hydra_urls_logout** | **String** | Sets the logout endpoint.  Defaults to Ory Cloud&#39;s Managed UI if left empty.  This governs the \&quot;urls.logout\&quot; setting. | [optional] |
-| **hydra_urls_post_logout_redirect** | **String** | When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to Ory Cloud&#39;s Managed UI in development and your application in production mode when a custom domain is connected.  This governs the \&quot;urls.post_logout_redirect\&quot; setting. | [optional] |
-| **hydra_urls_self_issuer** | **String** | This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  In Ory Cloud it will be very rare that you want to modify this value. If left empty, it will default to the correct value for Ory Cloud.  This governs the \&quot;urls.self.issuer\&quot; setting. | [optional] |
+| **hydra_urls_consent** | **String** | Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login &amp; Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \&quot;urls.consent\&quot; setting. | [optional] |
+| **hydra_urls_error** | **String** | Sets the OAuth2 Error URL of the OAuth2 User Login &amp; Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \&quot;urls.error\&quot; setting. | [optional] |
+| **hydra_urls_login** | **String** | Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login &amp; Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \&quot;urls.login\&quot; setting. | [optional] |
+| **hydra_urls_logout** | **String** | Sets the logout endpoint.  Defaults to the Ory Account Experience if left empty.  This governs the \&quot;urls.logout\&quot; setting. | [optional] |
+| **hydra_urls_post_logout_redirect** | **String** | When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to the Ory Account Experience in development and your application in production mode when a custom domain is connected.  This governs the \&quot;urls.post_logout_redirect\&quot; setting. | [optional] |
+| **hydra_urls_self_issuer** | **String** | This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  On the Ory Network it will be very rare that you want to modify this value. If left empty, it will default to the correct value for the Ory Network.  This governs the \&quot;urls.self.issuer\&quot; setting. | [optional] |
 | **hydra_webfinger_jwks_broadcast_keys** | **Array&lt;String&gt;** |  | [optional] |
 | **hydra_webfinger_oidc_discovery_auth_url** | **String** | Configures OpenID Connect Discovery and overwrites the OAuth2 Authorization URL.  This governs the \&quot;webfinger.oidc.discovery.auth_url\&quot; setting. | [optional] |
 | **hydra_webfinger_oidc_discovery_client_registration_url** | **String** | Configures OpenID Connect Discovery and overwrites the OpenID Connect Dynamic Client Registration Endpoint.  This governs the \&quot;webfinger.oidc.discovery.client_registration_url\&quot; setting. | [optional] |
@@ -48,6 +48,7 @@
 | **hydra_webfinger_oidc_discovery_token_url** | **String** | Configures OpenID Connect Discovery and overwrites the OAuth2 Token URL.  This governs the \&quot;webfinger.oidc.discovery.token_url\&quot; setting. | [optional] |
 | **hydra_webfinger_oidc_discovery_userinfo_url** | **String** | Configures OpenID Connect Discovery and overwrites userinfo endpoint to be advertised at the OpenID Connect Discovery endpoint /.well-known/openid-configuration. Defaults to Ory Hydra&#39;s userinfo endpoint at /userinfo. Set this value if you want to handle this endpoint yourself.  This governs the \&quot;webfinger.oidc.discovery.userinfo_url\&quot; setting. | [optional] |
 | **id** | **String** | The revision ID. | [optional][readonly] |
+| **keto_namespace_configuration** | **String** | The Revisions&#39; Keto Namespace Configuration  The string is a URL pointing to an OPL file with the configuration. | [optional] |
 | **keto_namespaces** | [**Array&lt;KetoNamespace&gt;**](KetoNamespace.md) |  | [optional] |
 | **keto_read_max_depth** | **Integer** |  | [optional] |
 | **kratos_cookies_same_site** | **String** | Configures the Ory Kratos Cookie SameSite Attribute  This governs the \&quot;cookies.same_site\&quot; setting. | [optional] |
@@ -55,19 +56,33 @@
 | **kratos_courier_smtp_from_address** | **String** | Configures the Ory Kratos SMTP From Address  This governs the \&quot;courier.smtp.from_address\&quot; setting. | [optional] |
 | **kratos_courier_smtp_from_name** | **String** | Configures the Ory Kratos SMTP From Name  This governs the \&quot;courier.smtp.from_name\&quot; setting. | [optional] |
 | **kratos_courier_smtp_headers** | **Object** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] |
+| **kratos_courier_templates_recovery_code_invalid_email_body_html** | **String** | Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template  This governs the \&quot;courier.smtp.templates.recovery_code.invalid.email.body.html\&quot; setting. | [optional] |
+| **kratos_courier_templates_recovery_code_invalid_email_body_plaintext** | **String** | Configures the Ory Kratos Invalid Recovery via Code Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.recovery_code.invalid.email.body.plaintext\&quot; setting. | [optional] |
+| **kratos_courier_templates_recovery_code_invalid_email_subject** | **String** | Configures the Ory Kratos Invalid Recovery via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.recovery_code.invalid.email.body.html\&quot; setting. | [optional] |
+| **kratos_courier_templates_recovery_code_valid_email_body_html** | **String** | Configures the Ory Kratos Valid Recovery via Code Email Body HTML Template  This governs the \&quot;courier.smtp.templates.recovery_code.valid.email.body.html\&quot; setting. | [optional] |
+| **kratos_courier_templates_recovery_code_valid_email_body_plaintext** | **String** | Configures the Ory Kratos Valid Recovery via Code Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.recovery_code.valid.email.body.plaintext\&quot; setting. | [optional] |
+| **kratos_courier_templates_recovery_code_valid_email_subject** | **String** | Configures the Ory Kratos Valid Recovery via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.recovery_code.valid.email.subject\&quot; setting. | [optional] |
 | **kratos_courier_templates_recovery_invalid_email_body_html** | **String** | Configures the Ory Kratos Invalid Recovery Email Body HTML Template  This governs the \&quot;courier.smtp.templates.recovery.invalid.email.body.html\&quot; setting. | [optional] |
 | **kratos_courier_templates_recovery_invalid_email_body_plaintext** | **String** | Configures the Ory Kratos Invalid Recovery Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.recovery.invalid.email.body.plaintext\&quot; setting. | [optional] |
 | **kratos_courier_templates_recovery_invalid_email_subject** | **String** | Configures the Ory Kratos Invalid Recovery Email Subject Template  This governs the \&quot;courier.smtp.templates.recovery.invalid.email.body.html\&quot; setting. | [optional] |
 | **kratos_courier_templates_recovery_valid_email_body_html** | **String** | Configures the Ory Kratos Valid Recovery Email Body HTML Template  This governs the \&quot;courier.smtp.templates.recovery.valid.email.body.html\&quot; setting. | [optional] |
 | **kratos_courier_templates_recovery_valid_email_body_plaintext** | **String** | Configures the Ory Kratos Valid Recovery Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.recovery.valid.email.body.plaintext\&quot; setting. | [optional] |
 | **kratos_courier_templates_recovery_valid_email_subject** | **String** | Configures the Ory Kratos Valid Recovery Email Subject Template  This governs the \&quot;courier.smtp.templates.recovery.valid.email.subject\&quot; setting. | [optional] |
+| **kratos_courier_templates_verification_code_invalid_email_body_html** | **String** | Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template  This governs the \&quot;courier.smtp.templates.verification_code.invalid.email.body.html\&quot; setting. | [optional] |
+| **kratos_courier_templates_verification_code_invalid_email_body_plaintext** | **String** | Configures the Ory Kratos Invalid Verification via Code Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.verification_code.invalid.email.body.plaintext\&quot; setting. | [optional] |
+| **kratos_courier_templates_verification_code_invalid_email_subject** | **String** | Configures the Ory Kratos Invalid Verification via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.verification_code.invalid.email.subject\&quot; setting. | [optional] |
+| **kratos_courier_templates_verification_code_valid_email_body_html** | **String** | Configures the Ory Kratos Valid Verification via Code Email Body HTML Template  This governs the \&quot;courier.smtp.templates.verification_code.valid.email.body.html\&quot; setting. | [optional] |
+| **kratos_courier_templates_verification_code_valid_email_body_plaintext** | **String** | Configures the Ory Kratos Valid Verification via Code Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.verification_code.valid.email.body.plaintext\&quot; setting. | [optional] |
+| **kratos_courier_templates_verification_code_valid_email_subject** | **String** | Configures the Ory Kratos Valid Verification via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.verification_code.valid.email.subject\&quot; setting. | [optional] |
 | **kratos_courier_templates_verification_invalid_email_body_html** | **String** | Configures the Ory Kratos Invalid Verification Email Body HTML Template  This governs the \&quot;courier.smtp.templates.verification.invalid.email.body.html\&quot; setting. | [optional] |
-| **kratos_courier_templates_verification_invalid_email_body_plaintext** | **String** | Configures the Ory Kratos Invalid Verification Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.recovery.invalid.email.body.plaintext\&quot; setting. | [optional] |
+| **kratos_courier_templates_verification_invalid_email_body_plaintext** | **String** | Configures the Ory Kratos Invalid Verification Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.verification.invalid.email.body.plaintext\&quot; setting. | [optional] |
 | **kratos_courier_templates_verification_invalid_email_subject** | **String** | Configures the Ory Kratos Invalid Verification Email Subject Template  This governs the \&quot;courier.smtp.templates.verification.invalid.email.subject\&quot; setting. | [optional] |
 | **kratos_courier_templates_verification_valid_email_body_html** | **String** | Configures the Ory Kratos Valid Verification Email Body HTML Template  This governs the \&quot;courier.smtp.templates.verification.valid.email.body.html\&quot; setting. | [optional] |
-| **kratos_courier_templates_verification_valid_email_body_plaintext** | **String** | Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.recovery.valid.email.body.plaintext\&quot; setting. | [optional] |
+| **kratos_courier_templates_verification_valid_email_body_plaintext** | **String** | Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.verification.valid.email.body.plaintext\&quot; setting. | [optional] |
 | **kratos_courier_templates_verification_valid_email_subject** | **String** | Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \&quot;courier.smtp.templates.verification.valid.email.subject\&quot; setting. | [optional] |
 | **kratos_identity_schemas** | [**Array&lt;NormalizedProjectRevisionIdentitySchema&gt;**](NormalizedProjectRevisionIdentitySchema.md) |  | [optional] |
+| **kratos_oauth2_provider_headers** | **Object** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] |
+| **kratos_oauth2_provider_url** | **String** | The Revisions&#39; OAuth2 Provider Integration URL  This governs the \&quot;oauth2_provider.url\&quot; setting. | [optional] |
 | **kratos_secrets_cipher** | **Array&lt;String&gt;** |  | [optional] |
 | **kratos_secrets_cookie** | **Array&lt;String&gt;** |  | [optional] |
 | **kratos_secrets_default** | **Array&lt;String&gt;** |  | [optional] |
@@ -86,6 +101,7 @@
 | **kratos_selfservice_flows_recovery_enabled** | **Boolean** | Configures the Ory Kratos Recovery Enabled Setting  This governs the \&quot;selfservice.flows.recovery.enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_recovery_lifespan** | **String** | Configures the Ory Kratos Recovery Lifespan  This governs the \&quot;selfservice.flows.recovery.lifespan\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_recovery_ui_url** | **String** | Configures the Ory Kratos Recovery UI URL  This governs the \&quot;selfservice.flows.recovery.ui_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_recovery_use** | **String** | Configures the Ory Kratos Recovery strategy to use (\&quot;link\&quot; or \&quot;code\&quot;)  This governs the \&quot;selfservice.flows.recovery.use\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_registration_after_default_browser_return_url** | **String** | Configures the Ory Kratos Registration Default Return URL  This governs the \&quot;selfservice.flows.registration.after.default_browser_return_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_registration_after_oidc_default_browser_return_url** | **String** | Configures the Ory Kratos Registration After OIDC Default Return URL  This governs the \&quot;selfservice.flows.registration.after.oidc.default_browser_return_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_registration_after_password_default_browser_return_url** | **String** | Configures the Ory Kratos Registration After Password Default Return URL  This governs the \&quot;selfservice.flows.registration.after.password.default_browser_return_url\&quot; setting. | [optional] |
@@ -104,8 +120,11 @@
 | **kratos_selfservice_flows_verification_enabled** | **Boolean** | Configures the Ory Kratos Verification Enabled Setting  This governs the \&quot;selfservice.flows.verification.enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_verification_lifespan** | **String** | Configures the Ory Kratos Verification Lifespan  This governs the \&quot;selfservice.flows.verification.lifespan\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_verification_ui_url** | **String** | Configures the Ory Kratos Verification UI URL  This governs the \&quot;selfservice.flows.verification.ui_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_verification_use** | **String** | Configures the Ory Kratos Strategy to use for Verification  This governs the \&quot;selfservice.flows.verification.use\&quot; setting. | [optional] |
+| **kratos_selfservice_methods_code_config_lifespan** | **String** | Configures the Ory Kratos Code Method&#39;s lifespan  This governs the \&quot;selfservice.methods.code.config.lifespan\&quot; setting. | [optional] |
+| **kratos_selfservice_methods_code_enabled** | **Boolean** | Configures whether Ory Kratos Code Method is enabled  This governs the \&quot;selfservice.methods.code.enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_link_config_base_url** | **String** | Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \&quot;selfservice.methods.link.config.base_url\&quot; setting. | [optional] |
-| **kratos_selfservice_methods_link_config_lifespan** | **String** | Configures whether Ory Kratos Link Method is enabled  This governs the \&quot;selfservice.methods.link.config.lifespan\&quot; setting. | [optional] |
+| **kratos_selfservice_methods_link_config_lifespan** | **String** | Configures the Ory Kratos Link Method&#39;s lifespan  This governs the \&quot;selfservice.methods.link.config.lifespan\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_link_enabled** | **Boolean** | Configures whether Ory Kratos Link Method is enabled  This governs the \&quot;selfservice.methods.link.enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_lookup_secret_enabled** | **Boolean** | Configures whether Ory Kratos TOTP Lookup Secret is enabled  This governs the \&quot;selfservice.methods.lookup_secret.enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_oidc_config_base_redirect_uri** | **String** | Configures the Ory Kratos Third Party / OpenID Connect base redirect URI  This governs the \&quot;selfservice.methods.oidc.config.base_redirect_uri\&quot; setting. | [optional] |
@@ -185,6 +204,7 @@ instance = OryClient::NormalizedProjectRevision.new(
   hydra_webfinger_oidc_discovery_token_url: null,
   hydra_webfinger_oidc_discovery_userinfo_url: null,
   id: null,
+  keto_namespace_configuration: null,
   keto_namespaces: null,
   keto_read_max_depth: null,
   kratos_cookies_same_site: null,
@@ -192,12 +212,24 @@ instance = OryClient::NormalizedProjectRevision.new(
   kratos_courier_smtp_from_address: null,
   kratos_courier_smtp_from_name: null,
   kratos_courier_smtp_headers: null,
+  kratos_courier_templates_recovery_code_invalid_email_body_html: null,
+  kratos_courier_templates_recovery_code_invalid_email_body_plaintext: null,
+  kratos_courier_templates_recovery_code_invalid_email_subject: null,
+  kratos_courier_templates_recovery_code_valid_email_body_html: null,
+  kratos_courier_templates_recovery_code_valid_email_body_plaintext: null,
+  kratos_courier_templates_recovery_code_valid_email_subject: null,
   kratos_courier_templates_recovery_invalid_email_body_html: null,
   kratos_courier_templates_recovery_invalid_email_body_plaintext: null,
   kratos_courier_templates_recovery_invalid_email_subject: null,
   kratos_courier_templates_recovery_valid_email_body_html: null,
   kratos_courier_templates_recovery_valid_email_body_plaintext: null,
   kratos_courier_templates_recovery_valid_email_subject: null,
+  kratos_courier_templates_verification_code_invalid_email_body_html: null,
+  kratos_courier_templates_verification_code_invalid_email_body_plaintext: null,
+  kratos_courier_templates_verification_code_invalid_email_subject: null,
+  kratos_courier_templates_verification_code_valid_email_body_html: null,
+  kratos_courier_templates_verification_code_valid_email_body_plaintext: null,
+  kratos_courier_templates_verification_code_valid_email_subject: null,
   kratos_courier_templates_verification_invalid_email_body_html: null,
   kratos_courier_templates_verification_invalid_email_body_plaintext: null,
   kratos_courier_templates_verification_invalid_email_subject: null,
@@ -205,6 +237,8 @@ instance = OryClient::NormalizedProjectRevision.new(
   kratos_courier_templates_verification_valid_email_body_plaintext: null,
   kratos_courier_templates_verification_valid_email_subject: null,
   kratos_identity_schemas: null,
+  kratos_oauth2_provider_headers: null,
+  kratos_oauth2_provider_url: null,
   kratos_secrets_cipher: null,
   kratos_secrets_cookie: null,
   kratos_secrets_default: null,
@@ -223,6 +257,7 @@ instance = OryClient::NormalizedProjectRevision.new(
   kratos_selfservice_flows_recovery_enabled: null,
   kratos_selfservice_flows_recovery_lifespan: null,
   kratos_selfservice_flows_recovery_ui_url: null,
+  kratos_selfservice_flows_recovery_use: null,
   kratos_selfservice_flows_registration_after_default_browser_return_url: null,
   kratos_selfservice_flows_registration_after_oidc_default_browser_return_url: null,
   kratos_selfservice_flows_registration_after_password_default_browser_return_url: null,
@@ -241,6 +276,9 @@ instance = OryClient::NormalizedProjectRevision.new(
   kratos_selfservice_flows_verification_enabled: null,
   kratos_selfservice_flows_verification_lifespan: null,
   kratos_selfservice_flows_verification_ui_url: null,
+  kratos_selfservice_flows_verification_use: null,
+  kratos_selfservice_methods_code_config_lifespan: null,
+  kratos_selfservice_methods_code_enabled: null,
   kratos_selfservice_methods_link_config_base_url: null,
   kratos_selfservice_methods_link_config_lifespan: null,
   kratos_selfservice_methods_link_enabled: null,

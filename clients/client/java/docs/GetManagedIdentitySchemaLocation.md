@@ -2,6 +2,7 @@
 
 # GetManagedIdentitySchemaLocation
 
+Ory Identity Schema Location
 
 ## Properties
 

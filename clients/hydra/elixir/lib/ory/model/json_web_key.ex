@@ -4,48 +4,48 @@
 
 defmodule Ory.Model.JsonWebKey do
   @moduledoc """
-  It is important that this model object is named JSONWebKey for \"swagger generate spec\" to generate only on definition of a JSONWebKey.
+  
   """
 
   @derive [Poison.Encoder]
   defstruct [
-    :"alg",
-    :"crv",
-    :"d",
-    :"dp",
-    :"dq",
-    :"e",
-    :"k",
-    :"kid",
-    :"kty",
-    :"n",
-    :"p",
-    :"q",
-    :"qi",
-    :"use",
-    :"x",
-    :"x5c",
-    :"y"
+    :alg,
+    :crv,
+    :d,
+    :dp,
+    :dq,
+    :e,
+    :k,
+    :kid,
+    :kty,
+    :n,
+    :p,
+    :q,
+    :qi,
+    :use,
+    :x,
+    :x5c,
+    :y
   ]
 
   @type t :: %__MODULE__{
-    :"alg" => String.t,
-    :"crv" => String.t | nil,
-    :"d" => String.t | nil,
-    :"dp" => String.t | nil,
-    :"dq" => String.t | nil,
-    :"e" => String.t | nil,
-    :"k" => String.t | nil,
-    :"kid" => String.t,
-    :"kty" => String.t,
-    :"n" => String.t | nil,
-    :"p" => String.t | nil,
-    :"q" => String.t | nil,
-    :"qi" => String.t | nil,
-    :"use" => String.t,
-    :"x" => String.t | nil,
-    :"x5c" => [String.t] | nil,
-    :"y" => String.t | nil
+    :alg => String.t,
+    :crv => String.t | nil,
+    :d => String.t | nil,
+    :dp => String.t | nil,
+    :dq => String.t | nil,
+    :e => String.t | nil,
+    :k => String.t | nil,
+    :kid => String.t,
+    :kty => String.t,
+    :n => String.t | nil,
+    :p => String.t | nil,
+    :q => String.t | nil,
+    :qi => String.t | nil,
+    :use => String.t,
+    :x => String.t | nil,
+    :x5c => [String.t] | nil,
+    :y => String.t | nil
   }
 end
 

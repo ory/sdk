@@ -9,11 +9,11 @@ defmodule Ory.Model.UiNodeMeta do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"label"
+    :label
   ]
 
   @type t :: %__MODULE__{
-    :"label" => Ory.Model.UiText.t | nil
+    :label => Ory.Model.UiText.t | nil
   }
 end
 
@@ -21,7 +21,7 @@ defimpl Poison.Decoder, for: Ory.Model.UiNodeMeta do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"label", :struct, Ory.Model.UiText, options)
+    |> deserialize(:label, :struct, Ory.Model.UiText, options)
   end
 end
 

@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **currentRevision** | [**\Ory\Client\Model\NormalizedProjectRevision**](NormalizedProjectRevision.md) |  |
 **hosts** | **string[]** |  |
 **id** | **string** | The project&#39;s ID. | [readonly]
-**revisions** | [**\Ory\Client\Model\NormalizedProjectRevision[]**](NormalizedProjectRevision.md) |  |
 **slug** | **string** | The project&#39;s slug | [readonly]
 **state** | **string** | The state of the project. running Running halted Halted | [readonly]
 **subscriptionId** | **string** |  | [optional]

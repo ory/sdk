@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.48
+API version: v1.0.2
 Contact: support@ory.sh
 */
 
@@ -19,6 +19,10 @@ import (
 type Pagination struct {
 	// Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
 	Page *int64 `json:"page,omitempty"`
+	// Items per page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+	PageSize *int64 `json:"page_size,omitempty"`
+	// Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+	PageToken *string `json:"page_token,omitempty"`
 	// Items per Page  This is the number of items per page.
 	PerPage *int64 `json:"per_page,omitempty"`
 }
@@ -31,6 +35,10 @@ func NewPagination() *Pagination {
 	this := Pagination{}
 	var page int64 = 1
 	this.Page = &page
+	var pageSize int64 = 250
+	this.PageSize = &pageSize
+	var pageToken string = "1"
+	this.PageToken = &pageToken
 	var perPage int64 = 250
 	this.PerPage = &perPage
 	return &this
@@ -43,6 +51,10 @@ func NewPaginationWithDefaults() *Pagination {
 	this := Pagination{}
 	var page int64 = 1
 	this.Page = &page
+	var pageSize int64 = 250
+	this.PageSize = &pageSize
+	var pageToken string = "1"
+	this.PageToken = &pageToken
 	var perPage int64 = 250
 	this.PerPage = &perPage
 	return &this
@@ -78,6 +90,70 @@ func (o *Pagination) HasPage() bool {
 // SetPage gets a reference to the given int64 and assigns it to the Page field.
 func (o *Pagination) SetPage(v int64) {
 	o.Page = &v
+}
+
+// GetPageSize returns the PageSize field value if set, zero value otherwise.
+func (o *Pagination) GetPageSize() int64 {
+	if o == nil || o.PageSize == nil {
+		var ret int64
+		return ret
+	}
+	return *o.PageSize
+}
+
+// GetPageSizeOk returns a tuple with the PageSize field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Pagination) GetPageSizeOk() (*int64, bool) {
+	if o == nil || o.PageSize == nil {
+		return nil, false
+	}
+	return o.PageSize, true
+}
+
+// HasPageSize returns a boolean if a field has been set.
+func (o *Pagination) HasPageSize() bool {
+	if o != nil && o.PageSize != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPageSize gets a reference to the given int64 and assigns it to the PageSize field.
+func (o *Pagination) SetPageSize(v int64) {
+	o.PageSize = &v
+}
+
+// GetPageToken returns the PageToken field value if set, zero value otherwise.
+func (o *Pagination) GetPageToken() string {
+	if o == nil || o.PageToken == nil {
+		var ret string
+		return ret
+	}
+	return *o.PageToken
+}
+
+// GetPageTokenOk returns a tuple with the PageToken field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Pagination) GetPageTokenOk() (*string, bool) {
+	if o == nil || o.PageToken == nil {
+		return nil, false
+	}
+	return o.PageToken, true
+}
+
+// HasPageToken returns a boolean if a field has been set.
+func (o *Pagination) HasPageToken() bool {
+	if o != nil && o.PageToken != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPageToken gets a reference to the given string and assigns it to the PageToken field.
+func (o *Pagination) SetPageToken(v string) {
+	o.PageToken = &v
 }
 
 // GetPerPage returns the PerPage field value if set, zero value otherwise.
@@ -116,6 +192,12 @@ func (o Pagination) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Page != nil {
 		toSerialize["page"] = o.Page
+	}
+	if o.PageSize != nil {
+		toSerialize["page_size"] = o.PageSize
+	}
+	if o.PageToken != nil {
+		toSerialize["page_token"] = o.PageToken
 	}
 	if o.PerPage != nil {
 		toSerialize["per_page"] = o.PerPage

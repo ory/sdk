@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **disabled** | **bool** | Sets the input&#39;s disabled field to true or false. | 
 **name** | **str** | The input&#39;s element name. | 
 **node_type** | **str** | NodeType represents this node&#39;s types. It is a mirror of &#x60;node.type&#x60; and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \&quot;input\&quot;. | 
-**type** | **str** | The input&#39;s element type. | 
-**autocomplete** | **str** | The autocomplete attribute for the input. | [optional] 
+**type** | **str** | The input&#39;s element type. text InputAttributeTypeText password InputAttributeTypePassword number InputAttributeTypeNumber checkbox InputAttributeTypeCheckbox hidden InputAttributeTypeHidden email InputAttributeTypeEmail tel InputAttributeTypeTel submit InputAttributeTypeSubmit button InputAttributeTypeButton datetime-local InputAttributeTypeDateTimeLocal date InputAttributeTypeDate url InputAttributeTypeURI | 
+**autocomplete** | **str** | The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode | [optional] 
 **label** | [**UiText**](UiText.md) |  | [optional] 
 **onclick** | **str** | OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn. | [optional] 
 **pattern** | **str** | The input&#39;s pattern. | [optional] 

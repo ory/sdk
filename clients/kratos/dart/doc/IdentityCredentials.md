@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **config** | [**JsonObject**](.md) |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] 
-**identifiers** | **BuiltList<String>** | Identifiers represents a list of unique identifiers this credential type matches. | [optional] 
+**identifiers** | **BuiltList&lt;String&gt;** | Identifiers represents a list of unique identifiers this credential type matches. | [optional] 
 **type** | [**IdentityCredentialsType**](IdentityCredentialsType.md) |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **version** | **int** | Version refers to the version of the credential. Useful when changing the config schema. | [optional] 

@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **current_revision** | [**NormalizedProjectRevision**](NormalizedProjectRevision.md) |  | 
 **hosts** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | 
 **id** | **str** | The project&#39;s ID. | [readonly] 
-**revisions** | [**ProjectRevisions**](ProjectRevisions.md) |  | 
 **slug** | **str** | The project&#39;s slug | [readonly] 
 **state** | **str** | The state of the project. running Running halted Halted | [readonly] 
 **updated_at** | **datetime** | Last Time Project was Updated | [readonly] 

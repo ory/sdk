@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.48
+API version: v1.0.2
 Contact: support@ory.sh
 */
 
@@ -15,7 +15,7 @@ import (
 	"encoding/json"
 )
 
-// CreateProjectBody struct for CreateProjectBody
+// CreateProjectBody Create Project Request Body
 type CreateProjectBody struct {
 	// The name of the project to be created
 	Name string `json:"name"`

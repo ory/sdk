@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.48
+API version: v1.0.2
 Contact: support@ory.sh
 */
 
@@ -20,6 +20,7 @@ import (
 type VerifiableIdentityAddress struct {
 	// When this entry was created
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	// The ID
 	Id *string `json:"id,omitempty"`
 	// VerifiableAddressStatus must not exceed 16 characters as that is the limitation in the SQL Schema
 	Status string `json:"status"`

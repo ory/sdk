@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.48
+API version: v1.0.2
 Contact: support@ory.sh
 */
 
@@ -22,6 +22,7 @@ type UiText struct {
 	Id int64 `json:"id"`
 	// The message text. Written in american english.
 	Text string `json:"text"`
+	// The message type. info Info error Error success Success
 	Type string `json:"type"`
 }
 

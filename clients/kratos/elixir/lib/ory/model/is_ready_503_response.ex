@@ -9,11 +9,11 @@ defmodule Ory.Model.IsReady503Response do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"errors"
+    :errors
   ]
 
   @type t :: %__MODULE__{
-    :"errors" => %{optional(String.t) => String.t}
+    :errors => %{optional(String.t) => String.t}
   }
 end
 

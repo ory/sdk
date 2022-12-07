@@ -1,12 +1,5 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.7
-
-// ignore_for_file: unused_import
-
-import 'package:ory_kratos_client/model/ui_container.dart';
 import 'package:test/test.dart';
+import 'package:ory_kratos_client/ory_kratos_client.dart';
 
 // tests for UiContainer
 void main() {
@@ -36,7 +29,5 @@ void main() {
       // TODO
     });
 
-
   });
-
 }

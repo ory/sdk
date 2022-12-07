@@ -9,11 +9,11 @@ defmodule Ory.Model.GetVersion200Response do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"version"
+    :version
   ]
 
   @type t :: %__MODULE__{
-    :"version" => String.t
+    :version => String.t
   }
 end
 

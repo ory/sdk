@@ -4,7 +4,7 @@
 
 defmodule Ory.Model.GetManagedIdentitySchemaLocation do
   @moduledoc """
-  
+  Ory Identity Schema Location
   """
 
   @derive [Poison.Encoder]

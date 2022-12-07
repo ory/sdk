@@ -10,7 +10,7 @@ defmodule Ory.Connection do
   use Tesla
 
   # Add any middleware here (authentication)
-  plug Tesla.Middleware.BaseUrl, Application.get_env(:ory_kratos_api, :base_url, "http://localhost")
+  plug Tesla.Middleware.BaseUrl, Application.get_env(:ory_identities_api, :base_url, "http://localhost")
   plug Tesla.Middleware.Headers, [{"user-agent", "Elixir"}]
   plug Tesla.Middleware.EncodeJson, engine: Poison
 

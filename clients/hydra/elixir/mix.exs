@@ -3,12 +3,12 @@ defmodule Ory.Mixfile do
 
   def project do
     [app: :ory_hydra,
-     version: "1.11.0",
-     elixir: "~> 1.6",
+     version: "2.0.2",
+     elixir: "~> 1.10",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      package: package(),
-     description: "Welcome to the ORY Hydra HTTP API documentation. You will find documentation for all HTTP APIs here.",
+     description: "Documentation for all of Ory Hydra&#39;s APIs. ",
      deps: deps()]
   end
 
@@ -31,17 +31,23 @@ defmodule Ory.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:tesla, "~> 1.2"},
-      {:poison, "~> 3.0"}
+      {:tesla, "~> 1.4"},
+      {:poison, "~> 3.0"},
+      {:ex_doc, "~> 0.28", only: :dev, runtime: false}
     ]
   end
 
    defp package() do
     [
       name: "ory_hydra",
-      files: ~w(lib mix.exs README* LICENSE*),
-      licenses: [""],
-      links: %{"GitHub" => "https://github.com/ory/sdk"}
+      files: ~w(.formatter.exs config lib mix.exs README* LICENSE*),
+      licenses: ["Apache-2.0"],
+      links: %{
+        "GitHub" => "https://github.com/ory/sdk",
+        "Website" => "https://www.ory.sh",
+        "Documentation" => "https://www.ory.sh/docs",
+        "Product" => "https://console.ory.sh"
+      }
     ]
   end
 end
