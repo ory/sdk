@@ -7,35 +7,14 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container: oryd/sdk:v0.0.50
+    strategy:
+      matrix:
+        language: ["golang", "typescript"] # TODO: add the other languages
+        client: ["client", "keto", "oathkeeper"] # TODO: add the other clients
     steps:
       - uses: actions/checkout@v3
-      - run: ./scripts/generate.sh
-      - run: ./scripts/test.sh
-# version: 2.1
-
-# jobs:
-#   publish:
-#     docker:
-#       - image: oryd/sdk:v0.0.50
-#     working_directory: /sdk
-#     steps:
-#       - checkout
-#       - run: |
-#           if [ -z "$(git log -1 --pretty=%B | grep 'Add spec for' | grep -v '.pre.')" ]; then
-#               circleci-agent step halt
-#           fi
-#       - run:
-#           name: Authenticate with registry
-#           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-#       - run: ./scripts/init.sh
-#       - run: ./scripts/generate.sh
-#       - run: ./scripts/test.sh
-#       - run: ./scripts/release.sh
-
-# workflows:
-#   publish:
-#     jobs:
-#       - publish:
-#           filters:
-#             branches:
-#               only: master
+        # TODO: add version information here?
+      - name: Generate ${{ matrix.client }} client for ${{ matrix.language }}
+        run: ./scripts/generate.sh ${{ matrix.language }} latest ${{ matrix.client }}
+      - name: Test ${{ matrix.client }} client for ${{ matrix.language }}
+        run: ./scripts/test.sh ${{ matrix.language }} latest ${{ matrix.client }}
