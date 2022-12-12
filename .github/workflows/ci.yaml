@@ -10,11 +10,25 @@ jobs:
     strategy:
       matrix:
         language: ["golang", "typescript"] # TODO: add the other languages
-        client: ["client", "keto", "oathkeeper"] # TODO: add the other clients
     steps:
       - uses: actions/checkout@v3
-        # TODO: add version information here?
-      - name: Generate ${{ matrix.client }} client for ${{ matrix.language }}
-        run: ./scripts/generate.sh ${{ matrix.language }} latest ${{ matrix.client }}
-      - name: Test ${{ matrix.client }} client for ${{ matrix.language }}
-        run: ./scripts/test.sh ${{ matrix.language }} latest ${{ matrix.client }}
+      - name: "gen: client"
+        run: ./scripts/generate.sh ${{ matrix.language }} latest client
+      - name: "test: client"
+        run: ./scripts/test.sh ${{ matrix.language }} latest client
+      - name: "gen: keto"
+        run: ./scripts/generate.sh ${{ matrix.language }} latest keto
+      - name: "test: keto"
+        run: ./scripts/test.sh ${{ matrix.language }} latest keto
+      - name: "gen: kratos"
+        run: ./scripts/generate.sh ${{ matrix.language }} latest kratos
+      - name: "test: kratos"
+        run: ./scripts/test.sh ${{ matrix.language }} latest kratos
+      - name: "gen: hydra"
+        run: ./scripts/generate.sh ${{ matrix.language }} latest hydra
+      - name: "test: hydra"
+        run: ./scripts/test.sh ${{ matrix.language }} latest hydra
+      - name: "gen: oathkeeper"
+        run: ./scripts/generate.sh ${{ matrix.language }} latest oathkeeper
+      - name: "test: oathkeeper"
+        run: ./scripts/test.sh ${{ matrix.language }} latest oathkeeper
