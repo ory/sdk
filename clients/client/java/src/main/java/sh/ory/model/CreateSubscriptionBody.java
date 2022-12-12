@@ -49,7 +49,7 @@ import sh.ory.JSON;
  * Create Subscription Request Body
  */
 @ApiModel(description = "Create Subscription Request Body")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T09:17:11.733875213Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T09:41:20.543832309Z[Etc/UTC]")
 public class CreateSubscriptionBody {
   public static final String SERIALIZED_NAME_PLAN_OR_PRICE = "plan_or_price";
   @SerializedName(SERIALIZED_NAME_PLAN_OR_PRICE)

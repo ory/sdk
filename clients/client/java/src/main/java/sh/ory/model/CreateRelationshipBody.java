@@ -50,7 +50,7 @@ import sh.ory.JSON;
  * Create Relationship Request Body
  */
 @ApiModel(description = "Create Relationship Request Body")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T09:17:11.733875213Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T09:41:20.543832309Z[Etc/UTC]")
 public class CreateRelationshipBody {
   public static final String SERIALIZED_NAME_NAMESPACE = "namespace";
   @SerializedName(SERIALIZED_NAME_NAMESPACE)

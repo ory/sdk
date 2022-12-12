@@ -52,7 +52,7 @@ import sh.ory.JSON;
  * Paginated Relationship List
  */
 @ApiModel(description = "Paginated Relationship List")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T09:17:11.733875213Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T09:41:20.543832309Z[Etc/UTC]")
 public class Relationships {
   public static final String SERIALIZED_NAME_NEXT_PAGE_TOKEN = "next_page_token";
   @SerializedName(SERIALIZED_NAME_NEXT_PAGE_TOKEN)

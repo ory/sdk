@@ -49,7 +49,7 @@ import sh.ory.JSON;
  * Create Recovery Link for Identity Request Body
  */
 @ApiModel(description = "Create Recovery Link for Identity Request Body")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T09:17:11.733875213Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T09:41:20.543832309Z[Etc/UTC]")
 public class CreateRecoveryLinkForIdentityBody {
   public static final String SERIALIZED_NAME_EXPIRES_IN = "expires_in";
   @SerializedName(SERIALIZED_NAME_EXPIRES_IN)

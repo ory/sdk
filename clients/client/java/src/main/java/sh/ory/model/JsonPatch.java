@@ -50,7 +50,7 @@ import sh.ory.JSON;
  * JSON Patch allows you to target individual keys in a JSON document for updates.  For more examples see: https://jsonpatch.com
  */
 @ApiModel(description = "JSON Patch allows you to target individual keys in a JSON document for updates.  For more examples see: https://jsonpatch.com")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T09:17:11.733875213Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T09:41:20.543832309Z[Etc/UTC]")
 public class JsonPatch {
   public static final String SERIALIZED_NAME_FROM = "from";
   @SerializedName(SERIALIZED_NAME_FROM)

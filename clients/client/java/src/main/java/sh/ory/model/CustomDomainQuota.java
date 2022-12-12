@@ -49,7 +49,7 @@ import sh.ory.JSON;
  * Custom Domain Quota
  */
 @ApiModel(description = "Custom Domain Quota")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T09:17:11.733875213Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T09:41:20.543832309Z[Etc/UTC]")
 public class CustomDomainQuota {
   public static final String SERIALIZED_NAME_AVAILABLE_DOMAINS = "available_domains";
   @SerializedName(SERIALIZED_NAME_AVAILABLE_DOMAINS)
