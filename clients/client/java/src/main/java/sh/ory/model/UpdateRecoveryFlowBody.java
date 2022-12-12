@@ -59,7 +59,7 @@ import com.google.gson.JsonParseException;
 
 import sh.ory.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-09T12:44:02.933715237Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T08:35:41.287963370Z[Etc/UTC]")
 public class UpdateRecoveryFlowBody extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(UpdateRecoveryFlowBody.class.getName());
 

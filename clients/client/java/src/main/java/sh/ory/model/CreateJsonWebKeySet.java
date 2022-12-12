@@ -49,7 +49,7 @@ import sh.ory.JSON;
  * Create JSON Web Key Set Request Body
  */
 @ApiModel(description = "Create JSON Web Key Set Request Body")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-09T12:44:02.933715237Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T08:35:41.287963370Z[Etc/UTC]")
 public class CreateJsonWebKeySet {
   public static final String SERIALIZED_NAME_ALG = "alg";
   @SerializedName(SERIALIZED_NAME_ALG)

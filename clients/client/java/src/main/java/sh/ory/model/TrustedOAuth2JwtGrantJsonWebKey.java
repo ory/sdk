@@ -49,7 +49,7 @@ import sh.ory.JSON;
  * OAuth2 JWT Bearer Grant Type Issuer Trusted JSON Web Key
  */
 @ApiModel(description = "OAuth2 JWT Bearer Grant Type Issuer Trusted JSON Web Key")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-09T12:44:02.933715237Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T08:35:41.287963370Z[Etc/UTC]")
 public class TrustedOAuth2JwtGrantJsonWebKey {
   public static final String SERIALIZED_NAME_KID = "kid";
   @SerializedName(SERIALIZED_NAME_KID)

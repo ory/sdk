@@ -53,7 +53,7 @@ import sh.ory.JSON;
  * OAuth2 JWT Bearer Grant Type Issuer Trust Relationship
  */
 @ApiModel(description = "OAuth2 JWT Bearer Grant Type Issuer Trust Relationship")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-09T12:44:02.933715237Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T08:35:41.287963370Z[Etc/UTC]")
 public class TrustedOAuth2JwtGrantIssuer {
   public static final String SERIALIZED_NAME_ALLOW_ANY_SUBJECT = "allow_any_subject";
   @SerializedName(SERIALIZED_NAME_ALLOW_ANY_SUBJECT)

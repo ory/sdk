@@ -49,7 +49,7 @@ import sh.ory.JSON;
  * Create Identity and Import Password Credentials Configuration
  */
 @ApiModel(description = "Create Identity and Import Password Credentials Configuration")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-09T12:44:02.933715237Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T08:35:41.287963370Z[Etc/UTC]")
 public class IdentityWithCredentialsPasswordConfig {
   public static final String SERIALIZED_NAME_HASHED_PASSWORD = "hashed_password";
   @SerializedName(SERIALIZED_NAME_HASHED_PASSWORD)
