@@ -50,7 +50,7 @@ import sh.ory.JSON;
  * VerifiableAddress is an identity&#39;s verifiable address
  */
 @ApiModel(description = "VerifiableAddress is an identity's verifiable address")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T08:35:41.287963370Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T09:17:11.733875213Z[Etc/UTC]")
 public class VerifiableIdentityAddress {
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)

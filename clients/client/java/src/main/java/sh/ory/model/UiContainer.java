@@ -53,7 +53,7 @@ import sh.ory.JSON;
  * Container represents a HTML Form. The container can work with both HTTP Form and JSON requests
  */
 @ApiModel(description = "Container represents a HTML Form. The container can work with both HTTP Form and JSON requests")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T08:35:41.287963370Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T09:17:11.733875213Z[Etc/UTC]")
 public class UiContainer {
   public static final String SERIALIZED_NAME_ACTION = "action";
   @SerializedName(SERIALIZED_NAME_ACTION)

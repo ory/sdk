@@ -50,7 +50,7 @@ import sh.ory.JSON;
  * Used when an administrator creates a recovery code for an identity.
  */
 @ApiModel(description = "Used when an administrator creates a recovery code for an identity.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T08:35:41.287963370Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T09:17:11.733875213Z[Etc/UTC]")
 public class RecoveryCodeForIdentity {
   public static final String SERIALIZED_NAME_EXPIRES_AT = "expires_at";
   @SerializedName(SERIALIZED_NAME_EXPIRES_AT)

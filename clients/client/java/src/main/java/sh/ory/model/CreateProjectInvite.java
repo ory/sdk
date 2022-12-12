@@ -49,7 +49,7 @@ import sh.ory.JSON;
  * Create Project Invite Request Body
  */
 @ApiModel(description = "Create Project Invite Request Body")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T08:35:41.287963370Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-12T09:17:11.733875213Z[Etc/UTC]")
 public class CreateProjectInvite {
   public static final String SERIALIZED_NAME_INVITEE_EMAIL = "invitee_email";
   @SerializedName(SERIALIZED_NAME_INVITEE_EMAIL)
